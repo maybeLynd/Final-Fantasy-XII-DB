@@ -289,6 +289,10 @@ defaults: 1 turns the option on, 2 turns it off, and any other value keeps the d
 options. [`game-settings-ff12config-values.tsv`](game-settings-ff12config-values.tsv) gives every byte: its shipped
 value, the global it is copied to, its readers, and what another value does.
 
+[The FF12CONFIG inputs](game-settings-inputs.tsv) table gives each of the 22 entries as a setting: its values, what
+else sets the same state and which wins, when it takes effect, what reads it, what the player sees, and when it
+changes nothing.
+
 - `0x002DDA30` reads `+0x06` and `+0x10` through the getters `0x00408B80` and `0x00408B40` (`0x002DDA3B`, `0x002DDA66`) only
   when it is entered with 1. The options-defaults installer `0x002DDE60` enters it with 1 (`0x002DE035`) at start-up,
   on the title screen, on the return to the title and for Restore Defaults; the save-load applier `0x002DE050` enters

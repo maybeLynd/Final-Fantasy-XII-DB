@@ -1,0 +1,25 @@
+path	kind	index	stride	element_count	streams	modifiers
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_33.dae.phyre	dynamic data block	0	12	11763	0:2:SkinnableVertex:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_33.dae.phyre	dynamic data block	1	12	11763	0:2:SkinnableNormal:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_33.dae.phyre	dynamic data block	2	12	11763	0:2:SkinnableTangent:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_33.dae.phyre	dynamic data block	3	16	11763	0:3:SkinWeights:255	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_33.dae.phyre	dynamic data block	4	4	11763	0:19:SkinIndices:255	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_33.dae.phyre	dynamic stream	0	-	-	Vertex	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_33.dae.phyre	dynamic stream	1	-	-	Normal	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_33.dae.phyre	dynamic stream	2	-	-	Tangent	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_43.dae.phyre	dynamic data block	0	12	12900	0:2:SkinnableVertex:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_43.dae.phyre	dynamic data block	1	12	12900	0:2:SkinnableNormal:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_43.dae.phyre	dynamic data block	2	12	12900	0:2:SkinnableTangent:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_43.dae.phyre	dynamic data block	3	16	12900	0:3:SkinWeights:255	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_43.dae.phyre	dynamic data block	4	4	12900	0:19:SkinIndices:255	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_43.dae.phyre	dynamic stream	0	-	-	Vertex	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_43.dae.phyre	dynamic stream	1	-	-	Normal	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/mws/hn1017_43.dae.phyre	dynamic stream	2	-	-	Tangent	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/mws/m1134.dae.phyre	dynamic data block	0	12	13722	0:2:SkinnableVertex:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/mws/m1134.dae.phyre	dynamic data block	1	12	13722	0:2:SkinnableNormal:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/mws/m1134.dae.phyre	dynamic data block	2	12	13722	0:2:SkinnableTangent:0	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/mws/m1134.dae.phyre	dynamic data block	3	16	13722	0:3:SkinWeights:255	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/mws/m1134.dae.phyre	dynamic data block	4	4	13722	0:19:SkinIndices:255	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/mws/m1134.dae.phyre	dynamic stream	0	-	-	Vertex	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/mws/m1134.dae.phyre	dynamic stream	1	-	-	Normal	SkinLocalTangent
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/mws/m1134.dae.phyre	dynamic stream	2	-	-	Tangent	SkinLocalTangent

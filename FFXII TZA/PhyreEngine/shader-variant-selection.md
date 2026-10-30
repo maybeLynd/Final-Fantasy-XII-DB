@@ -159,6 +159,13 @@ The per-switch installers, teardown stubs and all four slots are in
 Instruction-level accesses to the D3D11 shader pass state are in
 [shader-variant-selection-p-shader-pass-state-d3d11-accesses.tsv](shader-variant-selection-p-shader-pass-state-d3d11-accesses.tsv).
 
+In a shader file the three program lists (`PShaderVertexProgram`, `PShaderGeometryProgram`,
+`PShaderFragmentProgram`) give each program `m_compiledCode`, the byte count of its code,
+`m_constantBufferSize` and `m_shaderProfile`, a u32 whose bytes, most significant first, spell the profile:
+`vs50`, `vs40`, `vs41`, `gs50`, `ps50` or `ps40`. A list's array area holds the codes back to back in object
+order. Each code is a DXBC container whose size word at `+0x18` equals its `m_compiledCode`; 224 of the 266
+lists end with 1 to 7 zero bytes after the last code.
+
 ### Reflected members
 
 The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
@@ -215,6 +222,19 @@ A model names the compiled shader it draws with as `<shader>.fx#<hash>`, in its 
 ships each such variant as a separate cluster beside the shader, and no other file (`idmaps.txt` included) and no
 string in the executable builds or holds those names.
 
+The shader files decode as below; the linked tables hold every value.
+
+| Fact | Value |
+|---|---|
+| effect files | 93: the 13 effects the executable names and the 80 variants; per file the effect name, render passes, shaders, passes, programs by stage and profile, code bytes, entry points, parameter and sampler counts, parameter names, material defines and what names the file ([effects](shader-variant-selection-effects.tsv)) |
+| programs | 5,625: vertex 2,475 (`vs_5_0` 2,431, `vs_4_0` 42, `vs_4_1` 2), geometry 675 (`gs_5_0` 675), fragment 2,475 (`ps_5_0` 2,433, `ps_4_0` 42) ([programs](shader-variant-selection-programs.tsv)) |
+| distinct program codes | 335 by SHA-256 (`ps_5_0` 225, `ps_4_0` 41, `vs_5_0` 37, `gs_5_0` 16, `vs_4_0` 15, `vs_4_1` 1), all from `Microsoft (R) HLSL Shader Compiler 6.3.9600.18611`; chunks `RDEF ISGN OSGN SHEX STAT`, with `OSG5` for `OSGN` in the 16 geometry codes and `SHDR` for `SHEX` in the 57 shader model 4 codes; per code the inputs, outputs, constant buffers, bound resources and instruction count ([program codes](shader-variant-selection-program-codes.tsv)) |
+| the variant no model names | every program code of `phyredefaultlitshader.fx#9aa82ed5…` is also held by a variant that models name |
+| model imports | 4,770 import rows from the 2,091 models that name a variant: `chr` 2,280, `chr_shadow` 1,173, `map` 1,317; each imported variant ships ([imports](shader-variant-selection-imports.tsv)) |
+| render passes | 78 names across the 93 effects: 48 are names of records in the static pass array `0x01F2D6A0` and 17 of the runtime pass registry ([Post-processing](../Graphics/post-processing.md)); 13 match a record of neither: `ColorPickingRender`, `DefaultMapRenderPass`, `DefaultMapRenderPassNoAlphaTest`, `DepthEdgeDetection`, `DepthLabelOnePass`, `LumaEdgeDetection`, `Resolve`, `SAOCombine`, `Separate`, `USMApply`, `USMBlur`, `USMDownSample`, `USMDownSampleMS` ([render passes](shader-variant-selection-render-passes.tsv)) |
+| effects the executable names | each of the 13 by one path string: `sao` `0x008C66E8`, `unsharpmask` `0x008C6718`, `hbao` `0x008C6750`, `ps2depthoffield` `0x008C6780`, `separablesss` `0x008C67C0`, `gaussianfilter` `0x008C67F8`, `phyrefxaa` `0x008C6830`, `smaa` `0x008C6868`, `depthmask` `0x008C6908`, `brightnessshader` `0x008C6940`, `video` `0x008F8CE0`, `phyretext` `0x0090198F`, `copybuffer` `0x00902DE0` |
+| the six textures | `anisolighting`, `areatexdx10` and `searchtex` are named by executable strings (`0x008F9258`, `0x008C68D0`, `0x008C6898`); `beckmannmap`, `mipmaptest` and `shifttex` are named by no executable path string, no `.ah` or prefetch list, no model import and no other shipped file |
+
 ## State
 
 | Address | What |
@@ -240,3 +260,4 @@ string in the executable builds or holds those names.
 - [Phyre reflection](phyre-reflection.md): class descriptors and the `PEffect` member registrations.
 - [Phyre asset files](phyre-asset-files.md): the cluster header, packed namespace and instance lists the measurement reads.
 - [Phyre field schema](phyre-field-schema.md): file-side against runtime member offsets.
+- [Post-processing](../Graphics/post-processing.md): the two render-pass record tables the effects' pass names are matched against.

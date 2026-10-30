@@ -1,0 +1,139 @@
+table	index	code	name_text_id	name
+wmap region	0	-	-1	-
+wmap region	1	-	60000	Dalmasca
+wmap region	2	-	60001	Nabradia
+wmap region	3	-	60002	Archadia
+wmap region	4	-	60003	Bancour
+wmap region	5	-	60004	Purvama
+wmap region	6	-	60005	Jagd Yensa
+wmap region	7	-	60006	Jagd Difohr
+wmap region	8	-	60007	Jagd Ramooda
+wmap region	9	-	60008	Jagd Naldoa
+wmap region	10	-	60009	???
+wmap region	11	-	60010	???
+wmap area	0	none	-1	-
+wmap area	1	rbn	60100	Rabanastre
+wmap area	2	grm	60101	Garamsythe Waterway
+wmap area	3	nal	60102	Nalbina Fortress
+wmap area	4	mic	60103	Barheim Passage
+wmap area	5	dst	60104	Dalmasca Estersand
+wmap area	6	wdl	60105	Dalmasca Westersand
+wmap area	7	sav	60106	Giza Plains
+wmap area	8	mnt	60107	Mosphoran Highwaste
+wmap area	9	frs	60108	Salikawood
+wmap area	10	bog	60109	Nabreus Deadlands
+wmap area	11	bds	60110	Necrohol of Nabudis
+wmap area	12	alc	60111	Archades
+wmap area	13	dor	60112	Draklor Laboratory
+wmap area	14	fon	60113	Phon Coast
+wmap area	15	pla	60114	Tchita Uplands
+wmap area	16	rui	60115	Sochen Cave Palace
+wmap area	17	ozm	60116	Ozmone Plain
+wmap area	18	glf	60117	Jahara
+wmap area	19	hne	60118	Henne Mines
+wmap area	20	byu	60119	Bhujerba
+wmap area	21	lus	60120	Lhusu Mines
+wmap area	22	ene	60121	Ogir-Yensa Sandsea
+wmap area	23	enw	60122	Nam-Yensa Sandsea
+wmap area	24	rwg	60123	Tomb of Raithwall
+wmap area	25	ztc	60124	Zertinan Caverns
+wmap area	26	gol	60125	Golmore Jungle
+wmap area	27	vic	60126	Eruyt Village
+wmap area	28	mfr	60127	The Feywood
+wmap area	29	gil	60128	Giruvegan
+wmap area	30	bul	60129	Mt Bur-Omisace
+wmap area	31	pbc	60130	Paramina Rift
+wmap area	32	mrm	60131	Stilshrine of Miriam
+wmap area	33	srb	60132	Cerobi Steppe
+wmap area	34	var	60133	Balfonheim Port
+wmap area	35	rwf	60134	The Ridorana Cataract
+wmap area	36	dgl	60135	The Pharos
+wmap area	37	rsn	60136	{fixed-advance:8194}Leviathan{fixed-advance:8180}
+wmap area	38	bhm	60137	{fixed-advance:8194}Bahamut{fixed-advance:8180}
+amap area	0	none	-1	-
+amap area	1	rbn	60100	Rabanastre
+amap area	2	grm	60101	Garamsythe Waterway
+amap area	3	nal	60102	Nalbina Fortress
+amap area	4	mic	60103	Barheim Passage
+amap area	5	dst	60104	Dalmasca Estersand
+amap area	6	wdl	60105	Dalmasca Westersand
+amap area	7	sav	60106	Giza Plains
+amap area	8	mnt	60107	Mosphoran Highwaste
+amap area	9	frs	60108	Salikawood
+amap area	10	bog	60109	Nabreus Deadlands
+amap area	11	bds	60110	Necrohol of Nabudis
+amap area	12	alc	60111	Archades
+amap area	13	dor	60112	Draklor Laboratory
+amap area	14	fon	60113	Phon Coast
+amap area	15	pla	60114	Tchita Uplands
+amap area	16	rui	60115	Sochen Cave Palace
+amap area	17	ozm	60116	Ozmone Plain
+amap area	18	glf	60117	Jahara
+amap area	19	hne	60118	Henne Mines
+amap area	20	byu	60119	Bhujerba
+amap area	21	lus	60120	Lhusu Mines
+amap area	22	ene	60121	Ogir-Yensa Sandsea
+amap area	23	enw	60122	Nam-Yensa Sandsea
+amap area	24	rwg	60123	Tomb of Raithwall
+amap area	25	ztc	60124	Zertinan Caverns
+amap area	26	gol	60125	Golmore Jungle
+amap area	27	vic	60126	Eruyt Village
+amap area	28	mfr	60127	The Feywood
+amap area	29	gil	60128	Giruvegan
+amap area	30	bul	60129	Mt Bur-Omisace
+amap area	31	pbc	60130	Paramina Rift
+amap area	32	mrm	60131	Stilshrine of Miriam
+amap area	33	srb	60132	Cerobi Steppe
+amap area	34	var	60133	Balfonheim Port
+amap area	35	rwf	60134	The Ridorana Cataract
+amap area	36	dgl	60135	The Pharos
+amap area	37	rsn	60136	{fixed-advance:8194}Leviathan{fixed-advance:8180}
+amap area	38	bhm	60137	{fixed-advance:8194}Bahamut{fixed-advance:8180}
+cmap sub-location	0	rbn01_s01	60138	the empty string
+cmap sub-location	1	fon01_s01	60140	the empty string
+cmap sub-location	2	mic01_s01	60141	the empty string
+cmap sub-location	3	bds01_s01	60142	the empty string
+cmap sub-location	4	bog01_s01	60144	the empty string
+cmap sub-location	5	ene01_s01	60145	the empty string
+cmap sub-location	6	enw01_s01	60146	the empty string
+cmap sub-location	7	grm01_s01	60147	the empty string
+cmap sub-location	8	nac01_s01	60148	the empty string
+cmap sub-location	9	naf01_s01	60149	the empty string
+cmap sub-location	10	nal01_s01	60150	the empty string
+cmap sub-location	11	ozm01_s01	60151	the empty string
+cmap sub-location	12	rwg01_s01	60152	the empty string
+cmap sub-location	13	sav01_s01	60153	Giza Plains - The Dry
+cmap sub-location	14	slm01_s01	60154	Giza Plains - The Rains
+cmap sub-location	15	wdl01_s01	60155	the empty string
+cmap sub-location	16	ztc01_s01	60156	the empty string
+cmap sub-location	17	glf01_s01	60157	the empty string
+cmap sub-location	18	hne01_s01	60158	the empty string
+cmap sub-location	19	mfr01_s01	60159	the empty string
+cmap sub-location	20	vic01_s01	60160	the empty string
+cmap sub-location	21	dst01_s01	60161	the empty string
+cmap sub-location	22	rrp01_s01	60162	the empty string
+cmap sub-location	23	alc01_s01	60163	the empty string
+cmap sub-location	24	alc01_s02	60164	the empty string
+cmap sub-location	25	frs01_s01	60165	the empty string
+cmap sub-location	26	byu01_s01	60166	the empty string
+cmap sub-location	27	lus01_s01	60167	the empty string
+cmap sub-location	28	mnt01_s01	60168	the empty string
+cmap sub-location	29	mrm01_s01	60169	the empty string
+cmap sub-location	30	pbc01_s01	60170	the empty string
+cmap sub-location	31	pla01_s01	60171	the empty string
+cmap sub-location	32	rsn01_s01	60172	the empty string
+cmap sub-location	33	rui01_s01	60174	the empty string
+cmap sub-location	34	rwf01_s01	60175	the empty string
+cmap sub-location	35	srb01_s01	60176	the empty string
+cmap sub-location	36	var01_s01	60177	the empty string
+cmap sub-location	37	gol01_s01	60178	the empty string
+cmap sub-location	38	bul01_s01	60179	the empty string
+cmap sub-location	39	gil01_s01	60180	the empty string
+cmap sub-location	40	gil01_s02	60181	the empty string
+cmap sub-location	41	dor01_s01	60182	the empty string
+cmap sub-location	42	rbl03_s01	60183	the empty string
+cmap sub-location	43	rbl02_s01	60184	the empty string
+cmap sub-location	44	rbl01_s01	60185	the empty string
+cmap sub-location	45	rbl04_s01	60186	the empty string
+cmap sub-location	46	bhm01_s01	60187	the empty string
+cmap sub-location	47	sav01_s02	60154	Giza Plains - The Rains

@@ -91,6 +91,11 @@ adds it back.
 | `.tm2` CLUT colours | 8-bit pictures: 256 in 282, then multiples of 256 up to 16,384 (36 have 4,096); 4-bit: 16 to 272 |
 | `.tm2` header size | `0x30` in 30; larger in 417, all with `eXt\0` at picture `+0x30` |
 | every standalone file | one row per picture in [`tim2-images-files-rows.tsv`](tim2-images-files-rows.tsv), 457 rows for the 456 files: size and SHA-256 prefix, version, picture count, every picture header field, whether the `eXt` block follows, and the gate nibble |
+| every `.tm2` and its path | one row per file in [`tim2-images-tm2-files.tsv`](tim2-images-tm2-files.tsv), 447 rows: folder, path, size, SHA-256, the kind 7 ids and languages whose path array names it, the languages whose size table gives that id the file's size, the `in_sdver` entry, the pack entries with the same bytes, and how many prefetch lists name it |
+| named by a kind 7 array | 402: every `.tm2` under `us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn` and `ch` except `title_logo_fore3.tm2`; each naming language's size table gives the id the file's size |
+| named by no path array | 45: `title_logo_fore3.tm2` in `us`, `de`, `es`, `fr`, `it` and `in` (526,496 bytes each), and the 39 `in_sdver/tm2_menu` files. `0x002DF9A0` points kind 7 ids at the `in_sdver` paths only when its second argument is 0 (`0x002DFF86`-`0x002E03EE`); the word it passes, `[0x01E0280C]`, ships as 1 ([Asset paths](asset-paths.md)) |
+| named but not shipped | kind 7 id 141, `logo_s_c.tm2`: every language's array names it in its own folder, and the `in_sdver` entries name an `in_sdver` copy; no folder ships it and no size table sizes the id |
+| pack directories | the six `packfiles` packs' directories hold offsets, not names ([PS2Data bin families](ps2data-bin-families.md)); no pack entry has the bytes of a `.tm2` file |
 | `.nfs` | 4-bit, no CLUT, TEX0 zero, widths 16 to 640 (not powers of two), a game block whose first dword ends `0x2F41` |
 | gate value (low nibble of file `+0x40`) | 5 in 417, 0 in 19, `0xC` in 10, 1 in 10: the nine `.nfs` and `in_sdver/tm2_menu/w_line01.tm2`, whose `0x30`-byte header puts pixel bytes `01 01 01 01` there |
 | embedded TIM2 (under `ps2data/`) | `.mpk` 21,419 in 459 files, `.dat` 6,767 in 2,795, `.ebp` 5,430 in 4,695, `.bin` 3,267 in 492; all at 16-byte-aligned offsets |

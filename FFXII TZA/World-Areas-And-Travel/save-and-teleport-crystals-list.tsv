@@ -1,0 +1,82 @@
+zone	map_name	region	script	number	kind	key_item	destination	reached
+48	Stockade	Nalbina Dungeons	nal_a01.ebp	0	save crystal	-	-	yes
+53	The Lightworks	Barheim Passage	mic_a01.ebp	0	save crystal	-	-	yes
+66	North-South Junction	Barheim Passage	mic_b06.ebp	4	gate crystal while map-jump group flag 0x402A is set, else save crystal	0x8043 Barheim Passage	field 66 entrance 0 (North-South Junction)	yes
+70	Terminus No. 4 Adjunct	Barheim Passage	mic_c02.ebp	0	save crystal	-	-	yes
+129	South Bank Village	Dalmasca Estersand	dst_b01.ebp	24	gate crystal	0x8057 Dalmasca Estersand	field 129 entrance 0 (South Bank Village)	yes
+141	The Shaded Path	Tchita Uplands	pla_a05.ebp	0	save crystal	-	-	yes
+142	The Chosen Path	Tchita Uplands	pla_a06.ebp	33	gate crystal	0x805C Tchita Uplands	field 142 entrance 3 (The Chosen Path)	yes
+149	The Nameless Spring	Tchita Uplands	pla_b06.ebp	0	save crystal	-	-	yes
+156	Path of Hours	The Salikawood	frs_a06.ebp	0	save crystal	-	-	yes
+157	Quietened Trace	The Salikawood	frs_b01.ebp	5	gate crystal	0x8044 The Salikawood	field 157 entrance 4 (Quietened Trace)	yes
+168	The Muted Scarp	Nabreus Deadlands	bog_a02.ebp	0	save crystal	-	-	yes
+176	Succor Midst Sorrow	Nabreus Deadlands	bog_b02.ebp	6	gate crystal	0x8045 Nabreus Deadlands	field 176 entrance 0 (Succor Midst Sorrow)	yes
+186	The Acolyte's Burden	Sochen Cave Palace	rui_a03.ebp	0	save crystal	-	-	yes
+188	Skybent Chamber	Sochen Cave Palace	rui_a05.ebp	9	gate crystal	0x8048 The Sochen Cave Palace	field 188 entrance 3 (Skybent Chamber)	yes
+231	Passage Entrance	Dalmasca Estersand	dst_a05.ebp	0	save crystal	-	-	yes
+243	Nomad Village	Giza Plains	sav_b01.ebp	0	save crystal	-	-	yes
+248	Crystal Glade	Giza Plains	sav_c02.ebp	0	save crystal	-	-	yes
+260	Nomad Village	Giza Plains	sav_e01.ebp	0	save crystal	-	-	yes
+265	Crystal Glade	Giza Plains	sav_f02.ebp	0	save crystal	-	-	yes
+280	Upper Apartments	Nalbina Fortress	naf_b02.ebp	0	save crystal	-	-	yes
+305	Eastgate	Rabanastre	rbn_a17.ebp	0	save crystal	-	-	yes
+306	Southgate	Rabanastre	rbn_a18.ebp	1	gate crystal	0x8040 Rabanastre	field 306 entrance 4 (Southgate)	yes
+307	Westgate	Rabanastre	rbn_a19.ebp	0	save crystal	-	-	yes
+311	Central Spur Stairs	Garamsythe Waterway	grm_a01.ebp	0	save crystal	-	-	yes
+314	East Spur Stairs	Garamsythe Waterway	grm_a04.ebp	0	save crystal	-	-	yes
+319	East Sluice Control	Garamsythe Waterway	grm_b02.ebp	0	save crystal	-	-	yes
+322	Central Waterway Control	Garamsythe Waterway	grm_b05.ebp	0	save crystal	-	-	yes
+341	Crystal Core	The Great Crystal	gil_g10.ebp	0	save crystal	-	-	yes
+350	The Western Divide	Dalmasca Westersand	wdl_a06.ebp	25	gate crystal	0x8058 Dalmasca Westersand	field 350 entrance 0 (The Western Divide)	yes
+360	Transitway 2	Lhusu Mines	lus_a04.ebp	12	gate crystal	0x804B The Lhusu Mines	field 360 entrance 0 (Transitway 2)	yes
+386	Yensa Border Tunnel	Ogir-Yensa Sandsea	ene_a08.ebp	29	gate crystal	0x805A Ogir-Yensa Sandsea	field 386 entrance 1 (Yensa Border Tunnel)	yes
+394	The Sandscale Bank	Nam-Yensa Sandsea	enw_a05.ebp	0	save crystal	-	-	yes
+403	Valley of the Dead	The Tomb of Raithwall	rwg_a01.ebp	13	gate crystal	0x804C The Tomb of Raithwall	field 403 entrance 3 (Valley of the Dead)	yes
+450	The Parting Glade	Golmore Jungle	gol_a04.ebp	15	gate crystal	0x804E Golmore Jungle	field 450 entrance 4 (The Parting Glade)	yes
+463	Fading Vale	Paramina Rift	pbc_a01.ebp	0	save crystal	-	-	yes
+473	Path of the Firstfall	Paramina Rift	pbc_c01.ebp	0	save crystal	-	-	yes
+483	Kaukula Pass	Phon Coast	fon_a06.ebp	0	save crystal	-	-	yes
+488	Hunters' Camp	Phon Coast	fon_b01.ebp	32	gate crystal	0x805B The Phon Coast	field 488 entrance 0 (Hunters' Camp)	yes
+494	Rava's Pass	Phon Coast	fon_c04.ebp	0	save crystal	-	-	yes
+500	Journey's Rest	Cerobi Steppe	srb_a04.ebp	0	save crystal	-	-	yes
+509	Footfalls of the Past	Ridorana Cataract	rwf_a01.ebp	0	save crystal	-	-	yes
+518	Path of Hidden Blessing	Ridorana Cataract	rwf_b02.ebp	0	save crystal	-	-	yes
+533	Sunlit Path	Ozmone Plain	ozm_b04.ebp	0	save crystal	-	-	yes
+542	Antiquity's End	The Feywood	mfr_a04.ebp	0	save crystal	-	-	yes
+552	Port Launch	Dreadnought Leviathan	rsn_a01.ebp	0	save crystal	-	-	yes
+567	Cellar Stores	Royal Palace	rrp_a01.ebp	0	save crystal	-	-	yes
+581	The Undershore	Zertinan Caverns	ztc_b01.ebp	0	save crystal	-	-	yes
+594	Walk of Mind	Stilshrine of Miriam	mrm_a02.ebp	18	gate crystal	0x8051 The Stilshrine of Miriam	field 594 entrance 3 (Walk of Mind)	yes
+608	Walk of Revelation	Stilshrine of Miriam	mrm_d03.ebp	0	save crystal	-	-	yes
+630	West Barbican	Nalbina Town	nac_a01.ebp	3	gate crystal	0x8042 Nalbina Fortress	field 630 entrance 0 (West Barbican)	yes
+686	Gate of Earth	Giruvegan	gil_a01.ebp	17	gate crystal	0x8050 Giruvegan	field 686 entrance 1 (Gate of Earth)	yes
+694	The Haalmikah Water-Steps	Giruvegan	gil_c01.ebp	0	save crystal	-	-	yes
+710	The Confiscatory	Nalbina Dungeons	nal_c02.ebp	0	save crystal	-	-	yes
+718	Staging Shaft	Henne Mines	hne_a07.ebp	10	gate crystal	0x8049 The Henne Mines	field 718 entrance 0 (Staging Shaft)	yes
+742	Sand-strewn Pass	Mt Bur-Omisace	bul_b02.ebp	23	gate crystal	0x8056 Mt Bur-Omisace	field 742 entrance 3 (Sand-strewn Pass)	yes
+751	Banks of the Sogoht	Jahara	glf_a01.ebp	21	gate crystal	0x8054 Jahara	field 751 entrance 0 (Banks of the Sogoht)	yes
+756	Tsenoble	Archades	alc_c01.ebp	8	gate crystal	0x8047 Archades	field 756 entrance 3 (Tsenoble)	yes
+762	Alley of Muted Sighs	Old Archades	ald_a01.ebp	0	save crystal	-	-	yes
+768	Road of Verdant Praise	Eruyt Village	vic_a03.ebp	22	gate crystal	0x8055 Eruyt Village	field 768 entrance 4 (Road of Verdant Praise)	yes
+777	Antechamber	Sky Fortress Bahamut	bhm_a04.ebp	0	save crystal	-	-	yes
+791	Aerodrome	Bhujerba	byu_b01.ebp	11	gate crystal	0x804A Bhujerba	field 791 entrance 0 (Aerodrome)	yes
+794	Aerodrome	Archades	alc_e01.ebp	0	save crystal	-	-	yes
+797	Aerodrome	Balfonheim Port	var_b01.ebp	0	save crystal	-	-	yes
+806	Lhusu Square	Bhujerba	byu_a04.ebp	0	save crystal	-	-	yes
+823	Sea Breeze Lane	Balfonheim Port	var_a01.ebp	19	gate crystal	0x8052 The Port at Balfonheim	field 823 entrance 0 (Sea Breeze Lane)	yes
+840	East Sluice Control	Garamsythe Waterway	grm_e03.ebp	0	save crystal	-	-	yes
+850	Central Waterway Control	Garamsythe Waterway	grm_e13.ebp	0	save crystal	-	-	yes
+876	Brig No. 1	Dreadnought Leviathan	rsn_y01.ebp	0	save crystal	-	-	yes
+894	Terminus No. 7 Adjunct	Barheim Passage	mic_e04.ebp	0	save crystal	-	-	yes
+905	Staging Area	Lhusu Mines	lus_f05.ebp	0	save crystal	-	-	yes
+1003	Kanbhru Pis	The Great Crystal	gil_l02.ebp	0	save crystal	-	-	yes
+1047	70th Floor	Draklor Laboratory	dor_c12.ebp	0	save crystal	-	-	yes
+1059	Rm 6704 East	Draklor Laboratory	dor_d06.ebp	0	save crystal	-	-	yes
+1101	The Wellspring	Pharos - First Ascent	rbl_a01.ebp	20	gate crystal	0x8053 The Pharos at Ridorana	field 1101 entrance 0 (The Wellspring)	yes
+1102	Horizon's Break	Pharos - First Ascent	rbl_a02.ebp	0	save crystal	-	-	yes
+1103	The Reach	Pharos - Second Ascent	rbl_a03.ebp	0	save crystal	-	-	yes
+1104	Reach of the Damned	Pharos - Second Ascent	rbl_a04.ebp	0	save crystal	-	-	yes
+1105	Reach of the Occult	Pharos - Second Ascent	rbl_a05.ebp	0	save crystal	-	-	yes
+1143	Empyrean Ravel	Pharos - Third Ascent	rbl_q01.ebp	0	save crystal	-	-	yes
+1151	Babbling Vale	Mosphoran Highwaste	mnt_d01.ebp	28	gate crystal	0x8059 Mosphoran Highwaste	field 1151 entrance 7 (Babbling Vale)	yes
+none	-	-	mic_b07.ebp	0	save crystal	-	-	no: no resource-kind 5 path names the script, so no zone loads it

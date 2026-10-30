@@ -89,7 +89,13 @@ A 10-lane monster's files are `_00`, `_10`, `_e1`-`_e6`, `_t1` and `_t2`, in tha
 |---|---|
 | models | 1,084; their `.cm` ships for 1,066, the count [Model files](model-files-cm-ca.md) gives |
 | `.cm` named but not shipped | 18, among them `c1010` and `c1014`-`c1018`, `n1037`, `g0054` and `w2123` |
+| a model whose `.cm` is not shipped | all twelve size tables give its id −1 (18 of 18). The binding's load `0x002EAD50` sizes the file with `0x0032E400` and requests it with that size (`0x002EADEA`, `0x002EAE08`); the read issuer refuses a −1 request and the queue reports it delivered with nothing read ([File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)). No table or manifest names those 18 ids |
+| a motion file that is not shipped | 7,198 path-array entries name a `.ca` the archive lacks: 6,843 lanes and 355 of kind 30, and all twelve size tables give each −1. The lane loader `0x002E6EB0` takes a lane's size from `0x002E9920`, which returns `0x0032E400`'s answer, and skips the lane with no buffer and no request when it is not above 0 (`0x002E6F43`-`0x002E6F45`) |
+| every shipped `.cm` and `.ca` is named | each `.cm` by its bound id's kind (1,066 of 1,066); 1,195 `.ca` by a lane of their model and the other 1,969 by kind 30's array (3,164 of 3,164) |
 | remastered `.ah` lists | 1,050 models, 4 of them with no shipped `.cm`; each list names one `.dae.phyre` mesh, and 8,418 textures in all |
+| `chr/` lists no model's path builds | 6: the `mws/` lists of `m1022`, `m1025`, `m1084` and `m1085`, each naming the same files as the model's own list, and the heads `hn1021_01` and `hn1081_01` ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md) `prefetch-manifests-ah-lists-chr.tsv`) |
+| heads `hn1021_01`, `hn1081_01` | each list names one mesh with face joints (`j_kao`, `j_eye_r`, `j_mayu_r`, `j_ago`) and two face textures (`f0019_face` and `f0019_etc`; `f0062_face` and `f0062_hair`). The 26 names of `hn1021_01.dae.phyre` are all in the bound `hn1021_02` (model N12), which adds 24 arm and hand joints and imports the same files and one more texture. No model's path names `hn1021_01` or `hn1081_01`, so no binding requests their lists, and in the four `.ah` token tables each head's mesh is named by its own list alone |
+| mesh imports | each mesh names the shader variants and base textures it binds as asset imports: 2,280 variant and 1,969 texture imports in the 1,053 `chr/` mesh files ([PhyreEngine asset files](../PhyreEngine/phyre-asset-files.md) `phyre-asset-files-meshes-chr.tsv` `imports`) |
 | shipped `.cm` with no `.ah` | 20: 18 weapons and the NPCs `n1027` and `n1174` |
 | lane files that ship | 1,195 on 449 models |
 | further motions | 1,954 of kind 30's 1,969 files, on 344 models |

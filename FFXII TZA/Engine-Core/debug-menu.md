@@ -221,7 +221,8 @@ the menu that would reach them never opens.
 
 Two console bytes are read by input code instead of a menu arm. While `+0xC3D` (row 293, "Key
 Board Debug For Japanese Keyboard") is set, the control-code lookups `0x00197790` and `0x00197800`
-use the 106-entry table `0x01DF1030` in place of `0x01DF0E80`, and while `+0xC35` (row 187, "Enable
+use the 107-entry table `0x01DF1030` in place of `0x01DF0E80` (both read for indexes 0 to 106, `0x00197825`, `0x00197842`),
+and while `+0xC35` (row 187, "Enable
 mouse control camera") is set the input translator `0x00197160` calls `GetForegroundWindow` at
 `0x001973DA` ([on-screen keyboard](../Controls-And-Input/on-screen-keyboard.md), [controls](../Controls-And-Input/controls.md)).
 

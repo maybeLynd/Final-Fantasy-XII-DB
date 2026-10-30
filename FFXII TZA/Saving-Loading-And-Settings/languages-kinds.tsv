@@ -1,0 +1,32 @@
+kind	example_path	entries	same_size_in_all	size_differs	groups_of_equal_size
+0	PS2Data/cdi/in/system.cnf	1	1	0	-
+1	PS2Data/sound/se/map/position_map/spp/env/env99.spp	24	23	1	US / FR / DE / IT / ES / KR / CH / IN (Japanese) / CN (1)
+2	PS2Data/image/FF12/test_battle/in/BinaryFile/WepJob_Matrix.bin	81	54	27	US / FR / DE / IT / ES / KR / CH / IN (Japanese) / CN (18); US / FR / DE / IT / ES / KR / CH CN / IN (Japanese) (4); US / FR DE IT ES / KR CH IN (Japanese) CN (2)
+4	PS2Data/plan_master/map_ctrl/ous01/ous0100/bin/ous0100.mpk	550	550	0	-
+5	PS2Data/plan_master/us/plan_map/ttl_a/ttl_a01/global/ttl_a01.ebp	896	311	585	US FR DE KR / IT / ES CH IN (Japanese) CN (100); US / FR / DE / IT / ES / KR / CH / IN (Japanese) / CN (95); US ES / FR DE IT / KR / CH / IN (Japanese) / CN (49)
+7	PS2Data/image/FF12/myoshiok/in/Bin_Menu/fontcolor.bin	545	522	23	US FR DE IT ES KR CH CN / IN (Japanese) (7); US / FR / DE / IT / ES / KR / CH / IN (Japanese) / CN (7); US FR DE IT ES / KR CH CN / IN (Japanese) (1)
+8	PS2Data/plan_master/us/event/nal_a/nal_a0100/nal_a0100.ebp	1080	878	202	US FR DE IT ES IN (Japanese) / KR / CH / CN (19); US FR DE IT ES / KR / CH CN / IN (Japanese) (13); US DE IT ES / FR / KR / CH CN / IN (Japanese) (9)
+9	PS2Data/image/ff12/common/test_map_ref.bin	26	25	1	US / FR / DE / IT / ES / KR / CH / IN (Japanese) / CN (1)
+10	PS2Data/effect_finish/jp/common/c_all.efx	2	2	0	-
+11	PS2Data/effect_finish/jp/magic/m0000.efx	366	366	0	-
+12	PS2Data/effect_finish/jp/event/e0000.efx	534	348	186	US FR DE IT KR CH CN / ES / IN (Japanese) (47); US FR IT ES KR CH CN / DE / IN (Japanese) (47); US FR DE IT ES CH IN (Japanese) / KR CN (46)
+13	PS2Data/obj_finish/in/gadget/g0001.cm	103	103	0	-
+14	PS2Data/obj_finish/in/chara/c10/c1004/c1004.cm	143	143	0	-
+15	PS2Data/obj_finish/in/high/c10/c1004/hc1004_01.cm	47	47	0	-
+16	PS2Data/obj_finish/in/weapon/w2002.cm	326	326	0	-
+19	PS2Data/obj_finish/in/npc/n10/n1059/n1059.cm	691	691	0	-
+20	PS2Data/obj_finish/in/high/n10/n1018/hn1018_11.cm	80	80	0	-
+21	PS2Data/plan_master/in/plan_map/nal_a/area/nal_a.ard	166	166	0	-
+22	PS2Data/obj_finish/in/bg_obj/b00/b0001/b0001.cm	17	17	0	-
+23	PS2Data/obj_finish/in/summon/s0002/s0002.cm	78	78	0	-
+24	PS2Data/obj_finish/in/high/s00/s0003/hs0003_01.cm	5	5	0	-
+25	PS2Data/obj_finish/in/treasure/t0004.cm	17	17	0	-
+26	PS2Data/plan_master/in/plan_map/nal_a/area/nal_a.nmb	166	166	0	-
+28	PS2Data/movie_finish/us/OPN.mh	43	43	0	-
+30	PS2Data/obj_finish/in/chara/c10/c1004/c1004_10_3000.ca	1969	1969	0	-
+32	PS2Data/sound/se/block/se000.seb	248	248	0	-
+33	PS2Data/sound/shout/us/shout00/shout00.win.sab	64	64	0	-
+34	PS2Data/obj_finish/in/monster/m10/m1002/m1002.cm	754	754	0	-
+37	PS2Data/plan_master/in/event/nal_a/nal_a0100/nal_a0100.ebp	1080	885	195	US FR DE IT ES IN (Japanese) / KR CH CN (195)
+38	PS2Data/effect_finish/jp/magic/m0000.efx	366	366	0	-
+39	PS2Data/sound/shout/jp/shout00/shout00.win.sab	64	64	0	-

@@ -234,6 +234,18 @@ is one HLSL variable: `mapFresnelRefEnabled` at `+0x000`, `vMapAmbientColor` at 
 `chrDiffuseIntensity` at `+0x160`, `chrCubemapIntensity` at `+0x168` and so on. The table gives
 the constant-buffer offset and variable for all 276 fields the map reaches.
 
+[The render settings inputs](graphics-settings-inputs.tsv) table gives each of the 276 fields as a setting: its
+values and who writes them, which write lands last, when it takes effect, the shipped programs that read it, what
+the player sees where this page states it, and when it changes nothing.
+
+- 162 fields are rewritten every frame from the shadow object (`0x001F0AD0`), 30 by the scene-config loaders on each
+  area or cutscene load, and 15 by other code; the other 69 keep the value the constructors or the zero-filled block
+  give them; no instruction outside the developer menu names one of them in a store, and that menu, which the shipped game
+  never opens, steps 65 of them.
+- The reflection data of the shipped programs marks 272 of the fields as read. `m_iChrPCFBlurForLoopStart`,
+  `m_iMapPCFBlurForLoopStart`, `mChrEnableHeightFade` and `sssFarPlane` are declared by all 228 program codes that
+  carry `SceneWideParameterConstantBuffer`, and every one of them marks the four as unread.
+
 The two use generic matrix helpers: `0x001854C0` (the product of two affine 4 × 4 matrices, used by
 `0x006084B0`), `0x00185AF0` (the inverse of an affine matrix through `0x001871B0`, with `+0x0C`, `+0x1C`
 and `+0x2C` set to 0 and `+0x3C` to 1, used by `0x00604750`) and `0x00187460` (the same inverse, copied

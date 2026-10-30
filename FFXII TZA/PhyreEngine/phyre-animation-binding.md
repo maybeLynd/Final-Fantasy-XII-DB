@@ -381,6 +381,7 @@ Measured over the packed namespaces and instance lists of every `.phyre` cluster
 | channel targets | 4: in each cluster one with `m_type` 1 and one with `m_type` 3 |
 | target names | `nodename1608` / `nodename118` (nodes, bound by the scene binders) and `setVisibilityFromAnimation` (a method, bound by `0x005C0C90`) |
 | targets with `m_type` 2, 4 or 5 | 0 |
+| the two clusters | two of the 456 map scenes; every object of every scene is a row of the scene tables on [Phyre asset files](phyre-asset-files.md) |
 
 ## State
 

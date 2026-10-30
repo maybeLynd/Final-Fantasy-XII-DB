@@ -174,6 +174,30 @@ Examples from the `us` file:
 | 220 | Cockatrice | Agytha |
 | 221 | Nomad | Arjie |
 
+### Where each name is given
+
+[`npc-names-maps.tsv`](npc-names-maps.tsv) has one row per name pair and script, from every `setnpcname` step
+with a fixed id in the script step tables of the area pages, and from the crystal actor
+([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)). A row gives:
+
+- the pair's two `us` names;
+- the script, the zone it plays in, with the field number, map name and region; a scene script is placed at the
+  zone script that loads it;
+- how many actors of the script take the name, and their actor names.
+
+What it shows:
+
+- 3,700 steps give 1,387 rows: 635 pairs in 482 scripts. 139 of the pairs have two different names.
+- The save and gate crystal actor is shared by the crystal maps. It picks the crystal's pair by the number
+  `getcrystalid` returns: 0 is Save Crystal, 255 Life Crystal, each of 25 gate numbers its own place's crystal, and
+  any other number Gate Crystal. Its rows are its 80 loaded crystals
+  ([Save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md)).
+- `bts_z01`, `pre_a01` and `pre_b01`, fields 108, 109 and 114, name their treasure chests, but no zone-script entry
+  names those scripts.
+- 84 more steps, one in each of 84 scripts, take the id from an array of the script's own data, indexed by the
+  person: `NPC01`'s background people in `clip_show` in 47 scripts, and `NPC_LABO_0`'s `begin` in 37 Draklor
+  Laboratory scripts.
+
 ## Modding notes
 
 - To rename a character, edit its pair in `npcdic.bin`; to make a reveal happen, set persistent flag

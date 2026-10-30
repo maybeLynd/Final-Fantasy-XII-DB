@@ -252,6 +252,10 @@ flag word `+0x0C` has `0x10000000`. This is the set the script verb `setskyonly`
 
 - In each of the 195 map packs with sky instances, they are instances 0 to n-1. None of these packs has
   an instance with `0x400`.
+- 11 of the 999 sky instances have no mesh instance `nodename<N>` in their scene, so no mesh instance is matched
+  to them and no render object is made for them ([Map art](map-art.md#matching-models-to-instances)): instance 1 of
+  `frs0111`, `naf0102` and `var0102` to `var0104`, instances 0 and 1 of `naf0101`, and instance 2 of `rbn0101`,
+  `rbn0104`, `rbn0201` and `rbn0301`. The other 988 are the pieces below.
 - Every piece has one material, a `PhyreDefaultLitShader` variant. Its `TextureSampler` texture is the
   picture: sky domes, cloud layers, stars, moons and distant mountains.
 - 971 of the 988 pieces use a material group named with `sky`. The other 17 are the distant mountains
@@ -260,7 +264,7 @@ flag word `+0x0C` has `0x10000000`. This is the set the script verb `setskyonly`
   `0x4000000` for slots 1 to 3, tested against `0x0209A6E8` (`0x002F5DF9`). So a weather change swaps sky
   pieces in and out.
   - 488 pieces are in all three slots, 177 only in slot 1, 39 only in slot 2 and 93 only in slot 3.
-  - 81 are in slots 1 and 2, and 110 in slots 2 and 3.
+  - 81 are in slots 1 and 2, and 110 in slots 2 and 3. So every piece carries at least one slot bit.
 - The draw pass `0x002F4520` draws at once every instance up to the last one with `0x10000000` or `0x400`
   (`0x002F4804`), then posts the map's opaque command ([Map art](map-art.md#drawing-an-instance)). So
   the sky is drawn before the rest of the map.
@@ -273,6 +277,8 @@ flag word `+0x0C` has `0x10000000`. This is the set the script verb `setskyonly`
 - All four passes test depth with ALWAYS and write no depth, so the map drawn afterwards covers the sky.
   The mode starts from the flag word's `(flag >> 1) & 7` (`0x002F4A72`-`0x002F4A9C`): it is 0 on 402 sky
   instances, 1 on 403 and 2 on 194.
+- A mode from 4 to 7 matches none of the four passes: `0x001E3107`-`0x001E310B` jump past the four stores, so the
+  pass pointer `+0x80` keeps the value it already holds. No shipped sky instance has a mode above 2.
 - Neither the direction `0x02CA43A0` nor the tangent `0x02CA43B0` reaches the sky. Their only readers are
   `0x0040B430` (`0x0040B4C4`) and the model simulation stage `0x0040FF30` (`0x00410083`, `0x0041008A`), so
   `setmapwind` and the wind presets do not change how the sky is drawn.
@@ -348,7 +354,7 @@ non-zero, so each row carries three per-slot enable bytes at `+8`, `+9` and `+0x
 | 0x482 | `defaultmapwind()` | `0x0034BD10` | `0x002E3D40(0, 0, 0, 0)`: the sky from the table for the committed slot |
 | 0x3DD | `changeenvsoundweather(n)` | `0x0034D900` | `0x00363A20(n)`, the environment sound |
 | 0x2024 | `debug_setweather` | `0x0050C7F0` | pops one operand and returns |
-| 0x209F | `debug_setlockweatherslot(n)` | `0x00510720` | pops one operand and runs a guard check; writes nothing |
+| 0x209F | `debug_setlockweatherslot(n)` | `0x00510720` | pops one operand (`0x00267E10`) and jumps to the `ret` stub `0x0016D6A0` (`0x00510732`); writes nothing |
 
 The verb's guard means a call from any actor other than the zone's setup actor, or any call after the
 zone has started, does nothing, without any report. In the shipped `us` scripts all 1,744 calls are in
@@ -466,6 +472,7 @@ The three files row by row, decoded with the layouts above:
 | table | rows | what each row holds |
 |---|---:|---|
 | [`weather-fields.tsv`](weather-fields.tsv) | 1,315 | one field of `map_ref.bin` (row n is field n): its selector, block, area and group, the group's terrain class, and for each weather slot the lane's four bytes, its environment index, the combat class and terrain flag the two lookup tables give it (0 out of range, as the code reads), and the MWeather wind preset, wind class, azimuth sector and elevation class of that selector and slot |
+| [`weather-maps.tsv`](weather-maps.tsv) | 708 | one map with a zone script, by field id: its map and region name, the script, its three chances (`weatherProbability`, the same in all ten language copies), what the roll on entering does from each slot (`0x0025ACA0`, `0x0025ABA0`), each slot's environment index, combat class and wind class from the field's row, and what those classes do to magick damage by element in that slot ([Elements](../Damage-And-Battle-Formulas/elements.md#weather-and-terrain-scaling), before the target's terrain class, and not with Weatherproof). The roll starts from the slot the zone's setup actor leaves, so a script that sets the slot first decides the start |
 | [`weather-mweather-entries.tsv`](weather-mweather-entries.tsv) | 2,328 | every selector 0 to 775 and slot 1 to 3 of `gramap_weatherinfo.bin`: the entry number, its 9 bits, the wind preset, the azimuth sector and the elevation class |
 | [`weather-test-area-ref.tsv`](weather-test-area-ref.tsv) | 321 | one value of `test_area_ref.bin`: the area index, its offset, the area's first and last field and its field count |
 | [`weather-terrain-groups.tsv`](weather-terrain-groups.tsv) | 32 | the `+0x14` table, the terrain class per field group: 0 for 17 groups, 1 for one, 2 for two, 3 for three and 4 for nine |
@@ -578,6 +585,13 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
 - The combat class comes from the requested slot and the sky from the committed one, so a lane edit
   that changes only one of them shows up as mismatched combat and sky after a forced weather.
 - `0x02099DB0` (lane byte `+2`) has no reader and is 0 in every shipped lane.
+- A sky piece is a YM00 instance with flag `0x10000000` whose scene holds the mesh instance `nodename<N>`. It
+  shows only in the weather slots whose bits it carries (`0x1000000`, `0x2000000`, `0x4000000`), and
+  `(flag >> 1) & 7` picks its blend, 0 to 3. It is drawn before the map with depth test ALWAYS and no depth write,
+  so the map covers it.
+- `test_area_ref.bin` restates `map_ref.bin`'s areas: value n is area n's first field. Its block is kept at
+  `0x02099D98`, which no instruction reads by its address; keep its values matching `map_ref.bin` when fields are
+  added or moved between areas.
 
 ## Related
 

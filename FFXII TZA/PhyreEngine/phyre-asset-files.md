@@ -287,6 +287,190 @@ matrix).
 | `index_buffer_bytes`, `vertex_buffer_bytes` | the header's `m_indexBufferSize` and `m_vertexBufferSize` |
 | `file_bytes`, `sha256` | the file's size and SHA-256 |
 
+Every `chr/` and `chr_shadow/` mesh file decoded: each object's members as its file's namespace gives them, read at their offsets in the packed object (a pointer member is one byte there and is not given).
+
+| table | rows | one row per |
+|---|---:|---|
+| [`phyre-asset-files-meshes-chr.tsv`](phyre-asset-files-meshes-chr.tsv) | 1,053 | `chr/` `.dae.phyre` file |
+| [`phyre-asset-files-mesh-segments-chr.tsv`](phyre-asset-files-mesh-segments-chr.tsv) | 12,320 | mesh segment |
+| [`phyre-asset-files-mesh-vertex-blocks-chr.tsv`](phyre-asset-files-mesh-vertex-blocks-chr.tsv) | 98,528 | vertex data block |
+| [`phyre-asset-files-meshes-chr_shadow.tsv`](phyre-asset-files-meshes-chr_shadow.tsv) | 588 | `chr_shadow/` `.dae.phyre` file |
+| [`phyre-asset-files-mesh-segments-chr_shadow.tsv`](phyre-asset-files-mesh-segments-chr_shadow.tsv) | 588 | mesh segment |
+| [`phyre-asset-files-mesh-vertex-blocks-chr_shadow.tsv`](phyre-asset-files-mesh-vertex-blocks-chr_shadow.tsv) | 4,704 | vertex data block |
+
+| Column | Meaning |
+|---|---|
+| `path`, `file_bytes`, `sha256` | the file, its size and SHA-256 |
+| `meshes`, `segments`, `skeleton_matrices`, `default_pose`, `default_materials`, `ps2_dl_indices` | the `PMesh` objects and, per mesh, the element counts of `m_meshSegments`, `m_skeletonMatrices`, `m_defaultPose`, `m_defaultMaterials` and `m_ps2DLIndices` |
+| `instances`, `instance_values`, `bounds` | the `PMeshInstance` objects with their flags and numbers, and each `PMeshInstanceBounds` minimum and size |
+| `materials`, `material_flags`, `render_pass_names` | the `PMaterial` objects, each `m_flag`, and the file's `PSceneRenderPassType` names |
+| `nodes`, `joint_bounds`, `names` | the `PNode` and `PSkeletonJointBounds` objects, and every `PString` of the file in list order (the node and joint names) |
+| `skin_bone_remaps` | each `PSkinBoneRemap` as hierarchy matrix index:skeleton matrix index, in list order |
+| `dynamic_blocks` | each `PDynamicDataBlock` as stride:elements:streams |
+| `vertex_streams`, `stream_values`, `render_data_types` | the `PVertexStream` objects, their offset:type:stream set values with how many streams have each, and the file's `PRenderDataType` names |
+| `exports`, `imports` | the ids of the file's asset references and of its asset imports: the shader variants and textures it binds by name |
+| `index_buffer_bytes`, `vertex_buffer_bytes` | the header's buffer sizes |
+| `ah_lists` | the `.ah` lists that name the file ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), all four token tables) |
+| `requested` | when the game requests one of those lists (`prefetch-manifests-ah-lists-chr.tsv` and `prefetch-manifests-ah-lists-chr_shadow.tsv`), `-` when it requests no list that names the file |
+| `segment`, `material_index`, `matrix_index`, `skin_bones`, `primitive_type`, `lod_index`, `shape_index`, `gather_index`, `vertex_blocks` | a segment's place in its list and its `PMeshSegmentBase` and `PMeshSegmentD3D11` members (`vertex_blocks`: the element count of `m_vertexData`) |
+| `index_count`, `index_type`, `index_min`, `index_max`, `index_bytes`, `index_offset` | its index block: `m_elementCount`, `m_type`, `m_minimumIndex`, `m_maximumIndex`, `m_dataSize`, `m_offsetInIndexBuffer` |
+| `block`, `stride`, `element_count`, `streams`, `memory_type`, `offset`, `bytes` | a vertex block's place in its list and its `m_stride`, `m_elementCount`, `m_streams` count, `m_memoryType`, `m_offsetInVertexBuffer` and `m_dataSize` |
+
+- In all 1,641 files the vertex blocks fill the vertex buffer: each block's bytes are its stride times its element count, the first starts at 0, each next where the one before ends, and the last ends at `m_vertexBufferSize`.
+- The index blocks fill the index buffer the same way, each starting on a 4-byte boundary. All 12,908 index blocks have type 12, two bytes per index, and all 12,908 segments primitive type 2.
+- In every file the segments' `vertex_blocks` sum to its `PDataBlock` objects and their `skin_bones` to its `PSkinBoneRemap` objects. In the 1,638 files without a dynamic mesh the blocks' stream counts sum to the file's `PVertexStream` objects; the other three (`chr_shadow` `hn1017_33`, `hn1017_43` and `m1134`) also hold five `PDynamicDataBlock` objects.
+- Six `chr/weapon/mws/` files hold no mesh: `w1000`, `w1003`, `w1005`, `w1009`, `w1016` and `w5020`. Of the 1,047 `chr/` meshes, 1,046 name the vertex data `SkinnableVertex`, `SkinnableNormal`, `ST`, `SkinnableTangent`, `SkinnableBinormal`, `Color`, `SkinWeights` and `SkinIndices`, and `global/materialsphere` names `Vertex`, `Normal`, `ST`, `Tangent`, `Binormal` and `Color`.
+- All 588 `chr_shadow/` meshes name the eight skinnable types, the three dynamic ones `Vertex`, `Normal` and `Tangent` as well.
+- Every mesh names the render passes `Opaque` and `MayaRenderPass`. Every `chr_shadow/` mesh has one segment and two materials and imports its folder's `for_shadow.dds` and the `PhyreChrShader.fx` variant `CB0F9F994888730E82AD01521483E596`, 585 of them also `E0C4972F01FD4520BF3F1330C4E1C44D`.
+- A list the game requests names every mesh file except the heads `hn1021_01` and `hn1081_01` in `chr/` and in `chr_shadow/`: each is named by its own list alone, which no model's path builds. Of the 512 `chr_shadow/` textures ([`phyre-asset-files-textures-chr_shadow.tsv`](phyre-asset-files-textures-chr_shadow.tsv)), 511 are named by a requested list, and `high/n10/n1081/tex/for_shadow.dds.phyre` only by the `hn1081_01` shadow list.
+
+Each `chr/` and `chr_shadow/` segment joined to the shader variant it draws with, pass by pass:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`phyre-asset-files-mesh-segment-variants-chr.tsv`](phyre-asset-files-mesh-segment-variants-chr.tsv) | 12,908 | mesh segment: its material and the name the file exports it under, the variant the material imports, the render data types of its vertex blocks and of the file's dynamic streams, the variant's render passes, how many of them its streams satisfy, and each pass and type left open |
+| [`phyre-asset-files-mesh-materials-chr.tsv`](phyre-asset-files-mesh-materials-chr.tsv) | 29,538 | `PMaterial`: exported name, variant, and the mesh default-set slots that hold it |
+| [`phyre-asset-files-mesh-dynamic-blocks-chr.tsv`](phyre-asset-files-mesh-dynamic-blocks-chr.tsv) | 24 | dynamic data block with its stream, or dynamic stream, of the three `chr_shadow/` dynamic meshes, with their modifier |
+| [`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv) | 150 | render pass of the ten variants the segments draw with: its shader's stream definitions, in order |
+
+- A segment draws with the material at its `m_materialIndex` in its mesh's default set, and every instance's `m_materialSet` is its own mesh's set. Those materials are named `<name>-Skinned-VertexColor` (12,304 in `chr/`, 585 in `chr_shadow/`) or `<name>-VertexColor` (the 16 of `chr/global/materialsphere` and the three dynamic `chr_shadow/` meshes).
+- Each file also exports a material under the base name, which no mesh's set holds: 16,042 in `chr/` and 588 in `chr_shadow/`. Each of them imports a variant that declares the rigid types `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`, so a skinned mesh's streams match the variant of its `-Skinned-` material and not the one its base material imports.
+- For each pass, `0x00609D80` first gives the pass shader's stream definitions the dynamic mesh's streams of their render data type, then `0x0060A010` the first vertex block stream of each type still open. A definition left open logs `Failed to find data block/vertex stream to satisfy RDT %s for stream %d`, `0x0060A010` returns `0x13`, and `0x0060B980` returns at `0x0060BF33` without drawing that segment or the instance's later ones.
+- The ten variants the segments draw with give 150 passes: the 120 skinned ones define `Color`, `SkinnableVertex`, `SkinnableNormal`, `SkinIndices`, `SkinWeights`, `ST`, `SkinnableTangent` and `SkinnableBinormal`, the 30 of the two rigid variants `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`. All 12,320 `chr/` segments and 585 of the 588 `chr_shadow/` segments satisfy every pass.
+- The other three, `high/n10/n1017/mws/hn1017_33`, `hn1017_43` and `monster/m11/m1134/mws/m1134`, draw with the rigid variant `CB0F9F994888730E82AD01521483E596`. Their modifier `SkinLocalTangent` writes `Vertex`, `Normal` and `Tangent` from five dynamic data blocks, and their vertex blocks carry the eight skinnable types.
+- So no stream of those three has the type `Binormal` that all 15 passes of that variant define: the match returns `0x13` in every pass, the shadow draw at `0x001F5F38` included, and the three meshes are not drawn: a character whose shadow model is one of them casts no shadow.
+
+Every map scene, `map/<area>/<map>/<map>.dae.phyre` (456 files), decoded object by object the same way, with each pointer member followed through the file's pointer fixup table to the object, import or user fixup it names:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`phyre-asset-files-scenes-map.tsv`](phyre-asset-files-scenes-map.tsv) | 456 | scene: its `.ah` lists, the packs that draw it and their tag-30 record counts, the instances matched and the records no instance names, object counts by class, imports by class, the variants and the checks |
+| [`phyre-asset-files-scene-instances-map.tsv`](phyre-asset-files-scene-instances-map.tsv) | 274,258 | `PMeshInstance`: name, the record number the name gives, mesh, materials, flags and numbers, bounds and world matrix |
+| [`phyre-asset-files-scene-meshes-map.tsv`](phyre-asset-files-scene-meshes-map.tsv) | 274,255 | `PMesh`: name, segment run, default materials and the element counts of its arrays |
+| [`phyre-asset-files-scene-segments-map.tsv`](phyre-asset-files-scene-segments-map.tsv) | 274,277 | `PMeshSegment`: mesh, material, vertex block run and index block |
+| [`phyre-asset-files-scene-vertex-blocks-map-1.tsv`](phyre-asset-files-scene-vertex-blocks-map-1.tsv) [`phyre-asset-files-scene-vertex-blocks-map-2.tsv`](phyre-asset-files-scene-vertex-blocks-map-2.tsv) | 1,805,837 | `PDataBlock`: stride, elements, streams, memory type, offset, bytes and stream layout |
+| [`phyre-asset-files-scene-stream-layouts-map.tsv`](phyre-asset-files-scene-stream-layouts-map.tsv) | 2,190 | distinct block stride and stream list, each stream as offset:type:render data type:stream set, with the blocks that have it |
+| [`phyre-asset-files-scene-materials-map.tsv`](phyre-asset-files-scene-materials-map.tsv) | 76,625 | `PMaterial`: name, shader variant, flag, render-pass remap, bound textures, parameter set and sampler set |
+| [`phyre-asset-files-scene-parameter-sets-map.tsv`](phyre-asset-files-scene-parameter-sets-map.tsv) | 21 | distinct set of a material's parameter values, by parameter name |
+| [`phyre-asset-files-scene-sampler-sets-map.tsv`](phyre-asset-files-scene-sampler-sets-map.tsv) | 2 | distinct set of a material's sampler states, by sampler name: minify and magnify filter, wrap S, T and R, LOD bias, anisotropy, border colour, base and max level, flags |
+| [`phyre-asset-files-scene-nodes-map.tsv`](phyre-asset-files-scene-nodes-map.tsv) | 312,172 | `PNode`: name, parent and local matrix |
+| [`phyre-asset-files-scene-cameras-map.tsv`](phyre-asset-files-scene-cameras-map.tsv) | 825 | `PCameraPerspective` or `PCameraOrthographic`: field of view or height, aspect, near and far planes, world matrix |
+| [`phyre-asset-files-scene-skins-map.tsv`](phyre-asset-files-scene-skins-map.tsv) | 32,850 | `PSkinBoneRemap` with the `PSkeletonJointBounds` of the same index |
+| [`phyre-asset-files-scene-pose-matrices-map.tsv`](phyre-asset-files-scene-pose-matrices-map.tsv) | 104,550 | `PMatrix4` |
+| [`phyre-asset-files-scene-stream-bindings-map.tsv`](phyre-asset-files-scene-stream-bindings-map.tsv) | 51,390 | `PMeshInstanceSegmentStreamBinding`: render data type, name, name hash, index, input set |
+| [`phyre-asset-files-scene-imports-map.tsv`](phyre-asset-files-scene-imports-map.tsv) | 22,026 | `PAssetReferenceImport`: id and target class |
+| [`phyre-asset-files-scene-unmatched-instances-map.tsv`](phyre-asset-files-scene-unmatched-instances-map.tsv) | 5,983 | instance that matches no YM00 record, and why |
+| [`phyre-asset-files-scene-procedural-records-map.tsv`](phyre-asset-files-scene-procedural-records-map.tsv) | 10,477 | `proceduralTextureConfigs.txt` record: whether its map's scene imports the texture, the materials that bind it as `TextureSampler`, and the matched instances whose first material does |
+
+- In all 456 scenes the vertex blocks fill the vertex buffer and the index blocks the index buffer as in the character files. 274,272 index blocks have type 12 and five type 8, four bytes per index, with 73,500 to 139,767 indices (`byu0101`, `byu0102`, `byu0105` and two in `gil5001`). Every segment has primitive type 2.
+- Each mesh's segment run, each segment's vertex block run and each block's stream run cover their lists once over. The 274,255 meshes hold 274,277 segments (19 meshes have two and one has four), and the 1,805,837 blocks hold 1,857,389 streams in 2,190 layouts. Three meshes are drawn by two instances.
+- Every material remaps the render pass `Opaque` to `MayaRenderPass`; 76,031 bind a `TextureSampler` texture and 594 bind no texture. The 76,625 materials hold 21 distinct parameter value sets and 2 sampler state sets. Each scene's nodes, 312,172 in all, form one tree under one root.
+- Cameras sit in 212 scenes (221 perspective, 604 orthographic), skin data in 58 (3,000 skinned segments, 32,850 bone remaps, 104,550 pose matrices) and stream bindings in 157; animation objects only in `bds0109` and `gil0102` ([Animation channel binding](phyre-animation-binding.md)).
+- The 22,026 imports are 20,709 textures and 1,317 shader variants. Each scene is named by its own two lists, `<map>_d3d11.ah` and `<map>_d3d11_srm.ah`, and by no other `.ah` list.
+- The 459 pack and scene pairs are 454 packs drawing their own scene and five drawing another map's ([Map art](../World-Areas-And-Travel/map-art.md#naming-the-map)). Of the 274,258 instances, 268,275 carry a number below the record count of the pack that draws their scene and are matched ([matching models to instances](../World-Areas-And-Travel/map-art.md#matching-models-to-instances)); the other 5,983 are matched to no record:
+  - `alc0201` (2,927) and `frs0109` (2,510): no pack draws the scene.
+  - `mic0108`: 539 instances named `mic0108_nodename<N>`, beside its 539 `nodename<N>` instances that match; their ninth character is not a digit.
+  - `pla0103`: one instance named `pPlane1`, seven characters.
+  - Six whose number is not below their pack's record count: `dor0104` 747 (747 records), `dor0105` 232 (232 records), `rsn0104` 1292 and 1293 (1,292 records), `rsn0107` 1123 and 1124 (1,123 records).
+
+Each `chr/` and `chr_shadow/` segment joined to the shader variant it draws with, pass by pass:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`phyre-asset-files-mesh-segment-variants-chr.tsv`](phyre-asset-files-mesh-segment-variants-chr.tsv) | 12,908 | mesh segment: its material and the name the file exports it under, the variant the material imports, the render data types of its vertex blocks and of the file's dynamic streams, the variant's render passes, how many of them its streams satisfy, and each pass and type left open |
+| [`phyre-asset-files-mesh-materials-chr.tsv`](phyre-asset-files-mesh-materials-chr.tsv) | 29,538 | `PMaterial`: exported name, variant, and the mesh default-set slots that hold it |
+| [`phyre-asset-files-mesh-dynamic-blocks-chr.tsv`](phyre-asset-files-mesh-dynamic-blocks-chr.tsv) | 24 | dynamic data block with its stream, or dynamic stream, of the three `chr_shadow/` dynamic meshes, with their modifier |
+| [`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv) | 150 | render pass of the ten variants the segments draw with: its shader's stream definitions, in order |
+
+- A segment draws with the material at its `m_materialIndex` in its mesh's default set, and every instance's `m_materialSet` is its own mesh's set. Those materials are named `<name>-Skinned-VertexColor` (12,304 in `chr/`, 585 in `chr_shadow/`) or `<name>-VertexColor` (the 16 of `chr/global/materialsphere` and the three dynamic `chr_shadow/` meshes).
+- Each file also exports a material under the base name, which no mesh's set holds: 16,042 in `chr/` and 588 in `chr_shadow/`. Each of them imports a variant that declares the rigid types `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`, so a skinned mesh's streams match the variant of its `-Skinned-` material and not the one its base material imports.
+- For each pass, `0x00609D80` first gives the pass shader's stream definitions the dynamic mesh's streams of their render data type, then `0x0060A010` the first vertex block stream of each type still open. A definition left open logs `Failed to find data block/vertex stream to satisfy RDT %s for stream %d`, `0x0060A010` returns `0x13`, and `0x0060B980` returns at `0x0060BF33` without drawing that segment or the instance's later ones.
+- The ten variants the segments draw with give 150 passes: the 120 skinned ones define `Color`, `SkinnableVertex`, `SkinnableNormal`, `SkinIndices`, `SkinWeights`, `ST`, `SkinnableTangent` and `SkinnableBinormal`, the 30 of the two rigid variants `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`. All 12,320 `chr/` segments and 585 of the 588 `chr_shadow/` segments satisfy every pass.
+- The other three, `high/n10/n1017/mws/hn1017_33`, `hn1017_43` and `monster/m11/m1134/mws/m1134`, draw with the rigid variant `CB0F9F994888730E82AD01521483E596`. Their modifier `SkinLocalTangent` writes `Vertex`, `Normal` and `Tangent` from five dynamic data blocks, and their vertex blocks carry the eight skinnable types.
+- So no stream of those three has the type `Binormal` that all 15 passes of that variant define: the match returns `0x13` in every pass, the shadow draw at `0x001F5F38` included, and the three meshes are not drawn: a character whose shadow model is one of them casts no shadow.
+
+Every map scene, `map/<area>/<map>/<map>.dae.phyre` (456 files), decoded object by object the same way, with each pointer member followed through the file's pointer fixup table to the object, import or user fixup it names:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`phyre-asset-files-scenes-map.tsv`](phyre-asset-files-scenes-map.tsv) | 456 | scene: its `.ah` lists, the packs that draw it and their tag-30 record counts, the instances matched and the records no instance names, object counts by class, imports by class, the variants and the checks |
+| [`phyre-asset-files-scene-instances-map.tsv`](phyre-asset-files-scene-instances-map.tsv) | 274,258 | `PMeshInstance`: name, the record number the name gives, mesh, materials, flags and numbers, bounds and world matrix |
+| [`phyre-asset-files-scene-meshes-map.tsv`](phyre-asset-files-scene-meshes-map.tsv) | 274,255 | `PMesh`: name, segment run, default materials and the element counts of its arrays |
+| [`phyre-asset-files-scene-segments-map.tsv`](phyre-asset-files-scene-segments-map.tsv) | 274,277 | `PMeshSegment`: mesh, material, vertex block run and index block |
+| [`phyre-asset-files-scene-vertex-blocks-map-1.tsv`](phyre-asset-files-scene-vertex-blocks-map-1.tsv) [`phyre-asset-files-scene-vertex-blocks-map-2.tsv`](phyre-asset-files-scene-vertex-blocks-map-2.tsv) | 1,805,837 | `PDataBlock`: stride, elements, streams, memory type, offset, bytes and stream layout |
+| [`phyre-asset-files-scene-stream-layouts-map.tsv`](phyre-asset-files-scene-stream-layouts-map.tsv) | 2,190 | distinct block stride and stream list, each stream as offset:type:render data type:stream set, with the blocks that have it |
+| [`phyre-asset-files-scene-materials-map.tsv`](phyre-asset-files-scene-materials-map.tsv) | 76,625 | `PMaterial`: name, shader variant, flag, render-pass remap, bound textures, parameter set and sampler set |
+| [`phyre-asset-files-scene-parameter-sets-map.tsv`](phyre-asset-files-scene-parameter-sets-map.tsv) | 21 | distinct set of a material's parameter values, by parameter name |
+| [`phyre-asset-files-scene-sampler-sets-map.tsv`](phyre-asset-files-scene-sampler-sets-map.tsv) | 2 | distinct set of a material's sampler states, by sampler name: minify and magnify filter, wrap S, T and R, LOD bias, anisotropy, border colour, base and max level, flags |
+| [`phyre-asset-files-scene-nodes-map.tsv`](phyre-asset-files-scene-nodes-map.tsv) | 312,172 | `PNode`: name, parent and local matrix |
+| [`phyre-asset-files-scene-cameras-map.tsv`](phyre-asset-files-scene-cameras-map.tsv) | 825 | `PCameraPerspective` or `PCameraOrthographic`: field of view or height, aspect, near and far planes, world matrix |
+| [`phyre-asset-files-scene-skins-map.tsv`](phyre-asset-files-scene-skins-map.tsv) | 32,850 | `PSkinBoneRemap` with the `PSkeletonJointBounds` of the same index |
+| [`phyre-asset-files-scene-pose-matrices-map.tsv`](phyre-asset-files-scene-pose-matrices-map.tsv) | 104,550 | `PMatrix4` |
+| [`phyre-asset-files-scene-stream-bindings-map.tsv`](phyre-asset-files-scene-stream-bindings-map.tsv) | 51,390 | `PMeshInstanceSegmentStreamBinding`: render data type, name, name hash, index, input set |
+| [`phyre-asset-files-scene-imports-map.tsv`](phyre-asset-files-scene-imports-map.tsv) | 22,026 | `PAssetReferenceImport`: id and target class |
+| [`phyre-asset-files-scene-unmatched-instances-map.tsv`](phyre-asset-files-scene-unmatched-instances-map.tsv) | 5,983 | instance that matches no YM00 record, and why |
+| [`phyre-asset-files-scene-procedural-records-map.tsv`](phyre-asset-files-scene-procedural-records-map.tsv) | 10,477 | `proceduralTextureConfigs.txt` record: whether its map's scene imports the texture, the materials that bind it as `TextureSampler`, and the matched instances whose first material does |
+
+- In all 456 scenes the vertex blocks fill the vertex buffer and the index blocks the index buffer as in the character files. 274,272 index blocks have type 12 and five type 8, four bytes per index, with 73,500 to 139,767 indices (`byu0101`, `byu0102`, `byu0105` and two in `gil5001`). Every segment has primitive type 2.
+- Each mesh's segment run, each segment's vertex block run and each block's stream run cover their lists once over. The 274,255 meshes hold 274,277 segments (19 meshes have two and one has four), and the 1,805,837 blocks hold 1,857,389 streams in 2,190 layouts. Three meshes are drawn by two instances.
+- Every material remaps the render pass `Opaque` to `MayaRenderPass`; 76,031 bind a `TextureSampler` texture and 594 bind no texture. The 76,625 materials hold 21 distinct parameter value sets and 2 sampler state sets. Each scene's nodes, 312,172 in all, form one tree under one root.
+- Cameras sit in 212 scenes (221 perspective, 604 orthographic), skin data in 58 (3,000 skinned segments, 32,850 bone remaps, 104,550 pose matrices) and stream bindings in 157; animation objects only in `bds0109` and `gil0102` ([Animation channel binding](phyre-animation-binding.md)).
+- The 22,026 imports are 20,709 textures and 1,317 shader variants. Each scene is named by its own two lists, `<map>_d3d11.ah` and `<map>_d3d11_srm.ah`, and by no other `.ah` list.
+- The 459 pack and scene pairs are 454 packs drawing their own scene and five drawing another map's ([Map art](../World-Areas-And-Travel/map-art.md#naming-the-map)). Of the 274,258 instances, 268,275 carry a number below the record count of the pack that draws their scene and are matched ([matching models to instances](../World-Areas-And-Travel/map-art.md#matching-models-to-instances)); the other 5,983 are matched to no record:
+  - `alc0201` (2,927) and `frs0109` (2,510): no pack draws the scene.
+  - `mic0108`: 539 instances named `mic0108_nodename<N>`, beside its 539 `nodename<N>` instances that match; their ninth character is not a digit.
+  - `pla0103`: one instance named `pPlane1`, seven characters.
+  - Six whose number is not below their pack's record count: `dor0104` 747 (747 records), `dor0105` 232 (232 records), `rsn0104` 1292 and 1293 (1,292 records), `rsn0107` 1123 and 1124 (1,123 records).
+
+Each `chr/` and `chr_shadow/` segment joined to the shader variant it draws with, pass by pass:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`phyre-asset-files-mesh-segment-variants-chr.tsv`](phyre-asset-files-mesh-segment-variants-chr.tsv) | 12,908 | mesh segment: its material and the name the file exports it under, the variant the material imports, the render data types of its vertex blocks and of the file's dynamic streams, the variant's render passes, how many of them its streams satisfy, and each pass and type left open |
+| [`phyre-asset-files-mesh-materials-chr.tsv`](phyre-asset-files-mesh-materials-chr.tsv) | 29,538 | `PMaterial`: exported name, variant, and the mesh default-set slots that hold it |
+| [`phyre-asset-files-mesh-dynamic-blocks-chr.tsv`](phyre-asset-files-mesh-dynamic-blocks-chr.tsv) | 24 | dynamic data block with its stream, or dynamic stream, of the three `chr_shadow/` dynamic meshes, with their modifier |
+| [`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv) | 150 | render pass of the ten variants the segments draw with: its shader's stream definitions, in order |
+
+- A segment draws with the material at its `m_materialIndex` in its mesh's default set, and every instance's `m_materialSet` is its own mesh's set. Those materials are named `<name>-Skinned-VertexColor` (12,304 in `chr/`, 585 in `chr_shadow/`) or `<name>-VertexColor` (the 16 of `chr/global/materialsphere` and the three dynamic `chr_shadow/` meshes).
+- Each file also exports a material under the base name, which no mesh's set holds: 16,042 in `chr/` and 588 in `chr_shadow/`. Each of them imports a variant that declares the rigid types `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`, so a skinned mesh's streams match the variant of its `-Skinned-` material and not the one its base material imports.
+- For each pass, `0x00609D80` first gives the pass shader's stream definitions the dynamic mesh's streams of their render data type, then `0x0060A010` the first vertex block stream of each type still open. A definition left open logs `Failed to find data block/vertex stream to satisfy RDT %s for stream %d`, `0x0060A010` returns `0x13`, and `0x0060B980` returns at `0x0060BF33` without drawing that segment or the instance's later ones.
+- The ten variants the segments draw with give 150 passes: the 120 skinned ones define `Color`, `SkinnableVertex`, `SkinnableNormal`, `SkinIndices`, `SkinWeights`, `ST`, `SkinnableTangent` and `SkinnableBinormal`, the 30 of the two rigid variants `Color`, `Vertex`, `Normal`, `ST`, `Tangent` and `Binormal`. All 12,320 `chr/` segments and 585 of the 588 `chr_shadow/` segments satisfy every pass.
+- The other three, `high/n10/n1017/mws/hn1017_33`, `hn1017_43` and `monster/m11/m1134/mws/m1134`, draw with the rigid variant `CB0F9F994888730E82AD01521483E596`. Their modifier `SkinLocalTangent` writes `Vertex`, `Normal` and `Tangent` from five dynamic data blocks, and their vertex blocks carry the eight skinnable types.
+- So no stream of those three has the type `Binormal` that all 15 passes of that variant define: the match returns `0x13` in every pass, the shadow draw at `0x001F5F38` included, and the three meshes are not drawn: a character whose shadow model is one of them casts no shadow.
+
+Every map scene, `map/<area>/<map>/<map>.dae.phyre` (456 files), decoded object by object the same way, with each pointer member followed through the file's pointer fixup table to the object, import or user fixup it names:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`phyre-asset-files-scenes-map.tsv`](phyre-asset-files-scenes-map.tsv) | 456 | scene: its `.ah` lists, the packs that draw it and their tag-30 record counts, the instances matched and the records no instance names, object counts by class, imports by class, the variants and the checks |
+| [`phyre-asset-files-scene-instances-map.tsv`](phyre-asset-files-scene-instances-map.tsv) | 274,258 | `PMeshInstance`: name, the record number the name gives, mesh, materials, flags and numbers, bounds and world matrix |
+| [`phyre-asset-files-scene-meshes-map.tsv`](phyre-asset-files-scene-meshes-map.tsv) | 274,255 | `PMesh`: name, segment run, default materials and the element counts of its arrays |
+| [`phyre-asset-files-scene-segments-map.tsv`](phyre-asset-files-scene-segments-map.tsv) | 274,277 | `PMeshSegment`: mesh, material, vertex block run and index block |
+| [`phyre-asset-files-scene-vertex-blocks-map-1.tsv`](phyre-asset-files-scene-vertex-blocks-map-1.tsv) [`phyre-asset-files-scene-vertex-blocks-map-2.tsv`](phyre-asset-files-scene-vertex-blocks-map-2.tsv) | 1,805,837 | `PDataBlock`: stride, elements, streams, memory type, offset, bytes and stream layout |
+| [`phyre-asset-files-scene-stream-layouts-map.tsv`](phyre-asset-files-scene-stream-layouts-map.tsv) | 2,190 | distinct block stride and stream list, each stream as offset:type:render data type:stream set, with the blocks that have it |
+| [`phyre-asset-files-scene-materials-map.tsv`](phyre-asset-files-scene-materials-map.tsv) | 76,625 | `PMaterial`: name, shader variant, flag, render-pass remap, bound textures, parameter set and sampler set |
+| [`phyre-asset-files-scene-parameter-sets-map.tsv`](phyre-asset-files-scene-parameter-sets-map.tsv) | 21 | distinct set of a material's parameter values, by parameter name |
+| [`phyre-asset-files-scene-sampler-sets-map.tsv`](phyre-asset-files-scene-sampler-sets-map.tsv) | 2 | distinct set of a material's sampler states, by sampler name: minify and magnify filter, wrap S, T and R, LOD bias, anisotropy, border colour, base and max level, flags |
+| [`phyre-asset-files-scene-nodes-map.tsv`](phyre-asset-files-scene-nodes-map.tsv) | 312,172 | `PNode`: name, parent and local matrix |
+| [`phyre-asset-files-scene-cameras-map.tsv`](phyre-asset-files-scene-cameras-map.tsv) | 825 | `PCameraPerspective` or `PCameraOrthographic`: field of view or height, aspect, near and far planes, world matrix |
+| [`phyre-asset-files-scene-skins-map.tsv`](phyre-asset-files-scene-skins-map.tsv) | 32,850 | `PSkinBoneRemap` with the `PSkeletonJointBounds` of the same index |
+| [`phyre-asset-files-scene-pose-matrices-map.tsv`](phyre-asset-files-scene-pose-matrices-map.tsv) | 104,550 | `PMatrix4` |
+| [`phyre-asset-files-scene-stream-bindings-map.tsv`](phyre-asset-files-scene-stream-bindings-map.tsv) | 51,390 | `PMeshInstanceSegmentStreamBinding`: render data type, name, name hash, index, input set |
+| [`phyre-asset-files-scene-imports-map.tsv`](phyre-asset-files-scene-imports-map.tsv) | 22,026 | `PAssetReferenceImport`: id and target class |
+| [`phyre-asset-files-scene-unmatched-instances-map.tsv`](phyre-asset-files-scene-unmatched-instances-map.tsv) | 5,983 | instance that matches no YM00 record, and why |
+| [`phyre-asset-files-scene-procedural-records-map.tsv`](phyre-asset-files-scene-procedural-records-map.tsv) | 10,477 | `proceduralTextureConfigs.txt` record: whether its map's scene imports the texture, the materials that bind it as `TextureSampler`, and the matched instances whose first material does |
+
+- In all 456 scenes the vertex blocks fill the vertex buffer and the index blocks the index buffer as in the character files. 274,272 index blocks have type 12 and five type 8, four bytes per index, with 73,500 to 139,767 indices (`byu0101`, `byu0102`, `byu0105` and two in `gil5001`). Every segment has primitive type 2.
+- Each mesh's segment run, each segment's vertex block run and each block's stream run cover their lists once over. The 274,255 meshes hold 274,277 segments (19 meshes have two and one has four), and the 1,805,837 blocks hold 1,857,389 streams in 2,190 layouts. Three meshes are drawn by two instances.
+- Every material remaps the render pass `Opaque` to `MayaRenderPass`; 76,031 bind a `TextureSampler` texture and 594 bind no texture. The 76,625 materials hold 21 distinct parameter value sets and 2 sampler state sets. Each scene's nodes, 312,172 in all, form one tree under one root.
+- Cameras sit in 212 scenes (221 perspective, 604 orthographic), skin data in 58 (3,000 skinned segments, 32,850 bone remaps, 104,550 pose matrices) and stream bindings in 157; animation objects only in `bds0109` and `gil0102` ([Animation channel binding](phyre-animation-binding.md)).
+- The 22,026 imports are 20,709 textures and 1,317 shader variants. Each scene is named by its own two lists, `<map>_d3d11.ah` and `<map>_d3d11_srm.ah`, and by no other `.ah` list.
+- The 459 pack and scene pairs are 454 packs drawing their own scene and five drawing another map's ([Map art](../World-Areas-And-Travel/map-art.md#naming-the-map)). Of the 274,258 instances, 268,275 carry a number below the record count of the pack that draws their scene and are matched ([matching models to instances](../World-Areas-And-Travel/map-art.md#matching-models-to-instances)); the other 5,983 are matched to no record:
+  - `alc0201` (2,927) and `frs0109` (2,510): no pack draws the scene.
+  - `mic0108`: 539 instances named `mic0108_nodename<N>`, beside its 539 `nodename<N>` instances that match; their ninth character is not a digit.
+  - `pla0103`: one instance named `pPlane1`, seven characters.
+  - Six whose number is not below their pack's record count: `dor0104` 747 (747 records), `dor0105` 232 (232 records), `rsn0104` 1292 and 1293 (1,292 records), `rsn0107` 1123 and 1124 (1,123 records).
+
 `gamedata/d3d11/artdata/shared/phyremaps.txt` beside it (8,492,839 bytes, 94,682 CRLF lines) holds 47,341 pairs: a
 map texture's path under `/GameData/D3D11/ArtData/map/` and the file under `/GameData/D3D11/ArtData/shared/map/`
 that holds it. The values are exactly the 9,529 files of `shared/map/`. No key is a shipped file, and each key is
@@ -529,6 +713,18 @@ pair and `0x00675440` destroys one.
 - The path hash `0x00674A00` adds each byte as a signed char, so a path byte of `0x80` or above
   subtracts: "× 33 plus each byte" holds for ASCII paths only. Every shipped path is ASCII; a modded
   path with non-ASCII bytes hashes to a different value than an unsigned reading gives.
+- A map scene's mesh instance is matched to a YM00 record, and given its draw objects, only when its name
+  `m_name` (`+0x80`) is longer than eight characters, its ninth character starts a decimal number and that
+  number is below the pack's record count (`0x001A624C`-`0x001A630A`; [Map art](../World-Areas-And-Travel/map-art.md#matching-models-to-instances)).
+  The number picks the record, so a replacement scene keeps each instance's `nodename<N>` name.
+- A replacement `chr/` or `chr_shadow/` mesh needs, for each segment, a stream of every render data type
+  that the passes of its material's variant define, in its vertex blocks or its dynamic mesh's streams
+  ([`phyre-asset-files-shader-pass-streams-chr.tsv`](phyre-asset-files-shader-pass-streams-chr.tsv)); a type
+  left open stops that segment's draw and the instance's later ones (`0x0060A010`, `0x0060BF33`).
+- The match compares render data types only, and the input layout takes each element's format from the
+  variant's vertex program (`0x0061E0B0`), so each stream keeps the format of the shipped stream of its type.
+  Keep one stream per block, as every shipped block has: when the segment's word `+0x28`, cleared at
+  construction (`0x0065EA5D`), is below a block's stream count, the match tries only the stream at that index.
 
 ## Related
 

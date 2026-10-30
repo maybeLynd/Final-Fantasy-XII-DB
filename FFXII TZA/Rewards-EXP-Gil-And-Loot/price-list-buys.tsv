@@ -1,0 +1,120 @@
+price_id	gil	buys	detail	script	map_name	region	seller
+0xB000	500	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	rbn_a17	Eastgate	Rabanastre	NPC01
+0xB000	500	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	rbn_a18	Southgate	Rabanastre	NPC01
+0xB000	500	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	rbn_a19	Westgate	Rabanastre	NPC01
+0xB002	200	airship ticket	to Archades (route 1)	rbn_b01	Aerodrome	Rabanastre	乗船カウンタートーク
+0xB003	200	airship ticket	to Nalbina (route 3)	rbn_b01	Aerodrome	Rabanastre	乗船カウンタートーク
+0xB004	200	airship ticket	to Bhujerba (route 5)	rbn_b01	Aerodrome	Rabanastre	乗船カウンタートーク
+0xB005	210	airship ticket	to Rabanastre (route 4)	nac_b01	Aerodrome	Nalbina Town	乗船カウンタートーク
+0xB006	210	airship ticket	to Archades (route 7)	nac_b01	Aerodrome	Nalbina Town	乗船カウンタートーク
+0xB007	210	airship ticket	to Balfonheim Port (route 9)	nac_b01	Aerodrome	Nalbina Town	乗船カウンタートーク
+0xB008	250	airship ticket	to Rabanastre (route 6)	byu_b01	Aerodrome	Bhujerba	乗船カウンタートーク
+0xB009	250	airship ticket	to Balfonheim Port (route 11)	byu_b01	Aerodrome	Bhujerba	乗船カウンタートーク
+0xB00A	200	airship ticket	to Rabanastre (route 2)	alc_e01	Aerodrome	Archades	乗船カウンタートーク
+0xB00B	200	airship ticket	to Nalbina (route 8)	alc_e01	Aerodrome	Archades	乗船カウンタートーク
+0xB00C	200	airship ticket	to Balfonheim Port (route 13)	alc_e01	Aerodrome	Archades	乗船カウンタートーク
+0xB00D	180	airship ticket	to Nalbina (route 10)	var_b01	Aerodrome	Balfonheim Port	乗船カウンタートーク
+0xB00E	180	airship ticket	to Bhujerba (route 12)	var_b01	Aerodrome	Balfonheim Port	乗船カウンタートーク
+0xB00F	180	airship ticket	to Archades (route 14)	var_b01	Aerodrome	Balfonheim Port	乗船カウンタートーク
+0xB010	70	map	0x8002 Bhujerba	byu_a01	Travica Way	Bhujerba	NPC01
+0xB010	70	map	0x8002 Bhujerba	byu_a04	Lhusu Square	Bhujerba	NPC01
+0xB011	30	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	glf_a01	Banks of the Sogoht	Jahara	ガーディ
+0xB011	30	map	0x8003 Jahara	glf_a01	Banks of the Sogoht	Jahara	地図屋
+0xB012	60	map	0x8004 Eruyt Village	vic_a03	Road of Verdant Praise	Eruyt Village	０２ルルチェ
+0xB013	230	map	0x8006 Archades	alc_b06	Bulward's Technicks	Archades	地図屋
+0xB014	80	map	0x8007 Balfonheim Port	var_a01	Sea Breeze Lane	Balfonheim Port	地図屋
+0xB015	1700	map	0x8010 Ozmone Plain	glf_a01	Banks of the Sogoht	Jahara	地図屋
+0xB016	1	story	the history of Rabanastre: 'You wanna hear about the history of Rabanastre? It won't cost ya much...'	rbn_a03	East End	Rabanastre	NPC01
+0xB017	3200	map	0x8013 Paramina Rift	bul_b02	Sand-strewn Pass	Mt Bur-Omisace	NPC01
+0xB018	4100	map	0x8016 Cerobi Steppe	var_a01	Sea Breeze Lane	Balfonheim Port	地図屋
+0xB019	15	map	0x8005 Mt Bur-Omisace	bul_b02	Sand-strewn Pass	Mt Bur-Omisace	NPC01
+0xB01A	50	map	0x8008 Dalmasca Estersand	dst_b01	South Bank Village	Dalmasca Estersand	NPC01
+0xB01A	50	map	0x8008 Dalmasca Estersand	rbn_a04	Southern Plaza	Rabanastre	地図屋
+0xB01B	550	map	0x8009 Dalmasca Westersand	rbn_a04	Southern Plaza	Rabanastre	地図屋
+0xB01C	30	map	0x800A Giza Plains	rbn_a04	Southern Plaza	Rabanastre	地図屋
+0xB01C	30	map	0x800A Giza Plains	sav_b01	Nomad Village	Giza Plains	５０ナッツ
+0xB01F	2400	map	0x800D Mosphoran Highwaste	dst_b02	North Bank Village	Dalmasca Estersand	NPC01
+0xB01F	2400	map	0x800D Mosphoran Highwaste	mnt_d01	Babbling Vale	Mosphoran Highwaste	３０スカウト_地図屋
+0xB022	1800	map	0x8014 Phon Coast	fon_b01	Hunters' Camp	Phon Coast	地図屋
+0xB023	3300	map	0x8015 Tchita Uplands	alc_b06	Bulward's Technicks	Archades	地図屋
+0xB026	650	map	0x801B Lhusu Mines	byu_a01	Travica Way	Bhujerba	NPC01
+0xB026	650	map	0x801B Lhusu Mines	byu_a04	Lhusu Square	Bhujerba	NPC01
+0xB028	800	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	nac_a01	West Barbican	Nalbina Town	NAC_ガーディ
+0xB02A	600	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	bul_b02	Sand-strewn Pass	Mt Bur-Omisace	ガーディ
+0xB02B	800	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	var_a01	Sea Breeze Lane	Balfonheim Port	NPC_MOG_GARDY
+0xB02E	1400	chocobo	hiring a chocobo: 'Welcome to the chocobo stables. Only [value] gil should you wish to hire one, kupo!'	fon_b01	Hunters' Camp	Phon Coast	ガーディ
+0xB031	100	rest	a rest that restores the party (healall): 'Pretty hot, huh? [value] gil if you wanna rest!'	dst_a07	Outpost	Dalmasca Estersand	NPC01
+0xB032	100000	map	0x8026 Royal Palace of Rabanastre	ald_a02	Alley of Low Whispers	Old Archades	地図屋
+0xB035	9450	trophy trade package	package 0x90FF: Kiku-ichimonji	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB036	8370	trophy trade package	package 0x9100: Platinum Armor	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB037	3600	trophy trade package	package 0x9101: Thief's Cuffs	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB038	13050	trophy trade package	package 0x9102: Holy Lance	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB039	11160	trophy trade package	package 0x9103: Minerva Bustier	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB03A	10200	trophy trade package	package 0x9104: Ruby Ring	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB03B	13500	trophy trade package	package 0x9105: Ame-no-Murakumo	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB03C	21750	trophy trade package	package 0x9106: White Mask	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB03D	19200	trophy trade package	package 0x9107: Opal Ring	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB03E	29250	trophy trade package	package 0x9108: Stoneblade	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB03F	57600	trophy trade package	package 0x9109: Aegis Shield	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB040	5400	trophy trade package	package 0x910A: Golden Amulet	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB041	70200	trophy trade package	package 0x910B: Eight-fluted Pole	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB042	49500	trophy trade package	package 0x910C: Orochi	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB043	117000	trophy trade package	package 0x910D: Dueling Mask	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB044	36000	trophy trade package	package 0x910E: Cat-ear Hood	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB045	20400	trophy trade package	package 0x910F: Maximillian	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB046	75000	trophy trade package	package 0x9110: Ultima Blade	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB047	123750	trophy trade package	package 0x9111: Grand Helm	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB048	47520	trophy trade package	package 0x9112: Bubble Belt	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB049	447000	trophy trade package	package 0x9113: Genji Gloves	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB04A	700000	trophy trade package	package 0x9114: Masamune	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB04B	162000	trophy trade package	package 0x9115: Grand Armor	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB04C	360000	trophy trade package	package 0x9116: Nihopalaoa	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB04D	999999	trophy trade package	package 0x9117: Zodiac Spear, Zodiac Escutcheon	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB04E	104000	trophy trade package	package 0x9118: Tula, Grand Bolts	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB04F	132000	trophy trade package	package 0x9119: Lordly Robes	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB050	60000	trophy trade package	package 0x911A: Indigo Pendant	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB051	61600	trophy trade package	package 0x911B: Artemis Bow, Artemis Arrows	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB052	18600	trophy trade package	package 0x911C: Black Mask	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB053	11160	trophy trade package	package 0x911D: Turtleshell Choker	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB054	1	trophy trade limit	how many times package 0x90FF sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB055	1	trophy trade limit	how many times package 0x9100 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB056	1	trophy trade limit	how many times package 0x9101 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB057	1	trophy trade limit	how many times package 0x9102 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB058	1	trophy trade limit	how many times package 0x9103 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB059	1	trophy trade limit	how many times package 0x9104 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB05A	1	trophy trade limit	how many times package 0x9105 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB05B	1	trophy trade limit	how many times package 0x9106 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB05C	1	trophy trade limit	how many times package 0x9107 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB05D	1	trophy trade limit	how many times package 0x9108 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB05E	1	trophy trade limit	how many times package 0x9109 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB05F	1	trophy trade limit	how many times package 0x910A sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB060	1	trophy trade limit	how many times package 0x910B sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB061	1	trophy trade limit	how many times package 0x910C sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB062	1	trophy trade limit	how many times package 0x910D sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB063	1	trophy trade limit	how many times package 0x910E sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB064	1	trophy trade limit	how many times package 0x910F sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB065	1	trophy trade limit	how many times package 0x9110 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB066	1	trophy trade limit	how many times package 0x9111 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB067	1	trophy trade limit	how many times package 0x9112 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB068	1	trophy trade limit	how many times package 0x9113 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB069	1	trophy trade limit	how many times package 0x9114 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB06A	1	trophy trade limit	how many times package 0x9115 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB06B	1	trophy trade limit	how many times package 0x9116 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB06C	1	trophy trade limit	how many times package 0x9117 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB06D	1	trophy trade limit	how many times package 0x9118 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB06E	1	trophy trade limit	how many times package 0x9119 sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB06F	1	trophy trade limit	how many times package 0x911A sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB070	1	trophy trade limit	how many times package 0x911B sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB071	1	trophy trade limit	how many times package 0x911C sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB072	1	trophy trade limit	how many times package 0x911D sells	fon_b01	Hunters' Camp	Phon Coast	二級男11
+0xB073	1500	way into the city	Jules's price: 'So, wise man, how does [value] gil sound?'	ald_a01	Alley of Muted Sighs	Old Archades	NPC_JULES
+0xB073	1500	way into the city	Jules's price: 'So, wise man, how does [value] gil sound?'	ald_a0180	Alley of Muted Sighs	Old Archades	監督
+0xB073	1500	way into the city	taken by the gate guard after 'Entering the capital? You have credentials?'	ald_a01	Alley of Muted Sighs	Old Archades	NPC_SOLDIER_A
+0xB074	2500	cab fare	the cab to Tsenoble without a chop: 'If you lack a chop, you pay coin. That's...[value] gil'	alc_a0280	Nilbasse	Archades	監督
+0xB074	2500	cab fare	the cab to Tsenoble without a chop: 'If you lack a chop, you pay coin. That's...[value] gil'	alc_f01	Nilbasse	Archades	NPC_JULES
+0xB074	2500	cab fare	the cab to Tsenoble without a chop: 'If you lack a chop, you pay coin. That's...[value] gil'	alc_f01	Nilbasse	Archades	NPC_タクシー受付
+0xB075	20000	chop	a pinewood chop, item 0x2113: 'Purchase one pinewood chop for [value] gil.'	alc_b05	Charlotte's Magickery	Archades	NPC_GUILD
+0xB075	20000	chop	a pinewood chop, item 0x2113: 'Purchase one pinewood chop for [value] gil.'	alc_b06	Bulward's Technicks	Archades	NPC_GUILD
+0xB075	20000	chop	a pinewood chop, item 0x2113: 'Purchase one pinewood chop for [value] gil.'	alc_f03	Vint's Armaments	Archades	NPC_GUILD
+0xB075	20000	chop	a pinewood chop, item 0x2113: 'Purchase one pinewood chop for [value] gil.'	alc_f04	Granch's Requisites	Archades	NPC_GUILD
+0xB075	20000	chop	a pinewood chop, item 0x2113: 'Purchase one pinewood chop for [value] gil.'	alc_f05	Lebleu's Gambits	Archades	NPC_GUILD

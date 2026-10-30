@@ -384,6 +384,27 @@ and `{expansion glyph N}` marks glyph N of the guide file's own picture.
 | [`menu-map-files-gmap-rows.tsv`](menu-map-files-gmap-rows.tsv) | 800 | guide line: counter, gate, text offset, text length and the line decoded |
 | [`menu-map-files-wmap-rows.tsv`](menu-map-files-wmap-rows.tsv) | 516 | wmap region, area with its extra record, route and destination |
 | [`menu-map-files-amap-rows.tsv`](menu-map-files-amap-rows.tsv) | 98 | amap area (type and name text) and persistence group (area and map item) |
+| [`menu-map-files-world-areas.tsv`](menu-map-files-world-areas.tsv) | 39 | World Map area as the `us` file gives it: code, name, region, the story counter at which it disappears, its gate and extra gate as story counter bands, its map key item by name, its neighbours by code and its destination value |
+| [`menu-map-files-names.tsv`](menu-map-files-names.tsv) | 138 | name text id of every wmap region and area, amap area and cmap sub-location, with the `us` string it resolves to |
+
+Names and gates in those two tables are resolved as the engine resolves them:
+
+- A name text id goes through `0x002F9920`: group `id / 10000` is 6, `menu_mapname`, and the string is the one at the
+  position of the row whose id equals it. The `us` file numbers its 285 rows 60000 to 60010, 60100 to 60359 and
+  60400 to 60413.
+- Every area gate and extra gate is a story schedule id (bit `0x4000`), answered from `mapjumpgroupflagrom.bin` as
+  `0x00377970` reads it ([Story flags](../Story-Events-And-Hunts/story-flags.md)).
+
+What they show:
+
+- Region slot 0 has no name. Slots 1 to 9 name Dalmasca to Jagd Naldoa, and slots 10 and 11, the regions of the
+  Leviathan and the Bahamut, read `???`.
+- The 18 areas with a gate are the 18 areas a destination names. 17 of the gates pass from story counter 5150 on, and
+  the Bahamut's from 6100. Of the 15 extra gates, 13 pass over one story counter band and
+  Rabanastre's and Mt Bur-Omisace's over three.
+- 29 areas name a map key item.
+- 45 of the 48 sub-location name ids resolve to an empty `us` string. `sav01_s01` reads `Giza Plains - The Dry`, and
+  `slm01_s01` and `sav01_s02` read `Giza Plains - The Rains`.
 
 ## Loader behaviour
 

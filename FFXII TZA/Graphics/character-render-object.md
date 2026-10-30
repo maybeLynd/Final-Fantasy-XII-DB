@@ -58,12 +58,17 @@ Slot 2, `0x001F6E70(object, key, description)`:
 
 1. stores the key at `+0x480`, creates the companion at `+0x28` (`0x001F5B80(0x01F82F10)`, which points
    back at the object), and sets `+0x499` when the key is one of six in the table at `0x01DFE1B0`;
-2. stores the description at `+0x488`, and for a key of 0 or more the companion model `-2 - key` at
-   `+0x490`;
-3. binds the companion model's meshes into the template record embedded at `+0x78` through the binder
-   `0x001F7790`, then appends one `0x318` record per mesh of the model to the vector at `+0x58`, binding
-   it by name or copying an existing record for the same parameter set;
-4. sets `+0x4B4` and calls `0x001BD7D0` on the manager.
+2. stores the description at `+0x488`, and for a key of 0 or more the character's shadow model at `+0x490`: the
+   record filed under `-2 - key` (`0x001F6EF7`-`0x001F6F15`), which holds the model's `chr_shadow` list
+   ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md));
+3. makes the shadow model's mesh instance, keeps it at `+0x50` (`0x001F7066`-`0x001F7076`) and binds its material into
+   the template record embedded at `+0x78` through the binder `0x001F7790` (`0x001F70F3`); every shipped shadow model
+   has one mesh with one instance (588 of 588 in the
+   [shadow meshes table](../PhyreEngine/phyre-asset-files-meshes-chr_shadow.tsv));
+4. makes one mesh instance per mesh of the model at `+0x488` into the vector at `+0x30` (`0x001F7305`-`0x001F732F`) and
+   appends one `0x318` record per mesh to the vector at `+0x58`, binding it by name or copying an existing record
+   for the same parameter set;
+5. sets `+0x4B4` and calls `0x001BD7D0` on the manager.
 
 ### The shader binding record
 
@@ -115,17 +120,22 @@ at `+0x390`.
 
 ### The ordered draw
 
-`CharacterOrderedObject`'s execute reaches `0x001F5D70(object, …)`. For an object with a key, unless
-the key's resource entry (`0x002E98F0`, `0x002DF980`) has byte `+0x16` = `'h'` or the key is
-`0x6E006D`, it files block `0x25` with 1 (`0x0060E810`), publishes two shadow values with
-`0x001FB310` and runs slot 30 on its part records:
+`CharacterOrderedObject`'s execute reaches `0x001F5D70(object, …)`. The shadow pass is the walk the frame render
+makes with byte `+0xC34` of the render manager `[0x01F7F598]` set to 1 (`0x00187D20`, read at `0x001F5DCA`). In it an
+object with a key draws the character's shadow. When the key's resource entry (`0x002E98F0`, `0x002DF980`) has byte
+`+0x16` = `'h'` or the key is `0x6E006D`, it returns with nothing drawn (`0x001F5E69`-`0x001F5E7D`). Otherwise it files
+block `0x25` with 1 (`0x0060E810`), publishes two shadow values with `0x001FB310` and runs slot 30 on its part records:
 
 - `0x001FB310` writes `+0x4B8` to the shadow object's `+0x4C` and `+0x50` = 2.3 (`0x01DFE408`) ×
   `+0x4BC` (`0x001F0850`), the values slot 30 hands to `m_chrObjHeight` and
   `m_chrObjFlyingHeight`, and copies `+0x4C0` to `0x02CB83B0`.
-- With no single mesh at `+0x50` slot 30 runs on the vector `+0x58`. With one, the template record
-  `+0x78` is copied into a one-record vector (`0x001F87B0`), slot 30 runs on it, the mesh is drawn
-  (`0x0060B980`) and the render manager's counter goes up by 1 (`0x00185A80`).
+- With the shadow model's mesh instance at `+0x50`, the template record `+0x78` is copied into a one-record vector
+  (`0x001F87B0`), slot 30 runs on it, that one mesh is drawn with the `ShadowRender` pass (`0x01F82FA0`, built from the
+  name at `0x0015CE17`-`0x0015CE25`; `0x001F5EF0`-`0x001F5F38`) and the render manager's counter goes up by 1 (`0x00185A80`).
+  In this pass the character's own meshes are not drawn: the draw jumps to the pass's end (`0x001F5F97`).
+- Without one, slot 30 runs on the vector `+0x58` and each mesh instance of `+0x30` is drawn. The pass is
+  `ShadowRenderWithRef` (`0x01F82FC0`, `0x0015CDE7`-`0x0015CDEE`) for a record whose `+0x2C0` is set while `+0x4B7` is set
+  and the key is not `0x730004`, and `ShadowRender` for every other record (`0x001F615D`-`0x001F61CC`).
 
 At the end of the mesh walk, while byte `+0xF8` of the manager `0x001BDAB0()` is set, `0x001F68E0`
 draws the skeleton: for each mesh instance it builds one line per bone, from the bone's position
@@ -236,7 +246,7 @@ The object, as its constructor `0x001F4DA0` and the methods above use it:
 | `+0x008` | `vec` | 16-byte elements (begin, end, capacity), allocator at +0x020 |  |
 | `+0x028` | `void*` | companion object (slots 1 and 3 add it to and remove it from a list) |  |
 | `+0x030` | `vec` | mesh instances, 8-byte pointers, allocator at +0x048 |  |
-| `+0x050` | `void*` | the single extra mesh instance |  |
+| `+0x050` | `void*` | the shadow model's mesh instance |  |
 | `+0x058` | `vec` | part records, 0x318 bytes each, allocator at +0x070 |  |
 | `+0x078` | `0x318 B` | template part record |  |
 | `+0x390` | `vec` | 0x24-byte elements, allocator at +0x3A8 (slot 17 empties it) |  |
@@ -245,7 +255,7 @@ The object, as its constructor `0x001F4DA0` and the methods above use it:
 | `+0x3E0` | `object` | constructed by 0x00633040 |  |
 | `+0x480` | `i32` | key, -1 at construction |  |
 | `+0x488` | `void*` | model description |  |
-| `+0x490` | `void*` | companion model description |  |
+| `+0x490` | `void*` | shadow model record (filed under -2 - key) |  |
 | `+0x498` | `u8` | slot 4 sets, slot 5 returns |  |
 | `+0x499` | `u8` | key is in the table at 0x01DFE1B0 |  |
 | `+0x49C` | `u32` | part id matched by slot 16 (slot 15 sets) |  |

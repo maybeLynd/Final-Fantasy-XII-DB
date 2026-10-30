@@ -107,6 +107,19 @@ So Japanese (id 10) loads the `IN` tables; the `JP`, `UK` and `ASIA` entries hav
 them. A missing or short file is reported through `0x00863100` (`0x002E045D`, `0x002E0486`) and the code then
 writes a zero dword to address 0 (`0x002E0462`, `0x002E048B`).
 
+What a language changes besides the text is in its file size table. [languages-kinds.tsv](languages-kinds.tsv) compares,
+for every resource kind, each entry's size in the nine tables a locale reaches. Only eight kinds have entries whose
+size differs between languages:
+
+- the zone files (kind 5, 585 of 896: the scripts with their companion files) and the event files (kind 8, 202 of
+  1,080, and kind 37, 195 of 1,080);
+- the event effects (kind 12, 186 of 534);
+- 27 of the 81 battle-test files (kind 2), 23 of the 545 menu files (kind 7), one sound-environment file (kind 1) and
+  one map table (kind 9).
+
+Every model, motion, map pack, magic effect, sound bank and movie entry has one size in all nine. A different size
+proves different content; the table gives the groups of languages that share a size.
+
 ### Rules that depend on the language
 
 - The kill chain cap and display: `0x00317ED0` caps the length at 998 and posts it plus one whenever

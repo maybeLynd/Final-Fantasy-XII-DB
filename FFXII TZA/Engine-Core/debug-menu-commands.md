@@ -25,6 +25,15 @@ prints a live value).
 | readout | 16 | prints a value, no action |
 | none | 40 | button rows without an action arm |
 
+[The command inputs](debug-menu-commands-inputs.tsv) table gives each id's values, who reaches it, when it takes
+effect, what its arm changes, what the player sees and when it changes nothing.
+
+- Sixteen ids are the Config screen's settings: `0x0017DB90` maps the screen's row kinds to them, so a change on the
+  Config screen runs the id's arm through `0x001CD040` and the dispatcher.
+- The other 266 change nothing in the shipped game, because the menu that would reach them never opens and no Config
+  screen row maps to them. Two of those bytes are read by input code (`+0xC35`, id 187, and `+0xC3D`, id 293),
+  and their only writes outside the console object's constructor are their own arms.
+
 ## Columns
 
 | Column | Meaning |

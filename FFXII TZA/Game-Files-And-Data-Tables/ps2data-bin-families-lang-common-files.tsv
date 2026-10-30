@@ -1,0 +1,29 @@
+path	bytes	named_by	sized_by
+ch/common/charseinfo_b.bin	304	kind 9 id 12 (KR CH CN)	KR CH CN
+ch/common/charseinfo_c.bin	384	kind 9 id 13 (KR CH CN)	KR CH CN
+ch/common/charseinfo_g.bin	1680	kind 9 id 14 (KR CH CN)	KR CH CN
+ch/common/charseinfo_m.bin	4080	kind 9 id 15 (KR CH CN)	KR CH CN
+ch/common/charseinfo_n.bin	2816	kind 9 id 16 (KR CH CN)	KR CH CN
+ch/common/charseinfo_s.bin	432	kind 9 id 17 (KR CH CN)	KR CH CN
+ch/common/charseinfo_t.bin	272	kind 9 id 18 (KR CH CN)	KR CH CN
+ch/common/charseinfo_w.bin	5248	kind 9 id 19 (KR CH CN)	KR CH CN
+ch/common/gramap_weatherinfo.bin	2628	kind 9 id 39 (KR CH CN)	KR CH CN
+ch/common/map_ref.bin	12288	kind 9 id 4 (KR CH CN)	KR CH CN
+ch/common/musicctrl.bin	1615	kind 9 id 32 (KR CH CN)	KR CH CN
+ch/common/musicinfo.bin	512	kind 9 id 6 (KR CH CN)	KR CH CN
+ch/common/pc_skillmotion.bin	544	kind 9 id 5 (KR CH CN)	KR CH CN
+ch/common/test_area_ref.bin	642	kind 9 id 2 (KR CH CN)	KR CH CN
+in/common/charseinfo_b.bin	304	kind 9 id 12 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/charseinfo_c.bin	384	kind 9 id 13 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/charseinfo_g.bin	1680	kind 9 id 14 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/charseinfo_m.bin	4080	kind 9 id 15 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/charseinfo_n.bin	2816	kind 9 id 16 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/charseinfo_s.bin	432	kind 9 id 17 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/charseinfo_t.bin	272	kind 9 id 18 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/charseinfo_w.bin	5248	kind 9 id 19 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/gramap_weatherinfo.bin	2628	kind 9 id 39 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/map_ref.bin	12288	kind 9 id 4 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/musicctrl.bin	1615	kind 9 id 32 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/musicinfo.bin	512	kind 9 id 6 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/pc_skillmotion.bin	544	kind 9 id 5 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN
+in/common/test_area_ref.bin	642	kind 9 id 2 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN

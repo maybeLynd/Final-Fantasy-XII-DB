@@ -1,0 +1,958 @@
+field	zone_script	pack	slot	slot_reachable	source	records	light_kinds	ids	cuts_lit_at_entry
+49	nal_b01.ebp	nal0201.mpk	1	by the roll	type-0 range	0-26	kind 2 x4, kind 3 x2, kind 4 x20, kind 6 x1	0, 3-22, 25, 27	cut 0: 2-26
+49	nal_b01.ebp	nal0201.mpk	2	only when set by the script	type-0 range	0-26	kind 2 x4, kind 3 x2, kind 4 x20, kind 6 x1	0, 3-22, 25, 27	cut 0: 2-26
+49	nal_b01.ebp	nal0201.mpk	3	only when set by the script	type-0 range	0-26	kind 2 x4, kind 3 x2, kind 4 x20, kind 6 x1	0, 3-22, 25, 27	cut 0: 2-26
+53	mic_a01.ebp	mic0101.mpk	1	by the roll	type-0 range	0-29	kind 2 x3, kind 3 x24, kind 4 x2, kind 6 x1	0	-
+53	mic_a01.ebp	mic0101.mpk	2	only when set by the script	type-0 range	0-29	kind 2 x3, kind 3 x24, kind 4 x2, kind 6 x1	0	-
+53	mic_a01.ebp	mic0101.mpk	3	only when set by the script	type-0 range	0-29	kind 2 x3, kind 3 x24, kind 4 x2, kind 6 x1	0	-
+54	mic_a02.ebp	mic0102.mpk	1	by the roll	type-0 range	0-106	kind 1 x1, kind 2 x54, kind 4 x49, kind 5 x2, kind 6 x1	0, 100-107	cut 0: 2-106
+54	mic_a02.ebp	mic0102.mpk	2	only when set by the script	type-0 range	0-106	kind 1 x1, kind 2 x54, kind 4 x49, kind 5 x2, kind 6 x1	0, 100-107	cut 0: 2-106
+54	mic_a02.ebp	mic0102.mpk	3	only when set by the script	type-0 range	0-106	kind 1 x1, kind 2 x54, kind 4 x49, kind 5 x2, kind 6 x1	0, 100-107	cut 0: 2-106
+55	mic_a03.ebp	mic0103.mpk	1	by the roll	type-0 range	0-27	kind 2 x4, kind 3 x18, kind 4 x5, kind 6 x1	0, 100-103	-
+55	mic_a03.ebp	mic0103.mpk	2	only when set by the script	type-0 range	0-27	kind 2 x4, kind 3 x18, kind 4 x5, kind 6 x1	0, 100-103	-
+55	mic_a03.ebp	mic0103.mpk	3	only when set by the script	type-0 range	0-27	kind 2 x4, kind 3 x18, kind 4 x5, kind 6 x1	0, 100-103	-
+56	mic_a04.ebp	mic0104.mpk	1	by the roll	type-0 range	0-62	kind 2 x4, kind 3 x46, kind 4 x8, kind 5 x4, kind 6 x1	0, 100-103	cut 0: 59-62
+56	mic_a04.ebp	mic0104.mpk	2	only when set by the script	type-0 range	0-62	kind 2 x4, kind 3 x46, kind 4 x8, kind 5 x4, kind 6 x1	0, 100-103	cut 0: 59-62
+56	mic_a04.ebp	mic0104.mpk	3	only when set by the script	type-0 range	0-62	kind 2 x4, kind 3 x46, kind 4 x8, kind 5 x4, kind 6 x1	0, 100-103	cut 0: 59-62
+57	mic_a05.ebp	mic0105.mpk	1	by the roll	type-0 range	0-58	kind 2 x4, kind 3 x49, kind 4 x5, kind 6 x1	0, 100-103	-
+57	mic_a05.ebp	mic0105.mpk	2	only when set by the script	type-0 range	0-58	kind 2 x4, kind 3 x49, kind 4 x5, kind 6 x1	0, 100-103	-
+57	mic_a05.ebp	mic0105.mpk	3	only when set by the script	type-0 range	0-58	kind 2 x4, kind 3 x49, kind 4 x5, kind 6 x1	0, 100-103	-
+58	mic_a06.ebp	mic0108.mpk	1	by the roll	type-0 range	0-36	kind 2 x6, kind 3 x26, kind 4 x4, kind 6 x1	0, 100-103	-
+58	mic_a06.ebp	mic0108.mpk	2	only when set by the script	type-0 range	0-36	kind 2 x6, kind 3 x26, kind 4 x4, kind 6 x1	0, 100-103	-
+58	mic_a06.ebp	mic0108.mpk	3	only when set by the script	type-0 range	0-36	kind 2 x6, kind 3 x26, kind 4 x4, kind 6 x1	0, 100-103	-
+61	mic_b01.ebp	mic0201.mpk	1	by the roll	type-0 range	0-49	kind 1 x1, kind 2 x25, kind 4 x23, kind 6 x1	0, 100-101	cut 0: 2-49
+61	mic_b01.ebp	mic0201.mpk	2	only when set by the script	type-0 range	0-49	kind 1 x1, kind 2 x25, kind 4 x23, kind 6 x1	0, 100-101	cut 0: 2-49
+61	mic_b01.ebp	mic0201.mpk	3	only when set by the script	type-0 range	0-49	kind 1 x1, kind 2 x25, kind 4 x23, kind 6 x1	0, 100-101	cut 0: 2-49
+62	mic_b02.ebp	mic0202.mpk	1	by the roll	type-0 range	0-60	kind 1 x1, kind 2 x32, kind 4 x27, kind 6 x1	0, 100-105	cut 0: 2-60
+62	mic_b02.ebp	mic0202.mpk	2	only when set by the script	type-0 range	0-60	kind 1 x1, kind 2 x32, kind 4 x27, kind 6 x1	0, 100-105	cut 0: 2-60
+62	mic_b02.ebp	mic0202.mpk	3	only when set by the script	type-0 range	0-60	kind 1 x1, kind 2 x32, kind 4 x27, kind 6 x1	0, 100-105	cut 0: 2-60
+66	mic_b06.ebp	mic0206.mpk	1	by the roll	type-0 range	0-11	kind 1 x1, kind 2 x5, kind 4 x5, kind 6 x1	0	cut 0: 2-11
+66	mic_b06.ebp	mic0206.mpk	2	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x5, kind 4 x5, kind 6 x1	0	cut 0: 2-11
+66	mic_b06.ebp	mic0206.mpk	3	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x5, kind 4 x5, kind 6 x1	0	cut 0: 2-11
+69	mic_c01.ebp	mic0106.mpk	1	by the roll	type-0 range	0-43	kind 2 x13, kind 3 x30, kind 6 x1	0, 100-107	-
+69	mic_c01.ebp	mic0106.mpk	2	only when set by the script	type-0 range	0-43	kind 2 x13, kind 3 x30, kind 6 x1	0, 100-107	-
+69	mic_c01.ebp	mic0106.mpk	3	only when set by the script	type-0 range	0-43	kind 2 x13, kind 3 x30, kind 6 x1	0, 100-107	-
+70	mic_c02.ebp	mic0109.mpk	1	by the roll	type-0 range	0-43	kind 2 x13, kind 3 x30, kind 6 x1	0, 100-107	-
+70	mic_c02.ebp	mic0109.mpk	2	only when set by the script	type-0 range	0-43	kind 2 x13, kind 3 x30, kind 6 x1	0, 100-107	-
+70	mic_c02.ebp	mic0109.mpk	3	only when set by the script	type-0 range	0-43	kind 2 x13, kind 3 x30, kind 6 x1	0, 100-107	-
+71	mic_d01.ebp	mic0107.mpk	1	by the roll	type-0 range	0-12	kind 1 x1, kind 2 x11, kind 6 x1	0-3	-
+71	mic_d01.ebp	mic0107.mpk	2	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x11, kind 6 x1	0-3	-
+71	mic_d01.ebp	mic0107.mpk	3	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x11, kind 6 x1	0-3	-
+124	asp_a01.ebp	asp0101.mpk	1	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x9, kind 6 x1	0-2	cut 0: 2-10
+124	asp_a01.ebp	asp0101.mpk	2	by the roll	type-0 range	0-10	kind 1 x1, kind 2 x9, kind 6 x1	0-2	cut 0: 2-10
+124	asp_a01.ebp	asp0101.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x9, kind 6 x1	0-2	cut 0: 2-10
+125	asp_a02.ebp	asp0102.mpk	1	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-1	cut 0: 2-8
+125	asp_a02.ebp	asp0102.mpk	2	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-1	cut 0: 2-8
+125	asp_a02.ebp	asp0102.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-1	cut 0: 2-8
+151	frs_a01.ebp	frs0101.mpk	1	by the roll	type-0 range	0-108	kind 1 x1, kind 2 x26, kind 4 x81, kind 6 x1	0	cut 0: 1-108
+151	frs_a01.ebp	frs0101.mpk	2	only when set by the script	type-0 range	0-108	kind 1 x1, kind 2 x26, kind 4 x81, kind 6 x1	0	cut 0: 1-108
+151	frs_a01.ebp	frs0101.mpk	3	only when set by the script	type-0 range	0-108	kind 1 x1, kind 2 x26, kind 4 x81, kind 6 x1	0	cut 0: 1-108
+152	frs_a02.ebp	frs0102.mpk	1	by the roll	type-0 range	0-126	kind 1 x1, kind 2 x33, kind 4 x92, kind 6 x1	0	cut 0: 1-126
+152	frs_a02.ebp	frs0102.mpk	2	only when set by the script	type-0 range	0-126	kind 1 x1, kind 2 x33, kind 4 x92, kind 6 x1	0	cut 0: 1-126
+152	frs_a02.ebp	frs0102.mpk	3	only when set by the script	type-0 range	0-126	kind 1 x1, kind 2 x33, kind 4 x92, kind 6 x1	0	cut 0: 1-126
+153	frs_a03.ebp	frs0103.mpk	1	by the roll	type-0 range	0-126	kind 1 x1, kind 2 x14, kind 4 x111, kind 6 x1	0	cut 0: 1-126
+153	frs_a03.ebp	frs0103.mpk	2	only when set by the script	type-0 range	0-126	kind 1 x1, kind 2 x14, kind 4 x111, kind 6 x1	0	cut 0: 1-126
+153	frs_a03.ebp	frs0103.mpk	3	only when set by the script	type-0 range	0-126	kind 1 x1, kind 2 x14, kind 4 x111, kind 6 x1	0	cut 0: 1-126
+154	frs_a04.ebp	frs0104.mpk	1	by the roll	type-0 range	0-87	kind 1 x1, kind 2 x21, kind 4 x65, kind 6 x1	0	cut 0: 1-87
+154	frs_a04.ebp	frs0104.mpk	2	only when set by the script	type-0 range	0-87	kind 1 x1, kind 2 x21, kind 4 x65, kind 6 x1	0	cut 0: 1-87
+154	frs_a04.ebp	frs0104.mpk	3	only when set by the script	type-0 range	0-87	kind 1 x1, kind 2 x21, kind 4 x65, kind 6 x1	0	cut 0: 1-87
+155	frs_a05.ebp	frs0105.mpk	1	by the roll	type-0 range	0-125	kind 1 x1, kind 2 x1, kind 3 x2, kind 4 x121, kind 6 x1	0	cut 0: 125
+155	frs_a05.ebp	frs0105.mpk	2	only when set by the script	type-0 range	0-125	kind 1 x1, kind 2 x1, kind 3 x2, kind 4 x121, kind 6 x1	0	cut 0: 125
+155	frs_a05.ebp	frs0105.mpk	3	only when set by the script	type-0 range	0-125	kind 1 x1, kind 2 x1, kind 3 x2, kind 4 x121, kind 6 x1	0	cut 0: 125
+156	frs_a06.ebp	frs0109.mpk	1	by the roll	type-0 range	0-108	kind 1 x1, kind 2 x26, kind 4 x81, kind 6 x1	0	cut 0: 1-108
+156	frs_a06.ebp	frs0109.mpk	2	only when set by the script	type-0 range	0-108	kind 1 x1, kind 2 x26, kind 4 x81, kind 6 x1	0	cut 0: 1-108
+156	frs_a06.ebp	frs0109.mpk	3	only when set by the script	type-0 range	0-108	kind 1 x1, kind 2 x26, kind 4 x81, kind 6 x1	0	cut 0: 1-108
+157	frs_b01.ebp	frs0110.mpk	1	by the roll	type-0 range	0-126	kind 1 x1, kind 2 x9, kind 4 x112, kind 5 x4, kind 6 x1	0	cut 0: 122-126
+157	frs_b01.ebp	frs0110.mpk	2	only when set by the script	type-0 range	0-126	kind 1 x1, kind 2 x9, kind 4 x112, kind 5 x4, kind 6 x1	0	cut 0: 122-126
+157	frs_b01.ebp	frs0110.mpk	3	only when set by the script	type-0 range	0-126	kind 1 x1, kind 2 x9, kind 4 x112, kind 5 x4, kind 6 x1	0	cut 0: 122-126
+158	frs_b02.ebp	frs0106.mpk	1	by the roll	type-0 range	0-127	kind 1 x2, kind 2 x9, kind 4 x112, kind 5 x4, kind 6 x1	0-1	cut 0: 123-127
+158	frs_b02.ebp	frs0106.mpk	2	only when set by the script	type-0 range	0-127	kind 1 x2, kind 2 x9, kind 4 x112, kind 5 x4, kind 6 x1	0-1	cut 0: 123-127
+158	frs_b02.ebp	frs0106.mpk	3	only when set by the script	type-0 range	0-127	kind 1 x2, kind 2 x9, kind 4 x112, kind 5 x4, kind 6 x1	0-1	cut 0: 123-127
+162	frs_c01.ebp	frs0107.mpk	1	by the roll	type-0 range	0-126	kind 1 x1, kind 2 x13, kind 3 x2, kind 4 x109, kind 5 x1, kind 6 x1	0	cut 0: 118-126
+162	frs_c01.ebp	frs0107.mpk	2	only when set by the script	type-0 range	0-126	kind 1 x1, kind 2 x13, kind 3 x2, kind 4 x109, kind 5 x1, kind 6 x1	0	cut 0: 118-126
+162	frs_c01.ebp	frs0107.mpk	3	only when set by the script	type-0 range	0-126	kind 1 x1, kind 2 x13, kind 3 x2, kind 4 x109, kind 5 x1, kind 6 x1	0	cut 0: 118-126
+163	frs_c02.ebp	frs0108.mpk	1	by the roll	type-0 range	0-125	kind 1 x1, kind 3 x7, kind 4 x117, kind 6 x1	0	cut 0: 125
+163	frs_c02.ebp	frs0108.mpk	2	only when set by the script	type-0 range	0-125	kind 1 x1, kind 3 x7, kind 4 x117, kind 6 x1	0	cut 0: 125
+163	frs_c02.ebp	frs0108.mpk	3	only when set by the script	type-0 range	0-125	kind 1 x1, kind 3 x7, kind 4 x117, kind 6 x1	0	cut 0: 125
+198	rui_c01.ebp	rui0103.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+198	rui_c01.ebp	rui0103.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+198	rui_c01.ebp	rui0103.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+200	rui_d01.ebp	rui0108.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+200	rui_d01.ebp	rui0108.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+200	rui_d01.ebp	rui0108.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+202	rui_e01.ebp	rui0110.mpk	1	by the roll	type-0 range	0-3	kind 1 x3, kind 6 x1	0-2	-
+202	rui_e01.ebp	rui0110.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-2	-
+202	rui_e01.ebp	rui0110.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-2	-
+223	mnt_c01.ebp	mnt0109.mpk	1	only when set by the script	type-7 set 0	0-2	kind 1 x2, kind 6 x1	0	-
+223	mnt_c01.ebp	mnt0109.mpk	2	by the roll	type-7 set 1	3-5	kind 1 x2, kind 6 x1	0	-
+223	mnt_c01.ebp	mnt0109.mpk	3	by the roll	type-7 set 2	6-8	kind 1 x2, kind 6 x1	0	-
+274	naf_a01.ebp	naf0101.mpk	1	by the roll	type-0 range	0-11	kind 1 x1, kind 3 x9, kind 4 x1, kind 6 x1	0-2	cut 0: 10-11
+274	naf_a01.ebp	naf0101.mpk	2	only when set by the script	type-0 range	0-11	kind 1 x1, kind 3 x9, kind 4 x1, kind 6 x1	0-2	cut 0: 10-11
+274	naf_a01.ebp	naf0101.mpk	3	only when set by the script	type-0 range	0-11	kind 1 x1, kind 3 x9, kind 4 x1, kind 6 x1	0-2	cut 0: 10-11
+275	naf_a02.ebp	naf0102.mpk	1	by the roll	type-0 range	0-19	kind 1 x1, kind 3 x18, kind 6 x1	0-16	cut 0: 19
+275	naf_a02.ebp	naf0102.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x1, kind 3 x18, kind 6 x1	0-16	cut 0: 19
+275	naf_a02.ebp	naf0102.mpk	3	only when set by the script	type-0 range	0-19	kind 1 x1, kind 3 x18, kind 6 x1	0-16	cut 0: 19
+279	naf_b01.ebp	naf0201.mpk	1	by the roll	type-0 range	0-71	kind 1 x1, kind 3 x70, kind 6 x1	0-1	cut 0: 70-71
+279	naf_b01.ebp	naf0201.mpk	2	only when set by the script	type-0 range	0-71	kind 1 x1, kind 3 x70, kind 6 x1	0-1	cut 0: 70-71
+279	naf_b01.ebp	naf0201.mpk	3	only when set by the script	type-0 range	0-71	kind 1 x1, kind 3 x70, kind 6 x1	0-1	cut 0: 70-71
+280	naf_b02.ebp	naf0202.mpk	1	by the roll	type-0 range	0-16	kind 1 x1, kind 3 x15, kind 6 x1	0-1	cut 0: 15-16
+280	naf_b02.ebp	naf0202.mpk	2	only when set by the script	type-0 range	0-16	kind 1 x1, kind 3 x15, kind 6 x1	0-1	cut 0: 15-16
+280	naf_b02.ebp	naf0202.mpk	3	only when set by the script	type-0 range	0-16	kind 1 x1, kind 3 x15, kind 6 x1	0-1	cut 0: 15-16
+282	naf_b04.ebp	naf0204.mpk	1	by the roll	type-0 range	0-80	kind 1 x1, kind 3 x66, kind 4 x13, kind 6 x1	0-1	cut 0: 79-80
+282	naf_b04.ebp	naf0204.mpk	2	only when set by the script	type-0 range	0-80	kind 1 x1, kind 3 x66, kind 4 x13, kind 6 x1	0-1	cut 0: 79-80
+282	naf_b04.ebp	naf0204.mpk	3	only when set by the script	type-0 range	0-80	kind 1 x1, kind 3 x66, kind 4 x13, kind 6 x1	0-1	cut 0: 79-80
+286	dor_b01.ebp	dor0201.mpk	1	by the roll	type-0 range	0-11	kind 1 x1, kind 2 x5, kind 4 x5, kind 6 x1	0-1	-
+286	dor_b01.ebp	dor0201.mpk	2	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x5, kind 4 x5, kind 6 x1	0-1	-
+286	dor_b01.ebp	dor0201.mpk	3	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x5, kind 4 x5, kind 6 x1	0-1	-
+295	rbn_a07.ebp	rbn1001.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 3 x2, kind 6 x1	0-3	cut 0: 13-15
+295	rbn_a07.ebp	rbn1001.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 3 x2, kind 6 x1	0-3	cut 0: 13-15
+295	rbn_a07.ebp	rbn1001.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 3 x2, kind 6 x1	0-3	cut 0: 13-15
+296	rbn_a08.ebp	rbn1002.mpk	1	by the roll	type-0 range	0-6	kind 1 x1, kind 2 x5, kind 6 x1	0-1, 3	cut 0: 6
+296	rbn_a08.ebp	rbn1002.mpk	2	only when set by the script	type-0 range	0-6	kind 1 x1, kind 2 x5, kind 6 x1	0-1, 3	cut 0: 6
+296	rbn_a08.ebp	rbn1002.mpk	3	only when set by the script	type-0 range	0-6	kind 1 x1, kind 2 x5, kind 6 x1	0-1, 3	cut 0: 6
+297	rbn_a09.ebp	rbn1003.mpk	1	by the roll	type-0 range	0-13	kind 1 x1, kind 2 x11, kind 3 x1, kind 6 x1	0-3	cut 0: 13
+297	rbn_a09.ebp	rbn1003.mpk	2	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x11, kind 3 x1, kind 6 x1	0-3	cut 0: 13
+297	rbn_a09.ebp	rbn1003.mpk	3	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x11, kind 3 x1, kind 6 x1	0-3	cut 0: 13
+298	rbn_a10.ebp	rbn1004.mpk	1	by the roll	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-1, 3	-
+298	rbn_a10.ebp	rbn1004.mpk	2	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-1, 3	-
+298	rbn_a10.ebp	rbn1004.mpk	3	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-1, 3	-
+299	rbn_a11.ebp	rbn1005.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 3 x2, kind 6 x1	0-3	cut 0: 14-15
+299	rbn_a11.ebp	rbn1005.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 3 x2, kind 6 x1	0-3	cut 0: 14-15
+299	rbn_a11.ebp	rbn1005.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 3 x2, kind 6 x1	0-3	cut 0: 14-15
+300	rbn_a12.ebp	rbn1006.mpk	1	by the roll	type-0 range	0-10	kind 1 x1, kind 2 x7, kind 3 x2, kind 6 x1	0-3	cut 0: 9-10
+300	rbn_a12.ebp	rbn1006.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x7, kind 3 x2, kind 6 x1	0-3	cut 0: 9-10
+300	rbn_a12.ebp	rbn1006.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x7, kind 3 x2, kind 6 x1	0-3	cut 0: 9-10
+301	rbn_a13.ebp	rbn1007.mpk	1	by the roll	type-0 range	0-4	kind 1 x1, kind 2 x3, kind 6 x1	0-1, 3	cut 0: 2-4
+301	rbn_a13.ebp	rbn1007.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x1, kind 2 x3, kind 6 x1	0-1, 3	cut 0: 2-4
+301	rbn_a13.ebp	rbn1007.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x1, kind 2 x3, kind 6 x1	0-1, 3	cut 0: 2-4
+302	rbn_a14.ebp	rbn1008.mpk	1	by the roll	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-1, 3	-
+302	rbn_a14.ebp	rbn1008.mpk	2	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-1, 3	-
+302	rbn_a14.ebp	rbn1008.mpk	3	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-1, 3	-
+304	rbn_a16.ebp	rbn1009.mpk	1	by the roll	type-0 range	0-19	kind 1 x1, kind 2 x16, kind 3 x2, kind 6 x1	0-3	cut 0: 18-19
+304	rbn_a16.ebp	rbn1009.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x1, kind 2 x16, kind 3 x2, kind 6 x1	0-3	cut 0: 18-19
+304	rbn_a16.ebp	rbn1009.mpk	3	only when set by the script	type-0 range	0-19	kind 1 x1, kind 2 x16, kind 3 x2, kind 6 x1	0-3	cut 0: 18-19
+311	grm_a01.ebp	grm0101.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-2	-
+311	grm_a01.ebp	grm0101.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-2	-
+311	grm_a01.ebp	grm0101.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-2	-
+312	grm_a02.ebp	grm0102.mpk	1	by the roll	type-0 range	0-25	kind 1 x1, kind 2 x24, kind 6 x1	0-3	-
+312	grm_a02.ebp	grm0102.mpk	2	only when set by the script	type-0 range	0-25	kind 1 x1, kind 2 x24, kind 6 x1	0-3	-
+312	grm_a02.ebp	grm0102.mpk	3	only when set by the script	type-0 range	0-25	kind 1 x1, kind 2 x24, kind 6 x1	0-3	-
+313	grm_a03.ebp	grm0103.mpk	1	by the roll	type-0 range	0-47	kind 1 x1, kind 2 x36, kind 4 x10, kind 6 x1	0-5	cut 0: 46-47
+313	grm_a03.ebp	grm0103.mpk	2	only when set by the script	type-0 range	0-47	kind 1 x1, kind 2 x36, kind 4 x10, kind 6 x1	0-5	cut 0: 46-47
+313	grm_a03.ebp	grm0103.mpk	3	only when set by the script	type-0 range	0-47	kind 1 x1, kind 2 x36, kind 4 x10, kind 6 x1	0-5	cut 0: 46-47
+314	grm_a04.ebp	grm0104.mpk	1	by the roll	type-0 range	0-5	kind 1 x1, kind 2 x3, kind 4 x1, kind 6 x1	0-3	-
+314	grm_a04.ebp	grm0104.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x1, kind 2 x3, kind 4 x1, kind 6 x1	0-3	-
+314	grm_a04.ebp	grm0104.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x1, kind 2 x3, kind 4 x1, kind 6 x1	0-3	-
+315	grm_a05.ebp	grm0120.mpk	1	by the roll	type-0 range	0-38	kind 1 x1, kind 2 x27, kind 4 x10, kind 6 x1	0-2, 4-5	-
+315	grm_a05.ebp	grm0120.mpk	2	only when set by the script	type-0 range	0-38	kind 1 x1, kind 2 x27, kind 4 x10, kind 6 x1	0-2, 4-5	-
+315	grm_a05.ebp	grm0120.mpk	3	only when set by the script	type-0 range	0-38	kind 1 x1, kind 2 x27, kind 4 x10, kind 6 x1	0-2, 4-5	-
+316	grm_a06.ebp	grm0121.mpk	1	by the roll	type-0 range	0-21	kind 1 x1, kind 2 x20, kind 6 x1	0-2	-
+316	grm_a06.ebp	grm0121.mpk	2	only when set by the script	type-0 range	0-21	kind 1 x1, kind 2 x20, kind 6 x1	0-2	-
+316	grm_a06.ebp	grm0121.mpk	3	only when set by the script	type-0 range	0-21	kind 1 x1, kind 2 x20, kind 6 x1	0-2	-
+318	grm_b01.ebp	grm0105.mpk	1	by the roll	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+318	grm_b01.ebp	grm0105.mpk	2	only when set by the script	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+318	grm_b01.ebp	grm0105.mpk	3	only when set by the script	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+319	grm_b02.ebp	grm0107.mpk	1	by the roll	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+319	grm_b02.ebp	grm0107.mpk	2	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+319	grm_b02.ebp	grm0107.mpk	3	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+320	grm_b03.ebp	grm0109.mpk	1	by the roll	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+320	grm_b03.ebp	grm0109.mpk	2	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+320	grm_b03.ebp	grm0109.mpk	3	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+321	grm_b04.ebp	grm0110.mpk	1	by the roll	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+321	grm_b04.ebp	grm0110.mpk	2	only when set by the script	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+321	grm_b04.ebp	grm0110.mpk	3	only when set by the script	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+322	grm_b05.ebp	grm0118.mpk	1	by the roll	type-0 range	0-24	kind 1 x1, kind 2 x20, kind 4 x3, kind 6 x1	0-3	cut 0: 1-24
+322	grm_b05.ebp	grm0118.mpk	2	only when set by the script	type-0 range	0-24	kind 1 x1, kind 2 x20, kind 4 x3, kind 6 x1	0-3	cut 0: 1-24
+322	grm_b05.ebp	grm0118.mpk	3	only when set by the script	type-0 range	0-24	kind 1 x1, kind 2 x20, kind 4 x3, kind 6 x1	0-3	cut 0: 1-24
+326	grm_c01.ebp	grm0108.mpk	1	by the roll	type-0 range	0-12	kind 1 x1, kind 2 x7, kind 3 x4, kind 6 x1	0-3	-
+326	grm_c01.ebp	grm0108.mpk	2	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x7, kind 3 x4, kind 6 x1	0-3	-
+326	grm_c01.ebp	grm0108.mpk	3	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x7, kind 3 x4, kind 6 x1	0-3	-
+329	grm_d01.ebp	grm0119.mpk	1	by the roll	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+329	grm_d01.ebp	grm0119.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+329	grm_d01.ebp	grm0119.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+342	grm_f01.ebp	grm0115.mpk	1	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+342	grm_f01.ebp	grm0115.mpk	2	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+342	grm_f01.ebp	grm0115.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+354	wdl_b01.ebp	wdl0107.mpk	1	by the roll	type-7 set 0	1-2	kind 1 x1, kind 6 x1	0	-
+354	wdl_b01.ebp	wdl0107.mpk	2	by the roll	type-7 set 1	3-4	kind 1 x1, kind 6 x1	0	-
+354	wdl_b01.ebp	wdl0107.mpk	3	by the roll	type-7 set 2	0, 5	kind 1 x1, kind 6 x1	0	-
+357	lus_a01.ebp	lus0101.mpk	1	only when set by the script	type-0 range	0-38	kind 1 x1, kind 2 x34, kind 5 x3, kind 6 x1	0-1, 3-4	cut 0: 19-38
+357	lus_a01.ebp	lus0101.mpk	2	by the roll	type-0 range	0-38	kind 1 x1, kind 2 x34, kind 5 x3, kind 6 x1	0-1, 3-4	cut 0: 19-38
+357	lus_a01.ebp	lus0101.mpk	3	only when set by the script	type-0 range	0-38	kind 1 x1, kind 2 x34, kind 5 x3, kind 6 x1	0-1, 3-4	cut 0: 19-38
+358	lus_a02.ebp	lus0102.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 3 x8, kind 5 x6, kind 6 x1	0-1, 4-5	cut 0: 1-15
+358	lus_a02.ebp	lus0102.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 3 x8, kind 5 x6, kind 6 x1	0-1, 4-5	cut 0: 1-15
+358	lus_a02.ebp	lus0102.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 3 x8, kind 5 x6, kind 6 x1	0-1, 4-5	cut 0: 1-15
+359	lus_a03.ebp	lus0104.mpk	1	only when set by the script	type-0 range	0-47	kind 1 x1, kind 2 x42, kind 5 x4, kind 6 x1	0-4	cut 0: 1-47
+359	lus_a03.ebp	lus0104.mpk	2	by the roll	type-0 range	0-47	kind 1 x1, kind 2 x42, kind 5 x4, kind 6 x1	0-4	cut 0: 1-47
+359	lus_a03.ebp	lus0104.mpk	3	only when set by the script	type-0 range	0-47	kind 1 x1, kind 2 x42, kind 5 x4, kind 6 x1	0-4	cut 0: 1-47
+360	lus_a04.ebp	lus0110.mpk	1	only when set by the script	type-0 range	0-6	kind 1 x1, kind 2 x4, kind 5 x1, kind 6 x1	0-2, 4	cut 0: 2-6
+360	lus_a04.ebp	lus0110.mpk	2	by the roll	type-0 range	0-6	kind 1 x1, kind 2 x4, kind 5 x1, kind 6 x1	0-2, 4	cut 0: 2-6
+360	lus_a04.ebp	lus0110.mpk	3	only when set by the script	type-0 range	0-6	kind 1 x1, kind 2 x4, kind 5 x1, kind 6 x1	0-2, 4	cut 0: 2-6
+365	lus_b01.ebp	lus0103.mpk	1	by the roll	type-0 range	0-19	kind 1 x1, kind 3 x11, kind 5 x7, kind 6 x1	0-1, 4-5	cut 0: 1-19
+365	lus_b01.ebp	lus0103.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x1, kind 3 x11, kind 5 x7, kind 6 x1	0-1, 4-5	cut 0: 1-19
+365	lus_b01.ebp	lus0103.mpk	3	only when set by the script	type-0 range	0-19	kind 1 x1, kind 3 x11, kind 5 x7, kind 6 x1	0-1, 4-5	cut 0: 1-19
+366	lus_b02.ebp	lus0108.mpk	1	only when set by the script	type-0 range	0-44	kind 1 x1, kind 2 x40, kind 5 x3, kind 6 x1	0-4	cut 0: 1-44
+366	lus_b02.ebp	lus0108.mpk	2	by the roll	type-0 range	0-44	kind 1 x1, kind 2 x40, kind 5 x3, kind 6 x1	0-4	cut 0: 1-44
+366	lus_b02.ebp	lus0108.mpk	3	only when set by the script	type-0 range	0-44	kind 1 x1, kind 2 x40, kind 5 x3, kind 6 x1	0-4	cut 0: 1-44
+367	lus_b03.ebp	lus0116.mpk	1	only when set by the script	type-0 range	0-35	kind 1 x1, kind 2 x30, kind 5 x4, kind 6 x1	0-1, 4	cut 0: 1-35
+367	lus_b03.ebp	lus0116.mpk	2	by the roll	type-0 range	0-35	kind 1 x1, kind 2 x30, kind 5 x4, kind 6 x1	0-1, 4	cut 0: 1-35
+367	lus_b03.ebp	lus0116.mpk	3	only when set by the script	type-0 range	0-35	kind 1 x1, kind 2 x30, kind 5 x4, kind 6 x1	0-1, 4	cut 0: 1-35
+369	lus_c01.ebp	lus0105.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-1	-
+369	lus_c01.ebp	lus0105.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-1	-
+369	lus_c01.ebp	lus0105.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-1	-
+372	lus_d01.ebp	lus0106.mpk	1	only when set by the script	type-0 range	0-32	kind 1 x1, kind 2 x27, kind 5 x4, kind 6 x1	0-4	cut 0: 1-32
+372	lus_d01.ebp	lus0106.mpk	2	by the roll	type-0 range	0-32	kind 1 x1, kind 2 x27, kind 5 x4, kind 6 x1	0-4	cut 0: 1-32
+372	lus_d01.ebp	lus0106.mpk	3	only when set by the script	type-0 range	0-32	kind 1 x1, kind 2 x27, kind 5 x4, kind 6 x1	0-4	cut 0: 1-32
+374	lus_d03.ebp	lus0115.mpk	1	only when set by the script	type-0 range	0-33	kind 1 x1, kind 2 x29, kind 5 x3, kind 6 x1	0-4	cut 0: 1-33
+374	lus_d03.ebp	lus0115.mpk	2	by the roll	type-0 range	0-33	kind 1 x1, kind 2 x29, kind 5 x3, kind 6 x1	0-4	cut 0: 1-33
+374	lus_d03.ebp	lus0115.mpk	3	only when set by the script	type-0 range	0-33	kind 1 x1, kind 2 x29, kind 5 x3, kind 6 x1	0-4	cut 0: 1-33
+376	lus_e01.ebp	lus0109.mpk	1	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+376	lus_e01.ebp	lus0109.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+376	lus_e01.ebp	lus0109.mpk	3	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+391	enw_a02.ebp	enw0102.mpk	1	by the roll	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+391	enw_a02.ebp	enw0102.mpk	2	by the roll	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+391	enw_a02.ebp	enw0102.mpk	3	by the roll	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+403	rwg_a01.ebp	rwg0101.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 6 x2	0-1	cut 0: 2-3
+403	rwg_a01.ebp	rwg0101.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 6 x2	0-1	cut 0: 2-3
+403	rwg_a01.ebp	rwg0101.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 6 x2	0-1	cut 0: 2-3
+406	rwg_b01.ebp	rwg0201.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	-
+406	rwg_b01.ebp	rwg0201.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	-
+406	rwg_b01.ebp	rwg0201.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	-
+407	rwg_b02.ebp	rwg0202.mpk	1	by the roll	type-0 range	0-14	kind 1 x2, kind 2 x12, kind 6 x1	0-2	cut 0: 12-14
+407	rwg_b02.ebp	rwg0202.mpk	2	only when set by the script	type-0 range	0-14	kind 1 x2, kind 2 x12, kind 6 x1	0-2	cut 0: 12-14
+407	rwg_b02.ebp	rwg0202.mpk	3	only when set by the script	type-0 range	0-14	kind 1 x2, kind 2 x12, kind 6 x1	0-2	cut 0: 12-14
+410	rwg_c01.ebp	rwg0203.mpk	1	only when set by the script	type-0 range	0-62	kind 1 x2, kind 2 x60, kind 6 x1	0-2	cut 0: 60-62
+410	rwg_c01.ebp	rwg0203.mpk	2	by the roll	type-0 range	0-62	kind 1 x2, kind 2 x60, kind 6 x1	0-2	cut 0: 60-62
+410	rwg_c01.ebp	rwg0203.mpk	3	only when set by the script	type-0 range	0-62	kind 1 x2, kind 2 x60, kind 6 x1	0-2	cut 0: 60-62
+411	rwg_c02.ebp	rwg0204.mpk	1	only when set by the script	type-0 range	0-118	kind 1 x2, kind 2 x116, kind 6 x1	0-2	cut 0: 116-118
+411	rwg_c02.ebp	rwg0204.mpk	2	only when set by the script	type-0 range	0-118	kind 1 x2, kind 2 x116, kind 6 x1	0-2	cut 0: 116-118
+411	rwg_c02.ebp	rwg0204.mpk	3	by the roll	type-0 range	0-118	kind 1 x2, kind 2 x116, kind 6 x1	0-2	cut 0: 116-118
+412	rwg_c03.ebp	rwg0205.mpk	1	only when set by the script	type-0 range	0-120	kind 1 x2, kind 2 x118, kind 6 x1	0-2	cut 0: 118-120
+412	rwg_c03.ebp	rwg0205.mpk	2	only when set by the script	type-0 range	0-120	kind 1 x2, kind 2 x118, kind 6 x1	0-2	cut 0: 118-120
+412	rwg_c03.ebp	rwg0205.mpk	3	by the roll	type-0 range	0-120	kind 1 x2, kind 2 x118, kind 6 x1	0-2	cut 0: 118-120
+415	rwg_d01.ebp	rwg0206.mpk	1	only when set by the script	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+415	rwg_d01.ebp	rwg0206.mpk	2	by the roll	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+415	rwg_d01.ebp	rwg0206.mpk	3	only when set by the script	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+418	rwg_e01.ebp	rwg0207.mpk	1	by the roll	type-0 range	0-18	kind 1 x2, kind 2 x16, kind 6 x1	0-2	cut 0: 16-18
+418	rwg_e01.ebp	rwg0207.mpk	2	only when set by the script	type-0 range	0-18	kind 1 x2, kind 2 x16, kind 6 x1	0-2	cut 0: 16-18
+418	rwg_e01.ebp	rwg0207.mpk	3	only when set by the script	type-0 range	0-18	kind 1 x2, kind 2 x16, kind 6 x1	0-2	cut 0: 16-18
+421	bds_a01.ebp	bds0101.mpk	1	only when set by the script	type-0 range	0-116	kind 2 x70, kind 3 x45, kind 4 x1, kind 6 x1	0-2	-
+421	bds_a01.ebp	bds0101.mpk	2	only when set by the script	type-0 range	0-116	kind 2 x70, kind 3 x45, kind 4 x1, kind 6 x1	0-2	-
+421	bds_a01.ebp	bds0101.mpk	3	by the roll	type-0 range	0-116	kind 2 x70, kind 3 x45, kind 4 x1, kind 6 x1	0-2	-
+422	bds_a02.ebp	bds0107.mpk	1	only when set by the script	type-0 range	0-73	kind 2 x72, kind 5 x1, kind 6 x1	0-2	-
+422	bds_a02.ebp	bds0107.mpk	2	only when set by the script	type-0 range	0-73	kind 2 x72, kind 5 x1, kind 6 x1	0-2	-
+422	bds_a02.ebp	bds0107.mpk	3	by the roll	type-0 range	0-73	kind 2 x72, kind 5 x1, kind 6 x1	0-2	-
+426	bds_b01.ebp	bds0103.mpk	1	only when set by the script	type-0 range	0-104	kind 2 x47, kind 3 x44, kind 4 x6, kind 5 x7, kind 6 x1	0-3	-
+426	bds_b01.ebp	bds0103.mpk	2	only when set by the script	type-0 range	0-104	kind 2 x47, kind 3 x44, kind 4 x6, kind 5 x7, kind 6 x1	0-3	-
+426	bds_b01.ebp	bds0103.mpk	3	by the roll	type-0 range	0-104	kind 2 x47, kind 3 x44, kind 4 x6, kind 5 x7, kind 6 x1	0-3	-
+430	bds_c01.ebp	bds0109.mpk	1	only when set by the script	type-0 range	0-62	kind 2 x10, kind 3 x52, kind 6 x1	0-1	-
+430	bds_c01.ebp	bds0109.mpk	2	only when set by the script	type-0 range	0-62	kind 2 x10, kind 3 x52, kind 6 x1	0-1	-
+430	bds_c01.ebp	bds0109.mpk	3	by the roll	type-0 range	0-62	kind 2 x10, kind 3 x52, kind 6 x1	0-1	-
+431	bds_c02.ebp	bds0104.mpk	1	only when set by the script	type-0 range	0-108	kind 2 x56, kind 3 x45, kind 4 x5, kind 5 x2, kind 6 x1	0-2, 4-5	-
+431	bds_c02.ebp	bds0104.mpk	2	only when set by the script	type-0 range	0-108	kind 2 x56, kind 3 x45, kind 4 x5, kind 5 x2, kind 6 x1	0-2, 4-5	-
+431	bds_c02.ebp	bds0104.mpk	3	by the roll	type-0 range	0-108	kind 2 x56, kind 3 x45, kind 4 x5, kind 5 x2, kind 6 x1	0-2, 4-5	-
+438	bds_e01.ebp	bds0110.mpk	1	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+438	bds_e01.ebp	bds0110.mpk	2	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+438	bds_e01.ebp	bds0110.mpk	3	by the roll	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+441	bds_f01.ebp	bds0111.mpk	1	only when set by the script	type-0 range	0-19	kind 1 x2, kind 2 x10, kind 5 x7, kind 6 x1	0-4	-
+441	bds_f01.ebp	bds0111.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x2, kind 2 x10, kind 5 x7, kind 6 x1	0-4	-
+441	bds_f01.ebp	bds0111.mpk	3	by the roll	type-0 range	0-19	kind 1 x2, kind 2 x10, kind 5 x7, kind 6 x1	0-4	-
+444	bds_g01.ebp	bds0112.mpk	1	only when set by the script	type-0 range	0-19	kind 1 x1, kind 2 x11, kind 5 x7, kind 6 x1	0-4	-
+444	bds_g01.ebp	bds0112.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x1, kind 2 x11, kind 5 x7, kind 6 x1	0-4	-
+444	bds_g01.ebp	bds0112.mpk	3	by the roll	type-0 range	0-19	kind 1 x1, kind 2 x11, kind 5 x7, kind 6 x1	0-4	-
+447	gol_a01.ebp	gol0101.mpk	1	by the roll	cut list only	0-28	kind 2 x28, kind 6 x1	0-1	cut 0: 0-28
+447	gol_a01.ebp	gol0101.mpk	2	only when set by the script	cut list only	0-28	kind 2 x28, kind 6 x1	0-1	cut 0: 0-28
+447	gol_a01.ebp	gol0101.mpk	3	only when set by the script	cut list only	0-28	kind 2 x28, kind 6 x1	0-1	cut 0: 0-28
+448	gol_a02.ebp	gol0102.mpk	1	by the roll	cut list only	0-22	kind 2 x22, kind 6 x1	0-1	cut 0: 0-22
+448	gol_a02.ebp	gol0102.mpk	2	only when set by the script	cut list only	0-22	kind 2 x22, kind 6 x1	0-1	cut 0: 0-22
+448	gol_a02.ebp	gol0102.mpk	3	only when set by the script	cut list only	0-22	kind 2 x22, kind 6 x1	0-1	cut 0: 0-22
+449	gol_a03.ebp	gol0103.mpk	1	by the roll	cut list only	0-8	kind 2 x8, kind 6 x1	0-1	cut 0: 0-8
+449	gol_a03.ebp	gol0103.mpk	2	only when set by the script	cut list only	0-8	kind 2 x8, kind 6 x1	0-1	cut 0: 0-8
+449	gol_a03.ebp	gol0103.mpk	3	only when set by the script	cut list only	0-8	kind 2 x8, kind 6 x1	0-1	cut 0: 0-8
+450	gol_a04.ebp	gol0108.mpk	1	by the roll	cut list only	0-3	kind 2 x3, kind 6 x1	0-1	cut 0: 0-3
+450	gol_a04.ebp	gol0108.mpk	2	only when set by the script	cut list only	0-3	kind 2 x3, kind 6 x1	0-1	cut 0: 0-3
+450	gol_a04.ebp	gol0108.mpk	3	only when set by the script	cut list only	0-3	kind 2 x3, kind 6 x1	0-1	cut 0: 0-3
+453	gol_b01.ebp	gol0104.mpk	1	by the roll	cut list only	0-15	kind 2 x15, kind 6 x1	0-1	cut 0: 0-15
+453	gol_b01.ebp	gol0104.mpk	2	only when set by the script	cut list only	0-15	kind 2 x15, kind 6 x1	0-1	cut 0: 0-15
+453	gol_b01.ebp	gol0104.mpk	3	only when set by the script	cut list only	0-15	kind 2 x15, kind 6 x1	0-1	cut 0: 0-15
+456	gol_c01.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+456	gol_c01.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+456	gol_c01.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+459	gol_d01.ebp	gol0106.mpk	1	by the roll	cut list only	0-7	kind 2 x7, kind 6 x1	0-1	cut 0: 0-7
+459	gol_d01.ebp	gol0106.mpk	2	only when set by the script	cut list only	0-7	kind 2 x7, kind 6 x1	0-1	cut 0: 0-7
+459	gol_d01.ebp	gol0106.mpk	3	only when set by the script	cut list only	0-7	kind 2 x7, kind 6 x1	0-1	cut 0: 0-7
+460	gol_d02.ebp	gol0107.mpk	1	by the roll	cut list only	0-7	kind 2 x7, kind 6 x1	0-1	cut 0: 0-7
+460	gol_d02.ebp	gol0107.mpk	2	only when set by the script	cut list only	0-7	kind 2 x7, kind 6 x1	0-1	cut 0: 0-7
+460	gol_d02.ebp	gol0107.mpk	3	only when set by the script	cut list only	0-7	kind 2 x7, kind 6 x1	0-1	cut 0: 0-7
+522	rwf_c01.ebp	rwf0109.mpk	1	by the roll	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+522	rwf_c01.ebp	rwf0109.mpk	2	only when set by the script	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+522	rwf_c01.ebp	rwf0109.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+545	mfr_b01.ebp	mfr0105.mpk	1	only when set by the script	type-7 set 0	2-3	kind 1 x1, kind 6 x1	0	-
+545	mfr_b01.ebp	mfr0105.mpk	2	only when set by the script	type-7 set 1	4-5	kind 1 x1, kind 6 x1	0	-
+545	mfr_b01.ebp	mfr0105.mpk	3	by the roll	type-7 set 2	0-1, 6	kind 1 x2, kind 6 x1	0-2	-
+552	rsn_a01.ebp	rsn0101.mpk	1	by the roll	type-0 range	0-13	kind 1 x1, kind 3 x4, kind 4 x8, kind 6 x1	0	-
+552	rsn_a01.ebp	rsn0101.mpk	2	only when set by the script	type-0 range	0-13	kind 1 x1, kind 3 x4, kind 4 x8, kind 6 x1	0	-
+552	rsn_a01.ebp	rsn0101.mpk	3	only when set by the script	type-0 range	0-13	kind 1 x1, kind 3 x4, kind 4 x8, kind 6 x1	0	-
+555	rsn_b01.ebp	rsn0102.mpk	1	by the roll	type-0 range	0-75	kind 1 x1, kind 2 x50, kind 4 x24, kind 6 x1	0-1, 14-15	-
+555	rsn_b01.ebp	rsn0102.mpk	2	only when set by the script	type-0 range	0-75	kind 1 x1, kind 2 x50, kind 4 x24, kind 6 x1	0-1, 14-15	-
+555	rsn_b01.ebp	rsn0102.mpk	3	only when set by the script	type-0 range	0-75	kind 1 x1, kind 2 x50, kind 4 x24, kind 6 x1	0-1, 14-15	-
+556	rsn_b02.ebp	rsn0103.mpk	1	by the roll	type-0 range	0-41	kind 1 x1, kind 2 x26, kind 3 x2, kind 4 x12, kind 6 x1	0-2	-
+556	rsn_b02.ebp	rsn0103.mpk	2	only when set by the script	type-0 range	0-41	kind 1 x1, kind 2 x26, kind 3 x2, kind 4 x12, kind 6 x1	0-2	-
+556	rsn_b02.ebp	rsn0103.mpk	3	only when set by the script	type-0 range	0-41	kind 1 x1, kind 2 x26, kind 3 x2, kind 4 x12, kind 6 x1	0-2	-
+557	rsn_b03.ebp	rsn0104.mpk	1	by the roll	type-0 range	0-113	kind 1 x1, kind 2 x112, kind 6 x1	0, 2, 15	-
+557	rsn_b03.ebp	rsn0104.mpk	2	only when set by the script	type-0 range	0-113	kind 1 x1, kind 2 x112, kind 6 x1	0, 2, 15	-
+557	rsn_b03.ebp	rsn0104.mpk	3	only when set by the script	type-0 range	0-113	kind 1 x1, kind 2 x112, kind 6 x1	0, 2, 15	-
+558	rsn_b04.ebp	rsn0105.mpk	1	by the roll	type-0 range	0-34	kind 1 x2, kind 2 x14, kind 3 x4, kind 4 x14, kind 6 x1	0, 2-16	cut 0: 34
+558	rsn_b04.ebp	rsn0105.mpk	2	only when set by the script	type-0 range	0-34	kind 1 x2, kind 2 x14, kind 3 x4, kind 4 x14, kind 6 x1	0, 2-16	cut 0: 34
+558	rsn_b04.ebp	rsn0105.mpk	3	only when set by the script	type-0 range	0-34	kind 1 x2, kind 2 x14, kind 3 x4, kind 4 x14, kind 6 x1	0, 2-16	cut 0: 34
+561	rsn_c01.ebp	rsn0106.mpk	1	by the roll	type-0 range	0-112	kind 1 x1, kind 2 x75, kind 3 x14, kind 4 x22, kind 6 x1	0-1	-
+561	rsn_c01.ebp	rsn0106.mpk	2	only when set by the script	type-0 range	0-112	kind 1 x1, kind 2 x75, kind 3 x14, kind 4 x22, kind 6 x1	0-1	-
+561	rsn_c01.ebp	rsn0106.mpk	3	only when set by the script	type-0 range	0-112	kind 1 x1, kind 2 x75, kind 3 x14, kind 4 x22, kind 6 x1	0-1	-
+564	rsn_d01.ebp	rsn0107.mpk	1	by the roll	type-0 range	0-20	kind 1 x2, kind 2 x1, kind 3 x14, kind 4 x3, kind 6 x1	0-3	-
+564	rsn_d01.ebp	rsn0107.mpk	2	only when set by the script	type-0 range	0-20	kind 1 x2, kind 2 x1, kind 3 x14, kind 4 x3, kind 6 x1	0-3	-
+564	rsn_d01.ebp	rsn0107.mpk	3	only when set by the script	type-0 range	0-20	kind 1 x2, kind 2 x1, kind 3 x14, kind 4 x3, kind 6 x1	0-3	-
+576	ztc_a01.ebp	ztc0101.mpk	1	by the roll	type-0 range	0-5	kind 1 x2, kind 4 x2, kind 5 x1, kind 6 x1	0-1, 4-5	-
+576	ztc_a01.ebp	ztc0101.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x2, kind 4 x2, kind 5 x1, kind 6 x1	0-1, 4-5	-
+576	ztc_a01.ebp	ztc0101.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x2, kind 4 x2, kind 5 x1, kind 6 x1	0-1, 4-5	-
+577	ztc_a02.ebp	ztc0102.mpk	1	only when set by the script	type-0 range	0-6	kind 1 x2, kind 4 x4, kind 6 x1	0-1, 5	-
+577	ztc_a02.ebp	ztc0102.mpk	2	by the roll	type-0 range	0-6	kind 1 x2, kind 4 x4, kind 6 x1	0-1, 5	-
+577	ztc_a02.ebp	ztc0102.mpk	3	only when set by the script	type-0 range	0-6	kind 1 x2, kind 4 x4, kind 6 x1	0-1, 5	-
+578	ztc_a03.ebp	ztc0103.mpk	1	only when set by the script	type-0 range	0-6	kind 1 x2, kind 4 x4, kind 6 x1	0-1, 5	-
+578	ztc_a03.ebp	ztc0103.mpk	2	by the roll	type-0 range	0-6	kind 1 x2, kind 4 x4, kind 6 x1	0-1, 5	-
+578	ztc_a03.ebp	ztc0103.mpk	3	only when set by the script	type-0 range	0-6	kind 1 x2, kind 4 x4, kind 6 x1	0-1, 5	-
+581	ztc_b01.ebp	ztc0106.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0, 5	-
+581	ztc_b01.ebp	ztc0106.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0, 5	-
+581	ztc_b01.ebp	ztc0106.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0, 5	-
+582	ztc_b02.ebp	ztc0107.mpk	1	by the roll	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+582	ztc_b02.ebp	ztc0107.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+582	ztc_b02.ebp	ztc0107.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+585	ztc_c01.ebp	ztc0104.mpk	1	only when set by the script	type-0 range	0-5	kind 1 x2, kind 4 x3, kind 6 x1	0-2, 5	-
+585	ztc_c01.ebp	ztc0104.mpk	2	by the roll	type-0 range	0-5	kind 1 x2, kind 4 x3, kind 6 x1	0-2, 5	-
+585	ztc_c01.ebp	ztc0104.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x2, kind 4 x3, kind 6 x1	0-2, 5	-
+586	ztc_c02.ebp	ztc0108.mpk	1	by the roll	type-0 range	0-5	kind 1 x2, kind 4 x3, kind 6 x1	0-1, 5	-
+586	ztc_c02.ebp	ztc0108.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x2, kind 4 x3, kind 6 x1	0-1, 5	-
+586	ztc_c02.ebp	ztc0108.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x2, kind 4 x3, kind 6 x1	0-1, 5	-
+587	ztc_c03.ebp	ztc0109.mpk	1	by the roll	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+587	ztc_c03.ebp	ztc0109.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+587	ztc_c03.ebp	ztc0109.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+588	ztc_c04.ebp	ztc0110.mpk	1	by the roll	type-0 range	0-7	kind 1 x2, kind 4 x5, kind 6 x1	0-1, 5	-
+588	ztc_c04.ebp	ztc0110.mpk	2	only when set by the script	type-0 range	0-7	kind 1 x2, kind 4 x5, kind 6 x1	0-1, 5	-
+588	ztc_c04.ebp	ztc0110.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x2, kind 4 x5, kind 6 x1	0-1, 5	-
+590	ztc_d01.ebp	ztc0105.mpk	1	by the roll	type-0 range	0-4	kind 1 x1, kind 2 x1, kind 4 x1, kind 5 x1, kind 6 x1	0-3, 5	-
+590	ztc_d01.ebp	ztc0105.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x1, kind 2 x1, kind 4 x1, kind 5 x1, kind 6 x1	0-3, 5	-
+590	ztc_d01.ebp	ztc0105.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x1, kind 2 x1, kind 4 x1, kind 5 x1, kind 6 x1	0-3, 5	-
+603	mrm_c01.ebp	mrm0205.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+603	mrm_c01.ebp	mrm0205.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+603	mrm_c01.ebp	mrm0205.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+612	mrm_e01.ebp	mrm0210.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+612	mrm_e01.ebp	mrm0210.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+612	mrm_e01.ebp	mrm0210.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+618	mrm_g01.ebp	mrm0212.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+618	mrm_g01.ebp	mrm0212.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+618	mrm_g01.ebp	mrm0212.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+642	alc_b05.ebp	alc1004.mpk	1	by the roll	type-0 range	0-18	kind 1 x1, kind 2 x5, kind 4 x12, kind 6 x1	0-3	cut 0: 2-18
+642	alc_b05.ebp	alc1004.mpk	2	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x5, kind 4 x12, kind 6 x1	0-3	cut 0: 2-18
+642	alc_b05.ebp	alc1004.mpk	3	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x5, kind 4 x12, kind 6 x1	0-3	cut 0: 2-18
+643	alc_b06.ebp	alc1005.mpk	1	by the roll	type-0 range	0-16	kind 1 x1, kind 2 x2, kind 4 x13, kind 6 x1	0-3	cut 0: 2-16
+643	alc_b06.ebp	alc1005.mpk	2	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x2, kind 4 x13, kind 6 x1	0-3	cut 0: 2-16
+643	alc_b06.ebp	alc1005.mpk	3	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x2, kind 4 x13, kind 6 x1	0-3	cut 0: 2-16
+668	dgl_g01.ebp	rbl0202.mpk	1	only when set by the script	type-0 range	0-3	kind 2 x3, kind 6 x1	0	-
+668	dgl_g01.ebp	rbl0202.mpk	2	by the roll	type-0 range	0-3	kind 2 x3, kind 6 x1	0	-
+668	dgl_g01.ebp	rbl0202.mpk	3	only when set by the script	type-0 range	0-3	kind 2 x3, kind 6 x1	0	-
+686	gil_a01.ebp	gil0101.mpk	1	only when set by the script	type-0 range	0-5	kind 1 x1, kind 2 x4, kind 6 x1	0-1	-
+686	gil_a01.ebp	gil0101.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x1, kind 2 x4, kind 6 x1	0-1	-
+686	gil_a01.ebp	gil0101.mpk	3	by the roll	type-0 range	0-5	kind 1 x1, kind 2 x4, kind 6 x1	0-1	-
+687	gil_a02.ebp	gil0102.mpk	1	only when set by the script	type-7 set 0	0-1, 6	kind 1 x2, kind 6 x1	0-1	-
+687	gil_a02.ebp	gil0102.mpk	2	by the roll	type-7 set 1	2-3, 7	kind 1 x2, kind 6 x1	0-1	-
+687	gil_a02.ebp	gil0102.mpk	3	by the roll	type-7 set 2	4-5, 8	kind 1 x2, kind 6 x1	0-1	-
+694	gil_c01.ebp	gil0203.mpk	1	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+694	gil_c01.ebp	gil0203.mpk	2	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+694	gil_c01.ebp	gil0203.mpk	3	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+695	gil_c02.ebp	gil0204.mpk	1	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+695	gil_c02.ebp	gil0204.mpk	2	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+695	gil_c02.ebp	gil0204.mpk	3	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+698	gil_d01.ebp	gil0205.mpk	1	only when set by the script	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+698	gil_d01.ebp	gil0205.mpk	2	only when set by the script	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+698	gil_d01.ebp	gil0205.mpk	3	by the roll	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+701	slm_a01.ebp	slm0101.mpk	1	by the roll	type-0 range	0-100	kind 1 x1, kind 3 x5, kind 5 x94, kind 6 x1	0-36, 38-63	cut 0: 2-100
+701	slm_a01.ebp	slm0101.mpk	2	only when set by the script	type-0 range	0-100	kind 1 x1, kind 3 x5, kind 5 x94, kind 6 x1	0-36, 38-63	cut 0: 2-100
+701	slm_a01.ebp	slm0101.mpk	3	only when set by the script	type-0 range	0-100	kind 1 x1, kind 3 x5, kind 5 x94, kind 6 x1	0-36, 38-63	cut 0: 2-100
+702	slm_a02.ebp	slm0102.mpk	1	by the roll	type-0 range	0-24	kind 1 x1, kind 3 x1, kind 5 x22, kind 6 x1	0-2, 62	cut 0: 2-24
+702	slm_a02.ebp	slm0102.mpk	2	only when set by the script	type-0 range	0-24	kind 1 x1, kind 3 x1, kind 5 x22, kind 6 x1	0-2, 62	cut 0: 2-24
+702	slm_a02.ebp	slm0102.mpk	3	only when set by the script	type-0 range	0-24	kind 1 x1, kind 3 x1, kind 5 x22, kind 6 x1	0-2, 62	cut 0: 2-24
+703	slm_a03.ebp	slm1001.mpk	1	by the roll	type-0 range	0-3	kind 1 x1, kind 2 x2, kind 6 x1	0-2	-
+703	slm_a03.ebp	slm1001.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x1, kind 2 x2, kind 6 x1	0-2	-
+703	slm_a03.ebp	slm1001.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x1, kind 2 x2, kind 6 x1	0-2	-
+704	slm_a04.ebp	slm1001.mpk	1	by the roll	type-0 range	0-3	kind 1 x1, kind 2 x2, kind 6 x1	0-2	-
+704	slm_a04.ebp	slm1001.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x1, kind 2 x2, kind 6 x1	0-2	-
+704	slm_a04.ebp	slm1001.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x1, kind 2 x2, kind 6 x1	0-2	-
+722	hne_b01.ebp	hne0108.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+722	hne_b01.ebp	hne0108.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+722	hne_b01.ebp	hne0108.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+733	hne_e01.ebp	hne0113.mpk	1	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+733	hne_e01.ebp	hne0113.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+733	hne_e01.ebp	hne0113.mpk	3	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+747	alc_f03.ebp	alc1002.mpk	1	by the roll	type-0 range	0-13	kind 1 x1, kind 2 x3, kind 4 x9, kind 6 x1	0-3	cut 0: 2-13
+747	alc_f03.ebp	alc1002.mpk	2	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x3, kind 4 x9, kind 6 x1	0-3	cut 0: 2-13
+747	alc_f03.ebp	alc1002.mpk	3	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x3, kind 4 x9, kind 6 x1	0-3	cut 0: 2-13
+748	alc_f04.ebp	alc1003.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x4, kind 4 x10, kind 6 x1	0-3	cut 0: 2-15
+748	alc_f04.ebp	alc1003.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x4, kind 4 x10, kind 6 x1	0-3	cut 0: 2-15
+748	alc_f04.ebp	alc1003.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x4, kind 4 x10, kind 6 x1	0-3	cut 0: 2-15
+749	alc_f05.ebp	alc1007.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x1, kind 4 x13, kind 6 x1	0-3	cut 0: 2-15
+749	alc_f05.ebp	alc1007.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x1, kind 4 x13, kind 6 x1	0-3	cut 0: 2-15
+749	alc_f05.ebp	alc1007.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x1, kind 4 x13, kind 6 x1	0-3	cut 0: 2-15
+774	bhm_a01.ebp	bhm0101.mpk	1	by the roll	cut list only	0-109	kind 1 x1, kind 4 x108, kind 6 x1	0-1	cut 0: 0-109
+774	bhm_a01.ebp	bhm0101.mpk	2	only when set by the script	cut list only	0-109	kind 1 x1, kind 4 x108, kind 6 x1	0-1	cut 0: 0-109
+774	bhm_a01.ebp	bhm0101.mpk	3	only when set by the script	cut list only	0-109	kind 1 x1, kind 4 x108, kind 6 x1	0-1	cut 0: 0-109
+775	bhm_a02.ebp	bhm0102.mpk	1	only when set by the script	type-0 range	0-40	kind 1 x2, kind 2 x38, kind 6 x1	0	cut 0: 2-40
+775	bhm_a02.ebp	bhm0102.mpk	2	by the roll	type-0 range	0-40	kind 1 x2, kind 2 x38, kind 6 x1	0	cut 0: 2-40
+775	bhm_a02.ebp	bhm0102.mpk	3	only when set by the script	type-0 range	0-40	kind 1 x2, kind 2 x38, kind 6 x1	0	cut 0: 2-40
+776	bhm_a03.ebp	bhm0103.mpk	1	by the roll	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+776	bhm_a03.ebp	bhm0103.mpk	2	only when set by the script	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+776	bhm_a03.ebp	bhm0103.mpk	3	only when set by the script	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+777	bhm_a04.ebp	bhm0106.mpk	1	by the roll	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+777	bhm_a04.ebp	bhm0106.mpk	2	only when set by the script	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+777	bhm_a04.ebp	bhm0106.mpk	3	only when set by the script	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+779	bhm_b01.ebp	bhm0105.mpk	1	only when set by the script	type-0 range	0-40	kind 1 x2, kind 2 x38, kind 6 x1	0	cut 0: 2-40
+779	bhm_b01.ebp	bhm0105.mpk	2	by the roll	type-0 range	0-40	kind 1 x2, kind 2 x38, kind 6 x1	0	cut 0: 2-40
+779	bhm_b01.ebp	bhm0105.mpk	3	only when set by the script	type-0 range	0-40	kind 1 x2, kind 2 x38, kind 6 x1	0	cut 0: 2-40
+782	bhm_c01.ebp	bhm0104.mpk	1	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0	cut 0: 2
+782	bhm_c01.ebp	bhm0104.mpk	2	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0	cut 0: 2
+782	bhm_c01.ebp	bhm0104.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0	cut 0: 2
+785	bhm_d01.ebp	bhm0201.mpk	1	by the roll	type-0 range	0-3	kind 2 x3, kind 6 x1	0-3	-
+785	bhm_d01.ebp	bhm0201.mpk	2	only when set by the script	type-0 range	0-3	kind 2 x3, kind 6 x1	0-3	-
+785	bhm_d01.ebp	bhm0201.mpk	3	only when set by the script	type-0 range	0-3	kind 2 x3, kind 6 x1	0-3	-
+788	rbn_b01.ebp	rbn2001.mpk	1	by the roll	type-0 range	0-12	kind 1 x1, kind 2 x8, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-12
+788	rbn_b01.ebp	rbn2001.mpk	2	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x8, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-12
+788	rbn_b01.ebp	rbn2001.mpk	3	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x8, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-12
+791	byu_b01.ebp	byu2001.mpk	1	by the roll	type-0 range	0-16	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-16
+791	byu_b01.ebp	byu2001.mpk	2	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-16
+791	byu_b01.ebp	byu2001.mpk	3	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-16
+794	alc_e01.ebp	alc2001.mpk	1	by the roll	type-0 range	0-14	kind 1 x1, kind 2 x10, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-14
+794	alc_e01.ebp	alc2001.mpk	2	only when set by the script	type-0 range	0-14	kind 1 x1, kind 2 x10, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-14
+794	alc_e01.ebp	alc2001.mpk	3	only when set by the script	type-0 range	0-14	kind 1 x1, kind 2 x10, kind 4 x2, kind 5 x1, kind 6 x1	0-4	cut 0: 2-14
+797	var_b01.ebp	var2001.mpk	1	by the roll	type-0 range	0-17	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x2, kind 6 x1	0-4	cut 0: 2-17
+797	var_b01.ebp	var2001.mpk	2	only when set by the script	type-0 range	0-17	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x2, kind 6 x1	0-4	cut 0: 2-17
+797	var_b01.ebp	var2001.mpk	3	only when set by the script	type-0 range	0-17	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x2, kind 6 x1	0-4	cut 0: 2-17
+800	nac_b01.ebp	nac2001.mpk	1	by the roll	type-0 range	0-17	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x2, kind 6 x1	0-4	cut 0: 2-17
+800	nac_b01.ebp	nac2001.mpk	2	only when set by the script	type-0 range	0-17	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x2, kind 6 x1	0-4	cut 0: 2-17
+800	nac_b01.ebp	nac2001.mpk	3	only when set by the script	type-0 range	0-17	kind 1 x1, kind 2 x12, kind 4 x2, kind 5 x2, kind 6 x1	0-4	cut 0: 2-17
+813	byu_a11.ebp	byu1001.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1, 3	-
+813	byu_a11.ebp	byu1001.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1, 3	-
+813	byu_a11.ebp	byu1001.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1, 3	-
+814	byu_a12.ebp	byu1002.mpk	1	by the roll	type-0 range	0-14	kind 1 x1, kind 2 x13, kind 6 x1	0-1, 3	-
+814	byu_a12.ebp	byu1002.mpk	2	only when set by the script	type-0 range	0-14	kind 1 x1, kind 2 x13, kind 6 x1	0-1, 3	-
+814	byu_a12.ebp	byu1002.mpk	3	only when set by the script	type-0 range	0-14	kind 1 x1, kind 2 x13, kind 6 x1	0-1, 3	-
+816	byu_a14.ebp	byu1004.mpk	1	by the roll	type-0 range	0-19	kind 1 x1, kind 2 x18, kind 6 x1	0-1, 3	-
+816	byu_a14.ebp	byu1004.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x1, kind 2 x18, kind 6 x1	0-1, 3	-
+816	byu_a14.ebp	byu1004.mpk	3	only when set by the script	type-0 range	0-19	kind 1 x1, kind 2 x18, kind 6 x1	0-1, 3	-
+817	byu_a15.ebp	byu1005.mpk	1	by the roll	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-1, 3	-
+817	byu_a15.ebp	byu1005.mpk	2	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-1, 3	-
+817	byu_a15.ebp	byu1005.mpk	3	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-1, 3	-
+818	byu_a16.ebp	byu1006.mpk	1	by the roll	type-0 range	0-14	kind 1 x1, kind 2 x13, kind 6 x1	0-1, 3	-
+818	byu_a16.ebp	byu1006.mpk	2	only when set by the script	type-0 range	0-14	kind 1 x1, kind 2 x13, kind 6 x1	0-1, 3	-
+818	byu_a16.ebp	byu1006.mpk	3	only when set by the script	type-0 range	0-14	kind 1 x1, kind 2 x13, kind 6 x1	0-1, 3	-
+819	byu_a17.ebp	byu1007.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-1, 3	-
+819	byu_a17.ebp	byu1007.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-1, 3	-
+819	byu_a17.ebp	byu1007.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x7, kind 6 x1	0-1, 3	-
+820	byu_a18.ebp	byu1008.mpk	1	by the roll	type-0 range	0-26	kind 1 x1, kind 2 x25, kind 6 x1	0-1, 3	-
+820	byu_a18.ebp	byu1008.mpk	2	only when set by the script	type-0 range	0-26	kind 1 x1, kind 2 x25, kind 6 x1	0-1, 3	-
+820	byu_a18.ebp	byu1008.mpk	3	only when set by the script	type-0 range	0-26	kind 1 x1, kind 2 x25, kind 6 x1	0-1, 3	-
+833	var_a11.ebp	var1001.mpk	1	by the roll	type-0 range	0-12	kind 1 x1, kind 2 x1, kind 4 x10, kind 6 x1	0-3	cut 0: 2-12
+833	var_a11.ebp	var1001.mpk	2	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x1, kind 4 x10, kind 6 x1	0-3	cut 0: 2-12
+833	var_a11.ebp	var1001.mpk	3	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x1, kind 4 x10, kind 6 x1	0-3	cut 0: 2-12
+834	var_a12.ebp	var1002.mpk	1	by the roll	type-0 range	0-12	kind 1 x1, kind 2 x2, kind 4 x9, kind 6 x1	0-3	cut 0: 2-12
+834	var_a12.ebp	var1002.mpk	2	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x2, kind 4 x9, kind 6 x1	0-3	cut 0: 2-12
+834	var_a12.ebp	var1002.mpk	3	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x2, kind 4 x9, kind 6 x1	0-3	cut 0: 2-12
+835	var_a13.ebp	var1003.mpk	1	by the roll	type-0 range	0-9	kind 1 x1, kind 2 x2, kind 4 x6, kind 6 x1	0-3	cut 0: 2-9
+835	var_a13.ebp	var1003.mpk	2	only when set by the script	type-0 range	0-9	kind 1 x1, kind 2 x2, kind 4 x6, kind 6 x1	0-3	cut 0: 2-9
+835	var_a13.ebp	var1003.mpk	3	only when set by the script	type-0 range	0-9	kind 1 x1, kind 2 x2, kind 4 x6, kind 6 x1	0-3	cut 0: 2-9
+836	var_a14.ebp	var1004.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x8, kind 4 x13, kind 6 x1	0-3	cut 0: 2-22
+836	var_a14.ebp	var1004.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x8, kind 4 x13, kind 6 x1	0-3	cut 0: 2-22
+836	var_a14.ebp	var1004.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x8, kind 4 x13, kind 6 x1	0-3	cut 0: 2-22
+837	var_a15.ebp	var1005.mpk	1	by the roll	type-0 range	0-9	kind 1 x1, kind 2 x8, kind 6 x1	0-1, 3	cut 0: 9
+837	var_a15.ebp	var1005.mpk	2	only when set by the script	type-0 range	0-9	kind 1 x1, kind 2 x8, kind 6 x1	0-1, 3	cut 0: 9
+837	var_a15.ebp	var1005.mpk	3	only when set by the script	type-0 range	0-9	kind 1 x1, kind 2 x8, kind 6 x1	0-1, 3	cut 0: 9
+838	grm_e01.ebp	grm0105.mpk	1	by the roll	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+838	grm_e01.ebp	grm0105.mpk	2	only when set by the script	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+838	grm_e01.ebp	grm0105.mpk	3	only when set by the script	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+839	grm_e02.ebp	grm0106.mpk	1	only when set by the script	type-0 range	0-33	kind 2 x27, kind 3 x4, kind 4 x2, kind 6 x1	0-3	cut 0: 1-33
+839	grm_e02.ebp	grm0106.mpk	2	by the roll	type-0 range	0-33	kind 2 x27, kind 3 x4, kind 4 x2, kind 6 x1	0-3	cut 0: 1-33
+839	grm_e02.ebp	grm0106.mpk	3	only when set by the script	type-0 range	0-33	kind 2 x27, kind 3 x4, kind 4 x2, kind 6 x1	0-3	cut 0: 1-33
+840	grm_e03.ebp	grm0107.mpk	1	by the roll	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+840	grm_e03.ebp	grm0107.mpk	2	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+840	grm_e03.ebp	grm0107.mpk	3	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+841	grm_e04.ebp	grm0108.mpk	1	by the roll	type-0 range	0-12	kind 1 x1, kind 2 x7, kind 3 x4, kind 6 x1	0-3	-
+841	grm_e04.ebp	grm0108.mpk	2	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x7, kind 3 x4, kind 6 x1	0-3	-
+841	grm_e04.ebp	grm0108.mpk	3	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x7, kind 3 x4, kind 6 x1	0-3	-
+842	grm_e05.ebp	grm0109.mpk	1	by the roll	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+842	grm_e05.ebp	grm0109.mpk	2	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+842	grm_e05.ebp	grm0109.mpk	3	only when set by the script	type-0 range	0-16	kind 1 x1, kind 2 x15, kind 6 x1	0-2	-
+843	grm_e06.ebp	grm0110.mpk	1	by the roll	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+843	grm_e06.ebp	grm0110.mpk	2	only when set by the script	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+843	grm_e06.ebp	grm0110.mpk	3	only when set by the script	type-0 range	0-30	kind 1 x1, kind 2 x27, kind 4 x2, kind 6 x1	0-2	cut 0: 1-30
+844	grm_e07.ebp	grm0111.mpk	1	only when set by the script	type-0 range	0-33	kind 2 x27, kind 3 x4, kind 4 x2, kind 6 x1	0-3	cut 0: 1-33
+844	grm_e07.ebp	grm0111.mpk	2	by the roll	type-0 range	0-33	kind 2 x27, kind 3 x4, kind 4 x2, kind 6 x1	0-3	cut 0: 1-33
+844	grm_e07.ebp	grm0111.mpk	3	only when set by the script	type-0 range	0-33	kind 2 x27, kind 3 x4, kind 4 x2, kind 6 x1	0-3	cut 0: 1-33
+845	grm_e08.ebp	grm0112.mpk	1	by the roll	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-2	cut 0: 1-11
+845	grm_e08.ebp	grm0112.mpk	2	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-2	cut 0: 1-11
+845	grm_e08.ebp	grm0112.mpk	3	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-2	cut 0: 1-11
+846	grm_e09.ebp	grm0113.mpk	1	only when set by the script	type-0 range	0-10	kind 2 x10, kind 6 x1	0-1	cut 0: 1-10
+846	grm_e09.ebp	grm0113.mpk	2	by the roll	type-0 range	0-10	kind 2 x10, kind 6 x1	0-1	cut 0: 1-10
+846	grm_e09.ebp	grm0113.mpk	3	only when set by the script	type-0 range	0-10	kind 2 x10, kind 6 x1	0-1	cut 0: 1-10
+847	grm_e10.ebp	grm0114.mpk	1	by the roll	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-2	cut 0: 1-13
+847	grm_e10.ebp	grm0114.mpk	2	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-2	cut 0: 1-13
+847	grm_e10.ebp	grm0114.mpk	3	only when set by the script	type-0 range	0-13	kind 1 x1, kind 2 x12, kind 6 x1	0-2	cut 0: 1-13
+848	grm_e11.ebp	grm0116.mpk	1	by the roll	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-2	cut 0: 1-11
+848	grm_e11.ebp	grm0116.mpk	2	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-2	cut 0: 1-11
+848	grm_e11.ebp	grm0116.mpk	3	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-2	cut 0: 1-11
+849	grm_e12.ebp	grm0117.mpk	1	only when set by the script	type-0 range	0-10	kind 2 x10, kind 6 x1	0-1	cut 0: 1-10
+849	grm_e12.ebp	grm0117.mpk	2	by the roll	type-0 range	0-10	kind 2 x10, kind 6 x1	0-1	cut 0: 1-10
+849	grm_e12.ebp	grm0117.mpk	3	only when set by the script	type-0 range	0-10	kind 2 x10, kind 6 x1	0-1	cut 0: 1-10
+850	grm_e13.ebp	grm0118.mpk	1	by the roll	type-0 range	0-24	kind 1 x1, kind 2 x20, kind 4 x3, kind 6 x1	0-3	cut 0: 1-24
+850	grm_e13.ebp	grm0118.mpk	2	only when set by the script	type-0 range	0-24	kind 1 x1, kind 2 x20, kind 4 x3, kind 6 x1	0-3	cut 0: 1-24
+850	grm_e13.ebp	grm0118.mpk	3	only when set by the script	type-0 range	0-24	kind 1 x1, kind 2 x20, kind 4 x3, kind 6 x1	0-3	cut 0: 1-24
+856	slm_z01.ebp	slm1002.mpk	1	by the roll	type-0 range	0-9	kind 1 x1, kind 2 x8, kind 6 x1	0-2	-
+856	slm_z01.ebp	slm1002.mpk	2	only when set by the script	type-0 range	0-9	kind 1 x1, kind 2 x8, kind 6 x1	0-2	-
+856	slm_z01.ebp	slm1002.mpk	3	only when set by the script	type-0 range	0-9	kind 1 x1, kind 2 x8, kind 6 x1	0-2	-
+860	rbn_x01.ebp	rbn5001.mpk	1	by the roll	type-0 range	0-10	kind 2 x7, kind 4 x3, kind 6 x1	0-2	-
+860	rbn_x01.ebp	rbn5001.mpk	2	only when set by the script	type-0 range	0-10	kind 2 x7, kind 4 x3, kind 6 x1	0-2	-
+860	rbn_x01.ebp	rbn5001.mpk	3	only when set by the script	type-0 range	0-10	kind 2 x7, kind 4 x3, kind 6 x1	0-2	-
+864	byu_y01.ebp	byu5101.mpk	1	by the roll	type-0 range	0-5	kind 2 x1, kind 4 x2, kind 5 x2, kind 6 x1	0-2	-
+864	byu_y01.ebp	byu5101.mpk	2	only when set by the script	type-0 range	0-5	kind 2 x1, kind 4 x2, kind 5 x2, kind 6 x1	0-2	-
+864	byu_y01.ebp	byu5101.mpk	3	only when set by the script	type-0 range	0-5	kind 2 x1, kind 4 x2, kind 5 x2, kind 6 x1	0-2	-
+867	alc_z02.ebp	alc5002.mpk	1	by the roll	type-0 range	0-8	kind 2 x8, kind 6 x1	0	-
+867	alc_z02.ebp	alc5002.mpk	2	only when set by the script	type-0 range	0-8	kind 2 x8, kind 6 x1	0	-
+867	alc_z02.ebp	alc5002.mpk	3	only when set by the script	type-0 range	0-8	kind 2 x8, kind 6 x1	0	-
+872	rsn_z02.ebp	rsn5101.mpk	1	by the roll	type-0 range	0-10	kind 3 x3, kind 4 x7, kind 6 x1	0	-
+872	rsn_z02.ebp	rsn5101.mpk	2	only when set by the script	type-0 range	0-10	kind 3 x3, kind 4 x7, kind 6 x1	0	-
+872	rsn_z02.ebp	rsn5101.mpk	3	only when set by the script	type-0 range	0-10	kind 3 x3, kind 4 x7, kind 6 x1	0	-
+876	rsn_y01.ebp	rsn5201.mpk	1	by the roll	type-0 range	0-16	kind 4 x16, kind 6 x1	0	-
+876	rsn_y01.ebp	rsn5201.mpk	2	only when set by the script	type-0 range	0-16	kind 4 x16, kind 6 x1	0	-
+876	rsn_y01.ebp	rsn5201.mpk	3	only when set by the script	type-0 range	0-16	kind 4 x16, kind 6 x1	0	-
+891	mic_e01.ebp	mic0203.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x9, kind 4 x9, kind 5 x3, kind 6 x1	0	cut 0: 2-22
+891	mic_e01.ebp	mic0203.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x9, kind 4 x9, kind 5 x3, kind 6 x1	0	cut 0: 2-22
+891	mic_e01.ebp	mic0203.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x9, kind 4 x9, kind 5 x3, kind 6 x1	0	cut 0: 2-22
+892	mic_e02.ebp	mic0204.mpk	1	by the roll	type-0 range	0-71	kind 1 x1, kind 2 x37, kind 4 x32, kind 5 x1, kind 6 x1	0	cut 0: 2-71
+892	mic_e02.ebp	mic0204.mpk	2	only when set by the script	type-0 range	0-71	kind 1 x1, kind 2 x37, kind 4 x32, kind 5 x1, kind 6 x1	0	cut 0: 2-71
+892	mic_e02.ebp	mic0204.mpk	3	only when set by the script	type-0 range	0-71	kind 1 x1, kind 2 x37, kind 4 x32, kind 5 x1, kind 6 x1	0	cut 0: 2-71
+893	mic_e03.ebp	mic0205.mpk	1	by the roll	type-0 range	0-69	kind 1 x1, kind 2 x33, kind 4 x35, kind 6 x1	0	cut 0: 3-69
+893	mic_e03.ebp	mic0205.mpk	2	only when set by the script	type-0 range	0-69	kind 1 x1, kind 2 x33, kind 4 x35, kind 6 x1	0	cut 0: 3-69
+893	mic_e03.ebp	mic0205.mpk	3	only when set by the script	type-0 range	0-69	kind 1 x1, kind 2 x33, kind 4 x35, kind 6 x1	0	cut 0: 3-69
+894	mic_e04.ebp	mic0207.mpk	1	by the roll	type-0 range	0-12	kind 1 x1, kind 2 x3, kind 4 x8, kind 6 x1	0	cut 0: 2-12
+894	mic_e04.ebp	mic0207.mpk	2	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x3, kind 4 x8, kind 6 x1	0	cut 0: 2-12
+894	mic_e04.ebp	mic0207.mpk	3	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x3, kind 4 x8, kind 6 x1	0	cut 0: 2-12
+895	mic_e05.ebp	mic0208.mpk	1	by the roll	type-0 range	0-37	kind 2 x4, kind 3 x30, kind 4 x1, kind 5 x2, kind 6 x1	-	cut 0: 36-37
+895	mic_e05.ebp	mic0208.mpk	2	only when set by the script	type-0 range	0-37	kind 2 x4, kind 3 x30, kind 4 x1, kind 5 x2, kind 6 x1	-	cut 0: 36-37
+895	mic_e05.ebp	mic0208.mpk	3	only when set by the script	type-0 range	0-37	kind 2 x4, kind 3 x30, kind 4 x1, kind 5 x2, kind 6 x1	-	cut 0: 36-37
+898	rwf_d01.ebp	rwf0105.mpk	1	by the roll	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+898	rwf_d01.ebp	rwf0105.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+898	rwf_d01.ebp	rwf0105.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+901	lus_f01.ebp	lus0107.mpk	1	by the roll	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0-1, 4	cut 0: 1-3
+901	lus_f01.ebp	lus0107.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0-1, 4	cut 0: 1-3
+901	lus_f01.ebp	lus0107.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0-1, 4	cut 0: 1-3
+902	lus_f02.ebp	lus0112.mpk	1	only when set by the script	type-0 range	0-36	kind 1 x1, kind 2 x34, kind 5 x1, kind 6 x1	0-2, 4	cut 0: 1-36
+902	lus_f02.ebp	lus0112.mpk	2	by the roll	type-0 range	0-36	kind 1 x1, kind 2 x34, kind 5 x1, kind 6 x1	0-2, 4	cut 0: 1-36
+902	lus_f02.ebp	lus0112.mpk	3	only when set by the script	type-0 range	0-36	kind 1 x1, kind 2 x34, kind 5 x1, kind 6 x1	0-2, 4	cut 0: 1-36
+903	lus_f03.ebp	lus0113.mpk	1	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x21, kind 6 x1	0-1, 4	cut 0: 1-22
+903	lus_f03.ebp	lus0113.mpk	2	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x21, kind 6 x1	0-1, 4	cut 0: 1-22
+903	lus_f03.ebp	lus0113.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x21, kind 6 x1	0-1, 4	cut 0: 1-22
+904	lus_f04.ebp	lus0114.mpk	1	only when set by the script	type-0 range	0-7	kind 1 x1, kind 2 x6, kind 6 x1	0-1, 4	cut 0: 1-7
+904	lus_f04.ebp	lus0114.mpk	2	by the roll	type-0 range	0-7	kind 1 x1, kind 2 x6, kind 6 x1	0-1, 4	cut 0: 1-7
+904	lus_f04.ebp	lus0114.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x1, kind 2 x6, kind 6 x1	0-1, 4	cut 0: 1-7
+905	lus_f05.ebp	lus0111.mpk	1	only when set by the script	type-0 range	0-4	kind 1 x1, kind 2 x3, kind 6 x1	0-1, 4	cut 0: 1-4
+905	lus_f05.ebp	lus0111.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x1, kind 2 x3, kind 6 x1	0-1, 4	cut 0: 1-4
+905	lus_f05.ebp	lus0111.mpk	3	by the roll	type-0 range	0-4	kind 1 x1, kind 2 x3, kind 6 x1	0-1, 4	cut 0: 1-4
+924	bhm_z01.ebp	bhm5001.mpk	1	by the roll	type-0 range	0-12	kind 2 x12, kind 6 x1	0	-
+924	bhm_z01.ebp	bhm5001.mpk	2	only when set by the script	type-0 range	0-12	kind 2 x12, kind 6 x1	0	-
+924	bhm_z01.ebp	bhm5001.mpk	3	only when set by the script	type-0 range	0-12	kind 2 x12, kind 6 x1	0	-
+933	lus_g01.ebp	lus0108.mpk	1	only when set by the script	type-0 range	0-44	kind 1 x1, kind 2 x40, kind 5 x3, kind 6 x1	0-4	cut 0: 1-44
+933	lus_g01.ebp	lus0108.mpk	2	by the roll	type-0 range	0-44	kind 1 x1, kind 2 x40, kind 5 x3, kind 6 x1	0-4	cut 0: 1-44
+933	lus_g01.ebp	lus0108.mpk	3	only when set by the script	type-0 range	0-44	kind 1 x1, kind 2 x40, kind 5 x3, kind 6 x1	0-4	cut 0: 1-44
+934	lus_g02.ebp	lus0103.mpk	1	by the roll	type-0 range	0-19	kind 1 x1, kind 3 x11, kind 5 x7, kind 6 x1	0-1, 4-5	cut 0: 1-19
+934	lus_g02.ebp	lus0103.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x1, kind 3 x11, kind 5 x7, kind 6 x1	0-1, 4-5	cut 0: 1-19
+934	lus_g02.ebp	lus0103.mpk	3	only when set by the script	type-0 range	0-19	kind 1 x1, kind 3 x11, kind 5 x7, kind 6 x1	0-1, 4-5	cut 0: 1-19
+935	lus_g03.ebp	lus0104.mpk	1	only when set by the script	type-0 range	0-47	kind 1 x1, kind 2 x42, kind 5 x4, kind 6 x1	0-4	cut 0: 1-47
+935	lus_g03.ebp	lus0104.mpk	2	by the roll	type-0 range	0-47	kind 1 x1, kind 2 x42, kind 5 x4, kind 6 x1	0-4	cut 0: 1-47
+935	lus_g03.ebp	lus0104.mpk	3	only when set by the script	type-0 range	0-47	kind 1 x1, kind 2 x42, kind 5 x4, kind 6 x1	0-4	cut 0: 1-47
+936	lus_g04.ebp	lus0102.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 3 x8, kind 5 x6, kind 6 x1	0-1, 4-5	cut 0: 1-15
+936	lus_g04.ebp	lus0102.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 3 x8, kind 5 x6, kind 6 x1	0-1, 4-5	cut 0: 1-15
+936	lus_g04.ebp	lus0102.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 3 x8, kind 5 x6, kind 6 x1	0-1, 4-5	cut 0: 1-15
+949	gil_i11.ebp	gil0304.mpk	1	only when set by the script	type-0 range	0-2	kind 2 x2, kind 6 x1	0	-
+949	gil_i11.ebp	gil0304.mpk	2	only when set by the script	type-0 range	0-2	kind 2 x2, kind 6 x1	0	-
+949	gil_i11.ebp	gil0304.mpk	3	by the roll	type-0 range	0-2	kind 2 x2, kind 6 x1	0	-
+1008	dor_a01.ebp	dor0101.mpk	1	by the roll	type-0 range	0-17	kind 1 x1, kind 2 x16, kind 6 x1	0-1	cut 0: 1-17
+1008	dor_a01.ebp	dor0101.mpk	2	only when set by the script	type-0 range	0-17	kind 1 x1, kind 2 x16, kind 6 x1	0-1	cut 0: 1-17
+1008	dor_a01.ebp	dor0101.mpk	3	only when set by the script	type-0 range	0-17	kind 1 x1, kind 2 x16, kind 6 x1	0-1	cut 0: 1-17
+1019	dor_a12.ebp	dor0102.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1019	dor_a12.ebp	dor0102.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1019	dor_a12.ebp	dor0102.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1030	dor_a23.ebp	dor0103.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1030	dor_a23.ebp	dor0103.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1030	dor_a23.ebp	dor0103.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1031	dor_a24.ebp	dor0104.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1031	dor_a24.ebp	dor0104.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1031	dor_a24.ebp	dor0104.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1036	dor_c01.ebp	dor0101.mpk	1	by the roll	type-0 range	0-17	kind 1 x1, kind 2 x16, kind 6 x1	0-1	cut 0: 1-17
+1036	dor_c01.ebp	dor0101.mpk	2	only when set by the script	type-0 range	0-17	kind 1 x1, kind 2 x16, kind 6 x1	0-1	cut 0: 1-17
+1036	dor_c01.ebp	dor0101.mpk	3	only when set by the script	type-0 range	0-17	kind 1 x1, kind 2 x16, kind 6 x1	0-1	cut 0: 1-17
+1047	dor_c12.ebp	dor0105.mpk	1	by the roll	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-1	cut 0: 1-11
+1047	dor_c12.ebp	dor0105.mpk	2	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-1	cut 0: 1-11
+1047	dor_c12.ebp	dor0105.mpk	3	only when set by the script	type-0 range	0-11	kind 1 x1, kind 2 x10, kind 6 x1	0-1	cut 0: 1-11
+1054	dor_d01.ebp	dor0102.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1054	dor_d01.ebp	dor0102.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1054	dor_d01.ebp	dor0102.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1067	dor_e01.ebp	dor0103.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1067	dor_e01.ebp	dor0103.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1067	dor_e01.ebp	dor0103.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1086	dor_f01.ebp	dor0104.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1086	dor_f01.ebp	dor0104.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1086	dor_f01.ebp	dor0104.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x14, kind 6 x1	0-1	cut 0: 1-15
+1101	rbl_a01.ebp	rbl0101.mpk	1	by the roll	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1101	rbl_a01.ebp	rbl0101.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1101	rbl_a01.ebp	rbl0101.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1102	rbl_a02.ebp	rbl0106.mpk	1	by the roll	type-0 range	0-4	kind 1 x1, kind 5 x3, kind 6 x1	0, 2-3	cut 0: 1-4
+1102	rbl_a02.ebp	rbl0106.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x1, kind 5 x3, kind 6 x1	0, 2-3	cut 0: 1-4
+1102	rbl_a02.ebp	rbl0106.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x1, kind 5 x3, kind 6 x1	0, 2-3	cut 0: 1-4
+1103	rbl_a03.ebp	rbl0108.mpk	1	by the roll	type-0 range	0-6	kind 1 x1, kind 5 x5, kind 6 x1	0, 2-3	cut 0: 1-6
+1103	rbl_a03.ebp	rbl0108.mpk	2	only when set by the script	type-0 range	0-6	kind 1 x1, kind 5 x5, kind 6 x1	0, 2-3	cut 0: 1-6
+1103	rbl_a03.ebp	rbl0108.mpk	3	only when set by the script	type-0 range	0-6	kind 1 x1, kind 5 x5, kind 6 x1	0, 2-3	cut 0: 1-6
+1104	rbl_a04.ebp	rbl0112.mpk	1	by the roll	type-0 range	0-4	kind 1 x1, kind 5 x3, kind 6 x1	0, 2-3	cut 0: 1-4
+1104	rbl_a04.ebp	rbl0112.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x1, kind 5 x3, kind 6 x1	0, 2-3	cut 0: 1-4
+1104	rbl_a04.ebp	rbl0112.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x1, kind 5 x3, kind 6 x1	0, 2-3	cut 0: 1-4
+1105	rbl_a05.ebp	rbl0130.mpk	1	by the roll	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1105	rbl_a05.ebp	rbl0130.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1105	rbl_a05.ebp	rbl0130.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1111	rbl_b01.ebp	rbl0128.mpk	1	by the roll	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1111	rbl_b01.ebp	rbl0128.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1111	rbl_b01.ebp	rbl0128.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1113	rbl_c01.ebp	rbl0301.mpk	1	by the roll	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+1113	rbl_c01.ebp	rbl0301.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+1113	rbl_c01.ebp	rbl0301.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+1115	rbl_d01.ebp	rbl0104.mpk	1	by the roll	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0-3	cut 0: 1-7
+1115	rbl_d01.ebp	rbl0104.mpk	2	only when set by the script	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0-3	cut 0: 1-7
+1115	rbl_d01.ebp	rbl0104.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0-3	cut 0: 1-7
+1116	rbl_d02.ebp	rbl0116.mpk	1	by the roll	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0-3	cut 0: 1-5
+1116	rbl_d02.ebp	rbl0116.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0-3	cut 0: 1-5
+1116	rbl_d02.ebp	rbl0116.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0-3	cut 0: 1-5
+1118	rbl_e01.ebp	rbl0105.mpk	1	by the roll	type-0 range	0-6	kind 1 x1, kind 5 x5, kind 6 x1	0-3	cut 0: 1-6
+1118	rbl_e01.ebp	rbl0105.mpk	2	only when set by the script	type-0 range	0-6	kind 1 x1, kind 5 x5, kind 6 x1	0-3	cut 0: 1-6
+1118	rbl_e01.ebp	rbl0105.mpk	3	only when set by the script	type-0 range	0-6	kind 1 x1, kind 5 x5, kind 6 x1	0-3	cut 0: 1-6
+1119	rbl_e02.ebp	rbl0117.mpk	1	by the roll	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0-3	cut 0: 1-7
+1119	rbl_e02.ebp	rbl0117.mpk	2	only when set by the script	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0-3	cut 0: 1-7
+1119	rbl_e02.ebp	rbl0117.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0-3	cut 0: 1-7
+1121	rbl_f01.ebp	rbl0302.mpk	1	only when set by the script	type-0 range	0-3	kind 1 x2, kind 4 x1, kind 6 x1	0-1	-
+1121	rbl_f01.ebp	rbl0302.mpk	2	by the roll	type-0 range	0-3	kind 1 x2, kind 4 x1, kind 6 x1	0-1	-
+1121	rbl_f01.ebp	rbl0302.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 4 x1, kind 6 x1	0-1	-
+1122	rbl_f02.ebp	rbl0107.mpk	1	by the roll	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1122	rbl_f02.ebp	rbl0107.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1122	rbl_f02.ebp	rbl0107.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1123	rbl_g01.ebp	rbl0115.mpk	1	by the roll	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1123	rbl_g01.ebp	rbl0115.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1123	rbl_g01.ebp	rbl0115.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1124	rbl_g02.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1124	rbl_g02.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1124	rbl_g02.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1125	rbl_g03.ebp	rbl0126.mpk	1	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1125	rbl_g03.ebp	rbl0126.mpk	2	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1125	rbl_g03.ebp	rbl0126.mpk	3	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1126	rbl_h01.ebp	rbl0115.mpk	1	by the roll	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1126	rbl_h01.ebp	rbl0115.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1126	rbl_h01.ebp	rbl0115.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1127	rbl_h02.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1127	rbl_h02.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1127	rbl_h02.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1128	rbl_h03.ebp	rbl0126.mpk	1	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1128	rbl_h03.ebp	rbl0126.mpk	2	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1128	rbl_h03.ebp	rbl0126.mpk	3	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1129	rbl_i01.ebp	rbl0115.mpk	1	by the roll	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1129	rbl_i01.ebp	rbl0115.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1129	rbl_i01.ebp	rbl0115.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1130	rbl_i02.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1130	rbl_i02.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1130	rbl_i02.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1131	rbl_i03.ebp	rbl0126.mpk	1	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1131	rbl_i03.ebp	rbl0126.mpk	2	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1131	rbl_i03.ebp	rbl0126.mpk	3	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0	cut 0: 1
+1132	rbl_j01.ebp	rbl0303.mpk	1	only when set by the script	type-0 range	0-4	kind 1 x3, kind 4 x1, kind 6 x1	0-1	-
+1132	rbl_j01.ebp	rbl0303.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x3, kind 4 x1, kind 6 x1	0-1	-
+1132	rbl_j01.ebp	rbl0303.mpk	3	by the roll	type-0 range	0-4	kind 1 x3, kind 4 x1, kind 6 x1	0-1	-
+1133	rbl_j02.ebp	rbl0113.mpk	1	by the roll	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1133	rbl_j02.ebp	rbl0113.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1133	rbl_j02.ebp	rbl0113.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x1, kind 5 x1, kind 6 x1	0, 3	cut 0: 1-2
+1134	rbl_k01.ebp	rbl0109.mpk	1	by the roll	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1134	rbl_k01.ebp	rbl0109.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1134	rbl_k01.ebp	rbl0109.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1136	rbl_l01.ebp	rbl0110.mpk	1	by the roll	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1136	rbl_l01.ebp	rbl0110.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1136	rbl_l01.ebp	rbl0110.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1138	rbl_m01.ebp	rbl0111.mpk	1	by the roll	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1138	rbl_m01.ebp	rbl0111.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1138	rbl_m01.ebp	rbl0111.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0, 2-3	cut 0: 1-5
+1140	rbl_n01.ebp	rbl0119.mpk	1	by the roll	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0, 2-3	cut 0: 1-7
+1140	rbl_n01.ebp	rbl0119.mpk	2	only when set by the script	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0, 2-3	cut 0: 1-7
+1140	rbl_n01.ebp	rbl0119.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x1, kind 5 x6, kind 6 x1	0, 2-3	cut 0: 1-7
+1141	rbl_n02.ebp	rbl0124.mpk	1	by the roll	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1141	rbl_n02.ebp	rbl0124.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1141	rbl_n02.ebp	rbl0124.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1143	rbl_q01.ebp	rbl0129.mpk	1	by the roll	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0-3	cut 0: 1-5
+1143	rbl_q01.ebp	rbl0129.mpk	2	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0-3	cut 0: 1-5
+1143	rbl_q01.ebp	rbl0129.mpk	3	only when set by the script	type-0 range	0-5	kind 1 x1, kind 5 x4, kind 6 x1	0-3	cut 0: 1-5
+1145	grm_g01.ebp	grm0119.mpk	1	by the roll	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1145	grm_g01.ebp	grm0119.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1145	grm_g01.ebp	grm0119.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1153	enw_c01.ebp	enw0102.mpk	1	by the roll	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1153	enw_c01.ebp	enw0102.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1153	enw_c01.ebp	enw0102.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1155	tri_a01.ebp	grm0119.mpk	1	by the roll	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1155	tri_a01.ebp	grm0119.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1155	tri_a01.ebp	grm0119.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1158	tri_a04.ebp	grm0119.mpk	1	by the roll	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1158	tri_a04.ebp	grm0119.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1158	tri_a04.ebp	grm0119.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x1, kind 2 x3, kind 4 x6, kind 6 x1	0-6	-
+1164	tri_b02.ebp	rsn0107.mpk	1	by the roll	type-0 range	0-20	kind 1 x2, kind 2 x1, kind 3 x14, kind 4 x3, kind 6 x1	0-3	-
+1164	tri_b02.ebp	rsn0107.mpk	2	only when set by the script	type-0 range	0-20	kind 1 x2, kind 2 x1, kind 3 x14, kind 4 x3, kind 6 x1	0-3	-
+1164	tri_b02.ebp	rsn0107.mpk	3	only when set by the script	type-0 range	0-20	kind 1 x2, kind 2 x1, kind 3 x14, kind 4 x3, kind 6 x1	0-3	-
+1165	tri_b03.ebp	enw0102.mpk	1	by the roll	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1165	tri_b03.ebp	enw0102.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1165	tri_b03.ebp	enw0102.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1166	tri_b04.ebp	rwg0206.mpk	1	by the roll	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+1166	tri_b04.ebp	rwg0206.mpk	2	only when set by the script	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+1166	tri_b04.ebp	rwg0206.mpk	3	only when set by the script	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+1167	tri_b05.ebp	rwg0206.mpk	1	by the roll	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+1167	tri_b05.ebp	rwg0206.mpk	2	only when set by the script	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+1167	tri_b05.ebp	rwg0206.mpk	3	only when set by the script	type-0 range	0-39	kind 1 x2, kind 2 x37, kind 6 x1	0-3	cut 0: 38-39
+1171	tri_c01.ebp	grm0115.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1171	tri_c01.ebp	grm0115.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1171	tri_c01.ebp	grm0115.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1173	tri_c03.ebp	hne0108.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1173	tri_c03.ebp	hne0108.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1173	tri_c03.ebp	hne0108.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1174	tri_c04.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1174	tri_c04.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1174	tri_c04.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1175	tri_c05.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1175	tri_c05.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1175	tri_c05.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1179	tri_d01.ebp	mrm0210.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+1179	tri_d01.ebp	mrm0210.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+1179	tri_d01.ebp	mrm0210.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+1180	tri_d02.ebp	hne0108.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1180	tri_d02.ebp	hne0108.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1180	tri_d02.ebp	hne0108.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1181	tri_d03.ebp	wdl0107.mpk	1	only when set by the script	type-7 set 0	1-2	kind 1 x1, kind 6 x1	0	-
+1181	tri_d03.ebp	wdl0107.mpk	2	by the roll	type-7 set 1	3-4	kind 1 x1, kind 6 x1	0	-
+1181	tri_d03.ebp	wdl0107.mpk	3	only when set by the script	type-7 set 2	0, 5	kind 1 x1, kind 6 x1	0	-
+1182	tri_d04.ebp	wdl0107.mpk	1	only when set by the script	type-7 set 0	1-2	kind 1 x1, kind 6 x1	0	-
+1182	tri_d04.ebp	wdl0107.mpk	2	only when set by the script	type-7 set 1	3-4	kind 1 x1, kind 6 x1	0	-
+1182	tri_d04.ebp	wdl0107.mpk	3	by the roll	type-7 set 2	0, 5	kind 1 x1, kind 6 x1	0	-
+1183	tri_d05.ebp	mnt0109.mpk	1	by the roll	type-7 set 0	0-2	kind 1 x2, kind 6 x1	0	-
+1183	tri_d05.ebp	mnt0109.mpk	2	only when set by the script	type-7 set 1	3-5	kind 1 x2, kind 6 x1	0	-
+1183	tri_d05.ebp	mnt0109.mpk	3	only when set by the script	type-7 set 2	6-8	kind 1 x2, kind 6 x1	0	-
+1187	tri_e01.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1187	tri_e01.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1187	tri_e01.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1188	tri_e02.ebp	rui0108.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1188	tri_e02.ebp	rui0108.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1188	tri_e02.ebp	rui0108.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1189	tri_e03.ebp	rui0108.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1189	tri_e03.ebp	rui0108.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1189	tri_e03.ebp	rui0108.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1190	tri_e04.ebp	rui0108.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1190	tri_e04.ebp	rui0108.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1190	tri_e04.ebp	rui0108.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1191	tri_e05.ebp	rui0108.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1191	tri_e05.ebp	rui0108.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1191	tri_e05.ebp	rui0108.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1195	tri_f01.ebp	rui0108.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1195	tri_f01.ebp	rui0108.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1195	tri_f01.ebp	rui0108.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1196	tri_f02.ebp	rui0108.mpk	1	by the roll	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1196	tri_f02.ebp	rui0108.mpk	2	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1196	tri_f02.ebp	rui0108.mpk	3	only when set by the script	type-0 range	0-22	kind 1 x1, kind 2 x1, kind 4 x20, kind 6 x1	0	-
+1198	tri_f04.ebp	rui0103.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1198	tri_f04.ebp	rui0103.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1198	tri_f04.ebp	rui0103.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1204	tri_g02.ebp	mic0107.mpk	1	by the roll	type-0 range	0-12	kind 1 x1, kind 2 x11, kind 6 x1	0-3	-
+1204	tri_g02.ebp	mic0107.mpk	2	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x11, kind 6 x1	0-3	-
+1204	tri_g02.ebp	mic0107.mpk	3	only when set by the script	type-0 range	0-12	kind 1 x1, kind 2 x11, kind 6 x1	0-3	-
+1205	tri_g03.ebp	ztc0107.mpk	1	by the roll	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1205	tri_g03.ebp	ztc0107.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1205	tri_g03.ebp	ztc0107.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1206	tri_g04.ebp	ztc0107.mpk	1	by the roll	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1206	tri_g04.ebp	ztc0107.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1206	tri_g04.ebp	ztc0107.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1207	tri_g05.ebp	ztc0105.mpk	1	by the roll	type-0 range	0-4	kind 1 x1, kind 2 x1, kind 4 x1, kind 5 x1, kind 6 x1	0-3, 5	-
+1207	tri_g05.ebp	ztc0105.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x1, kind 2 x1, kind 4 x1, kind 5 x1, kind 6 x1	0-3, 5	-
+1207	tri_g05.ebp	ztc0105.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x1, kind 2 x1, kind 4 x1, kind 5 x1, kind 6 x1	0-3, 5	-
+1211	tri_h01.ebp	mfr0105.mpk	1	by the roll	type-7 set 0	2-3	kind 1 x1, kind 6 x1	0	-
+1211	tri_h01.ebp	mfr0105.mpk	2	only when set by the script	type-7 set 1	4-5	kind 1 x1, kind 6 x1	0	-
+1211	tri_h01.ebp	mfr0105.mpk	3	only when set by the script	type-7 set 2	0-1, 6	kind 1 x2, kind 6 x1	0-2	-
+1212	tri_h02.ebp	gil0102.mpk	1	by the roll	type-7 set 0	0-1, 6	kind 1 x2, kind 6 x1	0-1	-
+1212	tri_h02.ebp	gil0102.mpk	2	only when set by the script	type-7 set 1	2-3, 7	kind 1 x2, kind 6 x1	0-1	-
+1212	tri_h02.ebp	gil0102.mpk	3	only when set by the script	type-7 set 2	4-5, 8	kind 1 x2, kind 6 x1	0-1	-
+1213	tri_h03.ebp	gil0205.mpk	1	by the roll	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+1213	tri_h03.ebp	gil0205.mpk	2	only when set by the script	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+1213	tri_h03.ebp	gil0205.mpk	3	only when set by the script	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+1214	tri_h04.ebp	gil0205.mpk	1	by the roll	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+1214	tri_h04.ebp	gil0205.mpk	2	only when set by the script	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+1214	tri_h04.ebp	gil0205.mpk	3	only when set by the script	type-0 range	0-38	kind 1 x2, kind 2 x32, kind 4 x4, kind 6 x1	0-4, 9-28	-
+1215	tri_h05.ebp	grm0115.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1215	tri_h05.ebp	grm0115.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1215	tri_h05.ebp	grm0115.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1219	tri_i01.ebp	grm0115.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1219	tri_i01.ebp	grm0115.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1219	tri_i01.ebp	grm0115.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1220	tri_i02.ebp	grm0115.mpk	1	by the roll	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1220	tri_i02.ebp	grm0115.mpk	2	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1220	tri_i02.ebp	grm0115.mpk	3	only when set by the script	type-0 range	0-15	kind 1 x1, kind 2 x12, kind 4 x2, kind 6 x1	0-3	-
+1221	tri_i03.ebp	rwf0109.mpk	1	by the roll	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1221	tri_i03.ebp	rwf0109.mpk	2	only when set by the script	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1221	tri_i03.ebp	rwf0109.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1222	tri_i04.ebp	lus0109.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1222	tri_i04.ebp	lus0109.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1222	tri_i04.ebp	lus0109.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1223	tri_i05.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1223	tri_i05.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1223	tri_i05.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1227	tri_j01.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1227	tri_j01.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1227	tri_j01.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1228	tri_j02.ebp	rbl0124.mpk	1	by the roll	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1228	tri_j02.ebp	rbl0124.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1228	tri_j02.ebp	rbl0124.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x1, kind 5 x2, kind 6 x1	0, 2-3	cut 0: 1-3
+1229	tri_j03.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1229	tri_j03.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1229	tri_j03.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1231	tri_j05.ebp	rbl0202.mpk	1	by the roll	type-0 range	0-3	kind 2 x3, kind 6 x1	0	-
+1231	tri_j05.ebp	rbl0202.mpk	2	only when set by the script	type-0 range	0-3	kind 2 x3, kind 6 x1	0	-
+1231	tri_j05.ebp	rbl0202.mpk	3	only when set by the script	type-0 range	0-3	kind 2 x3, kind 6 x1	0	-
+1235	tri_k01.ebp	bds0110.mpk	1	by the roll	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1235	tri_k01.ebp	bds0110.mpk	2	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1235	tri_k01.ebp	bds0110.mpk	3	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1236	tri_k02.ebp	ztc0107.mpk	1	by the roll	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1236	tri_k02.ebp	ztc0107.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1236	tri_k02.ebp	ztc0107.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1237	tri_k03.ebp	ztc0107.mpk	1	by the roll	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1237	tri_k03.ebp	ztc0107.mpk	2	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1237	tri_k03.ebp	ztc0107.mpk	3	only when set by the script	type-0 range	0-10	kind 1 x2, kind 4 x8, kind 6 x1	0-1, 5	-
+1244	tri_l02.ebp	bhm0103.mpk	1	by the roll	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+1244	tri_l02.ebp	bhm0103.mpk	2	only when set by the script	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+1244	tri_l02.ebp	bhm0103.mpk	3	only when set by the script	cut list only	0-30	kind 1 x2, kind 4 x28, kind 6 x1	0-2	cut 0: 0-30
+1245	tri_l03.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1245	tri_l03.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1245	tri_l03.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1246	tri_l04.ebp	enw0102.mpk	1	by the roll	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1246	tri_l04.ebp	enw0102.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1246	tri_l04.ebp	enw0102.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1247	tri_l05.ebp	enw0102.mpk	1	by the roll	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1247	tri_l05.ebp	enw0102.mpk	2	only when set by the script	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1247	tri_l05.ebp	enw0102.mpk	3	only when set by the script	type-0 range	0-4	kind 1 x2, kind 4 x2, kind 6 x1	0-1	-
+1251	tri_m01.ebp	bds0110.mpk	1	by the roll	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1251	tri_m01.ebp	bds0110.mpk	2	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1251	tri_m01.ebp	bds0110.mpk	3	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1252	tri_m02.ebp	gol0104.mpk	1	by the roll	cut list only	0-15	kind 2 x15, kind 6 x1	0-1	cut 0: 0-15
+1252	tri_m02.ebp	gol0104.mpk	2	only when set by the script	cut list only	0-15	kind 2 x15, kind 6 x1	0-1	cut 0: 0-15
+1252	tri_m02.ebp	gol0104.mpk	3	only when set by the script	cut list only	0-15	kind 2 x15, kind 6 x1	0-1	cut 0: 0-15
+1253	tri_m03.ebp	bds0112.mpk	1	by the roll	type-0 range	0-19	kind 1 x1, kind 2 x11, kind 5 x7, kind 6 x1	0-4	-
+1253	tri_m03.ebp	bds0112.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x1, kind 2 x11, kind 5 x7, kind 6 x1	0-4	-
+1253	tri_m03.ebp	bds0112.mpk	3	only when set by the script	type-0 range	0-19	kind 1 x1, kind 2 x11, kind 5 x7, kind 6 x1	0-4	-
+1254	tri_m04.ebp	bds0111.mpk	1	by the roll	type-0 range	0-19	kind 1 x2, kind 2 x10, kind 5 x7, kind 6 x1	0-4	-
+1254	tri_m04.ebp	bds0111.mpk	2	only when set by the script	type-0 range	0-19	kind 1 x2, kind 2 x10, kind 5 x7, kind 6 x1	0-4	-
+1254	tri_m04.ebp	bds0111.mpk	3	only when set by the script	type-0 range	0-19	kind 1 x2, kind 2 x10, kind 5 x7, kind 6 x1	0-4	-
+1255	tri_m05.ebp	mnt0109.mpk	1	by the roll	type-7 set 0	0-2	kind 1 x2, kind 6 x1	0	-
+1255	tri_m05.ebp	mnt0109.mpk	2	only when set by the script	type-7 set 1	3-5	kind 1 x2, kind 6 x1	0	-
+1255	tri_m05.ebp	mnt0109.mpk	3	only when set by the script	type-7 set 2	6-8	kind 1 x2, kind 6 x1	0	-
+1259	tri_n01.ebp	mnt0109.mpk	1	by the roll	type-7 set 0	0-2	kind 1 x2, kind 6 x1	0	-
+1259	tri_n01.ebp	mnt0109.mpk	2	only when set by the script	type-7 set 1	3-5	kind 1 x2, kind 6 x1	0	-
+1259	tri_n01.ebp	mnt0109.mpk	3	only when set by the script	type-7 set 2	6-8	kind 1 x2, kind 6 x1	0	-
+1260	tri_n02.ebp	mnt0109.mpk	1	by the roll	type-7 set 0	0-2	kind 1 x2, kind 6 x1	0	-
+1260	tri_n02.ebp	mnt0109.mpk	2	only when set by the script	type-7 set 1	3-5	kind 1 x2, kind 6 x1	0	-
+1260	tri_n02.ebp	mnt0109.mpk	3	only when set by the script	type-7 set 2	6-8	kind 1 x2, kind 6 x1	0	-
+1261	tri_n03.ebp	mnt0109.mpk	1	by the roll	type-7 set 0	0-2	kind 1 x2, kind 6 x1	0	-
+1261	tri_n03.ebp	mnt0109.mpk	2	only when set by the script	type-7 set 1	3-5	kind 1 x2, kind 6 x1	0	-
+1261	tri_n03.ebp	mnt0109.mpk	3	only when set by the script	type-7 set 2	6-8	kind 1 x2, kind 6 x1	0	-
+1262	tri_n04.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1262	tri_n04.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1262	tri_n04.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1263	tri_n05.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1263	tri_n05.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1263	tri_n05.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1267	tri_o01.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1267	tri_o01.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1267	tri_o01.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1268	tri_o02.ebp	lus0109.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1268	tri_o02.ebp	lus0109.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1268	tri_o02.ebp	lus0109.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1269	tri_o03.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1269	tri_o03.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1269	tri_o03.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1270	tri_o04.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1270	tri_o04.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1270	tri_o04.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1271	tri_o05.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1271	tri_o05.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1271	tri_o05.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1275	tri_p01.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1275	tri_p01.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1275	tri_p01.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1276	tri_p02.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1276	tri_p02.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1276	tri_p02.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1277	tri_p03.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1277	tri_p03.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1277	tri_p03.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1278	tri_p04.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1278	tri_p04.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1278	tri_p04.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1279	tri_p05.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1279	tri_p05.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1279	tri_p05.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1283	tri_q01.ebp	mrm0212.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+1283	tri_q01.ebp	mrm0212.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+1283	tri_q01.ebp	mrm0212.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-1	-
+1284	tri_q02.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1284	tri_q02.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1284	tri_q02.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1285	tri_q03.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1285	tri_q03.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1285	tri_q03.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1286	tri_q04.ebp	bds0110.mpk	1	by the roll	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1286	tri_q04.ebp	bds0110.mpk	2	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1286	tri_q04.ebp	bds0110.mpk	3	only when set by the script	type-0 range	0-18	kind 1 x1, kind 2 x10, kind 5 x7, kind 6 x1	0-3	-
+1287	tri_q05.ebp	rwf0109.mpk	1	by the roll	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1287	tri_q05.ebp	rwf0109.mpk	2	only when set by the script	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1287	tri_q05.ebp	rwf0109.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1291	tri_r01.ebp	rwf0109.mpk	1	by the roll	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1291	tri_r01.ebp	rwf0109.mpk	2	only when set by the script	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1291	tri_r01.ebp	rwf0109.mpk	3	only when set by the script	type-0 range	0-7	kind 1 x3, kind 5 x4, kind 6 x1	0-1, 3-5	-
+1292	tri_r02.ebp	rui0110.mpk	1	by the roll	type-0 range	0-3	kind 1 x3, kind 6 x1	0-2	-
+1292	tri_r02.ebp	rui0110.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-2	-
+1292	tri_r02.ebp	rui0110.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-2	-
+1293	tri_r03.ebp	lus0109.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1293	tri_r03.ebp	lus0109.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1293	tri_r03.ebp	lus0109.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1294	tri_r04.ebp	gil0204.mpk	1	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+1294	tri_r04.ebp	gil0204.mpk	2	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+1294	tri_r04.ebp	gil0204.mpk	3	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+1295	tri_r05.ebp	gil0204.mpk	1	by the roll	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+1295	tri_r05.ebp	gil0204.mpk	2	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+1295	tri_r05.ebp	gil0204.mpk	3	only when set by the script	type-0 range	0-1	kind 1 x1, kind 6 x1	0-1	-
+1299	tri_s01.ebp	rbl0125.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1299	tri_s01.ebp	rbl0125.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1299	tri_s01.ebp	rbl0125.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0-2	-
+1301	tri_s03.ebp	gol0105.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1301	tri_s03.ebp	gol0105.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1301	tri_s03.ebp	gol0105.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 4 x2, kind 6 x1	0-4	-
+1302	tri_s04.ebp	lus0109.mpk	1	by the roll	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1302	tri_s04.ebp	lus0109.mpk	2	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1302	tri_s04.ebp	lus0109.mpk	3	only when set by the script	type-0 range	0-8	kind 1 x1, kind 2 x5, kind 5 x2, kind 6 x1	0-6	-
+1308	tri_t02.ebp	hne0113.mpk	1	by the roll	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1308	tri_t02.ebp	hne0113.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1308	tri_t02.ebp	hne0113.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x2, kind 2 x1, kind 6 x1	0-2	-
+1309	tri_t03.ebp	rwf0105.mpk	1	by the roll	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+1309	tri_t03.ebp	rwf0105.mpk	2	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+1309	tri_t03.ebp	rwf0105.mpk	3	only when set by the script	type-0 range	0-3	kind 1 x3, kind 6 x1	0-1	-
+1311	tri_t05.ebp	bhm0104.mpk	1	by the roll	type-0 range	0-2	kind 1 x2, kind 6 x1	0	cut 0: 2
+1311	tri_t05.ebp	bhm0104.mpk	2	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0	cut 0: 2
+1311	tri_t05.ebp	bhm0104.mpk	3	only when set by the script	type-0 range	0-2	kind 1 x2, kind 6 x1	0	cut 0: 2

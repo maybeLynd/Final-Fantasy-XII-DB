@@ -36,7 +36,8 @@ The Poll handler `0x00355350` runs every frame. In state 0 it does the following
 2. When `c+0x28` is 0 and byte `c+0x16` is 0 it waits (returns 1) while `0x02099DB8` (`0x00264180`) is
    non-zero or while `0x00264830` finds a manager with `+0x10` bit `0x1` and `+0x200` bit `0x4` set (the jump
    lock).
-3. Calls `0x001D6AE0(map)`, a guarded indirect call on the file-cache object.
+3. Calls `0x001D6AE0(map)`, which loads the prefetch manager `[0x01F82CF0]` (`0x001DADA0`) and tail-jumps with it and the
+   map to the `ret 0` stub `0x0016D6A0` (`0x001D6AF7`): a no-op.
 4. Calls `0x00314440(map, entrance, mode, 1)`. A non-zero result means the resource queue is busy; the
    poll returns 1 and tries again next frame.
 5. Sets `ctx[0]` = 1.

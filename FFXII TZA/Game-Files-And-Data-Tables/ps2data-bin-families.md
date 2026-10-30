@@ -90,6 +90,20 @@ the game reads it.
 `fhmusicdata.bin`, `soundfoottable.bin`, `summoneffectdata.bin` and `test_map_ref.bin`. Each row gives the file's
 size, its SHA-256 and its first four bytes in hex; no two of the seven have the same bytes.
 
+[`ps2data-bin-families-myoshiok-files.tsv`](ps2data-bin-families-myoshiok-files.tsv) lists the 3,733 `.bin` and
+`.dat` files under `myoshiok/`, and [`ps2data-bin-families-lang-common-files.tsv`](ps2data-bin-families-lang-common-files.tsv)
+the 28 `.bin` files under `<lang>/common/`. Each row gives the file's path under `image/ff12/`, its size, every
+path-array entry that names it (kind, id and the languages whose array holds it), and the languages whose size table
+gives that entry the file's size.
+
+- All 2,885 `.dat` files and all 28 `<lang>/common` files are named, and 824 of the 848 `.bin` files. The other 24
+  are the copies no path names: `menuhandbook.bin` and `menuhandbook_order.bin` in `cn`, `de`, `es`, `fr`, `it`,
+  `kr` and `us` and the `it` fonts (How a family is reached), the four `in_sdver` packs, and the four `_e3` sloc
+  files (Families no path names).
+- Every language whose array names one of these files sizes that entry at the file's size.
+- 3,621 entries name a `myoshiok` file the archive does not hold. Every language whose array holds one gives it −1,
+  so it is never read.
+
 | Fact | Value |
 |---|---|
 | families, files | 146, 1,439 |
@@ -246,6 +260,9 @@ instruction.
   instruction of the same actor.
 - Calls are given by id: this section numbers its calls differently from the shipped verb table. It calls id `0x0A`,
   the shipped `cos`, which pops a float, with no argument and tests bit `0x1` of the result.
+- The game never loads it: no path array names `katano/event.bin`, and the executable holds neither `event.bin`
+  nor `katano/event` as text, so replacing or removing the file changes nothing. The three `katano` strings the
+  executable holds are source file names: `atelareaload.c`, `ateldecode.c` and `atelload.c`.
 
 ### Loose battle tables
 

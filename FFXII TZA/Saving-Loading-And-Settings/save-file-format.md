@@ -239,6 +239,9 @@ The slot images ship as `ps2data/image/ff12/katano/ff12savedata00.sav` to `ff12s
 size tables size kind 1 ids 117 to 132 at exactly these files' sizes in order (57,864 bytes for 00 to 03, 49,664
 for 04 to 06 and 15, 22,016 for 07 to 14), and give those ids no path in this build.
 
+`0x002EF300` reads them (kind 1, index `0x75` + slot), and its one caller is `debug_loadjfdata` (verb `0x209C`, `0x0050D9A0`), which
+none of the 1,114 US scripts calls. Replacing a `.sav` here changes nothing in the US game.
+
 [`slot-image-regions.tsv`](slot-image-regions.tsv) gives every region of the sixteen images, one row per file, with its
 value and the instructions that identify it. Kind A (00 to 03) has its block at `0x2200` with member records of `0x1C4`
 bytes, kind B (04 to 06 and 15) at `0x2200` with `0x190`, kind C (07 to 14) at `0x15F4` with `0x140`. The table

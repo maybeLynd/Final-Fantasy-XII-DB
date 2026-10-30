@@ -7,19 +7,20 @@ addresses: "0x003589B0, 0x003588B0, 0x0031B7E0, 0x002E9810, 0x002E97C0, 0x002DF9
 
 ## What it lists
 
-`identifier-spaces.tsv` holds 34 kinds of identifier, the handles, ids and indexes that cross subsystems. Each row
+`identifier-spaces.tsv` holds 70 kinds of identifier, the handles, ids and indexes that cross subsystems. Each row
 gives the identifier's form (its bit fields), its range, the values that name nothing, the function that makes it,
 the function that turns it back into the thing it names, and what happens to an old value when its slot is used again.
 
-The identifiers fall into five families:
+The identifiers fall into six families:
 
 | Family | Rows | Old values after reuse |
 |---|---|---|
-| Checked handles: a slot plus a stamp, serial or generation that the resolver compares | actor, model binding, effect ticket, bone trail, scene element, fade record, presentation command, vibration, arena | stop resolving: the resolver sees the changed stamp and returns null or 0 |
-| Plain indices and fixed ids | resource kind and id, encoded item id, action id, field id, text id, bank and row word, item picture id, script text id, party seat, member selector, inventory list id, bound model id, widget message id, menu request id, script call id, control code, persistent flag id, name id, license node number, status id | name the same thing for the whole run; out-of-range values are refused, clamped or read past, as each row says |
+| Checked handles: a slot plus a stamp, serial or generation that the resolver compares | actor, model binding, effect ticket, bone trail, scene element, fade record, presentation command, vibration, arena, sound driver | stop resolving: the resolver sees the changed stamp and returns null or 0 |
+| Plain indices and fixed ids | resource kind and id, encoded item id, action id, field id, text id, bank and row word, item picture id, script text id, party seat, member selector, inventory list id, bound model id, widget message id, menu request id, script call id, control code, persistent flag id, name id, license node number, status id, quest id, achievement entry, achievement descriptor, movie id, shop number, fade layer, request slot, action availability index, standard motion id, time-stop request id, license board index, locale id, weather slot | name the same thing for the whole run; out-of-range values are refused, clamped or read past, as each row says |
 | Encoded pointers | encoded pointer | the low 32 bits of an address; the base at `0x01F83530` is 0 |
 | Unchecked addresses and slot numbers | loot pickup, sound id | no check: a reused pickup element or block registry record answers to an old handle or id |
 | Handles nothing looks up | movement entry | harmless: no instruction resolves or compares the handle |
+| Numbers read against what is bound now: a slot, row or group with no stamp, looked up in the slot, map pack or script bound at the time | voice cue word, message window slot, message macro number, script effect slot, puppet slot, map override group, map model group, map animation slot, ACTL record id, manager camera entry, camera shot row, camera shake row, blur sprite, effect anchor index, step point, skip entry, entrance index, destination index, map exit group, script actor ordinal, map sound index, collision group | name what is bound now: after a rebind the same number names the new holder, as each row says |
 
 ### Ids readers confuse
 

@@ -1,0 +1,40 @@
+area	code	name_text_id	name	region	disappears	gate	map_key_item	extra_gate	neighbours	destination_value
+0	none	-1	-	0: never shown	never	-	-	-	- - - -	-
+1	rbn	60100	Rabanastre	1 Dalmasca	never	0x4012: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8040 Rabanastre	0x4049: passes from story counter 105 (After Vaan's resolve) until 110 (After Old Dalan appears); from story counter 160 (Sunstone obtained) until 170 (After Penelo leaves the party); from story counter 343 (Arrival in Dalmasca Estersand) until 350 (After the return to Rabanastre)	grm sav wdl bhm	788
+2	grm	60101	Garamsythe Waterway	1 Dalmasca	never	-	0x8041 Reserve	0x4033: passes from story counter 175 (After learning how to get into the treasury) until 180 (After the power to break the seal)	mic rbn wdl mic	-
+3	nal	60102	Nalbina Fortress	1 Dalmasca	never	0x4013: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8042 Nalbina Fortress	-	mnt dst mic rsn	800
+4	mic	60103	Barheim Passage	1 Dalmasca	never	-	0x8043 Barheim Passage	-	nal grm grm nal	-
+5	dst	60104	Dalmasca Estersand	1 Dalmasca	never	0x4014: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8057 Dalmasca Estersand	0x402F: passes from story counter 68 (After leaving through Eastgate) until 70 (After the Rogue Tomato battle)	nal bhm bhm rsn	231
+6	wdl	60105	Dalmasca Westersand	1 Dalmasca	never	0x4015: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8058 Dalmasca Westersand	-	ene sav ene rbn	350
+7	sav	60106	Giza Plains	1 Dalmasca	never	0x4016: passes from story counter 5150 (After To the Pharos at Ridorana) on	-	0x4031: passes from story counter 110 (After Old Dalan appears) until 130 (After Penelo joins on the Giza Plains)	rbn ozm wdl dst	248
+8	mnt	60107	Mosphoran Highwaste	2 Nabradia	never	0x4017: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8059 Mosphoran Highwaste	-	frs nal - frs	1151
+9	frs	60108	Salikawood	2 Nabradia	never	-	0x8044 The Salikawood	-	fon mnt bog fon	-
+10	bog	60109	Nabreus Deadlands	2 Nabradia	never	-	0x8045 Nabreus Deadlands	-	bds frs - frs	-
+11	bds	60110	Necrohol of Nabudis	2 Nabradia	never	-	0x8046 Reserve	-	- bog bog frs	-
+12	alc	60111	Archades	3 Archadia	never	0x4018: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8047 Archades	0x4041: passes from story counter 3000 (After Anastasis's death) until 3210 (After Old Archades)	- rui fon rui	794
+13	dor	60112	Draklor Laboratory	3 Archadia	at story counter 10 (After the prologue)	-	-	-	- alc fon alc	-
+14	fon	60113	Phon Coast	3 Archadia	never	0x4019: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x805B The Phon Coast	-	pla frs frs pla	483
+15	pla	60114	Tchita Uplands	3 Archadia	never	0x401A: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x805C Tchita Uplands	-	rui rsn fon srb	142
+16	rui	60115	Sochen Cave Palace	3 Archadia	never	-	0x8048 The Sochen Cave Palace	-	alc pla alc srb	-
+17	ozm	60116	Ozmone Plain	4 Bancour	never	0x401B: passes from story counter 5150 (After To the Pharos at Ridorana) on	-	-	sav hne ztc vic	533
+18	glf	60117	Jahara	4 Bancour	never	-	0x8054 Jahara	0x403C: passes from story counter 1580 (Start of the hidden Garif) until 1625 (Entry into the Garif village)	ztc gil enw hne	-
+19	hne	60118	Henne Mines	4 Bancour	never	-	0x8049 The Henne Mines	0x403E: passes from story counter 1810 (Saw dead imperial soldiers at the Henne entrance) until 1950 (After the sisters)	ozm mfr glf vic	-
+20	byu	60119	Bhujerba	5 Purvama	never	0x401C: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x804A Bhujerba	-	lus bul rsn rwf	791
+21	lus	60120	Lhusu Mines	5 Purvama	never	-	0x804B The Lhusu Mines	0x4039: passes from story counter 546 (After the runaway escapes, in the aerodrome) until 580 (Start of the mystery of the Lhusu Mines)	var byu rsn rwf	-
+22	ene	60121	Ogir-Yensa Sandsea	6 Jagd Yensa	never	0x401D: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x805A Ogir-Yensa Sandsea	-	bog ztc enw wdl	386
+23	enw	60122	Nam-Yensa Sandsea	6 Jagd Yensa	never	0x401E: passes from story counter 5150 (After To the Pharos at Ridorana) on	-	-	rwg ztc rwg ene	394
+24	rwg	60123	Tomb of Raithwall	6 Jagd Yensa	never	-	0x804C The Tomb of Raithwall	0x4061: passes from story counter 1210 (After the Strahl's cloaking) until 1364 (After entering the Tomb of Raithwall)	- enw - enw	-
+25	ztc	60124	Zertinan Caverns	6 Jagd Yensa	never	-	0x804D Zertinan Caverns	-	ene glf enw wdl	-
+26	gol	60125	Golmore Jungle	7 Jagd Difohr	never	-	0x804E Golmore Jungle	-	vic pbc mfr pbc	-
+27	vic	60126	Eruyt Village	7 Jagd Difohr	never	-	0x8055 Eruyt Village	-	ozm gol hne gol	-
+28	mfr	60127	The Feywood	7 Jagd Difohr	never	-	0x804F The Feywood	-	hne pbc gil gol	-
+29	gil	60128	Giruvegan	7 Jagd Difohr	never	-	0x8050 Giruvegan	0x4062: passes from story counter 4100 (After the truth clouded by Mist) until 4250 (After To the ancient city of Giruvegan)	glf - - mfr	-
+30	bul	60129	Mt Bur-Omisace	8 Jagd Ramooda	never	-	0x8056 Mt Bur-Omisace	0x4052: passes from story counter 1650 (After a moment's rest) until 1740 (After Go and fetch Mjrn); from story counter 1950 (After the sisters) until 1982 (After the view over Mt Bur-Omisace); from story counter 2250 (After the Alexander in flight) until 2300 (After Judge Bergan)	byu pbc pbc dgl	-
+31	pbc	60130	Paramina Rift	8 Jagd Ramooda	never	0x401F: passes from story counter 5150 (After To the Pharos at Ridorana) on	-	-	rsn mrm gol bul	473
+32	mrm	60131	Stilshrine of Miriam	8 Jagd Ramooda	never	-	0x8051 The Stilshrine of Miriam	0x4053: passes from story counter 2010 (After the sage Anastasis) until 2057 (After the Stilshrine of Miriam location title)	pbc - pbc bul	-
+33	srb	60132	Cerobi Steppe	3 Archadia	never	0x4020: passes from story counter 5150 (After To the Pharos at Ridorana) on	-	-	rui var pla var	500
+34	var	60133	Balfonheim Port	3 Archadia	never	0x4021: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8052 The Port at Balfonheim	0x4054: passes from story counter 5000 (After King Gerun) until 5150 (After To the Pharos at Ridorana)	srb lus srb rwf	797
+35	rwf	60134	The Ridorana Cataract	9 Jagd Naldoa	never	0x4022: passes from story counter 5150 (After To the Pharos at Ridorana) on	-	0x4044: passes from story counter 5150 (After To the Pharos at Ridorana) until 5200 (After Ridorana Cataract and the Pharos)	var dgl byu -	509
+36	dgl	60135	The Pharos	9 Jagd Naldoa	never	-	0x8053 The Pharos at Ridorana	-	rwf - bul -	-
+37	rsn	60136	{fixed-advance:8194}Leviathan{fixed-advance:8180}	10 ???	at story counter 1450 (After the Leviathan returns)	-	-	-	pla vic nal byu	-
+38	bhm	60137	{fixed-advance:8194}Bahamut{fixed-advance:8180}	11 ???	never	0x4023: passes from story counter 6100 (After the Bahamut starts up) on	-	0x4045: passes from story counter 6100 (After the Bahamut starts up) until 6150 (After the Bahamut over Rabanastre)	grm rbn rbn dst	924

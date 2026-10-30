@@ -46,6 +46,7 @@ entries for ids 9 and 10 point at the default arm too. Every arm ends by storing
 
 | Global | Kind | Type | Start | Installed array | Set by |
 |---|---|---|---|---|---|
+| `0x0215F000` | 0 | `void*` | 0 (zero-filled tail) | `0x01E461F0` | `0x002DF9A0` (`0x002DF9C5`) |
 | `0x0215F008` | 1 | `void*` | 0 (zero-filled tail) | per language, below | `0x002DF9A0`, by the language's arm |
 | `0x0215F010` | 2 | `void*` | 0 (zero-filled tail) | per language, below | `0x002DF9A0`, by the language's arm |
 | `0x0215F018` | 3 | `void*` | 0 (zero-filled tail) | `0x0215EFF8`, a zero-filled qword that only this store's `lea` names | `0x002DF9A0` (`0x002DF9DA`) |

@@ -1,0 +1,1388 @@
+name_pair	name_pair_hex	first_name	second_name	script	zone_script	zone	map_name	region	actors	actor_names
+0	0x0000	Rabanastran	Rabanastran	alc_b05	alc_b05	642	Charlotte's Magickery	Archades	1	NPC_婆さん
+0	0x0000	Rabanastran	Rabanastran	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC_モーグリＣ
+0	0x0000	Rabanastran	Rabanastran	alc_f03	alc_f03	747	Vint's Armaments	Archades	2	NPC_女の子, NPC_男の子
+0	0x0000	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+0	0x0000	Rabanastran	Rabanastran	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	3	NPC_CEEK_UROURO, NPC_RAMBLER_A, NPC_RAMBLER_B
+0	0x0000	Rabanastran	Rabanastran	var_a02	var_a02	824	Gallerina Marketplace	Balfonheim Port	8	NPC_CHILDLEN_1, NPC_CHILDLEN_2, NPC_RAMBLER_A, NPC_RAMBLER_B, NPC_RAMBLER_C, NPC_RAMBLER_D, NPC_RAMBLER_E, NPC_SHOP_NANASHI
+0	0x0000	Rabanastran	Rabanastran	var_a03	var_a03	825	Quayside Court	Balfonheim Port	3	NPC_RAMBLER_A, NPC_RAMBLER_B, NPC_RAMBLER_C
+0	0x0000	Rabanastran	Rabanastran	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	4	NPC_CHILDLEN_1, NPC_CHILDLEN_2, NPC_RAMBLER_A, NPC_RAMBLER_B
+0	0x0000	Rabanastran	Rabanastran	var_a05	var_a05	827	Chivany Breakwater	Balfonheim Port	6	NPC_CHILDLEN_1, NPC_CHILDLEN_2, NPC_RAMBLER_A, NPC_RAMBLER_B, NPC_RAMBLER_C, NPC_RAMBLER_D
+0	0x0000	Rabanastran	Rabanastran	var_a06	var_a06	828	Canal Lane	Balfonheim Port	3	NPC_CHILDLEN_1, NPC_RAMBLER_A, NPC_RAMBLER_B
+0	0x0000	Rabanastran	Rabanastran	var_b01	var_b01	797	Aerodrome	Balfonheim Port	2	NPC_RAMBLER_A, NPC_RAMBLER_B
+1	0x0001	Imperial	Imperial	rbn_a01	rbn_a01	289	North End	Rabanastre	1	DT_STOP01
+1	0x0001	Imperial	Imperial	rbn_a03	rbn_a03	291	East End	Rabanastre	1	DT_STOP01
+2	0x0002	Rabanastran	Rabanastran	rbn_a10	rbn_a10	298	Yugri's Magicks	Rabanastre	1	NPC01
+4	0x0004	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	TWN_CEEK_B
+5	0x0005	Chocobo Aficionado	Chocobo Aficionado	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男01
+5	0x0005	Chocobo Aficionado	Chocobo Aficionado	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	NPC01
+8	0x0008	Wistful Bangaa	Wistful Bangaa	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+9	0x0009	Lively Bangaa	Lively Bangaa	rbn_a08	rbn_a08	296	Panamis's Protectives	Rabanastre	1	NPC01
+10	0x000A	Rabanastran	Rabanastran	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+11	0x000B	Adept Adventurer	Adept Adventurer	rbn_a12	rbn_a12	300	Yamoora's Gambits	Rabanastre	1	NPC01
+12	0x000C	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	TWN_CEEK_A
+13	0x000D	Tough Knight	Tough Knight	rbn_a01	rbn_a01	289	North End	Rabanastre	1	TWN_BANGA_B
+14	0x000E	Patient Bangaa	Patient Bangaa	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+15	0x000F	Bucco	Bucco	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+16	0x0010	Imperial	Sherral	rbn_a07	rbn_a07	295	Amal's Weaponry	Rabanastre	1	NPC01
+18	0x0012	Lord Vain	Lord Vain	rbn_a12	rbn_a12	300	Yamoora's Gambits	Rabanastre	1	NPC01
+19	0x0013	Rabanastran	Rabanastran	rbn_a01	rbn_a01	289	North End	Rabanastre	1	TWN_CEEK_B
+20	0x0014	Adventurer	Adventurer	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	NPC01
+23	0x0017	Hapless Merchant	Hapless Merchant	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	NPC01
+24	0x0018	Merchant	Merchant	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+25	0x0019	Desert Merchant	Desert Merchant	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+26	0x001A	Rabanastran	Rabanastran	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+27	0x001B	Trader	Trader	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+28	0x001C	Headhunter	Headhunter	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+31	0x001F	Dalan	Dalan	slm_a03	slm_a03	703	Dalan's House	Lowtown	1	ダラン
+33	0x0021	Rabanastran	Rabanastran	rbn_a01	rbn_a01	289	North End	Rabanastre	1	SND_MAN_B
+35	0x0023	Bungling Hunter	Bungling Hunter	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+36	0x0024	Rabanastran	Rabanastran	rbn_a09	rbn_a09	297	Migelo's Sundries	Rabanastre	1	NPC01
+37	0x0025	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	TWN_CEEK_C
+39	0x0027	Journeyman	Journeyman	rbn_a08	rbn_a08	296	Panamis's Protectives	Rabanastre	1	NPC01
+40	0x0028	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+41	0x0029	Erstwhile Adventurer	Erstwhile Adventurer	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	NPC01
+42	0x002A	Adventurer	Adventurer	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	NPC01
+43	0x002B	Merchant	Merchant	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+44	0x002C	Rabanastran	Rabanastran	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	NPC01
+45	0x002D	Rabanastran	Rabanastran	rbn_a09	rbn_a09	297	Migelo's Sundries	Rabanastre	1	NPC01
+46	0x002E	Tomaj	Tomaj	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	トマジ
+47	0x002F	Kytes	Kytes	rbn_a09	rbn_a09	297	Migelo's Sundries	Rabanastre	1	ミュート
+47	0x002F	Kytes	Kytes	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	ミュート
+47	0x002F	Kytes	Kytes	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	ミュート
+47	0x002F	Kytes	Kytes	slm_a04	slm_a04	704	Residence	Lowtown	1	ミュート
+48	0x0030	Filo	Filo	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	リッツ
+48	0x0030	Filo	Filo	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	リッツ
+48	0x0030	Filo	Filo	slm_a04	slm_a04	704	Residence	Lowtown	1	リッツ
+49	0x0031	Rabanastran	Rabanastran	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+50	0x0032	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+52	0x0034	Gurdy	Gurdy	bul_b02	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	1	ガーディ
+52	0x0034	Gurdy	Gurdy	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	ガーディ
+52	0x0034	Gurdy	Gurdy	glf_a01	glf_a01	751	Banks of the Sogoht	Jahara	1	ガーディ
+52	0x0034	Gurdy	Gurdy	nac_a01	nac_a01	630	West Barbican	Nalbina Town	1	NAC_ガーディ
+52	0x0034	Gurdy	Gurdy	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	NPC01
+52	0x0034	Gurdy	Gurdy	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	NPC01
+52	0x0034	Gurdy	Gurdy	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	NPC01
+52	0x0034	Gurdy	Gurdy	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC_MOG_GARDY
+54	0x0036	Rabanastran	Rabanastran	rbn_a09	rbn_a09	297	Migelo's Sundries	Rabanastre	1	NPC01
+55	0x0037	Rabanastran	Rabanastran	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+56	0x0038	Rabanastran	Rabanastran	rbn_a11	rbn_a11	299	Batahn's Technicks	Rabanastre	1	NPC01
+58	0x003A	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	TWN_BANGA_A
+59	0x003B	Rabanastran	Rabanastran	rbn_a07	rbn_a07	295	Amal's Weaponry	Rabanastre	1	NPC01
+60	0x003C	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+61	0x003D	Rabanastran	Rabanastran	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	NPC01
+62	0x003E	Swarthy Bangaa	Swarthy Bangaa	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+63	0x003F	Rabanastran	Rabanastran	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+64	0x0040	Seasoned Adventurer	Seasoned Adventurer	rbn_a11	rbn_a11	299	Batahn's Technicks	Rabanastre	1	NPC01
+65	0x0041	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+67	0x0043	Johm	Johm	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+68	0x0044	Troubled Woman	Troubled Woman	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+69	0x0045	Novice Adventurer	Novice Adventurer	rbn_a07	rbn_a07	295	Amal's Weaponry	Rabanastre	1	NPC01
+70	0x0046	Dispirited Woman	Dispirited Woman	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+71	0x0047	Sotted Imperial	Sotted Imperial	rbn_a10	rbn_a10	298	Yugri's Magicks	Rabanastre	1	酔いどれ兵士
+71	0x0047	Sotted Imperial	Sotted Imperial	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	NPC01
+74	0x004A	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+75	0x004B	Tavernmaster	Tavernmaster	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	NPC01
+76	0x004C	Earnest Seeq	Earnest Seeq	rbn_a10	rbn_a10	298	Yugri's Magicks	Rabanastre	1	NPC01
+77	0x004D	Rabanastran	Rabanastran	rbn_a01	rbn_a01	289	North End	Rabanastre	1	SND_MAN_A
+79	0x004F	Town Gossip	Town Gossip	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+80	0x0050	Rabanastran	Rabanastran	rbn_a11	rbn_a11	299	Batahn's Technicks	Rabanastre	1	NPC01
+81	0x0051	Rabanastran	Rabanastran	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	NPC01
+82	0x0052	Migelo	Migelo	rbn_a03	rbn_a03	291	East End	Rabanastre	1	ミゲロ
+82	0x0052	Migelo	Migelo	rbn_a09	rbn_a09	297	Migelo's Sundries	Rabanastre	1	ミゲロ
+84	0x0054	Rabanastran	Rabanastran	rbn_a11	rbn_a11	299	Batahn's Technicks	Rabanastre	1	NPC01
+85	0x0055	Barkeep	Barkeep	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	NPC01
+86	0x0056	Traveler	Traveler	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+87	0x0057	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+88	0x0058	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+89	0x0059	Bright-eyed Boy	Bright-eyed Boy	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+90	0x005A	Rabanastran	Rabanastran	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+91	0x005B	Rabanastran	Rabanastran	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+92	0x005C	Reluctant Adventurer	Reluctant Adventurer	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	NPC01
+94	0x005E	Rabanastran	Rabanastran	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	NPC01
+96	0x0060	Rabanastran	Rabanastran	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	NPC01
+98	0x0062	Rabanastran	Rabanastran	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な人０１
+101	0x0065	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+102	0x0066	Busy Messenger	Busy Messenger	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+103	0x0067	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+108	0x006C	Rabanastran	Cotze	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	カッツェ
+108	0x006C	Rabanastran	Cotze	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	カッツェ
+110	0x006E	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	SND_MAN_A
+111	0x006F	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+112	0x0070	Barkeep	Barkeep	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	NPC01
+115	0x0073	Rabanastran	Rabanastran	rbn_a10	rbn_a10	298	Yugri's Magicks	Rabanastre	1	NPC01
+116	0x0074	Reks's Friend	Reks's Friend	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+117	0x0075	Greenhorn	Greenhorn	rbn_a12	rbn_a12	300	Yamoora's Gambits	Rabanastre	1	NPC01
+118	0x0076	Merchant	Merchant	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+119	0x0077	Conspicuous Bangaa	Conspicuous Bangaa	rbn_a01	rbn_a01	289	North End	Rabanastre	1	クラン守護者１
+120	0x0078	Clan Watch	Clan Watch	rbn_a01	rbn_a01	289	North End	Rabanastre	1	クラン守護者１
+122	0x007A	Mysterious Merchant	Mysterious Merchant	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+123	0x007B	Rabanastran	Gatsly	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	犯人かその妻兼用
+123	0x007B	Rabanastran	Gatsly	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	依頼人
+124	0x007C	Rabanastran	Rabanastran	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	犯人かその妻兼用
+125	0x007D	Lonely Boy	Lonely Boy	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+126	0x007E	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+127	0x007F	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+131	0x0083	Rabanastran	Rabanastran	rbn_a11	rbn_a11	299	Batahn's Technicks	Rabanastre	1	NPC01
+132	0x0084	Clan Member	Clan Member	rbn_a14	rbn_a14	302	The Clan Hall	Rabanastre	1	NPC01
+133	0x0085	Clan Member	Clan Member	rbn_a14	rbn_a14	302	The Clan Hall	Rabanastre	1	NPC01
+135	0x0087	Clan Member	Clan Member	rbn_a14	rbn_a14	302	The Clan Hall	Rabanastre	1	NPC01
+139	0x008B	Imperial	Imperial	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な兵士０１
+142	0x008E	Traveler	Traveler	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+143	0x008F	Merchant	Merchant	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+144	0x0090	Rabanastran	Rabanastran	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+145	0x0091	Bhujerban	Bhujerban	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+147	0x0093	Flights to Nalbina	Flights to Nalbina	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+148	0x0094	Flights to Bhujerba	Flights to Bhujerba	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+149	0x0095	Flights to Archades	Flights to Archades	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	飛空艇受付_03
+149	0x0095	Flights to Archades	Flights to Archades	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+150	0x0096	Docent	Docent	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+150	0x0096	Docent	Docent	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	中央カウンター
+150	0x0096	Docent	Docent	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+151	0x0097	Private Airships	Private Airships	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	シュトラール受付
+151	0x0097	Private Airships	Private Airships	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+152	0x0098	Rabanastran	Rabanastran	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+153	0x0099	Rabanastran	Rabanastran	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+155	0x009B	Cartographers' Guild	Cartographers' Guild	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	地図屋
+155	0x009B	Cartographers' Guild	Cartographers' Guild	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	地図屋
+155	0x009B	Cartographers' Guild	Cartographers' Guild	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+155	0x009B	Cartographers' Guild	Cartographers' Guild	byu_a04	byu_a04	806	Lhusu Square	Bhujerba	1	NPC01
+155	0x009B	Cartographers' Guild	Cartographers' Guild	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	NPC01
+155	0x009B	Cartographers' Guild	Cartographers' Guild	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	NPC01
+155	0x009B	Cartographers' Guild	Cartographers' Guild	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	地図屋
+155	0x009B	Cartographers' Guild	Cartographers' Guild	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	地図屋
+156	0x009C	Curious Woman	Curious Woman	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	メダル女
+157	0x009D	Viera	Wandering Viera	rbn_a12	rbn_a12	300	Yamoora's Gambits	Rabanastre	1	放浪ヴィエラ
+157	0x009D	Viera	Wandering Viera	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	放浪ヴィエラ
+157	0x009D	Viera	Wandering Viera	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	放浪ヴィエラ
+158	0x009E	Viera	Viera	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	放浪ヴィエラ
+158	0x009E	Viera	Viera	rbn_a12	rbn_a12	300	Yamoora's Gambits	Rabanastre	1	放浪ヴィエラ
+159	0x009F	Viera	Ktjn	rbn_a01	rbn_a01	289	North End	Rabanastre	2	カトリーヌ, カトリーヌ５
+159	0x009F	Viera	Ktjn	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	2	カトリーヌ, カトリーヌ５
+159	0x009F	Viera	Ktjn	rbn_a03	rbn_a03	291	East End	Rabanastre	2	カトリーヌ, カトリーヌ５
+159	0x009F	Viera	Ktjn	rbn_a09	rbn_a09	297	Migelo's Sundries	Rabanastre	1	カトリーヌ
+159	0x009F	Viera	Ktjn	rbn_a14	rbn_a14	302	The Clan Hall	Rabanastre	1	NPC01
+159	0x009F	Viera	Ktjn	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	カトリーヌ５
+162	0x00A2	Rabanastran	Rabanastran	rbn_a01	rbn_a01	289	North End	Rabanastre	1	SND_WOMAN_A
+163	0x00A3	Rabanastran	Rabanastran	rbn_a08	rbn_a08	296	Panamis's Protectives	Rabanastre	1	NPC01
+164	0x00A4	Riby	Riby	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+166	0x00A6	Rabanastran	Rabanastran	rbn_a07	rbn_a07	295	Amal's Weaponry	Rabanastre	1	NPC01
+167	0x00A7	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+169	0x00A9	Rabanastran	Rabanastran	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	NPC01
+170	0x00AA	Rabanastran	Rabanastran	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	NPC01
+171	0x00AB	Helpful Man	Helpful Man	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+173	0x00AD	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	SND_WOMAN_A
+174	0x00AE	Rabanastran	Rabanastran	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	SQUARE_NPC01
+177	0x00B1	Barkeep	Barkeep	rbn_a16	rbn_a16	304	The Sandsea	Rabanastre	1	NPC01
+180	0x00B4	Rabanastran	Rabanastran	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	NPC01
+182	0x00B6	Rabanastran	Rabanastran	rbn_a09	rbn_a09	297	Migelo's Sundries	Rabanastre	1	NPC01
+183	0x00B7	Imperial	Imperial	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+183	0x00B7	Imperial	Imperial	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+183	0x00B7	Imperial	Imperial	rbn_a18	rbn_a18	306	Southgate	Rabanastre	2	兵士Ａ, 兵士Ｂ
+184	0x00B8	Imperial	Imperial	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+184	0x00B8	Imperial	Imperial	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	NPC01
+185	0x00B9	Imperial	Imperial	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+186	0x00BA	Imperial	Imperial	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+190	0x00BE	Imperial	Imperial	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+193	0x00C1	Imperial	Imperial	rbn_a03	rbn_a03	291	East End	Rabanastre	1	NPC01
+195	0x00C3	Imperial	Imperial	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+196	0x00C4	Imperial	Imperial	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+197	0x00C5	Imperial	Imperial	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+198	0x00C6	Imperial	Imperial	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+199	0x00C7	Imperial	Imperial	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+200	0x00C8	Imperial	Imperial	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+201	0x00C9	Imperial	Imperial	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+210	0x00D2	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+212	0x00D4	Traveler	Traveler	rbn_a01	rbn_a01	289	North End	Rabanastre	1	NPC01
+214	0x00D6	Rabanastran	Rabanastran	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+216	0x00D8	Lovestruck Man	Lovestruck Man	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	NPC01
+217	0x00D9	Rabanastran	Rabanastran	rbn_a03	rbn_a03	291	East End	Rabanastre	1	SND_MAN_B
+218	0x00DA	Rabanastran	Rabanastran	rbn_a01	rbn_a01	289	North End	Rabanastre	1	TWN_BANGA_A
+219	0x00DB	Merchant	Merchant	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	NPC01
+220	0x00DC	Cockatrice	Agytha	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_COCATRICE
+220	0x00DC	Cockatrice	Agytha	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	４５鶏アガタ
+222	0x00DE	Cockatrice	Chit	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	COCKATRICE_E
+222	0x00DE	Cockatrice	Chit	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	脱走チィ
+223	0x00DF	Nomad	Dania	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	１２ダーニャ
+225	0x00E1	Nomad Youth	Jinn	rbn_a04	rbn_a04	292	Southern Plaza	Rabanastre	1	ジン
+225	0x00E1	Nomad Youth	Jinn	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	２１ジン
+225	0x00E1	Nomad Youth	Jinn	sav_c02	sav_c02	248	Crystal Glade	Giza Plains	1	ジン_太陽
+226	0x00E2	Nomad Youth	Camina	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	３１カミナ
+227	0x00E3	Cockatrice	Renn	rbn_a01	rbn_a01	289	North End	Rabanastre	1	コカトリス
+227	0x00E3	Cockatrice	Renn	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	COCKATRICE_A
+228	0x00E4	Nomad	Lesina	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	１１レジーナ
+229	0x00E5	Nomad	Masyua	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	１３マシュア
+230	0x00E6	Cockatrice	Moomer	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	COCKATRICE_C
+231	0x00E7	Nomad	Nanau	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	１４ナナウ
+231	0x00E7	Nomad	Nanau	sav_f02	sav_f02	265	Crystal Glade	Giza Plains	1	ナナウ_GG
+232	0x00E8	Nomad Youth	Roaklo	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	２２ロワクロ
+232	0x00E8	Nomad Youth	Roaklo	sav_f02	sav_f02	265	Crystal Glade	Giza Plains	1	ロワクロ_GG
+233	0x00E9	Quiet Man	Sadeen	sav_e01	sav_e01	260	Nomad Village	Giza Plains	1	サディーン_KG
+234	0x00EA	Cockatrice	Sassan	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	2	クエコカトリス, クエコカトリス２
+234	0x00EA	Cockatrice	Sassan	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	クエコカトリス
+234	0x00EA	Cockatrice	Sassan	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	COCKATRICE_D
+235	0x00EB	Cockatrice	Shurry	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	コカトリス
+235	0x00EB	Cockatrice	Shurry	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	COCKATRICE_B
+236	0x00EC	Nomad Youth	Terra	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	３０テラ
+237	0x00ED	Nomad Youth	Tott	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	２０トト
+238	0x00EE	Cockatrice	Cockatrice	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_COCATRICE
+238	0x00EE	Cockatrice	Cockatrice	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	2	クエコカトリス, クエコカトリス２
+238	0x00EE	Cockatrice	Cockatrice	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	クエコカトリス
+238	0x00EE	Cockatrice	Cockatrice	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	コカトリス
+238	0x00EE	Cockatrice	Cockatrice	rbn_a01	rbn_a01	289	North End	Rabanastre	1	コカトリス
+238	0x00EE	Cockatrice	Cockatrice	sav_b01	sav_b01	243	Nomad Village	Giza Plains	6	COCKATRICE_A, COCKATRICE_B, COCKATRICE_C, COCKATRICE_D, COCKATRICE_E, ４５鶏アガタ
+238	0x00EE	Cockatrice	Cockatrice	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC_COCATRICE
+238	0x00EE	Cockatrice	Cockatrice	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	脱走チィ
+239	0x00EF	Nomad Elder	Elder Brunoa	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	００ブルノア
+240	0x00F0	Cartographers' Guild	Nutsy	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	５０ナッツ
+241	0x00F1	Weary Seeq	Weary Seeq	sav_e01	sav_e01	260	Nomad Village	Giza Plains	1	旅シーク
+242	0x00F2	Tiny Wayfarer	Tiny Wayfarer	sav_e01	sav_e01	260	Nomad Village	Giza Plains	1	旅モーグリＡ
+243	0x00F3	Viera Wayfarer	Viera Wayfarer	fon_c04	fon_c04	494	Rava's Pass	Phon Coast	1	旅ヴィエラ
+243	0x00F3	Viera Wayfarer	Viera Wayfarer	sav_c02	sav_c02	248	Crystal Glade	Giza Plains	1	旅ヴィエラ
+243	0x00F3	Viera Wayfarer	Viera Wayfarer	sav_f02	sav_f02	265	Crystal Glade	Giza Plains	1	旅ヴィエラ_CVI
+244	0x00F4	Bayay	Bayay	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_J
+245	0x00F5	Daguza	Daguza	nal_b01	nal_b01	49	Arena	Nalbina Dungeons	1	PRISON_CEEK_A
+246	0x00F6	No. 102	No. 102	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_BANGA_E
+247	0x00F7	No. 691	No. 691	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_M
+248	0x00F8	No. 124	No. 124	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_P
+249	0x00F9	Galeedo	Galeedo	nal_b01	nal_b01	49	Arena	Nalbina Dungeons	1	PRISON_CEEK_B
+250	0x00FA	No. 982	No. 982	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_BANGA_B
+251	0x00FB	No. 643	No. 643	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_G
+252	0x00FC	No. 823	No. 823	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_B
+253	0x00FD	No. 474	No. 474	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_D
+254	0x00FE	Gwitch	Gwitch	nal_b01	nal_b01	49	Arena	Nalbina Dungeons	1	PRISON_CEEK_C
+255	0x00FF	No. 395	No. 395	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_BANGA_D
+256	0x0100	No. 546	No. 546	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_A
+258	0x0102	Melvic	Melvic	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_C
+259	0x0103	Mirral	Mirral	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_N
+260	0x0104	No. 278	No. 278	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_F
+261	0x0105	No. 381	No. 381	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	脱獄囚
+261	0x0105	No. 381	No. 381	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_BANGA_A
+262	0x0106	Plark	Plark	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_E
+263	0x0107	Prisoner	Prisoner	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	ミニゲー要員3
+264	0x0108	Prisoner	Prisoner	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	5	ミニゲー要員1, ミニゲー要員2, ミニゲー要員3, ミニゲー要員4, ミニゲー要員5
+265	0x0109	No. 502	No. 502	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_H
+266	0x010A	Cutraz	Cutraz	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_Z
+267	0x010B	Seak	Seak	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_L
+268	0x010C	No. 281	No. 281	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_I
+269	0x010D	Tolsaga	Tolsaga	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_BANGA_C
+270	0x010E	Willem	Willem	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	PRISON_HUME_K
+274	0x0112	Village Youth	Tchigri	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	NPC01
+274	0x0112	Village Youth	Tchigri	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	NPC01
+277	0x0115	Dantro	Dantro	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	1	NPC01
+278	0x0116	A Boy & His...Dog?	A Boy & His...Dog?	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	1	NPC01
+282	0x011A	Shifty Seeq	Shifty Seeq	dst_a05	dst_a05	231	Passage Entrance	Dalmasca Estersand	1	NPC01
+283	0x011B	Villager	Dantro's Wife	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	NPC01
+288	0x0120	Unlucky Merchant	Unlucky Merchant	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	1	NPC01
+289	0x0121	Desert Wayfarer	Desert Wayfarer	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	1	NPC01
+289	0x0121	Desert Wayfarer	Desert Wayfarer	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	NPC01
+291	0x0123	Village Elder	Village Elder	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	NPC01
+292	0x0124	Villager	Villager	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	NPC01
+292	0x0124	Villager	Villager	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	NPC01
+298	0x012A	Ruksel	Ruksel	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	NPC01
+298	0x012A	Ruksel	Ruksel	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	NPC01
+303	0x012F	Basch	Basch	naf_a01	naf_a01	274	Aerial Gardens	Nalbina Fortress	1	BASH
+304	0x0130	Dalmascan	Dalmascan	naf_a01	naf_a01	274	Aerial Gardens	Nalbina Fortress	1	DAL_SOLDIER_A
+305	0x0131	Timorous Bangaa	Timorous Bangaa	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+311	0x0137	Archadian Wayfarer	Archadian Wayfarer	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	NPC01
+311	0x0137	Archadian Wayfarer	Archadian Wayfarer	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+311	0x0137	Archadian Wayfarer	Archadian Wayfarer	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+311	0x0137	Archadian Wayfarer	Archadian Wayfarer	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+311	0x0137	Archadian Wayfarer	Archadian Wayfarer	pla_a06	pla_a06	142	The Chosen Path	Tchita Uplands	2	依頼主, 賞金稼ぎ
+311	0x0137	Archadian Wayfarer	Archadian Wayfarer	pla_b06	pla_b06	149	The Nameless Spring	Tchita Uplands	2	依頼主, 賞金稼ぎ
+369	0x0171	Niray	Niray	byu_a17	byu_a17	819	The Staras Residence	Bhujerba	1	NPC01
+372	0x0174	Melisa	Melisa	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+373	0x0175	Magu	Magu	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+375	0x0177	Traveler	Traveler	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+380	0x017C	Flights to Rabanastre	Flights to Rabanastre	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+380	0x017C	Flights to Rabanastre	Flights to Rabanastre	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	飛空艇受付_01
+381	0x017D	Flights to Balfonheim	Flights to Balfonheim	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+381	0x017D	Flights to Balfonheim	Flights to Balfonheim	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	飛空艇受付_02
+383	0x017F	Private Airships	Private Airships	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+384	0x0180	Bhujerban	Bhujerban	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+384	0x0180	Bhujerban	Bhujerban	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+384	0x0180	Bhujerban	Bhujerban	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+384	0x0180	Bhujerban	Bhujerban	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+384	0x0180	Bhujerban	Bhujerban	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+384	0x0180	Bhujerban	Bhujerban	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+384	0x0180	Bhujerban	Bhujerban	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+385	0x0181	Shop Clerk	Shop Clerk	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+385	0x0181	Shop Clerk	Shop Clerk	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+385	0x0181	Shop Clerk	Shop Clerk	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+386	0x0182	Cloudborne Patron	Cloudborne Patron	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+386	0x0182	Cloudborne Patron	Cloudborne Patron	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+388	0x0184	Cloudborne Resident	Cloudborne Resident	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+392	0x0188	Shop Clerk	Shop Clerk	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+392	0x0188	Shop Clerk	Shop Clerk	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+393	0x0189	Street Kid	Street Kid	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+393	0x0189	Street Kid	Street Kid	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+393	0x0189	Street Kid	Street Kid	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+396	0x018C	Pilika	Pilika	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+397	0x018D	Ondore's Attendant	Ondore's Attendant	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	側近
+398	0x018E	Lhusu Parivir	Aekom	byu_a04	byu_a04	806	Lhusu Square	Bhujerba	1	NPC01
+401	0x0191	Miners' Ender Boy	Miclio	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	幽霊小僧
+404	0x0194	Lhusu Parivir	Lhusu Parivir	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+404	0x0194	Lhusu Parivir	Lhusu Parivir	byu_a04	byu_a04	806	Lhusu Square	Bhujerba	1	NPC01
+404	0x0194	Lhusu Parivir	Lhusu Parivir	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+407	0x0197	Cloudborne Kid	Cloudborne Kid	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+408	0x0198	City Parijanah	City Parijanah	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+409	0x0199	Lhusu Miner	Lhusu Miner	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+409	0x0199	Lhusu Miner	Lhusu Miner	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+409	0x0199	Lhusu Miner	Lhusu Miner	byu_a04	byu_a04	806	Lhusu Square	Bhujerba	1	NPC01
+409	0x0199	Lhusu Miner	Lhusu Miner	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+409	0x0199	Lhusu Miner	Lhusu Miner	byu_a17	byu_a17	819	The Staras Residence	Bhujerba	1	エキストラ作業員
+409	0x0199	Lhusu Miner	Lhusu Miner	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	側近
+413	0x019D	Great-chief Uball-Ka	Great-chief Uball-Ka	glf_a03	glf_a03	753	The Elderknoll	Jahara	1	ガリフ族長
+415	0x019F	Garif Youth	Asdalu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ族の青年02
+415	0x019F	Garif Youth	Asdalu	hne_a07	hne_a07	718	Staging Shaft	Henne Mines	1	ガリフ青年_MF
+416	0x01A0	War-chief Supinelu	War-chief Supinelu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	戦士長
+417	0x01A1	Garif Herder	Garif Herder	glf_a02	glf_a02	752	Lull of the Land	Jahara	3	酪農ガリフ01, 酪農ガリフ02, 酪農ガリフ04
+418	0x01A2	Garif Elder	Low-chief Sugumu	glf_a03	glf_a03	753	The Elderknoll	Jahara	1	ガリフ老人01
+419	0x01A3	Garif Craftsman	Garif Craftsman	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ族工芸家01
+420	0x01A4	Garif Warrior	Warrior Guromu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ戦士05
+421	0x01A5	Garif Elder	Garif Elder	glf_a03	glf_a03	753	The Elderknoll	Jahara	10	ガリフ老人02, ガリフ老人03, ガリフ老人04, ガリフ老人05, ガリフ老人06, ガリフ老人07, ガリフ老人08, ガリフ老人09, ガリフ老人11, ガリフ長老02
+422	0x01A6	Garif Elder	Old War-chief Kadalu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ戦士02
+423	0x01A7	Garif Elder	Garif Elder	glf_a02	glf_a02	752	Lull of the Land	Jahara	4	ガリフ長老01, ガリフ長老02, ガリフ長老03, ガリフ長老04
+423	0x01A7	Garif Elder	Garif Elder	glf_a03	glf_a03	753	The Elderknoll	Jahara	3	ガリフ長老01, ガリフ長老03, ガリフ長老04
+424	0x01A8	Garif Warrior	Garif Warrior	glf_a01	glf_a01	751	Banks of the Sogoht	Jahara	5	門番01_EV_before, 門番01_after, 門番01_before, 門番02_after, 門番02_before
+424	0x01A8	Garif Warrior	Garif Warrior	glf_a02	glf_a02	752	Lull of the Land	Jahara	7	ガリフ戦士03, ガリフ戦士04, ガリフ戦士07, ガリフ戦士08, ガリフ戦士09, ガリフ戦士10, ガリフ戦士11
+424	0x01A8	Garif Warrior	Garif Warrior	glf_a03	glf_a03	753	The Elderknoll	Jahara	2	ガリフ戦士01, ガリフ戦士02
+424	0x01A8	Garif Warrior	Garif Warrior	glf_a0300	glf_a03	753	The Elderknoll	Jahara	1	MONBAN01
+425	0x01A9	Garif Herder	Garif Herder	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	酪農ガリフ03
+426	0x01AA	Garif Youth	Garif Youth	glf_a02	glf_a02	752	Lull of the Land	Jahara	3	ガリフ族の青年03, ガリフ族の青年06, ガリフ族の青年06_mind_flayer
+426	0x01AA	Garif Youth	Garif Youth	glf_a03	glf_a03	753	The Elderknoll	Jahara	1	ガリフ族の青年01
+427	0x01AB	Geomancer Yugelu	Geomancer Yugelu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ族工芸家03
+433	0x01B1	Anchor	Anchor	dst_a05	dst_a05	231	Passage Entrance	Dalmasca Estersand	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	ene_a08	ene_a08	386	Yensa Border Tunnel	Ogir-Yensa Sandsea	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	enw_a05	enw_a05	394	The Sandscale Bank	Nam-Yensa Sandsea	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	fon_a06	fon_a06	483	Kaukula Pass	Phon Coast	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	ozm_b04	ozm_b04	533	Sunlit Path	Ozmone Plain	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	pbc_c01	pbc_c01	473	Path of the Firstfall	Paramina Rift	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	pla_a06	pla_a06	142	The Chosen Path	Tchita Uplands	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	rwf_a01	rwf_a01	509	Footfalls of the Past	Ridorana Cataract	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	sav_c02	sav_c02	248	Crystal Glade	Giza Plains	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	sav_f02	sav_f02	265	Crystal Glade	Giza Plains	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	srb_a04	srb_a04	500	Journey's Rest	Cerobi Steppe	1	system_anchor_actor
+433	0x01B1	Anchor	Anchor	wdl_a06	wdl_a06	350	The Western Divide	Dalmasca Westersand	1	system_anchor_actor
+434	0x01B2	Treasure	Treasure	alc_a01	alc_a01	635	Grand Arcade	Archades	1	treasure_00
+434	0x01B2	Treasure	Treasure	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	asp_a03	asp_a03	126	Air Deck	Skyferry	1	treasure_00
+434	0x01B2	Treasure	Treasure	bds_a01	bds_a01	421	Hall of Effulgent Light	Necrohol of Nabudis	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	bds_a02	bds_a02	422	Cloister of Distant Song	Necrohol of Nabudis	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	bds_b01	bds_b01	426	Cloister of the Highborn	Necrohol of Nabudis	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	bds_c01	bds_c01	430	Hall of the Ivory Covenant	Necrohol of Nabudis	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	bds_c02	bds_c02	431	Hall of Slumbering Might	Necrohol of Nabudis	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	bds_e01	bds_e01	438	The Crucible	Necrohol of Nabudis	1	treasure_00
+434	0x01B2	Treasure	Treasure	bds_f01	bds_f01	441	Cloister of Solace	Necrohol of Nabudis	1	treasure_00
+434	0x01B2	Treasure	Treasure	bds_g01	bds_g01	444	Cloister of Reason	Necrohol of Nabudis	1	treasure_00
+434	0x01B2	Treasure	Treasure	bhm_a03	bhm_a03	776	Antechamber	Sky Fortress Bahamut	3	treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	bhm_a04	bhm_a04	777	Antechamber	Sky Fortress Bahamut	1	treasure_00
+434	0x01B2	Treasure	Treasure	bog_a01	bog_a01	167	Greencrag	Nabreus Deadlands	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	bog_a03	bog_a03	169	Vale of Lingering Sorrow	Nabreus Deadlands	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	bog_a05	bog_a05	171	Echoes of the Past	Nabreus Deadlands	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	bog_b01	bog_b01	175	The Slumbermead	Nabreus Deadlands	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	bog_b03	bog_b03	177	The Fog Mutters	Nabreus Deadlands	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	bog_b05	bog_b05	179	Lifeless Strand	Nabreus Deadlands	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	bog_b06	bog_b06	180	Field of the Fallen Lord	Nabreus Deadlands	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	bts_z01	bts_z01	108	no zone-script entry, so no field loads the script	-	16	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14, treasure_15
+434	0x01B2	Treasure	Treasure	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	treasure_00
+434	0x01B2	Treasure	Treasure	dor_b01	dor_b01	286	Energy Transitarium	Draklor Laboratory	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	dor_c03	dor_c03	1038	Rm 6613 East	Draklor Laboratory	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	dor_c15	dor_c15	1050	Rm 7002 East	Draklor Laboratory	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	dor_d02	dor_d02	1055	Rm 6711 West	Draklor Laboratory	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	dor_e15	dor_e15	1081	Rm 6801 West	Draklor Laboratory	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	dst_a01	dst_a01	227	The Stepping	Dalmasca Estersand	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	dst_a02	dst_a02	228	Yardang Labyrinth	Dalmasca Estersand	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	dst_a03	dst_a03	229	Sand-swept Naze	Dalmasca Estersand	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	dst_a04	dst_a04	230	Banks of the Nebra	Dalmasca Estersand	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	dst_c01	dst_c01	132	The Yoma	Dalmasca Estersand	14	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13
+434	0x01B2	Treasure	Treasure	dst_c02	dst_c02	133	Broken Sands	Dalmasca Estersand	13	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12
+434	0x01B2	Treasure	Treasure	ene_a01	ene_a01	379	Platform 1 - East Tanks	Ogir-Yensa Sandsea	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	ene_a02	ene_a02	380	Platform 1 - Refinery	Ogir-Yensa Sandsea	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	ene_a03	ene_a03	381	East Junction	Ogir-Yensa Sandsea	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	ene_a04	ene_a04	382	Primary Tank Complex	Ogir-Yensa Sandsea	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	ene_a05	ene_a05	383	Central Junction	Ogir-Yensa Sandsea	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	ene_a06	ene_a06	384	Platform 1 - South Tanks	Ogir-Yensa Sandsea	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	ene_a07	ene_a07	385	Platform 2 - Refinery	Ogir-Yensa Sandsea	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	enw_a01	enw_a01	390	The Urutan-Yensa Sea	Nam-Yensa Sandsea	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	enw_a02	enw_a02	391	Withering Shores	Nam-Yensa Sandsea	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	enw_a03	enw_a03	392	Augur Hill	Nam-Yensa Sandsea	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	enw_a04	enw_a04	393	Yellow Sands	Nam-Yensa Sandsea	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	enw_b01	enw_b01	398	Demesne of the Sandqueen	Nam-Yensa Sandsea	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	enw_b02	enw_b02	399	Trail of Fading Warmth	Nam-Yensa Sandsea	1	treasure_00
+434	0x01B2	Treasure	Treasure	enw_b03	enw_b03	400	Simoon Bluff	Nam-Yensa Sandsea	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	fon_a01	fon_a01	478	The Reseta Strand	Phon Coast	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	fon_a02	fon_a02	479	Pora-Pora Sands	Phon Coast	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	fon_a03	fon_a03	480	The Mauleia Strand	Phon Coast	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	fon_a04	fon_a04	481	Cape Uahuk	Phon Coast	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	fon_a05	fon_a05	482	Cape Tialan	Phon Coast	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	fon_a07	fon_a07	484	The Hakawea Shore	Phon Coast	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	fon_c01	fon_c01	491	Caima Hills	Phon Coast	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	fon_c02	fon_c02	492	The Vaddu Strand	Phon Coast	16	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14, treasure_15
+434	0x01B2	Treasure	Treasure	fon_c03	fon_c03	493	Limatra Hills	Phon Coast	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	frs_a01	frs_a01	151	The Omen-Spur	The Salikawood	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	frs_a02	frs_a02	152	Trunkwall Road	The Salikawood	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	frs_a03	frs_a03	153	Diverging Way	The Salikawood	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	frs_a04	frs_a04	154	Sun-dappled Path	The Salikawood	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	frs_a05	frs_a05	155	Garden of Decay	The Salikawood	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	frs_b01	frs_b01	157	Quietened Trace	The Salikawood	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	frs_b02	frs_b02	158	Grand Bower	The Salikawood	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	frs_c01	frs_c01	162	Corridor of Ages	The Salikawood	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	frs_c02	frs_c02	163	Piebald Path	The Salikawood	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	glf_a03	glf_a03	753	The Elderknoll	Jahara	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	gol_a01	gol_a01	447	Paths of Chained Light	Golmore Jungle	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	gol_a02	gol_a02	448	The Needlebrake	Golmore Jungle	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	gol_a04	gol_a04	450	The Parting Glade	Golmore Jungle	1	treasure_00
+434	0x01B2	Treasure	Treasure	gol_b01	gol_b01	453	The Rustling Chapel	Golmore Jungle	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	gol_c01	gol_c01	456	Dell of the Dreamer	Golmore Jungle	1	treasure_00
+434	0x01B2	Treasure	Treasure	gol_d01	gol_d01	459	The Branchway	Golmore Jungle	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	gol_d02	gol_d02	460	The Greenswathe	Golmore Jungle	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	grm_a03	grm_a03	313	North Spur Sluiceway	Garamsythe Waterway	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	grm_a05	grm_a05	315	Northern Sluiceway	Garamsythe Waterway	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	grm_a06	grm_a06	316	East Waterway Control	Garamsythe Waterway	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	grm_b01	grm_b01	318	No. 11 Channel	Garamsythe Waterway	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	grm_b03	grm_b03	320	West Sluice Control	Garamsythe Waterway	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	grm_b04	grm_b04	321	No. 10 Channel	Garamsythe Waterway	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	grm_c01	grm_c01	326	Southern Sluiceway	Garamsythe Waterway	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	grm_e02	grm_e02	839	No. 11 Channel	Garamsythe Waterway	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	grm_e07	grm_e07	844	No. 10 Channel	Garamsythe Waterway	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	grm_e09	grm_e09	846	No. 3 Cloaca Spur	Garamsythe Waterway	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	grm_e12	grm_e12	849	No. 4 Cloaca Spur	Garamsythe Waterway	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	hne_a04	hne_a04	715	Phase 1 Dig	Henne Mines	13	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12
+434	0x01B2	Treasure	Treasure	hne_a05	hne_a05	716	Crossover A	Henne Mines	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	hne_c01	hne_c01	725	Phase 2 Dig	Henne Mines	15	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14
+434	0x01B2	Treasure	Treasure	hne_c02	hne_c02	726	Crossover C	Henne Mines	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	hne_c04	hne_c04	728	Phase 2 Shaft	Henne Mines	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	hne_d01	hne_d01	730	Special Charter Shaft	Henne Mines	15	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14
+434	0x01B2	Treasure	Treasure	lus_a01	lus_a01	357	Shaft Entry	Lhusu Mines	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	lus_a02	lus_a02	358	Oltam Span	Lhusu Mines	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	lus_a03	lus_a03	359	Transitway 1	Lhusu Mines	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	lus_b01	lus_b01	365	Shunia Twinspan	Lhusu Mines	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	lus_b03	lus_b03	367	Site 3	Lhusu Mines	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	lus_d01	lus_d01	372	Site 9	Lhusu Mines	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	lus_d03	lus_d03	374	Site 11	Lhusu Mines	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	lus_e01	lus_e01	376	Site 7	Lhusu Mines	1	treasure_00
+434	0x01B2	Treasure	Treasure	lus_f01	lus_f01	901	Lasche Span	Lhusu Mines	1	treasure_00
+434	0x01B2	Treasure	Treasure	lus_f02	lus_f02	902	Site 5	Lhusu Mines	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	lus_f03	lus_f03	903	Site 6 South	Lhusu Mines	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	lus_f04	lus_f04	904	Site 6 North	Lhusu Mines	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	lus_f05	lus_f05	905	Staging Area	Lhusu Mines	1	treasure_00
+434	0x01B2	Treasure	Treasure	lus_g01	lus_g01	933	Site 2	Lhusu Mines	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	mfr_a01	mfr_a01	539	Walk of Flitting Rifts	The Feywood	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	mfr_a02	mfr_a02	540	Walk of Stolen Truths	The Feywood	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	mfr_a03	mfr_a03	541	Walk of Dancing Shadow	The Feywood	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	mfr_a04	mfr_a04	542	Antiquity's End	The Feywood	1	treasure_00
+434	0x01B2	Treasure	Treasure	mfr_b01	mfr_b01	545	Redolent Glade	The Feywood	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	mfr_c01	mfr_c01	548	White Magick's Embrace	The Feywood	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	mfr_c02	mfr_c02	549	Ice Field of Clearsight	The Feywood	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	mfr_c03	mfr_c03	550	The Edge of Reason	The Feywood	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	mic_a01	mic_a01	53	The Lightworks	Barheim Passage	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	mic_a02	mic_a02	54	Great Eastern Passage	Barheim Passage	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	mic_a03	mic_a03	55	Op Sector 36	Barheim Passage	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	mic_a04	mic_a04	56	Special Op Sector 3	Barheim Passage	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	mic_a05	mic_a05	57	Op Sector 37	Barheim Passage	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	mic_a06	mic_a06	58	Op Sector 29	Barheim Passage	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	mic_b01	mic_b01	61	Great Central Passage	Barheim Passage	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	mic_b02	mic_b02	62	The Zeviah Subterrane	Barheim Passage	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	mic_d01	mic_d01	71	Terminus No. 7	Barheim Passage	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	mic_e01	mic_e01	891	East-West Bypass	Barheim Passage	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	mic_e02	mic_e02	892	The Zeviah Span	Barheim Passage	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	mic_e03	mic_e03	893	West Annex	Barheim Passage	13	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12
+434	0x01B2	Treasure	Treasure	mic_e04	mic_e04	894	Terminus No. 7 Adjunct	Barheim Passage	1	treasure_00
+434	0x01B2	Treasure	Treasure	mic_e05	mic_e05	895	Special Op Sector 5	Barheim Passage	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	mnt_a01	mnt_a01	209	Southern Skirts	Mosphoran Highwaste	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	mnt_a02	mnt_a02	210	Summit Path	Mosphoran Highwaste	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	mnt_b01	mnt_b01	215	Rays of Ashen Light	Mosphoran Highwaste	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	mnt_b02	mnt_b02	216	Empyrean Way	Mosphoran Highwaste	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	mnt_b03	mnt_b03	217	Skyreach Ridge	Mosphoran Highwaste	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	mnt_b04	mnt_b04	218	Trail of Sky-flung Stone	Mosphoran Highwaste	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	mnt_b05	mnt_b05	219	Northern Skirts	Mosphoran Highwaste	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	mnt_b06	mnt_b06	220	Halny Crossing	Mosphoran Highwaste	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	mrm_a01	mrm_a01	593	Walk of Sky	Stilshrine of Miriam	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	mrm_a02	mrm_a02	594	Walk of Mind	Stilshrine of Miriam	1	treasure_00
+434	0x01B2	Treasure	Treasure	mrm_b02	mrm_b02	598	Cold Distance	Stilshrine of Miriam	1	treasure_00
+434	0x01B2	Treasure	Treasure	mrm_b03	mrm_b03	599	Walk of Prescience	Stilshrine of Miriam	1	treasure_00
+434	0x01B2	Treasure	Treasure	mrm_b04	mrm_b04	600	Walk of Reason	Stilshrine of Miriam	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	mrm_c01	mrm_c01	603	Ward of Steel	Stilshrine of Miriam	1	treasure_00
+434	0x01B2	Treasure	Treasure	mrm_d01	mrm_d01	606	Ward of Velitation	Stilshrine of Miriam	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	mrm_e01	mrm_e01	612	Hall of Worth	Stilshrine of Miriam	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	naf_b01	naf_b01	279	Lower Apartments	Nalbina Fortress	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	nal_c01	nal_c01	709	The Black Watch	Nalbina Dungeons	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	nal_c02	nal_c02	710	The Confiscatory	Nalbina Dungeons	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	ozm_a01	ozm_a01	525	Field of Fallen Wings	Ozmone Plain	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	ozm_a02	ozm_a02	526	The Switchback	Ozmone Plain	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	ozm_a03	ozm_a03	527	Haulo Green	Ozmone Plain	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	ozm_b01	ozm_b01	530	Dagan Flats	Ozmone Plain	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	ozm_b02	ozm_b02	531	Field of Light Winds	Ozmone Plain	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	ozm_b03	ozm_b03	532	The Greensnake	Ozmone Plain	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	ozm_c01	ozm_c01	536	The Shred	Ozmone Plain	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	pbc_a02	pbc_a02	464	Head of the Silverflow	Paramina Rift	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	pbc_a03	pbc_a03	465	Freezing Gorge	Paramina Rift	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	pbc_b01	pbc_b01	468	Frozen Brook	Paramina Rift	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	pbc_b02	pbc_b02	469	Icebound Flow	Paramina Rift	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	pbc_b03	pbc_b03	470	Karydine Glacier	Paramina Rift	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	pbc_c01	pbc_c01	473	Path of the Firstfall	Paramina Rift	1	treasure_00
+434	0x01B2	Treasure	Treasure	pbc_c02	pbc_c02	474	Spine of the Icewyrm	Paramina Rift	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	pbc_c03	pbc_c03	475	Silverflow's End	Paramina Rift	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	pla_a01	pla_a01	137	Uazcuff Hills	Tchita Uplands	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	pla_a02	pla_a02	138	Sundered Earth	Tchita Uplands	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	pla_a03	pla_a03	139	The Highlands	Tchita Uplands	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	pla_a04	pla_a04	140	Fields of Eternity	Tchita Uplands	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	pla_b01	pla_b01	144	The Skytrail	Tchita Uplands	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	pla_b02	pla_b02	145	Realm of the Elder Dream	Tchita Uplands	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	pla_b03	pla_b03	146	The Lost Way	Tchita Uplands	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	pla_b04	pla_b04	147	Garden of Life's Circle	Tchita Uplands	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	pla_b05	pla_b05	148	Oliphzak Rise	Tchita Uplands	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	pre_a01	pre_a01	109	no zone-script entry, so no field loads the script	-	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	pre_b01	pre_b01	114	no zone-script entry, so no field loads the script	-	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	rbl_a01	rbl_a01	1101	The Wellspring	Pharos - First Ascent	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	rbl_b01	rbl_b01	1111	Wellspring Labyrinth	Pharos - First Ascent	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	rbl_d01	rbl_d01	1115	Wellspring Ravel - 1st Flight	Pharos - First Ascent	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	rbl_d02	rbl_d02	1116	Wellspring Ravel - 2nd Flight	Pharos - First Ascent	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rbl_e01	rbl_e01	1118	Wellspring Ravel - 3rd Flight	Pharos - First Ascent	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	rbl_e02	rbl_e02	1119	Wellspring Ravel - 4th Flight	Pharos - First Ascent	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	rbl_f02	rbl_f02	1122	Horizon's Cusp	Pharos - First Ascent	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rbl_g02	rbl_g02	1124	Penumbra - North	Pharos - Subterra	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	rbl_g03	rbl_g03	1125	Penumbra - South	Pharos - Subterra	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	rbl_h02	rbl_h02	1127	Umbra - North	Pharos - Subterra	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rbl_h03	rbl_h03	1128	Umbra - South	Pharos - Subterra	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	rbl_i02	rbl_i02	1130	Abyssal - North	Pharos - Subterra	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	rbl_i03	rbl_i03	1131	Abyssal - South	Pharos - Subterra	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	rbl_j01	rbl_j01	1132	Cleft of Profaning Wind	Pharos - Second Ascent	4	treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	rbl_j02	rbl_j02	1133	The Bounds of Truth	Pharos - Second Ascent	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rbl_k01	rbl_k01	1134	Station of Banishment	Pharos - Second Ascent	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	rbl_l01	rbl_l01	1136	Station of Suffering	Pharos - Second Ascent	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	rbl_m01	rbl_m01	1138	Station of Ascension	Pharos - Second Ascent	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	rbl_n01	rbl_n01	1140	Spire Ravel - 1st Flight	Pharos - Third Ascent	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	rbl_n02	rbl_n02	1141	Spire Ravel - 2nd Flight	Pharos - Third Ascent	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	rbl_q01	rbl_q01	1143	Empyrean Ravel	Pharos - Third Ascent	4	treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	rrp_a02	rrp_a02	568	Cellars	Royal Palace	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	rrp_a03	rrp_a03	569	Lower Halls	Royal Palace	1	treasure_00
+434	0x01B2	Treasure	Treasure	rsn_b01	rsn_b01	555	Port Section	Dreadnought Leviathan	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rsn_b02	rsn_b02	556	Large Freight Stores	Dreadnought Leviathan	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	rsn_b03	rsn_b03	557	Starboard Section	Dreadnought Leviathan	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	rsn_b04	rsn_b04	558	Sub-control Room	Dreadnought Leviathan	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rui_a01	rui_a01	184	Falls of Time	Sochen Cave Palace	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	rui_a02	rui_a02	185	Mirror of the Soul	Sochen Cave Palace	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	rui_a03	rui_a03	186	The Acolyte's Burden	Sochen Cave Palace	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	rui_a04	rui_a04	187	Doubt Abandoned	Sochen Cave Palace	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	rui_b01	rui_b01	192	Destiny's March	Sochen Cave Palace	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	rui_b02	rui_b02	193	Temptation Eluded	Sochen Cave Palace	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rui_c01	rui_c01	198	Hall of Shadowlight	Sochen Cave Palace	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	rui_d01	rui_d01	200	Hall of Lambent Darkness	Sochen Cave Palace	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rui_e01	rui_e01	202	Hall of the Wroth God	Sochen Cave Palace	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rwf_a03	rwf_a03	511	Echoes from Time's Garden	Ridorana Cataract	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	rwf_b01	rwf_b01	517	City of Other Days	Ridorana Cataract	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	rwf_b02	rwf_b02	518	Path of Hidden Blessing	Ridorana Cataract	1	treasure_00
+434	0x01B2	Treasure	Treasure	rwf_c01	rwf_c01	522	They Who Thirst Not	Pharos - First Ascent	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	rwf_d01	rwf_d01	898	Colosseum	Ridorana Cataract	10	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09
+434	0x01B2	Treasure	Treasure	rwg_c01	rwg_c01	410	Royal Passage	The Tomb of Raithwall	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	rwg_c02	rwg_c02	411	Southfall Passage	The Tomb of Raithwall	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	rwg_c03	rwg_c03	412	Northfall Passage	The Tomb of Raithwall	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	rwg_d01	rwg_d01	415	Cloister of Flame	The Tomb of Raithwall	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	sav_a01	sav_a01	236	Throne Road	Giza Plains	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	sav_a02	sav_a02	237	Warrior's Wash	Giza Plains	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	sav_a03	sav_a03	238	Gizas North Bank	Giza Plains	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	sav_a04	sav_a04	239	Toam Hills	Giza Plains	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	sav_c01	sav_c01	247	Starfall Field	Giza Plains	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	sav_c03	sav_c03	249	Gizas South Bank	Giza Plains	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	sav_d01	sav_d01	253	Throne Road	Giza Plains	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	sav_d02	sav_d02	254	Warrior's Wash	Giza Plains	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	sav_d03	sav_d03	255	Gizas North Bank	Giza Plains	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	sav_d04	sav_d04	256	Toam Hills	Giza Plains	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	sav_e01	sav_e01	260	Nomad Village	Giza Plains	1	treasure_00
+434	0x01B2	Treasure	Treasure	sav_f01	sav_f01	264	Starfall Field	Giza Plains	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	sav_f03	sav_f03	266	Gizas South Bank	Giza Plains	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	sav_g01	sav_g01	270	Tracks of the Beast	Giza Plains	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	slm_a01	slm_a01	701	North Sprawl	Lowtown	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	slm_a02	slm_a02	702	South Sprawl	Lowtown	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	srb_a01	srb_a01	497	Old Elanise Road	Cerobi Steppe	16	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14, treasure_15
+434	0x01B2	Treasure	Treasure	srb_a02	srb_a02	498	Crossfield	Cerobi Steppe	14	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13
+434	0x01B2	Treasure	Treasure	srb_a03	srb_a03	499	The Terraced Bank	Cerobi Steppe	14	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13
+434	0x01B2	Treasure	Treasure	srb_b01	srb_b01	503	North Liavell Hills	Cerobi Steppe	13	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12
+434	0x01B2	Treasure	Treasure	srb_b02	srb_b02	504	South Liavell Hills	Cerobi Steppe	15	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14
+434	0x01B2	Treasure	Treasure	srb_b03	srb_b03	505	Feddik River	Cerobi Steppe	15	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14
+434	0x01B2	Treasure	Treasure	srb_b04	srb_b04	506	The Northsward	Cerobi Steppe	14	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13
+434	0x01B2	Treasure	Treasure	tri_a01	tri_a01	1155	Stage 1	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_a02	tri_a02	1156	Stage 2	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_a03	tri_a03	1157	Stage 3	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_a04	tri_a04	1158	Stage 4	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_a05	tri_a05	1159	Stage 5	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_b01	tri_b01	1163	Stage 6	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_b02	tri_b02	1164	Stage 7	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_b03	tri_b03	1165	Stage 8	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_b04	tri_b04	1166	Stage 9	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_b05	tri_b05	1167	Stage 10	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_c01	tri_c01	1171	Stage 11	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_c02	tri_c02	1172	Stage 12	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_c03	tri_c03	1173	Stage 13	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_c04	tri_c04	1174	Stage 14	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_c05	tri_c05	1175	Stage 15	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_d01	tri_d01	1179	Stage 16	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_d02	tri_d02	1180	Stage 17	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_d03	tri_d03	1181	Stage 18	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_d04	tri_d04	1182	Stage 19	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_d05	tri_d05	1183	Stage 20	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_e01	tri_e01	1187	Stage 21	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_e02	tri_e02	1188	Stage 22	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_e03	tri_e03	1189	Stage 23	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_e04	tri_e04	1190	Stage 24	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_e05	tri_e05	1191	Stage 25	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_f01	tri_f01	1195	Stage 26	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_f02	tri_f02	1196	Stage 27	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_f03	tri_f03	1197	Stage 28	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_f04	tri_f04	1198	Stage 29	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_f05	tri_f05	1199	Stage 30	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_g01	tri_g01	1203	Stage 31	Trial Mode	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	tri_g02	tri_g02	1204	Stage 32	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_g03	tri_g03	1205	Stage 33	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_g04	tri_g04	1206	Stage 34	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_g05	tri_g05	1207	Stage 35	Trial Mode	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	tri_h01	tri_h01	1211	Stage 36	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_h02	tri_h02	1212	Stage 37	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_h03	tri_h03	1213	Stage 38	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_h04	tri_h04	1214	Stage 39	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_h05	tri_h05	1215	Stage 40	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_i01	tri_i01	1219	Stage 41	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_i02	tri_i02	1220	Stage 42	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_i03	tri_i03	1221	Stage 43	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_i04	tri_i04	1222	Stage 44	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_i05	tri_i05	1223	Stage 45	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_j01	tri_j01	1227	Stage 46	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_j02	tri_j02	1228	Stage 47	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_j03	tri_j03	1229	Stage 48	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_j04	tri_j04	1230	Stage 49	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_j05	tri_j05	1231	Stage 50	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_k01	tri_k01	1235	Stage 51	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_k02	tri_k02	1236	Stage 52	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_k03	tri_k03	1237	Stage 53	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_k04	tri_k04	1238	Stage 54	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_k05	tri_k05	1239	Stage 55	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_l01	tri_l01	1243	Stage 56	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_l02	tri_l02	1244	Stage 57	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_l03	tri_l03	1245	Stage 58	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_l04	tri_l04	1246	Stage 59	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_l05	tri_l05	1247	Stage 60	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_m01	tri_m01	1251	Stage 61	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_m02	tri_m02	1252	Stage 62	Trial Mode	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	tri_m03	tri_m03	1253	Stage 63	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_m04	tri_m04	1254	Stage 64	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_m05	tri_m05	1255	Stage 65	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_n01	tri_n01	1259	Stage 66	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_n02	tri_n02	1260	Stage 67	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_n03	tri_n03	1261	Stage 68	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_n04	tri_n04	1262	Stage 69	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_n05	tri_n05	1263	Stage 70	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_o01	tri_o01	1267	Stage 71	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_o02	tri_o02	1268	Stage 72	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_o03	tri_o03	1269	Stage 73	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_o04	tri_o04	1270	Stage 74	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_o05	tri_o05	1271	Stage 75	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_p01	tri_p01	1275	Stage 76	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_p02	tri_p02	1276	Stage 77	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_p03	tri_p03	1277	Stage 78	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_p04	tri_p04	1278	Stage 79	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_p05	tri_p05	1279	Stage 80	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_q01	tri_q01	1283	Stage 81	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_q02	tri_q02	1284	Stage 82	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_q03	tri_q03	1285	Stage 83	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_q04	tri_q04	1286	Stage 84	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_q05	tri_q05	1287	Stage 85	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_r01	tri_r01	1291	Stage 86	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_r02	tri_r02	1292	Stage 87	Trial Mode	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	tri_r03	tri_r03	1293	Stage 88	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_r04	tri_r04	1294	Stage 89	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_r05	tri_r05	1295	Stage 90	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_s01	tri_s01	1299	Stage 91	Trial Mode	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	tri_s02	tri_s02	1300	Stage 92	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_s03	tri_s03	1301	Stage 93	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_s04	tri_s04	1302	Stage 94	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_s05	tri_s05	1303	Stage 95	Trial Mode	16	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11, treasure_12, treasure_13, treasure_14, treasure_15
+434	0x01B2	Treasure	Treasure	tri_t01	tri_t01	1307	Stage 96	Trial Mode	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	tri_t02	tri_t02	1308	Stage 97	Trial Mode	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	tri_t03	tri_t03	1309	Stage 98	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	tri_t04	tri_t04	1310	Stage 99	Trial Mode	12	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10, treasure_11
+434	0x01B2	Treasure	Treasure	tri_t05	tri_t05	1311	Stage 100	Trial Mode	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	var_a13	var_a13	835	Port Villa	Balfonheim Port	1	treasure_00
+434	0x01B2	Treasure	Treasure	var_a14	var_a14	836	The Whitecap	Balfonheim Port	1	treasure_00
+434	0x01B2	Treasure	Treasure	var_a15	var_a15	837	Port Villa	Balfonheim Port	1	treasure_00
+434	0x01B2	Treasure	Treasure	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	treasure_00
+434	0x01B2	Treasure	Treasure	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	2	treasure_00, treasure_01
+434	0x01B2	Treasure	Treasure	wdl_a01	wdl_a01	345	Galtea Downs	Dalmasca Westersand	8	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07
+434	0x01B2	Treasure	Treasure	wdl_a02	wdl_a02	346	Corridor of Sand	Dalmasca Westersand	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	wdl_a03	wdl_a03	347	Shimmering Horizons	Dalmasca Westersand	11	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08, treasure_09, treasure_10
+434	0x01B2	Treasure	Treasure	wdl_a04	wdl_a04	348	The Midfault	Dalmasca Westersand	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	wdl_a05	wdl_a05	349	Windtrace Dunes	Dalmasca Westersand	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	ztc_a01	ztc_a01	576	Invitation to Heresy	Zertinan Caverns	9	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06, treasure_07, treasure_08
+434	0x01B2	Treasure	Treasure	ztc_a02	ztc_a02	577	Sandfalls	Zertinan Caverns	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	ztc_a03	ztc_a03	578	Hourglass Basin	Zertinan Caverns	4	treasure_00, treasure_01, treasure_02, treasure_03
+434	0x01B2	Treasure	Treasure	ztc_b01	ztc_b01	581	The Undershore	Zertinan Caverns	5	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04
+434	0x01B2	Treasure	Treasure	ztc_b02	ztc_b02	582	Halls of Ardent Darkness	Zertinan Caverns	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	ztc_c01	ztc_c01	585	The Balamka Fault	Zertinan Caverns	7	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05, treasure_06
+434	0x01B2	Treasure	Treasure	ztc_c02	ztc_c02	586	Drybeam Cavern	Zertinan Caverns	6	treasure_00, treasure_01, treasure_02, treasure_03, treasure_04, treasure_05
+434	0x01B2	Treasure	Treasure	ztc_c03	ztc_c03	587	Darkened Wharf	Zertinan Caverns	3	treasure_00, treasure_01, treasure_02
+434	0x01B2	Treasure	Treasure	ztc_c04	ztc_c04	588	Canopy of Clay	Zertinan Caverns	1	treasure_00
+435	0x01B3	Rabanastre Crystal	Rabanastre Crystal	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	system_crystal_actor
+436	0x01B4	Nalbina Crystal	Nalbina Crystal	nac_a01	nac_a01	630	West Barbican	Nalbina Town	1	system_crystal_actor
+437	0x01B5	Barheim Crystal	Barheim Crystal	mic_b06	mic_b06	66	North-South Junction	Barheim Passage	1	system_crystal_actor
+438	0x01B6	Estersand Crystal	Estersand Crystal	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	system_crystal_actor
+439	0x01B7	Westersand Crystal	Westersand Crystal	wdl_a06	wdl_a06	350	The Western Divide	Dalmasca Westersand	1	system_crystal_actor
+440	0x01B8	Bhujerba Crystal	Bhujerba Crystal	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	system_crystal_actor
+441	0x01B9	Lhusu Crystal	Lhusu Crystal	lus_a04	lus_a04	360	Transitway 2	Lhusu Mines	1	system_crystal_actor
+442	0x01BA	Yensa Crystal	Yensa Crystal	ene_a08	ene_a08	386	Yensa Border Tunnel	Ogir-Yensa Sandsea	1	system_crystal_actor
+443	0x01BB	Tomb Crystal	Tomb Crystal	rwg_a01	rwg_a01	403	Valley of the Dead	The Tomb of Raithwall	1	system_crystal_actor
+444	0x01BC	Mosphoran Crystal	Mosphoran Crystal	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	system_crystal_actor
+445	0x01BD	Salika Crystal	Salika Crystal	frs_b01	frs_b01	157	Quietened Trace	The Salikawood	1	system_crystal_actor
+446	0x01BE	Nabreus Crystal	Nabreus Crystal	bog_b02	bog_b02	176	Succor Midst Sorrow	Nabreus Deadlands	1	system_crystal_actor
+447	0x01BF	Jahara Crystal	Jahara Crystal	glf_a01	glf_a01	751	Banks of the Sogoht	Jahara	1	system_crystal_actor
+448	0x01C0	Henne Crystal	Henne Crystal	hne_a07	hne_a07	718	Staging Shaft	Henne Mines	1	system_crystal_actor
+449	0x01C1	Golmore Crystal	Golmore Crystal	gol_a04	gol_a04	450	The Parting Glade	Golmore Jungle	1	system_crystal_actor
+450	0x01C2	Eruyt Crystal	Eruyt Crystal	vic_a03	vic_a03	768	Road of Verdant Praise	Eruyt Village	1	system_crystal_actor
+451	0x01C3	Giruvegan Crystal	Giruvegan Crystal	gil_a01	gil_a01	686	Gate of Earth	Giruvegan	1	system_crystal_actor
+452	0x01C4	Bur-Omisace Crystal	Bur-Omisace Crystal	bul_b02	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	1	system_crystal_actor
+453	0x01C5	Miriam Crystal	Miriam Crystal	mrm_a02	mrm_a02	594	Walk of Mind	Stilshrine of Miriam	1	system_crystal_actor
+454	0x01C6	Phon Crystal	Phon Crystal	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	system_crystal_actor
+455	0x01C7	Tchita Crystal	Tchita Crystal	pla_a06	pla_a06	142	The Chosen Path	Tchita Uplands	1	system_crystal_actor
+456	0x01C8	Sochen Crystal	Sochen Crystal	rui_a05	rui_a05	188	Skybent Chamber	Sochen Cave Palace	1	system_crystal_actor
+457	0x01C9	Archades Crystal	Archades Crystal	alc_c01	alc_c01	756	Tsenoble	Archades	1	system_crystal_actor
+458	0x01CA	Balfonheim Crystal	Balfonheim Crystal	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	system_crystal_actor
+459	0x01CB	Ridorana Crystal	Ridorana Crystal	rbl_a01	rbl_a01	1101	The Wellspring	Pharos - First Ascent	1	system_crystal_actor
+468	0x01D4	Urn	Urn	bog_a03	bog_a03	169	Vale of Lingering Sorrow	Nabreus Deadlands	1	死都ナブディス地図
+468	0x01D4	Urn	Urn	ene_a01	ene_a01	379	Platform 1 - East Tanks	Ogir-Yensa Sandsea	2	東エンサ地図ゲット宝壺, 西エンサ地図ゲット宝壺
+468	0x01D4	Urn	Urn	frs_a02	frs_a02	152	Trunkwall Road	The Salikawood	1	サリカ樹林地図
+468	0x01D4	Urn	Urn	gol_a01	gol_a01	447	Paths of Chained Light	Golmore Jungle	1	ロケ地図
+468	0x01D4	Urn	Urn	grm_a06	grm_a06	316	East Waterway Control	Garamsythe Waterway	1	ガラムサイズ地図宝壺
+468	0x01D4	Urn	Urn	grm_e03	grm_e03	840	East Sluice Control	Garamsythe Waterway	1	ガラムキャンドル宝壺
+468	0x01D4	Urn	Urn	hne_a03	hne_a03	714	Phase 1 Shaft	Henne Mines	1	ヘネ地図宝壺
+468	0x01D4	Urn	Urn	hne_c01	hne_c01	725	Phase 2 Dig	Henne Mines	1	ヘネキャンドル宝壺
+468	0x01D4	Urn	Urn	lus_f02	lus_f02	902	Site 5	Lhusu Mines	1	ルースキャンドル宝壺
+468	0x01D4	Urn	Urn	mfr_a02	mfr_a02	540	Walk of Stolen Truths	The Feywood	1	ロケ地図
+468	0x01D4	Urn	Urn	mfr_c01	mfr_c01	548	White Magick's Embrace	The Feywood	1	ロケ地図
+468	0x01D4	Urn	Urn	mic_a02	mic_a02	54	Great Eastern Passage	Barheim Passage	1	バルハイム地図宝壷
+468	0x01D4	Urn	Urn	mic_e02	mic_e02	892	The Zeviah Span	Barheim Passage	1	バルハイムキャンドル
+468	0x01D4	Urn	Urn	mrm_c01	mrm_c01	603	Ward of Steel	Stilshrine of Miriam	1	ロケ地図
+468	0x01D4	Urn	Urn	rbl_b01	rbl_b01	1111	Wellspring Labyrinth	Pharos - First Ascent	1	大灯台下層地図
+468	0x01D4	Urn	Urn	rbl_l01	rbl_l01	1136	Station of Suffering	Pharos - Second Ascent	1	大灯台中層地図
+468	0x01D4	Urn	Urn	rbl_n01	rbl_n01	1140	Spire Ravel - 1st Flight	Pharos - Third Ascent	1	大灯台上層地図
+468	0x01D4	Urn	Urn	rrp_a01	rrp_a01	567	Cellar Stores	Royal Palace	1	ラ王宮地図宝壺
+468	0x01D4	Urn	Urn	rsn_y01	rsn_y01	876	Brig No. 1	Dreadnought Leviathan	1	コンパネキー宝壺
+468	0x01D4	Urn	Urn	rui_a02	rui_a02	185	Mirror of the Soul	Sochen Cave Palace	1	ソーヘン地下宮殿地図
+468	0x01D4	Urn	Urn	rwf_d01	rwf_d01	898	Colosseum	Ridorana Cataract	1	大瀑布地図宝壺
+468	0x01D4	Urn	Urn	rwg_c01	rwg_c01	410	Royal Passage	The Tomb of Raithwall	1	レイス王墓地図宝壺
+468	0x01D4	Urn	Urn	sav_g01	sav_g01	270	Tracks of the Beast	Giza Plains	1	コカトーク宝壺
+468	0x01D4	Urn	Urn	ztc_c01	ztc_c01	585	The Balamka Fault	Zertinan Caverns	1	ゼルテニアン地図宝壺
+469	0x01D5	Save Crystal	Save Crystal	alc_e01	alc_e01	794	Aerodrome	Archades	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	bhm_a04	bhm_a04	777	Antechamber	Sky Fortress Bahamut	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	bog_a02	bog_a02	168	The Muted Scarp	Nabreus Deadlands	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	byu_a04	byu_a04	806	Lhusu Square	Bhujerba	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	dor_c12	dor_c12	1047	70th Floor	Draklor Laboratory	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	dor_d06	dor_d06	1059	Rm 6704 East	Draklor Laboratory	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	dst_a05	dst_a05	231	Passage Entrance	Dalmasca Estersand	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	enw_a05	enw_a05	394	The Sandscale Bank	Nam-Yensa Sandsea	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	fon_a06	fon_a06	483	Kaukula Pass	Phon Coast	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	fon_c04	fon_c04	494	Rava's Pass	Phon Coast	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	frs_a06	frs_a06	156	Path of Hours	The Salikawood	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	gil_c01	gil_c01	694	The Haalmikah Water-Steps	Giruvegan	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	gil_g10	gil_g10	341	Crystal Core	The Great Crystal	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	gil_l02	gil_l02	1003	Kanbhru Pis	The Great Crystal	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	grm_a01	grm_a01	311	Central Spur Stairs	Garamsythe Waterway	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	grm_a04	grm_a04	314	East Spur Stairs	Garamsythe Waterway	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	grm_b02	grm_b02	319	East Sluice Control	Garamsythe Waterway	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	grm_b05	grm_b05	322	Central Waterway Control	Garamsythe Waterway	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	grm_e03	grm_e03	840	East Sluice Control	Garamsythe Waterway	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	grm_e13	grm_e13	850	Central Waterway Control	Garamsythe Waterway	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	lus_f05	lus_f05	905	Staging Area	Lhusu Mines	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	mfr_a04	mfr_a04	542	Antiquity's End	The Feywood	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	mic_a01	mic_a01	53	The Lightworks	Barheim Passage	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	mic_c02	mic_c02	70	Terminus No. 4 Adjunct	Barheim Passage	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	mic_e04	mic_e04	894	Terminus No. 7 Adjunct	Barheim Passage	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	mrm_d03	mrm_d03	608	Walk of Revelation	Stilshrine of Miriam	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	naf_b02	naf_b02	280	Upper Apartments	Nalbina Fortress	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	nal_a01	nal_a01	48	Stockade	Nalbina Dungeons	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	nal_c02	nal_c02	710	The Confiscatory	Nalbina Dungeons	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	ozm_b04	ozm_b04	533	Sunlit Path	Ozmone Plain	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	pbc_a01	pbc_a01	463	Fading Vale	Paramina Rift	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	pbc_c01	pbc_c01	473	Path of the Firstfall	Paramina Rift	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	pla_a05	pla_a05	141	The Shaded Path	Tchita Uplands	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	pla_b06	pla_b06	149	The Nameless Spring	Tchita Uplands	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rbl_a02	rbl_a02	1102	Horizon's Break	Pharos - First Ascent	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rbl_a03	rbl_a03	1103	The Reach	Pharos - Second Ascent	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rbl_a04	rbl_a04	1104	Reach of the Damned	Pharos - Second Ascent	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rbl_a05	rbl_a05	1105	Reach of the Occult	Pharos - Second Ascent	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rbl_q01	rbl_q01	1143	Empyrean Ravel	Pharos - Third Ascent	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rrp_a01	rrp_a01	567	Cellar Stores	Royal Palace	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rsn_a01	rsn_a01	552	Port Launch	Dreadnought Leviathan	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rsn_y01	rsn_y01	876	Brig No. 1	Dreadnought Leviathan	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rui_a03	rui_a03	186	The Acolyte's Burden	Sochen Cave Palace	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rwf_a01	rwf_a01	509	Footfalls of the Past	Ridorana Cataract	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	rwf_b02	rwf_b02	518	Path of Hidden Blessing	Ridorana Cataract	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	sav_b01	sav_b01	243	Nomad Village	Giza Plains	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	sav_c02	sav_c02	248	Crystal Glade	Giza Plains	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	sav_e01	sav_e01	260	Nomad Village	Giza Plains	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	sav_f02	sav_f02	265	Crystal Glade	Giza Plains	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	srb_a04	srb_a04	500	Journey's Rest	Cerobi Steppe	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	system_crystal_actor
+469	0x01D5	Save Crystal	Save Crystal	ztc_b01	ztc_b01	581	The Undershore	Zertinan Caverns	1	system_crystal_actor
+470	0x01D6	Al-Cid	Al-Cid	bul_a01	bul_a01	736	Hall of the Light	Mt Bur-Omisace	1	NPC01
+474	0x01DA	Kiltias	Kiltias	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	NPC01
+474	0x01DA	Kiltias	Kiltias	bul_b02	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	1	NPC01
+474	0x01DA	Kiltias	Kiltias	mrm_a02	mrm_a02	594	Walk of Mind	Stilshrine of Miriam	2	NPC_キルティア教徒・扉右, NPC_キルティア教徒・銅像
+474	0x01DA	Kiltias	Kiltias	pbc_a01	pbc_a01	463	Fading Vale	Paramina Rift	2	キルティア教徒01, キルティア教徒02
+475	0x01DB	Wounded Kiltias	Wounded Kiltias	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	NPC01
+475	0x01DB	Wounded Kiltias	Wounded Kiltias	bul_b02	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	1	NPC01
+475	0x01DB	Wounded Kiltias	Wounded Kiltias	pbc_c01	pbc_c01	473	Path of the Firstfall	Paramina Rift	1	チョッパー教徒
+476	0x01DC	Ieeha	Ieeha	bul_b01	bul_b01	741	Temple Approach	Mt Bur-Omisace	1	NPC01
+477	0x01DD	Cartographers' Guild	Cartographers' Guild	bul_b02	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	1	NPC01
+478	0x01DE	Acolyte	Acolyte	bog_a02	bog_a02	168	The Muted Scarp	Nabreus Deadlands	2	ンモウ右, ンモウ左
+478	0x01DE	Acolyte	Acolyte	bog_b04	bog_b04	178	Overlooking Eternity	Nabreus Deadlands	3	マクレイオ, ンモウ右, ンモウ左
+478	0x01DE	Acolyte	Acolyte	bul_a01	bul_a01	736	Hall of the Light	Mt Bur-Omisace	1	NPC01
+478	0x01DE	Acolyte	Acolyte	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	NPC01
+478	0x01DE	Acolyte	Acolyte	pbc_c01	pbc_c01	473	Path of the Firstfall	Paramina Rift	1	キルティア教徒01
+479	0x01DF	Refugee	Refugee	bul_b01	bul_b01	741	Temple Approach	Mt Bur-Omisace	1	NPC01
+479	0x01DF	Refugee	Refugee	bul_b02	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	1	NPC01
+479	0x01DF	Refugee	Refugee	pbc_a01	pbc_a01	463	Fading Vale	Paramina Rift	3	難民01, 難民02, 難民03
+479	0x01DF	Refugee	Refugee	pbc_c01	pbc_c01	473	Path of the Firstfall	Paramina Rift	1	難民01
+480	0x01E0	Wounded Refugee	Wounded Refugee	bul_b01	bul_b01	741	Temple Approach	Mt Bur-Omisace	1	NPC01
+482	0x01E2	Relj	Relj	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	NPC01
+482	0x01E2	Relj	Relj	bul_b01	bul_b01	741	Temple Approach	Mt Bur-Omisace	1	NPC01
+484	0x01E4	Huntmaster	Huntmaster	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	バンガ16
+485	0x01E5	Game Hunter	Game Hunter	fon_a02	fon_a02	479	Pora-Pora Sands	Phon Coast	1	バンガ
+485	0x01E5	Game Hunter	Game Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	16	FON_HUNTER_バンガ01, FON_HUNTER_バンガ03, FON_HUNTER_バンガ04, FON_HUNTER_バンガ06, FON_HUNTER_バンガ07, FON_HUNTER_バンガ08, アルケに行きたいバンガ03, シーク01, シーク02, シーク04, 二級男04, 二級男06, 二級男07, 二級男08, 二級男12, 二級男14
+485	0x01E5	Game Hunter	Game Hunter	ozm_b04	ozm_b04	533	Sunlit Path	Ozmone Plain	3	バンガ, ヒュム, ヒュム02
+485	0x01E5	Game Hunter	Game Hunter	pla_a05	pla_a05	141	The Shaded Path	Tchita Uplands	1	旅人
+486	0x01E6	Atak	Atak	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	バンガ05
+487	0x01E7	Blok	Blok	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	バンガ13
+488	0x01E8	Stok	Stok	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	バンガ15
+489	0x01E9	Aspiring Writer	Aspiring Writer	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男02
+491	0x01EB	Phon Camper	Phon Camper	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	FON_HUNTER_バンガ02
+492	0x01EC	The Man Who Fell	Fallen Bhujerban	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男03
+493	0x01ED	Cartographers' Guild	Cartographers' Guild	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	地図屋
+508	0x01FC	Salve-apprentice	Alja	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	アリーシャ１３Ｔ
+509	0x01FD	Warder-swordmaiden	Kjrs	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	カリス３１Ｔ
+510	0x01FE	Salve-maker	Hala	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	薬師ハールラ０２Ｔ
+511	0x01FF	Mjrn	Mjrn	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	妹ミュリン０１Ｔ
+512	0x0200	Viera Maiden	Nera	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	ネフィーリア２４Ｔ
+513	0x0201	Warder-chief	Rael	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	ラエル３０Ｔ
+514	0x0202	Warder-apprentice	Rena	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	レティーナ４０Ｔ
+515	0x0203	Jote	Jote	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	姉ヨーテ００Ｔ
+516	0x0204	Wood-dweller	Wood-dweller	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	森ヴィエラ０４Ｔ
+517	0x0205	Wood-dweller	Wood-dweller	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	森ヴィエラ０６Ｔ
+518	0x0206	Wood-dweller	Wood-dweller	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	森ヴィエラ０９Ｔ
+519	0x0207	Wood-dweller	Wood-dweller	vic_a01	vic_a01	766	Fane of the Path	Eruyt Village	1	森ヴィエラ１１Ｔ
+523	0x020B	Wood-dweller	Wood-dweller	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	森ヴィエラ１２Ｔ
+524	0x020C	Wood-warder	Wood-warder	gol_a04	gol_a04	450	The Parting Glade	Golmore Jungle	2	NPC_防人ヴィエラ1, NPC_防人ヴィエラ2
+524	0x020C	Wood-warder	Wood-warder	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	防人ヴィエラ１３Ｔ
+525	0x020D	Wood-dweller	Wood-dweller	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	森ヴィエラ２０Ｔ
+526	0x020E	Wood-dweller	Wood-dweller	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	森ヴィエラ２１Ｔ
+527	0x020F	Wood-dweller	Wood-dweller	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	森ヴィエラ２３Ｔ
+528	0x0210	Wood-dweller	Wood-dweller	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	森ヴィエラ０３Ｔ
+529	0x0211	Wood-warder	Wood-warder	vic_a02	vic_a02	767	The Spiritwood	Eruyt Village	1	防人ヴィエラ４１Ｔ
+551	0x0227	Roamantics	Roamantics	asp_a01	asp_a01	124	Observation Parlour	Skyferry	4	ナルビ_通常_NPC05, ナルビ_通常_NPC06, ナルビ_通常_NPC07, ナルビ_通常_NPC09
+552	0x0228	Saloon Steward	Saloon Steward	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	マスター
+553	0x0229	Deck Swab	Deck Swab	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	ビュエ_多_NPC02
+553	0x0229	Deck Swab	Deck Swab	asp_a03	asp_a03	126	Air Deck	Skyferry	1	ビュエ_通常_NPC02
+554	0x022A	Chief Steward	Chief Steward	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	インフォメーション
+555	0x022B	Storekeeper	Storekeeper	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ビュエ_多_NPC01
+555	0x022B	Storekeeper	Storekeeper	asp_a03	asp_a03	126	Air Deck	Skyferry	1	ビュエ_通常_NPC03
+556	0x022C	Traveling Merchant	Traveling Merchant	asp_a02	asp_a02	125	Sky Saloon	Skyferry	2	ナルビ_通常_NPC02, ビュエ_通常_NPC02
+558	0x022E	Imperial	Imperial	asp_a01	asp_a01	124	Observation Parlour	Skyferry	5	アルケ_通常_NPC03, バトル時帝国軍人A, バトル時帝国軍人B, バーフ_通常_NPC11, ビュエ_多_NPC03
+558	0x022E	Imperial	Imperial	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	バトル時監視官A
+558	0x022E	Imperial	Imperial	asp_a03	asp_a03	126	Air Deck	Skyferry	2	ビュエ_通常_NPC05, ラバナ_通常_NPC12
+559	0x022F	Steward	Steward	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	下船説明おねえさん
+559	0x022F	Steward	Steward	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ドアガール
+560	0x0230	Traveler	Traveler	asp_a01	asp_a01	124	Observation Parlour	Skyferry	5	アルケ_多_NPC06, アルケ_多_NPC07, ナルビ_多_NPC01, ビュエ_多_NPC05, ラバナ_通常_NPC01
+560	0x0230	Traveler	Traveler	asp_a02	asp_a02	125	Sky Saloon	Skyferry	4	バーフ_多_NPC01, バーフ_通常_NPC04, ビュエ_通常_NPC06, ラバナ_多_NPC04
+560	0x0230	Traveler	Traveler	asp_a03	asp_a03	126	Air Deck	Skyferry	4	アルケ_通常_NPC13, バーフ_通常_NPC02, ビュエ_通常_NPC07, ラバナ_通常_NPC08
+561	0x0231	Suspicious Bangaa	Suspicious Bangaa	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	アルケ_多_NPC01
+561	0x0231	Suspicious Bangaa	Suspicious Bangaa	asp_a03	asp_a03	126	Air Deck	Skyferry	1	アルケ_通常_NPC02
+562	0x0232	Clumsy Bangaa	Clumsy Bangaa	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	ビュエ_通常_NPC04
+563	0x0233	Migrant Laborer	Migrant Laborer	asp_a02	asp_a02	125	Sky Saloon	Skyferry	2	ナルビ_通常_NPC03, ラバナ_通常_NPC02
+563	0x0233	Migrant Laborer	Migrant Laborer	asp_a03	asp_a03	126	Air Deck	Skyferry	2	ナルビ_通常_NPC07, ナルビ_通常_NPC13
+564	0x0234	Boonswaggled Bookkeeper	Boonswaggled Bookkeeper	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	ナルビ_多_NPC02
+564	0x0234	Boonswaggled Bookkeeper	Boonswaggled Bookkeeper	asp_a03	asp_a03	126	Air Deck	Skyferry	1	ナルビ_通常_NPC10
+565	0x0235	Machinist	Machinist	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	ビュエ_通常_NPC03
+565	0x0235	Machinist	Machinist	asp_a03	asp_a03	126	Air Deck	Skyferry	2	バーフ_通常_NPC10, ビュエ_通常_NPC06
+566	0x0236	Machinist's Apprentice	Machinist's Apprentice	asp_a03	asp_a03	126	Air Deck	Skyferry	1	バーフ_通常_NPC01
+567	0x0237	Stately Gentleman	Stately Gentleman	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	アルケ_通常_NPC02
+568	0x0238	Wayward Seeq	Wayward Seeq	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ナルビ_多_NPC05
+568	0x0238	Wayward Seeq	Wayward Seeq	asp_a03	asp_a03	126	Air Deck	Skyferry	1	ナルビ_通常_NPC09
+569	0x0239	Energetic Boy	Energetic Boy	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	ラバナ_通常_NPC05
+570	0x023A	Loving Man	Loving Man	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	アルケ_通常_NPC04
+571	0x023B	Innocent Girl	Innocent Girl	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ラバナ_多_NPC01
+571	0x023B	Innocent Girl	Innocent Girl	asp_a03	asp_a03	126	Air Deck	Skyferry	1	ラバナ_通常_NPC01
+572	0x023C	Impudent Boy	Impudent Boy	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	アルケ_通常_NPC02
+573	0x023D	Troubled Passenger	Troubled Passenger	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	アルケ_通常_NPC01
+573	0x023D	Troubled Passenger	Troubled Passenger	asp_a03	asp_a03	126	Air Deck	Skyferry	2	ナルビ_通常_NPC04, ラバナ_通常_NPC02
+574	0x023E	Paranoid Man	Paranoid Man	asp_a03	asp_a03	126	Air Deck	Skyferry	1	ラバナ_通常_NPC03
+575	0x023F	Lovelorn Seeq	Lovelorn Seeq	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	バーフ_通常_NPC03
+576	0x0240	Bohemian	Bohemian	asp_a03	asp_a03	126	Air Deck	Skyferry	1	バーフ_通常_NPC08
+577	0x0241	Fine Chocobo	Fine Chocobo	asp_a03	asp_a03	126	Air Deck	Skyferry	1	バーフ_通常_NPC11
+577	0x0241	Fine Chocobo	Fine Chocobo	enw_b02	enw_b02	399	Trail of Fading Warmth	Nam-Yensa Sandsea	2	NPC_チョコボ雄, NPC_チョコボ雌
+577	0x0241	Fine Chocobo	Fine Chocobo	rwg_a01	rwg_a01	403	Valley of the Dead	The Tomb of Raithwall	3	NPC_チョコボ1, NPC_チョコボ2, NPC_海賊の妻
+577	0x0241	Fine Chocobo	Fine Chocobo	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	8	NPC_CHOCOBO_1, NPC_CHOCOBO_2, NPC_CHOCOBO_3, NPC_CHOCOBO_4, NPC_CHOCOBO_5, NPC_COCATRICE, NPC_チョコボ雄, NPC_チョコボ雌
+578	0x0242	Charming Woman	Charming Woman	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ラバナ_通常_NPC01
+579	0x0243	Mischievous Boy	Mischievous Boy	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ビュエ_通常_NPC01
+580	0x0244	Perceptive Boy	Perceptive Boy	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	ラバナ_通常_NPC07
+580	0x0244	Perceptive Boy	Perceptive Boy	asp_a03	asp_a03	126	Air Deck	Skyferry	1	アルケ_通常_NPC07
+581	0x0245	Man of Renown	Man of Renown	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	アルケ_多_NPC03
+581	0x0245	Man of Renown	Man of Renown	asp_a03	asp_a03	126	Air Deck	Skyferry	1	アルケ_通常_NPC05
+582	0x0246	Contrite Thief	Contrite Thief	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	空き巣シーク
+583	0x0247	Rabanastran	Balzac	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	解放軍
+584	0x0248	Cynical Boy	Cynical Boy	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+585	0x0249	Well-spoken Boy	Well-spoken Boy	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+586	0x024A	Impoverished Man	Impoverished Man	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+587	0x024B	Dalmascan Patriot	Dalmascan Patriot	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+588	0x024C	Rabanastran	Rabanastran	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+589	0x024D	Wandering Woman	Wandering Woman	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+590	0x024E	Careful Listener	Careful Listener	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+591	0x024F	Rabanastran	Rabanastran	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+592	0x0250	Rabanastran	Rabanastran	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+593	0x0251	Deadbeat	Deadbeat	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+594	0x0252	Water-watcher	Water-watcher	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+595	0x0253	Rabanastran	Rabanastran	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+596	0x0254	Rabanastran	Northon	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	カッツェ
+596	0x0254	Rabanastran	Northon	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+597	0x0255	Vexed Father	Vexed Father	rbn_a03	rbn_a03	291	East End	Rabanastre	1	VeinMaeActor01
+597	0x0255	Vexed Father	Vexed Father	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+598	0x0256	Kindly Girl	Kindly Girl	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+599	0x0257	Angry Woman	Angry Woman	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+600	0x0258	Laughing Seeq	Laughing Seeq	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+601	0x0259	Watchful Seeq	Watchful Seeq	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+602	0x025A	Furious Bangaa	Furious Bangaa	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+605	0x025D	Rabanastran	Rabanastran	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+606	0x025E	Jolly Seeq	Jolly Seeq	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+607	0x025F	Rabanastran	Samal	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+608	0x0260	Resigned Boy	Resigned Boy	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+609	0x0261	Resolute Boy	Resolute Boy	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+610	0x0262	Awestruck Girl	Awestruck Girl	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+611	0x0263	Somber Woman	Somber Woman	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+612	0x0264	Ex-Adventurer	Ex-Adventurer	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+613	0x0265	Frustrated Man	Frustrated Man	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+614	0x0266	Well-spoken Girl	Well-spoken Girl	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+615	0x0267	Guileless Girl	Guileless Girl	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+616	0x0268	Rabanastran	Rabanastran	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+617	0x0269	Friendly Boy	Friendly Boy	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+618	0x026A	Rabanastran	Rabanastran	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+619	0x026B	Guileful Boy	Guileful Boy	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	NPC01
+621	0x026D	Caring Woman	Milha	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	レイス依頼人
+625	0x0271	Patient Boy	Patient Boy	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	CHILDSET01
+626	0x0272	Rabanastran	Rabanastran	slm_a03	slm_a03	703	Dalan's House	Lowtown	1	SND_BOY_A
+627	0x0273	Refugee	Koqmihn	slm_a03	slm_a03	703	Dalan's House	Lowtown	1	ブルオミ民１
+628	0x0274	Refugee	Refugee	slm_a03	slm_a03	703	Dalan's House	Lowtown	1	ブルオミ民４
+629	0x0275	Fussbudget	Fussbudget	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+629	0x0275	Fussbudget	Fussbudget	slm_a04	slm_a04	704	Residence	Lowtown	1	LITTSSET01
+630	0x0276	Rabanastran	Rabanastran	slm_a03	slm_a03	703	Dalan's House	Lowtown	1	SND_WOMAN_B
+634	0x027A	Demented Merchant	Demented Merchant	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	NPC01
+635	0x027B	Fidget	Fidget	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	LITTSSET01
+635	0x027B	Fidget	Fidget	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	LITTSSET01
+635	0x027B	Fidget	Fidget	slm_a04	slm_a04	704	Residence	Lowtown	1	LITTSSET01
+636	0x027C	Layabout	Layabout	slm_a01	slm_a01	701	North Sprawl	Lowtown	1	LITTSSET01
+636	0x027C	Layabout	Layabout	slm_a02	slm_a02	702	South Sprawl	Lowtown	1	LITTSSET01
+636	0x027C	Layabout	Layabout	slm_a04	slm_a04	704	Residence	Lowtown	1	LITTSSET01
+670	0x029E	Itinerant Hand	Itinerant Hand	nac_a01	nac_a01	630	West Barbican	Nalbina Town	1	NAC_A01_NPC04
+670	0x029E	Itinerant Hand	Itinerant Hand	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	5	NAC_A02_NPC02, NAC_A02_NPC03, NAC_A02_NPC04, NAC_A02_NPC05, NAC_A02_NPC07
+670	0x029E	Itinerant Hand	Itinerant Hand	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	2	NAC_B01_NPC02, NAC_B01_NPC04
+671	0x029F	Homebound Man	Homebound Man	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	NAC_B01_NPC05
+673	0x02A1	Jovy	Jovy	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	1	ジョニー
+673	0x02A1	Jovy	Jovy	nac_a03	nac_a03	632	West Ward	Nalbina Town	2	ジョニー, ジョニー２号
+673	0x02A1	Jovy	Jovy	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	ジョニー
+674	0x02A2	Sharp-eyed Man	Sharp-eyed Man	nac_a03	nac_a03	632	West Ward	Nalbina Town	1	NAC_A03_NPC05
+675	0x02A3	Nalbinite	Nalbinite	nac_a01	nac_a01	630	West Barbican	Nalbina Town	1	NAC_A01_NPC03
+675	0x02A3	Nalbinite	Nalbinite	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	1	NAC_A02_NPC06
+676	0x02A4	Merchant	Merchant	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	2	NAC_A02_NPC01, 依頼人ポポル
+676	0x02A4	Merchant	Merchant	nac_a03	nac_a03	632	West Ward	Nalbina Town	1	NAC_A03_NPC06
+684	0x02AC	Morning Star Gambits	Morning Star Gambits	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	1	NAC_A02_SHOP_NPC01
+686	0x02AE	Shy Bangaa	Shy Bangaa	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	NAC_B01_NPC03
+687	0x02AF	Imperial	Imperial	nac_a03	nac_a03	632	West Ward	Nalbina Town	3	NAC_A03_NPC03, NAC_A03_NPC04, マップ帝国君移植版
+687	0x02AF	Imperial	Imperial	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	2	NAC_B01_NPC01, マップ帝国君移植版
+688	0x02B0	Imperial?	Imperial?	nac_a03	nac_a03	632	West Ward	Nalbina Town	1	NAC_A03_NPC07
+690	0x02B2	Barrong	Barrong	nac_a03	nac_a03	632	West Ward	Nalbina Town	1	依頼人バロング
+691	0x02B3	Morgen	Morgen	nac_a03	nac_a03	632	West Ward	Nalbina Town	1	依頼人モルガン
+692	0x02B4	Popol	Popol	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	1	依頼人ポポル
+693	0x02B5	Zammadria	Zammadria	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	依頼人ザマドリア
+694	0x02B6	Imperial	Imperial	alc_a01	alc_a01	635	Grand Arcade	Archades	4	NPC_RAMBLER_07, NPC_SOLDIER_A, NPC_SOLDIER_B, NPC_SOLDIER_C
+694	0x02B6	Imperial	Imperial	alc_b04	alc_b04	641	Trant	Archades	1	NPC_SOLDIER_A
+694	0x02B6	Imperial	Imperial	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_エレベーター帝国兵
+694	0x02B6	Imperial	Imperial	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	2	NPC_SOLDIER_A, NPC_SOLDIER_B
+694	0x02B6	Imperial	Imperial	ozm_b04	ozm_b04	533	Sunlit Path	Ozmone Plain	3	帝国兵01, 帝国兵01_before, 帝国兵02
+694	0x02B6	Imperial	Imperial	ozm_c01	ozm_c01	536	The Shred	Ozmone Plain	3	帝国兵01, 帝国兵02, 水先案内人
+694	0x02B6	Imperial	Imperial	rrp_a02	rrp_a02	568	Cellars	Royal Palace	2	帝国兵01, 帝国兵02
+694	0x02B6	Imperial	Imperial	rrp_a03	rrp_a03	569	Lower Halls	Royal Palace	14	帝国兵01, 帝国兵02, 帝国兵03, 帝国兵04, 帝国兵05, 帝国兵06, 帝国兵07, 帝国兵08, 駒01, 駒02, 駒02_01, 駒02_02, 駒03, 駒03_01
+695	0x02B7	Lulucce	Lulucce	rsn_y01	rsn_y01	876	Brig No. 1	Dreadnought Leviathan	1	ルルチェ
+695	0x02B7	Lulucce	Lulucce	vic_a03	vic_a03	768	Road of Verdant Praise	Eruyt Village	1	０２ルルチェ
+699	0x02BB	Archadian	Archadian	alc_a01	alc_a01	635	Grand Arcade	Archades	9	NPC_LABO_2, NPC_LABO_3, NPC_LABO_4, NPC_RAMBLER_02b, NPC_RAMBLER_03, NPC_RAMBLER_06, NPC_RAMBLER_08, NPC_RAMBLER_09, NPC_RAMBLER_10
+699	0x02BB	Archadian	Archadian	alc_a02	alc_a02	636	Highgarden Terrace	Archades	4	NPC_HUNTLOOP_B, NPC_HUNTLOOP_C, NPC_HUNTLOOP_D, NPC_MABUSHI
+700	0x02BC	Archadian	Archadian	alc_b04	alc_b04	641	Trant	Archades	2	NPC_BAL, NPC_VAN
+700	0x02BC	Archadian	Archadian	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_BAL
+700	0x02BC	Archadian	Archadian	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_BAL
+700	0x02BC	Archadian	Archadian	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC_RAMBLER_B
+700	0x02BC	Archadian	Archadian	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC_VAN
+701	0x02BD	Ivaness	Ivaness	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	NPC01
+702	0x02BE	Hymms	Hymms	bul_b02	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	1	クエ教徒
+704	0x02C0	Elza	Elza	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC_PIRATE_1
+706	0x02C2	Horne	Horne	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	モグシー
+712	0x02C8	Hurdy	Hurdy	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	モグシー
+713	0x02C9	July	July	nac_a01	nac_a01	630	West Barbican	Nalbina Town	1	ジュリー
+715	0x02CB	Ma'kenroh	Ma'kenroh	rbn_a14	rbn_a14	302	The Clan Hall	Rabanastre	1	マッケンロウ
+716	0x02CC	Moogling Attendant	Moogling Attendant	rbn_a02	rbn_a02	290	Muthru Bazaar	Rabanastre	1	モグシー
+716	0x02CC	Moogling Attendant	Moogling Attendant	rbn_a03	rbn_a03	291	East End	Rabanastre	1	モグシー
+716	0x02CC	Moogling Attendant	Moogling Attendant	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	モグシーズ０１
+716	0x02CC	Moogling Attendant	Moogling Attendant	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	モグシーズ０１
+716	0x02CC	Moogling Attendant	Moogling Attendant	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	モグシーズ０１
+717	0x02CD	Montblanc	Montblanc	rbn_a14	rbn_a14	302	The Clan Hall	Rabanastre	1	モンブラン
+720	0x02D0	Nono	Nono	alc_e01	alc_e01	794	Aerodrome	Archades	1	ノノ
+720	0x02D0	Nono	Nono	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	ノノ
+720	0x02D0	Nono	Nono	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	ノノ
+720	0x02D0	Nono	Nono	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	ノノ
+720	0x02D0	Nono	Nono	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	ノノ
+720	0x02D0	Nono	Nono	wdl_a06	wdl_a06	350	The Western Divide	Dalmasca Westersand	1	のの
+725	0x02D5	Rimzat	Rimzat	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	通行止めバンガ・リムザット
+725	0x02D5	Rimzat	Rimzat	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	リムザ
+726	0x02D6	Burrogh	Burrogh	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	1	依頼人ブロッホ
+731	0x02DB	Quiet Nu Mou	Ma'kleou	bog_a02	bog_a02	168	The Muted Scarp	Nabreus Deadlands	1	マクレイオ
+732	0x02DC	Roh'kenmou	Roh'kenmou	slm_a03	slm_a03	703	Dalan's House	Lowtown	1	モウ
+734	0x02DE	Yrlon	Yrlon	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+734	0x02DE	Yrlon	Yrlon	byu_a17	byu_a17	819	The Staras Residence	Bhujerba	1	NPC01
+735	0x02DF	Kait	Kait	byu_a17	byu_a17	819	The Staras Residence	Bhujerba	1	NPC01
+735	0x02DF	Kait	Kait	lus_a04	lus_a04	360	Transitway 2	Lhusu Mines	1	カイト_AT
+739	0x02E3	Raz	Raz	tri_r01	tri_r01	1291	Stage 86	Trial Mode	1	ラズ
+739	0x02E3	Raz	Raz	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC_PIRATE_2
+740	0x02E4	Rikken	Rikken	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	2	NPC_NONO, NPC_PIRATE_0
+743	0x02E7	Dilah	Dilah	enw_b02	enw_b02	399	Trail of Fading Warmth	Nam-Yensa Sandsea	1	NPC_海賊女性
+743	0x02E7	Dilah	Dilah	var_a01	var_a01	823	Sea Breeze Lane	Balfonheim Port	1	NPC_海賊女性
+744	0x02E8	Sorbet	Sorbet	rbn_a19	rbn_a19	307	Westgate	Rabanastre	1	モグシー
+745	0x02E9	Desert Merchant	Imabakk	wdl_a06	wdl_a06	350	The Western Divide	Dalmasca Westersand	1	砂漠のバンガ
+749	0x02ED	Palace Servant	Palace Servant	rrp_a02	rrp_a02	568	Cellars	Royal Palace	12	使用シーク01, 使用バンガ01, 使用バンガ02, 使用バンガ03, 使用バンガ04, 男使用人01, 男使用人02, 男使用人03, 男使用人04, 男使用人05, 男使用人06, 男使用人07
+753	0x02F1	Caravaner	Caravaner	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	００きゃらばん男_隊長
+754	0x02F2	Caravaner	Va'Kansa	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	０６ヴァカンサ_緑
+757	0x02F5	Moogle Boss	Moogle Boss	frs_d01	frs_d01	908	Living Chasm	The Salikawood	1	親方
+759	0x02F7	Forest Traveler	Forest Traveler	frs_a06	frs_a06	156	Path of Hours	The Salikawood	1	旅人
+788	0x0314	Anti-Imperialist	Anti-Imperialist	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_09
+789	0x0315	Proper Pirate	Proper Pirate	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_07
+792	0x0318	Dyed-in-the-wool Sky Pirate	Dyed-in-the-wool Sky Pirate	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_12
+793	0x0319	Thoughtful Quayhand	Thoughtful Quayhand	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_05
+796	0x031C	Wild-eyed Pirate	Wild-eyed Pirate	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_04
+797	0x031D	Well-traveled Man	Well-traveled Man	var_a03	var_a03	825	Quayside Court	Balfonheim Port	1	NPC_WEB_02
+803	0x0323	Manse Watch	Manse Watch	var_a04	var_a04	826	Saccio Lane	Balfonheim Port	1	NPC_STOPPER
+854	0x0356	Garif Warrior	Warrior Hsemu	glf_a02	glf_a02	752	Lull of the Land	Jahara	2	ガリフ戦士06, ガリフ戦士06_before
+855	0x0357	Wayward Bangaa	Wayward Bangaa	wdl_a06	wdl_a06	350	The Western Divide	Dalmasca Westersand	1	砂漠のバンガ２
+860	0x035C	Mummer	Mummer	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_大道芸人
+861	0x035D	Archadian Gentry	Proud Mother	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_01
+862	0x035E	Archadian Gentry	Traveling Gentleman	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_02
+863	0x035F	Archadian Ardent	Poor Husband	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_04
+864	0x0360	Archadian Ardent	Ardent Woman	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_07
+865	0x0361	Archadian Gentry	Look-alike	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_42
+866	0x0362	Archadian Ardent	Talented Woman	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_12
+867	0x0363	Archadian Ardent	Man from Giza	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_16
+868	0x0364	Archadian Gentry	Judge's Wife	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_18
+870	0x0366	Archadian Gentry	Family-minded Girl	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_25
+871	0x0367	Archadian Gentry	Tutor	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_30
+872	0x0368	Archadian Gentry	Avid Traveler	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_31
+873	0x0369	Archadian Ardent	Poor Wife	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_33
+874	0x036A	Archadian Ardent	Ardent Man	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_38
+875	0x036B	Archadian Gentry	Look-alike	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_10
+876	0x036C	Archadian Gentry	Akademician	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_44
+877	0x036D	Archadian Gentry	Daughter-in-Law	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_45
+878	0x036E	Archadian Ardent	Would-be Judge	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_49
+880	0x0370	Archadian Gentry	Reminiscing Lady	alc_b03	alc_b03	640	Molberry	Archades	1	NPC_WEB_60
+882	0x0372	Archadian Gentry	Moneyed Gentleman	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_04
+885	0x0375	Archadian Gentry	Smitten Woman	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_12
+886	0x0376	Archadian Gentry	Historian	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_16
+887	0x0377	Archadian Gentry	Music Appreciator	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_18
+888	0x0378	Archadian Gentry	Artisan Architect	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_44
+889	0x0379	Archadian Gentry	Farce-Goer	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_25
+891	0x037B	Archadian Gentry	Boutiquere	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_30
+894	0x037E	Archadian Gentry	Smitten Man	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_36
+895	0x037F	Archadian Gentry	Perceptive Man	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_38
+896	0x0380	Archadian Gentry	Lutenist	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_41
+897	0x0381	Archadian Gentry	Builder	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_21
+898	0x0382	Archadian Gentry	Girl on an Errand	alc_b04	alc_b04	641	Trant	Archades	1	NPC_WEB_45
+899	0x0383	Cab Guide	Cab Guide	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_RAMBLER_11
+899	0x0383	Cab Guide	Cab Guide	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_タクシー受付
+899	0x0383	Cab Guide	Cab Guide	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_タクシー受付
+900	0x0384	Researcher	Determined Researcher	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_02
+901	0x0385	Archadian Gentry	Faded Star	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_04
+902	0x0386	Researcher	Failed Researcher	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_06
+903	0x0387	Archadian Gentry	Worried Husband	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_08
+904	0x0388	Archadian Gentry	Athletic Woman	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_10
+905	0x0389	Archadian Gentry	Gentleman Onlooker	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_12
+906	0x038A	Archadian Gentry	Ex-Researcher	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_13
+907	0x038B	Archadian Gentry	Aspiring Starlet	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_15
+908	0x038C	Archadian Gentry	Senior Researcher	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_20
+909	0x038D	Archadian Gentry	Materialistic Woman	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_22
+910	0x038E	Archadian Gentry	Avid Reader	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_24
+911	0x038F	Archadian Ardent	Eager Crier	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_WEB_26
+912	0x0390	Attendant	Tour Leader	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_01
+913	0x0391	Archadian Gentry	Researcher's Wife	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_05
+914	0x0392	Archadian Gentry	Good Brother	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_06
+915	0x0393	Archadian Ardent	Vegetable Seller	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_10
+916	0x0394	Archadian Gentry	Dangerous Chef	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_12
+917	0x0395	Attendant	Happy Novelist	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_13
+919	0x0397	Archadian Gentry	Romantic Lady	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_17
+920	0x0398	Archadian Gentry	Bhujerban Lady	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_19
+921	0x0399	Archadian Gentry	Lazy Profiteer	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_21
+922	0x039A	Archadian Gentry	Waiting Woman	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_23
+923	0x039B	Archadian Ardent	Greenseller	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_27
+924	0x039C	Archadian Gentry	Philosopher of Cuisine	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_29
+925	0x039D	Archadian Ardent	Tarot Reader	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_31
+927	0x039F	Archadian Gentry	Lucky Man	alc_f02	alc_f02	746	Rienna	Archades	1	NPC_WEB_38
+935	0x03A7	Archadian Gentry	Quiet Woman	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_11
+938	0x03AA	Archadian Gentry	Imperious Man	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_15
+939	0x03AB	Archadian Gentry	Curious Boy	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_08
+942	0x03AE	Archadian Gentry	Haughty Boy	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_23
+943	0x03AF	Imperial	Imperial	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_25
+944	0x03B0	Archadian Gentry	Entrepreneur	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_30
+945	0x03B1	Archadian Gentry	Prideful Boy	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_33
+946	0x03B2	Archadian Gentry	Ruined Woman	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_WEB_36
+947	0x03B3	Archadian Gentry	Three Timer	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_01
+948	0x03B4	Archadian Gentry	Enthusiastic Boy	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_04
+949	0x03B5	Attendant	Attendant	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_08
+950	0x03B6	Archadian Gentry	Seeq-Hater	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_10
+951	0x03B7	Archadian Gentry	Single Gentry	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_12
+952	0x03B8	Imperial	Imperial	alc_e01	alc_e01	794	Aerodrome	Archades	1	NPC_WEB_14
+963	0x03C3	Chopmaster	Chopmaster	alc_b05	alc_b05	642	Charlotte's Magickery	Archades	1	NPC_GUILD
+963	0x03C3	Chopmaster	Chopmaster	alc_b06	alc_b06	643	Bulward's Technicks	Archades	1	NPC_GUILD
+963	0x03C3	Chopmaster	Chopmaster	alc_f03	alc_f03	747	Vint's Armaments	Archades	1	NPC_GUILD
+963	0x03C3	Chopmaster	Chopmaster	alc_f04	alc_f04	748	Granch's Requisites	Archades	1	NPC_GUILD
+963	0x03C3	Chopmaster	Chopmaster	alc_f05	alc_f05	749	Lebleu's Gambits	Archades	1	NPC_GUILD
+966	0x03C6	Bloom of the Outcast	Bloom of the Outcast	enw_a05	enw_a05	394	The Sandscale Bank	Nam-Yensa Sandsea	1	はぐれウルタンの花
+967	0x03C7	Sandsea Moogle	Sandsea Moogle	ene_a07	ene_a07	385	Platform 2 - Refinery	Ogir-Yensa Sandsea	1	NPC_RAMBLER_A
+968	0x03C8	Urutan Outcast	Urutan Outcast	ene_a07	ene_a07	385	Platform 2 - Refinery	Ogir-Yensa Sandsea	1	NPC_RAMBLER_B
+969	0x03C9	Wounded Imperial	Wounded Imperial	hne_a02	hne_a02	713	Pithead Junction A	Henne Mines	1	やられ帝国兵
+970	0x03CA	Waiting Bangaa	Waiting Bangaa	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な人０１
+971	0x03CB	Waiting Bangaa	Waiting Bangaa	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な人０１
+972	0x03CC	Man in Queue	Man in Queue	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な人０１
+973	0x03CD	Man from Queue	Man from Queue	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な人０１
+974	0x03CE	Queue Watch	Queue Watch	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な人０１
+975	0x03CF	Queue Watch	Queue Watch	rbn_a17	rbn_a17	305	Eastgate	Rabanastre	1	行列な人０１
+976	0x03D0	Frightened Child	Frightened Child	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	ラバナ_通常_NPC05
+977	0x03D1	Despondent Man	Despondent Man	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	バーフ_多_NPC03
+978	0x03D2	Stalwart Sky Pirate	Stalwart Sky Pirate	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	バーフ_通常_NPC10
+979	0x03D3	Hawker	Hawker	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男13
+980	0x03D4	Shifty-Eyed Man	Shifty-Eyed Man	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男11
+981	0x03D5	Caravaner	Adair	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	０１アデラ_騎乗
+982	0x03D6	Caravaner	Caravaner	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	１０祠バンガ_黄
+983	0x03D7	Caravaner	Caravaner	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	０７キャラバン男_座り
+984	0x03D8	Determined Traveler	Determined Traveler	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	２１帝都行きダーリン
+985	0x03D9	Concerned Woman	Concerned Woman	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	２２帝都行きハニィ
+986	0x03DA	Scout	Scout	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	３０スカウト_地図屋
+987	0x03DB	Scout	Scout	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	２０スカウトバンガ_赤
+988	0x03DC	Learned Man	Learned Man	mnt_b03	mnt_b03	217	Skyreach Ridge	Mosphoran Highwaste	1	研究員
+988	0x03DC	Learned Man	Learned Man	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	１１研究員or旅ヴィエラ
+989	0x03DD	Viera Wayfarer	Viera Wayfarer	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	1	１１研究員or旅ヴィエラ
+990	0x03DE	Weather Eye	Weather Eye	rbn_a18	rbn_a18	306	Southgate	Rabanastre	1	NPC01
+991	0x03DF	Deeg	Deeg	slm_a04	slm_a04	704	Residence	Lowtown	1	ディグ
+992	0x03E0	Traveler	Traveler	alc_e01	alc_e01	794	Aerodrome	Archades	1	DeathGazeFamily_Papa
+992	0x03E0	Traveler	Traveler	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	DeathGazeFamily_Papa
+992	0x03E0	Traveler	Traveler	nac_b01	nac_b01	800	Aerodrome	Nalbina Town	1	DeathGazeFamily_Papa
+992	0x03E0	Traveler	Traveler	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	DeathGazeFamily_Papa
+992	0x03E0	Traveler	Traveler	var_b01	var_b01	797	Aerodrome	Balfonheim Port	1	DeathGazeFamily_Papa
+993	0x03E1	Craftsmoogle	Craftsmoogle	frs_d01	frs_d01	908	Living Chasm	The Salikawood	1	NPC01
+993	0x03E1	Craftsmoogle	Craftsmoogle	mnt_d01	mnt_d01	1151	Babbling Vale	Mosphoran Highwaste	3	４０サボってたモグ, ４１サボってたモグ, ４２サボってたモグ
+994	0x03E2	Overseer	Overseer	frs_b01	frs_b01	157	Quietened Trace	The Salikawood	1	マネージャー
+995	0x03E3	Bandit Chief	Bandit Chief	dst_a06	dst_a06	232	Murmuring Defile	Dalmasca Estersand	1	ボス
+996	0x03E4	Beachcomber	Ada	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	NPC01
+997	0x03E5	Torrie	Torrie	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	NPC01
+999	0x03E7	Wise Elder	Wise Elder	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	1	NPC01
+1000	0x03E8	Recovering Traveler	Recovering Traveler	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	ボス
+1007	0x03EF	Archadian Vulgar	Broken Man	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_L2
+1008	0x03F0	Archadian Vulgar	Frustrated Woman	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_L1
+1010	0x03F2	Archadian Vulgar	Fallen Man	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_R1
+1011	0x03F3	Archadian Vulgar	Trembling Woman	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_R2
+1012	0x03F4	Archadian Vulgar	Disparaging Woman	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_RAMBLER_B
+1019	0x03FB	Archadian Vulgar	Loiterer	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC_RAMBLER_A
+1035	0x040B	Archadian Vulgar	Indecisive Man	ald_a02	ald_a02	763	Alley of Low Whispers	Old Archades	1	NPC_RAMBLER_C
+1047	0x0417	Streetear	Jules	alc_f01	alc_f01	745	Nilbasse	Archades	1	NPC_JULES
+1047	0x0417	Streetear	Jules	ald_a01	ald_a01	762	Alley of Muted Sighs	Old Archades	1	NPC_JULES
+1048	0x0418	Outfitters	Outfitters	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男11
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	竜の研究家
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	srb_a01	srb_a01	497	Old Elanise Road	Cerobi Steppe	1	竜じいさん
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	srb_a02	srb_a02	498	Crossfield	Cerobi Steppe	1	竜じいさん
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	srb_a03	srb_a03	499	The Terraced Bank	Cerobi Steppe	1	竜じいさん
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	srb_a04	srb_a04	500	Journey's Rest	Cerobi Steppe	1	竜じいさん
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	srb_b01	srb_b01	503	North Liavell Hills	Cerobi Steppe	1	竜じいさん
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	srb_b02	srb_b02	504	South Liavell Hills	Cerobi Steppe	1	竜じいさん
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	srb_b03	srb_b03	505	Feddik River	Cerobi Steppe	1	竜じいさん
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	srb_b04	srb_b04	506	The Northsward	Cerobi Steppe	1	竜じいさん
+1051	0x041B	Docent	Docent	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_エレベーターガール
+1051	0x041B	Docent	Docent	alc_c01	alc_c01	756	Tsenoble	Archades	1	NPC_エレベーターガール
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a04	byu_a04	806	Lhusu Square	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+1052	0x041C	Informed Citydweller	Informed Citydweller	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+1053	0x041D	Informed Sainikah	Informed Sainikah	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+1054	0x041E	Informed Parijanah	Informed Parijanah	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+1055	0x041F	Archadian Gentry	Perfumed Lady	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_RAMBLER_01
+1056	0x0420	Archadian Gentry	Lady of Means	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_RAMBLER_02a
+1057	0x0421	Archadian Gentry	Proper Gentleman	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_RAMBLER_04
+1058	0x0422	Archadian Gentry	Cheeky Child	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_RAMBLER_05
+1059	0x0423	Researcher	Researcher	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_LABO_1
+1060	0x0424	Researcher	Researcher	alc_a01	alc_a01	635	Grand Arcade	Archades	1	NPC_LABO_5
+1068	0x042C	Archadian Gentry	Hunt Club Owner	alc_a02	alc_a02	636	Highgarden Terrace	Archades	1	NPC_HUNTLOOP_A
+1069	0x042D	Stonemason?	Stonemason?	nac_a03	nac_a03	632	West Ward	Nalbina Town	2	NAC_A03_NPC08, NAC_A03_NPC09
+1070	0x042E	Lirschell	Lirschell	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ロクデンナーシ兄弟
+1071	0x042F	Pilgrim	Pilgrim	nac_a02	nac_a02	631	Jajim Bazaar	Nalbina Town	1	NAC_A02_NPC16
+1072	0x0430	Wayward Chocobo	Wayward Chocobo	enw_a05	enw_a05	394	The Sandscale Bank	Nam-Yensa Sandsea	1	野良騎乗チョコボ
+1072	0x0430	Wayward Chocobo	Wayward Chocobo	fon_a07	fon_a07	484	The Hakawea Shore	Phon Coast	1	野良騎乗チョコボ
+1072	0x0430	Wayward Chocobo	Wayward Chocobo	fon_c01	fon_c01	491	Caima Hills	Phon Coast	1	野良騎乗チョコボ
+1072	0x0430	Wayward Chocobo	Wayward Chocobo	mnt_b01	mnt_b01	215	Rays of Ashen Light	Mosphoran Highwaste	1	野良騎乗チョコボ
+1072	0x0430	Wayward Chocobo	Wayward Chocobo	ozm_c01	ozm_c01	536	The Shred	Ozmone Plain	1	野良騎乗チョコボ
+1076	0x0434	Informed Shopkeep	Informed Shopkeep	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+1076	0x0434	Informed Shopkeep	Informed Shopkeep	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+1076	0x0434	Informed Shopkeep	Informed Shopkeep	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+1076	0x0434	Informed Shopkeep	Informed Shopkeep	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+1076	0x0434	Informed Shopkeep	Informed Shopkeep	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+1077	0x0435	Informed Wayfarer	Informed Wayfarer	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+1077	0x0435	Informed Wayfarer	Informed Wayfarer	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+1077	0x0435	Informed Wayfarer	Informed Wayfarer	byu_a15	byu_a15	817	Clio's Technicks	Bhujerba	1	NPC01
+1077	0x0435	Informed Wayfarer	Informed Wayfarer	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+1080	0x0438	High-chief Zayalu	High-chief Zayalu	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ガリフ長老01
+1080	0x0438	High-chief Zayalu	High-chief Zayalu	glf_a03	glf_a03	753	The Elderknoll	Jahara	1	ガリフ長老02
+1081	0x0439	Judge	Judge Hausen	glf_a02	glf_a02	752	Lull of the Land	Jahara	1	ラーサー護衛01
+1082	0x043A	Confused Sky Pirate	Confused Sky Pirate	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	バーフ_通常_NPC10
+1083	0x043B	Excited Bangaa	Excited Bangaa	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	ビュエ_通常_NPC06
+1084	0x043C	Pompous Gentleman	Pompous Gentleman	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	アルケ_多_NPC05
+1084	0x043C	Pompous Gentleman	Pompous Gentleman	asp_a03	asp_a03	126	Air Deck	Skyferry	1	アルケ_通常_NPC12
+1085	0x043D	Pirate's Son	Pirate's Son	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	バーフ_通常_NPC08
+1087	0x043F	Melancholy Father	Melancholy Father	asp_a03	asp_a03	126	Air Deck	Skyferry	1	アルケ_通常_NPC14
+1088	0x0440	Flighty Sky Pirate	Flighty Sky Pirate	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	バーフ_通常_NPC01
+1089	0x0441	Kindly Seeq	Kindly Seeq	asp_a01	asp_a01	124	Observation Parlour	Skyferry	1	バーフ_通常_NPC03
+1090	0x0442	Cartographers' Guild	Cartographers' Guild	glf_a01	glf_a01	751	Banks of the Sogoht	Jahara	1	地図屋
+1091	0x0443	Shady Bangaa	Shady Bangaa	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	バンガ16
+1092	0x0444	Game Hunter	Unmotivated Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	アルケに行きたいバンガ01
+1093	0x0445	Game Hunter	Little Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	FON_HUNTER_モーグリ01
+1094	0x0446	Game Hunter	Neophyte Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男15
+1095	0x0447	Game Hunter	Helpful Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級女02
+1096	0x0448	Game Hunter	Cheery Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級女03
+1097	0x0449	Game Hunter	Proud Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級女05
+1098	0x044A	Game Hunter	Nice Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	シーク06
+1099	0x044B	Game Hunter	Concerned Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級男05
+1100	0x044C	Shady Bangaa	Shady Bangaa	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	バンガ05
+1101	0x044D	Shady Bangaa	Shady Bangaa	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	バンガ13
+1102	0x044E	Shady Bangaa	Shady Bangaa	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	バンガ15
+1103	0x044F	Excitable Fellow	Enthusiastic Streetear	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	情報屋01
+1104	0x0450	Realistic Man	Realistic Man	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	情報屋04
+1105	0x0451	Laid-back Seeq	Laid-back Seeq	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	情報屋02
+1106	0x0452	Well-informed Bangaa	Well-informed Bangaa	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	情報屋03
+1107	0x0453	Bhujerban	Bhujerban	rbn_b01	rbn_b01	788	Aerodrome	Rabanastre	1	NPC01
+1109	0x0455	Miners' Ender	Miners' Ender	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+1110	0x0456	Miners' Ender Kid	Miners' Ender Kid	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+1111	0x0457	Bhujerban Guru	Bhujerban Guru	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+1111	0x0457	Bhujerban Guru	Bhujerban Guru	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+1112	0x0458	Energetic Child	Energetic Child	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	1	NPC01
+1113	0x0459	Bandit Chief	Bandit Chief	dst_a06	dst_a06	232	Murmuring Defile	Dalmasca Estersand	1	ボス
+1114	0x045A	Bandit Chief	Bandit Chief	dst_a06	dst_a06	232	Murmuring Defile	Dalmasca Estersand	1	ボス
+1115	0x045B	Recovering Traveler	Recovering Traveler	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	ボス
+1116	0x045C	Recovering Traveler	Recovering Traveler	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	ボス
+1117	0x045D	Desert Wayfarer	Desert Wayfarer	dst_a07	dst_a07	233	Outpost	Dalmasca Estersand	1	NPC01
+1118	0x045E	Villager	Villager	dst_b01	dst_b01	129	South Bank Village	Dalmasca Estersand	1	NPC01
+1118	0x045E	Villager	Villager	dst_b02	dst_b02	130	North Bank Village	Dalmasca Estersand	1	NPC01
+1119	0x045F	Bhujerban	Bhujerban	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+1119	0x045F	Bhujerban	Bhujerban	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+1119	0x045F	Bhujerban	Bhujerban	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+1119	0x045F	Bhujerban	Bhujerban	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+1119	0x045F	Bhujerban	Bhujerban	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+1120	0x0460	Cloudborne Patron	Cloudborne Patron	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+1121	0x0461	Miners' Ender	Miners' Ender	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+1121	0x0461	Miners' Ender	Miners' Ender	byu_a04	byu_a04	806	Lhusu Square	Bhujerba	1	NPC01
+1122	0x0462	Cloudborne Resident	Cloudborne Resident	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a03	byu_a03	805	Miners' End	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a04	byu_a04	806	Lhusu Square	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a07	byu_a07	809	Khus Skygrounds	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a08	byu_a08	810	Kaff Terrace	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a11	byu_a11	813	Targe's Arms	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a12	byu_a12	814	Rithil's Protectives	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a16	byu_a16	818	Bashketi's Gambits	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a17	byu_a17	819	The Staras Residence	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+1123	0x0463	Informed Citydweller	Informed Citydweller	byu_b01	byu_b01	791	Aerodrome	Bhujerba	1	NPC01
+1125	0x0465	Kiltias	Kiltias	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	NPC01
+1125	0x0465	Kiltias	Kiltias	bul_b01	bul_b01	741	Temple Approach	Mt Bur-Omisace	1	NPC01
+1125	0x0465	Kiltias	Kiltias	mrm_a02	mrm_a02	594	Walk of Mind	Stilshrine of Miriam	1	NPC_キルティア教徒・扉左
+1126	0x0466	Wounded Kiltias	Wounded Kiltias	bul_a03	bul_a03	738	Temple Grounds	Mt Bur-Omisace	1	NPC01
+1126	0x0466	Wounded Kiltias	Wounded Kiltias	pbc_c01	pbc_c01	473	Path of the Firstfall	Paramina Rift	1	ファーヴニル教徒
+1127	0x0467	Refugee	Refugee	bul_b01	bul_b01	741	Temple Approach	Mt Bur-Omisace	1	NPC01
+1127	0x0467	Refugee	Refugee	bul_b02	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	1	NPC01
+1127	0x0467	Refugee	Refugee	pbc_c01	pbc_c01	473	Path of the Firstfall	Paramina Rift	1	難民02
+1128	0x0468	Wounded Refugee	Wounded Refugee	bul_b01	bul_b01	741	Temple Approach	Mt Bur-Omisace	1	NPC01
+1129	0x0469	Game Hunter	Game Hunter	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	3	二級女04, 二級女05, 二級女06
+1130	0x046A	Phon Camper	Phon Camper	fon_b01	fon_b01	488	Hunters' Camp	Phon Coast	1	二級女01
+1131	0x046B	Traveler	Traveler	asp_a01	asp_a01	124	Observation Parlour	Skyferry	3	アルケ_通常_NPC06, ビュエ_通常_NPC07, ラバナ_通常_NPC04
+1131	0x046B	Traveler	Traveler	asp_a02	asp_a02	125	Sky Saloon	Skyferry	2	バーフ_多_NPC02, ビュエ_多_NPC04
+1131	0x046B	Traveler	Traveler	asp_a03	asp_a03	126	Air Deck	Skyferry	3	バーフ_通常_NPC06, ビュエ_通常_NPC08, ビュエ_通常_NPC10
+1132	0x046C	Palace Servant	Palace Servant	rrp_a02	rrp_a02	568	Cellars	Royal Palace	3	女使用人01, 女使用人02, 女使用人03
+1133	0x046D	Shop Clerk	Shop Clerk	byu_a01	byu_a01	803	Travica Way	Bhujerba	1	NPC01
+1133	0x046D	Shop Clerk	Shop Clerk	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+1134	0x046E	Merchant	Merchant	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ナルビ_多_NPC04
+1134	0x046E	Merchant	Merchant	asp_a03	asp_a03	126	Air Deck	Skyferry	1	ナルビ_通常_NPC08
+1135	0x046F	Bohemian	Bohemian	asp_a02	asp_a02	125	Sky Saloon	Skyferry	1	ナルビ_多_NPC06
+1135	0x046F	Bohemian	Bohemian	asp_a03	asp_a03	126	Air Deck	Skyferry	1	ナルビ_通常_NPC12
+1136	0x0470	Informed Shopkeep	Informed Shopkeep	byu_a14	byu_a14	816	Mait's Magicks	Bhujerba	1	NPC01
+1137	0x0471	Bhujerban Guru	Bhujerban Guru	byu_a02	byu_a02	804	Cloudborne Row	Bhujerba	1	NPC01
+1138	0x0472	Shop Clerk	Shop Clerk	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+1139	0x0473	Shop Clerk	Shop Clerk	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01
+1140	0x0474	Informed Shopkeep	Informed Shopkeep	byu_a18	byu_a18	820	The Cloudborne	Bhujerba	1	NPC01

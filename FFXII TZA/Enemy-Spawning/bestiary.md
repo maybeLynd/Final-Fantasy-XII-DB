@@ -28,6 +28,10 @@ its path under `plan_map`, the zone-script function that makes the four calls (i
 the definition row it places with its id and name, and the level it sets. The same walk builds both files, and the
 decoder asserts that each definition's `placements` count is its number of lines there.
 
+[`enemy-placements-maps.tsv`](enemy-placements-maps.tsv) gives the same 6,229 placements with the place the player meets
+them: the zone the script belongs to, its map name and its region, as the location line shows them
+([Zone asset list](../World-Areas-And-Travel/zone-asset-list.md)). They fall in 471 zones of 41 regions.
+
 The category is the spawn lifecycle's because a definition does nothing until a zone script spawns it: the
 installer `0x0023A570` applies it to a unit through the spawn record ([Spawn record fields](spawn-record-fields.md)).
 

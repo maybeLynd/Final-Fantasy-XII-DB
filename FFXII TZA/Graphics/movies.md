@@ -99,6 +99,9 @@ The movie player is the singleton `0x01F81218` (getter `0x001B7F20`), `0xBB8` by
 | opened by a script | 43 of the 45 ids with a path have a `moviestandby` step; 39 of those 43 open a shipped `.webm` |
 | title movies | `ttl_a01` and `ttl_a01_e3` choose the logo (44 or 45) and the opening (41 or 47) by `getscreenaspect` (`0x58E`, `0x0050D1C0`), whose `0x0053DD10` always answers 1, so they open 45 and 47; `ttl_c01` opens 41. None of 41, 44, 45 and 47 has a `.webm`, so each of these opens fails and resets the player |
 | named by no step | ids 35 (`GRV`) and 37 (`DLB`): no `moviestandby` step of the zone and event scripts names them; `grv.webm` ships and `dlb.webm` does not |
+| where each movie plays | one row per movie id and opening step in [`movies-scenes.tsv`](movies-scenes.tsv), 52 rows for the 43 ids a step opens: the step, the scene's event id when the step is in a scene script, the zone script it plays in with its field number, map name and region ([Zone asset list](../World-Areas-And-Travel/zone-asset-list.md)), and the story counter value the scene sets |
+| places | 46 rows fall in 32 zones; 28 of them are steps of a scene script, placed at the zone script that loads the scene, and in 16 of those the scene sets the story counter. The other 6 rows are steps of `ttl_a01_e3`, the `cn` and `kr` title script that `us` lacks |
+| scenes placed by their page | `msg_z0001` (id 25, `EPL`) plays in `bhm_d01`, Cannon Superstructure, whose `ボス監督.main` loads it ([Ending message scenes](../Story-Events-And-Hunts/ending-message-scenes.md)); `men_z0005` (id 42, `STF`) plays in field 13, `ttl_b01` ([Tutorials scenes](../Story-Events-And-Hunts/tutorials-scenes.md)) |
 
 ## Loader behaviour
 

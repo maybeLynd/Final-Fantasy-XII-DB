@@ -429,8 +429,9 @@ There is no airship verb; `setflystatus` is the only flight-named verb and no sh
 it. The five aerodrome scripts (`rbn_b01`, `nac_b01`, `byu_b01`, `alc_e01`, `var_b01`) share the
 boarding counter and departure watcher actors:
 
-1. the counter prices the route (`getprice(0xB005..0xB007)`) and keeps the route code in
-   `global_flag[2]`;
+1. the counter prices the route with its own price ids, `0xB002` to `0xB00F` in all, three per aerodrome and two at
+   `byu_b01` ([price-list-buys.tsv](../Rewards-EXP-Gil-And-Loot/price-list-buys.tsv)), and keeps the route code
+   in `global_flag[2]`;
 2. a monster attack is rolled with `rand_29(100)` against a chance that rises with quest 153's
    progress, into `battle_global_flag[1]`;
 3. `subgill(price)`; a fade; the dismount routine above; scene 214 (`eventread_e8(0, 214)`,

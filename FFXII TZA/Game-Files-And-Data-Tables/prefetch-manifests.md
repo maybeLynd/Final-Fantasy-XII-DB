@@ -37,6 +37,11 @@ comment and is dropped; the shipped header `##Total_data_Size:_361_MB` is writte
 that it stays one token. `eventlist.csv` is records of four comma-separated integers, with `##`
 lines likewise skipped.
 
+The game keeps two of a record's four integers. The second, stored as a 16-bit word, is the key the
+story-progress word is compared with, and the third is the number `<n>` of the `events/<n>.txt` list the
+record loads. The first and fourth are converted and then dropped: `0x001D9C86` scans all four, and the
+8-byte record takes only the second and third (`0x001D9C90`-`0x001D9CAE`).
+
 A `.ah` list is whitespace-separated tokens, each a path such as
 `/GameData/D3D11/ArtData/chr/...phyre`, in load order, with no comment convention, header, count or
 version.
@@ -51,6 +56,8 @@ ending in CRLF.
 | prefetch entries | 9,351 files, 283,340,853 bytes |
 | languages | `us` 1,040, `fr` 1,040, `it` 1,040, `es` 1,040, `de` 1,042, `jp` 1,039, `kr` 1,036, `cn` 1,036, `ch` 1,036 |
 | per language (US) | `common.txt` 1, `eventlist.csv` 1, `maps/` 709, `events/` 329 |
+| `maps/` lists the game can request | the 709 names the kind 5 arrays give, the same in every language's array; every language folder ships those 709, and `de` also ships `mic_b03.txt` and `rui_b04.txt`, which no map number names |
+| `events/` lists the game can request | 236 per language, the distinct third integers of its 315 `eventlist.csv` records, each with a shipped list; named by no record: 93 in `us`, `de`, `es`, `fr` and `it`, 92 in `jp`, 89 in `kr`, `ch` and `cn`; `add-on/events/250.txt` is named by a record in every language |
 | outside the language folders | `prefetchdata/add-on/events/250.txt`, `prefetchdata/ff12mapjump_custom_nocrystal.csv` |
 | prefetch `.txt` files | 579 begin with a `##Total_data_Size:_…` token, none with a spaced header; 3,506,346 name tokens in all |
 | `.ah` files | 2,564, 12,235,216 bytes, all CRLF; 2,559 begin `/Gam`, 5 (the font lists) `font` |
@@ -76,6 +83,27 @@ Every token of every `.ah` list, one row each, in list order:
 | `target` | `file` when the path names a shipped file; `phyremaps` when `shared/phyremaps.txt` maps it to a shipped file; `font name` for a font list's token |
 | `resolved_to` | for `phyremaps`, the shipped shared file; for a font name, the files of that name beside the list |
 
+Every `chr/` and `chr_shadow/` list with the character name that builds it (see Asset-header lists):
+
+| table | rows | lists |
+|---|---:|---|
+| [`prefetch-manifests-ah-lists-chr.tsv`](prefetch-manifests-ah-lists-chr.tsv) | 1,057 | the `chr/` lists: 1,050 built from a model's path, 6 of them also from `init.json`; `global/MaterialSphere/MaterialSphere` for model id −1; 6 named by no model path |
+| [`prefetch-manifests-ah-lists-chr_shadow.tsv`](prefetch-manifests-ah-lists-chr_shadow.tsv) | 588 | the `chr_shadow/` lists: 586 built from a model's path, 6 of them also from `init.json`; 2 named by no model path |
+
+| Column | Meaning |
+|---|---|
+| `list` | the `.ah` file's path in the archive |
+| `bytes`, `sha256` | the file's size and SHA-256 |
+| `model` | the character name that builds the list's path; `-` when no model path builds it |
+| `bound_ids` | the bound ids whose model path gives that name ([Model asset list](../Graphics/model-asset-list.md)) |
+| `named_by` | the model path, `init.json` `ModelsToPreload`, model id −1, or `named by no model path` |
+| `requested` | when the game files the list: when that model binds, and at start-up for the six `ModelsToPreload` names; `-` for a list no model path names |
+
+- No model's path builds the six `chr/` lists `high/n10/n1021/hn1021_01`, `high/n10/n1081/hn1081_01` and the `mws/` lists of `m1022`, `m1025`, `m1084` and `m1085`, or the `chr_shadow/` lists of `hn1021_01` and `hn1081_01`: no entry of the US path arrays ([Asset paths](asset-paths.md)) and no language's sized entry in the size tables is `hn1021_01.cm` or `hn1081_01.cm`.
+- Each of the four `mws/` lists names the same files as its model's own list (`chr/monster/m10/m1022/m1022_D3D11.ah` for `m1022`), which the model's binding requests.
+- Model paths build 34 `chr/` and 498 `chr_shadow/` list names that the archive does not ship, among them 19 weapons and 8 `high/` models for `chr/`. Such a request completes with no entries (Asset-header list records).
+- Every `chr_shadow/` list names its mesh and exactly the files that mesh imports (588 of 588). Of the `chr/` lists, 57 name their mesh and exactly its imports, 886 add only the `_n` and `_spec` files or other palettes of textures the mesh imports, and 114 also name textures their mesh does not import ([PhyreEngine asset files](../PhyreEngine/phyre-asset-files.md) `imports`).
+
 Every prefetch list, every name it holds and every entry, in three kinds of table:
 
 - The 9,351 files hold 7,912 different contents; a file with the same bytes as an earlier one points to it and has
@@ -89,6 +117,7 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
 | table | rows | one row per |
 |---|---:|---|
 | [`prefetch-manifests-lists.tsv`](prefetch-manifests-lists.tsv) | 9,351 | file under `prefetchdata/`: `maps` 6,383, `events` 2,949, `common.txt` 9, `eventlist.csv` 9, `ff12mapjump_custom_nocrystal.csv` 1 |
+| [`prefetch-manifests-lists-reached.tsv`](prefetch-manifests-lists-reached.tsv) | 9,332 | `maps/` and `events/` list: whether the game can request it, and the map numbers or `eventlist.csv` records that name it (Loader behaviour) |
 | [`prefetch-manifests-names.tsv`](prefetch-manifests-names.tsv) | 61,235 | different name |
 | [`prefetch-manifests-entries-us.tsv`](prefetch-manifests-entries-us.tsv) | 355,723 | entry of a `us` list with its own bytes |
 | [`prefetch-manifests-entries-fr.tsv`](prefetch-manifests-entries-fr.tsv) | 355,826 | the same for `fr` |
@@ -126,12 +155,25 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
   `/PrefetchData/<language>/common.txt`, parses it, and opens every name with selector 5, closing the
   stream at once. It then reads `eventList.csv` (`0x001D9A40`), keeping records whose four fields all
   convert.
-- **Map entry.** `0x001DA290` (when the cache is on, the byte `0x01F83441` is 0, and the map number changed
-  and is not negative) builds `/PrefetchData/<language>/Maps/<map>.txt` and files it as a whole-text
-  request; its completion `0x001D9FD0` parses the tokens into the map list.
-- **Events.** `0x001D9EC0` compares each `eventList.csv` record's first word with the manager's word
-  `+0xE8`, and for a match, or for the next record above it, loads `/PrefetchData/<language>/Events/<n>.txt`
-  and `/PrefetchData/add-on/Events/<n>.txt` into the event list (`0x001D9DA0` → `0x001DA9E0`).
+- **Map entry.** `0x001DA290`, which `0x002EF910` reaches through `0x001D6C80`, (when the cache is on, the byte
+  `0x01F83441` is 0, and the map number changed and is not negative) builds
+  `/PrefetchData/<language>/Maps/<map>.txt` and files it as a whole-text request; its completion `0x001D9FD0`
+  parses the tokens into the map list.
+- **The map list's name.** `<map>` is the file name, less folder and extension, of the map's zone script:
+  `0x0032F170(0, map)` gives kind 5 and id 3 × map (`0x0032F19E`-`0x0032F1A8`), `0x002DF980` returns that entry of
+  the language's kind 5 array as it stands (`0x002DF98D`-`0x002DF991`), and `0x001DA3BD`-`0x001DA47A` take the text
+  between its last `\` and its last `.`. The map aliases of `0x01EF9490` play no part on this path.
+- **Events.** `0x001D9EC0` walks the records in key order against the manager's word `+0xE8`, the
+  story-progress value it last stored. Records keyed with that value load unless `+0x1BC` already holds it.
+  Each record loads `/PrefetchData/<language>/Events/<n>.txt` and `/PrefetchData/add-on/Events/<n>.txt`
+  into the event list (`0x001D9DA0` → `0x001DA9E0`).
+- **The next key.** Of the keys above that value, the lowest key's records load and that key is stored at
+  `+0x1BC`; when the lowest key already equalled `+0x1BC`, the next key's records load as well and that key
+  is stored instead (`0x001D9EF1`-`0x001D9F4F`).
+- **Story progress 0.** `0x001DA220`, which the title asset's factory `0x00394460` reaches through `0x001D6C60`,
+  stores 0 at `+0xE8` when the cache is on, `0x01F83441` is 0 and the story-progress word is 0, empties the
+  event list and runs the same walk (`0x001DA229`-`0x001DA276`), so the records keyed 0 and the lowest key
+  above 0 load there.
 - **Map jumps.** `0x001DA090(map)` records the new and previous map numbers and writes them into the
   cache's protected words (`0x0020C1A0`: `+0x80` = new, `+0x84` = previous).
 
@@ -139,6 +181,25 @@ The worker then loops while running: it stops when `0x01F83441` is set; it sleep
 are pending or too little time has passed since the last activity, or when both lists are empty;
 otherwise it sleeps 10 ms and opens one name, first from the event list (selector 3) and, when that is
 empty, from the map list (selector 4), closing the stream at once.
+
+When a file is missing:
+
+- **A name that opens no file.** The worker takes the name off its list before opening it, does not
+  test the open, and frees the name (`0x001DAEE3`-`0x001DAF0F`, `0x001DAF89`, `0x001DAFCC`-`0x001DAFEB`), so the
+  name is not tried again.
+- **The open's log.** When neither the RAM cache's name map (`0x0020C242`-`0x0020C2C7`) nor any of up
+  to five archives (`0x0019AF85`-`0x0019AFA8`) holds the name, the open logs
+  `[FFXII_ERROR] Big file open failed %s` with the name and returns 10 (`0x0059F1C0`-`0x0059F1D1`).
+- **A map list that does not open.** The whole-text request stores 0 as the text (`0x001A0FB4`-`0x001A0FC4`)
+  and `0x001D9FD0` returns without touching the map list (`0x001D9FE6`-`0x001D9FEB`), so names left from the
+  previous map stay queued.
+- **A map number whose kind 5 entry is 0.** `0x001DA290` measures the returned path with no null test
+  (`0x001DA342`-`0x001DA34C`), so it reads address 0.
+- **An event list that does not open**, in the language folder or in `add-on`, adds no name
+  (`0x001DAA10`-`0x001DAA28`); the other of the two still loads. `add-on/events/` ships only `250.txt`, so for
+  every other number the add-on open fails and logs as above.
+- **A story-progress value no record is keyed with.** The walk skips the records keyed below it and
+  loads the keys above it as described; above the highest key the event list stays empty.
 
 ### The prefetch manager
 
@@ -148,14 +209,15 @@ cache's group word `+0xE8` is the manager's), and picks the language folder from
 10 give `jp`, 2 `fr`, 3 `de`, 4 `it`, 5 `es`, 7 `kr`, 8 `ch`, 11 `cn`, and any other value `us`. The
 paths are built by inserting that code and `/PrefetchData/` in front of the file name (`0x001DAB30`).
 
-- `0x001D9A40` keeps each `eventList.csv` record as four words in the list `+0xD0` and then sorts the
-  list by the first word, ascending (`0x001D9200`, a merge sort that merges with `0x001D9150`).
+- `0x001D9A40` keeps each `eventList.csv` record as an 8-byte pair in the list `+0xD0`, the second integer as
+  a word at `+0` and the third as a dword at `+4` (`0x001D9C90`-`0x001D9CAE`), and then sorts the list by that
+  word, ascending (`0x001D9200`, a merge sort that merges with `0x001D9150`).
 - The map list's completion is the stub `0x001D9920`, which passes the manager to `0x001D9FD0`.
 - `0x001D99C0` empties the map list `+0x60` and `0x001D9930` the event list `+0x118`, freeing each name;
   each sets its list's empty byte (`+0x78`, `+0x130`). `0x001D9D80` is true when both are set.
-- `0x001DA970`, called on every pass of the worker, reloads the event list when the current event
-  number (`0x00265270`) is positive and differs from `+0xE8`: it stores the number, empties the list under
-  its lock `+0xF0` and runs `0x001D9EC0`.
+- `0x001DA970`, called on every pass of the worker, reloads the event list when the story-progress word
+  (`0x00265270`) is positive and differs from `+0xE8`: it stores the value, empties the list under its lock
+  `+0xF0` and runs `0x001D9EC0`.
 - The worker takes the map list's first name with `0x001DAD30` and logs
   `[FileCache] Prefetch On Enter Map End` when that empties the list.
 
@@ -193,6 +255,17 @@ and index (`0x002ED6F0`, adding `0x33` to the index for kind 1), `0x002DF980` re
 text after `PS2Data\obj_finish\in\`, less its last three characters (`.cm`), with `\` turned into
 `/`, is the name. Model id −1 uses `global/MaterialSphere`.
 
+With that name N, `0x001BB2B0` files two lists through `0x0019EB60`: `./GameData/D3D11/ArtData/chr/N_D3D11.ah`
+(`0x001BB7D9`) and, for a model id other than −1 (`0x001BB7E8`), a shadow list (`0x001BB8B9`). When N starts with `h`
+the shadow list is `chr_shadow/N_D3D11.ah` (`0x008F9180`); otherwise it is
+`chr_shadow/<N less its last 11 characters><S>/<S>_D3D11.ah` (`0x008F91B0`), S being N's last five characters.
+
+The model's record holds the `chr` list and a mark that a shadow list exists (`0x001BB7E1`, `0x001BB894`); the
+shadow list gets its own record, filed under −2 − id (`0x001BB8C9`-`0x001BB8E2`). `0x001BB040` reports a model's
+lists loaded only when the shadow record, for a marked model, and then the model's own record are done
+(`0x001BB09F`-`0x001BB10E`). At start-up `0x001C3760` hands each `init.json` `ModelsToPreload` name to `0x001BB920`,
+which files the same two lists for that name (`0x001BB9C6`, `0x001BBAF1`).
+
 `0x0017F000(id)` asks the object at `0x01F81240` (`0x001BC000`, null before it exists) for a model's list
 record through `0x001BB2B0` and returns it. The binding's load `0x002EAD50` calls it before it files the
 model's own file and ignores the result, so binding a character model also queues its `.ah` lists.
@@ -222,6 +295,14 @@ test, so the 3,072 entry records bound every list loaded at once.
   `Failed to find asset %s of type %s, using fallback` and takes the type's fallback (`0x0063BC00`); a
   hit of another type logs `Found asset %s of wrong type, wanted %s, got %s`. Every pointer chained to
   the import is then set to the asset.
+- A token whose file does not open leaves its entry's cluster null: `0x0019CB20` returns 0 when `0x00637C50`
+  fails (`0x0019CC20`-`0x0019CC36`), the kind 1 request stores that 0 and still sets the done byte
+  (`0x001A0822`-`0x001A083D`), and both passes of `0x0019EE50` return at once for a null cluster (`0x0063DA5C`,
+  `0x0063B019`), so the list is still marked done. An import elsewhere that names an asset of that file takes
+  the type's fallback as above.
+- A list file that does not open leaves the list record's text null: the kind 4 request stores 0 when the
+  open fails (`0x001A0FB4`-`0x001A0FC4`), and the parser then empties the list's entries and sets its done byte
+  (`0x0019E7EC`, `0x0019EA03`-`0x0019EA11`), so the list completes with no entries.
 
 The pools' record vectors are sized with `0x0019EC40` (list records: grow with `0x0019E010`, shrink with
 `0x0019EA20`) and `0x0019ED80` (entry records: grow with `0x0019E2C0`); `0x0019DF90` frees the entry vectors of a

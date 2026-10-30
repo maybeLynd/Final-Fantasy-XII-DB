@@ -311,6 +311,12 @@ Globals written by the boot fixer:
 | registered arenas | 255.6 MiB in nine; 257.1 MiB allocated in eleven |
 | command line | `-nologo` in any argument, as an exact eight-byte match; `debug` as the second argument, which zeroes `0x02B62DB4` |
 
+[The command-line switches](startup-constants-inputs.tsv) table gives each switch's values, what else sets the
+same state, when it takes effect, what reads it, what the player sees and when it changes nothing. `-nologo` sets
+the first-start flag that the title screen script tests through `isFirstStartDone()` (verb `0x5A7`), so the first
+title screen of a launch comes without the SQUARE ENIX logo and the autosave notice. `debug` changes nothing in the
+shipped game, because the start-up field it clears is read only when `0x01E02804` is not negative, and it is -1.
+
 ## Operations
 
 Once per launch, inside the init job, before the startup latch closes: the frame-rate selection,

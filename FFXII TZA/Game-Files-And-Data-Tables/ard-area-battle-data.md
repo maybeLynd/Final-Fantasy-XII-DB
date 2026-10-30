@@ -279,6 +279,13 @@ The cache's next-entry index:
 - Give a model, motion and weapon class the same motion file size in every area: `0x003DC8D0` keeps the
   sizes of up to sixteen recent motion lookups at `0x02B580B0`, keyed by those three and never cleared
   after start-up, and a later request reuses the cached size.
+- `pc_skillmotion.bin` is read once at start-up (`0x003DCBC0`) into a buffer of its kind 9 size from the language's
+  size table (`0x003DCC59`), so a grown file needs its new size in every `.fst`. A size of 0 or less leaves the
+  global table empty, and every lookup goes to the area's tables (`0x003DCC62`, `0x003DCA5D`).
+- The global lookup takes the count at `+0x00` and the records from `+0x10` without checking either against the
+  buffer (`0x003DCA5F`-`0x003DCA88`). The first record whose bound model id and motion match gives the file
+  (`0x003DCA8C`), whatever its weapon class, so an entry there wins over every area's slot 7 and the second root's
+  table for that model and motion.
 
 ## Related
 

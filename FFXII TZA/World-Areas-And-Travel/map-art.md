@@ -48,6 +48,11 @@ clears the first-pass byte `0x022BE7E0`. The swaps are `dst0109` to `dst0103`, `
 6. The texture-animation prefix `.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_anime_` is written
    to `+0x141`.
 
+When the `_srm` list does not open, step 5 rebuilds the name as the plain list and requests it whether or not that
+opens (`0x001A7C23`-`0x001A7C53`). A list whose file does not open completes with no entries, and a token whose file
+does not open leaves its entry empty
+([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md#asset-header-list-records)).
+
 ### The load waits for the instance count
 
 The map's world data (`YM00`) lists the zone's instances in its tag-30 chunk; the parser passes their
@@ -456,6 +461,7 @@ Measured over the archive.
 | `proceduralTextureConfigs.txt` | 451 files, 68 to 6,696 bytes, all CRLF; 10,477 records, every one of 8 values |
 | map folders no zone names | `alc02/alc0201` and `frs01/frs0109`: no zone pack path (kind 4) names them after the five swaps of [naming the map](#naming-the-map), so neither is loaded. `alc0201` holds a `proceduralTextureConfigs.txt` of 1,157 bytes; neither holds a `cubeMapConfigs.txt` |
 | procedural records | one row each in [`map-art-procedural-rows.tsv`](map-art-procedural-rows.tsv): map, folder, record index, texture, kind, the five floats, the integer, and where the texture resolves (`tex` in 1,969, `phyremaps` in 8,508; every record resolves) |
+| procedural records applied | of the 10,460 records of loaded maps, 10,416 name the main texture (`TextureSampler` of the first material) of a matched instance of the map's scene. 44 reach no instance: 43 name a texture the scene does not import (28 of them `BGnpc_…_low`), and `byu5101`'s `byu5101_tenjo03_` is bound by one material that is no matched instance's first. `alc0201`'s 17 are in a file no map loads ([records](../PhyreEngine/phyre-asset-files-scene-procedural-records-map.tsv)) |
 | procedural floats | first 1.0 in 7,582 records, 0.7 in 1,372, 0.5 in 1,302, 0.9 in 169, 0.6 in 41, 1.2 in 11; second and third 0.0 in all; fourth and fifth equal in every record; integer 2 in 10,027 and 3 in 450 |
 | detail kinds used | `Wall_concrete_01` 6,332, `Steel_rough_01` 1,516, `Rock_roughlittle_01` 1,158, `Sand_little_01` 612, `Fabric_flax_01` 543, `Fabric_carpet_01` 169, `Wood_rough_01` 60, `snow_01` 41, `Leather_base_01` 35, `Wall_concrete_04` 11 |
 

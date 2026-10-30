@@ -11,14 +11,31 @@ addresses: "0x02EBF060, 0x0031C5D0, 0x0031D7B0, 0x0034B000, 0x0032A880, 0x0030A0
 (`battle_pack.bin` directory entry `+0x74`). Row *n* is price id `0xB000` + *n*, inventory class 16
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): a gil amount with no item behind it,
 which an event script reads with `getprice`. The aerodrome counters of
-[Chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md) read `0xB005`-`0xB007` this way and then
+[Chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md) read `0xB002`-`0xB00F` this way and then
 take the amount with `subgill`.
 
 - 41 ids are named in a `getprice` call of the us scripts (82 of the 90 calls); the most asked for is `0xB075`, 20,000 gil,
   20 calls in `alc_b05`, `alc_b06`, `alc_f03`, `alc_f04` and `alc_f05`.
-- Eight calls, all in `fon_b01`, pass the id in a script variable (variables 199 and 200), so the TSV does not tie
-  them to an id.
-- The other 87 ids are named by no us script.
+- Eight calls, all in `fon_b01`, pass the id in a script variable (variables 199 and 200). They are the Hunters'
+  Camp trophy trade: the seller's `talk` stores 62 more ids, `0xB035` to `0xB072`, in two arrays beside the 31
+  packages he sells. For package *k* he takes the first array's price and checks the second array's value as the
+  number of times it sells, 1 for every package.
+- The other 25 ids appear in no `getprice` call and no stored id of the us scripts.
+
+### What each price buys
+
+[`price-list-buys.tsv`](price-list-buys.tsv) gives, for the 103 ids a script uses, what the player pays for, read
+from the steps of the function that asks for the price, and where the seller stands. Its 119 rows:
+
+- 22 are maps a moogle sells: the price and the map's key item sit at the same index of two arrays.
+- 14 are airship tickets: each aerodrome counter prices the route it keeps, and the same route's greeting names the
+  destination ([Chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)).
+- 8 are chocobo hire at the stables.
+- 5 are the pinewood chop the Archades shops sell for 20,000 gil, 3 the cab fare to Tsenoble without a chop and 3
+  the 1,500 gil asked to get into the city in Old Archades.
+- 1 is a rest at the Outpost on the Dalmasca Estersand that restores the party, and 1 a paid talk on the history
+  of Rabanastre.
+- 62 are the trophy trade: 31 package prices and 31 sale limits.
 
 ### Where the values come from
 

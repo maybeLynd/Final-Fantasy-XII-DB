@@ -331,6 +331,21 @@ The `telepoeffect` switch, key item to `mapjump(field, entrance, 10)`:
 The common effect table `0x01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 0x87, 0x89, 0x8A,
 0x8C, 0x8D, 0x95, 0x8B, 0x96`; entry 9 is `0x8C`, the arrival flash.
 
+### Every crystal
+
+[`save-and-teleport-crystals-list.tsv`](save-and-teleport-crystals-list.tsv) lists the 81 field scripts that hold
+`system_crystal_actor`, one crystal each: the zone with its map and region name, the number `getcrystalid(3, 0)`
+returns for it (entry 0 of list 2 in the script's `+0x70` table, its `u16` at `+0x14`), the kind that number gives, and
+for a gate crystal its key item and where teleporting to it arrives.
+
+- 56 are save crystals (number 0) and 25 are gate crystals, numbered 1, 3-6, 8-13, 15, 17-25, 28, 29, 32 and 33: each
+  number once, the same 25 the `talk` switch names. Number 4, in Barheim Passage's North-South Junction, is a gate
+  crystal only while map-jump group flag `0x402A` is set. No crystal has the number 255.
+- Every gate crystal's destination is its own zone, so teleporting to an area's key item arrives at that area's
+  gate crystal.
+- `mic_b07.ebp` holds a save crystal but no resource-kind 5 path names the script, so no zone loads it and the
+  player never meets that crystal.
+
 ## Operations
 
 - A crystal touch is a script action on the machine whose party touched it: `healall`,

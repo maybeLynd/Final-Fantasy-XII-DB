@@ -130,6 +130,9 @@ without `=` are skipped.
   reads or writes, its 24 controls, 12 box items, eight gamepad bits, the files it opens, the 12 `PathConfig`
   elements and the 22 members it never uses or never assigns, each with the method that uses it and where its text
   sits in the binary.
+- [The launcher inputs](settings-launcher-program-inputs.tsv) table gives each of those 103 rows as an input: its
+  values, what wins when two sources set it, when it takes effect in the launcher and in the game, what reads it, what
+  the player sees and when it changes nothing.
 
 In borderless mode the resolution box shows the size of the screen that holds the point
 `LastX`, `LastY` from the file. When no screen holds it, it takes the screen whose bottom-right corner is nearest,
@@ -241,6 +244,10 @@ and `BlendAmount` 0.5 in all five.
 - [`settings-launcher-gaussianfiltersetting-rows.tsv`](settings-launcher-gaussianfiltersetting-rows.tsv) lists its
   42 lines with their offsets, the game's value for each key and where the key's text occurs in the shipped
   programs.
+
+[The settings inputs](settings-launcher-inputs.tsv) table gives every key line of the two `ConfigData` files as a
+setting: 33 in `keymap.ini` and 36 in `GaussianFilterSetting.ini`. Each one's values, when it takes effect, what reads
+it and what the player sees are given there, and none takes effect, because no shipped program opens either file.
 
 ## Modding notes
 

@@ -1,0 +1,448 @@
+folder	path	bytes	sha256	named_by	sized_by	other_sizes	in_sdver_entry	pack_entries	prefetch_lists
+ch	ps2data/image/ff12/myoshiok/ch/quest/questtim2/q_c00.tm2	66864	31b12cae8fbd1ac806abb14e0df4bafdda9eaae32e959d3e7ced1752cf9a7b79	kind 7 id 193 (KR CH CN)	KR CH CN	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/quest/questtim2/q_c01.tm2	66864	17838cfd0d9a1f87a9bdedb6243db069b224633b7fdddf754d47abe53a05f89d	kind 7 id 194 (KR CH CN)	KR CH CN	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/quest/questtim2/q_c02.tm2	66864	0ac38104d14a0c946c41c78321773a854be5ce98005b5a581a11c2d7b313aae1	kind 7 id 195 (KR CH CN)	KR CH CN	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/quest/questtim2/q_c03.tm2	66864	70d47d67f37f745215eb72165e74942abf6f25d2d25c2b397a5da4e9417a62c0	kind 7 id 196 (KR CH CN)	KR CH CN	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/quest/questtim2/q_c04.tm2	66864	635506aeade7fab3dcee87a3833f7067dfb4bd6cc675c413991a543c0f10084f	kind 7 id 197 (KR CH CN)	KR CH CN	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/quest/questtim2/q_c05.tm2	66864	a44cfe484393d276827a5876969ac5f41b01f6336cb6ac2be33210993ad39a1f	kind 7 id 198 (KR CH CN)	KR CH CN	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/cm2_win_c.tm2	17600	5e7aaa0fd5f12ba76a141e8b87d23c11d8949f833e91baa77051ee38fd260f13	kind 7 id 43 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/dataface_c.tm2	1051936	31898b389302a76aaf26af85f286e1c9e8b318621a5bf5ecc2a798a6d48c56e7	kind 7 id 127 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/hand_4_c.tm2	143872	02c49ce0ec479ab528c1ba23d46efe90687bd0d6951940fdc8e4028bbc6d3037	kind 7 id 205 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/lic_8_c3.tm2	147744	1f1374d89203450a55446318de2848ec908b788d1f89ae2ba15f559db50c7945	kind 7 id 125 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/loca_8_c.tm2	272960	eff9efe890c95848353de464e6ca70cd0002a688aea801fe1868bb053f3878e1	kind 7 id 185 (CH)	CH	-	-	-	647
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (CH)	CH	-	-	-	647
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/medal_c.tm2	1049984	08b5235a0c8f526d7936718dd142d7c77548632f7b336e8523030cc194dec3cb	kind 7 id 207 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/sf_logo_c.tm2	1049744	1ce24ba07e04d252a7a09fe304a70f743d2e81c3644f157a625008fbe8986932	kind 7 id 71 (CH)	CH	-	-	-	1
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/title_logo.tm2	526496	f4c8e508fbe261bf8d2a2a9922dd76ce8375a8f16ead2a857d76a8a7fc5d3326	kind 7 id 61 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_line01.tm2	6208	ebdfbbd6d09ec08c61d06dffa70ac3c10409c4c1fddd02119a6ef1ae148109a1	kind 7 id 176 (CH)	CH	-	-	-	647
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (CH)	CH	-	-	-	0
+ch	ps2data/image/ff12/myoshiok/ch/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (CH)	CH	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/cm2_win_c.tm2	17600	5e7aaa0fd5f12ba76a141e8b87d23c11d8949f833e91baa77051ee38fd260f13	kind 7 id 43 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/dataface_c.tm2	1051936	31898b389302a76aaf26af85f286e1c9e8b318621a5bf5ecc2a798a6d48c56e7	kind 7 id 127 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/hand_4_c.tm2	143872	02c49ce0ec479ab528c1ba23d46efe90687bd0d6951940fdc8e4028bbc6d3037	kind 7 id 205 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/lic_8_c3.tm2	147744	1f1374d89203450a55446318de2848ec908b788d1f89ae2ba15f559db50c7945	kind 7 id 125 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/loca_8_c.tm2	272960	eff9efe890c95848353de464e6ca70cd0002a688aea801fe1868bb053f3878e1	kind 7 id 185 (CN)	CN	-	-	-	647
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (CN)	CN	-	-	-	647
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/medal_c.tm2	1049984	4d49bcaee06c90f8aff96eedb62791926445620a9305013964b83ce2aaa3343c	kind 7 id 207 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/sf_logo_c.tm2	1049744	1ce24ba07e04d252a7a09fe304a70f743d2e81c3644f157a625008fbe8986932	kind 7 id 71 (CN)	CN	-	-	-	1
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/title_logo.tm2	526496	f4c8e508fbe261bf8d2a2a9922dd76ce8375a8f16ead2a857d76a8a7fc5d3326	kind 7 id 61 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_line01.tm2	6208	ebdfbbd6d09ec08c61d06dffa70ac3c10409c4c1fddd02119a6ef1ae148109a1	kind 7 id 176 (CN)	CN	-	-	-	647
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (CN)	CN	-	-	-	0
+cn	ps2data/image/ff12/myoshiok/cn/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (CN)	CN	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/cm2_win_c.tm2	17600	25ba650b1280b84c2e69e48f3ee34fda5cd21f4e6e72252386c90a255ac38939	kind 7 id 43 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/dataface_c.tm2	1051936	ca839f011086f341c8cf9cf5367cc015e84e492885ec4bda1ecac778512baa1c	kind 7 id 127 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/hand_4_c.tm2	143872	b07c7413108a708162f4dae4fcdb10f69dfc0b291ba3ffc280ca49aba887bd91	kind 7 id 205 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/lic_8_c3.tm2	147744	9c1cd88de80e4466ef83613d4b7ec962e7a4ca6571aed551516fa1191fbd9a3c	kind 7 id 125 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/loca_8_c.tm2	272960	2fab06dd5d0c0456b481886f7278d2618d2c4dbe3dad91824145e5b129b2dfa6	kind 7 id 185 (DE)	DE	-	-	-	647
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (DE)	DE	-	-	-	647
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/medal_c.tm2	1049984	2646780d045cef0d43d5a6e40a2fc11cc72295f83e75f23504b7a7e3b8b822cb	kind 7 id 207 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/sf_logo_c.tm2	1049744	c5e284d5f8bd6df1d8a6d78d82c058ca4711e4be2f71e8896db653d09a4bc09c	kind 7 id 71 (DE)	DE	-	-	-	1
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/title_logo.tm2	526496	cc352624ebc28b6d53601cf445d03471cab8fbb80c07cbe53428b50db3e98b50	kind 7 id 61 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/title_logo_fore3.tm2	526496	a71cee93d1739e95f5f5c433e586c564fbab3b47310c55485153755075f83c63	named by no path array	-	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_line01.tm2	6208	ebdfbbd6d09ec08c61d06dffa70ac3c10409c4c1fddd02119a6ef1ae148109a1	kind 7 id 176 (DE)	DE	-	-	-	647
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (DE)	DE	-	-	-	0
+de	ps2data/image/ff12/myoshiok/de/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (DE)	DE	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/cm2_win_c.tm2	17600	25ba650b1280b84c2e69e48f3ee34fda5cd21f4e6e72252386c90a255ac38939	kind 7 id 43 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/dataface_c.tm2	1051936	b2ba78024c9564ab6155e2388ee7f92e10762e895cfb5853f2b429938da0263d	kind 7 id 127 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/hand_4_c.tm2	143872	9000b7c0421aa119576174ef489fa97e7b3126af328e7e14a868abaf016d8f40	kind 7 id 205 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/lic_8_c3.tm2	147744	9c1cd88de80e4466ef83613d4b7ec962e7a4ca6571aed551516fa1191fbd9a3c	kind 7 id 125 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/loca_8_c.tm2	272960	2fab06dd5d0c0456b481886f7278d2618d2c4dbe3dad91824145e5b129b2dfa6	kind 7 id 185 (ES)	ES	-	-	-	647
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (ES)	ES	-	-	-	647
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/medal_c.tm2	1049984	b2a515f72a782d48f7211e2c5d1ba16a1e7a9901a84834c49a4278b033816249	kind 7 id 207 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/sf_logo_c.tm2	1049744	68244def690d503e71d5cce10519dd9ef164e262541c2c40f49c690989044803	kind 7 id 71 (ES)	ES	-	-	-	1
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/title_logo.tm2	526496	ab6ce97a0d3075338a42c9ca64ba53d658d56df3395c89bd6acffebf8b34ef95	kind 7 id 61 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/title_logo_fore3.tm2	526496	f3d2372e8e2a568e23f184fb92469adfb6a3de721c6ca60b0024c793472abfc3	named by no path array	-	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_line01.tm2	6208	7111f410db8b1ca29a02292ec042ebae497c1b9eadf5e0f2f5298c21945403f3	kind 7 id 176 (ES)	ES	-	-	-	647
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (ES)	ES	-	-	-	0
+es	ps2data/image/ff12/myoshiok/es/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (ES)	ES	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/cm2_win_c.tm2	17600	25ba650b1280b84c2e69e48f3ee34fda5cd21f4e6e72252386c90a255ac38939	kind 7 id 43 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/dataface_c.tm2	1051936	6fd5fab8176a0a3d8f64e04de2638415b70811e766fd3f56d55106fd4f16dd5d	kind 7 id 127 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/hand_4_c.tm2	143872	a9eb625f5cd7b49dc18df9f491ec95aef58d4ab39e76d28a932635f3f7528005	kind 7 id 205 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/lic_8_c3.tm2	147744	9c1cd88de80e4466ef83613d4b7ec962e7a4ca6571aed551516fa1191fbd9a3c	kind 7 id 125 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/loca_8_c.tm2	272960	2fab06dd5d0c0456b481886f7278d2618d2c4dbe3dad91824145e5b129b2dfa6	kind 7 id 185 (FR)	FR	-	-	-	647
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (FR)	FR	-	-	-	647
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/medal_c.tm2	1049984	e7de70e41991af579c8a49a03851e3eb7d360f2db649bfa6db4021ccf9ed399e	kind 7 id 207 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/sf_logo_c.tm2	1049744	65c343bf7e35032df9fa5c403ebb2d8ef8476a13841091d24b78a8f91ac40631	kind 7 id 71 (FR)	FR	-	-	-	1
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/title_logo.tm2	526496	443154717d651dfaf57fc6d090d207af1a0d755467bb61906f6508741886c953	kind 7 id 61 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/title_logo_fore3.tm2	526496	3f5773b9f4f55b52f55dfc8aba66562caf2ca713792e3bd25870dd40d318f63c	named by no path array	-	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_line01.tm2	6208	7111f410db8b1ca29a02292ec042ebae497c1b9eadf5e0f2f5298c21945403f3	kind 7 id 176 (FR)	FR	-	-	-	647
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (FR)	FR	-	-	-	0
+fr	ps2data/image/ff12/myoshiok/fr/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (FR)	FR	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/quest/questtim2/q_c00.tm2	66864	31b12cae8fbd1ac806abb14e0df4bafdda9eaae32e959d3e7ced1752cf9a7b79	kind 7 id 193 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/quest/questtim2/q_c01.tm2	66864	17838cfd0d9a1f87a9bdedb6243db069b224633b7fdddf754d47abe53a05f89d	kind 7 id 194 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/quest/questtim2/q_c02.tm2	66864	0ac38104d14a0c946c41c78321773a854be5ce98005b5a581a11c2d7b313aae1	kind 7 id 195 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/quest/questtim2/q_c03.tm2	66864	70d47d67f37f745215eb72165e74942abf6f25d2d25c2b397a5da4e9417a62c0	kind 7 id 196 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/quest/questtim2/q_c04.tm2	66864	635506aeade7fab3dcee87a3833f7067dfb4bd6cc675c413991a543c0f10084f	kind 7 id 197 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/quest/questtim2/q_c05.tm2	66864	a44cfe484393d276827a5876969ac5f41b01f6336cb6ac2be33210993ad39a1f	kind 7 id 198 (JP US FR DE IT ES UK ASIA IN)	JP US FR DE IT ES UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/cm2_win_c.tm2	17600	5e7aaa0fd5f12ba76a141e8b87d23c11d8949f833e91baa77051ee38fd260f13	kind 7 id 43 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/dataface_c.tm2	1051936	4cc18f621bb16be217d397b1a42896d88895db987136a080d15443c48a3ecc04	kind 7 id 127 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/hand_4_c.tm2	143872	02c49ce0ec479ab528c1ba23d46efe90687bd0d6951940fdc8e4028bbc6d3037	kind 7 id 205 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/lic_8_c3.tm2	147744	9c1cd88de80e4466ef83613d4b7ec962e7a4ca6571aed551516fa1191fbd9a3c	kind 7 id 125 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/loca_8_c.tm2	272960	eff9efe890c95848353de464e6ca70cd0002a688aea801fe1868bb053f3878e1	kind 7 id 185 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	9
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	9
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/medal_c.tm2	1049984	abdd58162b56bc74caa0c50a583c86014f373600716d16e04d6828cc10f57283	kind 7 id 207 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/sf_logo_c.tm2	1049744	1ce24ba07e04d252a7a09fe304a70f743d2e81c3644f157a625008fbe8986932	kind 7 id 71 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	1
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/title_logo.tm2	526496	c6bc5d2c4da0e155c8d5a39757704fcf76037e0077d7dcaf6e26e2ee53fa8e0e	kind 7 id 61 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/title_logo_fore3.tm2	526496	7081332ca475932c1c31314ef3d654be73050eb01484f726f1ad1d5495bcf62a	named by no path array	-	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_line01.tm2	67648	ae0a902b32afd90ae736ecbf3a1d77910eabd7235f630fe873f0409b70c8543c	kind 7 id 176 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	9
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (JP UK ASIA IN)	JP UK ASIA IN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_00.tm2	1049728	d0007c77162c5a6a3612c98fa7d587a7804e1fca823344d66d0211e763688e12	kind 7 id 232 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_01.tm2	1049728	1fd8e7deae1058f82c5ae034c2fe64621919c66bc4aec17513d9e1610d891603	kind 7 id 233 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_02.tm2	1049728	b53115e0b2e7bfce082513290b57b2fc5ac3db35fba177db01e1d1bede461c9e	kind 7 id 234 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_03.tm2	1049728	907a2f9f78e54be7672c5269f068baa532fb79635318ab286c69f490e1358dae	kind 7 id 235 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_04.tm2	1049728	b9af24becae6f51df3573ad73daeec58f409a914c9bb41e83f2801a2ceea8acb	kind 7 id 236 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_05.tm2	1049728	b7f6d1d6e4f7835e3d15f1a175da57ae71a46ea0fdc5d6187e4eb6a7c02918d9	kind 7 id 237 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_06.tm2	1049728	966da58eb8212595f714483a453d9ef37213f70d6ad242a850229852d32aa60f	kind 7 id 238 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_07.tm2	1049728	6f41f099547c0e953ce9f0d2912d1e833a9ba7e325050abeb081fc5c609d9f1a	kind 7 id 239 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_08.tm2	1049728	21b4b511ee98df40150711c4d3b8850c0b002c49fdb2861864555d235ddf948e	kind 7 id 240 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_09.tm2	1049728	194e3d425e62c3b0131befaebb884177eb840df0a7dca62e0e3b5f2c88194d34	kind 7 id 241 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_10.tm2	1049728	259304cc3535af0a484513eaaabbb0b21938b0aae8f9dea7d1d1edcd94e30643	kind 7 id 242 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_11.tm2	1049728	042033520340d0d82a90d034934face4d534f8fb6d495929e52364666f92c38c	kind 7 id 243 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_12.tm2	1049728	6d37366ab9e55830cb4e5e7ac5749d3940abf950e9c117734e8a2f2d61c6901d	kind 7 id 244 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_13.tm2	1049728	448f9ee06b7f0afb27511e12450dfbb3d8632c8d7492108dd5f04fb3ce697f6e	kind 7 id 245 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_14.tm2	1049728	43f6f4fdd86dbc8c6127afaa294f28c24aebf7adffd945227ec7c859207b993a	kind 7 id 246 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_15.tm2	1049728	7b91130e450609b96b8fd1c8723e898ba569231cb47219fe36aecf0809218b22	kind 7 id 247 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_16.tm2	1049728	49c74c2e2cb39516a1e6384d21114d3bf8d7b26f057b644b008e6212dd57c018	kind 7 id 248 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_17.tm2	1049728	2914e6e9e7b892e6ee7bc7e67a09cfbb71e402761eb503b0b08128d8ca807b1c	kind 7 id 249 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_18.tm2	1049728	017de699ee62a65d260225b5c25a2eacf43ef855ea630ba27182190e7f9a597e	kind 7 id 250 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_19.tm2	1049728	07b79245e2f60fa027465ddd8b74955a7c1cd62c05ef3fb0a074ac722b6b9177	kind 7 id 251 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_20.tm2	1049728	c6a949592ff539a95b966f1c7c34d0d8461acb0fa832ff0b30b984d60a15293a	kind 7 id 252 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_21.tm2	1049728	f396e5725788188c0c162af78d0c1a97600c6380dd6c91603b8974b22d80b983	kind 7 id 253 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_22.tm2	1049728	1a9465a45a7ac65b45450afc265b6aaadc07425d867f222e61babde47288b408	kind 7 id 254 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_23.tm2	1049728	64bcd5c80f36272aca09fa344c570a545f872ea713731fe267e3b8bc9496dbfd	kind 7 id 255 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_24.tm2	1049728	29df9f6b23b8870585eda47b6a3ab7d62b7450a2e06214b75cfd10ed7c7cc455	kind 7 id 256 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_25.tm2	1049728	fb91b1c8db5f7e87599f77ab278e9dcf22f63032422469d0fedf9bdf980cc7cb	kind 7 id 257 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_26.tm2	1049728	ca7323aac6e107a78ddc7f6ce8152df44a310f7541eb6ed782137abda2ab81d0	kind 7 id 258 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_27.tm2	1049728	59d6f8aa760d0e1f339a5a19de919332ac02128b4bcff9b1e6c038a060974cc4	kind 7 id 259 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_28.tm2	1049728	5f9cfa477497242d738710f053c591917d17734efb473ed3f36d300c52fb8564	kind 7 id 260 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_29.tm2	1049728	6b96af607966e36ad08e354fc9e550e9a1d8d92a0fa0040593191c28cc377c59	kind 7 id 261 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_30.tm2	1049728	fb4dc120521b8e6f12eccda17765687afb7b29e94e88f0379c7558524aaa64e5	kind 7 id 262 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_31.tm2	1049728	2e761fc7fb37574687599112de9cb1afdd524270a2eb61583a2967e0de41bd95	kind 7 id 263 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_32.tm2	1049728	9ceeb12e3c94ad16419295cbc034f24e3e972a90aef17a4d9c09c05c88e27932	kind 7 id 264 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_33.tm2	1049728	0d3d42eb3df5379439b4f31a5b90181eeffe3d8f039707e0d4dda847f9d97471	kind 7 id 265 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_34.tm2	1049728	1b60d3ab5151bca908729e710460f973d2a7a84e24815ea860b292d72d7f1c29	kind 7 id 266 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_35.tm2	1049728	f153966251d6382f57a99d4963d155546661b6e9fb2e27bd984b67f286476b6b	kind 7 id 267 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_36.tm2	1049728	83dcfbe957f94873ce097531bf44c7342b79bfee26f8fa4b06206185a2c1f225	kind 7 id 268 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_37.tm2	1049728	8a06103cb47188f8014e6b449b0034489e94d8b4d54a4c15621dec210096869f	kind 7 id 269 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in	ps2data/image/ff12/myoshiok/in/worldmap/bin/areatim2/loca_38.tm2	1049728	4486bff186c83925fada033c0db2408474876289dcc1317b8a8fe093c66ffe44	kind 7 id 270 (JP US FR DE IT ES UK KR CH ASIA IN CN)	JP US FR DE IT ES UK KR CH ASIA IN CN	-	-	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/cm2_win_c.tm2	5312	13adff097c0cb71fb9b9167158957f101aa79181a87b062d5fe7201ee6aea712	named by no path array	-	-	kind 7 id 43 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/dataface_c.tm2	265504	09c997986c57e6ec7a0b50accb009ef80f7b257b0b090e2298a033c04a5a70a4	named by no path array	-	-	kind 7 id 127 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/gameover_c.tm2	66688	b0336889756d9405c9a04e7e45ae59f0d18677a3efb69ce86df220e37cbf9b42	named by no path array	-	-	kind 7 id 57 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/hand_4_c.tm2	9408	2979b8fea67b5407ecb98872170817f2c0e7cd74227c589060c4591cb5124576	named by no path array	-	-	kind 7 id 205 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/handback2_c.tm2	132224	1a4885a9327afcb7f4cd717aaca48254438161f5fdc580939e29bdf525733f89	named by no path array	-	-	kind 7 id 208 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/handback_c.tm2	132224	5ba78dd2210e59d24ec3b621eba34bdcee6102a83b113f8671cce98475ba938f	named by no path array	-	-	kind 7 id 206 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/itemgra_c.tm2	6272	9d3c82672dc259492acc64a7e860e009f50447ab804c3b6bbd120fb2e9fa6031	named by no path array	-	-	kind 7 id 152 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/l_mapunder.tm2	17632	2429742572f37ee269d30254a1086139b6568f0d4d900422f31414693ecccb6a	named by no path array	-	-	kind 7 id 183 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/lic_4_c.tm2	17952	19ef4a790700bb353ada50b15a8335dbc876ba9b5ad005e2ae795625e4024bcd	named by no path array	-	-	kind 7 id 121 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/lic_8_c.tm2	291072	48427baf9674c7dbc0d48cbd6ab12735de0ac1b386bbfc045e27bd7a1bce2b49	named by no path array	-	-	kind 7 id 120 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/lic_8_c2.tm2	67360	f0c1cb12836fb02528a162d1e622ddc70ba038197bcf84bdce5399f7fc59f627	named by no path array	-	-	kind 7 id 124 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/lic_8_c3.tm2	36128	251fa5693c90a03f461cbda5cbd02370a412ef9d184f80f804eea7411ab2a34b	named by no path array	-	-	kind 7 id 125 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/lic_b_4_c.tm2	263296	0a63b14352e62f07f20809f39a3a68b565a72e224990761fd4a1a0fdaf7836a4	named by no path array	-	-	kind 7 id 119 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/lic_b_8_c.tm2	69136	6007c44386f3cea99027b655235aae927e8227deec561ed95234239cd60d05b3	named by no path array	-	-	kind 7 id 118 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/lic_bk.tm2	32960	fd480fd1df759b63682f1399254e7dce8f1330b1854bfc2d06d6157b9606f8bc	named by no path array	-	-	kind 7 id 122 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/lic_over.tm2	5184	25834b8605526f622380e3a66fe3111c7a1bff3f06b72cbcb56a1a41c46a1022	named by no path array	-	-	kind 7 id 123 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/loca_8_c.tm2	69184	7dcd0c4b2ee374b0723b446e46bada4f8354077d4587e16dcaf5ac41fb952b83	named by no path array	-	-	kind 7 id 185 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/locaback_c.tm2	132224	316800955946b5d082e7f9f3d8fbf70c7a3c7a909d15741e84315c08fec4d53a	named by no path array	-	-	kind 7 id 186 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/map_gra_c.tm2	66688	d0fe5972d38ea7393b051936a0b6add3eae1a160f9ea5c208f690c6f9e5a6a22	named by no path array	-	-	kind 7 id 179 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/maru_c.tm2	66688	90d2716f4c1aba1fc31320b8a33fdca0c74627c53edb14f911754e01d2cf4388	named by no path array	-	-	kind 7 id 112 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/maru_c_2.tm2	136384	8a190d4fab7e9191bd19302f9f9eccf777bd6da5b0ed3fb6b27b70f38c7f918a	named by no path array	-	-	kind 7 id 113 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/medal_c.tm2	132480	70382fb2408365109d1f7b8b45924ddef59694210821d107fb3a377837807a82	named by no path array	-	-	kind 7 id 207 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/q_under_c.tm2	9344	050fa05dfe97e473468b2885df0c82604eed5219f33794e8788dfd14c5871dd2	named by no path array	-	-	kind 7 id 192 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/sf_logo_c.tm2	131344	b02b31bf3dfb9442a58e0100855f41dd16fadf397414a60b81d446e253200ce4	named by no path array	-	-	kind 7 id 71 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/shop_8_c.tm2	33968	2076d54493941c57fb02a5e1ea1383204370eb9c321b8b039cfd657dbcfb457f	named by no path array	-	-	kind 7 id 99 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/title_c.tm2	264416	9fc95ad203ff8cf48dad379d1ae772e1fef6a89f60bff789690089391becb15d	named by no path array	-	-	kind 7 id 60 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/title_logo.tm2	33936	acf67ecd6cc5b0b17ed42c9f8eeddcc67712f4a1a70db6ad3f6656478f6323d6	named by no path array	-	-	kind 7 id 61 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/titlemenu1.tm2	263296	7fae8c863ec506d6716d48665acc3643d1134d699dccdb0f5a1aa6ead9079592	named by no path array	-	-	kind 7 id 62 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/titlemenu2.tm2	263296	f7b12bfa117fa1087e81dd7568ecffa48ec5a53d35bb3c2d551f83ef064db6e8	named by no path array	-	-	kind 7 id 63 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/tuto_win_c.tm2	5312	2c6d6b1bebbac99711167d570d486a654e374b52033759c347ef6e8fa791c78b	named by no path array	-	-	kind 7 id 216 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_icon_p.tm2	9520	d76bbe5f35c24361502d70df31661f0dcab4dabe36205eacfb9efd79807d7e3f	named by no path array	-	-	kind 7 id 175 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_line01.tm2	2368	26fbe0d9f9ae27af48a6088f2b41c38a881768c3bad8960d5869bf1c6cac52c4	named by no path array	-	-	kind 7 id 176 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_line02.tm2	1344	f1f3c70dcce672f4aafb375f6af858cc34c5078b8f3b105f48da207542bf2a89	named by no path array	-	-	kind 7 id 177 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_main0.tm2	263296	dc00487626e6ae171cc5b2e31c24b0704ea402b280815f89f6ebad6f8e3b90e1	named by no path array	-	-	kind 7 id 171 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_main1.tm2	263296	4fda60eaa6eb31352fd98cb648a23380db21a42539dcc00117e54859c14edc4a	named by no path array	-	-	kind 7 id 172 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_main2.tm2	66688	fbafcd69463d01848602258d4885f78c9169baaccb8d227ff5488bdaaccdb8bd	named by no path array	-	-	kind 7 id 173 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_main3.tm2	66688	329e551fea56abe4cf5e93afd52f5504453daf6a5720b0d9c81c29cd4b9e8ae1	named by no path array	-	-	kind 7 id 174 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_shade_p.tm2	66688	51d90276fcac38f25abfc31e94e5f2b35636a0724aac2c877890cce888a26623	named by no path array	-	-	kind 7 id 170 when the second argument is 0	-	0
+in_sdver	ps2data/image/ff12/myoshiok/in_sdver/tm2_menu/w_win_c.tm2	5376	5e7ff3481cd8436b3966486eefc96159748e1c3420cb72ca21120ac13c31c8b0	named by no path array	-	-	kind 7 id 178 when the second argument is 0	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/cm2_win_c.tm2	17600	25ba650b1280b84c2e69e48f3ee34fda5cd21f4e6e72252386c90a255ac38939	kind 7 id 43 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/dataface_c.tm2	1051936	2d2e56b24fe2bd5e756cdd4c3634834b128d37e63b28cf214cdb57ac92a368e5	kind 7 id 127 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/hand_4_c.tm2	143872	f098088ed45f3ba9166bf685c373c43aad922df8fd54045f0a3116f6e65f3219	kind 7 id 205 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (IT)	IT	-	-	-	1
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (IT)	IT	-	-	-	1
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/lic_8_c3.tm2	147744	9c1cd88de80e4466ef83613d4b7ec962e7a4ca6571aed551516fa1191fbd9a3c	kind 7 id 125 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/loca_8_c.tm2	272960	2fab06dd5d0c0456b481886f7278d2618d2c4dbe3dad91824145e5b129b2dfa6	kind 7 id 185 (IT)	IT	-	-	-	648
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (IT)	IT	-	-	-	648
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/medal_c.tm2	1049984	7fa22e4e62ed69e7aa5f4e761f2620878cfa276c52a6813d73e92badd9da29ba	kind 7 id 207 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/sf_logo_c.tm2	1049744	2620733c37ddbb4fa47fe82847694e300675f002c2e90e87dbd6b3a22d7cc30e	kind 7 id 71 (IT)	IT	-	-	-	1
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/title_logo.tm2	526496	9af3182af7185f728dc29e08a68b6ea6274a15292f8e03172b3f7c8a6c5f58be	kind 7 id 61 (IT)	IT	-	-	-	1
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/title_logo_fore3.tm2	526496	509e787f27ce5d27674fb028eebfb49c5b509ff1927c04209d9b1bf614e877c3	named by no path array	-	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_line01.tm2	6208	ebdfbbd6d09ec08c61d06dffa70ac3c10409c4c1fddd02119a6ef1ae148109a1	kind 7 id 176 (IT)	IT	-	-	-	648
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (IT)	IT	-	-	-	0
+it	ps2data/image/ff12/myoshiok/it/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (IT)	IT	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/cm2_win_c.tm2	17600	5e7aaa0fd5f12ba76a141e8b87d23c11d8949f833e91baa77051ee38fd260f13	kind 7 id 43 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/dataface_c.tm2	1051936	31898b389302a76aaf26af85f286e1c9e8b318621a5bf5ecc2a798a6d48c56e7	kind 7 id 127 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/hand_4_c.tm2	143872	02c49ce0ec479ab528c1ba23d46efe90687bd0d6951940fdc8e4028bbc6d3037	kind 7 id 205 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/lic_8_c3.tm2	147744	1f1374d89203450a55446318de2848ec908b788d1f89ae2ba15f559db50c7945	kind 7 id 125 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/loca_8_c.tm2	272960	eff9efe890c95848353de464e6ca70cd0002a688aea801fe1868bb053f3878e1	kind 7 id 185 (KR)	KR	-	-	-	647
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (KR)	KR	-	-	-	647
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/medal_c.tm2	1049984	4dcabcc5fe233bdd6c739bacc17b57180ef6de69a29f5d61341087c738ba63c9	kind 7 id 207 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/sf_logo_c.tm2	1049744	1ce24ba07e04d252a7a09fe304a70f743d2e81c3644f157a625008fbe8986932	kind 7 id 71 (KR)	KR	-	-	-	1
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/title_logo.tm2	526496	f4c8e508fbe261bf8d2a2a9922dd76ce8375a8f16ead2a857d76a8a7fc5d3326	kind 7 id 61 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_line01.tm2	6208	ebdfbbd6d09ec08c61d06dffa70ac3c10409c4c1fddd02119a6ef1ae148109a1	kind 7 id 176 (KR)	KR	-	-	-	647
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (KR)	KR	-	-	-	0
+kr	ps2data/image/ff12/myoshiok/kr/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (KR)	KR	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/cm2_win_c.tm2	17600	25ba650b1280b84c2e69e48f3ee34fda5cd21f4e6e72252386c90a255ac38939	kind 7 id 43 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/dataface_c.tm2	1051936	31898b389302a76aaf26af85f286e1c9e8b318621a5bf5ecc2a798a6d48c56e7	kind 7 id 127 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/gameover_c.tm2	263296	c1c79c47ec8b4e070dc7a297c7d19fe8e767677778784b089b5ffbc21cdbba14	kind 7 id 57 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/hand_4_c.tm2	143872	4aa5a27ca9b9792a26ca52ee7c4ae0c4bdd42f1e3c6dbeabdac1c2458d15c858	kind 7 id 205 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/handback2_c.tm2	4195456	81a3a8347cce5329d7d15d9d9d356d9523d9508fbba20ee2adbe922ffb940d74	kind 7 id 208 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/handback_c.tm2	4195456	fd742a3a30c084a1666201db58bb58f7ccfa608f9ceb059c1d537bbb403aa02e	kind 7 id 206 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/itemgra_c.tm2	18560	40317a13b3e4fb82a34c80a141aed44121fa12ab53c6540ccf66551b373e2b6f	kind 7 id 152 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/l_mapunder.tm2	66784	bc2f98aad70a9115aaf2ccf604362d3c2a0a19c45e7fc3bc0908c36c8217723f	kind 7 id 183 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/lic_4_c.tm2	280032	db84cc63b256c40f2a544e649b57cd52e7241fa7aba1bc76c0124ad2c25e4adf	kind 7 id 121 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/lic_8_c.tm2	2164080	27bed74b5020297177f12d6e3d52690bbc29c6bb1884915a2eec30b72a851c10	kind 7 id 120 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/lic_8_c2.tm2	1065888	a853ce0c830b751d222a5f7da4473b6972a05b7ea177eb231132f37719d11aeb	kind 7 id 124 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/lic_8_c3.tm2	147744	9c1cd88de80e4466ef83613d4b7ec962e7a4ca6571aed551516fa1191fbd9a3c	kind 7 id 125 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/lic_b_4_c.tm2	2098304	28e1bf0b91a663c52b1b6a80a97ac986ed9f682f16c43c12004fabcccb154c0f	kind 7 id 119 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/lic_b_8_c.tm2	265744	46a572c72aa3f7259a41b4db01d307d007fc6d478997244a9a743396ef0a48b1	kind 7 id 118 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/lic_bk.tm2	263296	841a366174786a1385675cc57f50fe00889d17219ee7d8f813875e155cc0c348	kind 7 id 122 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/lic_over.tm2	17472	03876ec5f1950999c50780504a05b1b42d9e3aab2081cdbd6118b7fd90631afe	kind 7 id 123 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/loca_8_c.tm2	272960	2fab06dd5d0c0456b481886f7278d2618d2c4dbe3dad91824145e5b129b2dfa6	kind 7 id 185 (US)	US	-	-	-	647
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/locaback_c.tm2	2098304	73b0812a075cf76864b259fc712aca2536acbefe296c9fc72d68f001d5b4840e	kind 7 id 186 (US)	US	-	-	-	647
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/map_gra_c.tm2	1049728	8f7adf4e1a33e667442328a507e7e6bcb0fd4377b5a75d824e443f2e5f7273ca	kind 7 id 179 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/maru_c.tm2	263296	d5f55a03f803ee81d3ab463f21845bc714a9aa9c85f4e9219574bce42097c439	kind 7 id 112 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/maru_c_2.tm2	1069248	bdd3413c2f2ee7ca5e4cfdf9347df144646bc806bbc168a9b47498d1e9816700	kind 7 id 113 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/medal_c.tm2	1049984	a613dcb7e513bc2d64cb02050ca4303fd97bc25d32fc5be27756bf48ddb523f5	kind 7 id 207 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/q_under_c.tm2	33920	41d2428e127b6d3f2d6071c0e75800b600c216323338fc739231a06ab8344acf	kind 7 id 192 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/sf_logo_c.tm2	1049744	1ce24ba07e04d252a7a09fe304a70f743d2e81c3644f157a625008fbe8986932	kind 7 id 71 (US)	US	-	-	-	1
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/shop_8_c.tm2	133296	1a9da3989f6345fb36fe37714fb9fd879b2316551e74b40a7172199c813ed1f6	kind 7 id 99 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/title_c.tm2	1050848	7dd48b6e902feb848f2130f571b290bd332bbecbd2ffc15a7b4251c8e73e29a5	kind 7 id 60 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/title_logo.tm2	526496	f4c8e508fbe261bf8d2a2a9922dd76ce8375a8f16ead2a857d76a8a7fc5d3326	kind 7 id 61 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/title_logo_fore3.tm2	526496	273241a01546bd135fe0ea0d18f954ff496b4529f6fb44be785ff23e05766616	named by no path array	-	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/titlemenu1.tm2	1049728	a19f40a53f4af3c06f4d74f15aff8dc33baaeaf557b7764e7e943f810e34127d	kind 7 id 62 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/titlemenu2.tm2	1049728	c9239ec63eb6b15e23bb2b566edfa53887cf34e9c21e8bf6de023ffade358e9a	kind 7 id 63 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/tuto_win_c.tm2	17600	fc8150fcf9b6e6fedc846f11c9b2539e405cbfefe9df1b8cccfa288261ff7518	kind 7 id 216 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_icon_p.tm2	82224	fd56dfef8b1dca48dc22e711013eb02f914f9ba5a0d68de76d215bcb47657392	kind 7 id 175 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_line01.tm2	6208	ebdfbbd6d09ec08c61d06dffa70ac3c10409c4c1fddd02119a6ef1ae148109a1	kind 7 id 176 (US)	US	-	-	-	647
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_line02.tm2	2112	fd185524dcfb11f04543873ff3d82459d269d6c4813a572a3fd321ed01259ac7	kind 7 id 177 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_main0.tm2	1049728	809c1a6d9b9f08bc87b438644cafb76ff6fb715c626158b747546795de05fb9c	kind 7 id 171 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_main1.tm2	1049728	bdf1327cacc53bc4bfa25ca19fac7a62ce13fed48528ab6e711cea20cda2dbd7	kind 7 id 172 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_main2.tm2	263296	e7bfb58522caf175d6945df70bd3f968510807fad347aa6302da1383038dd75b	kind 7 id 173 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_main3.tm2	263296	8205bba180363cf498df73e71f4158d10462982a3f06a945a6a70dd584729e8b	kind 7 id 174 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_shade_p.tm2	263296	fa83d11b0612ad7c6447fb59632385f76ba3dbda03346c4a18b45101c2e6d04d	kind 7 id 170 (US)	US	-	-	-	0
+us	ps2data/image/ff12/myoshiok/us/tm2_menu/w_win_c.tm2	33024	be20f48fb5ed7b9a5c3381df82d12e679d739ac374e0fad50c274ca0f16914b3	kind 7 id 178 (US)	US	-	-	-	0

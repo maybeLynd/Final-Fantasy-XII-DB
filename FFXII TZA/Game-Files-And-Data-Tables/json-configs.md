@@ -32,6 +32,11 @@ documents and the two struct files `parametersmanageruisizestruct.csv` and `para
 3,242,429 bytes in all. Each row gives the file's size, its SHA-256 and the number of rows `json-configs-values.tsv`
 gives it: 775 documents give rows, 29 are an empty object and 26 are files of 0 bytes.
 
+[json-configs-inputs.tsv](json-configs-inputs.tsv) gives each of the 717 keys as a setting a modder can change: its
+types and shipped values, which document wins when several hold it, when the game reads it, what it sets, what the
+player sees and when it changes nothing. 65 keys change nothing: no loader reads them from their documents, and
+`monstertoweapon.json` is never opened.
+
 One more file under `jsondata/` is text, not JSON: `parametersmanagermonstergallerystruct.txt`, 1,781 bytes, LF line ends, no line end after the last line. No string in the executable holds its name or a setter name in it; the viewer reads `JsonData/MonsterGallery.json`.
 
 - The first line is the column title `#title name, dummy, type, dummy, min, max, default.`

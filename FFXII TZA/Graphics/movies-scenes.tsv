@@ -1,0 +1,53 @@
+movie_id	movie	opened_by	scene_event_id	zone_script	zone	map_name	region	story_counter_set
+0	OPN	naf_a01 main step 25	-	naf_a01	274	Aerial Gardens	Nalbina Fortress	-
+1	NAL	nac_a02 main step 8	-	nac_a02	631	Jajim Bazaar	Nalbina Town	-
+1	NAL	nac_a03 main step 25	-	nac_a03	632	West Ward	Nalbina Town	-
+2	DLS	byu_b0101 main step 40	278	byu_b01	791	Aerodrome	Bhujerba	-
+3	RLV	rwg_a01 touchon step 24	-	rwg_a01	403	Valley of the Dead	The Tomb of Raithwall	-
+4	LVB	rsn_z0200 砂漠の牙 step 33	279	rsn_z02	872	Battle Launch	Light Cruiser Shiva	-
+5	ARC	alc_z0100 read_movie step 9	300	alc_z01	866	alc_z01	Archades	1180: After Emperor Gramis; scenario stage 3 ends; map unlock: Dalmasca Westersand, way into the eastern Yensa sandsea
+6	ENS	ene_a0180 main step 51	739	ene_a01	379	Platform 1 - East Tanks	Ogir-Yensa Sandsea	-
+7	LHO	rwf_a0100 main step 45	372	rwf_a01	509	Footfalls of the Past	Ridorana Cataract	-
+8	CLS	byu_y0100 main step 144	273	byu_y01	864	byu_y01	Bhujerba	800: After the laughing marquis
+9	LWG	rwg_a01 main step 51	-	rwg_a01	403	Valley of the Dead	The Tomb of Raithwall	-
+10	ALX	mrm_a02 touchon step 85	-	mrm_a02	594	Walk of Mind	Stilshrine of Miriam	-
+11	VAF	rrp_a01 main step 2	-	rrp_a01	567	Cellar Stores	Royal Palace	-
+12	LVA	rsn_z0100 リヴァイアサン艦橋にて step 56	282	rsn_z01	871	Bridge	Dreadnought Leviathan	890: On the Leviathan's bridge
+13	WEN	ene_a0200 EV_a0200 step 177	135	ene_a02	380	Platform 1 - Refinery	Ogir-Yensa Sandsea	1330: After the Urutan-Yensa appear
+14	DRC	dor_a0100 main step 28	179	dor_a01	1008	66th Floor	Draklor Laboratory	3350: After the upper floors of Draklor Laboratory
+15	END	bhm_d0101 main step 415	151	bhm_d01	785	Cannon Superstructure	Sky Fortress Bahamut	7100: After the decisive battle / 7150: After the last Vayne battle
+16	STR_STA	rbn_b01 バルフレアtalk_意思確認時 step 38	-	rbn_b01	788	Aerodrome	Rabanastre	-
+17	DIS	rsn_z0201 main step 262	286	rsn_z02	872	Battle Launch	Light Cruiser Shiva	1520: After the Leviathan fleet is destroyed; scenario stage 4 ends; map unlock: everything opened after the Tomb of Raithwall
+18	RAR	alc_z0200 main step 69	302	alc_z02	867	alc_z02	Archades	1550: After the Senate
+19	STM	dgl_f0100 main step 190	385	dgl_f01	666	Womb of the Sun-cryst	Pharos - Third Ascent	-
+20	LRF	rrp_a06 落ちる飛空艇ＢＧＭ読み込み step 1	-	rrp_a06	572	The Garden Stairs	Royal Palace	-
+21	EST	dgl_g0102 main step 449	388	dgl_g01	668	Womb of the Sun-cryst	Pharos - Third Ascent	5600: After the Famfrit battle / 5650: After the Sun-cryst runs wild / 6000: After Vaan on the ship; after Destroy the Sun-cryst
+22	BAR	bhm_z0100 ムービー１準備 step 2	152	bhm_z01	924	bhm_z01	Sky Fortress Bahamut	-
+23	ESC	rsn_a0102 movie_ready step 2	285	rsn_a01	552	Port Launch	Dreadnought Leviathan	1090: After the escape from the Leviathan
+24	BAH	bhm_z0100 ムービー２準備 step 2	152	bhm_z01	924	bhm_z01	Sky Fortress Bahamut	-
+25	EPL	msg_z0001 main step 8	399	bhm_d01	785	Cannon Superstructure	Sky Fortress Bahamut	-
+26	MEM	fon_b0100 movie_ready step 5	250	fon_b01	488	Hunters' Camp	Phon Coast	-
+27	VAD	bhm_y0100 movie_forth_play step 2	153	bhm_y01	922	bhm_y01	Sky Fortress Bahamut	6400: After the Strahl closes on the Bahamut
+28	CHV	bhm_d0100 EV_e0100 step 148	142	bhm_d01	785	Cannon Superstructure	Sky Fortress Bahamut	-
+29	DED	bhm_d0101 main step 25	151	bhm_d01	785	Cannon Superstructure	Sky Fortress Bahamut	7100: After the decisive battle / 7150: After the last Vayne battle
+30	VNP	rbn_y0100 main step 7	104	rbn_y01	910	rbn_y01	Rabanastre	95: After Vayne's speech / 100: After the white room; map unlock: Rabanastre main street; map unlock: outside Rabanastre; after Vayne appears
+31	SCB	bhm_y0100 movie_hind_ready step 4	153	bhm_y01	922	bhm_y01	Sky Fortress Bahamut	6400: After the Strahl closes on the Bahamut
+32	WAR	bhm_a0200 read_movie step 11	150	bhm_a02	775	Catwalk	Sky Fortress Bahamut	-
+33	BLU	bul_b02 main step 35	-	bul_b02	742	Sand-strewn Pass	Mt Bur-Omisace	-
+34	BLB	bul_a03 main step 30	-	bul_a03	738	Temple Grounds	Mt Bur-Omisace	-
+36	RBS	bhm_y0101 read_movie step 10	154	bhm_y01	922	bhm_y01	Sky Fortress Bahamut	4050: After the warship scene
+41	OPD	ttl_a01 オープニングデモ_PLAY step 7 (local_var_s6f0_1, when getscreenaspect answers 0)	-	ttl_a01	12	-	Pharos at Ridorana	-
+41	OPD	ttl_c01 main step 15	-	ttl_c01	14	-	Pharos at Ridorana	-
+41	OPD	ttl_a01_e3 オープニングデモ_PLAY step 7 (local_var_s7f0_1, when getscreenaspect answers 0)	-	ttl_a01_e3	-	-	-	-
+42	STF	men_z0005 main step 30	429	ttl_b01	13	-	Pharos at Ridorana	-
+43	IVT	dgl_g0102 main step 390	388	dgl_g01	668	Womb of the Sun-cryst	Pharos - Third Ascent	5600: After the Famfrit battle / 5650: After the Sun-cryst runs wild / 6000: After Vaan on the ship; after Destroy the Sun-cryst
+44	SE1	ttl_a01 スクエニロゴ_PLAY step 7 (local_var_s6f0_1, when getscreenaspect answers 0)	-	ttl_a01	12	-	Pharos at Ridorana	-
+44	SE1	ttl_a01_e3 スクエニロゴ_PLAY step 7 (local_var_s7f0_1, when getscreenaspect answers 0)	-	ttl_a01_e3	-	-	-	-
+45	SE2	ttl_a01 スクエニロゴ_PLAY step 7 (local_var_s6f0_1, when getscreenaspect answers non-zero)	-	ttl_a01	12	-	Pharos at Ridorana	-
+45	SE2	ttl_a01_e3 スクエニロゴ_PLAY step 7 (local_var_s7f0_1, when getscreenaspect answers non-zero)	-	ttl_a01_e3	-	-	-	-
+47	BD2	ttl_a01 オープニングデモ_PLAY step 7 (local_var_s6f0_1, when getscreenaspect answers non-zero)	-	ttl_a01	12	-	Pharos at Ridorana	-
+47	BD2	ttl_a01_e3 オープニングデモ_PLAY step 7 (local_var_s7f0_1, when getscreenaspect answers non-zero)	-	ttl_a01_e3	-	-	-	-
+48	ANX	ttl_a01 キーチェック step 81	-	ttl_a01	12	-	Pharos at Ridorana	-
+48	ANX	ttl_a01 moviesload step 1	-	ttl_a01	12	-	Pharos at Ridorana	-
+48	ANX	ttl_a01_e3 キーチェック step 81	-	ttl_a01_e3	-	-	-	-
+48	ANX	ttl_a01_e3 moviesload step 1	-	ttl_a01_e3	-	-	-	-
