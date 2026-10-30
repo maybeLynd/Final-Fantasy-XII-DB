@@ -921,7 +921,7 @@ descriptor (`0x006388C0`, `0x00639450`). Ten of its statics are in `array-getter
 | annotation `+0x30`, 69 rows | `u32` | 0 | `0x7FFFFFFF`; `0x00639C80` takes it through the annotation's slot `+0x08` (`0x005C4D20`, `0x0063A05F`) and copies it into the write mask over `m_count`, leaving out bit `0x80000000` | the getter | - |
 | `m_els` `+0x00`, 69 rows | `void*` | 0 | the record's `PClassDataMemberArrayDynamic<T>` vtable, installed after `0x00632A10` builds the record | the getter | - |
 | `m_els` `+0x28`, 9 rows | `u32` | 0 | attribute bit `0x40` ORed in for a `PSharray<T>` | the getter | - |
-| `m_els` `+0x58`, 69 rows | `u32` | 0 | element size: 8 in 51 getters, 4 in 13, 2 in 3, 1 and 16 in one each | the getter | - |
+| `m_els` `+0x58`, 69 rows | `u32` | 0 | the element type's alignment: 8 in 51 getters, 4 in 12, 2 in 3, 1 in 2 and 16 in 1 | the getter | - |
 | `m_els` `+0x60`, 69 rows | `void*` | 0 | `0x005C4CC0`, which returns the array's first word without bit `0x80000000` | the getter | - |
 | `m_els` `+0x68`, 69 rows | `void*` | 0 | 0, or `0x00671250` in the 9 `PSharray<T>` getters | the getter | - |
 | `m_els` `+0x70`, 69 rows | `void*` | 0 | the set-elements function of the element type (`0x00673130` in 19 getters, `0x006AF760` in 22) | the getter | - |

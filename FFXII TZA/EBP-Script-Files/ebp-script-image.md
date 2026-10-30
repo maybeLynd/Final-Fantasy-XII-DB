@@ -81,7 +81,8 @@ All multi-byte fields are little-endian.
 | `+0x14` | `u32` | jumps | -> u32 count, u32 codeOff[count] -> record `+0x50` |
 | `+0x18` | `u32` | slotFooter | -> s16 18, s16 function[18], one per entry slot |
 | `+0x1C` | `u32` | localOff | this actor's slice of the local storage |
-| `+0x20` | `u8[16]` | rest of the entry |  |
+| `+0x20` | `u16` | copy | the actor's copy number: `0x00263880` returns it (`0x002638AA`) for an image of version 8 or more |
+| `+0x22` | `u8[14]` | rest of the entry |  |
 
 Function and jump offsets are relative to `codeStart`. The function table's `listOff` follows it
 directly: `jumps = functions + 4 + 8 × count` in every entry.

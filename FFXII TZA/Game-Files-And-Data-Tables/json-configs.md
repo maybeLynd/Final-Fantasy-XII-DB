@@ -22,6 +22,13 @@ addresses: "0x00200BF0, 0x001FF740, 0x001C7940, 0x001C3D50, 0x001C6320, 0x001C6C
 `0.json` is `{}` and holds no key. [json-monster-gallery.tsv](json-monster-gallery.tsv) holds the 385 entries of
 `monstergallery.json`, `Common` and `MonsterId0` to `MonsterId383`, one column per key.
 
+One more file under `jsondata/` is text, not JSON: `parametersmanagermonstergallerystruct.txt`, 1,781 bytes, LF line ends, no line end after the last line. No string in the executable holds its name or a setter name in it; the viewer reads `JsonData/MonsterGallery.json`.
+
+- The first line is the column title `#title name, dummy, type, dummy, min, max, default.`
+- Each of the 33 lines after it names one monster viewer setting, then `in`, `int` or `float`, a setter name, a minimum, a maximum and a default.
+- The settings: `motionIndex` 0 to 80, `motionRepeatFrame` 0 to 300 (default 240), `motionRate` 0.1 to 2.0 (0.5), `modelScale`, `cameraPitch`, `cameraYaw`, `xOffset`, `yOffset`, `cameraFov`, the ambient light's colour and intensity, two directional lights' direction, colour and intensity, the background colour, `drawBgColor` and `eyeVfxZBias` -20000 to 0 (default -7000).
+- The setter is `setMotionIndex2` in 27 lines, `setMotionIndex1` in 3, `setMotionIndex` in 1 and `dummy` in 2.
+
 The file formats, the parser and the order in which the loaders look keys up are on
 [Standard file formats](standard-file-formats.md) and
 [Graphics settings](../Engine-Core/graphics-settings.md); this page is the shipped content.

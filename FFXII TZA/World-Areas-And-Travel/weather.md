@@ -292,7 +292,7 @@ non-zero, so each row carries three per-slot enable bytes at `+8`, `+9` and `+0x
 |---|---|---|---|
 | 0x21A | `setweatherslot(n)` | `0x003565C0` | when the running manager (`0x002640C0()`) has `+0x28` = 0, byte `+0x12` non-zero and the actor's word matches `[manager] + 0x50`: clamps `n` to 1 to 3, calls `0x0026D910(n)` and then `0x0026D8F0()`, which sets `payload[0x1061]` to 1 so the roll that follows in the same start pass keeps it. Byte `+0x12` is set by the bind (`0x0026CD28`, when header word `+0x50` names a setup actor) and cleared at `0x0025DB79`, just before `0x002620E0`, so the verb acts only while the setup actor runs its start functions |
 | 0x40C | `getweatherslot()` | `0x00356250` | returns `0x00265920()` |
-| 0x481 | `setmapwind(elevation, azimuth, preset)` | `0x0034B6C0` | `0x002E3D40(1, preset, azimuth, elevation)`: the sky from the operands, the table bypassed |
+| 0x481 | `setmapwind(preset, azimuth, elevation)` | `0x0034B6C0` | `0x002E3D40(1, preset, azimuth, elevation)`: the sky from the operands, the table bypassed |
 | 0x482 | `defaultmapwind()` | `0x0034BD10` | `0x002E3D40(0, 0, 0, 0)`: the sky from the table for the committed slot |
 | 0x3DD | `changeenvsoundweather(n)` | `0x0034D900` | `0x00363A20(n)`, the environment sound |
 | 0x2024 | `debug_setweather` | `0x0050C7F0` | pops one operand and returns |

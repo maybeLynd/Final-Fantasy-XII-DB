@@ -37,8 +37,8 @@ draws with at `+0xC8` and `+0xD0`, which depend on the mode byte `+0xC0`.
 
 ### The verbs
 
-Each verb reaches the child of `[0x02B62D80]` through a one-jump stub, and does nothing while the window's
-`+0xC8` bit `0x2` is set:
+Each verb's handler reaches the child of `[0x02B62D80]` through a chain of jump stubs (the table gives the handler
+and the body), and every verb that changes the gauge does nothing while the window's `+0xC8` bit `0x2` is set:
 
 | Verb | Body | Effect |
 |---|---|---|
@@ -49,8 +49,12 @@ Each verb reaches the child of `[0x02B62D80]` through a one-jump stub, and does 
 | `setgaugecountercondition`, `setgaugetimercondition`, `setgaugeracecondition` | `0x003514F0` → `0x00408560` → `0x00407300` | sets the three thresholds |
 | `setgaugecountertype`, `setgaugetimertype`, `setgaugeracetype` | `0x00354190` → `0x00408A20` | sets the type `+0xDC` |
 | `setgaugecolor` | `0x00357270` → `0x00408780` | sets the four colours |
+| `startgaugetimer` | `0x00351F10` → `0x00408AD0` | clears the window's `+0xC8` bit `0x4`, so the timer counts again |
 | `stopgaugetimer` | `0x003521F0` → `0x004083B0` | sets the window's `+0xC8` bit `0x4` |
 | `resetgaugetimer` | `0x00351C80` → `0x004083E0` | see below |
+| `gaugepadding0` | `0x00352660` → `0x00408860` | sets the child's `+0xD8` bit `0x2` from bit `0x1` of the argument; with it set and `+0x130` bit `0x1` set, the timer text `0x00407720` writes format `0x4B3E` instead of `0x4B3D` |
+| `getgaugecounter` | `0x00353D70` → `0x00408250` | returns a counter's value `+0xE4` (mode 0), -1 with no counter |
+| `getgaugetimer` | `0x003539E0` → `0x00408280` | returns a timer's value `+0xE4` (mode 1) in seconds, rounded up for a non-zero argument and down for 0, -1 with no timer |
 
 ### Value, ramps and thresholds
 

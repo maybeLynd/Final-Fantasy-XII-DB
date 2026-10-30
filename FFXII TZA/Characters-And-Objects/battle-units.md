@@ -206,6 +206,10 @@ and turns any other value into 0.
 focus record (`0x00264050(0)`) to the front when `focusFirst` is set and it is among the first four,
 and returns entry `index`, or null past the end.
 
+`0x00359CA0` takes the same arguments and gives the same pick, except that it filters the two lists apart and looks
+for the party focus only among the members of `0x0031B670`, so a focus member from `0x0031B680` keeps its place;
+capturebattlemembeructop, ucmovecancel_52d and setbattlethinkstatus_52e use it.
+
 The verb `0x308C` (`0x0050F5B0`) calls it through
 `0x00510870` with `focusFirst` = 1 and `includeHidden` = 0, and sets its result to 1 when a member
 was picked and `0x00262F50` accepted it, 0 otherwise.

@@ -161,6 +161,19 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 | `.h` text | generated `#define` tables (converted from Excel sheets), CRLF, UTF-8; the `kr` and `cn` `menuquest.h` start with a UTF-8 byte-order mark |
 | `.sys`, `.ico` | `icon.sys` (192 bytes) and `icon1.ico` (33,688 bytes) in `myoshiok/in/bin_menu/` and `myoshiok/ch/bin_menu/`; the two copies are byte-identical |
 | `.cnf` | `ps2data/cdi/in/system.cnf`, 57 bytes |
+| `.txt` | 10,253 files; each family's layout and reader are on the page named |
+| `prefetchdata/` `.txt` | 9,341: the per-language prefetch lists (9,340) and `add-on/events/250.txt`; [Prefetch manifests](prefetch-manifests.md) |
+| `cubemapconfigs.txt` | 451, one per map folder under `gamedata/d3d11/artdata/map/`; [Map cubemaps](../Graphics/map-cubemaps.md) |
+| `proceduraltextureconfigs.txt`, `nomodelgroupmaps.txt` | 451 and 1; [Map art](../World-Areas-And-Travel/map-art.md) |
+| `idmaps.txt`, `phyremaps.txt` | 1 each, `gamedata/d3d11/artdata/shared/`; [Phyre asset files](../PhyreEngine/phyre-asset-files.md) |
+| `texlist.txt` | 1, `gamedata/d3d11/artdata/menu/`; [Prefetch manifests](prefetch-manifests.md) |
+| `disableautosavelist.txt` | 1; [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md) |
+| `ps2data/add_motion/` `.txt` | 4: `add_motion_list.txt` and three files no path names; [Add-motion tables](../Graphics/add-motion-tables.md) |
+| `jsondata/` `.txt` | 1, `parametersmanagermonstergallerystruct.txt`, which no path names; [JSON configs](json-configs.md) |
+| `.dat` | 2,948 files; each family's layout and reader are on the page named |
+| `menuhandbook_<family>.dat`, `menuhandbook_<family>NNN.dat` | 2,876 in `ps2data/image/ff12/myoshiok/<lang>/handbook/`: 54 unlock tables, 101 text bundles and 2,721 picture bundles; [Handbook files](handbook-files.md) |
+| `menuquest.dat` | 9, one per language's `quest/` folder; [Quest menu files](quest-menu-files.md) |
+| font `.dat` | 63 in `gamedata/d3d11/artdata/font/<lang>/`; [Font files](../Menus-And-HUD/fonts-files.md) |
 
 ## Loader behaviour
 
