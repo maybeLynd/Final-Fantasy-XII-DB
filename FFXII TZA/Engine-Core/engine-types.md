@@ -12,7 +12,7 @@ executable builds and reads. Each row gives what the type is for, the page that 
 page) and its lifetime: where its storage lives, which code creates or fills it, and what releases it.
 Addresses in a row are the instructions and functions that do so.
 
-The table holds 550 types in 25 categories. The largest is `SaveImage` (0x56690 bytes).
+The table holds 564 types in 25 categories. The largest is `SaveImage` (0x56690 bytes).
 
 | Category | Types |
 |---|---|
@@ -30,7 +30,7 @@ The table holds 550 types in 25 categories. The largest is `SaveImage` (0x56690 
 | Menus and HUD | 110 |
 | Movement and pathfinding | 16 |
 | Party | 9 |
-| PhyreEngine | 76 |
+| PhyreEngine | 90 |
 | Random numbers | 6 |
 | Rewards: EXP, LP, gil and loot | 9 |
 | Saving, loading and settings | 9 |

@@ -141,12 +141,37 @@ writes the type tag at `+0x08` (`0x0081A664`) and the current white, global `+0x
 | long string | `0x0081EFB0` (`0x0081F003`) | `0x14` | `length + 0x21` (`0x0081EFEB`) |
 | short string, up to `0x28` bytes | `0x0081F1F0` (`0x0081F258`), from `0x0081EDC0` (`0x0081EE72`), which `0x0081EFB0` jumps to (`0x0081EFD0`) | 4 | `length + 0x21` (`0x0081F234`) |
 | userdata | `0x0081F050` (`0x0081F079`), from `0x00810240` (`0x00810269`) | 7 | `length + 0x30` (`0x0081F071`) |
+| table | `luaH_new` `0x0081F6B0` (`0x0081F6C6`), from `lua_createtable` `0x0080F740` (`0x0080F76A`), `0x0081CA00`, `0x008216A0`, `0x00829B10` and `0x0082BE30` | 5 | `0x40` (`0x0081F6C2`) |
+| function prototype | `luaF_newproto` `0x0081ED30` (`0x0081ED46`), from `0x00829680`, `0x0082BE30`, `0x0082DCE0` and `0x0082E910` | 9 | `0x80` (`0x0081ED42`) |
+| upvalue | open: `0x0081EAA0` (`0x0081EAEC`), from `0x00823310` (`0x00823393`), linked into the thread's open list; closed: `0x0081ED90` (`0x0081EDA7`), from `0x0081D790` (`0x0081D863`) | `0xA` | `0x28` (`0x0081EAE8`, `0x0081EDA3`) |
+| thread | `lua_newthread` `0x00813F20` (`0x00813F57`), from `coroutine.create` `0x008150F0` and `coroutine.wrap` `0x00815150` | 8 | `0xD0` (`0x00813F47`) |
 
 The collector's sweeps `0x0081B050` (`0x0081B0EC`) and `0x0081B1A0` (`0x0081B24C`) free a dead object through `0x00819C90`.
-It picks an arm by tag from the byte table `0x00819D50` and frees the same size through `0x00823670`: Lua closure
-`0x00819CD5`, C closure `0x00819CEA`, userdata `0x00819D09` and strings `0x00819D20`. A short string first decrements the
-string table's count at global `+0x38` (`0x00819D12`). No code in the image creates a state (above), so these
-functions run only on a state built outside the executable.
+It picks an arm by tag from the byte table `0x00819D50`:
+
+- a Lua closure (`0x00819CD5`), a C closure (`0x00819CEA`), userdata (`0x00819D09`) and strings (`0x00819D20`) are freed
+  at the same size through `0x00823670`; a short string first decrements the string table's count at global
+  `+0x38` (`0x00819D12`);
+- a table jumps to `0x0081F420` (`0x00819CF4`);
+- a thread jumps to `0x00813EB0` (`0x00819CF9`);
+- a prototype jumps to `0x0081EB50` (`0x00819CC0`), which frees its vectors and then its `0x80` bytes (`0x0081EBEA`);
+- an upvalue jumps to `0x0081EC10` (`0x00819CEF`), which frees `0x28` bytes (`0x0081EC33`, `0x0081EC37`).
+
+No code in the image creates a state (above), so these functions run only on a state built outside the
+executable.
+
+Five kinds of record live inside these objects and are never collected on their own:
+
+- a value is `0x10` bytes, the payload at `+0x00` and the tag at `+0x08`: `lua_createtable` pushes a table as
+  the pointer (`0x0080F773`), the tag `0x45` (`0x0080F776`) and a step of `0x10` (`0x0080F77D`);
+- a call frame is `0x50` bytes: a thread's base frame sits at its `+0x80`, every further frame comes from
+  `luaE_extendCI` `0x00813E10` (`0x00813E24`) and is freed by `0x00813D90` (`0x00813DDE`) or `0x00813E50` (`0x00813E8E`);
+- the global state shares the `0x2C0` block `close_state` `0x00813D00` frees with the main thread (`0x00813D77`);
+- a table's hash nodes are `0x28` bytes, `1 << lsizenode` of them from `setnodevector` `0x00820260`
+  (`0x008202DE`-`0x008202EB`), run by `luaH_resize` `0x0081F9B0` (`0x0081F9FB`), which frees the old vector
+  (`0x0081FB2B`); a table without a hash part points at the shared node `0x01CCB8C8` (`0x00820283`);
+- a prototype's local-variable and upvalue descriptors are `0x10` bytes each, in vectors its loader allocates
+  (`0x0082E103` in `0x0082E050`, `0x0082E7D7` in `0x0082E790`).
 
 ### Interpreter bodies outside the member list
 
