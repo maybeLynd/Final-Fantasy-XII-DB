@@ -1,0 +1,2 @@
+script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_released	flags_tested	counter_set	counter_tested	items	jumps	battles	scenes	party	other_functions	shared_actor
+str_z0000	scene, event 211	監督	main	main	-	0; 1	(choices: 0 / 1 / 2 / 3) / (choices: 0 / 1)	-	-	-	-	-	-	-	-	-	-	1	-

@@ -2,7 +2,7 @@
 title: "Mt Bur-Omisace scripts: what each script function shows, sets, gives and starts"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x00354D00, 0x00351880, 0x00345080, 0x003449A0, 0x0034A6D0, 0x003459C0, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x00377B60, 0x003778B0"
+addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x00354D00, 0x00351880, 0x00345080, 0x003449A0, 0x0034A6D0, 0x003459C0, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x00377B60, 0x003778B0, 0x0034ADA0, 0x0034B760, 0x0034BB10, 0x00352190, 0x00352AF0"
 ---
 
 ## What it lists
@@ -65,6 +65,7 @@ A call's arguments are read when they are literals; a computed argument is named
 | Verb | Id | Native body | Column | Meaning |
 |---|---|---|---|---|
 | `amese`, `amest`, `ames`, `ames_1fe` | `0x145`, `0x082`, `0x00F`, `0x1FE` | `0x0034A420`, `0x0034A090`, `0x00349BF0`, `0x00349800` | `lines` | the second argument is a section 2 text id |
+| `aask`, `aaske`, `aask_1ff` | `0x010`, `0x14A`, `0x1FF` | `0x0034B760`, `0x0034BB10`, `0x0034ADA0` | `lines` | a question and its choices: the second argument is a section 2 text id (`0x0034B760` and `0x0034BB10` jump to `0x0034ADA0`) |
 | `setnpcname` | `0x38A` | `0x0034B9A0` | `speaker` | the actor's name pair ([NPC names](../Characters-And-Objects/npc-names.md)) |
 | `setmapjumpgroupflag`, `releasemapjumpgroupflag`, `ismapjumpgroupflag` | `0x430`-`0x432` | `0x0034EE20`, `0x0034DD90`, `0x0034E0B0` | `flags_*` | Primary bank flag ([story flag ids](story-flag-ids.md)) |
 | `mapjump` | `0x08D` | `0x00354D00` | `jumps` | field, entrance, mode ([zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) |
@@ -73,6 +74,7 @@ A call's arguments are read when they are literals; a computed argument is named
 | `talktreasure` | `0x2BF` | `0x00355830` | `items` | a treasure chest |
 | `bossgaugeopen` | `0x3CA` | `0x00349B60` | `battles` | the boss gauge ([battle menu](../Menus-And-HUD/battle-menu.md)) |
 | `bosskillall`, `zakokillall` | `0x3B8`, `0x3A8` | `0x00510840`, `0x00353770` | `battles` | removes the foes ([boss fights](../Battle-Actions/boss-fights.md)) |
+| `removepartymember`, `addguestbattlemember`, `removeguestbattlemember` | `0x354`, `0x35B`, `0x35C` | `0x0034C030`, `0x00352190`, `0x00352AF0` | `party` | party row selectors: a member leaves, a guest joins, a guest leaves ([party verbs](../Scripts-And-Script-Commands/party-verbs.md)) |
 
 The story counter is the script's global `short` at offset 0, named `シナリオフラグ` in these scripts: every
 assignment to it is a write and every comparison a test ([story counter values](story-counter-values.md)).
@@ -110,8 +112,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 | `actor`, `function` | the actor and the function, as the script names them |
 | `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions of the same script that request it by name; `-` when neither applies |
 | `speaker` | for a row with lines, the names `setnpcname` gives the actor |
-| `lines` | the section 2 entries the function passes to the message verbs; `system message N` for a message the function hands to the shared item and message helper, `N or M` when it is chosen at run time |
-| `line_text` | the `us` text of those entries, in the same order, separated by ` / `; `(empty string)` for an entry with no text |
+| `lines` | the section 2 entries the function passes to the message verbs and the ask verbs; `system message N` for a message the function hands to the shared item and message helper, `N or M` when it is chosen at run time |
+| `line_text` | the `us` text of those entries, in the same order, separated by ` / `; `(empty string)` for an entry with no text; a system message that names party members carries the names the game fills in, from the party table ([party table](../Party/party-table.md)) |
 | `flags_set`, `flags_released`, `flags_tested` | the flag ids, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | each value written to the story counter, with the first sentence of its explanation on [story counter values](story-counter-values.md) |
 | `counter_tested` | each comparison of the story counter, as the relation and the decimal value |
@@ -119,7 +121,7 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 | `jumps` | each `mapjump`: the target map (region), its field id and the entrance |
 | `battles` | `boss gauge shown`, `every foe in a group removed`, `every foe in group 0 removed` |
 | `scenes` | each scene script the function loads, with its event id |
-| `party` | not used by these scripts: `-` on every row |
+| `party` | members who join or leave, guests who join or leave, and the fighting party a call sets |
 | `other_functions` | the actor's functions that have no row |
 | `shared_actor` | `-` for an ordinary actor; for a function of a shared helper actor that is listed, whether its body matches the shared one |
 

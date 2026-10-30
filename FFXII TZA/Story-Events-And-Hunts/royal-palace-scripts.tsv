@@ -7,7 +7,7 @@ rrp_a01	Cellar Stores (Royal Palace)	イベント特殊効果画面_RRP	ゲッ�
 rrp_a01	Cellar Stores (Royal Palace)	Map_Director	init	init	-	-	-	0x0053: Set or tested in Cellar Stores (Royal Palace)	-	-	-	-	-	-	-	-	-	1	-
 rrp_a01	Cellar Stores (Royal Palace)	door_gunbit	talk	talk	-	-	-	-	-	-	-	-	-	Cellars (Royal Palace), field 568, entrance 1	-	-	-	5	-
 rrp_a01	Cellar Stores (Royal Palace)	futa	talk	talk	-	29	Vaan I've made it this far...I'm not going back empty-handed.	-	-	-	-	-	-	-	-	-	-	1	-
-rrp_a01	Cellar Stores (Royal Palace)	ラ王宮地図宝壺	talk	talk	-	-	-	Bank512, second half 0x0000: Set or tested in Cellar Stores (Royal Palace)	-	-	-	-	-	-	-	-	-	2	-
+rrp_a01	Cellar Stores (Royal Palace)	ラ王宮地図宝壺	talk	talk	-	system message 117	Your location map for this area is complete!	Bank512, second half 0x0000: Set or tested in Cellar Stores (Royal Palace)	-	-	-	-	receives Royal Palace of Rabanastre	-	-	-	-	2	-
 rrp_a02	Cellars (Royal Palace)	常駐監督	init	init	-	-	-	-	-	-	-	-	-	-	-	rrp_z9900, event 605	-	1	-
 rrp_a02	Cellars (Royal Palace)	常駐監督	階段下	requested by 地下イベントレクト.touch	-	20; 21	Have you gathered up all of the occasionals? ...Good. You'll be on clean-up duty when the fete's over. Wait here until we're ready for you. / No one goes to the upper floor until we give the order. Step out of line and you will be punished.	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a02	Cellars (Royal Palace)	常駐監督	止められる１	requested by 練習用レクト.touch	-	0; 22	Wait here until I've further directions for you. / ...What's he doing? Trying to go upstairs?	-	-	-	-	-	-	-	-	-	-	1	-
@@ -49,10 +49,11 @@ rrp_a03	Lower Halls (Royal Palace)	リセット監督	リセット	requested by 
 rrp_a03	Lower Halls (Royal Palace)	台詞監督	駒01捕獲時台詞	requested by リセット監督.リセット	-	16	Hey, you there! What are you doing here? You should be waiting down in the cellars with the others!	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a03	Lower Halls (Royal Palace)	台詞監督	駒02捕獲時台詞	requested by リセット監督.リセット	-	16	Hey, you there! What are you doing here? You should be waiting down in the cellars with the others!	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a03	Lower Halls (Royal Palace)	台詞監督	駒03捕獲時台詞	requested by リセット監督.リセット	-	16	Hey, you there! What are you doing here? You should be waiting down in the cellars with the others!	-	-	-	-	-	-	-	-	-	-	1	-
-rrp_a03	Lower Halls (Royal Palace)	隠し扉FS	talk	talk	-	3	There's something not quite right about this wall. You can feel a faint draft coming from the other side...	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a03	Lower Halls (Royal Palace)	隠し扉FS	talk	talk	-	3; 4	There's something not quite right about this wall. You can feel a faint draft coming from the other side... / Faint Light A faint light shines from beyond the wall. (choices: Approach the wall. / Do nothing.)	-	-	-	-	-	-	-	-	-	-	2	-
 rrp_a03	Lower Halls (Royal Palace)	偽隠し扉FS01	talk	talk	-	5	There's something not quite right about this wall. You look closely, but find nothing out of the ordinary.	-	-	-	-	-	-	-	-	-	-	2	-
 rrp_a03	Lower Halls (Royal Palace)	偽隠し扉FS02	talk	talk	-	5	There's something not quite right about this wall. You look closely, but find nothing out of the ordinary.	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a03	Lower Halls (Royal Palace)	正紋章	talk	talk	-	8	Lion Signet The signet has been infused with the light of the sun. The hidden way is lit.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a03	Lower Halls (Royal Palace)	正紋章	talk	talk	-	7; 8	Lion Signet A beautiful signet is painted upon the floor. It appears to be a representation of a lion. Use the [value]? (choices: Use it. / Do nothing.) / Lion Signet The signet has been infused with the light of the sun. The hidden way is lit.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a03	Lower Halls (Royal Palace)	偽紋章	talk	talk	-	10	Hawk Signet A beautiful signet is painted upon the floor. It appears to be a representation of a hawk. Use the [value]? (choices: Use it. / Do nothing.)	-	-	-	-	-	-	-	-	-	-	5	-
 rrp_a03	Lower Halls (Royal Palace)	door1	talk	talk	-	-	-	-	-	-	-	-	-	Cellars (Royal Palace), field 568, entrance 2	-	-	-	5	-
 rrp_a03	Lower Halls (Royal Palace)	door3	talk	talk	-	-	-	-	-	-	-	-	-	The Garden Stairs (Royal Palace), field 572, entrance 1	-	-	-	5	-
 rrp_a03	Lower Halls (Royal Palace)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000000	-	-	-	-	1	-
@@ -61,7 +62,8 @@ rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	はい	requested by 扉.tal
 rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	バネ	-	-	3	There's more to this wall than meets the eye, but what is it...?	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	バネ済	-	-	2	There's more to this wall than meets the eye, but what is it...?	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a04	Secret Passage (Royal Palace)	宝物庫扉FS	解除	requested by ゲットFS.talk	-	8	Switch You hear a mechanical click from behind.	-	-	-	-	-	-	-	-	-	-	1	-
-rrp_a04	Secret Passage (Royal Palace)	扉	talk	talk	-	2; 3	There's more to this wall than meets the eye, but what is it...? / There's more to this wall than meets the eye, but what is it...?	-	-	-	-	-	-	-	-	-	-	3	-
+rrp_a04	Secret Passage (Royal Palace)	扉	talk	talk	-	1; 2; 3	This wall looks rather suspicious. (choices: Examine the wall. / Do nothing.) / There's more to this wall than meets the eye, but what is it...? / There's more to this wall than meets the eye, but what is it...?	-	-	-	-	-	-	-	-	-	-	3	-
+rrp_a04	Secret Passage (Royal Palace)	ゲットFS	talk	talk	-	5	Switch You see a small object that looks like a switch. (choices: Press the switch. / Do nothing.)	-	-	-	-	-	-	-	-	-	-	2	-
 rrp_a04	Secret Passage (Royal Palace)	いつわりの壁	talk	talk	-	9	It's tightly shut.	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a05	Treasure Room No. 8 (Royal Palace)	常駐ディレクター	main	main	-	-	-	-	-	-	220: After Balthier and Fran; after the party	-	receives Goddess's Magicite	The Garden Stairs (Royal Palace), field 572, entrance 0	-	rrp_a0500, event 266	-	1	-
 rrp_a06	The Garden Stairs (Royal Palace)	常駐ディレクター	main	main	-	-	-	-	-	-	-	-	-	-	-	rrp_a0600, event 258	-	2	-

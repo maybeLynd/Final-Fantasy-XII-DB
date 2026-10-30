@@ -82,7 +82,9 @@ The latch runs the opening in three steps:
 2. The opener's command step `0x00325260`, case 0, calls `0x00317850` while the latch is 1 and `0x0208CD00` is its own actor
    (`0x00325311`). `0x00317850` plays motion `0x2008` on the chest, starts the chest's effect (`0x002EACD0`, handle kept at
    `0x0208CD1C`) and clears the latch (`0x003178A3`).
-3. `0x0032A170`, once the latch is 0, resets the chest's motion (`0x002EBB80`), plays `0x2001` on the opener, releases the
+3. `0x0032A170`, once the latch is 0, hides the chest actor: it calls `0x0026DC60`, a jump to `0x002EBB80`, with the chest
+   actor and 0 (`0x0032A18B`), which clears bit `0x8` of byte `+0x10` of the actor's record at `+0xC0` and refreshes
+   the draw test (`0x002EBB96`-`0x002EBBA3`). It then plays `0x2001` on the opener, releases the
    effect (`0x003B0770`) when the handle is valid, clears bit `0x40` of `0x02089340` and sets the handle to -1.
 
 `btlAtelOpenTreasureMessage(ref)` (`0x3037`, begin `0x0050FAF0`) is the payout. It takes a message

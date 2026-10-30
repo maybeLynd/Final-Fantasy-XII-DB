@@ -1,6 +1,6 @@
 script	kind	place	actors	functions	rows	shared_actors
 gol_a01	zone	Paths of Chained Light (Golmore Jungle), field 447	30	76	12	1
-gol_a02	zone	The Needlebrake (Golmore Jungle), field 448	36	76	19	0
+gol_a02	zone	The Needlebrake (Golmore Jungle), field 448	36	76	20	0
 gol_a03	zone	Whisperleaf Way (Golmore Jungle), field 449	22	52	9	0
 gol_a04	zone	The Parting Glade (Golmore Jungle), field 450	26	90	8	5
 gol_b01	zone	The Rustling Chapel (Golmore Jungle), field 453	33	74	11	1

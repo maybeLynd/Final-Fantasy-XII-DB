@@ -2,7 +2,7 @@ script	kind	place	actors	functions	rows	shared_actors
 ttl_a01	zone	ttl_a01 (Pharos at Ridorana), field 12	19	63	4	0
 ttl_b01	zone	ttl_b01 (Pharos at Ridorana), field 13	1	2	1	0
 ttl_c01	zone	ttl_c01 (Pharos at Ridorana), field 14	7	15	2	0
-ttl_d01	zone	ttl_d01 (Pharos at Ridorana), field 1147	1	2	0	0
+ttl_d01	zone	ttl_d01 (Pharos at Ridorana), field 1147	1	2	1	0
 ttl_z0000	scene	scene, event 215	11	71	0	0
 ttl_z0001	scene	scene, event 216	11	91	0	0
 ttl_z0002	scene	scene, event 217	11	84	0	0

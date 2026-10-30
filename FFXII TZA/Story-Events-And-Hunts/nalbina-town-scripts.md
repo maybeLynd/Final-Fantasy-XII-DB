@@ -2,7 +2,7 @@
 title: "Nalbina Town scripts: what each script function shows, sets, gives and starts"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x0034DFA0, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x003459C0, 0x00377B60, 0x003778B0"
+addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x0034DFA0, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x003459C0, 0x00377B60, 0x003778B0, 0x0034ADA0, 0x0034B760, 0x0034BB10"
 ---
 
 ## What it lists
@@ -65,6 +65,7 @@ A call's arguments are read when they are literals; a computed argument is named
 | Verb | Id | Native body | Column | Meaning |
 |---|---|---|---|---|
 | `amese`, `amest`, `ames`, `ames_1fe` | `0x145`, `0x082`, `0x00F`, `0x1FE` | `0x0034A420`, `0x0034A090`, `0x00349BF0`, `0x00349800` | `lines` | the second argument is a section 2 text id |
+| `aask`, `aaske`, `aask_1ff` | `0x010`, `0x14A`, `0x1FF` | `0x0034B760`, `0x0034BB10`, `0x0034ADA0` | `lines` | a question and its choices: the second argument is a section 2 text id (`0x0034B760` and `0x0034BB10` jump to `0x0034ADA0`) |
 | `setnpcname` | `0x38A` | `0x0034B9A0` | `speaker` | the actor's name pair ([NPC names](../Characters-And-Objects/npc-names.md)) |
 | `setmapjumpgroupflag`, `releasemapjumpgroupflag`, `ismapjumpgroupflag` | `0x430`-`0x432` | `0x0034EE20`, `0x0034DD90`, `0x0034E0B0` | `flags_*` | Primary bank flag ([story flag ids](story-flag-ids.md)) |
 | `settalknpcname` | `0x399` | `0x0034DFA0` | `flags_set` | Bank2048 flag, the name-tag flags ([story flag ids](story-flag-ids.md)) |
@@ -108,7 +109,7 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 | `actor`, `function` | the actor and the function, as the script names them |
 | `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions of the same script that request it by name; `-` when neither applies |
 | `speaker` | for a row with lines, the names `setnpcname` gives the actor |
-| `lines` | the section 2 entries the function passes to the message verbs |
+| `lines` | the section 2 entries the function passes to the message verbs and the ask verbs |
 | `line_text` | the `us` text of those entries, in the same order, separated by ` / ` |
 | `flags_set`, `flags_released`, `flags_tested` | the flag ids, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md); a Bank2048 flag carries its bank name |
 | `counter_set` | each value written to the story counter, with the first sentence of its explanation on [story counter values](story-counter-values.md) |

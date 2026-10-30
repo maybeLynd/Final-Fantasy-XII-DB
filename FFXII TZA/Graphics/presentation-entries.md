@@ -171,7 +171,8 @@ Smaller entry helpers:
   sets `+0x0C` bit `0x200`, as the walker does at a motion's end.
 - `0x0041C970(entry, n)` returns the state playing track `n` (state `+0x80`); `0x0041C720(entry)` returns
   whether the state playing the entry's track `+0x26` has byte `+0x95` equal to 1; `0x0041C6B0(entry)`
-  returns `+0x0C` bit `0x8000`. `0x0041C3A0` is an empty function that `0x00423280` calls.
+  returns `+0x0C` bit `0x8000`. `0x0041C3A0(entry)`, which `0x00423280` reaches by a tail jump (`0x004232B9`),
+  returns the word `+0x1A` of the record at `+0x18` as a float (`0x0041C3A0`-`0x0041C3AF`).
 
 - `0x0041C770(entry)`, for `0x00423380`, returns the dword `+0x0C` of the first state after state 0
   whose byte `+0x95` is 1, or 0.

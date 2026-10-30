@@ -18,7 +18,7 @@ belong to other areas.
 
 | Script | Kind | Scene | Actors | Functions | Rows in a scripts table |
 |---|---|---|---:|---:|---:|
-| `str_z0000` | scene | event `211` | 8 | 40 | 0 |
+| `str_z0000` | scene | event `211` | 8 | 40 | 1 |
 
 ### The scene
 
@@ -37,8 +37,9 @@ belong to other areas.
   ([event scenes](../Scripts-And-Script-Commands/event-scenes.md)).
 - The scene's actors are `監督`, `ユニットＡ`, `ユニットＢ`, `ユニットＣ`, `カメラ`, `効果音`, `背景曲` and
   `STURAHL`. Its two lines are choice lists of digits, `(choices: 0 / 1 / 2 / 3)` and `(choices: 0 / 1)`.
-- No function of the scene passes a line to the four message verbs, gives an item, writes a flag or the story
-  counter, or jumps, so the scene has no row in a scripts table.
+- The director `監督.main` asks its choice lists with `aask` ([verb table](../Scripts-And-Script-Commands/verb-table.md)); that
+  is the scene's one row in [strahl-scripts.tsv](strahl-scripts.tsv), whose columns are those of the zone
+  scripts tables. No function of the scene gives an item, writes a flag or the story counter, or jumps.
 
 ## Columns
 

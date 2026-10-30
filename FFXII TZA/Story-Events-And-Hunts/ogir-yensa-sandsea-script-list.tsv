@@ -1,12 +1,12 @@
 script	kind	place	actors	functions	rows	shared_actors
 ene_a01	zone	Platform 1 - East Tanks (Ogir-Yensa Sandsea), field 379	27	63	12	1
-ene_a02	zone	Platform 1 - Refinery (Ogir-Yensa Sandsea), field 380	32	70	15	0
+ene_a02	zone	Platform 1 - Refinery (Ogir-Yensa Sandsea), field 380	32	70	16	0
 ene_a03	zone	East Junction (Ogir-Yensa Sandsea), field 381	31	69	15	0
 ene_a04	zone	Primary Tank Complex (Ogir-Yensa Sandsea), field 382	28	46	11	0
 ene_a05	zone	Central Junction (Ogir-Yensa Sandsea), field 383	31	53	15	0
 ene_a06	zone	Platform 1 - South Tanks (Ogir-Yensa Sandsea), field 384	25	41	9	0
 ene_a07	zone	Platform 2 - Refinery (Ogir-Yensa Sandsea), field 385	33	78	15	0
-ene_a08	zone	Yensa Border Tunnel (Ogir-Yensa Sandsea), field 386	23	87	7	5
+ene_a08	zone	Yensa Border Tunnel (Ogir-Yensa Sandsea), field 386	23	87	8	5
 ene_a09	zone	South Tank Approach (Ogir-Yensa Sandsea), field 387	19	29	3	0
 ene_a0180	scene	scene, event 739	6	18	2	0
 ene_a0200	scene	scene, event 135	17	228	39	0

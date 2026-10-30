@@ -39,12 +39,14 @@ Each chest is one actor of a zone script, named `treasure_00`, `treasure_01` and
 four verbs, always the same ones:
 
 ```
-setuptreasure(ref); npc_to_gimmick(); btlAtelTreasureInitWithRange(0.5, 0); setnpcname(name);
+setuptreasure(ref); npc_to_gimmick(); btlAtelTreasureInitWithRange(0.5, n); setnpcname(name);
 ```
 
 and its talk function runs the opening sequence that
 [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md) gives (`talktreasure(ref)`,
-`btlAtelOpenTreasureMessage(ref)`, `talktreasureafter(ref)` with the same `ref`).
+`btlAtelOpenTreasureMessage(ref)`, `talktreasureafter(ref)` with the same `ref`). In the decompiled `us` scripts, `n`
+is 5 in 1,826 of the 1,966 `btlAtelTreasureInitWithRange` calls, 1 in 110, 2 in 18, 0 in 5, 3 in 3, 4 in 3 and 50
+in 1.
 
 `ref` is a packed reference taken from the script's int pool (`PUSHI`):
 

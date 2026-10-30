@@ -18,7 +18,7 @@ its file-name prefix, so its `loaded_by` and `next` columns are `-`; the zone sc
 
 | Script | Kind | Scene | Actors | Functions | Rows in a scripts table |
 |---|---|---|---:|---:|---:|
-| `pas_z0000` | scene | event `214` | 26 | 191 | 0 |
+| `pas_z0000` | scene | event `214` | 26 | 191 | 1 |
 
 ### The scene
 
@@ -34,8 +34,9 @@ its file-name prefix, so its `loaded_by` and `next` columns are `-`; the zone sc
   (`ラバナスタ用１` to `バーフォン用３`), `客` (passengers) and `カメラマン`.
 - Its two lines are Japanese choice lists in the `us` tree: `民間飛空艇発着イベントカメラ` with `何もしない`,
   `離陸カメラ` and `着カメラ`, and a second list with `もう一度` and `やめる`.
-- No function of the scene passes a line to the four message verbs, gives an item, writes a flag or the story
-  counter, or jumps, so the scene has no row in a scripts table.
+- The director `監督.main` asks its choice lists with `aask` ([verb table](../Scripts-And-Script-Commands/verb-table.md)); that
+  is the scene's one row in [aerodrome-airship-scripts.tsv](aerodrome-airship-scripts.tsv), whose columns are those of the zone
+  scripts tables. No function of the scene gives an item, writes a flag or the story counter, or jumps.
 
 ## Columns
 
