@@ -312,7 +312,8 @@ code takes elements from the pool.
 
 ### PLOD group flag
 
-Slot `+0x70` of the `PLODGroup` descriptors (vtables `0x00D85490` and `0x00D85518`), the slot a loader calls for a
+Slot `+0x70` of both vtables of the one `PLODGroup` descriptor `0x02E5AE00` (`0x00D85490`, which its registrar
+`0x006C4EC0` installs, then `0x00D85518`, which its initialiser `0x001678D0` installs), the slot a loader calls for a
 class's loaded list, is `0x006C4CD0`, which jumps to `0x006C68B0`. That function sets one byte before it walks the list.
 
 | Global | Type | Start | Meaning | Set by | Read by |

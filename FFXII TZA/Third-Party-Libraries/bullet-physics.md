@@ -44,8 +44,9 @@ PhyreEngine wraps Bullet in its `PPhysics` classes; the Bullet-backed ones are n
 `PPhysicsCapsuleBullet`, `PPhysicsCylinderBullet`, `PPhysicsPlaneBullet`, `PPhysicsMeshBullet` and
 `PPhysicsCharacterControllerBullet`. The single route into Bullet is a chain of four calls:
 
-1. `0x006883A0` is slot 14 of both class descriptors of `PPhysicsWorld` (vtables `0x00D70BC8` and
-   `0x00D70ED0`) and has no direct caller. It passes its second argument, an array of `PPhysicsWorld`
+1. `0x006883A0` is slot 14 of both vtables of the one `PPhysicsWorld` descriptor `0x02E494D0` (`0x00D70BC8`, which
+   its registrar `0x00690950` installs, then `0x00D70ED0`, which its initialiser `0x00166B30` installs) and has no
+   direct caller. It passes its second argument, an array of `PPhysicsWorld`
    instances (data `+0x58`, count `+0x70`, stride at `+0x38` of the class record at `+0x50`), to
    `0x00698C80`.
 2. `0x00698C80` returns at once unless the first byte of the physics manager is set. Otherwise, for
