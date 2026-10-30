@@ -150,6 +150,55 @@ case-by-case load and destroy arms are in [`effect-element-runtime-switch-family
 | `0xB00` kinds | `0x52` 16,862; `0x56` 6,746; `0x50` 5,810; `0x51` 5,352; `0x54` 2,733; `0x57` 1,843; `0x58` 746; `0x53` 374; `0x59` 284; `0x55` none |
 | `0xB00` keys | key 0 in all; slot byte never 0; no key repeats within a stream |
 
+Every shipped `.efx` file and every chunk of its stream, read with the layouts above. Each file is one stream with no second `EFX` magic inside it, its size equals its `+0x0C`, and its walk ends there. The `.efx` files hold 157,819 of the 242,875 chunks. For the 1,394 entries of [`effect-file-list.tsv`](effect-file-list.tsv) whose file ships, the `chunks`, `elements` and `textures` cells match these rows.
+
+| table | rows | one row per |
+|---|---:|---|
+| [`effect-files-efx-files.tsv`](effect-files-efx-files.tsv) | 3,288 | `.efx` file |
+| [`effect-files-efx-chunks-ch.tsv`](effect-files-efx-chunks-ch.tsv) | 8,603 | chunk of a file in the `ch` folder |
+| [`effect-files-efx-chunks-cn.tsv`](effect-files-efx-chunks-cn.tsv) | 8,603 | chunk of a file in the `cn` folder |
+| [`effect-files-efx-chunks-de.tsv`](effect-files-efx-chunks-de.tsv) | 6,900 | chunk of a file in the `de` folder |
+| [`effect-files-efx-chunks-es.tsv`](effect-files-efx-chunks-es.tsv) | 6,899 | chunk of a file in the `es` folder |
+| [`effect-files-efx-chunks-fr.tsv`](effect-files-efx-chunks-fr.tsv) | 6,822 | chunk of a file in the `fr` folder |
+| [`effect-files-efx-chunks-in.tsv`](effect-files-efx-chunks-in.tsv) | 1,511 | chunk of a file in the `in` folder |
+| [`effect-files-efx-chunks-it.tsv`](effect-files-efx-chunks-it.tsv) | 6,818 | chunk of a file in the `it` folder |
+| [`effect-files-efx-chunks-jp.tsv`](effect-files-efx-chunks-jp.tsv) | 81,506 | chunk of a file in the `jp` folder |
+| [`effect-files-efx-chunks-kr.tsv`](effect-files-efx-chunks-kr.tsv) | 8,603 | chunk of a file in the `kr` folder |
+| [`effect-files-efx-chunks-uk.tsv`](effect-files-efx-chunks-uk.tsv) | 2,554 | chunk of a file in the `uk` folder |
+| [`effect-files-efx-chunks-us.tsv`](effect-files-efx-chunks-us.tsv) | 19,000 | chunk of a file in the `us` folder |
+
+The file table's columns:
+
+| Column | Meaning |
+|---|---|
+| `path`, `folder`, `group` | the path, its language folder and its sub-folder (`chara`, `common`, `event`, `magic`, `menu`) |
+| `bytes`, `sha256` | the file size and its SHA-256 |
+| `magic`, `version` | the magic and the version `0x003EDAD0` sets for it: 10 for `EFX0010`, 8 for `EFX0008` |
+| `float_0x08`, `stream_size` | the header's `+0x08` as an `f32`, and its `+0x0C` |
+| `walk_ends_at_stream_size`, `trailing_bytes` | `yes` when the chunk walk ends exactly at `+0x0C` (all 3,288), and the bytes after `+0x0C` (0 in all) |
+| `chunks`, `chunks_0x600` to `chunks_0xB00` | the chunk count, then the count of each of the seven types |
+| `kinds_0xB00` | the `0xB00` records by kind byte `+0x0E` |
+| `embedded_streams` | the offset of each further `EFX` magic inside the file; 0 in all |
+| `named_by` | each resource kind and id whose path array, in any of the twelve languages, names the file, or `chara` and the lowest slot of the character table; `-` for the 43 files no entry names |
+
+The chunk tables' columns (a column that does not apply to the chunk's type is empty):
+
+| Column | Meaning |
+|---|---|
+| `path`, `chunk`, `offset` | the file, the chunk's position in the walk from 0, and its offset from the magic |
+| `length`, `flag`, `type`, `bias` | the chunk header's `+0x00`, `+0x04`, `+0x06` and `+0x08` |
+| `header_0x0C` | the four record-header bytes `+0x0C` to `+0x0F` in file order |
+| `index` | `0x600`: byte `+0x0D`; `0x700`: byte `+0x0C` |
+| `id` | `0x800` and `0xA00`: the `u16` at `+0x0C` |
+| `key`, `kind`, `slot` | `0xB00`: the `u16` at `+0x0C`, byte `+0x0E` and byte `+0x0F` |
+| `subtype` | `0x700` and `0x800`: byte `+0x0E` |
+| `element_type` | `0xA00`: byte `+0x0E` |
+| `entries_0x13` | `0x610`: byte `+0x13`, the `n` of its `0x30 + 4n`-byte slot (0 counts as `0x40`) |
+| `record_0x00` | `0x600` and `0xA00`: payload byte `+0` |
+| `record_0x0A`, `record_0x16` | `0x600`: the eleven payload bytes at `+0x0A`, and payload byte `+0x16` as the file holds it (the loader recomputes its high nibble) |
+| `tex_format`, `tex_bit_0x40`, `tex_bit_0x80` | kind-`0x52` `0xB00`: the low six bits of payload byte `+0`, and 1 when its bit `0x40` or bit `0x80` is set |
+| `tex_palettes`, `tex_reference`, `tex_size` | kind-`0x52` `0xB00`: the palette count byte `+2`, the reference size words `+4` and `+6`, and the width and height words `+8` and `+0x0A` |
+
 ## Loader behaviour
 
 ### The version ladder

@@ -1,7 +1,7 @@
-path	class	format	width	height	faces	mip_levels	max_mip_level	texture_flags	image_bytes	max_texture_buffer	file_bytes	sha256
-gamedata/d3d11/artdata/shaders/anisolighting.dds.phyre	Texture2D	ARGB8	256	256	1	1	8	2	262144	262144	264679	ca280feb549be157a9d0e05ae51bba9a670aa13592d8b274111d18bd3dd1eea7
-gamedata/d3d11/artdata/shaders/areatexdx10.dds.phyre	Texture2D	ARGB8	160	560	1	1	9	2	358400	358400	360935	f13228c2cfcd632638e83255d2fefdbfb7526bbb34640cf36e1c8272706b81f2
-gamedata/d3d11/artdata/shaders/beckmannmap.dds.phyre	Texture2D	L8	512	512	1	1	9	2	262144	262144	264676	986c954a1fc83b4817b7bfe7a2133a2aa61536e58c12d9f90560c31a853c8117
-gamedata/d3d11/artdata/shaders/mipmaptest.dds.phyre	Texture2D	ARGB8	1024	1024	1	11	10	0	5592404	4194304	5594939	66bfeab26b3f5a6a2efb0e949d1859b674ffc7a0ebc1f393d632259642f93525
-gamedata/d3d11/artdata/shaders/searchtex.dds.phyre	Texture2D	L8	64	16	1	1	6	2	1024	1024	3556	2bd4d7365c5357e08f8e500113ea8272ce014e23cb20c35127f1b70939d10a5a
-gamedata/d3d11/artdata/shaders/shifttex.dds.phyre	Texture2D	ARGB8	180	180	1	8	7	0	172640	129600	175175	4929f0d70aeb8a075e0715edf542f5e493011ac60e66271d7038f1549a23ab60
+path	class	format	width	height	faces	mip_levels	max_mip_level	texture_flags	image_bytes	max_texture_buffer	file_bytes	sha256	ah_lists	prefetch_lists
+gamedata/d3d11/artdata/shaders/anisolighting.dds.phyre	Texture2D	ARGB8	256	256	1	1	8	2	262144	262144	264679	ca280feb549be157a9d0e05ae51bba9a670aa13592d8b274111d18bd3dd1eea7	0	9
+gamedata/d3d11/artdata/shaders/areatexdx10.dds.phyre	Texture2D	ARGB8	160	560	1	1	9	2	358400	358400	360935	f13228c2cfcd632638e83255d2fefdbfb7526bbb34640cf36e1c8272706b81f2	0	0
+gamedata/d3d11/artdata/shaders/beckmannmap.dds.phyre	Texture2D	L8	512	512	1	1	9	2	262144	262144	264676	986c954a1fc83b4817b7bfe7a2133a2aa61536e58c12d9f90560c31a853c8117	0	0
+gamedata/d3d11/artdata/shaders/mipmaptest.dds.phyre	Texture2D	ARGB8	1024	1024	1	11	10	0	5592404	4194304	5594939	66bfeab26b3f5a6a2efb0e949d1859b674ffc7a0ebc1f393d632259642f93525	0	0
+gamedata/d3d11/artdata/shaders/searchtex.dds.phyre	Texture2D	L8	64	16	1	1	6	2	1024	1024	3556	2bd4d7365c5357e08f8e500113ea8272ce014e23cb20c35127f1b70939d10a5a	0	0
+gamedata/d3d11/artdata/shaders/shifttex.dds.phyre	Texture2D	ARGB8	180	180	1	8	7	0	172640	129600	175175	4929f0d70aeb8a075e0715edf542f5e493011ac60e66271d7038f1549a23ab60	0	0

@@ -1,0 +1,27 @@
+actor	name	type	first_instruction	instructions	functions	stack_begin
+0	control	0	0x0D80	586	init, main	0
+1	コントロール	5	0x1386	23	init, main, setpc	8
+2	バッシュ00	5	0x13C7	42	init, appear, disappear, setpc, clearpc	8
+3	バッシュ01	5	0x143B	42	init, appear, disappear, setpc, clearpc	8
+4	バッシュ02	5	0x14AF	42	init, appear, disappear, setpc, clearpc	8
+5	バッシュ03	5	0x1523	42	init, appear, disappear, setpc, clearpc	8
+6	バッシュ04	5	0x1597	42	init, appear, disappear, setpc, clearpc	8
+7	バッシュ05	5	0x160B	42	init, appear, disappear, setpc, clearpc	8
+8	バッシュ06	5	0x167F	42	init, appear, disappear, setpc, clearpc	8
+9	バッシュ07	5	0x16F3	42	init, appear, disappear, setpc, clearpc	8
+10	バッシュ08	5	0x1767	42	init, appear, disappear, setpc, clearpc	8
+11	バッシュ09	5	0x17DB	42	init, appear, disappear, setpc, clearpc	8
+12	バッシュ10	5	0x184F	42	init, appear, disappear, setpc, clearpc	8
+13	バッシュ11	5	0x18C3	42	init, appear, disappear, setpc, clearpc	8
+14	バッシュ12	5	0x1937	42	init, appear, disappear, setpc, clearpc	8
+15	バッシュ13	5	0x19AB	42	init, appear, disappear, setpc, clearpc	8
+16	バッシュ14	5	0x1A1F	42	init, appear, disappear, setpc, clearpc	8
+17	バッシュ15	5	0x1A93	42	init, appear, disappear, setpc, clearpc	8
+18	バッシュ16	5	0x1B07	42	init, appear, disappear, setpc, clearpc	8
+19	バッシュ17	5	0x1B7B	42	init, appear, disappear, setpc, clearpc	8
+20	バッシュ18	5	0x1BEF	42	init, appear, disappear, setpc, clearpc	8
+21	バッシュ19	5	0x1C63	42	init, appear, disappear, setpc, clearpc	8
+22	バッシュ20	5	0x1CD7	42	init, appear, disappear, setpc, clearpc	8
+23	バッシュ21	5	0x1D4B	42	init, appear, disappear, setpc, clearpc	8
+24	バッシュ22	5	0x1DBF	42	init, appear, disappear, setpc, clearpc	8
+25	バッシュ23	5	0x1E33	42	init, appear, disappear, setpc, clearpc	8

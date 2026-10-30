@@ -72,6 +72,12 @@ The archive's only other file without an extension is `ps2data/square_ff12/ff12c
 
 [`ps2data-bin-families.tsv`](ps2data-bin-families.tsv), 146 rows.
 
+The two kind 9 files no code path requests have their rows in two tables:
+[`ps2data-bin-families-test-map-ref-rows.tsv`](ps2data-bin-families-test-map-ref-rows.tsv), the 274 rows of
+`common/test_map_ref.bin` beside the same rows of `map_ref.bin`, and
+[`ps2data-bin-families-fhmusicdata-rows.tsv`](ps2data-bin-families-fhmusicdata-rows.tsv), the 27 records of
+`common/fhmusicdata.bin` with the shipped music file and `musicinfo.bin` bytes of each id.
+
 Two tables list the files of two folders one by one:
 [`ps2data-bin-families-lang-bin-files.tsv`](ps2data-bin-families-lang-bin-files.tsv) the 58 `.bin` files under
 `<lang>/bin/`, and [`ps2data-bin-families-test-battle-files.tsv`](ps2data-bin-families-test-battle-files.tsv) the
@@ -200,6 +206,22 @@ The `ashd` scheme of `katano/event.bin`, decoded by the measurement script:
 The file decodes to exactly `0xB10` bytes, which are another `ashd` stream; that decodes to exactly
 `0x23E0` bytes, a script section tagged `0x80000002` with the time stamp `09/18 20:20:10` and the source name
 `event.src`.
+
+The script has 26 actors and 1,617 instructions, in two tables:
+[`ps2data-bin-families-katano-event-actors.tsv`](ps2data-bin-families-katano-event-actors.tsv), one row per actor,
+and [`ps2data-bin-families-katano-event-steps.tsv`](ps2data-bin-families-katano-event-steps.tsv), one row per
+instruction.
+
+- The actors are `control`, `コントロール` and `バッシュ00` to `バッシュ23`. Each `バッシュ` actor has the functions
+  `init`, `appear`, `disappear`, `setpc` and `clearpc`. `type` is the actor record's u16 at `+0x04`: 0 for
+  `control` and 5 for the others.
+- The header is `0x54` bytes. Its words `+0x00` to `+0x50` are the fields of the shipped sections' `0x90`-byte
+  header, which adds `+0x54` to `+0x8F`.
+- The actor records are `0x20` bytes, the first eight words of the shipped `0x30`-byte record. Each actor's
+  instructions run from its record's start offset for its record's count with no gap, and every jump lands on an
+  instruction of the same actor.
+- Calls are given by id: this section numbers its calls differently from the shipped verb table. It calls id `0x0A`,
+  the shipped `cos`, which pops a float, with no argument and tests bit `0x1` of the result.
 
 ### Loose battle tables
 

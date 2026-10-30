@@ -115,6 +115,30 @@ growth rows on [stats](../Damage-And-Battle-Formulas/stats.md) and
 | `.nmb` counts | 0 to 22; equal to the `.ard`'s slot 2 row count in all 166 |
 | `.nmb` entries | 1,146: `12 BA 00` 1,120 and `12 BB 00` 26, each a one-glyph two-byte string |
 
+Every row of the area files is in six tables. The `ch` and `in` copies are byte-identical. The 1,146 enemy
+definitions are the [bestiary](../Enemy-Spawning/bestiary.md)'s rows, and the 1,422 order sets are on
+[enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md).
+
+| Table | Rows | One row per |
+|---|---:|---|
+| [`ard-area-battle-data-files.tsv`](ard-area-battle-data-files.tsv) | 166 | area file: size, SHA-256, trailer offset, the rows of each section, and its `.nmb`'s size, count and SHA-256 |
+| [`ard-area-battle-data-class-rows.tsv`](ard-area-battle-data-class-rows.tsv) | 954 | slot 0 class row |
+| [`ard-area-battle-data-stat-rows.tsv`](ard-area-battle-data-stat-rows.tsv) | 1,738 | slot 5 base row (1,119) or slot 6 growth row (619) |
+| [`ard-area-battle-data-motion-overrides.tsv`](ard-area-battle-data-motion-overrides.tsv) | 1,773 | slot 7 record |
+| [`ard-area-battle-data-trailer-records.tsv`](ard-area-battle-data-trailer-records.tsv) | 998 | trailer record: bound model id and lane mask |
+| [`ard-area-battle-data-nmb-entries.tsv`](ard-area-battle-data-nmb-entries.tsv) | 1,146 | `.nmb` entry: its offset and bytes |
+
+- The class row columns are the fields of the class row on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md), in offset order: `model` `+0x00`
+  to `species` `+0x52`, with `absorb`, `halve`, `nullify`, `weak` and `potency` the five affinity bytes `+0x29`.
+- The stat row columns: `score` `+0x00` ([kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)),
+  `shield_evade` `+0x02`, `magick_evade` `+0x03`, `hp` `+0x20`, `mp` `+0x24`, `strength` to `magick_resist`
+  `+0x26` to `+0x2C`, `attack` `+0x2D`, `weapon_evade` `+0x2E`, `lp` `+0x2F`, `gil` `+0x30` and `exp` `+0x34`
+  ([stats](../Damage-And-Battle-Formulas/stats.md), [EXP, LP and level-ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md)).
+- The bytes no field covers are 0 in every row: class row `+0x08`-`+0x0F`, `+0x13`-`+0x17`, `+0x19`-`+0x1F`,
+  `+0x24`, `+0x2E`-`+0x2F` and `+0x42`-`+0x51`; stat row `+0x04`-`+0x1F`; slot 7's twelve bytes after the count and
+  each record's `+0x0A`-`+0x0F`.
+
 ## Loader behaviour
 
 ### When an area loads

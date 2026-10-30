@@ -236,6 +236,7 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 | texture formats | `ARGB8` 12,913, `BC5` 9,149, `DXT5` 7,039, `RGBA16F` 4,610 (every cube map), `A8` 45, `DXT1` 26, `L8` 9, `DXT3` 3 |
 | texture images | in every texture file the image bytes are exactly the texture's levels: `m_mipmapCount` + 1 levels, each half the size of the one before (at least 1 pixel, or one 4 x 4 block for the `BC`/`DXT` formats), times 6 faces for a cube map; `m_memoryType` is 3 and the `m_format` byte 0 in all 33,794 |
 | texture flags | `m_textureFlags` is 2 in the 89 single-level textures (the 89 whose image equals `m_maxTextureBufferSize`) and 0 in the rest |
+| textures by list | every `shared/` and `chr_shadow/` texture and all but 10 `map/` and 554 `chr/` textures are named by a `.ah` list; those 564 are named by no `.ah` list and no prefetch list; the `font/`, `menu/` and `shaders/` textures are named by none of the `.ah` path tokens |
 
 Every texture, one row each, with the members its own namespace gives:
 
@@ -261,6 +262,29 @@ Every texture, one row each, with the members its own namespace gives:
 | `texture_flags` | `m_textureFlags` |
 | `image_bytes` | the bytes after the fixup tables, the texture image |
 | `max_texture_buffer` | the header's `m_maxTextureBufferSize` |
+| `file_bytes`, `sha256` | the file's size and SHA-256 |
+| `ah_lists` | the `.ah` lists that name the texture, by its own path or by a map path `shared/phyremaps.txt` maps to it ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md)) |
+| `prefetch_lists` | the prefetch files that name it |
+
+Every `.phyre` file without a texture, one row each: the 2,091 mesh files and the 99 with no buffers (the 93 shader
+files under `shaders/` and six `chr/weapon/mws` files that hold only an asset reference, four nodes and a world
+matrix).
+
+| table | rows | folder |
+|---|---:|---|
+| [`phyre-asset-files-models-chr.tsv`](phyre-asset-files-models-chr.tsv) | 1,053 | `artdata/chr/` |
+| [`phyre-asset-files-models-chr_shadow.tsv`](phyre-asset-files-models-chr_shadow.tsv) | 588 | `artdata/chr_shadow/` |
+| [`phyre-asset-files-models-map.tsv`](phyre-asset-files-models-map.tsv) | 456 | `artdata/map/` |
+| [`phyre-asset-files-models-shaders.tsv`](phyre-asset-files-models-shaders.tsv) | 93 | `artdata/shaders/` |
+
+| Column | Meaning |
+|---|---|
+| `path` | the file in the archive |
+| `kind` | `mesh` (index and vertex buffers) or `no buffers` |
+| `Mesh` to `DataBlock` | the objects of that class in the file's instance lists |
+| `lists` | the file's instance lists |
+| `objects_by_class` | every class of the file's lists with its objects, in list order |
+| `index_buffer_bytes`, `vertex_buffer_bytes` | the header's `m_indexBufferSize` and `m_vertexBufferSize` |
 | `file_bytes`, `sha256` | the file's size and SHA-256 |
 
 `gamedata/d3d11/artdata/shared/phyremaps.txt` beside it (8,492,839 bytes, 94,682 CRLF lines) holds 47,341 pairs: a

@@ -7,7 +7,7 @@ addresses: "0x002DF9A0, 0x002FC860, 0x002FCFF0, 0x002DEBB0, 0x002DDE20, 0x0030A1
 
 ## What it lists
 
-`effect-file-list.tsv` holds one line for each effect file the executable names: 2,049 rows over the
+`effect-file-list.tsv` holds one line for each effect file the executable names: 2,051 rows over the
 3,288 `.efx` files the archive ships under `ps2data/effect_finish/<folder>/`. A row is a resource kind
 and id ([File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)), or a model
 name for the character effects, which no kind names. The chunk layout the contents columns read is
@@ -19,11 +19,11 @@ on [Effect files](effect-files-efx-efb.md).
 | kind 7, ids 49-51 | 3 | 3 | the menu banks `m_all.efx`, `m_all2.efx`, `m_all3.efx`, one copy per text language |
 | kind 11 | 512 | 366 | the magic effects `m0000`-`m0511`, played with English voices |
 | kind 38 | 512 | 366 | the same ids played with Japanese voices |
-| kind 12 | 894 | 532 | the event effects a zone script loads by number: `e` 0-511 (ids 0-511), `l` 0-63 (ids 512-575) and `q` 0-319 (ids 576-895) |
+| kind 12 | 896 | 534 | the event effects a zone script loads by number: `e` 0-511 (ids 0-511), `l` 0-63 (ids 512-575) and `q` 0-319 (ids 576-895); ids 677 and 678 (`q0101`, `q0102`) are named by the JP, KR, CH, ASIA, IN and CN arrays and are empty in the US, FR, DE, IT, ES and UK ones |
 | character effects | 125 | 125 | `h0001`-`h0125` in `jp/chara`, bound to 144 model names: 82 monsters (`m`), 27 NPCs (`n`), 9 gadgets (`g`) and 26 summons (`s`); 14 of the files serve more than one model |
 
 Kinds 10, 11 and 38 use one path array for every language. Kind 12's array differs by text
-language: 312 of the 532 shipped event effects have per-language copies (`us`, `fr`, `de`, `it`, `es`,
+language: 314 of the 534 shipped event effects have per-language copies (`us`, `fr`, `de`, `it`, `es`,
 `kr`, `ch`, `cn`), the other 220 are the `jp` file for everyone, and the `text_languages` column lists
 which copy each language id takes. The magic effects are chosen by the voice language instead: the
 kind-11 array names `us` copies for 43 ids (the 18 Quickening cinematics 120-137 among them) and `uk`

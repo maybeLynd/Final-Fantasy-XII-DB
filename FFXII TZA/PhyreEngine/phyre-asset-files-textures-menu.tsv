@@ -1,12 +1,12 @@
-path	class	format	width	height	faces	mip_levels	max_mip_level	texture_flags	image_bytes	max_texture_buffer	file_bytes	sha256
-gamedata/d3d11/artdata/menu/chain_item.dds.phyre	Texture2D	ARGB8	1024	1024	1	5	4	0	5586944	4194304	5589471	f799e4136f6a1ead5df8f8fc647c1412b4dc454c5d8fede0a6878f429e9a35e6
-gamedata/d3d11/artdata/menu/chainflash.dds.phyre	Texture2D	ARGB8	1024	512	1	5	4	0	2793472	2097152	2795999	7a3bc0b8322faa217f49cc521001eb7592c8e563d33b411f7935cbf3eed5dd51
-gamedata/d3d11/artdata/menu/targetline_p.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89831	60296ac35d337dcb652ac5ae1a94107a3cc67e56ba51be6a96f66ca6cbf514c4
-gamedata/d3d11/artdata/menu/targetline_p_clut_1.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	171c6a4bbef37abed7122d4fc36e1f73f8c7cc06b98fe8eb7784f53bd9d1630e
-gamedata/d3d11/artdata/menu/targetline_p_clut_2.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	76b5808c330c1aa20d922ab1a0e2add7a7defa62278c5cd64642813fe6d5163d
-gamedata/d3d11/artdata/menu/targetline_p_clut_3.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	beae207f1db9806ae6503d164ea6d9b27b679b1b2bdb09a52df537606e5cf491
-gamedata/d3d11/artdata/menu/targetline_p_clut_4.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	7c64fd7440d33087d746d6682af5dbbabb2b46d8021708214daa6365d1e94cfb
-gamedata/d3d11/artdata/menu/targetline_p_clut_5.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	6f5291461c6adf725d4dd15233f6d1934d7b6f20e2c79634d5c8ba38349fcd0a
-gamedata/d3d11/artdata/menu/targetline_p_clut_6.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	7397c8553254713c4e4ed18ace8477bd95be8c2f85350c7f925b3762ea6fa13d
-gamedata/d3d11/artdata/menu/w_line01.dds.phyre	Texture2D	ARGB8	256	256	1	5	4	0	349184	262144	351711	7440f09fbf11a08e40a92b149f76651fd7e25d096f8d320e22e9986f77383083
-gamedata/d3d11/artdata/menu/w_line01_clut_1.dds.phyre	Texture2D	ARGB8	256	256	1	5	4	0	349184	262144	351719	a2976eec34b9c652644dfa94df454841e48d13f0ae7c0b797924d179caaa2d73
+path	class	format	width	height	faces	mip_levels	max_mip_level	texture_flags	image_bytes	max_texture_buffer	file_bytes	sha256	ah_lists	prefetch_lists
+gamedata/d3d11/artdata/menu/chain_item.dds.phyre	Texture2D	ARGB8	1024	1024	1	5	4	0	5586944	4194304	5589471	f799e4136f6a1ead5df8f8fc647c1412b4dc454c5d8fede0a6878f429e9a35e6	0	1
+gamedata/d3d11/artdata/menu/chainflash.dds.phyre	Texture2D	ARGB8	1024	512	1	5	4	0	2793472	2097152	2795999	7a3bc0b8322faa217f49cc521001eb7592c8e563d33b411f7935cbf3eed5dd51	0	1
+gamedata/d3d11/artdata/menu/targetline_p.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89831	60296ac35d337dcb652ac5ae1a94107a3cc67e56ba51be6a96f66ca6cbf514c4	0	1
+gamedata/d3d11/artdata/menu/targetline_p_clut_1.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	171c6a4bbef37abed7122d4fc36e1f73f8c7cc06b98fe8eb7784f53bd9d1630e	0	1
+gamedata/d3d11/artdata/menu/targetline_p_clut_2.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	76b5808c330c1aa20d922ab1a0e2add7a7defa62278c5cd64642813fe6d5163d	0	1
+gamedata/d3d11/artdata/menu/targetline_p_clut_3.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	beae207f1db9806ae6503d164ea6d9b27b679b1b2bdb09a52df537606e5cf491	0	1
+gamedata/d3d11/artdata/menu/targetline_p_clut_4.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	7c64fd7440d33087d746d6682af5dbbabb2b46d8021708214daa6365d1e94cfb	0	1
+gamedata/d3d11/artdata/menu/targetline_p_clut_5.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	6f5291461c6adf725d4dd15233f6d1934d7b6f20e2c79634d5c8ba38349fcd0a	0	1
+gamedata/d3d11/artdata/menu/targetline_p_clut_6.dds.phyre	Texture2D	ARGB8	128	128	1	5	4	0	87296	65536	89839	7397c8553254713c4e4ed18ace8477bd95be8c2f85350c7f925b3762ea6fa13d	0	1
+gamedata/d3d11/artdata/menu/w_line01.dds.phyre	Texture2D	ARGB8	256	256	1	5	4	0	349184	262144	351711	7440f09fbf11a08e40a92b149f76651fd7e25d096f8d320e22e9986f77383083	0	0
+gamedata/d3d11/artdata/menu/w_line01_clut_1.dds.phyre	Texture2D	ARGB8	256	256	1	5	4	0	349184	262144	351719	a2976eec34b9c652644dfa94df454841e48d13f0ae7c0b797924d179caaa2d73	0	0

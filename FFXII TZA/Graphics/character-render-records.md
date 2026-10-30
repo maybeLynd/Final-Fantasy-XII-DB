@@ -473,7 +473,7 @@ The record bytes between the fields the store names, by range; `+0x411` and `+0x
 | `+0x24E` | `u8[2]` | span024E | the two bytes between the word +0x24C and the previous rotation x angle +0x250 |
 | `+0x298` | `u8[8]` | span0298 | the eight bytes between the dirty mask +0x294 and the kind selector +0x2A0 |
 | `+0x2CC` | `u8[4]` | span02CC | the four bytes between the word +0x2CA and the projected origin +0x2D0 |
-| `+0x38C` | `u8[4]` | span038C | the four bytes between the pending translation's z +0x388 and the dword +0x390 |
+| `+0x38C` | `u8[4]` | span038C | the four bytes between the pending colour's blue +0x388 and the dword +0x390 |
 | `+0x3F5` | `u8[3]` | span03F5 | the three bytes between the state byte +0x3F4 and the word +0x3F8 |
 | `+0x411` | `i8` | randomChoice | the random choice of the presentation-entry selector kind 0x01: 0x00422420 draws 0 to 4 with 0x003A6E60(5) into it when the counter +0x40E is 0 (0x0042243C-0x00422451) and, at 11 times [0x01DFE0B4] with bit 0x4 from 0x0041F2F0(record, 0x20), adds 5 (0x004224A1); it returns the value as the choice (0x00422464, 0x004224AE) |
 | `+0x458` | `u8[40]` | span0458 | the 40 bytes between the stop-frame counter +0x457 and the dword band +0x480-+0x48C |

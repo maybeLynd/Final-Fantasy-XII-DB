@@ -1,513 +1,513 @@
-path	class	format	width	height	faces	mip_levels	max_mip_level	texture_flags	image_bytes	max_texture_buffer	file_bytes	sha256
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1004/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7845218d97e4dc81b3261c24d7338699f0b8929de2d2fa8c7f39f46d25afb822
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1005/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d72dedef3b1e51145ff13aaa6a4e93aba298c0016a05af9a9b1a8df3884a1a17
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1006/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	aeb629b9939869d97103ac148da0a339bfc0fb73eff7f8f155a307db032da8f9
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1011/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4c8b910bce82603712de15a2f919baa5cd18c81c8e8c72c33ae0567999de82fc
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c3edccb6f2f08265b05f61597dd525f263ad1da1ecc045a1b4fde1e28089d5dc
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1015/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	014571419955efd54a88296a12f771ccf91a9b69a730bd638fc75574188e0161
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1016/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	cacc8d8049c45c836b3e869e803c7081b095e07d070d82cbdc805637929e6e65
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1017/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	83274d9e210335dcc99b9f9de5e9a4d228e735e7defcaac1c4adb4603e199d9b
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6fb390a54155a64b7ee3a30cd2854c6b503ccab2819ddc2cd161273a5ab3db5d
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	14bc3078737e7b39ad401d6bd6c86e9107e7447cc1643c8b000b0a3e892d4598
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1023/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	67fc509831eff8354be7732c83aec2119aef38692a70c70ebb31ef9bc8506564
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1024/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	969406348b82594a70914b7e18c2094315a0a1070235f63753d75623a8e527dd
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1025/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b1be3a00b85fb80a72bbdb4ef17b73200198d9c89dbe0918708ac0d0e58af94d
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	289ae2764a5b66f219de63dbf860b392f169c7cfe8e6356d99bd2ee7b28da584
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1029/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1b1f29db21d9581cb7b45119a8a902b1fcaac950d196059aa060dc73d6bc291f
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1030/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7edb3013d8b283c69d038995a5a5f3bfd64f149a8d3089952a9ebfa1f6356214
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1042/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4b3677275100ad589d7e76fc1197b8810e6464cf39c8d3c282a6bda3fbe7503f
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1044/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a7a9c037e9850c41a11689a7c4a1a7c722346f075b967fc5510df3eb18bbdbbe
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1048/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	46eed27545cbe2b991f34629702e6797651e26beae3761b075c954720492643d
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1052/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f1bfe793dff625222a2fdd371482e90f34fc132fdf4d18ae154de7db2fb372ee
-gamedata/d3d11/artdata/chr_shadow/chara/c10/c1054/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6fee44ac50659aaf68b9a95ded1605fe193aa55e1670f73d4b33cbaee7f555af
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1004/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ba2fd2d70a9189341f700cf8ec975917fd7326613a7d0b554d9e58147bd3adb4
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1005/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c6e78b1835e5583c5ab07f1406dee2f8555ea67cfcda16c23fffe4831c5aa381
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1006/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b9f1b39ec07221d5f97af10fec32604da15b953632b3024bf6150f28b604951c
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1011/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d83108ad41f9030ce119cfe5dcb3def4dfdce27da4cf76422db9be77d6f647ac
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c80b671d035e1806e576f06a737079dc48baf8994a1a5c441fca639a6058f3e1
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	cedc3f990f7da77cafae68d4fc859913ad3594ae56f737cf9a7f1600240e3fda
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1023/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0103ba96b90226a4483586a9bc7508eb07aedfee86b77fc5d0d0c0b5ec4b366e
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1024/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e3be5ae11825d9c8c83811cb5a28934589c7f3eb7427da461bd791708216f471
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1025/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ff654c349020b86b04fc169cb0bc31ca3a5d3b139bb15e19f1b84dda7394459a
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	972d47101fc495350d20cb2084c24b509d5a591026f6cb9a7d2dde5a06996041
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1029/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	91c64f3f262251880dfbac84c40a29688cac689f57e2a2cccb8302936774c318
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1030/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4d901daf3c3984d0b02eff6f28b925ec687f0b4907329d21f6d5afb195163a89
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1042/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	62ff5865c32b6a615cfa6fe72f1662fac5431d1d98daba624de15510150f3ef7
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1044/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	496f45290e6b0a25dd1afb17b9dd99b7e4fb9370a746b0f9c94782c53b27eda2
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1048/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	48f0f119bff77488b91c2e4c65feba0f3f65646d06f2eda771795b3493d1f7bb
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1052/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0b86887f38e7523c0b9902013d989be5c87dbc817b39730b28cf084203965b32
-gamedata/d3d11/artdata/chr_shadow/high/c10/c1054/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8f359524484afe51d53f51a54adc7797b208e0df1079ee0d23d365ef2d2e8163
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e83d66176c000e495fba84dc904ce57356af9f8f787899a67781d1069ae8f967
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5bfa4741c577aca6a457908acce9c9def1eec04e0301ec4b74b77f4d0a78db75
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1018/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5f0ffb0d64093eed6f321ad6a17ddfebdbcb8be8c99bb533b7674c82cbef5f5e
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a92e18eff3e0ebad062dcb8a2b6f15678df8d081dba5fb7e44bbca7a46dac49c
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1022/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e07d09f700c71821eebcdd7984305370f87e652256c80e2ab9d736bfc098575e
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1032/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3ccecc742a3f2eeddca697e06194cad414a65fbb3924ab6dc3071e226bf61c22
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1033/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3201ba039b30e2e06479ac1175b6270efaaafe16b1343cbe9ff3d94d07e24148
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1061/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8e01b77b248a8ee700ad9611cb1a0d992898859ef9dc8fa2f058354b43aea2c4
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1062/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	73753de365206b84c7942b60d3c92c494fe1deec8275ec4c5444488564a65803
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1069/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	dd8d950a89e2a95b2caa07b23db233a91f6e032ed879084eaf44a736a3656192
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1070/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b81da986a6732dd9efb889f906e6bbc8b7cb02a91f0a3079641b0b92e92766a5
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1071/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	65335783d68e146471963ee4325b08bad057388486f667b43cbf393c83722a3f
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1073/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a27d4a61003cb869c4d7c950c8ec62a91a2a4ab79babce8493f6e23a98a100c2
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1081/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	aeeb4906f84a63aa9718c4528236606b998633f2f863710b8470cc0ff04887fd
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1084/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1578674fb2796db7b8002461e41f11f10a0541e1def6b37e809c89652496e053
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1085/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a9d4af3b4c81ae047e768aa4d0874056ff92535ce1cf7418492f16365403b4cd
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1087/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	18a81b73c40483b7fab701237e33343203abe70299adfa1c6ed2c2d98d4a15b5
-gamedata/d3d11/artdata/chr_shadow/high/n10/n1089/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	68d52e8cd531eb6543b8d00256fef51a65a6a0d593f231defd2f7c65132621f9
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1132/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	85db7706b8567a956d6cc366e55444457e923c31ade88a6ebbd1741666643889
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1140/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e44327f522a3d685039e37ebe29eff41f3d4aba89b48d238a4b8d848b3bd2c47
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1145/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	737a802b73766d5ce0c122f698621e03c5db14da87293ebee16004e1bc54b4c6
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1146/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2260323893248f520fe1eeb6d7a870270b4d7e1701acf8e2beda48bd4d519a0e
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1147/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d3f5bc592f26455e90cd0020b2c5c2c426dad7c40a8e77850cb4982467267fb6
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1148/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b1139ee813ab61a2ad94d81d6ab0345d118d919e03fd01192c365beb31438200
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1159/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0792256bfb195b971efb388f2f8b28ca99b84a1dc8cd2be6c3c30d91182a2206
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1162/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	178533e5b11d64cf2a9afca42d7ff0e7fce2ac6a4f5b4972f791eac698223be0
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1164/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3e068672e2dc5a010f9fb6d52660c20c6bd5d09dedac9c5322661ecb8dafbced
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1166/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e680bb97688853b6c562daa40a291f89751f526e83f65a38d318efa9c4333470
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1172/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ca912355d2aa4740da28beace18a2efe480cb7b618fe035f5ab4bc00160665b8
-gamedata/d3d11/artdata/chr_shadow/high/n11/n1174/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	108088df74f7a1001bee4e1116da2d06e65781c74ede33629b1e4116bb667b22
-gamedata/d3d11/artdata/chr_shadow/high/n12/n1210/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f5d2c7b3886fd5d9543512b96f104cc147f74e472e186c9b747753bfadea18b0
-gamedata/d3d11/artdata/chr_shadow/high/n12/n1212/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	36d63f8481523d939ac1283db9c2cf3eb28474c115baea0ba6dc05277ee73faf
-gamedata/d3d11/artdata/chr_shadow/high/n12/n1213/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8ac67537b4a986dd2cff32fe2b62d95383b6d43f044a32050f4ff8893e113882
-gamedata/d3d11/artdata/chr_shadow/high/n12/n1219/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1305b79a11a939b790096a777012738fcc638805b18a5a218faadbd4ceb6cbf5
-gamedata/d3d11/artdata/chr_shadow/high/n12/n1220/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4a171a03383b0867094920abbbf6f61a9ae79b4a5df5e579b136080a116cd1c8
-gamedata/d3d11/artdata/chr_shadow/high/n12/n1240/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8531550812fbd5b58b5aa8c8853f5354fe430d5dd3e815a8d4c9ecf91b728d63
-gamedata/d3d11/artdata/chr_shadow/high/s00/s0003/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d5cb854be59a414ad1ecbc0e5e35cc5acfa5b8e9f4914a13c69a870f67275896
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1002/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a1c546fa7ca07cac60f0da2ef88fe7c489fed0d3b6eb639861da9434da2ab3e8
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1006/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e2ef10d196c31d9bdf7d0eb7e622a383a9bf3509499f4c36f42844a22d075294
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1007/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a1d53346bfdfff37acbe7f53ef8b459dea3ce045b127245c53a84bc58149b189
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1008/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c8c6e1f38cfcc210c714e0a425b855d6d5a772eb7be1c46798f82253cb00898a
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1009/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	103f4090ec17dc5df38d0bc648bf27fb4b2930ad748ac184ab93fa4962b1ba55
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1011/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b5accb0d88ad8e7a979be5630566e2598a8d1595b752964093021ceebb75c2a3
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1012/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9f47abe9e0fc95cc20e8f04a640bb1ea4534562e4ea1691d244333fde5cd976a
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7715a07de49ebd0e9c46c9fe5a5bd909a89f0f7ee84c9932469bfddf3866ff8b
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1015/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a6c7378ed6d8eb99a369c98f921f1db0811fd08711481d61c51430b58a2118f5
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1016/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ab9db217184b2cc488d00eaff6a8213fa5be5e49d52d7abe6639627eb0449ce6
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1017/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	709d15e86bddf80e017718fb5d8794e0b64f4530753cbde1fdd07b7a375d861f
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1018/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d2e54d957d47cc41f3c045b18e57f8a62e84a635cf0149f9a80275f399bd9371
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8f5b42be9e92e05de44daad9d2ce7e572c72d26bafcdc30c631508e79817b553
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1020/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	51aaafbe0e955d87a79f3bf479315c68a3c3ee3404414ca8fceaf283cbbb0214
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	07258a9237fb6ad7f49890b8151886e24f4939a9e7bbce8fa31717b0259478d7
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1022/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	03c0e377b810c92bf29b8c23e142ad93b600e7d6eab2517e0626fab199e22dbe
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1023/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8a18243d94825a11ad98624729233ed5aaed97eb28f6a3781814e5992b381d66
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1024/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1150e505624f62f5572ab12222c0ab7922cb83c61731a2f9469d73c05352fdc6
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1025/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	69e5a2bc4e69f828b46d6b3065f5623542dfbdcaa795cd5b43501150cc03f3b7
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	01006e41385b2acfaa3e50ca67bd4f44c1776e43a8ab265f87790ed68ddf6a6f
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1027/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7ccd08e2cb2b69a24cc595c28d00987dcf9be7766822ccd02c053fcf36c5ddb1
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1031/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5f85156b6583db5eaff3630f8931a626052bac2f3d67452eec2bdf92d248e9ba
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1032/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e64a59dc3c2229c9ceb157e436b0226681923109cdbaede8f3dbb09520370239
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1033/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	89a36dd68bb9e94d16c16207809cfaaad461b800456452e30483bb5fa73773bb
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1034/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e2a61b28e1aae8b6ddc686aad3157805ca102c590ed09b0ed998660cc10b3f26
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1036/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	27202ec1f34a54e5aa0dacf4cec91be6d237bf5a7b034715c628ffc81f4d10ef
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1038/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e8265521d7183d1d7fa563318804da681941320637d9d0bdcc8253b387c712d9
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1039/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d49f3208ffa4e5ecf655c72ec7ac1a12de177a6f2b443eadf5620c787804cfd2
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1040/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7e4f03f7b0fd780757c83c9576c854450f10b3cbf4584718581aa61828f2027b
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1042/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a0d504e47984c0b03a6e8ae94f00dd03491a797a19e983f725c5cff36ebd6478
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1043/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	384ad1af77b97542f303fcc2ffc5733f2529c25dd211f01ba76d8a46a384aedf
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1044/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1fe774fb2d17834a53e18b27b10dc6436aceaa2891ed951afc122631b1c92cdc
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1045/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5562f8abc2c05eb33aeb96eef21deef3f2882537e01adcf522f20e0820003cc6
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1046/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	075425a5aad1ffbd4fb040afe2c8402dc64d048e795fe27cf406b18861660c8e
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1049/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a923fa41da58f28085fe4c38e9b2f407bd10f561e437b348a0da73cb7fa46a7b
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1050/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7afe7ceb11eb445f72d6326c60025ba9d390ba342c0c1cfc63cef08d7d14fcf4
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1053/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a463ed3909b010059a236da109e7b8b462dd0522cf4b15ad91d1e8b8b7f30a2e
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1054/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9768bbf2923ecf4eadb469ba25d138e2cb59edb21dbf0c6e9eba842694ede595
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1056/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8058c5b0b017b97a373aa5b17f324c0dc24e5dacc131156d2bc386cd8af9295e
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1057/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7c156cd95199fdbef46bfc9fd5454519093c7ba92c676a6e82dc9c8f7a46952e
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1058/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	93d5fc86b3980a7e48461393493709f73a9fe6169abb9be5f054a97809d166ac
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1059/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6fc8add125a0d1ee989ba6cec133e8d36a81d2e73a09b899b006535737eb18cb
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1060/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	760c91ddc87c95debaba2010dab2a48f9d182820dc5e6b37bb8d5e5755d1e27e
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1061/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	87f6e05c299198b142b8829003c485fb26bb387584124dfb579981e88596c2c5
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1062/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f8f11b96bbccf3d2ac5ee47dabc19e2c612107308316cd2f5133597e8cc91456
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1063/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	aa6ba6c85f80e6d8f0bac3d3e0995e2b08d4d9867f07adf333487f0320a41300
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1064/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3b683c85e0169de491a4785541f4b74c5e9ec0f490331b031e9407de660d3247
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1066/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3d36fdae16ba1e7dd25b9fdbdd63879ad1003fc088f18f5e8b52f3257158ac93
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1068/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fb7fe3f8e47ab8a43b891adbca714e1354d8d73bb1dd13a4e2f56a6114242ec1
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1069/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f96a631b3154b61aca2cdf349d08c65adbb9bb8e29a7c3360fe6ca432700995e
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1070/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2d53058ae36ebb0f68e27e24d3d2d93158cd0f9e82a74c3bcd463b6dd9ee40a0
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1071/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6ea849066b9091efbd88e10828c69ee56486959698fc55049f0b6005b6103a21
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1072/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c2e4b718f73be32a952faaf254d51b3c14f34117854ab88884c209481d8e79b5
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1073/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	77526fb129d7689e3cdc7e4f6e07e6cf1b007637135f731c69fa528e790782ee
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1074/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8f817cead078cf6b4fef9dc6537cb94b7dc82ff4dbc60c287402104dfdcebc72
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1075/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3d16f53d4717b5bf92c5c30c0c8f82d26ee0f316f57ac403c24b8b92deb167ab
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1076/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	14361ebbcf927da94f2669dd26bb64aa06b24b207e42baf78ba5629bc1098571
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1078/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	921dc87ea2b7484a7c16a9e25e61180bad1316e461a6d1cd5a3a88dbc7218394
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1079/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c2b3b0f3d1bb75e540fd7539b1c40a31d2d3974d3bde122d64c5a7e6f898c3fd
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1080/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1f7134dd3c9c7075319ec2adfe100a336baaa89e36bea53f8911c181bd687a61
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1081/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	71009f831a794bba9124a81f997bbd27158339adf4f738c40c81258bb1345a6b
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1082/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ee994f86b583f66797167887953d797586a3041b4d127177e4acf325723f27c0
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1083/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1bef8645bee34eab4ac454f5abb40ad884b5c31c20f1a3d3c4cf237e9955234f
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1084/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b3351fc8c0e9176bbb721fa69c83499b55743a00ec5dc5d39c41b802f7b3ff4b
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1085/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	343599d32613dbc6f7471aa33914e649f10fd61f14e25aa56d883c4b735a1024
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1086/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3706f4163be8ef88b2381813cbc7d2a9076b4ed6742f6a43ce9cb32e17211250
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1087/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e1d8a450fe2e46c9c5f3a0f477323e88e0fb328e434891055b9ef31cc9191532
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1088/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a46c52594c7cb7135eaf27cb1cf500a753d9a73ad424f746f726b1662ebab0ac
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1089/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4c813eba02916545c4ec6163cb4a99f38f83d63bc77108362f1087959053c8f2
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1091/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	dc43434fbaf6226add098baff45f47d02c5d94424b89b96c122c7f89b73d0f19
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1092/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	314690c2d6614a35825622de253519bac4480f5d189e28f230ed5a1d243a6fae
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1094/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6984785aae74e8f25c4f4c7f47ab31dd6803b26ad5e9c4d73a3fbcf4cef1309f
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1095/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6bb4e2f68b12cbc689ec54cda68ad380cca930653cc4e5b0b33279187a053042
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1096/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2ff80ace629c7f7312aed03051d13421f75ae70b07e4801acf34c17dded9b91c
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1097/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6b2485f5ae9245ac47cd3e2c870cf281125e15be2cbbb386f774bac35f51b132
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1098/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	291783502299cc0230249eae64d7c1193183f11366fba0462945923100cfc2e0
-gamedata/d3d11/artdata/chr_shadow/monster/m10/m1099/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	29a492d62efe85899b4892703beb31d0bda97a31cbbc14b48757f6b36d8e10a7
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1100/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	15278a0332d9150b6111d8dca3d8eead1122374420f5d23899a1242b563e76a8
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1101/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0851d80dc78beb1b7542fc0d794d439e4a77881d8a49ae67af740427be5802bb
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1102/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a4792f0dcb0bf67018f2932a16c25483447c12e2685d0efc83dcb3791a62f448
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1106/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7f14aa884b85028a0cd90af1738079c321566529281176aea9420f9bb64249e7
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1107/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ce4e085fbfd4a006c4f68ee1af96c11221f6870109582ff8af5952e84261a6eb
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1108/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	75216858344e089d0b97c2009edcb600eecb18e3d9b4689d6295b2b769351187
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1109/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8729afe74f5e8ce9b8599bc6d591818d6b3b4f83b571f9a887731c0f652a7e48
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1111/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	490b4a978da26ca5ab55ee53bb6f0f28f986409d967208d491c448f2a8a181a6
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1112/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	80bbe4f1203ba5374d2af1e7841751a4698838e9f05e39c95c3e2a5f4c5dd214
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1113/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b463e5a29a62859cab4020dcc4d5313a122526e9f805f1748d76d26bc5fb2908
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1114/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	097832909b3814dae4c5cf3d82aa2373d69b90cd493417a10a97873cbd850326
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1115/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c11633bf72454a082f2b8b584de81727cabefb6fcb2445da32dcdf0f72b8a820
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1116/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2f4aad88587732909ed2b6298c4f0e6994c79981330482f6eb3771849296c591
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1120/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a025f42744653251ed5eed957fc0703d9d0c2822815cd4ee618c3c5fbe6de3b3
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1121/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8ec7604920e96b1906a77b2bc51db5111334899829d293d0e1de9d2a44c436e4
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1122/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	952a6159be363751e06dc7f8d6711e3077004c0955d07609077ea6d5a4b07248
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1123/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	de37f1abd7e4cd89cd26fab404c0d6661f4fa9cdfce0c2ac84eebb6f11bf04d4
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1124/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0e1a035bdd3d28def999c2d0422c43b53546fa7a82cd27bff6a477a71f8bcc99
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1125/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f8ca5ecde2a9b520ad763ffd134f19bf1146010d4cab3699df2034850c010bf5
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1126/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4c8c9511376b2a646589d7c503084c60edf02f169e59dcbcb45a4003125da324
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1127/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	88753d8f95cee722a47d74b97887975401626e9437ccdcd65bbe2f5e109a1945
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1128/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	41c44b2d8f4b30b588b8b6134b238a2f422e67c1d04576a645986baeffbf09c6
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1129/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	66d077272bd1d9ed449e474b9fa19508b933fa547bdaafec9ba1d4a245512056
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1130/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4527a1fdf8b0c07b178f2d790f8c60d0741b800d6bd29269c327072c2da61a73
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1131/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	12b15701a47aeb17a0fc364ec81bd29c2f486aa9e0ab78c8cf5b1aedd32c1d90
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1132/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4417cbeb6e24da6be1963298252e52d101377cd778ee901d94f8b9bab59c38e2
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1133/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	afc51e16ed4a274fe7745d53e6dd711ba4c306a4c8897a964b58a57bec474175
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	dc7d64312d85244546a0ed884a74d02609b933ff46f77e44a0df7232359d541e
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1135/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1081802f3aa43b772a169511884f31b156dfaf74e781d3481c37e74b73b1d4e3
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1138/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9a07ac8aa108749c5f256909b52f6b554d11e015b93c77b0ddb5b8e66971216b
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1139/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a4433b927e7228d7de8487e9186fee21fd1061dce01218fe9db93201a6a8c0f7
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1140/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b5c01be014bda66e26a199cff65c6fc021e7aabc4e5a944189849bf3019c497a
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1141/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d35a67ea19cec280e3da1b3c105d07195825a65fb6f8f83883ea4132426f2ea0
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1143/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	30086bc72dfcd64be3608b8651506dfee414e1b0a6a70d19ef6b864bfa71fdfa
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1144/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7938738d88609ebd1075adfc0b5c91c90492615bed32d7ba58f68e1800971673
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1145/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	88e9f095eec04d7c091eec0eb8d8e5fbe8df5b8e3936e598d5aa97535f80df7d
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1146/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a0b97ef8f3366b0587d27acadc07496c25ec630cc2007e405769f72acf3c7c8f
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1147/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2fef7920398293d5d6a5d25c84b1279ee9295c17a7218637589e7dabfac90568
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1148/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c76c62b7d955176e3a3202289d87916b58298ddaababad64a83ed9800e226515
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1149/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b33f7e1e00997eddf14b38de5c82b48bf81abe4880d43af0e8ff50582ecf99ed
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1150/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	11fce354ce68b4b28294d27a8ed856161fd68b386b4957c18af54ae15f23dfed
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1151/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2ee1ae533b1e02d2927e7e13a67779a98ff09b8754e8868a78b395b172b2963e
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1152/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b5f01de525cad2fa2ea27e7301265d1e2c599d13f63776eecd0eb182ec86ebc4
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1153/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d1476fdd653880e143b412bd2b766bf5fb66a2b91dfbb68dade1d3a8d28d451e
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1154/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7a393bc0dae48c4c2fd4f01f89d6457d371b992c1afec3c70d82fc0bace4c064
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1155/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ef6bfe0f4153627a692b7c07675c572c88ce3a516aaedfe5afd40948aab4b07b
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1156/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a1d03bb2f870fa9ae7b4775acd190a53e60b821d5f1cea9dee3956a4a5d0bd4b
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1157/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5578952e9588bb5f7768e7a6228e31bb74022a31af2c7fbbfbb336b6d0ca12f2
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1158/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	072a85746b4e1ed15e52ba168e72c9bf3225fd34825e0aba3f72935652ead878
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1159/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fa5d4baebfd88af4ddc1c06658ff5645fff9d39c3f74d92805967c3024d42a2f
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1160/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b00ab5766583fd47d28a341f92032abbadb780864c98117b0b7231802d0e0180
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1161/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fcda8fd986ce7f96ca5a4167d623c66cfd88857cbc8f7d952aa317ab58e69ab7
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1162/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5695c729910ff07f4105c3c6a24119c11539d74b1e27e08606c296386e196c5b
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1163/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	59fc38dad1b0cd7ba81adab56678b4dd79e3e07fc17b3f7215ac41387934097f
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1164/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9107ed4a73979b244040c496fc79acc7ef565d002458e8d9e00a98a2dc17e097
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1165/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	402058b53c9fb61c6c2bfedb8b67f8fd190f17c3408d21cffdfd6e32f83b5c64
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1166/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1c241e9d0819a98ef01a89125b16e53928ade0e5a254e6a0cd4a3264f339e07b
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1167/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	67c936b0282f8073c6a27898e54ce2dde22ea06f43e56df515e76c594e8697e0
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1168/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	57605588c01af71be8030da67eeb30280b1ba194523c6ec69025baaddc3197da
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1169/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e1b21af2c140cffa7b95bb919f6ea5f0c1a91290c61a4c6d4de174277453eb00
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1170/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	86f36b332ba20daa637f4b3e2cfbc318f90ebab7294e5ac7ffacc660c6a04139
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1171/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	09a158ca3eed8c979c8c59b8d9f3eb16481de2df97642a641dc5663b7db0eafd
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1172/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	49c00a841199a5537526e91ad7b067d40c5f2b5c91908d96bf3f1bd0422634b5
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1173/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a531896a739a4e2c7f2bc94e2f9a0bc74cce9c9d6bdd6ae2d773eb970a848207
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1174/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	36a55c21484aba7ee7a95dd063bfad839629188141b7d6ecc33bb63e7f0603f4
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1175/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a33d18bfa35a57242a36092c7169a88e0458c851d7cdf70460f204e63ce0ecb3
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1176/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	30f70416cc8bc5fc3eed146e5062d5b3e0d2667b815b01209010c4f5cd3ed34e
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1177/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	003e226909745fba811d1103199661ee8635fd97ac5bf7acf8baad54e52c4346
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1178/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b9c6be449224c858a8554938fe1298553f450837fb5641c7d9518c432f44e6a1
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1179/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f9e1b2c72d65176380c7cdccabd7082b372fda0266abee27243d23f50d892d49
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1180/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ad8a1e7957545549f5d3d53a47fe5ed8d90832b7010543397b07ae1f86437454
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1181/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f397710538b1d203c324eec4e4c8afb3458b5c628510f9089460d842b837bba8
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1182/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2705840bf26dc7a18806c0f5f57c756d64d98006e465d0f59297b3a73fa7e04e
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1183/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c84c46a9ee905ff4698ec450c2442ca3ecd3cd3878f1aebafbea6038cae9c8d4
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1184/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9ae7c00cf287239ac7d02d6820bac615a37225a2f8cc6081828e31ebe4382d4b
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1185/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9342efc63ccc7f7aa2a65e4ccb81ed3e7481d6a9a51fb81169f77e7deaf3dfc3
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1186/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9227354776eaa8def44984de8e517b774527c98a1724910672d18b933fc8379a
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1187/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3b3b50b29ee212e2278d44e988f067c1ad1ce62155e6d1b8ee77a94ff2ed50a5
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1189/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	81e963b657038289669b68f7d6cc969f8dda8eb093f0f807d1b1ad5573544749
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1190/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ced77265490778795aa70ee31b942ed800d22a10d83edc28041a60e3b2449460
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1191/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3c17afa479a062d330337cc0d389dc27d822085e69664f560545ae9f0b9a6a3a
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1192/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7b0137d8fb325772da5540b91641131214f523d1c822a1a1e3e8f5e8c245b7f3
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1193/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4bfd2e740f28059e181b2d4352106c9961c386a8a6f87892cb57f96bde09b772
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1194/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	47bb5d82453dfb1831d249a88a3163a8e23ebd8048f7a44bf273a2e9d3a587b5
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1195/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	490a3053717acc979fb83bdfb2575b31fe824409a0a2f46fdfd80822da5e2ca7
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1196/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	42c1c5b6505fd1aee63a48181e255798711e00a62f0cfd89457ef99c83368cde
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1197/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2c432e2c0d454d633ec419771e5959043e8083bdd78bd721847301632cc46270
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1198/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fd020f152f9f651bac6c6b83000819e85aae9e9b3db9616287ad3727812c7d34
-gamedata/d3d11/artdata/chr_shadow/monster/m11/m1199/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5bf529c94eb573fd1d805cb565f4b70ea59a948a09d11fb49e2cc4adb59b4037
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1200/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6033ec1313ec78f98919090c635c4e4c547401eeca2a7b98382df6dab4af73b4
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1201/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	bf6368d4b5352dcf203d88dc345be947b6314216341b2a9a311f86cfc56b9dfc
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1202/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6fd539b48bab80281ab01400f79c9a438c795ebac5c6c51ff7de42420dd89fc4
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1203/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f05ef3e5a1852cd8390492b1212fec211692139e8ff28df6eb9c2de2f749f776
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1204/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ef26cf981c3e4a98b9aecb26e4ca0d0bc5a6fd983b98b07819e47fc3230061ee
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1205/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4b46cdd3dc985817f9adb4698ae1a649dd832f72feb553ebaeada1b23daf711e
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1206/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	14a10344921c9d969d58a2cc94c0af245e9b3e649708abe7171bcf4c5ad0213b
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1207/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fda2b5abd349d496f892f7dd0aed4206242e0c833f792aefc01c010dc11371ff
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1208/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9c0fd44bd8514e6b15ca83178361c85a27c2c2f74897a28d9e9751cb035f8520
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1209/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b6714a2e97504ef5ed9cce3f0f059b36eda1652009d6f40a57501bbcecbf1794
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1210/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	81a161e94a97c4ae3599eaf1d64d9fd7f1a895f7aad55e20c1907e4e745d7413
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1211/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	eb13dfa7cb8c4e20aa7ae4b5d217bc0dd81d40592e6dfb2050e18255ad1218e2
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1212/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2c666bc0564148d76d6fcb8b14b77dde4d7b57fce136256eebedb90e7d2c47a7
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1213/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	faa880a219677fbf103a9f046400c3175833a514d6a4638bc592a159a7fe4ad8
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1214/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ab0edb5213c9bd61930112b54edf97e23a611757fbd5e3755034d694ce4831d6
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1215/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c9e65789308836b7159bde72c078804853c73cfff4e49bda1db602ec581d132b
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1216/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fd6e5eb6d8a614db1cab3a40f43433f498d0cca49d135639561239c4f70c6f09
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1217/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ccf639006ea8b40d7d8a24af4ac8b22004e168ae27bf702060fb51d2e3065438
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1218/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f1886c09a454e66ef5a500bf1ee2b917b05b2447e92e03fb3ee8858ee8f98c97
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1219/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b7d279e630fcfaa355fc15d2f366c7fe78708b4558ecef7167de7c11a411b43f
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1220/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b0cab6fedb975d271e89b5a8045413ccd20f87f61c19703a20ea803f4dc01c36
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1221/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	676d38dffcdf86e7dae02edc98faa2a0bda65516df369ce3811590cb43090641
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1222/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2828da977d117d2e5652f77698d2911072694bbb594266a4fc2ecd344c32db7e
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1223/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	08c7193f95addf02c1a1f8e16740f63bd3ef103f59b530e07ee232d4678bd31f
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1224/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2f4715acb8e1a68f2959cacab95d2d4fd76caac671cd0fe589451b8ff2b01e71
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1225/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1efabeeb07878fb1eae734465b57f2496b6c1dd6cb5847ababff097bfdda7f04
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1226/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	db440d785dc76fc8f17bd381b1d7b4c776dbb13cbe0a62ac27d2bd44de1d56a3
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1227/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c57e28e46e9b9b733ff2c0fc6f4099813491b62ab9c09eb9259a12189d6cd8f3
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1228/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	806d95b0d16003a784e0d1caa3ee58a14e8b32503ab086e1422aabc1bbefe9fd
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1229/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9a8abfc5538edfe8e8ab1ee0297b7f7926686690ad54544f74a0cdf8823f4b52
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1230/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	63a1a13ddd3337309af0c532daf5dfbf81362b3298aa489d99ff2266109bb97a
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1231/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f330e5f9b71bb0c1d77f2d0a63b251ae31aeee90c01ebd859daf788dde5767a0
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1232/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1af6bc2fd5e76e2fc2bffe4594b23a5ea30210ad71ad3b88fe50492f4852e7c6
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1233/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e2daf04d6fc95ba69c0a18ff390fef30083b32b829a04b4a94e4a3003124b237
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1234/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4184666b5dc04baae9e50e3c1d2fa1ee93302d9338ce30094472bbac97439eec
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1235/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7d4284541370e616759608da33b229ed49b77e4b78ed11144e2ad5eb0f35d903
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1236/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fbd2f9f49078f7727895999f6f7d600c13753fa6b6829b8106fd8c94c4c74d17
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1237/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ed83651e1eccd29885e2b72415e1a0ce9f76ea91adfe5491e0c09845b05e74bf
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1238/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	78b5c490965e09931c3f9b9b969439854c3ca99f65f951a3b293e979a4f8262d
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1239/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e786e1ea30a28c295b6e7cedf57afa16c32b3926d903b0252ac65cae37000902
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1240/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5d3710648425159815b3f79c86b369c873fd27fba8dd3765632e498c67f81888
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1241/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8ffe6ce29d812b1b44887d6a6412e1444cbd931e9e160bd9eb635ea091474889
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1242/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8d91f6c51b81a6af741286a75371a6ae3ce6d777c7163bc0d3889a5c786d5033
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1243/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e2da0cabb4f9eb772259c0ae8beccf2377a87207699f143bfb77813674b32510
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1244/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fe9cc86b7dfd65ae7405af0e29a5f7eda14633027bbe1b973693e2ee39e69951
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1245/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b826e8298d904a6ff55949209e372380c3d2d533ac316eaea23f098aca6baf26
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1246/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a2321b3aef5e3b38316ea59ef50e179504b6c9f756f022d0d1c60b0a9c2f388c
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1247/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	52a1b604a8e6e1ffd241e3de77d6db0c41e20a5d63a4b5816c141e0c856f5791
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1248/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6e4d7fdba479a1fbbe8b399e280435fa116de9fbc5968618ddcc816938d1b60d
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1249/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e20b6c295657b71811a026530fbb15646e0a75ad271b4d07f046b6a0efd2fd47
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1250/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	37921a6f680fd9ef1694e2fe9021f627a649ae63526312bb45ab99582fd68223
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1251/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ee3bc02909251c8a8f48ffdf40e518f218450afcb350a6ea58b519a3e41ef7ab
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1252/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9103d4c139462bce099b806f74aefa59ae6bbe31fb771296ed6c8107db30e78d
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1253/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ae311e827dce1993fbdc5feb0cb8ad25514273e717bb943acf4896e5f619b5cb
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1254/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e8edcbf014d303abc3e7490a4c4529f5d2157a3a62cfc2566fd7689cc9468947
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1255/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d1367b36c9549373f284e54db59fce3679ef45a57662d438732f91f7cb7a7b27
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1256/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	424496bc6a5cb0ee7185e1b133c8e0b9b98efa52f8cbe33afdcd6a37be9dec38
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1257/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	01dfdd18449da4306c63e0c8c09d64ab47ab464dda96cae118747c8b1d79701e
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1258/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b770d88cf4f52645d12f98fc3cc250655e46ce28ae92f0c6bcac8681dca851b7
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1259/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	793d8be2008ffb57e9db59d047e740787de4684da4cbd83a15896cc31cf04fe0
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1260/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c651b5d7822d8306d783817ab28cb552bd1e213084703c4486cc188cdadd0171
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1261/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e7239e5a63e7d8833400a12adff15fc1870ff32c56f2ed51ebf884624ed2d8c4
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1262/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f41e63d846ff42a0a3df3568d4c6bcd7f3158cccf31eb28e0da623fd6e1229dd
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1263/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	48f52188c416c80322752d72bddafc37136988b8d919a44babdbb04eb48e3ed9
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1264/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	607cb9be34ee25748c39755b135728760a8da9d82f7a0da7ab13c7e70062c43c
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1265/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	00e437cabb8eb1db4297961f4ad01c7b0f5c912844ed17e0d0825d7e3f5ed881
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1266/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	07808a18a1ec0b93b07372814f9f98d30e111181ef690576bd584ee968ddb3a1
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1267/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1db75c3d0fab776efcc9a183a99fa321158c52b648213bc1b03b9794d5e5d39c
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1268/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	96ca59d9b91a5d57d46759655663206e61b9f1d1b6685f4a3fd281df4dbd5d42
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1269/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c2aa2de06e752e39e2b9a499c13d30eae56bff94680b2d15b018af8b3a496e97
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1270/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d53e0df97d9877e4e6f2a5d3313ab81a59c4b93d63ec7d6bfd024dc832fe81aa
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1271/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	42cebd8df545a94dffb70fd33694724bcc6ee3a441e2af16eb3f66d791337a44
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1272/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fa171a506220aa1917387f5a0edcf085c3f8efc9f32856a9c0593fcb5d3acf93
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1274/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	424ed64428eb192acd1f51b2d5a9079c606b9f0076d962c9d4f495e91e2d2d33
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1275/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	db0459a5ddd627fe35206e319d5abc3bbec9a7ae7f723615d132f938e03e6d4e
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1276/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4615180ac29effbbd661ed741d3c95173401c249add8ae4961aad9a14ff8b1b4
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1277/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a6c28e87292862a6620ca29dc0c95013d6d996f786b37ef16ed356dfc82d676d
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1278/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d3bb973eda51576e49b19abfa5c66af9eb2f9f28c50cdf3d12dbb818350083b0
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1279/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9b19d8e1c91baa5d5b5f680fa2bfe4e6d0599cce9f0a8386f23fa57612b41c3f
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1280/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	956b3eb2654b21c975674c1ba79a1e0993a23c730c5a4ba612223c84039c38ed
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1281/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d306a33996e1d15f3d5688d5843933493da548bf882bb751dd26fbc0e6f5db08
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1282/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	516825bd112bfa7f93a18dc943e891e06cf8073ffba1787c9896ca59c869e3bd
-gamedata/d3d11/artdata/chr_shadow/monster/m12/m1283/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a788262705ab2565a600d7f44f3217bc53d3585f81a30d6aee451635f218554c
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	fcf3309e5fca622a39e3670dd44b685299a8277add34d77d6cb8794b926a929a
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1017/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7d98fd42dab9ff77cea89eabad9310cfc91340562c9aa68402b6dbe0af719ad0
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1018/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	71abc553c4893e6bf9a41cba021b0c50676f29ba007b6ff2fcde13cf2f78dc33
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6633aea56b40517d7e89c1ecf3d916a1bb8f0362ffef103a768e1d2762513394
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1020/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ca254c686f62ff763defc38d19c803aded01ee1742461f60c1145ae5a8e1b4e4
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1022/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	899e7c771f2285a5c1dc72a8009f854f49e1df358cd3e2121e06dcb469aac247
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f6548aedca19360ccfaedc9a89a441d66740663633f5a238dc268b8537a5d0cb
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1032/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	d6ed24588aec53873d8f42ef8c2b96fed1d4756824966d3b562cdc1f6c377316
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1033/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0e85a4b62e7b995bae8e19609f542fefbcb9dd48295fddebe53a2800ce9dcf41
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1034/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2ae74ee3dad513185185950b3dba523b1234e56829a5fc5b27d1a25c9090dbaf
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1035/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	cb58dd968ce2ef5bec953ef1854dfcf81495271f43ad662f933ed61816900ab3
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1036/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2e417ca6dcee84ab58378e2b6718cdb3ce180b963c304a11a32b14cc228973f9
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1038/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	093ccac8f02ac64f78903db8ec24e24960f9344069479f4d951c6c34f3394684
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1039/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	10bd7656b344b8023e5e4b084ee1650bb761a613609ac44c25891e50c57c1ad1
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1040/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	17f6d43b5f43bef7e72aac145bc7190442553e0a3b5132cab221b50fbdfa6d33
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1042/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b66ee2bf6d7f849d68c8f252c754c49bdf781cfd120394e1eb6e231ee54729cd
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1043/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	85181e9ef75ee6e3ee17fa60272bdaac1606c7ddd8c13f6917a8ffb7d4aa143e
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1044/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	be0da800ac17ef502b14492660df3a6ad2d9864afc8432f50432992922dcb256
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1045/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2a9091ab604d93414a37643e4f01d02f0c0435977e5ee7c95bda50d06d9e500d
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1046/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0bfbdd8a2b66783d207a852502a6cedfadbcd7b0ed8243f123585244eccd8d0c
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1047/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c2e5b63116e857b135bb1450b9f8bd42d20d6bea9f69d014d14d6a83c2927715
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1048/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	affad89944c9b55890110c02066ee58f89e30f8db59ca243339eaa4325b13768
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1053/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8fb490ab64f1ed634cd3e17b6899e22e0f7654f8b560a13336d5f704547a11f1
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1054/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	fbc5d139cddba3278a29b908a4ec70968a798a92e3397ea12a8d772192d75d90
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1055/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	de1e0d992b10945bff20001d6f89219d04cdd72558292f9bd074ac600cabc580
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1056/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ecfa8079f0d1648ccc0d09e9f86868f4b3e3d1de7e3eb32d70b131bf21196246
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1057/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5f75201b43d08d228f516a30a70f1a18ca42cde8f1e46d11210beac73a43c38b
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1058/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7df82c93b746f9b03dfaf1dd7e2555e154bb2df9ade7b16bd4a3da825f1835a2
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1059/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8fa88533a49f89f6ed56f8d2738476b622ac095b31f7a2b60730067916186c1e
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1060/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3475fa1547b2aa3bc4fa8238fb3930fd6acffe202e60e83983948c187bae3e14
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1061/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3580550f7e5209a7993dcb1ba2f9eb5fe11cd22f2c8af33f664db7e0d907d9a3
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1062/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	236861369c889386bd3551b7964606e28b101f01df0ec5b21d729250d720e35f
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1064/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	eead6bf52d7b0c977e33a6824e89b785abecc7cc443e30d75eb09507cc6eaf67
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1066/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0844ca352e8584619616d0ada23c22c6809f7545a384d02c8cf524a3511fa724
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1067/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	99d0ed0410f2c0ae494066d4cedd63b0df2f5ba1c3b9bc147dee023d59d164f7
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1068/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4ca95440ec1514591bc51c4d16fe1e1d2a314db423a0d9d588ab8c573c69286e
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1069/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4635d0868ed0beb684a2f188ad1abb25fbf587b6a1a2240900329610ca17b9dc
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1070/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	04ae9e9c5082ead37e3c6ba1a5fa7cd5d6ffb65c1fb399ca92a5e689c2c30536
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1071/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ba1eeb640e0f89e106ee77a62831970894907397bee8943953c3b5091b5f1e41
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1072/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8c5fe30304bf46690f40225fc351df11353b0636f8840d2e59b79e0afa1760de
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1073/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	392b3edc3dd52cfdaff683c842765b58bb8cde77b4e02d8c0d7f6c6f4eea73d6
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1076/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	460af2fb9f61dd73087564447ce6ba751f0958c86d4d23289eda4422c3cd3c78
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1077/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	482dfcba1b917a24554b5afea18cf65eba88745241860d868b716594407d11c8
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1078/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4f7bbdec108d1eb4a207401939cc480a776c7cec51e31e942e4238ccf5c2dab8
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1079/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	714739854d5d25349cf57f20b7354ac33899f0aa858c8d680e142b3ecd47f1d3
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1080/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	22f04426fdbb8e90a5e54e4577792c54b55de4feb1738da3cb1a44b5b7abdcc9
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1081/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6552b6d94549ad46edb8baf465c480fd8b6f1dd5cdfdeb20d4004b4633537f28
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1082/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	14bf8aad2214a65181bb7bd8d7affc4a5e23a8fa836cbe9da0e06ea6801057d6
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1084/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	00699a132392455ab03647d5ba41972740b1ac64970c3f75b12f0e5e724f81b5
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1085/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	27feb3b2254002f90cb27663b806b44e6d66ea41c20684efebb7fe615805b1bd
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1087/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	193b31ca3af449d2f59695dcd65c52904d0bae0fdf8f6c84d5bb56515bcb736c
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1089/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	73b6b305eca2e775bdc0a0573c2f265fb28d5a5fed1a80a9de5bda6a6f28f321
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1090/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	d500fe634dc8b84fcc49df3dca69603380647060642eeae2016eb3d88a834e6d
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1091/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	60dcab4e728c4209a3c0d7761e976e0e83781b1f53a91a9b0c9f13dd5a8dbb9b
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1092/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	389b2e77a082a3e470e83e463a4cf6b643d1312a6276b4ef8d961e5bc1ad886a
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1093/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	743cd1d3d3a2a461fdee7999d081bab1e65dfb48ab2630b080f48c8ade253a98
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1094/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	24cc76b28a2076f41b0065e761ac26a420c4c434e55e7a04da63adcf4dfe28a9
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1095/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f9169933805080385678c1de37daeca3720e2825a8510e1e2118fda0975858a1
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1096/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	18c54248c3968d7e300f898ec8689a74df02e0a745f5e111074eece9e61164b3
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1097/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	75c7086fc325059666d03550771eeea66a0bc4fb64c0cf61b10e05f64bba36fb
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1098/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a50b5c0932a1c94b579163530ddd83d6ebeb647efc4544483c4b42e0df5d68e9
-gamedata/d3d11/artdata/chr_shadow/npc/n10/n1099/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6bec908e188ef172f52da617c44867c37232ecade95159c527abcfa4bc212ada
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1100/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c8cc072a24e12d5048e83328ce35f73cd76f99e48982af74346322bb2b437a90
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1101/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	844e667b4d40ee804f7cee1a59bbf02c46ca2b5d415b5cbee52c00ae61a54845
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1102/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3de19cc3943662355d2d5d0bcd83edf2769ec5fff977acddb7c0d0a8bbf9ee22
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1103/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f083edc24b369a9c5b911816e8525f0858b1036f111ba6e3b6047a3f4e2279a1
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1104/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2d8a7584baa655df19b6536236065f82601fc5aca1b5b5abf3c128f7b906b998
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1105/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	40c3a93043234acee9e2a3e9ffe6d92957e8079e8358953f271578aa113368fb
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1106/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5436d8407d2ff7bd8fb1d50f2c222d15568474e3a76774cf182c027422f81bf2
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1107/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2d108cd51f5f6c7ff42e309c2b7b64741914470c2159179766296f92f2e10be8
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1108/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2151d89c8e8b0e86c82ba3a40f5cadffb0d6ddbcfd9b886bf8878a9958857229
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1109/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f2e53e23c03227fc6ef7e855498fc16141fd08f3a40e8a06dc77a5a1e1a31fde
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1110/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1fa1caa0d90059d1127e6de7667159c9dcd1144b9d166f02353370df86324bc0
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1111/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	38ad1f4c3db0f98a99eed81d72c803dc77389d062dba5ba2dc0c3af749f1eac3
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1112/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c924980fea9e04e227362f037d0bdb02b3066ef62c7e5657d064d8792d86f0e6
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1113/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	032d6db8a25d9a06129c6444809017035f6e445b07bdcf375988aaf941b51f59
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1114/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	cc4bf38e4b7ca3d364f935977ebccbdf36765fd56848ed3c0727487e32a1d5fe
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1117/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	fbb9b98136c66a665fe7cd450e4a98273fa7f93b104c7bfede9e2c330ac99111
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1118/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	959ed89318a4c517daacf7c441f38b9a7a4a24a9efe60e370ca61a0ca0166969
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1119/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	257c4a1bf1ccee0efe115a7e69cae9532d938132f090624cbcf6e1b357222d8a
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1120/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4d1909a66b363c492c439c567866165abdad498a6aa54613ae9761feb0bfc8ee
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1121/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1659abcae60438653842cc3d562c532e598414a9572618ac8eb4783fc4d4bb72
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1122/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	19fae76780cbf3bf95a51f89ac93a7deebcb9a574f74eb9401aa71d0fe055749
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1123/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	947b36a90dff2c78076092872f599c49ac241ee71f7cdd615702437b00b324bc
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1124/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	dc5d91025ad8b7c7b34bf90702339814024f29918591b7b62f282be406d69526
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1125/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	aa1b18e05dafce4e209c434ea1030e1cce9a4564bed7c5dcc1aec5401a40d653
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1126/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1d0c6dccf6e3d9043b7701c35e9e59d18681326b9ec95249b9e5a931d4b0c1f3
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1127/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	17cec9be8a0d01bcf8e2755fc043d534ee9951901c82fa0e57a5535bb060bb35
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1128/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b9fdb19602a24b134efb04133bbd9ee28d15f297c077490180406038bfe8aae9
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1129/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ad059fdf6d315dca04b05e3573bb2e7525b2f4e8532942e81c1caabe72731772
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1130/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6a2db8a500434ecdb7fbb1728a9150af1c1e929faf52f26a8a87f880671c05e1
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1131/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4c84b320f319c23756af092fd110f80abf6f7f3dee67f33ed395c942d340257a
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1132/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9e06bd4b76c54b3ce3c4d118d8fccdd44e810f0eccab4a7b1016a746bd50c537
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1133/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c0f82a0a7e5e9db283e8185356351cb38a65d7e8009be98777f816d844285542
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1136/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6a2cfd03611bee9f609264a82fba217e23d2b99e13a89c7adcff31fe3760fcc2
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1137/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	046b2f8e222d5f4d1241fd8433457a6897bcb6b2388999131b7ab85888f52cd0
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1138/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	96af4b5ab4c150bfcc2033b18fb654cc2cb8401fb9ad8521d466c520380f60be
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1139/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2c46826d4114b7265214b47066f3ce00567845b16793a37f91d829c4e05f1a69
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1140/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a9689d27f928b1cf023ff25a78466c484c0ac5a576d09ebe9cafef11e2645a30
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1141/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	48db03c43db2b592008e40ec110247c9a94f24b012d5d9b79c957dae735b9562
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1142/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a05090a536f4da5a2527cfd7f9e88250d5e44340ce8aee690efc3935d1eb71cf
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1143/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0b9e7c1b61c15932a7368d11300919d6fe6a890f769e621186bf2c9571f659a8
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1144/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7595a0a314853ab88a172ffbcd9809b27d67b659c2ab775b22dbe0d78a0ae8ea
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1145/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	35d4b2f052b14822a8f174a36c604b6c4e6cbcea63c5b51bb7f5eb1df79e4136
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1146/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b29ce7b5c5fa692062bc8bdbe2cd359fc6c5551f58d94ad428454e7cc6906094
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1147/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	05b21004fa8886bab88dbba52a8e4f2a622e9d5441300ecea430344d60400205
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1148/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	90996dd1d9845a7a8dbc3642700bbeb3f949be1840a7bfdf0785cd185a02252f
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1149/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	12f3abfd49f601e14ec1903bf3db2ce0553de779e4fb0177b158e038a63fdfff
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1150/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	509ea54c19bdb15b09bd8f916e06425993c4fe437021f29820c7325ba132ae30
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1151/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0fc32190fcb30dfe41f37399ccd3b28c893ba572a42a9ef7c0ae6a307044a9b8
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1152/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a028343b499840ac64c2eb438f2bd649f1deecb828f46038fc35fc0e07a3b72d
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1153/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	96f0f7323b9eed9d4812ff5ee55db6c5a0836fb84720d7825ccfc080615443ee
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1154/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	e746d778075c7ed4b2fee24ee70b582ffac7282da27aa48f1bc6c74537275f7c
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1159/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1fcd51d5da5ee728cd466572979d3ad913b1fdb86f6e5e36fea23a8d6f2cd45c
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1162/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2a030e5bd421b76cb0c90de8afbb8f4691f8134ac7bbd92ed4301d4597432761
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1163/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4dd8c0c74923956059846d115fb7a45506f69ebbe65b471b07c96de85b50163f
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1164/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	93567710af8d1975ccba0fba1e3a3aae7f56a24690db811efcedf612bfaa9a22
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1166/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9d51185143399eab09c9be36b77abf17e617e076b964d9168cae1635e6f759d4
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1167/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	171f0a79db89078f70a7d427f096eb223a454ec450501d745d10b1ce43de09a3
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1168/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0ca28a46cbc00c1a2632c4ebc4bf94d4c231f60658a42d7f842e7635537c1fb4
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1169/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	208f0028be9d1a28ffc81b3b56621eed0e18407e55c1e1338e663973099e40a9
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1171/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3fba5992bfb285c93b965d7f25ceada2d91817d2787382891bb17c2d68bbc54c
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1172/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6b6cbb1a08a41dc57f144a7f192bf6f9f678173a42013ad87ba779d9a459b279
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1174/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7e16a0b6684ad5762e7fec0abd6bb93c144bb01f28e7a93b793e5b83fe1f2ec2
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1175/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	89a8c8c0fdc1884b2384cdd1e25bc918a9bf838c905b056943cfecb5745bf810
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1176/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3ce98f0cbda58491f5394d8fa843f5b296ded05180bf21b2284619357da436d0
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1177/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	194b5441c6cd2f14516c0cd0ca8033d062b0ed8805acd94830c8d9a2b4efeba8
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1178/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	e8b00165473c29f1155b626bb5d86195105ff25050191f8419679596bd7b5369
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1179/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	d961ddd77506d4eb91ea432b2ab63905f17f1c0baab76dfd2ec16833e822f08d
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1180/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5dab63da4020980496da57cfd62d122d65d3091c97e2244e9ef11dad0a4874df
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1181/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9eda0f0de381565932374d49484347d2da835f6129eedfbb1524b791348c57ef
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1182/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7b1feb5b7918dd0d26bc234ac5a8d03fdb357592c61a88e67b99f7038d1f97b0
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1183/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9002e3c8d6e197de455454ea0e8209d98b3db9d5a09b9836788fe2f5a31d8213
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1184/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	cbbd10401a93d2e17109c60ef7edce2251831419828696fcd1c69eea6405a6d2
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1185/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	06ccdadc6d6f1aab5b0a0557f0a8f7a7ba010b92df2e6da13d0e72eea583e75f
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1186/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5668862db6fe9d5eab32b927559d8c91ac0d88b06c62aef4fe84dc711074931e
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1187/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	aad6b9f5931be3009a49224cbda7ce267c10f971cc9b87126374622aa3cc3621
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1188/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a0ee513d0fc0f4a65fd3a266373f3cf304ca0da22b17e55051532e7567f2f03a
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1190/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c9c73e459ddd76d3136918393eac09872fec1f05659100af718377d4c33b66b9
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1191/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	688b0c73cb3e32ed101123a1a9d5dd171c3d6fcbd72bd3de2767eb49d77ac351
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1192/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	e27fb9c50f044a072d42df3a7957ba1854ba073c20b37e778d925a9bfacad2d0
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1193/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	dafca19fc8e2ca294d9502d7ef164ba72b798f1224181f4317c0b6a948a99beb
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1194/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	013308d733b3113b604466dc16556b764eb7d0867eb4bbb37e07b8eb37d20991
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1195/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	14ebe2945634d914e744313ef8be86bdbc56d1718234dd27b465fc04a990479f
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1196/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	95ef4473bed86ce10cab74507a278d9c74f9d9b94ffcde7b6dfc15179671eee4
-gamedata/d3d11/artdata/chr_shadow/npc/n11/n1199/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1f71ff0fe421f580864e9b0892863388ad1406fcf53fac1dfcb4036c3c9f300b
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1200/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c0b4f109b15b144c4a18c91c237347daa42e54a58d4c76f2ab6f8e62fea95fa9
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1201/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8a282a1ce6b0cf64226dae82cf8e0df80bca50c82e67227bf3367287b47cd4e2
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1202/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3dba46f78d98465681726e37498f375a057696b4c0b00b88a742804aadf675d9
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1203/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	094cb633169c65e4decfa29aab80c75ff16377266a88e48e5e4998ca8f7b78b7
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1204/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a1f9325b9e4d4aa68c990388b2b8a19639816e511e85d437fcb9ef598d9dd279
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1205/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	76ca8fe1b2498edb9c0e5eb1c3ba030b010d5b5a41b149073769b4da4da1942f
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1206/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	43c2428de35a84d4708bd6859e18039ae4e6efb8a3ee4d160dfa74e2132957c9
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1207/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a81013bad95cad0bfa03d9356ae19ba9af280bcb3b2c7b835b956963682d2113
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1208/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5d5d6e0edeabb30e6ce0100b145c3746eb90431bf81b376de7d8651131d63ff9
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1209/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7342b10330069a42b2dfc5ce24cd1dab8271992fbcb147ab9f319ef8d212cc2f
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1210/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c38cb296a8a17edf23c983dc342bbdfbf3e91eaf5b34cb9ef39eacd11f20d7d6
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1212/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9e1f341ff84fdc2f6f7d732430a778f335ce214f20da708d1f2ce3f2d8663573
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1213/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c169939b1c5b741a91323cc6447327fca88c9c0d572b21b4a8556d3bc21beb2b
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1214/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b5c2967a15882c016a09893b51dc2a796f651de4c16962538060158fe0bd5240
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1215/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f3b0fb11d7ed18213439082e78156e677cc0b1ee70f1b3fa8c6cded10cb21742
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1216/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ab000f5518a603cd7d5352b67245ebe38c1eff9ce3952fef2636b5136f7e5c39
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1218/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	29425612dccdc7cba92b32468c231fd9d19504343f81b0b8e157369c989d346c
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1219/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6515829ac9f7f77c3c89156345ddf5f2e53550f1b5fc0e94dae1a3eb4bd84e13
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1220/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ec443766fc437ce5f95f86a1f94fb043904856fe591f1c9cc2dc305990631ba1
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1221/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	191a1253cd86f5cee1fbab35efa499063174563863603e58ac3da1ef8360c691
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1222/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f07f0947d5b9dc31824841be86d96d1c0825d7f41a56f6d73b0032e4c6bdd394
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1225/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f328985d8c283abdef0706c5d3abbf6197e5f12d7e41dddc85096184464cf528
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1232/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	d39b62a04e5eef202b8a95c0f23cf1b0961af6a24db2816d37e2c8e7b652fa1d
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1240/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8df3e637847380a4a0b0056228445a3e7acb7b5106d8209372b8b63e4397d06e
-gamedata/d3d11/artdata/chr_shadow/npc/n12/n1248/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	bcbb665fd7038cb00f8817622b4e645b23c1f41625131e6c8591f5a69d601b28
-gamedata/d3d11/artdata/chr_shadow/summon/s0002/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	bd82dd22e85d3ae232f9bd49e69943885f065a6f0f41f387a92bca3e7e41c271
-gamedata/d3d11/artdata/chr_shadow/summon/s0004/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	30930290578dea530e46325f1dba069eb31f9f59eb34a5dcc4dcb13bf21d029e
-gamedata/d3d11/artdata/chr_shadow/summon/s0005/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	fe24547cccde1394147101e6a97c7b2a30c6f2dd0ffef5b89624acd449561289
-gamedata/d3d11/artdata/chr_shadow/summon/s0009/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	cbadc2792778a1a3cc614e612a49fb0ab1018b8ab8fd8d80f2a426fcc1d4eed3
-gamedata/d3d11/artdata/chr_shadow/summon/s0014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3fa14fbf65cce3175c58552f6b13762800c3a30dde0f344f75444df9a9a2ef0b
-gamedata/d3d11/artdata/chr_shadow/summon/s0015/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	766f6cf13bf59caae471cdd2ea30246558558433ae571aeb5927556d0017c90e
-gamedata/d3d11/artdata/chr_shadow/summon/s0019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	601c38d1e6d945038a013094f9fedf6811da6f349b3f0b690f42148d0801751d
-gamedata/d3d11/artdata/chr_shadow/summon/s0021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	467ef79c5002b8500cd9f12fec3d110271948541cf2f21a65d679bd8dbcf60aa
-gamedata/d3d11/artdata/chr_shadow/summon/s0022/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	053c4ef307e632581d2765347fb56bcca395b9aa326b111551fab25c79a1dc9c
-gamedata/d3d11/artdata/chr_shadow/summon/s0023/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	24c1e207e8a750a998e9f81797a0729e6c0181edf999b644e22dae8361fb6d89
-gamedata/d3d11/artdata/chr_shadow/summon/s0024/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	e1a13d5f8f71b0c68773f13c2bfe36f72f9fe79df1c922ac4095f236f648510e
-gamedata/d3d11/artdata/chr_shadow/summon/s0025/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4219319ef4da8e596858a8e5ac323dd12a452ad3d974f90d1ff09cca92d96422
-gamedata/d3d11/artdata/chr_shadow/summon/s0026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b876fc5fda53b0a44918ca720a7048be7d87b63319e5c63109597fa7373d4b2a
-gamedata/d3d11/artdata/chr_shadow/summon/s0027/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	485df9138cfaba07c59bb439b87cd08b3c5dd189f3e7eaa87aa1923e8f225410
-gamedata/d3d11/artdata/chr_shadow/summon/s0029/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c1a55c4b14668d39f18dda8d26b54eae7d7d3e19f1bf8daef7b77ac1166064ed
-gamedata/d3d11/artdata/chr_shadow/summon/s0030/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c018ae2b47c8b69536f3b0f36e2d419587049c20301ddbcab515be5c50037ced
-gamedata/d3d11/artdata/chr_shadow/summon/s0031/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2bceabd45737659c2770b577330ce62d868db45a43aa502356181cc3d9258f7c
+path	class	format	width	height	faces	mip_levels	max_mip_level	texture_flags	image_bytes	max_texture_buffer	file_bytes	sha256	ah_lists	prefetch_lists
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1004/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7845218d97e4dc81b3261c24d7338699f0b8929de2d2fa8c7f39f46d25afb822	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1005/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d72dedef3b1e51145ff13aaa6a4e93aba298c0016a05af9a9b1a8df3884a1a17	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1006/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	aeb629b9939869d97103ac148da0a339bfc0fb73eff7f8f155a307db032da8f9	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1011/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4c8b910bce82603712de15a2f919baa5cd18c81c8e8c72c33ae0567999de82fc	1	18
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c3edccb6f2f08265b05f61597dd525f263ad1da1ecc045a1b4fde1e28089d5dc	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1015/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	014571419955efd54a88296a12f771ccf91a9b69a730bd638fc75574188e0161	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1016/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	cacc8d8049c45c836b3e869e803c7081b095e07d070d82cbdc805637929e6e65	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1017/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	83274d9e210335dcc99b9f9de5e9a4d228e735e7defcaac1c4adb4603e199d9b	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6fb390a54155a64b7ee3a30cd2854c6b503ccab2819ddc2cd161273a5ab3db5d	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	14bc3078737e7b39ad401d6bd6c86e9107e7447cc1643c8b000b0a3e892d4598	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1023/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	67fc509831eff8354be7732c83aec2119aef38692a70c70ebb31ef9bc8506564	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1024/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	969406348b82594a70914b7e18c2094315a0a1070235f63753d75623a8e527dd	1	72
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1025/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b1be3a00b85fb80a72bbdb4ef17b73200198d9c89dbe0918708ac0d0e58af94d	1	0
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	289ae2764a5b66f219de63dbf860b392f169c7cfe8e6356d99bd2ee7b28da584	1	162
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1029/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1b1f29db21d9581cb7b45119a8a902b1fcaac950d196059aa060dc73d6bc291f	1	63
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1030/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7edb3013d8b283c69d038995a5a5f3bfd64f149a8d3089952a9ebfa1f6356214	1	54
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1042/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4b3677275100ad589d7e76fc1197b8810e6464cf39c8d3c282a6bda3fbe7503f	1	36
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1044/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a7a9c037e9850c41a11689a7c4a1a7c722346f075b967fc5510df3eb18bbdbbe	1	45
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1048/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	46eed27545cbe2b991f34629702e6797651e26beae3761b075c954720492643d	1	9
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1052/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f1bfe793dff625222a2fdd371482e90f34fc132fdf4d18ae154de7db2fb372ee	1	9
+gamedata/d3d11/artdata/chr_shadow/chara/c10/c1054/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6fee44ac50659aaf68b9a95ded1605fe193aa55e1670f73d4b33cbaee7f555af	1	0
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1004/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ba2fd2d70a9189341f700cf8ec975917fd7326613a7d0b554d9e58147bd3adb4	4	774
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1005/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c6e78b1835e5583c5ab07f1406dee2f8555ea67cfcda16c23fffe4831c5aa381	3	522
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1006/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b9f1b39ec07221d5f97af10fec32604da15b953632b3024bf6150f28b604951c	3	504
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1011/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d83108ad41f9030ce119cfe5dcb3def4dfdce27da4cf76422db9be77d6f647ac	2	18
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c80b671d035e1806e576f06a737079dc48baf8994a1a5c441fca639a6058f3e1	3	405
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	cedc3f990f7da77cafae68d4fc859913ad3594ae56f737cf9a7f1600240e3fda	5	405
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1023/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0103ba96b90226a4483586a9bc7508eb07aedfee86b77fc5d0d0c0b5ec4b366e	3	369
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1024/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e3be5ae11825d9c8c83811cb5a28934589c7f3eb7427da461bd791708216f471	2	54
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1025/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ff654c349020b86b04fc169cb0bc31ca3a5d3b139bb15e19f1b84dda7394459a	2	27
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	972d47101fc495350d20cb2084c24b509d5a591026f6cb9a7d2dde5a06996041	3	144
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1029/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	91c64f3f262251880dfbac84c40a29688cac689f57e2a2cccb8302936774c318	4	54
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1030/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4d901daf3c3984d0b02eff6f28b925ec687f0b4907329d21f6d5afb195163a89	3	18
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1042/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	62ff5865c32b6a615cfa6fe72f1662fac5431d1d98daba624de15510150f3ef7	3	18
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1044/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	496f45290e6b0a25dd1afb17b9dd99b7e4fb9370a746b0f9c94782c53b27eda2	3	36
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1048/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	48f0f119bff77488b91c2e4c65feba0f3f65646d06f2eda771795b3493d1f7bb	2	9
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1052/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0b86887f38e7523c0b9902013d989be5c87dbc817b39730b28cf084203965b32	1	9
+gamedata/d3d11/artdata/chr_shadow/high/c10/c1054/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8f359524484afe51d53f51a54adc7797b208e0df1079ee0d23d365ef2d2e8163	1	0
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e83d66176c000e495fba84dc904ce57356af9f8f787899a67781d1069ae8f967	1	0
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1017/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5bfa4741c577aca6a457908acce9c9def1eec04e0301ec4b74b77f4d0a78db75	8	81
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1018/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5f0ffb0d64093eed6f321ad6a17ddfebdbcb8be8c99bb533b7674c82cbef5f5e	3	0
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a92e18eff3e0ebad062dcb8a2b6f15678df8d081dba5fb7e44bbca7a46dac49c	4	9
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1022/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e07d09f700c71821eebcdd7984305370f87e652256c80e2ab9d736bfc098575e	1	0
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1032/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3ccecc742a3f2eeddca697e06194cad414a65fbb3924ab6dc3071e226bf61c22	2	27
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1033/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3201ba039b30e2e06479ac1175b6270efaaafe16b1343cbe9ff3d94d07e24148	1	81
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1061/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8e01b77b248a8ee700ad9611cb1a0d992898859ef9dc8fa2f058354b43aea2c4	3	36
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1062/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	73753de365206b84c7942b60d3c92c494fe1deec8275ec4c5444488564a65803	2	36
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1069/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	dd8d950a89e2a95b2caa07b23db233a91f6e032ed879084eaf44a736a3656192	2	9
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1070/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b81da986a6732dd9efb889f906e6bbc8b7cb02a91f0a3079641b0b92e92766a5	2	27
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1071/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	65335783d68e146471963ee4325b08bad057388486f667b43cbf393c83722a3f	2	18
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1073/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a27d4a61003cb869c4d7c950c8ec62a91a2a4ab79babce8493f6e23a98a100c2	3	27
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1081/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	aeeb4906f84a63aa9718c4528236606b998633f2f863710b8470cc0ff04887fd	1	0
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1084/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1578674fb2796db7b8002461e41f11f10a0541e1def6b37e809c89652496e053	1	9
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1085/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a9d4af3b4c81ae047e768aa4d0874056ff92535ce1cf7418492f16365403b4cd	3	0
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1087/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	18a81b73c40483b7fab701237e33343203abe70299adfa1c6ed2c2d98d4a15b5	2	18
+gamedata/d3d11/artdata/chr_shadow/high/n10/n1089/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	68d52e8cd531eb6543b8d00256fef51a65a6a0d593f231defd2f7c65132621f9	1	0
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1132/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	85db7706b8567a956d6cc366e55444457e923c31ade88a6ebbd1741666643889	2	9
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1140/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e44327f522a3d685039e37ebe29eff41f3d4aba89b48d238a4b8d848b3bd2c47	1	0
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1145/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	737a802b73766d5ce0c122f698621e03c5db14da87293ebee16004e1bc54b4c6	5	18
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1146/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2260323893248f520fe1eeb6d7a870270b4d7e1701acf8e2beda48bd4d519a0e	3	9
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1147/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d3f5bc592f26455e90cd0020b2c5c2c426dad7c40a8e77850cb4982467267fb6	1	0
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1148/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b1139ee813ab61a2ad94d81d6ab0345d118d919e03fd01192c365beb31438200	5	36
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1159/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0792256bfb195b971efb388f2f8b28ca99b84a1dc8cd2be6c3c30d91182a2206	2	9
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1162/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	178533e5b11d64cf2a9afca42d7ff0e7fce2ac6a4f5b4972f791eac698223be0	3	90
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1164/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3e068672e2dc5a010f9fb6d52660c20c6bd5d09dedac9c5322661ecb8dafbced	1	0
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1166/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e680bb97688853b6c562daa40a291f89751f526e83f65a38d318efa9c4333470	2	18
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1172/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ca912355d2aa4740da28beace18a2efe480cb7b618fe035f5ab4bc00160665b8	2	27
+gamedata/d3d11/artdata/chr_shadow/high/n11/n1174/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	108088df74f7a1001bee4e1116da2d06e65781c74ede33629b1e4116bb667b22	1	9
+gamedata/d3d11/artdata/chr_shadow/high/n12/n1210/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f5d2c7b3886fd5d9543512b96f104cc147f74e472e186c9b747753bfadea18b0	4	18
+gamedata/d3d11/artdata/chr_shadow/high/n12/n1212/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	36d63f8481523d939ac1283db9c2cf3eb28474c115baea0ba6dc05277ee73faf	1	9
+gamedata/d3d11/artdata/chr_shadow/high/n12/n1213/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8ac67537b4a986dd2cff32fe2b62d95383b6d43f044a32050f4ff8893e113882	2	0
+gamedata/d3d11/artdata/chr_shadow/high/n12/n1219/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1305b79a11a939b790096a777012738fcc638805b18a5a218faadbd4ceb6cbf5	2	9
+gamedata/d3d11/artdata/chr_shadow/high/n12/n1220/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4a171a03383b0867094920abbbf6f61a9ae79b4a5df5e579b136080a116cd1c8	1	9
+gamedata/d3d11/artdata/chr_shadow/high/n12/n1240/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8531550812fbd5b58b5aa8c8853f5354fe430d5dd3e815a8d4c9ecf91b728d63	2	0
+gamedata/d3d11/artdata/chr_shadow/high/s00/s0003/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d5cb854be59a414ad1ecbc0e5e35cc5acfa5b8e9f4914a13c69a870f67275896	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1002/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a1c546fa7ca07cac60f0da2ef88fe7c489fed0d3b6eb639861da9434da2ab3e8	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1006/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e2ef10d196c31d9bdf7d0eb7e622a383a9bf3509499f4c36f42844a22d075294	1	225
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1007/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a1d53346bfdfff37acbe7f53ef8b459dea3ce045b127245c53a84bc58149b189	1	189
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1008/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c8c6e1f38cfcc210c714e0a425b855d6d5a772eb7be1c46798f82253cb00898a	1	288
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1009/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	103f4090ec17dc5df38d0bc648bf27fb4b2930ad748ac184ab93fa4962b1ba55	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1011/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b5accb0d88ad8e7a979be5630566e2598a8d1595b752964093021ceebb75c2a3	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1012/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9f47abe9e0fc95cc20e8f04a640bb1ea4534562e4ea1691d244333fde5cd976a	1	171
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7715a07de49ebd0e9c46c9fe5a5bd909a89f0f7ee84c9932469bfddf3866ff8b	1	171
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1015/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a6c7378ed6d8eb99a369c98f921f1db0811fd08711481d61c51430b58a2118f5	1	306
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1016/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ab9db217184b2cc488d00eaff6a8213fa5be5e49d52d7abe6639627eb0449ce6	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1017/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	709d15e86bddf80e017718fb5d8794e0b64f4530753cbde1fdd07b7a375d861f	1	135
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1018/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d2e54d957d47cc41f3c045b18e57f8a62e84a635cf0149f9a80275f399bd9371	1	333
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8f5b42be9e92e05de44daad9d2ce7e572c72d26bafcdc30c631508e79817b553	1	144
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1020/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	51aaafbe0e955d87a79f3bf479315c68a3c3ee3404414ca8fceaf283cbbb0214	1	162
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	07258a9237fb6ad7f49890b8151886e24f4939a9e7bbce8fa31717b0259478d7	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1022/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	03c0e377b810c92bf29b8c23e142ad93b600e7d6eab2517e0626fab199e22dbe	1	144
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1023/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8a18243d94825a11ad98624729233ed5aaed97eb28f6a3781814e5992b381d66	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1024/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1150e505624f62f5572ab12222c0ab7922cb83c61731a2f9469d73c05352fdc6	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1025/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	69e5a2bc4e69f828b46d6b3065f5623542dfbdcaa795cd5b43501150cc03f3b7	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	01006e41385b2acfaa3e50ca67bd4f44c1776e43a8ab265f87790ed68ddf6a6f	1	135
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1027/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7ccd08e2cb2b69a24cc595c28d00987dcf9be7766822ccd02c053fcf36c5ddb1	1	180
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1031/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5f85156b6583db5eaff3630f8931a626052bac2f3d67452eec2bdf92d248e9ba	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1032/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e64a59dc3c2229c9ceb157e436b0226681923109cdbaede8f3dbb09520370239	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1033/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	89a36dd68bb9e94d16c16207809cfaaad461b800456452e30483bb5fa73773bb	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1034/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e2a61b28e1aae8b6ddc686aad3157805ca102c590ed09b0ed998660cc10b3f26	1	207
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1036/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	27202ec1f34a54e5aa0dacf4cec91be6d237bf5a7b034715c628ffc81f4d10ef	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1038/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e8265521d7183d1d7fa563318804da681941320637d9d0bdcc8253b387c712d9	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1039/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d49f3208ffa4e5ecf655c72ec7ac1a12de177a6f2b443eadf5620c787804cfd2	1	135
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1040/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7e4f03f7b0fd780757c83c9576c854450f10b3cbf4584718581aa61828f2027b	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1042/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a0d504e47984c0b03a6e8ae94f00dd03491a797a19e983f725c5cff36ebd6478	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1043/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	384ad1af77b97542f303fcc2ffc5733f2529c25dd211f01ba76d8a46a384aedf	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1044/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1fe774fb2d17834a53e18b27b10dc6436aceaa2891ed951afc122631b1c92cdc	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1045/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5562f8abc2c05eb33aeb96eef21deef3f2882537e01adcf522f20e0820003cc6	1	216
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1046/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	075425a5aad1ffbd4fb040afe2c8402dc64d048e795fe27cf406b18861660c8e	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1049/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a923fa41da58f28085fe4c38e9b2f407bd10f561e437b348a0da73cb7fa46a7b	1	711
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1050/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7afe7ceb11eb445f72d6326c60025ba9d390ba342c0c1cfc63cef08d7d14fcf4	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1053/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a463ed3909b010059a236da109e7b8b462dd0522cf4b15ad91d1e8b8b7f30a2e	1	126
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1054/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9768bbf2923ecf4eadb469ba25d138e2cb59edb21dbf0c6e9eba842694ede595	1	126
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1056/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8058c5b0b017b97a373aa5b17f324c0dc24e5dacc131156d2bc386cd8af9295e	1	171
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1057/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7c156cd95199fdbef46bfc9fd5454519093c7ba92c676a6e82dc9c8f7a46952e	1	144
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1058/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	93d5fc86b3980a7e48461393493709f73a9fe6169abb9be5f054a97809d166ac	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1059/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6fc8add125a0d1ee989ba6cec133e8d36a81d2e73a09b899b006535737eb18cb	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1060/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	760c91ddc87c95debaba2010dab2a48f9d182820dc5e6b37bb8d5e5755d1e27e	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1061/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	87f6e05c299198b142b8829003c485fb26bb387584124dfb579981e88596c2c5	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1062/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f8f11b96bbccf3d2ac5ee47dabc19e2c612107308316cd2f5133597e8cc91456	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1063/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	aa6ba6c85f80e6d8f0bac3d3e0995e2b08d4d9867f07adf333487f0320a41300	1	126
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1064/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3b683c85e0169de491a4785541f4b74c5e9ec0f490331b031e9407de660d3247	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1066/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3d36fdae16ba1e7dd25b9fdbdd63879ad1003fc088f18f5e8b52f3257158ac93	1	189
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1068/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fb7fe3f8e47ab8a43b891adbca714e1354d8d73bb1dd13a4e2f56a6114242ec1	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1069/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f96a631b3154b61aca2cdf349d08c65adbb9bb8e29a7c3360fe6ca432700995e	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1070/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2d53058ae36ebb0f68e27e24d3d2d93158cd0f9e82a74c3bcd463b6dd9ee40a0	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1071/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6ea849066b9091efbd88e10828c69ee56486959698fc55049f0b6005b6103a21	1	153
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1072/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c2e4b718f73be32a952faaf254d51b3c14f34117854ab88884c209481d8e79b5	1	162
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1073/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	77526fb129d7689e3cdc7e4f6e07e6cf1b007637135f731c69fa528e790782ee	1	171
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1074/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8f817cead078cf6b4fef9dc6537cb94b7dc82ff4dbc60c287402104dfdcebc72	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1075/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3d16f53d4717b5bf92c5c30c0c8f82d26ee0f316f57ac403c24b8b92deb167ab	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1076/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	14361ebbcf927da94f2669dd26bb64aa06b24b207e42baf78ba5629bc1098571	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1078/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	921dc87ea2b7484a7c16a9e25e61180bad1316e461a6d1cd5a3a88dbc7218394	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1079/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c2b3b0f3d1bb75e540fd7539b1c40a31d2d3974d3bde122d64c5a7e6f898c3fd	1	243
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1080/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1f7134dd3c9c7075319ec2adfe100a336baaa89e36bea53f8911c181bd687a61	1	207
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1081/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	71009f831a794bba9124a81f997bbd27158339adf4f738c40c81258bb1345a6b	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1082/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ee994f86b583f66797167887953d797586a3041b4d127177e4acf325723f27c0	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1083/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1bef8645bee34eab4ac454f5abb40ad884b5c31c20f1a3d3c4cf237e9955234f	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1084/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b3351fc8c0e9176bbb721fa69c83499b55743a00ec5dc5d39c41b802f7b3ff4b	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1085/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	343599d32613dbc6f7471aa33914e649f10fd61f14e25aa56d883c4b735a1024	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1086/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3706f4163be8ef88b2381813cbc7d2a9076b4ed6742f6a43ce9cb32e17211250	1	306
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1087/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e1d8a450fe2e46c9c5f3a0f477323e88e0fb328e434891055b9ef31cc9191532	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1088/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a46c52594c7cb7135eaf27cb1cf500a753d9a73ad424f746f726b1662ebab0ac	1	198
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1089/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4c813eba02916545c4ec6163cb4a99f38f83d63bc77108362f1087959053c8f2	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1091/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	dc43434fbaf6226add098baff45f47d02c5d94424b89b96c122c7f89b73d0f19	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1092/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	314690c2d6614a35825622de253519bac4480f5d189e28f230ed5a1d243a6fae	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1094/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6984785aae74e8f25c4f4c7f47ab31dd6803b26ad5e9c4d73a3fbcf4cef1309f	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1095/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6bb4e2f68b12cbc689ec54cda68ad380cca930653cc4e5b0b33279187a053042	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1096/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2ff80ace629c7f7312aed03051d13421f75ae70b07e4801acf34c17dded9b91c	1	144
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1097/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6b2485f5ae9245ac47cd3e2c870cf281125e15be2cbbb386f774bac35f51b132	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1098/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	291783502299cc0230249eae64d7c1193183f11366fba0462945923100cfc2e0	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m10/m1099/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	29a492d62efe85899b4892703beb31d0bda97a31cbbc14b48757f6b36d8e10a7	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1100/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	15278a0332d9150b6111d8dca3d8eead1122374420f5d23899a1242b563e76a8	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1101/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0851d80dc78beb1b7542fc0d794d439e4a77881d8a49ae67af740427be5802bb	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1102/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a4792f0dcb0bf67018f2932a16c25483447c12e2685d0efc83dcb3791a62f448	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1106/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7f14aa884b85028a0cd90af1738079c321566529281176aea9420f9bb64249e7	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1107/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ce4e085fbfd4a006c4f68ee1af96c11221f6870109582ff8af5952e84261a6eb	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1108/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	75216858344e089d0b97c2009edcb600eecb18e3d9b4689d6295b2b769351187	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1109/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8729afe74f5e8ce9b8599bc6d591818d6b3b4f83b571f9a887731c0f652a7e48	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1111/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	490b4a978da26ca5ab55ee53bb6f0f28f986409d967208d491c448f2a8a181a6	1	117
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1112/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	80bbe4f1203ba5374d2af1e7841751a4698838e9f05e39c95c3e2a5f4c5dd214	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1113/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b463e5a29a62859cab4020dcc4d5313a122526e9f805f1748d76d26bc5fb2908	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1114/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	097832909b3814dae4c5cf3d82aa2373d69b90cd493417a10a97873cbd850326	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1115/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c11633bf72454a082f2b8b584de81727cabefb6fcb2445da32dcdf0f72b8a820	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1116/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2f4aad88587732909ed2b6298c4f0e6994c79981330482f6eb3771849296c591	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1120/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a025f42744653251ed5eed957fc0703d9d0c2822815cd4ee618c3c5fbe6de3b3	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1121/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8ec7604920e96b1906a77b2bc51db5111334899829d293d0e1de9d2a44c436e4	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1122/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	952a6159be363751e06dc7f8d6711e3077004c0955d07609077ea6d5a4b07248	1	198
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1123/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	de37f1abd7e4cd89cd26fab404c0d6661f4fa9cdfce0c2ac84eebb6f11bf04d4	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1124/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	0e1a035bdd3d28def999c2d0422c43b53546fa7a82cd27bff6a477a71f8bcc99	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1125/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f8ca5ecde2a9b520ad763ffd134f19bf1146010d4cab3699df2034850c010bf5	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1126/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4c8c9511376b2a646589d7c503084c60edf02f169e59dcbcb45a4003125da324	1	189
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1127/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	88753d8f95cee722a47d74b97887975401626e9437ccdcd65bbe2f5e109a1945	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1128/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	41c44b2d8f4b30b588b8b6134b238a2f422e67c1d04576a645986baeffbf09c6	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1129/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	66d077272bd1d9ed449e474b9fa19508b933fa547bdaafec9ba1d4a245512056	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1130/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4527a1fdf8b0c07b178f2d790f8c60d0741b800d6bd29269c327072c2da61a73	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1131/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	12b15701a47aeb17a0fc364ec81bd29c2f486aa9e0ab78c8cf5b1aedd32c1d90	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1132/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4417cbeb6e24da6be1963298252e52d101377cd778ee901d94f8b9bab59c38e2	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1133/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	afc51e16ed4a274fe7745d53e6dd711ba4c306a4c8897a964b58a57bec474175	1	63
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1134/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	dc7d64312d85244546a0ed884a74d02609b933ff46f77e44a0df7232359d541e	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1135/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1081802f3aa43b772a169511884f31b156dfaf74e781d3481c37e74b73b1d4e3	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1138/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9a07ac8aa108749c5f256909b52f6b554d11e015b93c77b0ddb5b8e66971216b	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1139/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a4433b927e7228d7de8487e9186fee21fd1061dce01218fe9db93201a6a8c0f7	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1140/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b5c01be014bda66e26a199cff65c6fc021e7aabc4e5a944189849bf3019c497a	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1141/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d35a67ea19cec280e3da1b3c105d07195825a65fb6f8f83883ea4132426f2ea0	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1143/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	30086bc72dfcd64be3608b8651506dfee414e1b0a6a70d19ef6b864bfa71fdfa	1	0
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1144/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7938738d88609ebd1075adfc0b5c91c90492615bed32d7ba58f68e1800971673	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1145/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	88e9f095eec04d7c091eec0eb8d8e5fbe8df5b8e3936e598d5aa97535f80df7d	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1146/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a0b97ef8f3366b0587d27acadc07496c25ec630cc2007e405769f72acf3c7c8f	1	117
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1147/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2fef7920398293d5d6a5d25c84b1279ee9295c17a7218637589e7dabfac90568	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1148/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c76c62b7d955176e3a3202289d87916b58298ddaababad64a83ed9800e226515	1	135
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1149/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b33f7e1e00997eddf14b38de5c82b48bf81abe4880d43af0e8ff50582ecf99ed	1	306
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1150/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	11fce354ce68b4b28294d27a8ed856161fd68b386b4957c18af54ae15f23dfed	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1151/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2ee1ae533b1e02d2927e7e13a67779a98ff09b8754e8868a78b395b172b2963e	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1152/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b5f01de525cad2fa2ea27e7301265d1e2c599d13f63776eecd0eb182ec86ebc4	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1153/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d1476fdd653880e143b412bd2b766bf5fb66a2b91dfbb68dade1d3a8d28d451e	1	63
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1154/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7a393bc0dae48c4c2fd4f01f89d6457d371b992c1afec3c70d82fc0bace4c064	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1155/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ef6bfe0f4153627a692b7c07675c572c88ce3a516aaedfe5afd40948aab4b07b	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1156/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a1d03bb2f870fa9ae7b4775acd190a53e60b821d5f1cea9dee3956a4a5d0bd4b	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1157/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5578952e9588bb5f7768e7a6228e31bb74022a31af2c7fbbfbb336b6d0ca12f2	1	0
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1158/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	072a85746b4e1ed15e52ba168e72c9bf3225fd34825e0aba3f72935652ead878	1	135
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1159/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fa5d4baebfd88af4ddc1c06658ff5645fff9d39c3f74d92805967c3024d42a2f	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1160/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b00ab5766583fd47d28a341f92032abbadb780864c98117b0b7231802d0e0180	1	216
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1161/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fcda8fd986ce7f96ca5a4167d623c66cfd88857cbc8f7d952aa317ab58e69ab7	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1162/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5695c729910ff07f4105c3c6a24119c11539d74b1e27e08606c296386e196c5b	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1163/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	59fc38dad1b0cd7ba81adab56678b4dd79e3e07fc17b3f7215ac41387934097f	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1164/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9107ed4a73979b244040c496fc79acc7ef565d002458e8d9e00a98a2dc17e097	1	135
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1165/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	402058b53c9fb61c6c2bfedb8b67f8fd190f17c3408d21cffdfd6e32f83b5c64	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1166/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1c241e9d0819a98ef01a89125b16e53928ade0e5a254e6a0cd4a3264f339e07b	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1167/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	67c936b0282f8073c6a27898e54ce2dde22ea06f43e56df515e76c594e8697e0	1	126
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1168/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	57605588c01af71be8030da67eeb30280b1ba194523c6ec69025baaddc3197da	1	144
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1169/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e1b21af2c140cffa7b95bb919f6ea5f0c1a91290c61a4c6d4de174277453eb00	1	63
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1170/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	86f36b332ba20daa637f4b3e2cfbc318f90ebab7294e5ac7ffacc660c6a04139	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1171/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	09a158ca3eed8c979c8c59b8d9f3eb16481de2df97642a641dc5663b7db0eafd	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1172/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	49c00a841199a5537526e91ad7b067d40c5f2b5c91908d96bf3f1bd0422634b5	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1173/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a531896a739a4e2c7f2bc94e2f9a0bc74cce9c9d6bdd6ae2d773eb970a848207	1	63
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1174/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	36a55c21484aba7ee7a95dd063bfad839629188141b7d6ecc33bb63e7f0603f4	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1175/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a33d18bfa35a57242a36092c7169a88e0458c851d7cdf70460f204e63ce0ecb3	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1176/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	30f70416cc8bc5fc3eed146e5062d5b3e0d2667b815b01209010c4f5cd3ed34e	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1177/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	003e226909745fba811d1103199661ee8635fd97ac5bf7acf8baad54e52c4346	1	270
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1178/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b9c6be449224c858a8554938fe1298553f450837fb5641c7d9518c432f44e6a1	1	0
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1179/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f9e1b2c72d65176380c7cdccabd7082b372fda0266abee27243d23f50d892d49	1	306
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1180/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ad8a1e7957545549f5d3d53a47fe5ed8d90832b7010543397b07ae1f86437454	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1181/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f397710538b1d203c324eec4e4c8afb3458b5c628510f9089460d842b837bba8	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1182/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2705840bf26dc7a18806c0f5f57c756d64d98006e465d0f59297b3a73fa7e04e	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1183/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c84c46a9ee905ff4698ec450c2442ca3ecd3cd3878f1aebafbea6038cae9c8d4	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1184/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9ae7c00cf287239ac7d02d6820bac615a37225a2f8cc6081828e31ebe4382d4b	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1185/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9342efc63ccc7f7aa2a65e4ccb81ed3e7481d6a9a51fb81169f77e7deaf3dfc3	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1186/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9227354776eaa8def44984de8e517b774527c98a1724910672d18b933fc8379a	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1187/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3b3b50b29ee212e2278d44e988f067c1ad1ce62155e6d1b8ee77a94ff2ed50a5	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1189/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	81e963b657038289669b68f7d6cc969f8dda8eb093f0f807d1b1ad5573544749	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1190/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ced77265490778795aa70ee31b942ed800d22a10d83edc28041a60e3b2449460	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1191/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	3c17afa479a062d330337cc0d389dc27d822085e69664f560545ae9f0b9a6a3a	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1192/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7b0137d8fb325772da5540b91641131214f523d1c822a1a1e3e8f5e8c245b7f3	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1193/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4bfd2e740f28059e181b2d4352106c9961c386a8a6f87892cb57f96bde09b772	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1194/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	47bb5d82453dfb1831d249a88a3163a8e23ebd8048f7a44bf273a2e9d3a587b5	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1195/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	490a3053717acc979fb83bdfb2575b31fe824409a0a2f46fdfd80822da5e2ca7	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1196/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	42c1c5b6505fd1aee63a48181e255798711e00a62f0cfd89457ef99c83368cde	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1197/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2c432e2c0d454d633ec419771e5959043e8083bdd78bd721847301632cc46270	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1198/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fd020f152f9f651bac6c6b83000819e85aae9e9b3db9616287ad3727812c7d34	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m11/m1199/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5bf529c94eb573fd1d805cb565f4b70ea59a948a09d11fb49e2cc4adb59b4037	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1200/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6033ec1313ec78f98919090c635c4e4c547401eeca2a7b98382df6dab4af73b4	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1201/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	bf6368d4b5352dcf203d88dc345be947b6314216341b2a9a311f86cfc56b9dfc	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1202/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6fd539b48bab80281ab01400f79c9a438c795ebac5c6c51ff7de42420dd89fc4	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1203/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f05ef3e5a1852cd8390492b1212fec211692139e8ff28df6eb9c2de2f749f776	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1204/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ef26cf981c3e4a98b9aecb26e4ca0d0bc5a6fd983b98b07819e47fc3230061ee	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1205/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4b46cdd3dc985817f9adb4698ae1a649dd832f72feb553ebaeada1b23daf711e	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1206/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	14a10344921c9d969d58a2cc94c0af245e9b3e649708abe7171bcf4c5ad0213b	1	0
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1207/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fda2b5abd349d496f892f7dd0aed4206242e0c833f792aefc01c010dc11371ff	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1208/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9c0fd44bd8514e6b15ca83178361c85a27c2c2f74897a28d9e9751cb035f8520	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1209/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b6714a2e97504ef5ed9cce3f0f059b36eda1652009d6f40a57501bbcecbf1794	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1210/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	81a161e94a97c4ae3599eaf1d64d9fd7f1a895f7aad55e20c1907e4e745d7413	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1211/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	eb13dfa7cb8c4e20aa7ae4b5d217bc0dd81d40592e6dfb2050e18255ad1218e2	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1212/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2c666bc0564148d76d6fcb8b14b77dde4d7b57fce136256eebedb90e7d2c47a7	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1213/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	faa880a219677fbf103a9f046400c3175833a514d6a4638bc592a159a7fe4ad8	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1214/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ab0edb5213c9bd61930112b54edf97e23a611757fbd5e3755034d694ce4831d6	1	558
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1215/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c9e65789308836b7159bde72c078804853c73cfff4e49bda1db602ec581d132b	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1216/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fd6e5eb6d8a614db1cab3a40f43433f498d0cca49d135639561239c4f70c6f09	1	135
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1217/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ccf639006ea8b40d7d8a24af4ac8b22004e168ae27bf702060fb51d2e3065438	1	162
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1218/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f1886c09a454e66ef5a500bf1ee2b917b05b2447e92e03fb3ee8858ee8f98c97	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1219/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b7d279e630fcfaa355fc15d2f366c7fe78708b4558ecef7167de7c11a411b43f	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1220/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b0cab6fedb975d271e89b5a8045413ccd20f87f61c19703a20ea803f4dc01c36	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1221/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	676d38dffcdf86e7dae02edc98faa2a0bda65516df369ce3811590cb43090641	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1222/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2828da977d117d2e5652f77698d2911072694bbb594266a4fc2ecd344c32db7e	1	252
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1223/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	08c7193f95addf02c1a1f8e16740f63bd3ef103f59b530e07ee232d4678bd31f	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1224/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	2f4715acb8e1a68f2959cacab95d2d4fd76caac671cd0fe589451b8ff2b01e71	1	126
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1225/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1efabeeb07878fb1eae734465b57f2496b6c1dd6cb5847ababff097bfdda7f04	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1226/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	db440d785dc76fc8f17bd381b1d7b4c776dbb13cbe0a62ac27d2bd44de1d56a3	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1227/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c57e28e46e9b9b733ff2c0fc6f4099813491b62ab9c09eb9259a12189d6cd8f3	1	657
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1228/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	806d95b0d16003a784e0d1caa3ee58a14e8b32503ab086e1422aabc1bbefe9fd	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1229/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9a8abfc5538edfe8e8ab1ee0297b7f7926686690ad54544f74a0cdf8823f4b52	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1230/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	63a1a13ddd3337309af0c532daf5dfbf81362b3298aa489d99ff2266109bb97a	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1231/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f330e5f9b71bb0c1d77f2d0a63b251ae31aeee90c01ebd859daf788dde5767a0	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1232/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1af6bc2fd5e76e2fc2bffe4594b23a5ea30210ad71ad3b88fe50492f4852e7c6	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1233/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e2daf04d6fc95ba69c0a18ff390fef30083b32b829a04b4a94e4a3003124b237	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1234/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4184666b5dc04baae9e50e3c1d2fa1ee93302d9338ce30094472bbac97439eec	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1235/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	7d4284541370e616759608da33b229ed49b77e4b78ed11144e2ad5eb0f35d903	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1236/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fbd2f9f49078f7727895999f6f7d600c13753fa6b6829b8106fd8c94c4c74d17	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1237/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ed83651e1eccd29885e2b72415e1a0ce9f76ea91adfe5491e0c09845b05e74bf	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1238/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	78b5c490965e09931c3f9b9b969439854c3ca99f65f951a3b293e979a4f8262d	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1239/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e786e1ea30a28c295b6e7cedf57afa16c32b3926d903b0252ac65cae37000902	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1240/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	5d3710648425159815b3f79c86b369c873fd27fba8dd3765632e498c67f81888	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1241/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8ffe6ce29d812b1b44887d6a6412e1444cbd931e9e160bd9eb635ea091474889	1	189
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1242/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	8d91f6c51b81a6af741286a75371a6ae3ce6d777c7163bc0d3889a5c786d5033	1	162
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1243/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e2da0cabb4f9eb772259c0ae8beccf2377a87207699f143bfb77813674b32510	1	180
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1244/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fe9cc86b7dfd65ae7405af0e29a5f7eda14633027bbe1b973693e2ee39e69951	1	81
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1245/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b826e8298d904a6ff55949209e372380c3d2d533ac316eaea23f098aca6baf26	1	99
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1246/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a2321b3aef5e3b38316ea59ef50e179504b6c9f756f022d0d1c60b0a9c2f388c	1	126
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1247/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	52a1b604a8e6e1ffd241e3de77d6db0c41e20a5d63a4b5816c141e0c856f5791	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1248/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	6e4d7fdba479a1fbbe8b399e280435fa116de9fbc5968618ddcc816938d1b60d	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1249/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e20b6c295657b71811a026530fbb15646e0a75ad271b4d07f046b6a0efd2fd47	1	72
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1250/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	37921a6f680fd9ef1694e2fe9021f627a649ae63526312bb45ab99582fd68223	1	306
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1251/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ee3bc02909251c8a8f48ffdf40e518f218450afcb350a6ea58b519a3e41ef7ab	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1252/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9103d4c139462bce099b806f74aefa59ae6bbe31fb771296ed6c8107db30e78d	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1253/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	ae311e827dce1993fbdc5feb0cb8ad25514273e717bb943acf4896e5f619b5cb	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1254/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e8edcbf014d303abc3e7490a4c4529f5d2157a3a62cfc2566fd7689cc9468947	1	171
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1255/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d1367b36c9549373f284e54db59fce3679ef45a57662d438732f91f7cb7a7b27	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1256/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	424496bc6a5cb0ee7185e1b133c8e0b9b98efa52f8cbe33afdcd6a37be9dec38	1	135
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1257/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	01dfdd18449da4306c63e0c8c09d64ab47ab464dda96cae118747c8b1d79701e	1	18
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1258/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	b770d88cf4f52645d12f98fc3cc250655e46ce28ae92f0c6bcac8681dca851b7	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1259/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	793d8be2008ffb57e9db59d047e740787de4684da4cbd83a15896cc31cf04fe0	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1260/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c651b5d7822d8306d783817ab28cb552bd1e213084703c4486cc188cdadd0171	1	108
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1261/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	e7239e5a63e7d8833400a12adff15fc1870ff32c56f2ed51ebf884624ed2d8c4	1	153
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1262/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	f41e63d846ff42a0a3df3568d4c6bcd7f3158cccf31eb28e0da623fd6e1229dd	1	171
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1263/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	48f52188c416c80322752d72bddafc37136988b8d919a44babdbb04eb48e3ed9	1	126
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1264/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	607cb9be34ee25748c39755b135728760a8da9d82f7a0da7ab13c7e70062c43c	1	117
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1265/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	00e437cabb8eb1db4297961f4ad01c7b0f5c912844ed17e0d0825d7e3f5ed881	1	36
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1266/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	07808a18a1ec0b93b07372814f9f98d30e111181ef690576bd584ee968ddb3a1	1	198
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1267/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	1db75c3d0fab776efcc9a183a99fa321158c52b648213bc1b03b9794d5e5d39c	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1268/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	96ca59d9b91a5d57d46759655663206e61b9f1d1b6685f4a3fd281df4dbd5d42	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1269/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	c2aa2de06e752e39e2b9a499c13d30eae56bff94680b2d15b018af8b3a496e97	1	207
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1270/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d53e0df97d9877e4e6f2a5d3313ab81a59c4b93d63ec7d6bfd024dc832fe81aa	1	225
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1271/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	42cebd8df545a94dffb70fd33694724bcc6ee3a441e2af16eb3f66d791337a44	1	27
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1272/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	fa171a506220aa1917387f5a0edcf085c3f8efc9f32856a9c0593fcb5d3acf93	1	270
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1274/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	424ed64428eb192acd1f51b2d5a9079c606b9f0076d962c9d4f495e91e2d2d33	1	0
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1275/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	db0459a5ddd627fe35206e319d5abc3bbec9a7ae7f723615d132f938e03e6d4e	1	0
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1276/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	4615180ac29effbbd661ed741d3c95173401c249add8ae4961aad9a14ff8b1b4	1	63
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1277/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a6c28e87292862a6620ca29dc0c95013d6d996f786b37ef16ed356dfc82d676d	1	90
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1278/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d3bb973eda51576e49b19abfa5c66af9eb2f9f28c50cdf3d12dbb818350083b0	1	54
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1279/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	9b19d8e1c91baa5d5b5f680fa2bfe4e6d0599cce9f0a8386f23fa57612b41c3f	1	9
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1280/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	956b3eb2654b21c975674c1ba79a1e0993a23c730c5a4ba612223c84039c38ed	1	0
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1281/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	d306a33996e1d15f3d5688d5843933493da548bf882bb751dd26fbc0e6f5db08	1	0
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1282/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	516825bd112bfa7f93a18dc943e891e06cf8073ffba1787c9896ca59c869e3bd	1	45
+gamedata/d3d11/artdata/chr_shadow/monster/m12/m1283/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3923	a788262705ab2565a600d7f44f3217bc53d3585f81a30d6aee451635f218554c	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	fcf3309e5fca622a39e3670dd44b685299a8277add34d77d6cb8794b926a929a	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1017/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7d98fd42dab9ff77cea89eabad9310cfc91340562c9aa68402b6dbe0af719ad0	1	117
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1018/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	71abc553c4893e6bf9a41cba021b0c50676f29ba007b6ff2fcde13cf2f78dc33	1	540
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6633aea56b40517d7e89c1ecf3d916a1bb8f0362ffef103a768e1d2762513394	1	126
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1020/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ca254c686f62ff763defc38d19c803aded01ee1742461f60c1145ae5a8e1b4e4	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1022/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	899e7c771f2285a5c1dc72a8009f854f49e1df358cd3e2121e06dcb469aac247	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f6548aedca19360ccfaedc9a89a441d66740663633f5a238dc268b8537a5d0cb	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1032/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	d6ed24588aec53873d8f42ef8c2b96fed1d4756824966d3b562cdc1f6c377316	1	90
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1033/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0e85a4b62e7b995bae8e19609f542fefbcb9dd48295fddebe53a2800ce9dcf41	1	1071
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1034/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2ae74ee3dad513185185950b3dba523b1234e56829a5fc5b27d1a25c9090dbaf	1	999
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1035/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	cb58dd968ce2ef5bec953ef1854dfcf81495271f43ad662f933ed61816900ab3	1	540
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1036/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2e417ca6dcee84ab58378e2b6718cdb3ce180b963c304a11a32b14cc228973f9	1	288
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1038/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	093ccac8f02ac64f78903db8ec24e24960f9344069479f4d951c6c34f3394684	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1039/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	10bd7656b344b8023e5e4b084ee1650bb761a613609ac44c25891e50c57c1ad1	1	459
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1040/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	17f6d43b5f43bef7e72aac145bc7190442553e0a3b5132cab221b50fbdfa6d33	1	261
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1042/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b66ee2bf6d7f849d68c8f252c754c49bdf781cfd120394e1eb6e231ee54729cd	1	81
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1043/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	85181e9ef75ee6e3ee17fa60272bdaac1606c7ddd8c13f6917a8ffb7d4aa143e	1	207
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1044/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	be0da800ac17ef502b14492660df3a6ad2d9864afc8432f50432992922dcb256	1	198
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1045/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2a9091ab604d93414a37643e4f01d02f0c0435977e5ee7c95bda50d06d9e500d	1	54
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1046/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0bfbdd8a2b66783d207a852502a6cedfadbcd7b0ed8243f123585244eccd8d0c	1	198
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1047/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c2e5b63116e857b135bb1450b9f8bd42d20d6bea9f69d014d14d6a83c2927715	1	135
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1048/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	affad89944c9b55890110c02066ee58f89e30f8db59ca243339eaa4325b13768	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1053/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8fb490ab64f1ed634cd3e17b6899e22e0f7654f8b560a13336d5f704547a11f1	1	1179
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1054/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	fbc5d139cddba3278a29b908a4ec70968a798a92e3397ea12a8d772192d75d90	1	936
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1055/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	de1e0d992b10945bff20001d6f89219d04cdd72558292f9bd074ac600cabc580	1	783
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1056/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ecfa8079f0d1648ccc0d09e9f86868f4b3e3d1de7e3eb32d70b131bf21196246	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1057/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5f75201b43d08d228f516a30a70f1a18ca42cde8f1e46d11210beac73a43c38b	1	153
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1058/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7df82c93b746f9b03dfaf1dd7e2555e154bb2df9ade7b16bd4a3da825f1835a2	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1059/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8fa88533a49f89f6ed56f8d2738476b622ac095b31f7a2b60730067916186c1e	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1060/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3475fa1547b2aa3bc4fa8238fb3930fd6acffe202e60e83983948c187bae3e14	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1061/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3580550f7e5209a7993dcb1ba2f9eb5fe11cd22f2c8af33f664db7e0d907d9a3	1	54
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1062/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	236861369c889386bd3551b7964606e28b101f01df0ec5b21d729250d720e35f	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1064/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	eead6bf52d7b0c977e33a6824e89b785abecc7cc443e30d75eb09507cc6eaf67	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1066/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0844ca352e8584619616d0ada23c22c6809f7545a384d02c8cf524a3511fa724	1	81
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1067/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	99d0ed0410f2c0ae494066d4cedd63b0df2f5ba1c3b9bc147dee023d59d164f7	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1068/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4ca95440ec1514591bc51c4d16fe1e1d2a314db423a0d9d588ab8c573c69286e	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1069/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4635d0868ed0beb684a2f188ad1abb25fbf587b6a1a2240900329610ca17b9dc	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1070/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	04ae9e9c5082ead37e3c6ba1a5fa7cd5d6ffb65c1fb399ca92a5e689c2c30536	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1071/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ba1eeb640e0f89e106ee77a62831970894907397bee8943953c3b5091b5f1e41	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1072/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8c5fe30304bf46690f40225fc351df11353b0636f8840d2e59b79e0afa1760de	1	81
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1073/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	392b3edc3dd52cfdaff683c842765b58bb8cde77b4e02d8c0d7f6c6f4eea73d6	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1076/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	460af2fb9f61dd73087564447ce6ba751f0958c86d4d23289eda4422c3cd3c78	1	135
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1077/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	482dfcba1b917a24554b5afea18cf65eba88745241860d868b716594407d11c8	1	99
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1078/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4f7bbdec108d1eb4a207401939cc480a776c7cec51e31e942e4238ccf5c2dab8	1	153
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1079/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	714739854d5d25349cf57f20b7354ac33899f0aa858c8d680e142b3ecd47f1d3	1	198
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1080/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	22f04426fdbb8e90a5e54e4577792c54b55de4feb1738da3cb1a44b5b7abdcc9	1	45
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1081/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6552b6d94549ad46edb8baf465c480fd8b6f1dd5cdfdeb20d4004b4633537f28	1	45
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1082/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	14bf8aad2214a65181bb7bd8d7affc4a5e23a8fa836cbe9da0e06ea6801057d6	1	45
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1084/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	00699a132392455ab03647d5ba41972740b1ac64970c3f75b12f0e5e724f81b5	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1085/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	27feb3b2254002f90cb27663b806b44e6d66ea41c20684efebb7fe615805b1bd	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1087/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	193b31ca3af449d2f59695dcd65c52904d0bae0fdf8f6c84d5bb56515bcb736c	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1089/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	73b6b305eca2e775bdc0a0573c2f265fb28d5a5fed1a80a9de5bda6a6f28f321	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1090/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	d500fe634dc8b84fcc49df3dca69603380647060642eeae2016eb3d88a834e6d	1	45
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1091/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	60dcab4e728c4209a3c0d7761e976e0e83781b1f53a91a9b0c9f13dd5a8dbb9b	1	54
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1092/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	389b2e77a082a3e470e83e463a4cf6b643d1312a6276b4ef8d961e5bc1ad886a	1	72
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1093/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	743cd1d3d3a2a461fdee7999d081bab1e65dfb48ab2630b080f48c8ade253a98	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1094/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	24cc76b28a2076f41b0065e761ac26a420c4c434e55e7a04da63adcf4dfe28a9	1	135
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1095/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f9169933805080385678c1de37daeca3720e2825a8510e1e2118fda0975858a1	1	720
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1096/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	18c54248c3968d7e300f898ec8689a74df02e0a745f5e111074eece9e61164b3	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1097/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	75c7086fc325059666d03550771eeea66a0bc4fb64c0cf61b10e05f64bba36fb	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1098/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a50b5c0932a1c94b579163530ddd83d6ebeb647efc4544483c4b42e0df5d68e9	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n10/n1099/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6bec908e188ef172f52da617c44867c37232ecade95159c527abcfa4bc212ada	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1100/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c8cc072a24e12d5048e83328ce35f73cd76f99e48982af74346322bb2b437a90	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1101/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	844e667b4d40ee804f7cee1a59bbf02c46ca2b5d415b5cbee52c00ae61a54845	1	171
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1102/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3de19cc3943662355d2d5d0bcd83edf2769ec5fff977acddb7c0d0a8bbf9ee22	1	63
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1103/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f083edc24b369a9c5b911816e8525f0858b1036f111ba6e3b6047a3f4e2279a1	1	126
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1104/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2d8a7584baa655df19b6536236065f82601fc5aca1b5b5abf3c128f7b906b998	1	81
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1105/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	40c3a93043234acee9e2a3e9ffe6d92957e8079e8358953f271578aa113368fb	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1106/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5436d8407d2ff7bd8fb1d50f2c222d15568474e3a76774cf182c027422f81bf2	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1107/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2d108cd51f5f6c7ff42e309c2b7b64741914470c2159179766296f92f2e10be8	1	108
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1108/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2151d89c8e8b0e86c82ba3a40f5cadffb0d6ddbcfd9b886bf8878a9958857229	1	72
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1109/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f2e53e23c03227fc6ef7e855498fc16141fd08f3a40e8a06dc77a5a1e1a31fde	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1110/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1fa1caa0d90059d1127e6de7667159c9dcd1144b9d166f02353370df86324bc0	1	72
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1111/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	38ad1f4c3db0f98a99eed81d72c803dc77389d062dba5ba2dc0c3af749f1eac3	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1112/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c924980fea9e04e227362f037d0bdb02b3066ef62c7e5657d064d8792d86f0e6	1	81
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1113/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	032d6db8a25d9a06129c6444809017035f6e445b07bdcf375988aaf941b51f59	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1114/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	cc4bf38e4b7ca3d364f935977ebccbdf36765fd56848ed3c0727487e32a1d5fe	1	63
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1117/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	fbb9b98136c66a665fe7cd450e4a98273fa7f93b104c7bfede9e2c330ac99111	1	63
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1118/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	959ed89318a4c517daacf7c441f38b9a7a4a24a9efe60e370ca61a0ca0166969	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1119/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	257c4a1bf1ccee0efe115a7e69cae9532d938132f090624cbcf6e1b357222d8a	1	153
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1120/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4d1909a66b363c492c439c567866165abdad498a6aa54613ae9761feb0bfc8ee	1	108
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1121/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1659abcae60438653842cc3d562c532e598414a9572618ac8eb4783fc4d4bb72	1	135
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1122/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	19fae76780cbf3bf95a51f89ac93a7deebcb9a574f74eb9401aa71d0fe055749	1	216
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1123/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	947b36a90dff2c78076092872f599c49ac241ee71f7cdd615702437b00b324bc	1	216
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1124/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	dc5d91025ad8b7c7b34bf90702339814024f29918591b7b62f282be406d69526	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1125/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	aa1b18e05dafce4e209c434ea1030e1cce9a4564bed7c5dcc1aec5401a40d653	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1126/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1d0c6dccf6e3d9043b7701c35e9e59d18681326b9ec95249b9e5a931d4b0c1f3	1	108
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1127/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	17cec9be8a0d01bcf8e2755fc043d534ee9951901c82fa0e57a5535bb060bb35	1	72
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1128/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b9fdb19602a24b134efb04133bbd9ee28d15f297c077490180406038bfe8aae9	1	234
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1129/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ad059fdf6d315dca04b05e3573bb2e7525b2f4e8532942e81c1caabe72731772	1	117
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1130/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6a2db8a500434ecdb7fbb1728a9150af1c1e929faf52f26a8a87f880671c05e1	1	99
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1131/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4c84b320f319c23756af092fd110f80abf6f7f3dee67f33ed395c942d340257a	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1132/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9e06bd4b76c54b3ce3c4d118d8fccdd44e810f0eccab4a7b1016a746bd50c537	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1133/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c0f82a0a7e5e9db283e8185356351cb38a65d7e8009be98777f816d844285542	1	171
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1136/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6a2cfd03611bee9f609264a82fba217e23d2b99e13a89c7adcff31fe3760fcc2	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1137/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	046b2f8e222d5f4d1241fd8433457a6897bcb6b2388999131b7ab85888f52cd0	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1138/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	96af4b5ab4c150bfcc2033b18fb654cc2cb8401fb9ad8521d466c520380f60be	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1139/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2c46826d4114b7265214b47066f3ce00567845b16793a37f91d829c4e05f1a69	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1140/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a9689d27f928b1cf023ff25a78466c484c0ac5a576d09ebe9cafef11e2645a30	1	144
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1141/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	48db03c43db2b592008e40ec110247c9a94f24b012d5d9b79c957dae735b9562	1	108
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1142/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a05090a536f4da5a2527cfd7f9e88250d5e44340ce8aee690efc3935d1eb71cf	1	216
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1143/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0b9e7c1b61c15932a7368d11300919d6fe6a890f769e621186bf2c9571f659a8	1	180
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1144/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7595a0a314853ab88a172ffbcd9809b27d67b659c2ab775b22dbe0d78a0ae8ea	1	180
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1145/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	35d4b2f052b14822a8f174a36c604b6c4e6cbcea63c5b51bb7f5eb1df79e4136	1	90
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1146/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b29ce7b5c5fa692062bc8bdbe2cd359fc6c5551f58d94ad428454e7cc6906094	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1147/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	05b21004fa8886bab88dbba52a8e4f2a622e9d5441300ecea430344d60400205	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1148/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	90996dd1d9845a7a8dbc3642700bbeb3f949be1840a7bfdf0785cd185a02252f	1	54
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1149/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	12f3abfd49f601e14ec1903bf3db2ce0553de779e4fb0177b158e038a63fdfff	1	45
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1150/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	509ea54c19bdb15b09bd8f916e06425993c4fe437021f29820c7325ba132ae30	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1151/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0fc32190fcb30dfe41f37399ccd3b28c893ba572a42a9ef7c0ae6a307044a9b8	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1152/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a028343b499840ac64c2eb438f2bd649f1deecb828f46038fc35fc0e07a3b72d	1	54
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1153/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	96f0f7323b9eed9d4812ff5ee55db6c5a0836fb84720d7825ccfc080615443ee	1	72
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1154/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	e746d778075c7ed4b2fee24ee70b582ffac7282da27aa48f1bc6c74537275f7c	1	63
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1159/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1fcd51d5da5ee728cd466572979d3ad913b1fdb86f6e5e36fea23a8d6f2cd45c	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1162/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2a030e5bd421b76cb0c90de8afbb8f4691f8134ac7bbd92ed4301d4597432761	1	90
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1163/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4dd8c0c74923956059846d115fb7a45506f69ebbe65b471b07c96de85b50163f	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1164/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	93567710af8d1975ccba0fba1e3a3aae7f56a24690db811efcedf612bfaa9a22	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1166/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9d51185143399eab09c9be36b77abf17e617e076b964d9168cae1635e6f759d4	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1167/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	171f0a79db89078f70a7d427f096eb223a454ec450501d745d10b1ce43de09a3	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1168/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	0ca28a46cbc00c1a2632c4ebc4bf94d4c231f60658a42d7f842e7635537c1fb4	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1169/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	208f0028be9d1a28ffc81b3b56621eed0e18407e55c1e1338e663973099e40a9	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1171/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3fba5992bfb285c93b965d7f25ceada2d91817d2787382891bb17c2d68bbc54c	1	315
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1172/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6b6cbb1a08a41dc57f144a7f192bf6f9f678173a42013ad87ba779d9a459b279	1	45
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1174/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7e16a0b6684ad5762e7fec0abd6bb93c144bb01f28e7a93b793e5b83fe1f2ec2	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1175/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	89a8c8c0fdc1884b2384cdd1e25bc918a9bf838c905b056943cfecb5745bf810	1	180
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1176/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3ce98f0cbda58491f5394d8fa843f5b296ded05180bf21b2284619357da436d0	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1177/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	194b5441c6cd2f14516c0cd0ca8033d062b0ed8805acd94830c8d9a2b4efeba8	1	45
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1178/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	e8b00165473c29f1155b626bb5d86195105ff25050191f8419679596bd7b5369	1	63
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1179/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	d961ddd77506d4eb91ea432b2ab63905f17f1c0baab76dfd2ec16833e822f08d	1	63
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1180/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5dab63da4020980496da57cfd62d122d65d3091c97e2244e9ef11dad0a4874df	1	108
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1181/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9eda0f0de381565932374d49484347d2da835f6129eedfbb1524b791348c57ef	1	27
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1182/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7b1feb5b7918dd0d26bc234ac5a8d03fdb357592c61a88e67b99f7038d1f97b0	1	225
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1183/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9002e3c8d6e197de455454ea0e8209d98b3db9d5a09b9836788fe2f5a31d8213	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1184/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	cbbd10401a93d2e17109c60ef7edce2251831419828696fcd1c69eea6405a6d2	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1185/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	06ccdadc6d6f1aab5b0a0557f0a8f7a7ba010b92df2e6da13d0e72eea583e75f	1	108
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1186/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5668862db6fe9d5eab32b927559d8c91ac0d88b06c62aef4fe84dc711074931e	1	81
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1187/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	aad6b9f5931be3009a49224cbda7ce267c10f971cc9b87126374622aa3cc3621	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1188/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a0ee513d0fc0f4a65fd3a266373f3cf304ca0da22b17e55051532e7567f2f03a	1	135
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1190/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c9c73e459ddd76d3136918393eac09872fec1f05659100af718377d4c33b66b9	1	81
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1191/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	688b0c73cb3e32ed101123a1a9d5dd171c3d6fcbd72bd3de2767eb49d77ac351	1	72
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1192/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	e27fb9c50f044a072d42df3a7957ba1854ba073c20b37e778d925a9bfacad2d0	1	126
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1193/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	dafca19fc8e2ca294d9502d7ef164ba72b798f1224181f4317c0b6a948a99beb	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1194/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	013308d733b3113b604466dc16556b764eb7d0867eb4bbb37e07b8eb37d20991	1	99
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1195/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	14ebe2945634d914e744313ef8be86bdbc56d1718234dd27b465fc04a990479f	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1196/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	95ef4473bed86ce10cab74507a278d9c74f9d9b94ffcde7b6dfc15179671eee4	1	72
+gamedata/d3d11/artdata/chr_shadow/npc/n11/n1199/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	1f71ff0fe421f580864e9b0892863388ad1406fcf53fac1dfcb4036c3c9f300b	1	45
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1200/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c0b4f109b15b144c4a18c91c237347daa42e54a58d4c76f2ab6f8e62fea95fa9	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1201/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8a282a1ce6b0cf64226dae82cf8e0df80bca50c82e67227bf3367287b47cd4e2	1	90
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1202/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3dba46f78d98465681726e37498f375a057696b4c0b00b88a742804aadf675d9	1	252
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1203/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	094cb633169c65e4decfa29aab80c75ff16377266a88e48e5e4998ca8f7b78b7	1	108
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1204/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a1f9325b9e4d4aa68c990388b2b8a19639816e511e85d437fcb9ef598d9dd279	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1205/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	76ca8fe1b2498edb9c0e5eb1c3ba030b010d5b5a41b149073769b4da4da1942f	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1206/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	43c2428de35a84d4708bd6859e18039ae4e6efb8a3ee4d160dfa74e2132957c9	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1207/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	a81013bad95cad0bfa03d9356ae19ba9af280bcb3b2c7b835b956963682d2113	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1208/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	5d5d6e0edeabb30e6ce0100b145c3746eb90431bf81b376de7d8651131d63ff9	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1209/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	7342b10330069a42b2dfc5ce24cd1dab8271992fbcb147ab9f319ef8d212cc2f	1	63
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1210/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c38cb296a8a17edf23c983dc342bbdfbf3e91eaf5b34cb9ef39eacd11f20d7d6	1	18
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1212/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	9e1f341ff84fdc2f6f7d732430a778f335ce214f20da708d1f2ce3f2d8663573	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1213/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c169939b1c5b741a91323cc6447327fca88c9c0d572b21b4a8556d3bc21beb2b	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1214/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b5c2967a15882c016a09893b51dc2a796f651de4c16962538060158fe0bd5240	1	81
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1215/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f3b0fb11d7ed18213439082e78156e677cc0b1ee70f1b3fa8c6cded10cb21742	1	54
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1216/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ab000f5518a603cd7d5352b67245ebe38c1eff9ce3952fef2636b5136f7e5c39	1	144
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1218/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	29425612dccdc7cba92b32468c231fd9d19504343f81b0b8e157369c989d346c	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1219/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	6515829ac9f7f77c3c89156345ddf5f2e53550f1b5fc0e94dae1a3eb4bd84e13	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1220/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	ec443766fc437ce5f95f86a1f94fb043904856fe591f1c9cc2dc305990631ba1	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1221/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	191a1253cd86f5cee1fbab35efa499063174563863603e58ac3da1ef8360c691	1	0
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1222/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f07f0947d5b9dc31824841be86d96d1c0825d7f41a56f6d73b0032e4c6bdd394	1	216
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1225/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	f328985d8c283abdef0706c5d3abbf6197e5f12d7e41dddc85096184464cf528	1	36
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1232/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	d39b62a04e5eef202b8a95c0f23cf1b0961af6a24db2816d37e2c8e7b652fa1d	1	54
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1240/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	8df3e637847380a4a0b0056228445a3e7acb7b5106d8209372b8b63e4397d06e	1	9
+gamedata/d3d11/artdata/chr_shadow/npc/n12/n1248/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	bcbb665fd7038cb00f8817622b4e645b23c1f41625131e6c8591f5a69d601b28	1	0
+gamedata/d3d11/artdata/chr_shadow/summon/s0002/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	bd82dd22e85d3ae232f9bd49e69943885f065a6f0f41f387a92bca3e7e41c271	1	9
+gamedata/d3d11/artdata/chr_shadow/summon/s0004/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	30930290578dea530e46325f1dba069eb31f9f59eb34a5dcc4dcb13bf21d029e	1	0
+gamedata/d3d11/artdata/chr_shadow/summon/s0005/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	fe24547cccde1394147101e6a97c7b2a30c6f2dd0ffef5b89624acd449561289	1	0
+gamedata/d3d11/artdata/chr_shadow/summon/s0009/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	cbadc2792778a1a3cc614e612a49fb0ab1018b8ab8fd8d80f2a426fcc1d4eed3	1	0
+gamedata/d3d11/artdata/chr_shadow/summon/s0014/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	3fa14fbf65cce3175c58552f6b13762800c3a30dde0f344f75444df9a9a2ef0b	1	0
+gamedata/d3d11/artdata/chr_shadow/summon/s0015/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	766f6cf13bf59caae471cdd2ea30246558558433ae571aeb5927556d0017c90e	1	0
+gamedata/d3d11/artdata/chr_shadow/summon/s0019/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	601c38d1e6d945038a013094f9fedf6811da6f349b3f0b690f42148d0801751d	1	36
+gamedata/d3d11/artdata/chr_shadow/summon/s0021/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	467ef79c5002b8500cd9f12fec3d110271948541cf2f21a65d679bd8dbcf60aa	1	18
+gamedata/d3d11/artdata/chr_shadow/summon/s0022/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	053c4ef307e632581d2765347fb56bcca395b9aa326b111551fab25c79a1dc9c	1	36
+gamedata/d3d11/artdata/chr_shadow/summon/s0023/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	24c1e207e8a750a998e9f81797a0729e6c0181edf999b644e22dae8361fb6d89	1	27
+gamedata/d3d11/artdata/chr_shadow/summon/s0024/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	e1a13d5f8f71b0c68773f13c2bfe36f72f9fe79df1c922ac4095f236f648510e	1	54
+gamedata/d3d11/artdata/chr_shadow/summon/s0025/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	4219319ef4da8e596858a8e5ac323dd12a452ad3d974f90d1ff09cca92d96422	1	27
+gamedata/d3d11/artdata/chr_shadow/summon/s0026/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	b876fc5fda53b0a44918ca720a7048be7d87b63319e5c63109597fa7373d4b2a	1	27
+gamedata/d3d11/artdata/chr_shadow/summon/s0027/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	485df9138cfaba07c59bb439b87cd08b3c5dd189f3e7eaa87aa1923e8f225410	1	18
+gamedata/d3d11/artdata/chr_shadow/summon/s0029/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c1a55c4b14668d39f18dda8d26b54eae7d7d3e19f1bf8daef7b77ac1166064ed	1	36
+gamedata/d3d11/artdata/chr_shadow/summon/s0030/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	c018ae2b47c8b69536f3b0f36e2d419587049c20301ddbcab515be5c50037ced	1	18
+gamedata/d3d11/artdata/chr_shadow/summon/s0031/tex/for_shadow.dds.phyre	Texture2D	ARGB8	16	16	1	5	4	0	1364	1024	3915	2bceabd45737659c2770b577330ce62d868db45a43aa502356181cc3d9258f7c	1	27

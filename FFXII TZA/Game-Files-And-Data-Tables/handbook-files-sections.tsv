@@ -1,0 +1,550 @@
+language	family	section	caption_text	entries	first_entry	gate	gate_low_nibble	conditions	condition_ids	maps	map_numbers
+ch	story	0	0x11684	5	0	no					
+ch	story	1	0x11685	38	5	no					
+ch	story	2	0x11686	17	43	no					
+ch	story	3	0x11687	9	60	no					
+ch	world	0	0x1168E	5	0	no					
+ch	world	1	0x11690	16	5	no					
+ch	world	2	0x11691	8	21	no					
+ch	world	3	0x11692	3	29	no					
+ch	world	4	0x11693	13	32	no					
+ch	world	5	0x11694	8	45	no					
+ch	world	6	0x11695	4	53	no					
+ch	world	7	0x11696	5	57	no					
+ch	world	8	0x11697	7	62	no					
+ch	world	9	0x11698	5	69	no					
+ch	person	0	0x1169E	10	0	no					
+ch	person	1	0x1169F	16	10	no					
+ch	person	2	0x116A0	12	26	no					
+ch	person	3	0x116A1	19	38	no					
+ch	knowledge	0	0x116A8	11	0	no					
+ch	knowledge	1	0x116A9	4	11	no					
+ch	knowledge	2	0x116AA	22	15	no					
+ch	knowledge	3	0x116AB	9	37	no					
+ch	knowledge	4	0x116AC	5	46	no					
+ch	knowledge	5	0x116AE	37	51	no					
+ch	knowledge	6	0x116AF	12	88	no					
+ch	tutorial	0	0x116ED	4	0	no					
+ch	tutorial	1	0x116EA	7	4	no					
+ch	tutorial	2	0x116EB	3	11	no					
+ch	tutorial	3	0x116EC	2	14	no					
+ch	monster	0	0x11495	7	0	yes	0	0		2	1 20
+ch	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+ch	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+ch	monster	3	0x114A7	14	27	yes	0	0		1	80
+ch	monster	4	0x114BA	8	41	yes	0	0		1	102
+ch	monster	5	0x11496	6	49	yes	0	0		1	126
+ch	monster	6	0x114B4	8	55	yes	0	0		1	144
+ch	monster	7	0x114D6	8	63	yes	0	0		1	151
+ch	monster	8	0x114D9	7	71	yes	0	0		1	275
+ch	monster	9	0x114DB	8	78	yes	0	0		1	162
+ch	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+ch	monster	11	0x114E3	14	98	yes	0	0		1	303
+ch	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+ch	monster	13	0x114CC	5	120	yes	0	0		1	201
+ch	monster	14	0x114BF	8	125	yes	0	0		1	189
+ch	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+ch	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+ch	monster	17	0x114DA	15	145	yes	0	0		1	286
+ch	monster	18	0x114DC	12	160	yes	0	0		1	328
+ch	monster	19	0x114D1	2	172	yes	0	0		1	317
+ch	monster	20	0x114D2	14	174	yes	0	0		1	340
+ch	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+ch	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+ch	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+ch	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+ch	monster	25	0x116B2	32	211	yes	0	0		0	
+ch	monster	26	0x116B3	18	243	yes	0	0		0	
+ch	monster	27	0x116AD	13	261	yes	0	0		0	
+ch	monster	28	0x116B4	18	274	yes	0	0		0	
+ch	monster	29	0x116E4	80	292	yes	1	0		0	
+ch	monster	30	0x116E5	5	372	yes	0	0		0	
+ch	monster	31	0x11564	7	377	yes	0	0		0	
+cn	story	0	0x11684	5	0	no					
+cn	story	1	0x11685	38	5	no					
+cn	story	2	0x11686	17	43	no					
+cn	story	3	0x11687	9	60	no					
+cn	world	0	0x1168E	5	0	no					
+cn	world	1	0x11690	16	5	no					
+cn	world	2	0x11691	8	21	no					
+cn	world	3	0x11692	3	29	no					
+cn	world	4	0x11693	13	32	no					
+cn	world	5	0x11694	8	45	no					
+cn	world	6	0x11695	4	53	no					
+cn	world	7	0x11696	5	57	no					
+cn	world	8	0x11697	7	62	no					
+cn	world	9	0x11698	5	69	no					
+cn	person	0	0x1169E	10	0	no					
+cn	person	1	0x1169F	16	10	no					
+cn	person	2	0x116A0	12	26	no					
+cn	person	3	0x116A1	19	38	no					
+cn	knowledge	0	0x116A8	11	0	no					
+cn	knowledge	1	0x116A9	4	11	no					
+cn	knowledge	2	0x116AA	22	15	no					
+cn	knowledge	3	0x116AB	9	37	no					
+cn	knowledge	4	0x116AC	5	46	no					
+cn	knowledge	5	0x116AE	37	51	no					
+cn	knowledge	6	0x116AF	12	88	no					
+cn	tutorial	0	0x116ED	4	0	no					
+cn	tutorial	1	0x116EA	7	4	no					
+cn	tutorial	2	0x116EB	3	11	no					
+cn	tutorial	3	0x116EC	2	14	no					
+cn	monster	0	0x11495	7	0	yes	0	0		2	1 20
+cn	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+cn	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+cn	monster	3	0x114A7	14	27	yes	0	0		1	80
+cn	monster	4	0x114BA	8	41	yes	0	0		1	102
+cn	monster	5	0x11496	6	49	yes	0	0		1	126
+cn	monster	6	0x114B4	8	55	yes	0	0		1	144
+cn	monster	7	0x114D6	8	63	yes	0	0		1	151
+cn	monster	8	0x114D9	7	71	yes	0	0		1	275
+cn	monster	9	0x114DB	8	78	yes	0	0		1	162
+cn	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+cn	monster	11	0x114E3	14	98	yes	0	0		1	303
+cn	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+cn	monster	13	0x114CC	5	120	yes	0	0		1	201
+cn	monster	14	0x114BF	8	125	yes	0	0		1	189
+cn	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+cn	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+cn	monster	17	0x114DA	15	145	yes	0	0		1	286
+cn	monster	18	0x114DC	12	160	yes	0	0		1	328
+cn	monster	19	0x114D1	2	172	yes	0	0		1	317
+cn	monster	20	0x114D2	14	174	yes	0	0		1	340
+cn	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+cn	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+cn	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+cn	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+cn	monster	25	0x116B2	32	211	yes	0	0		0	
+cn	monster	26	0x116B3	18	243	yes	0	0		0	
+cn	monster	27	0x116AD	13	261	yes	0	0		0	
+cn	monster	28	0x116B4	18	274	yes	0	0		0	
+cn	monster	29	0x116E4	80	292	yes	1	0		0	
+cn	monster	30	0x116E5	5	372	yes	0	0		0	
+cn	monster	31	0x11564	7	377	yes	0	0		0	
+de	story	0	0x11684	5	0	no					
+de	story	1	0x11685	38	5	no					
+de	story	2	0x11686	17	43	no					
+de	story	3	0x11687	9	60	no					
+de	world	0	0x1168E	5	0	no					
+de	world	1	0x11690	16	5	no					
+de	world	2	0x11691	8	21	no					
+de	world	3	0x11692	3	29	no					
+de	world	4	0x11693	13	32	no					
+de	world	5	0x11694	8	45	no					
+de	world	6	0x11695	4	53	no					
+de	world	7	0x11696	5	57	no					
+de	world	8	0x11697	7	62	no					
+de	world	9	0x11698	5	69	no					
+de	person	0	0x1169E	10	0	no					
+de	person	1	0x1169F	16	10	no					
+de	person	2	0x116A0	12	26	no					
+de	person	3	0x116A1	19	38	no					
+de	knowledge	0	0x116A8	11	0	no					
+de	knowledge	1	0x116A9	4	11	no					
+de	knowledge	2	0x116AA	22	15	no					
+de	knowledge	3	0x116AB	9	37	no					
+de	knowledge	4	0x116AC	5	46	no					
+de	knowledge	5	0x116AE	37	51	no					
+de	knowledge	6	0x116AF	12	88	no					
+de	tutorial	0	0x116ED	4	0	no					
+de	tutorial	1	0x116EA	7	4	no					
+de	tutorial	2	0x116EB	3	11	no					
+de	tutorial	3	0x116EC	2	14	no					
+de	monster	0	0x11495	7	0	yes	0	0		2	1 20
+de	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+de	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+de	monster	3	0x114A7	14	27	yes	0	0		1	80
+de	monster	4	0x114BA	8	41	yes	0	0		1	102
+de	monster	5	0x11496	6	49	yes	0	0		1	126
+de	monster	6	0x114B4	8	55	yes	0	0		1	144
+de	monster	7	0x114D6	8	63	yes	0	0		1	151
+de	monster	8	0x114D9	7	71	yes	0	0		1	275
+de	monster	9	0x114DB	8	78	yes	0	0		1	162
+de	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+de	monster	11	0x114E3	14	98	yes	0	0		1	303
+de	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+de	monster	13	0x114CC	5	120	yes	0	0		1	201
+de	monster	14	0x114BF	8	125	yes	0	0		1	189
+de	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+de	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+de	monster	17	0x114DA	15	145	yes	0	0		1	286
+de	monster	18	0x114DC	12	160	yes	0	0		1	328
+de	monster	19	0x114D1	2	172	yes	0	0		1	317
+de	monster	20	0x114D2	14	174	yes	0	0		1	340
+de	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+de	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+de	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+de	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+de	monster	25	0x116B2	32	211	yes	0	0		0	
+de	monster	26	0x116B3	18	243	yes	0	0		0	
+de	monster	27	0x116AD	13	261	yes	0	0		0	
+de	monster	28	0x116B4	18	274	yes	0	0		0	
+de	monster	29	0x116E4	80	292	yes	1	0		0	
+de	monster	30	0x116E5	5	372	yes	0	0		0	
+de	monster	31	0x11564	7	377	yes	0	0		0	
+es	story	0	0x11684	5	0	no					
+es	story	1	0x11685	38	5	no					
+es	story	2	0x11686	17	43	no					
+es	story	3	0x11687	9	60	no					
+es	world	0	0x1168E	5	0	no					
+es	world	1	0x11690	16	5	no					
+es	world	2	0x11691	8	21	no					
+es	world	3	0x11692	3	29	no					
+es	world	4	0x11693	13	32	no					
+es	world	5	0x11694	8	45	no					
+es	world	6	0x11695	4	53	no					
+es	world	7	0x11696	5	57	no					
+es	world	8	0x11697	7	62	no					
+es	world	9	0x11698	5	69	no					
+es	person	0	0x1169E	10	0	no					
+es	person	1	0x1169F	16	10	no					
+es	person	2	0x116A0	12	26	no					
+es	person	3	0x116A1	19	38	no					
+es	knowledge	0	0x116A8	11	0	no					
+es	knowledge	1	0x116A9	4	11	no					
+es	knowledge	2	0x116AA	22	15	no					
+es	knowledge	3	0x116AB	9	37	no					
+es	knowledge	4	0x116AC	5	46	no					
+es	knowledge	5	0x116AE	37	51	no					
+es	knowledge	6	0x116AF	12	88	no					
+es	tutorial	0	0x116ED	4	0	no					
+es	tutorial	1	0x116EA	7	4	no					
+es	tutorial	2	0x116EB	3	11	no					
+es	tutorial	3	0x116EC	2	14	no					
+es	monster	0	0x11495	7	0	yes	0	0		2	1 20
+es	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+es	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+es	monster	3	0x114A7	14	27	yes	0	0		1	80
+es	monster	4	0x114BA	8	41	yes	0	0		1	102
+es	monster	5	0x11496	6	49	yes	0	0		1	126
+es	monster	6	0x114B4	8	55	yes	0	0		1	144
+es	monster	7	0x114D6	8	63	yes	0	0		1	151
+es	monster	8	0x114D9	7	71	yes	0	0		1	275
+es	monster	9	0x114DB	8	78	yes	0	0		1	162
+es	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+es	monster	11	0x114E3	14	98	yes	0	0		1	303
+es	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+es	monster	13	0x114CC	5	120	yes	0	0		1	201
+es	monster	14	0x114BF	8	125	yes	0	0		1	189
+es	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+es	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+es	monster	17	0x114DA	15	145	yes	0	0		1	286
+es	monster	18	0x114DC	12	160	yes	0	0		1	328
+es	monster	19	0x114D1	2	172	yes	0	0		1	317
+es	monster	20	0x114D2	14	174	yes	0	0		1	340
+es	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+es	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+es	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+es	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+es	monster	25	0x116B2	32	211	yes	0	0		0	
+es	monster	26	0x116B3	18	243	yes	0	0		0	
+es	monster	27	0x116AD	13	261	yes	0	0		0	
+es	monster	28	0x116B4	18	274	yes	0	0		0	
+es	monster	29	0x116E4	80	292	yes	1	0		0	
+es	monster	30	0x116E5	5	372	yes	0	0		0	
+es	monster	31	0x11564	7	377	yes	0	0		0	
+fr	story	0	0x11684	5	0	no					
+fr	story	1	0x11685	38	5	no					
+fr	story	2	0x11686	17	43	no					
+fr	story	3	0x11687	9	60	no					
+fr	world	0	0x1168E	5	0	no					
+fr	world	1	0x11690	16	5	no					
+fr	world	2	0x11691	8	21	no					
+fr	world	3	0x11692	3	29	no					
+fr	world	4	0x11693	13	32	no					
+fr	world	5	0x11694	8	45	no					
+fr	world	6	0x11695	4	53	no					
+fr	world	7	0x11696	5	57	no					
+fr	world	8	0x11697	7	62	no					
+fr	world	9	0x11698	5	69	no					
+fr	person	0	0x1169E	10	0	no					
+fr	person	1	0x1169F	16	10	no					
+fr	person	2	0x116A0	12	26	no					
+fr	person	3	0x116A1	19	38	no					
+fr	knowledge	0	0x116A8	11	0	no					
+fr	knowledge	1	0x116A9	4	11	no					
+fr	knowledge	2	0x116AA	22	15	no					
+fr	knowledge	3	0x116AB	9	37	no					
+fr	knowledge	4	0x116AC	5	46	no					
+fr	knowledge	5	0x116AE	37	51	no					
+fr	knowledge	6	0x116AF	12	88	no					
+fr	tutorial	0	0x116ED	4	0	no					
+fr	tutorial	1	0x116EA	7	4	no					
+fr	tutorial	2	0x116EB	3	11	no					
+fr	tutorial	3	0x116EC	2	14	no					
+fr	monster	0	0x11495	7	0	yes	0	0		2	1 20
+fr	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+fr	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+fr	monster	3	0x114A7	14	27	yes	0	0		1	80
+fr	monster	4	0x114BA	8	41	yes	0	0		1	102
+fr	monster	5	0x11496	6	49	yes	0	0		1	126
+fr	monster	6	0x114B4	8	55	yes	0	0		1	144
+fr	monster	7	0x114D6	8	63	yes	0	0		1	151
+fr	monster	8	0x114D9	7	71	yes	0	0		1	275
+fr	monster	9	0x114DB	8	78	yes	0	0		1	162
+fr	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+fr	monster	11	0x114E3	14	98	yes	0	0		1	303
+fr	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+fr	monster	13	0x114CC	5	120	yes	0	0		1	201
+fr	monster	14	0x114BF	8	125	yes	0	0		1	189
+fr	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+fr	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+fr	monster	17	0x114DA	15	145	yes	0	0		1	286
+fr	monster	18	0x114DC	12	160	yes	0	0		1	328
+fr	monster	19	0x114D1	2	172	yes	0	0		1	317
+fr	monster	20	0x114D2	14	174	yes	0	0		1	340
+fr	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+fr	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+fr	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+fr	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+fr	monster	25	0x116B2	32	211	yes	0	0		0	
+fr	monster	26	0x116B3	18	243	yes	0	0		0	
+fr	monster	27	0x116AD	13	261	yes	0	0		0	
+fr	monster	28	0x116B4	18	274	yes	0	0		0	
+fr	monster	29	0x116E4	80	292	yes	1	0		0	
+fr	monster	30	0x116E5	5	372	yes	0	0		0	
+fr	monster	31	0x11564	7	377	yes	0	0		0	
+in	story	0	0x11684	5	0	no					
+in	story	1	0x11685	38	5	no					
+in	story	2	0x11686	17	43	no					
+in	story	3	0x11687	9	60	no					
+in	world	0	0x1168E	5	0	no					
+in	world	1	0x11690	16	5	no					
+in	world	2	0x11691	8	21	no					
+in	world	3	0x11692	3	29	no					
+in	world	4	0x11693	13	32	no					
+in	world	5	0x11694	8	45	no					
+in	world	6	0x11695	4	53	no					
+in	world	7	0x11696	5	57	no					
+in	world	8	0x11697	7	62	no					
+in	world	9	0x11698	5	69	no					
+in	person	0	0x1169E	10	0	no					
+in	person	1	0x1169F	16	10	no					
+in	person	2	0x116A0	12	26	no					
+in	person	3	0x116A1	19	38	no					
+in	knowledge	0	0x116A8	11	0	no					
+in	knowledge	1	0x116A9	4	11	no					
+in	knowledge	2	0x116AA	22	15	no					
+in	knowledge	3	0x116AB	9	37	no					
+in	knowledge	4	0x116AC	5	46	no					
+in	knowledge	5	0x116AE	37	51	no					
+in	knowledge	6	0x116AF	12	88	no					
+in	tutorial	0	0x116ED	4	0	no					
+in	tutorial	1	0x116EA	7	4	no					
+in	tutorial	2	0x116EB	3	11	no					
+in	tutorial	3	0x116EC	2	14	no					
+in	monster	0	0x11495	7	0	yes	0	0		2	1 20
+in	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+in	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+in	monster	3	0x114A7	14	27	yes	0	0		1	80
+in	monster	4	0x114BA	8	41	yes	0	0		1	102
+in	monster	5	0x11496	6	49	yes	0	0		1	126
+in	monster	6	0x114B4	8	55	yes	0	0		1	144
+in	monster	7	0x114D6	8	63	yes	0	0		1	151
+in	monster	8	0x114D9	7	71	yes	0	0		1	275
+in	monster	9	0x114DB	8	78	yes	0	0		1	162
+in	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+in	monster	11	0x114E3	14	98	yes	0	0		1	303
+in	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+in	monster	13	0x114CC	5	120	yes	0	0		1	201
+in	monster	14	0x114BF	8	125	yes	0	0		1	189
+in	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+in	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+in	monster	17	0x114DA	15	145	yes	0	0		1	286
+in	monster	18	0x114DC	12	160	yes	0	0		1	328
+in	monster	19	0x114D1	2	172	yes	0	0		1	317
+in	monster	20	0x114D2	14	174	yes	0	0		1	340
+in	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+in	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+in	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+in	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+in	monster	25	0x116B2	32	211	yes	0	0		0	
+in	monster	26	0x116B3	18	243	yes	0	0		0	
+in	monster	27	0x116AD	13	261	yes	0	0		0	
+in	monster	28	0x116B4	18	274	yes	0	0		0	
+in	monster	29	0x116E4	80	292	yes	1	0		0	
+in	monster	30	0x116E5	5	372	yes	0	0		0	
+in	monster	31	0x11564	7	377	yes	0	0		0	
+it	story	0	0x11684	5	0	no					
+it	story	1	0x11685	38	5	no					
+it	story	2	0x11686	17	43	no					
+it	story	3	0x11687	9	60	no					
+it	world	0	0x1168E	5	0	no					
+it	world	1	0x11690	16	5	no					
+it	world	2	0x11691	8	21	no					
+it	world	3	0x11692	3	29	no					
+it	world	4	0x11693	13	32	no					
+it	world	5	0x11694	8	45	no					
+it	world	6	0x11695	4	53	no					
+it	world	7	0x11696	5	57	no					
+it	world	8	0x11697	7	62	no					
+it	world	9	0x11698	5	69	no					
+it	person	0	0x1169E	10	0	no					
+it	person	1	0x1169F	16	10	no					
+it	person	2	0x116A0	12	26	no					
+it	person	3	0x116A1	19	38	no					
+it	knowledge	0	0x116A8	11	0	no					
+it	knowledge	1	0x116A9	4	11	no					
+it	knowledge	2	0x116AA	22	15	no					
+it	knowledge	3	0x116AB	9	37	no					
+it	knowledge	4	0x116AC	5	46	no					
+it	knowledge	5	0x116AE	37	51	no					
+it	knowledge	6	0x116AF	12	88	no					
+it	tutorial	0	0x116ED	4	0	no					
+it	tutorial	1	0x116EA	7	4	no					
+it	tutorial	2	0x116EB	3	11	no					
+it	tutorial	3	0x116EC	2	14	no					
+it	monster	0	0x11495	7	0	yes	0	0		2	1 20
+it	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+it	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+it	monster	3	0x114A7	14	27	yes	0	0		1	80
+it	monster	4	0x114BA	8	41	yes	0	0		1	102
+it	monster	5	0x11496	6	49	yes	0	0		1	126
+it	monster	6	0x114B4	8	55	yes	0	0		1	144
+it	monster	7	0x114D6	8	63	yes	0	0		1	151
+it	monster	8	0x114D9	7	71	yes	0	0		1	275
+it	monster	9	0x114DB	8	78	yes	0	0		1	162
+it	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+it	monster	11	0x114E3	14	98	yes	0	0		1	303
+it	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+it	monster	13	0x114CC	5	120	yes	0	0		1	201
+it	monster	14	0x114BF	8	125	yes	0	0		1	189
+it	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+it	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+it	monster	17	0x114DA	15	145	yes	0	0		1	286
+it	monster	18	0x114DC	12	160	yes	0	0		1	328
+it	monster	19	0x114D1	2	172	yes	0	0		1	317
+it	monster	20	0x114D2	14	174	yes	0	0		1	340
+it	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+it	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+it	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+it	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+it	monster	25	0x116B2	32	211	yes	0	0		0	
+it	monster	26	0x116B3	18	243	yes	0	0		0	
+it	monster	27	0x116AD	13	261	yes	0	0		0	
+it	monster	28	0x116B4	18	274	yes	0	0		0	
+it	monster	29	0x116E4	80	292	yes	1	0		0	
+it	monster	30	0x116E5	5	372	yes	0	0		0	
+it	monster	31	0x11564	7	377	yes	0	0		0	
+kr	story	0	0x11684	5	0	no					
+kr	story	1	0x11685	38	5	no					
+kr	story	2	0x11686	17	43	no					
+kr	story	3	0x11687	9	60	no					
+kr	world	0	0x1168E	5	0	no					
+kr	world	1	0x11690	16	5	no					
+kr	world	2	0x11691	8	21	no					
+kr	world	3	0x11692	3	29	no					
+kr	world	4	0x11693	13	32	no					
+kr	world	5	0x11694	8	45	no					
+kr	world	6	0x11695	4	53	no					
+kr	world	7	0x11696	5	57	no					
+kr	world	8	0x11697	7	62	no					
+kr	world	9	0x11698	5	69	no					
+kr	person	0	0x1169E	10	0	no					
+kr	person	1	0x1169F	16	10	no					
+kr	person	2	0x116A0	12	26	no					
+kr	person	3	0x116A1	19	38	no					
+kr	knowledge	0	0x116A8	11	0	no					
+kr	knowledge	1	0x116A9	4	11	no					
+kr	knowledge	2	0x116AA	22	15	no					
+kr	knowledge	3	0x116AB	9	37	no					
+kr	knowledge	4	0x116AC	5	46	no					
+kr	knowledge	5	0x116AE	37	51	no					
+kr	knowledge	6	0x116AF	12	88	no					
+kr	tutorial	0	0x116ED	4	0	no					
+kr	tutorial	1	0x116EA	7	4	no					
+kr	tutorial	2	0x116EB	3	11	no					
+kr	tutorial	3	0x116EC	2	14	no					
+kr	monster	0	0x11495	7	0	yes	0	0		2	1 20
+kr	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+kr	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+kr	monster	3	0x114A7	14	27	yes	0	0		1	80
+kr	monster	4	0x114BA	8	41	yes	0	0		1	102
+kr	monster	5	0x11496	6	49	yes	0	0		1	126
+kr	monster	6	0x114B4	8	55	yes	0	0		1	144
+kr	monster	7	0x114D6	8	63	yes	0	0		1	151
+kr	monster	8	0x114D9	7	71	yes	0	0		1	275
+kr	monster	9	0x114DB	8	78	yes	0	0		1	162
+kr	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+kr	monster	11	0x114E3	14	98	yes	0	0		1	303
+kr	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+kr	monster	13	0x114CC	5	120	yes	0	0		1	201
+kr	monster	14	0x114BF	8	125	yes	0	0		1	189
+kr	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+kr	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+kr	monster	17	0x114DA	15	145	yes	0	0		1	286
+kr	monster	18	0x114DC	12	160	yes	0	0		1	328
+kr	monster	19	0x114D1	2	172	yes	0	0		1	317
+kr	monster	20	0x114D2	14	174	yes	0	0		1	340
+kr	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+kr	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+kr	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+kr	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+kr	monster	25	0x116B2	32	211	yes	0	0		0	
+kr	monster	26	0x116B3	18	243	yes	0	0		0	
+kr	monster	27	0x116AD	13	261	yes	0	0		0	
+kr	monster	28	0x116B4	18	274	yes	0	0		0	
+kr	monster	29	0x116E4	80	292	yes	1	0		0	
+kr	monster	30	0x116E5	5	372	yes	0	0		0	
+kr	monster	31	0x11564	7	377	yes	0	0		0	
+us	story	0	0x11684	5	0	no					
+us	story	1	0x11685	38	5	no					
+us	story	2	0x11686	17	43	no					
+us	story	3	0x11687	9	60	no					
+us	world	0	0x1168E	5	0	no					
+us	world	1	0x11690	16	5	no					
+us	world	2	0x11691	8	21	no					
+us	world	3	0x11692	3	29	no					
+us	world	4	0x11693	13	32	no					
+us	world	5	0x11694	8	45	no					
+us	world	6	0x11695	4	53	no					
+us	world	7	0x11696	5	57	no					
+us	world	8	0x11697	7	62	no					
+us	world	9	0x11698	5	69	no					
+us	person	0	0x1169E	10	0	no					
+us	person	1	0x1169F	16	10	no					
+us	person	2	0x116A0	12	26	no					
+us	person	3	0x116A1	19	38	no					
+us	knowledge	0	0x116A8	11	0	no					
+us	knowledge	1	0x116A9	4	11	no					
+us	knowledge	2	0x116AA	22	15	no					
+us	knowledge	3	0x116AB	9	37	no					
+us	knowledge	4	0x116AC	5	46	no					
+us	knowledge	5	0x116AE	37	51	no					
+us	knowledge	6	0x116AF	12	88	no					
+us	tutorial	0	0x116ED	4	0	no					
+us	tutorial	1	0x116EA	7	4	no					
+us	tutorial	2	0x116EB	3	11	no					
+us	tutorial	3	0x116EC	2	14	no					
+us	monster	0	0x11495	7	0	yes	0	0		2	1 20
+us	monster	1	0x114AA	12	7	yes	0	0		2	11 16
+us	monster	2	0x114A4	8	19	yes	0	0		2	29 37
+us	monster	3	0x114A7	14	27	yes	0	0		1	80
+us	monster	4	0x114BA	8	41	yes	0	0		1	102
+us	monster	5	0x11496	6	49	yes	0	0		1	126
+us	monster	6	0x114B4	8	55	yes	0	0		1	144
+us	monster	7	0x114D6	8	63	yes	0	0		1	151
+us	monster	8	0x114D9	7	71	yes	0	0		1	275
+us	monster	9	0x114DB	8	78	yes	0	0		1	162
+us	monster	10	0x114E2	12	86	yes	0	0		2	294 298
+us	monster	11	0x114E3	14	98	yes	0	0		1	303
+us	monster	12	0x114CB	8	112	yes	0	0		2	212 213
+us	monster	13	0x114CC	5	120	yes	0	0		1	201
+us	monster	14	0x114BF	8	125	yes	0	0		1	189
+us	monster	15	0x114C0	4	133	yes	0	0		2	177 184
+us	monster	16	0x114C1	8	137	yes	0	0		2	241 244
+us	monster	17	0x114DA	15	145	yes	0	0		1	286
+us	monster	18	0x114DC	12	160	yes	0	0		1	328
+us	monster	19	0x114D1	2	172	yes	0	0		1	317
+us	monster	20	0x114D2	14	174	yes	0	0		1	340
+us	monster	21	0x114B3	9	188	yes	0	0		5	41 45 46 48 49
+us	monster	22	0x114C2	4	197	yes	0	0		3	261 264 266
+us	monster	23	0x114C9	5	201	yes	0	0		2	222 232
+us	monster	24	0x114CA	5	206	yes	0	0		2	233 237
+us	monster	25	0x116B2	32	211	yes	0	0		0	
+us	monster	26	0x116B3	18	243	yes	0	0		0	
+us	monster	27	0x116AD	13	261	yes	0	0		0	
+us	monster	28	0x116B4	18	274	yes	0	0		0	
+us	monster	29	0x116E4	80	292	yes	1	0		0	
+us	monster	30	0x116E5	5	372	yes	0	0		0	
+us	monster	31	0x11564	7	377	yes	0	0		0	

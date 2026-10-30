@@ -2,7 +2,7 @@
 title: "PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, their offset and size directory, and the slot readers"
 kind: "format"
 category: "PKFL package files"
-addresses: "0x0032FCA0, 0x0032FC30, 0x0032F430, 0x022C6E70, 0x022C6E98, 0x022C6EE8, 0x022C6EC0, 0x0032F260, 0x0032F290, 0x0032F2C0, 0x0032F2F0, 0x0032F3A0, 0x0032F320, 0x0032F360, 0x003DD4C0, 0x003DF440, 0x003DF2C0, 0x003E9F80, 0x003E9EF0, 0x002DF980"
+addresses: "0x0032FCA0, 0x0032FC30, 0x0032F430, 0x022C6E70, 0x022C6E98, 0x022C6EE8, 0x022C6EC0, 0x0032F260, 0x0032F290, 0x0032F2C0, 0x0032F2F0, 0x0032F3A0, 0x0032F320, 0x0032F360, 0x003DD4C0, 0x003DF440, 0x003DF2C0, 0x003E9F80, 0x003E9EF0, 0x002DF980, 0x003DDA20, 0x0034AB50, 0x00347B00, 0x003DD8D0, 0x003DD980, 0x003DEC90, 0x003EA0D0, 0x0036B970, 0x003499C0, 0x003DD770"
 ---
 
 ## What the player sees
@@ -49,6 +49,68 @@ it is 0, every slot reader refuses with −1. The readers return a slot's offset
 | `.snd` slots | 0-7 in every package, payloads starting with the dword 2; slots 8-15 in 9, 1,809, 324, 225, 153, 99, 45 and 18 packages, payloads starting `WD` |
 | `.vpc` and `.vpcjp` slots | 0-13 of 64 used, the same occupancy in both (1,782 down to 9); every payload is a `VSP1` voice set |
 
+Four tables list every package and every used slot:
+
+| File | Rows | One row per |
+|---|---:|---|
+| [`pkfl-packages-rows.tsv`](pkfl-packages-rows.tsv) | 10,314 | package file in each of the nine language folders |
+| [`pkfl-mot-slots-rows.tsv`](pkfl-mot-slots-rows.tsv) | 9,909 | used `.mot` slot, with its `@FRP` container |
+| [`pkfl-snd-slots-rows.tsv`](pkfl-snd-slots-rows.tsv) | 21,114 | used `.snd` slot, with its split container and list, or its `WD` bank |
+| [`pkfl-voice-slots-rows.tsv`](pkfl-voice-slots-rows.tsv) | 9,180 | used `.vpc` or `.vpcjp` slot, with its `VSP1` cues |
+
+Every row gives the language folder, the archive path and the area. A package row adds its size, SHA-256, used
+slots, the folders with the same bytes, the size-table kind and id that name it, the slots its area's script loads
+and the used slots it never loads. A slot row adds the offset and size, the decoded payload, the script steps that
+load the slot (`script@pc`) and the number of steps that play from it.
+
+### What the slots hold
+
+- `.mot`: all 1,101 slots of a folder are `@FRP` version 0 named `<area>.mNN`, `NN` the slot number
+  ([resource sections](../Game-Files-And-Data-Tables/resource-sections.md)). 1,100 hold equal numbers of `@FMC`,
+  `@FMN` and `@FMW` members and one `@FRM`; slot 5 of `wdl_a0600` holds 3, 2, 2 and 1.
+- The `@FRP` size at `+0x08` equals the slot size in 1,081 and is smaller in 20, which end in zero bytes: slots 2
+  and 4-7 of `dgl_h0100` and `rwg_b0200`, 2-4, 6 and 7 of `dgl_h0101`, and 3-7 of `rwg_b0100`.
+- `.snd` slots 0-7: each is the two-part container `0x0036B970` splits (count 2 in all 2,048 of a folder). 1,593 have
+  both parts empty (0x40 bytes); 455 hold an `SPP1` list and its `SeSep` records
+  ([map sounds](../Sound-And-Music/map-sounds.md)).
+- `.snd` slots 8-15: 298 `WD` wave banks, each with its own bank id at `u16 +2`
+  ([map pack](../World-Areas-And-Travel/mpk-map-pack.md)). The slot is 8 + bank id % 10 in all 298, and the bank id is
+  the map number (`+0x12`) of a list in the same package in 296: `nac_a0300` slot 9 (2251) and `rwf_c0100` slot
+  10 (4702) are the others.
+- `WD` record counts `+0x08` and `+0x0C` are equal in all 298; the flags `+0x14` are 0x8000 in 124, 0 in 102 and
+  0x10000 in 72.
+- `.vpc` and `.vpcjp`: 510 `VSP1` sets per extension and folder, 2,554 cues, 2,551 of them a `sabf` bank and 3 with
+  size 0 ([voices](../Sound-And-Music/voices.md)).
+- The `.vpc` and `.vpcjp` of an area use the same slots, with the same cue count, the same cues without a bank and
+  the same bank name in every cue in 508 of the 510 slot pairs. In slot 0 of `rwg_d0100` and slot 1 of `rwg_d0101`
+  the `.vpc` banks are named `sum_Fah` and the `.vpcjp` banks `sum_INOUT`.
+
+### The language folders
+
+Each of the nine folders `ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr` and `us` holds 488 `.mot` (300 under
+`event/`, 188 under `plan_map/<x>/<zone>/global/`), 256 `.snd`, 201 `.vpc` and 201 `.vpcjp`. The copies are
+byte-identical in all nine except `var_z0100.vpc` and `var_z0102.vpc`, one version in `ch`, `cn`, `in` and `kr` and
+another in `de`, `es`, `fr`, `it` and `us`.
+
+The path arrays name a build's own folder for kind 8 (`in` for Japanese, ASIA and IN) and the `in` or the `ch` copy
+for kind `0x25` ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)). The area loader asks
+kind `0x25` only for the `.vpcjp` (`0x0032FDD4`, `0x0032FFD6`), so the `.vpcjp` in `cn`, `de`, `es`, `fr`, `it`, `kr` and
+`us`, 1,407 files, are named by no path: the image holds the `in` and `ch` `.vpcjp` paths only.
+
+### What no script loads
+
+- The test events `evt_t0005` and `evt_t0015`: their `.mot`, `.vpc` and `.vpcjp` (four files per folder) are in no
+  path array or size table, and no string in the image contains `evt_t`. `evt_t0005.mot` is empty and its script
+  asks for slots 1 and 2.
+- In every folder, 45 `.mot` packages have one used slot their area's script never loads. 16 of them have no load
+  at all: `sum_a0000` to `sum_m0000` (slot 0 only), `evt_t0015`, and the zones `dst_a01` and `ene_a01`.
+- 15 `.snd` lists in 8 packages are never loaded: `bhm_c0102` 6, `dgl_g0100` 4, `rbn_a0300` 3-7, `sum_a0000` 1 and
+  2, `sum_a0001` 7, `sum_b0000` 1 and 2, `sum_c0000` 1 and 2, `sum_e0001` 3. No script loads a `WD` slot, and
+  `0x003DF2C0` discards the size `0x0032F3A0` gives for one (see [the slot readers](#the-slot-readers)).
+- 9 voice slots are never loaded: slots 0 and 1 of `evt_t0005` and 0-6 of `naf_a0101`.
+- Scripts load 33 `.mot` slots that hold nothing, and 2 voice slots: slot 1 of `naf_b0100` and slot 3 of
+  `nal_a0100`. 59 `.mot` cue words name such a slot and 73 a slot that is never loaded; neither plays.
+
 ## Loader behaviour
 
 ### The directory tables
@@ -92,12 +154,77 @@ read queue rounds the offset down to a `0x800` boundary
 ([file requests](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md)). A size of 0
 loads nothing.
 
+### The script steps that reach a slot
+
+The area slot is always the running script's, so a script reads only its own area's packages.
+
+| Verb | Path to the reader | Calls per folder |
+|---|---|---:|
+| `motionread` `0x0A2` | `0x003492A0` -> `0x003DDA20` arms record `0x02B581A0 + (16g + k) x 0x1C` and sets `1 << k` in `0x02B58A60[g]` (`0x003DDA5D`); the sweep `0x003DD4C0` reads the size and offset | 1,511 |
+| `eventsoundread` `0x151` | `0x00344660` -> `0x003DF3E0` -> `0x003DEC90`, then `0x003DF440` reads the size and offset | 459 |
+| `voiceread` `0x085`, `voiceread_20a` `0x20A` | `0x0034EE40`, `0x0034E8B0` -> `0x003EA0D0` frees slot `k` (`0x003EA0F0`) and loads it from both tables (`0x003EA139`, `0x003EA14B`) | 389, 171 |
+
+A `.mot` slot plays through a motion cue word: the top byte less 0x10 is the slot and the low 24 bits the entry.
+`motionplay` `0x0A5` (`0x0034B2C0`) pushes a blend of 0.0 and runs `motionplay_bb` `0x0BB` (`0x0034AB50`), which splits
+the word (`0x0034AB96`-`0x0034AB9C`) and refuses a slot above 15 (`0x0034ABAB`). `puppetmotionplay` `0x41E` and `0x41F` do
+the same in `0x00347B00` (`0x00347B57`-`0x00347B7D`).
+
+`0x003DD8D0` and `0x003DD980` play only a record in state 4 (`0x003DD905`, `0x003DD9B5`), as motion
+`(16g + k) << 16 | entry` (`0x003DD949`-`0x003DD954`). `0x00427320` takes the block back from `0x003DD740` with `g` from
+bits `0xF00000` and `k` from bits `0xF0000` (`0x00427518`-`0x00427528`). In every shipped cue word the entry is below the
+slot's `@FMC` count.
+
+Each folder's scripts make 15,954 motion cue calls (`motionplay` 7,554, `motionplay_bb` 7,881, `puppetmotionplay`
+514 and `puppetmotionplay_41f` 5), 4,943 voice cue calls and 2,877 sound
+cue calls with a literal word; every voice and sound cue names a slot its script loads. All nine folders call these
+verbs with the same arguments. The four directory tables are reached only by the seven readers, `0x0032F430` and
+`0x0032FCA0`.
+
+### Slot numbers out of range
+
+- `.mot`, `k` of 16 or more, record `16g + k` free (state 0, `0x003DDA3B`): `0x003DDA20` arms it with no bound and sets
+  `1 << (k & 31)` in mask `g`. The sweep tests bits `0x1` to `0x8000` of each mask (`0x003DD510`, `0x003DD68A`), so it
+  never reads the table for it; the record stays in state 2 and `motionreadsync` (`0x003499C0`) waits while the state
+  is 2 or 3 (`0x003499E5`).
+- `.mot`, `k` of 16 or more, record `16g + k` in use: `0x003DDA20` arms nothing (`0x003DDA40`, `0x003DDA69`), and
+  `motionreadsync` follows the state of that record (`0x003DD770`).
+- Record `16g + k` is, for `k` from 16 to 79 - 16g, a slot of a later area slot; record 80 starts at the masks
+  `0x02B58A60`.
+- `.mot`, an empty slot: the sweep finds size 0 and sets state 0 (`0x003DD574`-`0x003DD578`), so `motionreadsync` goes
+  on and the cues play nothing.
+- `.snd`, `k` above 7: `0x003DEC90` releases nothing (`0x003DEC9E`). `0x003DF440` reads the size (`0x003DF45A`) and, when
+  it is above 0 (a `WD` slot), allocates the block, takes record pointer 0 (`0x003DF4C8`-`0x003DF4E1`) and stores to
+  address `0x2C` (`0x003DF4EA`), which faults. A size of 0 returns at `0x003DF46F`. Either way `1 << (k & 31)` is set
+  in `0x02B59C20[g]` (`0x003DF42B`).
+- `.snd`, `k` of 16 or more: `0x0032F2F0` reads the pair at table + 8 + 8k, past the `0x88` bytes.
+- Voice, an empty slot: `0x003EA0D0` frees the slot first, both table loads return 0 at size 0 (`0x003EA013`), and the
+  slot stays free (state 0).
+- Voice, `k` of 64 or more: the record `0x02B5D0B0 + k x 0x40` has no bound (`0x003E9F93`-`0x003E9FAA`); record 64 starts
+  at `0x02B5E0B0`, the word `0x003EA015` tests, and `0x0032F360` reads past the `0x208` bytes.
+
 ## Modding notes
 
 - Keep byte 0 non-zero; nothing else in the header is checked, and `slotCount` is never read.
 - Put every payload on a `0x800` boundary: the read starts at the offset rounded down.
-- `.mot` and `.snd` directories are read as 16 slots and `.vpc` and `.vpcjp` as 64; a slot number from a
-  script has no bound, so a `.mot` or `.snd` slot of 16 or more reads past the table.
+- `.mot` and `.snd` directories are read as 16 slots and `.vpc` and `.vpcjp` as 64. Use `.mot` slots 0-15: the sweep
+  never loads a higher one (`0x003DD68A`), so `motionreadsync` waits for good, or follows the record of another area
+  slot that the number reaches (`0x003499E5`, `0x003DD770`).
+- Load `.snd` slots 0-7 only: `eventsoundread` of a slot from 8 up that has a size stores through a null record
+  (`0x003DF4EA`), and one of 16 or more reads past the table. Voice slots are 0-63.
+- Build a package as the shipped ones are: `PKFL`, the slot count, the pairs, zeros to `0x800`, each payload at the
+  next `0x800` boundary and zeros to the boundary after the last. All 10,314 shipped packages rebuild byte for byte
+  this way.
+- A `.snd` slot 0-7 keeps the two-part container: count, part sizes, the header rounded up to 0x40, each non-empty
+  part behind 0x40 zero bytes. `0x0036B970` refuses one whose header and parts do not add up to the block size
+  (`0x0036BA16`-`0x0036BA45`).
+- A `VSP1` set rebuilds byte for byte from its banks with the cue table padded to 0x40, each bank at the next 0x10
+  boundary, and a cue without a bank at the next offset with size 0.
+- A cue's bank offset and size must each fit 24 bits and the bank must start with `sabf`: `0x003E9C10` reads
+  `+0x08 & 0xFFFFFF` and `+0x0C & 0xFFFFFF` (`0x003E9C94`, `0x003E9CE2`), compares the magic (`0x003E9CC6`-`0x003E9CD8`), and
+  writes the volume into bits `0x7F000000` of `+0x08` and the pan into `+0x0F` (`0x003E9CF9`-`0x003E9D09`).
+- Keep the slot and cue order of the `.vpc` and `.vpcjp` the same, and change the `.vpcjp` in `in` (and `ch` for the
+  Korean and Chinese builds); the other `.vpcjp` copies are never read.
+- Keep the package's size-table entry: the area loader reads no directory for a negative size (`0x0032FE54`).
 - Keep the `.vpc` and `.vpcjp` of an area in step: the voice language picks which one plays.
 
 ## Related

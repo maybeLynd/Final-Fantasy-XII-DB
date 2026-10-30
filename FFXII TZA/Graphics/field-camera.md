@@ -91,8 +91,12 @@ first.
 
 ### Other controller settings
 
-- `0x0025A540(flag, vector)`, from `0x002628B0`, writes the vector to `+0x00` of both
-  controllers and the flag to `0x02098DE9`, the byte that limits the follow camera to republishing.
+- `0x0025A540(flag, vector)` writes the vector to `+0x00` of both controllers and the flag to `0x02098DE9`,
+  the byte that limits the follow camera to republishing. It has three callers:
+  - `0x002628B0` (`0x00262D07`);
+  - `lockbehindcamera` (`0x01CA`, `0x00356470`), with flag 1 and its three int arguments as floats, w 1.0
+    (`0x003564DF`);
+  - `unlockbehindcamera` (`0x01CE`, `0x00356920`), with flag 0 and the vector {0, 0, 0, 1.0} (`0x00356959`).
 - `tutorial_set_behindcameraenable` (`0x03A1`, `0x003503B0`) stores whether its int is non-zero at
   `0x02098354` (`0x0025A880`), and `tutorial_get_behindcameraenable` (`0x03A0`, `0x0034FFA0`) returns it
   (`0x0025A850`). Opening the pause menu (`0x00229590`) saves the value and clears it.

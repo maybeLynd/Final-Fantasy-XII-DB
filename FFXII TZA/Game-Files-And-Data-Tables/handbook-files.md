@@ -191,6 +191,104 @@ Measured over all nine languages (`ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr`
 | other unlock records (`us`) | `story`: all 69 by story counter; `world` 5 and `tutorial` 5 by story counter; every other record has no test and is always unlocked |
 | path array and size table | the `us` kind-7 array names numbered files up to `story099`, `world049`, `person029`, `knowledge029`, `tutorial049`, `monster299`; the US size table sizes exactly the shipped `us` files |
 
+Bestiary entry 211 is the one record that differs between languages: `us` opens its slots by kill count (thresholds
+1 and 1), the other eight trees by story counter (78 and 78), so those trees have 369 entries by kill count and 14 by
+story counter. The `story`, `world`, `person` and `knowledge` text bundles are byte-identical in all nine trees.
+
+Every instance of the 2,930 files, decoded with the layouts above, one row per instance in each language:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`handbook-files-files.tsv`](handbook-files-files.tsv) | 2,930 | shipped file: path, magic, size, SHA-256, family, number and window |
+| [`handbook-files-entries.tsv`](handbook-files-entries.tsv) | 6,300 | catalog entry: its record, its text bundle and window, its picture page and file, and its unlock record |
+| [`handbook-files-sections.tsv`](handbook-files-sections.tsv) | 549 | section: caption text id, the entries listed under it, and its caption gate |
+| [`handbook-files-page-map.tsv`](handbook-files-page-map.tsv) | 5,238 | page-map slot: the picture file and the picture in that file |
+| [`handbook-files-pictures.tsv`](handbook-files-pictures.tsv) | 6,693 | `himg` picture: offset, size, depth and byte count |
+| [`handbook-files-strings.tsv`](handbook-files-strings.tsv) | 12,168 | string entry: bundle, entry, record, slot and the decoded text |
+
+`handbook-files-files.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `language` | the language folder |
+| `path` | the file's path in the archive |
+| `magic` | `+0x00`: `hctg`, `hchk`, `hdat` or `himg` |
+| `bytes` | the file size |
+| `sha256` | the SHA-256 of the file's bytes |
+| `family` | `story`, `world`, `person`, `knowledge`, `tutorial` or `monster` |
+| `number` | `NNN` of a numbered file; empty for the catalog and the unlock table |
+| `version` | `+0x04` |
+| `window_first`, `window_count` | `hdat`: `first` and `count`, the entries it holds; `himg`: `first` and `count`, the pages it holds; empty for `hctg` and `hchk` |
+
+`handbook-files-entries.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `language`, `family`, `entry` | the entry; `entry` is the record index in the catalog |
+| `name_text` | record `+0x00`: families 0-4 a message id, the Bestiary a battle-text word; `none` for -1 |
+| `section` | record `+0x04` |
+| `bundle`, `bundle_file` | record `+0x06` and the `hdat` file it names |
+| `bundle_first_entry`, `bundle_last_entry` | that bundle's window, `first` to `first + count - 1` |
+| `record_in_bundle` | `entry - first`, the index into the bundle's `recordAt` |
+| `text_slots` | the bundle record's `slots` |
+| `slot_count_byte` | Bestiary: the entry's slot-count byte after the catalog records; empty for the other families |
+| `page` | record `+0x08` |
+| `picture_file`, `picture_file_name` | `textBundles + pageMap[page]` and that file |
+| `picture_in_file` | `page - first` of that `himg` file |
+| `flag` | record `+0x0A` |
+| `nibble_index`, `nibble_value`, `bit_index`, `marker`, `story_flag`, `story_minimum` | families 0-4: the unlock record's fields, `none` for a field of all ones; empty for the Bestiary |
+| `slot_mode` | Bestiary: 0, 1 or 2 from the unlock record's `mode`; empty for the other families |
+| `slot_mode_word` | Bestiary: the unlock record's `+0x0E` |
+| `slot_thresholds` | Bestiary: the seven slot words in order, `empty` for `0xFF` in mode 0 and `0xFFFF` in modes 1 and 2 |
+| `unlock_test` | the record's tests in words: for families 0-4 each field that is not all ones, or `none`; for the Bestiary what the slot thresholds count |
+
+`handbook-files-sections.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `language`, `family`, `section` | the section |
+| `caption_text` | `caption[section]`, a message id; `none` for -1 |
+| `entries`, `first_entry` | the number of entries whose `section` is this one, and the lowest of them |
+| `gate` | `yes` when `gateAt` has an offset for the section |
+| `gate_low_nibble` | the gate's `flags` low nibble |
+| `conditions`, `condition_ids` | the gate's condition count C and its ids |
+| `maps`, `map_numbers` | the gate's map count M and its map numbers |
+
+`handbook-files-page-map.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `language`, `family`, `page` | the page number |
+| `page_map_value` | `pageMap[page]` |
+| `picture_file`, `picture_file_name` | `textBundles + pageMap[page]` and that file |
+| `picture_in_file` | `page - first` of that file |
+
+`handbook-files-pictures.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `language`, `family`, `file`, `file_number` | the `himg` file |
+| `picture_in_file`, `page` | the index into `pictureAt`, and `first` plus that index |
+| `offset` | `pictureAt[index]` |
+| `width`, `height` | the picture header's `width` and `height` |
+| `depth_bits` | bits per pixel: 8 for image type 5 |
+| `image_type` | the picture header's `imageType` |
+| `psm` | the pixel format in `gsTex0` |
+| `clut_colours` | the picture header's `clutColors` |
+| `bytes` | `0x10` plus the picture's `totalSize`, its length in the file |
+
+`handbook-files-strings.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `language`, `family` | the tree and the family |
+| `bundle` | the `hdat` file number |
+| `entry`, `record` | the entry number, and `entry - first`, the record in the bundle |
+| `slot` | the text slot, from 0 |
+| `string_entry_at` | `stringsAt + string[slot]`, the string entry's offset in the file |
+| `text_at`, `line_operations` | the string entry's `textAt` and `opCount` |
+| `text` | the string, written as the [Clan Primer text](../Menus-And-HUD/text-handbook.md) table writes it: control codes as the placeholders of [Text codes](../Menus-And-HUD/text-codes.md), a Bestiary bundle's characters through its own expansion list, Traveler's Tips expansion characters as `{exp:0xN}`; the `story`, `world`, `person` and `knowledge` text is decoded with the Japanese font in every tree, as in [Unrequested handbook text](../Menus-And-HUD/text-handbook-unrequested.md) |
+
 ## Loader behaviour
 
 ### The data manager and its three slots

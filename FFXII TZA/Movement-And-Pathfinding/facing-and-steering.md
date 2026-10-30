@@ -337,9 +337,9 @@ Struct SteeringRecord size=`0x80`:
 | `+0x34` | `f32` | target heading |  |
 | `+0x38` | `f32` | turn start heading |  |
 | `+0x3C` | `f32` | spin rate (mode 1) |  |
-| `+0x50` | `f32` | yaw approach cap |  |
-| `+0x54` | `f32` | pitch approach cap (0x002E5B60 / 0x002E5B90) |  |
-| `+0x58` | `f32` | turn step, pi/20 |  |
+| `+0x50` | `f32` | yaw approach cap (0x002E5B60) |  |
+| `+0x54` | `f32` | pitch approach cap |  |
+| `+0x58` | `f32` | turn step, pi/20 (0x002E5B90) |  |
 | `+0x5C` | `f32` | pi, never read |  |
 | `+0x60` | `i16` | steer channel frames |  |
 | `+0x62` | `u8` | flags: mask 0x7 shape, mask 0x38 selector, bit 0x40 direction, bit 0x80 initiator |  |
