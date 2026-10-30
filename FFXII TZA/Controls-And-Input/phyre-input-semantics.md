@@ -170,6 +170,18 @@ semantic flips the sign (`xorps` with `0x01CEBDA0`).
 | `MotionQuatX` to `MotionLinearAccelerationZ` | `0x0079E134`-`0x0079E214` | the motion device `0x00796FC0(4, m_id)`: floats at `+0xE0`-`+0xEC`, `+0x50`-`+0x58`, `+0x40`-`+0x48` |
 | `VisionTrackerX` to `Z` | `0x0079E24A`-`0x0079E279` | the vector at mapper `+0x234 + 16 × m_id`, when the byte at `+0x2B4 + m_id` is set |
 
+For the touch, motion and vision types, each class reads one value:
+
+| Class | Value | Read at |
+|---|---|---|
+| `TouchDragX`, `TouchDragY` | the touch device's `+0x8C`, `+0x90` | `0x0079DEC7`, `0x0079DF0C` |
+| `TouchTwoFingerDragX`, `TouchTwoFingerDragY` | computed from the touch device's `+0x120`, `+0x124` with `cosf` and `sqrtf` | `0x0079DFCD`, `0x0079E095` |
+| `TouchPinch`, `TouchRotate` | the touch device's `+0xE4`, `+0x170` | `0x0079E0D0`, `0x0079E0F4` |
+| `MotionQuatX`, `Y`, `Z`, `W` | the motion device's `+0xE0`, `+0xE4`, `+0xE8`, `+0xEC` | `0x0079E144`, `0x0079E15F`, `0x0079E17A`, `0x0079E195` |
+| `MotionAngularVelocityX`, `Y`, `Z` | the motion device's `+0x50`, `+0x54`, `+0x58` | `0x0079E1AE`, `0x0079E1C6`, `0x0079E1DE` |
+| `MotionLinearAccelerationX`, `Y`, `Z` | the motion device's `+0x40`, `+0x44`, `+0x48` | `0x0079E1F4`, `0x0079E20C`, `0x0079E224` |
+| `VisionTrackerX`, `Y`, `Z` | the first, second and third float of the mapper's vector | `0x0079E25B`, `0x0079E270`, `0x0079E285` |
+
 For a pad axis with codes 1, 2, 4 or 5 the value is zeroed only when both it and its partner axis (`+0x58` with
 `+0x60`, `+0x68` with `+0x70`) are inside their dead zones, the float at each record's `+0x24`
 (`0x0079DB04`-`0x0079DB52`).

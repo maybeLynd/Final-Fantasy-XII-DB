@@ -173,9 +173,16 @@ A `PCameraPerspective` as `0x00189C20` uses it. Its `PCamera` part starts 8 byte
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[3]` | corner | minimum corner, object space |
+| `+0x00` | `f32[3]` | m_min | minimum corner, object space; m_min (f32[3], a fixed-size array), registered by |
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0x005E65B0` | `...` | (0x00632A70 at 0x005E671D) |  |
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
 | `+0x10` | `void*` | m_worldMatrix | the instance's world matrix |
-| `+0x18` | `f32[3]` | size | extent along each axis |
+| `+0x18` | `f32[3]` | m_size | extent along each axis; m_size (f32[3], a fixed-size array), registered by `0x005E65B0` (`0x00632A70` at `0x005E678B`) |
 | `+0x28` | `void*` | m_meshInstance | owning PMeshInstance |
 
 ## State

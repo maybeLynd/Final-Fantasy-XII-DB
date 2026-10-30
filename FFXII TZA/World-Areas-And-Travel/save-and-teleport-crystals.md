@@ -38,11 +38,14 @@ no entry. The lookup:
    `[0x02ADD0E8]` (`0x00377860`) set.
 
 The script keeps the number as the crystal's kind: 0 is a save crystal, 255 is the save crystal
-with its own bind message, and every other value is a gate crystal whose destination key item is
-`0x803F + n` (the explicit `switch` in `talk`). Number 4 counts as a gate crystal only while
-`ismapjumpgroupflag(0x402A)` is set. The name tag is set with `setnpcname` from the number
-([NPC names](../Characters-And-Objects/npc-names.md)), and the crystal is an interactable object
+with its own bind message, and every other value is a gate crystal. Number 4 counts as a gate
+crystal only while `ismapjumpgroupflag(0x402A)` is set. The name tag is set with `setnpcname` from
+the number ([NPC names](../Characters-And-Objects/npc-names.md)), and the crystal is an interactable object
 (`setfreetargettype(4)`).
+
+The explicit `switch` in `talk` names a gate crystal's destination key item: `0x803F + n` for the
+21 numbers 1, 3-6, 8-13, 15 and 17-25, and `0x8059`, `0x805A`, `0x805B` and `0x805C` for 28, 29, 32
+and 33; its `default` arm gives no key item.
 
 ### The two save-image bits
 
@@ -320,7 +323,7 @@ The `telepoeffect` switch, key item to `mapjump(field, entrance, 10)`:
 | `0x8049` | `718` | `0` | `0x8059` | `1151` | `7` |
 | `0x804A` | `791` | `0` | `0x805A` | `386` | `1` |
 | `0x804B` | `360` | `0` | `0x805B` | `488` | `0` |
-| `0x804C` | `403` | `3` | any other | `142` | `3` |
+| `0x804C` | `403` | `3` | `0x805C` (the `default` arm) | `142` | `3` |
 | `0x804E` | `450` | `4` |  |  |  |
 | `0x8050` | `686` | `1` |  |  |  |
 | `0x8051` | `594` | `3` |  |  |  |
@@ -361,9 +364,9 @@ The common effect table `0x01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 
 
 - To open or close a gate crystal, set or clear bit `0x4` of payload `+0x1062` (or call
   `setsaveramtelepostatus`); the next crystal touch rebuilds its menu from the two getters.
-- A new destination needs a key item `0x803F + n`, an entry in the `telepoeffect` switch of every
-  crystal script and a crystal script answering `getcrystalid(3, 0)` with `n`; the engine side
-  needs no change.
+- A new destination needs a key item named in the `talk` switch, an entry in the `telepoeffect`
+  switch of every crystal script and a crystal script answering `getcrystalid(3, 0)` with `n`; the
+  engine side needs no change.
 - The Teleport Stone cost, the list and the key items are inventory and script-global writes;
   `mapjump` mode 10 and the `+0x52` entrance are what the destination needs to run its arrival.
 - The heal is `heal(7)`: changing the crystal to cure set-B statuses means `healall(2)` in the

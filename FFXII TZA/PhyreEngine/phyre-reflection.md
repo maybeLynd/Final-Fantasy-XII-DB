@@ -140,7 +140,7 @@ size at `+0x38`, or the size the context gives a dynamic type.
 | Route | Record | Adds |
 |---|---|---|
 | `0x00632960` | `PClassDataMember` | the plain member |
-| `0x00632A10` | `PClassDataMemberArray` | kind at `+0x5C` (2 a counted buffer such as `PArray<T>::m_els`, 3 a `PArray` member, 4 a `PSharray` member), element size at `+0x58` |
+| `0x00632A10` | `PClassDataMemberArray` | kind at `+0x5C` (2 a counted buffer such as `PArray<T>::m_els`, 3 a `PArray` member, 4 a `PSharray` member), the element type's alignment at `+0x58` (4 for `PMatrix4`, a 0x40-byte element, at `0x005ED448`; 2 for `PSkinBoneRemap`, two `u16`, at `0x0066A0A7`) |
 | `0x00632A70` | `PClassDataMemberArrayFixedSize` | kind 1 at `+0x5C`, the type's `+0x3C` at `+0x58`, element count at `+0x60` |
 | `0x00632BE0` | `PClassDataMemberEnum` | attribute bit `0x20`, a value at `+0x58` |
 
@@ -369,7 +369,7 @@ PClassDataMember (`0x58`; arrays to `+0x64`):
 | `+0x38` | `ListNode` | annotations |  |
 | `+0x48` | `u32` | offset in the owner's layout |  |
 | `+0x50` | `void*` | dynamic-type helper, or null |  |
-| `+0x58` | `u32` | element size (arrays) |  |
+| `+0x58` | `u32` | element alignment (arrays) |  |
 | `+0x5C` | `u32` | array kind |  |
 | `+0x60` | `u32` | element count (fixed arrays) |  |
 
@@ -666,7 +666,7 @@ The members below are the ones the code of this page's classes uses or the refle
 | static descriptor constructions | 399: 384 calls to `0x00632D80` and 15 to `0x00632C90` (a 385th call is inside `0x00632E80`); `PBase` (`0x02CF8270`, size 1) and `PClassDescriptor` (`0x02CF8470`, size `0x100`) by their own initialisers |
 | member registrations | 682 calls to `0x00632960` (2 of them the array and dynamic constructors forwarding), 165 to `0x00632A10`, 29 to `0x00632A70`, 21 to `0x00632BE0` |
 | plain-member attribute arguments | `0x10` 207, `0x00` 196, `0x08` 123, `0x12` 79, `0x0A` 39, `0x02` 36; the flag argument is 0 at all 680 |
-| array kinds | `PArray` 86, pointer array 70, `PSharray` 9; element sizes 8 (113), 4 (36), 1 (7), 2 (6), 16 (3) |
+| array kinds | `PArray` 86, pointer array 70, `PSharray` 9; element alignments 8 (113), 4 (36), 1 (7), 2 (6), 16 (3) |
 | annotations | 70 constructions; 69 static `WriteMask` annotations (60 `PArray`, 9 `PSharray`) |
 | buffers | 384 classes register a default instance and both masks |
 | by-name registrations | `0x006388C0`: 523 sites, 516 calls and 7 tail jumps; `0x00639450`: 471 sites, 156 calls and 315 tail jumps |

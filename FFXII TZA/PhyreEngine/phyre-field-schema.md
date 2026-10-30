@@ -85,7 +85,7 @@ r9          member name
 [rsp+0x38]  context passed to the attach slot
 ```
 
-`0x00632A10` adds the array kind and element size as arguments 7 and 8, `0x00632A70` the element count
+`0x00632A10` adds the array kind and the element type's alignment as arguments 7 and 8, `0x00632A70` the element count
 as argument 7, and `0x00632BE0` ORs `0x20` into the attribute word. A registering function may OR
 `0x08`, `0x10` or `0x40` into the record afterwards, and `0x00633100` adds `0x4`.
 
@@ -104,7 +104,7 @@ offset to its run-time member's offset by the routine `0x0059D2D0` chose, or ski
 
 ### Reflected members
 
-The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960), and each class fence covers only those members.
+The members below are the ones the code of this page's classes uses or the reflection registers; each registered member is named by its registration (the registering function, through 0x00632960, or 0x00632A10 for an array, 0x00632A70 for a fixed-size array and 0x00632BE0 for an enum), and each class fence covers only those members.
 
 `CD3D11_BLEND_DESC` (`0x108` bytes, offsets from the start of the record):
 
@@ -112,6 +112,7 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x00` | `i32` | AlphaToCoverageEnable | D3D11_BLEND_DESC AlphaToCoverageEnable of a pass state's m_blendDesc, which the pass-state builder `0x0061DE20` passes to ID3D11Device::CreateBlendState (slot `+0xA0`, `0x0061DF2F`); AlphaToCoverageEnable (i32), registered by `0x00613800` (`0x00632960` at `0x00613902`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_BLEND_DESC |
 | `+0x04` | `i32` | IndependentBlendEnable D3D11_BLEND_DESC IndependentBlendEnable of a pass state's m_blendDesc, | passed to CreateBlendState by `0x0061DE20` (`0x0061DF2F`); IndependentBlendEnable (i32), registered by `0x00613800` (`0x00632960` at `0x00613971`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_BLEND_DESC |
+| `+0x08` | `byte[256]` | RenderTarget | eight D3D11_RENDER_TARGET_BLEND_DESC records of `0x20` bytes, one per render target; RenderTarget (D3D11_RENDER_TARGET_BLEND_DESC[8], a fixed-size array), registered by `0x00613800` (`0x00632A70` at `0x006139DB`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare CD3D11_BLEND_DESC |
 
 `CD3D11_DEPTH_STENCIL_DESC` (`0x34` bytes, offsets from the start of the record):
 
@@ -158,6 +159,7 @@ The members below are the ones the code of this page's classes uses or the refle
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x08` | `u32` | m_inputCount | m_inputCount (u32), registered by `0x005B0E70` (`0x00632960` at `0x005B0F70`); no shipped .phyre file declares PAnimationDataSourceListEntry |
+| `+0x0C` | `u32[32]` | m_inputIndex | m_inputIndex (u32[32], a fixed-size array), registered by `0x005B0E70` (`0x00632A70` at `0x005B0FDE`); no shipped .phyre file declares PAnimationDataSourceListEntry |
 | `+0x8C` | `u32` | m_destSlotArray | m_destSlotArray (u32), registered by `0x005B0E70` (`0x00632960` at `0x005B1058`); no shipped .phyre file declares PAnimationDataSourceListEntry |
 | `+0x90` | `u32` | m_persistentBufferOffset m_persistentBufferOffset (u32), registered by 0x005B0E70 (0x00632960 at | `0x005B10CB`); no shipped .phyre file declares PAnimationDataSourceListEntry |
 | `+0x94` | `u32` | m_preprocessBufferOffset m_preprocessBufferOffset (u32), registered by 0x005B0E70 (0x00632960 at | `0x005B113E`); no shipped .phyre file declares PAnimationDataSourceListEntry |
@@ -244,6 +246,7 @@ The members below are the ones the code of this page's classes uses or the refle
 | `+0x00` | `u32` | m_persistentStateOffset m_persistentStateOffset (u32), registered by 0x006D1EE0 (0x00632960 at | `0x006D1F75`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierInstance |
 | `+0x04` | `u32` | m_stateBlockOffset | m_stateBlockOffset (u32), registered by `0x006D1EE0` (`0x00632960` at `0x006D1FE8`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierInstance |
 | `+0x08` | `u8` | m_codeIndex | m_codeIndex (u8), registered by `0x006D1EE0` (`0x00632960` at `0x006D205B`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierInstance |
+| `+0x09` | `u8[23]` | m_inputOutputIndices | m_inputOutputIndices (u8[23], a fixed-size array), registered by `0x006D1EE0` (`0x00632A70` at `0x006D20C9`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket_ModifierInstance |
 
 `PModifierNetworkInstancePacketInput` (`0x8` bytes, offsets from the start of the record):
 
@@ -269,7 +272,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x70` | `f32[4]` | m_halfExtents | m_halfExtents (f32[4]), registered by `0x00693EC0` (`0x00632960` at `0x00693F49`); no shipped .phyre file declares PPhysicsBoxBase |
+| `+0x70` | `f32[4]` | m_halfExtents | the box's half extents; m_halfExtents (f32[4]), registered by `0x00693EC0` (`0x00632960` at `0x00693F49`); no shipped .phyre file declares PPhysicsBoxBase; the placement constructor `0x0068D190`, which stores the class vtable `0x00D79880` (`0x0068D199`), sets it to (1, 1, 1) (`0x0068D1FB`-`0x0068D209`); PPhysicsBoxBullet's build `0x0069F770`, slot 0 of its vtable `0x00D798A8`, reads it (`0x0069F7BF`-`0x0069F7CA`) into a `0x50`-byte Bullet btBoxShape (vtable `0x00D7A838` stored at `0x0069F7DE`, shape type 0 at `0x0069F7E1`) and keeps the shape at `+0x80` (`0x0069F834`); its slot `+0x08`, `0x006A0540`, runs that build (`0x006A0565`) and adds the shape to the rigid body's compound shape `+0x120` through `0x00832590` (`0x006A05D0`) |
 
 `PPhysicsCallbackData` (`0x28` bytes, offsets from the start of the record):
 
@@ -296,15 +299,15 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32` | m_dynamicFriction | m_dynamicFriction (f32), registered by `0x006955D0` (`0x00632960` at `0x0069565E`); no shipped .phyre file declares PPhysicsMaterial |
-| `+0x04` | `f32` | m_staticFriction | m_staticFriction (f32), registered by `0x006955D0` (`0x00632960` at `0x006956D1`); no shipped .phyre file declares PPhysicsMaterial |
-| `+0x08` | `f32` | m_restitution | m_restitution (f32), registered by `0x006955D0` (`0x00632960` at `0x00695744`); no shipped .phyre file declares PPhysicsMaterial |
+| `+0x00` | `f32` | m_dynamicFriction | m_dynamicFriction (f32), registered by `0x006955D0` (`0x00632960` at `0x0069565E`); no shipped .phyre file declares PPhysicsMaterial; the placement constructor `0x0068E4C0` clears it with m_staticFriction (qword store `0x0068E4C7`) |
+| `+0x04` | `f32` | m_staticFriction | the friction a rigid body is built with; m_staticFriction (f32), registered by `0x006955D0` (`0x00632960` at `0x006956D1`); no shipped .phyre file declares PPhysicsMaterial; the placement constructor `0x0068E4C0` clears it (`0x0068E4C7`); the rigid-body build `0x0069FB10` takes the body's material m_material `+0x98` (`0x006A0111`), or else that of the first child shape whose m_material `+0x18` is set (`0x006A0133`-`0x006A0167`), returns 9 with neither (`0x006A0169`), and copies this member into the Bullet construction info as the body's friction (`0x006A017D`-`0x006A0182`) |
+| `+0x08` | `f32` | m_restitution | the restitution a rigid body is built with; m_restitution (f32), registered by `0x006955D0` (`0x00632960` at `0x00695744`); no shipped .phyre file declares PPhysicsMaterial; the placement constructor `0x0068E4C0` clears it (`0x0068E4CA`); `0x0069FB10` copies it from the chosen material into the Bullet construction info as the body's restitution (`0x006A0173`-`0x006A0178`) |
 
 `PPhysicsPlaneBase` (`0x80` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x70` | `f32[4]` | m_equationCoefficient | m_equationCoefficient (f32[4]), registered by `0x006959F0` (`0x00632960` at `0x00695A79`); no shipped .phyre file declares PPhysicsPlaneBase |
+| `+0x70` | `f32[4]` | m_equationCoefficient | the plane equation, the normal's x, y and z at `+0x70` to `+0x78` and the constant at `+0x7C`; m_equationCoefficient (f32[4]), registered by `0x006959F0` (`0x00632960` at `0x00695A79`); no shipped .phyre file declares PPhysicsPlaneBase; the placement constructor `0x00689D50`, which stores the class vtable `0x00D79A60` (`0x00689DB5`), sets it to (1, 1, 1, 1) (`0x00689DBF`-`0x00689DD4`); PPhysicsPlaneBullet's slot `+0x08`, `0x0068A1D0` in its vtable `0x00D79A88`, reads it (`0x0068A246`-`0x0068A270`) into a Bullet btStaticPlaneShape through `0x00837700` (`0x0068A27D`; vtable `0x01CCE008` at `0x0083772F`), which scales the normal to unit length (`0x00837767`-`0x008377A5`), keeps the constant at `+0x50` (`0x008377AF`) and sets shape type `0x1C` (`0x008377C6`); `0x0068A1D0` keeps the shape at `+0x80` (`0x0068A283`) and adds it to the rigid body's compound shape `+0x120` through `0x00832590` (`0x0068A2C8`) only when the body's motion type `+0xE8` is not 1, dynamic (`0x0068A2A0`), and otherwise returns 9 (`0x0068A2D1`) |
 
 `PPhysicsRigidBodyBase` (`0x118` bytes, offsets from the start of the record):
 
@@ -343,8 +346,10 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[4]` | m_contactPoint | m_contactPoint (f32[4]), registered by `0x00698500` (`0x00632960` at `0x0069858E`); no shipped .phyre file declares PRaycastResult |
-| `+0x10` | `f32[4]` | m_contactNormal | m_contactNormal (f32[4]), registered by `0x00698500` (`0x00632960` at `0x00698601`); no shipped .phyre file declares PRaycastResult |
+| `+0x00` | `f32[4]` | m_contactPoint | the point the ray hit, w 1.0; m_contactPoint (f32[4]), registered by `0x00698500` (`0x00632960` at `0x0069858E`); no shipped .phyre file declares PRaycastResult; the world raycast `0x006A1A70`, which the script methods castRayFromScript (`0x006A1C70`) and castRayFromScriptWithCollisionGroup (`0x006A1D20`) call and `0x00697AC0` registers (`0x00697BBB`, `0x00697E19`), runs a Bullet ClosestRayResultCallback (vtable `0x00D7AB10`, `0x006A1B23`) through slot `+0x30` of the Bullet world (`0x006A1B79`) and, on a hit, writes the hit point into a `0x30`-byte result of this layout (`0x006A1BF3`-`0x006A1C06`) with w 1.0 (`0x006A1C0B`) |
+| `+0x10` | `f32[4]` | m_contactNormal | the hit normal at unit length, w 0; m_contactNormal (f32[4]), registered by `0x00698500` (`0x00632960` at `0x00698601`); no shipped .phyre file declares PRaycastResult; `0x006A1A70` scales the callback's normal to unit length (`0x006A1BB9`-`0x006A1BDD`) and writes it here (`0x006A1C17`-`0x006A1C30`) |
+| `+0x20` | `void*` | m_collisionObject | the object the ray hit; m_collisionObject (ptr), registered by `0x00698500` (`0x00632960` at `0x00698674`); no shipped .phyre file declares PRaycastResult; the placement constructor `0x0068A4B0` clears it (`0x0068A4B7`); `0x006A1A70` fills it through `0x0069ECE0` (`0x006A1BE9`), which stores the gameplay object behind the Bullet collision object (`0x0069ED14`, `0x0069ED42`) |
+| `+0x28` | `void*` | m_collisionObjectClassDescriptor the hit object's class; m_collisionObjectClassDescriptor | (ptr), registered by `0x00698500` (`0x00632960` at `0x006986E6`); no shipped .phyre file declares PRaycastResult; `0x0068A4B0` clears it (`0x0068A4BB`); `0x0069ECE0` stores PPhysicsRigidBody's descriptor `0x02E48BD0` or PPhysicsCharacterController's `0x02E47ED0` (`0x0069ED1C`, `0x0069ED4A`); the script method getAsyncRaycastResultFromScript (`0x006A3770`, registered at `0x00697FAD`) reads entries of this layout, `0x30` bytes apart, from the world's array at `+0xB0` (`0x006A3797`), returns this object and class when entry `+0x0C` and both pointers are set (`0x006A37A1`-`0x006A37EA`), and copies out the point with w 1.0 and the normal with w 0 (`0x006A37F1`-`0x006A3818`) |
 
 `PRenderTargetBase` (`0x10` bytes, offsets from the start of the record):
 
@@ -434,7 +439,9 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `+0x00` | `f32[3]` | m_min | m_min (f32[3], a fixed-size array), registered by `0x00667700` (`0x00632A70` at `0x00667789`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PSkeletonJointBounds |
 | `+0x0C` | `u32` | m_hierarchyMatrixIndex m_hierarchyMatrixIndex (u32), registered by 0x00667700 (0x00632960 at | `0x00667878`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PSkeletonJointBounds |
+| `+0x10` | `f32[3]` | m_size | m_size (f32[3], a fixed-size array), registered by `0x00667700` (`0x00632A70` at `0x006677FE`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PSkeletonJointBounds |
 
 `PSkinBoneRemap` (`0x4` bytes, offsets from the start of the record):
 
@@ -461,6 +468,8 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `+0x70` | `f32[2]` | m_radiusArray | the capsule's radius in the first element; m_radiusArray (f32[2], a fixed-size array), registered by `0x00694120` (`0x00632A70` at `0x006941AA`); no shipped .phyre file declares PPhysicsCapsuleBase; the placement constructor `0x0068D220`, which stores the class vtable `0x00D799E8` (`0x0068D2A1`), sets both elements to 1.0 (`0x0068D293`, `0x0068D28C`); PPhysicsCapsuleBullet's build `0x0069F870`, slot 0 of its vtable `0x00D79A10`, passes the first element (`0x0069F8A8`) as the radius to Bullet's btCapsuleShape constructor `0x008348A0` (`0x0069F8B0`; vtable `0x01CCDB68` at `0x008348C6`, shape type `0xA` at `0x008348D3`) and keeps the shape at `+0x88` (`0x0069F8B6`) |
+| `+0x78` | `f32` | m_height | the capsule's height; m_height (f32), registered by `0x00694120` (`0x00632960` at `0x0069422C`); no shipped .phyre file declares PPhysicsCapsuleBase; the placement constructor `0x0068D220` sets it to 2.0 (`0x0068D285`); `0x0069F870` passes it (`0x0069F8A3`) to `0x008348A0`, which keeps half of it as the capsule's half height (`0x008348BE`, `0x008348E1`) |
 | `+0x7C` | `u8[4]` | bytes7C | the bytes at `+0x7C`, before `+0x80`; no registered member covers it (`0x0068F580` registers the `0x88`-byte class at `0x0068F5CA`) |
 
 `PPhysicsCharacterCamera` (`0x208` bytes, offsets from the start of the record):
@@ -475,24 +484,33 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `+0x70` | `f32[2]` | m_radiusArray | the cylinder's radius in the first element; m_radiusArray (f32[2], a fixed-size array), registered by `0x00695490` (`0x00632A70` at `0x0069551A`); no shipped .phyre file declares PPhysicsCylinderBase; the placement constructor `0x0068AEB0`, which stores the class vtable `0x00D79970` (`0x0068AF15`), sets both elements to 1.0 (`0x0068AF2D`, `0x0068AF26`); PPhysicsCylinderBullet's build `0x0069F8E0`, slot 0 of its vtable `0x00D79998`, passes the half extents (radius, half the height, radius) from the first element (`0x0069F920`) and m_height (`0x0069F913`) to Bullet's btCylinderShape constructor `0x008353F0` (`0x0069F948`; vtable `0x01CCDC60` at `0x0083540A`, shape type `0xD` at `0x00835454`) and keeps the shape at `+0x80` (`0x0069F94E`) |
+| `+0x78` | `f32` | m_height | the cylinder's height; m_height (f32), registered by `0x00695490` (`0x00632960` at `0x0069559C`); no shipped .phyre file declares PPhysicsCylinderBase; the placement constructor `0x0068AEB0` sets it to 2.0 (`0x0068AF1F`); `0x0069F8E0` multiplies it by 0.5 (`0x01CEBB70`, `0x0069F918`) for the y half extent |
 | `+0x7C` | `u8[4]` | bytes7C | the bytes at `+0x7C`, before `+0x80`; no registered member covers it (`0x0068FA00` registers the `0x80`-byte class at `0x0068FA4A`) |
 
 `PPhysicsSphereBase` (`0x78` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `+0x70` | `f32` | m_radius | the sphere's radius; m_radius (f32), registered by `0x006976A0` (`0x00632960` at `0x00697729`); no shipped .phyre file declares PPhysicsSphereBase; the placement constructor `0x0068AC60`, which stores the class vtable `0x00D79808` (`0x0068ACC1`), sets it to 1.0 (`0x0068ACCB`); PPhysicsSphereBullet's build `0x006A0280`, slot 0 of its vtable `0x00D79830`, reads it (`0x006A02BD`) into a `0x50`-byte Bullet btSphereShape (vtable `0x00D7AA18` stored at `0x006A02D1`, shape type 8 at `0x006A02D4`) as both its radius and its margin (`0x006A02DB`, `0x006A02E0`) and keeps the shape at `+0x78` (`0x006A02E9`) |
 | `+0x74` | `u8[4]` | bytes74 | the bytes at `+0x74`, up to the end of the `0x78`-byte class; no registered member covers it (`0x006906D0` registers the `0x78`-byte class at `0x0069071A`) |
 
 `PPhysicsTaperedCapsule` (`0x88` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `+0x70` | `f32[2]` | m_upperRadiusArray | m_upperRadiusArray (f32[2], a fixed-size array), registered by `0x00697760` (`0x00632A70` at `0x006977ED`); no shipped .phyre file declares PPhysicsTaperedCapsule; the placement constructor `0x00688ED0`, which stores the class vtable `0x00D709F8` (`0x00688F35`), sets both elements to 1.0 (`0x00688F4D`, `0x00688F46`) |
+| `+0x78` | `f32[2]` | m_lowerRadiusArray | m_lowerRadiusArray (f32[2], a fixed-size array), registered by `0x00697760` (`0x00632A70` at `0x00697862`); no shipped .phyre file declares PPhysicsTaperedCapsule; the placement constructor `0x00688ED0` sets both elements to 2.0 (`0x00688F5B`, `0x00688F54`) |
+| `+0x80` | `f32` | m_height | the tapered capsule's height; m_height (f32), registered by `0x00697760` (`0x00632960` at `0x006978DC`); no shipped .phyre file declares PPhysicsTaperedCapsule; the placement constructor `0x00688ED0` sets it to 3.0 (`0x00688F3C`); slot 0 of the class's vtable `0x00D709F8` is `0x0068EA90`, which logs "WARNING: This shape is currently not supported by the physics engine." (`0x00D7A4F0`, through `0x005CDAA0` at `0x0068EAA0`) and returns `0x17` (`0x0068EAA5`), and slot `+0x08` is `0x0068EB70`, which calls slot 0 and returns its result when that is not 0 and `0x17` otherwise (`0x0068EB77`-`0x0068EB83`); the rigid-body build `0x0069FB10` calls each child shape's slot `+0x08` (`0x0069FC6D`) and returns the first failure (`0x0069FC72`) before it allocates the Bullet body, so a rigid body holding a tapered capsule gets no Bullet body |
 | `+0x84` | `u8[4]` | bytes84 | the bytes after `+0x80` up to the end of the `0x88`-byte class; no registered member covers it (`0x00690810` registers the `0x88`-byte class at `0x0069085A`) |
 
 `PPhysicsTaperedCylinder` (`0x88` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
+| `+0x70` | `f32[2]` | m_upperRadiusArray | m_upperRadiusArray (f32[2], a fixed-size array), registered by `0x00697910` (`0x00632A70` at `0x0069799D`); no shipped .phyre file declares PPhysicsTaperedCylinder; the placement constructor `0x00687DC0`, which stores the class vtable `0x00D76218` (`0x00687E25`), sets both elements to 1.0 (`0x00687E47`, `0x00687E40`) |
+| `+0x78` | `f32[2]` | m_lowerRadiusArray | m_lowerRadiusArray (f32[2], a fixed-size array), registered by `0x00697910` (`0x00632A70` at `0x00697A12`); no shipped .phyre file declares PPhysicsTaperedCylinder; the placement constructor `0x00687DC0` sets both elements to 2.0 (`0x00687E55`, `0x00687E4E`) |
+| `+0x80` | `f32` | m_height | the tapered cylinder's height; m_height (f32), registered by `0x00697910` (`0x00632960` at `0x00697A8C`); no shipped .phyre file declares PPhysicsTaperedCylinder; the placement constructor `0x00687DC0` sets it to 3.0 (`0x00687E2F`); slot 0 of the class's vtable `0x00D76218` is `0x0068EA90`, which logs "WARNING: This shape is currently not supported by the physics engine." (`0x00D7A4F0`, through `0x005CDAA0` at `0x0068EAA0`) and returns `0x17` (`0x0068EAA5`), and slot `+0x08` is `0x0068EB70`, which calls slot 0 and returns its result when that is not 0 and `0x17` otherwise (`0x0068EB77`-`0x0068EB83`); the rigid-body build `0x0069FB10` calls each child shape's slot `+0x08` (`0x0069FC6D`) and returns the first failure (`0x0069FC72`) before it allocates the Bullet body, so a rigid body holding a tapered cylinder gets no Bullet body |
 | `+0x84` | `u8[4]` | bytes84 | the bytes after `+0x80` up to the end of the `0x88`-byte class; no registered member covers it (`0x006908B0` registers the `0x88`-byte class at `0x006908FA`) |
 
 `PStreamInputLayoutD3D11` (`0x18` bytes, offsets from the start of the record):
@@ -526,7 +544,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | File | Rows | What it lists |
 |---|---:|---|
-| [phyre-field-schema-field-schema.tsv](phyre-field-schema-field-schema.tsv) | 686 | registered members: class, member, offset, type, attribute word, registration site |
+| [phyre-field-schema-field-schema.tsv](phyre-field-schema-field-schema.tsv) | 897 | registered members: class, member, offset, type, attribute word, registration site |
 | [phyre-field-schema-accessor-fields.tsv](phyre-field-schema-accessor-fields.tsv) | 73 | member offsets and widths read from script-accessor adapters |
 
 ## Loader behaviour

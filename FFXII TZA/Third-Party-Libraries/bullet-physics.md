@@ -110,8 +110,9 @@ it (`0x006A04AE`).
    body's centre of mass subtracted: x takes minus `+0x28`, y minus `+0x2C`, z minus `+0x30`.
 5. Mass and inertia are chosen (see the next heading), and a construction info is filled with
    Bullet's stock defaults (see Layouts).
-6. Friction and restitution come from a material: the body's `+0x98`, or else the first child's
-   `+0x18`. With neither, the function returns 9 and builds no body.
+6. Friction and restitution come from a material: the body's `+0x98`, or else the `+0x18` of the first
+   child shape whose `+0x18` is set (`0x006A0133`-`0x006A0167`). With neither, the function returns 9 and builds
+   no body.
 7. A 704-byte, 16-aligned `btRigidBody` is allocated through Bullet's allocator hook (`0x0085E680`) and
    constructed (`0x00852DB0` → `0x008542B0`); failure returns `0xE`.
 8. A non-dynamic body is put to sleep (`0x0083A3A0` with state 2), the Bullet body gets a back-pointer
