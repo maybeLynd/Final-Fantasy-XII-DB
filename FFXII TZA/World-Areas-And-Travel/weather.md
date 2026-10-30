@@ -415,6 +415,14 @@ Over its 2,328 entries the wind preset is 0 on 1,180, 1 on 550, 2 on 420, 4 on 1
 on 1, so the strong-wind class 2 covers 178 entries; the elevation class is 0 on 1,865, 1 on 214 and
 2 on 249; sector 0 holds 1,603 of the azimuths and sector 8 (180 degrees) 217.
 
+The two files row by row, decoded with the layouts above:
+
+| table | rows | what each row holds |
+|---|---:|---|
+| [`weather-fields.tsv`](weather-fields.tsv) | 1,315 | one field of `map_ref.bin` (row n is field n): its selector, block, area and group, the group's terrain class, and for each weather slot the lane's four bytes, its environment index, the combat class and terrain flag the two lookup tables give it (0 out of range, as the code reads), and the MWeather wind preset, wind class, azimuth sector and elevation class of that selector and slot |
+| [`weather-mweather-entries.tsv`](weather-mweather-entries.tsv) | 2,328 | every selector 0 to 775 and slot 1 to 3 of `gramap_weatherinfo.bin`: the entry number, its 9 bits, the wind preset, the azimuth sector and the elevation class |
+| [`weather-terrain-groups.tsv`](weather-terrain-groups.tsv) | 32 | the `+0x14` table, the terrain class per field group: 0 for 17 groups, 1 for one, 2 for two, 3 for three and 4 for nine |
+
 The zone scripts (`ps2data/plan_master/us/plan_map/<area>/<zone>/global/<zone>.ebp`, 769 files,
 the script section at `+0x80`, its `+0x64` section a count of 3 then three bytes) author 17
 distinct probability triples:

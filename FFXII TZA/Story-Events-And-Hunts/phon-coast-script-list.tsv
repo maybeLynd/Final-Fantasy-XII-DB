@@ -1,0 +1,15 @@
+script	kind	place	actors	functions	rows	shared_actors
+fon_a01	zone	The Reseta Strand (Phon Coast), field 478	26	41	13	0
+fon_a02	zone	Pora-Pora Sands (Phon Coast), field 479	32	63	19	0
+fon_a03	zone	The Mauleia Strand (Phon Coast), field 480	28	44	13	0
+fon_a04	zone	Cape Uahuk (Phon Coast), field 481	26	41	13	0
+fon_a05	zone	Cape Tialan (Phon Coast), field 482	27	43	13	0
+fon_a06	zone	Kaukula Pass (Phon Coast), field 483	21	68	7	5
+fon_a07	zone	The Hakawea Shore (Phon Coast), field 484	32	62	17	0
+fon_b01	zone	Hunters' Camp (Phon Coast), field 488	89	570	51	5
+fon_c01	zone	Caima Hills (Phon Coast), field 491	31	61	18	0
+fon_c02	zone	The Vaddu Strand (Phon Coast), field 492	36	60	21	0
+fon_c03	zone	Limatra Hills (Phon Coast), field 493	28	44	13	0
+fon_c04	zone	Rava's Pass (Phon Coast), field 494	19	60	5	5
+fon_a0600	scene	scene, event 251	31	139	3	0
+fon_b0100	scene	scene, event 250	22	244	28	0

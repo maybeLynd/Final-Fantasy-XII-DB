@@ -1,0 +1,950 @@
+script	actor	function	step	at	line	condition	verb	arguments	addresses	quoted_lines	timing	sync	calls	resolution	source
+msg_z0001	Movie監督	init	1	0x01610	23	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	Movie監督	main	1	0x01614	28	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	2	0x0161A	29	-	maskopenfast	0	argument 1: popped and ignored (304 of the 305 calls pass 0). The verb opens the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	3	0x0161D	30	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	4	0x01620	31	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	5	0x01626	32	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+msg_z0001	Movie監督	main	6	0x0162F	33	-	questeffectread_1db	0, 46	argument 1: the script effect slot (0-31, clamped by 0x0036E320) that receives the quest effect file / argument 2: the quest effect number	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	7	0x01635	34	-	effectreadsync_e1	0	effect slot 0	-	-	waits until the effect file read into slot 0 is loaded	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
+msg_z0001	Movie監督	main	8	0x0163B	35	-	moviestandby	25	argument 1: the movie id m to open	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	9	0x01641	36	-	wait	180	-	-	180 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	Movie監督	main	10	0x01644	37	-	moviestandbysync	-	the movie moviestandby opened	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	11	0x0164A	38	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	12	0x01650	39	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+msg_z0001	Movie監督	main	13	0x01656	40	-	movieplay	25	argument 1: popped and not used	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	14	0x01662	41	-	sysReq	1, 監視監督::Movie監視	actor `監視監督`	-	-	files 監視監督::Movie監視 on channel 1; does not wait	監視監督.Movie監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	Movie監督	main	15	0x0166C	42	-	sysReq	1, movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	files movieSkip監督::Skip監視 on channel 1; does not wait	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	Movie監督	main	16	0x01673	43	-	sysReqwait	movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	waits until movieSkip監督::Skip監視 is no longer on its actor	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	Movie監督	main	17	0x01674	44	-	movieplaysync	-	-	-	-	-	-		01 verb-table.tsv
+msg_z0001	Movie監督	main	18	0x01677	45	-	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	19	0x0167A	46	-	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	20	0x01683	47	-	sysFreqcancel2_575	監視監督, 0	actor `監視監督` (this script) / argument 1: the actor whose requests are cancelled, an ordinal of the calling script's manager (0x00264010; a negative value the controlled character), which the listings print as the actor's name / argument 2: the channel bound	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	21	0x01689	48	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	Movie監督	main	22	0x0168F	49	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	Movie監督	main	23	0x01695	50	-	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	Movie監督	main	24	0x0169B	51	-	mesclose	2	message window slot 2, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	Movie監督	main	25	0x016A1	52	-	mesclose	3	message window slot 3, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	Movie監督	main	26	0x016A7	53	-	mesclose	4	message window slot 4, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	Movie監督	main	27	0x016AD	54	-	mesclose	5	message window slot 5, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	Movie監督	main	28	0x016B3	55	-	mesclose	6	message window slot 6, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	Movie監督	main	29	0x016B9	56	-	mesclose	7	message window slot 7, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	Movie監督	main	30	0x016C3	57	-	if	file_var_s0_1 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	Movie監督	main	31	0x016CF	59	file_var_s0_1 != 0	musicfadeout_231	-1, 10, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	32	0x016D2	60	file_var_s0_1 != 0	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	33	0x016D8	61	file_var_s0_1 != 0	musicstop	-1	argument 1: the music track to stop; a negative value (2,515 of the 2,774 calls pass -1) is the track now current (0x002DEC00, 0x0215EF44)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	34	0x016DE	62	file_var_s0_1 != 0	musicclear	-1	argument 1: the music track whose track slot is emptied; a negative value is the current track (0x002DEC00), and with none current the verb empties all four slots (0x00360D70, as musicclearall)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	35	0x016E7	64	-	sysReqwait	監視監督::Movie監視	actor `監視監督`	-	-	waits until 監視監督::Movie監視 is no longer on its actor	監視監督.Movie監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	Movie監督	main	36	0x016EB	65	-	maskclosefast	0	argument 1: popped and ignored (every call passes 0). The verb closes the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	37	0x016EE	66	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	38	0x016F7	67	-	setalllightstatus	0, 1	argument 1: the light group (0-4; five groups at 0x02EBF420 + 0x50 times the group) to switch / argument 2: whether the group's lights are on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	39	0x016FA	68	-	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	40	0x01700	69	-	seteventfogstatus	0	argument 1: the event fog switch 0x02EBF9C8 = value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	41	0x01706	70	-	setlightallcutstatus	0	every light cut, off	-	-	-	-	resolved	25 ../EBP-Script-Files/ebp-lighting-lgt2.md
+msg_z0001	Movie監督	main	42	0x01709	71	-	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	43	0x0170C	72	-	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	44	0x0170F	73	-	eventdispose	-	ends an event scene	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	Movie監督	main	45	0x01712	74	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	init	1	0x01713	83	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	main	1	0x01714	88	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	この一年は	1	0x0171B	93	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	この一年は	2	0x0172D	94	-	amest	0, 0x01000001, 0x03c0, 0x03d9, 4	-	line 1: It's hard to believe a year has passed so quickly.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	この一年は	3	0x01730	95	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	ラバナスタ	1	0x01737	100	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	ラバナスタ	2	0x01749	101	-	amest	0, 0x01000002, 0x03c0, 0x03d9, 4	-	line 2: Rabanastre is finally back to the way it was. Like when my parents were still alive.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	ラバナスタ	3	0x0174C	102	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	もちろん、	1	0x01753	107	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	もちろん、	2	0x01765	108	-	amest	0, 0x01000003, 0x03c0, 0x03d9, 4	-	line 3: We've lost so much.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	もちろん、	3	0x01768	109	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	でも、過去	1	0x0176F	114	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	でも、過去	2	0x01781	115	-	amest	0, 0x01000004, 0x03c0, 0x03d9, 4	-	line 4: But I think it's important to put the past behind us and keep our eyes on the road ahead.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	でも、過去	3	0x01784	116	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	来月はいよ	1	0x0178B	121	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	来月はいよ	2	0x0179D	122	-	amest	0, 0x01000005, 0x03c0, 0x03d9, 4	-	line 5: Ashe's coronation is next month.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	来月はいよ	3	0x017A0	123	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	アーシェが	1	0x017A7	128	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	アーシェが	2	0x017B9	129	-	amest	0, 0x01000006, 0x03c0, 0x03d9, 4	-	line 6: She grows farther and farther away from us...	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	アーシェが	3	0x017BC	130	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	それは仕方	1	0x017C3	135	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	それは仕方	2	0x017D5	136	-	amest	0, 0x01000007, 0x03c0, 0x03d9, 4	-	line 7: but I guess that's how it has to be.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	それは仕方	3	0x017D8	137	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	だって、王	1	0x017DF	142	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	だって、王	2	0x017F1	143	-	amest	0, 0x01000008, 0x03c0, 0x03d9, 4	-	line 8: She is queen now, after all.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	だって、王	3	0x017F4	144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	戴冠式であ	1	0x017FB	149	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	戴冠式であ	2	0x0180D	150	-	amest	0, 0x01000009, 0x03c0, 0x03d9, 4	-	line 9: I am looking forward to seeing you at the ceremony.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	戴冠式であ	3	0x01810	151	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	お呼びです	1	0x01817	156	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	お呼びです	2	0x01829	157	-	amest	0, 0x0100000a, 0x03c0, 0x03d9, 4	-	line 10: You called, my lord?	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	お呼びです	3	0x0182C	158	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	バッシュ小	1	0x01833	163	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	バッシュ小	2	0x01845	164	-	amest	0, 0x0100000b, 0x03c0, 0x03d9, 4	-	line 11: How is Basch?	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	バッシュ小	3	0x01848	165	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	イヴァリー	1	0x0184F	170	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	イヴァリー	2	0x01861	171	-	amest	0, 0x0100000c, 0x03c0, 0x03d9, 4	-	"line 12: I know he went with you to Archades ""to further the cause of peace in Ivalice""..."	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	イヴァリー	3	0x01864	172	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	本当はアー	1	0x0186B	177	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	本当はアー	2	0x0187D	178	-	amest	0, 0x0100000d, 0x03c0, 0x03d9, 4	-	line 13: but still, I hope he comes back to Rabanastre, and Ashe, soon.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	本当はアー	3	0x01880	179	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	彼女、立場	1	0x01887	184	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	彼女、立場	2	0x01899	185	-	amest	0, 0x0100000e, 0x03c0, 0x03d9, 4	-	line 14: She has to keep up appearances now, so she would never say it...	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	彼女、立場	3	0x0189C	186	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	きっと寂し	1	0x018A3	191	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	きっと寂し	2	0x018B5	192	-	amest	0, 0x0100000f, 0x03c0, 0x03d9, 4	-	line 15: but I think she misses him.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	きっと寂し	3	0x018B8	193	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	帝国は一枚	1	0x018BF	198	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	帝国は一枚	2	0x018D1	199	-	amest	0, 0x01000010, 0x03c0, 0x03d9, 4	-	line 16: Lose Larsa and we lose the Empire.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	帝国は一枚	3	0x018D4	200	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	頼む、ラー	1	0x018DB	205	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	頼む、ラー	2	0x018ED	206	-	amest	0, 0x01000011, 0x03c0, 0x03d9, 4	-	line 17: Protect him. I would entrust him to no other's care.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	頼む、ラー	3	0x018F0	207	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	心配するな	1	0x018F7	212	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	心配するな	2	0x01909	213	-	amest	0, 0x01000012, 0x03c0, 0x03d9, 4	-	line 18: I will keep him from harm. I promise you.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	心配するな	3	0x0190C	214	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	ダルマスカ	1	0x01913	219	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	ダルマスカ	2	0x01925	220	-	amest	0, 0x01000013, 0x03c0, 0x03d9, 4	-	line 19: For the Empire, and for Dalmasca.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	ダルマスカ	3	0x01928	221	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	それを聞い	1	0x0192F	226	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	それを聞い	2	0x01941	227	-	amest	0, 0x01000014, 0x03c0, 0x03d9, 4	-	line 20: Your words put me at ease, Brother.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	それを聞い	3	0x01944	228	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	すまない	1	0x0194B	233	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	すまない	2	0x0195D	234	-	amest	0, 0x01000015, 0x03c0, 0x03d9, 4	-	line 21: Sorry to leave you.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	すまない	3	0x01960	235	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	・・・兄さ	1	0x01967	240	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	・・・兄さ	2	0x01979	241	-	amest	0, 0x01000016, 0x03c0, 0x03d9, 4	-	line 22: (empty string)	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	・・・兄さ	3	0x0197C	242	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	肝心なこと	1	0x01983	247	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	肝心なこと	2	0x01995	248	-	amest	0, 0x01000017, 0x03c0, 0x03d9, 4	-	line 23: Oh, I haven't told you the most important part!	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	肝心なこと	3	0x01998	249	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	預かってい	1	0x0199F	254	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	預かってい	2	0x019B1	255	-	amest	0, 0x01000018, 0x03c0, 0x03d9, 4	-	line 24: Vaan and I had been taking care of the Strahl, but it was stolen!	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	預かってい	3	0x019B4	256	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	メンテナン	1	0x019BB	261	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	メンテナン	2	0x019CD	262	-	amest	0, 0x01000019, 0x03c0, 0x03d9, 4	-	line 25: We had just finished having her tuned up, too.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	メンテナン	3	0x019D0	263	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	でも、持ち	1	0x019D7	268	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	でも、持ち	2	0x019E9	269	-	amest	0, 0x0100001a, 0x03c0, 0x03d9, 4	-	line 26: Actually, stolen might not be the right word. If her owner wants her back, there's not much we can do about it, is there.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	でも、持ち	3	0x019EC	270	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	戴冠式まで	1	0x019F3	275	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	戴冠式まで	2	0x01A05	276	-	amest	0, 0x0100001b, 0x03c0, 0x03d9, 4	-	line 27: There's still plenty of time before the coronation, so Vaan's going to pay the two of them a visit.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	戴冠式まで	3	0x01A08	277	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	ふたりに会	1	0x01A0F	282	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	ふたりに会	2	0x01A21	283	-	amest	0, 0x0100001c, 0x03c0, 0x03d9, 4	-	line 28: You should see him! He can hardly wait.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	ふたりに会	3	0x01A24	284	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	もちろん２	1	0x01A2B	289	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	もちろん２	2	0x01A3D	290	-	amest	0, 0x0100001d, 0x03c0, 0x03d9, 4	-	line 29: I'll be going too, of course.	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	もちろん２	3	0x01A40	291	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	空賊デビュー	1	0x01A47	296	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
+msg_z0001	台詞	空賊デビュー	2	0x01A59	297	-	amest	0, 0x0100001e, 0x03c0, 0x03d9, 4	-	line 30: Every good sky pirate needs a partner, right?	-	-	-	resolved	this page's How a call is read
+msg_z0001	台詞	空賊デビュー	3	0x01A5C	298	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	手紙	1	0x01A63	303	-	effectplay_e2	0, 0	effect slot 0: the effect read into it, played with 0 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+msg_z0001	台詞	手紙	2	0x01A6C	304	-	effectplay_e2	0, 1	effect slot 0: the effect read into it, played with 1 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+msg_z0001	台詞	手紙	3	0x01A6F	305	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	台詞	手紙２	1	0x01A76	310	-	effectplay_e2	0, 3	effect slot 0: the effect read into it, played with 3 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+msg_z0001	台詞	手紙２	2	0x01A79	311	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	init	1	0x01A7A	325	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	監視停止	1	0x01A7E	330	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	1	0x01A83	335	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	2	0x01A86	337	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	3	0x01A89	338	getff12lang() = 0	store	file_var_s2_1 = 0x0430	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	4	0x01A8C	339	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	5	0x01A8F	340	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	6	0x01A92	341	getff12lang() is none of 0	store	file_var_s2_1 = 0x0430	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	7	0x01A95	342	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	8	0x01AAE	344	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	9	0x01AB7	346	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	10	0x01AC6	348	-	sysReq	1, 台詞::この一年は	actor `台詞`	-	-	files 台詞::この一年は on channel 1; does not wait	台詞.この一年は	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	11	0x01ACB	349	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	12	0x01ACE	351	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	13	0x01AD1	352	getff12lang() = 0	store	file_var_s2_1 = 0x04a1	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	14	0x01AD4	353	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	15	0x01AD7	354	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	16	0x01ADA	355	getff12lang() is none of 0	store	file_var_s2_1 = 0x047e	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	17	0x01ADD	356	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	18	0x01AF6	358	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	19	0x01AFF	360	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	20	0x01B08	362	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	21	0x01B0F	363	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	22	0x01B12	365	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	23	0x01B15	366	getff12lang() = 0	store	file_var_s2_1 = 0x050f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	24	0x01B18	367	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	25	0x01B1B	368	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	26	0x01B1E	369	getff12lang() is none of 0	store	file_var_s2_1 = 0x050f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	27	0x01B21	370	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	28	0x01B3A	372	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	29	0x01B43	374	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	30	0x01B52	376	-	sysReq	1, 台詞::ラバナスタ	actor `台詞`	-	-	files 台詞::ラバナスタ on channel 1; does not wait	台詞.ラバナスタ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	31	0x01B57	377	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	32	0x01B5A	379	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	33	0x01B5D	380	getff12lang() = 0	store	file_var_s2_1 = 0x05c3	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	34	0x01B60	381	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	35	0x01B63	382	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	36	0x01B66	383	getff12lang() is none of 0	store	file_var_s2_1 = 0x05a8	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	37	0x01B69	384	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	38	0x01B82	386	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	39	0x01B8B	388	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	40	0x01B94	390	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	41	0x01B9B	391	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	42	0x01B9E	393	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	43	0x01BA1	394	getff12lang() = 0	store	file_var_s2_1 = 0x0658	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	44	0x01BA4	395	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	45	0x01BA7	396	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	46	0x01BAA	397	getff12lang() is none of 0	store	file_var_s2_1 = 0x0658	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	47	0x01BAD	398	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	48	0x01BC6	400	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	49	0x01BCF	402	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	50	0x01BDE	404	-	sysReq	1, 台詞::もちろん、	actor `台詞`	-	-	files 台詞::もちろん、 on channel 1; does not wait	台詞.もちろん、	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	51	0x01BE3	405	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	52	0x01BE6	407	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	53	0x01BE9	408	getff12lang() = 0	store	file_var_s2_1 = 0x06a9	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	54	0x01BEC	409	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	55	0x01BEF	410	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	56	0x01BF2	411	getff12lang() is none of 0	store	file_var_s2_1 = 0x068a	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	57	0x01BF5	412	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	58	0x01C0E	414	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	59	0x01C17	416	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	60	0x01C20	418	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	61	0x01C27	419	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	62	0x01C2A	421	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	63	0x01C2D	422	getff12lang() = 0	store	file_var_s2_1 = 0x06c7	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	64	0x01C30	423	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	65	0x01C33	424	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	66	0x01C36	425	getff12lang() is none of 0	store	file_var_s2_1 = 0x0690	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	67	0x01C39	426	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	68	0x01C52	428	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	69	0x01C5B	430	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	70	0x01C6A	432	-	sysReq	1, 台詞::でも、過去	actor `台詞`	-	-	files 台詞::でも、過去 on channel 1; does not wait	台詞.でも、過去	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	71	0x01C6F	433	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	72	0x01C72	435	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	73	0x01C75	436	getff12lang() = 0	store	file_var_s2_1 = 0x0762	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	74	0x01C78	437	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	75	0x01C7B	438	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	76	0x01C7E	439	getff12lang() is none of 0	store	file_var_s2_1 = 0x072a	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	77	0x01C81	440	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	78	0x01C9A	442	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	79	0x01CA3	444	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	80	0x01CAC	446	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	81	0x01CB3	447	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	82	0x01CB6	449	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	83	0x01CB9	450	getff12lang() = 0	store	file_var_s2_1 = 0x0887	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	84	0x01CBC	451	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	85	0x01CBF	452	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	86	0x01CC2	453	getff12lang() is none of 0	store	file_var_s2_1 = 0x0887	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	87	0x01CC5	454	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	88	0x01CDE	456	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	89	0x01CE7	458	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	90	0x01CF6	460	-	sysReq	1, 台詞::来月はいよ	actor `台詞`	-	-	files 台詞::来月はいよ on channel 1; does not wait	台詞.来月はいよ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	91	0x01CFB	461	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	92	0x01CFE	463	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	93	0x01D01	464	getff12lang() = 0	store	file_var_s2_1 = 0x08cf	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	94	0x01D04	465	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	95	0x01D07	466	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	96	0x01D0A	467	getff12lang() is none of 0	store	file_var_s2_1 = 0x08c8	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	97	0x01D0D	468	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	98	0x01D26	470	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	99	0x01D2F	472	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	100	0x01D38	474	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	101	0x01D3F	475	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	102	0x01D42	477	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	103	0x01D45	478	getff12lang() = 0	store	file_var_s2_1 = 0x08ef	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	104	0x01D48	479	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	105	0x01D4B	480	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	106	0x01D4E	481	getff12lang() is none of 0	store	file_var_s2_1 = 0x08ef	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	107	0x01D51	482	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	108	0x01D6A	484	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	109	0x01D73	486	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	110	0x01D82	488	-	sysReq	1, 台詞::アーシェが	actor `台詞`	-	-	files 台詞::アーシェが on channel 1; does not wait	台詞.アーシェが	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	111	0x01D87	489	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	112	0x01D8A	491	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	113	0x01D8D	492	getff12lang() = 0	store	file_var_s2_1 = 0x093f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	114	0x01D90	493	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	115	0x01D93	494	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	116	0x01D96	495	getff12lang() is none of 0	store	file_var_s2_1 = 0x093f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	117	0x01D99	496	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	118	0x01DB2	498	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	119	0x01DBB	500	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	120	0x01DC4	502	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	121	0x01DCB	503	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	122	0x01DCE	505	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	123	0x01DD1	506	getff12lang() = 0	store	file_var_s2_1 = 0x094c	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	124	0x01DD4	507	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	125	0x01DD7	508	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	126	0x01DDA	509	getff12lang() is none of 0	store	file_var_s2_1 = 0x094c	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	127	0x01DDD	510	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	128	0x01DF6	512	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	129	0x01DFF	514	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	130	0x01E0E	516	-	sysReq	1, 台詞::それは仕方	actor `台詞`	-	-	files 台詞::それは仕方 on channel 1; does not wait	台詞.それは仕方	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	131	0x01E13	517	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	132	0x01E16	519	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	133	0x01E19	520	getff12lang() = 0	store	file_var_s2_1 = 0x097e	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	134	0x01E1C	521	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	135	0x01E1F	522	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	136	0x01E22	523	getff12lang() is none of 0	store	file_var_s2_1 = 0x099a	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	137	0x01E25	524	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	138	0x01E3E	526	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	139	0x01E47	528	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	140	0x01E50	530	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	141	0x01E57	531	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	142	0x01E5A	533	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	143	0x01E5D	534	getff12lang() = 0	store	file_var_s2_1 = 0x09a0	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	144	0x01E60	535	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	145	0x01E63	536	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	146	0x01E66	537	getff12lang() is none of 0	store	file_var_s2_1 = 0x09a0	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	147	0x01E69	538	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	148	0x01E82	540	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	149	0x01E8B	542	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	150	0x01E9A	544	-	sysReq	1, 台詞::だって、王	actor `台詞`	-	-	files 台詞::だって、王 on channel 1; does not wait	台詞.だって、王	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	151	0x01E9F	545	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	152	0x01EA2	547	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	153	0x01EA5	548	getff12lang() = 0	store	file_var_s2_1 = 0x09e8	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	154	0x01EA8	549	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	155	0x01EAB	550	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	156	0x01EAE	551	getff12lang() is none of 0	store	file_var_s2_1 = 0x09e8	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	157	0x01EB1	552	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	158	0x01ECA	554	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	159	0x01ED3	556	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	160	0x01EDC	558	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	161	0x01EE3	559	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	162	0x01EE6	561	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	163	0x01EE9	562	getff12lang() = 0	store	file_var_s2_1 = 0x0afe	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	164	0x01EEC	563	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	165	0x01EEF	564	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	166	0x01EF2	565	getff12lang() is none of 0	store	file_var_s2_1 = 0x0afe	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	167	0x01EF5	566	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	168	0x01F0E	568	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	169	0x01F17	570	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	170	0x01F26	572	-	sysReq	1, 台詞::戴冠式であ	actor `台詞`	-	-	files 台詞::戴冠式であ on channel 1; does not wait	台詞.戴冠式であ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	171	0x01F2B	573	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	172	0x01F2E	575	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	173	0x01F31	576	getff12lang() = 0	store	file_var_s2_1 = 0x0b68	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	174	0x01F34	577	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	175	0x01F37	578	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	176	0x01F3A	579	getff12lang() is none of 0	store	file_var_s2_1 = 0x0b56	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	177	0x01F3D	580	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	178	0x01F56	582	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	179	0x01F5F	584	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	180	0x01F68	586	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	181	0x01F6F	587	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	182	0x01F72	589	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	183	0x01F75	590	getff12lang() = 0	store	file_var_s2_1 = 0x0b80	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	184	0x01F78	591	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	185	0x01F7B	592	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	186	0x01F7E	593	getff12lang() is none of 0	store	file_var_s2_1 = 0x0b80	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	187	0x01F81	594	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	188	0x01F9A	596	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	189	0x01FA3	598	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	190	0x01FB2	600	-	sysReq	1, 台詞::お呼びです	actor `台詞`	-	-	files 台詞::お呼びです on channel 1; does not wait	台詞.お呼びです	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	191	0x01FB7	601	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	192	0x01FBA	603	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	193	0x01FBD	604	getff12lang() = 0	store	file_var_s2_1 = 0x0b9f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	194	0x01FC0	605	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	195	0x01FC3	606	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	196	0x01FC6	607	getff12lang() is none of 0	store	file_var_s2_1 = 0x0bad	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	197	0x01FC9	608	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	198	0x01FE2	610	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	199	0x01FEB	612	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	200	0x01FF4	614	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	201	0x01FFB	615	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	202	0x01FFE	617	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	203	0x02001	618	getff12lang() = 0	store	file_var_s2_1 = 0x0d58	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	204	0x02004	619	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	205	0x02007	620	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	206	0x0200A	621	getff12lang() is none of 0	store	file_var_s2_1 = 0x0d58	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	207	0x0200D	622	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	208	0x02026	624	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	209	0x0202F	626	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	210	0x0203E	628	-	sysReq	1, 台詞::バッシュ小	actor `台詞`	-	-	files 台詞::バッシュ小 on channel 1; does not wait	台詞.バッシュ小	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	211	0x02043	629	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	212	0x02046	631	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	213	0x02049	632	getff12lang() = 0	store	file_var_s2_1 = 0x0d93	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	214	0x0204C	633	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	215	0x0204F	634	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	216	0x02052	635	getff12lang() is none of 0	store	file_var_s2_1 = 0x0d82	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	217	0x02055	636	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	218	0x0206E	638	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	219	0x02077	640	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	220	0x02080	642	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	221	0x02087	643	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	222	0x0208A	645	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	223	0x0208D	646	getff12lang() = 0	store	file_var_s2_1 = 0x0dac	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	224	0x02090	647	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	225	0x02093	648	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	226	0x02096	649	getff12lang() is none of 0	store	file_var_s2_1 = 0x0dac	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	227	0x02099	650	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	228	0x020B2	652	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	229	0x020BB	654	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	230	0x020CA	656	-	sysReq	1, 台詞::イヴァリー	actor `台詞`	-	-	files 台詞::イヴァリー on channel 1; does not wait	台詞.イヴァリー	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	231	0x020CF	657	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	232	0x020D2	659	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	233	0x020D5	660	getff12lang() = 0	store	file_var_s2_1 = 0x0e30	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	234	0x020D8	661	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	235	0x020DB	662	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	236	0x020DE	663	getff12lang() is none of 0	store	file_var_s2_1 = 0x0e30	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	237	0x020E1	664	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	238	0x020FA	666	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	239	0x02103	668	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	240	0x0210C	670	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	241	0x02113	671	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	242	0x02116	673	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	243	0x02119	674	getff12lang() = 0	store	file_var_s2_1 = 0x0e56	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	244	0x0211C	675	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	245	0x0211F	676	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	246	0x02122	677	getff12lang() is none of 0	store	file_var_s2_1 = 0x0e38	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	247	0x02125	678	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	248	0x0213E	680	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	249	0x02147	682	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	250	0x02156	684	-	sysReq	1, 台詞::本当はアー	actor `台詞`	-	-	files 台詞::本当はアー on channel 1; does not wait	台詞.本当はアー	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	251	0x0215B	685	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	252	0x0215E	687	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	253	0x02161	688	getff12lang() = 0	store	file_var_s2_1 = 0x0ebf	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	254	0x02164	689	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	255	0x02167	690	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	256	0x0216A	691	getff12lang() is none of 0	store	file_var_s2_1 = 0x0ec4	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	257	0x0216D	692	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	258	0x02186	694	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	259	0x0218F	696	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	260	0x02198	698	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	261	0x0219F	699	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	262	0x021A2	701	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	263	0x021A5	702	getff12lang() = 0	store	file_var_s2_1 = 0x0ee0	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	264	0x021A8	703	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	265	0x021AB	704	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	266	0x021AE	705	getff12lang() is none of 0	store	file_var_s2_1 = 0x0ee0	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	267	0x021B1	706	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	268	0x021CA	708	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	269	0x021D3	710	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	270	0x021E2	712	-	sysReq	1, 台詞::彼女、立場	actor `台詞`	-	-	files 台詞::彼女、立場 on channel 1; does not wait	台詞.彼女、立場	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	271	0x021E7	713	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	272	0x021EA	715	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	273	0x021ED	716	getff12lang() = 0	store	file_var_s2_1 = 0x0f55	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	274	0x021F0	717	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	275	0x021F3	718	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	276	0x021F6	719	getff12lang() is none of 0	store	file_var_s2_1 = 0x0f55	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	277	0x021F9	720	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	278	0x02212	722	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	279	0x0221B	724	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	280	0x02224	726	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	281	0x0222B	727	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	282	0x0222E	729	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	283	0x02231	730	getff12lang() = 0	store	file_var_s2_1 = 0x0f64	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	284	0x02234	731	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	285	0x02237	732	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	286	0x0223A	733	getff12lang() is none of 0	store	file_var_s2_1 = 0x0f46	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	287	0x0223D	734	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	288	0x02256	736	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	289	0x0225F	738	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	290	0x0226E	740	-	sysReq	1, 台詞::きっと寂し	actor `台詞`	-	-	files 台詞::きっと寂し on channel 1; does not wait	台詞.きっと寂し	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	291	0x02273	741	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	292	0x02276	743	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	293	0x02279	744	getff12lang() = 0	store	file_var_s2_1 = 0x0f96	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	294	0x0227C	745	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	295	0x0227F	746	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	296	0x02282	747	getff12lang() is none of 0	store	file_var_s2_1 = 0x0f94	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	297	0x02285	748	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	298	0x0229E	750	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	299	0x022A7	752	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	300	0x022B0	754	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	301	0x022B7	755	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	302	0x022BA	757	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	303	0x022BD	758	getff12lang() = 0	store	file_var_s2_1 = 0x100e	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	304	0x022C0	759	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	305	0x022C3	760	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	306	0x022C6	761	getff12lang() is none of 0	store	file_var_s2_1 = 0x100e	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	307	0x022C9	762	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	308	0x022E2	764	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	309	0x022EB	766	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	310	0x022FA	768	-	sysReq	1, 台詞::帝国は一枚	actor `台詞`	-	-	files 台詞::帝国は一枚 on channel 1; does not wait	台詞.帝国は一枚	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	311	0x022FF	769	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	312	0x02302	771	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	313	0x02305	772	getff12lang() = 0	store	file_var_s2_1 = 0x1054	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	314	0x02308	773	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	315	0x0230B	774	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	316	0x0230E	775	getff12lang() is none of 0	store	file_var_s2_1 = 0x1066	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	317	0x02311	776	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	318	0x0232A	778	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	319	0x02333	780	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	320	0x0233C	782	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	321	0x02343	783	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	322	0x02346	785	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	323	0x02349	786	getff12lang() = 0	store	file_var_s2_1 = 0x1077	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	324	0x0234C	787	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	325	0x0234F	788	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	326	0x02352	789	getff12lang() is none of 0	store	file_var_s2_1 = 0x1073	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	327	0x02355	790	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	328	0x0236E	792	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	329	0x02377	794	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	330	0x02386	796	-	sysReq	1, 台詞::頼む、ラー	actor `台詞`	-	-	files 台詞::頼む、ラー on channel 1; does not wait	台詞.頼む、ラー	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	331	0x0238B	797	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	332	0x0238E	799	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	333	0x02391	800	getff12lang() = 0	store	file_var_s2_1 = 0x10d6	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	334	0x02394	801	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	335	0x02397	802	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	336	0x0239A	803	getff12lang() is none of 0	store	file_var_s2_1 = 0x10e0	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	337	0x0239D	804	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	338	0x023B6	806	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	339	0x023BF	808	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	340	0x023C8	810	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	341	0x023CF	811	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	342	0x023D2	813	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	343	0x023D5	814	getff12lang() = 0	store	file_var_s2_1 = 0x110b	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	344	0x023D8	815	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	345	0x023DB	816	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	346	0x023DE	817	getff12lang() is none of 0	store	file_var_s2_1 = 0x110b	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	347	0x023E1	818	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	348	0x023FA	820	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	349	0x02403	822	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	350	0x02412	824	-	sysReq	1, 台詞::心配するな	actor `台詞`	-	-	files 台詞::心配するな on channel 1; does not wait	台詞.心配するな	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	351	0x02417	825	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	352	0x0241A	827	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	353	0x0241D	828	getff12lang() = 0	store	file_var_s2_1 = 0x1153	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	354	0x02420	829	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	355	0x02423	830	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	356	0x02426	831	getff12lang() is none of 0	store	file_var_s2_1 = 0x115e	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	357	0x02429	832	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	358	0x02442	834	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	359	0x0244B	836	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	360	0x02454	838	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	361	0x0245B	839	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	362	0x0245E	841	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	363	0x02461	842	getff12lang() = 0	store	file_var_s2_1 = 0x116f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	364	0x02464	843	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	365	0x02467	844	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	366	0x0246A	845	getff12lang() is none of 0	store	file_var_s2_1 = 0x116f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	367	0x0246D	846	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	368	0x02486	848	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	369	0x0248F	850	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	370	0x0249E	852	-	sysReq	1, 台詞::ダルマスカ	actor `台詞`	-	-	files 台詞::ダルマスカ on channel 1; does not wait	台詞.ダルマスカ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	371	0x024A3	853	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	372	0x024A6	855	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	373	0x024A9	856	getff12lang() = 0	store	file_var_s2_1 = 0x11a8	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	374	0x024AC	857	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	375	0x024AF	858	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	376	0x024B2	859	getff12lang() is none of 0	store	file_var_s2_1 = 0x11b9	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	377	0x024B5	860	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	378	0x024CE	862	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	379	0x024D7	864	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	380	0x024E0	866	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	381	0x024E7	867	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	382	0x024EA	869	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	383	0x024ED	870	getff12lang() = 0	store	file_var_s2_1 = 0x11f2	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	384	0x024F0	871	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	385	0x024F3	872	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	386	0x024F6	873	getff12lang() is none of 0	store	file_var_s2_1 = 0x11f2	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	387	0x024F9	874	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	388	0x02512	876	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	389	0x0251B	878	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	390	0x0252A	880	-	sysReq	1, 台詞::それを聞い	actor `台詞`	-	-	files 台詞::それを聞い on channel 1; does not wait	台詞.それを聞い	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	391	0x0252F	881	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	392	0x02532	883	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	393	0x02535	884	getff12lang() = 0	store	file_var_s2_1 = 0x123e	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	394	0x02538	885	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	395	0x0253B	886	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	396	0x0253E	887	getff12lang() is none of 0	store	file_var_s2_1 = 0x1242	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	397	0x02541	888	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	398	0x0255A	890	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	399	0x02563	892	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	400	0x0256C	894	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	401	0x02573	895	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	402	0x02576	897	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	403	0x02579	898	getff12lang() = 0	store	file_var_s2_1 = 0x1264	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	404	0x0257C	899	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	405	0x0257F	900	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	406	0x02582	901	getff12lang() is none of 0	store	file_var_s2_1 = 0x1264	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	407	0x02585	902	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	408	0x0259E	904	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	409	0x025A7	906	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	410	0x025B6	908	-	sysReq	1, 台詞::すまない	actor `台詞`	-	-	files 台詞::すまない on channel 1; does not wait	台詞.すまない	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	411	0x025BB	909	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	412	0x025BE	911	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	413	0x025C1	912	getff12lang() = 0	store	file_var_s2_1 = 0x1284	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	414	0x025C4	913	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	415	0x025C7	914	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	416	0x025CA	915	getff12lang() is none of 0	store	file_var_s2_1 = 0x129d	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	417	0x025CD	916	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	418	0x025E6	918	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	419	0x025EF	920	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	420	0x025F8	922	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	421	0x02602	923	-	if	getff12lang() == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	422	0x02609	925	getff12lang() == 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	423	0x0260C	927	getff12lang() == 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	424	0x0260F	928	getff12lang() == 0; getff12lang() = 0	store	file_var_s2_1 = 0x12b8	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	425	0x02612	929	getff12lang() == 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	426	0x02615	930	getff12lang() == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	427	0x02618	931	getff12lang() == 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x12b8	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	428	0x0261B	932	getff12lang() == 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	429	0x02634	934	getff12lang() == 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	430	0x0263D	936	getff12lang() == 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	431	0x0264C	938	getff12lang() == 0	sysReq	1, 台詞::・・・兄さ	actor `台詞`	-	-	files 台詞::・・・兄さ on channel 1; does not wait	台詞.・・・兄さ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	432	0x02651	939	getff12lang() == 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	433	0x02654	941	getff12lang() == 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	434	0x02657	942	getff12lang() == 0; getff12lang() = 0	store	file_var_s2_1 = 0x12cf	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	435	0x0265A	943	getff12lang() == 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	436	0x0265D	944	getff12lang() == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	437	0x02660	945	getff12lang() == 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x12cf	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	438	0x02663	946	getff12lang() == 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	439	0x0267C	948	getff12lang() == 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	440	0x02685	950	getff12lang() == 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	441	0x0268E	952	getff12lang() == 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	442	0x02695	954	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	443	0x02698	956	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	444	0x0269B	957	getff12lang() = 0	store	file_var_s2_1 = 0x1571	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	445	0x0269E	958	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	446	0x026A1	959	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	447	0x026A4	960	getff12lang() is none of 0	store	file_var_s2_1 = 0x1571	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	448	0x026A7	961	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	449	0x026C0	963	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	450	0x026C9	965	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	451	0x026D8	967	-	sysReq	1, 台詞::肝心なこと	actor `台詞`	-	-	files 台詞::肝心なこと on channel 1; does not wait	台詞.肝心なこと	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	452	0x026DD	968	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	453	0x026E0	970	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	454	0x026E3	971	getff12lang() = 0	store	file_var_s2_1 = 0x15ae	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	455	0x026E6	972	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	456	0x026E9	973	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	457	0x026EC	974	getff12lang() is none of 0	store	file_var_s2_1 = 0x15cc	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	458	0x026EF	975	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	459	0x02708	977	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	460	0x02711	979	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	461	0x0271A	981	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	462	0x02721	982	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	463	0x02724	984	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	464	0x02727	985	getff12lang() = 0	store	file_var_s2_1 = 0x1608	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	465	0x0272A	986	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	466	0x0272D	987	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	467	0x02730	988	getff12lang() is none of 0	store	file_var_s2_1 = 0x1608	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	468	0x02733	989	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	469	0x0274C	991	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	470	0x02755	993	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	471	0x02764	995	-	sysReq	1, 台詞::預かってい	actor `台詞`	-	-	files 台詞::預かってい on channel 1; does not wait	台詞.預かってい	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	472	0x02769	996	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	473	0x0276C	998	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	474	0x0276F	999	getff12lang() = 0	store	file_var_s2_1 = 0x1662	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	475	0x02772	1000	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	476	0x02775	1001	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	477	0x02778	1002	getff12lang() is none of 0	store	file_var_s2_1 = 0x1674	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	478	0x0277B	1003	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	479	0x02794	1005	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	480	0x0279D	1007	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	481	0x027A6	1009	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	482	0x027AD	1010	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	483	0x027B0	1012	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	484	0x027B4	1013	getff12lang() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	485	0x027B7	1015	getff12lang() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	486	0x027BA	1016	getff12lang() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x1812	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	487	0x027BD	1017	getff12lang() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	488	0x027C0	1018	getff12lang() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	489	0x027C3	1019	getff12lang() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1812	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	490	0x027C6	1020	getff12lang() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	491	0x027DF	1022	getff12lang() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	492	0x027E8	1024	getff12lang() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	493	0x027F7	1026	getff12lang() = 0	sysReq	1, 台詞::手紙	actor `台詞`	-	-	files 台詞::手紙 on channel 1; does not wait	台詞.手紙	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	494	0x027FC	1027	getff12lang() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	495	0x027FF	1029	getff12lang() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	496	0x02802	1030	getff12lang() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x186c	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	497	0x02805	1031	getff12lang() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	498	0x02808	1032	getff12lang() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	499	0x0280B	1033	getff12lang() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x186c	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	500	0x0280E	1034	getff12lang() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	501	0x02827	1036	getff12lang() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	502	0x02830	1038	getff12lang() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	503	0x0283C	1040	getff12lang() = 0	effectplay_e2	0, 2	effect slot 0: the effect read into it, played with 2 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+msg_z0001	監視監督	Movie監視	504	0x02843	1041	getff12lang() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	505	0x02846	1043	getff12lang() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	506	0x02849	1044	getff12lang() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x195f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	507	0x0284C	1045	getff12lang() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	508	0x0284F	1046	getff12lang() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	509	0x02852	1047	getff12lang() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x195f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	510	0x02855	1048	getff12lang() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	511	0x0286E	1050	getff12lang() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	512	0x02877	1052	getff12lang() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	513	0x02886	1054	getff12lang() = 0	sysReq	1, 台詞::メンテナン	actor `台詞`	-	-	files 台詞::メンテナン on channel 1; does not wait	台詞.メンテナン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	514	0x0288B	1055	getff12lang() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	515	0x0288E	1057	getff12lang() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	516	0x02891	1058	getff12lang() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x19b4	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	517	0x02894	1059	getff12lang() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	518	0x02897	1060	getff12lang() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	519	0x0289A	1061	getff12lang() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x19b4	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	520	0x0289D	1062	getff12lang() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	521	0x028B6	1064	getff12lang() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	522	0x028BF	1066	getff12lang() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	523	0x028C8	1068	getff12lang() = 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	524	0x028CF	1069	getff12lang() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	525	0x028D2	1071	getff12lang() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	526	0x028D5	1072	getff12lang() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x19e1	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	527	0x028D8	1073	getff12lang() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	528	0x028DB	1074	getff12lang() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	529	0x028DE	1075	getff12lang() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x19e1	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	530	0x028E1	1076	getff12lang() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	531	0x028FA	1078	getff12lang() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	532	0x02903	1080	getff12lang() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	533	0x02912	1082	getff12lang() = 0	sysReq	1, 台詞::でも、持ち	actor `台詞`	-	-	files 台詞::でも、持ち on channel 1; does not wait	台詞.でも、持ち	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	534	0x02917	1083	getff12lang() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	535	0x0291A	1085	getff12lang() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	536	0x0291D	1086	getff12lang() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x1a4f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	537	0x02920	1087	getff12lang() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	538	0x02923	1088	getff12lang() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	539	0x02926	1089	getff12lang() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1a4f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	540	0x02929	1090	getff12lang() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	541	0x02942	1092	getff12lang() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	542	0x0294B	1094	getff12lang() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	543	0x02954	1096	getff12lang() = 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	544	0x02957	1097	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	545	0x0295A	1098	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	546	0x0295E	1099	getff12lang() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	547	0x02961	1101	getff12lang() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	548	0x02964	1102	getff12lang() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x1683	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	549	0x02967	1103	getff12lang() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	550	0x0296A	1104	getff12lang() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	551	0x0296D	1105	getff12lang() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1683	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	552	0x02970	1106	getff12lang() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	553	0x02989	1108	getff12lang() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	554	0x02992	1110	getff12lang() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	555	0x029A1	1112	getff12lang() is none of 0	sysReq	1, 台詞::メンテナン	actor `台詞`	-	-	files 台詞::メンテナン on channel 1; does not wait	台詞.メンテナン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	556	0x029A6	1113	getff12lang() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	557	0x029A9	1115	getff12lang() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	558	0x029AC	1116	getff12lang() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x16d4	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	559	0x029AF	1117	getff12lang() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	560	0x029B2	1118	getff12lang() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	561	0x029B5	1119	getff12lang() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x16d4	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	562	0x029B8	1120	getff12lang() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	563	0x029D1	1122	getff12lang() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	564	0x029DA	1124	getff12lang() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	565	0x029E3	1126	getff12lang() is none of 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	566	0x029EA	1127	getff12lang() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	567	0x029ED	1129	getff12lang() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	568	0x029F0	1130	getff12lang() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x1812	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	569	0x029F3	1131	getff12lang() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	570	0x029F6	1132	getff12lang() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	571	0x029F9	1133	getff12lang() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1812	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	572	0x029FC	1134	getff12lang() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	573	0x02A15	1136	getff12lang() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	574	0x02A1E	1138	getff12lang() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	575	0x02A2D	1140	getff12lang() is none of 0	sysReq	1, 台詞::手紙	actor `台詞`	-	-	files 台詞::手紙 on channel 1; does not wait	台詞.手紙	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	576	0x02A32	1141	getff12lang() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	577	0x02A35	1143	getff12lang() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	578	0x02A38	1144	getff12lang() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x186c	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	579	0x02A3B	1145	getff12lang() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	580	0x02A3E	1146	getff12lang() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	581	0x02A41	1147	getff12lang() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x186c	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	582	0x02A44	1148	getff12lang() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	583	0x02A5D	1150	getff12lang() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	584	0x02A66	1152	getff12lang() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	585	0x02A72	1154	getff12lang() is none of 0	effectplay_e2	0, 2	effect slot 0: the effect read into it, played with 2 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+msg_z0001	監視監督	Movie監視	586	0x02A79	1155	getff12lang() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	587	0x02A7C	1157	getff12lang() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	588	0x02A7F	1158	getff12lang() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x195f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	589	0x02A82	1159	getff12lang() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	590	0x02A85	1160	getff12lang() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	591	0x02A88	1161	getff12lang() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x195f	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	592	0x02A8B	1162	getff12lang() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	593	0x02AA4	1164	getff12lang() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	594	0x02AAD	1166	getff12lang() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	595	0x02ABC	1168	getff12lang() is none of 0	sysReq	1, 台詞::でも、持ち	actor `台詞`	-	-	files 台詞::でも、持ち on channel 1; does not wait	台詞.でも、持ち	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	596	0x02AC1	1169	getff12lang() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	597	0x02AC4	1171	getff12lang() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	598	0x02AC7	1172	getff12lang() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x1a40	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	599	0x02ACA	1173	getff12lang() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	600	0x02ACD	1174	getff12lang() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	601	0x02AD0	1175	getff12lang() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1a40	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	602	0x02AD3	1176	getff12lang() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	603	0x02AEC	1178	getff12lang() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	604	0x02AF5	1180	getff12lang() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	605	0x02AFE	1182	getff12lang() is none of 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	606	0x02B01	1183	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	607	0x02B17	1185	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	608	0x02B1A	1187	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	609	0x02B1D	1188	getff12lang() = 0	store	file_var_s2_1 = 0x1bbc	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	610	0x02B20	1189	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	611	0x02B23	1190	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	612	0x02B26	1191	getff12lang() is none of 0	store	file_var_s2_1 = 0x1bbc	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	613	0x02B29	1192	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	614	0x02B42	1194	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	615	0x02B4B	1196	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	616	0x02B5A	1198	-	sysReq	1, 台詞::手紙２	actor `台詞`	-	-	files 台詞::手紙２ on channel 1; does not wait	台詞.手紙２	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	617	0x02B5F	1199	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	618	0x02B62	1201	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	619	0x02B65	1202	getff12lang() = 0	store	file_var_s2_1 = 0x1c16	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	620	0x02B68	1203	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	621	0x02B6B	1204	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	622	0x02B6E	1205	getff12lang() is none of 0	store	file_var_s2_1 = 0x1c16	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	623	0x02B71	1206	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	624	0x02B8A	1208	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	625	0x02B93	1210	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	626	0x02B9F	1212	-	effectplay_e2	0, 2	effect slot 0: the effect read into it, played with 2 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+msg_z0001	監視監督	Movie監視	627	0x02BA6	1213	-	switch	unkCall_59c()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	628	0x02BA9	1215	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	629	0x02BAD	1216	unkCall_59c() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	630	0x02BB0	1218	unkCall_59c() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	631	0x02BB3	1219	unkCall_59c() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x1cb6	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	632	0x02BB6	1220	unkCall_59c() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	633	0x02BB9	1221	unkCall_59c() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	634	0x02BBC	1222	unkCall_59c() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1cb6	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	635	0x02BBF	1223	unkCall_59c() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	636	0x02BD8	1225	unkCall_59c() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	637	0x02BE1	1227	unkCall_59c() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	638	0x02BF0	1229	unkCall_59c() = 0	sysReq	1, 台詞::戴冠式まで	actor `台詞`	-	-	files 台詞::戴冠式まで on channel 1; does not wait	台詞.戴冠式まで	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	639	0x02BF5	1230	unkCall_59c() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	640	0x02BF8	1232	unkCall_59c() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	641	0x02BFB	1233	unkCall_59c() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x1d10	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	642	0x02BFE	1234	unkCall_59c() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	643	0x02C01	1235	unkCall_59c() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	644	0x02C04	1236	unkCall_59c() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1d50	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	645	0x02C07	1237	unkCall_59c() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	646	0x02C20	1239	unkCall_59c() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	647	0x02C29	1241	unkCall_59c() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	648	0x02C32	1243	unkCall_59c() = 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	649	0x02C39	1244	unkCall_59c() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	650	0x02C3C	1246	unkCall_59c() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	651	0x02C3F	1247	unkCall_59c() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x1d1a	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	652	0x02C42	1248	unkCall_59c() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	653	0x02C45	1249	unkCall_59c() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	654	0x02C48	1250	unkCall_59c() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1d50	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	655	0x02C4B	1251	unkCall_59c() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	656	0x02C64	1253	unkCall_59c() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	657	0x02C6D	1255	unkCall_59c() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	658	0x02C7C	1257	unkCall_59c() = 0	sysReq	1, 台詞::ふたりに会	actor `台詞`	-	-	files 台詞::ふたりに会 on channel 1; does not wait	台詞.ふたりに会	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	659	0x02C81	1258	unkCall_59c() = 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	660	0x02C84	1260	unkCall_59c() = 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	661	0x02C87	1261	unkCall_59c() = 0; getff12lang() = 0	store	file_var_s2_1 = 0x1d83	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	662	0x02C8A	1262	unkCall_59c() = 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	663	0x02C8D	1263	unkCall_59c() = 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	664	0x02C90	1264	unkCall_59c() = 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1db0	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	665	0x02C93	1265	unkCall_59c() = 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	666	0x02CAC	1267	unkCall_59c() = 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	667	0x02CB5	1269	unkCall_59c() = 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	668	0x02CBE	1271	unkCall_59c() = 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	669	0x02CC1	1272	unkCall_59c() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	670	0x02CC4	1273	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	671	0x02CC8	1274	unkCall_59c() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	672	0x02CCB	1276	unkCall_59c() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	673	0x02CCE	1277	unkCall_59c() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x1cb6	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	674	0x02CD1	1278	unkCall_59c() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	675	0x02CD4	1279	unkCall_59c() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	676	0x02CD7	1280	unkCall_59c() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1cb6	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	677	0x02CDA	1281	unkCall_59c() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	678	0x02CF3	1283	unkCall_59c() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	679	0x02CFC	1285	unkCall_59c() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	680	0x02D0B	1287	unkCall_59c() is none of 0	sysReq	1, 台詞::戴冠式まで	actor `台詞`	-	-	files 台詞::戴冠式まで on channel 1; does not wait	台詞.戴冠式まで	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	681	0x02D10	1288	unkCall_59c() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	682	0x02D13	1290	unkCall_59c() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	683	0x02D16	1291	unkCall_59c() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x1d50	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	684	0x02D19	1292	unkCall_59c() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	685	0x02D1C	1293	unkCall_59c() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	686	0x02D1F	1294	unkCall_59c() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1d50	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	687	0x02D22	1295	unkCall_59c() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	688	0x02D3B	1297	unkCall_59c() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	689	0x02D44	1299	unkCall_59c() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	690	0x02D4D	1301	unkCall_59c() is none of 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	691	0x02D54	1302	unkCall_59c() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	692	0x02D57	1304	unkCall_59c() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	693	0x02D5A	1305	unkCall_59c() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x1d50	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	694	0x02D5D	1306	unkCall_59c() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	695	0x02D60	1307	unkCall_59c() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	696	0x02D63	1308	unkCall_59c() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1d50	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	697	0x02D66	1309	unkCall_59c() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	698	0x02D7F	1311	unkCall_59c() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	699	0x02D88	1313	unkCall_59c() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	700	0x02D97	1315	unkCall_59c() is none of 0	sysReq	1, 台詞::ふたりに会	actor `台詞`	-	-	files 台詞::ふたりに会 on channel 1; does not wait	台詞.ふたりに会	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	701	0x02D9C	1316	unkCall_59c() is none of 0	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	702	0x02D9F	1318	unkCall_59c() is none of 0	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	703	0x02DA2	1319	unkCall_59c() is none of 0; getff12lang() = 0	store	file_var_s2_1 = 0x1d92	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	704	0x02DA5	1320	unkCall_59c() is none of 0; getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	705	0x02DA8	1321	unkCall_59c() is none of 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	706	0x02DAB	1322	unkCall_59c() is none of 0; getff12lang() is none of 0	store	file_var_s2_1 = 0x1dae	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	707	0x02DAE	1323	unkCall_59c() is none of 0; getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	708	0x02DC7	1325	unkCall_59c() is none of 0	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	709	0x02DD0	1327	unkCall_59c() is none of 0; loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	710	0x02DD9	1329	unkCall_59c() is none of 0	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	711	0x02DDC	1330	unkCall_59c() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	712	0x02DF2	1332	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	713	0x02DF5	1334	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	714	0x02DF8	1335	getff12lang() = 0	store	file_var_s2_1 = 0x1f35	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	715	0x02DFB	1336	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	716	0x02DFE	1337	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	717	0x02E01	1338	getff12lang() is none of 0	store	file_var_s2_1 = 0x1f35	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	718	0x02E04	1339	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	719	0x02E1D	1341	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	720	0x02E26	1343	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	721	0x02E35	1345	-	sysReq	1, 台詞::もちろん２	actor `台詞`	-	-	files 台詞::もちろん２ on channel 1; does not wait	台詞.もちろん２	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	722	0x02E3A	1346	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	723	0x02E3D	1348	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	724	0x02E40	1349	getff12lang() = 0	store	file_var_s2_1 = 0x1f77	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	725	0x02E43	1350	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	726	0x02E46	1351	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	727	0x02E49	1352	getff12lang() is none of 0	store	file_var_s2_1 = 0x1f77	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	728	0x02E4C	1353	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	729	0x02E65	1355	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	730	0x02E6E	1357	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	731	0x02E77	1359	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	732	0x02E7E	1360	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	733	0x02E81	1362	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	734	0x02E84	1363	getff12lang() = 0	store	file_var_s2_1 = 0x1f90	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	735	0x02E87	1364	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	736	0x02E8A	1365	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	737	0x02E8D	1366	getff12lang() is none of 0	store	file_var_s2_1 = 0x1f7c	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	738	0x02E90	1367	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	739	0x02EA9	1369	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	740	0x02EB2	1371	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	741	0x02EC1	1373	-	sysReq	1, 台詞::空賊デビュー	actor `台詞`	-	-	files 台詞::空賊デビュー on channel 1; does not wait	台詞.空賊デビュー	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+msg_z0001	監視監督	Movie監視	742	0x02EC6	1374	-	switch	getff12lang()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	743	0x02EC9	1376	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	744	0x02ECC	1377	getff12lang() = 0	store	file_var_s2_1 = 0x1fd6	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	745	0x02ECF	1378	getff12lang() = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	746	0x02ED2	1379	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	747	0x02ED5	1380	getff12lang() is none of 0	store	file_var_s2_1 = 0x1fe4	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	監視監督	Movie監視	748	0x02ED8	1381	getff12lang() is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	749	0x02EF1	1383	-	while	not (getmovieframe() >= file_var_s2_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	監視監督	Movie監視	750	0x02EFA	1385	loop while not (getmovieframe() >= file_var_s2_1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	監視監督	Movie監視	751	0x02F03	1387	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	監視監督	Movie監視	752	0x02F06	1388	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	init	1	0x02F07	1397	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	1	0x02F0B	1410	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	movieSkip監督	Skip監視	2	0x02F11	1411	-	store	local_var_s3f1_1 = 0	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	movieSkip監督	Skip監視	3	0x02F17	1412	-	store	local_var_s3f1_2 = 0	variable local_var_s3f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	movieSkip監督	Skip監視	4	0x02F1A	1413	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	5	0x02F1A	1414	-	padt	-	result stored in local_var_s3f1_3	-	-	-	-		01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	6	0x02F20	1415	-	getmoviestatus	-	result stored in local_var_s3f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	7	0x02F2D	1416	-	if	local_var_s3f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	8	0x02F37	1418	local_var_s3f1_4 == 3	if	local_var_s3f1_3 & 8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	9	0x02F3E	1420	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8	switch	local_var_s3f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	10	0x02F41	1422	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	11	0x02F48	1423	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8; local_var_s3f1_1 = 0	if	getscreenaspect() == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	12	0x02F5A	1425	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8; local_var_s3f1_1 = 0; getscreenaspect() == 0	amest	3, 0x0100001f, 60, 0x0331, 0	-	line 31: Skip	-	-	-	resolved	this page's How a call is read
+msg_z0001	movieSkip監督	Skip監視	13	0x02F6F	1429	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8; local_var_s3f1_1 = 0; not (getscreenaspect() == 0)	amest	3, 0x0100001f, 120, 0x0331, 0	-	line 31: Skip	-	-	-	resolved	this page's How a call is read
+msg_z0001	movieSkip監督	Skip監視	14	0x02F75	1431	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8; local_var_s3f1_1 = 0	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	movieSkip監督	Skip監視	15	0x02F78	1432	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8; local_var_s3f1_1 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	16	0x02F7B	1433	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	17	0x02F7E	1434	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8; local_var_s3f1_1 is none of 0	mesclose	3	message window slot 3, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	18	0x02F84	1435	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8; local_var_s3f1_1 is none of 0	store	local_var_s3f1_1 = 0	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	movieSkip監督	Skip監視	19	0x02F87	1436	local_var_s3f1_4 == 3; local_var_s3f1_3 & 8; local_var_s3f1_1 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	20	0x02FA5	1439	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8)	else if	(local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	21	0x02FAE	1441	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	sebsoundplay	0, 2	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	22	0x02FB7	1442	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	straightpcmtrans	29, 0	-	-	-	-	-		01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	23	0x02FBD	1443	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	24	0x02FC6	1444	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	fadeout_d0	2, 15	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	25	0x02FCC	1445	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	fadesync_d3	2	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	26	0x02FCF	1446	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	27	0x02FD2	1447	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	getmoviestatus	-	result stored in local_var_s3f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	28	0x02FDF	1448	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	if	local_var_s3f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	29	0x02FE2	1450	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1; local_var_s3f1_4 == 3	moviecancel	-	-	-	-	-	-		01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	30	0x02FE5	1452	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	31	0x02FEE	1453	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	fadeout_d0	0, 0	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	32	0x02FF7	1454	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	fadein_d2	2, 0	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+msg_z0001	movieSkip監督	Skip監視	33	0x02FFD	1455	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	store	local_var_s3f1_2 = 1	variable local_var_s3f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	movieSkip監督	Skip監視	34	0x03003	1456	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	store	file_var_s0_1 = 1	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+msg_z0001	movieSkip監督	Skip監視	35	0x03009	1457	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	movieSkip監督	Skip監視	36	0x0300F	1458	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	37	0x03015	1459	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	38	0x0301B	1460	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	mesclose	2	message window slot 2, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	39	0x03021	1461	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	mesclose	3	message window slot 3, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	40	0x03027	1462	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	mesclose	4	message window slot 4, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	41	0x0302D	1463	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	mesclose	5	message window slot 5, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	42	0x03033	1464	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	mesclose	6	message window slot 6, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	43	0x03039	1465	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	mesclose	7	message window slot 7, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	44	0x0303C	1466	local_var_s3f1_4 == 3; not (local_var_s3f1_3 & 8); (local_var_s3f1_3 & get_pad_ok()) and local_var_s3f1_1 == 1	goto	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	45	0x03042	1471	not (local_var_s3f1_4 == 3)	goto	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	46	0x0304C	1473	-	if	local_var_s3f1_2 != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	47	0x03055	1475	local_var_s3f1_2 != 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+msg_z0001	movieSkip監督	Skip監視	48	0x03058	1476	local_var_s3f1_2 != 1	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	49	0x0305B	1478	-	label	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+msg_z0001	movieSkip監督	Skip監視	50	0x0305E	1479	-	mesclose	3	message window slot 3, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+msg_z0001	movieSkip監督	Skip監視	51	0x03061	1480	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

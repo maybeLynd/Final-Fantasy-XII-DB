@@ -1,0 +1,63 @@
+list	position	token	target	resolved_to
+gamedata/d3d11/artdata/font/ch/fontlist.ah	0	fontex_expand	font name	fontex_expand.dat, fontex_expand.dds.phyre, fontex_expand.fex, fontex_expand.ker
+gamedata/d3d11/artdata/font/ch/fontlist.ah	1	fontex_subtitle	font name	fontex_subtitle.dat, fontex_subtitle.dds.phyre, fontex_subtitle.fex
+gamedata/d3d11/artdata/font/ch/fontlist.ah	2	font00	font name	font00.dat, font00.dds.phyre, font00.ker
+gamedata/d3d11/artdata/font/ch/fontlist.ah	3	font_bookman	font name	font_bookman.dat, font_bookman.dds.phyre
+gamedata/d3d11/artdata/font/ch/fontlist.ah	4	font_iwa_g12	font name	font_iwa_g12.dat, font_iwa_g12.dds.phyre
+gamedata/d3d11/artdata/font/ch/fontlist.ah	5	font_venus	font name	font_venus.dat, font_venus.dds.phyre, font_venus.ker
+gamedata/d3d11/artdata/font/ch/fontlist.ah	6	font_square	font name	font_square.dat, font_square.dds.phyre, font_square.ker
+gamedata/d3d11/artdata/font/ch/fontlist.ah	7	fontguide	font name	fontguide.dat, fontguide.dds.phyre
+gamedata/d3d11/artdata/font/ch/fontlist.ah	8	fonttutorial	font name	fonttutorial.dat, fonttutorial.dds.phyre
+gamedata/d3d11/artdata/font/ch/fontlist.ah	9	fontquest	font name	fontquest.dat, fontquest.dds.phyre
+gamedata/d3d11/artdata/font/ch/fontlist.ah	10	fontmonster	font name	fontmonster.dat, fontmonster.dds.phyre, fontmonster.fex
+gamedata/d3d11/artdata/font/cn/fontlist.ah	0	fontex_expand	font name	fontex_expand.dat, fontex_expand.dds.phyre, fontex_expand.fex, fontex_expand.ker
+gamedata/d3d11/artdata/font/cn/fontlist.ah	1	fontex_subtitle	font name	fontex_subtitle.dat, fontex_subtitle.dds.phyre, fontex_subtitle.fex
+gamedata/d3d11/artdata/font/cn/fontlist.ah	2	font00	font name	font00.dat, font00.dds.phyre, font00.ker
+gamedata/d3d11/artdata/font/cn/fontlist.ah	3	font_bookman	font name	font_bookman.dat, font_bookman.dds.phyre
+gamedata/d3d11/artdata/font/cn/fontlist.ah	4	font_iwa_g12	font name	font_iwa_g12.dat, font_iwa_g12.dds.phyre
+gamedata/d3d11/artdata/font/cn/fontlist.ah	5	font_venus	font name	font_venus.dat, font_venus.dds.phyre, font_venus.ker
+gamedata/d3d11/artdata/font/cn/fontlist.ah	6	font_square	font name	font_square.dat, font_square.dds.phyre, font_square.ker
+gamedata/d3d11/artdata/font/cn/fontlist.ah	7	fontguide	font name	fontguide.dat, fontguide.dds.phyre
+gamedata/d3d11/artdata/font/cn/fontlist.ah	8	fonttutorial	font name	fonttutorial.dat, fonttutorial.dds.phyre
+gamedata/d3d11/artdata/font/cn/fontlist.ah	9	fontquest	font name	fontquest.dat, fontquest.dds.phyre
+gamedata/d3d11/artdata/font/cn/fontlist.ah	10	fontmonster	font name	fontmonster.dat, fontmonster.dds.phyre, fontmonster.fex
+gamedata/d3d11/artdata/font/jp/fontlist.ah	0	fontex_expand	font name	fontex_expand.dat, fontex_expand.dds.phyre, fontex_expand.fex
+gamedata/d3d11/artdata/font/jp/fontlist.ah	1	fontex_subtitle	font name	fontex_subtitle.dat, fontex_subtitle.dds.phyre, fontex_subtitle.fex
+gamedata/d3d11/artdata/font/jp/fontlist.ah	2	font00	font name	font00.dat, font00.dds.phyre, font00.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	3	font_bookman	font name	font_bookman.dat, font_bookman.dds.phyre
+gamedata/d3d11/artdata/font/jp/fontlist.ah	4	font_iwa_g12	font name	font_iwa_g12.dat, font_iwa_g12.dds.phyre, font_iwa_g12.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	5	font_venus	font name	font_venus.dat, font_venus.dds.phyre, font_venus.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	6	font_square	font name	font_square.dat, font_square.dds.phyre, font_square.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	7	fontguide	font name	fontguide.dat, fontguide.dds.phyre
+gamedata/d3d11/artdata/font/jp/fontlist.ah	8	fonttutorial	font name	fonttutorial.dat, fonttutorial.dds.phyre
+gamedata/d3d11/artdata/font/jp/fontlist.ah	9	fontquest	font name	fontquest.dat, fontquest.dds.phyre
+gamedata/d3d11/artdata/font/jp/fontlist.ah	10	fontmonster	font name	fontmonster.dat, fontmonster.dds.phyre, fontmonster.fex
+gamedata/d3d11/artdata/font/jp/fontlist.ah	11	font_stf_a	font name	font_stf_a.dat, font_stf_a.dds.phyre, font_stf_a.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	12	font_stf_as	font name	font_stf_as.dat, font_stf_as.dds.phyre, font_stf_as.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	13	font_stf_b	font name	font_stf_b.dat, font_stf_b.dds.phyre, font_stf_b.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	14	font_stf_bs	font name	font_stf_bs.dat, font_stf_bs.dds.phyre, font_stf_bs.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	15	font_stf_c	font name	font_stf_c.dat, font_stf_c.dds.phyre, font_stf_c.ker
+gamedata/d3d11/artdata/font/jp/fontlist.ah	16	font_stf_cs	font name	font_stf_cs.dat, font_stf_cs.dds.phyre, font_stf_cs.ker
+gamedata/d3d11/artdata/font/kr/fontlist.ah	0	fontex_expand	font name	fontex_expand.dat, fontex_expand.dds.phyre, fontex_expand.fex, fontex_expand.ker
+gamedata/d3d11/artdata/font/kr/fontlist.ah	1	fontex_subtitle	font name	fontex_subtitle.dat, fontex_subtitle.dds.phyre, fontex_subtitle.fex, fontex_subtitle.ker
+gamedata/d3d11/artdata/font/kr/fontlist.ah	2	font00	font name	font00.dat, font00.dds.phyre, font00.ker
+gamedata/d3d11/artdata/font/kr/fontlist.ah	3	font_bookman	font name	font_bookman.dat, font_bookman.dds.phyre
+gamedata/d3d11/artdata/font/kr/fontlist.ah	4	font_iwa_g12	font name	font_iwa_g12.dat, font_iwa_g12.dds.phyre
+gamedata/d3d11/artdata/font/kr/fontlist.ah	5	font_venus	font name	font_venus.dat, font_venus.dds.phyre, font_venus.ker
+gamedata/d3d11/artdata/font/kr/fontlist.ah	6	font_square	font name	font_square.dat, font_square.dds.phyre, font_square.ker
+gamedata/d3d11/artdata/font/kr/fontlist.ah	7	fontguide	font name	fontguide.dat, fontguide.dds.phyre
+gamedata/d3d11/artdata/font/kr/fontlist.ah	8	fonttutorial	font name	fonttutorial.dat, fonttutorial.dds.phyre
+gamedata/d3d11/artdata/font/kr/fontlist.ah	9	fontquest	font name	fontquest.dat, fontquest.dds.phyre
+gamedata/d3d11/artdata/font/kr/fontlist.ah	10	fontmonster	font name	fontmonster.dat, fontmonster.dds.phyre, fontmonster.fex
+gamedata/d3d11/artdata/font/us/fontlist.ah	0	font00	font name	font00.dat, font00.dds.phyre, font00.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	1	fontex_subtitle	font name	fontex_subtitle.dat, fontex_subtitle.dds.phyre, fontex_subtitle.fex, fontex_subtitle.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	2	font_bookman	font name	font_bookman.dat, font_bookman.dds.phyre
+gamedata/d3d11/artdata/font/us/fontlist.ah	3	font_iwa_g12	font name	font_iwa_g12.dat, font_iwa_g12.dds.phyre, font_iwa_g12.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	4	font_venus	font name	font_venus.dat, font_venus.dds.phyre, font_venus.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	5	font_square	font name	font_square.dat, font_square.dds.phyre, font_square.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	6	font_stf_a	font name	font_stf_a.dat, font_stf_a.dds.phyre, font_stf_a.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	7	font_stf_as	font name	font_stf_as.dat, font_stf_as.dds.phyre, font_stf_as.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	8	font_stf_b	font name	font_stf_b.dat, font_stf_b.dds.phyre, font_stf_b.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	9	font_stf_bs	font name	font_stf_bs.dat, font_stf_bs.dds.phyre, font_stf_bs.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	10	font_stf_c	font name	font_stf_c.dat, font_stf_c.dds.phyre, font_stf_c.ker
+gamedata/d3d11/artdata/font/us/fontlist.ah	11	font_stf_cs	font name	font_stf_cs.dat, font_stf_cs.dds.phyre, font_stf_cs.ker

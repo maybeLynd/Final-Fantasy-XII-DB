@@ -529,7 +529,7 @@ object `0x02CBC018` (`0x00602AD1`) and the default sampler state `0x02CBC368` (`
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x10` | `u8[8]` | bytes10 | the bytes after m_streams (PArray at `+0x00`) up to the end of the `0x18`-byte class; no registered member covers it (`0x00615220` registers the `0x18`-byte class at `0x00615270`) |
+| `+0x10` | `void*` | inputLayout10 | the Direct3D input layout built from m_streams: `0x0061E0B0` passes one input element per named stream and the program's m_compiledCode to the device's CreateInputLayout (slot `+0x58`) and stores the result here (`0x0061E1D2`); no registered member covers it (`0x00615220` registers the `0x18`-byte class at `0x00615270`) |
 
 ## Shipped data
 

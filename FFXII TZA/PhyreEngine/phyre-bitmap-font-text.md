@@ -176,7 +176,7 @@ PBitmapFontCharInfo (`0x30`):
 |---|---|
 | `gamedata/d3d11/artdata/shaders/phyretext.fx.phyre` | 44,634 bytes |
 | `gamedata/d3d11/artdata/font/tuffysdf.fgen.phyre` | 269,961 bytes |
-| `gamedata/d3d11/artdata/font/tuffy.fgen.phyre` | 269,961 bytes, not named by the overlay |
+| `gamedata/d3d11/artdata/font/tuffy.fgen.phyre` | 269,961 bytes; no string in the executable and no other shipped file names it, so the game never loads it |
 
 ## Modding notes
 

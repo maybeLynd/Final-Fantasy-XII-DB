@@ -79,6 +79,30 @@ whenever the dictionary is loaded with a non-zero count; -2 reads the magic at `
 accepted; lower ids read the memory before the block. A negative id makes the actor show its literal
 text at `+0xF8`.
 
+### Ids past the dictionary
+
+Every shipped dictionary has `count` 2282, 1141 pairs, so names exist for ids 0 to 1140. A larger id gives a null
+name: `0x003EAC10` and `0x003EABE0` refuse an entry index at or above `count` (`0x003EAC29`, `0x003EABF6`), and `0x00263990`
+and `0x002639E0` return what `0x003EAC10` returns. After bit `0x4000` is stripped an actor's id is at most `0x3FFF`, so
+ids 1141 to 16383 reach no name. The flag test answers 0 for ids at or above `0x800` (`0x0032A934`-`0x0032A945`).
+
+`setnpcname` stores a non-negative id without asking the dictionary (`0x0034B9B7`-`0x0034B9B9` jump past the test to
+`0x0034B9C7`), and so does `setshopname` (`0x0034C1A3`-`0x0034C1A5`). Nothing but the value the script passes keeps an
+actor id below 1141.
+
+What these callers do with a null name:
+
+| Caller | Site | With a null name |
+|---|---|---|
+| nine readers of `0x00263990` and `0x002639E0` | `0x0025C5C9`, `0x0025C679`, `0x0025D0C5`, `0x0025D192`, `0x002ADEB3`, `0x002ADDBA`, `0x002B173A`, `0x002B16DE`, `0x002B52F4` | test it and skip the name |
+| `0x00272CE0` | `0x00272D22`-`0x00272D25` | writes the empty string (`0x00272DA6`) |
+| the conversation window, through `0x00272CB0` | `0x0027E626` | stores it at `+0x1578`, the `+0x28` of the record `+0x1550` that `0x002D8650` hands to `0x002B0280`, which tests it and returns (`0x002B02BD`) |
+| a formatted message, through `0x00272CB0` | `0x0027ACE6` | passes it to `0x002B4090` with text `0x7D0`; the formatter skips a null string argument (`0x002B4D7E`) |
+| the widest-name measure | `0x002BA5DA`, `0x002BA5F0` | `0x0029CD00` measures it as 0 by 0 (`0x002B313F`-`0x002B3163`) |
+| the shop screens, through `0x003EABE0` | `0x0057B9B7`, `0x0057C029` | `0x002CA150` copies it with `0x00254F30`, which copies nothing from a null source (`0x00254F39`) |
+| battle messages, through `0x0026DEA0` | `0x00536578` | copied with `0x00254F30`, the same |
+| the field interaction pass `0x00268D10` | `0x00268E4D` | reads the first byte at once (`0x00268E55`): for an actor whose `+0x1C` bit `0x2000` is set, a name id from 1141 to 16383, or any id while no dictionary is loaded (`0x003EAC24`), reads address 0 |
+
 ### Names in battle messages
 
 The battle message composer `0x005369C0` (called from `0x0046AB10`) names the acting and the target
@@ -161,6 +185,9 @@ Examples from the `us` file:
   raw word, so an id that still carries bit `0x4000` is at least `0x800` and sets no flag.
 - A negative name id makes the actor show its own literal text, which is how `setnpcname(-1)` is
   used by the shipped scripts.
+- A new name needs a new pair in `npcdic.bin`: an actor id at or above the pair count has no name, and the field
+  interaction pass reads its name without a test (`0x00268E55`), so such an id on an actor with `+0x1C` bit `0x2000`
+  set reads address 0. `setnpcname` does not check a non-negative id.
 
 ## Related
 

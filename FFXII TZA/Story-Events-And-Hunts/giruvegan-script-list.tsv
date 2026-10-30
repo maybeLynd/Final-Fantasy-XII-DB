@@ -1,0 +1,96 @@
+script	kind	place	actors	functions	rows	shared_actors
+gil_a01	zone	Gate of Earth (Giruvegan), field 686	33	145	8	5
+gil_a02	zone	Gate of Water (Giruvegan), field 687	21	107	6	0
+gil_b01	zone	The Trimahla Water-Steps (Giruvegan), field 690	40	139	13	1
+gil_b02	zone	The Aadha Water-Steps (Giruvegan), field 691	29	92	11	0
+gil_c01	zone	The Haalmikah Water-Steps (Giruvegan), field 694	24	126	5	5
+gil_c02	zone	Gate of Fire (Giruvegan), field 695	32	130	10	0
+gil_d01	zone	Gate of Wind (Giruvegan), field 698	25	116	9	0
+gil_e01	zone	A Prama Vikaari (The Great Crystal), field 621	24	82	11	0
+gil_e02	zone	Kabonii Jilaam Pratii'vaa (The Great Crystal), field 622	24	77	10	0
+gil_e03	zone	Kabonii Jilaam Avaa (The Great Crystal), field 623	24	77	10	0
+gil_e04	zone	Dha Vikaari Bhrum (The Great Crystal), field 624	22	74	9	0
+gil_e05	zone	Sthaana Scorpio (The Great Crystal), field 625	23	75	9	0
+gil_e06	zone	A Vikaari Dhebon (The Great Crystal), field 626	22	74	9	0
+gil_f01	zone	A Vikaari Kabonii (The Great Crystal), field 926	22	74	9	0
+gil_f02	zone	Sthaana Cancer (The Great Crystal), field 927	22	74	9	0
+gil_f03	zone	Bhrum Pis Avaa (The Great Crystal), field 928	25	78	10	0
+gil_f04	zone	Bhrum Pis Pratii (The Great Crystal), field 929	27	86	12	0
+gil_f05	zone	Dha Vikaari Trahk (The Great Crystal), field 930	22	74	9	0
+gil_g01	zone	A Vikaari Bhrum (The Great Crystal), field 332	28	108	11	0
+gil_g02	zone	Trahk Pis Praa (The Great Crystal), field 333	25	78	10	0
+gil_g03	zone	Sthaana Pisces (The Great Crystal), field 334	24	82	11	0
+gil_g04	zone	Dha Vikaari Jula (The Great Crystal), field 335	22	74	9	0
+gil_g05	zone	Trahk Jilaam Praa'dii (The Great Crystal), field 336	25	78	10	0
+gil_g06	zone	Sthaana Aries (The Great Crystal), field 337	28	80	9	0
+gil_g10	zone	Crystal Core (The Great Crystal), field 341	25	123	5	5
+gil_h01	zone	Crystal Peak (The Great Crystal), field 888	32	115	16	0
+gil_i01	zone	Dha Vikaari Kabonii (The Great Crystal), field 939	27	96	12	0
+gil_i02	zone	A Vikaari Kanbhru Ra (The Great Crystal), field 940	35	127	13	0
+gil_i03	zone	Dhebon Jilaam Praa'dii (The Great Crystal), field 941	29	98	12	0
+gil_i04	zone	Dhebon Jilaam Pratii'dii (The Great Crystal), field 942	29	98	12	0
+gil_i05	zone	Sthaana Sagittarius (The Great Crystal), field 943	29	98	12	0
+gil_i06	zone	A Vikaari Sirhru Pratii (The Great Crystal), field 944	29	98	12	0
+gil_i07	zone	A Vikaari Sirhru Praa (The Great Crystal), field 945	29	98	12	0
+gil_i08	zone	Dhebon Jilaam Avaapratii (The Great Crystal), field 946	32	103	14	0
+gil_i09	zone	A Vikaari Sirhru Si (The Great Crystal), field 947	36	105	12	0
+gil_i11	zone	Dhebon Jilaam Avaa (The Great Crystal), field 949	29	107	14	0
+gil_j01	zone	Dha Vikaari Dhebon Praa (The Great Crystal), field 952	28	97	12	0
+gil_j02	zone	Dha Vikaari Dhebon Pratii (The Great Crystal), field 953	28	97	12	0
+gil_j03	zone	Sirhru Phullam Praa (The Great Crystal), field 954	39	110	14	0
+gil_j04	zone	Sthaana Leo (The Great Crystal), field 955	36	105	12	0
+gil_j05	zone	Sirhru Phullam Praa'vaa (The Great Crystal), field 956	38	109	14	0
+gil_j06	zone	Sirhru Phullam Pratii'vaa (The Great Crystal), field 957	38	109	14	0
+gil_j07	zone	Sthaana Gemini (The Great Crystal), field 958	36	105	12	0
+gil_j08	zone	Sirhru Phullam Udiipratii (The Great Crystal), field 959	39	110	14	0
+gil_j09	zone	Sirhru Jilaam Praa'dii (The Great Crystal), field 960	25	94	12	0
+gil_j10	zone	Sirhru Jilaam Pratii'dii (The Great Crystal), field 961	25	94	12	0
+gil_j11	zone	Sirhru Jilaam Praa (The Great Crystal), field 962	26	95	12	0
+gil_j12	zone	Sirhru Jilaam Pratii (The Great Crystal), field 963	26	95	12	0
+gil_j13	zone	Sirhru Jilaam Praa'vaa (The Great Crystal), field 964	30	101	14	0
+gil_j14	zone	Sirhru Jilaam Pratii'vaa (The Great Crystal), field 965	30	101	14	0
+gil_j15	zone	Sirhru Pis Praa (The Great Crystal), field 966	26	95	12	0
+gil_j16	zone	Sirhru Pis Pratii (The Great Crystal), field 967	26	95	12	0
+gil_j17	zone	Sirhru Pis Avaa (The Great Crystal), field 968	25	94	12	0
+gil_j18	zone	Sirhru Jilaam Avaapratii (The Great Crystal), field 969	25	94	12	0
+gil_j19	zone	Sirhru Jilaam Avaapraa (The Great Crystal), field 970	25	94	12	0
+gil_j20	zone	A Vikaari Uldobi (The Great Crystal), field 971	28	97	12	0
+gil_j21	zone	A Vikaari Uldobi Si (The Great Crystal), field 972	36	105	12	0
+gil_j22	zone	Dha Vikaari Dhebon Si (The Great Crystal), field 973	36	105	12	0
+gil_k01	zone	Dha Vikaari Sirhru (The Great Crystal), field 979	29	98	12	0
+gil_k02	zone	Sthaana Virgo (The Great Crystal), field 980	27	96	12	0
+gil_k03	zone	Uldobi Jilaam Praa'dii (The Great Crystal), field 981	25	94	12	0
+gil_k04	zone	Uldobi Jilaam Pratii (The Great Crystal), field 982	25	94	12	0
+gil_k05	zone	Uldobi Jilaam Praa (The Great Crystal), field 983	25	94	12	0
+gil_k06	zone	Uldobi Phullam Pratii'dii (The Great Crystal), field 984	34	105	14	0
+gil_k07	zone	Sthaana Capricorn (The Great Crystal), field 985	27	96	12	0
+gil_k08	zone	Dha Vikaari Sirhru Si (The Great Crystal), field 986	32	101	12	0
+gil_k09	zone	Uldobi Phullam Udiipraa (The Great Crystal), field 987	28	99	14	0
+gil_k10	zone	Uldobi Phullam Pratii'vaa (The Great Crystal), field 988	27	96	12	0
+gil_k11	zone	Uldobi Phullam Praa'vaa (The Great Crystal), field 989	26	95	12	0
+gil_k12	zone	Uldobi Phullam Pratii (The Great Crystal), field 990	27	98	14	0
+gil_k13	zone	Sthaana Taurus (The Great Crystal), field 991	28	97	12	0
+gil_k14	zone	Sthaana Libra (The Great Crystal), field 992	26	95	12	0
+gil_k15	zone	Uldobi Jilaam Praa'vaa (The Great Crystal), field 993	27	96	12	0
+gil_k16	zone	Uldobi Jilaam Pratii'vaa (The Great Crystal), field 994	27	96	12	0
+gil_k17	zone	Uldobi Jilaam Avaa (The Great Crystal), field 995	25	94	12	0
+gil_k18	zone	A Vikaari Kanbhru (The Great Crystal), field 996	29	98	12	0
+gil_l01	zone	Dha Vikaari Uldobi (The Great Crystal), field 1002	32	101	12	0
+gil_l02	zone	Kanbhru Pis (The Great Crystal), field 1003	30	125	13	5
+gil_l03	zone	Dha Vikaari Dhebon Ra (The Great Crystal), field 1004	32	101	12	0
+gil_l04	zone	Sthaana Aquarius (The Great Crystal), field 1005	32	101	12	0
+gil_z01	zone	Siti Bhrusuna (Giruvegan), field 916	7	13	3	0
+gil_a0100	scene	scene, event 207	22	138	6	0
+gil_a0200	scene	scene, event 143	15	98	0	0
+gil_a0201	scene	scene, event 144	15	55	0	0
+gil_c0100	scene	scene, event 208	19	112	6	0
+gil_c0200	scene	scene, event 145	14	70	0	0
+gil_c0201	scene	scene, event 146	15	71	0	0
+gil_d0100	scene	scene, event 147	14	80	0	0
+gil_d0101	scene	scene, event 148	17	69	13	0
+gil_d0102	scene	scene, event 229	18	105	5	0
+gil_g1000	scene	scene, event 209	19	118	6	0
+gil_h0100	scene	scene, event 149	15	82	0	0
+gil_h0101	scene	scene, event 205	17	106	14	0
+gil_i1000	scene	scene, event 174	14	66	0	0
+gil_z0100	scene	scene, event 206	28	419	45	0

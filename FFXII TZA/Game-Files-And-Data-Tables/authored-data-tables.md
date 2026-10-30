@@ -302,8 +302,10 @@ The `us` `battle_pack.bin` (281,128 bytes), by directory offset; shapes are rows
 | `0x02EBF180` | `+0x04` | WepJob_Matrix | 23 × 1 |
 | `0x02EBF200` | `+0x11C` | license_board | 24 × 24 `licd` |
 
-The other 29 entries (menus, help and list-help text, quest titles and others) are not registry
-slots. All 48 shipped `board_N.bin` files are 1,160-byte 24 × 24 `licd` boards.
+The other 29 entries are empty in every language's pack, each starting where the next one starts: id 19, the
+pack itself, the 27 text-group ids (1, 20-25, 43-56, 62-67), whose menu, help and list-help texts and quest
+titles the game loads as files of their own, and id 40, which no path array names. All 48 shipped
+`board_N.bin` files are 1,160-byte 24 × 24 `licd` boards.
 
 ## State
 

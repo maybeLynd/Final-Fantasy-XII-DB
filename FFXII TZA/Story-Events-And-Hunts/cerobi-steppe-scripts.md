@@ -28,9 +28,11 @@ key-item and message helper alone. Their functions are described once on [Shared
 actors](shared-zone-script-actors.md) and have no rows here; the Shared helpers column counts them.
 
 A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
-items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party. Functions that
-only move, animate, wait, play sound or set the camera are not listed; each listed row counts the other functions of
-its actor in `other_functions`.
+items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party.
+
+Functions that only move, animate, wait, play sound or set the camera have no row in this table; each listed row
+counts the other functions of its actor in `other_functions`. Every function, these included, has its steps in the
+steps table described under [Every step](#every-step).
 
 Cerobi Steppe has no scene script of its own; the scenes its fields load are the location title `ttl_z0002` ([Location
 title scenes](titles-scenes.md)) and the Strahl scene `str_z0000` ([Strahl scene](strahl-scenes.md)).
@@ -110,6 +112,52 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 - An event id `n` names the scene script at index `4n` of the event file table, which `0x0032FCA0` loads for scene
   managers 1 to 3.
 
+### Every step
+
+The steps table [`cerobi-steppe-script-steps.tsv`](cerobi-steppe-script-steps.tsv) has one row for each step of every
+function of the eight scripts, in the order the function runs them: each call, request, store, branch, loop, case and
+return. It has 27,352 rows.
+
+A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
+arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
+the camera shot, the message window or the variable. It also gives the frames the step takes, what it waits for, and
+the functions it starts on other actors.
+
+| Script | Steps | Script | Steps |
+|---|---:|---|---:|
+| `srb_a01` | 3,195 | `srb_b01` | 3,654 |
+| `srb_a02` | 3,554 | `srb_b02` | 3,285 |
+| `srb_a03` | 3,473 | `srb_b03` | 3,195 |
+| `srb_a04` | 3,105 | `srb_b04` | 3,891 |
+
+The five shared helper actors have their steps once, in [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv)
+(1,283 rows over 26 templates for 29 functions: the template of a function that only returns, cecbbef6fb, serves the
+`init` of イベント特殊効果画面, telepoeffectctrl and crystaldummyPC and the `main` of saveactor). In this table each of their
+functions has a single `shared template` row naming the template; Cerobi Steppe has 99 such rows.
+
+An actor that runs another actor's code would have one `same code` row naming the actor whose steps it runs; this
+table has none.
+
+The steps by their `resolution` cell:
+
+| Resolution | Steps |
+|---|---:|
+| `resolved` | 27,242 |
+| empty | 30 |
+| `does not ship`, with the fact | 80 |
+
+The eighty `does not ship` rows are `motionread` calls that read entry 0, an empty entry, of `srb_a01.mot`,
+`srb_a02.mot`, `srb_a03.mot`, `srb_a04.mot`, `srb_b01.mot`, `srb_b02.mot`, `srb_b03.mot` and `srb_b04.mot`, ten in
+each. A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as
+the script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they
+give for the step, for example the variable that receives a result, and `-` otherwise.
+
+A function reads from top to bottom. In `srb_b03` (Feddik River), `hunt_kansi.main` runs when
+`g_btl_hunt_srb_アダマンタイマイ` is 1 or `unkCall_5a9()` holds. It waits while `scratch1_var_1` is 0, turns user control off,
+closes the boss gauge, waits 30 frames and suspends the battle. It fades the music to volume 32 over 30 frames, gives
+the Adamantine Trophy (`additemmes(0x80d4, 1)`), fades the music back to 127, adds 1 to `quest_global_flag[8]`, sets
+the hunt variable to 2, removes every foe of the group and resumes the battle with user control on.
+
 ## Columns
 
 | Column | Meaning |
@@ -144,6 +192,38 @@ per script:
 | `actors`, `functions` | the script's actors and functions, shared helpers included |
 | `rows` | the script's rows in the main table |
 | `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |
+
+The steps table [`cerobi-steppe-script-steps.tsv`](cerobi-steppe-script-steps.tsv) has one row per step:
+
+| Column | Meaning |
+|---|---|
+| `script`, `actor`, `function` | as in the main table |
+| `step` | the step's number in its function, from 1, in the order the function's bytes run |
+| `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
+| `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v`, a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test` |
+| `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
+| `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test |
+| `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |
+| `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its control codes dropped; `-` for every other step |
+| `timing` | the frames, fade lengths and speeds the step uses |
+| `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
+| `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
+| `resolution` | `resolved`; `does not ship:` and the fact; or empty |
+| `source` | the page or table that gives the meaning, or the function whose body was read |
+
+The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`
+on, after these:
+
+| Column | Meaning |
+|---|---|
+| `template` | the template id that the `shared template` rows name |
+| `actor`, `function`, `step` | the shared actor, its function and the step number |
+| `reference` | the script whose copy of the function the steps were read from, and where the function starts there |
+
+In this table, `at` is the step's distance from the function's start, written `+0x..`. Variable names, text ids,
+section 3 string offsets and the lines `addresses` names are those of the script named in `reference`. The other
+scripts' copies differ only in these.
 
 ## Related
 

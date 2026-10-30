@@ -22,6 +22,11 @@ addresses: "0x00200BF0, 0x001FF740, 0x001C7940, 0x001C3D50, 0x001C6320, 0x001C6C
 `0.json` is `{}` and holds no key. [json-monster-gallery.tsv](json-monster-gallery.tsv) holds the 385 entries of
 `monstergallery.json`, `Common` and `MonsterId0` to `MonsterId383`, one column per key.
 
+[json-configs-values.tsv](json-configs-values.tsv) holds every value of every document, 93,715 rows from the 804
+documents that are not empty (29 of them, `0.json` among them, are an empty object and give no row). The four
+documents that are not strict JSON are read with the trailing comma dropped or the missing commas supplied; no
+document repeats a key.
+
 One more file under `jsondata/` is text, not JSON: `parametersmanagermonstergallerystruct.txt`, 1,781 bytes, LF line ends, no line end after the last line. No string in the executable holds its name or a setter name in it; the viewer reads `JsonData/MonsterGallery.json`.
 
 - The first line is the column title `#title name, dummy, type, dummy, min, max, default.`
@@ -93,6 +98,15 @@ The columns come from the documents and from the loaders that read them:
 | `model`, `names` | the model file of `monsterModelId` and up to three bestiary names that use it |
 | `monsterModelId` ... `light2DirZ` | the entry's values, one column per key; an empty cell is a key the entry does not carry: the viewer then takes the `Common` value for the nine keys named above, leaves `monsterWeaponIndex2` unread, and reads 0 for the others |
 | `explanation` | a one-line summary: the entry, its model and who uses it |
+
+`json-configs-values.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `document` | the archive path of the document |
+| `key` | the key's path: nested keys joined by `.`, an array element as `[i]` |
+| `type` | the JSON type: `int`, `float`, `string`, `bool` or `null` |
+| `value` | the value as the document spells it; a tab or line break inside a string is written `\t` or `\n` |
 
 ## Related
 

@@ -1,0 +1,27 @@
+script	kind	place	actors	functions	rows	shared_actors
+mic_a01	zone	The Lightworks (Barheim Passage), field 53	40	210	14	5
+mic_a02	zone	Great Eastern Passage (Barheim Passage), field 54	36	81	13	1
+mic_a03	zone	Op Sector 36 (Barheim Passage), field 55	26	50	6	0
+mic_a04	zone	Special Op Sector 3 (Barheim Passage), field 56	30	83	9	0
+mic_a05	zone	Op Sector 37 (Barheim Passage), field 57	27	84	9	0
+mic_a06	zone	Op Sector 29 (Barheim Passage), field 58	26	55	8	0
+mic_b01	zone	Great Central Passage (Barheim Passage), field 61	28	55	10	0
+mic_b02	zone	The Zeviah Subterrane (Barheim Passage), field 62	40	104	16	0
+mic_b06	zone	North-South Junction (Barheim Passage), field 66	18	61	4	5
+mic_c01	zone	Terminus No. 4 (Barheim Passage), field 69	22	46	2	0
+mic_c02	zone	Terminus No. 4 Adjunct (Barheim Passage), field 70	20	71	3	5
+mic_d01	zone	Terminus No. 7 (Barheim Passage), field 71	21	49	6	0
+mic_e01	zone	East-West Bypass (Barheim Passage), field 891	25	35	8	0
+mic_e02	zone	The Zeviah Span (Barheim Passage), field 892	48	146	18	1
+mic_e03	zone	West Annex (Barheim Passage), field 893	33	53	17	0
+mic_e04	zone	Terminus No. 7 Adjunct (Barheim Passage), field 894	18	50	5	5
+mic_e05	zone	Special Op Sector 5 (Barheim Passage), field 895	21	31	9	0
+mic_a0100	scene	scene, event 185	23	136	15	0
+mic_a0600	scene	scene, event 184	16	80	5	0
+mic_b0600	scene	scene, event 186	16	158	11	0
+mic_b0601	scene	scene, event 188	25	282	3	0
+mic_c0100	scene	scene, event 180	24	126	0	0
+mic_c0101	scene	scene, event 181	34	158	0	0
+mic_d0100	scene	scene, event 182	13	63	0	0
+mic_d0101	scene	scene, event 183	17	82	15	0
+mic_e0400	scene	scene, event 187	14	85	1	0

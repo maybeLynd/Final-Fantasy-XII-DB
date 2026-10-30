@@ -232,6 +232,36 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 | a texture's fixups | exactly one `PClassDescriptor` and one `PTextureFormatBase`, in all 33,794 |
 | `idmaps.txt` | `gamedata/d3d11/artdata/shared/idmaps.txt`: 4,061,418 bytes, 75,624 CRLF lines, 37,812 key and value pairs, every key distinct and none equal to its value; no `#` in any line |
 | file end | every mesh file ends exactly after its index and vertex buffers, every all-zero file at the end of its array table; in a texture file the image bytes exceed `m_maxTextureBufferSize` in 33,705 and equal it in 89 |
+| texture files | the 33,792 `.dds.phyre` files and the two font generator files `font/tuffy.fgen.phyre` and `font/tuffysdf.fgen.phyre`, one texture object each |
+| texture formats | `ARGB8` 12,913, `BC5` 9,149, `DXT5` 7,039, `RGBA16F` 4,610 (every cube map), `A8` 45, `DXT1` 26, `L8` 9, `DXT3` 3 |
+| texture images | in every texture file the image bytes are exactly the texture's levels: `m_mipmapCount` + 1 levels, each half the size of the one before (at least 1 pixel, or one 4 x 4 block for the `BC`/`DXT` formats), times 6 faces for a cube map; `m_memoryType` is 3 and the `m_format` byte 0 in all 33,794 |
+| texture flags | `m_textureFlags` is 2 in the 89 single-level textures (the 89 whose image equals `m_maxTextureBufferSize`) and 0 in the rest |
+
+Every texture, one row each, with the members its own namespace gives:
+
+| table | rows | folder |
+|---|---:|---|
+| [`phyre-asset-files-textures-map.tsv`](phyre-asset-files-textures-map.tsv) | 15,028 | `artdata/map/` |
+| [`phyre-asset-files-textures-shared.tsv`](phyre-asset-files-textures-shared.tsv) | 9,529 | `artdata/shared/` |
+| [`phyre-asset-files-textures-chr.tsv`](phyre-asset-files-textures-chr.tsv) | 8,644 | `artdata/chr/` |
+| [`phyre-asset-files-textures-chr_shadow.tsv`](phyre-asset-files-textures-chr_shadow.tsv) | 512 | `artdata/chr_shadow/` |
+| [`phyre-asset-files-textures-font.tsv`](phyre-asset-files-textures-font.tsv) | 64 | `artdata/font/` |
+| [`phyre-asset-files-textures-menu.tsv`](phyre-asset-files-textures-menu.tsv) | 11 | `artdata/menu/` |
+| [`phyre-asset-files-textures-shaders.tsv`](phyre-asset-files-textures-shaders.tsv) | 6 | `artdata/shaders/` |
+
+| Column | Meaning |
+|---|---|
+| `path` | the file in the archive |
+| `class` | `Texture2D` or `TextureCubeMap` |
+| `format` | the name the `PTextureFormatBase` user fixup holds |
+| `width`, `height` | `m_width` and `m_height`; for a cube map both are `m_size`, the edge of each face |
+| `faces` | 1, or 6 for a cube map |
+| `mip_levels` | `m_mipmapCount` + 1, the levels the image holds |
+| `max_mip_level` | `m_maxMipLevel` |
+| `texture_flags` | `m_textureFlags` |
+| `image_bytes` | the bytes after the fixup tables, the texture image |
+| `max_texture_buffer` | the header's `m_maxTextureBufferSize` |
+| `file_bytes`, `sha256` | the file's size and SHA-256 |
 
 `gamedata/d3d11/artdata/shared/phyremaps.txt` beside it (8,492,839 bytes, 94,682 CRLF lines) holds 47,341 pairs: a
 map texture's path under `/GameData/D3D11/ArtData/map/` and the file under `/GameData/D3D11/ArtData/shared/map/`

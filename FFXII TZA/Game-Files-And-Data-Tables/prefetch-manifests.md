@@ -57,6 +57,62 @@ ending in CRLF.
 | `.ah` tokens | 142,481, of which 62 (in the five font lists) are not paths |
 | `texlist.txt` | 301 bytes, 11 CRLF lines, each a `.dds.phyre` name that exists under `gamedata/d3d11/artdata/menu/` (`targetline_p`, its six `_clut_` variants, `chain_item`, `chainflash`, and `w_line01` with its `_clut_1`) |
 | `.ah` groups | `chr/weapon` 308, `chr/monster` 258, `chr_shadow/monster` 249, `chr/npc` 172, `chr_shadow/npc` 171, `chr/high` 134, `chr_shadow/high` 130, `chr/gadget` 103; 457 `_srm` lists |
+| `.ah` targets | 95,076 path tokens name a shipped file; 47,343 name a map texture path that `shared/phyremaps.txt` maps to a shipped file under `shared/map/`; the 62 font tokens each name a font whose files sit beside the list |
+
+Every token of every `.ah` list, one row each, in list order:
+
+| table | rows | lists |
+|---|---:|---|
+| [`prefetch-manifests-ah-tokens-map.tsv`](prefetch-manifests-ah-tokens-map.tsv) | 128,268 | the 914 map lists |
+| [`prefetch-manifests-ah-tokens-chr.tsv`](prefetch-manifests-ah-tokens-chr.tsv) | 11,802 | the 1,057 `chr/` lists |
+| [`prefetch-manifests-ah-tokens-chr_shadow.tsv`](prefetch-manifests-ah-tokens-chr_shadow.tsv) | 2,349 | the 588 `chr_shadow/` lists |
+| [`prefetch-manifests-ah-tokens-font.tsv`](prefetch-manifests-ah-tokens-font.tsv) | 62 | the five `fontlist.ah` |
+
+| Column | Meaning |
+|---|---|
+| `list` | the `.ah` file's path in the archive |
+| `position` | the token's place in the list, from 0 |
+| `token` | the token as written |
+| `target` | `file` when the path names a shipped file; `phyremaps` when `shared/phyremaps.txt` maps it to a shipped file; `font name` for a font list's token |
+| `resolved_to` | for `phyremaps`, the shipped shared file; for a font name, the files of that name beside the list |
+
+Every prefetch list, every name it holds and every entry, in three kinds of table:
+
+- The 9,351 files hold 7,912 different contents; a file with the same bytes as an earlier one points to it and has
+  no entry rows of its own.
+- Of the 61,235 different names, 61,101 name a shipped file and 49 name one once their doubled slashes and leading
+  `./` are removed.
+- 85 names name no file in the archive: 44 `_GNM.ta` animation names under `map/`, 15 `chr`, `chr_shadow` and `map`
+  model and texture files, 12 `JsonData/CutScenes` files, 6 under `shared/map/`, 5 under `shaders/`, 2 under
+  `effect_finish/uk/event/`, and `PS2Data/oldsave/new077`, which 5,823 lists name.
+
+| table | rows | one row per |
+|---|---:|---|
+| [`prefetch-manifests-lists.tsv`](prefetch-manifests-lists.tsv) | 9,351 | file under `prefetchdata/`: `maps` 6,383, `events` 2,949, `common.txt` 9, `eventlist.csv` 9, `ff12mapjump_custom_nocrystal.csv` 1 |
+| [`prefetch-manifests-names.tsv`](prefetch-manifests-names.tsv) | 61,235 | different name |
+| [`prefetch-manifests-entries-us.tsv`](prefetch-manifests-entries-us.tsv) | 355,723 | entry of a `us` list with its own bytes |
+| [`prefetch-manifests-entries-fr.tsv`](prefetch-manifests-entries-fr.tsv) | 355,826 | the same for `fr` |
+| [`prefetch-manifests-entries-de.tsv`](prefetch-manifests-entries-de.tsv) | 355,658 | `de` |
+| [`prefetch-manifests-entries-it.tsv`](prefetch-manifests-entries-it.tsv) | 356,005 | `it` |
+| [`prefetch-manifests-entries-es.tsv`](prefetch-manifests-entries-es.tsv) | 355,739 | `es` |
+| [`prefetch-manifests-entries-jp.tsv`](prefetch-manifests-entries-jp.tsv) | 351,880 | `jp` |
+| [`prefetch-manifests-entries-kr.tsv`](prefetch-manifests-entries-kr.tsv) | 337,966 | `kr` |
+| [`prefetch-manifests-entries-cn.tsv`](prefetch-manifests-entries-cn.tsv) | 337,989 | `cn` |
+| [`prefetch-manifests-entries-ch.tsv`](prefetch-manifests-entries-ch.tsv) | 338,862 | `ch` |
+| [`prefetch-manifests-entries-add-on.tsv`](prefetch-manifests-entries-add-on.tsv) | 31 | entry of `add-on/events/250.txt` |
+
+| Column | Meaning |
+|---|---|
+| `list` | the list's number, its row in `prefetch-manifests-lists.tsv` |
+| `path`, `language`, `part` | the file, its language folder (`-` for the file outside them), and its folder or file name within it |
+| `bytes`, `sha256` | the file's size and SHA-256 |
+| `size_token` | the list's `##Total_data_Size:_` token, which the parser drops; empty when it has none |
+| `names` | the list's entries |
+| `same_bytes_as` | the earlier list with the same bytes, whose entries this one has |
+| `name`, `text` | the name's number and the name as written |
+| `lists` | the lists that name it |
+| `target` | `file`; `file once doubled slashes and ./ are removed`; or `no shipped file` |
+| `position` | the entry's place in its list, from 0, `##` tokens not counted |
 
 ## Loader behaviour
 

@@ -1,0 +1,372 @@
+script	actor	function	step	at	line	condition	verb	arguments	addresses	quoted_lines	timing	sync	calls	resolution	source
+str_z0000	監督	init	1	0x00790	35	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	1	0x00794	40	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	2	0x0079A	41	-	modelread	0x03000000	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	3	0x007A0	42	-	motionread	1	motion 1 of `str_z0000.mot` (bytes 0x800, length 0x1260)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
+str_z0000	監督	main	4	0x007A6	43	-	modelreadsync	0x03000000	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	5	0x007AC	44	-	motionreadsync	1	motion 1	-	-	waits while motion 1 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
+str_z0000	監督	main	6	0x007B2	45	-	store	file_var_s0_1 = 1	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	7	0x007B5	46	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	8	0x007BB	47	-	sysDVAR	0, file_var_s0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	9	0x007C2	48	-	sysDVAR	2, file_var_s0_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	10	0x007C9	49	-	sysDVAR	3, file_var_s0_3	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	11	0x007D0	50	-	sysDVAR	5, file_var_s0_4	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	12	0x007D7	51	-	effectread_e0	0, 52	effect slot 0: event effect e 52, file e0052.efx (jp folder)	-	-	-	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md, 17 effect-file-list.tsv
+str_z0000	監督	main	13	0x007E3	52	-	sysReq	1, STURAHL::バインドオン	actor `STURAHL`	-	-	files STURAHL::バインドオン on channel 1; does not wait	STURAHL.バインドオン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	14	0x007E7	53	-	effectreadsync_e1	0	effect slot 0	-	-	waits until the effect file read into slot 0 is loaded	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	監督	main	15	0x007F0	54	-	sysReqwait	STURAHL::バインドオン	actor `STURAHL`	-	-	waits until STURAHL::バインドオン is no longer on its actor	STURAHL.バインドオン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	16	0x007F4	55	-	eventsoundread	0	event sound slot 0 (sub-file 0 of `str_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	監督	main	17	0x007FA	56	-	eventsoundread	1	event sound slot 1 (sub-file 1 of `str_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	監督	main	18	0x00800	57	-	eventsoundreadsync	0	event sound slot 0	-	-	waits while event sound slot 0 loads	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	監督	main	19	0x00806	58	-	eventsoundreadsync	1	event sound slot 1	-	-	waits while event sound slot 1 loads	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	監督	main	20	0x00810	59	-	if	file_var_s0_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	21	0x00819	61	file_var_s0_1 == 1	store	file_var_s0_2 = event_global_flag[1]	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	22	0x00825	63	not (file_var_s0_1 == 1)	else if	not (skipcheck(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	23	0x0082E	65	not (file_var_s0_1 == 1); not (skipcheck(0))	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	監督	main	24	0x00834	66	not (file_var_s0_1 == 1); not (skipcheck(0))	store	file_var_s0_2 = file_var_s0_3	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	25	0x00840	67	not (file_var_s0_1 == 1); not (skipcheck(0))	askpos	0, file_var_s0_2, 0	argument 1: the message window slot (0-7, the 0x68-byte records at 0x0215F200) whose next choice list the call sets / argument 2: the choice the cursor starts on / argument 3: the choice Cancel moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	26	0x00852	68	not (file_var_s0_1 == 1); not (skipcheck(0))	aask	0, 0x01000000, 0x03c0, 0x021c, 4	result stored in file_var_s0_2	line 0: (choices: 0 / 1 / 2 / 3)	-	-	-	resolved	this page's How a call is read
+str_z0000	監督	main	27	0x0085F	69	not (file_var_s0_1 == 1); not (skipcheck(0))	if	file_var_s0_2 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	28	0x00865	71	not (file_var_s0_1 == 1); not (skipcheck(0)); file_var_s0_2 == 3	store	file_var_s0_2 = 4	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	29	0x00871	73	not (file_var_s0_1 == 1); not (skipcheck(0))	sysReqew	2, 背景曲::デバッグ用再生	actor `背景曲`	-	-	files 背景曲::デバッグ用再生 on channel 2; waits until it ends	背景曲.デバッグ用再生	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	30	0x00875	74	not (file_var_s0_1 == 1); not (skipcheck(0))	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	監督	main	31	0x00878	76	-	nowmap	-	result stored in file_var_s0_5; the area the party is in	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	32	0x00882	77	-	switch	file_var_s0_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	33	0x00885	79	-	case	248	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	34	0x0088C	80	file_var_s0_5 = 248	if	file_var_s0_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	35	0x00892	82	file_var_s0_5 = 248; file_var_s0_2 == 0	store	file_var_s0_4 = 8	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	36	0x0089C	84	file_var_s0_5 = 248	if	file_var_s0_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	37	0x008A2	86	file_var_s0_5 = 248; file_var_s0_2 == 1	setskyonly	1	-	-	-	-	-		01 verb-table.tsv
+str_z0000	監督	main	38	0x008AC	88	file_var_s0_5 = 248	if	file_var_s0_2 == 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	39	0x008B2	90	file_var_s0_5 = 248; file_var_s0_2 == 2	store	file_var_s0_4 = 12	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	40	0x008B5	92	file_var_s0_5 = 248	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	41	0x008B8	93	-	case	0x0109	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	42	0x008BB	94	file_var_s0_5 = 0x0109	store	file_var_s0_6 = 30	variable file_var_s0_6	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	43	0x008C5	95	file_var_s0_5 = 0x0109	if	file_var_s0_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	44	0x008CB	97	file_var_s0_5 = 0x0109; file_var_s0_2 == 0	store	file_var_s0_4 = 8	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	45	0x008D5	99	file_var_s0_5 = 0x0109	if	file_var_s0_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	46	0x008DB	101	file_var_s0_5 = 0x0109; file_var_s0_2 == 1	setskyonly	1	-	-	-	-	-		01 verb-table.tsv
+str_z0000	監督	main	47	0x008E5	103	file_var_s0_5 = 0x0109	if	file_var_s0_2 == 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	48	0x008EB	105	file_var_s0_5 = 0x0109; file_var_s0_2 == 2	store	file_var_s0_4 = 8	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	49	0x008EE	107	file_var_s0_5 = 0x0109	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	50	0x008F1	108	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	51	0x008F4	109	file_var_s0_5 is none of 248, 0x0109	store	file_var_s0_4 = 45	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	52	0x008FA	110	file_var_s0_5 is none of 248, 0x0109	setskyonly	1	-	-	-	-	-		01 verb-table.tsv
+str_z0000	監督	main	53	0x008FD	111	file_var_s0_5 is none of 248, 0x0109	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	54	0x0090F	113	-	hideparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	55	0x00915	114	-	hide_freetarget_group	-1	argument 1: the actor group whose members are hidden (negative means every actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	56	0x0091B	115	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	57	0x00921	116	-	maskopenfast	0	argument 1: popped and ignored (304 of the 305 calls pass 0). The verb opens the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	58	0x00924	117	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	59	0x00927	118	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	60	0x0092D	119	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+str_z0000	監督	main	61	0x00930	120	-	startenvsound	-	the area's weather ambience	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	62	0x00933	121	-	startspotsound	-	the map's sound emitters (the pack's SP1 block)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	63	0x00939	122	-	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	64	0x00940	123	-	switch	file_var_s0_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	65	0x00943	125	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	66	0x0094C	126	file_var_s0_2 = 0	sysReqew	1, ユニットＡ::メイン	actor `ユニットＡ`	-	-	files ユニットＡ::メイン on channel 1; waits until it ends	ユニットＡ.メイン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	67	0x0094D	127	file_var_s0_2 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	68	0x00950	128	-	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	69	0x00959	129	file_var_s0_2 = 1	sysReqew	1, ユニットＢ::メイン	actor `ユニットＢ`	-	-	files ユニットＢ::メイン on channel 1; waits until it ends	ユニットＢ.メイン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	70	0x0095A	130	file_var_s0_2 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	71	0x0095D	131	-	case	2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	72	0x00966	132	file_var_s0_2 = 2	sysReqew	1, ユニットＣ::メイン	actor `ユニットＣ`	-	-	files ユニットＣ::メイン on channel 1; waits until it ends	ユニットＣ.メイン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	73	0x00967	133	file_var_s0_2 = 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	74	0x0096A	134	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	75	0x0096A	135	file_var_s0_2 is none of 0, 1, 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	76	0x00985	137	-	store	file_var_s0_3 = file_var_s0_2	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	77	0x0098B	138	-	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	78	0x00991	139	-	maskclosefast	0	argument 1: popped and ignored (every call passes 0). The verb closes the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	79	0x00997	140	-	setfocusstatus	0	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	80	0x0099D	141	-	blurstop_549	0	argument 1: which of the four screen blur sprites (0x68-byte records at 0x02B58A80, index clamped to 0-3) to stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	81	0x009A3	142	-	blurstop_549	1	argument 1: which of the four screen blur sprites (0x68-byte records at 0x02B58A80, index clamped to 0-3) to stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	82	0x009A6	143	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	83	0x009AF	144	-	setalllightstatus	0, 1	argument 1: the light group (0-4; five groups at 0x02EBF420 + 0x50 times the group) to switch / argument 2: whether the group's lights are on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	84	0x009B2	145	-	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	85	0x009B8	146	-	seteventfogstatus	0	argument 1: the event fog switch 0x02EBF9C8 = value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	86	0x009BE	147	-	setlightallcutstatus	0	every light cut, off	-	-	-	-	resolved	25 ../EBP-Script-Files/ebp-lighting-lgt2.md
+str_z0000	監督	main	87	0x009C1	148	-	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	88	0x009C4	149	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	89	0x009CA	150	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	90	0x009D0	151	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	91	0x009D6	152	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	92	0x009DC	153	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+str_z0000	監督	main	93	0x009E2	154	-	setskyonly	0	-	-	-	-	-		01 verb-table.tsv
+str_z0000	監督	main	94	0x009E8	155	-	setff12screenmode	-1	argument 1: the frame mode, byte 0x02064AD1 (0x002EF350 -> 0x00229EC0; a negative value becomes 2)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	95	0x009EB	156	-	stopenvsoundall	-	the map's ambient sounds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	96	0x009F4	157	-	sysReqwait	背景曲::フィールド曲終了	actor `背景曲`	-	-	waits until 背景曲::フィールド曲終了 is no longer on its actor	背景曲.フィールド曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	97	0x009FE	158	-	sysReq	1, STURAHL::バインドオフ	actor `STURAHL`	-	-	files STURAHL::バインドオフ on channel 1; does not wait	STURAHL.バインドオフ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	98	0x00A05	159	-	sysReqwait	STURAHL::バインドオフ	actor `STURAHL`	-	-	waits until STURAHL::バインドオフ is no longer on its actor	STURAHL.バインドオフ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	監督	main	99	0x00A09	160	-	effectcancel_e4	0	effect slot 0: set to state 4 and its queue entry released	-	-	-	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	監督	main	100	0x00A0F	161	-	eventsounddispose	0	event sound slot 0, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	監督	main	101	0x00A15	162	-	eventsounddispose	1	event sound slot 1, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	監督	main	102	0x00A1F	163	-	if	file_var_s0_1 != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	103	0x00A28	165	file_var_s0_1 != 1	if	not (skipcheck(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	104	0x00A31	167	file_var_s0_1 != 1; not (skipcheck(0))	wait	90	-	-	90 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	監督	main	105	0x00A37	168	file_var_s0_1 != 1; not (skipcheck(0))	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	監督	main	106	0x00A41	169	file_var_s0_1 != 1; not (skipcheck(0))	store	file_var_s0_7 = file_var_s0_7 + 1	variable file_var_s0_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	監督	main	107	0x00A47	170	file_var_s0_1 != 1; not (skipcheck(0))	startscene	file_var_s0_7	scene cut file_var_s0_7, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	監督	main	108	0x00A51	171	file_var_s0_1 != 1; not (skipcheck(0))	if	file_var_s0_2 != 4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	109	0x00A63	173	file_var_s0_1 != 1; not (skipcheck(0)); file_var_s0_2 != 4	aask	0, 0x01000001, 0x03c0, 0x03ef, 4	result stored in file_var_s0_8	line 1: (choices: 0 / 1)	-	-	-	resolved	this page's How a call is read
+str_z0000	監督	main	110	0x00A6D	174	file_var_s0_1 != 1; not (skipcheck(0)); file_var_s0_2 != 4	switch	file_var_s0_8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	111	0x00A70	176	file_var_s0_1 != 1; not (skipcheck(0)); file_var_s0_2 != 4	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	112	0x00A70	177	file_var_s0_1 != 1; not (skipcheck(0)); file_var_s0_2 != 4; file_var_s0_8 = 0	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	監督	main	113	0x00A7F	182	-	motiondispose	1	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	114	0x00A85	183	-	modeldispose	0x03000000	argument 1: the model to release	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	115	0x00A8B	184	-	skipend	0	argument 1: the skip entry of the calling manager to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	116	0x00A91	185	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	監督	main	117	0x00A94	186	-	showparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	118	0x00A9A	187	-	show_freetarget_group	-1	argument 1: the group of non-party actors shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	監督	main	119	0x00AA0	188	-	eventdispose_f2	0	event manager slot 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	監督	main	120	0x00AA3	189	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＡ	init	1	0x00AA4	204	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＡ	メイン	1	0x00AA8	209	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＡ	メイン	2	0x00AB4	210	-	sysReq	1, STURAHL::変形A	actor `STURAHL`	-	-	files STURAHL::変形A on channel 1; does not wait	STURAHL.変形A	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	3	0x00AB8	211	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＡ	メイン	4	0x00AC4	212	-	sysReq	1, カメラ::カメラuA_s1c1	actor `カメラ`	-	-	files カメラ::カメラuA_s1c1 on channel 1; does not wait	カメラ.カメラuA_s1c1	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	5	0x00ACC	213	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＡ	メイン	6	0x00AD5	215	file_var_s1_1 == 1	effectplay_e2	0, 0	effect slot 0: the effect read into it, played with 0 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＡ	メイン	7	0x00AE1	217	-	sysReq	1, 効果音::発音Ａ0	actor `効果音`	-	-	files 効果音::発音Ａ0 on channel 1; does not wait	効果音.発音Ａ0	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	8	0x00AE5	218	-	wait	14	-	-	14 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＡ	メイン	9	0x00AEB	219	-	fadein	10	the screen fade, in	-	10 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＡ	メイン	10	0x00AF1	220	-	wait	23	-	-	23 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＡ	メイン	11	0x00AF4	221	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＡ	メイン	12	0x00AFD	222	-	sysReqwait	効果音::発音Ａ0	actor `効果音`	-	-	waits until 効果音::発音Ａ0 is no longer on its actor	効果音.発音Ａ0	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	13	0x00B01	223	-	startscene	1	scene cut 1, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＡ	メイン	14	0x00B0D	224	-	sysReq	2, カメラ::カメラuA_s1c2	actor `カメラ`	-	-	files カメラ::カメラuA_s1c2 on channel 2; does not wait	カメラ.カメラuA_s1c2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	15	0x00B11	225	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＡ	メイン	16	0x00B1B	226	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＡ	メイン	17	0x00B24	228	file_var_s1_1 == 1	effectplay_e2	0, 1	effect slot 0: the effect read into it, played with 1 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＡ	メイン	18	0x00B2A	230	-	wait	28	-	-	28 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＡ	メイン	19	0x00B33	231	-	sysReqwait	カメラ::カメラuA_s1c2	actor `カメラ`	-	-	waits until カメラ::カメラuA_s1c2 is no longer on its actor	カメラ.カメラuA_s1c2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	20	0x00B37	232	-	startscene	2	scene cut 2, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＡ	メイン	21	0x00B43	233	-	sysReq	1, カメラ::カメラuA_s1c3	actor `カメラ`	-	-	files カメラ::カメラuA_s1c3 on channel 1; does not wait	カメラ.カメラuA_s1c3	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	22	0x00B4D	234	-	sysReq	1, 効果音::発音Ａ2	actor `効果音`	-	-	files 効果音::発音Ａ2 on channel 1; does not wait	効果音.発音Ａ2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	23	0x00B51	235	-	store	file_var_s1_2 = 51	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	ユニットＡ	メイン	24	0x00B5D	236	-	sysReq	1, 背景曲::フィールド曲終了	actor `背景曲`	-	-	files 背景曲::フィールド曲終了 on channel 1; does not wait	背景曲.フィールド曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	25	0x00B61	237	-	wait	file_var_s1_2	-	-	frames held in file_var_s1_2	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＡ	メイン	26	0x00B6B	238	-	if	file_var_s0_5 == 0x01e3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＡ	メイン	27	0x00B71	240	file_var_s0_5 == 0x01e3	setskyonly	0	-	-	-	-	-		01 verb-table.tsv
+str_z0000	ユニットＡ	メイン	28	0x00B7A	242	-	sysReqwait	効果音::発音Ａ2	actor `効果音`	-	-	waits until 効果音::発音Ａ2 is no longer on its actor	効果音.発音Ａ2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	29	0x00B7E	243	-	startscene	3	scene cut 3, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＡ	メイン	30	0x00B8A	244	-	sysReq	1, カメラ::カメラuA_s1c4	actor `カメラ`	-	-	files カメラ::カメラuA_s1c4 on channel 1; does not wait	カメラ.カメラuA_s1c4	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	31	0x00B92	245	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＡ	メイン	32	0x00B9B	247	file_var_s1_1 == 1	effectplay_e2	0, 2	effect slot 0: the effect read into it, played with 2 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＡ	メイン	33	0x00BA1	249	-	wait	42	-	-	42 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＡ	メイン	34	0x00BA7	250	-	fadeout	80	the screen fade, out	-	80 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＡ	メイン	35	0x00BAD	251	-	stopenvsound_3de	160	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＡ	メイン	36	0x00BB0	252	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＡ	メイン	37	0x00BB9	253	-	sysReqwait	カメラ::カメラuA_s1c4	actor `カメラ`	-	-	waits until カメラ::カメラuA_s1c4 is no longer on its actor	カメラ.カメラuA_s1c4	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	38	0x00BC0	254	-	sysReqwait	STURAHL::変形A	actor `STURAHL`	-	-	waits until STURAHL::変形A is no longer on its actor	STURAHL.変形A	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＡ	メイン	39	0x00BCA	255	-	unkCall_5ac	0, 0, 0	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＡ	メイン	40	0x00BD0	256	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＡ	メイン	41	0x00BD1	257	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＢ	init	1	0x00BD2	266	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＢ	メイン	1	0x00BD6	271	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＢ	メイン	2	0x00BE2	272	-	sysReq	1, STURAHL::変形B	actor `STURAHL`	-	-	files STURAHL::変形B on channel 1; does not wait	STURAHL.変形B	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	3	0x00BE6	273	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＢ	メイン	4	0x00BF2	274	-	sysReq	1, カメラ::カメラuB_s1c1	actor `カメラ`	-	-	files カメラ::カメラuB_s1c1 on channel 1; does not wait	カメラ.カメラuB_s1c1	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	5	0x00BFA	275	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＢ	メイン	6	0x00C03	277	file_var_s1_1 == 1	effectplay_e2	0, 0	effect slot 0: the effect read into it, played with 0 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＢ	メイン	7	0x00C0F	279	-	sysReq	1, 効果音::発音Ｂ0	actor `効果音`	-	-	files 効果音::発音Ｂ0 on channel 1; does not wait	効果音.発音Ｂ0	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	8	0x00C13	280	-	wait	14	-	-	14 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＢ	メイン	9	0x00C19	281	-	fadein	10	the screen fade, in	-	10 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＢ	メイン	10	0x00C1F	282	-	wait	29	-	-	29 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＢ	メイン	11	0x00C22	283	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＢ	メイン	12	0x00C2B	284	-	sysReqwait	効果音::発音Ｂ0	actor `効果音`	-	-	waits until 効果音::発音Ｂ0 is no longer on its actor	効果音.発音Ｂ0	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	13	0x00C2F	285	-	startscene	1	scene cut 1, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＢ	メイン	14	0x00C3B	286	-	sysReq	2, カメラ::カメラuB_s1c2	actor `カメラ`	-	-	files カメラ::カメラuB_s1c2 on channel 2; does not wait	カメラ.カメラuB_s1c2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	15	0x00C45	287	-	sysReq	1, 効果音::発音Ｂ1	actor `効果音`	-	-	files 効果音::発音Ｂ1 on channel 1; does not wait	効果音.発音Ｂ1	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	16	0x00C49	288	-	wait	18	-	-	18 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＢ	メイン	17	0x00C53	289	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＢ	メイン	18	0x00C5C	291	file_var_s1_1 == 1	effectplay_e2	0, 1	effect slot 0: the effect read into it, played with 1 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＢ	メイン	19	0x00C62	293	-	store	file_var_s1_2 = 64	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	ユニットＢ	メイン	20	0x00C6E	294	-	sysReq	1, 背景曲::フィールド曲終了	actor `背景曲`	-	-	files 背景曲::フィールド曲終了 on channel 1; does not wait	背景曲.フィールド曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	21	0x00C72	295	-	wait	file_var_s1_2	-	-	frames held in file_var_s1_2	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＢ	メイン	22	0x00C7B	296	-	sysReqwait	効果音::発音Ｂ1	actor `効果音`	-	-	waits until 効果音::発音Ｂ1 is no longer on its actor	効果音.発音Ｂ1	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	23	0x00C7F	297	-	startscene	2	scene cut 2, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＢ	メイン	24	0x00C8B	298	-	sysReq	3, カメラ::カメラuB_s1c3	actor `カメラ`	-	-	files カメラ::カメラuB_s1c3 on channel 3; does not wait	カメラ.カメラuB_s1c3	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	25	0x00C93	299	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＢ	メイン	26	0x00C9C	301	file_var_s1_1 == 1	effectplay_e2	0, 2	effect slot 0: the effect read into it, played with 2 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＢ	メイン	27	0x00CA2	303	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＢ	メイン	28	0x00CA8	304	-	fadeout	80	the screen fade, out	-	80 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＢ	メイン	29	0x00CAE	305	-	stopenvsound_3de	160	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＢ	メイン	30	0x00CB1	306	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＢ	メイン	31	0x00CBA	307	-	sysReqwait	STURAHL::変形B	actor `STURAHL`	-	-	waits until STURAHL::変形B is no longer on its actor	STURAHL.変形B	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＢ	メイン	32	0x00CC4	308	-	unkCall_5ac	0, 0, 0	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＢ	メイン	33	0x00CCA	309	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＢ	メイン	34	0x00CCB	310	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＣ	init	1	0x00CCC	319	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＣ	メイン	1	0x00CD0	324	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＣ	メイン	2	0x00CDC	325	-	sysReq	1, STURAHL::変形C	actor `STURAHL`	-	-	files STURAHL::変形C on channel 1; does not wait	STURAHL.変形C	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	3	0x00CE0	326	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＣ	メイン	4	0x00CEC	327	-	sysReq	1, カメラ::カメラC_c1	actor `カメラ`	-	-	files カメラ::カメラC_c1 on channel 1; does not wait	カメラ.カメラC_c1	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	5	0x00CF4	328	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＣ	メイン	6	0x00CFD	330	file_var_s1_1 == 1	effectplay_e2	0, 0	effect slot 0: the effect read into it, played with 0 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＣ	メイン	7	0x00D09	332	-	sysReq	1, 効果音::発音Ｃ0	actor `効果音`	-	-	files 効果音::発音Ｃ0 on channel 1; does not wait	効果音.発音Ｃ0	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	8	0x00D0D	333	-	wait	14	-	-	14 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＣ	メイン	9	0x00D13	334	-	fadein	10	the screen fade, in	-	10 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＣ	メイン	10	0x00D19	335	-	wait	24	-	-	24 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＣ	メイン	11	0x00D22	336	-	sysReqwait	効果音::発音Ｃ0	actor `効果音`	-	-	waits until 効果音::発音Ｃ0 is no longer on its actor	効果音.発音Ｃ0	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	12	0x00D26	337	-	startscene	1	scene cut 1, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＣ	メイン	13	0x00D32	338	-	sysReq	2, カメラ::カメラC_c2	actor `カメラ`	-	-	files カメラ::カメラC_c2 on channel 2; does not wait	カメラ.カメラC_c2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	14	0x00D36	339	-	wait	12	-	-	12 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＣ	メイン	15	0x00D40	340	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＣ	メイン	16	0x00D49	342	file_var_s1_1 == 1	effectplay_e2	0, 1	effect slot 0: the effect read into it, played with 1 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＣ	メイン	17	0x00D4F	344	-	wait	47	-	-	47 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＣ	メイン	18	0x00D55	345	-	startscene	2	scene cut 2, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＣ	メイン	19	0x00D61	346	-	sysReq	1, カメラ::カメラC_c3	actor `カメラ`	-	-	files カメラ::カメラC_c3 on channel 1; does not wait	カメラ.カメラC_c3	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	20	0x00D6B	347	-	sysReq	1, 効果音::発音Ｃ2	actor `効果音`	-	-	files 効果音::発音Ｃ2 on channel 1; does not wait	効果音.発音Ｃ2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	21	0x00D75	348	-	sysReq	1, 背景曲::フィールド曲終了	actor `背景曲`	-	-	files 背景曲::フィールド曲終了 on channel 1; does not wait	背景曲.フィールド曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	22	0x00D79	349	-	wait	25	-	-	25 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＣ	メイン	23	0x00D82	350	-	sysReqwait	効果音::発音Ｃ2	actor `効果音`	-	-	waits until 効果音::発音Ｃ2 is no longer on its actor	効果音.発音Ｃ2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	24	0x00D86	351	-	startscene	3	scene cut 3, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+str_z0000	ユニットＣ	メイン	25	0x00D92	352	-	sysReq	1, カメラ::カメラC_c4	actor `カメラ`	-	-	files カメラ::カメラC_c4 on channel 1; does not wait	カメラ.カメラC_c4	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	26	0x00D9A	353	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＣ	メイン	27	0x00DA3	355	file_var_s1_1 == 1	effectplay_e2	0, 2	effect slot 0: the effect read into it, played with 2 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
+str_z0000	ユニットＣ	メイン	28	0x00DA9	357	-	store	file_var_s1_2 = 45	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	ユニットＣ	メイン	29	0x00DAF	358	-	wait	file_var_s1_2	-	-	frames held in file_var_s1_2	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	ユニットＣ	メイン	30	0x00DB5	359	-	fadeout	80	the screen fade, out	-	80 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+str_z0000	ユニットＣ	メイン	31	0x00DBE	360	-	sysReqwait	カメラ::カメラC_c4	actor `カメラ`	-	-	waits until カメラ::カメラC_c4 is no longer on its actor	カメラ.カメラC_c4	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	32	0x00DC2	361	-	stopenvsound_3de	160	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＣ	メイン	33	0x00DC5	362	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＣ	メイン	34	0x00DCE	363	-	sysReqwait	STURAHL::変形C	actor `STURAHL`	-	-	waits until STURAHL::変形C is no longer on its actor	STURAHL.変形C	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+str_z0000	ユニットＣ	メイン	35	0x00DD8	364	-	unkCall_5ac	0, 0, 0	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	ユニットＣ	メイン	36	0x00DDE	365	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	ユニットＣ	メイン	37	0x00DDF	366	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	init	1	0x00DE0	375	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラuA_s1c1	1	0x00DE7	380	-	camerastart_7e	0, 0x02000000	camera row 0 `カメラuA_s1c1`: shot 0 `カメラuA_s1c1`, channel 0	-	shot 37 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラuA_s1c1	2	0x00DF3	381	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラuA_s1c1	3	0x00DF9	382	-	camerasync_7f	0	camera channel 0	-	-	waits while camera channel 0 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	カメラ	カメラuA_s1c1	4	0x00DFF	383	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラuA_s1c2	1	0x00E06	388	-	camerastart_7e	0, 0x02000001	camera row 1 `カメラuA_s1c2`: shot 1 `カメラuA_s1c2`, channel 0	-	shot 38 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラuA_s1c2	2	0x00E12	389	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラuA_s1c2	3	0x00E18	390	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラuA_s1c3	1	0x00E1F	395	-	camerastart_7e	0, 0x02000002	camera row 2 `カメラuA_s1c3`: shot 2 `カメラuA_s1c3`, channel 0	-	shot 51 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラuA_s1c3	2	0x00E2B	396	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラuA_s1c3	3	0x00E31	397	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラuA_s1c4	1	0x00E35	402	-	setff12screenmode	3	argument 1: the frame mode, byte 0x02064AD1 (0x002EF350 -> 0x00229EC0; a negative value becomes 2)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラuA_s1c4	2	0x00E3E	403	-	camerastart_7e	0, 0x02000003	camera row 3 `カメラuA_s1c4p`: shot 3 `カメラuA_s1c4p`, channel 0	-	shot 140 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラuA_s1c4	3	0x00E4A	404	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラuA_s1c4	4	0x00E50	405	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラuB_s1c1	1	0x00E57	410	-	camerastart_7e	0, 0x02000004	camera row 4 `カメラuB_s1c1`: shot 4 `カメラuB_s1c1`, channel 0	-	shot 43 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラuB_s1c1	2	0x00E63	411	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラuB_s1c1	3	0x00E69	412	-	camerasync_7f	0	camera channel 0	-	-	waits while camera channel 0 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	カメラ	カメラuB_s1c1	4	0x00E6F	413	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラuB_s1c2	1	0x00E76	418	-	camerastart_7e	0, 0x02000005	camera row 5 `カメラuB_s1c2p`: shot 5 `カメラuB_s1c2p`, channel 0	-	shot 82 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラuB_s1c2	2	0x00E82	419	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラuB_s1c2	3	0x00E88	420	-	camerasync_7f	0	camera channel 0	-	-	waits while camera channel 0 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	カメラ	カメラuB_s1c2	4	0x00E8E	421	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラuB_s1c3	1	0x00E95	426	-	camerastart_7e	0, 0x02000006	camera row 6 `カメラuB_s1c3p`: shot 6 `カメラuB_s1c3p`, channel 0	-	shot 140 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラuB_s1c3	2	0x00EA1	427	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラuB_s1c3	3	0x00EA4	428	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラC_c1	1	0x00EAB	433	-	camerastart_7e	0, 0x02000007	camera row 7 `カメラC_c1`: shot 7 `カメラC_c1`, channel 0	-	shot 37 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラC_c1	2	0x00EB7	434	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラC_c1	3	0x00EBD	435	-	camerasync_7f	0	camera channel 0	-	-	waits while camera channel 0 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	カメラ	カメラC_c1	4	0x00EC3	436	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラC_c2	1	0x00ECA	441	-	camerastart_7e	0, 0x02000008	camera row 8 `カメラC_c2`: shot 8 `カメラC_c2`, channel 0	-	shot 58 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラC_c2	2	0x00ED6	442	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラC_c2	3	0x00EDC	443	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラC_c3	1	0x00EE3	448	-	camerastart_7e	0, 0x02000009	camera row 9 `カメラC_c3`: shot 9 `カメラC_c3`, channel 0	-	shot 24 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラC_c3	2	0x00EEF	449	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラC_c3	3	0x00EF5	450	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラC_c4	1	0x00EFC	455	-	camerastart_7e	0, 0x0200000a	camera row 10 `カメラC_c4`: shot 10 `カメラC_c4`, channel 0	-	shot 140 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
+str_z0000	カメラ	カメラC_c4	2	0x00F08	456	-	unkCall_5ac	1, 2.5, 100	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラC_c4	3	0x00F0E	457	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラクリア	1	0x00F0F	462	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラクリア	2	0x00F1B	463	-	unkCall_5ac	0, 0, 0	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	カメラ	カメラクリア	3	0x00F21	464	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	カメラ	カメラクリア	4	0x00F22	465	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	init	1	0x00F23	479	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ａ0	1	0x00F2B	484	-	if	file_var_s5_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ａ0	2	0x00F31	486	file_var_s5_1 == 1	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	効果音	発音Ａ0	3	0x00F37	487	file_var_s5_1 == 1	eventsoundplay	0x05000000	list entry 0 of event sound slot 1 (sub-file 1 of `str_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	効果音	発音Ａ0	4	0x00F3A	489	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ａ2	1	0x00F42	494	-	if	file_var_s5_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ａ2	2	0x00F48	496	file_var_s5_1 == 1	wait	28	-	-	28 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	効果音	発音Ａ2	3	0x00F4E	497	file_var_s5_1 == 1	eventsoundplay	0x04000000	list entry 0 of event sound slot 0 (sub-file 0 of `str_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	効果音	発音Ａ2	4	0x00F51	499	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ｂ0	1	0x00F59	504	-	if	file_var_s5_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ｂ0	2	0x00F5F	506	file_var_s5_1 == 1	wait	14	-	-	14 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	効果音	発音Ｂ0	3	0x00F65	507	file_var_s5_1 == 1	eventsoundplay	0x05000000	list entry 0 of event sound slot 1 (sub-file 1 of `str_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	効果音	発音Ｂ0	4	0x00F68	509	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ｂ1	1	0x00F70	514	-	if	file_var_s5_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ｂ1	2	0x00F76	516	file_var_s5_1 == 1	wait	65	-	-	65 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	効果音	発音Ｂ1	3	0x00F7C	517	file_var_s5_1 == 1	eventsoundplay	0x04000000	list entry 0 of event sound slot 0 (sub-file 0 of `str_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	効果音	発音Ｂ1	4	0x00F7F	519	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ｃ0	1	0x00F87	524	-	if	file_var_s5_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ｃ0	2	0x00F8D	526	file_var_s5_1 == 1	wait	6	-	-	6 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	効果音	発音Ｃ0	3	0x00F93	527	file_var_s5_1 == 1	eventsoundplay	0x05000000	list entry 0 of event sound slot 1 (sub-file 1 of `str_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	効果音	発音Ｃ0	4	0x00F96	529	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ｃ2	1	0x00F9E	534	-	if	file_var_s5_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	効果音	発音Ｃ2	2	0x00FA4	536	file_var_s5_1 == 1	wait	8	-	-	8 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	効果音	発音Ｃ2	3	0x00FAA	537	file_var_s5_1 == 1	eventsoundplay	0x04000000	list entry 0 of event sound slot 0 (sub-file 0 of `str_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+str_z0000	効果音	発音Ｃ2	4	0x00FAD	539	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	背景曲	init	1	0x00FAE	553	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	背景曲	フィールド曲終了	1	0x00FAF	558	-	getnowmusicno	-	result stored in file_var_s6_1; the music track now current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	背景曲	フィールド曲終了	2	0x00FBC	559	-	if	file_var_s0_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	背景曲	フィールド曲終了	3	0x00FC6	561	file_var_s0_2 == 0	wait	(file_var_s1_2 - 5)	-	-	frames held in (file_var_s1_2 - 5)	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	背景曲	フィールド曲終了	4	0x00FD3	563	not (file_var_s0_2 == 0)	else if	file_var_s0_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	背景曲	フィールド曲終了	5	0x00FDD	565	not (file_var_s0_2 == 0); file_var_s0_2 == 1	wait	(file_var_s1_2 - 5)	-	-	frames held in (file_var_s1_2 - 5)	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	背景曲	フィールド曲終了	6	0x00FEA	567	not (file_var_s0_2 == 0); not (file_var_s0_2 == 1)	else if	file_var_s0_2 == 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	背景曲	フィールド曲終了	7	0x00FF0	569	not (file_var_s0_2 == 0); not (file_var_s0_2 == 1); file_var_s0_2 == 2	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	背景曲	フィールド曲終了	8	0x00FFC	571	-	musicfadeout	file_var_s6_1, 90	argument 1: the music track to fade out; a negative value (2,111 of the 2,356 calls) is the current track (0x002DEC00) / argument 2: the fade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	背景曲	フィールド曲終了	9	0x01002	572	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	背景曲	フィールド曲終了	10	0x01005	573	-	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	背景曲	フィールド曲終了	11	0x0100B	574	-	musicstop	-1	argument 1: the music track to stop; a negative value (2,515 of the 2,774 calls pass -1) is the track now current (0x002DEC00, 0x0215EF44)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	背景曲	フィールド曲終了	12	0x01011	575	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+str_z0000	背景曲	フィールド曲終了	13	0x01014	576	-	musicclearall	-	empties the four music track slots at 0x022CB9F0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	背景曲	フィールド曲終了	14	0x01017	577	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	背景曲	デバッグ用再生	1	0x01018	582	-	getnowmusicno	-	result stored in file_var_s6_1; the music track now current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	背景曲	デバッグ用再生	2	0x01021	583	-	musicplay	file_var_s6_1	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	背景曲	デバッグ用再生	3	0x0102D	584	-	musictrans	file_var_s6_1, 0, 127	music track file_var_s6_1	-	volume 127 at once	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+str_z0000	背景曲	デバッグ用再生	4	0x01033	585	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	背景曲	デバッグ用再生	5	0x01034	586	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	init	1	0x01035	600	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	バインドオン	1	0x01039	605	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオン	2	0x0103F	606	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオン	3	0x01045	607	-	bindp2	0x03000000	model g3 (section 12 entry 0, bound id 0x670003)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
+str_z0000	STURAHL	バインドオン	4	0x0104B	608	-	effectactor	15	argument 1: the index (clamped 0-63) of the effect-anchor table entry that the calling actor's effect handle (0x003589B0(0x00263F10(actor))) fills	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオン	5	0x01051	609	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオン	6	0x01057	610	-	setcharclipall	0	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオン	7	0x0105A	611	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	バインドオフ	1	0x0105E	616	-	setcharclipall	1	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオフ	2	0x01064	617	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオフ	3	0x0106A	618	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオフ	4	0x0106D	619	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	バインドオフ	5	0x01070	620	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	変形A	1	0x01074	625	-	store	file_var_s7_1 = 0	variable file_var_s7_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	STURAHL	変形A	2	0x01080	626	-	setpos	0, file_var_s0_4, file_var_s7_1	this actor, placed at (0, file_var_s0_4, file_var_s7_1)	-	-	-	-	resolved	0x0034EBC0 (read here)
+str_z0000	STURAHL	変形A	3	0x0108E	627	-	dir	((file_var_s0_6 % 0x0168) * 0.0174532924)	this actor, turned to facing ((file_var_s0_6 % 0x0168) * 0.0174532924)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
+str_z0000	STURAHL	変形A	4	0x01094	628	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形A	5	0x0109D	629	-	motionloopframe	1, 174	argument 1: the first frame of the calling actor's motion loop / argument 2: the last frame of the loop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形A	6	0x010A6	630	-	motionplay_bb	0x11000000, 0	animation 0 of motion 1 of `str_z0000.mot` (bytes 0x800, length 0x1260)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
+str_z0000	STURAHL	変形A	7	0x010A9	631	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
+str_z0000	STURAHL	変形A	8	0x010AF	632	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形A	9	0x010B5	633	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	変形B	1	0x010B9	638	-	store	file_var_s0_4 = 45	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	STURAHL	変形B	2	0x010BF	639	-	store	file_var_s7_1 = 0	variable file_var_s7_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+str_z0000	STURAHL	変形B	3	0x010CB	640	-	setpos	0, file_var_s0_4, file_var_s7_1	this actor, placed at (0, file_var_s0_4, file_var_s7_1)	-	-	-	-	resolved	0x0034EBC0 (read here)
+str_z0000	STURAHL	変形B	4	0x010D9	641	-	dir	((file_var_s0_6 % 0x0168) * 0.0174532924)	this actor, turned to facing ((file_var_s0_6 % 0x0168) * 0.0174532924)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
+str_z0000	STURAHL	変形B	5	0x010DF	642	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形B	6	0x010E8	643	-	motionloopframe	1, 176	argument 1: the first frame of the calling actor's motion loop / argument 2: the last frame of the loop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形B	7	0x010F1	644	-	motionplay_bb	0x11000000, 0	animation 0 of motion 1 of `str_z0000.mot` (bytes 0x800, length 0x1260)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
+str_z0000	STURAHL	変形B	8	0x010F4	645	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
+str_z0000	STURAHL	変形B	9	0x010FA	646	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形B	10	0x01100	647	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	変形C	1	0x0110A	652	-	setpos	0, file_var_s0_4, file_var_s7_1	this actor, placed at (0, file_var_s0_4, file_var_s7_1)	-	-	-	-	resolved	0x0034EBC0 (read here)
+str_z0000	STURAHL	変形C	2	0x01118	653	-	dir	((file_var_s0_6 % 0x0168) * 0.0174532924)	this actor, turned to facing ((file_var_s0_6 % 0x0168) * 0.0174532924)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
+str_z0000	STURAHL	変形C	3	0x0111E	654	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形C	4	0x01127	655	-	motionloopframe	1, 171	argument 1: the first frame of the calling actor's motion loop / argument 2: the last frame of the loop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形C	5	0x01130	656	-	motionplay_bb	0x11000000, 0	animation 0 of motion 1 of `str_z0000.mot` (bytes 0x800, length 0x1260)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
+str_z0000	STURAHL	変形C	6	0x01133	657	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
+str_z0000	STURAHL	変形C	7	0x01139	658	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	変形C	8	0x0113F	659	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	位置調整c3	1	0x01149	664	-	setpos	0, file_var_s0_4, file_var_s7_1	this actor, placed at (0, file_var_s0_4, file_var_s7_1)	-	-	-	-	resolved	0x0034EBC0 (read here)
+str_z0000	STURAHL	位置調整c3	2	0x0114C	665	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	モーションキャンセル	1	0x0114D	670	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	モーションキャンセル	2	0x01150	671	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+str_z0000	STURAHL	ショウオフ	1	0x01151	676	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	ショウオフ	2	0x01157	677	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+str_z0000	STURAHL	ショウオフ	3	0x0115A	678	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

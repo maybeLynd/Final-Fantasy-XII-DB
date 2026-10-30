@@ -1,0 +1,14 @@
+script	kind	place	actors	functions	rows	shared_actors
+frs_a01	zone	The Omen-Spur (The Salikawood), field 151	18	36	10	0
+frs_a02	zone	Trunkwall Road (The Salikawood), field 152	33	93	21	1
+frs_a03	zone	Diverging Way (The Salikawood), field 153	30	58	21	0
+frs_a04	zone	Sun-dappled Path (The Salikawood), field 154	25	45	13	0
+frs_a05	zone	Garden of Decay (The Salikawood), field 155	27	87	19	1
+frs_a06	zone	Path of Hours (The Salikawood), field 156	23	99	13	5
+frs_b01	zone	Quietened Trace (The Salikawood), field 157	27	85	15	5
+frs_b02	zone	Grand Bower (The Salikawood), field 158	23	47	14	0
+frs_c01	zone	Corridor of Ages (The Salikawood), field 162	30	56	19	0
+frs_c02	zone	Piebald Path (The Salikawood), field 163	34	83	18	1
+frs_d01	zone	Living Chasm (The Salikawood), field 908	16	52	10	0
+frs_b0200	scene	scene, event 200	21	87	0	0
+frs_b0201	scene	scene, event 201	21	85	0	0

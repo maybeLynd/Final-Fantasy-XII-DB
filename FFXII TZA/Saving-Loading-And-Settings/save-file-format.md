@@ -239,6 +239,12 @@ The slot images ship as `ps2data/image/ff12/katano/ff12savedata00.sav` to `ff12s
 size tables size kind 1 ids 117 to 132 at exactly these files' sizes in order (57,864 bytes for 00 to 03, 49,664
 for 04 to 06 and 15, 22,016 for 07 to 14), and give those ids no path in this build.
 
+[`slot-image-regions.tsv`](slot-image-regions.tsv) gives every region of the sixteen images, one row per file, with its
+value and the instructions that identify it. Kind A (00 to 03) has its block at `0x2200` with member records of `0x1C4`
+bytes, kind B (04 to 06 and 15) at `0x2200` with `0x190`, kind C (07 to 14) at `0x15F4` with `0x140`. The table
+identifies 29.37% of kind A's bytes, 17.22% of B's and 32.11% of C's; 70.08%, 77.31% and 50.74% are zero in every
+file of the kind.
+
 ## Modding notes
 
 - A save editor must decrypt and inflate the body before any offset applies; file offset `0x1244`

@@ -43,7 +43,7 @@ zone scripts that load it belong to other areas.
 | `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
 | `lines` | the number of entries in the scene's section 2 |
 | `synopsis` | the `us` text of every non-empty entry; `-` here |
-| `items` | items the scene's own functions give or take, as `receives` and the item id |
+| `items` | items the scene's own functions give or take, as `receives` and the item's name |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | story counter values written by the scene, with the first sentence of each explanation on [story counter values](story-counter-values.md) |

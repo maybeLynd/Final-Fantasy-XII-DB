@@ -48,9 +48,36 @@ The archive's only other file without an extension is `ps2data/square_ff12/ff12c
 | `page` | the page that documents the family, relative to this one; `—` when this page is the description |
 | `explanation` | what the family is for, in plain words: from the title or summary of the page in `page`, and for the battle tables from the registry-slot names on [Item and ability ids](../Engine-Core/item-and-ability-ids.md); where `page` is `—`, from this page's own sections ("Families no path names", "Request entries") and, for `planmapname.bin`, from [area flags](../World-Areas-And-Travel/area-flags-navimapdata.md); a family no path names is marked as never loaded, and a loose battle table as unread because the game reads its `battle_pack.bin` copy (see below); empty where the row is already plain or no shipped source states the purpose |
 
+### The two file tables
+
+| Column | Meaning |
+|---|---|
+| `language` | the language folder |
+| `file` | the file name |
+| `path` | the path in the archive |
+| `bytes` | the file's size |
+| `sha256` | the SHA-256 of the file |
+| `same_bytes_as` | the other language folders whose copy has the same bytes |
+| `form` | the format: `st2e`, `licd`, `pack`, `word banks`, `FLAGROM1`, `FLAGDEF1`, `NAV`, `NPC0`, `PLMN`, `QST1`, `script section`, `path list`, `name list`, `record list`, or `table` for another layout |
+| `header` | the header fields, decoded as the format's page gives them |
+| `kind_id` | the resource kind and id whose array entry names this copy; empty when none does |
+| `named_by` | the languages whose array names this copy |
+| `read_by` | of those, the languages whose size table sizes the entry |
+| `fst_size_matches` | `yes` when every reading language's size equals the file's size |
+| `loader` | the function that requests the kind and id |
+| `battle_pack_entry` | (test_battle only) the same folder's pack entry of the file's id: equal for the file's length, differing from a byte, empty, or no entry |
+| `used` | `used: read by` the languages, or `unused` with the reason |
+
 ## Data
 
 [`ps2data-bin-families.tsv`](ps2data-bin-families.tsv), 146 rows.
+
+Two tables list the files of two folders one by one:
+[`ps2data-bin-families-lang-bin-files.tsv`](ps2data-bin-families-lang-bin-files.tsv) the 58 `.bin` files under
+`<lang>/bin/`, and [`ps2data-bin-families-test-battle-files.tsv`](ps2data-bin-families-test-battle-files.tsv) the
+495 under `test_battle/<lang>/binaryfile/`. Each row gives the file's size, SHA-256, the copies with the same bytes,
+its decoded header, the kind and id the path arrays give it, the languages that read it, the loader, and whether
+the game reads it.
 
 | Fact | Value |
 |---|---|
@@ -191,6 +218,85 @@ tables from the pack ([authored data tables](authored-data-tables.md)). `license
 The arrays also name `.bin` files the archive does not hold, with size −1 in every table: text group 27
 `menu05.bin` (kind 2, id 67), `npc_name.bin`, `questhint.bin` and `questhittext.bin` (kind 9, ids 29, 34,
 35), and further `menuquest03.bin` to `menuquest05.bin` and other kind 7 entries.
+
+### The language folders file by file
+
+The 58 `.bin` files under `<lang>/bin/` hold 27 different contents. The `ch` and `in` folders also hold each script
+section's `.ebp`, `.dbg`, `.msb` and `.sbn`, 32 files
+([ATEL debug companions](../EBP-Script-Files/atel-debug-companions.md)).
+
+Of the 27 contents, 26 are read:
+
+| Files | Read by |
+|---|---|
+| `npcdic.bin`, `planmapname.bin`, one per folder | that folder's language; Japanese, ASIA and IN read `in` |
+| `mapjumpgroupflagrom.bin`, `mapjumpgroupinit.bin`, `navimapdata.bin`, `questbase.bin` in `in` | Japanese, US, French, German, Italian, Spanish, UK, ASIA and IN |
+| the same four in `ch` | Korean and the two Chinese languages |
+
+The other 32 are never read:
+
+- 22 copies that no array names: `mapjumpgroupflagrom.bin`, `mapjumpgroupinit.bin` and `questbase.bin` in `cn`,
+  `de`, `es`, `fr`, `it`, `kr` and `us`, and the `cn` `navimapdata.bin`. Each has the same bytes as the `in` and
+  `ch` copies the arrays name.
+- The 10 files no path names (Families no path names): the four script sections and `filelistlocalin.bin` in
+  `ch` and `in`.
+
+The `ch` and `in` copies of each script section are identical. `btlctrl.bin`, `ctrl.bin` and `mapctrl.bin` are the
+same bytes as their folder's `.ebp` from offset `0x80`, for the `.bin` file's whole length. `evctrl.bin` (22,320
+bytes) occurs nowhere in `evctrl.ebp` (38,720 bytes), so it is another build of that script.
+
+### The battle tables file by file
+
+The 495 files under `test_battle/` hold 329 different contents. 267 are read:
+
+| Files | Copies read | Loader |
+|---|---|---|
+| `battle_pack.bin` | all nine, one per language as the arrays give it | `0x002368D0` (id `0x13`) |
+| the 26 shipped text groups, `key_signal.bin` to `menu04.bin` | all nine | `0x002385D0`, id from the byte table `0x01E09F68` |
+| `board_1.bin` to `board_12.bin` | `in` and `ch` | `0x00238260` (id `0x47 +` board) |
+
+The other 228 are never read:
+
+- 98 copies the arrays name but no call site requests: the `ch` and `in` copies of the 40 loose battle tables,
+  and `battle_message.bin` and `word.bin` in all nine folders. `0x00384420`, the one kind-2 request, has three
+  callers, the pack (`0x0038440A`), the boards (`0x0023837D`) and the text groups (`0x0023861E`).
+- 104 copies no array names: the `cn` and `kr` copies of the same 40 tables and of the twelve boards.
+- 26 files no path names: the 13 families that ship only in `cn` and `kr` (Families no path names).
+
+### The battle pack's own copies
+
+Every language's `battle_pack.bin` has 71 entries, and the same 29 of them are empty, their start equal to the
+next one's: id 19, the pack itself, the 27 text-group ids (1, 20-25, 43-56, 62-67), which the game loads as files
+of their own, and id 40, which no array names. The `battle_pack_entry` column compares each loose table with the
+entry of its own id in the same folder's pack.
+
+161 copies equal their entry for the file's length. 17 differ, each an earlier or later table:
+
+| Table | Copies | File | Pack entry |
+|---|---|---|---|
+| `ability_data.bin` (id 58) | `ch`, `in` | 128 rows of 8 | 129 rows |
+| `license_data.bin` (id 12) | `ch`, `in` | 360 rows of 24 | 361 rows |
+| `license_data.bin` (id 12) | `cn`, `kr` | 361 rows, differing from byte `0x20` | 361 rows |
+| `menkyo_data.bin` (id 26) | `ch`, `in` | 31 rows of 8 | 32 rows |
+| `movie.bin` (id 69) | `ch`, `cn`, `in`, `kr` | 38 rows of 8 | 49 rows |
+| `savemember_data.bin` (id 59) | `ch`, `in` | 226 rows of 44, differing from byte `0x4F4` | 226 rows |
+| `horidashi.bin` (id 57) | `ch` | 128 rows of 36, differing from byte `0x1228` | 128 rows |
+| `action_data.bin` (id 14) | `cn`, `kr` | 543 rows of 60, differing from byte `0x18B4` | 543 rows |
+
+The game reads only the pack's tables, so none of these differences reaches play.
+
+### Replacing a file
+
+- A file read by kind and id is read at the size its language's size table gives: the request is sized with
+  `0x0032E400` and that many bytes are allocated and requested (`0x00384420`;
+  [File size tables](file-size-tables-fst.md)). A replacement of another length needs the entry changed in the
+  `.fst` of every language that reads the copy (the `read_by` column).
+- A size entry of -1 is never read, and the requester is told the file was delivered
+  ([File requests](file-requests-and-the-read-queue.md)).
+- Edit a battle table inside `battle_pack.bin`: the loose copies under `test_battle/` are never requested.
+- Edit the copy the language reads, the `read_by` column. For the files whose only named copies are in `in` and
+  `ch`, `in` serves the Western languages, Japanese, ASIA and IN, and `ch` serves Korean and the two Chinese
+  languages; the copies in the other folders are never read.
 
 ## Related
 

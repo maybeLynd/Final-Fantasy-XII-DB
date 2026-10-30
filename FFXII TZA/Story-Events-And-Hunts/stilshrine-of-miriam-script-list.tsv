@@ -1,0 +1,22 @@
+script	kind	place	actors	functions	rows	shared_actors
+mrm_a01	zone	Walk of Sky (Stilshrine of Miriam), field 593	17	52	8	0
+mrm_a02	zone	Walk of Mind (Stilshrine of Miriam), field 594	32	155	14	5
+mrm_b01	zone	Ward of Measure (Stilshrine of Miriam), field 597	44	201	10	0
+mrm_b02	zone	Cold Distance (Stilshrine of Miriam), field 598	33	114	8	1
+mrm_b03	zone	Walk of Prescience (Stilshrine of Miriam), field 599	26	103	7	0
+mrm_b04	zone	Walk of Reason (Stilshrine of Miriam), field 600	45	148	16	0
+mrm_c01	zone	Ward of Steel (Stilshrine of Miriam), field 603	31	147	9	1
+mrm_d01	zone	Ward of Velitation (Stilshrine of Miriam), field 606	28	71	8	0
+mrm_d02	zone	Walk of Torn Illusion (Stilshrine of Miriam), field 607	28	83	5	0
+mrm_d03	zone	Walk of Revelation (Stilshrine of Miriam), field 608	23	72	5	5
+mrm_d04	zone	Ward of the Sword-King (Stilshrine of Miriam), field 609	32	112	7	0
+mrm_e01	zone	Hall of Worth (Stilshrine of Miriam), field 612	23	80	5	0
+mrm_f01	zone	Vault of the Champion (Stilshrine of Miriam), field 615	16	90	4	0
+mrm_g01	zone	Throne of Veiled Gods (Stilshrine of Miriam), field 618	33	121	5	0
+mrm_c0100	scene	scene, event 360	13	55	0	0
+mrm_c0101	scene	scene, event 361	14	59	0	0
+mrm_e0100	scene	scene, event 362	14	69	0	0
+mrm_e0101	scene	scene, event 363	16	68	13	0
+mrm_f0100	scene	scene, event 366	30	412	10	0
+mrm_g0100	scene	scene, event 364	10	46	0	0
+mrm_g0101	scene	scene, event 365	15	61	13	0

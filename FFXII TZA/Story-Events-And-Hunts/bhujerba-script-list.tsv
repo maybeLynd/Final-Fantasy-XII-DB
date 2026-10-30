@@ -1,0 +1,32 @@
+script	kind	place	actors	functions	rows	shared_actors
+byu_a01	zone	Travica Way (Bhujerba), field 803	51	251	30	1
+byu_a02	zone	Cloudborne Row (Bhujerba), field 804	34	161	14	1
+byu_a03	zone	Miners' End (Bhujerba), field 805	33	186	22	1
+byu_a04	zone	Lhusu Square (Bhujerba), field 806	42	199	27	5
+byu_a07	zone	Khus Skygrounds (Bhujerba), field 809	24	109	10	1
+byu_a08	zone	Kaff Terrace (Bhujerba), field 810	23	92	8	1
+byu_a11	zone	Targe's Arms (Bhujerba), field 813	20	106	8	1
+byu_a12	zone	Rithil's Protectives (Bhujerba), field 814	20	106	8	1
+byu_a14	zone	Mait's Magicks (Bhujerba), field 816	20	106	8	1
+byu_a15	zone	Clio's Technicks (Bhujerba), field 817	41	195	9	1
+byu_a16	zone	Bashketi's Gambits (Bhujerba), field 818	21	109	8	1
+byu_a17	zone	The Staras Residence (Bhujerba), field 819	22	129	13	1
+byu_a18	zone	The Cloudborne (Bhujerba), field 820	28	148	12	1
+byu_b01	zone	Aerodrome (Bhujerba), field 791	41	169	18	5
+byu_w01	zone	byu_w01 (Bhujerba), field 912	7	10	1	0
+byu_x01	zone	byu_x01 (Bhujerba), field 914	7	10	1	0
+byu_y01	zone	byu_y01 (Bhujerba), field 864	8	16	3	0
+byu_z01	zone	byu_z01 (Bhujerba), field 862	7	10	1	0
+byu_a0100	scene	scene, event 271	31	384	11	0
+byu_a0400	scene	scene, event 272	20	247	11	0
+byu_a0480	scene	scene, event 705	18	88	1	0
+byu_a0481	scene	scene, event 725	24	169	9	0
+byu_a1880	scene	scene, event 265	24	216	14	0
+byu_b0100	scene	scene, event 276	26	162	4	0
+byu_b0101	scene	scene, event 278	32	214	3	0
+byu_w0100	scene	scene, event 277	27	233	19	0
+byu_x0100	scene	scene, event 275	18	145	11	0
+byu_y0100	scene	scene, event 273	24	293	15	0
+byu_y0101	scene	scene, event 274	18	207	16	0
+byu_z0100	scene	scene, event 270	25	162	6	0
+byu_z9900	scene	scene, event 606	3	8	0	0

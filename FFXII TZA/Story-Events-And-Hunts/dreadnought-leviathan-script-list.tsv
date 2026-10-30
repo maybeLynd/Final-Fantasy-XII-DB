@@ -1,0 +1,23 @@
+script	kind	place	actors	functions	rows	shared_actors
+rsn_a01	zone	Port Launch (Dreadnought Leviathan), field 552	28	111	5	5
+rsn_b01	zone	Port Section (Dreadnought Leviathan), field 555	44	140	14	1
+rsn_b02	zone	Large Freight Stores (Dreadnought Leviathan), field 556	40	106	16	0
+rsn_b03	zone	Starboard Section (Dreadnought Leviathan), field 557	41	129	11	0
+rsn_b04	zone	Sub-control Room (Dreadnought Leviathan), field 558	39	116	10	0
+rsn_c01	zone	Airship Berth Access (Dreadnought Leviathan), field 561	33	106	4	0
+rsn_d01	zone	Central Brig Access (Dreadnought Leviathan), field 564	26	97	5	1
+rsn_y01	zone	Brig No. 1 (Dreadnought Leviathan), field 876	37	160	10	5
+rsn_z01	zone	Bridge (Dreadnought Leviathan), field 871	9	18	4	0
+rsn_z02	zone	Battle Launch (Light Cruiser Shiva), field 872	12	20	4	0
+rsn_a0100	scene	scene, event 283	31	319	14	0
+rsn_a0101	scene	scene, event 288	32	216	5	0
+rsn_a0102	scene	scene, event 285	34	164	7	0
+rsn_b0100	scene	scene, event 287	21	189	35	0
+rsn_b0180	scene	scene, event 703	10	45	4	0
+rsn_d0100	scene	scene, event 280	23	120	1	0
+rsn_d0180	scene	scene, event 704	16	95	6	0
+rsn_y0100	scene	scene, event 284	16	112	22	0
+rsn_z0100	scene	scene, event 282	28	384	17	0
+rsn_z0101	scene	scene, event 289	30	583	1	0
+rsn_z0200	scene	scene, event 279	45	388	11	0
+rsn_z0201	scene	scene, event 286	50	326	11	0

@@ -1,0 +1,195 @@
+script	actor	function	step	at	line	condition	verb	arguments	addresses	quoted_lines	timing	sync	calls	resolution	source
+spc_z0000	監督	init	1	0x00473	31	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	監督	init	2	0x0047C	32	-	sysDVAR	0, file_var_s0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	3	0x00483	33	-	sysDVAR	1, file_var_s0_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	4	0x0048A	34	-	sysDVAR	2, file_var_s0_3	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	5	0x00491	35	-	sysDVAR	4, file_var_s0_4	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	6	0x00498	36	-	sysDVAR	5, file_var_s0_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	7	0x0049F	37	-	sysDVAR	7, file_var_s0_6	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	8	0x004A6	38	-	sysDVAR	8, file_var_s0_7	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	9	0x004AD	39	-	getspattackskillinfo	&file_var_s0_5, &file_var_s0_4	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	init	10	0x004B0	40	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	main	1	0x004BA	45	-	sysReq	1, 監督::全体処理	actor `監督`	-	-	files 監督::全体処理 on channel 1; does not wait	監督.全体処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	main	2	0x004BB	46	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	1	0x004BF	51	-	store	file_var_s0_8 = 0	variable file_var_s0_8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	監督	全体処理	2	0x004CB	52	-	sysReqew	2, 技読み込み::技読み込み	actor `技読み込み`	-	-	files 技読み込み::技読み込み on channel 2; waits until it ends	技読み込み.技読み込み	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	3	0x004D5	53	-	sysReqew	2, 技読み込み::技読み込み終了待ち	actor `技読み込み`	-	-	files 技読み込み::技読み込み終了待ち on channel 2; waits until it ends	技読み込み.技読み込み終了待ち	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	4	0x004D9	54	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+spc_z0000	監督	全体処理	5	0x004DF	55	-	setmenuhptargetshowstatus	0	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	全体処理	6	0x004E2	56	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	7	0x004E8	57	-	efffadeout	6	argument 1: the entry of the 14-entry common effect table 0x01EF9400 to play as the fading effect	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	8	0x004EE	58	-	eventsoundplay	0x04000000	list entry 0 of event sound slot 0 (sub-file 0 of `spc_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+spc_z0000	監督	全体処理	9	0x004F1	59	-	stopenvsoundall	-	the map's ambient sounds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	10	0x004F4	60	-	getnowmusicno	-	result stored in file_var_s0_9; the music track now current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	11	0x00503	61	-	musictrans	file_var_s0_9, 60, 64	music track file_var_s0_9	-	fade length 60 to volume 64	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+spc_z0000	監督	全体処理	12	0x00509	62	-	unkCall_5cf	1	argument 1: whether the calling event keeps the depth-mask pass forced on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	13	0x0050F	63	-	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+spc_z0000	監督	全体処理	14	0x00515	64	-	denybonephysicalall	1	argument 1: whether the map wind on model bones is stopped	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	15	0x0051B	65	-	deny_summon_effect_filter	1	argument 1: whether the summon effect filter is held off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	16	0x00521	66	-	setstatuserrordispdenystatus	1	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	17	0x00527	67	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+spc_z0000	監督	全体処理	18	0x0052D	68	-	seteffbeforeframecapturemode	1	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	全体処理	19	0x00530	69	-	duplicatepartyinfo_spattack	-	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	全体処理	20	0x00533	70	-	duplicatebattletarget	-	the poses of the summon leader and its followers, kept to be put back later	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	21	0x00536	71	-	setpossummonspace	-	the summon group, moved into summon space	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	22	0x0053C	72	-	summongethertarget_one	3	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	全体処理	23	0x00542	73	-	setnoupdatebehindcamera	1	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	24	0x00548	74	-	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+spc_z0000	監督	全体処理	25	0x00554	75	-	sysReq	1, target00::方向固定	actor `target00`	-	-	files target00::方向固定 on channel 1; does not wait	target00.方向固定	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	26	0x00555	76	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	27	0x00558	78	loop while true	store	file_var_s0_3 = file_var_s0_5	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	監督	全体処理	28	0x00561	79	loop while true	if	isfusion_spattack(file_var_s0_4)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	29	0x00567	81	loop while true; isfusion_spattack(file_var_s0_4)	sysSystem	0x02bc	none: SYSTEM pops and discards 0x02bc	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	30	0x00568	82	loop while true; isfusion_spattack(file_var_s0_4)	hidenobattletarget	-	every actor of the field and scene managers 0 to 2 (those with +0x10 bit 0x1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	31	0x0056E	83	loop while true; isfusion_spattack(file_var_s0_4)	store	file_var_s0_2 = 1	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	監督	全体処理	32	0x00574	84	loop while true; isfusion_spattack(file_var_s0_4)	summongethertarget	3	argument 1: the largest distance (world units) from the summon space's origin (0, 0, 0) the followers may reach	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	33	0x00580	88	loop while true; not (isfusion_spattack(file_var_s0_4))	PC00.capturepcbyentryid_not_cancelbattlecommand	file_var_s0_5	target actor `PC00` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	34	0x0058C	89	loop while true; not (isfusion_spattack(file_var_s0_4))	sysReqew	2, PC00::必殺技設定	actor `PC00`	-	-	files PC00::必殺技設定 on channel 2; waits until it ends	PC00.必殺技設定	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	35	0x00590	90	loop while true; not (isfusion_spattack(file_var_s0_4))	sysSystem	0x02bd	none: SYSTEM pops and discards 0x02bd	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	36	0x0059A	91	loop while true; not (isfusion_spattack(file_var_s0_4))	sysReqew	2, PC00::武器消し	actor `PC00`	-	-	files PC00::武器消し on channel 2; waits until it ends	PC00.武器消し	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	37	0x0059E	92	loop while true; not (isfusion_spattack(file_var_s0_4))	PC00.releasepc	-	target actor `PC00` (this script) / the party member the target actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/party-during-scenes.md
+spc_z0000	監督	全体処理	38	0x005A4	93	loop while true; not (isfusion_spattack(file_var_s0_4))	hidenobattletarget_spattack	file_var_s0_5	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	全体処理	39	0x005AA	94	loop while true; not (isfusion_spattack(file_var_s0_4))	store	file_var_s0_2 = 0	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	監督	全体処理	40	0x005B6	96	loop while true	sysReq	1, メッセージ監督::message	actor `メッセージ監督`	-	-	files メッセージ監督::message on channel 1; does not wait	メッセージ監督.message	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	41	0x005BA	97	loop while true	spattackplay	file_var_s0_5	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	全体処理	42	0x005C0	98	loop while true	efffadein	5	argument 1: which common screen effect to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	全体処理	43	0x005C6	99	loop while true	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+spc_z0000	監督	全体処理	44	0x005CC	100	loop while true	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
+spc_z0000	監督	全体処理	45	0x005D2	101	loop while true	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+spc_z0000	監督	全体処理	46	0x005D8	102	loop while true	sysSystem	0x03e9	none: SYSTEM pops and discards 0x03e9	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	47	0x005DD	103	loop while true	if	not (file_var_s0_2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	48	0x005E0	105	loop while true; not (file_var_s0_2)	openspattackwindow	-	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	全体処理	49	0x005E6	107	loop while true	sysSystem	0x03ea	none: SYSTEM pops and discards 0x03ea	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	50	0x005EA	108	loop while true	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+spc_z0000	監督	全体処理	51	0x005F0	109	loop while true	sysSystem	0x03eb	none: SYSTEM pops and discards 0x03eb	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	52	0x005F5	110	loop while true	if	not (file_var_s0_2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	53	0x005F8	112	loop while true; not (file_var_s0_2)	spattackwindowsync	-	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	全体処理	54	0x005FE	114	loop while true	sysSystem	0x03ec	none: SYSTEM pops and discards 0x03ec	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	55	0x00602	115	loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+spc_z0000	監督	全体処理	56	0x0060F	116	loop while true	store	file_var_s0_1 = not (getspattackskillinfo(&file_var_s0_7, &file_var_s0_6))	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	監督	全体処理	57	0x00615	117	loop while true	store	file_var_s0_4 = file_var_s0_6	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	監督	全体処理	58	0x0061B	118	loop while true	store	file_var_s0_5 = file_var_s0_7	variable file_var_s0_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	監督	全体処理	59	0x00627	119	loop while true	sysReqew	3, 技読み込み::技読み込み	actor `技読み込み`	-	-	files 技読み込み::技読み込み on channel 3; waits until it ends	技読み込み.技読み込み	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	60	0x00631	120	loop while true	sysReqew	2, 監督::技入力終了〜ホワイトアウト	actor `監督`	-	-	files 監督::技入力終了〜ホワイトアウト on channel 2; waits until it ends	監督.技入力終了〜ホワイトアウト	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	61	0x00635	121	loop while true	if	file_var_s0_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	62	0x0063B	123	loop while true; file_var_s0_1	sysSystem	2	none: SYSTEM pops and discards 2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	63	0x00645	124	loop while true; file_var_s0_1	sysReqew	7, 監督::終了処理	actor `監督`	-	-	files 監督::終了処理 on channel 7; waits until it ends	監督.終了処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	64	0x00649	125	loop while true; file_var_s0_1	sysSystem	3	none: SYSTEM pops and discards 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	65	0x00650	129	loop while true; not (file_var_s0_1)	sysSystem	12	none: SYSTEM pops and discards 12	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	66	0x0065A	130	loop while true; not (file_var_s0_1)	sysReqew	2, 技読み込み::技読み込み終了待ち	actor `技読み込み`	-	-	files 技読み込み::技読み込み終了待ち on channel 2; waits until it ends	技読み込み.技読み込み終了待ち	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	全体処理	67	0x0065E	131	loop while true; not (file_var_s0_1)	sysSystem	13	none: SYSTEM pops and discards 13	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	1	0x00665	138	-	sysSystem	0x012b	none: SYSTEM pops and discards 0x012b	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	2	0x00669	139	-	effecttotalsignalsync	7	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	技入力終了〜ホワイトアウト	3	0x0066F	140	-	spattack_whiteout_menu_callback	0	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	技入力終了〜ホワイトアウト	4	0x00675	141	-	sysSystem	0x012c	none: SYSTEM pops and discards 0x012c	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	5	0x00679	142	-	effecttotalsignalsync	8	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	技入力終了〜ホワイトアウト	6	0x0067F	143	-	spattack_whiteout_menu_callback	1	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	技入力終了〜ホワイトアウト	7	0x00685	144	-	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	技入力終了〜ホワイトアウト	8	0x0068B	145	-	whiteout	0	argument 1: the length in frames of a fade to white on fade layer 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	技入力終了〜ホワイトアウト	9	0x00691	146	-	sysSystem	0x012d	none: SYSTEM pops and discards 0x012d	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	10	0x00695	147	-	spattacksync	file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	技入力終了〜ホワイトアウト	11	0x0069E	148	-	PC00.capturepcbyentryid_not_cancelbattlecommand	file_var_s0_3	target actor `PC00` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
+spc_z0000	監督	技入力終了〜ホワイトアウト	12	0x006AA	149	-	sysReqew	2, PC00::武器表示	actor `PC00`	-	-	files PC00::武器表示 on channel 2; waits until it ends	PC00.武器表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	13	0x006AE	150	-	PC00.releasepc	-	target actor `PC00` (this script) / the party member the target actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/party-during-scenes.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	14	0x006B1	151	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	終了処理	1	0x006BB	156	-	sysReqew	7, メッセージ監督::messageterm	actor `メッセージ監督`	-	-	files メッセージ監督::messageterm on channel 7; waits until it ends	メッセージ監督.messageterm	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+spc_z0000	監督	終了処理	2	0x006BF	157	-	denybonephysicalall	0	argument 1: whether the map wind on model bones is stopped	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	3	0x006C5	158	-	deny_summon_effect_filter	0	argument 1: whether the summon effect filter is held off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	4	0x006CB	159	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	5	0x006D1	160	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+spc_z0000	監督	終了処理	6	0x006DD	161	-	musictrans	file_var_s0_9, 60, 127	music track file_var_s0_9	-	fade length 60 to volume 127	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+spc_z0000	監督	終了処理	7	0x006E0	162	-	resumeposbattletarget	-	the summon leader and followers, put back where duplicatebattletarget snapshotted them	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	8	0x006E3	163	-	shownobattletarget	-	shows again the actors that hidenobattletarget hid	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	9	0x006E6	164	-	resumepartyinfo_spattack	-	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	終了処理	10	0x006EC	165	-	setnoupdatebehindcamera	0	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	11	0x006F2	166	-	seteffbeforeframecapturemode	0	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	監督	終了処理	12	0x006F8	167	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+spc_z0000	監督	終了処理	13	0x006FE	168	-	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+spc_z0000	監督	終了処理	14	0x00704	169	-	efffadein	10	argument 1: which common screen effect to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	15	0x0070A	170	-	wait	get_systemfadeincanmoveblanktime()	-	-	frames held in get_systemfadeincanmoveblanktime()	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+spc_z0000	監督	終了処理	16	0x0070D	171	-	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	17	0x00713	172	-	unkCall_5cf	0	argument 1: whether the calling event keeps the depth-mask pass forced on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	18	0x00716	173	-	eventdispose	-	ends an event scene	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	監督	終了処理	19	0x00719	174	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	技読み込み	init	1	0x0071A	183	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	技読み込み	技読み込み	1	0x0071F	188	-	if	not (file_var_s0_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	技読み込み	技読み込み	2	0x00729	190	not (file_var_s0_1)	if	file_var_s0_8 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	技読み込み	技読み込み	3	0x0072F	192	not (file_var_s0_1); file_var_s0_8 == 0	eventsoundread	0	event sound slot 0 (sub-file 0 of `spc_z0000.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
+spc_z0000	技読み込み	技読み込み	4	0x00735	193	not (file_var_s0_1); file_var_s0_8 == 0	eventsoundreadsync	0	event sound slot 0	-	-	waits while event sound slot 0 loads	-	resolved	18 ../Sound-And-Music/map-sounds.md
+spc_z0000	技読み込み	技読み込み	5	0x0073B	194	not (file_var_s0_1); file_var_s0_8 == 0	store	file_var_s0_8 = 1	variable file_var_s0_8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+spc_z0000	技読み込み	技読み込み	6	0x00744	196	not (file_var_s0_1)	spattackread	file_var_s0_5, file_var_s0_4	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	技読み込み	技読み込み	7	0x00747	198	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	技読み込み	技読み込み終了待ち	1	0x0074B	203	-	spattackreadsync	file_var_s0_5	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	技読み込み	技読み込み終了待ち	2	0x0074E	204	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	メッセージ監督	init	1	0x0074F	213	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	メッセージ監督	message	1	0x00753	218	-	wait	60	-	-	60 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+spc_z0000	メッセージ監督	message	2	0x00759	219	-	openskillnamewindow_spattack	file_var_s0_4	-	-	-	-	-		01 verb-table.tsv
+spc_z0000	メッセージ監督	messageterm	1	0x0075C	224	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	target00	init	1	0x0075D	233	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	target00	方向固定	1	0x00761	238	-	sysSystem	0x0384	none: SYSTEM pops and discards 0x0384	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	target00	方向固定	2	0x00765	239	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
+spc_z0000	target00	方向固定	3	0x00768	240	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	init	1	0x00769	249	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	1	0x0076D	254	-	dir	3.14159274	this actor, turned to facing 3.14159274	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
+spc_z0000	PC00	必殺技設定	2	0x00774	255	-	switch	file_var_s0_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	3	0x00777	257	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	4	0x00780	258	file_var_s0_4 = 0	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	5	0x00783	259	file_var_s0_4 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	6	0x00786	260	-	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	7	0x0078F	261	file_var_s0_4 = 1	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	8	0x00792	262	file_var_s0_4 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	9	0x00795	263	-	case	2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	10	0x0079E	264	file_var_s0_4 = 2	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	11	0x007A1	265	file_var_s0_4 = 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	12	0x007A4	266	-	case	3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	13	0x007AD	267	file_var_s0_4 = 3	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	14	0x007B0	268	file_var_s0_4 = 3	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	15	0x007B3	269	-	case	4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	16	0x007BC	270	file_var_s0_4 = 4	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	17	0x007BF	271	file_var_s0_4 = 4	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	18	0x007C2	272	-	case	5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	19	0x007CB	273	file_var_s0_4 = 5	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	20	0x007CE	274	file_var_s0_4 = 5	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	21	0x007D1	275	-	case	6	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	22	0x007DA	276	file_var_s0_4 = 6	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	23	0x007DD	277	file_var_s0_4 = 6	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	24	0x007E0	278	-	case	7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	25	0x007E9	279	file_var_s0_4 = 7	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	26	0x007EC	280	file_var_s0_4 = 7	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	27	0x007EF	281	-	case	8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	28	0x007F8	282	file_var_s0_4 = 8	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	29	0x007FB	283	file_var_s0_4 = 8	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	30	0x007FE	284	-	case	9	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	31	0x00807	285	file_var_s0_4 = 9	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	32	0x0080A	286	file_var_s0_4 = 9	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	33	0x0080D	287	-	case	10	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	34	0x00816	288	file_var_s0_4 = 10	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	35	0x00819	289	file_var_s0_4 = 10	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	36	0x0081C	290	-	case	11	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	37	0x00825	291	file_var_s0_4 = 11	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	38	0x00828	292	file_var_s0_4 = 11	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	39	0x0082B	293	-	case	12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	40	0x00834	294	file_var_s0_4 = 12	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	41	0x00837	295	file_var_s0_4 = 12	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	42	0x0083A	296	-	case	13	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	43	0x00843	297	file_var_s0_4 = 13	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	44	0x00846	298	file_var_s0_4 = 13	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	45	0x00849	299	-	case	14	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	46	0x00852	300	file_var_s0_4 = 14	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	47	0x00855	301	file_var_s0_4 = 14	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	48	0x00858	302	-	case	15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	49	0x00861	303	file_var_s0_4 = 15	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	50	0x00864	304	file_var_s0_4 = 15	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	51	0x00867	305	-	case	16	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	52	0x00870	306	file_var_s0_4 = 16	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	53	0x00873	307	file_var_s0_4 = 16	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	54	0x00876	308	-	case	17	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	55	0x0087F	309	file_var_s0_4 = 17	setpos	0, 0, 5	this actor, placed at (0, 0, 5)	-	-	-	-	resolved	0x0034EBC0 (read here)
+spc_z0000	PC00	必殺技設定	56	0x00882	310	file_var_s0_4 = 17	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	必殺技設定	57	0x008F4	312	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	武器消し	1	0x008F5	317	-	hidew	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	PC00	武器消し	2	0x008F8	318	-	hides	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	PC00	武器消し	3	0x008FB	319	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	PC00	武器表示	1	0x008FC	324	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	PC00	武器表示	2	0x008FF	325	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+spc_z0000	PC00	武器表示	3	0x00902	326	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

@@ -1,0 +1,45 @@
+script	kind	place	actors	functions	rows	shared_actors
+grm_a01	zone	Central Spur Stairs (Garamsythe Waterway), field 311	18	54	5	5
+grm_a02	zone	East Waterway Control (Garamsythe Waterway), field 312	23	36	11	0
+grm_a03	zone	North Spur Sluiceway (Garamsythe Waterway), field 313	31	90	16	0
+grm_a04	zone	East Spur Stairs (Garamsythe Waterway), field 314	26	88	8	5
+grm_a05	zone	Northern Sluiceway (Garamsythe Waterway), field 315	21	30	8	0
+grm_a06	zone	East Waterway Control (Garamsythe Waterway), field 316	24	46	7	1
+grm_b01	zone	No. 11 Channel (Garamsythe Waterway), field 318	21	31	8	0
+grm_b02	zone	East Sluice Control (Garamsythe Waterway), field 319	27	84	8	5
+grm_b03	zone	West Sluice Control (Garamsythe Waterway), field 320	17	22	4	0
+grm_b04	zone	No. 10 Channel (Garamsythe Waterway), field 321	22	31	7	0
+grm_b05	zone	Central Waterway Control (Garamsythe Waterway), field 322	20	86	7	5
+grm_c01	zone	Southern Sluiceway (Garamsythe Waterway), field 326	18	37	6	0
+grm_d01	zone	Overflow Cloaca (Garamsythe Waterway), field 329	11	48	3	0
+grm_e01	zone	No. 11 Channel (Garamsythe Waterway), field 838	23	35	10	0
+grm_e02	zone	No. 11 Channel (Garamsythe Waterway), field 839	31	49	16	0
+grm_e03	zone	East Sluice Control (Garamsythe Waterway), field 840	20	57	7	5
+grm_e04	zone	Southern Sluiceway (Garamsythe Waterway), field 841	12	26	3	1
+grm_e05	zone	West Sluice Control (Garamsythe Waterway), field 842	18	32	3	1
+grm_e06	zone	No. 10 Channel (Garamsythe Waterway), field 843	22	34	10	0
+grm_e07	zone	No. 10 Channel (Garamsythe Waterway), field 844	30	48	16	0
+grm_e08	zone	No. 3 Cloaca Spur (Garamsythe Waterway), field 845	16	27	10	0
+grm_e09	zone	No. 3 Cloaca Spur (Garamsythe Waterway), field 846	26	68	16	0
+grm_e10	zone	No. 1 Cloaca (Garamsythe Waterway), field 847	25	39	10	0
+grm_e11	zone	No. 4 Cloaca Spur (Garamsythe Waterway), field 848	16	27	10	0
+grm_e12	zone	No. 4 Cloaca Spur (Garamsythe Waterway), field 849	26	68	16	0
+grm_e13	zone	Central Waterway Control (Garamsythe Waterway), field 850	44	172	29	5
+grm_f01	zone	No. 1 Cloaca (Garamsythe Waterway), field 342	24	44	12	0
+grm_g01	zone	Overflow Cloaca (Garamsythe Waterway), field 1145	18	65	4	0
+grm_a0200	scene	scene, event 237	16	116	2	0
+grm_a0380	scene	scene, event 715	7	27	0	0
+grm_a0400	scene	scene, event 317	16	102	14	0
+grm_a0401	scene	scene, event 318	7	29	1	0
+grm_a0480	scene	scene, event 738	9	47	13	0
+grm_b0200	scene	scene, event 319	28	189	6	0
+grm_b0202	scene	scene, event 238	18	160	17	0
+grm_b0280	scene	scene, event 716	13	72	20	0
+grm_c0100	scene	scene, event 310	15	116	0	0
+grm_c0101	scene	scene, event 311	17	92	0	0
+grm_d0100	scene	scene, event 312	15	126	0	0
+grm_d0102	scene	scene, event 236	29	246	2	0
+grm_f0100	scene	scene, event 314	11	45	0	0
+grm_f0101	scene	scene, event 315	17	77	15	0
+grm_g0100	scene	scene, event 235	8	61	11	0
+grm_g0101	scene	scene, event 267	12	64	4	0

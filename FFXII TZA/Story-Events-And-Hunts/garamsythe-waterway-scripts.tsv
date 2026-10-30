@@ -1,0 +1,376 @@
+script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_released	flags_tested	counter_set	counter_tested	items	jumps	battles	scenes	party	other_functions	shared_actor
+grm_a01	Central Spur Stairs (Garamsythe Waterway)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+grm_a01	Central Spur Stairs (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Northern Sluiceway (Garamsythe Waterway), field 315, entrance 1	-	-	-	1	-
+grm_a01	Central Spur Stairs (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	below 350	-	No. 10 Channel (Garamsythe Waterway), field 321, entrance 11; No. 10 Channel (Garamsythe Waterway), field 843, entrance 11; No. 10 Channel (Garamsythe Waterway), field 844, entrance 10	-	-	-	1	-
+grm_a01	Central Spur Stairs (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Sprawl (Lowtown), field 701, entrance 9	-	-	-	1	-
+grm_a01	Central Spur Stairs (Garamsythe Waterway)	常駐監督	main	main	-	-	-	0x001E: Set or tested in Central Spur Stairs (Garamsythe Waterway); North Sprawl (Lowtown)	0x0059: Shows a map icon in North Sprawl (Lowtown)	-	-	at least 180; at most 290	-	-	-	ttl_z0001, event 216	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Spur Stairs (Garamsythe Waterway), field 311, entrance 1	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	below 350	-	No. 11 Channel (Garamsythe Waterway), field 318, entrance 7; No. 11 Channel (Garamsythe Waterway), field 838, entrance 12; No. 11 Channel (Garamsythe Waterway), field 839, entrance 10; No. 11 Channel (Garamsythe Waterway), field 318, entrance 12	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 8	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 7	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 6	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 5	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 4	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 3	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 9	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 10	-	-	-	1	-
+grm_a02	East Waterway Control (Garamsythe Waterway)	常駐ディレクター	main	main	-	-	-	-	-	-	180: After the power to break the seal; map unlock: Garamsythe Waterway, palace entrance; map unlock: Lowtown, Garamsythe entrance 1	-	-	South Sprawl (Lowtown), field 702, entrance 7	-	grm_a0200, event 237	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Northern Sluiceway (Garamsythe Waterway), field 315, entrance 2	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	イベント管理	王宮突入_PLAY	requested by SB1_王宮突入.touch	-	-	-	-	-	-	190: After confirming the theft	-	-	Cellar Stores (Royal Palace), field 567, entrance 1	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	SAKIYOMI_grm_a0380	init	init	-	-	-	-	-	-	-	at least 180; below 190	-	-	-	grm_a0380, event 715	-	4	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	SAKIYOMI_grm_a0380	sakiyomi_init	-	-	-	-	-	-	-	-	-	-	-	-	grm_a0380, event 715	-	4	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	choco_sum_ctrl	sumcho_byebye	requested by イベント管理.王宮突入_PLAY	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	SB1_王宮突入	touch	touch	-	1; 2	Vaan The palace should be right up these stairs. (choices: Climb the stairs. / Turn back.) / Vaan Won't be easy getting out. Am I ready for this? (choices: It's now or never. / Better turn back.)	-	-	-	-	-	-	-	-	-	-	3	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	閉じた扉	talk	talk	-	3	The gate is tightly shut.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000100	-	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000118	-	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000130	-	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000148	-	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000160	-	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000178	-	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000190	-	-	-	-	1	-
+grm_a03	North Spur Sluiceway (Garamsythe Waterway)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001a8	-	-	-	-	1	-
+grm_a04	East Spur Stairs (Garamsythe Waterway)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+grm_a04	East Spur Stairs (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Waterway Control (Garamsythe Waterway), field 316, entrance 2	-	-	-	1	-
+grm_a04	East Spur Stairs (Garamsythe Waterway)	イベント管理	即席パーティー結成_再生	requested by 常駐監督.init	-	-	-	-	-	-	235: Start of the escape from the waterway	-	-	-	-	grm_a0400, event 317	Fran joins; Balthier joins; fighting party set: Vaan, Balthier, Fran	2	-
+grm_a04	East Spur Stairs (Garamsythe Waterway)	イベント管理	ガラムガンビットチュートリアル_再生	requested by TUTORIAL_イベント管理.touch	-	-	-	-	-	-	244: After the party swap tutorial; party swap command becomes available	-	-	-	-	-	-	2	-
+grm_a04	East Spur Stairs (Garamsythe Waterway)	SAKIYOMI_grm_a0480	init	init	-	-	-	-	-	-	-	at least 235; below 244	-	-	-	grm_a0480, event 738	-	4	-
+grm_a04	East Spur Stairs (Garamsythe Waterway)	SAKIYOMI_grm_a0480	sakiyomi_init	requested by イベント管理.即席パーティー結成_再生	-	-	-	-	-	-	-	-	-	-	-	grm_a0480, event 738	-	4	-
+grm_a04	East Spur Stairs (Garamsythe Waterway)	SAKIYOMI_grm_a0401	sakiyomi_init	requested by ダルマスカ兵士死体.talk	-	-	-	-	-	-	-	-	-	-	-	grm_a0401, event 318	-	5	-
+grm_a04	East Spur Stairs (Garamsythe Waterway)	ダルマスカ兵士死体	talk	talk	-	27; 28; 29; 30	Balthier They're equipped well enough, for all the good it did them. Boys with too much hate and too little experience. The insurgence must be desperate. / Fran If they had allies who fled into the sewers, their pursuers will not be far. / Amalia ... / Vaan I'd take you with us if I could...but there's just no time. Sorry...	-	-	-	-	-	-	-	-	-	-	2	-
+grm_a05	Northern Sluiceway (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Spur Stairs (Garamsythe Waterway), field 311, entrance 1	-	-	-	1	-
+grm_a05	Northern Sluiceway (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Spur Sluiceway (Garamsythe Waterway), field 313, entrance 2	-	-	-	1	-
+grm_a05	Northern Sluiceway (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000140	-	-	-	-	1	-
+grm_a05	Northern Sluiceway (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000158	-	-	-	-	1	-
+grm_a05	Northern Sluiceway (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000170	-	-	-	-	1	-
+grm_a05	Northern Sluiceway (Garamsythe Waterway)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000188	-	-	-	-	1	-
+grm_a05	Northern Sluiceway (Garamsythe Waterway)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001a0	-	-	-	-	1	-
+grm_a05	Northern Sluiceway (Garamsythe Waterway)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001b8	-	-	-	-	1	-
+grm_a06	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	below 350	-	No. 11 Channel (Garamsythe Waterway), field 318, entrance 7; No. 11 Channel (Garamsythe Waterway), field 838, entrance 12; No. 11 Channel (Garamsythe Waterway), field 839, entrance 10; No. 11 Channel (Garamsythe Waterway), field 318, entrance 12	-	-	-	1	-
+grm_a06	East Waterway Control (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Spur Stairs (Garamsythe Waterway), field 314, entrance 1	-	-	-	1	-
+grm_a06	East Waterway Control (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
+grm_a06	East Waterway Control (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
+grm_a06	East Waterway Control (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000f0	-	-	-	-	1	-
+grm_a06	East Waterway Control (Garamsythe Waterway)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000108	-	-	-	-	1	-
+grm_a06	East Waterway Control (Garamsythe Waterway)	ガラムサイズ地図宝壺	talk	talk	-	system message 103	Your location map for this area is complete!	Bank512, second half 0x0001: Set or tested in East Waterway Control (Garamsythe Waterway)	-	-	-	-	receives Garamsythe Waterway	-	-	-	-	2	-
+grm_b01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Sluice Control (Garamsythe Waterway), field 319, entrance 2	-	-	-	1	-
+grm_b01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Waterway Control (Garamsythe Waterway), field 316, entrance 1	-	-	-	1	-
+grm_b01	No. 11 Channel (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000100	-	-	-	-	1	-
+grm_b01	No. 11 Channel (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000118	-	-	-	-	1	-
+grm_b01	No. 11 Channel (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000130	-	-	-	-	1	-
+grm_b01	No. 11 Channel (Garamsythe Waterway)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000148	-	-	-	-	1	-
+grm_b01	No. 11 Channel (Garamsythe Waterway)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000160	-	-	-	-	1	-
+grm_b01	No. 11 Channel (Garamsythe Waterway)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000178	-	-	-	-	1	-
+grm_b02	East Sluice Control (Garamsythe Waterway)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+grm_b02	East Sluice Control (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 318, entrance 6	-	-	-	1	-
+grm_b02	East Sluice Control (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Southern Sluiceway (Garamsythe Waterway), field 326, entrance 1	-	-	-	1	-
+grm_b02	East Sluice Control (Garamsythe Waterway)	常駐監督	main	main	-	25	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	at least 244; below 257; at least 257; below 260	-	-	-	grm_b0200, event 319; grm_b0202, event 238	-	1	-
+grm_b02	East Sluice Control (Garamsythe Waterway)	ボスイベント起動	ガラムサイズ帝国兵	requested by ボス起動レクト.touch	-	-	-	-	-	-	257: After Amalia and Ashe	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	-	-	1	-
+grm_b02	East Sluice Control (Garamsythe Waterway)	イベント管理	アルマゲスト加入_PLAY	requested by アーシェ前.touch	-	27	Unlike other party members, guests can only use certain actions and abilities.	-	-	-	260: After Amalia joins as a guest; after tutorial 4	-	-	-	-	-	Amalia joins as a guest	1	-
+grm_b02	East Sluice Control (Garamsythe Waterway)	SAKIYOMI_grm_b0280	init	init	-	-	-	-	-	-	-	at least 257; below 260	-	-	-	grm_b0280, event 716	-	4	-
+grm_b02	East Sluice Control (Garamsythe Waterway)	SAKIYOMI_grm_b0280	sakiyomi_init	requested by ボスイベント起動.ガラムサイズ帝国兵	-	-	-	-	-	-	-	-	-	-	-	grm_b0280, event 716	-	4	-
+grm_b03	West Sluice Control (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 321, entrance 6	-	-	-	1	-
+grm_b03	West Sluice Control (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Southern Sluiceway (Garamsythe Waterway), field 326, entrance 2	-	-	-	1	-
+grm_b03	West Sluice Control (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
+grm_b03	West Sluice Control (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
+grm_b04	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	West Sluice Control (Garamsythe Waterway), field 320, entrance 2	-	-	-	1	-
+grm_b04	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Spur Stairs (Garamsythe Waterway), field 311, entrance 3	-	-	-	1	-
+grm_b04	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 322, entrance 13	-	-	-	1	-
+grm_b04	No. 10 Channel (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000140	-	-	-	-	1	-
+grm_b04	No. 10 Channel (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000158	-	-	-	-	1	-
+grm_b04	No. 10 Channel (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000170	-	-	-	-	1	-
+grm_b04	No. 10 Channel (Garamsythe Waterway)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000188	-	-	-	-	1	-
+grm_b05	Central Waterway Control (Garamsythe Waterway)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+grm_b05	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 321, entrance 8	-	-	-	1	-
+grm_b05	Central Waterway Control (Garamsythe Waterway)	スイッチあ	talk	talk	-	25	This appears to be a mechanism for operating the sluice gates. It is currently locked in place.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b05	Central Waterway Control (Garamsythe Waterway)	スイッチい	talk	talk	-	25	This appears to be a mechanism for operating the sluice gates. It is currently locked in place.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b05	Central Waterway Control (Garamsythe Waterway)	スイッチう	talk	talk	-	25	This appears to be a mechanism for operating the sluice gates. It is currently locked in place.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b05	Central Waterway Control (Garamsythe Waterway)	スイッチえ	talk	talk	-	25	This appears to be a mechanism for operating the sluice gates. It is currently locked in place.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b05	Central Waterway Control (Garamsythe Waterway)	tobira_to_19	talk	talk	-	-	-	-	-	-	-	-	-	Overflow Cloaca (Garamsythe Waterway), field 329, entrance 2	-	-	-	5	-
+grm_c01	Southern Sluiceway (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	West Sluice Control (Garamsythe Waterway), field 320, entrance 1	-	-	-	1	-
+grm_c01	Southern Sluiceway (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Sluice Control (Garamsythe Waterway), field 319, entrance 3	-	-	-	1	-
+grm_c01	Southern Sluiceway (Garamsythe Waterway)	常駐監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	at least 260; below 265	-	-	-	grm_c0100, event 310; grm_c0101, event 311	-	1	-
+grm_c01	Southern Sluiceway (Garamsythe Waterway)	ボスイベント起動	プリン	requested by ボス起動レクト_プリン.touch	-	-	-	-	-	-	265: After the Flan battle	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	pos_z0000, event 427	-	1	-
+grm_c01	Southern Sluiceway (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000080	-	-	-	-	1	-
+grm_c01	Southern Sluiceway (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000098	-	-	-	-	1	-
+grm_d01	Overflow Cloaca (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Sprawl (Lowtown), field 701, entrance 10	-	-	-	1	-
+grm_d01	Overflow Cloaca (Garamsythe Waterway)	常駐監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	0x001F: Set or tested in Overflow Cloaca (Garamsythe Waterway)	-	-	285: After the first half of the capture	at least 265; below 275	-	North Sprawl (Lowtown), field 701, entrance 10	boss gauge shown; every foe in a group removed; every foe in group 0 removed	grm_d0100, event 312; grm_d0102, event 236	-	1	-
+grm_d01	Overflow Cloaca (Garamsythe Waterway)	SOUTH_door	talk	talk	-	-	-	-	-	-	-	-	-	field held in file_var_s3_5, entrance 15	-	-	-	5	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 3; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 1	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 5; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 3	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 4; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 2	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 6; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 4	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Sluice Control (Garamsythe Waterway), field 840, entrance 2	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 1	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 2	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 3	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 4	-	-	-	1	-
+grm_e01	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Waterway Control (Garamsythe Waterway), field 316, entrance 1	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 1	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 2	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 3	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 4	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 3; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 1; No. 10 Channel (Garamsythe Waterway), field 843, entrance 1	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 4; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 2; No. 10 Channel (Garamsythe Waterway), field 843, entrance 2	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 5; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 3; No. 10 Channel (Garamsythe Waterway), field 843, entrance 3	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 6; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 4; No. 10 Channel (Garamsythe Waterway), field 843, entrance 4	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Sluice Control (Garamsythe Waterway), field 840, entrance 2	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Waterway Control (Garamsythe Waterway), field 316, entrance 1	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000f0	-	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000108	-	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000120	-	-	-	-	1	-
+grm_e02	No. 11 Channel (Garamsythe Waterway)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000138	-	-	-	-	1	-
+grm_e03	East Sluice Control (Garamsythe Waterway)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+grm_e03	East Sluice Control (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 318, entrance 5	-	-	-	1	-
+grm_e03	East Sluice Control (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 6; No. 11 Channel (Garamsythe Waterway), field 839, entrance 9; No. 11 Channel (Garamsythe Waterway), field 318, entrance 6	-	-	-	1	-
+grm_e03	East Sluice Control (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Southern Sluiceway (Garamsythe Waterway), field 841, entrance 1	-	-	-	1	-
+grm_e03	East Sluice Control (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Terminus No. 7 (Barheim Passage), field 71, entrance 2	-	-	-	1	-
+grm_e03	East Sluice Control (Garamsythe Waterway)	常駐監督	main	main	-	-	-	0x0040: Opens the location map's exits between Barheim Passage and Garamsythe Waterway	-	-	-	-	-	-	-	-	-	1	-
+grm_e03	East Sluice Control (Garamsythe Waterway)	ガラムキャンドル宝壺	talk	talk	-	system message 118	The candle reveals hidden areas on your map of the [value]!	Bank512, second half 0x0002: Set or tested in East Sluice Control (Garamsythe Waterway)	-	-	-	-	receives Garamsythe Candle	-	-	-	-	2	-
+grm_e04	Southern Sluiceway (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	West Sluice Control (Garamsythe Waterway), field 842, entrance 1	-	-	-	1	-
+grm_e04	Southern Sluiceway (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	East Sluice Control (Garamsythe Waterway), field 840, entrance 3	-	-	-	1	-
+grm_e04	Southern Sluiceway (Garamsythe Waterway)	wanted_kansi	main	main	-	-	-	-	-	-	-	-	receives Stolen Articles	-	every foe in a group removed	-	-	1	-
+grm_e05	West Sluice Control (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 6; No. 10 Channel (Garamsythe Waterway), field 844, entrance 9; No. 10 Channel (Garamsythe Waterway), field 321, entrance 6	-	-	-	1	-
+grm_e05	West Sluice Control (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Southern Sluiceway (Garamsythe Waterway), field 841, entrance 2	-	-	-	1	-
+grm_e05	West Sluice Control (Garamsythe Waterway)	wanted_kansi	main	main	-	-	-	-	-	-	-	-	receives Broken Key	-	every foe in a group removed	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 10; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 5	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 9; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 6	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 8; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 7; East Sluice Control (Garamsythe Waterway), field 840, entrance 7	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 7; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 8; East Sluice Control (Garamsythe Waterway), field 840, entrance 8	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	West Sluice Control (Garamsythe Waterway), field 842, entrance 2	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 14	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 13	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 12	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 11	-	-	-	1	-
+grm_e06	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Spur Stairs (Garamsythe Waterway), field 311, entrance 3	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 14	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 13	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 12	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 11	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 10; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 5	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 9; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 6	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 8; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 7	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 7; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 8	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	West Sluice Control (Garamsythe Waterway), field 842, entrance 2	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Spur Stairs (Garamsythe Waterway), field 311, entrance 3	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	hunt_kansi	main	main	-	-	-	-	-	-	-	-	receives Fur-scaled Trophy	-	every foe in a group removed	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000f0	-	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000108	-	-	-	-	1	-
+grm_e07	No. 10 Channel (Garamsythe Waterway)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000120	-	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 8; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 7	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 7; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 8	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 10; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 5	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 9; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 6	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 1; No. 10 Channel (Garamsythe Waterway), field 844, entrance 5	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 2; No. 10 Channel (Garamsythe Waterway), field 844, entrance 6	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 3; No. 10 Channel (Garamsythe Waterway), field 844, entrance 7	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 4; No. 10 Channel (Garamsythe Waterway), field 844, entrance 8	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 10	-	-	-	1	-
+grm_e08	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 9	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 10	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 9	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 10; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 5	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 9; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 6	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 8; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 7	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 7; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 8	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 4; No. 10 Channel (Garamsythe Waterway), field 844, entrance 8	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 3; No. 10 Channel (Garamsythe Waterway), field 844, entrance 7	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 2; No. 10 Channel (Garamsythe Waterway), field 844, entrance 6	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 1; No. 10 Channel (Garamsythe Waterway), field 844, entrance 5	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	水門真中２	talk	talk	-	0; 1	The No. 1 South sluice gates are open. (choices: Close the sluice gates. / Do nothing.) / The No. 1 South sluice gates are closed. (choices: Open the sluice gates. / Do nothing.)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000080	-	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000098	-	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000b0	-	-	-	-	1	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	map_ダミーＰＣ	スイッチ「◆」ＯＮ	requested by 水門真中２.talk	-	2	You hear a sluice gate move in the distance.	-	-	-	-	-	-	-	-	-	-	26	-
+grm_e09	No. 3 Cloaca Spur (Garamsythe Waterway)	map_ダミーＰＣ	スイッチ「◆」ＯＦＦ	requested by 水門真中２.talk	-	2	You hear a sluice gate move in the distance.	-	-	-	-	-	-	-	-	-	-	26	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 7; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 8	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 8; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 7	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 9; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 6	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 10; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 5	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 3; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 1	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 4; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 2	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 5; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 3	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 6; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 4	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 8	-	-	-	1	-
+grm_e10	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 7	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 1; No. 11 Channel (Garamsythe Waterway), field 839, entrance 5	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 2; No. 11 Channel (Garamsythe Waterway), field 839, entrance 6	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 3; No. 11 Channel (Garamsythe Waterway), field 839, entrance 7	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 4; No. 11 Channel (Garamsythe Waterway), field 839, entrance 8	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 3; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 3	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 4; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 2	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 6; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 4	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 5; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 1	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 5	-	-	-	1	-
+grm_e11	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 6	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 6	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 5	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 1; No. 11 Channel (Garamsythe Waterway), field 839, entrance 5	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 2; No. 11 Channel (Garamsythe Waterway), field 839, entrance 6	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 3; No. 11 Channel (Garamsythe Waterway), field 839, entrance 7	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 4; No. 11 Channel (Garamsythe Waterway), field 839, entrance 8	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 6; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 4	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 5; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 1	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 4; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 2	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 3; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 3	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	水門真中１	talk	talk	-	0; 1	The No. 1 North sluice gates are open. (choices: Close the sluice gates. / Do nothing.) / The No. 1 North sluice gates are closed. (choices: Open the sluice gates. / Do nothing.)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000080	-	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000098	-	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000b0	-	-	-	-	1	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	map_ダミーＰＣ	スイッチ「◇」ＯＮ	requested by 水門真中１.talk	-	2	You hear a sluice gate move in the distance.	-	-	-	-	-	-	-	-	-	-	26	-
+grm_e12	No. 4 Cloaca Spur (Garamsythe Waterway)	map_ダミーＰＣ	スイッチ「◇」ＯＦＦ	requested by 水門真中１.talk	-	2	You hear a sluice gate move in the distance.	-	-	-	-	-	-	-	-	-	-	26	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 8; No. 11 Channel (Garamsythe Waterway), field 839, entrance 1	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 9; No. 11 Channel (Garamsythe Waterway), field 839, entrance 2	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 10; No. 11 Channel (Garamsythe Waterway), field 839, entrance 3	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 11 Channel (Garamsythe Waterway), field 838, entrance 11; No. 11 Channel (Garamsythe Waterway), field 839, entrance 4	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 2; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 12	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 1; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 13	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 2; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 10	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 1 Cloaca (Garamsythe Waterway), field 342, entrance 1; No. 1 Cloaca (Garamsythe Waterway), field 847, entrance 11	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 2; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 11	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 1; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 10	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL010	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 10; No. 10 Channel (Garamsythe Waterway), field 844, entrance 4	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL011	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 9; No. 10 Channel (Garamsythe Waterway), field 844, entrance 3	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL012	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 8; No. 10 Channel (Garamsythe Waterway), field 844, entrance 2	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	__MJ_CTRL013	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 10 Channel (Garamsythe Waterway), field 843, entrance 7; No. 10 Channel (Garamsythe Waterway), field 844, entrance 1	-	-	-	1	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	小舟ボトルレクト	talk	talk	-	26; 27	Faint Glow The light coming from the water resonates with the blue bottle you hold... Hold the bottle nearer to the light? (choices: Yes / No) / Without warning, the blue bottle shatters!	-	-	-	-	-	receives reward package: X-Potion x1; loses Blue Bottle; receives Wanly Limned Message	-	-	-	-	3	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	廃屋ボトルレクト	talk	talk	-	29; 30	Faint Glow The light coming from the undergrowth resonates with the green bottle you hold... Hold the bottle nearer to the light? (choices: Yes / No) / Without warning, the green bottle shatters!	-	-	-	-	-	receives reward package: Hastega Mote x1; loses Green Bottle; receives Green-hued Message	-	-	-	-	3	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	祠ボトルレクト	talk	talk	-	32; 33	Quiet Shrine The light at the base of the shrine resonates with the red bottle you hold... Hold the bottle nearer to the light? (choices: Yes / No) / Without warning, the red bottle shatters!	-	-	-	-	-	receives reward package: Holy Mote x1; loses Red Bottle; receives Vermillion Message	-	-	-	-	3	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	ネズミボトルレクト	talk	talk	-	35; 36	Faint Glow The light the rats are swarming over resonates with the black bottle you hold... Hold the bottle nearer to the light? (choices: Yes / No) / Without warning, the black bottle shatters!	-	-	-	-	-	receives reward package: Elixir x1; loses Black Bottle; receives Onyx Message	-	-	-	-	3	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	メダルレクト	talk	talk	-	-	-	-	-	-	-	-	receives Dull Fragment	-	-	-	-	6	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	tobira_to_19	talk	talk	-	-	-	-	-	-	-	-	-	Overflow Cloaca (Garamsythe Waterway), field 1145, entrance 2	-	-	-	5	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	スイッチあ	talk	talk	-	39; 40; 41; 42; 43; 44; 38	Nothing happens. It appears only two of the devices can be activated at once. / The device is locked in place. (choices: Use the sluice gate key. / Do nothing.) / You can now operate the sluice gates. (choices: Close the sluice gates. / Do nothing.) / The sluice gates are currently open. (choices: Close the sluice gates. / Do nothing.) / You can now operate the sluice gates. (choices: Open the sluice gates. / Do nothing.) / The sluice gates are currently closed. (choices: Open the sluice gates. / Do nothing.) / The device is locked in place. You will need a sluice gate key to operate it.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	スイッチい	talk	talk	-	39; 40; 41; 45; 43; 46; 38	Nothing happens. It appears only two of the devices can be activated at once. / The device is locked in place. (choices: Use the sluice gate key. / Do nothing.) / You can now operate the sluice gates. (choices: Close the sluice gates. / Do nothing.) / The sluice gates are currently open. (choices: Close the sluice gates. / Do nothing.) / You can now operate the sluice gates. (choices: Open the sluice gates. / Do nothing.) / The sluice gates are currently closed. (choices: Open the sluice gates. / Do nothing.) / The device is locked in place. You will need a sluice gate key to operate it.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	スイッチう	talk	talk	-	39; 40; 41; 47; 43; 48; 38	Nothing happens. It appears only two of the devices can be activated at once. / The device is locked in place. (choices: Use the sluice gate key. / Do nothing.) / You can now operate the sluice gates. (choices: Close the sluice gates. / Do nothing.) / The sluice gates are currently open. (choices: Close the sluice gates. / Do nothing.) / You can now operate the sluice gates. (choices: Open the sluice gates. / Do nothing.) / The sluice gates are currently closed. (choices: Open the sluice gates. / Do nothing.) / The device is locked in place. You will need a sluice gate key to operate it.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	スイッチえ	talk	talk	-	39; 40; 41; 49; 43; 50; 38	Nothing happens. It appears only two of the devices can be activated at once. / The device is locked in place. (choices: Use the sluice gate key. / Do nothing.) / You can now operate the sluice gates. (choices: Close the sluice gates. / Do nothing.) / The sluice gates are currently open. (choices: Close the sluice gates. / Do nothing.) / You can now operate the sluice gates. (choices: Open the sluice gates. / Do nothing.) / The sluice gates are currently closed. (choices: Open the sluice gates. / Do nothing.) / The device is locked in place. You will need a sluice gate key to operate it.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	map_ダミーＰＣ	スイッチ「え」鍵無し	-	-	38	The device is locked in place. You will need a sluice gate key to operate it.	-	-	-	-	-	-	-	-	-	-	38	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	map_ダミーＰＣ	スイッチ「う」鍵無し	-	-	38	The device is locked in place. You will need a sluice gate key to operate it.	-	-	-	-	-	-	-	-	-	-	38	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	map_ダミーＰＣ	スイッチ「い」鍵無し	-	-	38	The device is locked in place. You will need a sluice gate key to operate it.	-	-	-	-	-	-	-	-	-	-	38	-
+grm_e13	Central Waterway Control (Garamsythe Waterway)	map_ダミーＰＣ	スイッチ「あ」鍵無し	-	-	38	The device is locked in place. You will need a sluice gate key to operate it.	-	-	-	-	-	-	-	-	-	-	38	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 8	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 7	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 10; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 5	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 9; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 6	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 8; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 7	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL005	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 4 Cloaca Spur (Garamsythe Waterway), field 849, entrance 7; No. 4 Cloaca Spur (Garamsythe Waterway), field 848, entrance 8	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL006	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 6; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 4	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL007	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 5; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 3	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL008	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 4; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 2	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	__MJ_CTRL009	mapjump	mapjump	-	-	-	-	-	-	-	-	-	No. 3 Cloaca Spur (Garamsythe Waterway), field 846, entrance 3; No. 3 Cloaca Spur (Garamsythe Waterway), field 845, entrance 1	-	-	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	常駐監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	-	-	-	-	grm_f0100, event 314; grm_f0101, event 315	-	1	-
+grm_f01	No. 1 Cloaca (Garamsythe Waterway)	ボスイベント起動	キュクレイン	requested by ボス起動レクト_キュクレイン.touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	pos_z0000, event 427	-	1	-
+grm_g01	Overflow Cloaca (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	North Sprawl (Lowtown), field 701, entrance 10	-	-	-	1	-
+grm_g01	Overflow Cloaca (Garamsythe Waterway)	常駐監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	0x001F: Set or tested in Overflow Cloaca (Garamsythe Waterway)	-	-	33: After getting away before being found	-	-	Muthru Bazaar (Rabanastre), field 290, entrance 0	boss gauge shown; every foe in a group removed	grm_g0101, event 267; grm_g0100, event 235	-	2	-
+grm_g01	Overflow Cloaca (Garamsythe Waterway)	常駐監督	賞金首レイス監視	requested by 常駐監督.main	-	-	-	-	-	-	-	-	-	-	every foe in a group removed	-	-	2	-
+grm_g01	Overflow Cloaca (Garamsythe Waterway)	SOUTH_door_e13	talk	talk	-	2	The door is securely closed.	-	-	-	-	at least 350	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 15	-	-	-	5	-
+grm_a0200	scene, event 237	セリフ	cut_02	requested by 監督.main	-	1; 2	Squads 3 through 6 are in place. They stand ready. / So far the Imperials haven't noticed a thing.	-	-	-	-	-	-	-	-	-	-	5	-
+grm_a0200	scene, event 237	セリフ	cut_03_01	requested by 監督.main	-	3; 4	Then go now and hurry the others. / By nightfall, we must ensure all our men are in place.	-	-	-	-	-	-	-	-	-	-	5	-
+grm_a0400	scene, event 317	監督	main	main	-	0; system message 66	(empty string) / [value] and [value] join the party! (the game fills the two [value] with Balthier, party table row 3, and Fran, party table row 2)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0400	scene, event 317	メッセージ	表示	requested by 監督.main	-	1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20; 21	What happened? / Our hover didn't just drop— it disappeared. / Bah. Forget it. / Even if we could fly... / the Ifrit's playing with fire, and I'd rather not get burned. / We'll go the old-fashioned way. / Not many viera where you come from, thief? / It's Vaan. / Well, Fran is special... / in that she'd deign to partner with a hume. / Oh? Like a sky pirate that chooses to steal through the sewers? / Sorry. / Pirates? You're sky pirates? / So you have an airship? / It's Balthier. / Listen thief—Vaan. / If you ever want to see your home again, you do exactly as I say. / Myself, Fran, and you. We're working together now. / Understood? / Don't even think you're getting this. / The thought never crossed my mind.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_7	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_7	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	システムメッセージ表示	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	requested by 監督.main	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	ゲット＆メッセージ表示	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s0_7	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	メッセージ＆メッセージ表示	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	SYSMES_GET_SYSMES表示_FADE付	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s9_1	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	メッセージ＆同時ゲット表示_FADE付	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s9_1; receives the item held in file_var_s9_2	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	システムメッセージ表示_音量復帰特殊	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_7	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0400	scene, event 317	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s0_7; receives the item held in file_var_s9_1	-	-	-	-	1	-
+grm_a0401	scene, event 318	KOE	カット０１ａ	requested by AD.main	-	0; 1; 2; 3; 4; 5; 6	Insurgents. Most like they thought to take advantage of a lax watch while the fete's on... / ...to feed the good consul a length of steel for his supper. / I should think Vayne used to such hospitality. / Clever. He used himself as the bait to draw them near, and then sent in the air brigade. / A fine, bloody banquet. / Hmph. I daresay I've soiled my cuffs. / If a dungeon's waiting for us at the end of the night, it had best have a change of wardrobe.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0480	scene, event 738	ＡＤ	Ｃ０１_バルフレア解説	requested by 監督.main	-	1; 2; 3; 5; 6; system message 59; system message 58; 7	"Balthier Ah, Vaan. There's something I want to check before we set out. / Balthier As I thought. You don't know much about gambits yet, do you? / Balthier Listen carefully—I don't care to repeat myself. For each gambit, you can combine one action with a target for that action. Example: you can arrange that Cure be cast on an ally whose HP falls below fifty percent. Useful, that. Of course, one error of judgment, and you could well find yourself throwing punches at that same ally. If you've a good head on your shoulders, it should come easily enough. Hmm... I fear a more detailed explanation is in order. / Balthier We're like to come across new actions and targets, so don't be afraid to experiment with new gambit combinations. But don't put all of your faith in any one combination. With each passing day, the world finds new and exciting ways to kill a man. / Balthier Be flexible! If you find yourself up against beasts that don't take well to fire, create a gambit to cast Fire on nearby foes. Likewise, should we face a creature that uses poison, a gambit to cast Poisona on poisoned allies just might come in handy. A bit much to take in? Don't let it worry you— you're in good company. Yes, these sewers are thick with the bones of others who had similar ""difficulties."" / Gambits has been added to the Party Menu. / Party has been added to the Party Menu. / Balthier Let's be off then, shall we?"	-	-	-	-	-	-	-	-	-	-	4	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	システムメッセージ表示	-	-	8	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	-	-	8	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	ゲット＆メッセージ表示	-	-	8	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	メッセージ＆メッセージ表示	requested by ＡＤ.Ｃ０１_バルフレア解説	-	8	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	SYSMES_GET_SYSMES表示_FADE付	-	-	8	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_2	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	メッセージ＆同時ゲット表示_FADE付	-	-	8	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_2; receives the item held in file_var_s4_1	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	システムメッセージ表示_音量復帰特殊	-	-	8	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	-	8	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0480	scene, event 738	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	-	8	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_1; receives the item held in file_var_s1_2	-	-	-	-	1	-
+grm_b0200	scene, event 319	メッセージ	メッセージ01	requested by 監督.アルマ登場	-	0	Who would be next?	-	-	-	-	-	-	-	-	-	-	3	-
+grm_b0200	scene, event 319	メッセージ	メッセージ02	requested by 監督.アルマ登場	-	1	Close ranks! Bring her down!	-	-	-	-	-	-	-	-	-	-	3	-
+grm_b0200	scene, event 319	メッセージ	メッセージ04	requested by 監督.アルマ登場	-	2; 3	Jump down! / Hurry!	-	-	-	-	-	-	-	-	-	-	3	-
+grm_b0200	scene, event 319	メッセージ	メッセージ06	requested by 監督.アルマ登場	-	4	She's not alone!	-	-	-	-	-	-	-	-	-	-	3	-
+grm_b0200	scene, event 319	メッセージ	メッセージ07	requested by 監督.アルマ登場	-	5	Our ranks grow by the hour.	-	-	-	-	-	-	-	-	-	-	3	-
+grm_b0200	scene, event 319	メッセージ	メッセージ08	requested by 監督.アルマ登場	-	6	And our troubles with them.	-	-	-	-	-	-	-	-	-	-	3	-
+grm_b0202	scene, event 238	メッセージ	メッセージ01	requested by 監督.アルマとアーシェ	-	0; 1; 2; 3; 4	You all right? / Thank you. / I'm Vaan. / And this is Balthier and— / Hey!	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ04	requested by 監督.アルマとアーシェ	-	5	What's your name?	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ05	requested by 監督.アルマとアーシェ	-	6; 7	Amalia. / Amalia, huh? Nice to meet you.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ07	requested by 監督.アルマとアーシェ	-	8; 9	There were others with me... / I'm sorry.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ08	requested by 監督.アルマとアーシェ	-	10	No...	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ09	requested by 監督.アルマとアーシェ	-	11	Huh?	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ10	requested by 監督.アルマとアーシェ	-	12	Oh, now isn't that impressive.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ11	requested by 監督.アルマとアーシェ	-	13	Don't get any ideas. I said it's mine.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ12	requested by 監督.アルマとアーシェ	-	14	I'm afraid the jury's still out on that one.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ13	requested by 監督.アルマとアーシェ	-	15; 16	You stole that? / Yeah!	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ15	requested by 監督.アルマとアーシェ	-	17; 18	Have you finished? / When the guards don't report in, they'll come looking for us.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ16	requested by 監督.アルマとアーシェ	-	19	If they aren't already.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ17	requested by 監督.アルマとアーシェ	-	20	You should come with us. Better than being by yourself.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ18	requested by 監督.アルマとアーシェ	-	21	Very well.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ19	requested by 監督.アルマとアーシェ	-	22	What's wrong with her?	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ20	requested by 監督.アルマとアーシェ	-	23	You have a lot to learn before we even get started on your thievery.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ21	requested by 監督.アルマとアーシェ	-	24	What's that mean?	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	監督	main	main	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b0280	scene, event 716	ＡＤ	Ｃ０２_すかしやがって	requested by 監督.main	-	system message 48	[value] joins the party as a guest! (the game fills [value] with Amalia, party table row 7)	-	-	-	-	-	-	-	-	-	-	5	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	システムメッセージ表示	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	ゲット＆メッセージ表示	-	-	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	メッセージ＆メッセージ表示	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	SYSMES_GET_SYSMES表示_FADE付	-	-	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s4_1	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	メッセージ＆同時ゲット表示_FADE付	-	-	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s4_1; receives the item held in file_var_s4_2	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	システムメッセージ表示_音量復帰特殊	requested by ＡＤ.Ｃ０２_すかしやがって	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_b0280	scene, event 716	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	-	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_1; receives the item held in file_var_s4_1	-	-	-	-	1	-
+grm_b0280	scene, event 716	字幕	カット０１ｂ	requested by ＡＤ.Ｃ０１_ゲストとして	-	2; 3	The situation requires I accept such help as I find. / Though it be from thieves.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０１ｃ	requested by ＡＤ.Ｃ０１_ゲストとして	-	4; 5	I shall accompany you until we find my companions. / No longer.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０１ｅ	requested by ＡＤ.Ｃ０１_ゲストとして	-	6; 7; 8	"Let's think of her as a ""guest,"" then. / Unlike Fran or myself, our ""guest"" probably won't be taking orders from anyone anytime soon. / And she'll leave when she pleases."	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０２ａ	requested by ＡＤ.Ｃ０２_すかしやがって	-	9; 10; 11	So, we keep to our affairs, and she to hers. / I doubt we'll find her wanting in valor... / being such an upstanding member of the insurgence.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０２ｂ	requested by ＡＤ.Ｃ０２_すかしやがって	-	12	Resistance.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０２ｄ	requested by ＡＤ.Ｃ０２_すかしやがって	-	13	Well, what are we waiting for?	-	-	-	-	-	-	-	-	-	-	2	-
+grm_d0102	scene, event 236	セリフ	cut_01	requested by 監督.main	-	1	Stand where you are!	-	-	-	-	-	-	-	-	-	-	3	-
+grm_d0102	scene, event 236	セリフ	cut_04	requested by 監督.main	-	2	Now is not the time.	-	-	-	-	-	-	-	-	-	-	3	-
+grm_f0101	scene, event 315	プロデューサー	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	1	-
+grm_f0101	scene, event 315	監督	死亡演出	requested by プロデューサー.main	-	-	-	-	-	-	-	-	-	-	every foe in group 0 removed	-	-	1	-
+grm_f0101	scene, event 315	システムメッセージ	召喚獣手に入れた！	-	-	system message 5	NOT USED (message kind 1: the game names id 0xC016, Cúchulainn, and gives it)	-	-	-	-	-	receives Cúchulainn (system message 5, kind 1)	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	システムメッセージ表示	requested by システムメッセージ.召喚獣手に入れた！	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	ゲット＆メッセージ表示	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	メッセージ＆メッセージ表示	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	SYSMES_GET_SYSMES表示_FADE付	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s9_1	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	メッセージ＆同時ゲット表示_FADE付	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s9_1; receives the item held in file_var_s9_2	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	システムメッセージ表示_音量復帰特殊	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+grm_f0101	scene, event 315	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s5_1; receives the item held in file_var_s9_1	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m001	requested by Director.main	-	0	Wow, Vaan. You got 'em all yourself?	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m002	requested by Director.main	-	1	Guess I know who to call when something big comes along!	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m003	requested by Director.main	-	2	Hey, it's good practice for the desert. I'm ready for anything now.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m004	requested by Director.main	-	3	That's enough for today.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m005	requested by Director.main	-	4	You should get back to Migelo's place, Kytes. Aren't you running errands for him?	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m006	requested by Director.main	-	5	Oops! Heh. Totally forgot.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m007	requested by Director.main	-	6	You should come, Vaan.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m008	requested by Director.main	-	7	He's busy today. Might have some work for you to do, too.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m009	requested by Director.main	-	8	"I got other ""work"" to do."	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m010	requested by Director.main	-	9	Hey, lock this place up for me, will you?	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m011	requested by Director.main	-	10	If Migelo finds out we've been down here, he'll tan our hides.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m001	requested by Director.main	-	0	Vaan! Hurry it up or they'll find us!	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m002	requested by Director.main	-	1	I know, I know! Just a little more.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m003	requested by Director.main	-	2	You keep an eye out for me up there, Kytes.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m004	requested by Director.main	-	3	One...two...three more. Right. Time to clean house.	-	-	-	-	-	-	-	-	-	-	1	-

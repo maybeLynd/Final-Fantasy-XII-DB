@@ -1,0 +1,37 @@
+script	kind	place	actors	functions	rows	shared_actors
+rbn_a01	zone	North End (Rabanastre), field 289	50	242	26	1
+rbn_a02	zone	Muthru Bazaar (Rabanastre), field 290	33	150	17	0
+rbn_a03	zone	East End (Rabanastre), field 291	64	414	50	1
+rbn_a04	zone	Southern Plaza (Rabanastre), field 292	42	241	21	1
+rbn_a07	zone	Amal's Weaponry (Rabanastre), field 295	18	89	2	1
+rbn_a08	zone	Panamis's Protectives (Rabanastre), field 296	16	73	2	0
+rbn_a09	zone	Migelo's Sundries (Rabanastre), field 297	25	145	9	1
+rbn_a10	zone	Yugri's Magicks (Rabanastre), field 298	19	93	3	1
+rbn_a11	zone	Batahn's Technicks (Rabanastre), field 299	16	75	2	0
+rbn_a12	zone	Yamoora's Gambits (Rabanastre), field 300	16	78	4	0
+rbn_a13	zone	Samalzalam Manor (Rabanastre), field 301	7	34	1	0
+rbn_a14	zone	The Clan Hall (Rabanastre), field 302	33	256	16	1
+rbn_a16	zone	The Sandsea (Rabanastre), field 304	35	203	16	1
+rbn_a17	zone	Eastgate (Rabanastre), field 305	45	233	21	5
+rbn_a18	zone	Southgate (Rabanastre), field 306	40	206	24	5
+rbn_a19	zone	Westgate (Rabanastre), field 307	46	238	23	5
+rbn_b01	zone	Aerodrome (Rabanastre), field 788	32	146	34	0
+rbn_x01	zone	rbn_x01 (Rabanastre), field 860	8	12	1	0
+rbn_y01	zone	rbn_y01 (Rabanastre), field 910	8	13	1	0
+rbn_z01	zone	rbn_z01 (Rabanastre), field 50	5	6	1	0
+rbn_a0100	scene	scene, event 107	22	128	11	0
+rbn_a0200	scene	scene, event 100	33	347	8	0
+rbn_a0300	scene	scene, event 101	30	428	8	0
+rbn_a0380	scene	scene, event 709	24	141	11	0
+rbn_a0381	scene	scene, event 711	24	170	4	0
+rbn_a0382	scene	scene, event 726	16	71	1	0
+rbn_a0480	scene	scene, event 721	14	89	5	0
+rbn_a0980	scene	scene, event 707	10	84	10	0
+rbn_a1300	scene	scene, event 120	28	359	21	0
+rbn_a1600	scene	scene, event 109	30	169	14	0
+rbn_a1601	scene	scene, event 119	21	126	12	0
+rbn_a1700	scene	scene, event 108	23	290	29	0
+rbn_a1701	scene	scene, event 118	32	326	38	0
+rbn_x0100	scene	scene, event 106	21	161	8	0
+rbn_y0100	scene	scene, event 104	38	464	12	0
+rbn_z0100	scene	scene, event 102	16	119	4	0

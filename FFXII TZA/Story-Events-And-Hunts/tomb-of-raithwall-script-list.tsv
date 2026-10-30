@@ -1,0 +1,24 @@
+script	kind	place	actors	functions	rows	shared_actors
+rwg_a01	zone	Valley of the Dead (The Tomb of Raithwall), field 403	39	194	14	5
+rwg_b01	zone	Hall of the Destroyer (The Tomb of Raithwall), field 406	25	137	13	0
+rwg_b02	zone	Hall of the Sentinel (The Tomb of Raithwall), field 407	28	144	17	0
+rwg_c01	zone	Royal Passage (The Tomb of Raithwall), field 410	45	169	19	1
+rwg_c02	zone	Southfall Passage (The Tomb of Raithwall), field 411	40	126	15	0
+rwg_c03	zone	Northfall Passage (The Tomb of Raithwall), field 412	38	123	14	0
+rwg_d01	zone	Cloister of Flame (The Tomb of Raithwall), field 415	25	112	11	0
+rwg_e01	zone	Chamber of First Light (The Tomb of Raithwall), field 418	15	74	5	0
+rwg_a0100	scene	scene, event 338	26	202	9	0; differs: system_crystal_actor
+rwg_a0180	scene	scene, event 346	12	41	0	0
+rwg_a0181	scene	scene, event 347	10	40	0	0
+rwg_b0100	scene	scene, event 330	16	96	1	0
+rwg_b0101	scene	scene, event 331	15	63	0	0
+rwg_b0102	scene	scene, event 332	13	54	0	0
+rwg_b0103	scene	scene, event 324	17	86	3	0
+rwg_b0200	scene	scene, event 333	16	72	1	0
+rwg_b0201	scene	scene, event 334	16	67	0	0
+rwg_b0202	scene	scene, event 335	12	57	0	0
+rwg_c0100	scene	scene, event 322	14	121	9	0
+rwg_d0100	scene	scene, event 336	14	70	0	0
+rwg_d0101	scene	scene, event 337	25	180	7	0
+rwg_d0102	scene	scene, event 323	14	99	8	0
+rwg_e0100	scene	scene, event 339	18	209	18	0

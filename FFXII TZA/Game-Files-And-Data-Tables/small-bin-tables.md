@@ -175,6 +175,19 @@ Measured over every copy in the archive.
 | `summoneffectdata.bin` | 672 bytes, one copy; records 0 to 27 differ, records 28 to 63 are all scales 100 and colour `80 80 80 20` |
 | `summoneffectdata.bin` tail | 1.01, 1.01, 1.4, 0.4, 65,300 and 65,200 |
 
+Every record of the six files, decoded with the layouts above:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`small-bin-tables-footsteps.tsv`](small-bin-tables-footsteps.tsv) | 32 | surface: its set A and set B sound |
+| [`small-bin-tables-vibration.tsv`](small-bin-tables-vibration.tsv) | 11 | pattern: its file offset, track 2 start, the unread word, every duration:level pair and the pairs of each track up to its ending pair |
+| [`small-bin-tables-battle-windows.tsv`](small-bin-tables-battle-windows.tsv) | 15 | battle window: width and rows |
+| [`small-bin-tables-legend-buttons.tsv`](small-bin-tables-legend-buttons.tsv) | 27 | section 0 button: name text id and button mask |
+| [`small-bin-tables-legend-signals.tsv`](small-bin-tables-legend-signals.tsv) | 24 | section 1 signal: the word, its label text id and its button |
+| [`small-bin-tables-legend-scenes.tsv`](small-bin-tables-legend-scenes.tsv) | 19 | section 2 scene: offset, scene id, `a`, `b`, and its signal/flag pairs |
+| [`small-bin-tables-quest-window.tsv`](small-bin-tables-quest-window.tsv) | 173 | `questbase.bin` entry: the word, value A, the text index and the flag bit `0x4000000` |
+| [`small-bin-tables-summon-colours.tsv`](small-bin-tables-summon-colours.tsv) | 64 | summon colour record: the six scale bytes and the four tint bytes |
+
 ## Loader behaviour
 
 ### Footsteps

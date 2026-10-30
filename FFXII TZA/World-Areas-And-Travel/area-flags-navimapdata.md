@@ -134,15 +134,21 @@ current area's entry as already seen (`0x003160FA`).
 
 Bit `0x4000` is read by `0x00377A40` for an explicit id. Its five callers are menu and HUD functions
 (`0x003F92B0`, `0x003F9720`, `0x003C2320`, `0x003BF9A0`, `0x003C1180`). `0x003F92B0` shows the use: when the
-current area's bit is set (`0x003F92DA`) it prints the area's name from the name table through
-`0x00377870` after the location text; otherwise it prints text `0x3EC`.
+current area's bit is set (`0x003F92DA`) it prints, after the location text, the region name that `0x00377870`
+returns for the word at `+0x04` of its record (`0x003F9310`-`0x003F9314`); otherwise it prints text `0x3EC`.
 
-The same name table (`MapName`, `planmapname.bin`, at `0x02ADD0F8`) also names the regions.
-`0x00377B60(id)` returns the area name at entry `id` of the offset table `+0x10` while `id` is below the
-area count `+0x04`. `0x003778B0(field)` returns the name of the field's region, the persistence group
-`0x00264F90(field)`: entry `[+0x04] + group` of the same offset table, while the group is below the
-region count `+0x08`; an empty entry or a missing table gives the empty string `0x01CEB638`. Its callers
-are the menu location line `0x0029C530` and the save-file entry `0x0057FB00`.
+The same name table (`MapName`, `planmapname.bin`, at `0x02ADD0F8`) also names the regions. Each entry of the offset
+table `+0x10` is a `u16` offset from the start of the file. Three readers return a name:
+
+| Reader | Entry | Bound | Callers |
+|---|---|---|---|
+| `0x00377B60(id)` | `id` | the area count `+0x04` (`0x00377B6C`-`0x00377B6F`) | `0x0029C65A`, `0x002B81D5`, `0x002B9D25`, `0x002BA5FB`, `0x002BB63B`, `0x002BBC80`, `0x003C23DF`, `0x0057FC33`, `0x0057FD93` |
+| `0x00377870(region)` | `[+0x04] + region` | the region count `+0x08` (`0x0037787C`-`0x0037787F`) | `0x003BF769`, `0x003F9314`, `0x003F9352`, `0x003F99E7` |
+| `0x003778B0(field)` | `[+0x04] + 0x00264F90(field)`, the field's persistence group | the region count `+0x08` (`0x003778C7`-`0x003778CA`) | `0x0029C61A`, `0x0029C62F`, `0x0057FC8A`, `0x0057FD14` |
+
+Each bound is an unsigned compare (`jae`), so a negative id is refused as well. A missing table, a refused id or an
+entry of 0 gives the empty string `0x01CEB638` (`0x00377B85`, `0x00377899`, `0x003778E8`), and no reader returns null, so
+none of the 17 call sites tests the result: a bad id shows an empty name.
 
 ### The hold flag and its save veto
 
@@ -302,6 +308,9 @@ The name table's header, measured in all nine language copies of `planmapname.bi
   `0x00377700` (bit `0x1`, `0x00377721`) and `0x00377C70` (bits `0x70`, `0x00377C91`) read the third byte. Changing them does nothing.
 - Area names and the Map pages live in `planmapname.bin`, not here; the record only carries the Map
   entry id and the name flag.
+- A name is reached through a `u16` offset from the start of `planmapname.bin`, so every string must start within the
+  first 65,535 bytes; the shipped files are 11,008 to 15,264 bytes. An id past the area or region count, or an entry
+  of 0, shows an empty name rather than failing.
 
 ## Related
 

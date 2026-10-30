@@ -1,0 +1,22 @@
+script	kind	place	actors	functions	rows	shared_actors
+bhm_a01	zone	Periphery (Sky Fortress Bahamut), field 774	25	63	13	0
+bhm_a02	zone	Catwalk (Sky Fortress Bahamut), field 775	19	52	8	0
+bhm_a03	zone	Antechamber (Sky Fortress Bahamut), field 776	24	60	10	0
+bhm_a04	zone	Antechamber (Sky Fortress Bahamut), field 777	22	88	8	5
+bhm_b01	zone	Central Lift (Sky Fortress Bahamut), field 779	15	59	6	0
+bhm_c01	zone	Central Shaft (Sky Fortress Bahamut), field 782	27	48	3	0
+bhm_d01	zone	Cannon Superstructure (Sky Fortress Bahamut), field 785	12	22	2	0
+bhm_y01	zone	bhm_y01 (Sky Fortress Bahamut), field 922	7	9	1	0
+bhm_z01	zone	bhm_z01 (Sky Fortress Bahamut), field 924	7	9	2	0
+bhm_a0200	scene	scene, event 150	20	144	16	0
+bhm_a0400	scene	scene, event 141	21	106	4	0
+bhm_b0100	scene	scene, event 155	23	179	15	0
+bhm_b0101	scene	scene, event 156	32	221	7	0
+bhm_c0100	scene	scene, event 157	26	257	10	0
+bhm_c0101	scene	scene, event 158	35	416	8	0
+bhm_c0102	scene	scene, event 159	39	1068	24	0
+bhm_d0100	scene	scene, event 142	15	120	9	0
+bhm_d0101	scene	scene, event 151	23	147	4	0
+bhm_y0100	scene	scene, event 153	27	205	37	0
+bhm_y0101	scene	scene, event 154	16	79	14	0
+bhm_z0100	scene	scene, event 152	28	225	13	0

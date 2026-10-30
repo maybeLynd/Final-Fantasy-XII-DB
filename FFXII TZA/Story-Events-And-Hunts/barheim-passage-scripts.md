@@ -1,0 +1,278 @@
+---
+title: "Barheim Passage scripts: what each script function shows, sets, gives and starts"
+kind: "reference"
+category: "Story, events and hunts"
+addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x00352EA0, 0x00353390, 0x00354000, 0x0034DD90, 0x0034E0B0, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x00345080, 0x003459C0, 0x0034A790, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x0034C030, 0x0034D4E0, 0x00377B60, 0x003778B0"
+---
+
+## What it lists
+
+The table [barheim-passage-scripts.tsv](barheim-passage-scripts.tsv) has one row per script function of Barheim
+Passage that does something a player can observe. It covers the seventeen zone scripts and the nine scene scripts of
+the region, from `plan_master/us`:
+
+| Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
+|---|---|---|---:|---:|---:|---|
+| `mic_a01` | zone | The Lightworks, field `53` | 40 | 210 | 14 | 5 |
+| `mic_a02` | zone | Great Eastern Passage, field `54` | 36 | 81 | 13 | 1 |
+| `mic_a03` | zone | Op Sector 36, field `55` | 26 | 50 | 6 | 0 |
+| `mic_a04` | zone | Special Op Sector 3, field `56` | 30 | 83 | 9 | 0 |
+| `mic_a05` | zone | Op Sector 37, field `57` | 27 | 84 | 9 | 0 |
+| `mic_a06` | zone | Op Sector 29, field `58` | 26 | 55 | 8 | 0 |
+| `mic_b01` | zone | Great Central Passage, field `61` | 28 | 55 | 10 | 0 |
+| `mic_b02` | zone | The Zeviah Subterrane, field `62` | 40 | 104 | 16 | 0 |
+| `mic_b06` | zone | North-South Junction, field `66` | 18 | 61 | 4 | 5 |
+| `mic_c01` | zone | Terminus No. 4, field `69` | 22 | 46 | 2 | 0 |
+| `mic_c02` | zone | Terminus No. 4 Adjunct, field `70` | 20 | 71 | 3 | 5 |
+| `mic_d01` | zone | Terminus No. 7, field `71` | 21 | 49 | 6 | 0 |
+| `mic_e01` | zone | East-West Bypass, field `891` | 25 | 35 | 8 | 0 |
+| `mic_e02` | zone | The Zeviah Span, field `892` | 48 | 146 | 18 | 1 |
+| `mic_e03` | zone | West Annex, field `893` | 33 | 53 | 17 | 0 |
+| `mic_e04` | zone | Terminus No. 7 Adjunct, field `894` | 18 | 50 | 5 | 5 |
+| `mic_e05` | zone | Special Op Sector 5, field `895` | 21 | 31 | 9 | 0 |
+| `mic_a0100` | scene | event `185` | 23 | 136 | 15 | 0 |
+| `mic_a0600` | scene | event `184` | 16 | 80 | 5 | 0 |
+| `mic_b0600` | scene | event `186` | 16 | 158 | 11 | 0 |
+| `mic_b0601` | scene | event `188` | 25 | 282 | 3 | 0 |
+| `mic_c0100` | scene | event `180` | 24 | 126 | 0 | 0 |
+| `mic_c0101` | scene | event `181` | 34 | 158 | 0 | 0 |
+| `mic_d0100` | scene | event `182` | 13 | 63 | 0 | 0 |
+| `mic_d0101` | scene | event `183` | 17 | 82 | 15 | 0 |
+| `mic_e0400` | scene | event `187` | 14 | 85 | 1 | 0 |
+
+The Lightworks, North-South Junction, Terminus No. 4 Adjunct and Terminus No. 7 Adjunct carry the five helper actors
+that many zone scripts share: the crystal (`system_crystal_actor`, `telepoeffectctrl`, `crystaldummyPC`, `saveactor`)
+and the key-item and message helper `イベント特殊効果画面`; Great Eastern Passage and The Zeviah Span carry the key-item and
+message helper alone. Their functions are described once on [Shared zone-script actors](shared-zone-script-actors.md)
+and have no rows here; the Shared helpers column counts them.
+
+A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
+items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party.
+
+Functions that only move, animate, wait, play sound or set the camera have no row in this table; each listed row
+counts the other functions of its actor in `other_functions`. Every function, these included, has its steps in the
+steps table described under [Every step](#every-step). The scenes themselves, with their dialogue, are on [Barheim
+Passage scenes](barheim-passage-scenes.md).
+
+### What the scripts do
+
+- The Lightworks: up to story counter 316, `イベント常駐監督.main` loads scene `mic_a0100` (event 185), adds Basch to the
+  party as a guest, plays the scene and writes 317.
+- The Lightworks: pressing the power relay switch (`電気スイッチ`) the first time requests `古びた装置イベント1`: Vaan's "Huh. Guess
+  it's not working." and Balthier's "Let's have a look. Hm...the fuse is blown."
+- The Lightworks: the bangaa `SHOP_NPC_バンガ` gives the Tube Fuse ("Made that tube fuse from parts I found down in these
+  very tunnels.") and writes 319; at 319 the switch offers "Install the tube fuse.", which takes the fuse and writes
+  321, the value that marks the power restored.
+- The Lightworks: the gate switch (`ドアスイッチ`) holds "Nothing happens. The power to the gate has been cut.", and the
+  gate (`可動柵ＨＥＬＰメッセージ`) "The gate is far too heavy to force. There must be a switch or lever somewhere to operate it."
+  `イベント常駐監督.錆びた突起物イベント1` requests the bangaa's `バッテリー会話` ("I see you got the gate open." ... "You look fer these
+  switchboards, you oughta be able to make yer way.").
+- Great Eastern Passage: the urn `バルハイム地図宝壷` gives the area map, Barheim Passage, with system message 104.
+- Special Op Sector 3: the gate (`可動柵`) holds the same line. Op Sector 37: the rusted switch (`ドアスイッチ`) holds "You
+  hear a loud sound from the south. The gate is open." and "Nothing happens. There doesn't seem to be enough power
+  reaching the switch."
+- Op Sector 29: up to story counter 321, `常駐監督.main` loads and plays scene `mic_a0600` (event 184), the talk of the
+  Mimics, and writes 323, the value after the secret of the Battery Mimic.
+- The Zeviah Subterrane: `常駐監督.main` sets flag `0x0022`, the location map's exits between Barheim Passage and the
+  Dalmasca Estersand; an exit leads to Murmuring Defile (Dalmasca Estersand), field 232. `閉じた扉` shows "The gate is
+  firmly closed."
+- North-South Junction: up to story counter 323, `常駐監督.main` loads and plays scenes `mic_b0600` (event 186) and
+  `mic_b0601` (event 188), writes 325, 330 and 333, the value after Basch's apology, and replaces Basch's guest entry
+  (`removeguestbattlemember(8)`, `addguestbattlemember(9)`).
+- Terminus No. 4: `常駐監督.main` first writes 340, the value at the start of the Mimic Queen battle; while
+  `g_btl_ミミッククイーン` is 1 it loads and plays scenes `mic_c0100` (event 180) and `mic_c0101` (event 181) and shows the
+  boss gauge; when the fight ends it removes every foe, writes 341 and jumps to Passage Entrance (Dalmasca Estersand),
+  field 231.
+- Terminus No. 7: arriving by entrance 2 sets flag `0x0040`, the location map's exits between Barheim Passage and the
+  Garamsythe Waterway; an exit leads to East Sluice Control (Garamsythe Waterway), field 840. While `g_btl_ザルエラ` is 1,
+  `常駐監督.main` loads and plays scenes `mic_d0100` (event 182) and `mic_d0101` (event 183).
+- Terminus No. 7: touching `ボス登場` requests `常駐監督.監視`, which sets a gauge timer to 300 (`setgaugetimer(0x012c)`) and
+  shows the boss gauge. When `getgaugetimer(1)` reaches 0 it jumps to Terminus No. 7 Adjunct, field 894; after the
+  fight it removes every foe, loads the victory pose scene `pos_z0000` (event 427, [Victory pose
+  scenes](victory-pose-scenes.md)) and sets `g_btl_ザルエラ` to 2.
+- Terminus No. 7 Adjunct: `常駐監督.main` loads and plays scene `mic_e0400` (event 187) while `ザルエラ制御_状況` is 10 and
+  `Boss_Enter_End[1]` is 0.
+- East-West Bypass and The Zeviah Span: `hunt_kansi.main` gives the Bony Trophy and removes the foes of a group. West
+  Annex: `wanted_kansi.main` removes the foes of a group.
+- The Zeviah Span: while `EV_H_暗号` is 0 and five further global values are 1, touching `宝レクト` shows Gilgamesh's lines
+  ("Too long has it been, my friends! It is I, Gilgamesh!!!" ... "Yours for the taking, should such rubbish appeal to
+  you!"), gives the Matamune and sets `EV_H_暗号` to 30. Talking to `バルハイムキャンドル` gives the Barheim Candle with system
+  message 119 ("The candle reveals hidden areas on your map of the [value]!").
+- The Lightworks, Great Eastern Passage, Op Sector 36, Special Op Sector 3, Op Sector 37, Op Sector 29, Great Central
+  Passage, The Zeviah Subterrane, Terminus No. 7, East-West Bypass, The Zeviah Span, West Annex, Terminus No. 7
+  Adjunct and Special Op Sector 5 hold 3, 7, 3, 3, 5, 3, 4, 9, 2, 5, 12, 13, 1 and 8 treasure chests.
+
+### How a call is read
+
+A call's arguments are read when they are literals; a computed argument is named by the variable that holds it.
+
+| Verb | Id | Native body | Column | Meaning |
+|---|---|---|---|---|
+| `amese`, `amest`, `ames`, `ames_1fe` | `0x145`, `0x082`, `0x00F`, `0x1FE` | `0x0034A420`, `0x0034A090`, `0x00349BF0`, `0x00349800` | `lines` | the second argument is a section 2 text id |
+| `setnpcname` | `0x38A` | `0x0034B9A0` | `speaker` | the actor's name pair ([NPC names](../Characters-And-Objects/npc-names.md)) |
+| `setmapjumpgroupflag`, `releasemapjumpgroupflag`, `ismapjumpgroupflag` | `0x430`-`0x432` | `0x0034EE20`, `0x0034DD90`, `0x0034E0B0` | `flags_*` | Primary bank flag ([story flag ids](story-flag-ids.md)) |
+| `settreasureflag`, `releasetreasureflag`, `istreasureflag` | `0x3F1`, `0x3F2`, `0x3F5` | `0x00352EA0`, `0x00353390`, `0x00354000` | `flags_*` | `Bank512, second half` flag ([story flag ids](story-flag-ids.md)) |
+| `mapjump` | `0x08D` | `0x00354D00` | `jumps` | field, entrance, mode ([zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) |
+| `eventread`, `eventread_e8` | `0x0E7`, `0x0E8` | `0x003529E0`, `0x00351880` | `scenes` | the event id, the first or second argument ([event scenes](../Scripts-And-Script-Commands/event-scenes.md)) |
+| `additem`, `additem_47f`, `additemmes`, `subitem` | `0x2E5`, `0x47F`, `0x480`, `0x2F2` | `0x00345080`, `0x003449A0`, `0x0034A6D0`, `0x003459C0` | `items` | item id and count ([reward verbs](../Scripts-And-Script-Commands/reward-verbs.md)) |
+| `giveback_item_and_equip`, `talktreasure` | `0x387`, `0x2BF` | `0x0034A790`, `0x00355830` | `items` | the saved items and equipment back; a treasure chest |
+| `bossgaugeopen` | `0x3CA` | `0x00349B60` | `battles` | the boss gauge ([battle menu](../Menus-And-HUD/battle-menu.md)) |
+| `bosskillall`, `zakokillall` | `0x3B8`, `0x3A8` | `0x00510840`, `0x00353770` | `battles` | removes the foes ([boss fights](../Battle-Actions/boss-fights.md)) |
+| `addpartymember`, `setbattlemember` | `0x353`, `0x355` | `0x0034C030`, `0x0034D4E0` | `party` | party row selectors ([party verbs](../Scripts-And-Script-Commands/party-verbs.md)) |
+
+The story counter is the script's global `short` at offset 0, named `シナリオフラグ` in the scripts of this table that write
+or test it: every assignment to it is a write and every comparison a test ([story counter
+values](story-counter-values.md)).
+
+### The four message verbs reach one window call
+
+The four message verbs all end in `mes` (`0x461`, `0x00348DF0`), which looks the text id up in the issuing script's
+section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
+
+1. `amese` (`0x0034A420`) pushes 0, 0, 0 and -1; `amest` (`0x0034A090`) pushes 0; `ames` (`0x00349BF0`) pushes 1. Each then
+   jumps to `0x00349800`, the body of `ames_1fe`.
+2. `0x00349800` pops two values (`0x00349827`, `0x00349831`), pushes 0 and 0 (`0x0034983D`, `0x00349847`) and then pushes the
+   two values back in their original order (`0x00349851`, `0x0034985B`), so the zeros lie beneath them; it jumps to
+   `0x00348DF0` (`0x00349884`).
+3. `0x00348DF0` pops eight values. The seventh, the script's second argument, is passed with the current field context
+   to `0x00264D60` (`0x00348E6A`-`0x00348E74`), the section 2 lookup, which keeps the low 24 bits of the id.
+
+### Speakers, places and scenes
+
+- The speaker is the second name of each pair the actor's `setnpcname` calls name in `us` `npcdic.bin`. The
+  message window opener `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
+  second name while that flag is set.
+- A field id is named by its map name, entry `id` of `us` `planmapname.bin` (`0x00377B60`), and its region, the
+  entry after the map names that `0x003778B0` selects through the field's group in `map_ref.bin` (`0x00264F90`).
+- An event id `n` names the scene script at index `4n` of the event file table, which `0x0032FCA0` loads for scene
+  managers 1 to 3.
+
+### Every step
+
+The steps table [`barheim-passage-script-steps.tsv`](barheim-passage-script-steps.tsv) has one row for each step of
+every function of the twenty-six scripts, in the order the function runs them: each call, request, store, branch,
+loop, case and return. It has 36,522 rows.
+
+A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
+arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
+the camera shot, the message window or the variable. It also gives the frames the step takes, what it waits for, and
+the functions it starts on other actors.
+
+| Script | Steps | Script | Steps |
+|---|---:|---|---:|
+| `mic_a01` | 2,135 | `mic_e02` | 1,316 |
+| `mic_a02` | 3,215 | `mic_e03` | 492 |
+| `mic_a03` | 2,389 | `mic_e04` | 297 |
+| `mic_a04` | 2,776 | `mic_e05` | 260 |
+| `mic_a05` | 2,786 | `mic_a0100` | 1,052 |
+| `mic_a06` | 2,577 | `mic_a0600` | 894 |
+| `mic_b01` | 1,761 | `mic_b0600` | 1,511 |
+| `mic_b02` | 3,405 | `mic_b0601` | 2,319 |
+| `mic_b06` | 540 | `mic_c0100` | 850 |
+| `mic_c01` | 972 | `mic_c0101` | 1,246 |
+| `mic_c02` | 584 | `mic_d0100` | 674 |
+| `mic_d01` | 819 | `mic_d0101` | 924 |
+| `mic_e01` | 295 | `mic_e0400` | 433 |
+
+The five shared helper actors have their steps once, in [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv)
+(1,283 rows over 26 templates for 29 functions: the template of a function that only returns, cecbbef6fb, serves the
+`init` of イベント特殊効果画面, telepoeffectctrl and crystaldummyPC and the `main` of saveactor). In this table each of their
+functions has a single `shared template` row naming the template; Barheim Passage has 136 such rows.
+
+An actor that runs another actor's code would have one `same code` row naming the actor whose steps it runs; this
+table has none.
+
+The steps by their `resolution` cell:
+
+| Resolution | Steps |
+|---|---:|
+| `resolved` | 36,348 |
+| empty | 174 |
+
+A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
+script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give
+for the step, and `-` otherwise.
+
+A scene reads from top to bottom in its director's function. In `mic_a0100` (event `185`), `ディレクター.main` starts scene
+cut 0 and starts `準備` on seven actors together, among them `バルフレア`, `バッシュ` and `ダミーカメラ`, waiting for each to end and
+for effect slot 0. It files `ディレクター.イベント進行` and waits until it ends. When `skipcheck(0)` holds, it fades out over 0
+frames, sets system message 47 for message slot 0 and waits on the window; otherwise it files
+`イベント特殊効果画面_EV.システムメッセージ表示` and waits until it ends.
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `script` | the script, by its file name |
+| `place` | for a zone script, its map (region); for a scene script, `scene, event` and its event id |
+| `actor`, `function` | the actor and the function, as the script names them |
+| `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions of the same script that request it by name; `-` when neither applies |
+| `speaker` | the names `setnpcname` gives the actor, filled only for a row whose lines include a section 2 line; a system message is not spoken by the actor |
+| `lines` | the section 2 entries the function passes to the message verbs, and `system message N` for each message from the shared system-message list that the key-item and system-message helper shows for the function ([Shared zone-script actors](shared-zone-script-actors.md)), at the place of the request; two numbers joined by `or` are the values the function's stores leave, and which one is shown is decided at run time |
+| `line_text` | the `us` text of those entries, in the same order, separated by ` / `; for a `system message N` entry, the text of message N in the system-message list |
+| `flags_set`, `flags_released`, `flags_tested` | the flag ids, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md); a `Bank512, second half` flag carries its bank name |
+| `counter_set` | each value written to the story counter, with the first sentence of its explanation on [story counter values](story-counter-values.md) |
+| `counter_tested` | each comparison of the story counter, as the relation and the decimal value |
+| `items` | items received or lost, with their names; `treasure chest` and its record reference for a chest; `the item held in` and the variable for an item a variable holds; for a request of the helper, the item the requesting function hands over; a fixed count is written `xN`, and a count the game computes reads `, as many as <expression> gives` |
+| `jumps` | each `mapjump`: the target map (region), its field id and the entrance |
+| `battles` | `boss gauge shown`, `every foe in a group removed`, `every foe in group 0 removed` |
+| `scenes` | each scene script the function loads, with its event id |
+| `party` | members who join and the fighting party a call sets |
+| `other_functions` | the actor's functions that have no row |
+| `shared_actor` | `-` for an ordinary actor; for a function of a shared helper actor that is listed, whether its body matches the shared one |
+
+In the `line_text` column, a choice list is written as `(choices: ...)`, and a value the game fills in when the line
+is shown is written `[value]`.
+
+The script list [barheim-passage-script-list.tsv](barheim-passage-script-list.tsv) holds the first table above, one
+row per script:
+
+| Column | Meaning |
+|---|---|
+| `script`, `kind`, `place` | the script, `zone` or `scene`, and its map (region) and field id, or its event id |
+| `actors`, `functions` | the script's actors and functions, shared helpers included |
+| `rows` | the script's rows in the main table |
+| `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |
+
+The steps table [`barheim-passage-script-steps.tsv`](barheim-passage-script-steps.tsv) has one row per step:
+
+| Column | Meaning |
+|---|---|
+| `script`, `actor`, `function` | as in the main table |
+| `step` | the step's number in its function, from 1, in the order the function's bytes run |
+| `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
+| `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v`, a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test` |
+| `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
+| `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test |
+| `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |
+| `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its control codes dropped; `-` for every other step |
+| `timing` | the frames, fade lengths and speeds the step uses |
+| `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
+| `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
+| `resolution` | `resolved`; `does not ship:` and the fact; or empty |
+| `source` | the page or table that gives the meaning, or the function whose body was read |
+
+The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`
+on, after these:
+
+| Column | Meaning |
+|---|---|
+| `template` | the template id that the `shared template` rows name |
+| `actor`, `function`, `step` | the shared actor, its function and the step number |
+| `reference` | the script whose copy of the function the steps were read from, and where the function starts there |
+
+In this table, `at` is the step's distance from the function's start, written `+0x..`. Variable names, text ids,
+section 3 string offsets and the lines `addresses` names are those of the script named in `reference`. The other
+scripts' copies differ only in these.
+
+## Related
+
+- [Shared zone-script actors](shared-zone-script-actors.md) - the crystal, the teleport and the key-item and message helpers, described once.
+- [Barheim Passage scenes](barheim-passage-scenes.md) - the nine scenes these scripts own.
+- [Victory pose scenes](victory-pose-scenes.md) - the scene that follows a boss fight.
+- [Dalmasca Estersand scripts](dalmasca-estersand-scripts.md) - the region beyond The Zeviah Subterrane and Terminus No. 4.
+- [Hunts](hunts.md) - the marks and their petitioners.
+- [Story flag ids](story-flag-ids.md) - every flag id with what it opens.
+- [Story counter values](story-counter-values.md) - every value scripts write to the story counter.
+- [Scene rewards](scene-rewards.md) - every item a script gives, with the place it is given.

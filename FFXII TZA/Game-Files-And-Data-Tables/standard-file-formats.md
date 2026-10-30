@@ -154,9 +154,10 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 | `jsondata/cutscenes/` | 337 files, 2,235,149 bytes; 39 `sum_*`, of which 26 are empty; one `_2ndscreen` file (`slm_z0100_2ndscreen.json`) |
 | `jsondata/fontcluts/` | 28 files `fontclut_0` … `fontclut_27`, 8,160 bytes; each file's `mClutIndex` equals its number |
 | `jsondata/uisize/` | `uisize.json` 7,478 bytes, `uisize_sd.json` 4,609 |
-| not strict JSON | 4: `uisize.json` and `uisize_sd.json` end with a trailing comma, `maps/bhm0201.json` and `cutscenes/evt_t0005.json` each miss one comma |
+| not strict JSON | 4: `uisize.json` and `uisize_sd.json` end with a trailing comma; `maps/bhm0201.json` misses the comma before line 44, and `cutscenes/evt_t0005.json` the two before lines 227 and 238, where `"Cut 5"` and `"Cut 6"` follow the block before them |
 | `.webm` | 40 files, 10,881,781,239 bytes (21,563,773 to 1,451,123,949) |
-| WebM header | all 40 open with EBML `1A 45 DF A3`, doctype `webm`; the first 64 KiB declares `V_VP8` in all 40 and `A_VORBIS` in 39 (`ivt.webm` has no Vorbis track entry there) |
+| WebM header | all 40 open with EBML `1A 45 DF A3`, doctype `webm`; each declares one `V_VP8` video track of 1920 × 1080. 37 add two 6-channel 48 kHz `A_VORBIS` tracks, `eng` then `jpn`; `anx.webm` and `stf.webm` have one 2-channel Vorbis track with no language element and no frame duration (doctype version 2, muxer `webmmux-1.0.4.1`); `ivt.webm` has no audio track. The other 38 give a frame duration of 33,366,666 ns (29.97 frames per second) |
+| every `.webm` | one row each in [`standard-file-formats-webm-rows.tsv`](standard-file-formats-webm-rows.tsv), 40 rows, 3,933.855 seconds in all (`stf.webm` the longest, 523.521): size, duration, muxer, video size and frame duration, every audio track, and the cue points with their first and last times; `-` where a file has no such element |
 | `.h` | 6 files, 13,036 bytes: `us/worldmap/menumap_sub.h`, `menumap_world.h`, `menumap_world_debug.h`; `menuquest.h` in `us`, `kr`, `cn` |
 | `.h` text | generated `#define` tables (converted from Excel sheets), CRLF, UTF-8; the `kr` and `cn` `menuquest.h` start with a UTF-8 byte-order mark |
 | `.sys`, `.ico` | `icon.sys` (192 bytes) and `icon1.ico` (33,688 bytes) in `myoshiok/in/bin_menu/` and `myoshiok/ch/bin_menu/`; the two copies are byte-identical |
