@@ -274,6 +274,10 @@ authored command `0x08` stores); otherwise it is `+0x98` through the easing curv
 and `+0x35A` (stored by command `0x2C`) select: `0x0046FAE0(+0x98, +0x358, +0x35A)` (`0x004189A4`) reads
 `0x01F20E60 + ((a × 3 + b) × 0x1E0)`, 120 floats per curve at 60 fps.
 
+The curves' entry count is the dword `0x01F20A98`, 60 in the file: `0x0046FAE0` reads entry
+`t × (count − 1)`, clamped to the curve (`0x0046FAEF`), and `0x0046FBF0` doubles the count for the 60 fps time
+base (`0x0046FC4D`) and resamples the nine curves to it (`0x0046FCC0`).
+
 It turns the rotation channels into a matrix (`0x0046D380`, three angles through the sine table
 `0x01F004E0`, 32,768 entries) and that into a quaternion at bone `+0x110` (`0x0046D730`, normalised by
 `0x00476E70`, which falls back to (0.57735, 0.57735, 0.57735, 0) for a zero quaternion).

@@ -483,7 +483,9 @@ bit `0x8` runs `0x00378120`, which:
 4. applies the world object's tag-11 colour (`0x003AFD40`) and calls `0x00332130(0)`.
 
 The teardown `0x00378230(releaseWorld)` frees every stored section, unbinds the lights
-(`0x0037AA50(0)`), the `ACTL` (`0x003E8940(0)`) and the navigation data (`0x00384160(0)`), drops the
+(`0x0037AA50(0)`) and the `ACTL` (`0x003E8940(0)`), frees the navigation copy and zeroes `0x02ADD008`
+(`0x003782BB`, `0x003782C2`). Its call `0x00384160(0)` returns at once (`0x00384164`) and leaves `0x02AEDFB0` as it
+was. It also drops the
 pictures and placements and resets the ambient colour; `0x003784A0` frees the block pack's world
 object, the loose effect bank and the two sound sections.
 

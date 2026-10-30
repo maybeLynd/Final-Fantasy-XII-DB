@@ -345,8 +345,9 @@ second VIF word of the scratch chunk `0x01F82D08`, which `0x001DB840` rewrites o
 
 ### The microprograms' constant vector
 
-`0x01E02830` holds `(0, 0, 0, 1)` in the image and is the microprograms' constant register. `0x0022CB90` zeroes its
-first two lanes at boot. `0x0022CC20` copies `(0, 0, 0, 1)` back from `0x008C5FD0`, and a program calls it after it
+`0x01E02830` holds `(0, 0, 0, 1)` in the image and is the microprograms' constant register. `0x0022CB90` writes all
+four lanes at boot: x and y 0 (`0x0022CBDF`), z 0 (`0x0022CBEA`) and w 1.0 (`0x0022CBA5`). `0x0022CC20` copies
+`(0, 0, 0, 1)` back from `0x008C5FD0`, and a program calls it after it
 stores into the vector: `0x004BF500` stores lanes x and y at `0x004C07DA` and `0x004C07E2` and calls it at
 `0x004C07EA`.
 

@@ -133,7 +133,8 @@ entry of 0 costs `0x7FFFFFFF`. Otherwise the portal is tested for the mover clas
 
 - an ungated portal (byte `+4` = `0xFF`), or one whose map id `0x0026E300` answers 0 for, is open when
   bit `moverClass` of its class mask `+6` is set;
-- a gated portal asks `0x0026E300(mapId, moverClass)` (class in `edx`, as the caller left it): the class indexes the six-entry table at
+- a gated portal asks `0x0026E300(mapId, moverClass)` (via `0x0032A780` at `0x003838D8`, class in `edx`): the class
+  indexes the six-entry table at
   `0x00915760` (`{23, 25, 26, 27, -1, 24}`) for a bit; a negative entry returns -1 (closed); with the
   override table `0x0209A3E0` (two dwords per map id) holding that bit in its first dword the answer is
   1 (open) or, with the bit also in the second dword, 2 (closed); otherwise 0 falls back to the

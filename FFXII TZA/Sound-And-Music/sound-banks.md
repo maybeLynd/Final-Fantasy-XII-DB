@@ -108,8 +108,14 @@ A sound id is `registry slot << 9 + sound slot`. `0x003A1180(slot)` builds it fr
 record does not match (`0x003A11AB`-`0x003A11D1`).
 
 `0x003A11F0(slot)` builds the same id without the `0x00267330` test, for `0x00249CA0`. `0x003A1100` and `0x003A1070` build ids
-from the blocks at `0x02AEF400` and `0x02AEF404`; both answer -1 while `0x02AEF400` is -1, so `0x003A1070` gives nothing until
-block 1 is loaded even when block 2 is.
+from the blocks at `0x02AEF400` and `0x02AEF404`. Both answer -1 while `0x02AEF400` is -1 (`0x003A1106`, `0x003A1076`), which
+happens when block 1's callback `0x003A1330` stores a failed registration there (`0x003A1344`, `0x003A134A`).
+
+Until that callback runs the word is 0: it is in the zero-filled tail of `.data`, and `0x003A13F0` stores -1 only to
+`0x02AEF3FC` and `0x02AEF404` (`0x003A14BE`, `0x003A153D`, `0x003A15BC`). 0 is the handle of record 0 while its generation is 0, as the
+start-up loop leaves it (`0x003A1443`, `0x003A145B`), so in that window `0x003A1100` answers the slot itself, an id in
+registry slot 0 (`0x003A115E`), unless `0x00267330(0)` is non-zero, and `0x003A1070` passes its test and builds from
+`0x02AEF404` once block 2 is loaded.
 
 `0x0021B5B0(id)` finds the bank whose `+0x3C` equals `id / 512` (`0x0021B5DF`-`0x0021B5FA`). An index file has 128 slots,
 so slots 128-511 of each id range name nothing.

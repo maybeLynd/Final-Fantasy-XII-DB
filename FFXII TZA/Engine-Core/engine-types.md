@@ -12,34 +12,35 @@ executable builds and reads. Each row gives what the type is for, the page that 
 page) and its lifetime: where its storage lives, which code creates or fills it, and what releases it.
 Addresses in a row are the instructions and functions that do so.
 
-The table holds 449 types in 24 categories. The largest is `SaveImage` (0x56690 bytes).
+The table holds 501 types in 25 categories. The largest is `SaveImage` (0x56690 bytes).
 
 | Category | Types |
 |---|---|
-| Battle actions | 7 |
+| Battle actions | 9 |
 | Characters and objects | 23 |
+| Compiler and C runtime | 3 |
 | Controls and input | 12 |
-| Damage and battle formulas | 5 |
-| Enemy AI and gambits | 3 |
+| Damage and battle formulas | 6 |
+| Enemy AI and gambits | 4 |
 | Enemy spawning | 11 |
-| Engine core | 63 |
-| Game files and data tables | 19 |
-| Graphics | 66 |
-| Items, equipment, shops and licenses | 2 |
-| Menus and HUD | 96 |
-| Movement and pathfinding | 14 |
+| Engine core | 70 |
+| Game files and data tables | 21 |
+| Graphics | 74 |
+| Items, equipment, shops and licenses | 4 |
+| Menus and HUD | 105 |
+| Movement and pathfinding | 16 |
 | Party | 9 |
-| PhyreEngine | 34 |
-| Random numbers | 5 |
+| PhyreEngine | 38 |
+| Random numbers | 6 |
 | Rewards: EXP, LP, gil and loot | 9 |
-| Saving, loading and settings | 7 |
+| Saving, loading and settings | 9 |
 | Scripts and script commands | 10 |
-| Sound and music | 12 |
+| Sound and music | 16 |
 | Status effects and KO | 1 |
-| Steam and achievements | 6 |
-| Story, events and hunts | 1 |
+| Steam and achievements | 7 |
+| Story, events and hunts | 2 |
 | Third-party libraries | 16 |
-| World, areas and travel | 18 |
+| World, areas and travel | 20 |
 
 ## Columns
 
