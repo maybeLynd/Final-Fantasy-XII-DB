@@ -4,7 +4,7 @@ wdl_a02	zone	Corridor of Sand (Dalmasca Westersand), field 346	29	45	14	0
 wdl_a03	zone	Shimmering Horizons (Dalmasca Westersand), field 347	36	62	20	0
 wdl_a04	zone	The Midfault (Dalmasca Westersand), field 348	28	43	13	0
 wdl_a05	zone	Windtrace Dunes (Dalmasca Westersand), field 349	31	61	15	1
-wdl_a06	zone	The Western Divide (Dalmasca Westersand), field 350	42	146	12	5
+wdl_a06	zone	The Western Divide (Dalmasca Westersand), field 350	42	146	13	5
 wdl_b01	zone	Wyrm's Nest (Dalmasca Westersand), field 354	25	75	6	0
 wdl_a0600	scene	scene, event 232	24	157	7	0
 wdl_b0100	scene	scene, event 230	21	124	0	0

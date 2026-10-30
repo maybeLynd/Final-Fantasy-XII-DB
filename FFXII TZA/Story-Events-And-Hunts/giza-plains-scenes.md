@@ -24,7 +24,7 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
 ### What the scenes give
 
 - `sav_b0181` gives Penelo's three Potions and two Phoenix Downs, and `sav_b0180` Masyua's 50 gil, two Potions and two
-  Teleport Stones ([scene rewards](scene-rewards.md)).
+  Teleport Stones ([scene rewards](scene-rewards.md)). `sav_c0280` gives the Shadestone.
 - `sav_b0180` is followed by story counter 160, Sunstone obtained
   ([story counter values](story-counter-values.md)).
 - After `sav_c0281` the loading function jumps to Nomad Village, field `243`.

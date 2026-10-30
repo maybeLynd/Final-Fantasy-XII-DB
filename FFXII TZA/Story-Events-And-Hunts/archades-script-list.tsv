@@ -1,5 +1,5 @@
 script	kind	place	actors	functions	rows	shared_actors
-alc_a01	zone	Grand Arcade (Archades), field 635	46	329	19	0
+alc_a01	zone	Grand Arcade (Archades), field 635	46	329	20	0
 alc_a02	zone	Highgarden Terrace (Archades), field 636	20	109	8	1
 alc_b03	zone	Molberry (Archades), field 640	40	337	29	1
 alc_b04	zone	Trant (Archades), field 641	34	243	22	1
@@ -17,7 +17,7 @@ alc_z02	zone	alc_z02 (Archades), field 867	7	9	1	0
 alc_z03	zone	alc_z03 (Archades), field 868	7	9	1	0
 alc_z04	zone	alc_z04 (Archades), field 869	7	9	1	0
 alc_a0100	scene	scene, event 307	18	81	2	0
-alc_a0280	scene	scene, event 731	11	112	17	0
+alc_a0280	scene	scene, event 731	11	112	18	0
 alc_b0400	scene	scene, event 306	23	213	6	0
 alc_c0180	scene	scene, event 732	12	116	12	0
 alc_z0100	scene	scene, event 300	13	106	35	0

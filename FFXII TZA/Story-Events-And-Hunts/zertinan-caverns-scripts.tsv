@@ -97,13 +97,14 @@ ztc_d01	Athroza Quicksands (Zertinan Caverns)	__MJ_CTRL000	mapjump	mapjump	-	-	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Undershore (Zertinan Caverns), field 581, entrance 2	-	-	-	1	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Hourglass Basin (Zertinan Caverns), field 578, entrance 3	-	-	-	1	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Balamka Fault (Zertinan Caverns), field 585, entrance 5	-	-	-	1	-
-ztc_d01	Athroza Quicksands (Zertinan Caverns)	監督	main	main	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	ztc_d0100, event 320; ztc_d0101, event 321; pos_z0000, event 427	-	1	-
+ztc_d01	Athroza Quicksands (Zertinan Caverns)	監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	ztc_d0100, event 320; ztc_d0101, event 321; pos_z0000, event 427	-	1	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	boss_summon_director	summon_effect_recover	requested by 監督.main	-	-	-	-	-	-	-	-	-	-	boss gauge shown	-	-	2	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	ボス登場01	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	pos_z0000, event 427	-	5	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	ボス登場02	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	pos_z0000, event 427	-	5	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	ボス登場03	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	pos_z0000, event 427	-	5	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	ボス登場04	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	pos_z0000, event 427	-	5	-
-ztc_d0101	scene, event 321	監督	main	main	-	-	-	-	-	-	-	-	receives 0xC012; receives 0xC01F; receives 0xC018; receives 0xC013; receives 0xC01C; receives 0xC019; receives 0xC015; receives 0xC017; receives 0xC016; receives 0xC014; receives 0xC01E; receives 0xC01B; receives 0xC01A; receives 0xC01D	-	-	-	-	2	-
+ztc_d0101	scene, event 321	監督	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	2	-
+ztc_d0101	scene, event 321	ゾディアックストーン	召喚獣取得処理	-	-	system message 3	NOT USED (message kind 1: the game names id 0xC014, Adrammelech, and gives it)	-	-	-	-	-	receives Adrammelech (system message 3, kind 1)	-	-	-	-	3	-
 ztc_d0101	scene, event 321	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
 ztc_d0101	scene, event 321	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
 ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-

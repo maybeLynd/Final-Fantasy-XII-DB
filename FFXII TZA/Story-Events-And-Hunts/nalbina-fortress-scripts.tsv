@@ -1,6 +1,6 @@
 script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_released	flags_tested	counter_set	counter_tested	items	jumps	battles	scenes	party	other_functions	shared_actor
 naf_a01	Aerial Gardens (Nalbina Fortress)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Inner Ward (Nalbina Fortress), field 275, entrance 1	-	-	-	1	-
-naf_a01	Aerial Gardens (Nalbina Fortress)	常駐監督	main	main	-	-	-	-	-	-	13: After Reks wakes	-	-	-	-	naf_a0100, event 240; naf_a0101, event 241	-	1	-
+naf_a01	Aerial Gardens (Nalbina Fortress)	常駐監督	main	main	-	-	-	-	-	-	13: After Reks wakes	-	-	-	-	naf_a0100, event 240; naf_a0101, event 241	Ashe leaves; Fran leaves; Basch leaves; Balthier leaves; Penelo leaves	1	-
 naf_a01	Aerial Gardens (Nalbina Fortress)	チュートリアル	終了	requested by 鉄柵.talk	-	-	-	-	-	-	-	-	-	Inner Ward (Nalbina Fortress), field 275, entrance 1	-	-	-	7	-
 naf_a01	Aerial Gardens (Nalbina Fortress)	ヘルプメッセージ	ヘルプメッセージ01	requested by チュートリアル.視点の変更終了	-	5; 6	(empty string) / Try using to adjust the viewing angle.	-	-	-	-	-	-	-	-	-	-	2	-
 naf_a01	Aerial Gardens (Nalbina Fortress)	ヘルプメッセージ	ヘルプメッセージ02	requested by チュートリアル.キャラクターの移動	-	7; 8	(empty string) / Use to approach Basch.	-	-	-	-	-	-	-	-	-	-	2	-

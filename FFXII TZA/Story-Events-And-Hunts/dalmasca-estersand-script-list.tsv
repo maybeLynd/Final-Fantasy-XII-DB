@@ -3,7 +3,7 @@ dst_a01	zone	The Stepping (Dalmasca Estersand), field 227	32	62	16	1
 dst_a02	zone	Yardang Labyrinth (Dalmasca Estersand), field 228	35	65	17	1
 dst_a03	zone	Sand-swept Naze (Dalmasca Estersand), field 229	28	44	14	0
 dst_a04	zone	Banks of the Nebra (Dalmasca Estersand), field 230	32	64	17	0
-dst_a05	zone	Passage Entrance (Dalmasca Estersand), field 231	28	134	14	5
+dst_a05	zone	Passage Entrance (Dalmasca Estersand), field 231	28	134	15	5
 dst_a06	zone	Murmuring Defile (Dalmasca Estersand), field 232	18	77	5	0
 dst_a07	zone	Outpost (Dalmasca Estersand), field 233	42	213	16	0
 dst_b01	zone	South Bank Village (Dalmasca Estersand), field 129	52	390	23	5

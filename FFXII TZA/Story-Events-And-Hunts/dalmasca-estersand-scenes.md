@@ -26,7 +26,8 @@ them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00
   battle), 75 (after the first hunt) and 78 (after the Galbana Lilies)
   ([story counter values](story-counter-values.md), [scene rewards](scene-rewards.md)).
 - `dst_b0100` is the boat across the Nebra with its fishing game: it gives the catch (Common Fish, Delicious Fish,
-  Nebra Succulent, Empty Bottle) and reward packages from a Hi-Potion to Lu Shang's Badge. Each village's `NPC01.talk`
+  Nebra Succulent, Empty Bottle), the Blue, Green, Red, Yellow and Black Bottles, the Cactoid Compact, the
+  Cactoid Commendation and reward packages from a Hi-Potion to Lu Shang's Badge. Each village's `NPC01.talk`
   loads it and then jumps to the other village.
 - `dst_a0580` is followed by story counter 343, the arrival in Dalmasca Estersand.
 - `dst_a0180` holds no text.

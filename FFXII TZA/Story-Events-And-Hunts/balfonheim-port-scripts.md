@@ -2,7 +2,7 @@
 title: "Balfonheim Port scripts: what each script function shows, sets, gives and starts"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x0034DFA0, 0x0034E320, 0x0034E980, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x00345080, 0x003459C0, 0x0034A790, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x0034C030, 0x0034D4E0, 0x00377B60, 0x003778B0"
+addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D60, 0x0034B9A0, 0x0034EE20, 0x0034DD90, 0x0034E0B0, 0x0034DFA0, 0x0034E320, 0x0034E980, 0x00354D00, 0x003529E0, 0x00351880, 0x003449A0, 0x0034A6D0, 0x00345080, 0x003459C0, 0x0034A790, 0x00355830, 0x00349B60, 0x00510840, 0x00353770, 0x0034C030, 0x0034D4E0, 0x00377B60, 0x003778B0, 0x0034B760, 0x0034BB10, 0x0034ADA0, 0x00352190, 0x00352AF0"
 ---
 
 ## What it lists
@@ -41,10 +41,12 @@ Port Villa has two maps, fields `835` and `837`. The map name table gives field 
 name. Its zone script plays the three scenes of the region.
 
 A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
-items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party. Functions that
-only move, animate, wait, play sound or set the camera are not listed; each listed row counts the other functions
-of its actor in `other_functions`. The scenes themselves, with their dialogue, are on
-[Balfonheim Port scenes](balfonheim-port-scenes.md).
+items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party.
+
+Functions that only move, animate, wait, play sound or set the camera have no row in this table; each listed row
+counts the other functions of its actor in `other_functions`. Every function, these included, has its steps in the
+steps table described under [Every step](#every-step). The scenes themselves, with their dialogue, are on [Balfonheim
+Port scenes](balfonheim-port-scenes.md).
 
 ### What the scripts do
 
@@ -95,6 +97,7 @@ A call's arguments are read when they are literals; a computed argument is named
 | Verb | Id | Native body | Column | Meaning |
 |---|---|---|---|---|
 | `amese`, `amest`, `ames`, `ames_1fe` | `0x145`, `0x082`, `0x00F`, `0x1FE` | `0x0034A420`, `0x0034A090`, `0x00349BF0`, `0x00349800` | `lines` | the second argument is a section 2 text id |
+| `aask`, `aaske`, `aask_1ff` | `0x010`, `0x14A`, `0x1FF` | `0x0034B760`, `0x0034BB10`, `0x0034ADA0` | `lines` | the second argument is a section 2 text id; the choices are in that text |
 | `setnpcname` | `0x38A` | `0x0034B9A0` | `speaker` | the actor's name pair ([NPC names](../Characters-And-Objects/npc-names.md)) |
 | `setmapjumpgroupflag`, `releasemapjumpgroupflag`, `ismapjumpgroupflag` | `0x430`-`0x432` | `0x0034EE20`, `0x0034DD90`, `0x0034E0B0` | `flags_*` | Primary bank flag ([story flag ids](story-flag-ids.md)) |
 | `settalknpcname`, `releasetalknpcname`, `istalknpcname` | `0x399`-`0x39B` | `0x0034DFA0`, `0x0034E320`, `0x0034E980` | `flags_*` | `Bank2048` flag: the name tag ([story flag ids](story-flag-ids.md), [NPC names](../Characters-And-Objects/npc-names.md)) |
@@ -104,7 +107,7 @@ A call's arguments are read when they are literals; a computed argument is named
 | `giveback_item_and_equip`, `talktreasure` | `0x387`, `0x2BF` | `0x0034A790`, `0x00355830` | `items` | the saved items and equipment back; a treasure chest |
 | `bossgaugeopen` | `0x3CA` | `0x00349B60` | `battles` | the boss gauge ([battle menu](../Menus-And-HUD/battle-menu.md)) |
 | `bosskillall`, `zakokillall` | `0x3B8`, `0x3A8` | `0x00510840`, `0x00353770` | `battles` | removes the foes ([boss fights](../Battle-Actions/boss-fights.md)) |
-| `addpartymember`, `setbattlemember` | `0x353`, `0x355` | `0x0034C030`, `0x0034D4E0` | `party` | party row selectors ([party verbs](../Scripts-And-Script-Commands/party-verbs.md)) |
+| `addpartymember`, `setbattlemember`, `removepartymember`, `addguestbattlemember`, `removeguestbattlemember` | `0x353`, `0x355`, `0x354`, `0x35B`, `0x35C` | `0x0034C030`, `0x0034D4E0`, `0x0034C030`, `0x00352190`, `0x00352AF0` | `party` | party row selectors ([party verbs](../Scripts-And-Script-Commands/party-verbs.md)) |
 
 The story counter is the script's global `short` at offset 0, named `シナリオフラグ` in these scripts: every
 assignment to it is a write and every comparison a test ([story counter values](story-counter-values.md)).
@@ -132,6 +135,54 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 - An event id `n` names the scene script at index `4n` of the event file table, which `0x0032FCA0` loads for scene
   managers 1 to 3.
 
+### Every step
+
+The steps table [`balfonheim-port-script-steps.tsv`](balfonheim-port-script-steps.tsv) has one row for each step of
+every function of the sixteen scripts, in the order the function runs them: each call, request, store, branch, loop,
+case and return. It has 73,311 rows.
+
+A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
+arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
+the camera shot, the message window or the variable. It also gives the frames the step takes, what it waits for, and
+the functions it starts on other actors.
+
+| Script | Steps | Script | Steps |
+|---|---:|---|---:|
+| `var_a01` | 5,987 | `var_a13` | 1,881 |
+| `var_a02` | 7,945 | `var_a14` | 3,955 |
+| `var_a03` | 6,970 | `var_a15` | 2,240 |
+| `var_a04` | 12,073 | `var_b01` | 6,807 |
+| `var_a05` | 5,174 | `var_z01` | 134 |
+| `var_a06` | 6,102 | `var_z0100` | 3,484 |
+| `var_a11` | 2,138 | `var_z0101` | 2,746 |
+| `var_a12` | 2,179 | `var_z0102` | 3,496 |
+
+The five shared helper actors have their steps once, in [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv)
+(1,283 rows over 26 templates for 29 functions: the template of a function that only returns, cecbbef6fb, serves the
+`init` of イベント特殊効果画面, telepoeffectctrl and crystaldummyPC and the `main` of saveactor). In this table each of their
+functions has a single `shared template` row naming the template; Balfonheim Port has 108 such rows.
+
+Some actors run another actor's code: `NPC_ATTACH_BOX_2` in `var_a01` starts at the same place as `NPC_ATTACH_BOX_1`
+and runs the same functions. Such an actor has one `same code` row naming the actor whose steps it runs. There are 171
+of these rows: 24 in `var_a01`, 11 in `var_a02`, 15 in `var_a03`, 15 in `var_a04`, 14 in `var_a05`, 16 in `var_a06`,
+10 in `var_a11`, 10 in `var_a12`, 7 in `var_a13`, 20 in `var_a14`, 11 in `var_a15` and 18 in `var_b01`.
+
+The `resolution` column says how far each step is known:
+
+| Resolution | Steps |
+|---|---:|
+| `resolved` | 66,218 |
+| what was searched, when no page yet gives what the arguments name | 7,093 |
+
+When no page yet gives what a step's arguments name, the cell says what was searched, for example the standard motion
+table that `stdmotionplay` reads, or a verb that no page describes yet.
+
+A scene reads from top to bottom in its director's function. In `var_z0101` (event `394`), `Director.main` starts
+scene cut 0 and fades out over 0 frames. It reads motions 1 and 2 of `var_z0101.mot`, files `model_read` and then
+`ready` on the cast and waits for each, fades in over 20 frames and files `cut01` on the camera, sound, picture and
+music actors and the cast together. After 60 frames it files the voice's `play_cut01` and the message director's
+`cut01a`.
+
 ## Columns
 
 | Column | Meaning |
@@ -141,7 +192,7 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 | `actor`, `function` | the actor and the function, as the script names them |
 | `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions of the same script that request it by name; `-` when neither applies |
 | `speaker` | the names `setnpcname` gives the actor, filled only for a row whose lines include a section 2 line; a system message is not spoken by the actor |
-| `lines` | the section 2 entries the function passes to the message verbs, and `system message N` for each message from the shared system-message list that the key-item and system-message helper shows for the function ([Shared zone-script actors](shared-zone-script-actors.md)), at the place of the request; two numbers joined by `or` are the values the function's stores leave, and which one is shown is decided at run time |
+| `lines` | the section 2 entries the function passes to the message and ask verbs, and `system message N` for each message from the shared system-message list that the key-item and system-message helper shows for the function ([Shared zone-script actors](shared-zone-script-actors.md)), at the place of the request; two numbers joined by `or` are the values the function's stores leave, and which one is shown is decided at run time |
 | `line_text` | the `us` text of those entries, in the same order, separated by ` / `; for a `system message N` entry, the text of message N in the system-message list |
 | `flags_set`, `flags_released`, `flags_tested` | the flag ids, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | each value written to the story counter, with the first sentence of its explanation on [story counter values](story-counter-values.md) |
@@ -150,7 +201,7 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 | `jumps` | each `mapjump`: the target map (region), its field id and the entrance |
 | `battles` | `boss gauge shown`, `every foe in a group removed`, `every foe in group 0 removed` |
 | `scenes` | each scene script the function loads, with its event id |
-| `party` | members who join and the fighting party a call sets |
+| `party` | members who join or leave, guests who join or leave, and the fighting party a call sets |
 | `other_functions` | the actor's functions that have no row |
 | `shared_actor` | `-` for an ordinary actor; for a function of a shared helper actor that is listed, whether its body matches the shared one |
 
@@ -165,6 +216,38 @@ The script list [`balfonheim-port-script-list.tsv`](balfonheim-port-script-list.
 | `actors`, `functions` | the script's actors and functions, shared helpers included |
 | `rows` | the script's rows in the main table |
 | `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |
+
+The steps table [`balfonheim-port-script-steps.tsv`](balfonheim-port-script-steps.tsv) has one row per step:
+
+| Column | Meaning |
+|---|---|
+| `script`, `actor`, `function` | as in the main table |
+| `step` | the step's number in its function, from 1, in the order the function's bytes run |
+| `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
+| `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v`, a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test` |
+| `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
+| `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test |
+| `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |
+| `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its control codes dropped; `-` for every other step |
+| `timing` | the frames, fade lengths and speeds the step uses |
+| `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
+| `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |
+| `resolution` | `resolved`; `does not ship:` and the fact; or, when no page yet gives what the arguments name, what was searched |
+| `source` | the page or table that gives the meaning, or the function whose body was read |
+
+The shared steps table [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv) has the same columns from `at`
+on, after these:
+
+| Column | Meaning |
+|---|---|
+| `template` | the template id that the `shared template` rows name |
+| `actor`, `function`, `step` | the shared actor, its function and the step number |
+| `reference` | the script whose copy of the function the steps were read from, and where the function starts there |
+
+In this table, `at` is the step's distance from the function's start, written `+0x..`. Variable names, text ids, section
+3 string offsets and the lines `addresses` names are those of the script named in `reference`. The other scripts' copies
+differ only in these.
 
 ## Related
 
