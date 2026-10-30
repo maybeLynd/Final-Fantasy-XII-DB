@@ -23,8 +23,10 @@ refreshes visibility through `0x002E8FD0`. It hides the body and leaves the acto
 unit in place.
 
 `disposepartywithoutcontrol` (`0x0202`, `0x0034C990` → `0x003B6F30`) clears the party-control byte
-`0x02B40534`, empties the follower list (`0x003B6DE0`), narrows the controlled set to the leader
-(`0x003B6D60`) and snapshots each controlled actor's pose (`0x003B7510`). `capturepartyforsummon`
+`0x02B40534`, empties the follower list (`0x003B6DE0`), narrows the controlled set to one actor
+(`0x003B6D60`), the actor of the party slot that holds the summoner's row `+0x5AD5` ([party control
+modes](../Engine-Core/party-control-modes.md), `0x003B6D69`-`0x003B6D82`), and snapshots each controlled
+actor's pose (`0x003B7510`). `capturepartyforsummon`
 (`0x0232`) does the same and binds the set to manager 3's entries (`0x003B72F0`);
 `releasepartyforsummon` (`0x0233`) releases them (`0x003B7AB0`).
 

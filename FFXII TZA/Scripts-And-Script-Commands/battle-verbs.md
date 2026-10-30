@@ -158,10 +158,14 @@ set (the `setforcefight` begin always sets it) the stance motion `0x01EFE9D0[a &
 entries, no bound check), otherwise `(actor +0x15) << 20 | a | 0x1000`. A negative argument skips
 state 5, so it draws only.
 
-`clearforcefight` (`0x0484`, begin `0x00343770` → `0x00343290`) is `setforcefight`'s pair: it calls
-`0x002E9B40`, `0x0026A770(actor, 0, 0)` and `0x002E5BC0(actor, 0)`, then `0x002ECF10(actor, d, 1)` and
-`0x002E8540(unit, d)` with d = (`0x0030BFB0(unit)` ≠ 0), drawing or sheathing to match the unit's battle
-state. `setforcefightmode` (`0x0334`, `0x003444D0`) is a different verb that writes the force-fight
+`clearforcefight` (`0x0484`, begin `0x00343770` → `0x00343290`) is `setforcefight`'s pair, and `clearforcerelax`
+(`0x02E1`) runs the same begin `0x00343290`. On a = `0x00263F40(actor)` (`0x003432B0`) it calls `0x002E9B40(a)`,
+`0x0026A770(a, 0, 0)` and `0x002E5BC0(a, 0)`, then `0x002ECF10(a, d, 1)`. On the record r = `0x00263F10(actor)`
+(`0x003432A5`; [battle units](../Characters-And-Objects/battle-units.md), "The script queries") it ends with
+`0x002E8540(r, d)` (`0x00343318`), where d = (`0x0030BFB0(r)` ≠ 0) (`0x003432C3`), drawing or sheathing to match the
+battle state of r's unit.
+
+`setforcefightmode` (`0x0334`, `0x003444D0`) is a different verb that writes the force-fight
 toggle ([force fight mode](../Engine-Core/force-fight-mode.md)).
 
 ### Battle setup grants

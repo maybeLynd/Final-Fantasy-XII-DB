@@ -310,6 +310,11 @@ In mode 1 `0x003E8020` sets state bit `0x10` when `0x003E8350` finds that `0x004
 or the callback `0x003E82A0` through the aux table) and `0x00362E30` (the emitter's bit `0x1`) all return 0
 and `0x0026FDB0` does not return 2 for the channel.
 
+`0x003E8350` answers 1 at once, before any of those tests, while state bit `0x10` is already set
+(`0x003E8368`-`0x003E83AA`). Otherwise it answers for the first source still running: 2 for the animation slot, 8 for
+the light, 4 for the channel and `0x10` for the emitter (`0x003E83A5`, `0x003E83DA`, `0x003E83FA`, `0x003E8419`), and 0
+when none is.
+
 ### SP1, the sound emitters
 
 `Sp1Header` (`0x20` bytes, offsets from the start of the section):

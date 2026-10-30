@@ -42,7 +42,7 @@ through the stop rule below. Each iteration fetches the opcode byte at
 the PC; for opcodes at or above `0x47` it also pre-decodes a little-endian 16-bit operand from the
 two following bytes, which is one opcode early (`0x47` has length 1).
 
-It loads the slot's byte `+0x201` into `edx`, which the handlers leave unread, refuses opcodes
+It loads the slot's skip mask `+0x201` ([native commands](native-commands.md)) into `edx`, refuses opcodes
 above `0x63` to the stop arm,
 and jumps through the
 table at `0x00261DF8`: 100 image-relative 32-bit offsets rebased on `0x00120000`, every target inside
@@ -147,7 +147,7 @@ opcode its mnemonic, length, handler and effect. By family:
 | `0x4C` to `0x50` | immediates | push a tag, an actor handle, a pooled int, the operand itself or a pooled float |
 | `0x51` to `0x57`, `0x5A` to `0x5C`, `0x60` | jumps | `JMP` to `base + table[operand]`; the `POPCMPY…` forms pop a value and jump on its comparison with `Y`; `POPX…` pop into `X` and jump always, if non-zero or if zero |
 | `0x58`, `0x59`, `0x5D`, `0x5E` | native calls | run verb `operand` through `0x002621D0`; `ACT` forms pop the target actor into `X` first; `POPA` forms pop the result into `A` |
-| `0x5F`, `0x61`, `0x63`, `0x62` | lists | request or wait on a whole actor list; `INCINITTAG` marks a channel requested without filing |
+| `0x5F`, `0x61`, `0x63`, `0x62` | lists | request or wait on a whole actor list; `INCINITTAG` marks a channel requested without filing; while the skip mask is non-zero, `0x5F` and `0x63` first wait as wait kind 7 until no listed actor has the channel's bit set ([field runtime](../Characters-And-Objects/field-runtime.md); `0x00261B15`, `0x00261C12`, `0x00261B97`), then make the request |
 | `0x01`, `0x02`, `0x19`, `0x1A`, `0x31`, `0x47` | | no handler: the stop arm; no shipped script uses them |
 
 ### A native call, and how the script waits

@@ -75,8 +75,9 @@ float `+0x17C`, or `5.0 / (30.0 * [0x01DFE0B8])` without a leader.
 
 ### Camera-relative, and applied
 
-`0x00358CB0(handle)` runs only while every active manager has its three bytes `+4`-`+6` non-zero
-(`0x00265720`) and slot 0's skip flag (`0x00267330(0)`, byte `+0` bit `0x80`) is clear. With the actor
+`0x00358CB0(handle)` runs only while every active manager has its three bytes `+0x14`-`+0x16` non-zero
+(`0x00265720`) and slot 0's skip flag (`0x00267330(0)`, slot byte `+0x10` bit `0x80`; a slot whose `+0x10` bit `0x1` is clear counts as
+skipping, `0x00267348`) is clear. With the actor
 (`0x003588B0`) and its body placement (`0x00265970`, the body's `+0x30`) it stores the placement's
 `+0x98` (the body's `+0xC8`) `= [0x01DFE0B8] * 30 * 3.6 * 0x00235EA0()`, builds the stick vector, and
 rotates it into camera space with `0x004742A0(0x022C7FA0, 0x022C7FD0, v, placement)`.
@@ -92,7 +93,7 @@ v.z, 0, row0.z v.x - row1.z v.z)` normalised and scaled by `|v| * placement +0x9
 call and its negative goes to `out.w`.
 
 Then `speed = |0x022C7FD0|`, forced to 0 when the stick is not live (`0x00265680`: slot 0 active,
-`0x02098E21` bit `0x1` and `0x02098E20` bit `0x80` clear, every active manager's byte `+7` bits 0-1 set,
+`0x02098E21` bit `0x1` and `0x02098E20` bit `0x80` clear, every active manager's byte `+0x17` bits `0x1` and `0x2` set,
 `0x002E0540()` = 0 and `0x00265720()`) or the suppression word `0x022C8000` is non-zero; `yaw =
 atan2(x, z)`. The vector, speed and yaw are computed on every call, so `0x022C7FD0` is refreshed
 for a locked actor too; only an actor that accepts input (`0x00264DF0`: byte `+0x13` bit `0x1` clear and

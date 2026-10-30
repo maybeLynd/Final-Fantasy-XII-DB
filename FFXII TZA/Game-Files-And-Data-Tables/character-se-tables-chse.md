@@ -162,11 +162,16 @@ It reads the block handle from word `+0x30 + 4 × group` of a binding (`0x002E9F
 
 Before any of that, `0x002E9D90` returns -1, so no sound plays, unless both bytes `0x0215FD54` and `0x0215FD55` are set
 (`0x002E9DC5`-`0x002E9DD5`). The script binder `0x0026C8C0` sets both to 1 through `0x002EC590(1)` and `0x002EC5A0(1)`
-(`0x0026CA75`, `0x0026CA7F`). Those calls are their setters' only calls in the image, so the bytes stay 0 until the
-first script binding:
+(`0x0026CA75`, `0x0026CA7F`).
+
+`0x0215FD55`'s setter `0x002EC5A0` has only that call. `0x0215FD54`'s setter `0x002EC590` is also
+reached by tail jumps from the script verbs setcharseplayall (`0x0033F227`, argument not 0), stopenvsoundall
+(`0x00354C68`, 0) and startenvsoundall (`0x00355081`, 1), so a script can switch the character sounds off and on
+again. Both bytes are 0 until the first script binding:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
+| `0x0215FD54` | `u8` | 0 (zero-filled tail of `.data`) | the first of the two gate bytes of the character sound player: 1 once a script has been bound, 0 after stopenvsoundall, 1 again after startenvsoundall or setcharseplayall with an argument other than 0 | `0x002EC590` (`0x002EC590`, its argument), from `0x0026C8C0` (`0x0026CA75`, 1), setcharseplayall `0x0033F210` (`0x0033F227`, argument not 0), stopenvsoundall `0x00354C50` (`0x00354C68`, 0) and startenvsoundall `0x00355060` (`0x00355081`, 1) | `0x002E9D90` (`0x002E9DCC`) |
 | `0x0215FD55` | `u8` | 0 (zero-filled tail of `.data`) | the second of the two gate bytes of the character sound player, 1 once a script has been bound | `0x002EC5A0` (`0x002EC5A0`, its argument), from `0x0026C8C0` (`0x0026CA7F`, 1) | `0x002E9D90` (`0x002E9DC5`) |
 
 ## Modding notes

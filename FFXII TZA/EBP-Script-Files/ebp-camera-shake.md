@@ -144,8 +144,10 @@ four shake entries with a rate ([actor managers](../Characters-And-Objects/actor
 5. The clock grows by the entry's rate times `0x02B58190` and the frame factor.
 
 The entries are `0xF0` bytes, four to each `0x3D0`-byte manager from `0x02ADDA78`. Before the steps,
-`0x003DCFB0` stores `0x003DA190` of the record's word `+0x174 + 8 x i` in word `+0x04` of each entry whose record word
-`+0x178 + 8 x i` is non-zero (`0x003DD007`-`0x003DD010`)
+`0x003DCFB0` takes the entries k that the record's two camera-shake reverse lookups `+0x1C` and `+0x1E` name
+(`0x003DCFD9`, `0x003DCFF0`; a negative one is skipped) and, for each whose record word `+0x178 + 0x18 x k` is non-zero
+(`0x003DCFFC`-`0x003DD010`), stores `0x003DA190` of the record's dword `+0x174 + 0x18 x k` (`0x003DD012`) in word `+0x04` of
+entry k
 through `0x0037DB40(manager, entry, value)` (`0x003DD026`). After step 2 it reads the entry's word `+0x00` through
 `0x0037DCC0(manager, entry)` (`0x003DD075`).
 

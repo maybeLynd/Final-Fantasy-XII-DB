@@ -340,10 +340,10 @@ Struct SteeringRecord size=`0x80`:
 | `+0x58` | `f32` | turn step, pi/20 |  |
 | `+0x5C` | `f32` | pi, never read |  |
 | `+0x60` | `i16` | steer channel frames |  |
-| `+0x62` | `u8` | flags: bits 0-2 shape, 3-5 selector, 6 direction, 7 initiator |  |
+| `+0x62` | `u8` | flags: mask 0x7 shape, mask 0x38 selector, bit 0x40 direction, bit 0x80 initiator |  |
 | `+0x63` | `u8` | steer arm state |  |
 | `+0x64` | `u8` | returned by 0x002E6300 |  |
-| `+0x65` | `u8` | teardown gate |  |
+| `+0x65` | `u8` | turn lock (0x0026A18D; read at 0x002692A8 and by the teardown) |  |
 | `+0x66` | `i16` | curve / total frames |  |
 | `+0x68` | `i16` | turn frames |  |
 | `+0x6A` | `u8` | bit 0x1 one-shot latch |  |

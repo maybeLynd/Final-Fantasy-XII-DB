@@ -2,7 +2,7 @@
 title: "Actor managers: the five manager slots at 0x02098E10, their bind, their record pool, their variable homes and their camera entry tables"
 kind: "system"
 category: "Characters and objects"
-addresses: "0x02098E10, 0x02099D70, 0x0026C8C0, 0x0026CE60, 0x00358940, 0x002679F0, 0x00264640, 0x0026ABA0, 0x0026B730, 0x00265270, 0x00264D20, 0x0026ADC0, 0x00264800, 0x0026AD10, 0x002640C0, 0x002640D0, 0x002673F0, 0x00267310, 0x003DA400, 0x003DA370, 0x003DA000, 0x003DA4D0, 0x003DA570, 0x003DA2D0, 0x003DD230, 0x003DCF60, 0x003DD1F0, 0x0026B790, 0x0026B800, 0x0026B870, 0x003DA500"
+addresses: "0x02098E10, 0x02099D70, 0x0026C8C0, 0x0026CE60, 0x00358940, 0x002679F0, 0x00264640, 0x0026ABA0, 0x0026B730, 0x00265270, 0x00264D20, 0x0026ADC0, 0x00264800, 0x0026AD10, 0x002640C0, 0x002640D0, 0x002673F0, 0x00267310, 0x003DA400, 0x003DA370, 0x003DA000, 0x003DA4D0, 0x003DA570, 0x003DA2D0, 0x003DD230, 0x003DCF60, 0x003DD1F0, 0x003DD320, 0x0026B790, 0x0026B800, 0x0026B870, 0x003DA500"
 ---
 
 ## What the player sees
@@ -129,7 +129,7 @@ the camera-shot table `[slot + 0xD8]` and side B at `+0x170` against the camera-
 |---|---|---|
 | bind `(slot, record, clock, entry, lookup)` | `0x003DA400`: `+0x0C` = clock, `+0x0A` = record, `+0x00` = the table row's `+0x14` (16-byte rows), `+0x04` = max(lookup, 0), `+0x08` = 1, `+0x10` = 1.0, `+0x14` = 0, then `0x00257230(index, value, entry)` and the reverse lookup `+0x18[lookup]` = entry | `0x003DD230`: the same into `+0x17C`, `+0x17A`, `+0x170`, `+0x174` (a negative lookup is replaced by `0x005C5230()`, which returns 0), `+0x178` = 1, `+0x180` = 1.0, then `0x0037DCF0(index, value, entry)` and `+0x1C[lookup]` = entry |
 | reset all | `0x003DA000(slot)`: lookups `+0x18`, `+0x1A` = -1, each entry's `+0x08` = 0 and `+0x0A` = -1; `0x003DA370` does the same on the current slot and tail-calls `0x00257830` | `0x003DCF60(slot)`: lookups `+0x1C`, `+0x1E` = -1 and the four entries likewise |
-| clear one | `0x003DA4D0(slot, entry)`: `+0x08` = 0 | |
+| clear one | `0x003DA4D0(slot, entry)`: `+0x08` = 0 | `0x003DD320(slot, entry)`: word `+0x178 + 0x18 x entry` = 0, only for an entry of at most 3 and a non-null `+0xF0` (`0x003DD320`-`0x003DD338`); `camerashakestop` `0x019D` and `camerashakestop_19e` `0x019E` call it (`0x0034A3A6`, `0x00349EFC`) |
 | republish | `0x003DA570(slot, entry)`: `+0x18[entry +0x04]` = entry | |
 | set rate | `0x003DA2D0(slot, entry, rate)`: writes `+0x120 + entry * 0x18` with no bound or table test | `0x003DD1F0(slot, entry, rate)`: the same at `+0x180 + entry * 0x18` |
 
