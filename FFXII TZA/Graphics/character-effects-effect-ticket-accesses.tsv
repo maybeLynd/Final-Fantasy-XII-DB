@@ -10,10 +10,10 @@ function	name	site	disp	kind	instruction	route	note
 0x003B3160	FUN_003b3160	0x003B31BF	0x0	rw	or dword ptr [rdx - 0x20], eax	ARRAY 0x02EBCD80 stride=0x38 count=32	
 0x003B3160	FUN_003b3160	0x003B31CB	0x28	w	mov qword ptr [rdx + 8], r9	ARRAY 0x02EBCD80 stride=0x38 count=32	
 0x003B3160	FUN_003b3160	0x003B31DD	0x20	w	mov qword ptr [rdx], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
-0x003B3160	FUN_003b3160	0x003B32B7	0x28	w	mov qword ptr [rdx + 8], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	added by hand: the tracker lost the register
-0x003B3160	FUN_003b3160	0x003B32C5	0x20	w	mov qword ptr [rdx], r9	ARRAY 0x02EBCD80 stride=0x38 count=32	added by hand: the tracker lost the register
+0x003B3160	FUN_003b3160	0x003B32B7	0x28	w	mov qword ptr [rdx + 8], rax	ARRAY 0x02EBCD80 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B32C5	0x20	w	mov qword ptr [rdx], r9	ARRAY 0x02EBCD80 stride=0x38 count=32	
 0x003B33D0	FUN_003b33d0	0x003B33E3	0x0	r	mov eax, dword ptr [rdx]	ARRAY 0x02EBCD80 stride=0x38 count=32	
-0x003B33D0	FUN_003b33d0	0x003B33EF	0x30	r	mov eax, dword ptr [rdx + 0x30]	ARRAY 0x02EBCD80 stride=0x38 count=32	added by hand: the tracker lost the register
+0x003B33D0	FUN_003b33d0	0x003B33EF	0x30	r	mov eax, dword ptr [rdx + 0x30]	ARRAY 0x02EBCD80 stride=0x38 count=32	
 0x003B37E0	FUN_003b37e0	0x003B37FF	0x0	r	cmp dword ptr [rbx], ecx	ARRAY 0x02EBCD80 stride=0x38 count=32	
 0x003B37E0	FUN_003b37e0	0x003B3807	0x18	r	mov rcx, qword ptr [rbx + 0x18]	ARRAY 0x02EBCD80 stride=0x38 count=32	
 0x003B37E0	FUN_003b37e0	0x003B380B	0x30	w	mov dword ptr [rbx + 0x30], 0xffffffff	ARRAY 0x02EBCD80 stride=0x38 count=32	

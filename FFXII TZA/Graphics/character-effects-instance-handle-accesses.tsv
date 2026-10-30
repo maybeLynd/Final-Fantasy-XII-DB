@@ -37,8 +37,8 @@ function	name	site	disp	kind	instruction	route	note
 0x003B3160	FUN_003b3160	0x003B3250	0x0	rw	or dword ptr [rax - 0x20], ecx	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3160	FUN_003b3160	0x003B3258	0x28	w	mov qword ptr [rax + 8], r9	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3160	FUN_003b3160	0x003B326A	0x20	w	mov qword ptr [rax], rcx	ARRAY 0x02EBD480 stride=0x38 count=32	
-0x003B3160	FUN_003b3160	0x003B32DB	0x28	w	mov qword ptr [rax + 8], rcx	ARRAY 0x02EBD480 stride=0x38 count=32	added by hand: the tracker lost the register
-0x003B3160	FUN_003b3160	0x003B32E9	0x20	w	mov qword ptr [rax], r9	ARRAY 0x02EBD480 stride=0x38 count=32	added by hand: the tracker lost the register
+0x003B3160	FUN_003b3160	0x003B32DB	0x28	w	mov qword ptr [rax + 8], rcx	ARRAY 0x02EBD480 stride=0x38 count=32	
+0x003B3160	FUN_003b3160	0x003B32E9	0x20	w	mov qword ptr [rax], r9	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3300	FUN_003b3300	0x003B3319	0x0	r	cmp dword ptr [rbx], ecx	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3300	FUN_003b3300	0x003B331D	0x10	r	mov rcx, qword ptr [rbx + 0x10]	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3300	FUN_003b3300	0x003B332B	0x28	r	mov rcx, qword ptr [rbx + 0x28]	ARRAY 0x02EBD480 stride=0x38 count=32	
@@ -56,13 +56,13 @@ function	name	site	disp	kind	instruction	route	note
 0x003B33A0	FUN_003b33a0	0x003B33BB	0x30	r	xor dl, byte ptr [r8 + 0x30]	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B33A0	FUN_003b33a0	0x003B33C2	0x30	r	xor dl, byte ptr [r8 + 0x30]	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B33A0	FUN_003b33a0	0x003B33C9	0x30	w	mov byte ptr [r8 + 0x30], dl	ARRAY 0x02EBD480 stride=0x38 count=32	
-0x003B3400	FUN_003b3400	0x003B340F	0x20	r	mov rax, qword ptr [rdx + 0x20]	ARRAY 0x02EBD480 stride=0x38 count=32	added by hand: the tracker lost the register
-0x003B3400	FUN_003b3400	0x003B3421	0x28	w	mov qword ptr [rax + 0x28], rcx	ARRAY 0x02EBD480 stride=0x38 count=32	added by hand: the tracker lost the register
-0x003B3400	FUN_003b3400	0x003B342C	0x28	w	mov qword ptr [rdx + 0x28], rax	ARRAY 0x02EBD480 stride=0x38 count=32	added by hand: the tracker lost the register
+0x003B3400	FUN_003b3400	0x003B340F	0x20	r	mov rax, qword ptr [rdx + 0x20]	ARRAY 0x02EBD480 stride=0x38 count=32	
+0x003B3400	FUN_003b3400	0x003B3421	0x28	w	mov qword ptr [rax + 0x28], rcx	ARRAY 0x02EBD480 stride=0x38 count=32	
+0x003B3400	FUN_003b3400	0x003B342C	0x28	w	mov qword ptr [rdx + 0x28], rax	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3400	FUN_003b3400	0x003B343C	0x20	w	mov qword ptr [rax + 0x20], rdx	ARRAY 0x02EBD480 stride=0x38 count=32	
-0x003B3400	FUN_003b3400	0x003B3453	0x20	w	mov qword ptr [rdx + 0x20], rcx	ARRAY 0x02EBD480 stride=0x38 count=32	added by hand: the tracker lost the register
-0x003B3400	FUN_003b3400	0x003B3468	0x0	r	xor ecx, dword ptr [rdx]	ARRAY 0x02EBD480 stride=0x38 count=32	added by hand: the tracker lost the register
-0x003B3400	FUN_003b3400	0x003B3470	0x0	rw	xor dword ptr [rdx], ecx	ARRAY 0x02EBD480 stride=0x38 count=32	added by hand: the tracker lost the register
+0x003B3400	FUN_003b3400	0x003B3453	0x20	w	mov qword ptr [rdx + 0x20], rcx	ARRAY 0x02EBD480 stride=0x38 count=32	
+0x003B3400	FUN_003b3400	0x003B3468	0x0	r	xor ecx, dword ptr [rdx]	ARRAY 0x02EBD480 stride=0x38 count=32	
+0x003B3400	FUN_003b3400	0x003B3470	0x0	rw	xor dword ptr [rdx], ecx	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3550	FUN_003b3550	0x003B3656	0x0	r	mov eax, dword ptr [rdi]	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3550	FUN_003b3550	0x003B3670	0x30	rw	and byte ptr [rdi + 0x30], 0xfc	ARRAY 0x02EBD480 stride=0x38 count=32	
 0x003B3550	FUN_003b3550	0x003B367A	0x10	w	mov qword ptr [rdi + 0x10], rax	ARRAY 0x02EBD480 stride=0x38 count=32	

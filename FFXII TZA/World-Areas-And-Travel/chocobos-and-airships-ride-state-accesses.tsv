@@ -9,7 +9,7 @@ function	name	site	disp	width	kind	instruction	route	note
 0x00303D90	FUN_00303d90	0x00303DB8	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	
 0x00303D90	FUN_00303d90	0x00303DC6	0x5AE0	4	rw	or dword ptr [rax + 0x5ae0], 0xc	PTR [0x02EBF190]	
 0x00303D90	FUN_00303d90	0x00303DD4	0x5AE4	4	w	mov dword ptr [rax + 0x5ae4], 0x43340000	PTR [0x02EBF190]	
-0x00303D90	FUN_00303d90	0x00303DEB	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	added by hand: after an early ret the tracker lost the register
+0x00303D90	FUN_00303d90	0x00303DEB	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	
 0x00303D90	FUN_00303d90	0x00303E03	0x5AE0	4	r	mov ebx, dword ptr [rax + 0x5ae0]	PTR [0x02EBF190]	
 0x00303D90	FUN_00303d90	0x00303E37	0x5AEC	4	w	mov dword ptr [rcx + 0x5aec], 0	PTR [0x02EBF190]	
 0x00303D90	FUN_00303d90	0x00303E5C	0x5AE0	4	r	mov eax, dword ptr [rcx + 0x5ae0]	PTR [0x02EBF190]	
@@ -69,10 +69,10 @@ function	name	site	disp	width	kind	instruction	route	note
 0x00306760	BattleAction_UpdateSpecialPresentationSequence	0x00306A81	0x5B04	4	w	mov dword ptr [rcx + 0x5b04], eax	PTR [0x02EBF190]	
 0x00307200	FUN_00307200	0x00307207	0x5B04	4	r	mov edx, dword ptr [r8 + 0x5b04]	PTR [0x02EBF190]	
 0x00307200	FUN_00307200	0x00307221	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	
-0x00307200	FUN_00307200	0x0030722C	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	added by hand: after an early ret the tracker lost the register
+0x00307200	FUN_00307200	0x0030722C	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	
 0x00307240	FUN_00307240	0x00307247	0x5B04	4	r	mov edx, dword ptr [r8 + 0x5b04]	PTR [0x02EBF190]	
 0x00307240	FUN_00307240	0x00307261	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	
-0x00307240	FUN_00307240	0x0030726C	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	added by hand: after an early ret the tracker lost the register
+0x00307240	FUN_00307240	0x0030726C	0x5B04	4	w	mov dword ptr [r8 + 0x5b04], edx	PTR [0x02EBF190]	
 0x003072A0	FUN_003072a0	0x003072A7	0x5B04	4	r	mov eax, dword ptr [rax + 0x5b04]	PTR [0x02EBF190]	
 0x003072E0	FUN_003072e0	0x003072E7	0x5B04	4	r	mov eax, dword ptr [rax + 0x5b04]	PTR [0x02EBF190]	
 0x0030D8B0	FUN_0030d8b0	0x0030D8DB	0x5B08	4	r	movsxd rsi, dword ptr [rdx + 0x5b08]	PTR [0x02EBF190]	
