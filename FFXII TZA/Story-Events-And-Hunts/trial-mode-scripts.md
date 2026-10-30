@@ -164,6 +164,8 @@ steps table described under [Every step](#every-step).
 | 80 | 1279 | `0x912A` | 8000 gil, Elixir x3, Bubble Mote x3 |
 | 90 | 1295 | `0x912B` | 9000 gil, Megalixir x2, Remedy x15 |
 
+The script list also gives each stage's foes, chests, reward, entry and what changes between attempts. A stage is entered by clearing the one before: the director `トライアル監督.main` waits while scratch1 word `0x06` is 0 (`waitv`), removes every foe (`bosskillall`, `zakokillall`) and jumps to the next field. None of the 250 chests has a flag (`flag_id` `0xFF`), so each is there and rolled again on every attempt, and the nine packages are given again on every clear; the save prompt of stages 11 to 91 comes once, while script global word `0x0CF4` is below the field.
+
 ### How a call is read
 
 A call's arguments are read when they are literals; a computed argument is named by the variable that holds it.
@@ -331,6 +333,12 @@ The script list [`trial-mode-script-list.tsv`](trial-mode-script-list.tsv) holds
 | `actors`, `functions` | the script's actors and functions, shared helpers included |
 | `rows` | the script's rows in the main table |
 | `shared_actors` | the shared helper actors the script carries whose functions all match; `differs:` names a carried one that does not |
+| `stage` | the stage number, 1 to 100 |
+| `foes` | the enemies the stage places ([bestiary](../Enemy-Spawning/bestiary.md), `enemy-placements.tsv`), by name and level, `xN` for more than one |
+| `chests` | the number of chests, then each chest actor with its contents and its contents with Treasure Hunter on the leader ([treasure chests](../World-Areas-And-Travel/treasure-chests.md), `treasure-chest-list.tsv`) |
+| `reward` | the package the director gives on clearing the stage and its contents; on stage 100 the achievement, scene and completion screen; `none` |
+| `entry` | how the stage is reached: from the Trial Mode start, or by clearing the stage before |
+| `between_attempts` | what is the same or different when the stage is played again |
 
 The steps table [`trial-mode-script-steps.tsv`](trial-mode-script-steps.tsv) has one row per step:
 

@@ -68,6 +68,10 @@ So no `0xC000` id reaches the word `+0x02`, and `+0x04` and `+0x06` have no read
 - Example rows: `0xC000` is named Red Spiral, word `0x00D0`, and action 208 Red Spiral has
   `+0x22` = `0xC000`; `0xC012`, Belias, is named by summon action 262, and licence node 18 is Belias.
 
+### How an Esper is obtained
+
+Fourteen scripts share one grant block, the thirteen fight scenes and `pos_z0000` (event 427): it reads the map the scene plays on (`nowmap`) and adds that map's Esper when it is not held, and on Belias's map the Second Board too, which the `pos_z0000` copy leaves out. The opening setup scene `pre_z0000` (event 212) sets the battle bytes of twelve Espers from 0 to 1; Famfrit's (`0x0A1E`) is set to 1 by `dgl_g01` after the battle with Dr. Cid. Each fight runs while its byte is 1. The `obtained` column gives each fight.
+
 ## Columns
 
 | Column | Meaning |
@@ -78,6 +82,7 @@ So no `0xC000` id reaches the word `+0x02`, and `+0x04` and `+0x06` have no read
 | `licence_node` | the License Board node the id belongs to |
 | `word_02`, `word_04`, `word_06` | the three words, raw |
 | `explanation` | a one-line summary |
+| `obtained` | for an Esper, the map of its fight, the scene step that grants it, how the map is entered and the story progress the fight tests or sets ("How an Esper is obtained" above); `-` for a Quickening |
 
 ## Related
 

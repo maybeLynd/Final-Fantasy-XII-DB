@@ -41,6 +41,7 @@ What each offset holds:
 |---|---|
 | `+0x00000` | four `0x20`-byte member cells of the party list, `0x0028F830(i)` = object + `i` x `0x20` ([Party list](party-list.md)) |
 | `+0x00080` | the rolling-counter list the party list registers in; `0x0028F590` returns its address, or 0 with no HUD |
+| `+0x000A0` | the line sprites and name labels along the zone script's lists 0 and 1; the pump updates it (`0x003F8EC0`) while bit `0x100` of `+0x10F68` is set, from the field set-up `0x003C5F00` (`0x0028FAF0`) to its teardown `0x003C5E50` (`0x0028FA70`) (The set-up and update, The labels and The sprites of the part at +0xA0, below) |
 | `+0x05380` | the part EXP, LP and combo numbers go to ([Combos](../Battle-Actions/combos.md)) |
 | `+0x057E0` | the world-object manager ([Loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)) |
 | `+0x07EA0` | the selection marker, below |
@@ -75,15 +76,15 @@ and a size and alpha from the 5-key track `0x00915F68` at the entry's time `+0x1
 
 Bits of `+0x10F68` that change what the HUD does:
 
-| Bit | Set by | Effect |
+| Bit value | Set by | Effect |
 |---:|---|---|
-| `0` | `0x00290350(0)`, the handler `0x0050D1A0` of the debug verb `debug_settargetlinedispstatus` (`0x207F`) | hides the lines and the `+0x10F20` and `+0x10F40` marks (`0x0028ECA5`) |
-| `1` | the pump, from `0x0030C300` | group 7 of the pump |
-| `3` | `0x00290370` | a target ring is waiting to be built (`0x0028E2EE`) |
-| `4`, `10` | `0x0028E940(id)`, with the id at `+0x10F60` | the battle menu is built on the next pump (`0x00290CF0`) |
-| `8` | `0x0028FAF0`; cleared by `0x0028FA70` | group 12 runs (`0x003F8EC0(+0xA0)`) |
-| `11` | `0x00290960(1)`, the last step of the field set-up `0x003C5F00` (`0x003C5FA5`), run by `0x00253A30`; cleared by `0x002908C0` from the matching teardown `0x003C5E50` (`0x003C5EF2`) | the `+0x10F30` marks are built only while it is set (`0x00291027`) |
-| `13` | `0x002906D0`; cleared by `0x00290610` | `0x00290CF0` and `0x0028F970` do nothing |
+| `0x1` | `0x00290350(0)`, the handler `0x0050D1A0` of the debug verb `debug_settargetlinedispstatus` (`0x207F`) | hides the lines and the `+0x10F20` and `+0x10F40` marks (`0x0028ECA5`) |
+| `0x2` | the pump, from `0x0030C300` | group 7 of the pump |
+| `0x8` | `0x00290370` | a target ring is waiting to be built (`0x0028E2EE`) |
+| `0x10`, `0x400` | `0x0028E940(id)`, with the id at `+0x10F60` | the battle menu is built on the next pump (`0x00290CF0`) |
+| `0x100` | `0x0028FAF0`; cleared by `0x0028FA70` | group 12 runs (`0x003F8EC0(+0xA0)`) |
+| `0x800` | `0x00290960(1)`, the last step of the field set-up `0x003C5F00` (`0x003C5FA5`), run by `0x00253A30`; cleared by `0x002908C0` from the matching teardown `0x003C5E50` (`0x003C5EF2`) | the `+0x10F30` marks are built only while it is set (`0x00291027`) |
+| `0x2000` | `0x002906D0`; cleared by `0x00290610` | `0x00290CF0` and `0x0028F970` do nothing |
 
 ### The pool
 

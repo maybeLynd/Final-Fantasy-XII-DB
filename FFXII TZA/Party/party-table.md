@@ -22,6 +22,8 @@ What a join, the catch-up and the growth do with these values is on [Party membe
 [Stat growth on level-up](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md) and
 [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md); this page is the shipped content.
 
+The `joins_and_leaves` column gives the scene of each join and leave. Rows 0-14 join and leave in the story; no script's join or leave call and no scenario preset seats rows 15-25, the Chocobo or the Espers. The census covers the 1,114 `us` scripts with a decoded listing, of 1,115: `evt_t0020` has no EBP2 header.
+
 ### Where the values come from
 
 Each line is read from the shipped files in these steps:
@@ -170,6 +172,7 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
 | `push_weight` | `+0x7A` divided by 10 |
 | `unread_08`, `unread_2D`, `unread_74`, `unread_7C` | the bytes no instruction reads, `+0x08`-`+0x09`, `+0x2D`, `+0x74`-`+0x79` and `+0x7C`-`+0x7D` |
 | `explanation` | a one-line summary of the row |
+| `joins_and_leaves` | each scene that adds the row (`addpartymember` for rows 0-6, `addguestbattlemember` for guests) or removes it (`removepartymember`, `removeguestbattlemember`), or seats it through a scenario preset: the map (region), script, actor, function and step, with the story progress it runs at or sets |
 
 ## Related
 

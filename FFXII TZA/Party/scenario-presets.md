@@ -40,6 +40,8 @@ script variable. The other eight language folders make the same calls.
 
 Every new game also asks for set 0: the new-game widget `0x00394130` stores 0 through `0x0023A110` when it is built (`0x003942F9`).
 
+The number `evt_t0505` holds comes from its `loadYoyaku.getLoadYoyaku`, which picks a set by story progress: set 0 below 25, then 35 ranges up to set 24 from 6,750. No script asks for sets 4-10, 14, 16, 19 and 21. The `loaded_by` column gives each set's callers. The census covers the 1,114 `us` scripts with a decoded listing, of 1,115: `evt_t0020` has no EBP2 header.
+
 ### A member's preset
 
 | Field | Effect | Sites |
@@ -65,6 +67,7 @@ Every new game also asks for set 0: the new-game widget `0x00394130` stores 0 th
 | `items` | each item, piece of gear, magick, technick, quickening or key item granted, with its count |
 | `members` | each member the set sets up: name, level, gear, gambit preset, License Points, licenses, MP bars, MP share, and the gambit mark |
 | `sites` | the scenario row's file offset in `battle_pack.bin`, and how many preset rows it has |
+| `loaded_by` | each script, step and story point, or the new game, that asks for the set ("Which scripts ask for a set" above), or `none` |
 
 Scenario rows are section 60 (50 × 208 bytes, bound to `0x02EBF030` at `0x00236FA2`); preset rows are section 59
 (226 × 44 bytes, bound to `0x02EBF028` at `0x00236FBC`). Names come from each id's class table and text bank.

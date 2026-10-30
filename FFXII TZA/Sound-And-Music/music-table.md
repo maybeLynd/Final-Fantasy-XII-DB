@@ -96,6 +96,8 @@ One shipped ladder does not rise: field 866, `alc_z01`, has `above 1950: none; a
 [`music-table.tsv`](music-table.tsv) lists every run. One example, `bul_b02` (field 742), plays track 75, then none above story counter
 1,976, 39 above 1,982, none above 2,200, 31 above 2,250, 59 above 2,350 and none above 11,000.
 
+The `track_titles` and `zone_names` columns name each run's tracks and maps: the example run's tracks are 75 (52_FinalFantasyXII-SeekingPower), 39 (62_FinalFantasyXII-AbandoningPower), 31 (04_FinalFantasyXII-AuditoryHallucination), 59 (65_FinalFantasyXII-TheWhiteRoom).
+
 ### Columns of music-table.tsv
 
 | Column | Meaning |
@@ -107,6 +109,81 @@ One shipped ladder does not rise: field 866, `alc_z01`, has `above 1950: none; a
 | `kept_in_modes` | the run's boss-music tracks, which chocobo and summon music do not replace |
 | `offset` | the run's file offset in `musicctrl.bin` |
 | `page` | the page whose offset leads to the run |
+| `track_titles` | each track the run and its ladder name, with the title in section 0 of its music file ([Sound banks](sound-banks.md), [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv)); `-` for none |
+| `zone_names` | the map and region of each zone in `zones`, in order ([Zone asset list](../World-Areas-And-Travel/zone-asset-list.md)); the region alone where the zone has no map name; `-` for an id with no zone |
+
+### Each area's track by story stage and mode
+
+[`music-resolved.tsv`](music-resolved.tsv) gives every field id's track for each stretch of the story counter, as
+`0x003EAA70` resolves the table: 869 rows for the 726 field ids. The counter is read signed (`0x003EAB10`), so `end` is
+32,767 and a negative counter plays what 0 plays. Field 742 `bul_b02` plays 75 to 1,976, none to 1,982, 39 to
+2,200, none to 2,250, 31 to 2,350, 59 to 11,000 and none after; field 866 `alc_z01` plays none to 1,950, 75 to
+1,973, 22 to 11,000 and none after.
+
+The music that plays is decided at `0x00261F90`: the saved override replaces the table's track while payload `+0x1063`
+bit `0x40` is set (`0x0026201B`-`0x00262029`). A boss-music track stays (`0x00262041`). Any other track, and none
+(`0x0026203D`), gives way to the summon track 91 (`0x5B`, `0x00262053`) in summon mode, or else to the chocobo track
+90 (`0x5A`, `0x00262063`) in chocobo mode. 12 rows keep a boss track: fields 357, 552, 777, 933-936, 1150, 1246, 1291,
+1302 and 1311.
+
+### Columns of music-resolved.tsv
+
+| Column | Meaning |
+|---|---|
+| `field` | the field id |
+| `zone` | the field id's zone, as in `music-table.tsv`; `-` for an id with no zone |
+| `counter_from`, `counter_to` | the first and last story counter value of the stretch; `end` is 32,767 |
+| `track` | the track the table gives, or `none` |
+| `on_chocobo` | the track in chocobo mode and the instruction that picks it |
+| `with_summon` | the track in summon mode and the instruction that picks it |
+
+### Zone-script music calls
+
+[`music-script-overrides.tsv`](music-script-overrides.tsv) lists the 21,825 music verb calls in the `us` zone
+scripts, in 327 of the 769 zones. It leaves out the helper actors many zones share, which are on
+[Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md). 21,503 calls sit under
+a story counter, flag or other test, 2 only inside an endless loop and 320 under none; 18,700 are the 187 calls of
+each of the 100 Trial Mode zones. Every track number of 0 or more that a call passes is a shipped `musicNNN.win.mab`.
+
+For `musicstop`, `musicclear`, `musicfadeout`, `musicfadeout_231` and `musictrans`, a track of -1 is the current
+track (`0x002DEC00`). `musicread` and `musicplay` with -1 load nothing (`0x00361639`), and `musicreadsync` with -1 does
+not wait (`0x00341FA3`). `setnowmapmusicno` is called 1,363 times; its 229 calls with -1 clear the saved override
+(`0x00345E70` -> `0x0026A720`).
+
+| Verb | Call id | Calls | What it does |
+|---|---|---|---|
+| `musicread` | `0x229` | 4,097 | loads a track into a music slot (`0x00341710` -> `0x00361630`) |
+| `musicreadsync` | `0x22A` | 2,296 | waits until the track's slot is loaded (`0x00341F90`) |
+| `musicplay` | `0x22B` | 3,081 | loads and starts a track (`0x00342770`, `0x00342F80`) |
+| `musicstop` | `0x22C` | 2,189 | stops a track and keeps its resume point (`0x00345010` -> `0x002DEDE0`) |
+| `musicclear` | `0x22D` | 2,083 | frees a track's slot (`0x00345600` -> `0x00360E50`) |
+| `musiccrossplay` | `0x22E` | 42 | changes the music to a track (`0x00347A50`) |
+| `musiccrossplay_22f` | `0x22F` | 99 | changes the music to a track with a length and release (`0x00346C00`) |
+| `musicfadeout` | `0x230` | 2,063 | fades a track out (`0x00346460`) |
+| `musicfadeout_231` | `0x231` | 348 | fades a track out and ends it (`0x00345B60` -> `0x002DEE50`, `0x00361170`) |
+| `musicclearall` | `0x240` | 107 | frees every music slot (`0x0034BB00` -> `0x00360D70`) |
+| `musictrans` | `0x2C7` | 338 | sets a track's volume over a length (`0x00340260` -> `0x002DEE50`) |
+| `getnowmusicno` | `0x363` | 413 | reads the current track (`0x003549D0`) |
+| `musicreplay` | `0x364` | 1 | plays a track again (`0x00344410` -> `0x00342770`) |
+| `musicplaysync` | `0x3A2` | 114 | waits while a track plays (`0x003508E0`) |
+| `getnowmapmusicno` | `0x470` | 647 | reads the area's track (`0x00345760` -> `0x0026DE00`) |
+| `setnowmapmusicno` | `0x471` | 1,363 | saves or clears the area's override (`0x00345E70` -> `0x0026A720`) |
+| `getnowmapmusicno_47a` | `0x47A` | 331 | reads the area's track, mode tracks left out for a non-zero argument (`0x00345400` -> `0x0026DE00`) |
+| `isbossmusic` | `0x47B` | 86 | reads a track's boss-music bit (`0x00349E10` -> `0x00361010`) |
+| `musicphraseplay` | `0x50E` | 4 | plays a track from a section (`0x003437A0`) |
+| `musicfadeoutsync` | `0x536` | 2,123 | waits for the music fades to end (`0x003466F0`) |
+
+### Columns of music-script-overrides.tsv
+
+| Column | Meaning |
+|---|---|
+| `zone` | the zone's place and field id |
+| `script` | the zone script |
+| `function` | the actor and function of the call; actors that share their code are named by the first of them |
+| `verb` | the music verb |
+| `track` | the track the call passes: a number, -1, the expression the script passes, or `-` for a verb without one |
+| `condition` | the tests around the call, outermost first, joined with `and`; `not (...)` for an else branch; `always` for none |
+| `effect` | what the call does, with the verb's instruction addresses |
 
 ### Pages
 

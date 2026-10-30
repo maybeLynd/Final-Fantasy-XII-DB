@@ -2167,12 +2167,12 @@ id	name	part	entry
 0x000A	Eye Drops	treasure chest	North Sprawl (Lowtown) [slm_a01] chest 03: 50% (Diamond Armlet 0%)
 0x000A	Eye Drops	treasure chest	No. 4 Cloaca Spur (Garamsythe Waterway) [grm_e12] chest 01: 25% (Diamond Armlet 0%)
 0x000A	Eye Drops	treasure chest	Stage 33 (Trial Mode) [tri_g03] chest 01: 100% (Diamond Armlet 0%)
-0x000B	Prince's Kiss	shop	Portentous Provisions (shop 5) in West Barbican (Nalbina Town) from story progress 500
-0x000B	Prince's Kiss	shop	Unlucky Merchant (shop 9) in South Bank Village (Dalmasca Estersand) from story progress 500
+0x000B	Prince's Kiss	shop	Portentous Provisions (shop 5) in West Barbican (Nalbina Town) from story progress 500 (met from 520, After the floating continent)
+0x000B	Prince's Kiss	shop	Unlucky Merchant (shop 9) in South Bank Village (Dalmasca Estersand) from story progress 500 (met from 520, After the floating continent)
 0x000B	Prince's Kiss	shop	Desert Merchant (later Lohen) (shop 10) in The Western Divide (Dalmasca Westersand) from story progress 1240 (Start of the mystery of the Dawn Shard)
-0x000B	Prince's Kiss	shop	Street Vendor (shop 13) in Lhusu Square (Bhujerba) or Khus Skygrounds (Bhujerba) from story progress 500
+0x000B	Prince's Kiss	shop	Street Vendor (shop 13) in Lhusu Square (Bhujerba) or Khus Skygrounds (Bhujerba) from story progress 500 (met from 520, After the floating continent)
 0x000B	Prince's Kiss	shop	Tetran (shop 14) in Brig No. 1 (Dreadnought Leviathan) from the start
-0x000B	Prince's Kiss	shop	Dyce (shop 15) in Yensa Border Tunnel (Ogir-Yensa Sandsea) from story progress 500
+0x000B	Prince's Kiss	shop	Dyce (shop 15) in Yensa Border Tunnel (Ogir-Yensa Sandsea) from story progress 500 (met from 520, After the floating continent)
 0x000B	Prince's Kiss	shop	Dyce (shop 17) in Trail of Fading Warmth (Nam-Yensa Sandsea) from story progress 1330 (After the Urutan-Yensa appear)
 0x000B	Prince's Kiss	shop	Dyce (shop 18) in Valley of the Dead (The Tomb of Raithwall) or Sea Breeze Lane (Balfonheim Port) from story progress 1330 (After the Urutan-Yensa appear)
 0x000B	Prince's Kiss	shop	Garif Trader (shop 19) in Lull of the Land (Jahara) from the start
@@ -2180,11 +2180,11 @@ id	name	part	entry
 0x000B	Prince's Kiss	shop	Traveling Merchant (shop 22) in Sand-strewn Pass (Mt Bur-Omisace) from the start
 0x000B	Prince's Kiss	shop	Caravaner (later Luccio) (shop 23) in Babbling Vale (Mosphoran Highwaste) from story progress 3050 (Start of Head for Archades, scenario stage 7 begins)
 0x000B	Prince's Kiss	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
-0x000B	Prince's Kiss	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 500
+0x000B	Prince's Kiss	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 500 (met from 520, After the floating continent)
 0x000B	Prince's Kiss	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
 0x000B	Prince's Kiss	shop	Assistant Storekeeper (shop 30) in Observation Parlour (Skyferry) from the start
-0x000B	Prince's Kiss	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 500
-0x000B	Prince's Kiss	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 500
+0x000B	Prince's Kiss	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 500 (met from 520, After the floating continent)
+0x000B	Prince's Kiss	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 500 (met from 520, After the floating continent)
 0x000B	Prince's Kiss	treasure chest	Broken Sands (Dalmasca Estersand) [dst_c02] chest 10: 32.5% (Diamond Armlet 0%)
 0x000B	Prince's Kiss	treasure chest	Trunkwall Road (The Salikawood) [frs_a02] chest 07: 25% (Diamond Armlet 0%)
 0x000B	Prince's Kiss	treasure chest	Sun-dappled Path (The Salikawood) [frs_a04] chest 02: 27.5% (Diamond Armlet 0%)
@@ -2205,12 +2205,12 @@ id	name	part	entry
 0x000B	Prince's Kiss	treasure chest	Walk of Stolen Truths (The Feywood) [mfr_a02] chest 08: 25% (Diamond Armlet 0%)
 0x000B	Prince's Kiss	treasure chest	Large Freight Stores (Dreadnought Leviathan) [rsn_b02] chest 05: 35% (Diamond Armlet 0%)
 0x000B	Prince's Kiss	treasure chest	Station of Ascension (Pharos - Second Ascent) [rbl_m01] chest 00: 30% (Diamond Armlet 0%)
-0x000C	Handkerchief	shop	Portentous Provisions (shop 5) in West Barbican (Nalbina Town) from story progress 500
-0x000C	Handkerchief	shop	Unlucky Merchant (shop 9) in South Bank Village (Dalmasca Estersand) from story progress 500
+0x000C	Handkerchief	shop	Portentous Provisions (shop 5) in West Barbican (Nalbina Town) from story progress 500 (met from 520, After the floating continent)
+0x000C	Handkerchief	shop	Unlucky Merchant (shop 9) in South Bank Village (Dalmasca Estersand) from story progress 500 (met from 520, After the floating continent)
 0x000C	Handkerchief	shop	Desert Merchant (later Lohen) (shop 10) in The Western Divide (Dalmasca Westersand) from story progress 1240 (Start of the mystery of the Dawn Shard)
-0x000C	Handkerchief	shop	Street Vendor (shop 13) in Lhusu Square (Bhujerba) or Khus Skygrounds (Bhujerba) from story progress 500
+0x000C	Handkerchief	shop	Street Vendor (shop 13) in Lhusu Square (Bhujerba) or Khus Skygrounds (Bhujerba) from story progress 500 (met from 520, After the floating continent)
 0x000C	Handkerchief	shop	Tetran (shop 14) in Brig No. 1 (Dreadnought Leviathan) from the start
-0x000C	Handkerchief	shop	Dyce (shop 15) in Yensa Border Tunnel (Ogir-Yensa Sandsea) from story progress 500
+0x000C	Handkerchief	shop	Dyce (shop 15) in Yensa Border Tunnel (Ogir-Yensa Sandsea) from story progress 500 (met from 520, After the floating continent)
 0x000C	Handkerchief	shop	Dyce (shop 17) in Trail of Fading Warmth (Nam-Yensa Sandsea) from story progress 1330 (After the Urutan-Yensa appear)
 0x000C	Handkerchief	shop	Dyce (shop 18) in Valley of the Dead (The Tomb of Raithwall) or Sea Breeze Lane (Balfonheim Port) from story progress 1330 (After the Urutan-Yensa appear)
 0x000C	Handkerchief	shop	Garif Trader (shop 19) in Lull of the Land (Jahara) from the start
@@ -2218,11 +2218,11 @@ id	name	part	entry
 0x000C	Handkerchief	shop	Traveling Merchant (shop 22) in Sand-strewn Pass (Mt Bur-Omisace) from the start
 0x000C	Handkerchief	shop	Caravaner (later Luccio) (shop 23) in Babbling Vale (Mosphoran Highwaste) from story progress 3050 (Start of Head for Archades, scenario stage 7 begins)
 0x000C	Handkerchief	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from the start
-0x000C	Handkerchief	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 500
+0x000C	Handkerchief	shop	Stranded Merchant (shop 25) in Alley of Low Whispers (Old Archades) from story progress 500 (met from 520, After the floating continent)
 0x000C	Handkerchief	shop	The Leapin' Bangaa (shop 26) in Gallerina Marketplace (Balfonheim Port) from the start
 0x000C	Handkerchief	shop	Assistant Storekeeper (shop 29) in Observation Parlour (Skyferry) from the start
-0x000C	Handkerchief	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 500
-0x000C	Handkerchief	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 500
+0x000C	Handkerchief	shop	Shop Clerk (shop 39) in Migelo's Sundries (Rabanastre) from story progress 500 (met from 520, After the floating continent)
+0x000C	Handkerchief	shop	Granch (shop 50) in Granch's Requisites (Archades) from story progress 500 (met from 520, After the floating continent)
 0x000C	Handkerchief	treasure chest	The Yoma (Dalmasca Estersand) [dst_c01] chests 06/12: 32.5% (Diamond Armlet 0%)
 0x000C	Handkerchief	treasure chest	Trunkwall Road (The Salikawood) [frs_a02] chest 00: 25% (Diamond Armlet 0%)
 0x000C	Handkerchief	treasure chest	Diverging Way (The Salikawood) [frs_a03] chest 00: 25% (Diamond Armlet 0%)
@@ -7817,8 +7817,8 @@ id	name	part	entry
 0x3014	Blizzard	shop	Tetran (shop 14) in Brig No. 1 (Dreadnought Leviathan) from the start
 0x3014	Blizzard	shop	Dyce (shop 17) in Trail of Fading Warmth (Nam-Yensa Sandsea) from story progress 1330 (After the Urutan-Yensa appear)
 0x3014	Blizzard	shop	Dyce (shop 18) in Valley of the Dead (The Tomb of Raithwall) or Sea Breeze Lane (Balfonheim Port) from story progress 1330 (After the Urutan-Yensa appear)
-0x3014	Blizzard	shop	Yugri (shop 40) in Yugri's Magicks (Rabanastre) from story progress 500
-0x3014	Blizzard	shop	Mait (shop 45) in Mait's Magicks (Bhujerba) from story progress 500
+0x3014	Blizzard	shop	Yugri (shop 40) in Yugri's Magicks (Rabanastre) from story progress 500 (met from 520, After the floating continent)
+0x3014	Blizzard	shop	Mait (shop 45) in Mait's Magicks (Bhujerba) from story progress 500 (met from 520, After the floating continent)
 0x3014	Blizzard	shop	Magickery Proprietor (shop 51) in Charlotte's Magickery (Archades) from the start
 0x3015	Aqua	shop	Desert Merchant (later Lohen) (shop 10) in The Western Divide (Dalmasca Westersand) from story progress 1240 (Start of the mystery of the Dawn Shard)
 0x3015	Aqua	shop	Tetran (shop 14) in Brig No. 1 (Dreadnought Leviathan) from the start
@@ -7862,7 +7862,7 @@ id	name	part	entry
 0x4002	Horology	shop	Clio (shop 46) in Clio's Technicks (Bhujerba) from story progress 1090 (After the escape from the Leviathan)
 0x4002	Horology	shop	Technick Seller (shop 52) in Bulward's Technicks (Archades) from story progress 1090 (After the escape from the Leviathan)
 0x4002	Horology	shop	Odo (shop 56) in Odo's Technicks (Balfonheim Port) from story progress 1090 (After the escape from the Leviathan)
-0x4005	Charge	shop	Troublesome Technicks (shop 8) in Jajim Bazaar (Nalbina Town) from story progress 500
+0x4005	Charge	shop	Troublesome Technicks (shop 8) in Jajim Bazaar (Nalbina Town) from story progress 500 (met from 520, After the floating continent)
 0x4005	Charge	shop	Desert Merchant (later Lohen) (shop 10) in The Western Divide (Dalmasca Westersand) from story progress 1240 (Start of the mystery of the Dawn Shard)
 0x4005	Charge	shop	Tetran (shop 14) in Brig No. 1 (Dreadnought Leviathan) from the start
 0x4005	Charge	shop	Dyce (shop 17) in Trail of Fading Warmth (Nam-Yensa Sandsea) from story progress 1330 (After the Urutan-Yensa appear)
@@ -7870,11 +7870,11 @@ id	name	part	entry
 0x4005	Charge	shop	Garif Trader (shop 19) in Lull of the Land (Jahara) from the start
 0x4005	Charge	shop	Traveling Merchant (shop 22) in Sand-strewn Pass (Mt Bur-Omisace) from the start
 0x4005	Charge	shop	Caravaner (later Luccio) (shop 23) in Babbling Vale (Mosphoran Highwaste) from story progress 3050 (Start of Head for Archades, scenario stage 7 begins)
-0x4005	Charge	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from story progress 500
-0x4005	Charge	shop	Batahn (shop 41) in Batahn's Technicks (Rabanastre) from story progress 500
-0x4005	Charge	shop	Clio (shop 46) in Clio's Technicks (Bhujerba) from story progress 500
-0x4005	Charge	shop	Technick Seller (shop 52) in Bulward's Technicks (Archades) from story progress 500
-0x4005	Charge	shop	Odo (shop 56) in Odo's Technicks (Balfonheim Port) from story progress 500
+0x4005	Charge	shop	Vendor of Goods (shop 24) in Hunters' Camp (Phon Coast) from story progress 500 (met from 520, After the floating continent)
+0x4005	Charge	shop	Batahn (shop 41) in Batahn's Technicks (Rabanastre) from story progress 500 (met from 520, After the floating continent)
+0x4005	Charge	shop	Clio (shop 46) in Clio's Technicks (Bhujerba) from story progress 500 (met from 520, After the floating continent)
+0x4005	Charge	shop	Technick Seller (shop 52) in Bulward's Technicks (Archades) from story progress 500 (met from 520, After the floating continent)
+0x4005	Charge	shop	Odo (shop 56) in Odo's Technicks (Balfonheim Port) from story progress 500 (met from 520, After the floating continent)
 0x4007	Souleater	shop	Troublesome Technicks (shop 8) in Jajim Bazaar (Nalbina Town) from story progress 1982 (After the view over Mt Bur-Omisace, scenario stage 6 begins)
 0x4007	Souleater	shop	Traveling Merchant (shop 22) in Sand-strewn Pass (Mt Bur-Omisace) from the start
 0x4007	Souleater	shop	Caravaner (later Luccio) (shop 23) in Babbling Vale (Mosphoran Highwaste) from story progress 3050 (Start of Head for Archades, scenario stage 7 begins)

@@ -21,6 +21,8 @@ The kind counts include rows named as unused: 24 of the 235 Foecraft rows are na
 Concurrence rows `NOT USED`. With the 47 such rows of kind 255 and the three kind-13 Reserve rows, 82 rows in all
 carry the explanation "an unused row".
 
+The `enemy_users` column names, for every row, the enemies that use it. An enemy uses an action when an order set its definition names ([Enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md), `used_by`) holds an order with that action word, or a weighted pick (`0x8000` + run, `[0x02EBF160]`, drawn by `0x00308EC0`) whose run lists it. 305 of the 543 rows have such users, 39 of them only through weighted picks. Attack has the most, 426 enemy names, then Lunge 183, Protect 83, Ram 74 and Shell 48.
+
 ### Where the values come from
 
 Each line is read from the shipped `battle_pack.bin` in these steps:
@@ -71,6 +73,7 @@ Each line is read from the shipped `battle_pack.bin` in these steps:
 | `help_id`, `help` | `+0x00` and its shipped line (4000 = none) |
 | `desc_id`, `description` | `+0x2E` and its shipped line |
 | `explanation` | a one-line summary built from the row's own fields: "an unused row" for the `NOT USED` and Reserve rows, "kind 255, no linked id" for the nine named kind-255 rows |
+| `enemy_users` | how many distinct enemy names use the action through their order sets, then the names in alphabetical order; a definition with no name as `No name (<area> row <n>)`; `none` when no order of the 1,422 sets names it |
 
 ## Related
 

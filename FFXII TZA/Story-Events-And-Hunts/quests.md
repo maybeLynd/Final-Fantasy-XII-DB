@@ -78,6 +78,44 @@ Besides these, the menu's quest readers (`0x0037E780`, `0x0037EAA0`, `0x0037EB90
 `0x00578310`, `0x00578450`, `0x005789D0`; [Clan Primer](../Menus-And-HUD/clan-primer.md),
 [Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md)) read the bits.
 
+### The quests
+
+[quest-list.tsv](quest-list.tsv) has one row for each of the 18 quest ids outside the hunts that a shipping script
+sets: 0, 3, 4, 5, 6, 8, 10, 11, 12, 13, 15, 18, 52, 53, 57, 58, 59 and 71. The 45 hunts, quests 128 to 172, are in
+[hunts.tsv](hunts.tsv). The census reads the 1,114 us listings that decode, 769 zone and 345 event scripts;
+`evt_t0020.ebp` has no `EBP2` header and no listing. The developer scripts `evt_t0090` (`デバッグ監督`, the debug
+director), `evt_t0500` (`イベントデバッグメニュー`, the event debug menu) and `evt_t0505` are left out of the rows, cells and counts.
+
+Twelve are story chapters, the ids `menuquest.dat` puts in group 0 (records 0 to 18; no `us` listing sets the seven ids
+14, 16, 17 and 19 to 22). Their scenario byte steps along the story beside the story counter, and their
+`questtitle.bin` rows are empty in `us`. Six are quests that `menuquest.dat` does not list: July's soldier at Nalbina
+(52), Rimzat's windvane (53), the Nabudis medallions of Ma'kleou (57), Roh'kenmou (58) and Roh'kenmu (59), and the
+Hunt Club (71).
+
+Few quests use the ordered and cleared bits. `setquestorder(q, 1)` with a literal id runs for 6, 18 and 53, and
+`setquestclear(q, 1)` for 0, 4, 12, 18, 53, 57 and 58, each one line after `setquestorder(q, 0)`, which clears the
+quest's own ordered bit; for 12, 18, 53, 57 and 58 the clear itself misses it (The wrong ordered bit, above). The
+clears of 4, 12 and 18 and the order of 18 sit in the quest-clear and quest-accept screen functions
+(`クエストクリア画面`, `クエスト受諾画面`) that no `us` listing requests by name.
+
+The `quest_director` actor of `rbn_a18`, `rbn_a19`, `bhm_a04` and the scene `slm_a0380` orders, accepts and clears
+the quest whose id a script variable holds; the variable is set to 53 in `rbn_a19` (line 5299) and 3 in `slm_a0380`
+(line 90). No `us` listing requests a `quest_director` function: the name occurs only at the four actor headers.
+The variable id of `rbn_a14`'s hunt clear is 167 or 170 (lines 2614, 2634), both hunts.
+
+| Column | Meaning |
+|---|---|
+| `quest` | the quest id |
+| `kind` | story chapter, with its `menuquest.dat` record, or quest |
+| `what_it_is` | the quest in game terms, from its dialogue and scenes |
+| `giver` | the character who asks, by the name the game shows |
+| `place` | the fields where its steps are written, by zone name |
+| `ordered_by`, `cleared_by` | the script, actor, function and line of the order and clear calls, or where the first and last steps are written |
+| `condition` | what the scripts test before the order or the first step |
+| `steps` | each scenario-byte value, what it marks, and where it is written |
+| `reward` | the items the clearing code gives or takes, with [scene-rewards.tsv](scene-rewards.tsv) |
+| `menu_title` | the `questtitle.bin` row of its `menuquest.dat` text id |
+
 ## Modding notes
 
 - Clearing a quest from a script also unmarks quest `q & 7` as ordered; a mod that relies on ordered bits above 7
@@ -89,3 +127,4 @@ Besides these, the menu's quest readers (`0x0037E780`, `0x0037EAA0`, `0x0037EB90
 
 - [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the payload the quest fields sit in.
 - [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) - the clan rank that counts quests.
+- [Hunts](hunts.md) - the 45 hunts, quests 128 to 172.

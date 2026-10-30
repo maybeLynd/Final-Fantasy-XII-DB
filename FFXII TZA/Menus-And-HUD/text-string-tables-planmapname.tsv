@@ -1,0 +1,1372 @@
+entry	kind	id	zone	name_us	name_de	name_es	name_fr	name_it	name_in	name_kr	name_cn	name_ch
+0	area	0	-	-	-	-	-	-	-	-	-	-
+1	area	1	-	-	-	-	-	-	-	-	-	-
+2	area	2	-	-	-	-	-	-	-	-	-	-
+3	area	3	-	-	-	-	-	-	-	-	-	-
+4	area	4	-	-	-	-	-	-	-	-	-	-
+5	area	5	-	-	-	-	-	-	-	-	-	-
+6	area	6	-	-	-	-	-	-	-	-	-	-
+7	area	7	-	-	-	-	-	-	-	-	-	-
+8	area	8	-	-	-	-	-	-	-	-	-	-
+9	area	9	-	-	-	-	-	-	-	-	-	-
+10	area	10	-	-	-	-	-	-	-	-	-	-
+11	area	11	-	-	-	-	-	-	-	-	-	-
+12	area	12	ttl_a01	-	-	-	-	-	-	-	-	-
+13	area	13	ttl_b01	-	-	-	-	-	-	-	-	-
+14	area	14	ttl_c01	-	-	-	-	-	-	-	-	-
+15	area	15	-	-	-	-	-	-	-	-	-	-
+16	area	16	-	-	-	-	-	-	-	-	-	-
+17	area	17	-	-	-	-	-	-	-	-	-	-
+18	area	18	-	-	-	-	-	-	-	-	-	-
+19	area	19	-	-	-	-	-	-	-	-	-	-
+20	area	20	-	-	-	-	-	-	-	-	-	-
+21	area	21	-	-	-	-	-	-	-	-	-	-
+22	area	22	-	-	-	-	-	-	-	-	-	-
+23	area	23	-	-	-	-	-	-	-	-	-	-
+24	area	24	-	-	-	-	-	-	-	-	-	-
+25	area	25	-	-	-	-	-	-	-	-	-	-
+26	area	26	-	-	-	-	-	-	-	-	-	-
+27	area	27	-	-	-	-	-	-	-	-	-	-
+28	area	28	-	-	-	-	-	-	-	-	-	-
+29	area	29	-	-	-	-	-	-	-	-	-	-
+30	area	30	-	-	-	-	-	-	-	-	-	-
+31	area	31	-	-	-	-	-	-	-	-	-	-
+32	area	32	-	-	-	-	-	-	-	-	-	-
+33	area	33	-	-	-	-	-	-	-	-	-	-
+34	area	34	-	-	-	-	-	-	-	-	-	-
+35	area	35	-	-	-	-	-	-	-	-	-	-
+36	area	36	-	-	-	-	-	-	-	-	-	-
+37	area	37	-	-	-	-	-	-	-	-	-	-
+38	area	38	-	-	-	-	-	-	-	-	-	-
+39	area	39	-	-	-	-	-	-	-	-	-	-
+40	area	40	-	-	-	-	-	-	-	-	-	-
+41	area	41	-	-	-	-	-	-	-	-	-	-
+42	area	42	-	-	-	-	-	-	-	-	-	-
+43	area	43	-	-	-	-	-	-	-	-	-	-
+44	area	44	-	-	-	-	-	-	-	-	-	-
+45	area	45	-	-	-	-	-	-	-	-	-	-
+46	area	46	-	-	-	-	-	-	-	-	-	-
+47	area	47	-	-	-	-	-	-	-	-	-	-
+48	area	48	nal_a01	Stockade	Gemeinschaftszelle	Celdas Comunes	Cachot	Prigione	地下雑居房	지하 감옥	地下多人牢房	地下多人牢房
+49	area	49	nal_b01	Arena	Kampfarena	Arena	Arène	Arena	闘技場	투기장	斗技场	鬥技場
+50	area	50	rbn_z01	rbn_z01	rbn_z01	rbn_z01	rbn_z01	rbn_z01	rbn_z01	rbn_z01	rbn_z01	rbn_z01
+51	area	51	nal_d01	Oubliette	Einzelzellentrakt	Zona de Incomunicación	Oubliettes	Cella di isolamento	地下独居房	지하 감옥 독방	地下单人牢房	地下單人牢房
+52	area	52	-	-	-	-	-	-	-	-	-	-
+53	area	53	mic_a01	The Lightworks	Generatorraum	Sección de Suministro Eléctrico	Salle du générateur	Zona alimentazione	配電設備区画	배전 설비 구획	配电设备区块	配電設備區塊
+54	area	54	mic_a02	Great Eastern Passage	Hauptstollen Ost	Gran Túnel Este	Galerie est	Linea est	大坑道東部	큰 갱도 동부	大坑道东部	大坑道東部
+55	area	55	mic_a03	Op Sector 36	36. Werkstätte	Sección de Operaciones 36	Secteur 36	Zona 36	第36作業区画	제36작업 구획	第36作业区块	第36作業區塊
+56	area	56	mic_a04	Special Op Sector 3	Spezialwerkstatt III	Sección Auxiliar 3	Secteur 3	Zona speciale 3	第３特別作業区	제3특별 작업 구획	第３特别作业区	第３特別作業區
+57	area	57	mic_a05	Op Sector 37	37. Werkstätte	Sección de Operaciones 37	Secteur 37	Zona 37	第37作業区画	제37작업 구획	第37作业区块	第37作業區塊
+58	area	58	mic_a06	Op Sector 29	29. Werkstätte	Sección de Operaciones 29	Secteur 29	Zona 29	第29作業区画	제29작업 구획	第29作业区块	第29作業區塊
+59	area	59	-	-	-	-	-	-	-	-	-	-
+60	area	60	-	-	-	-	-	-	-	-	-	-
+61	area	61	mic_b01	Great Central Passage	Hauptstollen-Zentralkreuz	Gran Túnel Central	Intersection	Incrocio centrale	大坑道中央交差区	큰 갱도 중앙 교차 구역	大坑道中央交叉区	大坑道中央交叉區
+62	area	62	mic_b02	The Zeviah Subterrane	Sebaya-Höhle	Subterráneo de Zeviah	Grotte de Zéviah	Caverna Zebaya	ゼバイア大空洞	제바이어 큰 동굴	洁拜亚大空洞	潔拜亞大空洞
+63	area	63	-	-	-	-	-	-	-	-	-	-
+64	area	64	-	-	-	-	-	-	-	-	-	-
+65	area	65	-	-	-	-	-	-	-	-	-	-
+66	area	66	mic_b06	North-South Junction	Nord-Süd-Verbindungstunnel	Cruce Norte-Sur	Jonction nord-sud	Raccordo nord-sud	南北連結路	남북 연결로	南北连结路	南北連結路
+67	area	67	-	-	-	-	-	-	-	-	-	-
+68	area	68	-	-	-	-	-	-	-	-	-	-
+69	area	69	mic_c01	Terminus No. 4	Verteilerstation IV	Terminal n.° 4	Terminal n°4	Terminal 4	第４ターミナルステーション	제4터미널 스테이션	第４总站	第４總站
+70	area	70	mic_c02	Terminus No. 4 Adjunct	Anschluss-Strecke IV 	Enlace a la Terminal n.° 4	Jonction du terminal n°4	Raccordo terminal 4	第４ターミナル接続路	제4터미널 연결로	第４总站衔接路	第４總站銜接路
+71	area	71	mic_d01	Terminus No. 7	Verteilerstation VII	Terminal n.° 7	Terminal n°7	Terminal 7	第７ターミナルステーション	제7터미널 스테이션	第７总站	第７總站
+72	area	72	-	-	-	-	-	-	-	-	-	-
+73	area	73	-	-	-	-	-	-	-	-	-	-
+74	area	74	-	-	-	-	-	-	-	-	-	-
+75	area	75	-	-	-	-	-	-	-	-	-	-
+76	area	76	-	-	-	-	-	-	-	-	-	-
+77	area	77	-	-	-	-	-	-	-	-	-	-
+78	area	78	-	-	-	-	-	-	-	-	-	-
+79	area	79	-	-	-	-	-	-	-	-	-	-
+80	area	80	-	-	-	-	-	-	-	-	-	-
+81	area	81	-	-	-	-	-	-	-	-	-	-
+82	area	82	-	-	-	-	-	-	-	-	-	-
+83	area	83	-	-	-	-	-	-	-	-	-	-
+84	area	84	-	-	-	-	-	-	-	-	-	-
+85	area	85	-	-	-	-	-	-	-	-	-	-
+86	area	86	-	-	-	-	-	-	-	-	-	-
+87	area	87	-	-	-	-	-	-	-	-	-	-
+88	area	88	-	-	-	-	-	-	-	-	-	-
+89	area	89	-	-	-	-	-	-	-	-	-	-
+90	area	90	-	-	-	-	-	-	-	-	-	-
+91	area	91	-	-	-	-	-	-	-	-	-	-
+92	area	92	-	-	-	-	-	-	-	-	-	-
+93	area	93	-	-	-	-	-	-	-	-	-	-
+94	area	94	-	-	-	-	-	-	-	-	-	-
+95	area	95	-	-	-	-	-	-	-	-	-	-
+96	area	96	-	-	-	-	-	-	-	-	-	-
+97	area	97	-	-	-	-	-	-	-	-	-	-
+98	area	98	-	-	-	-	-	-	-	-	-	-
+99	area	99	-	-	-	-	-	-	-	-	-	-
+100	area	100	-	-	-	-	-	-	-	-	-	-
+101	area	101	-	-	-	-	-	-	-	-	-	-
+102	area	102	-	-	-	-	-	-	-	-	-	-
+103	area	103	-	-	-	-	-	-	-	-	-	-
+104	area	104	-	-	-	-	-	-	-	-	-	-
+105	area	105	-	-	-	-	-	-	-	-	-	-
+106	area	106	-	-	-	-	-	-	-	-	-	-
+107	area	107	-	-	-	-	-	-	-	-	-	-
+108	area	108	-	-	-	-	-	-	-	-	-	-
+109	area	109	-	-	-	-	-	-	-	-	-	-
+110	area	110	-	-	-	-	-	-	-	-	-	-
+111	area	111	-	-	-	-	-	-	-	-	-	-
+112	area	112	-	-	-	-	-	-	-	-	-	-
+113	area	113	-	-	-	-	-	-	-	-	-	-
+114	area	114	-	-	-	-	-	-	-	-	-	-
+115	area	115	-	-	-	-	-	-	-	-	-	-
+116	area	116	-	-	-	-	-	-	-	-	-	-
+117	area	117	-	-	-	-	-	-	-	-	-	-
+118	area	118	-	-	-	-	-	-	-	-	-	-
+119	area	119	-	-	-	-	-	-	-	-	-	-
+120	area	120	-	-	-	-	-	-	-	-	-	-
+121	area	121	-	-	-	-	-	-	-	-	-	-
+122	area	122	-	-	-	-	-	-	-	-	-	-
+123	area	123	-	-	-	-	-	-	-	-	-	-
+124	area	124	asp_a01	Observation Parlour	Panorama-Lobby	Mirador	Hall panoramique	Hall panoramica	展望ロビー	전망 로비	了望大厅	瞭望大廳
+125	area	125	asp_a02	Sky Saloon	Wolken-Lounge	Salón	Salon	Zona relax	スカイ・ラウンジ	스카이라운지	天空贵宾室	天空貴賓室
+126	area	126	asp_a03	Air Deck	Aussichtsdeck	Cubierta	Pont	Aeroponte	フロート・デッキ	플로트 갑판	浮空甲板	浮空甲板
+127	area	127	-	-	-	-	-	-	-	-	-	-
+128	area	128	-	-	-	-	-	-	-	-	-	-
+129	area	129	dst_b01	South Bank Village	Nebula-Siedlung Süd	Poblado al Sur del Nebra	Village du Nébra - Rive sud	Nebra - riva sud	ネブラ河沿いの集落南側	네브라 강변의 취락 남쪽	涅布拉河沿岸聚落南侧	涅布拉河沿岸聚落南側
+130	area	130	dst_b02	North Bank Village	Nebula-Siedlung Nord	Poblado al Norte del Nebra	Village du Nébra - Rive nord	Nebra - riva nord	ネブラ河沿いの集落北側	네브라 강변의 취락 북쪽	涅布拉河沿岸聚落北侧	涅布拉河沿岸聚落北側
+131	area	131	-	-	-	-	-	-	-	-	-	-
+132	area	132	dst_c01	The Yoma	Große Youma-Düne	Dunas de Yoma	Dunes de Yoma	Dune Yoma	ヨーマ大砂丘	요마 대사구	尤玛大沙丘	尤瑪大沙丘
+133	area	133	dst_c02	Broken Sands	Sande der Entscheidung	Arenas Rotas	Sables-rompus	Faglia torrida	断裂の砂地	갈라진 모래땅	断裂沙地	斷裂沙地
+134	area	134	-	-	-	-	-	-	-	-	-	-
+135	area	135	-	-	-	-	-	-	-	-	-	-
+136	area	136	-	-	-	-	-	-	-	-	-	-
+137	area	137	pla_a01	Uazcuff Hills	Waskus-Hügel	Cerros de Uazcuf	Hauteurs de Uazkuf	Colline Wazkuf	ワズクフ丘陵	와즈쿠프 언덕	瓦兹库夫丘陵	瓦茲庫夫丘陵
+138	area	138	pla_a02	Sundered Earth	Zerklüftete Gründe	Campo Partido	Terres déchirées	Terra squarciata	裂けた大地	갈라진 대지	崩裂的大地	崩裂的大地
+139	area	139	pla_a03	The Highlands	Alles überblickende Höhen	Tierras Altas	Grand belvédère	Grande veduta	全てを見通す地	모든 것을 내다보는 땅	看清一切之地	看清一切之地
+140	area	140	pla_a04	Fields of Eternity	Mittelpunkt der Zeit	Prado de la Eternidad	Pré de l'éternité	Pianura dei tre mondi	三界交わる草原	삼계가 교차하는 초원	三界交会的草原	三界交會的草原
+141	area	141	pla_a05	The Shaded Path	Schwierige Passage	Sendero Sombreado	Passage ombragé	Strada oscura	昏き道	저무는 길	昏暗道路	昏暗道路
+142	area	142	pla_a06	The Chosen Path	Pfad der Entscheidung	Senda de la Determinación	Butte de la résolution	Passo della scelta	決断の途	결단의 길	决断之途	決斷之途
+143	area	143	-	-	-	-	-	-	-	-	-	-
+144	area	144	pla_b01	The Skytrail	Himmelsweg	Camino al Cielo	Route de touche-nuages	Strada del cielo	天に続いていた道	하늘로 이어져 있던 길	曾通往天上的道路	曾通往天上的道路
+145	area	145	pla_b02	Realm of the Elder Dream	Ebene schlummernder Erinnerungen	Pradera de los Viejos Sueños	Terre des songes anciens	Prato dei ricordi lontani	古き想いの眠る地	옛 생각이 잠드는 땅	远古意念沉眠之地	遠古意念沉眠之地
+146	area	146	pla_b03	The Lost Way	Überwucherter Landweg	Camino Perdido	Route perdue	Strada del tempo perduto	失われた街道	사라진 길	失落的大道	失落的大道
+147	area	147	pla_b04	Garden of Life's Circle	Garten von Abschied und Aufbruch	Jardín del Inicio y el Final	Jardin du cycle de la vie	Giardino Om	終焉と旅立ちの庭	종언과 시작의 정원	终焉与启程庭园	終焉與啟程庭園
+148	area	148	pla_b05	Oliphzak Rise	Orif-Zakk-Hügel	Colina de Oliphzak	Collines d'Oliphzak	Colline di Olifzak	オリフザックの丘	올리프작의 언덕	欧利福札克山丘	歐利福札克山丘
+149	area	149	pla_b06	The Nameless Spring	Namenlose Quelle	Arroyo sin Nombre	Source sans nom	Fonte senza nome	名もなき泉	이름 없는 샘	无名泉	無名泉
+150	area	150	-	-	-	-	-	-	-	-	-	-
+151	area	151	frs_a01	The Omen-Spur	Omen-Pfad	Senda del Destino	Chemin du présage	Sentiero del presagio	きざしの見える路	징조가 보이는 길	洞烛机先之路	洞燭機先之路
+152	area	152	frs_a02	Trunkwall Road	Riesenbaum-Stege	Árboles Gigantes	Chemin des arbres géants	Sentiero dei giganti	巨木に囲まれた路	거목에 둘러싸인 길	巨木围绕之路	巨木圍繞之路
+153	area	153	frs_a03	Diverging Way	Pfad des Abschieds	Vía de la Separación	Chemin des séparations	Sentiero dell'addio	別離の路	이별의 길	别离之路	別離之路
+154	area	154	frs_a04	Sun-dappled Path	Lichtsäulen-Pfad	Charcos de Sol	Chemin des reflets d'émeraude	Sentiero del chiarore	木もれ日の路	햇살이 내리쬐는 길	叶缝阳光之路	葉縫陽光之路
+155	area	155	frs_a05	Garden of Decay	Garten Moderbaum	Jardín de los Árboles Caídos	Jardin du déclin	Giardino del tramonto	朽ちた木々の庭	썩은 나무들의 정원	枯朽树木庭园	枯朽樹木庭園
+156	area	156	frs_a06	Path of Hours	Zeitfluss-Pfad	Senda del Tiempo	Chemin du temps	Sentiero del tempo	時を刻む路	시간을 새기는 길	刻画光阴之路	刻畫光陰之路
+157	area	157	frs_b01	Quietened Trace	Pfad heilender Klänge	Paso de la Calma	Chemin de la quiétude	Sentiero della pace	いやしの響く路	치유가 울리는 길	疗愈回响之路	療癒迴響之路
+158	area	158	frs_b02	Grand Bower	Hort alter Zusammenkünfte	Umbría del Pasado	Jardin des rencontres	Giardino degli incontri	古き集いの庭	옛 모임의 정원	远古聚会庭园	遠古聚會庭園
+159	area	159	-	-	-	-	-	-	-	-	-	-
+160	area	160	-	-	-	-	-	-	-	-	-	-
+161	area	161	-	-	-	-	-	-	-	-	-	-
+162	area	162	frs_c01	Corridor of Ages	Jahresring-Pfad	Ruta Centenaria	Chemin des mille cernes	Sentiero degli anni	年輪を重ねる路	나이를 먹는 정원	年轮层迭之路	年輪層疊之路
+163	area	163	frs_c02	Piebald Path	Lichtgefleckte Dielen	Sendero Moteado	Chemin moucheté	Sentiero screziato	白きまだらの路	흰 얼룩무늬 길	白色斑点之路	白色斑點之路
+164	area	164	-	-	-	-	-	-	-	-	-	-
+165	area	165	-	-	-	-	-	-	-	-	-	-
+166	area	166	-	-	-	-	-	-	-	-	-	-
+167	area	167	bog_a01	Greencrag	Moosfelsen	Rocas Verdes	Passage des rochers moussus	Roccia muschiosa	緑岩の地	녹암의 땅	绿岩之地	綠岩之地
+168	area	168	bog_a02	The Muted Scarp	Stummer Pfad	Camino sin Voz	Corniche muette	Sentiero senza voce	声を失った路	목소리를 잃은 길	失去声音之路	失去聲音之路
+169	area	169	bog_a03	Vale of Lingering Sorrow	Ort stockender Klagen	Valle de los Lamentos	Vallée des lamentations	Valle dei lamenti	なげきよどむ地	비탄에 잠긴 땅	叹息缭绕之地	嘆息繚繞之地
+170	area	170	bog_a04	Hope's Reach	Lichtstrebender Pfad	Camino hacia el Sol	Chemin de l'espoir	Sentiero d'ombra	陽を探す路	태양을 찾는 길	寻求阳光之路	尋求陽光之路
+171	area	171	bog_a05	Echoes of the Past	Ort der Erinnerung	Tierra de los Recuerdos	Marais de la réminiscence	Acquitrino del ricordo	追憶の地	추억의 땅	追忆之地	追憶之地
+172	area	172	-	-	-	-	-	-	-	-	-	-
+173	area	173	-	-	-	-	-	-	-	-	-	-
+174	area	174	-	-	-	-	-	-	-	-	-	-
+175	area	175	bog_b01	The Slumbermead	Einschläfernde Lande	Llano del Sueño	Marais de la somnolence	Pianoro del sonno	まどろみへ誘う平原	졸음으로 이끄는 평원	诱入梦乡的平原	誘入夢鄉的平原
+176	area	176	bog_b02	Succor Midst Sorrow	Stätte des Ansporns	Paraje del Socorro	Ilot de réconfort	Lembo del conforto	はげましを受けた地	격려를 받은 땅	蒙受激励之地	蒙受激勵之地
+177	area	177	bog_b03	The Fog Mutters	Zischende Nebel	Senda de la Bruma	Chemin des brumes susurrantes	Sentiero nebbioso	霧のさざめく路	안개가 속삭이는 길	雾气蠢动之路	霧氣蠢動之路
+178	area	178	bog_b04	Overlooking Eternity	Über der Ewigkeit	Mirador de la Eternidad	Promontoire de l'éternité	Altura dell'eterno	永遠を見下ろす高台	영원을 내려다보는 언덕	俯瞰永恒的高台	俯瞰永恆的高台
+179	area	179	bog_b05	Lifeless Strand	Todestümpel	Ciénaga sin Vida	Rivage sans vie	Acque mortifere	命消えし水辺	생명이 사라진 물가	绝命的岸边	絕命的岸邊
+180	area	180	bog_b06	Field of the Fallen Lord	Platz verlorener Dynastien	Páramo del Rey Caído	Terres du seigneur déchu	Spiazzo dei reali	滅びし王家の広場	멸망한 왕가의 광장	灭亡王家的广场	滅亡王家的廣場
+181	area	181	-	-	-	-	-	-	-	-	-	-
+182	area	182	-	-	-	-	-	-	-	-	-	-
+183	area	183	-	-	-	-	-	-	-	-	-	-
+184	area	184	rui_a01	Falls of Time	Grotte der Zeit	Cascada del Tiempo	Cascades du temps	Caverna del tempo	時の水洞	시간의 폭포	时光水洞	時光水洞
+185	area	185	rui_a02	Mirror of the Soul	Pfad der Selbstfindung	Senda de la Autorreflexión	Couloirs de la conscience	Strada della coscienza	自らを見出す路	자신을 찾는 길	寻找自我之路	尋找自我之路
+186	area	186	rui_a03	The Acolyte's Burden	Stätte ruhigen Atems  	Cobijo del Acólito	Salle de repos des disciples	Ritrovo dei seguaci	修道者が息をつく場所	수도승의 쉼터	修道者歇息场所	修道者歇息場所
+187	area	187	rui_a04	Doubt Abandoned	Pfad des festen Glaubens	Camino de la Certeza	Cave des doutes abandonnés	Sentiero della decisione	迷いを捨てる路	번뇌를 버리는 길	舍弃迷惘之路	捨棄迷惘之路
+188	area	188	rui_a05	Skybent Chamber	Kammer des Himmelblickes	Cámara del Cielo	Coupole azurée	Stanza della preghiera	天をあおぐ部屋	하늘을 올려다보는 방	仰望天空房间	仰望天空房間
+189	area	189	-	-	-	-	-	-	-	-	-	-
+190	area	190	-	-	-	-	-	-	-	-	-	-
+191	area	191	-	-	-	-	-	-	-	-	-	-
+192	area	192	rui_b01	Destiny's March	Kanon-Gang	Pasaje del Destino	Couloirs du destin	Percorso dell'accettazione	定めを受け入れる路	운명을 받아들이는 길	接受宿命之路	接受宿命之路
+193	area	193	rui_b02	Temptation Eluded	Weg ohne Versuchung	Túnel de la Tentación Vencida	Tunnel de la tentation repoussée	Sala della risolutezza	誘惑を振りほどく路	유혹을 떨치는 길	摆脱诱惑之路	擺脫誘惑之路
+194	area	194	rui_b03	Chamber of the Chosen	Höhle der Auserwählten	Cámara del Elegido	Chambre des élus	Stanza degli eletti	選ばれし者の部屋	선택된 자의 방	天选之人房间	天選之人房間
+195	area	195	-	-	-	-	-	-	-	-	-	-
+196	area	196	-	-	-	-	-	-	-	-	-	-
+197	area	197	-	-	-	-	-	-	-	-	-	-
+198	area	198	rui_c01	Hall of Shadowlight	Halle finsteren Lichtes	Sala de la Luz Oscura	Hall de la lumière sombre	Salone della luce oscura	暗き光と対する広間	어두운 빛과 대면하는 홀	面对暗光大厅	面對暗光大廳
+199	area	199	-	-	-	-	-	-	-	-	-	-
+200	area	200	rui_d01	Hall of Lambent Darkness	Halle strahlender Dunkelheit	Sala de la Brillante Oscuridad	Hall des ténèbres lumineuses	Salone dell'oscurità illuminata	明るき闇と対する広間	밝은 어둠과 대면하는 홀	面对亮暗大厅	面對亮闇大廳
+201	area	201	-	-	-	-	-	-	-	-	-	-
+202	area	202	rui_e01	Hall of the Wroth God	Halle der Askese	Sala de la Ira Divina	Hall de la colère divine	Salone della furia divina	怒れる神と対する広間	분노한 신과 대면하는 홀	面对怒神大厅	面對怒神大廳
+203	area	203	-	-	-	-	-	-	-	-	-	-
+204	area	204	-	-	-	-	-	-	-	-	-	-
+205	area	205	-	-	-	-	-	-	-	-	-	-
+206	area	206	-	-	-	-	-	-	-	-	-	-
+207	area	207	-	-	-	-	-	-	-	-	-	-
+208	area	208	-	-	-	-	-	-	-	-	-	-
+209	area	209	mnt_a01	Southern Skirts	Südlicher Bergfuß	Falda Sur	Pied de la face sud	Pendici sud	南の山すそ	남쪽 산기슭	南侧山麓	南側山麓
+210	area	210	mnt_a02	Summit Path	Pfad zum Gipfel	Camino a la Cima	Sentiers du pic	Sentiero della vetta	頂きをのぞむ山道	정상이 보이는 산길	远眺顶端的山路	遠眺頂端的山路
+211	area	211	-	Babbling Vale	Rauschende Wasser	Paraje de los Manantiales	Val de chante-l'eau	Valle dell'acqua pura	水音の伝わる処	물소리가 나는 곳	传出水声之处	傳出水聲之處
+212	area	212	-	-	-	-	-	-	-	-	-	-
+213	area	213	-	-	-	-	-	-	-	-	-	-
+214	area	214	-	-	-	-	-	-	-	-	-	-
+215	area	215	mnt_b01	Rays of Ashen Light	Aschener Überhang	Rayos Cenizos	Corniche des rayons cendrés	Cornice cenerina	灰白のひさし	회백색 행랑	灰白之檐	灰白之簷
+216	area	216	mnt_b02	Empyrean Way	Weg zum Firmament	Senda Empírea	Piste céleste	Via del sublime	天空へ続く路	하늘로 이어지는 길	通往天空之路	通往天空之路
+217	area	217	mnt_b03	Skyreach Ridge	Himmelsgrat	Cresta Celeste	Crête céleste	Crinale celeste	空の果てを知る尾根	하늘의 끝을 아는 산등성이	知悉天边的山脊	知悉天邊的山脊
+218	area	218	mnt_b04	Trail of Sky-flung Stone	Klippenpfad	Sendero de Piedra	Sentier des dents de pierre	Sentiero delle rocce	岩板のそびえる路	석판이 우뚝 솟은 길	岩板耸立之路	岩板聳立之路
+219	area	219	mnt_b05	Northern Skirts	Nördlicher Bergfuß	Falda Norte	Pied de la face nord	Pendici nord	北の山すそ	북쪽 산기슭	北侧山麓	北側山麓
+220	area	220	mnt_b06	Halny Crossing	Fallwindbrücke	Puente del Adiós	Pont du Foehn	Ponte dello sconforto	やませおろす橋	산바람이 불어오는 다리	降下东风之桥	降下東風之橋
+221	area	221	-	-	-	-	-	-	-	-	-	-
+222	area	222	-	-	-	-	-	-	-	-	-	-
+223	area	223	mnt_c01	Empyrean Seat	Azurspitze	Cumbre Etérea	Cime céruléenne	Cima cerulea	蒼き天辺	푸른 꼭대기	苍蓝山顶	蒼藍山頂
+224	area	224	-	-	-	-	-	-	-	-	-	-
+225	area	225	-	-	-	-	-	-	-	-	-	-
+226	area	226	-	-	-	-	-	-	-	-	-	-
+227	area	227	dst_a01	The Stepping	Treppendüne	Colina Escalonada	Marches de sable	Poggio riarso	砂段の丘	모래 계단의 언덕	沙段山丘	沙段山丘
+228	area	228	dst_a02	Yardang Labyrinth	Sandlabyrinth	Laberinto de Arena	Dédale des pitons rocheux	Labirinto sabbioso	砂紋の迷宮	사문의 미궁	沙纹迷宫	沙紋迷宮
+229	area	229	dst_a03	Sand-swept Naze	Wüstenfeld	Explanada Árida	Sables-hauts	Sabbie ripide	砂原の天板	모래벌판	沙原天板	沙原天板
+230	area	230	dst_a04	Banks of the Nebra	Ufer des Nebula-Flusses	Orilla del Nebra	Bords du Nébra	Riva del Nebra	ネブラ河の岸辺	네브라 강 기슭	涅布拉河岸边	涅布拉河岸邊
+231	area	231	dst_a05	Passage Entrance	Eingang zu den Tunneln	Entrada a los Túneles	Entrée du passage de Barheim	Ingresso gallerie	地下道出入口	지하도 출입구	地下道出入口	地下道出入口
+232	area	232	dst_a06	Murmuring Defile	Ort abflauender Sandwinde	Refugio del desierto	Gorge des murmures	Anfratto senza vento	砂風止む地	모래바람이 멎는 땅	风沙止息之地	風沙止息之地
+233	area	233	dst_a07	Outpost	Kleines Camp	Campamento	Campement	Accampamento	小キャンプ	작은 야영장	小营地	小營地
+234	area	234	-	-	-	-	-	-	-	-	-	-
+235	area	235	-	-	-	-	-	-	-	-	-	-
+236	area	236	sav_a01	Throne Road	Weg zur Königsstadt	Camino Real	Route de Rabanastre	Via di Rabanastre	王都への街道	왕도로 이어진 가도	往王都的大道	往王都的大道
+237	area	237	sav_a02	Warrior's Wash	Krieger-Auen	Aguas del Guerrero	Bassin du guerrier	Fiume del guerriero	戦士の河	전사의 강	战士之河	戰士之河
+238	area	238	sav_a03	Gizas North Bank	Nordufer des Gizas	Orilla Norte del Río Gizas	Rive nord de la Gizas	Riva nord del Gizas	ギーザス川沿岸北側	기자스 강 연안 북쪽	基惹士河沿岸北侧	居札斯河沿岸北側
+239	area	239	sav_a04	Toam Hills	Tohm-Hügel	Colinas de Toom	Buttes de Tohm	Colline Toum	トーム丘陵	톰 언덕	托姆丘陵	托姆丘陵
+240	area	240	-	-	-	-	-	-	-	-	-	-
+241	area	241	-	-	-	-	-	-	-	-	-	-
+242	area	242	-	-	-	-	-	-	-	-	-	-
+243	area	243	sav_b01	Nomad Village	Nomadensiedlung	Poblado Nómada	Village des nomades	Villaggio nomade	遊牧民の集落	유목민 취락	游牧民族聚落	遊牧民族聚落
+244	area	244	-	-	-	-	-	-	-	-	-	-
+245	area	245	-	-	-	-	-	-	-	-	-	-
+246	area	246	-	-	-	-	-	-	-	-	-	-
+247	area	247	sav_c01	Starfall Field	Sternregenfeld	Campo de las Estrellas	Champ de tombétoiles	Landa delle stelle	星ふり原	별이 내리는 평원	流星原	流星平原
+248	area	248	sav_c02	Crystal Glade	Kristallgefilde	Cristal Joven	Clairière du cristal	Sponda del cristallo	幼き水晶のほとり	어린 수정 근처	幼小水晶的河畔	幼小水晶的河畔
+249	area	249	sav_c03	Gizas South Bank	Südufer des Gizas	Orilla Sur del Río Gizas	Rive sud de la Gizas	Riva sud del Gizas	ギーザス川沿岸南側	기자스 강 연안 남쪽	基惹士河沿岸南侧	居札斯河沿岸南側
+250	area	250	-	-	-	-	-	-	-	-	-	-
+251	area	251	-	-	-	-	-	-	-	-	-	-
+252	area	252	-	-	-	-	-	-	-	-	-	-
+253	area	253	sav_d01	Throne Road	Weg zur Königsstadt	Camino Real	Route de Rabanastre	Via di Rabanastre	王都への街道	왕도로 이어진 가도	往王都的大道	往王都的大道
+254	area	254	sav_d02	Warrior's Wash	Krieger-Auen	Aguas del Guerrero	Bassin du guerrier	Fiume del guerriero	戦士の河	전사의 강	战士之河	戰士之河
+255	area	255	sav_d03	Gizas North Bank	Nordufer des Gizas	Orilla Norte del Río Gizas	Rive nord de la Gizas	Riva nord del Gizas	ギーザス川沿岸北側	기자스 강 연안 북쪽	基惹士河沿岸北侧	居札斯河沿岸北側
+256	area	256	sav_d04	Toam Hills	Tohm-Hügel	Colinas de Toom	Buttes de Tohm	Colline Toum	トーム丘陵	톰 언덕	托姆丘陵	托姆丘陵
+257	area	257	-	-	-	-	-	-	-	-	-	-
+258	area	258	-	-	-	-	-	-	-	-	-	-
+259	area	259	-	-	-	-	-	-	-	-	-	-
+260	area	260	sav_e01	Nomad Village	Nomadensiedlung	Poblado Nómada	Village des nomades	Villaggio nomade	遊牧民の集落	유목민 취락	游牧民族聚落	遊牧民族聚落
+261	area	261	-	-	-	-	-	-	-	-	-	-
+262	area	262	-	-	-	-	-	-	-	-	-	-
+263	area	263	-	-	-	-	-	-	-	-	-	-
+264	area	264	sav_f01	Starfall Field	Sternregenfeld	Campo de las Estrellas	Champ de tombétoiles	Landa delle stelle	星ふり原	별이 내리는 평원	流星平原	流星平原
+265	area	265	sav_f02	Crystal Glade	Kristallgefilde	Cristal Joven	Clairière du cristal	Sponda del cristallo	幼き水晶のほとり	어린 수정 근처	幼小水晶的河畔	幼小水晶的河畔
+266	area	266	sav_f03	Gizas South Bank	Südufer des Gizas	Orilla Sur del Río Gizas	Rive sud de la Gizas	Riva sud del Gizas	ギーザス川沿岸南側	기자스 강 연안 남쪽	基惹士河沿岸南侧	居札斯河沿岸南側
+267	area	267	-	-	-	-	-	-	-	-	-	-
+268	area	268	-	-	-	-	-	-	-	-	-	-
+269	area	269	-	-	-	-	-	-	-	-	-	-
+270	area	270	sav_g01	Tracks of the Beast	Feld der Bestienspuren	Pisadas de Coloso	Empreintes de la bête	Orme di bestia	巨獣の足跡	거수의 발자취	巨兽足迹	巨獸足跡
+271	area	271	-	-	-	-	-	-	-	-	-	-
+272	area	272	-	-	-	-	-	-	-	-	-	-
+273	area	273	-	-	-	-	-	-	-	-	-	-
+274	area	274	naf_a01	Aerial Gardens	Wandelgarten	Jardines Elevados	Jardins suspendus	Giardino sospeso	空中庭園	공중 정원	空中庭园	空中庭園
+275	area	275	naf_a02	Inner Ward	Hinter den Festungsmauern	Muralla Interior	Enceinte	Quartiere interno	内郭	내곽	内城	內城
+276	area	276	-	-	-	-	-	-	-	-	-	-
+277	area	277	-	-	-	-	-	-	-	-	-	-
+278	area	278	-	-	-	-	-	-	-	-	-	-
+279	area	279	naf_b01	Lower Apartments	Mittlere Ebene	Nivel Medio	Appartements inférieurs	Piano intermedio	中層	중층	中层	中層
+280	area	280	naf_b02	Upper Apartments	Obere Ebene	Nivel Alto	Appartements supérieurs	Piano superiore	上層	상층	上层	上層
+281	area	281	-	-	-	-	-	-	-	-	-	-
+282	area	282	naf_b04	The Highhall	Oberstes Stockwerk	Piso Superior	Hauts appartements	Ultimo piano	最上階	최상층	最上层	最上層
+283	area	283	-	-	-	-	-	-	-	-	-	-
+284	area	284	-	-	-	-	-	-	-	-	-	-
+285	area	285	-	-	-	-	-	-	-	-	-	-
+286	area	286	dor_b01	Energy Transitarium	Energieversorgungsstation	Instalación Energética	Centrale d'alimentation	Centrale di alimentazione	エネルギー送配施設	에너지 수송 시설	能源输送设施	能源輸送設施
+287	area	287	-	-	-	-	-	-	-	-	-	-
+288	area	288	-	-	-	-	-	-	-	-	-	-
+289	area	289	rbn_a01	North End	Nordstadt	Distrito Norte	Quartier résidentiel	Quartiere nord	市街地北部	시가지 북부	市区北部	市區北部
+290	area	290	rbn_a02	Muthru Bazaar	Muzzur-Bazar	Distrito Oeste - Bazar Muthru	Marché de Mussul	Quartiere ovest - bazar Misir	市街地西部{blank}ムスル・バザー	시가지 서부 무슬 바자	市区西部{blank}牟斯鲁市集	市區西部{blank}牟斯魯市集
+291	area	291	rbn_a03	East End	Oststadt	Distrito Este	Quartier commerçant	Quartiere est	市街地東部	시가지 동부	市区东部	市區東部
+292	area	292	rbn_a04	Southern Plaza	Platz an den Toren	Plaza de las Puertas	Place des trois portes	Piazza delle porte	外門前広場	외문 앞 광장	外门前广场	外門前廣場
+293	area	293	-	NOT USED	Südstadt	Distrito Sur	Quartier sud	Quartiere sud	市街地南部	시가지 남부	市区南部	市區南部
+294	area	294	-	NOT USED	Hauptstraße	Calle principal	Rue principale	Via principale	メインストリート	메인 스트리트	主街道	主街道
+295	area	295	rbn_a07	Amal's Weaponry	Amals Waffenkammer	Armería Amal	Armurerie Amal	Armeria Ahmar	アマルの武具ショップ	아말의 무구 상점	阿玛尔武具店	阿瑪爾武具店
+296	area	296	rbn_a08	Panamis's Protectives	Banamis' Rassige Rüstungen	Coracería Panamis	Protections Panamis	Protezioni Panamis	バナミスの防具ショップ	바나미스의 방어구 상점	帕那米斯防具店	帕那米斯防具店
+297	area	297	rbn_a09	Migelo's Sundries	Migelos Allerlei	Botica Migelo	Bazar de Migelo	Oggetti Migelo	ミゲロの道具ショップ	미겔로의 도구 상점	密捷罗道具店	密捷羅道具店
+298	area	298	rbn_a10	Yugri's Magicks	Yuglis Magische Welten	Casa Mágica Yugri	Magies Yugri	Magicheria Yuguri	ユグリの魔法ショップ	유그리의 마법 상점	尤格里魔法店	尤格里魔法店
+299	area	299	rbn_a11	Batahn's Technicks	Batans Technikstübchen	Casa Técnica Batahn	Techniques Batan	Tecnicheria Batan	バタンの武技ショップ	바탄의 스킬 상점	巴坦武技店	巴坦武技店
+300	area	300	rbn_a12	Yamoora's Gambits	Yamras Gambit-Handlung	Gambitería Yamura	Gambits Yamoora	Gambitteria Yamra	ヤムラのガンビット・ショップ	야무라의 갬빗 상점	雅穆拉作战布局店	雅穆拉作戰布局店
+301	area	301	rbn_a13	Samalzalam Manor	Zamar'Salam-Residenz	Mansión Samalzalam	Résidence Samalzalam	Residenza Samalzaram	サマルザラム邸	사말잘람 저택	萨茂查兰宅第	薩茂查蘭宅第
+302	area	302	rbn_a14	The Clan Hall	Clan-Hauptquartier	Sede del Clan	Hall du clan	Sede del clan	クラン本部	클랜 본부	公会总部	公會總部
+303	area	303	-	-	-	-	-	-	-	-	-	-
+304	area	304	rbn_a16	The Sandsea	Zum Sandmeer	Taberna Oasis	La Mer de Sable	Taverna del Mare di sabbia	砂海亭	사해정	沙海亭	沙海亭
+305	area	305	rbn_a17	Eastgate	Osttor	Puerta Este	Porte est	Porta est	東門	동문	东门	東門
+306	area	306	rbn_a18	Southgate	Südtor	Puerta Sur	Porte sud	Porta sud	南門	남문	南门	南門
+307	area	307	rbn_a19	Westgate	Westtor	Puerta Oeste	Porte ouest	Porta ovest	西門	서문	西门	西門
+308	area	308	-	-	-	-	-	-	-	-	-	-
+309	area	309	-	-	-	-	-	-	-	-	-	-
+310	area	310	-	-	-	-	-	-	-	-	-	-
+311	area	311	grm_a01	Central Spur Stairs	Haupttreppe	Escalera de Acceso Central	Escaliers secondaires centraux	Scala ausiliaria centrale	中央補助階段	중앙 보조 계단	中央辅助阶梯	中央輔助階梯
+312	area	312	grm_a02	East Waterway Control	Flusskontrollsektion Ost	Zona de Ajuste Este	Ecluses est	Controllo sbarramento est	東部通水制御区画	동부 수로 제어 구획	东部通水控制区块	東部通水控制區塊
+313	area	313	grm_a03	North Spur Sluiceway	Stauwasserzulauf Nord	Acueducto Auxiliar Norte	Canal secondaire nord	Canale ausiliario nord	北部補助水路	북부 보조 수로	北部辅助水路	北部輔助水路
+314	area	314	grm_a04	East Spur Stairs	Zusatztreppe Ost	Escalera de Acceso Este	Escaliers secondaires est	Scala ausiliare est	東側補助階段	동쪽 보조 계단	东侧辅助阶梯	東側輔助階梯
+315	area	315	grm_a05	Northern Sluiceway	Wasserzulauf Nord	Esclusa Norte	Aqueducs nord	Collettori nord	北部取水廊	북부 취수 회랑	北部取水廊	北部取水廊
+316	area	316	grm_a06	East Waterway Control	Flusskontrollsektion Ost	Zona de Ajuste Este	Ecluses est	Controllo sbarramento est	東部通水制御区画	동부 수로 제어 구획	东部通水控制区块	東部通水控制區塊
+317	area	317	-	-	-	-	-	-	-	-	-	-
+318	area	318	grm_b01	No. 11 Channel	Hauptkanalsektion 11	Acueducto n.° 11	Canal principal n°11	Canale principale 11	第11主水路	제11메인 수로	第11主水路	第11主水路
+319	area	319	grm_b02	East Sluice Control	Pegelkontrollsektion Ost	Sección de Control Este	Canaux de régulation est	Area livellamento est	東部水量調整区	동부 수량 조정구	东部水量调整区	東部水量調整區
+320	area	320	grm_b03	West Sluice Control	Pegelkontrollsektion West	Sección de Control Oeste	Canaux de régulation ouest	Area livellamento ovest	西部水量調整区	서부 수량 조정구	西部水量调整区	西部水量調整區
+321	area	321	grm_b04	No. 10 Channel	Hauptkanalsektion 10	Acueducto n.° 10	Canal principal n°10	Canale principale 10	第10主水路	제10메인 수로	第10主水路	第10主水路
+322	area	322	grm_b05	Central Waterway Control	Zentrales Schleusenbecken	Sección de Control Central	Ecluses centrales	Controllo centrale	中央制御区画	중앙 제어 구역	中央控制区块	中央控制區塊
+323	area	323	-	-	-	-	-	-	-	-	-	-
+324	area	324	-	-	-	-	-	-	-	-	-	-
+325	area	325	-	-	-	-	-	-	-	-	-	-
+326	area	326	grm_c01	Southern Sluiceway	Wasserzulauf Süd	Esclusa Sur	Aqueducs sud	Collettori sud	南部取水廊	남부 취수 회랑	南部取水廊	南部取水廊
+327	area	327	-	-	-	-	-	-	-	-	-	-
+328	area	328	-	-	-	-	-	-	-	-	-	-
+329	area	329	grm_d01	Overflow Cloaca	Endklärsektion	Depósito Principal	Cloaque de réserve	Vasche di raccolta	最終処理区画	최종 처리 구역	最终处理区块	最終處理區塊
+330	area	330	-	-	-	-	-	-	-	-	-	-
+331	area	331	-	-	-	-	-	-	-	-	-	-
+332	area	332	gil_g01	A Vikaari Bhrum	Supra Mobilitas Perm	Sup Trans Permi	Trans Ascen Perm	Super Meta Perm	ア・シフト・ベルム	아 시프트 브룸	升移·二迭纪	昇移·二疊紀
+333	area	333	gil_g02	Trahk Pis Praa	Trias Marag O	Triasi Endo Es	Trias Medulla E	Trias Mydol E	トリアック・ピス・イ	트리악 피스 이	三迭纪·髓部·东	三疊紀·髓部·東
+334	area	334	gil_g03	Sthaana Pisces	Iustare Pisces	Inter Piscis	Clavis Pisces	Connex Pesci	セット・パイシーズ	세트 파이시즈	控管·双鱼宫	控管·雙魚宮
+335	area	335	gil_g04	Dha Vikaari Jula	Infra Mobilitas Jura	Inf Trans Jurasi	Trans Descen Jurass	Infer Meta Giuras	ダ・シフト・ジュラ	다 시프트 주라	降移·侏罗纪	降移·侏羅紀
+336	area	336	gil_g05	Trahk Jilaam Praa'dii	Trias Xylem OEn	Triasi Meso Esno	Trias Xylon E-N	Trias Xilem EN	トリアック・ザイレム・イノ	트리악 자일램 이노	三迭纪·质部·东北	三疊紀·質部·東北
+337	area	337	gil_g06	Sthaana Aries	Iustare Aries	Inter Aries	Clavis Aries	Connex Ariete	セット・アリエス	세트 아리에스	控管·白羊宫	控管·白羊宮
+338	area	338	-	-	-	-	-	-	-	-	-	-
+339	area	339	-	-	-	-	-	-	-	-	-	-
+340	area	340	-	-	-	-	-	-	-	-	-	-
+341	area	341	gil_g10	Crystal Core	Kristallkern	Núcleo del Cristal	Cœur du cristal	Cuore del cristallo	クリスタル・コア	크리스털 코어	水晶核	水晶核
+342	area	342	grm_f01	No. 1 Cloaca	Klärsektion 1	Zona de Depuración n.° 1	Cloaque n°1	Area smaltimento 1	第１処理区	제1처리 구역	第１处理区	第１處理區
+343	area	343	-	-	-	-	-	-	-	-	-	-
+344	area	344	-	-	-	-	-	-	-	-	-	-
+345	area	345	wdl_a01	Galtea Downs	Galtea-Hügel	Colina Galteana	Dunes de Galtéa	Dune di Galtea	ガルテア丘陵	갈테아 구릉	加尔提亚丘陵	加爾提亞丘陵
+346	area	346	wdl_a02	Corridor of Sand	Sandfelde	Corredor de Arena	Corridor de sable	Corridoio di sabbia	砂漠の回廊	사막의 회랑	沙漠回廊	沙漠迴廊
+347	area	347	wdl_a03	Shimmering Horizons	Sonnenverbrannte Erde	Llano de la Calina	Sables miroitants	Orizzonte incandescente	陽炎立つ地平	아지랑이 피는 지평선	热浪升起的平地	熱浪昇起的平地
+348	area	348	wdl_a04	The Midfault	Felsfalte	Falla Central	Faille centrale	Faglia centrale	中央断層	중앙 단층	中央断层	中央斷層
+349	area	349	wdl_a05	Windtrace Dunes	Sandene Muster	Arenas Onduladas	Sables ondoyants	Sabbie increspate	風紋の地	풍문의 땅	风纹之地	風紋之地
+350	area	350	wdl_a06	The Western Divide	Westgrenze	Linde Oeste	Lisière ouest	Confine ovest	西境界壁	서쪽 경계벽	西边界墙	西邊界牆
+351	area	351	-	-	-	-	-	-	-	-	-	-
+352	area	352	-	-	-	-	-	-	-	-	-	-
+353	area	353	-	-	-	-	-	-	-	-	-	-
+354	area	354	wdl_b01	Wyrm's Nest	Drachenhort	Nido del Dragón	Repaire du dragon	Tana del drago	竜のねぐら	용의 둥지	龙巢	龍巢
+355	area	355	-	-	-	-	-	-	-	-	-	-
+356	area	356	-	-	-	-	-	-	-	-	-	-
+357	area	357	lus_a01	Shaft Entry	Stolleneingang	Entrada	Entrée	Entrata	坑道入口	갱도 입구	坑道入口	坑道入口
+358	area	358	lus_a02	Oltam Span	Ortam-Brücke	Puente Oltam	Pont Oltam	Ponte Ortam	オルタム橋	올텀 다리 	欧坦桥	歐坦橋
+359	area	359	lus_a03	Transitway 1	Transportroute 1	Ruta de Transporte 1	Section 1	Binario 1	第１運送路	제1운송로	第１运送路	第１運送路
+360	area	360	lus_a04	Transitway 2	Transportroute 2	Ruta de Transporte 2	Section 2	Binario 2	第２運送路	제2운송로	第２运送路	第２運送路
+361	area	361	-	-	-	-	-	-	-	-	-	-
+362	area	362	-	-	-	-	-	-	-	-	-	-
+363	area	363	-	-	-	-	-	-	-	-	-	-
+364	area	364	-	-	-	-	-	-	-	-	-	-
+365	area	365	lus_b01	Shunia Twinspan	Snija-Spiegelbrücke	Puente Doble Shunia	Ponts parallèles de Shunia	Doppio ponte Sunya	スーニア平行橋	스니어 평행교	苏尼亚平行桥	蘇尼亞平行橋
+366	area	366	lus_b02	Site 2	Flöz 2	Galería de Extracción 2	Site n°2	Area estrattiva 2	第２鉱区採掘場	제2광구 채굴장	第２矿区采掘场	第２礦區採掘場
+367	area	367	lus_b03	Site 3	Flöz 3	Galería de Extracción 3	Site n°3	Area estrattiva 3	第３鉱区採掘場	제3광구 채굴장	第３矿区采掘场	第３礦區採掘場
+368	area	368	-	-	-	-	-	-	-	-	-	-
+369	area	369	lus_c01	Tasche Span	Tashee-Brücke	Puente Tasche	Pont Tasche	Ponte Tash	タッシェ橋	타셰 다리	它薛桥	它薛橋
+370	area	370	-	-	-	-	-	-	-	-	-	-
+371	area	371	-	-	-	-	-	-	-	-	-	-
+372	area	372	lus_d01	Site 9	Flöz 9	Galería de Extracción 9	Site n°9	Area estrattiva 9	第９鉱区採掘場	제9광구 채굴장	第９矿区采掘场	第９礦區採掘場
+373	area	373	-	-	-	-	-	-	-	-	-	-
+374	area	374	lus_d03	Site 11	Flöz 11	Galería de Extracción 11	Site n°11	Area estrattiva 11	第11鉱区採掘場	제11광구 채굴장	第11矿区采掘场	第11礦區採掘場
+375	area	375	-	-	-	-	-	-	-	-	-	-
+376	area	376	lus_e01	Site 7	Flöz 7	Galería de Extracción 7	Site n°7	Area estrattiva 7	第７鉱区採掘場	제7광구 채굴장	第７矿区采掘场	第７礦區採掘場
+377	area	377	-	-	-	-	-	-	-	-	-	-
+378	area	378	-	-	-	-	-	-	-	-	-	-
+379	area	379	ene_a01	Platform 1 - East Tanks	Ost-Tanks	Plataforma 1 - Tanques Este	Plateforme 1 - Réservoirs est	Raffineria 1 - cisterne est	第１工場東側タンク	제1공장 동쪽 탱크	第１工厂东侧油槽	第１工廠東側油槽
+380	area	380	ene_a02	Platform 1 - Refinery	Raffinerie I	Plataforma 1 - Refinería	Plateforme 1 - Raffinerie	Raffineria 1	第１石油工場	제1석유 공장	第１石油工厂	第１石油工廠
+381	area	381	ene_a03	East Junction	Ost-Verbindung	Enlace Este	Jonction est	Raccordo est	東ジャンクション	동쪽 교차로	东侧结点	東側結點
+382	area	382	ene_a04	Primary Tank Complex	Großtank-Feld	Red de Grandes Tanques	Zone de stockage	Area depositi	大型タンク基地	대형 탱크 기지	大型油槽基地	大型油槽基地
+383	area	383	ene_a05	Central Junction	Zentral-Verbindung	Enlace Central	Jonction centrale	Raccordo centrale	中央ジャンクション	중앙 교차로	中央结点	中央結點
+384	area	384	ene_a06	Platform 1 - South Tanks	Süd-Tanks	Plataforma 1 - Tanques Sur	Plateforme 1 - Réservoirs sud	Raffineria 1 - cisterne sud	第１工場南側タンク	제1공장 남쪽 탱크	第１工厂南侧油槽	第１工廠南側油槽
+385	area	385	ene_a07	Platform 2 - Refinery	Raffinerie II	Plataforma 2 - Refinería	Plateforme 2 - Raffinerie	Raffineria 2	第２石油工場	제2석유 공장	第２石油工厂	第２石油工廠
+386	area	386	ene_a08	Yensa Border Tunnel	Yensa-Grenztunnel	Túnel Ogul-Nam	Tunnel limitrophe	Tunnel Yensa	エンサ境界トンネル	옌사 경계 터널	焉萨边界隧道	焉薩邊界隧道
+387	area	387	ene_a09	South Tank Approach	Südliche Tankzufahrt	Acceso a los Tanques Sur	Accès aux réservoirs sud	Cisterne - entrata sud	南側タンクアプローチ	남쪽 탱크 진입로	南侧油槽通道	南側油槽通道
+388	area	388	-	-	-	-	-	-	-	-	-	-
+389	area	389	-	-	-	-	-	-	-	-	-	-
+390	area	390	enw_a01	The Urutan-Yensa Sea	Urutan-Yensa-Sandsee	Mar de los Urutan Yensa	Mer des urutans-yensas	Mare Urutan Yensa	ウルタン・エンサの海	우루탄 옌사의 바다	兀鲁坦·焉萨族之海	兀魯坦·焉薩族之海
+391	area	391	enw_a02	Withering Shores	Schwindende Küste	Orillas Erosionadas	Rivages érodés	Riva erosa	風化する岸辺	풍화되는 해안	风化的岸边	風化的岸邊
+392	area	392	enw_a03	Augur Hill	Sandlese-Hügel	Colina Polvorienta	Dunes de l'oracle	Dune della divinazione	砂を読む丘	모래를 읽는 언덕	阅沙山丘	閱沙山丘
+393	area	393	enw_a04	Yellow Sands	Ersehnte gelbe Erde	Arenas Doradas	Sables ocres	Sabbie gialle	黄砂のたどりつく地	황사가 다다르는 땅	黄沙抵达之地	黃沙抵達之地
+394	area	394	enw_a05	The Sandscale Bank	Sandfischküste	Banco de Arenisca	Crique des écailles de sable	Terra dei pesci sabbia	砂魚たちのみぎわ	모래 물고기들의 물가	沙鱼的海滨	沙魚的海濱
+395	area	395	-	-	-	-	-	-	-	-	-	-
+396	area	396	-	-	-	-	-	-	-	-	-	-
+397	area	397	-	-	-	-	-	-	-	-	-	-
+398	area	398	enw_b01	Demesne of the Sandqueen	Königinnensande	Valle de la Reina	Domaine de la reine des sables	Deserto della regina	女王の治める砂原	여왕이 다스리는 모래벌판	女王治理的沙原	女王治理的沙原
+399	area	399	enw_b02	Trail of Fading Warmth	Weg der Abkühlung	Senda del Calor Mermante	Chemin de la chaleur évanescente	Sentiero freddo	ぬくもりの消える路	온기가 사라지는 길	温暖消逝之路	溫暖消逝之路
+400	area	400	enw_b03	Simoon Bluff	Anhöhe heißer Winde	Loma del Viento Cálido	Falaise du souffle ardent	Altopiano ventoso	熱風の下りる高台	뜨거운 바람이 내리는 언덕	热风吹下的高台	熱風吹下的高台
+401	area	401	-	-	-	-	-	-	-	-	-	-
+402	area	402	-	-	-	-	-	-	-	-	-	-
+403	area	403	rwg_a01	Valley of the Dead	Tal der Toten	Valle de los Muertos	Vallée des morts	Valle dei morti	死者の谷	망자의 골짜기	死者山谷	死者山谷
+404	area	404	-	-	-	-	-	-	-	-	-	-
+405	area	405	-	-	-	-	-	-	-	-	-	-
+406	area	406	rwg_b01	Hall of the Destroyer	Gang stürmender Wände	Sala del Muro Destructor	Hall du Destructeur	Sala dell'attacco	攻壁の間	공벽의 방	攻壁之室	攻壁之室
+407	area	407	rwg_b02	Hall of the Sentinel	Gang schützender Wände 	Sala del Muro Protector	Hall du Gardien	Sala della difesa	守壁の間	수벽의 방	守壁之室	守壁之室
+408	area	408	-	-	-	-	-	-	-	-	-	-
+409	area	409	-	-	-	-	-	-	-	-	-	-
+410	area	410	rwg_c01	Royal Passage	Große Passage	Gran Pasaje	Grand-hall	Scalone reale	大通廊	대회랑	大通廊	大通廊
+411	area	411	rwg_c02	Southfall Passage	Südflügel-Galerie	Ala Sur	Aile sud	Corridoio sud	南翼の通廊	남쪽 통로	南翼通廊	南翼通廊
+412	area	412	rwg_c03	Northfall Passage	Nordflügel-Galerie	Ala Norte	Aile nord	Corridoio nord	北翼の通廊	북쪽 통로	北翼通廊	北翼通廊
+413	area	413	-	-	-	-	-	-	-	-	-	-
+414	area	414	-	-	-	-	-	-	-	-	-	-
+415	area	415	rwg_d01	Cloister of Flame	Flackernde Korridore	Claustro de las Llamas	Cloître des flammes	Corridoio delle fiamme	火炎の回廊	화염의 회랑	火焰回廊	火焰迴廊
+416	area	416	-	-	-	-	-	-	-	-	-	-
+417	area	417	-	-	-	-	-	-	-	-	-	-
+418	area	418	rwg_e01	Chamber of First Light	Raum des anbrechenden Tages	Sala del Alba	Coupole du point du jour	Sala degli albori	暁天の間	효천의 방	晓天之室	曉天之室
+419	area	419	-	-	-	-	-	-	-	-	-	-
+420	area	420	-	-	-	-	-	-	-	-	-	-
+421	area	421	bds_a01	Hall of Effulgent Light	Lichtdurchflutete Korridore	Pasaje de las Luces	Corridors de la lumière éclatante	Corridoio della luce	光満ちる回廊	빛이 가득한 회랑	光芒四射回廊	光芒四射迴廊
+422	area	422	bds_a02	Cloister of Distant Song	Flure sanfter Melodien	Salones de la Armonía	Corridors de la douce mélodie	Sala della dolce melodia	美しき調べの間	아름다운 선율의 방	美妙旋律之室	美妙旋律之室
+423	area	423	-	bds_a03	bds_a03	bds_a03	bds_a03	bds_a03	bds_a03	bds_a03	bds_a03	bds_a03
+424	area	424	-	-	-	-	-	-	-	-	-	-
+425	area	425	-	-	-	-	-	-	-	-	-	-
+426	area	426	bds_b01	Cloister of the Highborn	Nischen der Edelmütigen	Salones de la Nobleza	Corridors des bien-nés	Sala dei magnanimi	気高き者たちの間	고고한 이들의 방	崇高者之室	崇高者之室
+427	area	427	-	bds_b02	bds_b02	bds_b02	bds_b02	bds_b02	bds_b02	bds_b02	bds_b02	bds_b02
+428	area	428	-	-	-	-	-	-	-	-	-	-
+429	area	429	-	-	-	-	-	-	-	-	-	-
+430	area	430	bds_c01	Hall of the Ivory Covenant	Gang reiner Versprechen	Pasaje del Pacto Blanco	Corridors du blanc serment	Corridoio della promessa	白き約束の回廊	흰 약속의 회랑	皓白承诺回廊	皓白承諾迴廊
+431	area	431	bds_c02	Hall of Slumbering Might	Kraftstrotzende Korridore	Galería del Poder	Corridors de la force latente	Corridoio della forza	力宿る回廊	힘이 깃드는 회랑	孕育力量回廊	孕育力量迴廊
+432	area	432	-	-	-	-	-	-	-	-	-	-
+433	area	433	-	bds_d01	bds_d01	bds_d01	bds_d01	bds_d01	bds_d01	bds_d01	bds_d01	bds_d01
+434	area	434	-	bds_d02	bds_d02	bds_d02	bds_d02	bds_d02	bds_d02	bds_d02	bds_d02	bds_d02
+435	area	435	-	bds_d03	bds_d03	bds_d03	bds_d03	bds_d03	bds_d03	bds_d03	bds_d03	bds_d03
+436	area	436	-	-	-	-	-	-	-	-	-	-
+437	area	437	-	-	-	-	-	-	-	-	-	-
+438	area	438	bds_e01	The Crucible	Kammer mutigen Strebens	Claustro del Valor	Hall des preux desseins	Sala del coraggio	勇なる望みの間	용감한 희망의 방	勇敢冀望之室	勇敢冀望之室
+439	area	439	-	-	-	-	-	-	-	-	-	-
+440	area	440	-	-	-	-	-	-	-	-	-	-
+441	area	441	bds_f01	Cloister of Solace	Kammer unermesslichen Trostes	Claustro del Consuelo	Hall de la grande consolation	Sala della consolazione	大いなるなぐさめの間	위대한 위로의 방	伟大慰藉之室	偉大慰藉之室
+442	area	442	-	-	-	-	-	-	-	-	-	-
+443	area	443	-	-	-	-	-	-	-	-	-	-
+444	area	444	bds_g01	Cloister of Reason	Kammer unumstößlicher Logik	Claustro de la Determinación	Hall de la raison inébranlable	Sala della ragione	ゆらぎなき理の間	흔들림 없는 이치의 방	不变真理之室	不變真理之室
+445	area	445	-	-	-	-	-	-	-	-	-	-
+446	area	446	-	-	-	-	-	-	-	-	-	-
+447	area	447	gol_a01	Paths of Chained Light	Lichtlose Pfade	Senderos sin Sol	Chemin de la lumière perdue	Sentiero senza luce	光閉ざされし路	빛이 닫히는 길	遮蔽光明之路	遮蔽光明之路
+448	area	448	gol_a02	The Needlebrake	Irrwege	Senda Rompeagujas	Dédale des aiguilles folles	Sentiero della confusione	針を狂わせる路	바늘을 미치게 하는 길	指针紊乱之路	指針紊亂之路
+449	area	449	gol_a03	Whisperleaf Way	Wispernde Bäume	Árboles Susurrantes	Passage des arbres chuchotants	Sentiero del sussurro verde	ささやく木々の路	속삭이는 나무들의 길	树木呢喃之路	樹木呢喃之路
+450	area	450	gol_a04	The Parting Glade	Stätte der Voraussicht	Explanada del Porvenir	Clairière de la vision	Spiazzo dell'auspicio	先を見通す広場	앞을 내다보는 광장	遥望广场	遙望廣場
+451	area	451	-	gol_a05	gol_a05	gol_a05	gol_a05	gol_a05	gol_a05	gol_a05	gol_a05	gol_a05
+452	area	452	-	-	-	-	-	-	-	-	-	-
+453	area	453	gol_b01	The Rustling Chapel	Pfad fallender Blätter	Camino Foliáceo	Chapelle des bruissements	Sentiero delle avversità	葉ずれのしみる路	나뭇잎 소리가 스미는 길	叶声刺耳之路	葉聲刺耳之路
+454	area	454	-	-	-	-	-	-	-	-	-	-
+455	area	455	-	-	-	-	-	-	-	-	-	-
+456	area	456	gol_c01	Dell of the Dreamer	Platz der schlafenden Bäume	Árboles Durmientes	Dôme du rêveur	Antro del sonno turbato	眠れる大樹の広場	잠든 거목의 광장	沉眠大树广场	沉眠大樹廣場
+457	area	457	-	-	-	-	-	-	-	-	-	-
+458	area	458	-	-	-	-	-	-	-	-	-	-
+459	area	459	gol_d01	The Branchway	Schneisen im Dickicht	Camino Bifurcado	Les deux branches	Biforcazione	枝葉の分かれる路	가지와 잎이 갈라지는 길	枝叶开散之路	枝葉開散之路
+460	area	460	gol_d02	The Greenswathe	Grüngetränkte Pfade	Vía Verde	Tunnels d'émeraude	Cunicoli verdi	緑に沈む路	녹음에 잠긴 길	沉于绿意之路	沉於綠意之路
+461	area	461	-	-	-	-	-	-	-	-	-	-
+462	area	462	-	-	-	-	-	-	-	-	-	-
+463	area	463	pbc_a01	Fading Vale	Farbloses Tal	Valle Incoloro	Vallée blanche	Burrone grigio	色失う谷間	색을 잃은 골짜기	褪色峡谷	褪色峽谷
+464	area	464	pbc_a02	Head of the Silverflow	Ursprung des Silberstromes	Nacimiento del Arroyo de Plata	Source du fil d'argent	Inizio del corso argenteo	銀流の始まり	은류의 시작	银流的起点	銀流的起點
+465	area	465	pbc_a03	Freezing Gorge	Gefrorene Pfade	Desfiladero Gélido	Vallée de glace	Strada del gelo	凍りつく歩み	얼어붙은 걸음	冻结的步伐	凍結的步伐
+466	area	466	-	-	-	-	-	-	-	-	-	-
+467	area	467	-	-	-	-	-	-	-	-	-	-
+468	area	468	pbc_b01	Frozen Brook	Vereiste Stromschnellen	Arroyo Congelado	Rivière gelée	Ruscello gelato	氷結するせせらぎ	얼어붙은 개울	结冰小溪	結冰小溪
+469	area	469	pbc_b02	Icebound Flow	Erstarrte Wasser	Aguas Heladas	Glaces éternelles	Fiume di ghiaccio	解けることなき流れ	녹지 않는 강	永不融解的水流	永不融解的水流
+470	area	470	pbc_b03	Karydine Glacier	Garlydain-Gletscher	Glaciar de Karidain	Delta de Karydine	Ghiacciaio Fardayn	カーリダイン大氷河	캐리다인 대빙하	卡瑞丹大冰河	卡瑞丹大冰河
+471	area	471	-	-	-	-	-	-	-	-	-	-
+472	area	472	-	-	-	-	-	-	-	-	-	-
+473	area	473	pbc_c01	Path of the Firstfall	Wehflockenklamm	Senda del Viento	Passage des premières neiges	Sentiero del velo bianco	風花散る小道	눈발이 휘날리는 샛길	风花飘散的小路	風花飄散的小路
+474	area	474	pbc_c02	Spine of the Icewyrm	Eisdrachengrab	Dragón de Hielo	Echine du dragon de glace	Roccia del drago	氷竜の骨	빙룡의 뼈	冰龙之骨	冰龍之骨
+475	area	475	pbc_c03	Silverflow's End	Mündung des Silberstromes	Fin del Arroyo de Plata	Embouchure du fil d'argent	Fine del corso argenteo	銀流の果て	은류의 끝	银流的终点	銀流的終點
+476	area	476	-	-	-	-	-	-	-	-	-	-
+477	area	477	-	-	-	-	-	-	-	-	-	-
+478	area	478	fon_a01	The Reseta Strand	Lishita-Strand	Playa Rizetta	Plage de Rishita	Costa Lisita	リシタ海岸	리시터 해안	里希塔海岸	里希塔海岸
+479	area	479	fon_a02	Pora-Pora Sands	Pora-Pora-Dünen	Arenas de Pora-Pora	Sables de Pora-Pora	Spiaggia Porapora	ポラポラ砂地	포라포라 모래땅	波拉波拉沙地	波拉波拉沙地
+480	area	480	fon_a03	The Mauleia Strand	Maurea-Strand	Playa Mauleia	Plage de Mauleïa	Costa Maurea	マウレア海岸	마우레이아 해안	茂列亚海岸	茂列亞海岸
+481	area	481	fon_a04	Cape Uahuk	Uahuka-Kap	Cabo Uahuk	Promontoire de Uahuk	Capo Uafuka	ウアフカ岬	우아후크 곶	乌阿福卡海角	烏阿福卡海角
+482	area	482	fon_a05	Cape Tialan	Ti'Araunu-Kap	Cabo Tialan	Promontoire de Tialan	Promontorio Tiaraunu	ティアラウヌ岬	티아란 곶	提亚劳努海角	提亞勞努海角
+483	area	483	fon_a06	Kaukula Pass	Caucura-Pfad	Paso de Kaukula	Passage de Kaukula	Sentiero Kaukura	カウクラ小路	카우쿨라 골목	考库拉小路	考庫拉小路
+484	area	484	fon_a07	The Hakawea Shore	Hacaui-Ufer	Ensenada de Hakawea	Rivage de Hakawi	Capo Hakawi	ハカウイの岸辺	하카위 해안	哈卡维岸边	哈卡維岸邊
+485	area	485	-	-	-	-	-	-	-	-	-	-
+486	area	486	-	-	-	-	-	-	-	-	-	-
+487	area	487	-	-	-	-	-	-	-	-	-	-
+488	area	488	fon_b01	Hunters' Camp	Lager der Kopfgeldjäger	Campamento de Cazadores	Camp des chasseurs	Campo di cacciatori	ハンターズ・キャンプ	헌터즈 캠프	猎人营地	獵人營地
+489	area	489	-	-	-	-	-	-	-	-	-	-
+490	area	490	-	-	-	-	-	-	-	-	-	-
+491	area	491	fon_c01	Caima Hills	Kaima-Hügel	Colinas de Caima	Collines de Kaïma	Colline di Kaima	カイマの丘	카이마의 언덕	开麻山丘	開麻山丘
+492	area	492	fon_c02	The Vaddu Strand	Vadou-Strand	Playa Vaddu	Plage de Vaddu	Costa Vadou	ヴァドゥ海岸	바두 해안	伐度海岸	伐度海岸
+493	area	493	fon_c03	Limatra Hills	Limatara-Hügel	Colinas de Limatra	Collines de Limatra	Colline di Limatra	リマタラの丘	리마트라 언덕	利玛特拉山丘	利瑪特拉山丘
+494	area	494	fon_c04	Rava's Pass	Raaba-Pfad	Paso de Rava	Passage de Rava	Sentiero di Rava	ラバの小路	라바의 골목	拉瓦小路	拉瓦小路
+495	area	495	-	-	-	-	-	-	-	-	-	-
+496	area	496	-	-	-	-	-	-	-	-	-	-
+497	area	497	srb_a01	Old Elanise Road	Alter Eruanis-Weg	Viejo Camino de Elanis	Ancienne route d'Elanise	Antica via Erwanis	エルアニス旧街道	에르아니스 구 가도	艾尔亚尼斯旧大道	艾爾亞尼斯舊大道
+498	area	498	srb_a02	Crossfield	Wegesscheide	Campo Cruzado	Champ de la croisée	Distesa del crocevia	交差ヶ原	교차의 평원	交叉平原	交叉平原
+499	area	499	srb_a03	The Terraced Bank	Am hohen Ufer des Fedik	Terrazas Escalonadas	Grande terrasse	Terrazzo fluviale	河岸段丘	하안 단구	河岸阶丘	河岸階丘
+500	area	500	srb_a04	Journey's Rest	Raststelle	Descanso del Viajero	Halte du voyageur	Angolo del riposo	街道の休息所	가도의 쉼터	大道的休息所	大道的休息所
+501	area	501	-	-	-	-	-	-	-	-	-	-
+502	area	502	-	-	-	-	-	-	-	-	-	-
+503	area	503	srb_b01	North Liavell Hills	Nördlicher Lihvil-Hang	Colinas Liavel Norte	Collines nord de Liville	Colline nord di Livil	北リィーヴィル丘陵	북 리빌 언덕	北黎维尔丘陵	北黎維爾丘陵
+504	area	504	srb_b02	South Liavell Hills	Südlicher Lihvil-Hang	Colinas Liavel Sur	Collines sud de Liville	Colline sud di Livil	南リィーヴィル丘陵	남 리빌 언덕	南黎维尔丘陵	南黎維爾丘陵
+505	area	505	srb_b03	Feddik River	Fedik-Fluss	Río Feddik	Rivière Feddik	Fiume Fediq	フェディック川	페딕 강	费迪克河	費迪克河
+506	area	506	srb_b04	The Northsward	Nordterrasse	Terraza Norte	Plateau nord	Terrazzo nord	北部段丘	북부 단구	北部阶丘	北部階丘
+507	area	507	-	-	-	-	-	-	-	-	-	-
+508	area	508	-	-	-	-	-	-	-	-	-	-
+509	area	509	rwf_a01	Footfalls of the Past	Weg alter Erinnerungen	Camino de los Antecesores	Marches des souvenirs anciens	Strada della memoria	先人の記憶に遺されし路	선인의 기억에 남겨진 길	留于先人记忆之路	留於先人記憶之路
+510	area	510	-	-	-	-	-	-	-	-	-	-
+511	area	511	rwf_a03	Echoes from Time's Garden	Garten ewiger Zeit	Jardín de Tiempos Lejanos	Jardin d'un autre temps	Giardino del passato	はるかなる時の庭	아득한 과거의 정원	悠久时光庭园	悠久時光庭園
+512	area	512	-	-	-	-	-	-	-	-	-	-
+513	area	513	-	-	-	-	-	-	-	-	-	-
+514	area	514	-	-	-	-	-	-	-	-	-	-
+515	area	515	-	-	-	-	-	-	-	-	-	-
+516	area	516	-	-	-	-	-	-	-	-	-	-
+517	area	517	rwf_b01	City of Other Days	Stätte ferner Tage	Ciudad Centenaria	Cité des jours lointains	Città dei giorni fuggiti	遠き日の都	고대의 도시	邃古都市	邃古都市
+518	area	518	rwf_b02	Path of Hidden Blessing	Pfad stiller Gebete	Vía de los Rezos Silenciosos	Marches des prières secrètes	Cammino del timore	いのりを秘めて歩いた路	기도를 담아 걸은 길	暗自祈祷走过之路	暗自祈禱走過之路
+519	area	519	-	-	-	-	-	-	-	-	-	-
+520	area	520	-	-	-	-	-	-	-	-	-	-
+521	area	521	-	-	-	-	-	-	-	-	-	-
+522	area	522	rwf_c01	They Who Thirst Not	Platz gestillten Verlangens	Plaza de la Sed Saciada	Cour de la soif étanchée	Via della sete placata	かわき満たす広場	갈증을 해소하는 광장	满足渴望的广场	滿足渴望的廣場
+523	area	523	-	-	-	-	-	-	-	-	-	-
+524	area	524	-	-	-	-	-	-	-	-	-	-
+525	area	525	ozm_a01	Field of Fallen Wings	Schwingenwiese	Prado de las Alas Caídas	Prairie des ailes atterrées	Radura delle ali cadute	翼散る草地	날개가 흩어지는 풀밭	断翼草地	斷翼草地
+526	area	526	ozm_a02	The Switchback	Erdspirale	Espiral de Tierra	Plaine de la spirale	Spirale della Terra	大地のらせん	대지의 나선	大地螺旋	大地螺旋
+527	area	527	ozm_a03	Haulo Green	Hawro-Grünland	Prado de Haulo	Herbes de Haulo	Distesa verde di Haulo	ハウロ緑地	하우로 녹지	豪罗绿地	豪羅綠地
+528	area	528	-	-	-	-	-	-	-	-	-	-
+529	area	529	-	-	-	-	-	-	-	-	-	-
+530	area	530	ozm_b01	Dagan Flats	Dagan-Flachland	Llano de Dagan	Pré de Dagan	Spianata Dagan	ダガン平地	대건 평지	达甘平地	達甘平地
+531	area	531	ozm_b02	Field of Light Winds	Windkrumme Gräser	Erial del Viento	Pré des herbes dansantes	Prateria della brezza	風なびく草原	바람이 나부끼는 초원	随风飘扬的草原	隨風飄揚的草原
+532	area	532	ozm_b03	The Greensnake	Schlangengrün	Serpiente Verde	Serpent vert	Serpente verde	緑なす蛇	녹음을 이루는 뱀	茂密之蛇	茂密之蛇
+533	area	533	ozm_b04	Sunlit Path	Sonniger Weg	Paso Soleado	Halte du dernier rayon	Sentiero assolato	日差し落ちる小道	햇빛이 비추는 샛길	阳光洒落的小路	陽光灑落的小路
+534	area	534	-	-	-	-	-	-	-	-	-	-
+535	area	535	-	-	-	-	-	-	-	-	-	-
+536	area	536	ozm_c01	The Shred	Schluchttal	Valle de la Grieta	Vallon déchiré	Valle del crepaccio	ひびわれ谷	금이 간 계곡	碎裂谷	碎裂谷
+537	area	537	-	-	-	-	-	-	-	-	-	-
+538	area	538	-	-	-	-	-	-	-	-	-	-
+539	area	539	mfr_a01	Walk of Flitting Rifts	Verzerrende Pfade	Camino Fragoso	Lisière distordante	Sentiero contorto	ゆがみうつろう路	일그러져 가는 다리	扭曲变迁之路	扭曲變遷之路
+540	area	540	mfr_a02	Walk of Stolen Truths	Bewusstseinstrübende Pfade	Sendero del Engaño	Jardin des réalités troublées	Sentiero dell'inganno	現を惑わす路	현실을 혼란시키는 길	迷惑现实之路	迷惑現實之路
+541	area	541	mfr_a03	Walk of Dancing Shadow	Pfade tanzender Schatten	Sombras Danzantes	Jardin des ombres dansantes	Sentiero delle ombre	影の舞う路	그림자가 춤추는 길	黑影舞动之路	黑影舞動之路
+542	area	542	mfr_a04	Antiquity's End	Wo Altes versiegt	Claro del Fin	Frontière du passé	Fine del vetusto	古の終わる処	옛날이 끝나는 곳	古代终焉之处	古代終焉之處
+543	area	543	-	-	-	-	-	-	-	-	-	-
+544	area	544	-	-	-	-	-	-	-	-	-	-
+545	area	545	mfr_b01	Redolent Glade	Garten duftender Blumen	Jardín Aromático	Clairière embaumante	Giardino dei profumi	においたつ花の庭	향기로운 꽃의 정원	飘香花朵庭园	飄香花朵庭園
+546	area	546	-	-	-	-	-	-	-	-	-	-
+547	area	547	-	-	-	-	-	-	-	-	-	-
+548	area	548	mfr_c01	White Magick's Embrace	Pfade weißer Magie	Ruta de la Magia Blanca	Sanctuaire de la magie blanche	Sentiero della magia bianca	白魔の愛でし路	백마가 아끼는 길	白魔钟爱之路	白魔鍾愛之路
+549	area	549	mfr_c02	Ice Field of Clearsight	Eisfeld der Weisheit	Hielos de Sabiduría	Neiges de la clairvoyance	Nevi della saggezza	英知の氷原	예지의 빙원	睿智冰原	睿智冰原
+550	area	550	mfr_c03	The Edge of Reason	Grenze der Vernunft	Confines de la Razón	Confins de la raison	Oltre il pensiero	思の最果て	생각의 끝	思绪的尽头	思緒的盡頭
+551	area	551	-	-	-	-	-	-	-	-	-	-
+552	area	552	rsn_a01	Port Launch	Andockhafen	Desembarcadero de Babor	Aire d'envol	Scalo ala sinistra	左翼発着ポート	좌익 발착 포트	左翼起降埠	左翼起降埠
+553	area	553	-	-	-	-	-	-	-	-	-	-
+554	area	554	-	-	-	-	-	-	-	-	-	-
+555	area	555	rsn_b01	Port Section	Westblock	Sección de Babor	Zone bâbord	Zona intermedia ovest	中層西ブロック	중층 서쪽 블록	中层西侧区块	中層西側區塊
+556	area	556	rsn_b02	Large Freight Stores	Großcontainerlager	Depósito de Contenedores	Hangar	Deposito container	大型コンテナ倉庫	대형 컨테이너 창고	大型货柜仓库	大型貨櫃倉庫
+557	area	557	rsn_b03	Starboard Section	Ostblock	Sección de Estribor	Zone tribord	Zona intermedia est	中層東ブロック	중층 동쪽 블록	中层东侧区块	中層東側區塊
+558	area	558	rsn_b04	Sub-control Room	Subkontrollraum	Sala de Control	Salle de contrôle auxiliaire	Sala di subcontrollo	サブコントロールルーム	서브 컨트롤 룸	副控制室	副控制室
+559	area	559	-	-	-	-	-	-	-	-	-	-
+560	area	560	-	-	-	-	-	-	-	-	-	-
+561	area	561	rsn_c01	Airship Berth Access	Hangar	Acceso a Hangares	Couloir d'accès aux docks	Passaggio naviporto	戦闘艇用ドック通路	전투정 전용 독 통로	战斗艇用船坞通路	戰鬥艇用船塢通路
+562	area	562	-	-	-	-	-	-	-	-	-	-
+563	area	563	-	-	-	-	-	-	-	-	-	-
+564	area	564	rsn_d01	Central Brig Access	Zentralblock	Sección Central	Hall des blocs de détention	Zona centrale	下層中央ブロック	하층 중앙 블록	下层中央区块	下層中央區塊
+565	area	565	-	-	-	-	-	-	-	-	-	-
+566	area	566	-	-	-	-	-	-	-	-	-	-
+567	area	567	rrp_a01	Cellar Stores	Kellerlagerraum	Bodega	Remise	Sgabuzzino	地下倉庫準備室	지하 창고 준비실	地下仓库准备室	地下倉庫準備室
+568	area	568	rrp_a02	Cellars	Kellerlagerhalle	Bodega Principal	Cellier	Deposito	地下倉庫	지하 창고	地下仓库	地下倉庫
+569	area	569	rrp_a03	Lower Halls	Säulenhalle	Salas Inferiores	Galerie	Salone inferiore	大広間階下	대회당 계단 밑	大厅楼下	大廳樓下
+570	area	570	rrp_a04	Secret Passage	Geheimgang	Pasaje Secreto 	Passage secret	Passaggio segreto	秘められた路	비밀 통로	隐藏通路	隱藏通路
+571	area	571	rrp_a05	Treasure Room No. 8	Achte Schatzkammer	Sala del Tesoro n.° 8	Chambre du trésor	Sala del tesoro 8	第８宝物庫	제8보물창고	第８宝物库	第８寶物庫
+572	area	572	rrp_a06	The Garden Stairs	Große Treppe	Escaleras a los Jardines	Escaliers du jardin	Scala del giardino	庭園保全階段	정원 보안 계단	庭园维护阶梯	庭園維護階梯
+573	area	573	-	-	-	-	-	-	-	-	-	-
+574	area	574	-	-	-	-	-	-	-	-	-	-
+575	area	575	-	-	-	-	-	-	-	-	-	-
+576	area	576	ztc_a01	Invitation to Heresy	Ketzerhöhle	Gruta del Hereje	Couloirs de l'hérésie	Grotta dell'eresia	異端を誘う岩窟	이단으로 이끄는 바위 굴	引诱异端的岩窟	引誘異端的岩窟
+577	area	577	ztc_a02	Sandfalls	Verfinsternde Sandfälle	Cascadas de Arena	Abîmes sableux	Cascate di sabbia	砂落ちる闇	모래 떨어지는 어둠	落沙黑暗	落沙黑暗
+578	area	578	ztc_a03	Hourglass Basin	Sanduhrental	Reloj de Arena	Vallée des sabliers	Antro delle clessidre	砂時計の谷	모래시계 골짜기	沙漏山谷	沙漏山谷
+579	area	579	-	-	-	-	-	-	-	-	-	-
+580	area	580	-	-	-	-	-	-	-	-	-	-
+581	area	581	ztc_b01	The Undershore	Am Ende des Meeres	Foso Marino	Cœur de la grande falaise	Regno delle sabbie	海の止まり	바다의 끝	海的尽头	海的盡頭
+582	area	582	ztc_b02	Halls of Ardent Darkness	Dunkle Pfade	Senda de la Oscuridad	Seuil des ténèbres	Meandri oscuri 	暗きを愛でる路	어둠을 사랑하는 길	赏玩昏暗之路	賞玩昏暗之路
+583	area	583	-	-	-	-	-	-	-	-	-	-
+584	area	584	-	-	-	-	-	-	-	-	-	-
+585	area	585	ztc_c01	The Balamka Fault	Baramuka-Kluft	Falla de Balamka	Faille de Balamka	Faglia Balamuka	バラムカ断層	바라므카 단층	芭兰卡断层	芭蘭卡斷層
+586	area	586	ztc_c02	Drybeam Cavern	Himmelsguss	Manchas de Cielo	Caverne aux trois cieux	Spelonca del bagliore	ふりそそぐ空	쏟아지는 하늘	倾泻的天空	傾瀉的天空
+587	area	587	ztc_c03	Darkened Wharf	Steilufer-Galerie	Acantilado	Couloirs de la grande falaise	Passaggio roccioso	岸壁の回廊	안벽의 회랑	岸壁回廊	岸壁迴廊
+588	area	588	ztc_c04	Canopy of Clay	Erdenwald	Bóveda de Tierra	Forêt minérale	Foresta di pietra	地の森	땅의 숲	地之森	地之森
+589	area	589	-	-	-	-	-	-	-	-	-	-
+590	area	590	ztc_d01	Athroza Quicksands	Großer Azrosa-Sandfall	Arenas Movedizas de Athroza	Sables mouvants d'Athroza	Sabbie impetuose di Azrosa	アスローザ大流砂	아스로저 대유사	阿思罗萨大流沙	阿思羅薩大流沙
+591	area	591	-	-	-	-	-	-	-	-	-	-
+592	area	592	-	-	-	-	-	-	-	-	-	-
+593	area	593	mrm_a01	Walk of Sky	Aufgang des Edelmutes	Vía de la Nobleza	Vallée des Illustres	Viale della dignità	高風の回廊	고풍의 회랑	高风回廊	高風迴廊
+594	area	594	mrm_a02	Walk of Mind	Hof der Weisheit	Vía de la Sabiduría	Cour des Sages	Viale della sapienza	英明の回廊	영명의 회랑	英明回廊	英明迴廊
+595	area	595	-	-	-	-	-	-	-	-	-	-
+596	area	596	-	-	-	-	-	-	-	-	-	-
+597	area	597	mrm_b01	Ward of Measure	Obdach der Einsicht	Bastión de Lucidez	Galerie du discernement	Sala della vigilanza	具眼の守護	구안의 수호	具眼守护	具眼守護
+598	area	598	mrm_b02	Cold Distance	Scheideweg	Corredor de la Separación	Balcons de la rupture	Passaggio della separazione	離別の歩廊	이별의 통로	离别步廊	離別步廊
+599	area	599	mrm_b03	Walk of Prescience	Kreuzgang der Weitsicht	Galería de la Previsión	Couloirs de la prescience	Corridoio della lungimiranza	遠謀の回廊	원모의 회랑	远谋回廊	遠謀迴廊
+600	area	600	mrm_b04	Walk of Reason	Rundgang der Logik	Galería de la Razón	Cloître de la raison	Corridoio della ragione	条理の回廊	조리의 회랑	条理回廊	條理迴廊
+601	area	601	-	-	-	-	-	-	-	-	-	-
+602	area	602	-	-	-	-	-	-	-	-	-	-
+603	area	603	mrm_c01	Ward of Steel	Stählerner Hort	Bastión de Acero	Bastion d'acier	Sala della volontà	鋼鉄の守護	강철의 수호	钢铁守护	鋼鐵守護
+604	area	604	-	-	-	-	-	-	-	-	-	-
+605	area	605	-	-	-	-	-	-	-	-	-	-
+606	area	606	mrm_d01	Ward of Velitation	Ort des Wiedersehens	Bastión del Duelo	Hall de la confrontation	Sala dell'incontro	対面の守護	대면의 수호	对面守护	對面守護
+607	area	607	mrm_d02	Walk of Torn Illusion	Galerie zerschlagener Illusion	Corredor de la Falsa Ilusión	Marches des illusions brisées	Passaggio del risveglio	破幻の歩廊	파환의 통로	破幻步廊	破幻步廊
+608	area	608	mrm_d03	Walk of Revelation	Gang der Offenbarung	Galería del Apocalipsis	Palier de la révélation	Corridoio del silenzio	黙示の回廊	묵시의 회랑	默示回廊	默示迴廊
+609	area	609	mrm_d04	Ward of the Sword-King	Obhut des Schwertkönigs	Bastión del Rey de la Espada	Hall de l'épée	Sala della spada 	剣王の守護	검왕의 수호	剑王守护	劍王守護
+610	area	610	-	-	-	-	-	-	-	-	-	-
+611	area	611	-	-	-	-	-	-	-	-	-	-
+612	area	612	mrm_e01	Hall of Worth	Saal der Übung	Sala de la Valía	Hall de la vertu	Sala della perseveranza	修練の広間	수련의 홀	修练大厅	修練大廳
+613	area	613	-	-	-	-	-	-	-	-	-	-
+614	area	614	-	-	-	-	-	-	-	-	-	-
+615	area	615	mrm_f01	Vault of the Champion	Gebieterhalle	Cámara del Vencedor	Chambre du conquérant	Sala del trionfatore	覇者の間	패자의 방	霸者之室	霸者之室
+616	area	616	-	-	-	-	-	-	-	-	-	-
+617	area	617	-	-	-	-	-	-	-	-	-	-
+618	area	618	mrm_g01	Throne of Veiled Gods	Verborgener Gottespalast	Morada de Dioses Arcanos 	Trône du dieu occulté	Sancta sanctorum	秘する神の御所	숨은 신의 거처	隐密之神的殿宇	隱密之神的殿宇
+619	area	619	-	-	-	-	-	-	-	-	-	-
+620	area	620	-	-	-	-	-	-	-	-	-	-
+621	area	621	gil_e01	A Prama Vikaari	Supra Superficies Mobilitas	Sup Initium Trans	Grand Trans Ascen	Super Gran Meta	ア・グランド・シフト	아 그랜드 시프트	升移大厅	昇移大廳
+622	area	622	gil_e02	Kabonii Jilaam Pratii'vaa	Karbon Xylem WeEs	Carboni Meso Oesu	Carbo Xylon O-S	Carbo Xilem OS	カボニフ・ザイレム・ウェサ	카보니프 자일램 웨서	石炭纪·质部·西南	石炭紀·質部·西南
+623	area	623	gil_e03	Kabonii Jilaam Avaa	Karbon Xylem Es	Carboni Meso Su	Carbo Xylon S	Carbo Xilem S	カボニフ・ザイレム・サ	카보니프 자일램 사	石炭纪·质部·南	石炭紀·質部·南
+624	area	624	gil_e04	Dha Vikaari Bhrum	Infra Mobilitas Perm	Inf Trans Permi	Trans Descen Perm	Infer Meta Perm	ダ・シフト・ベルム	다 시프트 브룸	降移·二迭纪	降移·二疊紀
+625	area	625	gil_e05	Sthaana Scorpio	Iustare Scorpius	Inter Escorpio	Clavis Scorpio	Connex Scorpione	セット・スコーピオ	세트 스콜피오	控管·天蝎宫	控管·天蠍宮
+626	area	626	gil_e06	A Vikaari Dhebon	Supra Mobilitas Devon	Sup Trans Devoni	Trans Ascen Devo	Super Meta Devon	ア・シフト・デボン	아 시프트 데본	升移·泥盆纪	昇移·泥盆紀
+627	area	627	-	-	-	-	-	-	-	-	-	-
+628	area	628	-	-	-	-	-	-	-	-	-	-
+629	area	629	-	-	-	-	-	-	-	-	-	-
+630	area	630	nac_a01	West Barbican	Westwall	Puerta Oeste	Porte ouest	Porta ovest	西郭門前	서쪽 망루 앞	西郭门前	城西門前
+631	area	631	nac_a02	Jajim Bazaar	Djandjim-Bazar	Bazar Yajim	Souk de Zazim	Bazar Jijim	ジャジム・バザー	자짐 바자	贾基姆市集	賈基姆市集
+632	area	632	nac_a03	West Ward	Platz an der Westwehr	Plaza Oeste	Quartier ouest	Piazza ovest	外郭西広場	외곽 서쪽 광장	外郭西广场	城外西廣場
+633	area	633	-	-	-	-	-	-	-	-	-	-
+634	area	634	-	-	-	-	-	-	-	-	-	-
+635	area	635	alc_a01	Grand Arcade	Luft-Arkarde	Columnata	Hautes arcades	Galleria sopraelevata	エア・アーケード	에어 아케이드	空中拱廊	空中拱廊
+636	area	636	alc_a02	Highgarden Terrace	Höhenterrasse	Mirador	Terrasse du haut jardin	Terrazza panoramica	高層テラス	고층 테라스	高层露台	高層露台
+637	area	637	-	-	-	-	-	-	-	-	-	-
+638	area	638	-	-	-	-	-	-	-	-	-	-
+639	area	639	-	-	-	-	-	-	-	-	-	-
+640	area	640	alc_b03	Molberry	Morbeli-Bezirk	Distrito Molberi	Quartier Molvérie	Quartiere Malberry	モールベリ区	몰베리 구	穆尔别瑞区	莫爾別瑞區
+641	area	641	alc_b04	Trant	Torant-Bezirk	Distrito Trant	Quartier Trante	Quartiere Trant	トラント区	트랜트 구	托朗特区	托朗特區
+642	area	642	alc_b05	Charlotte's Magickery	Magiekrämer 'Charlotte'	Casa Mágica Carriot	Magies Charlie	Magicheria Charilot	チャリロット魔法店	샤를로트 마법 상점	查里洛特魔法店{blank}	查里洛特魔法店
+643	area	643	alc_b06	Bulward's Technicks	Techniken-Handlung 'Bulwart'	Casa Técnica Bulward	Techniques Bruvard	Tecnicheria Bluvard	ブルワード技店	불워드 스킬 상점	布渥德招式店	布渥德招式店
+644	area	644	-	dgl_a01	dgl_a01	dgl_a01	dgl_a01	dgl_a01	dgl_a01	dgl_a01	dgl_a01	dgl_a01
+645	area	645	-	dgl_a02	dgl_a02	dgl_a02	dgl_a02	dgl_a02	dgl_a02	dgl_a02	dgl_a02	dgl_a02
+646	area	646	-	dgl_a03	dgl_a03	dgl_a03	dgl_a03	dgl_a03	dgl_a03	dgl_a03	dgl_a03	dgl_a03
+647	area	647	-	dgl_a04	dgl_a04	dgl_a04	dgl_a04	dgl_a04	dgl_a04	dgl_a04	dgl_a04	dgl_a04
+648	area	648	-	-	-	-	-	-	-	-	-	-
+649	area	649	-	-	-	-	-	-	-	-	-	-
+650	area	650	-	dgl_b01	dgl_b01	dgl_b01	dgl_b01	dgl_b01	dgl_b01	dgl_b01	dgl_b01	dgl_b01
+651	area	651	-	dgl_b02	dgl_b02	dgl_b02	dgl_b02	dgl_b02	dgl_b02	dgl_b02	dgl_b02	dgl_b02
+652	area	652	-	-	-	-	-	-	-	-	-	-
+653	area	653	-	-	-	-	-	-	-	-	-	-
+654	area	654	-	dgl_c01	dgl_c01	dgl_c01	dgl_c01	dgl_c01	dgl_c01	dgl_c01	dgl_c01	dgl_c01
+655	area	655	-	dgl_c02	dgl_c02	dgl_c02	dgl_c02	dgl_c02	dgl_c02	dgl_c02	dgl_c02	dgl_c02
+656	area	656	-	-	-	-	-	-	-	-	-	-
+657	area	657	-	-	-	-	-	-	-	-	-	-
+658	area	658	-	dgl_d01	dgl_d01	dgl_d01	dgl_d01	dgl_d01	dgl_d01	dgl_d01	dgl_d01	dgl_d01
+659	area	659	-	dgl_d02	dgl_d02	dgl_d02	dgl_d02	dgl_d02	dgl_d02	dgl_d02	dgl_d02	dgl_d02
+660	area	660	-	-	-	-	-	-	-	-	-	-
+661	area	661	-	-	-	-	-	-	-	-	-	-
+662	area	662	-	dgl_e01	dgl_e01	dgl_e01	dgl_e01	dgl_e01	dgl_e01	dgl_e01	dgl_e01	dgl_e01
+663	area	663	-	dgl_e02	dgl_e02	dgl_e02	dgl_e02	dgl_e02	dgl_e02	dgl_e02	dgl_e02	dgl_e02
+664	area	664	-	-	-	-	-	-	-	-	-	-
+665	area	665	-	-	-	-	-	-	-	-	-	-
+666	area	666	dgl_f01	Womb of the Sun-cryst	Sonnenreich	Cristal del Sol	Berceau du Criste-solaire	Limen solare	天陽の界域	천양의 계성	天阳界域	天陽界域
+667	area	667	-	-	-	-	-	-	-	-	-	-
+668	area	668	dgl_g01	Womb of the Sun-cryst	Sonnenreich	Cristal del Sol	Berceau du Criste-solaire	Limen solare	天陽の界域	천양의 계성	天阳界域	天陽界域
+669	area	669	-	-	-	-	-	-	-	-	-	-
+670	area	670	dgl_h01	Heaven's Challenge	Wolkenarena	Ámbito del Desafío Divino	Arène de l'empyrée	Agone supremo	至天の戦域	지천의 전역	至天战域	至天戰域
+671	area	671	-	-	-	-	-	-	-	-	-	-
+672	area	672	-	dgl_i01	dgl_i01	dgl_i01	dgl_i01	dgl_i01	dgl_i01	dgl_i01	dgl_i01	dgl_i01
+673	area	673	-	-	-	-	-	-	-	-	-	-
+674	area	674	-	dgl_j01	dgl_j01	dgl_j01	dgl_j01	dgl_j01	dgl_j01	dgl_j01	dgl_j01	dgl_j01
+675	area	675	-	-	-	-	-	-	-	-	-	-
+676	area	676	-	dgl_k01	dgl_k01	dgl_k01	dgl_k01	dgl_k01	dgl_k01	dgl_k01	dgl_k01	dgl_k01
+677	area	677	-	-	-	-	-	-	-	-	-	-
+678	area	678	-	dgl_l01	dgl_l01	dgl_l01	dgl_l01	dgl_l01	dgl_l01	dgl_l01	dgl_l01	dgl_l01
+679	area	679	-	-	-	-	-	-	-	-	-	-
+680	area	680	-	dgl_m01	dgl_m01	dgl_m01	dgl_m01	dgl_m01	dgl_m01	dgl_m01	dgl_m01	dgl_m01
+681	area	681	-	-	-	-	-	-	-	-	-	-
+682	area	682	dgl_n01	Hell's Challenge	Wolkenarena	Ámbito del Desafío Infernal	Arène des abîmes	Agone degli abissi	至天の戦域	지천의 전역	至天战域	至天戰域
+683	area	683	-	-	-	-	-	-	-	-	-	-
+684	area	684	-	dgl_o01	dgl_o01	dgl_o01	dgl_o01	dgl_o01	dgl_o01	dgl_o01	dgl_o01	dgl_o01
+685	area	685	-	-	-	-	-	-	-	-	-	-
+686	area	686	gil_a01	Gate of Earth	Tor der Erde	Puerta de la Tierra	Porte de la terre	Porta della terra	地の門	땅의 문	地之门	地之門
+687	area	687	gil_a02	Gate of Water	Tor des Wassers	Puerta del Agua	Porte de l'eau	Porta dell'acqua	水の門	물의 문	水之门	水之門
+688	area	688	-	-	-	-	-	-	-	-	-	-
+689	area	689	-	-	-	-	-	-	-	-	-	-
+690	area	690	gil_b01	The Trimahla Water-Steps	Wasserstadt Trimaara	Vía del Agua - Trimahla	Hydro-marches de Trimahla	Cavedio di Trimala	水層都市トリマーラ	수중 도시 트리말라	水层都市特里玛拉	水層都市特里瑪拉
+691	area	691	gil_b02	The Aadha Water-Steps	Wasserstadt Auda	Vía del Agua - Aadha	Hydro-marches d'Aadha	Cavedio di Awda	水層都市アウダ	수중 도시 아우더	水层都市澳达	水層都市澳達
+692	area	692	-	-	-	-	-	-	-	-	-	-
+693	area	693	-	-	-	-	-	-	-	-	-	-
+694	area	694	gil_c01	The Haalmikah Water-Steps	Wasserstadt Halmika	Vía del Agua - Haalmikah	Hydro-marches de Haalmikah	Cavedio di Halmika	水層都市ハルミカ	수중 도시 하르미카	水层都市浩米卡	水層都市浩米卡
+695	area	695	gil_c02	Gate of Fire	Tor des Feuers	Puerta del Fuego	Porte du feu	Porta del fuoco	火の門	불의 문	火之门	火之門
+696	area	696	-	-	-	-	-	-	-	-	-	-
+697	area	697	-	-	-	-	-	-	-	-	-	-
+698	area	698	gil_d01	Gate of Wind	Tor des Windes	Puerta del Viento	Porte de l'air	Porta del vento	風の門	바람의 문	风之门	風之門
+699	area	699	-	-	-	-	-	-	-	-	-	-
+700	area	700	-	-	-	-	-	-	-	-	-	-
+701	area	701	slm_a01	North Sprawl	Unterstadt Nord	Zona Norte del Barrio Bajo	Partie nord	Rione nord	ダウンタウン北部	다운타운 북쪽	闹区北部	鬧區北部
+702	area	702	slm_a02	South Sprawl	Unterstadt Süd	Zona Sur del Barrio Bajo	Partie sud	Rione sud	ダウンタウン南部	다운타운 남쪽	闹区南部	鬧區南部
+703	area	703	slm_a03	Dalan's House	Dalans Haus	Casa de Dalan	Chez Dalan	Casa di Dalan	ダランの家	달란의 집	达朗的家	達朗的家
+704	area	704	slm_a04	Residence	Wohnhaus	Casa particular	Maison abandonnée	Abitazione	民家	민가	民宅	民宅
+705	area	705	-	-	-	-	-	-	-	-	-	-
+706	area	706	-	-	-	-	-	-	-	-	-	-
+707	area	707	-	-	-	-	-	-	-	-	-	-
+708	area	708	-	-	-	-	-	-	-	-	-	-
+709	area	709	nal_c01	The Black Watch	Hochsicherheitstrakt	Zona de Máxima Vigilancia	Quartiers de haute sécurité	Settore di sicurezza	厳重警戒区域	특별 감시 구역	严密警戒区域	嚴密警戒區域
+710	area	710	nal_c02	The Confiscatory	Verlieskorridor	Almacén	Passage	Andito	地下独居房入口	지하 감옥 독방 입구	地下单人牢房入口	地下單人牢房入口
+711	area	711	-	-	-	-	-	-	-	-	-	-
+712	area	712	hne_a01	North Entrance	Nordeingang	Entrada de Servicio Norte	Entrée nord	Passaggio nord	北通用口	북쪽 통용구	北便门	北便門
+713	area	713	hne_a02	Pithead Junction A	Stollengabelung A	Cruce A	Embranchement A	Incrocio A	坑口分岐点Ａ	갱구 분기점 A	坑口分歧点Ａ	坑口分歧點Ａ
+714	area	714	hne_a03	Phase 1 Shaft	Stollen 1	Túnel n.° 1	Lignes du secteur 1	Cunicolo 1	第１期坑道	제1기 갱도	第１期坑道	第１期坑道
+715	area	715	hne_a04	Phase 1 Dig	Förderstelle 1	Zona de Extracción 1	Galeries du secteur 1	Area estrattiva 1	第１期採掘現場	제1기 채굴 현장	第１期采掘现场	第１期採掘現場
+716	area	716	hne_a05	Crossover A	Verbindungstunnel A	Sección de Enlace A	Lignes de jonction A	Linea di collegamento A	区間連結ラインＡ	구간 연결 라인 A	区间连结线Ａ	區間連結線Ａ
+717	area	717	hne_a06	Pithead Junction B	Stollengabelung B	Cruce B	Embranchement B	Incrocio B	坑口分岐点Ｂ	갱구 분기점 B	坑口分歧点Ｂ	坑口分歧點Ｂ
+718	area	718	hne_a07	Staging Shaft	Vorarbeitsstollen	Área de Preparación	Salle de repos	Zona di ristoro	作業準備坑	작업 준비 갱	作业准备坑	作業準備坑
+719	area	719	hne_a08	Crossover B	Verbindungstunnel B	Sección de Enlace B	Lignes de jonction B	Linea di collegamento B	区間連結ラインＢ	구간 연결 라인 B	区间连结线Ｂ	區間連結線Ｂ
+720	area	720	-	-	-	-	-	-	-	-	-	-
+721	area	721	-	-	-	-	-	-	-	-	-	-
+722	area	722	hne_b01	Ore Separation	Veredelungsstätte	Sala de Cribado	Centre de tri	Area smistamento	分別作業場	분별 작업장	分类作业场	分類作業場
+723	area	723	-	-	-	-	-	-	-	-	-	-
+724	area	724	-	-	-	-	-	-	-	-	-	-
+725	area	725	hne_c01	Phase 2 Dig	Förderstelle 2	Zona de Extracción 2	Galeries du secteur 2	Area estrattiva 2	第２期採掘現場	제2기 채굴 현장	第２期采掘现场	第２期採掘現場
+726	area	726	hne_c02	Crossover C	Verbindungstunnel C	Sección de Enlace C	Lignes de jonction C	Linea di collegamento C	区間連結ラインＣ	구간 연결 라인 C	区间连结线Ｃ	區間連結線Ｃ
+727	area	727	hne_c03	Pithead Junction C	Stollengabelung C	Cruce C	Embranchement C	Incrocio C	坑口分岐点Ｃ	갱구 분기점 C	坑口分歧点Ｃ	坑口分歧點Ｃ
+728	area	728	hne_c04	Phase 2 Shaft	Stollen 2	Túnel n.° 2	Lignes du secteur 2	Cunicolo 2	第２期坑道	제2기 갱도	第２期坑道	第２期坑道
+729	area	729	-	-	-	-	-	-	-	-	-	-
+730	area	730	hne_d01	Special Charter Shaft	Spezialstollen	Zona de Extracción Especial	Galeries du secteur S	Zona estrattiva speciale	特殊採掘坑	특수 채굴 갱	特殊采掘坑	特殊採掘坑
+731	area	731	-	-	-	-	-	-	-	-	-	-
+732	area	732	-	-	-	-	-	-	-	-	-	-
+733	area	733	hne_e01	Special Charter Dig	Spezialwerkstatt	Área de Preparación Especial	Centre de tri du secteur S	Area scavi speciali	特殊作業場	특수 작업장	特殊作业场	特殊作業場
+734	area	734	-	-	-	-	-	-	-	-	-	-
+735	area	735	-	-	-	-	-	-	-	-	-	-
+736	area	736	bul_a01	Hall of the Light	Silberstreifen-Saal	Sala de la Luz	Hall de la Lumière	Sala della speranza	光明の間	광명의 방	光明之室	光明之室
+737	area	737	bul_a02	Hall of the Light	Silberstreifen-Saal	Sala de la Luz	Hall de la Lumière	Sala della speranza	光明の間	광명의 방	光明之室	光明之室
+738	area	738	bul_a03	Temple Grounds	Innerer Tempelbezirk	Patio del Templo	Enceinte du sanctuaire	Recinto del tempio	神殿境内	신전 경내	神殿境内	神殿境內
+739	area	739	-	-	-	-	-	-	-	-	-	-
+740	area	740	-	-	-	-	-	-	-	-	-	-
+741	area	741	bul_b01	Temple Approach	Weg zum Tempel	Senda del Peregrino	Chemin du sanctuaire	Strada per il tempio	神殿へ続く道	신전으로 가는 길	通往神殿的道路	通往神殿的道路
+742	area	742	bul_b02	Sand-strewn Pass	Aschepfad	Sendero Blanco	Passage du sable blanc	Sentiero bianco	白砂の小路	흰 모랫길	白沙小路	白沙小路
+743	area	743	-	-	-	-	-	-	-	-	-	-
+744	area	744	-	-	-	-	-	-	-	-	-	-
+745	area	745	alc_f01	Nilbasse	Nirvas-Bezirk	Distrito Nilbasse	Quartier Nilvas	Quartiere Nirbas	ニルバス区	닐바스 구	尼尔巴斯区	尼爾巴斯區
+746	area	746	alc_f02	Rienna	Riana-Bezirk	Distrito Rienna	Quartier Rillana	Quartiere Riyana	リーアナ区	리아나 구	利安纳区	利安納區
+747	area	747	alc_f03	Vint's Armaments	Waffen & Rüstungen 'Bendt'	Armería y Coracería Vent	Equipement Vitto	Armi e protezioni Vent	ヴェント武器・防具店	벤트 무기ㆍ방어구 상점	温特武器·防具店	溫特武器·防具店
+748	area	748	alc_f04	Granch's Requisites	Warenhaus der Gebrüder Grandsch	Botica Grantz	Bazar des frères Granche	Oggetti Gransh	グランシュ道具店	그랑슈 도구 상점	古兰修道具店	古蘭修道具店
+749	area	749	alc_f05	Lebleu's Gambits	Reburs Gambit-Handlung	Gambitería Loevre	Gambits Lebleu	Gambitteria Lebur	レブルガンビット店	레블루 갬빗 상점	雷波鲁作战布局店	雷波魯作戰布局店
+750	area	750	-	-	-	-	-	-	-	-	-	-
+751	area	751	glf_a01	Banks of the Sogoht	Sorgot-Ufer	Orillas del Sogot	Bords du Sogoht	Rive del Sogoto	ソゴト川のほとり	소고트 강가	所葛特河畔	所葛特河畔
+752	area	752	glf_a02	Lull of the Land	Grund der inneren Ruhe	Plaza de la Calma	Terre sereine	Terra serena	やすらぎの大地	평온한 대지	安祥大地	安祥大地
+753	area	753	glf_a03	The Elderknoll	Hügel der Weisen	Colina de los Antiguos	Tertre des anciens	Collina degli antichi	古き者たちの丘	옛사람들의 언덕	古人山丘	古人山丘
+754	area	754	-	-	-	-	-	-	-	-	-	-
+755	area	755	-	-	-	-	-	-	-	-	-	-
+756	area	756	alc_c01	Tsenoble	Senobul-Bezirk	Distrito Tsenoble	Quartier Zénoble	Quartiere Zenoble	ゼノーブル区	제노블 구	杰诺博区	傑諾博區
+757	area	757	-	-	-	-	-	-	-	-	-	-
+758	area	758	-	-	-	-	-	-	-	-	-	-
+759	area	759	-	-	-	-	-	-	-	-	-	-
+760	area	760	-	-	-	-	-	-	-	-	-	-
+761	area	761	-	-	-	-	-	-	-	-	-	-
+762	area	762	ald_a01	Alley of Muted Sighs	Lufthauchgasse	Callejón del Viento	Quartier des soupirs	Vicolo controvento	むかい風の路地	역풍의 통로	迎风小巷	逆風小巷
+763	area	763	ald_a02	Alley of Low Whispers	Zugluftgasse	Callejón de la Brisa	Quartier des murmures	Vicolo degli spifferi	すきま風の路地	외풍의 통로	隙缝风小巷	隙縫風小巷
+764	area	764	-	-	-	-	-	-	-	-	-	-
+765	area	765	-	-	-	-	-	-	-	-	-	-
+766	area	766	vic_a01	Fane of the Path	Ägidenpalast	Pabellones del Saber	Pagodes de l'éveil	Tempio della Guida	導きの宮	인도의 궁	指引之宫	指引之宮
+767	area	767	vic_a02	The Spiritwood	Platz der Seelenbäume	Árbol de los Espíritus	Le bois des esprits	Bosco dello spirito	精霊の住む大樹	정령이 사는 거목	精灵居住的大树	精靈居住的大樹
+768	area	768	vic_a03	Road of Verdant Praise	Pfad der Waldhuldigung	Camino del Bosque	Chemin de l'ode à la forêt	Sentiero del rispetto	森をうやまう路	숲을 숭상하는 길	敬仰森林之路	敬仰森林之路
+769	area	769	-	vic_a04	vic_a04	vic_a04	vic_a04	vic_a04	vic_a04	vic_a04	vic_a04	vic_a04
+770	area	770	-	-	-	-	-	-	-	-	-	-
+771	area	771	-	-	-	-	-	-	-	-	-	-
+772	area	772	-	-	-	-	-	-	-	-	-	-
+773	area	773	-	-	-	-	-	-	-	-	-	-
+774	area	774	bhm_a01	Periphery	Äußere Korridore	Zona Central - Periferia	Couloir périphérique	Passaggio esterno	中央エリア外郭通路	중앙 구역 외곽 통로	中央区域外围信道	中央區域外圍通道
+775	area	775	bhm_a02	Catwalk	Innere Korridore	Zona Central - Pasarela	Passerelle	Passaggio interno	中央エリア内郭通路	중앙 구역 내곽 통로	中央区域内围信道	中央區域內圍通道
+776	area	776	bhm_a03	Antechamber	Schleusenkammer	Antecámara	Antichambre	Anticamera	ゲートルーム	게이트 룸	闸门室	閘門室
+777	area	777	bhm_a04	Antechamber	Schleusenkammer	Antecámara	Antichambre	Anticamera	ゲートルーム	게이트 룸	闸门室	閘門室
+778	area	778	-	-	-	-	-	-	-	-	-	-
+779	area	779	bhm_b01	Central Lift	Hauptlift	Ascensor Central	Elévateur central	Ascensore centrale	中央リフト	중앙 리프트	中央升降机	中央昇降機
+780	area	780	-	-	-	-	-	-	-	-	-	-
+781	area	781	-	-	-	-	-	-	-	-	-	-
+782	area	782	bhm_c01	Central Shaft	Zentralschacht	Conducto Central	Plateforme centrale	Piattaforma centrale	セントラル・シャフト	센트럴 샤프트	核心竖井	核心豎井
+783	area	783	-	-	-	-	-	-	-	-	-	-
+784	area	784	-	-	-	-	-	-	-	-	-	-
+785	area	785	bhm_d01	Cannon Superstructure	Geschützrampe	Cubierta del Cañón Principal	Armature du canon principal	Piattaforma cannoni	主砲防護フレーム	주포 방호 프레임	主炮防护框体	主砲防護框體
+786	area	786	-	-	-	-	-	-	-	-	-	-
+787	area	787	-	-	-	-	-	-	-	-	-	-
+788	area	788	rbn_b01	Aerodrome	Luftschiff-Terminal	Aeródromo	Aérogare	Aerodromo	飛空艇ターミナル	비공정 터미널	飞空艇总站	飛空艇總站
+789	area	789	-	-	-	-	-	-	-	-	-	-
+790	area	790	-	-	-	-	-	-	-	-	-	-
+791	area	791	byu_b01	Aerodrome	Luftschiff-Terminal	Aeródromo	Aérogare	Aerodromo	飛空艇ターミナル	비공정 터미널	飞空艇总站	飛空艇總站
+792	area	792	-	-	-	-	-	-	-	-	-	-
+793	area	793	-	-	-	-	-	-	-	-	-	-
+794	area	794	alc_e01	Aerodrome	Luftschiff-Terminal	Aeródromo	Aérogare	Aerodromo	飛空艇ターミナル	비공정 터미널	飞空艇总站	飛空艇總站
+795	area	795	-	-	-	-	-	-	-	-	-	-
+796	area	796	-	-	-	-	-	-	-	-	-	-
+797	area	797	var_b01	Aerodrome	Luftschiff-Terminal	Aeródromo	Aérogare	Aerodromo	飛空艇ターミナル	비공정 터미널	飞空艇总站	飛空艇總站
+798	area	798	-	-	-	-	-	-	-	-	-	-
+799	area	799	-	-	-	-	-	-	-	-	-	-
+800	area	800	nac_b01	Aerodrome	Luftschiff-Terminal	Aeródromo	Aérogare	Aerodromo	飛空艇ターミナル	비공정 터미널	飞空艇总站	飛空艇總站
+801	area	801	-	-	-	-	-	-	-	-	-	-
+802	area	802	-	-	-	-	-	-	-	-	-	-
+803	area	803	byu_a01	Travica Way	Travika-Hauptstraße	Avenida Travica	Rue Travica	Corso Travila	トラヴィカ大通り	트래비카 대로	特拉威卡大街	特拉威卡大街
+804	area	804	byu_a02	Cloudborne Row	Schwebewolken-Gasse	Calle Las Nubes	Rue Cumulus	Via Nuvole fluttuanti	浮き雲通り	뜬구름길	浮云街	浮雲街
+805	area	805	byu_a03	Miners' End	Wohnviertel der Minenarbeiter	Barrio de Mineros	Quartier des mines	Quartiere dei minatori	採掘作業員居住区	채굴 작업원 거주구	采掘作业员居住区	採掘作業員居住區
+806	area	806	byu_a04	Lhusu Square	Minen-Vorplatz	Plaza de las Minas	Place Lhusu	Piazza della miniera	採掘場前小広場	채굴장 앞 소광장	采掘场前小广场	採掘場前小廣場
+807	area	807	-	-	-	-	-	-	-	-	-	-
+808	area	808	-	-	-	-	-	-	-	-	-	-
+809	area	809	byu_a07	Khus Skygrounds	Khusu-Wolkenplatz	Plaza del Cielo	Esplanade Khus	Piazza celeste Kus	クス空中広場	쿠스 공중 광장	库斯空中广场	庫斯空中廣場
+810	area	810	byu_a08	Kaff Terrace	Karfu-Wolkenterrasse	Terraza Panorámica	Terrasse Kaff	Terrazza celeste Kaf	カフ空中テラス	카프 공중 테라스	卡福空中露台	卡福空中露台
+811	area	811	-	-	-	-	-	-	-	-	-	-
+812	area	812	-	-	-	-	-	-	-	-	-	-
+813	area	813	byu_a11	Targe's Arms	Tarczs Wunderwaffen	Armería Taaj	Armurerie Tahji	Armeria Taj	タージ武器店	타르지 무기 상점	塔吉武器店	塔吉武器店
+814	area	814	byu_a12	Rithil's Protectives	Zum Harten Harnisch	Coracería Lutil	Protections Rithil	Protezioni Licil	リシル防具店	리실 방어구 상점	李席尔防具店	李席爾防具店
+815	area	815	-	-	-	-	-	-	-	-	-	-
+816	area	816	byu_a14	Mait's Magicks	Maites Magiestübchen	Casa Mágica Maite	Magies Maïté	Magicheria Maite	マイテ魔法店	마이테 마법 상점	麦提魔法店	麥提魔法店
+817	area	817	byu_a15	Clio's Technicks	Kulios Techniken-Sammlung	Casa Técnica Curio	Techniques Klio	Tecnicheria Curio	クリオ技店	클리오 스킬 상점	克力奥招式店	克力奧招式店
+818	area	818	byu_a16	Bashketi's Gambits	Waskes Gambit-Handlung	Gambitería Vásquez	Gambits Vasquez	Gambitteria Vasquez	バスケスガンビット店	바스케스 갬빗 상점	巴斯凯西作战布局店	巴斯凱西作戰布局店
+819	area	819	byu_a17	The Staras Residence	Residenz der Styras	Residencia Stailas	Résidence Stylis	Palazzo Stylus	スタイラス邸	스타이라스 저택	史泰拉斯宅第	史泰拉斯宅第
+820	area	820	byu_a18	The Cloudborne	Zur Schwebenden Wolke	Bar Las Nubes	Le Cumulus	Taverna delle Nuvole fluttuanti	浮き雲亭	뜬구름정	浮云亭	浮雲亭
+821	area	821	-	-	-	-	-	-	-	-	-	-
+822	area	822	-	-	-	-	-	-	-	-	-	-
+823	area	823	var_a01	Sea Breeze Lane	Meeresbrisengasse	Calle Brisa Marina	Rue des embruns	Via della brezza	海風通り	바닷바람 거리	海风街	海風街
+824	area	824	var_a02	Gallerina Marketplace	Galrina-Markt	Mercado Gallarín	Marché de Galarina	Mercato Garalina	ガラリナ市場	갤러리나 시장	葛拉利纳市场	葛拉利納市場
+825	area	825	var_a03	Quayside Court	Platz am Bootskai	Plaza de los Marinos	Place des quais	Piazza dei marinai	船乗りの広場	뱃사람들의 광장	水手广场	水手廣場
+826	area	826	var_a04	Saccio Lane	Sasshio-Promenade	Calle Satzio	Rue Saccio	Via Sascio	サッシオ通り	삿시오 거리	塞席欧街	塞席歐街
+827	area	827	var_a05	Chivany Breakwater	Shibane-Pier	Embarcadero Zybalne	Quai Chivane	Molo Cibane	シバーネ波止場	시바니 부두	希凡尼码头	希凡尼碼頭
+828	area	828	var_a06	Canal Lane	Wasserlaufgasse	Calle de los Canales	Butte des canaux	Vicolo del canale	水路通り	수로 거리	水路街	水路街
+829	area	829	-	-	-	-	-	-	-	-	-	-
+830	area	830	-	-	-	-	-	-	-	-	-	-
+831	area	831	-	-	-	-	-	-	-	-	-	-
+832	area	832	-	-	-	-	-	-	-	-	-	-
+833	area	833	var_a11	Beruny's Armaments	Bernis Waffen- & Rüstungskontor	Armería y Coracería Beruny	Equipement Bernie	Armi e protezioni Verny	ベルニの武器・防具ショップ	베루니의 무기ㆍ방어구 상점	贝露尼武器·防具店	貝露尼武器·防具店
+834	area	834	var_a12	Odo's Technicks	Audes Trickkiste	Casa Técnica Odo	Techniques Odo	Tecnicheria Oudo	オードの技ショップ	오도의 스킬 상점	奥多招式店	奧多招式店
+835	area	835	var_a13	Port Villa	Wohnhaus	Casa particular	Villa	Casa del porto	港町の民家	항구 도시의 민가	港都的民宅	港都的民宅
+836	area	836	var_a14	The Whitecap	Zum Weißen Strand	Tasca del Mar	L'Ecume des Flots	Taverna dell'Onda bianca	白波亭	백파정	白波亭	白波亭
+837	area	837	var_a15	Port Villa	Wohnhaus	Casa particular	Villa	Casa del porto	港町の民家	항구 도시의 민가	港都的民宅	港都的民宅
+838	area	838	grm_e01	No. 11 Channel	Hauptkanalsektion 11	Acueducto n.° 11	Canal principal n°11	Canale principale 11	第11主水路	제11메인 수로	第11主水路	第11主水路
+839	area	839	grm_e02	No. 11 Channel	Hauptkanalsektion 11	Acueducto n.° 11	Canal principal n°11	Canale principale 11	第11主水路	제11메인 수로	第11主水路	第11主水路
+840	area	840	grm_e03	East Sluice Control	Pegelkontrollsektion Ost	Sección de Control Este	Canaux de régulation est	Area livellamento est	東部水量調整区	동부 수량 조정구	东部水量调整区	東部水量調整區
+841	area	841	grm_e04	Southern Sluiceway	Wasserzulauf Süd	Esclusa Sur	Aqueducs sud	Collettori sud	南部取水廊	남부 취수 회랑	南部取水廊	南部取水廊
+842	area	842	grm_e05	West Sluice Control	Pegelkontrollsektion West	Sección de Control Oeste	Canaux de régulation ouest	Area livellamento ovest	西部水量調整区	서부 수량 조정구	西部水量调整区	西部水量調整區
+843	area	843	grm_e06	No. 10 Channel	Hauptkanalsektion 10	Acueducto n.° 10	Canal principal n°10	Canale principale 10	第10主水路	제10메인 수로	第10主水路	第10主水路
+844	area	844	grm_e07	No. 10 Channel	Hauptkanalsektion 10	Acueducto n.° 10	Canal principal n°10	Canale principale 10	第10主水路	제10메인 수로	第10主水路	第10主水路
+845	area	845	grm_e08	No. 3 Cloaca Spur	Vorklärsektion 3	Zona de Depuración Auxiliar n.° 3	Canal secondaire n°3	Canale ausiliario 3	第３処理区補助水路	제3처리 구역 보조 수로	第３处理区辅助水路	第３處理區輔助水路
+846	area	846	grm_e09	No. 3 Cloaca Spur	Vorklärsektion 3	Zona de Depuración Auxiliar n.° 3	Canal secondaire n°3	Canale ausiliario 3	第３処理区補助水路	제3처리 구역 보조 수로	第３处理区辅助水路	第３處理區輔助水路
+847	area	847	grm_e10	No. 1 Cloaca	Klärsektion 1	Zona de Depuración n.° 1	Cloaque n°1	Area smaltimento 1	第１処理区	제1처리 구역	第１处理区	第１處理區
+848	area	848	grm_e11	No. 4 Cloaca Spur	Vorklärsektion 4	Zona de Depuración Auxiliar n.° 4	Canal secondaire n°4	Canale ausiliario 4	第４処理区補助水路	제4처리 구역 보조 수로	第４处理区辅助水路	第４處理區輔助水路
+849	area	849	grm_e12	No. 4 Cloaca Spur	Vorklärsektion 4	Zona de Depuración Auxiliar n.° 4	Canal secondaire n°4	Canale ausiliario 4	第４処理区補助水路	제4처리 구역 보조 수로	第４处理区辅助水路	第４處理區輔助水路
+850	area	850	grm_e13	Central Waterway Control	Zentrales Schleusenbecken	Sección de Control Central	Ecluses centrales	Controllo centrale	中央制御区画	중앙 제어 구역	中央控制区块	中央控制區塊
+851	area	851	-	-	-	-	-	-	-	-	-	-
+852	area	852	-	-	-	-	-	-	-	-	-	-
+853	area	853	-	-	-	-	-	-	-	-	-	-
+854	area	854	dor_z01	dor_z01	dor_z01	dor_z01	dor_z01	dor_z01	dor_z01	dor_z01	dor_z01	dor_z01
+855	area	855	-	-	-	-	-	-	-	-	-	-
+856	area	856	slm_z01	Dalan's Marker	Das Zeichen Dalans	Marca de Dalan	Marque de Dalan	Segno di Dalan	ダランのつけた目印	달란이 붙인 표식	达朗留下的记号	達朗留下的記號
+857	area	857	-	-	-	-	-	-	-	-	-	-
+858	area	858	glf_z01	glf_z01	glf_z01	glf_z01	glf_z01	glf_z01	glf_z01	glf_z01	glf_z01	glf_z01
+859	area	859	-	-	-	-	-	-	-	-	-	-
+860	area	860	rbn_x01	rbn_x01	rbn_x01	rbn_x01	rbn_x01	rbn_x01	rbn_x01	rbn_x01	rbn_x01	rbn_x01
+861	area	861	-	-	-	-	-	-	-	-	-	-
+862	area	862	byu_z01	byu_z01	byu_z01	byu_z01	byu_z01	byu_z01	byu_z01	byu_z01	byu_z01	byu_z01
+863	area	863	-	-	-	-	-	-	-	-	-	-
+864	area	864	byu_y01	byu_y01	byu_y01	byu_y01	byu_y01	byu_y01	byu_y01	byu_y01	byu_y01	byu_y01
+865	area	865	-	-	-	-	-	-	-	-	-	-
+866	area	866	alc_z01	alc_z01	alc_z01	alc_z01	alc_z01	alc_z01	alc_z01	alc_z01	alc_z01	alc_z01
+867	area	867	alc_z02	alc_z02	alc_z02	alc_z02	alc_z02	alc_z02	alc_z02	alc_z02	alc_z02	alc_z02
+868	area	868	alc_z03	alc_z03	alc_z03	alc_z03	alc_z03	alc_z03	alc_z03	alc_z03	alc_z03	alc_z03
+869	area	869	alc_z04	alc_z04	alc_z04	alc_z04	alc_z04	alc_z04	alc_z04	alc_z04	alc_z04	alc_z04
+870	area	870	-	-	-	-	-	-	-	-	-	-
+871	area	871	rsn_z01	Bridge	Kommandobrücke	Puente	Pont	Ponte	艦橋	함교	舰桥	艦橋
+872	area	872	rsn_z02	Battle Launch	Kampfjäger-Andockhafen	Muelle de Batalla	Aire d'envol des chasseurs	Attracco militare	戦闘艇発着ポート	전투정 발착 포트	战斗艇起降埠	戰鬥艇起降埠
+873	area	873	-	-	-	-	-	-	-	-	-	-
+874	area	874	-	-	-	-	-	-	-	-	-	-
+875	area	875	-	-	-	-	-	-	-	-	-	-
+876	area	876	rsn_y01	Brig No. 1	Arrestzellenblock 1	Cárcel n.° 1	Bloc n°1	Cella 1	第１営倉	제1영창	第１禁闭室	第１禁閉室
+877	area	877	-	-	-	-	-	-	-	-	-	-
+878	area	878	-	-	-	-	-	-	-	-	-	-
+879	area	879	-	-	-	-	-	-	-	-	-	-
+880	area	880	-	-	-	-	-	-	-	-	-	-
+881	area	881	-	-	-	-	-	-	-	-	-	-
+882	area	882	-	-	-	-	-	-	-	-	-	-
+883	area	883	-	-	-	-	-	-	-	-	-	-
+884	area	884	-	-	-	-	-	-	-	-	-	-
+885	area	885	-	-	-	-	-	-	-	-	-	-
+886	area	886	-	-	-	-	-	-	-	-	-	-
+887	area	887	-	-	-	-	-	-	-	-	-	-
+888	area	888	gil_h01	Crystal Peak	Kristallkrone	Cumbre del Cristal	Sommet du cristal	Cima del cristallo	クリスタル・ピーク	크리스털 피크	水晶顶	水晶頂
+889	area	889	-	-	-	-	-	-	-	-	-	-
+890	area	890	-	-	-	-	-	-	-	-	-	-
+891	area	891	mic_e01	East-West Bypass	Ost-West-Umgehung	Conexión Este-Oeste	Déviation est-ouest	Deviazione est-ovest	東西バイパス	동남 우회도로	东西旁道	東西旁道
+892	area	892	mic_e02	The Zeviah Span	Sebaya-Verbindungsbrücke	Puente de Zeviah	Pont Zéviah	Ponte Zebaya	ゼバイア連結橋	세파이어 연결 교량	洁拜亚连结桥	潔拜亞連結橋
+893	area	893	mic_e03	West Annex	West-Stollen	Nueva Sección Oeste	Nouvelle galerie ouest	Nuova linea ovest	西部新坑道区	서부 신 갱도구	西部新坑道区	西部新坑道區
+894	area	894	mic_e04	Terminus No. 7 Adjunct	Anschluss-Strecke VII	Enlace a la Terminal n.° 7	Jonction du terminal n°7	Raccordo terminal 7	第７ターミナル接続路	제7터미널 연결로	第７总站衔接路	第７總站銜接路
+895	area	895	mic_e05	Special Op Sector 5	Spezialwerkstatt V	Sección Auxiliar 5	Secteur 5	Zona speciale 5	第５特別作業区	제5특별 작업 구획	第５特别作业区	第５特別作業區
+896	area	896	-	-	-	-	-	-	-	-	-	-
+897	area	897	-	-	-	-	-	-	-	-	-	-
+898	area	898	rwf_d01	Colosseum	Amphitheater	Coliseo	Colisée	Anfiteatro	コロセウム	콜로세움	竞技场	競技場
+899	area	899	-	-	-	-	-	-	-	-	-	-
+900	area	900	-	-	-	-	-	-	-	-	-	-
+901	area	901	lus_f01	Lasche Span	Rashee-Brücke	Puente Lasche	Pont Lasche	Ponte Lash	ラッシェ橋	라셰 다리	拉薛桥	拉薛橋
+902	area	902	lus_f02	Site 5	Flöz 5	Galería de Extracción 5	Site n°5	Area estrattiva 5	第５鉱区採掘場	제5광구 채굴장	第５矿区采掘场	第５礦區採掘場
+903	area	903	lus_f03	Site 6 South	Flöz 6	Galería de Extracción 6 Sur	Site n°6 - Partie sud	Area estrattiva 6 sud	第６鉱区南採掘場	제6광구 남쪽 채굴장	第６矿区南采掘场	第６礦區南採掘場
+904	area	904	lus_f04	Site 6 North	Flöz 6	Galería de Extracción 6 Norte	Site n°6 - Partie nord	Area estrattiva 6 nord	第６鉱区北採掘場	제6광구 북쪽 채굴장	第６矿区北采掘场	第６礦區北採掘場
+905	area	905	lus_f05	Staging Area	Vorarbeitsstätte	Zona de Preparación	Aire de repos	Zona di ristoro	作業準備区	작업 준비 구역	作业准备区	作業準備區
+906	area	906	-	-	-	-	-	-	-	-	-	-
+907	area	907	-	-	-	-	-	-	-	-	-	-
+908	area	908	frs_d01	Living Chasm	Waldesrand	Barranco Verde	Gorge verdoyante	Burrone verde	樹々の狭間	나무들 틈새	树木夹缝	樹木夾縫
+909	area	909	-	-	-	-	-	-	-	-	-	-
+910	area	910	rbn_y01	rbn_y01	rbn_y01	rbn_y01	rbn_y01	rbn_y01	rbn_y01	rbn_y01	rbn_y01	rbn_y01
+911	area	911	-	-	-	-	-	-	-	-	-	-
+912	area	912	byu_w01	byu_w01	byu_w01	byu_w01	byu_w01	byu_w01	byu_w01	byu_w01	byu_w01	byu_w01
+913	area	913	-	-	-	-	-	-	-	-	-	-
+914	area	914	byu_x01	byu_x01	byu_x01	byu_x01	byu_x01	byu_x01	byu_x01	byu_x01	byu_x01	byu_x01
+915	area	915	-	-	-	-	-	-	-	-	-	-
+916	area	916	gil_z01	Siti Bhrusuna	Dimensio Brycna	Siti Bhrusuna	Civitas Brosna	Polis Brusna	シティ・ブリュスナ	시티 브류스나	希提·布留苏纳	希提·布留蘇納
+917	area	917	-	-	-	-	-	-	-	-	-	-
+918	area	918	var_z01	var_z01	var_z01	var_z01	var_z01	var_z01	var_z01	var_z01	var_z01	var_z01
+919	area	919	-	-	-	-	-	-	-	-	-	-
+920	area	920	-	bhm_x01	bhm_x01	bhm_x01	bhm_x01	bhm_x01	bhm_x01	bhm_x01	bhm_x01	bhm_x01
+921	area	921	-	-	-	-	-	-	-	-	-	-
+922	area	922	bhm_y01	bhm_y01	bhm_y01	bhm_y01	bhm_y01	bhm_y01	bhm_y01	bhm_y01	bhm_y01	bhm_y01
+923	area	923	-	-	-	-	-	-	-	-	-	-
+924	area	924	bhm_z01	bhm_z01	bhm_z01	bhm_z01	bhm_z01	bhm_z01	bhm_z01	bhm_z01	bhm_z01	bhm_z01
+925	area	925	-	-	-	-	-	-	-	-	-	-
+926	area	926	gil_f01	A Vikaari Kabonii	Supra Mobilitas Karbon	Sup Trans Carboni	Trans Ascen Carbo	Super Meta Carbo	ア・シフト・カボニフ	아 시프트 카보니프	升移·石炭纪	昇移·石炭紀
+927	area	927	gil_f02	Sthaana Cancer	Iustare Cancer	Inter Cáncer	Clavis Cancer	Connex Cancro	セット・キャンサー	세트 캔서	控管·巨蟹宫	控管·巨蟹宮
+928	area	928	gil_f03	Bhrum Pis Avaa	Perm Marag Es	Permi Endo Su	Perm Medulla S	Perm Mydol S	ベルム・ピス・サ	브룸 피스 사	二迭纪·髓部·南	二疊紀·髓部·南
+929	area	929	gil_f04	Bhrum Pis Pratii	Perm Marag We	Permi Endo Oe	Perm Medulla O	Perm Mydol O	ベルム・ピス・ウェ	브룸 피스 웨	二迭纪·髓部·西	二疊紀·髓部·西
+930	area	930	gil_f05	Dha Vikaari Trahk	Infra Mobilitas Trias	Inf Trans Triasi	Trans Descen Trias	Infer Meta Trias	ダ・シフト・トリアック	다 시프트 트리악	降移·三迭纪	降移·三疊紀
+931	area	931	-	-	-	-	-	-	-	-	-	-
+932	area	932	-	-	-	-	-	-	-	-	-	-
+933	area	933	lus_g01	Site 2	Flöz 2	Galería de Extracción 2	Site n°2	Area estrattiva 2	第２鉱区採掘場	제2광구 채굴장	第２矿区采掘场	第２礦區採掘場
+934	area	934	lus_g02	Shunia Twinspan	Snija-Spiegelbrücke	Puente Doble Shunia	Ponts parallèles de Shunia	Doppio ponte Sunya	スーニア平行橋	스니어 평행교	苏尼亚平行桥	蘇尼亞平行橋
+935	area	935	lus_g03	Transitway 1	Transportroute 1	Ruta de Transporte 1	Section 1	Binario 1	第１運送路	제1운송로	第１运送路	第１運送路
+936	area	936	lus_g04	Oltam Span	Ortam-Brücke	Puente Oltam	Pont Oltam	Ponte Ortam	オルタム橋	올텀 다리	欧坦桥	歐坦橋
+937	area	937	-	-	-	-	-	-	-	-	-	-
+938	area	938	-	-	-	-	-	-	-	-	-	-
+939	area	939	gil_i01	Dha Vikaari Kabonii	Infra Mobilitas Karbon	Inf Trans Carboni	Trans Descen Carbo	Infer Meta Carbo	ダ・シフト・カボニフ	다 시프트 카보니프	降移·石炭纪	降移·石炭紀
+940	area	940	gil_i02	A Vikaari Kanbhru Ra	Supra Mobilitas Kambrium Ultimus	Sup Trans Cambri Finis	Trans Ascen Cambr Ultimus	Super Meta Cambr Ult	ア・シフト・カンブル・ラ	아 시프트 칸브루 라	升移·寒武纪·莱	昇移·寒武紀·萊
+941	area	941	gil_i03	Dhebon Jilaam Praa'dii	Devon Xylem OEn	Devoni Meso Esno	Devo Xylon E-N	Devon Xilem EN	デボン・ザイレム・イノ	데본 자일램 이노	泥盆纪·质部·东北	泥盆紀·質部·東北
+942	area	942	gil_i04	Dhebon Jilaam Pratii'dii	Devon Xylem WeEn	Devoni Meso Oeno	Devo Xylon O-N	Devon Xilem ON	デボン・ザイレム・ウェノ	데본 자일램 웨노	泥盆纪·质部·西北	泥盆紀·質部·西北
+943	area	943	gil_i05	Sthaana Sagittarius	Iustare Sagittarius	Inter Sagitario	Clavis Sagittarius	Connex Sagittario	セット・サジタリウス	세트 사지타리우스	控管·人马宫	控管·人馬宮
+944	area	944	gil_i06	A Vikaari Sirhru Pratii	Supra Mobilitas Silur We	Sup Trans Siluri Oe	Trans Ascen Silur O	Super Meta Silur O	ア・シフト・シルル・ウェ	아 시프트 시루루 웨	升移·志留纪·西	昇移·志留紀·西
+945	area	945	gil_i07	A Vikaari Sirhru Praa	Supra Mobilitas Silur O	Sup Trans Siluri Es	Trans Ascen Silur E	Super Meta Silur E	ア・シフト・シルル・イ	아 시프트 시루루 이	升移·志留纪·东	昇移·志留紀·東
+946	area	946	gil_i08	Dhebon Jilaam Avaapratii	Devon Xylem EsWe	Devoni Meso Suoe	Devo Xylon S-O	Devon Xilem SO	デボン・ザイレム・サウェ	데본 자일램 사웨	泥盆纪·质部·南西	泥盆紀·質部·南西
+947	area	947	gil_i09	A Vikaari Sirhru Si	Supra Mobilitas Silur Muta	Sup Trans Siluri Mysticum	Trans Ascen Silur Secr	Super Meta Silur Segre	ア・シフト・シルル・シ	아 시프트 시루루 시	升移·志留纪·习	昇移·志留紀·習
+948	area	948	-	Dhebon Jilaam Avaa	Devon Xylem Es	Devoni Meso Su	Devo Xylon S	Devon Xilem S	デボン・ザイレム・サ	데본 자일램 사	泥盆纪·质部·南	泥盆紀·質部·南
+949	area	949	gil_i11	Dhebon Jilaam Avaa	Devon Xylem Es	Devoni Meso Su	Devo Xylon S	Devon Xilem S	デボン・ザイレム・サ	데본 자일램 사	泥盆纪·质部·南	泥盆紀·質部·南
+950	area	950	-	-	-	-	-	-	-	-	-	-
+951	area	951	-	-	-	-	-	-	-	-	-	-
+952	area	952	gil_j01	Dha Vikaari Dhebon Praa	Infra Mobilitas Devon O	Inf Trans Devoni Es	Trans Descen Devo E	Infer Meta Devon E	ダ・シフト・デボン・イ	다 시프트 데본 이	降移·泥盆纪·东	降移·泥盆紀·東
+953	area	953	gil_j02	Dha Vikaari Dhebon Pratii	Infra Mobilitas Devon We	Inf Trans Devoni Oe	Trans Descen Devo O	Infer Meta Devon O	ダ・シフト・デボン・ウェ	다 시프트 데본 웨	降移·泥盆纪·西	降移·泥盆紀·西
+954	area	954	gil_j03	Sirhru Phullam Praa	Silur Phloem O	Siluri Ecto Es	Silur Phloios E	Silur Floem E	シルル・フロウェン・イ	시루루 플로웬 이	志留纪·皮部·东	志留紀·皮部·東
+955	area	955	gil_j04	Sthaana Leo	Iustare Leo	Inter Leo	Clavis Leo	Connex Leone	セット・レオ	세트 레오	控管·狮子宫	控管·獅子宮
+956	area	956	gil_j05	Sirhru Phullam Praa'vaa	Silur Phloem OEs	Siluri Ecto Essu	Silur Phloios E-S	Silur Floem ES	シルル・フロウェン・イサ	시루루 플로웬 이사	志留纪·皮部·东南	志留紀·皮部·東南
+957	area	957	gil_j06	Sirhru Phullam Pratii'vaa	Silur Phloem WeEs	Siluri Ecto Oesu	Silur Phloios O-S	Silur Floem OS	シルル・フロウェン・ウェサ	시루루 플로웬 웨사	志留纪·皮部·西南	志留紀·皮部·西南
+958	area	958	gil_j07	Sthaana Gemini	Iustare Gemini	Inter Géminis	Clavis Gemini	Connex Gemelli	セット・ジェミニ	세트 제미니	控管·双子宫	控管·雙子宮
+959	area	959	gil_j08	Sirhru Phullam Udiipratii	Silur Phloem EnWe	Siluri Ecto Nooe	Silur Phloios N-O	Silur Floem NO	シルル・フロウェン・ノウェ	시루루 플로웬 노웨	志留纪·皮部·北西	志留紀·皮部·北西
+960	area	960	gil_j09	Sirhru Jilaam Praa'dii	Silur Xylem OEn	Siluri Meso Esno	Silur Xylon E-N	Silur Xilem EN	シルル・ザイレム・イノ	시루루 자일램 이노	志留纪·质部·东北	志留紀·質部·東北
+961	area	961	gil_j10	Sirhru Jilaam Pratii'dii	Silur Xylem WeEn	Siluri Meso Oeno	Silur Xylon O-N	Silur Xilem ON	シルル・ザイレム・ウェノ	시루루 자일램 웨노	志留纪·质部·西北	志留紀·質部·西北
+962	area	962	gil_j11	Sirhru Jilaam Praa	Silur Xylem O	Siluri Meso Es	Silur Xylon E	Silur Xilem E	シルル・ザイレム・イ	시루루 자일램 이	志留纪·质部·东	志留紀·質部·東
+963	area	963	gil_j12	Sirhru Jilaam Pratii	Silur Xylem We	Siluri Meso Oe	Silur Xylon O	Silur Xilem O	シルル・ザイレム・ウェ	시루루 자일램 웨	志留纪·质部·西	志留紀·質部·西
+964	area	964	gil_j13	Sirhru Jilaam Praa'vaa	Silur Xylem OEs	Siluri Meso Essu	Silur Xylon E-S	Silur Xilem ES	シルル・ザイレム・イサ	시루루 자일램 이사	志留纪·质部·东南	志留紀·質部·東南
+965	area	965	gil_j14	Sirhru Jilaam Pratii'vaa	Silur Xylem WeEs	Siluri Meso Oesu	Silur Xylon O-S	Silur Xilem OS	シルル・ザイレム・ウェサ	시루루 자일램 웨사	志留纪·质部·西南	志留紀·質部·西南
+966	area	966	gil_j15	Sirhru Pis Praa	Silur Marag O	Siluri Endo Es	Silur Medulla E	Silur Mydol E	シルル・ピス・イ	시루루 피스 이	志留纪·髓部·东	志留紀·髓部·東
+967	area	967	gil_j16	Sirhru Pis Pratii	Silur Marag We	Siluri Endo Oe	Silur Medulla O	Silur Mydol O	シルル・ピス・ウェ	시루루 피스 웨	志留纪·髓部·西	志留紀·髓部·西
+968	area	968	gil_j17	Sirhru Pis Avaa	Silur Marag Es	Siluri Endo Su	Silur Medulla S	Silur Mydol S	シルル・ピス・サ	시루루 피스 사	志留纪·髓部·南	志留紀·髓部·南
+969	area	969	gil_j18	Sirhru Jilaam Avaapratii	Silur Xylem EsWe	Siluri Meso Suoe	Silur Xylon S-O	Silur Xilem SO	シルル・ザイレム・サウェ	시루루 자일램 사웨	志留纪·质部·南西	志留紀·質部·南西
+970	area	970	gil_j19	Sirhru Jilaam Avaapraa	Silur Xylem EsO	Siluri Meso Sues	Silur Xylon S-E	Silur Xilem SE	シルル・ザイレム・サイ	시루루 자일램 사이	志留纪·质部·南东	志留紀·質部·南東
+971	area	971	gil_j20	A Vikaari Uldobi	Supra Mobilitas Ordovizium	Sup Trans Ordovi	Trans Ascen Ordovi	Super Meta Ordov	ア・シフト・オルドビ	아 시프트 우르도비	升移·奥陶纪	昇移·奧陶紀
+972	area	972	gil_j21	A Vikaari Uldobi Si	Supra Mobilitas Ordovizium Muta	Sup Trans Ordovi Mysticum	Trans Ascen Ordovi Secr	Super Meta Ordov Segre	ア・シフト・オルドビ・シ	아 시프트 우르도비 시	升移·奥陶纪·习	昇移·奧陶紀·習
+973	area	973	gil_j22	Dha Vikaari Dhebon Si	Infra Mobilitas Devon Muta	Inf Trans Devoni Mysticum	Trans Descen Devo Secr	Infer Meta Devon Segre	ダ・シフト・デボン・シ	다 시프트 데본 시	降移·泥盆纪·习	降移·泥盆紀·習
+974	area	974	-	-	-	-	-	-	-	-	-	-
+975	area	975	-	-	-	-	-	-	-	-	-	-
+976	area	976	-	-	-	-	-	-	-	-	-	-
+977	area	977	-	-	-	-	-	-	-	-	-	-
+978	area	978	-	-	-	-	-	-	-	-	-	-
+979	area	979	gil_k01	Dha Vikaari Sirhru	Infra Mobilitas Silur	Inf Trans Siluri	Trans Descen Silur	Infer Meta Silur	ダ・シフト・シルル	다 시프트 시루루	降移·志留纪	降移·志留紀
+980	area	980	gil_k02	Sthaana Virgo	Iustare Virgo	Inter Virgo	Clavis Virgo	Connex Vergine	セット・ヴァルゴ	세트 비르고	控管·处女宫	控管·處女宮
+981	area	981	gil_k03	Uldobi Jilaam Praa'dii	Ordovizium Xylem OEn	Ordovi Meso Esno	Ordovi Xylon E-N	Ordov Xilem EN	オルドビ・ザイレム・イノ	우르도비 자일램 이노	奥陶纪·质部·东北	奧陶紀·質部·東北
+982	area	982	gil_k04	Uldobi Jilaam Pratii	Ordovizium Xylem We	Ordovi Meso Oe	Ordovi Xylon O	Ordov Xilem O	オルドビ・ザイレム・ウェ	우르도비 자일램 웨	奥陶纪·质部·西	奧陶紀·質部·西
+983	area	983	gil_k05	Uldobi Jilaam Praa	Ordovizium Xylem O	Ordovi Meso Es	Ordovi Xylon E	Ordov Xilem E	オルドビ・ザイレム・イ	우르도비 자일램 이	奥陶纪·质部·东	奧陶紀·質部·東
+984	area	984	gil_k06	Uldobi Phullam Pratii'dii	Ordovizium Phloem WeEn	Ordovi Ecto Oeno	Ordovi Phloios O-N	Ordov Xilem ON	オルドビ・フロウェン・ウェノ	우르도비 플로웬 웨노	奥陶纪·皮部·西北	奧陶紀·皮部·西北
+985	area	985	gil_k07	Sthaana Capricorn	Iustare Capricornus	Inter Capricornio	Clavis Capricornus	Connex Capricorno	セット・カプリコーン	세트 카프리콘	控管·摩羯宫	控管·摩羯宮
+986	area	986	gil_k08	Dha Vikaari Sirhru Si	Infra Mobilitas Silur Muta	Inf Trans Siluri Mysticum	Trans Descen Silur Secr	Infer Meta Silur Segre	ダ・シフト・シルル・シ	다 시프트 시루루 시	降移·志留纪·习	降移·志留紀·習
+987	area	987	gil_k09	Uldobi Phullam Udiipraa	Ordovizium Phloem EnO	Ordovi Ecto Noes	Ordovi Phloios N-E	Ordov Floem NE	オルドビ・フロウェン・ノイ	우르도비 플로웬 이노	奥陶纪·皮部·北东	奧陶紀·皮部·北東
+988	area	988	gil_k10	Uldobi Phullam Pratii'vaa	Ordovizium Phloem WeEs	Ordovi Ecto Oesu	Ordovi Phloios O-S	Ordov Floem OS	オルドビ・フロウェン・ウェサ	우르도비 플로웬 웨사	奥陶纪·皮部·西南	奧陶紀·皮部·西南
+989	area	989	gil_k11	Uldobi Phullam Praa'vaa	Ordovizium Phloem OEs	Ordovi Ecto Essu	Ordovi Phloios E-S	Ordov Floem ES	オルドビ・フロウェン・イサ	우르도비 플로웬 이사	奥陶纪·皮部·东南	奧陶紀·皮部·東南
+990	area	990	gil_k12	Uldobi Phullam Pratii	Ordovizium Phloem We	Ordovi Ecto Oe	Ordovi Phloios O	Ordov Floem O	オルドビ・フロウェン・ウェ	우르도비 플로웬 웨	奥陶纪·皮部·西	奧陶紀·皮部·西
+991	area	991	gil_k13	Sthaana Taurus	Iustare Taurus	Inter Tauro	Clavis Taurus	Connex Toro	セット・タウロス	세트 타우로스	控管·金牛宫	控管·金牛宮
+992	area	992	gil_k14	Sthaana Libra	Iustare Libra	Inter Libra	Clavis Libra	Connex Bilancia	セット・リーブラ	세트 리브라	控管·天秤宫	控管·天秤宮
+993	area	993	gil_k15	Uldobi Jilaam Praa'vaa	Ordovizium Xylem OEs	Ordovi Meso Essu	Ordovi Xylon E-S	Ordov Xilem ES	オルドビ・ザイレム・イサ	우르도비 자일램 이사	奥陶纪·质部·东南	奧陶紀·質部·東南
+994	area	994	gil_k16	Uldobi Jilaam Pratii'vaa	Ordovizium Xylem WeEs	Ordovi Meso Oesu	Ordovi Xylon O-S	Ordov Xilem OS	オルドビ・ザイレム・ウェサ	우르도비 자일램 웨사	奥陶纪·质部·西南	奧陶紀·質部·西南
+995	area	995	gil_k17	Uldobi Jilaam Avaa	Ordovizium Xylem Es	Ordovi Meso Su	Ordovi Xylon S	Ordov Xilem S	オルドビ・ザイレム・サ	우르도비 자일램 사	奥陶纪·质部·南	奧陶紀·質部·南
+996	area	996	gil_k18	A Vikaari Kanbhru	Supra Mobilitas Kambrium	Sup Trans Cambri	Trans Ascen Cambr	Super Meta Cambr	ア・シフト・カンブル	아 시프트 칸브루	升移·寒武纪	昇移·寒武紀
+997	area	997	-	-	-	-	-	-	-	-	-	-
+998	area	998	-	-	-	-	-	-	-	-	-	-
+999	area	999	-	-	-	-	-	-	-	-	-	-
+1000	area	1000	-	-	-	-	-	-	-	-	-	-
+1001	area	1001	-	-	-	-	-	-	-	-	-	-
+1002	area	1002	gil_l01	Dha Vikaari Uldobi	Infra Mobilitas Ordovizium	Inf Trans Ordovi	Trans Descen Ordovi	Infer Meta Ordov	ダ・シフト・オルドビ	다 시프트 우르도비	降移·奥陶纪	降移·奧陶紀
+1003	area	1003	gil_l02	Kanbhru Pis	Kambrium Marag	Cambri Endo	Cambr Medulla	Cambr Mydol	カンブル・ピス	칸브루 피스	寒武纪·髓部	寒武紀·髓部
+1004	area	1004	gil_l03	Dha Vikaari Dhebon Ra	Infra Mobilitas Devon Ultimus	Inf Trans Devoni Finis	Trans Descen Devo Ultimus	Infer Meta Devon Ult	ダ・シフト・デボン・ラ	다 시프트 데본 라	降移·泥盆纪·莱	降移·泥盆紀·萊
+1005	area	1005	gil_l04	Sthaana Aquarius	Iustare Aquarius	Inter Acuario	Clavis Aquarius	Connex Acquario	セット・アクエリアス	세트 아쿠아리우스	控管·水瓶宫	控管·水瓶宮
+1006	area	1006	-	-	-	-	-	-	-	-	-	-
+1007	area	1007	-	-	-	-	-	-	-	-	-	-
+1008	area	1008	dor_a01	66th Floor	66. Etage	Nivel 66	66ème étage	66° piano	第66階層	제66층	第66阶层	第66階層
+1009	area	1009	dor_a02	Rm 6613 West	Westsektor 66/Raum 13	Sala 13, área 66-O	Chambre 6613 ouest	Stanza 6613 ovest	66Wエリア{blank}13号室	66W 에어리어 13호실	66W区{blank}13号室	66W區{blank}13號室
+1010	area	1010	dor_a03	Rm 6613 East	Ostsektor 66/Raum 13	Sala 13, área 66-E	Chambre 6613 est	Stanza 6613 est	66Eエリア{blank}13号室	66E 에어리어 13호실	66E区{blank}13号室	66E區{blank}13號室
+1011	area	1011	dor_a04	Rm 6612 West	Westsektor 66/Raum 12	Sala 12, área 66-O	Chambre 6612 ouest	Stanza 6612 ovest	66Wエリア{blank}12号室	66W 에어리어 12호실	66W区{blank}12号室	66W區{blank}12號室
+1012	area	1012	-	Rm 6612 East	Ostsektor 66/Raum 12	Sala 12, área 66-E	Chambre 6612 est	Stanza 6612 est	66Eエリア{blank}12号室	66E 에어리어 12호실	66E区{blank}12号室	66E區{blank}12號室
+1013	area	1013	dor_a06	Rm 6611 West	Westsektor 66/Raum 11	Sala 11, área 66-O	Chambre 6611 ouest	Stanza 6611 ovest	66Wエリア{blank}11号室	66W 에어리어 11호실	66W区{blank}11号室	66W區{blank}11號室
+1014	area	1014	dor_a07	Rm 6611 East	Ostsektor 66/Raum 11	Sala 11, área 66-E	Chambre 6611 est	Stanza 6611 est	66Eエリア{blank}11号室	66E 에어리어 11호실	66E区{blank}11号室	66E區{blank}11號室
+1015	area	1015	dor_a08	Rm 6602 West	Westsektor 66/Raum 02	Sala 02, área 66-O	Chambre 6602 ouest	Stanza 6602 ovest	66Wエリア{blank}02号室	66W 에어리어 02호실	66W区{blank}02号室	66W區{blank}02號室
+1016	area	1016	dor_a09	Rm 6601 West	Westsektor 66/Raum 01	Sala 01, área 66-O	Chambre 6601 ouest	Stanza 6601 ovest	66Wエリア{blank}01号室	66W 에어리어 01호실	66W区{blank}01号室	66W區{blank}01號室
+1017	area	1017	dor_a10	Rm 6602 East	Ostsektor 66/Raum 02	Sala 02, área 66-E	Chambre 6602 est	Stanza 6602 est	66Eエリア{blank}02号室	66E 에어리어 02호실	66E区{blank}02号室	66E區{blank}02號室
+1018	area	1018	dor_a11	Rm 6601 East	Ostsektor 66/Raum 01	Sala 01, área 66-E	Chambre 6601 est	Stanza 6601 est	66Eエリア{blank}01号室	66E 에어리어 01호실	66E区{blank}01号室	66E區{blank}01號室
+1019	area	1019	dor_a12	67th Floor	67. Etage	Nivel 67	67ème étage	67° piano	第67階層	제67층	第67阶层	第67階層
+1020	area	1020	dor_a13	Rm 6711 West	Westsektor 67/Raum 11	Sala 11, área 67-O	Chambre 6711 ouest	Stanza 6711 ovest	67Wエリア{blank}11号室	67W 에어리어 11호실	67W区{blank}11号室	67W區{blank}11號室
+1021	area	1021	dor_a14	Rm 6711 East	Ostsektor 67/Raum 11	Sala 11, área 67-E	Chambre 6711 est	Stanza 6711 est	67Eエリア{blank}11号室	67E 에어리어 11호실	67E区{blank}11号室	67E區{blank}11號室
+1022	area	1022	-	Rm 6704 West	Westsektor 67/Raum 04	Sala 04, área 67-O	Chambre 6704 ouest	Stanza 6704 ovest	67Wエリア{blank}04号室	67W 에어리어 04호실	67W区{blank}04号室	67W區{blank}04號室
+1023	area	1023	dor_a16	Rm 6703 West	Westsektor 67/Raum 03	Sala 03, área 67-O	Chambre 6703 ouest	Stanza 6703 ovest	67Wエリア{blank}03号室	67W 에어리어 03호실	67W区{blank}03号室	67W區{blank}03號室
+1024	area	1024	dor_a17	Rm 6704 East	Ostsektor 67/Raum 04	Sala 04, área 67-E	Chambre 6704 est	Stanza 6704 est	67Eエリア{blank}04号室	67E 에어리어 04호실	67E区{blank}04号室	67E區{blank}04號室
+1025	area	1025	dor_a18	Rm 6703 East	Ostsektor 67/Raum 03	Sala 03, área 67-E	Chambre 6703 est	Stanza 6703 est	67Eエリア{blank}03号室	67E 에어리어 03호실	67E区{blank}03号室	67E區{blank}03號室
+1026	area	1026	dor_a19	Rm 6702 West	Westsektor 67/Raum 02	Sala 02, área 67-O	Chambre 6702 ouest	Stanza 6702 ovest	67Wエリア{blank}02号室	67W 에어리어 02호실	67W区{blank}02号室	67W區{blank}02號室
+1027	area	1027	dor_a20	Rm 6701 West	Westsektor 67/Raum 01	Sala 01, área 67-O	Chambre 6701 ouest	Stanza 6701 ovest	67Wエリア{blank}01号室	67W 에어리어 01호실	67W区{blank}01号室	67W區{blank}01號室
+1028	area	1028	dor_a21	Rm 6702 East	Ostsektor 67/Raum 02	Sala 02, área 67-E	Chambre 6702 est	Stanza 6702 est	67Eエリア{blank}02号室	67E 에어리어 02호실	67E区{blank}02号室	67E區{blank}02號室
+1029	area	1029	-	Rm 6701 East	Ostsektor 67/Raum 01	Sala 01, área 67-E	Chambre 6701 est	Stanza 6701 est	67Eエリア{blank}01号室	67E 에어리어 01호실	67E区{blank}01号室	67E區{blank}01號室
+1030	area	1030	dor_a23	68th Floor	68. Etage	Nivel 68	68ème étage	68° piano	第68階層	제68층	第68阶层	第68階層
+1031	area	1031	dor_a24	69th Floor	69. Etage	Nivel 69	69ème étage	69° piano	第69階層	제69층	第69阶层	第69階層
+1032	area	1032	-	-	-	-	-	-	-	-	-	-
+1033	area	1033	-	-	-	-	-	-	-	-	-	-
+1034	area	1034	-	-	-	-	-	-	-	-	-	-
+1035	area	1035	-	-	-	-	-	-	-	-	-	-
+1036	area	1036	dor_c01	66th Floor	66. Etage	Nivel 66	66ème étage	66° piano	第66階層	제66층	第66阶层	第66階層
+1037	area	1037	dor_c02	Rm 6613 West	Westsektor 66/Raum 13	Sala 13, área 66-O	Chambre 6613 ouest	Stanza 6613 ovest	66Wエリア{blank}13号室	66W 에어리어 13호실	66W区{blank}13号室	66W區{blank}13號室
+1038	area	1038	dor_c03	Rm 6613 East	Ostsektor 66/Raum 13	Sala 13, área 66-E	Chambre 6613 est	Stanza 6613 est	66Eエリア{blank}13号室	66E 에어리어 13호실	66E区{blank}13号室	66E區{blank}13號室
+1039	area	1039	dor_c04	Rm 6612 West	Westsektor 66/Raum 12	Sala 12, área 66-O	Chambre 6612 ouest	Stanza 6612 ovest	66Wエリア{blank}12号室	66W 에어리어 12호실	66W区{blank}12号室	66W區{blank}12號室
+1040	area	1040	-	Rm 6612 East	Ostsektor 66/Raum 12	Sala 12, área 66-E	Chambre 6612 est	Stanza 6612 est	66Eエリア{blank}12号室	66E 에어리어 12호실	66E区{blank}12号室	66E區{blank}12號室
+1041	area	1041	dor_c06	Rm 6611 West	Westsektor 66/Raum 11	Sala 11, área 66-O	Chambre 6611 ouest	Stanza 6611 ovest	66Wエリア{blank}11号室	66W 에어리어 11호실	66W区{blank}11号室	66W區{blank}11號室
+1042	area	1042	dor_c07	Rm 6611 East	Ostsektor 66/Raum 11	Sala 11, área 66-E	Chambre 6611 est	Stanza 6611 est	66Eエリア{blank}11号室	66E 에어리어 11호실	66E区{blank}11号室	66E區{blank}11號室
+1043	area	1043	dor_c08	Rm 6602 West	Westsektor 66/Raum 02	Sala 02, área 66-O	Chambre 6602 ouest	Stanza 6602 ovest	66Wエリア{blank}02号室	66W 에어리어 02호실	66W区{blank}02号室	66W區{blank}02號室
+1044	area	1044	dor_c09	Rm 6601 West	Westsektor 66/Raum 01	Sala 01, área 66-O	Chambre 6601 ouest	Stanza 6601 ovest	66Wエリア{blank}01号室	66W 에어리어 01호실	66W区{blank}01号室	66W區{blank}01號室
+1045	area	1045	dor_c10	Rm 6602 East	Ostsektor 66/Raum 02	Sala 02, área 66-E	Chambre 6602 est	Stanza 6602 est	66Eエリア{blank}02号室	66E 에어리어 02호실	66E区{blank}02号室	66E區{blank}02號室
+1046	area	1046	dor_c11	Rm 6601 East	Ostsektor 66/Raum 01	Sala 01, área 66-E	Chambre 6601 est	Stanza 6601 est	66Eエリア{blank}01号室	66E 에어리어 01호실	66E区{blank}01号室	66E區{blank}01號室
+1047	area	1047	dor_c12	70th Floor	70. Etage	Nivel 70	70ème étage	70° piano	第70階層	제70층	第70阶层	第70階層
+1048	area	1048	dor_c13	Rm 7002 West	Westsektor 70/Raum 02	Sala 02, área 70-O	Chambre 7002 ouest	Stanza 7002 ovest	70Wエリア{blank}02号室	70W 에어리어 02호실	70W区{blank}02号室	70W區{blank}02號室
+1049	area	1049	dor_c14	Rm 7001 West	Westsektor 70/Raum 01	Sala 01, área 70-O	Chambre 7001 ouest	Stanza 7001 ovest	70Wエリア{blank}01号室	70W 에어리어 01호실	70W区{blank}01号室	70W區{blank}01號室
+1050	area	1050	dor_c15	Rm 7002 East	Ostsektor 70/Raum 02	Sala 02, área 70-E	Chambre 7002 est	Stanza 7002 est	70Eエリア{blank}02号室	70E 에어리어 02호실	70E区{blank}02号室	70E區{blank}02號室
+1051	area	1051	-	Rm 7001 East	Westsektor 70/Raum 01	Sala 01, área 70-E	Chambre 7001 est	Stanza 7001 est	70Eエリア{blank}01号室	70E 에어리어 01호실	70E区{blank}01号室	70E區{blank}01號室
+1052	area	1052	-	-	-	-	-	-	-	-	-	-
+1053	area	1053	-	-	-	-	-	-	-	-	-	-
+1054	area	1054	dor_d01	67th Floor	67. Etage	Nivel 67	67ème étage	67° piano	第67階層	제67층	第67阶层	第67階層
+1055	area	1055	dor_d02	Rm 6711 West	Westsektor 67/Raum 11	Sala 11, área 67-O	Chambre 6711 ouest	Stanza 6711 ovest	67Wエリア{blank}11号室	67W 에어리어 11호실	67W区{blank}11号室	67W區{blank}11號室
+1056	area	1056	dor_d03	Rm 6711 East	Ostsektor 67/Raum 11	Sala 11, área 67-E	Chambre 6711 est	Stanza 6711 est	67Eエリア{blank}11号室	67E 에어리어 11호실	67E区{blank}11号室	67E區{blank}11號室
+1057	area	1057	-	Rm 6704 West	Westsektor 67/Raum 04	Sala 04, área 67-O	Chambre 6704 ouest	Stanza 6704 ovest	67Wエリア{blank}04号室	67W 에어리어 04호실	67W区{blank}04号室	67W區{blank}04號室
+1058	area	1058	dor_d05	Rm 6703 West	Westsektor 67/Raum 03	Sala 03, área 67-O	Chambre 6703 ouest	Stanza 6703 ovest	67Wエリア{blank}03号室	67W 에어리어 03호실	67W区{blank}03号室	67W區{blank}03號室
+1059	area	1059	dor_d06	Rm 6704 East	Ostsektor 67/Raum 04	Sala 04, área 67-E	Chambre 6704 est	Stanza 6704 est	67Eエリア{blank}04号室	67E 에어리어 04호실	67E区{blank}04号室	67E區{blank}04號室
+1060	area	1060	dor_d07	Rm 6703 East	Ostsektor 67/Raum 03	Sala 03, área 67-E	Chambre 6703 est	Stanza 6703 est	67Eエリア{blank}03号室	67E 에어리어 03호실	67E区{blank}03号室	67E區{blank}03號室
+1061	area	1061	dor_d08	Rm 6702 West	Westsektor 67/Raum 02	Sala 02, área 67-O	Chambre 6702 ouest	Stanza 6702 ovest	67Wエリア{blank}02号室	67W 에어리어 02호실	67W区{blank}02号室	67W區{blank}02號室
+1062	area	1062	dor_d09	Rm 6701 West	Westsektor 67/Raum 01	Sala 01, área 67-O	Chambre 6701 ouest	Stanza 6701 ovest	67Wエリア{blank}01号室	67W 에어리어 01호실	67W区{blank}01号室	67W區{blank}01號室
+1063	area	1063	dor_d10	Rm 6702 East	Ostsektor 67/Raum 02	Sala 02, área 67-E	Chambre 6702 est	Stanza 6702 est	67Eエリア{blank}02号室	67E 에어리어 02호실	67E区{blank}02号室	67E區{blank}02號室
+1064	area	1064	-	Rm 6701 East	Ostsektor 67/Raum 01	Sala 01, área 67-E	Chambre 6701 est	Stanza 6701 est	67Eエリア{blank}01号室	67E 에어리어 01호실	67E区{blank}01号室	67E區{blank}01號室
+1065	area	1065	-	-	-	-	-	-	-	-	-	-
+1066	area	1066	-	-	-	-	-	-	-	-	-	-
+1067	area	1067	dor_e01	68th Floor	68. Etage	Nivel 68	68ème étage	68° piano	第68階層	제68층	第68阶层	第68階層
+1068	area	1068	dor_e02	Rm 6814 West	Westsektor 68/Raum 14	Sala 14, área 68-O	Chambre 6814 ouest	Stanza 6814 ovest	68Wエリア{blank}14号室	68W 에어리어 14호실	68W区{blank}14号室	68W區{blank}14號室
+1069	area	1069	dor_e03	Rm 6814 East	Ostsektor 68/Raum 14	Sala 14, área 68-E	Chambre 6814 est	Stanza 6814 est	68Eエリア{blank}14号室	68E 에어리어 14호실	68E区{blank}14号室	68E區{blank}14號室
+1070	area	1070	dor_e04	Rm 6813 West	Westsektor 68/Raum 13	Sala 13, área 68-O	Chambre 6813 ouest	Stanza 6813 ovest	68Wエリア{blank}13号室	68W 에어리어 13호실	68W区{blank}13号室	68W區{blank}13號室
+1071	area	1071	dor_e05	Rm 6813 East	Ostsektor 68/Raum 13	Sala 13, área 68-E	Chambre 6813 est	Stanza 6813 est	68Eエリア{blank}13号室	68E 에어리어 13호실	68E区{blank}13号室	68E區{blank}13號室
+1072	area	1072	dor_e06	Rm 6812 West	Westsektor 68/Raum 12	Sala 12, área 68-O	Chambre 6812 ouest	Stanza 6812 ovest	68Wエリア{blank}12号室	68W 에어리어 12호실	68W区{blank}12号室	68W區{blank}12號室
+1073	area	1073	dor_e07	Rm 6812 East	Ostsektor 68/Raum 12	Sala 12, área 68-E	Chambre 6812 est	Stanza 6812 est	68Eエリア{blank}12号室	68E 에어리어 12호실	68E区{blank}12号室	68E區{blank}12號室
+1074	area	1074	dor_e08	Rm 6811 West	Westsektor 68/Raum 11	Sala 11, área 68-O	Chambre 6811 ouest	Stanza 6811 ovest	68Wエリア{blank}11号室	68W 에어리어 11호실	68W区{blank}11号室	68W區{blank}11號室
+1075	area	1075	dor_e09	Rm 6811 East	Ostsektor 68/Raum 11	Sala 11, área 68-E	Chambre 6811 est	Stanza 6811 est	68Eエリア{blank}11号室	68E 에어리어 11호실	68E区{blank}11号室	68E區{blank}11號室
+1076	area	1076	dor_e10	Rm 6804 West	Westsektor 68/Raum 04	Sala 04, área 68-O	Chambre 6804 ouest	Stanza 6804 ovest	68Wエリア{blank}04号室	68W 에어리어 04호실	68W区{blank}04号室	68W區{blank}04號室
+1077	area	1077	dor_e11	Rm 6803 West	Westsektor 68/Raum 03	Sala 03, área 68-O	Chambre 6803 ouest	Stanza 6803 ovest	68Wエリア{blank}03号室	68W 에어리어 03호실	68W区{blank}03号室	68W區{blank}03號室
+1078	area	1078	dor_e12	Rm 6804 East	Ostsektor 68/Raum 04	Sala 04, área 68-E	Chambre 6804 est	Stanza 6804 est	68Eエリア{blank}04号室	68E 에어리어 04호실	68E区{blank}04号室	68E區{blank}04號室
+1079	area	1079	dor_e13	Rm 6803 East	Ostsektor 68/Raum 03	Sala 03, área 68-E	Chambre 6803 est	Stanza 6803 est	68Eエリア{blank}03号室	68E 에어리어 03호실	68E区{blank}03号室	68E區{blank}03號室
+1080	area	1080	dor_e14	Rm 6802 West	Westsektor 68/Raum 02	Sala 02, área 68-O	Chambre 6802 ouest	Stanza 6802 ovest	68Wエリア{blank}02号室	68W 에어리어 02호실	68W区{blank}02号室	68W區{blank}02號室
+1081	area	1081	dor_e15	Rm 6801 West	Westsektor 68/Raum 01	Sala 01, área 68-O	Chambre 6801 ouest	Stanza 6801 ovest	68Wエリア{blank}01号室	68W 에어리어 01호실	68W区{blank}01号室	68W區{blank}01號室
+1082	area	1082	dor_e16	Rm 6802 East	Ostsektor 68/Raum 02	Sala 02, área 68-E	Chambre 6802 est	Stanza 6802 est	68Eエリア{blank}02号室	68E 에어리어 02호실	68E区{blank}02号室	68E區{blank}02號室
+1083	area	1083	dor_e17	Rm 6801 East	Ostsektor 68/Raum 01	Sala 01, área 68-E	Chambre 6801 est	Stanza 6801 est	68Eエリア{blank}01号室	68E 에어리어 01호실	68E区{blank}01号室	68E區{blank}01號室
+1084	area	1084	-	-	-	-	-	-	-	-	-	-
+1085	area	1085	-	-	-	-	-	-	-	-	-	-
+1086	area	1086	dor_f01	69th Floor	69. Etage	Nivel 69	69ème étage	69° piano	第69階層	제69층	第69阶层	第69階層
+1087	area	1087	-	Rm 6912 East	Ostsektor 69/Raum 12	Sala 12, área 69-E	Chambre 6912 est	Stanza 6912 est	69Eエリア{blank}12号室	69E 에어리어 12호실	69E区{blank}12号室	69E區{blank}12號室
+1088	area	1088	dor_f03	Rm 6912 East	Ostsektor 69/Raum 12	Sala 12, área 69-E	Chambre 6912 est	Stanza 6912 est	69Eエリア{blank}12号室	69E 에어리어 12호실	69E区{blank}12号室	69E區{blank}12號室
+1089	area	1089	dor_f04	Rm 6911 West	Westsektor 69/Raum 11	Sala 11, área 69-O	Chambre 6911 ouest	Stanza 6911 ovest	69Wエリア{blank}11号室	69W 에어리어 11호실	69W区{blank}11号室	69W區{blank}11號室
+1090	area	1090	-	Rm 6911 East	Ostsektor 69/Raum 11	Sala 11, área 69-E	Chambre 6911 est	Stanza 6911 est	69Eエリア{blank}11号室	69E 에어리어 11호실	69E区{blank}11号室	69E區{blank}11號室
+1091	area	1091	dor_f06	Rm 6904 West	Westsektor 69/Raum 04	Sala 04, área 69-O	Chambre 6904 ouest	Stanza 6904 ovest	69Wエリア{blank}04号室	69W 에어리어 04호실	69W区{blank}04号室	69W區{blank}04號室
+1092	area	1092	-	Rm 6903 West	Westsektor 69/Raum 03	Sala 03, área 69-O	Chambre 6903 ouest	Stanza 6903 ovest	69Wエリア{blank}03号室	69W 에어리어 03호실	69W区{blank}03号室	69W區{blank}03號室
+1093	area	1093	-	Rm 6904 East	Ostsektor 69/Raum 04	Sala 04, área 69-E	Chambre 6904 est	Stanza 6904 est	69Eエリア{blank}04号室	69E 에어리어 04호실	69E区{blank}04号室	69E區{blank}04號室
+1094	area	1094	dor_f09	Rm 6903 East	Ostsektor 69/Raum 03	Sala 03, área 69-E	Chambre 6903 est	Stanza 6903 est	69Eエリア{blank}03号室	69E 에어리어 03호실	69E区{blank}03号室	69E區{blank}03號室
+1095	area	1095	dor_f10	Rm 6902 West	Westsektor 69/Raum 02	Sala 02, área 69-O	Chambre 6902 ouest	Stanza 6902 ovest	69Wエリア{blank}02号室	69W 에어리어 02호실	69W区{blank}02号室	69W區{blank}02號室
+1096	area	1096	dor_f11	Rm 6901 West	Westsektor 69/Raum 01	Sala 01, área 69-O	Chambre 6901 ouest	Stanza 6901 ovest	69Wエリア{blank}01号室	69W 에어리어 01호실	69W区{blank}01号室	69W區{blank}01號室
+1097	area	1097	-	Rm 6902 East	Ostsektor 69/Raum 02	Sala 02, área 69-E	Chambre 6902 est	Stanza 6902 est	69Eエリア{blank}02号室	69E 에어리어 02호실	69E区{blank}02号室	69E區{blank}02號室
+1098	area	1098	dor_f13	Rm 6901 East	Ostsektor 69/Raum 01	Sala 01, área 69-E	Chambre 6901 est	Stanza 6901 est	69Eエリア{blank}01号室	69E 에어리어 01호실	69E区{blank}01号室	69E區{blank}01號室
+1099	area	1099	-	-	-	-	-	-	-	-	-	-
+1100	area	1100	-	-	-	-	-	-	-	-	-	-
+1101	area	1101	rbl_a01	The Wellspring	Quellenherz	Zona del Origen - Centro	Palier de l'origine	Livello dei primordi	始原の層{blank}内郭	시원의 층 내곽	始原之层{blank}内围	始原之層{blank}內圍
+1102	area	1102	rbl_a02	Horizon's Break	Steigende Spannung	Galería del Horizonte	Faille de l'horizon	Livello dell'ascesa	至次の狭間	지차의 틈새	至次夹缝	至次夾縫
+1103	area	1103	rbl_a03	The Reach	Szene des Opfers	Galería de la Consagración	Palier du sacrifice	Livello dell'abnegazione	ささげし狭間	바치는 틈새	奉献夹缝	奉獻夾縫
+1104	area	1104	rbl_a04	Reach of the Damned	Szene schwindender Siegel	Galería de los Condenados	Palier de la damnation	Livello del castigo	封滅の狭間	봉멸의 틈새	封灭夹缝	封滅夾縫
+1105	area	1105	rbl_a05	Reach of the Occult	Szene gebrochener Siegel	Galería de lo Oculto	Palier de l'occultation	Livello del recondito	封隠の狭間	봉은의 틈새	封隐夹缝	封隱夾縫
+1106	area	1106	-	UNUSED	unused	NOT USED	NOT USED	Livello eccelso	至頂の狭間	지정의 틈새	至顶夹缝	至頂夾縫
+1107	area	1107	-	UNUSED	unused	NOT USED	NOT USED	Livello supremo	至天の狭間	지천의 틈새	至天夹缝	至天夾縫
+1108	area	1108	-	UNUSED	unused	NOT USED	NOT USED	Livello solare	天陽への狭間	천양으로 가는 틈새	通天阳夹缝	通天陽夾縫
+1109	area	1109	-	-	-	-	-	-	-	-	-	-
+1110	area	1110	-	-	-	-	-	-	-	-	-	-
+1111	area	1111	rbl_b01	Wellspring Labyrinth	Quellenlabyrinth	Zona del Origen - Pasillos	Dédale de l'origine	Labirinto dei primordi	始原の層{blank}外郭	시원의 층 외곽	始原之层{blank}外围	始原之層{blank}外圍
+1112	area	1112	-	-	-	-	-	-	-	-	-	-
+1113	area	1113	rbl_c01	Dunes of Profaning Wind	Irrsandhügel	Dunas del Viento Profano	Dunes des vents distordants	Dune del vento alieno	異なる風吹く迷いの砂丘	다른 바람 부는 미혹의 사구	吹拂异风的迷途沙丘	吹拂異風的迷途沙丘
+1114	area	1114	rbl_c02	Blackrock Vault	Schattensteinkammer	Cámara de Piedra Negra	Chambre des pierres noires	Camera nera	黒き石室	검은 석실	漆黑石室	漆黑石室
+1115	area	1115	rbl_d01	Wellspring Ravel - 1st Flight	Quellenkorridore I	Zona del Origen - Subida 1	Spirale de l'origine - 1ère partie	Loggia dei primordi 1	始原の旋回廊１	시원의 선회랑 1	始原旋廊１	始原旋廊１
+1116	area	1116	rbl_d02	Wellspring Ravel - 2nd Flight	Quellenkorridore II	Zona del Origen - Subida 2	Spirale de l'origine - 2ème partie	Loggia dei primordi 2	始原の旋回廊２	시원의 선회랑 2	始原旋廊２	始原旋廊２
+1117	area	1117	-	-	-	-	-	-	-	-	-	-
+1118	area	1118	rbl_e01	Wellspring Ravel - 3rd Flight	Quellenkorridore III	Zona del Origen - Subida 3	Spirale de l'origine - 3ème partie	Loggia dei primordi 3	始原の旋回廊３	시원의 선회랑 3	始原旋廊３	始原旋廊３
+1119	area	1119	rbl_e02	Wellspring Ravel - 4th Flight	Quellenkorridore IV	Zona del Origen - Subida 4	Spirale de l'origine - 4ème partie	Loggia dei primordi 4	始原の旋回廊４	시원의 선회랑 4	始原旋廊４	始原旋廊４
+1120	area	1120	-	-	-	-	-	-	-	-	-	-
+1121	area	1121	rbl_f01	Marsh of Profaning Wind	Weiherfeld	Ciénaga del Viento Profano	Marais des vents distordants	Stagno del vento alieno	異なる風吹く水盤の地	다른 바람 부는 수반의 땅	吹拂异风的水盘之地	吹拂異風的水盤之地
+1122	area	1122	rbl_f02	Horizon's Cusp	Vor neuer Szenerie	Umbral del Horizonte	Lisière de l'horizon	Confine dell'ascesa	至次の境域	지차의 경역	至次境域	至次境域
+1123	area	1123	rbl_g01	Penumbra - Interior	Düsterebene Herz	Zona de la Penumbra - Centro	Palier de la pénombre - Centre	Livello del buio	暗影の層{blank}内郭	암영의 층 내곽	暗影之层{blank}内围	暗影之層{blank}內圍
+1124	area	1124	rbl_g02	Penumbra - North	Düsterebene Nord	Zona de la Penumbra - Norte	Palier de la pénombre - Nord	Livello del buio - nord	暗影の層{blank}北外郭	암영의 층 북쪽 외곽	暗影之层{blank}北外围	暗影之層{blank}北外圍
+1125	area	1125	rbl_g03	Penumbra - South	Düsterebene Süd	Zona de la Penumbra - Sur	Palier de la pénombre - Sud	Livello del buio - sud	暗影の層{blank}南外郭	암영의 층 남쪽 외곽	暗影之层{blank}南外围	暗影之層{blank}南外圍
+1126	area	1126	rbl_h01	Umbra - Interior	Finsterebene Herz	Zona de las Sombras - Centro	Palier des ténèbres - Centre	Livello del vespero	闇昏の層{blank}内郭	암혼의 층 내곽	暗昏之层{blank}内围	闇昏之層{blank}內圍
+1127	area	1127	rbl_h02	Umbra - North	Finsterebene Nord	Zona de las Sombras - Norte	Palier des ténèbres - Nord	Livello del vespero - nord	闇昏の層{blank}北外郭	암혼의 층 북쪽 외곽	暗昏之层{blank}北外围	闇昏之層{blank}北外圍
+1128	area	1128	rbl_h03	Umbra - South	Finsterebene Süd	Zona de las Sombras - Sur	Palier des ténèbres - Sud	Livello del vespero - sud	闇昏の層{blank}南外郭	암혼의 층 남쪽 외곽	暗昏之层{blank}南外围	闇昏之層{blank}南外圍
+1129	area	1129	rbl_i01	Abyssal - Interior	Hinter den Schatten Herz	Zona de la Oscuridad - Centro	Palier des abîmes - Centre	Livello della caligo 	陰裏の層{blank}内郭	음리의 층 내곽	阴里之层{blank}内围	陰裏之層{blank}內圍
+1130	area	1130	rbl_i02	Abyssal - North	Hinter den Schatten Nord	Zona de la Oscuridad - Norte	Palier des abîmes - Nord	Livello della caligo - nord	陰裏の層{blank}北外郭	음리의 층 북쪽 외곽	阴里之层{blank}北外围	陰裏之層{blank}北外圍
+1131	area	1131	rbl_i03	Abyssal - South	Hinter den Schatten Süd	Zona de la Oscuridad - Sur	Palier des abîmes - Sud	Livello della caligo - sud	陰裏の層{blank}南外郭	음리의 층 남쪽 외곽	阴里之层{blank}南外围	陰裏之層{blank}南外圍
+1132	area	1132	rbl_j01	Cleft of Profaning Wind	Weißes Kampffeld	Glaciar del Viento Profano	Corniche des vents distordants	Agone del vento alieno	異なる風吹く白き闘場	다른 바람 부는 흰 투장	吹拂异风的白色斗场	吹拂異風的白色鬥場
+1133	area	1133	rbl_j02	The Bounds of Truth	Wiederkehrende Kräfte	Ámbito de la Verdad	Frontière de la vérité	Confine del giudizio	験真の封域	험진의 봉역	验真封域	驗真封域
+1134	area	1134	rbl_k01	Station of Banishment	Stufe der Obstruktion	Zona de la Supresión	Palier du bannissement	Livello della costrizione	封殺の層	봉살의 층	封杀之层	封殺之層
+1135	area	1135	-	-	-	-	-	-	-	-	-	-
+1136	area	1136	rbl_l01	Station of Suffering	Stufe des Leidens	Zona del Sufrimiento	Palier de l'affliction	Livello della sofferenza	受難の層	수난의 층	受难之层	受難之層
+1137	area	1137	-	-	-	-	-	-	-	-	-	-
+1138	area	1138	rbl_m01	Station of Ascension	Stufe der Verzauberung	Zona del Encantamiento	Palier de l'illusion	Livello della visione	幻惑の層	환혹의 층	幻惑之层	幻惑之層
+1139	area	1139	-	-	-	-	-	-	-	-	-	-
+1140	area	1140	rbl_n01	Spire Ravel - 1st Flight	Gang zum Höhepunkt I	Estrato Superior - Subida 1	Spirale des cieux - 1ère partie	Chiostro eccelso 1	至頂の旋回廊１	지정의 선회랑 1	至顶旋廊１	至頂旋廊１
+1141	area	1141	rbl_n02	Spire Ravel - 2nd Flight	Gang zum Höhepunkt II	Estrato Superior - Subida 2	Spirale des cieux - 2ème partie	Chiostro eccelso 2	至頂の旋回廊２	지정의 선회랑 2	至顶旋廊２	至頂旋廊２
+1142	area	1142	-	-	-	-	-	-	-	-	-	-
+1143	area	1143	rbl_q01	Empyrean Ravel	Schritte pochenden Herzens	Pináculo	Spirale de l'empyrée	Chiostro supremo	至天の旋回廊	지천의 선회랑	至天旋廊	至天旋廊
+1144	area	1144	-	-	-	-	-	-	-	-	-	-
+1145	area	1145	grm_g01	Overflow Cloaca	Endklärsektion	Depósito Principal	Cloaque de réserve	Vasche di raccolta	最終処理区画	최종 처리 구역	最终处理区块	最終處理區塊
+1146	area	1146	-	-	-	-	-	-	-	-	-	-
+1147	area	1147	ttl_d01	-	-	-	-	-	-	-	-	-
+1148	area	1148	-	-	-	-	-	-	-	-	-	-
+1149	area	1149	-	-	-	-	-	-	-	-	-	-
+1150	area	1150	asp_b03	Air Deck	Aussichtsdeck	Cubierta	Pont	Aeroponte	フロート・デッキ	플로트 갑판	浮空甲板	浮空甲板
+1151	area	1151	mnt_d01	Babbling Vale	Rauschende Wasser	Paraje de los Manantiales	Val de chante-l'eau	Valle dell'acqua pura	水音の伝わる処	물소리가 나는 곳	传出水声之处	傳出水聲之處
+1152	area	1152	-	-	-	-	-	-	-	-	-	-
+1153	area	1153	enw_c01	Withering Shores	Schwindende Küste	Orillas Erosionadas	Rivages érodés	Riva erosa	風化する岸辺	풍화되는 해안	风化的岸边	風化的岸邊
+1154	area	1154	-	-	-	-	-	-	-	-	-	-
+1155	area	1155	tri_a01	Stage 1	Phase 1	Nivel 1	Niveau 1	Prova 1	ステージ1	스테이지 1	关卡1	關卡1
+1156	area	1156	tri_a02	Stage 2	Phase 2	Nivel 2	Niveau 2	Prova 2	ステージ2	스테이지 2	关卡2	關卡2
+1157	area	1157	tri_a03	Stage 3	Phase 3	Nivel 3	Niveau 3	Prova 3	ステージ3	스테이지 3	关卡3	關卡3
+1158	area	1158	tri_a04	Stage 4	Phase 4	Nivel 4	Niveau 4	Prova 4	ステージ4	스테이지 4	关卡4	關卡4
+1159	area	1159	tri_a05	Stage 5	Phase 5	Nivel 5	Niveau 5	Prova 5	ステージ5	스테이지 5	关卡5	關卡5
+1160	area	1160	-	-	-	-	-	-	-	-	-	-
+1161	area	1161	-	-	-	-	-	-	-	-	-	-
+1162	area	1162	-	-	-	-	-	-	-	-	-	-
+1163	area	1163	tri_b01	Stage 6	Phase 6	Nivel 6	Niveau 6	Prova 6	ステージ6	스테이지 6	关卡6	關卡6
+1164	area	1164	tri_b02	Stage 7	Phase 7	Nivel 7	Niveau 7	Prova 7	ステージ7	스테이지 7	关卡7	關卡7
+1165	area	1165	tri_b03	Stage 8	Phase 8	Nivel 8	Niveau 8	Prova 8	ステージ8	스테이지 8	关卡8	關卡8
+1166	area	1166	tri_b04	Stage 9	Phase 9	Nivel 9	Niveau 9	Prova 9	ステージ9	스테이지 9	关卡9	關卡9
+1167	area	1167	tri_b05	Stage 10	Phase 10	Nivel 10	Niveau 10	Prova 10	ステージ10	스테이지 10	关卡10	關卡10
+1168	area	1168	-	-	-	-	-	-	-	-	-	-
+1169	area	1169	-	-	-	-	-	-	-	-	-	-
+1170	area	1170	-	-	-	-	-	-	-	-	-	-
+1171	area	1171	tri_c01	Stage 11	Phase 11	Nivel 11	Niveau 11	Prova 11	ステージ11	스테이지 11	关卡11	關卡11
+1172	area	1172	tri_c02	Stage 12	Phase 12	Nivel 12	Niveau 12	Prova 12	ステージ12	스테이지 12	关卡12	關卡12
+1173	area	1173	tri_c03	Stage 13	Phase 13	Nivel 13	Niveau 13	Prova 13	ステージ13	스테이지 13	关卡13	關卡13
+1174	area	1174	tri_c04	Stage 14	Phase 14	Nivel 14	Niveau 14	Prova 14	ステージ14	스테이지 14	关卡14	關卡14
+1175	area	1175	tri_c05	Stage 15	Phase 15	Nivel 15	Niveau 15	Prova 15	ステージ15	스테이지 15	关卡15	關卡15
+1176	area	1176	-	-	-	-	-	-	-	-	-	-
+1177	area	1177	-	-	-	-	-	-	-	-	-	-
+1178	area	1178	-	-	-	-	-	-	-	-	-	-
+1179	area	1179	tri_d01	Stage 16	Phase 16	Nivel 16	Niveau 16	Prova 16	ステージ16	스테이지 16	关卡16	關卡16
+1180	area	1180	tri_d02	Stage 17	Phase 17	Nivel 17	Niveau 17	Prova 17	ステージ17	스테이지 17	关卡17	關卡17
+1181	area	1181	tri_d03	Stage 18	Phase 18	Nivel 18	Niveau 18	Prova 18	ステージ18	스테이지 18	关卡18	關卡18
+1182	area	1182	tri_d04	Stage 19	Phase 19	Nivel 19	Niveau 19	Prova 19	ステージ19	스테이지 19	关卡19	關卡19
+1183	area	1183	tri_d05	Stage 20	Phase 20	Nivel 20	Niveau 20	Prova 20	ステージ20	스테이지 20	关卡20	關卡20
+1184	area	1184	-	-	-	-	-	-	-	-	-	-
+1185	area	1185	-	-	-	-	-	-	-	-	-	-
+1186	area	1186	-	-	-	-	-	-	-	-	-	-
+1187	area	1187	tri_e01	Stage 21	Phase 21	Nivel 21	Niveau 21	Prova 21	ステージ21	스테이지 21	关卡21	關卡21
+1188	area	1188	tri_e02	Stage 22	Phase 22	Nivel 22	Niveau 22	Prova 22	ステージ22	스테이지 22	关卡22	關卡22
+1189	area	1189	tri_e03	Stage 23	Phase 23	Nivel 23	Niveau 23	Prova 23	ステージ23	스테이지 23	关卡23	關卡23
+1190	area	1190	tri_e04	Stage 24	Phase 24	Nivel 24	Niveau 24	Prova 24	ステージ24	스테이지 24	关卡24	關卡24
+1191	area	1191	tri_e05	Stage 25	Phase 25	Nivel 25	Niveau 25	Prova 25	ステージ25	스테이지 25	关卡25	關卡25
+1192	area	1192	-	-	-	-	-	-	-	-	-	-
+1193	area	1193	-	-	-	-	-	-	-	-	-	-
+1194	area	1194	-	-	-	-	-	-	-	-	-	-
+1195	area	1195	tri_f01	Stage 26	Phase 26	Nivel 26	Niveau 26	Prova 26	ステージ26	스테이지 26	关卡26	關卡26
+1196	area	1196	tri_f02	Stage 27	Phase 27	Nivel 27	Niveau 27	Prova 27	ステージ27	스테이지 27	关卡27	關卡27
+1197	area	1197	tri_f03	Stage 28	Phase 28	Nivel 28	Niveau 28	Prova 28	ステージ28	스테이지 28	关卡28	關卡28
+1198	area	1198	tri_f04	Stage 29	Phase 29	Nivel 29	Niveau 29	Prova 29	ステージ29	스테이지 29	关卡29	關卡29
+1199	area	1199	tri_f05	Stage 30	Phase 30	Nivel 30	Niveau 30	Prova 30	ステージ30	스테이지 30	关卡30	關卡30
+1200	area	1200	-	-	-	-	-	-	-	-	-	-
+1201	area	1201	-	-	-	-	-	-	-	-	-	-
+1202	area	1202	-	-	-	-	-	-	-	-	-	-
+1203	area	1203	tri_g01	Stage 31	Phase 31	Nivel 31	Niveau 31	Prova 31	ステージ31	스테이지 31	关卡31	關卡31
+1204	area	1204	tri_g02	Stage 32	Phase 32	Nivel 32	Niveau 32	Prova 32	ステージ32	스테이지 32	关卡32	關卡32
+1205	area	1205	tri_g03	Stage 33	Phase 33	Nivel 33	Niveau 33	Prova 33	ステージ33	스테이지 33	关卡33	關卡33
+1206	area	1206	tri_g04	Stage 34	Phase 34	Nivel 34	Niveau 34	Prova 34	ステージ34	스테이지 34	关卡34	關卡34
+1207	area	1207	tri_g05	Stage 35	Phase 35	Nivel 35	Niveau 35	Prova 35	ステージ35	스테이지 35	关卡35	關卡35
+1208	area	1208	-	-	-	-	-	-	-	-	-	-
+1209	area	1209	-	-	-	-	-	-	-	-	-	-
+1210	area	1210	-	-	-	-	-	-	-	-	-	-
+1211	area	1211	tri_h01	Stage 36	Phase 36	Nivel 36	Niveau 36	Prova 36	ステージ36	스테이지 36	关卡36	關卡36
+1212	area	1212	tri_h02	Stage 37	Phase 37	Nivel 37	Niveau 37	Prova 37	ステージ37	스테이지 37	关卡37	關卡37
+1213	area	1213	tri_h03	Stage 38	Phase 38	Nivel 38	Niveau 38	Prova 38	ステージ38	스테이지 38	关卡38	關卡38
+1214	area	1214	tri_h04	Stage 39	Phase 39	Nivel 39	Niveau 39	Prova 39	ステージ39	스테이지 39	关卡39	關卡39
+1215	area	1215	tri_h05	Stage 40	Phase 40	Nivel 40	Niveau 40	Prova 40	ステージ40	스테이지 40	关卡40	關卡40
+1216	area	1216	-	-	-	-	-	-	-	-	-	-
+1217	area	1217	-	-	-	-	-	-	-	-	-	-
+1218	area	1218	-	-	-	-	-	-	-	-	-	-
+1219	area	1219	tri_i01	Stage 41	Phase 41	Nivel 41	Niveau 41	Prova 41	ステージ41	스테이지 41	关卡41	關卡41
+1220	area	1220	tri_i02	Stage 42	Phase 42	Nivel 42	Niveau 42	Prova 42	ステージ42	스테이지 42	关卡42	關卡42
+1221	area	1221	tri_i03	Stage 43	Phase 43	Nivel 43	Niveau 43	Prova 43	ステージ43	스테이지 43	关卡43	關卡43
+1222	area	1222	tri_i04	Stage 44	Phase 44	Nivel 44	Niveau 44	Prova 44	ステージ44	스테이지 44	关卡44	關卡44
+1223	area	1223	tri_i05	Stage 45	Phase 45	Nivel 45	Niveau 45	Prova 45	ステージ45	스테이지 45	关卡45	關卡45
+1224	area	1224	-	-	-	-	-	-	-	-	-	-
+1225	area	1225	-	-	-	-	-	-	-	-	-	-
+1226	area	1226	-	-	-	-	-	-	-	-	-	-
+1227	area	1227	tri_j01	Stage 46	Phase 46	Nivel 46	Niveau 46	Prova 46	ステージ46	스테이지 46	关卡46	關卡46
+1228	area	1228	tri_j02	Stage 47	Phase 47	Nivel 47	Niveau 47	Prova 47	ステージ47	스테이지 47	关卡47	關卡47
+1229	area	1229	tri_j03	Stage 48	Phase 48	Nivel 48	Niveau 48	Prova 48	ステージ48	스테이지 48	关卡48	關卡48
+1230	area	1230	tri_j04	Stage 49	Phase 49	Nivel 49	Niveau 49	Prova 49	ステージ49	스테이지 49	关卡49	關卡49
+1231	area	1231	tri_j05	Stage 50	Phase 50	Nivel 50	Niveau 50	Prova 50	ステージ50	스테이지 50	关卡50	關卡50
+1232	area	1232	-	-	-	-	-	-	-	-	-	-
+1233	area	1233	-	-	-	-	-	-	-	-	-	-
+1234	area	1234	-	-	-	-	-	-	-	-	-	-
+1235	area	1235	tri_k01	Stage 51	Phase 51	Nivel 51	Niveau 51	Prova 51	ステージ51	스테이지 51	关卡51	關卡51
+1236	area	1236	tri_k02	Stage 52	Phase 52	Nivel 52	Niveau 52	Prova 52	ステージ52	스테이지 52	关卡52	關卡52
+1237	area	1237	tri_k03	Stage 53	Phase 53	Nivel 53	Niveau 53	Prova 53	ステージ53	스테이지 53	关卡53	關卡53
+1238	area	1238	tri_k04	Stage 54	Phase 54	Nivel 54	Niveau 54	Prova 54	ステージ54	스테이지 54	关卡54	關卡54
+1239	area	1239	tri_k05	Stage 55	Phase 55	Nivel 55	Niveau 55	Prova 55	ステージ55	스테이지 55	关卡55	關卡55
+1240	area	1240	-	-	-	-	-	-	-	-	-	-
+1241	area	1241	-	-	-	-	-	-	-	-	-	-
+1242	area	1242	-	-	-	-	-	-	-	-	-	-
+1243	area	1243	tri_l01	Stage 56	Phase 56	Nivel 56	Niveau 56	Prova 56	ステージ56	스테이지 56	关卡56	關卡56
+1244	area	1244	tri_l02	Stage 57	Phase 57	Nivel 57	Niveau 57	Prova 57	ステージ57	스테이지 57	关卡57	關卡57
+1245	area	1245	tri_l03	Stage 58	Phase 58	Nivel 58	Niveau 58	Prova 58	ステージ58	스테이지 58	关卡58	關卡58
+1246	area	1246	tri_l04	Stage 59	Phase 59	Nivel 59	Niveau 59	Prova 59	ステージ59	스테이지 59	关卡59	關卡59
+1247	area	1247	tri_l05	Stage 60	Phase 60	Nivel 60	Niveau 60	Prova 60	ステージ60	스테이지 60	关卡60	關卡60
+1248	area	1248	-	-	-	-	-	-	-	-	-	-
+1249	area	1249	-	-	-	-	-	-	-	-	-	-
+1250	area	1250	-	-	-	-	-	-	-	-	-	-
+1251	area	1251	tri_m01	Stage 61	Phase 61	Nivel 61	Niveau 61	Prova 61	ステージ61	스테이지 61	关卡61	關卡61
+1252	area	1252	tri_m02	Stage 62	Phase 62	Nivel 62	Niveau 62	Prova 62	ステージ62	스테이지 62	关卡62	關卡62
+1253	area	1253	tri_m03	Stage 63	Phase 63	Nivel 63	Niveau 63	Prova 63	ステージ63	스테이지 63	关卡63	關卡63
+1254	area	1254	tri_m04	Stage 64	Phase 64	Nivel 64	Niveau 64	Prova 64	ステージ64	스테이지 64	关卡64	關卡64
+1255	area	1255	tri_m05	Stage 65	Phase 65	Nivel 65	Niveau 65	Prova 65	ステージ65	스테이지 65	关卡65	關卡65
+1256	area	1256	-	-	-	-	-	-	-	-	-	-
+1257	area	1257	-	-	-	-	-	-	-	-	-	-
+1258	area	1258	-	-	-	-	-	-	-	-	-	-
+1259	area	1259	tri_n01	Stage 66	Phase 66	Nivel 66	Niveau 66	Prova 66	ステージ66	스테이지 66	关卡66	關卡66
+1260	area	1260	tri_n02	Stage 67	Phase 67	Nivel 67	Niveau 67	Prova 67	ステージ67	스테이지 67	关卡67	關卡67
+1261	area	1261	tri_n03	Stage 68	Phase 68	Nivel 68	Niveau 68	Prova 68	ステージ68	스테이지 68	关卡68	關卡68
+1262	area	1262	tri_n04	Stage 69	Phase 69	Nivel 69	Niveau 69	Prova 69	ステージ69	스테이지 69	关卡69	關卡69
+1263	area	1263	tri_n05	Stage 70	Phase 70	Nivel 70	Niveau 70	Prova 70	ステージ70	스테이지 70	关卡70	關卡70
+1264	area	1264	-	-	-	-	-	-	-	-	-	-
+1265	area	1265	-	-	-	-	-	-	-	-	-	-
+1266	area	1266	-	-	-	-	-	-	-	-	-	-
+1267	area	1267	tri_o01	Stage 71	Phase 71	Nivel 71	Niveau 71	Prova 71	ステージ71	스테이지 71	关卡71	關卡71
+1268	area	1268	tri_o02	Stage 72	Phase 72	Nivel 72	Niveau 72	Prova 72	ステージ72	스테이지 72	关卡72	關卡72
+1269	area	1269	tri_o03	Stage 73	Phase 73	Nivel 73	Niveau 73	Prova 73	ステージ73	스테이지 73	关卡73	關卡73
+1270	area	1270	tri_o04	Stage 74	Phase 74	Nivel 74	Niveau 74	Prova 74	ステージ74	스테이지 74	关卡74	關卡74
+1271	area	1271	tri_o05	Stage 75	Phase 75	Nivel 75	Niveau 75	Prova 75	ステージ75	스테이지 75	关卡75	關卡75
+1272	area	1272	-	-	-	-	-	-	-	-	-	-
+1273	area	1273	-	-	-	-	-	-	-	-	-	-
+1274	area	1274	-	-	-	-	-	-	-	-	-	-
+1275	area	1275	tri_p01	Stage 76	Phase 76	Nivel 76	Niveau 76	Prova 76	ステージ76	스테이지 76	关卡76	關卡76
+1276	area	1276	tri_p02	Stage 77	Phase 77	Nivel 77	Niveau 77	Prova 77	ステージ77	스테이지 77	关卡77	關卡77
+1277	area	1277	tri_p03	Stage 78	Phase 78	Nivel 78	Niveau 78	Prova 78	ステージ78	스테이지 78	关卡78	關卡78
+1278	area	1278	tri_p04	Stage 79	Phase 79	Nivel 79	Niveau 79	Prova 79	ステージ79	스테이지 79	关卡79	關卡79
+1279	area	1279	tri_p05	Stage 80	Phase 80	Nivel 80	Niveau 80	Prova 80	ステージ80	스테이지 80	关卡80	關卡80
+1280	area	1280	-	-	-	-	-	-	-	-	-	-
+1281	area	1281	-	-	-	-	-	-	-	-	-	-
+1282	area	1282	-	-	-	-	-	-	-	-	-	-
+1283	area	1283	tri_q01	Stage 81	Phase 81	Nivel 81	Niveau 81	Prova 81	ステージ81	스테이지 81	关卡81	關卡81
+1284	area	1284	tri_q02	Stage 82	Phase 82	Nivel 82	Niveau 82	Prova 82	ステージ82	스테이지 82	关卡82	關卡82
+1285	area	1285	tri_q03	Stage 83	Phase 83	Nivel 83	Niveau 83	Prova 83	ステージ83	스테이지 83	关卡83	關卡83
+1286	area	1286	tri_q04	Stage 84	Phase 84	Nivel 84	Niveau 84	Prova 84	ステージ84	스테이지 84	关卡84	關卡84
+1287	area	1287	tri_q05	Stage 85	Phase 85	Nivel 85	Niveau 85	Prova 85	ステージ85	스테이지 85	关卡85	關卡85
+1288	area	1288	-	-	-	-	-	-	-	-	-	-
+1289	area	1289	-	-	-	-	-	-	-	-	-	-
+1290	area	1290	-	-	-	-	-	-	-	-	-	-
+1291	area	1291	tri_r01	Stage 86	Phase 86	Nivel 86	Niveau 86	Prova 86	ステージ86	스테이지 86	关卡86	關卡86
+1292	area	1292	tri_r02	Stage 87	Phase 87	Nivel 87	Niveau 87	Prova 87	ステージ87	스테이지 87	关卡87	關卡87
+1293	area	1293	tri_r03	Stage 88	Phase 88	Nivel 88	Niveau 88	Prova 88	ステージ88	스테이지 88	关卡88	關卡88
+1294	area	1294	tri_r04	Stage 89	Phase 89	Nivel 89	Niveau 89	Prova 89	ステージ89	스테이지 89	关卡89	關卡89
+1295	area	1295	tri_r05	Stage 90	Phase 90	Nivel 90	Niveau 90	Prova 90	ステージ90	스테이지 90	关卡90	關卡90
+1296	area	1296	-	-	-	-	-	-	-	-	-	-
+1297	area	1297	-	-	-	-	-	-	-	-	-	-
+1298	area	1298	-	-	-	-	-	-	-	-	-	-
+1299	area	1299	tri_s01	Stage 91	Phase 91	Nivel 91	Niveau 91	Prova 91	ステージ91	스테이지 91	关卡91	關卡91
+1300	area	1300	tri_s02	Stage 92	Phase 92	Nivel 92	Niveau 92	Prova 92	ステージ92	스테이지 92	关卡92	關卡92
+1301	area	1301	tri_s03	Stage 93	Phase 93	Nivel 93	Niveau 93	Prova 93	ステージ93	스테이지 93	关卡93	關卡93
+1302	area	1302	tri_s04	Stage 94	Phase 94	Nivel 94	Niveau 94	Prova 94	ステージ94	스테이지 94	关卡94	關卡94
+1303	area	1303	tri_s05	Stage 95	Phase 95	Nivel 95	Niveau 95	Prova 95	ステージ95	스테이지 95	关卡95	關卡95
+1304	area	1304	-	-	-	-	-	-	-	-	-	-
+1305	area	1305	-	-	-	-	-	-	-	-	-	-
+1306	area	1306	-	-	-	-	-	-	-	-	-	-
+1307	area	1307	tri_t01	Stage 96	Phase 96	Nivel 96	Niveau 96	Prova 96	ステージ96	스테이지 96	关卡96	關卡96
+1308	area	1308	tri_t02	Stage 97	Phase 97	Nivel 97	Niveau 97	Prova 97	ステージ97	스테이지 97	关卡97	關卡97
+1309	area	1309	tri_t03	Stage 98	Phase 98	Nivel 98	Niveau 98	Prova 98	ステージ98	스테이지 98	关卡98	關卡98
+1310	area	1310	tri_t04	Stage 99	Phase 99	Nivel 99	Niveau 99	Prova 99	ステージ99	스테이지 99	关卡99	關卡99
+1311	area	1311	tri_t05	Stage 100	Phase 100	Nivel 100	Niveau 100	Prova 100	ステージ100	스테이지 100	关卡100	關卡100
+1312	region	0	-	-	-	-	-	-	-	-	-	-
+1313	region	1	-	Pharos at Ridorana	Richtfeuer	Gran Faro	Phare de Ridorana	Faro	大灯台	대등대	大灯塔	大燈塔
+1314	region	2	-	Nalbina Dungeons	Nalbina-Verlies	Mazmorras de Nalbina	Donjon de Nalbina	Segrete di Nalbina	ナルビナ城塞地下牢	날비나 요새 지하 감옥	那尔比纳城塞地牢	那爾比納城塞地牢
+1315	region	3	-	Barheim Passage	Barheim-Tunnel	Túneles de Balheim	Passage de Barheim	Gallerie di Barheim	バルハイム地下道	바르하임 지하도	柏尔海姆地下道	柏爾海姆地下道
+1316	region	4	-	bts01	bts01	-	bts01	bts01	bts01	bts01	-	-
+1317	region	5	-	mts01	mts01	-	mts01	mts01	mts01	mts01	-	-
+1318	region	6	-	pre01	pre01	-	pre01	pre01	pre01	pre01	-	-
+1319	region	7	-	Dalmasca Estersand	Ostwüste Dalmascas	Desierto de Dalmasca Este	Désert est de Dalmasca	Deserto est di Dalmasca	東ダルマスカ砂漠	동부 달마스카 사막	东达玛斯卡沙漠	東達瑪斯卡沙漠
+1320	region	8	-	Tchita Uplands	Tchita-Hochland	Meseta de Chitta	Landes de Tsita	Prateria di Tchita	ツィッタ大草原	칫타 대초원	椎塔大草原	椎塔大草原
+1321	region	9	-	The Salikawood	Salika-Wald	Bosque de Salika	Forêt de Salika	Bosco di Salika	サリカ樹林	살리카 숲	萨利卡树林	薩利卡樹林
+1322	region	10	-	Nabreus Deadlands	Nabreus-Sümpfe	Pantanal de Nabreus	Terres-mortes de Nabreus	Palude di Nabreus	ナブレウス湿原	나브레우스 습원	拿普留士湿地	拿普留士濕地
+1323	region	11	-	Sochen Cave Palace	Sohen-Höhlenpalast	Palacio Subterráneo de Sochen	Palais enfoui de Sohen	Palazzo di Sochen	ソーヘン地下宮殿	소헨 지하 궁전	索亨地下宫殿	索亨地下宮殿
+1324	region	12	-	Mosphoran Highwaste	Mosphora-Berge	Montes Mosfora	Col du Mosphore	Monti Mosfora	モスフォーラ山地	모스포라 산지	莫斯佛拉山地	莫斯佛拉山地
+1325	region	13	-	Skyferry	Charter-Luftschiff	Barco volador comercial	Vaisseau	Aerobus	飛空艇定期便	비공정 정기편	飞空艇定期航班	飛空艇定期航班
+1326	region	14	-	Giza Plains	Giza-Ebene	Pradera de Giza	Plaines de Giza	Pianura di Giza	ギーザ草原	기자 초원	居札草原	居札草原
+1327	region	15	-	Nalbina Fortress	Nalbina-Festung	Fortaleza de Nalbina	Forteresse de Nalbina	Fortezza di Nalbina	ナルビナ城塞内部	날비나 요새 내부	那尔比纳城塞内部	那爾比納城塞內部
+1328	region	16	-	Rabanastre	Königliches Rabanastre	Rabanasta, capital del reino	Rabanastre	Rabanastre	王都ラバナスタ	왕도 라바나스타	王都拉巴纳斯塔	王都拉巴納斯塔
+1329	region	17	-	Garamsythe Waterway	Garamseys-Kanalisation	Acueductos de Garamsais	Egouts de Garamsythe	Canali di Garamsythe	ガラムサイズ水路	가람사이스 수로	加蓝赛兹水路	加藍賽茲水路
+1330	region	18	-	Dalmasca Westersand	Westwüste Dalmascas	Desierto de Dalmasca Oeste	Désert ouest de Dalmasca	Deserto ovest di Dalmasca	西ダルマスカ砂漠	서부 달마스카 사막	西达玛斯卡沙漠	西達瑪斯卡沙漠
+1331	region	19	-	Lhusu Mines	Lhusu-Minen	Minas de Lhusu	Mines de Lhusu	Miniere di Lhusu	ルース魔石鉱	루스 마석광	路苏魔石矿	路蘇魔石礦
+1332	region	20	-	Ogir-Yensa Sandsea	Ogir-Yensa-Sandsee	Arenas de Ogul Yensa	Mer de sable d'Ogir-Yensa	Ogir Yensa	大砂海オグル・エンサ	대사해 오기르 옌사	大沙海奥格·焉萨	大沙海奧格·焉薩
+1333	region	21	-	Nam-Yensa Sandsea	Nam-Yensa-Sandsee	Arenas de Nam Yensa	Mer de sable de Nam-Yensa	Nam Yensa	大砂海ナム・エンサ	대사해 냄 옌사	大沙海那姆·焉萨	大沙海那姆·焉薩
+1334	region	22	-	The Tomb of Raithwall	Grabstätte Raithwalls	Tumba de Raithwall	Tombeau de Raithwall	Tomba di Raithwall	レイスウォール王墓	레이스월 왕묘	瑞斯沃尔王墓	瑞斯沃爾王墓
+1335	region	23	-	Necrohol of Nabudis	Totenstadt Nabudis	Nabudis, capital de los muertos	Nécropole de Nabudis	Nabudis	死都ナブディス	사도 나부디스	死都拿普迪斯	死都拿普迪斯
+1336	region	24	-	Golmore Jungle	Golmore-Dschungel	Selva de Golmore	Jungle de Golmore	Giungla di Golmore	ゴルモア大森林	골모어 대삼림	葛尔摩大森林	葛爾摩大森林
+1337	region	25	-	Paramina Rift	Paramina-Schluchten	Gran Barranco de Paramina	Gorges de Paramina	Gole di Paramina	パラミナ大峡谷	파라미나 대협곡	帕拉密纳大峡谷	帕拉密納大峽谷
+1338	region	26	-	Phon Coast	Phon-Küste	Costa de Fon	Côte de Phon	Costa Phon	フォーン海岸	폰 해안	丰恩海岸	豐恩海岸
+1339	region	27	-	Cerobi Steppe	Cerobi-Steppe	Alturas de Cerobi	Plateaux de Cérobi	Altopiano di Cerobi	セロビ台地	세로비 대지	榭洛比台地	榭洛比台地
+1340	region	28	-	Ridorana Cataract	Ridorana-Katarakt	Cataratas de Ridorana	Cataractes de Ridorana	Cascate di Ridorana	リドルアナ大瀑布	리도르아나 대폭포	黎铎亚纳大瀑布	黎鐸亞納大瀑布
+1341	region	29	-	Ozmone Plain	Ozmone-Ebene	Campo de Ozmon	Plaine d'Ozmone	Pianura di Ozmone	オズモーネ平原	오즈모네 평원	欧兹莫内平原	歐茲莫內平原
+1342	region	30	-	The Feywood	Verwunschener Wald	Bosque Encantado	Bois des charmes	Foresta stregata	幻妖の森	환요의 숲	幻妖森林	幻妖森林
+1343	region	31	-	Dreadnought Leviathan	Schlachtschiff Leviathan	Acorazado Leviatán	Léviathan	Leviatano	戦艦リヴァイアサン	전함 리바이어던	战舰利维坦	戰艦利維坦
+1344	region	32	-	Royal Palace	Rabanastre-Palast	Palacio de Rabanasta	Palais de Rabanastre	Palazzo di Rabanastre	ラバナスタ王宮	라바나스타 왕궁	拉巴纳斯塔王宫	拉巴納斯塔王宮
+1345	region	33	-	Zertinan Caverns	Zertenian-Grotten	Cueva Certeniana	Grottes de Zertina	Caverne di Zertinan	ゼルテニアン洞窟	제르티난 동굴	杰尔提尼安洞窟	傑爾提尼安洞窟
+1346	region	34	-	Stilshrine of Miriam	Miriam-Stillschrein	Templo de Miliam	Temple de Miliam	Tempio di Miriam	ミリアム遺跡	미리암 유적	弥利亚姆遗迹	彌利亞姆遺跡
+1347	region	35	-	mrm02	mrm02	-	mrm02	mrm02	mrm02	mrm02	-	-
+1348	region	36	-	Bhujerba	Himmelsstadt Bhujerba	Bhujerba, ciudad suspendida	Bhujerba	Bhujerba	空中都市ビュエルバ	공중 도시 뷔에르바	空中都市卜耶巴	空中都市卜耶巴
+1349	region	37	-	Nalbina Town	Nalbina-Stadt	Arrabal de Nalbina	Faubourg de Nalbina	Borgo di Nalbina	ナルビナ城塞市街地	날비나 요새 시가지	那尔比纳城塞市区	那爾比納城塞市區
+1350	region	38	-	Archades	Kaiserliches Archadis	Arcadis, capital imperial	Archadès	Archades	帝都アルケイディス	제도 아르케이디스	帝都阿凯迪斯	帝都阿凱迪斯
+1351	region	39	-	Lowtown	Rabanastre Unterstadt	Barrio Bajo de Rabanasta	Basse-ville	Città bassa	ラバナスタ・ダウンタウン	라바나스타 다운타운	拉巴纳斯塔闹区	拉巴納斯塔鬧區
+1352	region	40	-	Trial Mode	Prüfungsmodus	Modo Desafío	Épreuves	Modalità Sfida	トライアルモード	트라이얼 모드	考验模式	考驗模式
+1353	region	41	-	NOT USED	Königliches Rabanastre	-	Rabanastre	Rabanastre	王都ラバナスタ	왕도 라바나스타	王都拉巴纳斯塔	王都拉巴納斯塔
+1354	region	42	-	Giruvegan	Antikes Giruvegan	Giruvegan, ciudad centenaria	Gilvégane	Giruvegan	古代都市ギルヴェガン	고대 도시 기루베간	古代都市基鲁菲冈	古代都市基魯菲岡
+1355	region	43	-	The Great Crystal	Megakristh	Gran Cristal	Grand Cristal	Grande cristallo	クリスタル・グランデ	크리스털 그란데	水晶巨界	水晶巨界
+1356	region	44	-	NOT USED	Antikes Giruvegan	-	Gilvégane	Giruvegan	古代都市ギルヴェガン	고대 도시 기루베간	古代都市基鲁菲冈	古代都市基魯菲岡
+1357	region	45	-	Henne Mines	Henna-Minen	Minas de Henne	Mines de Henne	Miniere di Henne	ヘネ魔石鉱	헤네 마석광	黑涅魔石矿	黑涅魔石礦
+1358	region	46	-	Mt Bur-Omisace	Bur-Omisace	Monte Sagrado Bur-Omisais	Sanctuaire de Bur-Omisace	Bur-Omisace	神都ブルオミシェイス	신도 부르오미세이스	神都布尔欧密谢司	神都布爾歐密謝司
+1359	region	47	-	Balfonheim Port	Hafenstadt Balfonheim	Puerto de Balfonheim	Port Balfonheim	Porto di Balfonheim	港町バーフォンハイム	항구 도시 발폰하임	港都巴冯海姆	港都巴馮海姆
+1360	region	48	-	Jahara	Garif-Heimat Jahara	Yajara, tierra de los garif	Jahara	Jahara	ガリフの地ジャハラ	가리프의 땅 자하라	戈利夫族村落佳哈拉	戈利夫族村落佳哈拉
+1361	region	49	-	Old Archades	Altes Archadis	Casco Viejo de Arcadis	Vieille Archadès	Vecchia Archades	アルケイディス旧市街	아르케이디스 구 시가지	阿凯迪斯旧城区	阿凱迪斯舊城區
+1362	region	50	-	Eruyt Village	Dorf Elt	Aldea de Elt	Village d'Eruyt	Villaggio di Eruyt	エルトの里	에루트 마을	叶露特村里	葉露特村里
+1363	region	51	-	rwr01	rwr01	rwr01	rwr01	rwr01	rwr01	rwr01	-	-
+1364	region	52	-	Sky Fortress Bahamut	Luftfeste Bahamut	Bahamut, fortaleza aérea	Bahamut	Bahamut	空中要塞バハムート	공중요새 바하무트	空中要塞巴哈姆特	空中要塞巴哈姆特
+1365	region	53	-	Draklor Laboratory	Draklor-Laboratorium	Laboratorio Draklor	Laboratoire Draklor	Laboratorio Draklor	ドラクロア研究所	드라클로어 연구소	卓克罗尔研究所	卓克羅爾研究所
+1366	region	54	-	Light Cruiser Shiva	Leichter Kreuzer Shiva	Crucero ligero Shiva	Shiva	Shiva	軽巡洋艦シヴァ	경순양함 시바	轻巡洋舰湿婆	輕巡洋艦濕婆
+1367	region	55	-	Pharos - Third Ascent	Richtfeuer — Obere Ebene	Gran Faro, nivel superior	Sommet du phare	Sommità del Faro	大灯台{blank}上層	대등대 상층	大灯塔{blank}上层	大燈塔{blank}上層
+1368	region	56	-	Pharos - Second Ascent	Richtfeuer — Mittlere Ebene	Gran Faro, nivel medio	Cœur du phare	Centro del Faro	大灯台{blank}中層	대등대 중층	大灯塔{blank}中层	大燈塔{blank}中層
+1369	region	57	-	Pharos - First Ascent	Richtfeuer — Sockelebene	Gran Faro, nivel inferior	Pied du phare	Base del Faro	大灯台{blank}下層	대등대 하층	大灯塔{blank}下层	大燈塔{blank}下層
+1370	region	58	-	Pharos - Subterra	Richtfeuer — Subterran	Gran Faro, subterráneo	Fondations du phare	Sotterranei del Faro	大灯台{blank}地下層	대등대 지하층	大灯塔{blank}地下层	大燈塔{blank}地下層

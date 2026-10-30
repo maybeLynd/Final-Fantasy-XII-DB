@@ -106,6 +106,8 @@ Three key items have no source, and their `sources` cells say so with `none:`: t
 
 Every `used_for` part names every use; a long cell moves its longest parts to [`item-sources.tsv`](item-sources.tsv) as `sources` does. A key item with none of these parts gets `census:`, the number of zone and event scripts read here and what none of them does with it: they give Writ of Transit, Rusted Scrap of Armor, Treaty-Blade and Dusty Letter, and none of them takes, tests or names these four; none of them gives, takes, tests or names the Time-worn Necklace. The status words read `not an item: a status word`, and the Reserve rows `-`.
 
+The `test_opens` column says what each `tested:` site does for the player: for example the Clan Primer lets the player into The Clan Hall, the Lab Access Card works the lifts and doors of Draklor Laboratory, and Lente's Tear opens the way in Golmore Jungle.
+
 The census of those five ids reaches past the scripts read here: no instruction of the executable holds one as an immediate, no table of its data sections or of the map and quest menu files holds one, and of the developer scripts `evt_t*`, which the scene-rewards table leaves out, only `evt_t0505` holds one: it gives the Writ.
 
 ## Columns
@@ -122,6 +124,7 @@ The census of those five ids reaches past the scripts read here: no instruction 
 | `kind` | map, teleport destination, status word, key item or Reserve ("Rows that are not items" above) |
 | `sources` | where the key item is obtained, one part per kind of source, with how a scene gift is handed over, the map sellers and each trophy's rare game ("Where each key item comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `none:` and the sources that do not hold it for the three key items no source gives; `-` for none |
 | `used_for` | what takes, tests or reads the key item, one part per kind of use ("What each key item is for" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `census:` and the number of scripts it covers when none is found |
+| `test_opens` | for each of the 43 key items with a `tested:` part, what each test does in the game: the door, map jump, scene step, trade, gift, quest step or talk it controls, with the map (region) and script; `-` for the others |
 
 ## Related
 

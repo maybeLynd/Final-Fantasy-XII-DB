@@ -67,6 +67,10 @@ Of the shipped ladders, 43 end in an entry with no condition, two in a story thr
 player below it gets that last list through the fallback: shops 43, 44 and 51 at 500, 21 at 1,580, 22 at 1,982,
 26, 27, 48 and 49 at 3,100, and 54 and 55 at 3,250.
 
+Story progress is a signed 16-bit value; the values the scripts write in reachable code run from 13 to 7,150 ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), and no script writes 500 or 960. It goes from 490 (After the captive Penelo) to 520 (After the floating continent), and from 930 (After the Leviathan tutorial) to 966 (After the battle with the lesser judges). The test passes at the threshold or any higher value (`0x002FAE09` `cmp`, `0x002FAE0D` `jge`), so a list that waits on 500 is sold from 520 and one that waits on 960 from 966.
+
+Of the 23 lists at 500 or 960, 17 go on sale at 520. The other six are sold from the start: shop 24's lists 25 (960), 27 and 35 (500) come after its list 15, which has no condition, and the 500 lists of shops 43, 44 and 51 are the last of their ladders. The story test reads story progress only, so no clan rank opens these lists. The `on_sale` column gives the point from which each list is sold.
+
 ### What the menu shows
 
 `0x002FA920(shop, mode, category, out)` builds the menu's list (`0x002FA920`-`0x002FABC3`). In mode 1 it skips the
@@ -125,6 +129,8 @@ block that are earned, `0x00316670`. The twelve rows are at `0x00D105D0`, eight 
 `0x00316480` counts the entries of the quest list at `0x022C2550` whose quest is ordered or cleared and whose
 scenario value reaches the entry's minimum (`0x00316520`-`0x0031654D`).
 
+What each rank brings is in [`clan-ranks.tsv`](clan-ranks.tsv). Montblanc's talk in The Clan Hall (Rabanastre) (`rbn_a14`) gives reward package `0x902E` plus the rank for each rank reached since the last one he rewarded ([Reward package list](../Rewards-EXP-Gil-And-Loot/reward-package-list.md)). The Clan Provisioner, shop 2, sells list 12 minus the rank and every list after it. The clan boards and Montblanc post the hunts whose rank test the rank meets ([Hunts](../Story-Events-And-Hunts/hunts.md)).
+
 ### The shipped ladders
 
 The 57 shops hold 267 lists: 45 with no condition, 210 on story progress and 12 on clan rank, all of the
@@ -158,8 +164,22 @@ The Clan Provisioner's actor in Muthru Bazaar (Rabanastre) is a Mysterious Merch
 | `stock_ids` | the list's encoded ids, in order |
 | `stock` | their names from the shipped text tables, in the same order |
 | `place` | the map (region) and script whose script gives an actor the shop ("Where each shop is" above), `or` between two |
+| `on_sale` | the point from which the list is sold: from the start, from a clan rank, or from a story progress value with the story point that first meets it ("Choosing a list" above) |
 
 A list is sold when its own entry or an earlier one in the ladder is the first whose condition the player meets.
+
+[`clan-ranks.tsv`](clan-ranks.tsv), one row per clan rank ("Clan rank" above):
+
+| Column | Meaning |
+|---|---|
+| `rank` | the rank, 1 to 12 |
+| `name` | its name |
+| `clan_points`, `hunt_count`, `awards` | the clan points, the count `0x00316480` returns and the earned awards the rank needs |
+| `reward_package` | the package Montblanc gives for reaching the rank |
+| `reward` | what the package gives |
+| `provisioner_list` | the Clan Provisioner's list (shop 2) the rank opens |
+| `provisioner_stock` | that list's stock; the lists of the lower ranks stay on sale |
+| `hunts` | the hunts whose rank test is this rank, with who posts each and from which story progress, or `none` |
 
 ## Related
 

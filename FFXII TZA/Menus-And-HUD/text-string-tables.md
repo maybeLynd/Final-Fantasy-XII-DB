@@ -68,6 +68,27 @@ one per row of the `st2e` table of the same stem: Japanese designer labels such 
 `テスト成長値`. The `kr` and `cn` copies are identical, and no path in the game names either file
 ([PS2-era .bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md)).
 
+### The map and region names
+
+`planmapname.bin`, one in each language's `bin` folder, holds the area and region names. Its header and its three
+readers `0x00377B60`, `0x00377870` and `0x003778B0` are on
+[Area flags and navigation map data](../World-Areas-And-Travel/area-flags-navimapdata.md): `PLMN`, 1,312 area
+entries, 59 region entries, and a `u16` offset per entry from `+0x10`. All nine copies have the same counts.
+
+[`text-string-tables-planmapname.tsv`](text-string-tables-planmapname.tsv) gives the 1,371 entries in all nine
+languages, each string decoded with its tree's font, with no byte left as a raw code. An area entry's index is the
+field id `0x00377B60` takes; a region entry follows the 1,312 area entries.
+
+- Areas: 749 entries have a name in all nine languages, and the other 563 have offset 0 (written `-`) in all nine.
+  708 entries carry a zone of the [Zone asset list](../World-Areas-And-Travel/zone-asset-list.md). The 45 named
+  entries with no zone there include the `dgl_*` and `bds_*` names, Dhebon Jilaam Avaa (948) and the Rm rooms
+  1012-1097.
+- Areas 293 and 294 read `NOT USED` in `us`; the other eight trees name them, `de` Südstadt and Hauptstraße.
+- Regions: region 0 has offset 0 in every tree. `us`, `de`, `fr`, `it`, `in` and `kr` name the other 58. `es` has
+  offset 0 for regions 4, 5, 6, 35, 41 and 44, and `cn` and `ch` for 4, 5, 6, 35 and 51. Regions 4, 5, 6, 35 and
+  51 carry development names (`bts01`, `mts01`, `pre01`, `mrm02`, `rwr01`) where they have a name. Regions 41 and 44
+  read `NOT USED` in `us`, while `de` names 41 Königliches Rabanastre.
+
 ### Reading the text
 
 Each cell is the string decoded with its tree's font. Control codes are written as placeholders, `{name}` or
@@ -112,6 +133,16 @@ each code's form. A backslash comes before a literal backslash, brace, square br
 
 An empty cell under a language not in `missing` is an empty string: every string offset of these tables lies inside
 its text block.
+
+### text-string-tables-planmapname.tsv
+
+| Column | Meaning |
+|---|---|
+| `entry` | the entry's place in the offset table at `+0x10`, from 0 |
+| `kind` | `area` for entries 0-1,311, `region` for 1,312-1,370 |
+| `id` | the area entry's field id, or the region number (the entry less 1,312) |
+| `zone` | the zone with this field id in the Zone asset list; `-` for a region or a field id with no zone |
+| `name_us` to `name_ch` | the entry's string in that language tree, decoded with the tree's font; `-` where the entry's offset is 0 |
 
 ## Data
 

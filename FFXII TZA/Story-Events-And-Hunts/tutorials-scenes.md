@@ -19,6 +19,11 @@ ids, only 429 (`men_z0005`) is named, in field 13 (`ttl_b01`), and the table bel
 | `men_z0003` | `439` | - | 1 | - |
 | `men_z0005` | `429` | field 13 (`ttl_b01`) | 0 | - |
 
+What opens the three menu scenes: script verb `openfullscreenmenu_48d` with selector 6 opens menu id 22, and
+`0x002E1A60` turns parameters 0, 1 and 2 into the menu modes `0x40`, `0x41` and `0x42` ([Menus](../Menus-And-HUD/menus.md));
+those load events 437, 438 and 439 through `0x003CA140`. Of the 1,274 `openfullscreenmenu_48d` calls of the `us`
+scripts that decode (`evt_t0020` has no `EBP2` header), two pass selector 6: `grm_a0480` with parameter 0 and `rbn_a03` with 2. The `opened_by` column gives each.
+
 ### The scenes
 
 - `men_z0001`, the Gambit Screen tutorial (`gambit_tutorial.main`), holds nine lines of Balthier, each beginning with
@@ -89,6 +94,7 @@ button or the OK button. It fades layer 0 out over 60 frames, waits on it, waits
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | story counter values written by the scene, with the first sentence of each explanation on [story counter values](story-counter-values.md) |
 | `next` | the scene or map that follows when the loading script has the same file-name prefix; `-` here |
+| `opened_by` | the script call that opens the scene, its field and the story counter it runs at |
 
 The steps table [`tutorials-script-steps.tsv`](tutorials-script-steps.tsv) has one row per step:
 

@@ -11,6 +11,16 @@ The main story counter is the signed 16-bit word at the start of the save payloa
 the payload base (`0x0026CAF8`-`0x0026CAFD`, through the slot pointer `0x02098E58` and `0x002EF2B0`), and the native reader
 is `FieldData_GetVariable0` (`0x00265270`). [Story flags](story-flags.md) shows the menus and map groups it unlocks.
 
+The `unlocks` column gives what is gated on the counter reaching each value, placed on the lowest value here at or
+above the gate's threshold, with `(at least N)` when the two differ: the shop lists whose condition is story progress
+go on sale ([shops](../Items-Equipment-Shops-And-Licenses/shops.md), compared as at least the threshold at
+`0x002FADF3`-`0x002FAE0D`), and Clan Primer entries unlock ([Clan Primer entries](../Menus-And-HUD/clan-primer-entries.md)).
+
+It also gives the story schedule records of `mapjumpgroupflagrom.bin` that turn true or false there ([Story
+flags](story-flags.md), reader `0x00377970`), and each scene read, `eventread` or `eventread_e8`, whose guard compares
+the counter with a literal: the read needs the counter at least, below or at the value, and the rest of its guard
+still applies. A scene's name is the `scene` of the area scene table row with that `event_id`.
+
 The table lists every value a script writes to it, from the 1,114 `us` scripts under `plan_master/us` that decode;
 `evt_t0020` has no `EBP2` header and holds no code.
 
@@ -80,6 +90,7 @@ not test the counter, such as `touch`, `touchon` and named event functions, whic
 | `developer_scripts` | those scripts, with `xN` for N writes |
 | `explanation` | what the value marks, in English: the developers' name for it from the `evt_t0505` scenario menu (below), translated, then the maps whose scripts write it, as map name (region) from `planmapname.bin`; for the two values with neither, 1899 and 4090, the developer menu that sets it and the value it precedes |
 | `developer_name` | the developers' own name for the value: each `SF_` line of the `evt_t0505` scenario menu that writes it, in menu order, `;` between lines; `-` for the values the menu has no line for |
+| `unlocks` | what opens or changes when the counter reaches the value: shop lists on sale, Clan Primer entries, story schedule records turning true or false, and scene reads that need the counter at least, below or at it; `-` when none |
 
 ### The developers' names
 

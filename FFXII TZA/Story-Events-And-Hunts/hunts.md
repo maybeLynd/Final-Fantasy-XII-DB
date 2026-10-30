@@ -33,6 +33,12 @@ The `mark` column joins each mark to its [Bestiary](../Enemy-Spawning/bestiary.m
 
 Seven hunts have no such step. The five steps of 153 carry location 0. The one step of 159, 167, 169, 170, 171 and 172 is labelled Montblanc, Rikken or Whitecap Wench, and the hunt map marks that step's zone. Their marks are the foes their record names; hunt 172's Belito is a ruse, and the foe is Ba'Gamnan.
 
+### When a bill is posted
+
+The clan boards in The Sandsea (Rabanastre), Jajim Bazaar (Nalbina Town), The Cloudborne (Bhujerba), Hunters' Camp (Phon Coast), The Whitecap (Balfonheim Port) and Granch's Requisites (Archades) run one talk (`掲示板.talk` in `rbn_a16`, `nac_a02`, `byu_a18`, `fon_b01`, `var_a14` and `alc_f04`). It posts hunts 129 to 159 in order: story progress sets how many the board shows, 2 from 105 up to all 31 from 6,100, and each needs its own clan rank. A bill shows while its hunt is neither ordered nor cleared; taking it orders the hunt (`setquestorder(quest, 1)`).
+
+Montblanc's talk in The Clan Hall (Rabanastre) (`rbn_a14`) offers hunts 160 to 171 the same way, 2 from 350 up to all 12 from 6,100, and hunt 172 from 4,100 once three of hunts 160-171 are cleared, 164 among them. Hunts 167, 168 and 171 also wait on defeated marks. Hunt 128 is not posted: the scene at the board in The Sandsea orders it at the start of the first hunt. The `posted` column gives each hunt's tests.
+
 ### Where the values come from
 
 Each line is read from the shipped files in these steps:
@@ -89,6 +95,7 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 | `explanation` | a one-line summary: the name, the petitioner, the progress of each part and of the done mark | |
 | `mark` | the mark: its bestiary rows with the Clan Primer entry, the maps whose scripts place it with the level, the Trial Mode rows, and the map zone the hunt map marks with its location word and field id, or, for a hunt with no step labelled with the mark, the zone its one step marks or that no step marks one ("The mark" above) | `0x0037EB90`, `0x003BC160` |
 | `reward` | the reward package with what it gives, its selector, and the maps whose scripts grant it ("The reward" above) | `0x00344C60`, `0x00290130` |
+| `posted` | where the bill is posted and the story progress, clan rank and earlier hunts its talk tests ("When a bill is posted" above) | the scripts' `getclanrank`, `isquestorder`, `isquestclear` and story progress tests |
 
 The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0x0046B180`), set by the scripts'
 `setquestscenarioflag` ([Quests](quests.md)).
