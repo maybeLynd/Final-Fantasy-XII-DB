@@ -139,6 +139,8 @@ case-by-case load and destroy arms are in [`effect-element-runtime-switch-family
 | stream magics | `EFX0010` 4,221, `EFX0008` 7, `EFX0009` 1 |
 | `.efb` | all `EFB0002`; one blob each, its size equal to the stream's `+0x0C`, its 12 header bytes zero; `+0x0C` zero |
 | `.efb` rows | 2,615, all type 3 with byte `+1` = 1; channels 0 to 63; row count equal to the header word in all 410 |
+| every `.efb` | one row each in [`effect-banks-efb-files-rows.tsv`](effect-banks-efb-files-rows.tsv), 410 rows: size, SHA-256 prefix, magic, blob and row counts, the stream's magic and size, its chunks by type, and that the rows end at the file end (all 410) |
+| every bank row | one row each in [`effect-banks-efb-rows.tsv`](effect-banks-efb-rows.tsv), 2,615 rows: bank, index, type, byte `+1`, channel, definition id, the three weather enable bytes and the row's 160 bytes in hex |
 | chunks | 242,875, all flag `0x100` |
 | chunk types | `0x620` 62,605; `0x800` 53,351; `0xA00` 48,868; `0xB00` 40,750; `0x610` 14,937; `0x700` 13,928; `0x600` 8,436 |
 | `0x600` | bias `0xA0` in all |

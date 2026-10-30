@@ -77,6 +77,8 @@ Measured over every `.as7` in the archive.
 | dictionary | mode 0 and `b` = 5 in all 18; 34 to 1,024 dictionary bytes |
 | decoding | every page of all 18 decodes exactly to `outLen`, and every reference stays inside the dictionary |
 | `outLen` | 6,144 in `item_gra00` to `06`; 1,536 in `item_gra07`, whose 64 pages are all zero bytes; 1,024 in `char_silhouette` |
+| every page | one row each in [`as7-menu-graphics-pages-rows.tsv`](as7-menu-graphics-pages-rows.tsv), 3,608 rows for the 9 distinct files: stream offset and bytes, decoded bytes, the decoded page's SHA-256 prefix, its non-zero bytes, its largest byte, and whether it begins a `TIM2` picture (12 pages, two per silhouette group) |
+| zero pages | 176 of the 3,096 `char_silhouette` pages decode to zero bytes only, in runs inside the groups (pages 1 to 29 and 517 to 559 among them), besides the 64 of `item_gra07` |
 | item pages | one byte per pixel; the largest index in each of `item_gra00` to `06` is 255 |
 | silhouette groups | pages `516 × g` to `516 × g + 257` and the next 258 each decode to 264,192 bytes beginning with a `TIM2` header, for all six groups |
 | `Item_Clut.bin` | 7,168 bytes in `in` and `ch`, identical: seven 1,024-byte palettes |

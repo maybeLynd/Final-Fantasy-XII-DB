@@ -372,7 +372,8 @@ form also stores the slot at actor `+0xF5`.
 
 Kind-5 motions are files read on demand into 16 entries of `0x14` bytes at `0x02B57F70`, with at most
 four 32 KiB units in use. `0x003DCBC0`, from the area initialiser `0x00266D10`, numbers the entries, empties
-the 16-entry size cache at `0x02B580B0` and requests the table file tagged `PCSkill` (kind 9, file 5).
+the 16-entry size cache at `0x02B580B0` and requests the table file tagged `PCSkill` (kind 9, file 5: `in/common/pc_skillmotion.bin`, or the `ch` copy for
+Korean and the two Chinese languages, 544 bytes).
 
 `SkillMotionEntry` (`0x14` bytes, offsets from the start of the 0x02B57F70+0x14*i):
 

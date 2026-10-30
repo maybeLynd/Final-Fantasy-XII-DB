@@ -233,6 +233,10 @@ the six header constants at `+0x58`-`+0x6C` from their getters (`0x002EF2A0`, `0
 images (`0x002EF300`: slot clamped to 0-15, resource kind 1, index `0x75 + slot`, `0xE240` bytes into
 the active buffer).
 
+The slot images ship as `ps2data/image/ff12/katano/ff12savedata00.sav` to `ff12savedata15.sav`: the file
+size tables size kind 1 ids 117 to 132 at exactly these files' sizes in order (57,864 bytes for 00 to 03, 49,664
+for 04 to 06 and 15, 22,016 for 07 to 14), and give those ids no path in this build.
+
 ## Modding notes
 
 - A save editor must decrypt and inflate the body before any offset applies; file offset `0x1244`

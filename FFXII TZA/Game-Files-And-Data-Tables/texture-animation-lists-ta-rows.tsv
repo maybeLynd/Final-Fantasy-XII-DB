@@ -1,0 +1,595 @@
+map	list	entry	frame	path	resolves	phyremaps_value
+bul0201	0	0	0	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire.dds.phyre	direct	
+bul0201	0	1	1	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_1.dds.phyre	direct	
+bul0201	0	2	10	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_10.dds.phyre	direct	
+bul0201	0	3	11	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_11.dds.phyre	direct	
+bul0201	0	4	12	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_12.dds.phyre	direct	
+bul0201	0	5	13	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_13.dds.phyre	direct	
+bul0201	0	6	14	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_14.dds.phyre	direct	
+bul0201	0	7	15	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_15.dds.phyre	direct	
+bul0201	0	8	2	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_2.dds.phyre	direct	
+bul0201	0	9	3	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_3.dds.phyre	direct	
+bul0201	0	10	4	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_4.dds.phyre	direct	
+bul0201	0	11	5	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_5.dds.phyre	direct	
+bul0201	0	12	6	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_6.dds.phyre	direct	
+bul0201	0	13	7	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_7.dds.phyre	direct	
+bul0201	0	14	8	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_8.dds.phyre	direct	
+bul0201	0	15	9	/GameData/D3D11/ArtData/map/bul02/bul0201/tex/bul0201_fire_pic_9.dds.phyre	direct	
+bul0301	0	0	0	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire.dds.phyre	direct	
+bul0301	0	1	1	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_1.dds.phyre	direct	
+bul0301	0	2	10	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_10.dds.phyre	direct	
+bul0301	0	3	11	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_11.dds.phyre	direct	
+bul0301	0	4	12	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_12.dds.phyre	direct	
+bul0301	0	5	13	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_13.dds.phyre	direct	
+bul0301	0	6	14	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_14.dds.phyre	direct	
+bul0301	0	7	15	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_15.dds.phyre	direct	
+bul0301	0	8	2	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_2.dds.phyre	direct	
+bul0301	0	9	3	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_3.dds.phyre	direct	
+bul0301	0	10	4	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_4.dds.phyre	direct	
+bul0301	0	11	5	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_5.dds.phyre	direct	
+bul0301	0	12	6	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_6.dds.phyre	direct	
+bul0301	0	13	7	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_7.dds.phyre	direct	
+bul0301	0	14	8	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_8.dds.phyre	direct	
+bul0301	0	15	9	/GameData/D3D11/ArtData/map/bul03/bul0301/tex/bul0103_fire_pic_9.dds.phyre	direct	
+dst0101	0	0	0	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_a077954ce8016aed_b8c333031bf9117c_400b0.dds.phyre
+dst0101	0	1	1	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_1_4640a58586362d93_5896d4684e2594d4_400b0.dds.phyre
+dst0101	0	2	10	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_10_71ff99d6e58f90a7_8e6024b7c48e65e3_400b0.dds.phyre
+dst0101	0	3	11	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_11_d51b5bdd4fc5fee_690bb5ebfff0aa44_400b0.dds.phyre
+dst0101	0	4	12	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_12_3850072694b55631_a3f2cd8cff002c2a_400b0.dds.phyre
+dst0101	0	5	13	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_13_25f3de063243c143_7f5d2b85d78e17f6_400b0.dds.phyre
+dst0101	0	6	14	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_14_97b867552e441384_f41790ebcbf76dd3_400b0.dds.phyre
+dst0101	0	7	15	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_15_c0b7a338a52e0a18_90449b9a413a40c7_400b0.dds.phyre
+dst0101	0	8	2	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_2_c61971a6f115d081_e1f3573065072afe_400b0.dds.phyre
+dst0101	0	9	3	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_3_30bb391a77b8c20b_f762f4bf0a7b1eba_400b0.dds.phyre
+dst0101	0	10	4	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_4_2291fa1b9615a0a1_a4c0ca880e3133cb_400b0.dds.phyre
+dst0101	0	11	5	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_5_49c695913883495c_5cc33ca8072dabb6_400b0.dds.phyre
+dst0101	0	12	6	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_6_3cccd9745bf54120_5768090307538399_400b0.dds.phyre
+dst0101	0	13	7	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_7_accc0dba52af7d55_2d56823ac2312649_400b0.dds.phyre
+dst0101	0	14	8	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_8_d20bb0f8d3f30993_735cfe2365069e07_400b0.dds.phyre
+dst0101	0	15	9	/GameData/D3D11/ArtData/map/dst01/dst0101/tex/dst0100_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_9_8b507d5da83250e9_8f036d3045fb48c_400b0.dds.phyre
+dst0104	0	0	0	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_a077954ce8016aed_b8c333031bf9117c_400b0.dds.phyre
+dst0104	0	1	1	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_1_4640a58586362d93_5896d4684e2594d4_400b0.dds.phyre
+dst0104	0	2	10	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_10_71ff99d6e58f90a7_8e6024b7c48e65e3_400b0.dds.phyre
+dst0104	0	3	11	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_11_d51b5bdd4fc5fee_690bb5ebfff0aa44_400b0.dds.phyre
+dst0104	0	4	12	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_12_3850072694b55631_a3f2cd8cff002c2a_400b0.dds.phyre
+dst0104	0	5	13	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_13_25f3de063243c143_7f5d2b85d78e17f6_400b0.dds.phyre
+dst0104	0	6	14	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_14_97b867552e441384_f41790ebcbf76dd3_400b0.dds.phyre
+dst0104	0	7	15	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_15_c0b7a338a52e0a18_90449b9a413a40c7_400b0.dds.phyre
+dst0104	0	8	2	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_2_c61971a6f115d081_e1f3573065072afe_400b0.dds.phyre
+dst0104	0	9	3	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_3_30bb391a77b8c20b_f762f4bf0a7b1eba_400b0.dds.phyre
+dst0104	0	10	4	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_4_2291fa1b9615a0a1_a4c0ca880e3133cb_400b0.dds.phyre
+dst0104	0	11	5	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_5_49c695913883495c_5cc33ca8072dabb6_400b0.dds.phyre
+dst0104	0	12	6	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_6_3cccd9745bf54120_5768090307538399_400b0.dds.phyre
+dst0104	0	13	7	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_7_accc0dba52af7d55_2d56823ac2312649_400b0.dds.phyre
+dst0104	0	14	8	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_8_d20bb0f8d3f30993_735cfe2365069e07_400b0.dds.phyre
+dst0104	0	15	9	/GameData/D3D11/ArtData/map/dst01/dst0104/tex/dst0100_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_9_8b507d5da83250e9_8f036d3045fb48c_400b0.dds.phyre
+dst0105	0	0	0	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_eec9927dfe139b81_2a3c9175f9966882_400b0.dds.phyre
+dst0105	0	1	1	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_1.dds.phyre	direct	
+dst0105	0	2	10	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_10.dds.phyre	direct	
+dst0105	0	3	11	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_11.dds.phyre	direct	
+dst0105	0	4	12	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_12.dds.phyre	direct	
+dst0105	0	5	13	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_13.dds.phyre	direct	
+dst0105	0	6	14	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_14.dds.phyre	direct	
+dst0105	0	7	15	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_15.dds.phyre	direct	
+dst0105	0	8	2	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_2.dds.phyre	direct	
+dst0105	0	9	3	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_3.dds.phyre	direct	
+dst0105	0	10	4	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_4.dds.phyre	direct	
+dst0105	0	11	5	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_5.dds.phyre	direct	
+dst0105	0	12	6	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_6.dds.phyre	direct	
+dst0105	0	13	7	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_7.dds.phyre	direct	
+dst0105	0	14	8	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_8.dds.phyre	direct	
+dst0105	0	15	9	/GameData/D3D11/ArtData/map/dst01/dst0105/tex/dst0100_fire_pic_9.dds.phyre	direct	
+dst0108	0	0	0	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_eec9927dfe139b81_2a3c9175f9966882_400b0.dds.phyre
+dst0108	0	1	1	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_1_4640a58586362d93_5896d4684e2594d4_400b0.dds.phyre
+dst0108	0	2	10	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_10_71ff99d6e58f90a7_8e6024b7c48e65e3_400b0.dds.phyre
+dst0108	0	3	11	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_11_d51b5bdd4fc5fee_690bb5ebfff0aa44_400b0.dds.phyre
+dst0108	0	4	12	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_12_3850072694b55631_a3f2cd8cff002c2a_400b0.dds.phyre
+dst0108	0	5	13	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_13_25f3de063243c143_7f5d2b85d78e17f6_400b0.dds.phyre
+dst0108	0	6	14	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_14_97b867552e441384_f41790ebcbf76dd3_400b0.dds.phyre
+dst0108	0	7	15	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_15_c0b7a338a52e0a18_90449b9a413a40c7_400b0.dds.phyre
+dst0108	0	8	2	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_2_c61971a6f115d081_e1f3573065072afe_400b0.dds.phyre
+dst0108	0	9	3	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_3_30bb391a77b8c20b_f762f4bf0a7b1eba_400b0.dds.phyre
+dst0108	0	10	4	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_4_2291fa1b9615a0a1_a4c0ca880e3133cb_400b0.dds.phyre
+dst0108	0	11	5	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_5_49c695913883495c_5cc33ca8072dabb6_400b0.dds.phyre
+dst0108	0	12	6	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_6_3cccd9745bf54120_5768090307538399_400b0.dds.phyre
+dst0108	0	13	7	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_7_accc0dba52af7d55_2d56823ac2312649_400b0.dds.phyre
+dst0108	0	14	8	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_8_d20bb0f8d3f30993_735cfe2365069e07_400b0.dds.phyre
+dst0108	0	15	9	/GameData/D3D11/ArtData/map/dst01/dst0108/tex/dst0100_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/dst0100_fire_pic_9_8b507d5da83250e9_8f036d3045fb48c_400b0.dds.phyre
+frs0101	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0101/tex/frs0100_kokage_mime.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_75ae7c0a73773032_2b59a8e5020f8428_155f0.dds.phyre
+frs0101	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0101/tex/frs0100_kokage_mime_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_1_3f2f5fd707083b8_5f06e8c786232925_155f0.dds.phyre
+frs0101	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0101/tex/frs0100_kokage_mime_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_2_89f0dc59c1e8581b_875153526c55f928_155f0.dds.phyre
+frs0101	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0101/tex/frs0100_kokage_mime_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_3_6b3bd35713d76cea_2b44fe0c58f737f6_155f0.dds.phyre
+frs0101	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0101/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
+frs0101	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0101/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
+frs0101	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0101/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
+frs0102	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0102/tex/frs0100_kokage_mime.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_75ae7c0a73773032_2b59a8e5020f8428_155f0.dds.phyre
+frs0102	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0102/tex/frs0100_kokage_mime_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_1_3f2f5fd707083b8_5f06e8c786232925_155f0.dds.phyre
+frs0102	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0102/tex/frs0100_kokage_mime_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_2_89f0dc59c1e8581b_875153526c55f928_155f0.dds.phyre
+frs0102	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0102/tex/frs0100_kokage_mime_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_3_6b3bd35713d76cea_2b44fe0c58f737f6_155f0.dds.phyre
+frs0102	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0102/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
+frs0102	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0102/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
+frs0102	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0102/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
+frs0103	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0103/tex/frs0100_kokage_mime.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_75ae7c0a73773032_2b59a8e5020f8428_155f0.dds.phyre
+frs0103	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0103/tex/frs0100_kokage_mime_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_1_3f2f5fd707083b8_5f06e8c786232925_155f0.dds.phyre
+frs0103	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0103/tex/frs0100_kokage_mime_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_2_89f0dc59c1e8581b_875153526c55f928_155f0.dds.phyre
+frs0103	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0103/tex/frs0100_kokage_mime_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_3_6b3bd35713d76cea_2b44fe0c58f737f6_155f0.dds.phyre
+frs0103	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0103/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
+frs0103	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0103/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
+frs0103	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0103/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
+frs0104	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0104/tex/frs0100_kokage_mime.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_75ae7c0a73773032_2b59a8e5020f8428_155f0.dds.phyre
+frs0104	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0104/tex/frs0100_kokage_mime_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_1_3f2f5fd707083b8_5f06e8c786232925_155f0.dds.phyre
+frs0104	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0104/tex/frs0100_kokage_mime_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_2_89f0dc59c1e8581b_875153526c55f928_155f0.dds.phyre
+frs0104	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0104/tex/frs0100_kokage_mime_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_3_6b3bd35713d76cea_2b44fe0c58f737f6_155f0.dds.phyre
+frs0104	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0104/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
+frs0104	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0104/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
+frs0104	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0104/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
+frs0105	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0105/tex/frs0100_kokage_mime.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_75ae7c0a73773032_2b59a8e5020f8428_155f0.dds.phyre
+frs0105	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0105/tex/frs0100_kokage_mime_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_1_3f2f5fd707083b8_5f06e8c786232925_155f0.dds.phyre
+frs0105	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0105/tex/frs0100_kokage_mime_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_2_89f0dc59c1e8581b_875153526c55f928_155f0.dds.phyre
+frs0105	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0105/tex/frs0100_kokage_mime_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_3_6b3bd35713d76cea_2b44fe0c58f737f6_155f0.dds.phyre
+frs0105	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0105/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
+frs0105	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0105/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
+frs0105	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0105/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
+frs0106	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0106/tex/frs0100_kokage_mime.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_75ae7c0a73773032_2b59a8e5020f8428_155f0.dds.phyre
+frs0106	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0106/tex/frs0100_kokage_mime_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_1_3f2f5fd707083b8_5f06e8c786232925_155f0.dds.phyre
+frs0106	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0106/tex/frs0100_kokage_mime_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_2_89f0dc59c1e8581b_875153526c55f928_155f0.dds.phyre
+frs0106	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0106/tex/frs0100_kokage_mime_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_3_6b3bd35713d76cea_2b44fe0c58f737f6_155f0.dds.phyre
+frs0106	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0106/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
+frs0106	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0106/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
+frs0106	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0106/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
+frs0107	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0107/tex/frs0100_kokage_mime.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_75ae7c0a73773032_2b59a8e5020f8428_155f0.dds.phyre
+frs0107	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0107/tex/frs0100_kokage_mime_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_1_3f2f5fd707083b8_5f06e8c786232925_155f0.dds.phyre
+frs0107	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0107/tex/frs0100_kokage_mime_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_2_89f0dc59c1e8581b_875153526c55f928_155f0.dds.phyre
+frs0107	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0107/tex/frs0100_kokage_mime_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_3_6b3bd35713d76cea_2b44fe0c58f737f6_155f0.dds.phyre
+frs0107	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0107/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
+frs0107	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0107/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
+frs0107	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0107/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
+frs0108	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_75ae7c0a73773032_2b59a8e5020f8428_155f0.dds.phyre
+frs0108	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_1_3f2f5fd707083b8_5f06e8c786232925_155f0.dds.phyre
+frs0108	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_2_89f0dc59c1e8581b_875153526c55f928_155f0.dds.phyre
+frs0108	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_3_6b3bd35713d76cea_2b44fe0c58f737f6_155f0.dds.phyre
+frs0108	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
+frs0108	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
+frs0108	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
+frs0109	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime.dds.phyre	none	
+frs0109	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_1.dds.phyre	none	
+frs0109	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_2.dds.phyre	none	
+frs0109	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_3.dds.phyre	none	
+frs0109	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_4.dds.phyre	none	
+frs0109	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_5.dds.phyre	none	
+frs0109	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_6.dds.phyre	none	
+glf0102	0	0	0	/GameData/D3D11/ArtData/map/glf01/glf0102/tex/glf0100_ya_tento04.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/glf0100_ya_tento04_8c82e7989554d4cc_5f142a95096c8b6_55610.dds.phyre
+glf0102	0	1	1	/GameData/D3D11/ArtData/map/glf01/glf0102/tex/glf0100_ya_tento04_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/glf0100_ya_tento04_pic_1_a13f038e0aa47a1a_c40eaee185106245_15610.dds.phyre
+glf0103	0	0	0	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire.dds.phyre	direct	
+glf0103	0	1	1	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_1.dds.phyre	direct	
+glf0103	0	2	10	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_10.dds.phyre	direct	
+glf0103	0	3	11	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_11.dds.phyre	direct	
+glf0103	0	4	12	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_12.dds.phyre	direct	
+glf0103	0	5	13	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_13.dds.phyre	direct	
+glf0103	0	6	14	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_14.dds.phyre	direct	
+glf0103	0	7	15	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_15.dds.phyre	direct	
+glf0103	0	8	2	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_2.dds.phyre	direct	
+glf0103	0	9	3	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_3.dds.phyre	direct	
+glf0103	0	10	4	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_4.dds.phyre	direct	
+glf0103	0	11	5	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_5.dds.phyre	direct	
+glf0103	0	12	6	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_6.dds.phyre	direct	
+glf0103	0	13	7	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_7.dds.phyre	direct	
+glf0103	0	14	8	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_8.dds.phyre	direct	
+glf0103	0	15	9	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire_pic_9.dds.phyre	direct	
+glf0103	1	0	0	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0100_ya_tento04.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/glf0100_ya_tento04_8c82e7989554d4cc_5f142a95096c8b6_55610.dds.phyre
+glf0103	1	1	1	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0100_ya_tento04_pic_1.dds.phyre	direct	
+glf0104	0	0	0	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire.dds.phyre	direct	
+glf0104	0	1	1	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_1.dds.phyre	direct	
+glf0104	0	2	10	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_10.dds.phyre	direct	
+glf0104	0	3	11	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_11.dds.phyre	direct	
+glf0104	0	4	12	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_12.dds.phyre	direct	
+glf0104	0	5	13	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_13.dds.phyre	direct	
+glf0104	0	6	14	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_14.dds.phyre	direct	
+glf0104	0	7	15	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_15.dds.phyre	direct	
+glf0104	0	8	2	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_2.dds.phyre	direct	
+glf0104	0	9	3	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_3.dds.phyre	direct	
+glf0104	0	10	4	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_4.dds.phyre	direct	
+glf0104	0	11	5	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_5.dds.phyre	direct	
+glf0104	0	12	6	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_6.dds.phyre	direct	
+glf0104	0	13	7	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_7.dds.phyre	direct	
+glf0104	0	14	8	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_8.dds.phyre	direct	
+glf0104	0	15	9	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0104_fire_pic_9.dds.phyre	direct	
+glf0104	1	0	0	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0100_ya_tento04.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/glf0100_ya_tento04_8c82e7989554d4cc_5f142a95096c8b6_55610.dds.phyre
+glf0104	1	1	1	/GameData/D3D11/ArtData/map/glf01/glf0104/tex/glf0100_ya_tento04_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/glf0100_ya_tento04_pic_1_a13f038e0aa47a1a_c40eaee185106245_15610.dds.phyre
+grm0105	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0105	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0105	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0105	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0105	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0105	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0105	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0105	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0105	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0105	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0105	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0105	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0105	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0105	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0105	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0105/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0106	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0106	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0106	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0106	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0106	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0106	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0106	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0106	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0106	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0106	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0106	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0106	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0106	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0106	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0106	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0106/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0110	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0110	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0110	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0110	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0110	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0110	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0110	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0110	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0110	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0110	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0110	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0110	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0110	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0110	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0110	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0110/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0111	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0111	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0111	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0111	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0111	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0111	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0111	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0111	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0111	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0111	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0111	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0111	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0111	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0111	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0111	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0111/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0112	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0112	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0112	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0112	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0112	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0112	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0112	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0112	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0112	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0112	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0112	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0112	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0112	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0112	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0112	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0112/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0113	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0113	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0113	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0113	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0113	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0113	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0113	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0113	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0113	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0113	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0113	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0113	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0113	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0113	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0113	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0113/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0114	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0114	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0114	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0114	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0114	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0114	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0114	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0114	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0114	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0114	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0114	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0114	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0114	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0114	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0114	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0114/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0115	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0115	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0115	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0115	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0115	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0115	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0115	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0115	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0115	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0115	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0115	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0115	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0115	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0115	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0115	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0115/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0116	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0116	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0116	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0116	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0116	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0116	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0116	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0116	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0116	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0116	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0116	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0116	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0116	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0116	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0116	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0116/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0117	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0117	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0117	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0117	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0117	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0117	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0117	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0117	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0117	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0117	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0117	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0117	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0117	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0117	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0117	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0117/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+grm0118	0	0	0	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__1083286571b4006c_beb547e4e07a9789_55d4.dds.phyre
+grm0118	0	1	1	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_1_f949fe1c783f1884_eefd4616d297da0_155f0.dds.phyre
+grm0118	0	2	10	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_10_fe799cac90df646f_7cc937d23353e395_155f0.dds.phyre
+grm0118	0	3	11	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_11_da97fc5f1d76a97a_ceae034eb171d41a_155f0.dds.phyre
+grm0118	0	4	12	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_12_af1ff734d1356614_29ccd62e86fbee8b_155f0.dds.phyre
+grm0118	0	5	13	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_13_6dd0fba43f2d6158_59b80dcb6edc739_155f0.dds.phyre
+grm0118	0	6	14	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_14_a6d981c8d586258d_f83553e5b8cc311c_155f0.dds.phyre
+grm0118	0	7	2	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_2_d1144d58a4b927d2_7d7b59c4676803ec_155f0.dds.phyre
+grm0118	0	8	3	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_3_20476fc51c7fa652_3d6a69a0d6366139_155f0.dds.phyre
+grm0118	0	9	4	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_4_50da5b451ae26ef9_1adeb919a6b4a8db_155f0.dds.phyre
+grm0118	0	10	5	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_5_1875516039f44959_65fff0d01926627e_155f0.dds.phyre
+grm0118	0	11	6	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_6_4b0daaff31b28327_b1a291bbef45b972_155f0.dds.phyre
+grm0118	0	12	7	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_7_c6d6b14da3515e6c_c35d50be677cd060_155f0.dds.phyre
+grm0118	0	13	8	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_8_e291ef216232cd57_be5818b82b718312_155f0.dds.phyre
+grm0118	0	14	9	/GameData/D3D11/ArtData/map/grm01/grm0118/tex/grm0100_mizu03__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/grm0100_mizu03__pic_9_e2c9fdf85b50f57a_55325b1e0b1aa3bc_155f0.dds.phyre
+mfr0105	0	0	0	/GameData/D3D11/ArtData/map/mfr01/mfr0105/tex/mfr0100_tree_ne00_mip.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/mfr0100_tree_ne00_mip_68856c5a8bc88be3_f44ecaca0fa1dca5_aab50.dds.phyre
+mfr0105	0	1	1	/GameData/D3D11/ArtData/map/mfr01/mfr0105/tex/mfr0100_tree_ne00_mip_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/mfr0100_tree_ne00_mip_pic_1_796c2c34e32fa05b_20199c39b84e7227_2ab50.dds.phyre
+mfr0105	0	2	2	/GameData/D3D11/ArtData/map/mfr01/mfr0105/tex/mfr0100_tree_ne00_mip_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/mfr0100_tree_ne00_mip_pic_2_29e9fa50e356a5d0_4545f29a890ee786_ab50.dds.phyre
+mfr0106	0	0	0	/GameData/D3D11/ArtData/map/mfr01/mfr0106/tex/mfr0100_tree_ne00_mip.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/mfr0100_tree_ne00_mip_68856c5a8bc88be3_f44ecaca0fa1dca5_aab50.dds.phyre
+mfr0106	0	1	1	/GameData/D3D11/ArtData/map/mfr01/mfr0106/tex/mfr0100_tree_ne00_mip_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/mfr0100_tree_ne00_mip_pic_1_796c2c34e32fa05b_20199c39b84e7227_2ab50.dds.phyre
+mfr0106	0	2	2	/GameData/D3D11/ArtData/map/mfr01/mfr0106/tex/mfr0100_tree_ne00_mip_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/mfr0100_tree_ne00_mip_pic_2_29e9fa50e356a5d0_4545f29a890ee786_ab50.dds.phyre
+rwg0101	0	0	0	/GameData/D3D11/ArtData/map/rwg01/rwg0101/tex/rwg0101_tenjyou_hA02.dds.phyre	direct	
+rwg0101	0	1	1	/GameData/D3D11/ArtData/map/rwg01/rwg0101/tex/rwg0101_tenjyou_hA02_pic_1.dds.phyre	direct	
+rwg0201	0	0	0	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_e93fe500ddd03bab_4a2a1bebdc01c0ba_400b0.dds.phyre
+rwg0201	0	1	1	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_1_d31f01c9db3d26d2_14c92a9d147c1513_400b0.dds.phyre
+rwg0201	0	2	10	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_10_577c4f833a04db9_de8eb40c63c1c88d_400b0.dds.phyre
+rwg0201	0	3	11	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_11_72395c3f34d204a7_908e116af944b0d2_400b0.dds.phyre
+rwg0201	0	4	12	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_12_8c5d931b03c431a8_d585c1b4f23e30fc_400b0.dds.phyre
+rwg0201	0	5	13	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_13_48e24352d38aa988_10178140d5576ac7_400b0.dds.phyre
+rwg0201	0	6	14	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_14_8787d2929b050337_4a1e13c4820db8b1_400b0.dds.phyre
+rwg0201	0	7	15	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_15_f49cbc79f3890d6d_22e236fe9fd90734_400b0.dds.phyre
+rwg0201	0	8	2	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_2_f8b0036e42af857c_22059b9707f317a3_400b0.dds.phyre
+rwg0201	0	9	3	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_3_a90dcb0b0e78094c_4f09147b648e60f4_400b0.dds.phyre
+rwg0201	0	10	4	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_4_8db8af17dec0132e_f5861e57bb08909d_400b0.dds.phyre
+rwg0201	0	11	5	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_5_2f8d69fb1e3caa9_8454af29ca4d1676_400b0.dds.phyre
+rwg0201	0	12	6	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_6_9beaebfc9a9bdf87_50c2f5be01d113f1_400b0.dds.phyre
+rwg0201	0	13	7	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_7_e8c5437542448d38_75664bc8eccec4a4_400b0.dds.phyre
+rwg0201	0	14	8	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_8_b9b22b58264276c7_b4b40e9e7cee9eb7_400b0.dds.phyre
+rwg0201	0	15	9	/GameData/D3D11/ArtData/map/rwg02/rwg0201/tex/rwg0200_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_9_f5b5b5443e5ca8ae_dc6a23f3403c4798_400b0.dds.phyre
+rwg0202	0	0	0	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue.dds.phyre	direct	
+rwg0202	0	1	1	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_1.dds.phyre	direct	
+rwg0202	0	2	10	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_10.dds.phyre	direct	
+rwg0202	0	3	11	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_11.dds.phyre	direct	
+rwg0202	0	4	12	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_12.dds.phyre	direct	
+rwg0202	0	5	13	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_13.dds.phyre	direct	
+rwg0202	0	6	14	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_14.dds.phyre	direct	
+rwg0202	0	7	15	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_15.dds.phyre	direct	
+rwg0202	0	8	2	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_2.dds.phyre	direct	
+rwg0202	0	9	3	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_3.dds.phyre	direct	
+rwg0202	0	10	4	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_4.dds.phyre	direct	
+rwg0202	0	11	5	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_5.dds.phyre	direct	
+rwg0202	0	12	6	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_6.dds.phyre	direct	
+rwg0202	0	13	7	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_7.dds.phyre	direct	
+rwg0202	0	14	8	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_8.dds.phyre	direct	
+rwg0202	0	15	9	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0202_fire_blue_pic_9.dds.phyre	direct	
+rwg0202	1	0	0	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_e93fe500ddd03bab_4a2a1bebdc01c0ba_400b0.dds.phyre
+rwg0202	1	1	1	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_1_d31f01c9db3d26d2_14c92a9d147c1513_400b0.dds.phyre
+rwg0202	1	2	10	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_10_577c4f833a04db9_de8eb40c63c1c88d_400b0.dds.phyre
+rwg0202	1	3	11	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_11_72395c3f34d204a7_908e116af944b0d2_400b0.dds.phyre
+rwg0202	1	4	12	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_12_8c5d931b03c431a8_d585c1b4f23e30fc_400b0.dds.phyre
+rwg0202	1	5	13	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_13_48e24352d38aa988_10178140d5576ac7_400b0.dds.phyre
+rwg0202	1	6	14	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_14_8787d2929b050337_4a1e13c4820db8b1_400b0.dds.phyre
+rwg0202	1	7	15	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_15_f49cbc79f3890d6d_22e236fe9fd90734_400b0.dds.phyre
+rwg0202	1	8	2	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_2_f8b0036e42af857c_22059b9707f317a3_400b0.dds.phyre
+rwg0202	1	9	3	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_3_a90dcb0b0e78094c_4f09147b648e60f4_400b0.dds.phyre
+rwg0202	1	10	4	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_4_8db8af17dec0132e_f5861e57bb08909d_400b0.dds.phyre
+rwg0202	1	11	5	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_5_2f8d69fb1e3caa9_8454af29ca4d1676_400b0.dds.phyre
+rwg0202	1	12	6	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_6_9beaebfc9a9bdf87_50c2f5be01d113f1_400b0.dds.phyre
+rwg0202	1	13	7	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_7_e8c5437542448d38_75664bc8eccec4a4_400b0.dds.phyre
+rwg0202	1	14	8	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_8_b9b22b58264276c7_b4b40e9e7cee9eb7_400b0.dds.phyre
+rwg0202	1	15	9	/GameData/D3D11/ArtData/map/rwg02/rwg0202/tex/rwg0200_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_9_f5b5b5443e5ca8ae_dc6a23f3403c4798_400b0.dds.phyre
+rwg0203	0	0	0	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_e93fe500ddd03bab_4a2a1bebdc01c0ba_400b0.dds.phyre
+rwg0203	0	1	1	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_1_d31f01c9db3d26d2_14c92a9d147c1513_400b0.dds.phyre
+rwg0203	0	2	10	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_10_577c4f833a04db9_de8eb40c63c1c88d_400b0.dds.phyre
+rwg0203	0	3	11	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_11_72395c3f34d204a7_908e116af944b0d2_400b0.dds.phyre
+rwg0203	0	4	12	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_12_8c5d931b03c431a8_d585c1b4f23e30fc_400b0.dds.phyre
+rwg0203	0	5	13	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_13_48e24352d38aa988_10178140d5576ac7_400b0.dds.phyre
+rwg0203	0	6	14	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_14_8787d2929b050337_4a1e13c4820db8b1_400b0.dds.phyre
+rwg0203	0	7	15	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_15_f49cbc79f3890d6d_22e236fe9fd90734_400b0.dds.phyre
+rwg0203	0	8	2	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_2_f8b0036e42af857c_22059b9707f317a3_400b0.dds.phyre
+rwg0203	0	9	3	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_3_a90dcb0b0e78094c_4f09147b648e60f4_400b0.dds.phyre
+rwg0203	0	10	4	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_4_8db8af17dec0132e_f5861e57bb08909d_400b0.dds.phyre
+rwg0203	0	11	5	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_5_2f8d69fb1e3caa9_8454af29ca4d1676_400b0.dds.phyre
+rwg0203	0	12	6	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_6_9beaebfc9a9bdf87_50c2f5be01d113f1_400b0.dds.phyre
+rwg0203	0	13	7	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_7_e8c5437542448d38_75664bc8eccec4a4_400b0.dds.phyre
+rwg0203	0	14	8	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_8_b9b22b58264276c7_b4b40e9e7cee9eb7_400b0.dds.phyre
+rwg0203	0	15	9	/GameData/D3D11/ArtData/map/rwg02/rwg0203/tex/rwg0200_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_9_f5b5b5443e5ca8ae_dc6a23f3403c4798_400b0.dds.phyre
+rwg0204	0	0	0	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_e93fe500ddd03bab_4a2a1bebdc01c0ba_400b0.dds.phyre
+rwg0204	0	1	1	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_1_d31f01c9db3d26d2_14c92a9d147c1513_400b0.dds.phyre
+rwg0204	0	2	10	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_10_577c4f833a04db9_de8eb40c63c1c88d_400b0.dds.phyre
+rwg0204	0	3	11	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_11_72395c3f34d204a7_908e116af944b0d2_400b0.dds.phyre
+rwg0204	0	4	12	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_12_8c5d931b03c431a8_d585c1b4f23e30fc_400b0.dds.phyre
+rwg0204	0	5	13	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_13_48e24352d38aa988_10178140d5576ac7_400b0.dds.phyre
+rwg0204	0	6	14	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_14_8787d2929b050337_4a1e13c4820db8b1_400b0.dds.phyre
+rwg0204	0	7	15	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_15_f49cbc79f3890d6d_22e236fe9fd90734_400b0.dds.phyre
+rwg0204	0	8	2	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_2_f8b0036e42af857c_22059b9707f317a3_400b0.dds.phyre
+rwg0204	0	9	3	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_3_a90dcb0b0e78094c_4f09147b648e60f4_400b0.dds.phyre
+rwg0204	0	10	4	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_4_8db8af17dec0132e_f5861e57bb08909d_400b0.dds.phyre
+rwg0204	0	11	5	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_5_2f8d69fb1e3caa9_8454af29ca4d1676_400b0.dds.phyre
+rwg0204	0	12	6	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_6_9beaebfc9a9bdf87_50c2f5be01d113f1_400b0.dds.phyre
+rwg0204	0	13	7	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_7_e8c5437542448d38_75664bc8eccec4a4_400b0.dds.phyre
+rwg0204	0	14	8	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_8_b9b22b58264276c7_b4b40e9e7cee9eb7_400b0.dds.phyre
+rwg0204	0	15	9	/GameData/D3D11/ArtData/map/rwg02/rwg0204/tex/rwg0200_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_9_f5b5b5443e5ca8ae_dc6a23f3403c4798_400b0.dds.phyre
+rwg0205	0	0	0	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_e93fe500ddd03bab_4a2a1bebdc01c0ba_400b0.dds.phyre
+rwg0205	0	1	1	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_1_d31f01c9db3d26d2_14c92a9d147c1513_400b0.dds.phyre
+rwg0205	0	2	10	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_10_577c4f833a04db9_de8eb40c63c1c88d_400b0.dds.phyre
+rwg0205	0	3	11	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_11_72395c3f34d204a7_908e116af944b0d2_400b0.dds.phyre
+rwg0205	0	4	12	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_12_8c5d931b03c431a8_d585c1b4f23e30fc_400b0.dds.phyre
+rwg0205	0	5	13	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_13_48e24352d38aa988_10178140d5576ac7_400b0.dds.phyre
+rwg0205	0	6	14	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_14_8787d2929b050337_4a1e13c4820db8b1_400b0.dds.phyre
+rwg0205	0	7	15	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_15_f49cbc79f3890d6d_22e236fe9fd90734_400b0.dds.phyre
+rwg0205	0	8	2	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_2_f8b0036e42af857c_22059b9707f317a3_400b0.dds.phyre
+rwg0205	0	9	3	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_3_a90dcb0b0e78094c_4f09147b648e60f4_400b0.dds.phyre
+rwg0205	0	10	4	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_4_8db8af17dec0132e_f5861e57bb08909d_400b0.dds.phyre
+rwg0205	0	11	5	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_5_2f8d69fb1e3caa9_8454af29ca4d1676_400b0.dds.phyre
+rwg0205	0	12	6	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_6_9beaebfc9a9bdf87_50c2f5be01d113f1_400b0.dds.phyre
+rwg0205	0	13	7	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_7_e8c5437542448d38_75664bc8eccec4a4_400b0.dds.phyre
+rwg0205	0	14	8	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_8_b9b22b58264276c7_b4b40e9e7cee9eb7_400b0.dds.phyre
+rwg0205	0	15	9	/GameData/D3D11/ArtData/map/rwg02/rwg0205/tex/rwg0200_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_9_f5b5b5443e5ca8ae_dc6a23f3403c4798_400b0.dds.phyre
+rwg0206	0	0	0	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_e93fe500ddd03bab_4a2a1bebdc01c0ba_400b0.dds.phyre
+rwg0206	0	1	1	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_1_d31f01c9db3d26d2_14c92a9d147c1513_400b0.dds.phyre
+rwg0206	0	2	10	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_10_577c4f833a04db9_de8eb40c63c1c88d_400b0.dds.phyre
+rwg0206	0	3	11	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_11_72395c3f34d204a7_908e116af944b0d2_400b0.dds.phyre
+rwg0206	0	4	12	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_12_8c5d931b03c431a8_d585c1b4f23e30fc_400b0.dds.phyre
+rwg0206	0	5	13	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_13_48e24352d38aa988_10178140d5576ac7_400b0.dds.phyre
+rwg0206	0	6	14	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_14_8787d2929b050337_4a1e13c4820db8b1_400b0.dds.phyre
+rwg0206	0	7	15	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_15_f49cbc79f3890d6d_22e236fe9fd90734_400b0.dds.phyre
+rwg0206	0	8	2	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_2_f8b0036e42af857c_22059b9707f317a3_400b0.dds.phyre
+rwg0206	0	9	3	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_3_a90dcb0b0e78094c_4f09147b648e60f4_400b0.dds.phyre
+rwg0206	0	10	4	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_4_8db8af17dec0132e_f5861e57bb08909d_400b0.dds.phyre
+rwg0206	0	11	5	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_5_2f8d69fb1e3caa9_8454af29ca4d1676_400b0.dds.phyre
+rwg0206	0	12	6	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_6_9beaebfc9a9bdf87_50c2f5be01d113f1_400b0.dds.phyre
+rwg0206	0	13	7	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_7_e8c5437542448d38_75664bc8eccec4a4_400b0.dds.phyre
+rwg0206	0	14	8	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_8_b9b22b58264276c7_b4b40e9e7cee9eb7_400b0.dds.phyre
+rwg0206	0	15	9	/GameData/D3D11/ArtData/map/rwg02/rwg0206/tex/rwg0200_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_9_f5b5b5443e5ca8ae_dc6a23f3403c4798_400b0.dds.phyre
+rwg0207	0	0	0	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_e93fe500ddd03bab_4a2a1bebdc01c0ba_400b0.dds.phyre
+rwg0207	0	1	1	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_1_d31f01c9db3d26d2_14c92a9d147c1513_400b0.dds.phyre
+rwg0207	0	2	10	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_10_577c4f833a04db9_de8eb40c63c1c88d_400b0.dds.phyre
+rwg0207	0	3	11	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_11_72395c3f34d204a7_908e116af944b0d2_400b0.dds.phyre
+rwg0207	0	4	12	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_12_8c5d931b03c431a8_d585c1b4f23e30fc_400b0.dds.phyre
+rwg0207	0	5	13	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_13_48e24352d38aa988_10178140d5576ac7_400b0.dds.phyre
+rwg0207	0	6	14	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_14_8787d2929b050337_4a1e13c4820db8b1_400b0.dds.phyre
+rwg0207	0	7	15	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_15_f49cbc79f3890d6d_22e236fe9fd90734_400b0.dds.phyre
+rwg0207	0	8	2	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_2_f8b0036e42af857c_22059b9707f317a3_400b0.dds.phyre
+rwg0207	0	9	3	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_3_a90dcb0b0e78094c_4f09147b648e60f4_400b0.dds.phyre
+rwg0207	0	10	4	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_4_8db8af17dec0132e_f5861e57bb08909d_400b0.dds.phyre
+rwg0207	0	11	5	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_5_2f8d69fb1e3caa9_8454af29ca4d1676_400b0.dds.phyre
+rwg0207	0	12	6	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_6_9beaebfc9a9bdf87_50c2f5be01d113f1_400b0.dds.phyre
+rwg0207	0	13	7	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_7_e8c5437542448d38_75664bc8eccec4a4_400b0.dds.phyre
+rwg0207	0	14	8	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_8_b9b22b58264276c7_b4b40e9e7cee9eb7_400b0.dds.phyre
+rwg0207	0	15	9	/GameData/D3D11/ArtData/map/rwg02/rwg0207/tex/rwg0200_fire_pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/rwg0200_fire_pic_9_f5b5b5443e5ca8ae_dc6a23f3403c4798_400b0.dds.phyre
+var0102	0	0	0	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__22425a14ac89a5eb_a9de930ab8e9fc48_155f0.dds.phyre
+var0102	0	1	1	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_1_48b0711138360f26_46943cd7ac0a6934_155f0.dds.phyre
+var0102	0	2	10	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_10_10c4e6648ebd1d4_f865e06473dc690e_155f0.dds.phyre
+var0102	0	3	11	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_11_43c34ca86e6d9f46_c0d725bd1c8ed8db_155f0.dds.phyre
+var0102	0	4	12	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_12_f232d7b7e1026b98_d0049f4290324da2_155f0.dds.phyre
+var0102	0	5	13	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_13_a5ecb3f5f7690f89_7555cfa572e4e7ca_155f0.dds.phyre
+var0102	0	6	14	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_14_960c78e1dbc84924_17f574e51197f372_155f0.dds.phyre
+var0102	0	7	15	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_15_5c3b39925142283e_be03f37f1576428c_155f0.dds.phyre
+var0102	0	8	16	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_16.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_16_3edca77bed2530b5_98e25e2f2c601eac_155f0.dds.phyre
+var0102	0	9	17	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_17.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_17_defa3ab2d7bbe960_67da24eecbd2d1f4_155f0.dds.phyre
+var0102	0	10	18	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_18.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_18_b229f6e2bdc1b5f9_b8500230c29489dd_155f0.dds.phyre
+var0102	0	11	19	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_19.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_19_4d93261c3c5101ac_e7c35375fcf3c941_155f0.dds.phyre
+var0102	0	12	2	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_2_110aeee1c0d007f4_9577bb80de8f02f2_155f0.dds.phyre
+var0102	0	13	20	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_20.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_20_9d0d10e7aa24d5e6_b7ba8a5ffdd046ea_155f0.dds.phyre
+var0102	0	14	21	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_21.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_21_86427e943a23bf74_dac0924812e927e9_155f0.dds.phyre
+var0102	0	15	22	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_22.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_22_2905dadc48a381fa_25ab0ca8eebfda2e_155f0.dds.phyre
+var0102	0	16	23	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_23.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_23_1828a2797f457641_f8d552dea01b3e7c_155f0.dds.phyre
+var0102	0	17	24	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_24.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_24_56e6c57b16a2e894_c44b92995c81e67b_155f0.dds.phyre
+var0102	0	18	25	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_25.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_25_388df4ac6ebb9492_4666e5fd635aeda8_155f0.dds.phyre
+var0102	0	19	26	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_26.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_26_b5ea57ae388de06b_51cb1eef3dd2f03a_155f0.dds.phyre
+var0102	0	20	27	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_27.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_27_91ee37f76aa836f2_da78c85befb4fb54_155f0.dds.phyre
+var0102	0	21	28	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_28.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_28_7bdf8b2c79db4cf6_1ae2b8a65766f6d0_155f0.dds.phyre
+var0102	0	22	29	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_29.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_29_f3b40f9e99ffe432_ef0eb108394cd61_155f0.dds.phyre
+var0102	0	23	3	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_3_10eeb6c4c8b0aa2b_1ada90504ec6ca3_155f0.dds.phyre
+var0102	0	24	30	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_30.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_30_d719aaa2601b5da3_5cc64d4beb9d1d5a_155f0.dds.phyre
+var0102	0	25	31	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_31.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_31_446fc9231085b710_481124df4686e9d4_155f0.dds.phyre
+var0102	0	26	4	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_4_7e76629c9e91dd54_278cf214dbeb4fd4_155f0.dds.phyre
+var0102	0	27	5	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_5_122bbf087a6cb43b_24beaee5abf69057_155f0.dds.phyre
+var0102	0	28	6	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_6_cd30885128993336_7ba5dfdf0864616c_155f0.dds.phyre
+var0102	0	29	7	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_7_d42826383dbbf28e_b052b669b8f29da0_155f0.dds.phyre
+var0102	0	30	8	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_8_c27e7cb5ca3381db_4b1cc16d4700e0a8_155f0.dds.phyre
+var0102	0	31	9	/GameData/D3D11/ArtData/map/var01/var0102/tex/var0100_m_hansya01__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_9_78eb03b626ca55fe_e6292fe4fe7a8d1b_155f0.dds.phyre
+var0105	0	0	0	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__22425a14ac89a5eb_a9de930ab8e9fc48_155f0.dds.phyre
+var0105	0	1	1	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_1_48b0711138360f26_46943cd7ac0a6934_155f0.dds.phyre
+var0105	0	2	10	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_10_10c4e6648ebd1d4_f865e06473dc690e_155f0.dds.phyre
+var0105	0	3	11	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_11_43c34ca86e6d9f46_c0d725bd1c8ed8db_155f0.dds.phyre
+var0105	0	4	12	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_12_f232d7b7e1026b98_d0049f4290324da2_155f0.dds.phyre
+var0105	0	5	13	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_13_a5ecb3f5f7690f89_7555cfa572e4e7ca_155f0.dds.phyre
+var0105	0	6	14	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_14_960c78e1dbc84924_17f574e51197f372_155f0.dds.phyre
+var0105	0	7	15	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_15_5c3b39925142283e_be03f37f1576428c_155f0.dds.phyre
+var0105	0	8	16	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_16.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_16_3edca77bed2530b5_98e25e2f2c601eac_155f0.dds.phyre
+var0105	0	9	17	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_17.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_17_defa3ab2d7bbe960_67da24eecbd2d1f4_155f0.dds.phyre
+var0105	0	10	18	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_18.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_18_b229f6e2bdc1b5f9_b8500230c29489dd_155f0.dds.phyre
+var0105	0	11	19	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_19.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_19_4d93261c3c5101ac_e7c35375fcf3c941_155f0.dds.phyre
+var0105	0	12	2	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_2_110aeee1c0d007f4_9577bb80de8f02f2_155f0.dds.phyre
+var0105	0	13	20	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_20.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_20_9d0d10e7aa24d5e6_b7ba8a5ffdd046ea_155f0.dds.phyre
+var0105	0	14	21	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_21.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_21_86427e943a23bf74_dac0924812e927e9_155f0.dds.phyre
+var0105	0	15	22	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_22.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_22_2905dadc48a381fa_25ab0ca8eebfda2e_155f0.dds.phyre
+var0105	0	16	23	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_23.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_23_1828a2797f457641_f8d552dea01b3e7c_155f0.dds.phyre
+var0105	0	17	24	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_24.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_24_56e6c57b16a2e894_c44b92995c81e67b_155f0.dds.phyre
+var0105	0	18	25	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_25.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_25_388df4ac6ebb9492_4666e5fd635aeda8_155f0.dds.phyre
+var0105	0	19	26	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_26.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_26_b5ea57ae388de06b_51cb1eef3dd2f03a_155f0.dds.phyre
+var0105	0	20	27	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_27.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_27_91ee37f76aa836f2_da78c85befb4fb54_155f0.dds.phyre
+var0105	0	21	28	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_28.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_28_7bdf8b2c79db4cf6_1ae2b8a65766f6d0_155f0.dds.phyre
+var0105	0	22	29	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_29.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_29_f3b40f9e99ffe432_ef0eb108394cd61_155f0.dds.phyre
+var0105	0	23	3	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_3_10eeb6c4c8b0aa2b_1ada90504ec6ca3_155f0.dds.phyre
+var0105	0	24	30	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_30.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_30_d719aaa2601b5da3_5cc64d4beb9d1d5a_155f0.dds.phyre
+var0105	0	25	31	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_31.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_31_446fc9231085b710_481124df4686e9d4_155f0.dds.phyre
+var0105	0	26	4	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_4_7e76629c9e91dd54_278cf214dbeb4fd4_155f0.dds.phyre
+var0105	0	27	5	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_5_122bbf087a6cb43b_24beaee5abf69057_155f0.dds.phyre
+var0105	0	28	6	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_6_cd30885128993336_7ba5dfdf0864616c_155f0.dds.phyre
+var0105	0	29	7	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_7_d42826383dbbf28e_b052b669b8f29da0_155f0.dds.phyre
+var0105	0	30	8	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_8_c27e7cb5ca3381db_4b1cc16d4700e0a8_155f0.dds.phyre
+var0105	0	31	9	/GameData/D3D11/ArtData/map/var01/var0105/tex/var0100_m_hansya01__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_9_78eb03b626ca55fe_e6292fe4fe7a8d1b_155f0.dds.phyre
+var5001	0	0	0	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01_.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__22425a14ac89a5eb_a9de930ab8e9fc48_155f0.dds.phyre
+var5001	0	1	1	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_1_48b0711138360f26_46943cd7ac0a6934_155f0.dds.phyre
+var5001	0	2	10	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_10.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_10_10c4e6648ebd1d4_f865e06473dc690e_155f0.dds.phyre
+var5001	0	3	11	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_11.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_11_43c34ca86e6d9f46_c0d725bd1c8ed8db_155f0.dds.phyre
+var5001	0	4	12	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_12.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_12_f232d7b7e1026b98_d0049f4290324da2_155f0.dds.phyre
+var5001	0	5	13	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_13.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_13_a5ecb3f5f7690f89_7555cfa572e4e7ca_155f0.dds.phyre
+var5001	0	6	14	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_14.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_14_960c78e1dbc84924_17f574e51197f372_155f0.dds.phyre
+var5001	0	7	15	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_15.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_15_5c3b39925142283e_be03f37f1576428c_155f0.dds.phyre
+var5001	0	8	16	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_16.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_16_3edca77bed2530b5_98e25e2f2c601eac_155f0.dds.phyre
+var5001	0	9	17	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_17.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_17_defa3ab2d7bbe960_67da24eecbd2d1f4_155f0.dds.phyre
+var5001	0	10	18	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_18.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_18_b229f6e2bdc1b5f9_b8500230c29489dd_155f0.dds.phyre
+var5001	0	11	19	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_19.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_19_4d93261c3c5101ac_e7c35375fcf3c941_155f0.dds.phyre
+var5001	0	12	2	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_2.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_2_110aeee1c0d007f4_9577bb80de8f02f2_155f0.dds.phyre
+var5001	0	13	20	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_20.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_20_9d0d10e7aa24d5e6_b7ba8a5ffdd046ea_155f0.dds.phyre
+var5001	0	14	21	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_21.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_21_86427e943a23bf74_dac0924812e927e9_155f0.dds.phyre
+var5001	0	15	22	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_22.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_22_2905dadc48a381fa_25ab0ca8eebfda2e_155f0.dds.phyre
+var5001	0	16	23	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_23.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_23_1828a2797f457641_f8d552dea01b3e7c_155f0.dds.phyre
+var5001	0	17	24	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_24.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_24_56e6c57b16a2e894_c44b92995c81e67b_155f0.dds.phyre
+var5001	0	18	25	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_25.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_25_388df4ac6ebb9492_4666e5fd635aeda8_155f0.dds.phyre
+var5001	0	19	26	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_26.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_26_b5ea57ae388de06b_51cb1eef3dd2f03a_155f0.dds.phyre
+var5001	0	20	27	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_27.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_27_91ee37f76aa836f2_da78c85befb4fb54_155f0.dds.phyre
+var5001	0	21	28	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_28.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_28_7bdf8b2c79db4cf6_1ae2b8a65766f6d0_155f0.dds.phyre
+var5001	0	22	29	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_29.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_29_f3b40f9e99ffe432_ef0eb108394cd61_155f0.dds.phyre
+var5001	0	23	3	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_3.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_3_10eeb6c4c8b0aa2b_1ada90504ec6ca3_155f0.dds.phyre
+var5001	0	24	30	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_30.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_30_d719aaa2601b5da3_5cc64d4beb9d1d5a_155f0.dds.phyre
+var5001	0	25	31	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_31.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_31_446fc9231085b710_481124df4686e9d4_155f0.dds.phyre
+var5001	0	26	4	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_4_7e76629c9e91dd54_278cf214dbeb4fd4_155f0.dds.phyre
+var5001	0	27	5	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_5_122bbf087a6cb43b_24beaee5abf69057_155f0.dds.phyre
+var5001	0	28	6	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_6_cd30885128993336_7ba5dfdf0864616c_155f0.dds.phyre
+var5001	0	29	7	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_7.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_7_d42826383dbbf28e_b052b669b8f29da0_155f0.dds.phyre
+var5001	0	30	8	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_8.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_8_c27e7cb5ca3381db_4b1cc16d4700e0a8_155f0.dds.phyre
+var5001	0	31	9	/GameData/D3D11/ArtData/map/var50/var5001/tex/var0100_m_hansya01__pic_9.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/var0100_m_hansya01__pic_9_78eb03b626ca55fe_e6292fe4fe7a8d1b_155f0.dds.phyre

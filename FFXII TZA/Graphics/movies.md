@@ -91,6 +91,7 @@ The movie player is the singleton `0x01F81218` (getter `0x001B7F20`), `0xBB8` by
 | entries | 14,589: flags 0 in 8,445, 2 in 6,105, 1 in 39 |
 | `.mh` without a `.webm` of the same name | `jp/opd`, `in/bd2`, `in/se1`, `in/se2` |
 | `.webm` without a `.mh` | `anx` |
+| every `.mh` | one row each in [`movies-mh-rows.tsv`](movies-mh-rows.tsv), 43 rows: language, name, size, SHA-256 prefix, every header field, the entry count, the entries with flags 0, 1 and 2, the last entry's frame, and whether a `.webm` of the same name ships |
 | kind-28 entries | slots 0 to 97 hold 45 `.md` and 45 `.mh` paths in pairs; slots 76 to 81 and 92 to 93 are null, so ids 38, 39, 40 and 46 are empty and the array goes on past them |
 | `.mh` paths by folder | `us` 36, `in` 8, `jp` 1; `in\ANX.mh` and `us\DLB.mh` have no file |
 | `.mhe` in the executable | 0 occurrences |

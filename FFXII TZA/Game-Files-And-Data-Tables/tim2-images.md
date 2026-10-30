@@ -87,9 +87,10 @@ adds it back.
 | pictures | 1 in 455; 2 in `in/quest/menuquest.nfs` |
 | sizes | in all 456 every picture's total is header + image + CLUT and the pictures end exactly at the end of the file |
 | `.tm2` pixel formats | TEX0 PSM `0x13` with image type 5 in 441, PSM `0x14` with image type 4 in 6; CLUT type 3 in all 447 |
-| `.tm2` dimensions | width and height powers of two in all 447; 1024 x 1024 in 138, 512 x 512 in 63, 128 x 128 in 48; 22 distinct sizes |
+| `.tm2` dimensions | width and height powers of two in all 447; 1024 x 1024 in 138, 512 x 512 in 63, 128 x 128 in 48; 16 distinct sizes; one mipmap level in all 447 |
 | `.tm2` CLUT colours | 8-bit pictures: 256 in 282, then multiples of 256 up to 16,384 (36 have 4,096); 4-bit: 16 to 272 |
 | `.tm2` header size | `0x30` in 30; larger in 417, all with `eXt\0` at picture `+0x30` |
+| every standalone file | one row per picture in [`tim2-images-files-rows.tsv`](tim2-images-files-rows.tsv), 457 rows for the 456 files: size and SHA-256 prefix, version, picture count, every picture header field, whether the `eXt` block follows, and the gate nibble |
 | `.nfs` | 4-bit, no CLUT, TEX0 zero, widths 16 to 640 (not powers of two), a game block whose first dword ends `0x2F41` |
 | gate value (low nibble of file `+0x40`) | 5 in 417, 0 in 19, `0xC` in 10, 1 in 10: the nine `.nfs` and `in_sdver/tm2_menu/w_line01.tm2`, whose `0x30`-byte header puts pixel bytes `01 01 01 01` there |
 | embedded TIM2 (under `ps2data/`) | `.mpk` 21,419 in 459 files, `.dat` 6,767 in 2,795, `.ebp` 5,430 in 4,695, `.bin` 3,267 in 492; all at 16-byte-aligned offsets |

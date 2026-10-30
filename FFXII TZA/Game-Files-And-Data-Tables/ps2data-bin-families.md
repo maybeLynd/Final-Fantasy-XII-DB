@@ -29,6 +29,8 @@ SHA-256.
   16-byte records start at `0x01F2C760`, which `0x00521450` walks forward from `0x0052177E`.
 - None of the four addresses occurs as text in any `.exe` or `.dll` in `x64`.
 
+The archive's only other file without an extension is `ps2data/square_ff12/ff12config`, 2,048 bytes: the settings defaults that `0x00408C30` copies into the settings globals. Its reader and layout are on [Game settings](../Saving-Loading-And-Settings/game-settings.md).
+
 ## Columns
 
 | Column | Meaning |

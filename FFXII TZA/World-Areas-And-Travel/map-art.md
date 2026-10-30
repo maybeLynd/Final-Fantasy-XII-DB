@@ -439,6 +439,8 @@ Measured over the archive.
 | `ForceMSAAOff`, `SMAA` | `No` and `Yes` in every row |
 | `NoModelGroupMaps.txt` | 32 map names, CRLF, each with an asset list |
 | `proceduralTextureConfigs.txt` | 451 files, 68 to 6,696 bytes, all CRLF; 10,477 records, every one of 8 values |
+| procedural records | one row each in [`map-art-procedural-rows.tsv`](map-art-procedural-rows.tsv): map, folder, record index, texture, kind, the five floats, the integer, and where the texture resolves (`tex` in 1,969, `phyremaps` in 8,508; every record resolves) |
+| procedural floats | first 1.0 in 7,582 records, 0.7 in 1,372, 0.5 in 1,302, 0.9 in 169, 0.6 in 41, 1.2 in 11; second and third 0.0 in all; fourth and fifth equal in every record; integer 2 in 10,027 and 3 in 450 |
 | detail kinds used | `Wall_concrete_01` 6,332, `Steel_rough_01` 1,516, `Rock_roughlittle_01` 1,158, `Sand_little_01` 612, `Fabric_flax_01` 543, `Fabric_carpet_01` 169, `Wood_rough_01` 60, `snow_01` 41, `Leather_base_01` 35, `Wall_concrete_04` 11 |
 
 ## Operations
@@ -473,6 +475,8 @@ Entering a zone, as the map-art context sees it:
   `0x01EF9490`; the five shipped pairs reuse one zone's art for another.
 - `opt.csv` is read once at start-up; only `FlipMapOpaqueOrder` and `ForceNoOpaqueChrFirst` change
   the draw. A missing row leaves both off.
+- A procedural record ends with an optional float. `0x001BF8B0` reads it with `%f` (`0x001BFF84`); when the read fails it stores 0 and leaves the position on the line (`0x001BFFBD`), so the next line starts the next record. No shipped record carries it: every file is eight lines per record, and no texture name begins like a number.
+- A texture name that does (a digit, a sign, a point, `inf` or `nan`) would be taken as the previous record's ninth value, and every later record of the file would shift by one line.
 - Keep `NoModelGroupMaps.txt` and `proceduralTextureConfigs.txt` CRLF-separated with no leading
   spaces. A procedural record whose texture has no entry in the texture table is skipped.
 - Normal and specular maps are found by name: `<texture>_n.dds.phyre` and `<texture>_spec.dds.phyre`

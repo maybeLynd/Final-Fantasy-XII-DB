@@ -93,6 +93,7 @@ Measured over every `.mrp` in the archive.
 | `title_menu` | 224 bytes, 3 records, 2 names |
 | `w_menu` | 1,840 bytes, 12 records, 4 names |
 | atlas `itemgra_c` | named by `save_load` and `shop_new` |
+| every record and item | in the two tables of [UI typed lists](ui-typed-lists.md), with the pack units |
 
 ## Loader behaviour
 
@@ -127,6 +128,12 @@ the 48 request records at `0x02090910` and zeroes them.
 `0x002DF9A0`, the kind path setup, replaces the kind-7 entries of all ten `.mrp` names it holds and of
 `mrppack_ys.bin` with their `in_sdver` paths when its second argument, the word `[0x01E0280C]`, is 0. That word
 ships as 1, so the shipped game loads the locale copies.
+
+The `in_sdver` folder holds 54 files: 11 `.mrp`, 4 `.bin` and 39 `.tm2`. [`mrp-menu-resource-packages-in-sdver-rows.tsv`](mrp-menu-resource-packages-in-sdver-rows.tsv) gives each file's size and SHA-256 prefix against its counterpart under `myoshiok/in/`, with the first picture's width and height for a `.tm2`.
+
+- Only one file matches its `in` counterpart byte for byte; the other 53 differ.
+- Every `in_sdver` picture is smaller than the `in` picture in both width and height. In 30 files both sides scale by one factor: 2 in 26, 4 in 3 and 16 in 1. In the other 9 the `in` sheet has another shape, for example `handback_c` 512 x 256 against 2048 x 2048.
+- `save_load.mrp` and `title.mrp` hold one record more and one record fewer than the `in` copies (Shipped data, above); the other nine `.mrp` files have the `in` copies' sizes.
 
 ## Modding notes
 

@@ -142,7 +142,7 @@ then per probe: <x> <y> <z> <weight> <radius>, one value per line
 
 ## Shipped data
 
-Measured over the archive:
+Measured over the archive. [`map-cubemaps-rows.tsv`](map-cubemaps-rows.tsv) has one row per probe of every map, 770 rows: the map, its folder, the probe index, x, y, z, weight and radius as the file gives them, the weather slots that ship both the environment and the irradiance texture for that probe, the slots with an `_e1` variant, and the first 16 hex digits of the file's SHA-256 on its first row.
 
 | Fact | Value |
 |---|---|

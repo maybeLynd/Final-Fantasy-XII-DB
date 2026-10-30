@@ -209,6 +209,8 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 | packs | 10 `mrppack_ys.bin`; 23 units in nine, 21 in `in_sdver` (the last two offsets are `0xFFFFFFFF`); 228 units |
 | list files in all | 344, every one `MRP\0` with byte `+3` = 0, outer table at file offset `0x30`, no rows |
 | list records | 7,665 (1,458 in files, 6,207 in pack units); the largest holds 104 items |
+| every list record | one row each in [`ui-typed-lists-records-rows.tsv`](ui-typed-lists-records-rows.tsv), 7,665 rows: carrier file, pack unit, index, item count, bits 10-27, bit `0x10000000`, bits 29-31, rectangle, the `+0x0C` value and the first item's offset |
+| every item | one row each in [`ui-typed-lists-items-rows.tsv`](ui-typed-lists-items-rows.tsv), 30,546 rows: carrier, unit, record, position, length, type, bytes `+2` and `+3`, rectangle and the type fields in hex |
 | items | 30,546 (5,223 and 25,323) |
 | items by type | 1: 2,661; 2: 20,181; 4: 2,017; 5: 4,484; 6: 46; 7: 278; 8: 879; types 3 and 9: none |
 | item length by type | 1: 16; 2: 36; 4: 28; 5 and 6: 24; 7: 72; 8: 44; no exceptions |

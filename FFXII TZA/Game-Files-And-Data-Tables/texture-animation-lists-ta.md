@@ -47,7 +47,8 @@ frame N, with N read as the decimal digits after `_pic_`. Line order does not ma
 | entries per file | 2 (4 files), 3 (2), 7 (9), 15 (11), 16 (16), 32 (3); 594 in all |
 | line endings | CRLF after every entry in all 45, no other whitespace |
 | shape | one entry without `_pic_` and `_pic_1` to `_pic_N` contiguous, in all 45 |
-| resolution | 98 entries name a shipped file directly, 489 through `phyremaps.txt`, 7 resolve to nothing (the whole of `frs0109`'s list) |
+| resolution | 98 entries name a shipped file directly, 489 through `phyremaps.txt`, 7 resolve to nothing (the whole of `frs0109`'s list); all 489 `phyremaps.txt` values are shipped files |
+| every entry | one row each in [`texture-animation-lists-ta-rows.tsv`](texture-animation-lists-ta-rows.tsv), 594 rows: map, list number, line, frame, path, how it resolves and the `phyremaps.txt` value |
 | `phyremaps.txt` | `gamedata/d3d11/artdata/shared/phyremaps.txt`: 47,341 key and value pairs on 94,682 CRLF lines |
 
 ## Loader behaviour

@@ -69,6 +69,13 @@ At start-up `0x0022A0B0` runs `0x00259DF0`, which files a read of file kind 9 (`
 `0x00259370(table)` keeps the table at `0x02098DF0`, or 0 when the file is empty, and when the table's count `+0x04` is
 above 0 sets `0x02098DF8` to type 0 and copies it with `0x00259FE0` (`0x00259370`-`0x0025938D`).
 
+The file is kind 9 file 3, `common/behindcamera.bin` (1,040 bytes): a 16-byte header whose `+0x04` is 16, then
+16 entries of 64 bytes. Each entry is the float `+0x00` (the look point's raise, 1.3 to 3.5), a word `+0x04` that
+the copy skips (0 in all 16), and the seven heights at `+0x08` and seven distances at `+0x24`. Every type is in
+[`behindcamera-types-rows.tsv`](behindcamera-types-rows.tsv). Types 0 and 13 hold the default pairs; the others
+use three more profiles, with raises 2.0 (types 1, 2, 4, 5 and 7 to 9), 3.5 (3, 6 and 10 to 12) and 2.2 (14
+and 15).
+
 `setbehindcameratype` (`0x01CB`, `0x00356CB0`), `0x00304060` and `0x00304140` call `0x0025A160(type)`: for a type below the table's count `+0x04` it sets
 `0x02098DF8` and `0x00259FE0` copies the type's 64-byte entry (from table `+0x10`) into both controllers:
 its first word to `+0x64` and seven pairs of floats to `+0x10 + 12k` and `+0x14 + 12k`. `0x003D9C40`

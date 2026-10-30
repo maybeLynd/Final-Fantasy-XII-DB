@@ -399,6 +399,7 @@ bytes.
 | SPP1 | 545 lists of 1 to 48 ids, 624 distinct; the weather-table offset `+0x1A` is non-zero in all 545, with 1, 2 or 3 entries in 189, 130 and 226 tables |
 | TIM2 and NPS2 | one picture per section (`u16 +6` = 1); 577 placements, all version "2" |
 | WD | 46 sections, all in `<area>00` packs; record stride 0x20 in the 27 with more than one record |
+| every section | one row each in [`mpk-map-pack-slots-rows.tsv`](mpk-map-pack-slots-rows.tsv), 4,568 rows for the 550 packs: pack, folder, slot, the section's file offset and size, its first bytes, SHA-256 prefix, and whether the 0x40-byte slot before it is zero (it is in all 4,568) |
 
 ## Loader behaviour
 
