@@ -215,14 +215,20 @@ Struct ActorWaitSlot size=`0x28`:
 | `+0x20` | `u16` | waitResourceId | kind 3 |
 | `+0x22` | `u16` | listCursor | kinds 5 and 7: the entry the walk resumes from |
 | `+0x24` | `u16` | targetOrdinal | the record ordinal the interpreter armed the wait on |
-| `+0x26` | `u8` | waitChannel | kind 6 |
-| `+0x27` | `u8` | settled | cleared when a wait is armed, set by kinds 3, 6 and 7 |
+| `+0x26` | `u8` | waitChannel | kinds 6 and 7 |
+| `+0x27` | `u8` | settled | cleared when the interpreter arms kind 3 (`0x00261592`) or kind 6 (`0x0025F5CC` and eight more), not when it arms kind 5 or 7; set by kinds 3, 6 and 7 |
 
 The interpreter `0x0025E4C0` arms a wait only when the thing waited on is already active (for kind 6,
 `0x003DB640` at `0x0025F593`, then the stores `0x0025F5A3`-`0x0025F5D4`, with `waitKind` and
 `commandPhase` written as one word `0x0106`). `0x0020E620` subtracts the 32-bit base `[0x01F83530]` and
 `0x0020E600` adds it back as 64 bits, so a reference is faithful only for objects within 4 GB above
 the base.
+
+Kind 7 is armed by the list opcodes REQALL `0x5F` and REQIALL `0x63` while the slot's skip mask is set
+([script interpreter](../Scripts-And-Script-Commands/script-interpreter.md)): they store `listRef`
+(`0x00261B5E`), zero `listCursor` (`0x00261B61`), pop `waitChannel` (`0x00261B80`) and, while `0x00267420`
+finds a record with that channel bit set, write `waitKind` and `commandPhase` as the word `0x0107`
+(`0x00261B97`).
 
 ## Layouts
 

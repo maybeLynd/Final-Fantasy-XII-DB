@@ -134,8 +134,9 @@ context's `+0xD0`, `0x0026A640` keeps the raw speed at `+0x7C`, `0x0026AE30` sto
 `+0x2C` is 0, else `+0x2B`.
 
 `0x00357980` (the move-to-actor family) does the same with
-`0x0026ADF0(actor, ordinal, manager)` storing an actor target (`+0x2A` = 1; a negative manager index
-means the party focus).
+`0x0026ADF0(actor, manager, number)` storing an actor target: the running manager slot's index
+(`+0x28`, `0x003579CB`) at `+0x00`, the popped actor number at `+0x04` (`0x0026AE08`, `0x0026AE11`) and
+`+0x2A` = 1; a negative actor number means the party focus.
 
 `0x0026AE90(actor, mode)` collapses modes 2-4 to 1 when `+0x2C` is exactly 0.0, stores the mode at
 `+0x29`, and for mode 0 clears actor byte `+0x0D` bit `0x10`, cancels (`0x002E55C0`: `+0x29` = 0,
@@ -155,7 +156,8 @@ While `+0x29` is non-zero the wait resolver `0x0025DF00` re-issues `0x0026D6F0(a
 `0x002E45E0(actor, context)` runs from the movement step's driver when `+0x29` is 1 to 4. Each frame:
 
 1. the target point: kind 0 is the stored position with reach `+0x20`; kind 1 resolves the actor
-   (`0x003587C0`, or `0x003590D0` → `0x003588B0` for a negative manager index), reads its position, and
+   (`0x003587C0` with the manager index `+0x00`, or `0x003590D0` → `0x003588B0` when the actor number
+   `+0x04` is negative, `0x002E4641`-`0x002E465C`), reads its position, and
    adds to the reach both bodies' radii (`0x003DA6A0`: `sqrt(0x003DA730(a)) + a.+0x5C` for each over the
    two `+0x50` sub-blocks); an unresolvable actor target is the origin;
 2. the bearing (`0x003A19C0`): yaw `atan2(dx, dz)` and pitch `atan2(dy, sqrt(dx^2 + dz^2))`, looped

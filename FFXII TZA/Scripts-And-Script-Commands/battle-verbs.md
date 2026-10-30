@@ -147,14 +147,23 @@ way ([party during scenes](party-during-scenes.md)).
 
 `setforcefight(a)` (`0x0483`, begin `0x003419F0`, poll `0x00342CE0` → `0x00357F00`) is a state machine
 on the scratch block: the begin stores `a >= 0` at `+4`, the draw flag 0 at `+2` and `a | 0x1000000`
-at `+0xC`. The poll returns without a step while `0x002EA6A0(actor)` is 0; it waits for the actor to
-be idle (`0x002E71C0`), draws the weapon (state 3: `0x002ECF10(actor, 1, 1)`, `0x002E8540(actor, 1)`, and
-`0x002E9B40(actor)` stored at `+8`), waits again, and in state 5 calls `0x003DDB40(actor, 0, +0xC)` when
-`+4` is set, then finishes at 7.
+at `+0xC`. The poll returns without a step while `0x002EA6A0(r)` is 0, for r = `0x00263F10(actor)`
+(`0x00357F2E`), and works on u = `0x00263F40(actor)` (`0x00357F23`): it waits for u to be idle (`0x002E71C0`),
+draws the weapon (state 3: `0x002ECF10(u, 1, 1)`, `0x002E8540(u, 1)`, and `0x002E9B40(u)` stored at `+8`),
+waits again, and in state 5 calls `0x003DDB40(u, 0, +0xC)` when `+4` is set, then finishes at 7.
+
+`setforcerelax(a)` (`0x02E0`, begin `0x00341600`, the same poll) sheathes. Its begin pushes 9 and 1
+before the same three pops (`0x00341615`, `0x00341628`), so the draw flag `+2` is 1, `+0xC` is
+`9 | 0x1000000` (stance entry 9) and `+4` is a itself (`0x00341656`-`0x00341669`). With the flag set:
+
+- state 3 sheathes: `0x002E5BC0(u, 0.0)`, `0x002ECF10(u, 0, 1)` and `0x002E8540(u, 0)` (`0x00357FA2`-`0x00357FC8`);
+- state 4 moves on once u is idle, or while its motion still runs once `0x002E4E00(u)` reaches 16
+  (`0x00358015`-`0x00358036`), which sets `+3` (`0x00358038`);
+- state 5 gives `0x003DDB40` a blend of 4 when `+3` is set and 0 otherwise (`0x00358055`-`0x0035806C`).
 
 `0x003DDB40` sets or clears bit `0x80000` of the render record's `+0x284` through `0x002E8170`, from bit `0x80` of
 byte `+0xD` of `0x00263F40(actor)`, and plays a motion through `0x002EB3E0`: with bit `0x1000000` of its argument
-set (the `setforcefight` begin always sets it) the stance motion `0x01EFE9D0[a & 0xFFFFFF]` (u32
+set (the `setforcefight` and `setforcerelax` begins always set it) the stance motion `0x01EFE9D0[a & 0xFFFFFF]` (u32
 entries, no bound check), otherwise `(actor +0x15) << 20 | a | 0x1000`. A negative argument skips
 state 5, so it draws only.
 

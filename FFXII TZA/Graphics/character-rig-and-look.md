@@ -61,11 +61,11 @@ Scripts do not call the switches. A verb's service sets a bit in render record `
 
 | `+0x304` bit | Dirty bit | Controller | Setter |
 |---|---|---|---|
-| 6 | 13 | 9 lip flap | `0x002E8570`; timed `0x002EDF30` |
-| 7 | 14 | 13 nod | `0x002EE0D0`; timed `0x002EE130` |
-| 15 | 15 | 15 head shake | `0x002EDE70`; timed `0x002EDED0` |
-| 8 | 17 | 10 eyes | `0x002E75A0`, from the `eyemove_381` and `eyemovediff_383` handlers |
-| 16 | 16 | 16 body shake | `0x002EDDC0`, which also stores the amount at `+0x4BC` |
+| `0x40` | `0x2000` | 9 lip flap | `0x002E8570`; timed `0x002EDF30` |
+| `0x80` | `0x4000` | 13 nod | `0x002EE0D0`; timed `0x002EE130` |
+| `0x8000` | `0x8000` | 15 head shake | `0x002EDE70`; timed `0x002EDED0` |
+| `0x100` | `0x20000` | 10 eyes | `0x002E75A0`, from the `eyemove_381` and `eyemovediff_383` handlers |
+| `0x10000` | `0x10000` | 16 body shake | `0x002EDDC0`, which also stores the amount at `+0x4BC`; an amount of 0 clears the `+0x304` bit instead and still raises the dirty bit (`0x002EDDED`, `0x002EDDF7`) |
 
 Each setter refuses a record whose `+0x284` is 0. The plain forms zero the timer; the timed forms store
 `frames / [0x01DFE0BC]` at `+0x640` (lip flap), `+0x644` (nod) or `+0x648` (head shake).
