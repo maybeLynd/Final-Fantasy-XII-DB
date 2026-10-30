@@ -244,13 +244,13 @@ header's values as arguments and stores each.
 |---|---|---|---|
 | `+0x000` | `u32` | fontId | header `+0x00` (`0x001FC089`) |
 | `+0x004` | `u8[4]` | pad04 | not written by the constructor `0x001FC060`; `0x00210EC0` allocates the font (`0x001B4E73`) |
-| `+0x008` | `void*` | atlas | the atlas texture: 0 from the constructor (`0x001FC08D`), set by `0x00213560` from the atlas completion `0x001B6230` (`0x001B6332`) |
-| `+0x010` | `void*` | shadow | the shadow atlas texture: 0 (`0x001FC091`), set by `0x00213540` from `0x001B6110` (`0x001B6212`) |
+| `+0x008` | `void*` | atlas | the atlas texture: 0 from the constructor (`0x001FC08D`), set by `0x00213560` from the atlas completion `0x001B6230` (`0x001B6332`); read by `0x006B5C70` only, when `0x001E9D20` copies it into the open batch's `+0x08` (`0x001E9E90`) |
+| `+0x010` | `void*` | shadow | the shadow atlas texture: 0 (`0x001FC091`), set by `0x00213540` from `0x001B6110` (`0x001B6212`); read by `0x005C5310` only, into the batch's `+0x10` (`0x001E9EA0`) |
 | `+0x018` | `u32` | glyphCount | header `+0x04` (`0x001FC095`); `0x001FDF80` compares it with glyphsCount |
 | `+0x01C` | `u32` | metricA | header `+0x20` (`0x001FC09F`); the space width: returned by `0x001FDDC0` when `0x001E9840` is asked for 1, as for the space token `0x04` (`0x002ACBFD`) |
 | `+0x020` | `u32` | metricB | header `+0x24` (`0x001FC0A9`); the blank width: returned by `0x001F49E0` when `0x001E9840` is asked for 0, as for the blank token `0x01` (`0x002ACC04`) |
-| `+0x024` | `u32` | atlasW | header `+0x08` (`0x001FC0AC`) |
-| `+0x028` | `u32` | atlasH | header `+0x0C` (`0x001FC0B0`) |
+| `+0x024` | `u32` | atlasW | header `+0x08` (`0x001FC0AC`); read by `0x00225690` only, which the emitter `0x001E8070` calls to turn a glyph's x into u = x / atlasW (`0x001E815E`) |
+| `+0x028` | `u32` | atlasH | header `+0x0C` (`0x001FC0B0`); read by `0x0079E3C0` only, for v = (atlasH - y) / atlasH (`0x001E817A`, `0x001E81A5`) |
 | `+0x02C` | `u32` | cellW | header `+0x10` (`0x001FC0B8`) |
 | `+0x030` | `u32` | cellH | header `+0x14` (`0x001FC0C2`) |
 | `+0x034` | `f32` | scale | header `+0x18` (`0x001FC0CE`); returned by `0x001FDDB0`, which `0x001E9BF0` calls (`0x001E9BFC`) |
@@ -384,7 +384,9 @@ The same maps turn plain characters into text codes. Each holds one `u16` code p
 | font ids | font00 1, fontex_expand 2, fontex_subtitle 3, fontguide 4, fontquest 5, fonttutorial 6, fontmonster 7, font_venus 11, font_bookman 13, font_iwa_g12 14, font_square 15, font_stf 17-22 |
 
 The `fontex_expand` lists are mostly `plan_map` keys (449 of 482 in `jp`) and the `fontex_subtitle` lists mostly
-`event` keys (164 in `jp`); the `fontmonster` keys match no path of either family among 1,884,534 candidate strings.
+`event` keys (164 in `jp`). The `fontmonster` lists are keyed by no `event` or `plan_map` path: each key is the hash of
+`handbook_monster<NNN>.txt`, the font name `0x00575710` gives Bestiary text bundle `NNN` (`0x00575782`-`0x005757B3`, format
+string `0x00D23770`): 14 lists in `jp`, 7 in `kr` and `cn`, 6 in `ch`.
 
 No `us` font asks for a `.fex`, so `us` text always draws glyphs by their own index. The two `us` files that are not
 requested, `fontex_expand.fex` and `fontex_subtitle.fex`, are 12-byte `{key, index, value}` triples, 9,032 and 11,481 of
@@ -407,6 +409,10 @@ them.
    past the end.
 5. The `.fex` reader refuses a key already loaded and stops there, without freeing the file (`0x001B4CBA`, `0x001B4D03`).
 6. A `.dat` flag bit asks for its file without checking that it exists; no shipped flag asks for a missing file.
+7. A missing atlas file, or a cluster without a `PTexture2D` instance, is not reported: the completion `0x001B6230`
+   skips the store (`0x001B629F`, `0x001B62C0`, `0x001B62F4`, `0x001B6310`) and the font keeps atlas 0. The font is built and
+   its text laid out, but the flush skips its batch, so its glyphs are never drawn
+   ([Text drawing](text-drawing.md)).
 
 ## Modding notes
 

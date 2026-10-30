@@ -2298,7 +2298,7 @@ rwf_c01	map_ダミーＰＣ	アイテム１	2	0x027D2	1316	-	turn_62	mp_map_set_
 rwf_c01	map_ダミーＰＣ	アイテム１	3	0x027D5	1317	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	アイテム１	4	0x027DB	1318	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	アイテム１	5	0x027E1	1319	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_c01	map_ダミーＰＣ	アイテム１	6	0x027EA	1320	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+rwf_c01	map_ダミーＰＣ	アイテム１	6	0x027EA	1320	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c01	map_ダミーＰＣ	アイテム１	7	0x027ED	1321	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	アイテム１	8	0x027F0	1322	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_c01	map_ダミーＰＣ	アイテム２	1	0x027F4	1327	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2312,7 +2312,7 @@ rwf_c01	map_ダミーＰＣ	ギミックアタック	3	0x02813	1338	-	turn_62	mp
 rwf_c01	map_ダミーＰＣ	ギミックアタック	4	0x02816	1339	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック	5	0x0281C	1340	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック	6	0x02822	1341	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_c01	map_ダミーＰＣ	ギミックアタック	7	0x02828	1342	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_c01	map_ダミーＰＣ	ギミックアタック	7	0x02828	1342	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c01	map_ダミーＰＣ	ギミックアタック	8	0x0282B	1343	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック	9	0x02835	1344	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_c01	map_ダミーＰＣ	ギミックアタック	10	0x0283B	1346	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2330,7 +2330,7 @@ rwf_c01	map_ダミーＰＣ	ギミックアタック１	3	0x0286F	1362	-	turn_62
 rwf_c01	map_ダミーＰＣ	ギミックアタック１	4	0x02872	1363	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック１	5	0x02878	1364	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック１	6	0x0287E	1365	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_c01	map_ダミーＰＣ	ギミックアタック１	7	0x02884	1366	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_c01	map_ダミーＰＣ	ギミックアタック１	7	0x02884	1366	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c01	map_ダミーＰＣ	ギミックアタック１	8	0x02887	1367	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック１	9	0x02891	1368	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_c01	map_ダミーＰＣ	ギミックアタック１	10	0x02897	1370	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2349,7 +2349,7 @@ rwf_c01	map_ダミーＰＣ	ギミックアタック1	3	0x028CC	1391	-	turn_62	m
 rwf_c01	map_ダミーＰＣ	ギミックアタック1	4	0x028CF	1392	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック1	5	0x028D5	1393	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック1	6	0x028DB	1394	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_c01	map_ダミーＰＣ	ギミックアタック1	7	0x028E1	1395	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_c01	map_ダミーＰＣ	ギミックアタック1	7	0x028E1	1395	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c01	map_ダミーＰＣ	ギミックアタック1	8	0x028E4	1396	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック1	9	0x028EE	1397	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_c01	map_ダミーＰＣ	ギミックアタック1	10	0x028F4	1399	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2400,7 +2400,7 @@ rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	3	0x029D1	1468	-	turn_62
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	4	0x029D4	1469	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	5	0x029DA	1470	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	6	0x029E0	1471	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	7	0x029E6	1472	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	7	0x029E6	1472	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	8	0x029E9	1473	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	9	0x029F3	1474	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz	10	0x029F9	1476	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2419,7 +2419,7 @@ rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	4	0x02A39	1493	-	turn
 rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	5	0x02A3C	1494	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	6	0x02A42	1495	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	7	0x02A48	1496	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	8	0x02A4E	1497	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	8	0x02A4E	1497	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	9	0x02A51	1498	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	10	0x02A5B	1499	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_c01	map_ダミーＰＣ	ギミックアタック１xyz	11	0x02A61	1501	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2439,7 +2439,7 @@ rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	4	0x02AA2	1523	-	turn_6
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	5	0x02AA5	1524	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	6	0x02AAB	1525	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	7	0x02AB1	1526	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	8	0x02AB7	1527	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	8	0x02AB7	1527	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	9	0x02ABA	1528	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	10	0x02AC4	1529	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_c01	map_ダミーＰＣ	ギミックアタックxyz1	11	0x02ACA	1531	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2456,7 +2456,7 @@ rwf_c01	map_ダミーＰＣ	アイテム１xyz	1	0x02AF3	1550	-	capturepc	-1	the
 rwf_c01	map_ダミーＰＣ	アイテム１xyz	2	0x02B03	1551	-	rlookat_257	mp_map_set_x, (mp_map_set_y + -1.20000005), mp_map_set_z	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	アイテム１xyz	3	0x02B0F	1552	-	turn	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the world point the calling actor turns to face (mp_map_set_x, the map jump's set point, in 1,389 of the 1,799 calls) / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; x, y and z are kept at scratch +0x04 to +0x0C and the target heading at +0x00	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	アイテム１xyz	4	0x02B12	1553	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_c01	map_ダミーＰＣ	アイテム１xyz	5	0x02B1B	1554	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+rwf_c01	map_ダミーＰＣ	アイテム１xyz	5	0x02B1B	1554	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c01	map_ダミーＰＣ	アイテム１xyz	6	0x02B1E	1555	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_c01	map_ダミーＰＣ	アイテム１xyz	7	0x02B21	1556	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_c01	map_ダミーＰＣ	アイテム２xyz	1	0x02B25	1561	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3741,12 +3741,12 @@ rwf_d01	大瀑布地図宝壺	daiji_box_bind	10	0x0C8B9	2085	-	fetchambient	-	-	
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	11	0x0C8C6	2086	-	if	istreasureflag(22) == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	12	0x0C8CC	2088	istreasureflag(22) == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	13	0x0C8CF	2089	istreasureflag(22) == 0	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_d01	大瀑布地図宝壺	daiji_box_bind	14	0x0C8D5	2090	istreasureflag(22) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_d01	大瀑布地図宝壺	daiji_box_bind	14	0x0C8D5	2090	istreasureflag(22) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	15	0x0C8DE	2094	not (istreasureflag(22) == 0)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	16	0x0C8E4	2095	not (istreasureflag(22) == 0)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	17	0x0C8EA	2096	not (istreasureflag(22) == 0)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	18	0x0C8F0	2097	not (istreasureflag(22) == 0)	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_d01	大瀑布地図宝壺	daiji_box_bind	19	0x0C8F6	2098	not (istreasureflag(22) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_d01	大瀑布地図宝壺	daiji_box_bind	19	0x0C8F6	2098	not (istreasureflag(22) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	20	0x0C8FC	2100	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	21	0x0C902	2101	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d01	大瀑布地図宝壺	daiji_box_bind	22	0x0C908	2102	-	talkradius	0.800000012	argument 1: the margin of the calling actor's talk ellipse, the area the player stands in to talk to it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3760,7 +3760,7 @@ rwf_d01	大瀑布地図宝壺	talk	3	0x0C92A	2113	-	settrapshowstatus	0	all sixt
 rwf_d01	大瀑布地図宝壺	talk	4	0x0C936	2114	-	getpos	&file_var_s23_1, &file_var_s23_2, &file_var_s23_3	argument 1: a script variable, passed by reference (resolved by 0x002650B0), that receives the x of the calling actor's position, movement context +0x00 ([actor +0xB8]); an ACT form reads the named actor / argument 2: the variable that receives the y of the position, context +0x04 / argument 3: the variable that receives the z of the position, context +0x08	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d01	大瀑布地図宝壺	talk	5	0x0C942	2115	-	sysReq	1, override_actor::乗っ取り処理	actor `override_actor`	-	-	files override_actor::乗っ取り処理 on channel 1; does not wait	override_actor.乗っ取り処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rwf_d01	大瀑布地図宝壺	talk	6	0x0C949	2116	-	sysReqwait	override_actor::乗っ取り処理	actor `override_actor`	-	-	waits until override_actor::乗っ取り処理 is no longer on its actor	override_actor.乗っ取り処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-rwf_d01	大瀑布地図宝壺	talk	7	0x0C94D	2117	-	stdmotionplay	5	this actor's standard motion 5	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_d01	大瀑布地図宝壺	talk	7	0x0C94D	2117	-	stdmotionplay	5	this actor's standard motion 5	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d01	大瀑布地図宝壺	talk	8	0x0C953	2118	-	wait	95	-	-	95 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rwf_d01	大瀑布地図宝壺	talk	9	0x0C959	2119	-	store	g_com_set_get_label = 0x8017	variable g_com_set_get_label (global int@0x0c88)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rwf_d01	大瀑布地図宝壺	talk	10	0x0C95F	2120	-	store	g_com_set_get_label_2 = 102	variable g_com_set_get_label_2 (global int@0x0c8c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5520,7 +5520,7 @@ rwf_c0100	ハイドラ	シーン０５	6	0x017B8	978	-	return	-	-	-	-	-	-	resolv
 rwf_c0100	ハイドラ	シーン０６	1	0x017C2	983	-	setpos	120.899994, 13.7799997, 38.1999969	this actor, placed at (120.899994, 13.7799997, 38.1999969)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rwf_c0100	ハイドラ	シーン０６	2	0x017C8	984	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rwf_c0100	ハイドラ	シーン０６	3	0x017CB	985	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-rwf_c0100	ハイドラ	シーン０６	4	0x017D4	986	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+rwf_c0100	ハイドラ	シーン０６	4	0x017D4	986	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_c0100	ハイドラ	シーン０６	5	0x017E0	987	-	setpos	95.9611893, 5.78101301, 38.2647972	this actor, placed at (95.9611893, 5.78101301, 38.2647972)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rwf_c0100	ハイドラ	シーン０６	6	0x017E6	988	-	dir	-1.57112396	this actor, turned to facing -1.57112396	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rwf_c0100	ハイドラ	シーン０６	7	0x017E9	989	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8101,7 +8101,7 @@ rwf_d0100	ボス	ボス乗っ取る	5	0x01A0B	764	-	effectactor	16	argument 1: t
 rwf_d0100	ボス	ボス乗っ取る	6	0x01A11	765	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	ボス	ボス乗っ取る	7	0x01A14	766	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	ボス	バトルポーズ	1	0x01A15	771	-	motionclear	-	-	-	-	-	-		01 verb-table.tsv
-rwf_d0100	ボス	バトルポーズ	2	0x01A1E	772	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+rwf_d0100	ボス	バトルポーズ	2	0x01A1E	772	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	ボス	バトルポーズ	3	0x01A24	773	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	ボス	バトルポーズ	4	0x01A27	774	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	ボス	ボス乗っ取り解除	1	0x01A2B	779	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8172,12 +8172,12 @@ rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	28	0x01B69	880	lastmap() is non
 rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	29	0x01B6F	881	lastmap() is none of 0x01ff, 0x0205	label	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	30	0x01B6F	882	lastmap() is none of 0x01ff, 0x0205	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	31	0x01B84	884	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	32	0x01B8A	885	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	32	0x01B8A	885	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	33	0x01B90	886	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	34	0x01B96	887	-	dir	file_var_s0_8	this actor, turned to facing file_var_s0_8	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rwf_d0100	PC乗っ取り0	PC乗っ取り配置c1	35	0x01B99	888	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り0	PCアイドリング	1	0x01B9A	893	-	motionclear	-	-	-	-	-	-		01 verb-table.tsv
-rwf_d0100	PC乗っ取り0	PCアイドリング	2	0x01BA3	894	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+rwf_d0100	PC乗っ取り0	PCアイドリング	2	0x01BA3	894	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	PC乗っ取り0	PCアイドリング	3	0x01BA9	895	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	PC乗っ取り0	PCアイドリング	4	0x01BAF	896	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り0	PCアイドリング	5	0x01BB0	897	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8225,12 +8225,12 @@ rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	34	0x01C75	959	lastmap() is non
 rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	35	0x01C7B	960	lastmap() is none of 0x01ff, 0x0205	label	local_jmp_18	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	36	0x01C7B	961	lastmap() is none of 0x01ff, 0x0205	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	37	0x01C90	963	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	38	0x01C96	964	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	38	0x01C96	964	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	39	0x01C9C	965	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	40	0x01CA2	966	-	dir	file_var_s0_8	this actor, turned to facing file_var_s0_8	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rwf_d0100	PC乗っ取り1	PC乗っ取り配置c1	41	0x01CA5	967	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り1	PCアイドリング	1	0x01CA6	972	-	motionclear	-	-	-	-	-	-		01 verb-table.tsv
-rwf_d0100	PC乗っ取り1	PCアイドリング	2	0x01CAF	973	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+rwf_d0100	PC乗っ取り1	PCアイドリング	2	0x01CAF	973	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	PC乗っ取り1	PCアイドリング	3	0x01CB5	974	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	PC乗っ取り1	PCアイドリング	4	0x01CBB	975	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り1	PCアイドリング	5	0x01CBC	976	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8278,12 +8278,12 @@ rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	34	0x01D81	1038	lastmap() is no
 rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	35	0x01D87	1039	lastmap() is none of 0x01ff, 0x0205	label	local_jmp_18	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	36	0x01D87	1040	lastmap() is none of 0x01ff, 0x0205	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	37	0x01D9C	1042	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	38	0x01DA2	1043	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	38	0x01DA2	1043	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	39	0x01DA8	1044	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	40	0x01DAE	1045	-	dir	file_var_s0_8	this actor, turned to facing file_var_s0_8	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rwf_d0100	PC乗っ取り2	PC乗っ取り配置c1	41	0x01DB1	1046	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り2	PCアイドリング	1	0x01DB2	1051	-	motionclear	-	-	-	-	-	-		01 verb-table.tsv
-rwf_d0100	PC乗っ取り2	PCアイドリング	2	0x01DBB	1052	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+rwf_d0100	PC乗っ取り2	PCアイドリング	2	0x01DBB	1052	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	PC乗っ取り2	PCアイドリング	3	0x01DC1	1053	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	PC乗っ取り2	PCアイドリング	4	0x01DC7	1054	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り2	PCアイドリング	5	0x01DC8	1055	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8334,12 +8334,12 @@ rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	37	0x01E90	1120	lastmap() is no
 rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	38	0x01E93	1121	lastmap() is none of 0x01ff, 0x0205	label	local_jmp_21	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	39	0x01E93	1122	lastmap() is none of 0x01ff, 0x0205	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	40	0x01EA8	1124	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	41	0x01EAE	1125	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	41	0x01EAE	1125	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	42	0x01EB4	1126	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	43	0x01EBA	1127	-	dir	file_var_s0_8	this actor, turned to facing file_var_s0_8	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rwf_d0100	PC乗っ取り3	PC乗っ取り配置c1	44	0x01EBD	1128	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り3	PCアイドリング	1	0x01EBE	1133	-	motionclear	-	-	-	-	-	-		01 verb-table.tsv
-rwf_d0100	PC乗っ取り3	PCアイドリング	2	0x01EC7	1134	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+rwf_d0100	PC乗っ取り3	PCアイドリング	2	0x01EC7	1134	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 rwf_d0100	PC乗っ取り3	PCアイドリング	3	0x01ECD	1135	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rwf_d0100	PC乗っ取り3	PCアイドリング	4	0x01ED3	1136	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rwf_d0100	PC乗っ取り3	PCアイドリング	5	0x01ED4	1137	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

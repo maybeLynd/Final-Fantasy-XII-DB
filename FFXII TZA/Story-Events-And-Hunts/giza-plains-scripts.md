@@ -178,13 +178,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 32,097 |
-| empty | 2,657 |
+| `resolved` | 32,644 |
+| empty | 2,110 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `sav_b0180` (event `719`), `監督.main` files `ＡＤ.準備`,
 `ＡＤ.Ｃ０１_集落遠景`, `ＡＤ.Ｃ０２_集落に帰る` and `ＡＤ.Ｃ０３_マシュアお礼` in turn, each waited for to its end, and then `ＡＤ.終了`. It then

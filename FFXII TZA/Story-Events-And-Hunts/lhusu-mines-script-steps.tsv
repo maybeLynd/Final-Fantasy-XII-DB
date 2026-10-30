@@ -3379,7 +3379,7 @@ lus_a01	map_ダミーＰＣ	アイテム１	2	0x08DE9	4331	-	turn_62	mp_map_set_
 lus_a01	map_ダミーＰＣ	アイテム１	3	0x08DEC	4332	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	アイテム１	4	0x08DF2	4333	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	アイテム１	5	0x08DF8	4334	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	map_ダミーＰＣ	アイテム１	6	0x08E01	4335	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_a01	map_ダミーＰＣ	アイテム１	6	0x08E01	4335	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	map_ダミーＰＣ	アイテム１	7	0x08E04	4336	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	アイテム１	8	0x08E07	4337	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	map_ダミーＰＣ	アイテム２	1	0x08E0B	4342	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3393,7 +3393,7 @@ lus_a01	map_ダミーＰＣ	ギミックアタック	3	0x08E2A	4353	-	turn_62	mp
 lus_a01	map_ダミーＰＣ	ギミックアタック	4	0x08E2D	4354	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック	5	0x08E33	4355	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック	6	0x08E39	4356	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	map_ダミーＰＣ	ギミックアタック	7	0x08E3F	4357	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a01	map_ダミーＰＣ	ギミックアタック	7	0x08E3F	4357	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	map_ダミーＰＣ	ギミックアタック	8	0x08E42	4358	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック	9	0x08E4C	4359	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	map_ダミーＰＣ	ギミックアタック	10	0x08E52	4361	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3411,7 +3411,7 @@ lus_a01	map_ダミーＰＣ	ギミックアタック１	3	0x08E86	4377	-	turn_62
 lus_a01	map_ダミーＰＣ	ギミックアタック１	4	0x08E89	4378	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック１	5	0x08E8F	4379	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック１	6	0x08E95	4380	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	map_ダミーＰＣ	ギミックアタック１	7	0x08E9B	4381	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a01	map_ダミーＰＣ	ギミックアタック１	7	0x08E9B	4381	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	map_ダミーＰＣ	ギミックアタック１	8	0x08E9E	4382	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック１	9	0x08EA8	4383	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	map_ダミーＰＣ	ギミックアタック１	10	0x08EAE	4385	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3430,7 +3430,7 @@ lus_a01	map_ダミーＰＣ	ギミックアタック1	3	0x08EE3	4406	-	turn_62	m
 lus_a01	map_ダミーＰＣ	ギミックアタック1	4	0x08EE6	4407	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック1	5	0x08EEC	4408	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック1	6	0x08EF2	4409	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	map_ダミーＰＣ	ギミックアタック1	7	0x08EF8	4410	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a01	map_ダミーＰＣ	ギミックアタック1	7	0x08EF8	4410	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	map_ダミーＰＣ	ギミックアタック1	8	0x08EFB	4411	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック1	9	0x08F05	4412	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	map_ダミーＰＣ	ギミックアタック1	10	0x08F0B	4414	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3481,7 +3481,7 @@ lus_a01	map_ダミーＰＣ	ギミックアタックxyz	3	0x08FE8	4483	-	turn_62
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz	4	0x08FEB	4484	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz	5	0x08FF1	4485	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz	6	0x08FF7	4486	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	map_ダミーＰＣ	ギミックアタックxyz	7	0x08FFD	4487	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a01	map_ダミーＰＣ	ギミックアタックxyz	7	0x08FFD	4487	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz	8	0x09000	4488	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz	9	0x0900A	4489	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz	10	0x09010	4491	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3500,7 +3500,7 @@ lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	4	0x09050	4508	-	turn
 lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	5	0x09053	4509	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	6	0x09059	4510	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	7	0x0905F	4511	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	8	0x09065	4512	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	8	0x09065	4512	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	9	0x09068	4513	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	10	0x09072	4514	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	map_ダミーＰＣ	ギミックアタック１xyz	11	0x09078	4516	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3520,7 +3520,7 @@ lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	4	0x090B9	4538	-	turn_6
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	5	0x090BC	4539	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	6	0x090C2	4540	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	7	0x090C8	4541	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	8	0x090CE	4542	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	8	0x090CE	4542	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	9	0x090D1	4543	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	10	0x090DB	4544	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	map_ダミーＰＣ	ギミックアタックxyz1	11	0x090E1	4546	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3537,7 +3537,7 @@ lus_a01	map_ダミーＰＣ	アイテム１xyz	1	0x0910A	4565	-	capturepc	-1	the
 lus_a01	map_ダミーＰＣ	アイテム１xyz	2	0x0911A	4566	-	rlookat_257	mp_map_set_x, (mp_map_set_y + -1.20000005), mp_map_set_z	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	アイテム１xyz	3	0x09126	4567	-	turn	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the world point the calling actor turns to face (mp_map_set_x, the map jump's set point, in 1,389 of the 1,799 calls) / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; x, y and z are kept at scratch +0x04 to +0x0C and the target heading at +0x00	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	アイテム１xyz	4	0x09129	4568	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	map_ダミーＰＣ	アイテム１xyz	5	0x09132	4569	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_a01	map_ダミーＰＣ	アイテム１xyz	5	0x09132	4569	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	map_ダミーＰＣ	アイテム１xyz	6	0x09135	4570	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a01	map_ダミーＰＣ	アイテム１xyz	7	0x09138	4571	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	map_ダミーＰＣ	アイテム２xyz	1	0x0913C	4576	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3587,7 +3587,7 @@ lus_a01	トロッコカメラ用	トロッコ乗りxyz	7	0x0920F	4664	-	releasep
 lus_a01	トロッコカメラ用	トロッコ乗りxyz	8	0x09212	4665	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a01	トロッコカメラ用	トロッコ乗りxyz_走る	1	0x09216	4670	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_a01	トロッコカメラ用	トロッコ乗りxyz_走る	2	0x09219	4671	-	getdefaultrunspeed	-	result stored in file_var_s28_1; the calling actor's model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a01	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x09222	4672	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a01	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x09222	4672	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a01	トロッコカメラ用	トロッコ乗りxyz_走る	4	0x09231	4673	-	amove_4d3	file_var_s11_4, file_var_s11_5, file_var_s11_6, file_var_s28_1	-	-	-	-	-		01 verb-table.tsv
 lus_a01	トロッコカメラ用	トロッコ乗りxyz_走る	5	0x09234	4674	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_a01	トロッコカメラ用	トロッコ乗りxyz_走る	6	0x09237	4675	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7830,7 +7830,7 @@ lus_a03	トロッコカメラ用	トロッコ乗りxyz	7	0x09DCB	4601	-	releasep
 lus_a03	トロッコカメラ用	トロッコ乗りxyz	8	0x09DCE	4602	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	トロッコカメラ用	トロッコ乗りxyz_走る	1	0x09DD2	4607	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_a03	トロッコカメラ用	トロッコ乗りxyz_走る	2	0x09DD5	4608	-	getdefaultrunspeed	-	result stored in file_var_s28_1; the calling actor's model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x09DDE	4609	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a03	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x09DDE	4609	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	トロッコカメラ用	トロッコ乗りxyz_走る	4	0x09DED	4610	-	amove_4d3	file_var_s16_4, file_var_s16_5, file_var_s16_6, file_var_s28_1	-	-	-	-	-		01 verb-table.tsv
 lus_a03	トロッコカメラ用	トロッコ乗りxyz_走る	5	0x09DF0	4611	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_a03	トロッコカメラ用	トロッコ乗りxyz_走る	6	0x09DF3	4612	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7874,7 +7874,7 @@ lus_a03	map_ダミーＰＣ	アイテム１	2	0x09E9D	4689	-	turn_62	mp_map_set_
 lus_a03	map_ダミーＰＣ	アイテム１	3	0x09EA0	4690	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	アイテム１	4	0x09EA6	4691	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	アイテム１	5	0x09EAC	4692	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	map_ダミーＰＣ	アイテム１	6	0x09EB5	4693	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_a03	map_ダミーＰＣ	アイテム１	6	0x09EB5	4693	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	map_ダミーＰＣ	アイテム１	7	0x09EB8	4694	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	アイテム１	8	0x09EBB	4695	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	map_ダミーＰＣ	アイテム２	1	0x09EBF	4700	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7888,7 +7888,7 @@ lus_a03	map_ダミーＰＣ	ギミックアタック	3	0x09EDE	4711	-	turn_62	mp
 lus_a03	map_ダミーＰＣ	ギミックアタック	4	0x09EE1	4712	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック	5	0x09EE7	4713	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック	6	0x09EED	4714	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	map_ダミーＰＣ	ギミックアタック	7	0x09EF3	4715	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a03	map_ダミーＰＣ	ギミックアタック	7	0x09EF3	4715	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	map_ダミーＰＣ	ギミックアタック	8	0x09EF6	4716	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック	9	0x09F00	4717	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	map_ダミーＰＣ	ギミックアタック	10	0x09F06	4719	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7906,7 +7906,7 @@ lus_a03	map_ダミーＰＣ	ギミックアタック１	3	0x09F3A	4735	-	turn_62
 lus_a03	map_ダミーＰＣ	ギミックアタック１	4	0x09F3D	4736	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック１	5	0x09F43	4737	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック１	6	0x09F49	4738	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	map_ダミーＰＣ	ギミックアタック１	7	0x09F4F	4739	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a03	map_ダミーＰＣ	ギミックアタック１	7	0x09F4F	4739	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	map_ダミーＰＣ	ギミックアタック１	8	0x09F52	4740	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック１	9	0x09F5C	4741	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	map_ダミーＰＣ	ギミックアタック１	10	0x09F62	4743	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7925,7 +7925,7 @@ lus_a03	map_ダミーＰＣ	ギミックアタック1	3	0x09F97	4764	-	turn_62	m
 lus_a03	map_ダミーＰＣ	ギミックアタック1	4	0x09F9A	4765	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック1	5	0x09FA0	4766	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック1	6	0x09FA6	4767	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	map_ダミーＰＣ	ギミックアタック1	7	0x09FAC	4768	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a03	map_ダミーＰＣ	ギミックアタック1	7	0x09FAC	4768	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	map_ダミーＰＣ	ギミックアタック1	8	0x09FAF	4769	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック1	9	0x09FB9	4770	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	map_ダミーＰＣ	ギミックアタック1	10	0x09FBF	4772	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7976,7 +7976,7 @@ lus_a03	map_ダミーＰＣ	ギミックアタックxyz	3	0x0A09C	4841	-	turn_62
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz	4	0x0A09F	4842	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz	5	0x0A0A5	4843	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz	6	0x0A0AB	4844	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	map_ダミーＰＣ	ギミックアタックxyz	7	0x0A0B1	4845	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a03	map_ダミーＰＣ	ギミックアタックxyz	7	0x0A0B1	4845	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz	8	0x0A0B4	4846	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz	9	0x0A0BE	4847	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz	10	0x0A0C4	4849	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7995,7 +7995,7 @@ lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	4	0x0A104	4866	-	turn
 lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	5	0x0A107	4867	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	6	0x0A10D	4868	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	7	0x0A113	4869	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	8	0x0A119	4870	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	8	0x0A119	4870	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	9	0x0A11C	4871	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	10	0x0A126	4872	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	map_ダミーＰＣ	ギミックアタック１xyz	11	0x0A12C	4874	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8015,7 +8015,7 @@ lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	4	0x0A16D	4896	-	turn_6
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	5	0x0A170	4897	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	6	0x0A176	4898	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	7	0x0A17C	4899	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	8	0x0A182	4900	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	8	0x0A182	4900	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	9	0x0A185	4901	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	10	0x0A18F	4902	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	map_ダミーＰＣ	ギミックアタックxyz1	11	0x0A195	4904	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8032,7 +8032,7 @@ lus_a03	map_ダミーＰＣ	アイテム１xyz	1	0x0A1BE	4923	-	capturepc	-1	the
 lus_a03	map_ダミーＰＣ	アイテム１xyz	2	0x0A1CE	4924	-	rlookat_257	mp_map_set_x, (mp_map_set_y + -1.20000005), mp_map_set_z	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	アイテム１xyz	3	0x0A1DA	4925	-	turn	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the world point the calling actor turns to face (mp_map_set_x, the map jump's set point, in 1,389 of the 1,799 calls) / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; x, y and z are kept at scratch +0x04 to +0x0C and the target heading at +0x00	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	アイテム１xyz	4	0x0A1DD	4926	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a03	map_ダミーＰＣ	アイテム１xyz	5	0x0A1E6	4927	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_a03	map_ダミーＰＣ	アイテム１xyz	5	0x0A1E6	4927	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a03	map_ダミーＰＣ	アイテム１xyz	6	0x0A1E9	4928	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a03	map_ダミーＰＣ	アイテム１xyz	7	0x0A1EC	4929	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a03	map_ダミーＰＣ	アイテム２xyz	1	0x0A1F0	4934	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8341,7 +8341,7 @@ lus_a04	カイト_AT	バインド	14	0x04E65	2404	-	set_ignore_hitgroup	1	argume
 lus_a04	カイト_AT	バインド	15	0x04E6B	2405	-	stdmotionread	18	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a04	カイト_AT	バインド	16	0x04E6E	2406	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a04	カイト_AT	バインド	17	0x04E74	2407	-	stdmotionvariation	1	-	-	-	-	-		01 verb-table.tsv
-lus_a04	カイト_AT	バインド	18	0x04E7D	2408	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_a04	カイト_AT	バインド	18	0x04E7D	2408	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a04	カイト_AT	バインド	19	0x04E80	2409	-	lookat_maxvelr_limit_unlock	-	-	-	-	-	-		01 verb-table.tsv
 lus_a04	カイト_AT	バインド	20	0x04E8C	2410	-	lookatrt_4c9	0, -0.17453292, 0	-	-	-	-	-		01 verb-table.tsv
 lus_a04	カイト_AT	バインド	21	0x04E9E	2411	-	rgbatrans	1, 1, 1, 0, 0	this actor's script colour channels 6 to 9: red 1, green 1, blue 1, alpha 0	-	over 0 frames plus one	-	-	resolved	17 ../Graphics/character-fades.md
@@ -9918,7 +9918,7 @@ lus_b02	map_ダミーＰＣ	アイテム１	2	0x04D90	1433	-	turn_62	mp_map_set_
 lus_b02	map_ダミーＰＣ	アイテム１	3	0x04D93	1434	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	アイテム１	4	0x04D99	1435	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	アイテム１	5	0x04D9F	1436	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_b02	map_ダミーＰＣ	アイテム１	6	0x04DA8	1437	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_b02	map_ダミーＰＣ	アイテム１	6	0x04DA8	1437	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_b02	map_ダミーＰＣ	アイテム１	7	0x04DAB	1438	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	アイテム１	8	0x04DAE	1439	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_b02	map_ダミーＰＣ	アイテム２	1	0x04DB2	1444	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9932,7 +9932,7 @@ lus_b02	map_ダミーＰＣ	ギミックアタック	3	0x04DD1	1455	-	turn_62	mp
 lus_b02	map_ダミーＰＣ	ギミックアタック	4	0x04DD4	1456	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック	5	0x04DDA	1457	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック	6	0x04DE0	1458	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_b02	map_ダミーＰＣ	ギミックアタック	7	0x04DE6	1459	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_b02	map_ダミーＰＣ	ギミックアタック	7	0x04DE6	1459	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_b02	map_ダミーＰＣ	ギミックアタック	8	0x04DE9	1460	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック	9	0x04DF3	1461	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_b02	map_ダミーＰＣ	ギミックアタック	10	0x04DF9	1463	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9950,7 +9950,7 @@ lus_b02	map_ダミーＰＣ	ギミックアタック１	3	0x04E2D	1479	-	turn_62
 lus_b02	map_ダミーＰＣ	ギミックアタック１	4	0x04E30	1480	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック１	5	0x04E36	1481	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック１	6	0x04E3C	1482	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_b02	map_ダミーＰＣ	ギミックアタック１	7	0x04E42	1483	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_b02	map_ダミーＰＣ	ギミックアタック１	7	0x04E42	1483	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_b02	map_ダミーＰＣ	ギミックアタック１	8	0x04E45	1484	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック１	9	0x04E4F	1485	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_b02	map_ダミーＰＣ	ギミックアタック１	10	0x04E55	1487	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9969,7 +9969,7 @@ lus_b02	map_ダミーＰＣ	ギミックアタック1	3	0x04E8A	1508	-	turn_62	m
 lus_b02	map_ダミーＰＣ	ギミックアタック1	4	0x04E8D	1509	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック1	5	0x04E93	1510	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック1	6	0x04E99	1511	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_b02	map_ダミーＰＣ	ギミックアタック1	7	0x04E9F	1512	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_b02	map_ダミーＰＣ	ギミックアタック1	7	0x04E9F	1512	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_b02	map_ダミーＰＣ	ギミックアタック1	8	0x04EA2	1513	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック1	9	0x04EAC	1514	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_b02	map_ダミーＰＣ	ギミックアタック1	10	0x04EB2	1516	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10020,7 +10020,7 @@ lus_b02	map_ダミーＰＣ	ギミックアタックxyz	3	0x04F8F	1585	-	turn_62
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz	4	0x04F92	1586	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz	5	0x04F98	1587	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz	6	0x04F9E	1588	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_b02	map_ダミーＰＣ	ギミックアタックxyz	7	0x04FA4	1589	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_b02	map_ダミーＰＣ	ギミックアタックxyz	7	0x04FA4	1589	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz	8	0x04FA7	1590	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz	9	0x04FB1	1591	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz	10	0x04FB7	1593	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10039,7 +10039,7 @@ lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	4	0x04FF7	1610	-	turn
 lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	5	0x04FFA	1611	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	6	0x05000	1612	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	7	0x05006	1613	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	8	0x0500C	1614	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	8	0x0500C	1614	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	9	0x0500F	1615	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	10	0x05019	1616	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_b02	map_ダミーＰＣ	ギミックアタック１xyz	11	0x0501F	1618	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10059,7 +10059,7 @@ lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	4	0x05060	1640	-	turn_6
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	5	0x05063	1641	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	6	0x05069	1642	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	7	0x0506F	1643	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	8	0x05075	1644	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	8	0x05075	1644	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	9	0x05078	1645	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	10	0x05082	1646	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_b02	map_ダミーＰＣ	ギミックアタックxyz1	11	0x05088	1648	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10076,7 +10076,7 @@ lus_b02	map_ダミーＰＣ	アイテム１xyz	1	0x050B1	1667	-	capturepc	-1	the
 lus_b02	map_ダミーＰＣ	アイテム１xyz	2	0x050C1	1668	-	rlookat_257	mp_map_set_x, (mp_map_set_y + -1.20000005), mp_map_set_z	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	アイテム１xyz	3	0x050CD	1669	-	turn	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the world point the calling actor turns to face (mp_map_set_x, the map jump's set point, in 1,389 of the 1,799 calls) / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; x, y and z are kept at scratch +0x04 to +0x0C and the target heading at +0x00	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	アイテム１xyz	4	0x050D0	1670	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_b02	map_ダミーＰＣ	アイテム１xyz	5	0x050D9	1671	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_b02	map_ダミーＰＣ	アイテム１xyz	5	0x050D9	1671	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_b02	map_ダミーＰＣ	アイテム１xyz	6	0x050DC	1672	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_b02	map_ダミーＰＣ	アイテム１xyz	7	0x050DF	1673	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_b02	map_ダミーＰＣ	アイテム２xyz	1	0x050E3	1678	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -14968,7 +14968,7 @@ lus_d01	エルロン_BND	イベント準備	8	0x0B15E	4936	-	setcharclipone	0	ar
 lus_d01	エルロン_BND	イベント準備	9	0x0B16A	4937	-	bindp2_d4	0x03000002, 4, 1	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	エルロン_BND	イベント準備	10	0x0B170	4938	-	stdmotionread	21	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	エルロン_BND	イベント準備	11	0x0B173	4939	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	エルロン_BND	イベント準備	12	0x0B17C	4940	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	エルロン_BND	イベント準備	12	0x0B17C	4940	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	エルロン_BND	イベント準備	13	0x0B182	4941	-	setautorelax	1	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	エルロン_BND	イベント準備	14	0x0B188	4942	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	エルロン_BND	イベント準備	15	0x0B18B	4943	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -14991,7 +14991,7 @@ lus_d01	エルロン_BND	カット０３ａ	5	0x0B1ED	4967	-	motionplay_bb	0x110
 lus_d01	エルロン_BND	カット０３ａ	6	0x0B1F3	4968	-	wait	70	-	-	70 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 lus_d01	エルロン_BND	カット０３ａ	7	0x0B1F9	4969	-	sysRlookata	ヴァン_BND	actor `ヴァン_BND` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 lus_d01	エルロン_BND	カット０３ａ	8	0x0B1FC	4970	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
-lus_d01	エルロン_BND	カット０３ａ	9	0x0B205	4971	-	stdmotionplay_2c2	0x01000016, 0	this actor's standard motion 0x01000016	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	エルロン_BND	カット０３ａ	9	0x0B205	4971	-	stdmotionplay_2c2	0x01000016, 0	this actor's standard motion entry 22 of 0x01EFE9D0: render event 0x4024, slot 36 `ev_talk_over`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	エルロン_BND	カット０３ａ	10	0x0B208	4972	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	エルロン_BND	カット０３ｂ	1	0x0B20C	4977	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 lus_d01	エルロン_BND	カット０３ｂ	2	0x0B218	4978	-	rlookat_257	65, 19, 200	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15015,9 +15015,9 @@ lus_d01	エルロン_BND	カット０５ａ	1	0x0B27E	5007	-	movecancel	-	the ca
 lus_d01	エルロン_BND	カット０５ａ	2	0x0B281	5008	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	エルロン_BND	カット０５ａ	3	0x0B28D	5009	-	setpos	75.6500015, 19.9303379, 206	this actor, placed at (75.6500015, 19.9303379, 206)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_d01	エルロン_BND	カット０５ａ	4	0x0B293	5010	-	dir	2.804919	this actor, turned to facing 2.804919	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-lus_d01	エルロン_BND	カット０５ａ	5	0x0B29C	5011	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	エルロン_BND	カット０５ａ	5	0x0B29C	5011	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	エルロン_BND	カット０５ａ	6	0x0B29F	5012	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-lus_d01	エルロン_BND	カット０５ｂ	1	0x0B2A6	5017	-	stdmotionplay_2c2	0x01000010, 4	this actor's standard motion 0x01000010	-	float 4 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	エルロン_BND	カット０５ｂ	1	0x0B2A6	5017	-	stdmotionplay_2c2	0x01000010, 4	this actor's standard motion entry 16 of 0x01EFE9D0: render event 0x401E, slot 30 `ev_talk_happy`	-	float 4 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	エルロン_BND	カット０５ｂ	2	0x0B2A9	5018	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	エルロン_BND	カット０６ａ	1	0x0B2B3	5023	-	setpos	75.5800018, 19.9482555, 205.800003	this actor, placed at (75.5800018, 19.9482555, 205.800003)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_d01	エルロン_BND	カット０６ａ	2	0x0B2B9	5024	-	sysRlookata	ヴァン_BND	actor `ヴァン_BND` (this script)	-	-	-	-	resolved	01 verb-table.tsv
@@ -15026,7 +15026,7 @@ lus_d01	エルロン_BND	カット０６ｃ	1	0x0B2C0	5030	-	sysRaturna	ヴァ�
 lus_d01	エルロン_BND	カット０６ｃ	2	0x0B2C3	5031	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	エルロン_BND	カット０６ｄ	1	0x0B2C7	5036	-	setaturnlookatlockstatus	0	argument 1: how the calling actor's untimed turns are made	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	エルロン_BND	カット０６ｄ	2	0x0B2CD	5037	-	sysAturna	カイト_BND	actor `カイト_BND` (this script) / argument 1: the actor the calling actor turns its body and head to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	エルロン_BND	カット０６ｄ	3	0x0B2D6	5038	-	stdmotionplay_2c2	0x01000015, 4	this actor's standard motion 0x01000015	-	float 4 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	エルロン_BND	カット０６ｄ	3	0x0B2D6	5038	-	stdmotionplay_2c2	0x01000015, 4	this actor's standard motion entry 21 of 0x01EFE9D0: render event 0x4023, slot 35 `ev_no`	-	float 4 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	エルロン_BND	カット０６ｄ	4	0x0B2D9	5039	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	エルロン_BND	カット０６ｅ	1	0x0B2DA	5044	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	エルロン_BND	カット０７	1	0x0B2DE	5049	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15062,7 +15062,7 @@ lus_d01	カイト_BND	イベント準備	8	0x0B396	5094	-	setcharclipone	0	argum
 lus_d01	カイト_BND	イベント準備	9	0x0B3A2	5095	-	bindp2_d4	0x03000003, 4, 1	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	カイト_BND	イベント準備	10	0x0B3A8	5096	-	stdmotionread	21	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	カイト_BND	イベント準備	11	0x0B3AB	5097	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	カイト_BND	イベント準備	12	0x0B3B4	5098	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	カイト_BND	イベント準備	12	0x0B3B4	5098	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	カイト_BND	イベント準備	13	0x0B3BA	5099	-	setautorelax	1	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	カイト_BND	イベント準備	14	0x0B3C0	5100	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	カイト_BND	イベント準備	15	0x0B3C3	5101	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -15082,7 +15082,7 @@ lus_d01	カイト_BND	カット０５ａ	3	0x0B41F	5122	-	setpos	76, 19.9366226,
 lus_d01	カイト_BND	カット０５ａ	4	0x0B425	5123	-	dir	-0.336672992	this actor, turned to facing -0.336672992	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 lus_d01	カイト_BND	カット０５ａ	5	0x0B42E	5124	-	motionplay_bb	0x12000004, 0	animation 4 of motion 2 of `lus_d01.mot` (bytes 0x15800, length 0x14DB0)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 lus_d01	カイト_BND	カット０５ａ	6	0x0B431	5125	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-lus_d01	カイト_BND	カット０５ｃ	1	0x0B438	5130	-	stdmotionplay_2c2	0x01000016, 4	this actor's standard motion 0x01000016	-	float 4 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	カイト_BND	カット０５ｃ	1	0x0B438	5130	-	stdmotionplay_2c2	0x01000016, 4	this actor's standard motion entry 22 of 0x01EFE9D0: render event 0x4024, slot 36 `ev_talk_over`	-	float 4 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	カイト_BND	カット０５ｃ	2	0x0B43E	5131	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	カイト_BND	カット０５ｃ	3	0x0B44A	5132	-	rlookat_257	75.6500015, 18.9303379, 206	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	カイト_BND	カット０５ｃ	4	0x0B44D	5133	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15091,7 +15091,7 @@ lus_d01	カイト_BND	カット０６ａ	2	0x0B457	5139	-	sysRlookata	ヴァン_
 lus_d01	カイト_BND	カット０６ａ	3	0x0B45A	5140	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	カイト_BND	カット０６ａ	4	0x0B460	5141	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 lus_d01	カイト_BND	カット０６ａ	5	0x0B463	5142	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-lus_d01	カイト_BND	カット０６ｂ	1	0x0B46A	5147	-	stdmotionplay_2c2	0x01000014, 4	this actor's standard motion 0x01000014	-	float 4 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	カイト_BND	カット０６ｂ	1	0x0B46A	5147	-	stdmotionplay_2c2	0x01000014, 4	this actor's standard motion entry 20 of 0x01EFE9D0: render event 0x4022, slot 34 `ev_yes`	-	float 4 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	カイト_BND	カット０６ｂ	2	0x0B46D	5148	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	カイト_BND	カット０６ｄ	1	0x0B471	5153	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 lus_d01	カイト_BND	カット０６ｄ	2	0x0B477	5154	-	sysLookata	エルロン_BND	actor `エルロン_BND` (this script) / argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15133,7 +15133,7 @@ lus_d01	ヴァン_BND	イベント準備	8	0x0B546	5213	-	setcharclipone	0	argum
 lus_d01	ヴァン_BND	イベント準備	9	0x0B54C	5214	-	bindp2	0x03000004	model c0 (section 12 entry 4, bound id 0x630000)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 lus_d01	ヴァン_BND	イベント準備	10	0x0B552	5215	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	ヴァン_BND	イベント準備	11	0x0B555	5216	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	ヴァン_BND	イベント準備	12	0x0B55E	5217	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	ヴァン_BND	イベント準備	12	0x0B55E	5217	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	ヴァン_BND	イベント準備	13	0x0B564	5218	-	setautorelax	1	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	ヴァン_BND	イベント準備	14	0x0B56A	5219	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	ヴァン_BND	イベント準備	15	0x0B56D	5220	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15142,7 +15142,7 @@ lus_d01	ヴァン_BND	カット０１	2	0x0B577	5226	-	motionstartframe	50	argum
 lus_d01	ヴァン_BND	カット０１	3	0x0B580	5227	-	motionplay_bb	0x11000000, 0	animation 0 of motion 1 of `lus_d01.mot` (bytes 0x800, length 0x14950)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 lus_d01	ヴァン_BND	カット０１	4	0x0B583	5228	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	ヴァン_BND	カット０２	1	0x0B587	5233	-	dir	0.523599029	this actor, turned to facing 0.523599029	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-lus_d01	ヴァン_BND	カット０２	2	0x0B590	5234	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	ヴァン_BND	カット０２	2	0x0B590	5234	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	ヴァン_BND	カット０２	3	0x0B593	5235	-	lookat_maxvelr_limit_unlock	-	-	-	-	-	-		01 verb-table.tsv
 lus_d01	ヴァン_BND	カット０２	4	0x0B59C	5236	-	sysRlookatat	エルロン_BND, 0	actor `エルロン_BND` (this script)	-	-	-	-		01 verb-table.tsv
 lus_d01	ヴァン_BND	カット０２	5	0x0B5A2	5237	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15209,7 +15209,7 @@ lus_d01	トロッコカメラ用	トロッコ乗りxyz	7	0x0B6DE	5355	-	releasep
 lus_d01	トロッコカメラ用	トロッコ乗りxyz	8	0x0B6E1	5356	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	トロッコカメラ用	トロッコ乗りxyz_走る	1	0x0B6E5	5361	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_d01	トロッコカメラ用	トロッコ乗りxyz_走る	2	0x0B6E8	5362	-	getdefaultrunspeed	-	result stored in file_var_s35_1; the calling actor's model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x0B6F1	5363	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d01	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x0B6F1	5363	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	トロッコカメラ用	トロッコ乗りxyz_走る	4	0x0B700	5364	-	amove_4d3	file_var_s15_4, file_var_s15_5, file_var_s15_6, file_var_s35_1	-	-	-	-	-		01 verb-table.tsv
 lus_d01	トロッコカメラ用	トロッコ乗りxyz_走る	5	0x0B703	5365	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_d01	トロッコカメラ用	トロッコ乗りxyz_走る	6	0x0B706	5366	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15253,7 +15253,7 @@ lus_d01	map_ダミーＰＣ	アイテム１	2	0x0B7B0	5443	-	turn_62	mp_map_set_
 lus_d01	map_ダミーＰＣ	アイテム１	3	0x0B7B3	5444	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	アイテム１	4	0x0B7B9	5445	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	アイテム１	5	0x0B7BF	5446	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	map_ダミーＰＣ	アイテム１	6	0x0B7C8	5447	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	map_ダミーＰＣ	アイテム１	6	0x0B7C8	5447	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	map_ダミーＰＣ	アイテム１	7	0x0B7CB	5448	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	アイテム１	8	0x0B7CE	5449	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	map_ダミーＰＣ	アイテム２	1	0x0B7D2	5454	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15267,7 +15267,7 @@ lus_d01	map_ダミーＰＣ	ギミックアタック	3	0x0B7F1	5465	-	turn_62	mp
 lus_d01	map_ダミーＰＣ	ギミックアタック	4	0x0B7F4	5466	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック	5	0x0B7FA	5467	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック	6	0x0B800	5468	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	map_ダミーＰＣ	ギミックアタック	7	0x0B806	5469	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d01	map_ダミーＰＣ	ギミックアタック	7	0x0B806	5469	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	map_ダミーＰＣ	ギミックアタック	8	0x0B809	5470	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック	9	0x0B813	5471	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	map_ダミーＰＣ	ギミックアタック	10	0x0B819	5473	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15285,7 +15285,7 @@ lus_d01	map_ダミーＰＣ	ギミックアタック１	3	0x0B84D	5489	-	turn_62
 lus_d01	map_ダミーＰＣ	ギミックアタック１	4	0x0B850	5490	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック１	5	0x0B856	5491	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック１	6	0x0B85C	5492	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	map_ダミーＰＣ	ギミックアタック１	7	0x0B862	5493	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d01	map_ダミーＰＣ	ギミックアタック１	7	0x0B862	5493	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	map_ダミーＰＣ	ギミックアタック１	8	0x0B865	5494	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック１	9	0x0B86F	5495	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	map_ダミーＰＣ	ギミックアタック１	10	0x0B875	5497	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15304,7 +15304,7 @@ lus_d01	map_ダミーＰＣ	ギミックアタック1	3	0x0B8AA	5518	-	turn_62	m
 lus_d01	map_ダミーＰＣ	ギミックアタック1	4	0x0B8AD	5519	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック1	5	0x0B8B3	5520	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック1	6	0x0B8B9	5521	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	map_ダミーＰＣ	ギミックアタック1	7	0x0B8BF	5522	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d01	map_ダミーＰＣ	ギミックアタック1	7	0x0B8BF	5522	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	map_ダミーＰＣ	ギミックアタック1	8	0x0B8C2	5523	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック1	9	0x0B8CC	5524	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	map_ダミーＰＣ	ギミックアタック1	10	0x0B8D2	5526	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15355,7 +15355,7 @@ lus_d01	map_ダミーＰＣ	ギミックアタックxyz	3	0x0B9AF	5595	-	turn_62
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz	4	0x0B9B2	5596	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz	5	0x0B9B8	5597	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz	6	0x0B9BE	5598	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	map_ダミーＰＣ	ギミックアタックxyz	7	0x0B9C4	5599	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d01	map_ダミーＰＣ	ギミックアタックxyz	7	0x0B9C4	5599	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz	8	0x0B9C7	5600	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz	9	0x0B9D1	5601	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz	10	0x0B9D7	5603	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15374,7 +15374,7 @@ lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	4	0x0BA17	5620	-	turn
 lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	5	0x0BA1A	5621	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	6	0x0BA20	5622	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	7	0x0BA26	5623	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	8	0x0BA2C	5624	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	8	0x0BA2C	5624	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	9	0x0BA2F	5625	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	10	0x0BA39	5626	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	map_ダミーＰＣ	ギミックアタック１xyz	11	0x0BA3F	5628	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15394,7 +15394,7 @@ lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	4	0x0BA80	5650	-	turn_6
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	5	0x0BA83	5651	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	6	0x0BA89	5652	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	7	0x0BA8F	5653	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	8	0x0BA95	5654	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	8	0x0BA95	5654	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	9	0x0BA98	5655	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	10	0x0BAA2	5656	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	map_ダミーＰＣ	ギミックアタックxyz1	11	0x0BAA8	5658	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15411,7 +15411,7 @@ lus_d01	map_ダミーＰＣ	アイテム１xyz	1	0x0BAD1	5677	-	capturepc	-1	the
 lus_d01	map_ダミーＰＣ	アイテム１xyz	2	0x0BAE1	5678	-	rlookat_257	mp_map_set_x, (mp_map_set_y + -1.20000005), mp_map_set_z	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	アイテム１xyz	3	0x0BAED	5679	-	turn	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the world point the calling actor turns to face (mp_map_set_x, the map jump's set point, in 1,389 of the 1,799 calls) / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; x, y and z are kept at scratch +0x04 to +0x0C and the target heading at +0x00	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	アイテム１xyz	4	0x0BAF0	5680	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d01	map_ダミーＰＣ	アイテム１xyz	5	0x0BAF9	5681	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d01	map_ダミーＰＣ	アイテム１xyz	5	0x0BAF9	5681	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d01	map_ダミーＰＣ	アイテム１xyz	6	0x0BAFC	5682	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d01	map_ダミーＰＣ	アイテム１xyz	7	0x0BAFF	5683	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d01	map_ダミーＰＣ	アイテム２xyz	1	0x0BB03	5688	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16842,7 +16842,7 @@ lus_d03	map_ダミーＰＣ	アイテム１	2	0x0724F	2054	-	turn_62	mp_map_set_
 lus_d03	map_ダミーＰＣ	アイテム１	3	0x07252	2055	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	アイテム１	4	0x07258	2056	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	アイテム１	5	0x0725E	2057	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	map_ダミーＰＣ	アイテム１	6	0x07267	2058	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d03	map_ダミーＰＣ	アイテム１	6	0x07267	2058	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	map_ダミーＰＣ	アイテム１	7	0x0726A	2059	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	アイテム１	8	0x0726D	2060	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	map_ダミーＰＣ	アイテム２	1	0x07271	2065	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16856,7 +16856,7 @@ lus_d03	map_ダミーＰＣ	ギミックアタック	3	0x07290	2076	-	turn_62	mp
 lus_d03	map_ダミーＰＣ	ギミックアタック	4	0x07293	2077	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック	5	0x07299	2078	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック	6	0x0729F	2079	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	map_ダミーＰＣ	ギミックアタック	7	0x072A5	2080	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d03	map_ダミーＰＣ	ギミックアタック	7	0x072A5	2080	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	map_ダミーＰＣ	ギミックアタック	8	0x072A8	2081	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック	9	0x072B2	2082	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	map_ダミーＰＣ	ギミックアタック	10	0x072B8	2084	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16874,7 +16874,7 @@ lus_d03	map_ダミーＰＣ	ギミックアタック１	3	0x072EC	2100	-	turn_62
 lus_d03	map_ダミーＰＣ	ギミックアタック１	4	0x072EF	2101	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック１	5	0x072F5	2102	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック１	6	0x072FB	2103	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	map_ダミーＰＣ	ギミックアタック１	7	0x07301	2104	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d03	map_ダミーＰＣ	ギミックアタック１	7	0x07301	2104	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	map_ダミーＰＣ	ギミックアタック１	8	0x07304	2105	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック１	9	0x0730E	2106	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	map_ダミーＰＣ	ギミックアタック１	10	0x07314	2108	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16893,7 +16893,7 @@ lus_d03	map_ダミーＰＣ	ギミックアタック1	3	0x07349	2129	-	turn_62	m
 lus_d03	map_ダミーＰＣ	ギミックアタック1	4	0x0734C	2130	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック1	5	0x07352	2131	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック1	6	0x07358	2132	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	map_ダミーＰＣ	ギミックアタック1	7	0x0735E	2133	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d03	map_ダミーＰＣ	ギミックアタック1	7	0x0735E	2133	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	map_ダミーＰＣ	ギミックアタック1	8	0x07361	2134	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック1	9	0x0736B	2135	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	map_ダミーＰＣ	ギミックアタック1	10	0x07371	2137	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16944,7 +16944,7 @@ lus_d03	map_ダミーＰＣ	ギミックアタックxyz	3	0x0744E	2206	-	turn_62
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz	4	0x07451	2207	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz	5	0x07457	2208	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz	6	0x0745D	2209	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	map_ダミーＰＣ	ギミックアタックxyz	7	0x07463	2210	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d03	map_ダミーＰＣ	ギミックアタックxyz	7	0x07463	2210	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz	8	0x07466	2211	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz	9	0x07470	2212	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz	10	0x07476	2214	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16963,7 +16963,7 @@ lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	4	0x074B6	2231	-	turn
 lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	5	0x074B9	2232	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	6	0x074BF	2233	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	7	0x074C5	2234	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	8	0x074CB	2235	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	8	0x074CB	2235	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	9	0x074CE	2236	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	10	0x074D8	2237	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	map_ダミーＰＣ	ギミックアタック１xyz	11	0x074DE	2239	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16983,7 +16983,7 @@ lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	4	0x0751F	2261	-	turn_6
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	5	0x07522	2262	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	6	0x07528	2263	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	7	0x0752E	2264	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	8	0x07534	2265	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	8	0x07534	2265	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	9	0x07537	2266	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	10	0x07541	2267	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	map_ダミーＰＣ	ギミックアタックxyz1	11	0x07547	2269	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -17000,7 +17000,7 @@ lus_d03	map_ダミーＰＣ	アイテム１xyz	1	0x07570	2288	-	capturepc	-1	the
 lus_d03	map_ダミーＰＣ	アイテム１xyz	2	0x07580	2289	-	rlookat_257	mp_map_set_x, (mp_map_set_y + -1.20000005), mp_map_set_z	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	アイテム１xyz	3	0x0758C	2290	-	turn	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the world point the calling actor turns to face (mp_map_set_x, the map jump's set point, in 1,389 of the 1,799 calls) / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; x, y and z are kept at scratch +0x04 to +0x0C and the target heading at +0x00	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	アイテム１xyz	4	0x0758F	2291	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	map_ダミーＰＣ	アイテム１xyz	5	0x07598	2292	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_d03	map_ダミーＰＣ	アイテム１xyz	5	0x07598	2292	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	map_ダミーＰＣ	アイテム１xyz	6	0x0759B	2293	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_d03	map_ダミーＰＣ	アイテム１xyz	7	0x0759E	2294	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	map_ダミーＰＣ	アイテム２xyz	1	0x075A2	2299	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -17050,7 +17050,7 @@ lus_d03	トロッコカメラ用	トロッコ乗りxyz	7	0x07675	2387	-	releasep
 lus_d03	トロッコカメラ用	トロッコ乗りxyz	8	0x07678	2388	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_d03	トロッコカメラ用	トロッコ乗りxyz_走る	1	0x0767C	2393	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_d03	トロッコカメラ用	トロッコ乗りxyz_走る	2	0x0767F	2394	-	getdefaultrunspeed	-	result stored in file_var_s27_1; the calling actor's model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_d03	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x07688	2395	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_d03	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x07688	2395	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_d03	トロッコカメラ用	トロッコ乗りxyz_走る	4	0x07697	2396	-	amove_4d3	file_var_s11_5, file_var_s11_6, file_var_s11_7, file_var_s27_1	-	-	-	-	-		01 verb-table.tsv
 lus_d03	トロッコカメラ用	トロッコ乗りxyz_走る	5	0x0769A	2397	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_d03	トロッコカメラ用	トロッコ乗りxyz_走る	6	0x0769D	2398	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -19102,12 +19102,12 @@ lus_f02	ルースキャンドル宝壺	daiji_box_bind	10	0x0674A	1997	-	fetchamb
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	11	0x06757	1998	-	if	istreasureflag(7) == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	12	0x0675D	2000	istreasureflag(7) == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	13	0x06760	2001	istreasureflag(7) == 0	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	ルースキャンドル宝壺	daiji_box_bind	14	0x06766	2002	istreasureflag(7) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	ルースキャンドル宝壺	daiji_box_bind	14	0x06766	2002	istreasureflag(7) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	15	0x0676F	2006	not (istreasureflag(7) == 0)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	16	0x06775	2007	not (istreasureflag(7) == 0)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	17	0x0677B	2008	not (istreasureflag(7) == 0)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	18	0x06781	2009	not (istreasureflag(7) == 0)	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	ルースキャンドル宝壺	daiji_box_bind	19	0x06787	2010	not (istreasureflag(7) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	ルースキャンドル宝壺	daiji_box_bind	19	0x06787	2010	not (istreasureflag(7) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	20	0x0678D	2012	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	21	0x06793	2013	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	ルースキャンドル宝壺	daiji_box_bind	22	0x06799	2014	-	talkradius	0.800000012	argument 1: the margin of the calling actor's talk ellipse, the area the player stands in to talk to it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19121,7 +19121,7 @@ lus_f02	ルースキャンドル宝壺	talk	3	0x067BB	2025	-	settrapshowstatus	0
 lus_f02	ルースキャンドル宝壺	talk	4	0x067C7	2026	-	getpos	&file_var_s29_1, &file_var_s29_2, &file_var_s29_3	argument 1: a script variable, passed by reference (resolved by 0x002650B0), that receives the x of the calling actor's position, movement context +0x00 ([actor +0xB8]); an ACT form reads the named actor / argument 2: the variable that receives the y of the position, context +0x04 / argument 3: the variable that receives the z of the position, context +0x08	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	ルースキャンドル宝壺	talk	5	0x067D3	2027	-	sysReq	1, override_actor::乗っ取り処理	actor `override_actor`	-	-	files override_actor::乗っ取り処理 on channel 1; does not wait	override_actor.乗っ取り処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 lus_f02	ルースキャンドル宝壺	talk	6	0x067DA	2028	-	sysReqwait	override_actor::乗っ取り処理	actor `override_actor`	-	-	waits until override_actor::乗っ取り処理 is no longer on its actor	override_actor.乗っ取り処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-lus_f02	ルースキャンドル宝壺	talk	7	0x067DE	2029	-	stdmotionplay	5	this actor's standard motion 5	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	ルースキャンドル宝壺	talk	7	0x067DE	2029	-	stdmotionplay	5	this actor's standard motion 5	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	ルースキャンドル宝壺	talk	8	0x067E4	2030	-	wait	95	-	-	95 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 lus_f02	ルースキャンドル宝壺	talk	9	0x067EA	2031	-	store	g_com_set_get_label = 0x8029	variable g_com_set_get_label (global int@0x0c88)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 lus_f02	ルースキャンドル宝壺	talk	10	0x067F0	2032	-	store	g_com_set_get_label_2 = 120	variable g_com_set_get_label_2 (global int@0x0c8c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -19178,7 +19178,7 @@ lus_f02	map_ダミーＰＣ	アイテム１	2	0x068E3	2135	-	turn_62	mp_map_set_
 lus_f02	map_ダミーＰＣ	アイテム１	3	0x068E6	2136	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	アイテム１	4	0x068EC	2137	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	アイテム１	5	0x068F2	2138	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	map_ダミーＰＣ	アイテム１	6	0x068FB	2139	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_f02	map_ダミーＰＣ	アイテム１	6	0x068FB	2139	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	map_ダミーＰＣ	アイテム１	7	0x068FE	2140	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	アイテム１	8	0x06901	2141	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	map_ダミーＰＣ	アイテム２	1	0x06905	2146	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19192,7 +19192,7 @@ lus_f02	map_ダミーＰＣ	ギミックアタック	3	0x06924	2157	-	turn_62	mp
 lus_f02	map_ダミーＰＣ	ギミックアタック	4	0x06927	2158	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック	5	0x0692D	2159	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック	6	0x06933	2160	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	map_ダミーＰＣ	ギミックアタック	7	0x06939	2161	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	map_ダミーＰＣ	ギミックアタック	7	0x06939	2161	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	map_ダミーＰＣ	ギミックアタック	8	0x0693C	2162	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック	9	0x06946	2163	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	map_ダミーＰＣ	ギミックアタック	10	0x0694C	2165	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19210,7 +19210,7 @@ lus_f02	map_ダミーＰＣ	ギミックアタック１	3	0x06980	2181	-	turn_62
 lus_f02	map_ダミーＰＣ	ギミックアタック１	4	0x06983	2182	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック１	5	0x06989	2183	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック１	6	0x0698F	2184	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	map_ダミーＰＣ	ギミックアタック１	7	0x06995	2185	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	map_ダミーＰＣ	ギミックアタック１	7	0x06995	2185	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	map_ダミーＰＣ	ギミックアタック１	8	0x06998	2186	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック１	9	0x069A2	2187	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	map_ダミーＰＣ	ギミックアタック１	10	0x069A8	2189	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19229,7 +19229,7 @@ lus_f02	map_ダミーＰＣ	ギミックアタック1	3	0x069DD	2210	-	turn_62	m
 lus_f02	map_ダミーＰＣ	ギミックアタック1	4	0x069E0	2211	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック1	5	0x069E6	2212	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック1	6	0x069EC	2213	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	map_ダミーＰＣ	ギミックアタック1	7	0x069F2	2214	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	map_ダミーＰＣ	ギミックアタック1	7	0x069F2	2214	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	map_ダミーＰＣ	ギミックアタック1	8	0x069F5	2215	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック1	9	0x069FF	2216	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	map_ダミーＰＣ	ギミックアタック1	10	0x06A05	2218	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19280,7 +19280,7 @@ lus_f02	map_ダミーＰＣ	ギミックアタックxyz	3	0x06AE2	2287	-	turn_62
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz	4	0x06AE5	2288	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz	5	0x06AEB	2289	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz	6	0x06AF1	2290	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	map_ダミーＰＣ	ギミックアタックxyz	7	0x06AF7	2291	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	map_ダミーＰＣ	ギミックアタックxyz	7	0x06AF7	2291	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz	8	0x06AFA	2292	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz	9	0x06B04	2293	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz	10	0x06B0A	2295	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19299,7 +19299,7 @@ lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	4	0x06B4A	2312	-	turn
 lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	5	0x06B4D	2313	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	6	0x06B53	2314	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	7	0x06B59	2315	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	8	0x06B5F	2316	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	8	0x06B5F	2316	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	9	0x06B62	2317	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	10	0x06B6C	2318	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	map_ダミーＰＣ	ギミックアタック１xyz	11	0x06B72	2320	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19319,7 +19319,7 @@ lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	4	0x06BB3	2342	-	turn_6
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	5	0x06BB6	2343	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	6	0x06BBC	2344	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	7	0x06BC2	2345	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	8	0x06BC8	2346	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	8	0x06BC8	2346	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	9	0x06BCB	2347	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	10	0x06BD5	2348	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	map_ダミーＰＣ	ギミックアタックxyz1	11	0x06BDB	2350	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19336,7 +19336,7 @@ lus_f02	map_ダミーＰＣ	アイテム１xyz	1	0x06C04	2369	-	capturepc	-1	the
 lus_f02	map_ダミーＰＣ	アイテム１xyz	2	0x06C14	2370	-	rlookat_257	mp_map_set_x, (mp_map_set_y + -1.20000005), mp_map_set_z	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	アイテム１xyz	3	0x06C20	2371	-	turn	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the world point the calling actor turns to face (mp_map_set_x, the map jump's set point, in 1,389 of the 1,799 calls) / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; x, y and z are kept at scratch +0x04 to +0x0C and the target heading at +0x00	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	アイテム１xyz	4	0x06C23	2372	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	map_ダミーＰＣ	アイテム１xyz	5	0x06C2C	2373	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_f02	map_ダミーＰＣ	アイテム１xyz	5	0x06C2C	2373	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	map_ダミーＰＣ	アイテム１xyz	6	0x06C2F	2374	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_f02	map_ダミーＰＣ	アイテム１xyz	7	0x06C32	2375	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	map_ダミーＰＣ	アイテム２xyz	1	0x06C36	2380	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19386,7 +19386,7 @@ lus_f02	トロッコカメラ用	トロッコ乗りxyz	7	0x06D09	2468	-	releasep
 lus_f02	トロッコカメラ用	トロッコ乗りxyz	8	0x06D0C	2469	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_f02	トロッコカメラ用	トロッコ乗りxyz_走る	1	0x06D10	2474	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_f02	トロッコカメラ用	トロッコ乗りxyz_走る	2	0x06D13	2475	-	getdefaultrunspeed	-	result stored in file_var_s34_1; the calling actor's model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_f02	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x06D1C	2476	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_f02	トロッコカメラ用	トロッコ乗りxyz_走る	3	0x06D1C	2476	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_f02	トロッコカメラ用	トロッコ乗りxyz_走る	4	0x06D2B	2477	-	amove_4d3	file_var_s11_5, file_var_s11_6, file_var_s11_7, file_var_s34_1	-	-	-	-	-		01 verb-table.tsv
 lus_f02	トロッコカメラ用	トロッコ乗りxyz_走る	5	0x06D2E	2478	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 lus_f02	トロッコカメラ用	トロッコ乗りxyz_走る	6	0x06D31	2479	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -26040,7 +26040,7 @@ lus_a0180	バルフレア_BND	イベント準備	8	0x01021	552	-	setlod	1	argume
 lus_a0180	バルフレア_BND	イベント準備	9	0x01027	553	-	setcharclipone	0	argument 1: whether the calling actor's character fades and clips with distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	バルフレア_BND	イベント準備	10	0x0102D	554	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	バルフレア_BND	イベント準備	11	0x01030	555	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a0180	バルフレア_BND	イベント準備	12	0x01039	556	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_a0180	バルフレア_BND	イベント準備	12	0x01039	556	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a0180	バルフレア_BND	イベント準備	13	0x0103F	557	-	setautorelax	1	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	バルフレア_BND	イベント準備	14	0x01045	558	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	バルフレア_BND	イベント準備	15	0x01048	559	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -26050,7 +26050,7 @@ lus_a0180	バルフレア_BND	カット０１ａ	3	0x01058	566	-	motionplay_bb	0
 lus_a0180	バルフレア_BND	カット０１ａ	4	0x0105E	567	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	バルフレア_BND	カット０１ａ	5	0x01061	568	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_a0180	バルフレア_BND	カット０２ａ	1	0x01062	573	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a0180	バルフレア_BND	カット０２ａ	2	0x0106B	574	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_a0180	バルフレア_BND	カット０２ａ	2	0x0106B	574	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a0180	バルフレア_BND	カット０２ａ	3	0x01071	575	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	バルフレア_BND	カット０２ａ	4	0x01077	576	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 lus_a0180	バルフレア_BND	カット０２ａ	5	0x0107D	577	-	motionstartframe	0	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -26079,7 +26079,7 @@ lus_a0180	フラン_BND	イベント準備	8	0x010E8	619	-	setlod	1	argument 1: 
 lus_a0180	フラン_BND	イベント準備	9	0x010EE	620	-	setcharclipone	0	argument 1: whether the calling actor's character fades and clips with distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	フラン_BND	イベント準備	10	0x010F4	621	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	フラン_BND	イベント準備	11	0x010F7	622	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_a0180	フラン_BND	イベント準備	12	0x01100	623	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_a0180	フラン_BND	イベント準備	12	0x01100	623	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_a0180	フラン_BND	イベント準備	13	0x01106	624	-	setautorelax	1	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	フラン_BND	イベント準備	14	0x0110C	625	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_a0180	フラン_BND	イベント準備	15	0x0110F	626	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -26757,7 +26757,7 @@ lus_c0100	エンキドウ	立ち	2	0x01D5B	1054	-	dir	1.42999995	this actor, tur
 lus_c0100	エンキドウ	立ち	3	0x01D5E	1055	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	エンキドウ	立ち	4	0x01D61	1056	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	エンキドウ	立ち	5	0x01D67	1057	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_c0100	エンキドウ	立ち	6	0x01D6D	1058	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_c0100	エンキドウ	立ち	6	0x01D6D	1058	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_c0100	エンキドウ	立ち	7	0x01D73	1059	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_c0100	エンキドウ	立ち02	1	0x01D7D	1064	-	setpos	104.917603, 0, 94.9469604	this actor, placed at (104.917603, 0, 94.9469604)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_c0100	エンキドウ	立ち02	2	0x01D83	1065	-	dir	1.33171999	this actor, turned to facing 1.33171999	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -26765,7 +26765,7 @@ lus_c0100	エンキドウ	立ち02	3	0x01D86	1066	-	motioncancel	-	the calling a
 lus_c0100	エンキドウ	立ち02	4	0x01D89	1067	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	エンキドウ	立ち02	5	0x01D8F	1068	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	エンキドウ	立ち02	6	0x01D95	1069	-	motionratio	0.200000003	argument 1: the playback speed of the calling actor's motion, as a multiple of the motion's own rate	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_c0100	エンキドウ	立ち02	7	0x01D9B	1070	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_c0100	エンキドウ	立ち02	7	0x01D9B	1070	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_c0100	エンキドウ	立ち02	8	0x01DA1	1071	-	lookat	-3	-	-	-	-	-		01 verb-table.tsv
 lus_c0100	エンキドウ	立ち02	9	0x01DAA	1072	-	lookat_277	0, 10	-	-	-	-	-		01 verb-table.tsv
 lus_c0100	エンキドウ	立ち02	10	0x01DB0	1073	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -26791,7 +26791,7 @@ lus_c0100	PC_00	乗っ取り	6	0x01E1A	1108	-	dir	-1.42999995	this actor, turned
 lus_c0100	PC_00	乗っ取り	7	0x01E20	1109	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_00	乗っ取り	8	0x01E23	1110	-	clearforcerelax	-	the calling actor's stance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_00	乗っ取り	9	0x01E29	1111	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_c0100	PC_00	乗っ取り	10	0x01E2F	1112	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_c0100	PC_00	乗っ取り	10	0x01E2F	1112	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_c0100	PC_00	乗っ取り	11	0x01E32	1113	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_00	乗っ取り	12	0x01E38	1114	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_c0100	PC_00	ショウオン_パーティ	1	0x01E3C	1119	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -26820,7 +26820,7 @@ lus_c0100	PC_01	乗っ取り	6	0x01EB0	1165	-	dir	-1.42999995	this actor, turned
 lus_c0100	PC_01	乗っ取り	7	0x01EB6	1166	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_01	乗っ取り	8	0x01EB9	1167	-	clearforcerelax	-	the calling actor's stance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_01	乗っ取り	9	0x01EBF	1168	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_c0100	PC_01	乗っ取り	10	0x01EC5	1169	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_c0100	PC_01	乗っ取り	10	0x01EC5	1169	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_c0100	PC_01	乗っ取り	11	0x01EC8	1170	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_01	乗っ取り	12	0x01ECE	1171	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_c0100	PC_01	ショウオン_パーティ	1	0x01ED2	1176	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -26849,7 +26849,7 @@ lus_c0100	PC_02	乗っ取り	6	0x01F46	1222	-	dir	-1.42999995	this actor, turned
 lus_c0100	PC_02	乗っ取り	7	0x01F4C	1223	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_02	乗っ取り	8	0x01F4F	1224	-	clearforcerelax	-	the calling actor's stance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_02	乗っ取り	9	0x01F55	1225	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_c0100	PC_02	乗っ取り	10	0x01F5B	1226	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_c0100	PC_02	乗っ取り	10	0x01F5B	1226	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_c0100	PC_02	乗っ取り	11	0x01F5E	1227	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_02	乗っ取り	12	0x01F64	1228	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_c0100	PC_02	ショウオン_パーティ	1	0x01F68	1233	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -26878,7 +26878,7 @@ lus_c0100	PC_03	乗っ取り	6	0x01FDC	1279	-	dir	-1.42999995	this actor, turned
 lus_c0100	PC_03	乗っ取り	7	0x01FE2	1280	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_03	乗っ取り	8	0x01FE5	1281	-	clearforcerelax	-	the calling actor's stance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_03	乗っ取り	9	0x01FEB	1282	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_c0100	PC_03	乗っ取り	10	0x01FF1	1283	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_c0100	PC_03	乗っ取り	10	0x01FF1	1283	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_c0100	PC_03	乗っ取り	11	0x01FF4	1284	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0100	PC_03	乗っ取り	12	0x01FFA	1285	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_c0100	PC_03	ショウオン_パーティ	1	0x01FFE	1290	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -27435,7 +27435,7 @@ lus_c0101	ギルガメッシュ	cut_01_v	5	0x01B4C	807	-	setscale	1	argument 1: 
 lus_c0101	ギルガメッシュ	cut_01_v	6	0x01B52	808	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0101	ギルガメッシュ	cut_01_v	7	0x01B58	809	-	setstatuserrordispdenystatus	1	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0101	ギルガメッシュ	cut_01_v	8	0x01B5E	810	-	setcharclipone	0	argument 1: whether the calling actor's character fades and clips with distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_c0101	ギルガメッシュ	cut_01_v	9	0x01B64	811	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_c0101	ギルガメッシュ	cut_01_v	9	0x01B64	811	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_c0101	ギルガメッシュ	cut_01_v	10	0x01B70	812	-	setpos	83.9499817, 0, 96.4496384	this actor, placed at (83.9499817, 0, 96.4496384)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_c0101	ギルガメッシュ	cut_01_v	11	0x01B76	813	-	dir	1.40067399	this actor, turned to facing 1.40067399	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 lus_c0101	ギルガメッシュ	cut_01_v	12	0x01B7C	814	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -27506,7 +27506,7 @@ lus_c0101	エンキドウ	cut_01_v	4	0x01CDB	931	-	getrotangzx_12e	7	result stor
 lus_c0101	エンキドウ	cut_01_v	5	0x01CE4	932	-	setscale	1	argument 1: the calling actor's scale, one value for all three axes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0101	エンキドウ	cut_01_v	6	0x01CEA	933	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_c0101	エンキドウ	cut_01_v	7	0x01CF0	934	-	setstatuserrordispdenystatus	1	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_c0101	エンキドウ	cut_01_v	8	0x01CF6	935	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_c0101	エンキドウ	cut_01_v	8	0x01CF6	935	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_c0101	エンキドウ	cut_01_v	9	0x01D02	936	-	setpos	84.0330429, 0, 94.4252472	this actor, placed at (84.0330429, 0, 94.4252472)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_c0101	エンキドウ	cut_01_v	10	0x01D08	937	-	dir	1.40067399	this actor, turned to facing 1.40067399	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 lus_c0101	エンキドウ	cut_01_v	11	0x01D0E	938	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -28912,7 +28912,7 @@ lus_e0100	PC_00	乗っ取り	6	0x01A7B	940	-	dir	0.610000014	this actor, turned 
 lus_e0100	PC_00	乗っ取り	7	0x01A81	941	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_00	乗っ取り	8	0x01A84	942	-	clearforcerelax	-	the calling actor's stance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_00	乗っ取り	9	0x01A8A	943	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_e0100	PC_00	乗っ取り	10	0x01A90	944	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_e0100	PC_00	乗っ取り	10	0x01A90	944	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_e0100	PC_00	乗っ取り	11	0x01A93	945	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_00	乗っ取り	12	0x01A99	946	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_e0100	PC_00	ショウオン_パーティ	1	0x01A9D	951	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -28938,7 +28938,7 @@ lus_e0100	PC_01	乗っ取り	6	0x01B0D	990	-	dir	0.610000014	this actor, turned 
 lus_e0100	PC_01	乗っ取り	7	0x01B13	991	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_01	乗っ取り	8	0x01B16	992	-	clearforcerelax	-	the calling actor's stance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_01	乗っ取り	9	0x01B1C	993	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_e0100	PC_01	乗っ取り	10	0x01B22	994	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_e0100	PC_01	乗っ取り	10	0x01B22	994	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_e0100	PC_01	乗っ取り	11	0x01B25	995	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_01	乗っ取り	12	0x01B2B	996	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_e0100	PC_01	ショウオン_パーティ	1	0x01B2F	1001	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -28964,7 +28964,7 @@ lus_e0100	PC_02	乗っ取り	6	0x01B9F	1040	-	dir	0.610000014	this actor, turned
 lus_e0100	PC_02	乗っ取り	7	0x01BA5	1041	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_02	乗っ取り	8	0x01BA8	1042	-	clearforcerelax	-	the calling actor's stance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_02	乗っ取り	9	0x01BAE	1043	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_e0100	PC_02	乗っ取り	10	0x01BB4	1044	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_e0100	PC_02	乗っ取り	10	0x01BB4	1044	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_e0100	PC_02	乗っ取り	11	0x01BB7	1045	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_02	乗っ取り	12	0x01BBD	1046	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_e0100	PC_02	ショウオン_パーティ	1	0x01BC1	1051	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -28990,7 +28990,7 @@ lus_e0100	PC_03	乗っ取り	6	0x01C31	1090	-	dir	0.610000014	this actor, turned
 lus_e0100	PC_03	乗っ取り	7	0x01C37	1091	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_03	乗っ取り	8	0x01C3A	1092	-	clearforcerelax	-	the calling actor's stance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_03	乗っ取り	9	0x01C40	1093	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_e0100	PC_03	乗っ取り	10	0x01C46	1094	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_e0100	PC_03	乗っ取り	10	0x01C46	1094	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_e0100	PC_03	乗っ取り	11	0x01C49	1095	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0100	PC_03	乗っ取り	12	0x01C4F	1096	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_e0100	PC_03	ショウオン_パーティ	1	0x01C53	1101	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -29602,7 +29602,7 @@ lus_e0101	ギルガメッシュ	cut_01_v	5	0x01CB6	921	-	setscale	1	argument 1: 
 lus_e0101	ギルガメッシュ	cut_01_v	6	0x01CBC	922	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0101	ギルガメッシュ	cut_01_v	7	0x01CC2	923	-	setcharclipone	0	argument 1: whether the calling actor's character fades and clips with distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0101	ギルガメッシュ	cut_01_v	8	0x01CC8	924	-	setstatuserrordispdenystatus	1	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_e0101	ギルガメッシュ	cut_01_v	9	0x01CCE	925	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_e0101	ギルガメッシュ	cut_01_v	9	0x01CCE	925	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_e0101	ギルガメッシュ	cut_01_v	10	0x01CDA	926	-	setpos	54.446785, 0.607769012, 55.3939209	this actor, placed at (54.446785, 0.607769012, 55.3939209)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_e0101	ギルガメッシュ	cut_01_v	11	0x01CE0	927	-	dir	-2.41566205	this actor, turned to facing -2.41566205	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 lus_e0101	ギルガメッシュ	cut_01_v	12	0x01CE6	928	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -29625,7 +29625,7 @@ lus_e0101	エンキドウ	cut_01_v	2	0x01D42	976	-	getpos	&local_var_s8f1_1, &lo
 lus_e0101	エンキドウ	cut_01_v	3	0x01D48	977	-	getrotangzx_12e	8	result stored in local_var_s8f1_4	-	-	-	-		01 verb-table.tsv
 lus_e0101	エンキドウ	cut_01_v	4	0x01D51	978	-	charefftrigger	1	-	-	-	-	-		01 verb-table.tsv
 lus_e0101	エンキドウ	cut_01_v	5	0x01D57	979	-	setscale	1	argument 1: the calling actor's scale, one value for all three axes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_e0101	エンキドウ	cut_01_v	6	0x01D5D	980	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_e0101	エンキドウ	cut_01_v	6	0x01D5D	980	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_e0101	エンキドウ	cut_01_v	7	0x01D63	981	-	setstatuserrordispdenystatus	1	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_e0101	エンキドウ	cut_01_v	8	0x01D6F	982	-	setpos	52.6751747, 0.600000024, 56.1065903	this actor, placed at (52.6751747, 0.600000024, 56.1065903)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_e0101	エンキドウ	cut_01_v	9	0x01D75	983	-	dir	-2.30348992	this actor, turned to facing -2.30348992	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -33478,7 +33478,7 @@ lus_g0100	バッガモナン	配置c22	2	0x0F0CE	3764	-	show_38	1	argument 1: wh
 lus_g0100	バッガモナン	配置c22	3	0x0F0DA	3765	-	setpos	318.031036, 9.76328182, 154.621902	this actor, placed at (318.031036, 9.76328182, 154.621902)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_g0100	バッガモナン	配置c22	4	0x0F0E0	3766	-	dir	0.181786001	this actor, turned to facing 0.181786001	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 lus_g0100	バッガモナン	配置c22	5	0x0F0E3	3767	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_g0100	バッガモナン	配置c22	6	0x0F0E9	3768	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_g0100	バッガモナン	配置c22	6	0x0F0E9	3768	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_g0100	バッガモナン	配置c22	7	0x0F0F8	3769	-	rcmove_3f	325.135529, 10.2258015, 167.687805, 0.200000003	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_g0100	バッガモナン	配置c22	8	0x0F101	3770	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0100	バッガモナン	後半準備	1	0x0F108	3775	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -33558,7 +33558,7 @@ lus_g0100	手下Ａ	配置c22	2	0x0F357	3968	-	show_38	1	argument 1: whether the
 lus_g0100	手下Ａ	配置c22	3	0x0F363	3969	-	setpos	318.792053, 9.73806286, 153.121902	this actor, placed at (318.792053, 9.73806286, 153.121902)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_g0100	手下Ａ	配置c22	4	0x0F369	3970	-	dir	0.181786001	this actor, turned to facing 0.181786001	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 lus_g0100	手下Ａ	配置c22	5	0x0F36C	3971	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_g0100	手下Ａ	配置c22	6	0x0F372	3972	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_g0100	手下Ａ	配置c22	6	0x0F372	3972	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_g0100	手下Ａ	配置c22	7	0x0F381	3973	-	rcmove_3f	325.619354, 10.3797836, 166.45694, 0.200000003	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_g0100	手下Ａ	配置c22	8	0x0F38A	3974	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0100	手下Ａ	後半準備	1	0x0F391	3979	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -33638,7 +33638,7 @@ lus_g0100	手下Ｃ	配置c22	2	0x0F5E0	4172	-	show_38	1	argument 1: whether the
 lus_g0100	手下Ｃ	配置c22	3	0x0F5EC	4173	-	setpos	316.281403, 9.71480846, 154.121902	this actor, placed at (316.281403, 9.71480846, 154.121902)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_g0100	手下Ｃ	配置c22	4	0x0F5F2	4174	-	dir	0.181786001	this actor, turned to facing 0.181786001	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 lus_g0100	手下Ｃ	配置c22	5	0x0F5F5	4175	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_g0100	手下Ｃ	配置c22	6	0x0F5FB	4176	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_g0100	手下Ｃ	配置c22	6	0x0F5FB	4176	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_g0100	手下Ｃ	配置c22	7	0x0F60A	4177	-	rcmove_3f	323.704865, 10.5060844, 165.379059, 0.200000003	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_g0100	手下Ｃ	配置c22	8	0x0F613	4178	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0100	手下Ｃ	後半準備	1	0x0F61A	4183	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -33715,7 +33715,7 @@ lus_g0100	手下Ｄ	配置c22	2	0x0F87B	4373	-	show_38	1	argument 1: whether the
 lus_g0100	手下Ｄ	配置c22	3	0x0F887	4374	-	setpos	316.837494, 9.79025078, 153.121902	this actor, placed at (316.837494, 9.79025078, 153.121902)	-	-	-	-	resolved	0x0034EBC0 (read here)
 lus_g0100	手下Ｄ	配置c22	4	0x0F88D	4375	-	dir	0.181786001	this actor, turned to facing 0.181786001	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 lus_g0100	手下Ｄ	配置c22	5	0x0F890	4376	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-lus_g0100	手下Ｄ	配置c22	6	0x0F896	4377	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+lus_g0100	手下Ｄ	配置c22	6	0x0F896	4377	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_g0100	手下Ｄ	配置c22	7	0x0F8A5	4378	-	rcmove_3f	325.589294, 10.4929218, 164.863113, 0.200000003	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 lus_g0100	手下Ｄ	配置c22	8	0x0F8AE	4379	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0100	手下Ｄ	後半準備	1	0x0F8B5	4384	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -34660,17 +34660,17 @@ lus_g0101	バッガモナン武器輪	cut_01	4	0x01702	895	-	motionplay	0x110000
 lus_g0101	バッガモナン武器輪	cut_01	5	0x01705	896	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0101	１人目	init	1	0x01706	905	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0101	１人目	休息発行	1	0x0170A	910	-	capturepc	0	party slot 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-lus_g0101	１人目	休息発行	2	0x01713	911	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_g0101	１人目	休息発行	2	0x01713	911	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_g0101	１人目	休息発行	3	0x01719	912	-	releasepc_404	0	-	-	-	-	-		01 verb-table.tsv
 lus_g0101	１人目	休息発行	4	0x0171C	913	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0101	２人目	init	1	0x0171D	922	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0101	２人目	休息発行	1	0x01721	927	-	capturepc	1	party slot 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-lus_g0101	２人目	休息発行	2	0x0172A	928	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_g0101	２人目	休息発行	2	0x0172A	928	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_g0101	２人目	休息発行	3	0x01730	929	-	releasepc_404	0	-	-	-	-	-		01 verb-table.tsv
 lus_g0101	２人目	休息発行	4	0x01733	930	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0101	３人目	init	1	0x01734	939	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0101	３人目	休息発行	1	0x01738	944	-	capturepc	2	party slot 2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-lus_g0101	３人目	休息発行	2	0x01741	945	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+lus_g0101	３人目	休息発行	2	0x01741	945	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 lus_g0101	３人目	休息発行	3	0x01747	946	-	releasepc_404	0	-	-	-	-	-		01 verb-table.tsv
 lus_g0101	３人目	休息発行	4	0x0174A	947	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 lus_g0280	監督	init	1	0x008F3	29	-	startscene	0x03e7	scene cut 0x03e7, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md

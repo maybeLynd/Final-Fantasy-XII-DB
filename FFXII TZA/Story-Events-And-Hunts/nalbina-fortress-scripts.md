@@ -132,13 +132,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 12,003 |
-| empty | 936 |
+| `resolved` | 12,055 |
+| empty | 884 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its functions. In `naf_b0100` (event `242`), `AD.終了_ad` ends the scene: it files
 `終了` on twelve actors at once (the camera, the light, the effect, sound and voice actors and the cast), fades the

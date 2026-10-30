@@ -526,6 +526,8 @@ the string's address is taken only at `0x0020AF3E`.
 ## Related
 
 - [Debug menu commands](debug-menu-commands.md): every id with its label, arm, kind and field.
+- [`debug-menu-settings-01f81428-accesses.tsv`](debug-menu-settings-01f81428-accesses.tsv): every censused access
+  to the console object `[0x01F81428]` outside its constructor, one row per instruction (754 rows).
 - [Graphics settings](graphics-settings.md): the block most stepped fields live in.
 - [Frame update order](frame-update-order.md): the draw block and the display flag.
 - [Weather](../World-Areas-And-Travel/weather.md): the slot override at `+0xAAC`.

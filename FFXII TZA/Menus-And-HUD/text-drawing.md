@@ -21,13 +21,17 @@ addresses: "0x001E8070, 0x001E8580, 0x002142A0, 0x00213FE0, 0x00212E70, 0x002131
 2. `0x0017F7C0` hands it to the emitter `0x001E8070([0x01F811F8], record)` (`0x0017F838`).
 3. The emitter picks palette entry `index mod 28` (`0x001E94E0`), or the default entry at `+0x1358` for a negative index,
    and writes six 0x3C-byte vertices, corners 0, 1, 2 and 1, 2, 3 (`0x001E8140`-`0x001E8477`).
-4. Each vertex carries two colours: the glyph colour from the palette's `+0x14`-`+0x20` and the border colour from
+4. Each vertex's texture coordinate is a fraction of the current font's `atlasW` and `atlasH` (font `+0x24`,
+   `+0x28`, the `.dat` header's `+0x08` and `+0x0C`): u = x / `atlasW` and v = (`atlasH` - y) / `atlasH`, with x and y
+   the record's pixel box (`0x001E8150`-`0x001E81DD`, through `0x00225690` and `0x0079E3C0`). The flip matches the atlas rows,
+   which are stored bottom row first ([Fonts](fonts.md)).
+5. Each vertex carries two colours: the glyph colour from the palette's `+0x14`-`+0x20` and the border colour from
    `+0x04`-`+0x10`. Each red, green and blue is `palette channel x (c / 128) / 255`, with `c` the record's integer at
    `+0x5C`, `+0x6C` or `+0x7C` plus 4 x corner.
    - The border alpha is `+0x10 / 128`; the glyph alpha is `+0x20 / 128`, times `[record +0x8C + 4 x corner] / 128`
      and the corner factor below unless the line's byte `+0x2348` is set (`0x001E81AA`-`0x001E834D`, 1/128 at
      `0x008C5B34`, 255.0 at `0x008C5B40`).
-5. The vertices go into the open batch of the current font (`0x001E8361`-`0x001E838C`). `0x001E9D20` picks that batch from
+6. The vertices go into the open batch of the current font (`0x001E8361`-`0x001E838C`). `0x001E9D20` picks that batch from
    the font id, one batch per font in each of two groups of 32 (`0x001E9E26`-`0x001E9E46`). The line's box and origin are
    widened to cover the glyph.
 
@@ -59,6 +63,11 @@ The flush chooses a path per line record (`0x001E85ED`-`0x001E8659`):
 2. The record's offscreen byte `+0x28` chooses between the offscreen path and `Final`. Every text painter call passes 1
    to the begin call `0x001E9920` through `0x0017FA10` (`0x002AA52A`, `0x002AC801` and seven more), so menu text takes the
    offscreen path.
+
+Each of the flush's four batch loops walks the 31 batches of a group, font ids 1 to 31, and skips a batch whose
+atlas copy `+0x08` is 0 or that holds no vertex (`0x001E86F2`, `0x001E8900`, `0x001E8FB0`, `0x001E9190`). The loops of the
+`Final` path and of the `DynGeoFontTextInstance` path also empty a skipped batch (`0x001E90DE`, `0x001E92F6`). A font
+without an atlas therefore puts vertices in its batch but never reaches a drawing object.
 
 ### The drawing objects
 
@@ -259,6 +268,19 @@ The interpreter `0x002AC5F0` sets the painter's base size with `0x002B1ED0`: `0x
 the alternate font (bit `0x800` of `+0x44`), otherwise `0x0017F8A0` and `0x0017F880`, stored at `0x0209CC70` and `0x0209CC74`. It
 opens a font's batch with `0x002AB820(font, group)`, which calls `0x001E9D20` through `0x0017FD30` with the painter
 `[0x0209D480]` and keeps the pair at `0x0209CC30` and `0x0209CC34`.
+
+`0x001E9D20(display, font, group, line)` keeps the open font while the pair is the one at `+0x18`, `+0x1C`
+(`0x001E9D2A`-`0x001E9D4A`). Otherwise it looks the pair up in the display's map at `+0xF38` (`0x001E9D50`-`0x001E9DA4`),
+whose record holds the font id at `+0x04`, finds the font with `0x001B51C0` on the font manager `[0x01F81200]`
+(`0x001E9DAE`-`0x001E9DBE`) and stores it as the current font `+0x00`.
+
+A pair the map does not hold, a font id the manager does not hold, or an id outside 1 to 31 clears the display's
+`+0x00` to `+0x20` (`0x001E9DA4`, `0x001E9DC4`, `0x001E9DE3`, `0x001E9ED4`-`0x001E9EEA`). The emitter then adds nothing
+(`0x001E80C9`).
+
+When the batch's font id changes, `0x001E9D20` copies the font's atlas and shadow atlas into the batch's `+0x08` and
+`+0x10` (`0x001E9E8D`-`0x001E9EA9`, through `0x006B5C70` and `0x005C5310`). These copies are what the flush hands to the
+drawing objects.
 
 ### The font display's setters and base sizes
 
@@ -463,6 +485,9 @@ globals.
   border setting (`0x001B5210`).
 - Text using more than ten fonts in one line loses the glyphs of the extra fonts.
 - Setting `[0x01E02818]` to 0 switches menu text to the pre-drawn shadow atlas path.
+- Text coordinates come from the font's `.dat` header, not from the atlas texture: an atlas redrawn at another size
+  needs the header's `atlasW` and `atlasH` and the glyph boxes changed with it, unless it is scaled by one factor in
+  both directions ([Font files](fonts-files.md)).
 
 ## Related
 

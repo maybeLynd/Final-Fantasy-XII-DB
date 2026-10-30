@@ -170,13 +170,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 17,037 |
-| empty | 1,245 |
+| `resolved` | 17,163 |
+| empty | 1,119 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its functions. In `hne_a0700` (event `344`), `ディレクター.イベント進行` calls `fadein_d2(0,
 30)` and runs the cuts in order: it files `ＡＤ.s01` and waits for it, then `ＡＤ.s02`, and so on to `ＡＤ.s10`. It then

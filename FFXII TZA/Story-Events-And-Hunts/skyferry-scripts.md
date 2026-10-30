@@ -142,13 +142,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 22,518 |
-| empty | 2,259 |
+| `resolved` | 23,721 |
+| empty | 1,056 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A function reads from top to bottom. In `asp_a01` (Observation Parlour), `客呼び出し.for_alc` tests `global_var_2`. When it
 is 0, the function files `AD.メインキャラモデル読込` and waits until it ends, reads motion 1 of `asp_a01.mot`, and re-points

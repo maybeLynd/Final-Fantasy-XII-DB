@@ -155,13 +155,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 12,123 |
-| empty | 1,035 |
+| `resolved` | 12,296 |
+| empty | 862 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `mnt_c0100` (event `130`), `監督.main` reads motions 1
 and 2 of `mnt_c0100.mot`, waits while `scratch1_var_1` is 0, and reads effect `e0124.efx` into effect slot 0 and

@@ -147,9 +147,9 @@ the list at `slots + 0x88` (16-byte stride) to 1. Every other code does nothing.
 | `0F ,` | the 7-byte colour code `0F )` of the argument's RGBA |
 | `0F -` | the number in glyph codes (`0x002B3770`) |
 | `0F 1` | the string argument, padded with `0x01` blanks to the escape's minimum length; with a field width w it sits between a tab code `0F 2` that stores the pen position and one that moves to it plus 2 x w |
-| `0F l` | with `typed`: a number, or for 1 the string argument's variant (`0x002B58B0`) |
+| `0F l` | with `typed`: nothing for a count of 0 (`0x002B4EE1`-`0x002B4EE4`), for 1 variant `((b2 >> 4) & 3) + 2` of the word row (`0x002B58B0`), otherwise the number and a space (`0x002B3770`) |
 | `0F m` | with `typed`: a word row's singular, or for a count above 1 its plural (below) |
-| `0F n` | with `typed`: variant `k + 2` of a word row; for language ids 1-6 and 9 (`0x00254A10` answers 0) its first letter is capitalised when nothing has been written before it |
+| `0F n` | with `typed`: variant `k + 2` of a word row; for language ids 1-6 and 9 (`0x00254A10` answers 0) its first letter is capitalised when no character has been copied before it; codes of `0x0F` and below do not count (`0x002B51B5`-`0x002B51BD`) |
 
 Any other unit is copied. A result that does not fit ends `out` at `size - 1` and returns `0xFFFF` (`0x002B51C3`).
 `0x002B58B0(row, k)` returns string `k` of a word row ([battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)).
@@ -274,6 +274,7 @@ reads past those options; their codes are counted separately.
 | `in_malformed_lists` | codes inside the 16 strings with malformed choice lists, not in `total` |
 | `languages_with_any` | how many of the nine languages use it |
 | `per_language` | the count per language tree |
+| `placeholder` | how the text tables in `Text/` write the code: `{name}` or `{name:payload}`, the payload in hex |
 
 ## Related
 

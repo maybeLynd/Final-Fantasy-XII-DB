@@ -47,8 +47,9 @@ and the body), and every verb that changes the gauge does nothing while the wind
 | `setgaugetimer` | `0x0034ED90` → `0x004088D0` | sets the value of a timer (mode 1) in seconds, stored times 60 |
 | `changegaugecounterbyratio` | `0x003502C0` → `0x004084C0` → `0x00407290` | moves the value toward the target over a ramp |
 | `setgaugecountercondition`, `setgaugetimercondition`, `setgaugeracecondition` | `0x003514F0` → `0x00408560` → `0x00407300` | sets the three thresholds |
-| `setgaugecountertype`, `setgaugetimertype`, `setgaugeracetype` | `0x00354190` → `0x00408A20` | sets the type `+0xDC` |
+| `setgaugecountertype`, `setgaugetimertype`, `setgaugeracetype` | `0x00354190` → `0x003E8F70` → `0x00408A20` | sets the type `+0xDC`; `0x003E8F70` keeps 1 to 4 and turns any other value into 0 (`0x003E8F84`); `0x00408A20` sets bit `0x2000000` of the `+0xD0` widget's `+0x20` for types 2 and 4 (`0x00408A79`) and clears it for 1 and 3 (`0x00408A88`) |
 | `setgaugecolor` | `0x00357270` → `0x00408780` | sets the four colours |
+| `setgaugehidestatus` | `0x0034C150` → `0x002E1BB0` → `0x004087E0` | sets the child's `+0x40` bit `0x100000` for 2 and clears it for 0 and 1 (`0x002E1BB0` turns any other value into 0), see Pause, hide and restore |
 | `startgaugetimer` | `0x00351F10` → `0x00408AD0` | clears the window's `+0xC8` bit `0x4`, so the timer counts again |
 | `stopgaugetimer` | `0x003521F0` → `0x004083B0` | sets the window's `+0xC8` bit `0x4` |
 | `resetgaugetimer` | `0x00351C80` → `0x004083E0` | see below |
@@ -114,10 +115,13 @@ for type 1 and to 0 for the others.
   skipping a gauge whose `+0xC8` bit `0x2` (script) or bit `0x20` (boss) is set.
 - The HUD switch hides the message windows through `0x0035D0E0` and shows them through `0x0035D1B0`
   ([HUD](hud.md)). `0x0035D0E0` also runs `0x004082D0`, which starts the gauge child's closing run with the
-  message at `0x01E0C0F8`.
+  message at `0x01E0C0F8` unless the child's `+0x40` bit `0x100000` is set (`0x004082E8`): `setgaugehidestatus(2)` sets
+  that bit and 0 or 1 clears it, so with 2 the gauge stays on screen while the HUD is hidden.
 - `0x0035D1B0` runs `0x00408AA0`, which restarts its opening run with message 14
-  (`0x01E0C0E0`) when the child is hidden (`+0xD8` bit `0x4` set, bit `0x8` clear). Both set the run speed `+0xB8`
-  to `1 / 0x00229E70()` when `0x00229DF0` is non-zero and `0x00229EA0` returns 2.
+  (`0x01E0C0E0`) when the script has the gauge shown (`+0xD8` bit `0x4` set and bit `0x8` clear, the state
+  `setgaugeshowstatus(1)` leaves, `0x00408399`-`0x0040839F`; `0x004082D0` closes the child without touching these bits, so
+  after the HUD hide such a child is closed). Both set the run speed `+0xB8` to `1 / 0x00229E70()` when `0x00229DF0` is
+  non-zero and `0x00229EA0` returns 2.
 
 ### Placing the gauge
 

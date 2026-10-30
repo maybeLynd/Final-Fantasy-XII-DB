@@ -148,13 +148,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 8,063 |
-| empty | 814 |
+| `resolved` | 8,081 |
+| empty | 796 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its functions. In `rwf_c0101` (event `371`), `ＡＤ.死亡Ｓ０２` plays cuts 2 to 4. At cut
 2 it files `シーン０２` on the camera, `演出`, sound, vibration and `ハイドラ` actors together and waits 40 frames. Cuts 3 and 4

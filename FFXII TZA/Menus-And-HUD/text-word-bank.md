@@ -1,0 +1,102 @@
+---
+title: "Word bank: every name string of the battle word banks in all nine languages, with plural forms and articles"
+kind: "reference"
+category: "Menus and HUD"
+addresses: "0x02EBF170, 0x003846F0, 0x003214B0, 0x002B58B0, 0x002B4550, 0x002B49F0, 0x00567B60, 0x00558CE0, 0x0027D480, 0x002986E0, 0x00536280"
+---
+
+## What it lists
+
+[text-word-bank.tsv](text-word-bank.tsv) has one row per string of a word-bank row, with the string in each of the
+nine language trees: 6,555 rows over 3,837 bank rows. The banks are entry `+0xF8` of `battle_pack.bin`
+(`word.bin`), bound at start-up to `0x02EBF170` by `0x003846F0`; their layout, the `bank:row` word and the first rows of
+each bank are on [Battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md).
+
+### Who reads a row
+
+- `0x003214B0(word)` gives the row of bank `(word >> 11) & 0x1F` and row `word & 0x7FF`, and `0x002B58B0(row, k)` its
+  string `k`.
+- The interface reads names this way: the gambit screen (`0x00567B60`, `0x0056A890`, `0x0056BC70`), the licence screens
+  (`0x00558CE0`, `0x005618E0`), the battle menu title `0x0027D480`, the party list `0x002986E0` and the battle log's names
+  (`0x00536280`).
+- The formatter `0x002B49F0` inserts a word row into a message template: as a plain string (`0F 31`), or by count
+  with its plural or article (`0F 6C`, `0F 6D`, `0F 6E`; [Text codes](text-codes.md)).
+
+### The strings of a row
+
+A row's strings follow its two leading zero bytes. In the `in`, `kr`, `cn` and `ch` trees every row holds one
+string; in `us`, `de`, `es`, `fr` and `it` a row holds up to four:
+
+| `string` | Holds | Read by |
+|---:|---|---|
+| 0 | the name | every reader above |
+| 1 | the plural template | `0x002B4550`, for a count above 1 (`0F 6D`) |
+| 2 | the article or phrase written before the name, with its trailing space | `0F 6E`, and `0F 6C` for a count of 1 |
+| 3 | a second phrase | `0F 6C` with `(b2 >> 4) & 3` = 1, for a count of 1 |
+
+In `us` bank 3, ten rows (19, 20, 22, 23, 24, 25, 27, 28, 30 and 248) hold a fourth string with a note on the name,
+their strings 1 and 2 empty (row 19: `FFTA also used Matius per PDIC`); `de` bank 11 has eight rows with a fourth string, a measure word such as `Klumpen`.
+
+### Reading the plural template
+
+In a plural template `{word}` (byte `09`) stands for the whole name and `{word:HHHH}` (byte `08` and two bytes) for
+its first `n` bytes, `n` the two bytes as a little-endian number `& 0x7FFF` (`0x002B4550`, `0x002B4623`-`0x002B46A2`).
+
+| Row | `us` | `es` | `it` |
+|---|---|---|---|
+| bank 0, row 82, string 0 | `Potion` | `Poción` | `Pozione` |
+| bank 0, row 82, string 1 | `{word}s` | `{word:0480}ones` | `{word:0680}i` |
+| bank 0, row 82, string 2 | `a ` | `una ` | `una ` |
+
+The `es` plural is the first 4 bytes of `Poción` and `ones`, `Pociones`; the `it` plural the first 6 bytes of
+`Pozione` and `i`, `Pozioni`. Bank 12 row 0, `Rabanastre`, has string 2 `a map of ` in `us` and `une carte de ` in
+`fr`.
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `bank` | the word bank, 0 to 14 |
+| `row` | the row in the bank; the word is `bank x 0x800 + row` |
+| `string` | the string's position in the row, `k` of `0x002B58B0(row, k)` |
+| `us` to `ch` | the string in that language tree, decoded with the tree's font |
+| `missing` | the languages whose row has no string `string`, or whose bank has no row `row`, comma-separated; empty when all nine have it |
+| `same_bytes` | the groups of languages whose string bytes are identical, each group's languages joined by `=` and the groups by `;`; only groups of two or more, and the languages in `missing` take no part |
+
+An empty cell under a language not in `missing` is an empty string. Empty strings per tree: `us` 437, `de` 140, `es`
+152, `fr` 436, `it` 406, none in `in`, `kr`, `cn` and `ch`.
+
+## Data
+
+Strings per bank in each tree (in `in`, `kr`, `cn` and `ch` also the bank's rows):
+
+| Bank | `us` | `de` | `es` | `fr` | `it` | `in` | `kr` | `cn` | `ch` |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 0 | 679 | 646 | 640 | 659 | 658 | 545 | 545 | 542 | 542 |
+| 1 | 1,339 | 1,346 | 1,356 | 1,470 | 1,280 | 544 | 544 | 531 | 531 |
+| 2 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 |
+| 3 | 392 | 362 | 362 | 362 | 362 | 362 | 362 | 362 | 362 |
+| 4 | 63 | 63 | 63 | 63 | 63 | 63 | 63 | 63 | 63 |
+| 5 | 32 | 32 | 32 | 32 | 32 | 32 | 32 | 32 | 32 |
+| 6 | 788 | 284 | 284 | 852 | 790 | 284 | 284 | 284 | 284 |
+| 7 | 16 | 16 | 16 | 16 | 16 | 16 | 16 | 16 | 16 |
+| 8 | 629 | 629 | 629 | 629 | 629 | 629 | 629 | 626 | 626 |
+| 9 | 128 | 128 | 128 | 128 | 128 | 128 | 128 | 128 | 128 |
+| 10 | 129 | 129 | 129 | 129 | 129 | 129 | 129 | 90 | 89 |
+| 11 | 982 | 986 | 955 | 982 | 1,196 | 512 | 512 | 512 | 512 |
+| 12 | 812 | 792 | 816 | 816 | 814 | 512 | 512 | 512 | 512 |
+| 13 | 16 | 16 | 16 | 16 | 16 | 16 | 16 | 16 | 16 |
+| 14 | 64 | 64 | 64 | 64 | 64 | 64 | 64 | 64 | 64 |
+| all | 6,070 | 5,494 | 5,491 | 6,219 | 6,178 | 3,837 | 3,836 | 3,778 | 3,777 |
+
+Every Western tree has all 3,837 rows. The `kr` banks lack bank 2's one row; the `cn` banks are 59 rows short of the
+`in` banks and the `ch` banks 60 (banks 0, 1, 2, 8 and 10).
+
+## Related
+
+- [Battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md) - the word-bank layout,
+  the `bank:row` word and the first rows of each bank.
+- [Text codes](text-codes.md) - the template escapes that insert a row.
+- [String tables](text-string-tables.md) - the battle messages that insert names.
+- [Gambit screen](gambit-screen.md), [Battle menu](battle-menu.md) and [Party list](party-list.md) -
+  screens that show the names.

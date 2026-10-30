@@ -285,13 +285,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 131,354 |
-| empty | 27,352 |
+| `resolved` | 131,358 |
+| empty | 27,348 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A function reads from top to bottom. In `tri_b05`, stage 10, `トライアル監督.main` opens the boss gauge, waits on
 `scratch1_var_1`, turns user control off, closes the boss gauge and waits 30 frames. It reads quest effect 43 and

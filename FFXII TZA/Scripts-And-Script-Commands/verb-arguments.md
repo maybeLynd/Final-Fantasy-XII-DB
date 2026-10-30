@@ -7,7 +7,7 @@ addresses: "0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x0026B4E0, 0x0026B4
 
 ## What it lists
 
-[verb-arguments.tsv](verb-arguments.tsv) has 416 rows for 298 script verbs, one row per argument.
+[verb-arguments.tsv](verb-arguments.tsv) has 816 rows for 544 script verbs, one row per argument.
 
 - **The verbs.** They are taken in order of how many operations of the shipped scene and zone scripts call them, so
   the verbs that most scene steps use come first.
@@ -39,13 +39,60 @@ How an argument is read:
 
 | Fact | Value |
 |---|---|
-| rows | 416 |
-| verbs | 298 |
-| verbs with no argument (one argument-0 row each) | 97 |
-| verbs by argument count | 1: 133; 2: 37; 3: 17; 4: 11; 5: 1; 6: 2 |
-| argument rows by type | int 216; float 103 |
-| rows that name a page | 416 |
+| rows | 816 |
+| verbs | 544 |
+| verbs with no argument (one argument-0 row each) | 149 |
+| verbs by argument count | 1: 243; 2: 82; 3: 38; 4: 21; 5: 6; 6: 4; 8: 1 |
+| argument rows by type | int 488; float 179 |
+| rows that name a page | 816 |
 | the first verbs in the table | `stdmotionplay`, `usemapid`, `motionloop`, `lookatoff`, `motionstartframe` |
+
+### Standard motions
+
+`stdmotionplay` (`0x011D`) and `stdmotionplay_2c2` (`0x02C2`) take a standard-motion id. An id with bit
+`0x1000000` set, as every literal the scripts pass (`0x01000000` to `0x0100001D`), is an index into the 30 words
+of the table `0x01EFE9D0`, which `0x003DDB40` plays as a render event, (kind << 12) + slot.
+
+The slot is the `@FMC` entry of that number in the actor's `.ca` motion archives, and it carries the same name in
+every archive that fills it, in some archives with the prefix `rlx_` (3,164 archives under `obj_finish/in`; the counts below include both
+forms; for slot 1, `ready` in 746 archives and `rlx_ready` in 45).
+
+`0x003DDB40` takes the low 24 bits with no bound; the variables the scripts pass hold only `0x01000000`-`0x01000001`
+and `0x01000010`-`0x01000016`. An id without bit `0x1000000` plays as the render event (manager << 20) | id |
+`0x1000` (`0x003DDB85`-`0x003DDB8E`), the slot of that number of kind 1; the scripts give 0, 1 and 5 this way (31 steps).
+
+| Entry | Id | Render event | Slot | Slot name in the motion archives |
+|---:|---|---|---:|---|
+| 0 | `0x01000000` | `0x1001` | 1 | `ready` (791 archives) |
+| 1 | `0x01000001` | `0x1001` | 1 | `ready` (791 archives) |
+| 2 | `0x01000002` | `0x101A` | 26 | `ev_talk_1` (746 archives) |
+| 3 | `0x01000003` | `0x1018` | 24 | `ev_trn_r` (781 archives) |
+| 4 | `0x01000004` | `0x1019` | 25 | `ev_trn_l` (781 archives) |
+| 5 | `0x01000005` | `0x1009` | 9 | `magic_ready` (618 archives) |
+| 6 | `0x01000006` | `0x100A` | 10 | `magic` (618 archives) |
+| 7 | `0x01000007` | `0x403D` | 61 | `attack` (576 archives) |
+| 8 | `0x01000008` | `0x101C` | 28 | `ev_treasure` (621 archives) |
+| 9 | `0x01000009` | `0x301B` | 27 | `ev_door` (616 archives) |
+| 10 | `0x0100000A` | `0x1008` | 8 | `dead` (611 archives) |
+| 11 | `0x0100000B` | `0x1049` | 73 | `summon_damageidle` (576 archives) |
+| 12 | `0x0100000C` | `0x3001` | 1 | `ready` (791 archives) |
+| 13 | `0x0100000D` | `0x4001` | 1 | `ready` (791 archives) |
+| 14 | `0x0100000E` | `0x4036` | 54 | `deact` (571 archives) |
+| 15 | `0x0100000F` | `0x4035` | 53 | `active` (571 archives) |
+| 16 | `0x01000010` | `0x401E` | 30 | `ev_talk_happy` (169 archives) |
+| 17 | `0x01000011` | `0x401F` | 31 | `ev_talk_angry` (169 archives) |
+| 18 | `0x01000012` | `0x4020` | 32 | `ev_talk_sad` (169 archives) |
+| 19 | `0x01000013` | `0x4021` | 33 | `ev_laugh` (169 archives) |
+| 20 | `0x01000014` | `0x4022` | 34 | `ev_yes` (169 archives) |
+| 21 | `0x01000015` | `0x4023` | 35 | `ev_no` (169 archives) |
+| 22 | `0x01000016` | `0x4024` | 36 | `ev_talk_over` (169 archives) |
+| 23 | `0x01000017` | `0x1011` | 17 | `field_magic_ready` (618 archives) |
+| 24 | `0x01000018` | `0x1012` | 18 | `field_magic_start` (618 archives) |
+| 25 | `0x01000019` | `0x1013` | 19 | `field_magic_end` (618 archives) |
+| 26 | `0x0100001A` | `0x1014` | 20 | `field_damage` (611 archives) |
+| 27 | `0x0100001B` | `0x1015` | 21 | `field_item` (621 archives) |
+| 28 | `0x0100001C` | `0x104A` | 74 | `field_attack` (576 archives) |
+| 29 | `0x0100001D` | `0x302F` | 47 | none: no archive fills slot 47 |
 
 ## Related
 

@@ -117,8 +117,7 @@ The steps by their `resolution` cell:
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A function reads from top to bottom. In `tst_a01`, `PC00.init` calls `setupbattle(0)`, places the actor at (1.969,
 0.000113, 2.587) with `setpos`, calls `sysDVAR` on two script variables and stores in them the ids of the items in

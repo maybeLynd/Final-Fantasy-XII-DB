@@ -266,15 +266,15 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 102,666 |
-| empty | 10,221 |
+| `resolved` | 103,831 |
+| empty | 9,056 |
 | `does not ship`, with the fact | 2 |
 
 The two `does not ship` rows are `motionread` calls in `EventDirector.init` of `dor_a07` and `dor_a18`, whose motion
 files `dor_a07.mot` and `dor_a18.mot` are not in the archive. A row whose `resolution` cell is empty gives the step as
 the listing writes it: the verb, and the arguments as the script writes them (`-` for a verb that takes none). Its
-`addresses`, `timing` and `sync` cells carry what they give for the step, for example the standard motion that
-`stdmotionplay` plays or the variable that receives a result, and `-` otherwise.
+`addresses`, `timing` and `sync` cells carry what they give for the step, for example the variable that holds the
+standard motion `stdmotionplay` plays, or the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `dor_a0100` (event `179`), `監督.main` jumps over its
 music block, files `BGM監督.get_music_number` on channel 1 and waits until it ends, hides the HUD, waits 6 frames and

@@ -6,10 +6,10 @@ id	label	arm	kind	field	step	bound	note	slice
 16	Convert PS2 Savedata	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	A
 17	Save autosave to common save data:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	A
 18	Jump To:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	A
-19	Load sample chr:	0x001D1740	int-step	obj+0xDA0	±1	clamp 0..0x12	cmov ±1	A
+19	Load sample chr:	0x001D1740	int-step	obj+0xDA0	±1	wraps 0..0x11	cmov ±1; 0x12 or more becomes 0 (0x001D175B cmovge), below 0 becomes 0x11 (0x001D176F); one value per material name of the 18-entry table 0x01DFCE90 ('teeth, eye, skin' to 'plant&bush') that the renderer prints for id 19	A
 20	Load chr:	0x001D170E	call	obj+0xC40	±1	-	passes the current id and ±1 to 0x002EEEE0 and stores the returned id	A
-21	Variation:	0x001D177E	int-step	obj+0xC44	±1	floor 0	cmov ±1	A
-22	CLUT:	0x001D17AB	int-step	obj+0xC48	±1	floor 0	cmov ±1; also writes obj+0xC44	A
+21	Variation:	0x001D177E	int-step	obj+0xC44	±1	floor 1	cmov ±1; a value of 0 or below becomes 1 (0x001D1793-0x001D17A0)	A
+22	CLUT:	0x001D17AB	int-step	obj+0xC48	±1	-	cmov ±1; no bound on obj+0xC48: the floor test reads obj+0xC44 (id 21's field) and sets it to 0 when negative (0x001D17BE-0x001D17CD)	A
 23	Set chr rotation:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	A
 24	Change cast shadow object:	0x001D1818	call	obj+0xAB8	-	-	calls 0x001F0850, then 0x001EF500 on its result, and stores the return value	A
 25	Shadow Level:	0x001D1830	cycle	0x001F0850()+0x138	±1	wraps 0..4	cmov ±1 on a field of the 0x001F0850 object	A
@@ -19,7 +19,7 @@ id	label	arm	kind	field	step	bound	note	slice
 29	Use normal map:	0x001D1B11	toggle	obj+0xC71	-	0/1	cmp/sete; read by the character render path	A
 30	Display normal only:	0x001D1B26	toggle	0x02CB8148	-	0/1	byte; read together with id 31 by the map ordered-object draw 0x001E2AF0	A
 31	Use vertex color:	0x001D1B39	toggle	0x02CB8150	-	0/1	dword set to (value == 0)	A
-32	Display texture density:	0x001D1B50	int-step	obj+0xC2C	±1	0..4	inc/dec; also writes 0x02CB814C	A
+32	Display texture density:	0x001D1B50	int-step	obj+0xC2C	±1	wraps 0..3	inc/dec; 4 becomes 0 and -1 becomes 3 (0x001D1B7D-0x001D1BA9); also writes 0x02CB814C	A
 33	Switch diffuse texture:	0x001D1BBA	toggle	obj+0xCF0	-	0/1	cmp/sete	A
 34	Enable Map Display:	0x001D1BCF	toggle	obj+0xABC	-	0/1	then two helper calls	A
 35	Enable Character Display:	0x001D1C0B	toggle	obj+0xABD	-	0/1	then two helper calls	A
@@ -30,8 +30,8 @@ id	label	arm	kind	field	step	bound	note	slice
 40	Enable Shadow Display:	0x001D1CE9	toggle	obj+0xAC4	-	0/1	then one helper call	A
 41	Enable AO:	0x001D1D17	toggle	0x00193D50()+0x198	-	0/1	flips a byte of the render-parameter block	A
 42	Display AO Only:	0x001D1D36	toggle	0x00193D50()+0x199	-	0/1	flips the byte, then 0x00193F80(block, value)	A
-43	HBAO NumSteps:	0x001D1D5A	int-step	obj+0xC04	±1	clamp 2..0x13	inc/dec	A
-44	HBAO NumDir:	0x001D1DB4	int-step	obj+0xC08	±1	clamp 2..0x13	inc/dec	B
+43	HBAO NumSteps:	0x001D1D5A	int-step	obj+0xC04	±1	wraps 1..0x14	inc/dec on 0x00193D50()+0x1E0, copied into obj+0xC04 and written back; down from below 2 gives 0x14 (0x001D1D74), up from above 0x13 gives 1 (0x001D1D8E)	A
+44	HBAO NumDir:	0x001D1DB4	int-step	obj+0xC08	±1	wraps 1..0x14	inc/dec on 0x00193D50()+0x1E4, copied into obj+0xC08 and written back; down from below 2 gives 0x14 (0x001D1DCE), up from above 0x13 gives 1 (0x001D1DE8)	B
 45	HBAO Full Resolution:	0x001D4AC0	toggle	0x00193D50()+0x1E8	-	0/1	render-parameter block byte	B
 46	HBAO Depth Full Res:	0x001D4ADF	toggle	0x00193D50()+0x1E9	-	0/1	passes the negated byte to the setter 0x00193F70	B
 47	early AO:	0x001D1E0E	toggle	-	-	0/1	getter/setter pair 0x0017FE10 / 0x00182FD0	B
@@ -47,7 +47,7 @@ id	label	arm	kind	field	step	bound	note	slice
 57	Operate cube map	0x001D3A4A	int-step	0x001AD440()+0x168	±1	-	passes value ±1 to 0x001AD4D0; skipped when the object is null	B
 58	Set cube map properties:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	B
 59	Recapture cube maps:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	B
-60	Capture panorama:	0x001D1F5A	int-step	obj+0xC28	±1	0..12	cmov ±1; also writes obj+0xC0C	B
+60	Capture panorama:	0x001D1F5A	int-step	obj+0xC28	±1	clamp 0..12	cmov ±1; also writes obj+0xC0C	B
 61	Camera Light enable:	0x001D213D	toggle	0x01DFE192	-	0/1	global byte	B
 62	After Water fix enable:	0x001D2150	toggle	obj+0x10D9	-	0/1	cmp/sete	B
 63	Hair Camera Light Direction X Bias:	0x001D2165	nudge	0x02CB80B0	±0.01	-	subss/addss, one constant; hair/eye lighting slot copied to the staged shader constants by 0x006084B0	B
@@ -164,11 +164,11 @@ id	label	arm	kind	field	step	bound	note	slice
 174	Gaussian Filter blend amount:	0x001D1F0D	nudge	0x00193D50()+0x1A4	±0.005	-	signed constant loaded into a register, then addss reg,reg	F
 175	Yebis enable:	0x001D2A7D	cycle	obj+0xD78	±1	wraps 0..2	cmovne ±1; then dispatches on the result	F
 176	Show Map Hide Group:	0x001D2BEF	toggle	obj+0xAC6	-	0/1	ignores the direction flags; then one call	F
-177	Particle Draw Type Range Start:	0x001D2C25	cycle	obj+0xAC8	±1	wraps at obj+0xAD0	cursor over a runtime count; keeps the second cursor obj+0xACC from exceeding it	F
-178	Particle Draw Type Range End:	0x001D2C91	cycle	obj+0xAC8	±1	wraps at obj+0xAD0	as id 177, then one call	F
+177	Particle Draw Type Range Start:	0x001D2C25	cycle	obj+0xAC8	±1	wraps at obj+0xAD0	cursor over a runtime count; raises the end cursor obj+0xACC to it when it passes the end; then 0x002F1CD0(start, end)	F
+178	Particle Draw Type Range End:	0x001D2C91	cycle	obj+0xACC	±1	wraps at obj+0xAD0	end cursor over the same count; lowers the start cursor obj+0xAC8 to it when it passes below the start; past the count both cursors return to 0 (qword store 0x001D2CDF); then 0x002F1CD0(start, end)	F
 179	Color Correction Position:	0x001D2964	toggle	0x00193D50()+0x4A0	-	0/1	ignores the direction flags	F
-180	Map render DisplayList Id Start:	0x001D2CFC	cycle	obj+0xAD4	±1	wraps at obj+0xADC	cursor over a runtime count; tracks obj+0xAD8	F
-181	Map render DisplayList Id End:	0x001D2D68	cycle	obj+0xAD4	±1	wraps at obj+0xADC	as id 180, then 0x002F4510(start, end) stores obj+0xAD4 at 0x022BE7DC and obj+0xAD8 at 0x01EEBAE4	F
+180	Map render DisplayList Id Start:	0x001D2CFC	cycle	obj+0xAD4	±1	wraps at obj+0xADC	cursor over a runtime count; raises the end cursor obj+0xAD8 to it when it passes the end; then 0x002F4510(start, end)	F
+181	Map render DisplayList Id End:	0x001D2D68	cycle	obj+0xAD8	±1	wraps at obj+0xADC	end cursor over the same count; lowers the start cursor obj+0xAD4 to it when it passes below the start; past the count both cursors return to 0 (qword store 0x001D2DB6); then 0x002F4510(start, end) stores obj+0xAD4 at 0x022BE7DC and obj+0xAD8 at 0x01EEBAE4	F
 182	Fusion Technique Select:	0x001D2DD3	int-step	obj+0xAE0	±1	clamp 0..8	does not wrap; then 0x002F7A00(value - 1)	F
 183	Print Magic Info:	0x001D2E04	toggle	-	-	0/1	read and written through a call pair; ignores the direction flags	F
 184	Set All Enemy HP One:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	F
@@ -212,8 +212,8 @@ id	label	arm	kind	field	step	bound	note	slice
 222	Control character position:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
 223	Unlock All license: Press Circle	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
 224	Unlock all item: Press Circle	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	G
-225	Set clan point:	0x001D405C	int-step	obj+0xDB4	±1	each digit mod 10	8-digit decimal editor: digits obj+0xDB8..0xDD4, cursor obj+0xDD8, value recomposed into obj+0xDB4	G
-226	Set step count:	0x001D4155	int-step	obj+0xDE0	±1	each digit mod 10	8-digit decimal editor: digits obj+0xDE4..0xE00, cursor obj+0xE04, value recomposed into obj+0xDE0	G
+225	Set clan point:	0x001D405C	int-step	obj+0xDB4	±1	digit 0 wraps 0..9	8-digit decimal editor: digits obj+0xDB8..0xDD4, cursor obj+0xDD8, value recomposed into obj+0xDB4; only the constructor writes the cursor (0, 0x001CCD77), so only digit 0 (obj+0xDB8) changes and the value stays 0..9	G
+226	Set step count:	0x001D4155	int-step	obj+0xDE0	±1	digit 0 wraps 0..9	8-digit decimal editor: digits obj+0xDE4..0xE00, cursor obj+0xE04, value recomposed into obj+0xDE0; only the constructor writes the cursor (qword 0, 0x001CCDA4), so only digit 0 (obj+0xDE4) changes and the value stays 0..9	G
 227	Set play time:	0x001D424E	int-step	obj+0xE08	±1	obj+0xE08 mod obj+0xE18; 0xE0C, 0xE10 mod 60	time entry: selector obj+0xE14 picks obj+0xE08, 0xE0C or 0xE10; two-button	G
 228	Enable infinite summon time:	0x001D3B1C	toggle	obj+0xE1C	-	0/1	ignores the direction flags	G
 229	Enable infinite chocobo time:	0x001D3B31	toggle	obj+0xE1D	-	0/1	ignores the direction flags	G
@@ -261,12 +261,12 @@ id	label	arm	kind	field	step	bound	note	slice
 271	Camera Revise Enable:	0x001D47B5	toggle	[0x01F82D20]+0x58	-	0/1	GameSetting property 22 via 0x001DF340; value becomes (field == 0)	I
 272	Brightness:	0x001D4867	int-step	[0x01F82D20]+0x10	±1	clamp 0..100	GameSetting property 4 via 0x001DF340	I
 273	Vsync :	0x001D48AD	cycle	[0x01F82D20]+0x14	±1	wraps 0..2	GameSetting property 5: Off / On / Adaptive	I
-274	Anisotropic filtering :	0x001D4972	int-step	[0x01F82D20]+0x18	±1	0..4	GameSetting property 6: 1 / 2 / 4 / 8 / 16	I
-275	Shadows Quality :	0x001D49C1	int-step	[0x01F82D20]+0x1C	±1	0..2	GameSetting property 7: Low / Medium / High	I
+274	Anisotropic filtering :	0x001D4972	int-step	[0x01F82D20]+0x18	±1	wraps 0..4	GameSetting property 6: 1 / 2 / 4 / 8 / 16	I
+275	Shadows Quality :	0x001D49C1	int-step	[0x01F82D20]+0x1C	±1	wraps 0..2	GameSetting property 7: Low / Medium / High	I
 276	Character self-shadow :	0x001D4A28	toggle	[0x01F82D20]+0x3C	-	0/1	GameSetting property 15; jumps into id 281's body for the setter call	I
 277	Anti-aliasing :	0x001D4A3D	toggle	[0x01F82D20]+0x20	-	0/1	setne through a different gateway; then two further calls	I
 278	Post process AA :	0x001D4A8A	int-step	[0x01F82D20]+0x24	±1	0..1	GameSetting property 9: FXAA / SMAA_1x	I
-279	Ambient Occlusion :	0x001D4B03	int-step	[0x01F82D20]+0x28	±1	0..2	GameSetting property 10 on both paths: Off / HalfResolution / FullResolution	I
+279	Ambient Occlusion :	0x001D4B03	int-step	[0x01F82D20]+0x28	±1	wraps 0..2	GameSetting property 10 on both paths: Off / HalfResolution / FullResolution	I
 280	Depth of Field :	0x001D4B37	toggle	[0x01F82D20]+0x30	-	0/1	GameSetting property 12; jumps into id 281's body for the setter call	I
 281	Glare :	0x001D4B49	toggle	[0x01F82D20]+0x34	-	0/1	GameSetting property 13, then writes property 3 = 3 (VQ_CUSTOM)	I
 282	Save Config File :	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	I

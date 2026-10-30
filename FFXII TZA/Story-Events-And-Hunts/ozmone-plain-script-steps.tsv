@@ -3765,7 +3765,7 @@ ozm_b04	帝国兵01_before	talk	1	0x062D5	3498	-	if	global_var_1 == 0	-	-	-	-	-	
 ozm_b04	帝国兵01_before	talk	2	0x062DB	3500	global_var_1 == 0	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 ozm_b04	帝国兵01_before	talk	3	0x062DE	3501	global_var_1 == 0	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ozm_b04	帝国兵01_before	talk	4	0x062E4	3502	global_var_1 == 0	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-ozm_b04	帝国兵01_before	talk	5	0x062EA	3503	global_var_1 == 0	stdmotionplay	0x01000002	this actor's standard motion 0x01000002	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	帝国兵01_before	talk	5	0x062EA	3503	global_var_1 == 0	stdmotionplay	0x01000002	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	帝国兵01_before	talk	6	0x062F7	3504	global_var_1 == 0	if	haveitem(0) >= 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01_before	talk	7	0x062FD	3506	global_var_1 == 0; haveitem(0) >= 1	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 ozm_b04	帝国兵01_before	talk	8	0x06303	3507	global_var_1 == 0; haveitem(0) >= 1	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -3807,7 +3807,7 @@ ozm_b04	帝国兵01_before	talk	43	0x0640D	3548	global_var_1 == 0	setmaphighmode
 ozm_b04	帝国兵01_before	talk	44	0x06413	3549	global_var_1 == 0	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01_before	talk	45	0x06419	3550	global_var_1 == 0	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01_before	talk	46	0x0641F	3551	global_var_1 == 0	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-ozm_b04	帝国兵01_before	talk	47	0x06428	3552	global_var_1 == 0	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_b04	帝国兵01_before	talk	47	0x06428	3552	global_var_1 == 0	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	帝国兵01_before	talk	48	0x06431	3556	not (global_var_1 == 0)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 ozm_b04	帝国兵01_before	talk	49	0x06434	3557	not (global_var_1 == 0)	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ozm_b04	帝国兵01_before	talk	50	0x0643A	3558	not (global_var_1 == 0)	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
@@ -3816,7 +3816,7 @@ ozm_b04	帝国兵01_before	talk	52	0x06446	3560	not (global_var_1 == 0)	sysRatur
 ozm_b04	帝国兵01_before	talk	53	0x0644C	3561	not (global_var_1 == 0)	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_b04	帝国兵01_before	talk	54	0x06450	3562	not (global_var_1 == 0)	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01_before	talk	55	0x06453	3564	not (global_var_1 == 0); isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	帝国兵01_before	talk	56	0x0645C	3565	not (global_var_1 == 0); isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_b04	帝国兵01_before	talk	56	0x0645C	3565	not (global_var_1 == 0); isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	帝国兵01_before	talk	57	0x06465	3569	not (global_var_1 == 0); not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_b04	帝国兵01_before	talk	58	0x0646D	3571	not (global_var_1 == 0)	if	getsummonmode() != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01_before	talk	59	0x06473	3573	not (global_var_1 == 0); getsummonmode() != 1	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -3871,7 +3871,7 @@ ozm_b04	帝国兵01_before	talk	107	0x065B7	3627	not (global_var_1 == 0)	setmaph
 ozm_b04	帝国兵01_before	talk	108	0x065BD	3628	not (global_var_1 == 0)	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01_before	talk	109	0x065C3	3629	not (global_var_1 == 0)	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01_before	talk	110	0x065C9	3630	not (global_var_1 == 0)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-ozm_b04	帝国兵01_before	talk	111	0x065D2	3631	not (global_var_1 == 0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_b04	帝国兵01_before	talk	111	0x065D2	3631	not (global_var_1 == 0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	帝国兵01_before	talk	112	0x065D5	3633	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01_before	talkhold	1	0x065D6	3638	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01_before	talkterm	1	0x065F0	3643	-	if	((getrotangzx() - getdestrotangzx_227(0)) * (getrotangzx() - getdestrotangzx_227(0))) > 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3907,7 +3907,7 @@ ozm_b04	帝国兵01	talk	5	0x06683	3702	-	sysRaturna	-1	argument 1: the actor th
 ozm_b04	帝国兵01	talk	6	0x06689	3703	-	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_b04	帝国兵01	talk	7	0x0668D	3704	-	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01	talk	8	0x06690	3706	isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	帝国兵01	talk	9	0x06699	3707	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_b04	帝国兵01	talk	9	0x06699	3707	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	帝国兵01	talk	10	0x066A2	3711	not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_b04	帝国兵01	talk	11	0x066AA	3713	-	if	getsummonmode() != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01	talk	12	0x066B0	3715	getsummonmode() != 1	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -3968,7 +3968,7 @@ ozm_b04	帝国兵01	talk	66	0x06830	3775	-	setmaphighmodeldepth	-1	argument 1: t
 ozm_b04	帝国兵01	talk	67	0x06836	3776	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01	talk	68	0x0683C	3777	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01	talk	69	0x06842	3778	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-ozm_b04	帝国兵01	talk	70	0x0684B	3779	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_b04	帝国兵01	talk	70	0x0684B	3779	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	帝国兵01	talk	71	0x0684E	3780	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01	talkhold	1	0x0684F	3785	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	帝国兵01	talkterm	1	0x06869	3790	-	if	((getrotangzx() - getdestrotangzx_227(0)) * (getrotangzx() - getdestrotangzx_227(0))) > 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3980,7 +3980,7 @@ ozm_b04	帝国兵01	set	2	0x06885	3801	-	setlod	1	argument 1: the calling actor'
 ozm_b04	帝国兵01	set	3	0x0688B	3802	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01	set	4	0x06891	3803	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01	set	5	0x06894	3804	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	帝国兵01	set	6	0x0689A	3805	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	帝国兵01	set	6	0x0689A	3805	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	帝国兵01	set	7	0x068A0	3806	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ozm_b04	帝国兵01	set	8	0x068A6	3807	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 ozm_b04	帝国兵01	set	9	0x068AC	3808	-	setnpcname	0x02b6	name pair 0x02b6: Imperial	-	-	-	-	resolved	this page's How a call is read
@@ -3990,7 +3990,7 @@ ozm_b04	帝国兵01	set02	2	0x068B9	3815	-	setlod	1	argument 1: the calling acto
 ozm_b04	帝国兵01	set02	3	0x068BF	3816	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01	set02	4	0x068C5	3817	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01	set02	5	0x068C8	3818	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	帝国兵01	set02	6	0x068CE	3819	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	帝国兵01	set02	6	0x068CE	3819	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	帝国兵01	set02	7	0x068D4	3820	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	帝国兵01	set02	8	0x068E0	3821	-	setpos	424.486969, 0, 175.074982	this actor, placed at (424.486969, 0, 175.074982)	-	-	-	-	resolved	0x0034EBC0 (read here)
 ozm_b04	帝国兵01	set02	9	0x068E6	3822	-	dir	-2.77428699	this actor, turned to facing -2.77428699	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -4081,7 +4081,7 @@ ozm_b04	チョコボ01	set	1	0x06AA2	3984	-	bindp2_d4	0x03000006, 0, 0	argument 
 ozm_b04	チョコボ01	set	2	0x06AA8	3985	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	チョコボ01	set	3	0x06AAE	3986	-	stdmotionread	1	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	チョコボ01	set	4	0x06AB1	3987	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	チョコボ01	set	5	0x06AB7	3988	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	チョコボ01	set	5	0x06AB7	3988	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	チョコボ01	set	6	0x06ABD	3989	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	チョコボ01	set	7	0x06AC9	3990	-	setpos	428.554169, 0, 172.267715	this actor, placed at (428.554169, 0, 172.267715)	-	-	-	-	resolved	0x0034EBC0 (read here)
 ozm_b04	チョコボ01	set	8	0x06ACF	3991	-	dir	-1.57414198	this actor, turned to facing -1.57414198	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -4091,7 +4091,7 @@ ozm_b04	チョコボ01	set_move	1	0x06AE2	3998	-	bindp2_d4	0x03000006, 0, 0	argu
 ozm_b04	チョコボ01	set_move	2	0x06AE8	3999	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	チョコボ01	set_move	3	0x06AEE	4000	-	stdmotionread	1	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	チョコボ01	set_move	4	0x06AF1	4001	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	チョコボ01	set_move	5	0x06AF7	4002	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	チョコボ01	set_move	5	0x06AF7	4002	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	チョコボ01	set_move	6	0x06AFA	4003	-	fetchambient	-	-	-	-	-	-		01 verb-table.tsv
 ozm_b04	チョコボ01	set_move	7	0x06B00	4004	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	チョコボ01	set_move	8	0x06B0C	4005	-	setpos	425.092804, 0, 160.368607	this actor, placed at (425.092804, 0, 160.368607)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -4145,7 +4145,7 @@ ozm_b04	ヒュム	talk	5	0x06C2C	4102	-	sysRaturna	-1	argument 1: the actor the 
 ozm_b04	ヒュム	talk	6	0x06C32	4103	-	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_b04	ヒュム	talk	7	0x06C36	4104	-	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	ヒュム	talk	8	0x06C39	4106	isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	ヒュム	talk	9	0x06C42	4107	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_b04	ヒュム	talk	9	0x06C42	4107	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	ヒュム	talk	10	0x06C4B	4111	not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_b04	ヒュム	talk	11	0x06C50	4113	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	ヒュム	talk	12	0x06C53	4115	-	case	lt(0x067c)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4171,7 +4171,7 @@ ozm_b04	ヒュム	talk	31	0x06CC5	4135	-	setmaphighmodeldepth	-1	argument 1: the
 ozm_b04	ヒュム	talk	32	0x06CCB	4136	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	talk	33	0x06CD1	4137	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	talk	34	0x06CD7	4138	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-ozm_b04	ヒュム	talk	35	0x06CE0	4139	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_b04	ヒュム	talk	35	0x06CE0	4139	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	ヒュム	talk	36	0x06CE3	4140	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	ヒュム	talkhold	1	0x06CE4	4145	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_b04	ヒュム	talkterm	1	0x06CFE	4150	-	if	((getrotangzx() - getdestrotangzx_227(0)) * (getrotangzx() - getdestrotangzx_227(0))) > 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4182,7 +4182,7 @@ ozm_b04	ヒュム	set	1	0x06D1A	4160	-	bindp2_d4	0x03000008, 1, 2	argument 1: th
 ozm_b04	ヒュム	set	2	0x06D20	4161	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	set	3	0x06D26	4162	-	stdmotionread	18	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	set	4	0x06D29	4163	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	ヒュム	set	5	0x06D2F	4164	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	ヒュム	set	5	0x06D2F	4164	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	ヒュム	set	6	0x06D35	4165	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ozm_b04	ヒュム	set	7	0x06D3B	4166	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	set	8	0x06D47	4167	-	setpos	417.420197, 0, 165.813629	this actor, placed at (417.420197, 0, 165.813629)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -4194,7 +4194,7 @@ ozm_b04	ヒュム	set02	1	0x06D66	4176	-	bindp2_d4	0x03000008, 1, 2	argument 1: 
 ozm_b04	ヒュム	set02	2	0x06D6C	4177	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	set02	3	0x06D72	4178	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	set02	4	0x06D75	4179	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	ヒュム	set02	5	0x06D7B	4180	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	ヒュム	set02	5	0x06D7B	4180	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	ヒュム	set02	6	0x06D81	4181	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ozm_b04	ヒュム	set02	7	0x06D8D	4182	-	setpos	439.13385, 1.39173102, 151.846329	this actor, placed at (439.13385, 1.39173102, 151.846329)	-	-	-	-	resolved	0x0034EBC0 (read here)
 ozm_b04	ヒュム	set02	8	0x06D93	4183	-	dir	-1.367836	this actor, turned to facing -1.367836	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -4205,7 +4205,7 @@ ozm_b04	ヒュム	set03	1	0x06DAC	4191	-	bindp2_d4	0x03000008, 1, 2	argument 1: 
 ozm_b04	ヒュム	set03	2	0x06DB2	4192	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	set03	3	0x06DB8	4193	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	set03	4	0x06DBB	4194	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	ヒュム	set03	5	0x06DC1	4195	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	ヒュム	set03	5	0x06DC1	4195	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	ヒュム	set03	6	0x06DC7	4196	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ozm_b04	ヒュム	set03	7	0x06DCD	4197	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム	set03	8	0x06DD9	4198	-	setpos	417.696259, 0, 163.892593	this actor, placed at (417.696259, 0, 163.892593)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -4257,7 +4257,7 @@ ozm_b04	ヒュム02	set	1	0x06ED5	4265	-	bindp2_d4	0x03000008, 1, 2	argument 1: 
 ozm_b04	ヒュム02	set	2	0x06EDB	4266	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム02	set	3	0x06EE1	4267	-	stdmotionread	18	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム02	set	4	0x06EE4	4268	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_b04	ヒュム02	set	5	0x06EEA	4269	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_b04	ヒュム02	set	5	0x06EEA	4269	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_b04	ヒュム02	set	6	0x06EF0	4270	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ozm_b04	ヒュム02	set	7	0x06EF6	4271	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_b04	ヒュム02	set	8	0x06F02	4272	-	setpos	417.420197, 0, 165.813629	this actor, placed at (417.420197, 0, 165.813629)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -5334,7 +5334,7 @@ ozm_c01	帝国兵01	init	1	0x04D09	1863	-	return	-	-	-	-	-	-	resolved	01 ../Scri
 ozm_c01	帝国兵01	set	1	0x04D0D	1868	-	bindp2	0x03000002	model n2 (section 12 entry 2, bound id 0x6E0002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 ozm_c01	帝国兵01	set	2	0x04D13	1869	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	帝国兵01	set	3	0x04D16	1870	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	帝国兵01	set	4	0x04D1C	1871	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_c01	帝国兵01	set	4	0x04D1C	1871	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	帝国兵01	set	5	0x04D22	1872	-	setnpcname	0x02b6	name pair 0x02b6: Imperial	-	-	-	-	resolved	this page's How a call is read
 ozm_c01	帝国兵01	set	6	0x04D2E	1873	-	setpos	338.414581, -16, 335.549255	this actor, placed at (338.414581, -16, 335.549255)	-	-	-	-	resolved	0x0034EBC0 (read here)
 ozm_c01	帝国兵01	set	7	0x04D34	1874	-	dir	-2.13557792	this actor, turned to facing -2.13557792	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -5359,7 +5359,7 @@ ozm_c01	帝国兵02	init	1	0x04D90	1920	-	return	-	-	-	-	-	-	resolved	01 ../Scri
 ozm_c01	帝国兵02	set	1	0x04D94	1925	-	bindp2	0x03000002	model n2 (section 12 entry 2, bound id 0x6E0002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 ozm_c01	帝国兵02	set	2	0x04D9A	1926	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	帝国兵02	set	3	0x04D9D	1927	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	帝国兵02	set	4	0x04DA3	1928	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_c01	帝国兵02	set	4	0x04DA3	1928	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	帝国兵02	set	5	0x04DA9	1929	-	setnpcname	0x02b6	name pair 0x02b6: Imperial	-	-	-	-	resolved	this page's How a call is read
 ozm_c01	帝国兵02	set	6	0x04DB5	1930	-	setpos	335.24295, -16, 339.693329	this actor, placed at (335.24295, -16, 339.693329)	-	-	-	-	resolved	0x0034EBC0 (read here)
 ozm_c01	帝国兵02	set	7	0x04DBB	1931	-	dir	-2.14784098	this actor, turned to facing -2.14784098	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -5404,7 +5404,7 @@ ozm_c01	水先案内人	talk	5	0x04E89	2029	-	sysRaturna	-1	argument 1: the acto
 ozm_c01	水先案内人	talk	6	0x04E8F	2030	-	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_c01	水先案内人	talk	7	0x04E93	2031	-	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	水先案内人	talk	8	0x04E96	2033	isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	水先案内人	talk	9	0x04E9F	2034	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_c01	水先案内人	talk	9	0x04E9F	2034	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	水先案内人	talk	10	0x04EA8	2038	not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_c01	水先案内人	talk	11	0x04EAF	2040	-	amese	0, 0x01000002	-	line 2: Imperial These mines are sovereign territory of the Archadian Empire. If you've no business here, kindly take your leave.	-	-	-	resolved	this page's How a call is read
 ozm_c01	水先案内人	talk	12	0x04EB8	2041	-	messync	0, 1	message window slot 0	-	-	waits on the window: when it is fully shown (state 3) the window is closed and the wait goes on; while it closes (state 6) the wait goes on only when the flag 1 is non-zero	-	resolved	0x003479F0, 0x00357820 (read here) and 16 ../Menus-And-HUD/message-windows.md
@@ -5415,7 +5415,7 @@ ozm_c01	水先案内人	talk	16	0x04ECA	2045	-	setmaphighmodeldepth	-1	argument 
 ozm_c01	水先案内人	talk	17	0x04ED0	2046	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	水先案内人	talk	18	0x04ED6	2047	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	水先案内人	talk	19	0x04EDC	2048	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-ozm_c01	水先案内人	talk	20	0x04EE5	2049	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_c01	水先案内人	talk	20	0x04EE5	2049	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	水先案内人	talk	21	0x04EE8	2050	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	水先案内人	talkhold	1	0x04EE9	2055	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	水先案内人	talkterm	1	0x04F03	2060	-	if	((getrotangzx() - getdestrotangzx_227(0)) * (getrotangzx() - getdestrotangzx_227(0))) > 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5425,7 +5425,7 @@ ozm_c01	水先案内人	talkterm	4	0x04F15	2065	-	return	-	-	-	-	-	-	resolved	01
 ozm_c01	水先案内人	set	1	0x04F19	2070	-	bindp2	0x03000002	model n2 (section 12 entry 2, bound id 0x6E0002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 ozm_c01	水先案内人	set	2	0x04F1F	2071	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	水先案内人	set	3	0x04F22	2072	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	水先案内人	set	4	0x04F28	2073	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_c01	水先案内人	set	4	0x04F28	2073	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	水先案内人	set	5	0x04F2E	2074	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ozm_c01	水先案内人	set	6	0x04F34	2075	-	setnpcname	0x02b6	name pair 0x02b6: Imperial	-	-	-	-	resolved	this page's How a call is read
 ozm_c01	水先案内人	set	7	0x04F40	2076	-	setpos	333.465973, -16, 329.177826	this actor, placed at (333.465973, -16, 329.177826)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -5544,7 +5544,7 @@ ozm_c01	野良騎乗チョコボ	init	12	0x05182	2369	-	dir	local_var_s46f0_2[0]
 ozm_c01	野良騎乗チョコボ	init	13	0x0518E	2370	-	bindp2_d4	0x03000005, 1, 0	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	init	14	0x05194	2371	-	stdmotionread	1	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	init	15	0x05197	2372	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	野良騎乗チョコボ	init	16	0x0519D	2373	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_c01	野良騎乗チョコボ	init	16	0x0519D	2373	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	野良騎乗チョコボ	init	17	0x051A3	2374	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 ozm_c01	野良騎乗チョコボ	init	18	0x051A6	2375	-	getdefaultwalkspeed	-	result stored in local_var_s46f0_5; the calling actor's model (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	init	19	0x051AF	2376	-	setnpcname	0x0430	name pair 0x0430: Wayward Chocobo	-	-	-	-	resolved	this page's How a call is read
@@ -5559,7 +5559,7 @@ ozm_c01	野良騎乗チョコボ	talk	5	0x051D6	2398	-	sysRaturna	-1	argument 1:
 ozm_c01	野良騎乗チョコボ	talk	6	0x051DC	2399	-	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_c01	野良騎乗チョコボ	talk	7	0x051E0	2400	-	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	野良騎乗チョコボ	talk	8	0x051E3	2402	isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	野良騎乗チョコボ	talk	9	0x051EC	2403	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_c01	野良騎乗チョコボ	talk	9	0x051EC	2403	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	野良騎乗チョコボ	talk	10	0x051F5	2407	not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_c01	野良騎乗チョコボ	talk	11	0x051FD	2409	-	if	getsummonmode() != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	野良騎乗チョコボ	talk	12	0x05207	2411	getsummonmode() != 1	if	nowmap() == 0x0218	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5664,7 +5664,7 @@ ozm_c01	野良騎乗チョコボ	talk	110	0x0547B	2532	-	setmaphighmodeldepth	-1
 ozm_c01	野良騎乗チョコボ	talk	111	0x05481	2533	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	talk	112	0x05487	2534	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	talk	113	0x0548D	2535	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-ozm_c01	野良騎乗チョコボ	talk	114	0x05496	2536	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+ozm_c01	野良騎乗チョコボ	talk	114	0x05496	2536	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	野良騎乗チョコボ	talk	115	0x05499	2537	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	野良騎乗チョコボ	talkhold	1	0x0549A	2542	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	野良騎乗チョコボ	talkterm	1	0x054B4	2547	-	if	((getrotangzx() - getdestrotangzx_227(0)) * (getrotangzx() - getdestrotangzx_227(0))) > 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5690,7 +5690,7 @@ ozm_c01	野良騎乗チョコボ	チョコボウロウロ	16	0x0554B	2590	local_
 ozm_c01	野良騎乗チョコボ	チョコボウロウロ	17	0x0554E	2592	local_var_s46f0_4 == 0; loop while true	wait	100	-	-	100 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ozm_c01	野良騎乗チョコボ	チョコボウロウロ	18	0x05557	2595	-	store	local_var_s46f5_1 = 0	variable local_var_s46f5_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ozm_c01	野良騎乗チョコボ	チョコボウロウロ	19	0x0555A	2596	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	野良騎乗チョコボ	チョコボウロウロ	20	0x05560	2597	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_c01	野良騎乗チョコボ	チョコボウロウロ	20	0x05560	2597	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	野良騎乗チョコボ	チョコボウロウロ	21	0x05563	2598	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ozm_c01	野良騎乗チョコボ	チョコボウロウロ	22	0x05566	2600	loop while true	setreachr	0.100000001	argument 1: the arrival distance of the calling actor's move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	チョコボウロウロ	23	0x0558F	2601	loop while true	store	local_var_s46f5_2 = (((local_var_s46f0_4 - 1) * 0.899999976) + (((local_var_s46f0_4 - 1) * (rand_29(100) % 10)) / 100)) + 1	variable local_var_s46f5_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5730,7 +5730,7 @@ ozm_c01	野良騎乗チョコボ	nora_chocobo_on	3	0x0571A	2655	-	dir	local_var_
 ozm_c01	野良騎乗チョコボ	nora_chocobo_on	4	0x05726	2656	-	bindp2_d4	0x03000005, 1, 0	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	nora_chocobo_on	5	0x0572C	2657	-	stdmotionread	1	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	nora_chocobo_on	6	0x0572F	2658	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ozm_c01	野良騎乗チョコボ	nora_chocobo_on	7	0x05735	2659	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+ozm_c01	野良騎乗チョコボ	nora_chocobo_on	7	0x05735	2659	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 ozm_c01	野良騎乗チョコボ	nora_chocobo_on	8	0x0573B	2660	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 ozm_c01	野良騎乗チョコボ	nora_chocobo_on	9	0x0573E	2661	-	getdefaultwalkspeed	-	result stored in local_var_s46f0_5; the calling actor's model (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ozm_c01	野良騎乗チョコボ	nora_chocobo_on	10	0x05747	2662	-	setnpcname	0x0430	name pair 0x0430: Wayward Chocobo	-	-	-	-	resolved	this page's How a call is read

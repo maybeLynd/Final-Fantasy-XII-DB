@@ -187,15 +187,14 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 32,232 |
-| empty | 2,888 |
+| `resolved` | 32,320 |
+| empty | 2,800 |
 | `does not ship`, with the fact | 1 |
 
 The one `does not ship` row is a `motionread` call in `lus_a04`, whose motion file `lus_a04.mot` is not in the archive.
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its functions. In `lus_a0180` (event `702`), `ＡＤ.Ｃ０２_しつこいなぁ` starts scene cut 2,
 sets `scratch1_var_1` to 2 and files `カット０２ａ` on the camera, voice and subtitle actors, Balthier and Fran together. It

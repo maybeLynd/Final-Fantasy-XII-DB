@@ -1430,7 +1430,7 @@ naf_a01	PC00	終了時立ち位置	6	0x08BE0	2247	-	usecharhit	0	argument 1: whe
 naf_a01	PC00	終了時立ち位置	7	0x08BE6	2248	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	PC00	振り向き	1	0x08BE7	2253	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	PC00	階段上っていく	1	0x08BE8	2258	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	PC00	階段上っていく	2	0x08BEE	2259	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	PC00	階段上っていく	2	0x08BEE	2259	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	PC00	階段上っていく	3	0x08BF4	2260	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	PC00	階段上っていく	4	0x08C00	2261	-	setpos	97.3628922, 4.69849777, 155.752121	this actor, placed at (97.3628922, 4.69849777, 155.752121)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a01	PC00	階段上っていく	5	0x08C06	2262	-	dir	3.09899998	this actor, turned to facing 3.09899998	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -1502,7 +1502,7 @@ naf_a01	BASH	talk	37	0x08E98	2462	file_var_s2_2 = 2	sysReqwait	メッセージ::
 naf_a01	BASH	talk	38	0x08E9C	2463	file_var_s2_2 = 2	fadeout	5	the screen fade, out	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	BASH	talk	39	0x08E9F	2464	file_var_s2_2 = 2	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	talk	40	0x08EA2	2465	file_var_s2_2 = 2	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	talk	41	0x08EA8	2466	file_var_s2_2 = 2	stdmotionplay	0x01000001	this actor's standard motion 0x01000001	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	BASH	talk	41	0x08EA8	2466	file_var_s2_2 = 2	stdmotionplay	0x01000001	this actor's standard motion entry 1 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	talk	42	0x08EB1	2467	file_var_s2_2 = 2	resetbehindcamera	2.29369903, -0.255598992	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	talk	43	0x08EBD	2468	file_var_s2_2 = 2	sysReqew	1, カメラ::カメラクリア	actor `カメラ`	-	-	files カメラ::カメラクリア on channel 1; waits until it ends	カメラ.カメラクリア	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	talk	44	0x08EC7	2469	file_var_s2_2 = 2	sysReqew	1, TANBA_shape::フィールドサイン閉じる	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン閉じる on channel 1; waits until it ends	TANBA_shape.フィールドサイン閉じる	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1530,7 +1530,7 @@ naf_a01	BASH	talk	65	0x08F51	2490	file_var_s2_2 = 5	settrapshowstatus	0	all sixt
 naf_a01	BASH	talk	66	0x08F57	2491	file_var_s2_2 = 5	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	BASH	talk	67	0x08F5D	2492	file_var_s2_2 = 5	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	BASH	talk	68	0x08F63	2493	file_var_s2_2 = 5	sysAturna	-1	argument 1: the actor the calling actor turns its body and head to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	talk	69	0x08F6C	2494	file_var_s2_2 = 5	stdmotionplay_2c2	0x01000002, 8	this actor's standard motion 0x01000002	-	float 8 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a01	BASH	talk	69	0x08F6C	2494	file_var_s2_2 = 5	stdmotionplay_2c2	0x01000002, 8	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 8 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	talk	70	0x08F72	2495	file_var_s2_2 = 5	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	BASH	talk	71	0x08F78	2496	file_var_s2_2 = 5	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	BASH	talk	72	0x08F81	2497	file_var_s2_2 = 5	setkutipakustatus_4a2	1, 210	argument 1: whether the calling actor's mouth moves (the lip flap, rig controller 9) / argument 2: how many frames the lip flap runs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1541,7 +1541,7 @@ naf_a01	BASH	talk	76	0x08FA0	2501	file_var_s2_2 = 5	setunazukistatus	0	this acto
 naf_a01	BASH	talk	77	0x08FA3	2502	file_var_s2_2 = 5	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	talk	78	0x08FAC	2503	file_var_s2_2 = 5	aturn_261	getdestrotangzx_227(0)	argument 1: the world heading, in radians, the calling actor turns to (an ACT form: the named actor), the scripts' getdestrotangzx_227(0) or a literal	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	talk	79	0x08FAF	2504	file_var_s2_2 = 5	motiontrigger	-	the motion the calling actor is playing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	talk	80	0x08FB8	2505	file_var_s2_2 = 5	stdmotionplay_2c2	0x01000000, 15	this actor's standard motion 0x01000000	-	float 15 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a01	BASH	talk	80	0x08FB8	2505	file_var_s2_2 = 5	stdmotionplay_2c2	0x01000000, 15	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 15 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	talk	81	0x08FBB	2506	file_var_s2_2 = 5	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_a01	BASH	talk	82	0x08FC1	2507	file_var_s2_2 = 5	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	BASH	talk	83	0x08FC4	2508	file_var_s2_2 = 5	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1650,7 +1650,7 @@ naf_a01	BASH	バッシュ□会話	30	0x09271	2619	-	sysReqwait	メッセージ:
 naf_a01	BASH	バッシュ□会話	31	0x09275	2620	-	fadeout	5	the screen fade, out	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	BASH	バッシュ□会話	32	0x09278	2621	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	バッシュ□会話	33	0x0927B	2622	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	バッシュ□会話	34	0x09281	2623	-	stdmotionplay	0x01000001	this actor's standard motion 0x01000001	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	BASH	バッシュ□会話	34	0x09281	2623	-	stdmotionplay	0x01000001	this actor's standard motion entry 1 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	バッシュ□会話	35	0x0928A	2624	-	resetbehindcamera	2.29369903, -0.255598992	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	バッシュ□会話	36	0x09296	2625	-	sysReqew	1, カメラ::カメラクリア	actor `カメラ`	-	-	files カメラ::カメラクリア on channel 1; waits until it ends	カメラ.カメラクリア	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話	37	0x092A0	2626	-	sysReqew	1, TANBA_shape::フィールドサイン閉じる	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン閉じる on channel 1; waits until it ends	TANBA_shape.フィールドサイン閉じる	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1674,7 +1674,7 @@ naf_a01	BASH	バッシュ□会話2	10	0x09319	2647	-	fadeout	5	the screen fade,
 naf_a01	BASH	バッシュ□会話2	11	0x0931C	2648	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	バッシュ□会話2	12	0x09328	2649	-	sysReqew	1, カメラ::カメラクリア	actor `カメラ`	-	-	files カメラ::カメラクリア on channel 1; waits until it ends	カメラ.カメラクリア	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	13	0x09329	2650	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	バッシュ□会話2	14	0x0932F	2651	-	stdmotionplay	0x01000001	this actor's standard motion 0x01000001	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	BASH	バッシュ□会話2	14	0x0932F	2651	-	stdmotionplay	0x01000001	this actor's standard motion entry 1 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	バッシュ□会話2	15	0x0933B	2652	-	sysReqew	1, PC00::ショウオン	actor `PC00`	-	-	files PC00::ショウオン on channel 1; waits until it ends	PC00.ショウオン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	16	0x09345	2653	-	sysReqew	1, TANBA_shape::フィールドサイン閉じる	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン閉じる on channel 1; waits until it ends	TANBA_shape.フィールドサイン閉じる	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	17	0x0934F	2654	-	sysReqew	1, DAL_SOLDIER_A::talk有効	actor `DAL_SOLDIER_A`	-	-	files DAL_SOLDIER_A::talk有効 on channel 1; waits until it ends	DAL_SOLDIER_A.talk有効	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1719,7 +1719,7 @@ naf_a01	BASH	移動チュートリアルモーション	16	0x09423	2709	loop whi
 naf_a01	BASH	常駐戻し	1	0x0942C	2715	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	BASH	常駐戻し	2	0x09432	2716	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	BASH	常駐戻し	3	0x09435	2717	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	常駐戻し	4	0x0943B	2718	-	stdmotionplay	0x01000001	this actor's standard motion 0x01000001	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	BASH	常駐戻し	4	0x0943B	2718	-	stdmotionplay	0x01000001	this actor's standard motion entry 1 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	常駐戻し	5	0x09441	2719	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	トークチュートリアル	1	0x09445	2724	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	トークチュートリアル	2	0x09448	2725	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1736,7 +1736,7 @@ naf_a01	BASH	トークチュートリアル	12	0x09496	2735	-	sysReqew	1, 元読
 naf_a01	BASH	トークチュートリアル	13	0x0949A	2736	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	BASH	トークチュートリアル	14	0x094A0	2737	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	BASH	トークチュートリアル	15	0x094A3	2738	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	トークチュートリアル	16	0x094A9	2739	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	BASH	トークチュートリアル	16	0x094A9	2739	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	トークチュートリアル	17	0x094AF	2740	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	BASH	トークチュートリアル	18	0x094B5	2741	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	カーソルチュートリアル	1	0x094B9	2746	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
@@ -1772,7 +1772,7 @@ naf_a01	BASH	フィールドサイン2チュートリアル	17	0x09577	2779	-	se
 naf_a01	BASH	フィールドサイン2チュートリアル	18	0x0957A	2780	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	フィールドサイン2チュートリアル	19	0x09580	2781	-	setbodyshake	0	-	-	-	-	-		01 verb-table.tsv
 naf_a01	BASH	フィールドサイン2チュートリアル	20	0x09589	2782	-	dir	getdestrotangzx_227(0)	this actor, turned to facing getdestrotangzx_227(0)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-naf_a01	BASH	フィールドサイン2チュートリアル	21	0x09592	2783	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a01	BASH	フィールドサイン2チュートリアル	21	0x09592	2783	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	フィールドサイン2チュートリアル	22	0x0959E	2784	-	sysReqew	1, 鉄柵::フィールドサインアクティブ	actor `鉄柵`	-	-	files 鉄柵::フィールドサインアクティブ on channel 1; waits until it ends	鉄柵.フィールドサインアクティブ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	フィールドサイン2チュートリアル	23	0x095A8	2785	-	sysReqew	2, カメラ::カメラクリア	actor `カメラ`	-	-	files カメラ::カメラクリア on channel 2; waits until it ends	カメラ.カメラクリア	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	フィールドサイン2チュートリアル	24	0x095B2	2786	-	sysReqew	1, TANBA_shape::フィールドサイン閉じる	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン閉じる on channel 1; waits until it ends	TANBA_shape.フィールドサイン閉じる	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1825,7 +1825,7 @@ naf_a01	BASH	終了時立ち位置2	2	0x09693	2854	-	setunazukistatus	0	this act
 naf_a01	BASH	終了時立ち位置2	3	0x09696	2855	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	終了時立ち位置2	4	0x0969C	2856	-	setbodyshake	0	-	-	-	-	-		01 verb-table.tsv
 naf_a01	BASH	終了時立ち位置2	5	0x096A5	2857	-	dir	getdestrotangzx_227(0)	this actor, turned to facing getdestrotangzx_227(0)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-naf_a01	BASH	終了時立ち位置2	6	0x096AE	2858	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a01	BASH	終了時立ち位置2	6	0x096AE	2858	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	終了時立ち位置2	7	0x096B1	2859	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	終了時立ち位置3	1	0x096B5	2864	-	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	終了時立ち位置3	2	0x096B8	2865	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1848,7 +1848,7 @@ naf_a01	BASH	終了メッセージ	12	0x09721	2885	-	wait	15	-	-	15 frames	waits
 naf_a01	BASH	終了メッセージ	13	0x09724	2886	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	歩き出し	1	0x09728	2891	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	階段上っていく	1	0x09729	2896	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	階段上っていく	2	0x0972F	2897	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	BASH	階段上っていく	2	0x0972F	2897	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	BASH	階段上っていく	3	0x09735	2898	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	階段上っていく	4	0x09741	2899	-	setpos	96.6001205, 4.00925684, 157.156509	this actor, placed at (96.6001205, 4.00925684, 157.156509)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a01	BASH	階段上っていく	5	0x09747	2900	-	bonecalcforce	5	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1895,12 +1895,12 @@ naf_a01	DAL_SOLDIER_A	talk	17	0x09949	3046	file_var_s2_2 = 2	fadesync	-	the scre
 naf_a01	DAL_SOLDIER_A	talk	18	0x0994F	3047	file_var_s2_2 = 2	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	DAL_SOLDIER_A	talk	19	0x09955	3048	file_var_s2_2 = 2	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	DAL_SOLDIER_A	talk	20	0x0995B	3049	file_var_s2_2 = 2	sysAturna	-1	argument 1: the actor the calling actor turns its body and head to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	DAL_SOLDIER_A	talk	21	0x09961	3050	file_var_s2_2 = 2	stdmotionplay	0x01000002	this actor's standard motion 0x01000002	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	DAL_SOLDIER_A	talk	21	0x09961	3050	file_var_s2_2 = 2	stdmotionplay	0x01000002	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	DAL_SOLDIER_A	talk	22	0x0996D	3051	file_var_s2_2 = 2	mesopenspeed_1b	0, 6, 6	message window slot 0: the opening run +0x30 and the closing run +0x34	-	both runs 6 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
 naf_a01	DAL_SOLDIER_A	talk	23	0x09976	3052	file_var_s2_2 = 2	amese	0, 0x01000001	-	line 1: Life is worth too much to throw away, Reks. Do what you can, but don't try to be a hero. Save the hero stories for your brother once we're back in Rabanastre. Just listen to the Captain and we'll get through this.	-	-	-	resolved	this page's How a call is read
 naf_a01	DAL_SOLDIER_A	talk	24	0x0997F	3053	file_var_s2_2 = 2	messync	0, 1	message window slot 0	-	-	waits on the window: when it is fully shown (state 3) the window is closed and the wait goes on; while it closes (state 6) the wait goes on only when the flag 1 is non-zero	-	resolved	0x003479F0, 0x00357820 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	DAL_SOLDIER_A	talk	25	0x09988	3054	file_var_s2_2 = 2	aturn_261	getdestrotangzx_227(0)	argument 1: the world heading, in radians, the calling actor turns to (an ACT form: the named actor), the scripts' getdestrotangzx_227(0) or a literal	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	DAL_SOLDIER_A	talk	26	0x0998E	3055	file_var_s2_2 = 2	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	DAL_SOLDIER_A	talk	26	0x0998E	3055	file_var_s2_2 = 2	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	DAL_SOLDIER_A	talk	27	0x09994	3056	file_var_s2_2 = 2	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	DAL_SOLDIER_A	talk	28	0x0999A	3057	file_var_s2_2 = 2	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	DAL_SOLDIER_A	talk	29	0x099A6	3058	file_var_s2_2 = 2	sysReq	1, メッセージ::フィールド01メッセージ	actor `メッセージ`	-	-	files メッセージ::フィールド01メッセージ on channel 1; does not wait	メッセージ.フィールド01メッセージ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1931,7 +1931,7 @@ naf_a01	DAL_SOLDIER_A	talk	53	0x09A5A	3082	file_var_s2_2 = 5	sysReq	1, ヘルプ
 naf_a01	DAL_SOLDIER_A	talk	54	0x09A5B	3083	file_var_s2_2 = 5	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_a01	DAL_SOLDIER_A	talk	55	0x09A61	3084	file_var_s2_2 = 5	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	DAL_SOLDIER_A	talk	56	0x09A67	3085	file_var_s2_2 = 5	sysAturna	-1	argument 1: the actor the calling actor turns its body and head to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	DAL_SOLDIER_A	talk	57	0x09A70	3086	file_var_s2_2 = 5	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a01	DAL_SOLDIER_A	talk	57	0x09A70	3086	file_var_s2_2 = 5	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	DAL_SOLDIER_A	talk	58	0x09A76	3087	file_var_s2_2 = 5	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	DAL_SOLDIER_A	talk	59	0x09A7C	3088	file_var_s2_2 = 5	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	DAL_SOLDIER_A	talk	60	0x09A85	3089	file_var_s2_2 = 5	setkutipakustatus_4a2	1, 150	argument 1: whether the calling actor's mouth moves (the lip flap, rig controller 9) / argument 2: how many frames the lip flap runs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1944,7 +1944,7 @@ naf_a01	DAL_SOLDIER_A	talk	66	0x09AB8	3095	file_var_s2_2 = 5	setunazukistatus	0	
 naf_a01	DAL_SOLDIER_A	talk	67	0x09ABE	3096	file_var_s2_2 = 5	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	DAL_SOLDIER_A	talk	68	0x09AC1	3097	file_var_s2_2 = 5	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_a01	DAL_SOLDIER_A	talk	69	0x09ACA	3098	file_var_s2_2 = 5	aturn_261	getdestrotangzx_227(0)	argument 1: the world heading, in radians, the calling actor turns to (an ACT form: the named actor), the scripts' getdestrotangzx_227(0) or a literal	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	DAL_SOLDIER_A	talk	70	0x09AD0	3099	file_var_s2_2 = 5	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	DAL_SOLDIER_A	talk	70	0x09AD0	3099	file_var_s2_2 = 5	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	DAL_SOLDIER_A	talk	71	0x09ADC	3100	file_var_s2_2 = 5	sysReq	1, ヘルプメッセージ::ヘルプメッセージ06	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ06 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ06	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	72	0x09ADD	3101	file_var_s2_2 = 5	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	DAL_SOLDIER_A	talk	73	0x09AE0	3102	-	case	gt(5)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1952,7 +1952,7 @@ naf_a01	DAL_SOLDIER_A	talk	74	0x09AE9	3103	file_var_s2_2 = gt(5)	sysReq	1, ヘ�
 naf_a01	DAL_SOLDIER_A	talk	75	0x09AEA	3104	file_var_s2_2 = gt(5)	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_a01	DAL_SOLDIER_A	talk	76	0x09AF0	3105	file_var_s2_2 = gt(5)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	DAL_SOLDIER_A	talk	77	0x09AF6	3106	file_var_s2_2 = gt(5)	sysAturna	-1	argument 1: the actor the calling actor turns its body and head to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	DAL_SOLDIER_A	talk	78	0x09AFF	3107	file_var_s2_2 = gt(5)	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a01	DAL_SOLDIER_A	talk	78	0x09AFF	3107	file_var_s2_2 = gt(5)	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	DAL_SOLDIER_A	talk	79	0x09B05	3108	file_var_s2_2 = gt(5)	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	DAL_SOLDIER_A	talk	80	0x09B0B	3109	file_var_s2_2 = gt(5)	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	DAL_SOLDIER_A	talk	81	0x09B14	3110	file_var_s2_2 = gt(5)	setkutipakustatus_4a2	1, 150	argument 1: whether the calling actor's mouth moves (the lip flap, rig controller 9) / argument 2: how many frames the lip flap runs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1965,7 +1965,7 @@ naf_a01	DAL_SOLDIER_A	talk	87	0x09B47	3116	file_var_s2_2 = gt(5)	setunazukistatu
 naf_a01	DAL_SOLDIER_A	talk	88	0x09B4D	3117	file_var_s2_2 = gt(5)	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	DAL_SOLDIER_A	talk	89	0x09B50	3118	file_var_s2_2 = gt(5)	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_a01	DAL_SOLDIER_A	talk	90	0x09B59	3119	file_var_s2_2 = gt(5)	aturn_261	getdestrotangzx_227(0)	argument 1: the world heading, in radians, the calling actor turns to (an ACT form: the named actor), the scripts' getdestrotangzx_227(0) or a literal	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	DAL_SOLDIER_A	talk	91	0x09B5F	3120	file_var_s2_2 = gt(5)	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a01	DAL_SOLDIER_A	talk	91	0x09B5F	3120	file_var_s2_2 = gt(5)	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a01	DAL_SOLDIER_A	talk	92	0x09B6B	3121	file_var_s2_2 = gt(5)	sysReq	1, ヘルプメッセージ::ヘルプメッセージ07	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ07 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ07	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	93	0x09B6C	3122	file_var_s2_2 = gt(5)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	DAL_SOLDIER_A	talk	94	0x09B84	3124	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2874,7 +2874,7 @@ naf_a02	バッシュ2	cut_01_m	2	0x0389E	1599	-	show_38	0	argument 1: whether th
 naf_a02	バッシュ2	cut_01_m	3	0x038A4	1600	-	stdmotionread	0	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	バッシュ2	cut_01_m	4	0x038A7	1601	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	バッシュ2	cut_01_m	5	0x038AD	1602	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a02	バッシュ2	cut_01_m	6	0x038B3	1603	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a02	バッシュ2	cut_01_m	6	0x038B3	1603	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a02	バッシュ2	cut_01_m	7	0x038BF	1604	-	setpos	94.9515686, 30.4988117, 29.1664295	this actor, placed at (94.9515686, 30.4988117, 29.1664295)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a02	バッシュ2	cut_01_m	8	0x038C5	1605	-	dir	-2.94902396	this actor, turned to facing -2.94902396	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a02	バッシュ2	cut_01_m	9	0x038C8	1606	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2963,7 +2963,7 @@ naf_a02	BASH	△チュートリアルモーション開始	3	0x03BB3	1830	-	moti
 naf_a02	BASH	△チュートリアルモーション開始	4	0x03BB6	1831	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a02	BASH	△チュートリアルモーション開始	5	0x03BBC	1832	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	BASH	△チュートリアルモーション終了	1	0x03BBD	1837	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a02	BASH	△チュートリアルモーション終了	2	0x03BC3	1838	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a02	BASH	△チュートリアルモーション終了	2	0x03BC3	1838	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a02	BASH	△チュートリアルモーション終了	3	0x03BC6	1839	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a02	BASH	△チュートリアルモーション終了	4	0x03BC9	1840	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	BASH	停止	1	0x03BCA	1845	-	captureactor	-	-	-	-	-	-		01 verb-table.tsv
@@ -3510,7 +3510,7 @@ naf_b01	バッシュ_E	event_set	8	0x02408	762	not (sysIsdead2_49f(BASH) == 1)	m
 naf_b01	バッシュ_E	event_set	9	0x0240E	763	not (sysIsdead2_49f(BASH) == 1)	bindp2	0x03000002	model c17 (section 12 entry 2, bound id 0x630011)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 naf_b01	バッシュ_E	event_set	10	0x02414	764	not (sysIsdead2_49f(BASH) == 1)	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	バッシュ_E	event_set	11	0x02417	765	not (sysIsdead2_49f(BASH) == 1)	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b01	バッシュ_E	event_set	12	0x02420	766	not (sysIsdead2_49f(BASH) == 1)	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_b01	バッシュ_E	event_set	12	0x02420	766	not (sysIsdead2_49f(BASH) == 1)	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b01	バッシュ_E	event_set	13	0x02423	768	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	バッシュ_E	パクオン	1	0x02427	773	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_b01	バッシュ_E	パクオン	2	0x0242D	774	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -3975,7 +3975,7 @@ naf_b02	バッシュ_E	event_set	12	0x048E4	2595	not (sysIsdead2_49f(BASH) == 1)
 naf_b02	バッシュ_E	event_set	13	0x048EA	2596	not (sysIsdead2_49f(BASH) == 1)	dir	3.1268661	this actor, turned to facing 3.1268661	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_b02	バッシュ_E	event_set	14	0x048F0	2597	not (sysIsdead2_49f(BASH) == 1)	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	バッシュ_E	event_set	15	0x048F3	2598	not (sysIsdead2_49f(BASH) == 1)	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b02	バッシュ_E	event_set	16	0x048FC	2599	not (sysIsdead2_49f(BASH) == 1)	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_b02	バッシュ_E	event_set	16	0x048FC	2599	not (sysIsdead2_49f(BASH) == 1)	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b02	バッシュ_E	event_set	17	0x04902	2600	not (sysIsdead2_49f(BASH) == 1)	fadein	15	the screen fade, in	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_b02	バッシュ_E	event_set	18	0x04905	2602	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	バッシュ_E	event_end	1	0x0490D	2607	-	if	local_var_s18f1_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4689,7 +4689,7 @@ naf_b04	map_ダミーＰＣ	アイテム１	2	0x0247A	1156	-	turn_62	mp_map_set_
 naf_b04	map_ダミーＰＣ	アイテム１	3	0x0247D	1157	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	アイテム１	4	0x02483	1158	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	アイテム１	5	0x02489	1159	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	map_ダミーＰＣ	アイテム１	6	0x02492	1160	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_b04	map_ダミーＰＣ	アイテム１	6	0x02492	1160	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b04	map_ダミーＰＣ	アイテム１	7	0x02495	1161	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	アイテム１	8	0x02498	1162	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	アイテム２	1	0x0249C	1167	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4703,7 +4703,7 @@ naf_b04	map_ダミーＰＣ	ギミックアタック	3	0x024BB	1178	-	turn_62	mp
 naf_b04	map_ダミーＰＣ	ギミックアタック	4	0x024BE	1179	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック	5	0x024C4	1180	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック	6	0x024CA	1181	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	map_ダミーＰＣ	ギミックアタック	7	0x024D0	1182	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_b04	map_ダミーＰＣ	ギミックアタック	7	0x024D0	1182	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b04	map_ダミーＰＣ	ギミックアタック	8	0x024D3	1183	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック	9	0x024DD	1184	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	ギミックアタック	10	0x024E3	1186	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4721,7 +4721,7 @@ naf_b04	map_ダミーＰＣ	ギミックアタック１	3	0x02517	1202	-	turn_62
 naf_b04	map_ダミーＰＣ	ギミックアタック１	4	0x0251A	1203	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック１	5	0x02520	1204	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック１	6	0x02526	1205	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	map_ダミーＰＣ	ギミックアタック１	7	0x0252C	1206	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_b04	map_ダミーＰＣ	ギミックアタック１	7	0x0252C	1206	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b04	map_ダミーＰＣ	ギミックアタック１	8	0x0252F	1207	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック１	9	0x02539	1208	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	ギミックアタック１	10	0x0253F	1210	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4740,7 +4740,7 @@ naf_b04	map_ダミーＰＣ	ギミックアタック1	3	0x02574	1231	-	turn_62	m
 naf_b04	map_ダミーＰＣ	ギミックアタック1	4	0x02577	1232	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック1	5	0x0257D	1233	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック1	6	0x02583	1234	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	map_ダミーＰＣ	ギミックアタック1	7	0x02589	1235	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_b04	map_ダミーＰＣ	ギミックアタック1	7	0x02589	1235	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b04	map_ダミーＰＣ	ギミックアタック1	8	0x0258C	1236	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック1	9	0x02596	1237	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	ギミックアタック1	10	0x0259C	1239	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4791,7 +4791,7 @@ naf_b04	map_ダミーＰＣ	ギミックアタックxyz	3	0x02679	1308	-	turn_62
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz	4	0x0267C	1309	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz	5	0x02682	1310	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz	6	0x02688	1311	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	map_ダミーＰＣ	ギミックアタックxyz	7	0x0268E	1312	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_b04	map_ダミーＰＣ	ギミックアタックxyz	7	0x0268E	1312	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz	8	0x02691	1313	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz	9	0x0269B	1314	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz	10	0x026A1	1316	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4810,7 +4810,7 @@ naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	4	0x026E1	1333	-	turn
 naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	5	0x026E4	1334	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	6	0x026EA	1335	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	7	0x026F0	1336	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	8	0x026F6	1337	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	8	0x026F6	1337	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	9	0x026F9	1338	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	10	0x02703	1339	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	ギミックアタック１xyz	11	0x02709	1341	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4830,7 +4830,7 @@ naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	4	0x0274A	1363	-	turn_6
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	5	0x0274D	1364	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	6	0x02753	1365	-	setforcefight	-1	argument 1: the stance motion to play once the calling actor has drawn its weapon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	7	0x02759	1366	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	8	0x0275F	1367	-	stdmotionplay	0x0100001c	this actor's standard motion 0x0100001c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	8	0x0275F	1367	-	stdmotionplay	0x0100001c	this actor's standard motion entry 28 of 0x01EFE9D0: render event 0x104A, slot 74 `field_attack`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	9	0x02762	1368	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	10	0x0276C	1369	-	if	mp_map_set_hitse != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	ギミックアタックxyz1	11	0x02772	1371	mp_map_set_hitse != -1	mapsoundplay	mp_map_set_hitse	argument 1: the index of a sound in the current map's sound list (the map pack's slot-10 list bound at 0x022CBAF8, 0x00362F60)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4847,7 +4847,7 @@ naf_b04	map_ダミーＰＣ	アイテム１xyz	1	0x0279B	1390	-	capturepc	-1	the
 naf_b04	map_ダミーＰＣ	アイテム１xyz	2	0x027AB	1391	-	rlookat_257	mp_map_set_x, (mp_map_set_y + -1.20000005), mp_map_set_z	argument 1: the x of the world point the calling actor's head turns to look at / argument 2: the y (height) of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	アイテム１xyz	3	0x027B7	1392	-	turn	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the world point the calling actor turns to face (mp_map_set_x, the map jump's set point, in 1,389 of the 1,799 calls) / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; x, y and z are kept at scratch +0x04 to +0x0C and the target heading at +0x00	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	アイテム１xyz	4	0x027BA	1393	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	map_ダミーＰＣ	アイテム１xyz	5	0x027C3	1394	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion 0x0100001b	-	float 6 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_b04	map_ダミーＰＣ	アイテム１xyz	5	0x027C3	1394	-	stdmotionplay_2c2	0x0100001b, 6	this actor's standard motion entry 27 of 0x01EFE9D0: render event 0x1015, slot 21 `field_item`	-	float 6 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b04	map_ダミーＰＣ	アイテム１xyz	6	0x027C6	1395	-	stdmotioneventsync	-	waits for the calling actor's motion to reach its event mark	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	map_ダミーＰＣ	アイテム１xyz	7	0x027C9	1396	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	アイテム２xyz	1	0x027CD	1401	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8545,7 +8545,7 @@ naf_a0201	Rex	model_read	1	0x02F6D	1721	-	modelread	0x03000001	argument 1: the m
 naf_a0201	Rex	model_read	2	0x02F73	1722	-	modelreadsync	0x03000001	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Rex	model_read	3	0x02F76	1723	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Rex	ready	1	0x02F7A	1728	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-naf_a0201	Rex	ready	2	0x02F80	1729	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Rex	ready	2	0x02F80	1729	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Rex	ready	3	0x02F83	1730	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Rex	ready	4	0x02F86	1731	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Rex	bind	1	0x02F8A	1736	-	bindh	0x03000001	argument 1: the model to attach to the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8604,7 +8604,7 @@ naf_a0201	Rex	cut02	5	0x03090	1804	-	bonecalcforce	-1	argument 1: how many sub-s
 naf_a0201	Rex	cut02	6	0x03093	1805	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Rex	cut03	1	0x03094	1810	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Rex	cut03	2	0x03097	1811	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	Rex	cut03	3	0x0309D	1812	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Rex	cut03	3	0x0309D	1812	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Rex	cut03	4	0x030A3	1813	-	setforcerelax	0	argument 1: whether the calling actor, once its weapon is put away, plays the standard motion 0x301B	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Rex	cut03	5	0x030A9	1814	-	setprojectionshadow	0	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Rex	cut03	6	0x030AC	1815	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8674,7 +8674,7 @@ naf_a0201	GuestBasch	cut00	2	0x031DD	1954	-	setcharfogstatus	0	-	-	-	-	-		01 ver
 naf_a0201	GuestBasch	cut00	3	0x031E0	1955	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	GuestBasch	cut00	4	0x031E3	1956	-	lookat_maxvelr_limit_unlock	-	-	-	-	-	-		01 verb-table.tsv
 naf_a0201	GuestBasch	cut00	5	0x031EF	1957	-	rlookatrt_4c7	0, 0, 0	-	-	-	-	-		01 verb-table.tsv
-naf_a0201	GuestBasch	cut00	6	0x031F8	1958	-	stdmotionplay_2c2	0x01000000, 3	this actor's standard motion 0x01000000	-	float 3 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a0201	GuestBasch	cut00	6	0x031F8	1958	-	stdmotionplay_2c2	0x01000000, 3	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 3 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	GuestBasch	cut00	7	0x03207	1959	-	rmove_43	97.1235886, 24.9998951, 46.5876579, 0.155660003	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	GuestBasch	cut00	8	0x0320A	1960	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	GuestBasch	cut00	9	0x0320D	1961	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8691,7 +8691,7 @@ naf_a0201	GuestBasch	cut05	4	0x03237	1983	-	return	-	-	-	-	-	-	resolved	01 ../Sc
 naf_a0201	GuestBasch	cut21	1	0x0323B	1988	-	captureactor_367	0x03000005	the zone actor named by tag-3 reference 0x03000005	-	-	-	-		01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	GuestBasch	cut21	2	0x0323E	1989	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	GuestBasch	cut21	3	0x03241	1990	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	GuestBasch	cut41	1	0x03245	1995	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	GuestBasch	cut41	1	0x03245	1995	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	GuestBasch	cut41	2	0x0324B	1996	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	GuestBasch	cut41	3	0x03257	1997	-	setpos	96.8379974, 25, 80.3700027	this actor, placed at (96.8379974, 25, 80.3700027)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	GuestBasch	cut41	4	0x0325D	1998	-	dir	3.31612587	this actor, turned to facing 3.31612587	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -8715,7 +8715,7 @@ naf_a0201	GuestBasch	release01	4	0x032B3	2035	-	usemapid	1	argument 1: whether t
 naf_a0201	GuestBasch	release01	5	0x032B6	2036	-	bindhoff	-	the calling actor's head slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	GuestBasch	release01	6	0x032BC	2037	-	setlod	-1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	GuestBasch	release01	7	0x032C8	2038	-	setpos	98.6689987, 25, 88.6100006	this actor, placed at (98.6689987, 25, 88.6100006)	-	-	-	-	resolved	0x0034EBC0 (read here)
-naf_a0201	GuestBasch	release01	8	0x032CE	2039	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	GuestBasch	release01	8	0x032CE	2039	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	GuestBasch	release01	9	0x032D1	2040	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	GuestBasch	release01	10	0x032D4	2041	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	GuestBasch	release01	11	0x032D7	2042	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -8807,7 +8807,7 @@ naf_a0201	Basch	cut02	14	0x0354D	2171	loop from file_var_s21_6 = 0 while file_va
 naf_a0201	Basch	cut02	15	0x03553	2172	loop from file_var_s21_6 = 0 while file_var_s21_6 <= file_var_s21_1, then file_var_s21_6 = (file_var_s21_6 + 1) each pass	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	Basch	cut02	16	0x0355C	2174	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	Basch	cut02	17	0x0355F	2175	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	Basch	cut03	1	0x03563	2180	-	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Basch	cut03	1	0x03563	2180	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Basch	cut03	2	0x03566	2181	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Basch	cut03	3	0x03569	2182	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Basch	cut03	4	0x0356F	2183	-	wait	7	-	-	7 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -8881,7 +8881,7 @@ naf_a0201	Soldier01	cut00	1	0x036CE	2298	-	showshadow	-	the calling actor's grou
 naf_a0201	Soldier01	cut00	2	0x036D4	2299	-	captureactor_367	0x0300000a	the zone actor named by tag-3 reference 0x0300000a	-	-	-	-		01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier01	cut00	3	0x036D7	2300	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier01	cut00	4	0x036DA	2301	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	Soldier01	cut00	5	0x036E3	2302	-	stdmotionplay_2c2	0x01000000, 3	this actor's standard motion 0x01000000	-	float 3 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a0201	Soldier01	cut00	5	0x036E3	2302	-	stdmotionplay_2c2	0x01000000, 3	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 3 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier01	cut00	6	0x036F2	2303	-	rmove_43	97.1235886, 24.9998951, 46.5876579, 0.153333336	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier01	cut00	7	0x036F5	2304	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier01	cut01	1	0x036F9	2309	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8907,7 +8907,7 @@ naf_a0201	Soldier01	cut01	20	0x03765	2328	-	return	-	-	-	-	-	-	resolved	01 ../Sc
 naf_a0201	Soldier01	cut02	1	0x03766	2333	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier01	cut02	2	0x0376C	2334	-	setprojectionshadow	0	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier01	cut02	3	0x0376F	2335	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	Soldier01	cut04	1	0x03773	2340	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier01	cut04	1	0x03773	2340	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier01	cut04	2	0x0377F	2341	-	setpos	93.6740036, 25, 95.3349991	this actor, placed at (93.6740036, 25, 95.3349991)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier01	cut04	3	0x03782	2342	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier01	cut04	4	0x03785	2343	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8923,7 +8923,7 @@ naf_a0201	Soldier01	cut21	2	0x037B2	2364	-	usecharhit	0	argument 1: whether the 
 naf_a0201	Soldier01	cut21	3	0x037B8	2365	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier01	cut21	4	0x037BE	2366	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier01	cut21	5	0x037C1	2367	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-naf_a0201	Soldier01	cut21	6	0x037C7	2368	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier01	cut21	6	0x037C7	2368	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier01	cut21	7	0x037D3	2369	-	setpos	95.4629974, 25, 81.7480011	this actor, placed at (95.4629974, 25, 81.7480011)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier01	cut21	8	0x037D9	2370	-	dir	3.0543263	this actor, turned to facing 3.0543263	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a0201	Soldier01	cut21	9	0x037DC	2371	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -8936,7 +8936,7 @@ naf_a0201	Soldier01	cut23	2	0x03802	2385	-	dir	3.05956221	this actor, turned to 
 naf_a0201	Soldier01	cut23	3	0x03805	2386	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier01	breakarts	1	0x03806	2391	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier01	breakarts	2	0x03809	2392	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	Soldier01	cut41	1	0x0380D	2397	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier01	cut41	1	0x0380D	2397	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier01	cut41	2	0x03819	2398	-	setpos	94.7009964, 25, 81.3399963	this actor, placed at (94.7009964, 25, 81.3399963)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier01	cut41	3	0x0381F	2399	-	dir	2.72096825	this actor, turned to facing 2.72096825	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a0201	Soldier01	cut41	4	0x03822	2400	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -8961,7 +8961,7 @@ naf_a0201	Soldier01	release	7	0x0387E	2438	-	return	-	-	-	-	-	-	resolved	01 ../S
 naf_a0201	Soldier02	init	1	0x0387F	2447	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier02	cut00	1	0x03883	2452	-	captureactor_367	0x03000026	the zone actor named by tag-3 reference 0x03000026	-	-	-	-		01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier02	cut00	2	0x03886	2453	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-naf_a0201	Soldier02	cut00	3	0x0388F	2454	-	stdmotionplay_2c2	0x01000000, 3	this actor's standard motion 0x01000000	-	float 3 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a0201	Soldier02	cut00	3	0x0388F	2454	-	stdmotionplay_2c2	0x01000000, 3	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 3 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier02	cut00	4	0x0389E	2455	-	rmove_43	97.1235886, 24.9998951, 46.5876579, 0.153333336	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier02	cut00	5	0x038A1	2456	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier02	cut01	1	0x038A5	2461	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8987,7 +8987,7 @@ naf_a0201	Soldier02	cut02	1	0x0390C	2484	-	hide	-	this actor's body, hidden	-	-	
 naf_a0201	Soldier02	cut02	2	0x03912	2485	-	setprojectionshadow	0	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier02	cut02	3	0x03915	2486	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier02	cut04	1	0x03919	2491	-	motionstartframe	10	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	Soldier02	cut04	2	0x0391F	2492	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier02	cut04	2	0x0391F	2492	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier02	cut04	3	0x0392B	2493	-	setpos	96.177002, 25, 98.4150009	this actor, placed at (96.177002, 25, 98.4150009)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier02	cut04	4	0x0392E	2494	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier02	cut04	5	0x03931	2495	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9003,7 +9003,7 @@ naf_a0201	Soldier02	cut21	2	0x0395E	2516	-	usecharhit	0	argument 1: whether the 
 naf_a0201	Soldier02	cut21	3	0x03964	2517	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier02	cut21	4	0x0396A	2518	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier02	cut21	5	0x0396D	2519	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-naf_a0201	Soldier02	cut21	6	0x03973	2520	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier02	cut21	6	0x03973	2520	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier02	cut21	7	0x0397F	2521	-	setpos	98.9509125, 24.9999866, 79.0856781	this actor, placed at (98.9509125, 24.9999866, 79.0856781)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier02	cut21	8	0x03985	2522	-	dir	3.00196624	this actor, turned to facing 3.00196624	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a0201	Soldier02	cut21	9	0x03988	2523	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9015,7 +9015,7 @@ naf_a0201	Soldier02	cut23	1	0x039A8	2536	-	setpos	95.7369995, 25, 78.5339966	thi
 naf_a0201	Soldier02	cut23	2	0x039AB	2537	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier02	breakarts	1	0x039AC	2542	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier02	breakarts	2	0x039AF	2543	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	Soldier02	cut41	1	0x039B3	2548	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier02	cut41	1	0x039B3	2548	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier02	cut41	2	0x039BF	2549	-	setpos	98.1559982, 25, 78.8410034	this actor, placed at (98.1559982, 25, 78.8410034)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier02	cut41	3	0x039C5	2550	-	dir	3.00196624	this actor, turned to facing 3.00196624	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a0201	Soldier02	cut41	4	0x039C8	2551	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9039,7 +9039,7 @@ naf_a0201	Soldier03	init	1	0x03A1F	2596	-	return	-	-	-	-	-	-	resolved	01 ../Scri
 naf_a0201	Soldier03	cut00	1	0x03A23	2601	-	captureactor_367	0x03000042	the zone actor named by tag-3 reference 0x03000042	-	-	-	-		01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier03	cut00	2	0x03A26	2602	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier03	cut00	3	0x03A29	2603	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	Soldier03	cut00	4	0x03A32	2604	-	stdmotionplay_2c2	0x01000000, 3	this actor's standard motion 0x01000000	-	float 3 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_a0201	Soldier03	cut00	4	0x03A32	2604	-	stdmotionplay_2c2	0x01000000, 3	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 3 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier03	cut00	5	0x03A41	2605	-	rmove_43	97.1235886, 24.9998951, 46.5876579, 0.153333336	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier03	cut00	6	0x03A44	2606	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier03	cut01	1	0x03A48	2611	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9066,7 +9066,7 @@ naf_a0201	Soldier03	cut02	1	0x03AB5	2635	-	hide	-	this actor's body, hidden	-	-	
 naf_a0201	Soldier03	cut02	2	0x03ABB	2636	-	setprojectionshadow	0	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier03	cut02	3	0x03ABE	2637	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier03	cut04	1	0x03AC2	2642	-	motionstartframe	30	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	Soldier03	cut04	2	0x03AC8	2643	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier03	cut04	2	0x03AC8	2643	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier03	cut04	3	0x03AD4	2644	-	setpos	100.605003, 25, 97.0680008	this actor, placed at (100.605003, 25, 97.0680008)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier03	cut04	4	0x03AD7	2645	-	showw	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier03	cut04	5	0x03ADA	2646	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9082,7 +9082,7 @@ naf_a0201	Soldier03	cut21	2	0x03B04	2667	-	show	-	this actor's body, shown	-	-	-
 naf_a0201	Soldier03	cut21	3	0x03B0A	2668	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier03	cut21	4	0x03B10	2669	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier03	cut21	5	0x03B16	2670	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	Soldier03	cut21	6	0x03B1C	2671	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier03	cut21	6	0x03B1C	2671	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier03	cut21	7	0x03B28	2672	-	setpos	100.477997, 25, 72.5930023	this actor, placed at (100.477997, 25, 72.5930023)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier03	cut21	8	0x03B2E	2673	-	dir	3.35103226	this actor, turned to facing 3.35103226	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a0201	Soldier03	cut21	9	0x03B31	2674	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9093,7 +9093,7 @@ naf_a0201	Soldier03	cut23	1	0x03B4B	2686	-	setpos	98.939003, 25, 83.5240021	this
 naf_a0201	Soldier03	cut23	2	0x03B4E	2687	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier03	breakarts	1	0x03B4F	2692	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier03	breakarts	2	0x03B52	2693	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	Soldier03	cut41	1	0x03B56	2698	-	stdmotionplay	0x0100000d	this actor's standard motion 0x0100000d	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier03	cut41	1	0x03B56	2698	-	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier03	cut41	2	0x03B62	2699	-	setpos	98.9889984, 25, 83.5240021	this actor, placed at (98.9889984, 25, 83.5240021)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier03	cut41	3	0x03B68	2700	-	dir	3.35103226	this actor, turned to facing 3.35103226	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a0201	Soldier03	cut41	4	0x03B6B	2701	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9104,7 +9104,7 @@ naf_a0201	Soldier03	cut43	1	0x03B7C	2713	-	hide	-	this actor's body, hidden	-	-	
 naf_a0201	Soldier03	cut43	2	0x03B7F	2714	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier03	cut44	1	0x03B80	2719	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	Soldier03	cut44	2	0x03B83	2720	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	Soldier03	cut45	1	0x03B87	2725	-	stdmotionplay	0x0100000c	this actor's standard motion 0x0100000c	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_a0201	Soldier03	cut45	1	0x03B87	2725	-	stdmotionplay	0x0100000c	this actor's standard motion entry 12 of 0x01EFE9D0: render event 0x3001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_a0201	Soldier03	cut45	2	0x03B93	2726	-	setpos	98.9889984, 25, 83.5240021	this actor, placed at (98.9889984, 25, 83.5240021)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_a0201	Soldier03	cut45	3	0x03B96	2727	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier03	release	1	0x03B97	2732	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9930,7 +9930,7 @@ naf_b0100	DAL_SOLDIER_A	カット３	3	0x02112	1403	scratch2_var_1 == 0	motionca
 naf_b0100	DAL_SOLDIER_A	カット３	4	0x0211E	1404	scratch2_var_1 == 0	setpos	42.4863243, 0, 77.9931793	this actor, placed at (42.4863243, 0, 77.9931793)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_b0100	DAL_SOLDIER_A	カット３	5	0x02124	1405	scratch2_var_1 == 0	bonecalcforce	30	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0100	DAL_SOLDIER_A	カット３	6	0x0212A	1406	scratch2_var_1 == 0	dir	0.28578499	this actor, turned to facing 0.28578499	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-naf_b0100	DAL_SOLDIER_A	カット３	7	0x02130	1407	scratch2_var_1 == 0	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_b0100	DAL_SOLDIER_A	カット３	7	0x02130	1407	scratch2_var_1 == 0	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b0100	DAL_SOLDIER_A	カット３	8	0x02133	1409	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0100	DAL_SOLDIER_A	終了	1	0x0213B	1414	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0100	DAL_SOLDIER_A	終了	2	0x02141	1416	scratch2_var_1 == 0	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10004,7 +10004,7 @@ naf_b0100	DAL_SOLDIER_B	カット３	3	0x022F7	1513	scratch2_var_2 == 0	motionca
 naf_b0100	DAL_SOLDIER_B	カット３	4	0x02303	1514	scratch2_var_2 == 0	setpos	45.4274979, 0, 78.0934296	this actor, placed at (45.4274979, 0, 78.0934296)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_b0100	DAL_SOLDIER_B	カット３	5	0x02309	1515	scratch2_var_2 == 0	bonecalcforce	30	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0100	DAL_SOLDIER_B	カット３	6	0x0230F	1516	scratch2_var_2 == 0	dir	-0.497945011	this actor, turned to facing -0.497945011	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-naf_b0100	DAL_SOLDIER_B	カット３	7	0x02315	1517	scratch2_var_2 == 0	stdmotionplay	0x01000000	this actor's standard motion 0x01000000	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+naf_b0100	DAL_SOLDIER_B	カット３	7	0x02315	1517	scratch2_var_2 == 0	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b0100	DAL_SOLDIER_B	カット３	8	0x02318	1519	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0100	DAL_SOLDIER_B	終了	1	0x02320	1524	-	if	scratch2_var_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0100	DAL_SOLDIER_B	終了	2	0x02326	1526	scratch2_var_2 == 0	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10531,10 +10531,10 @@ naf_b0400	REX	カット４	7	0x01C81	884	-	return	-	-	-	-	-	-	resolved	01 ../Scr
 naf_b0400	REX	カット５	1	0x01C82	889	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	REX	カット５	2	0x01C8E	890	-	setpos	52.1280746, -3.35377908, 40.7060013	this actor, placed at (52.1280746, -3.35377908, 40.7060013)	-	-	-	-	resolved	0x0034EBC0 (read here)
 naf_b0400	REX	カット５	3	0x01C94	891	-	dir	1.27474296	this actor, turned to facing 1.27474296	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-naf_b0400	REX	カット５	4	0x01C9D	892	-	stdmotionplay_2c2	0x0100000d, 0	this actor's standard motion 0x0100000d	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_b0400	REX	カット５	4	0x01C9D	892	-	stdmotionplay_2c2	0x0100000d, 0	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b0400	REX	カット５	5	0x01CA0	893	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0400	REX	終了	1	0x01CA1	898	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
-naf_b0400	REX	終了	2	0x01CAA	899	-	stdmotionplay_2c2	0x0100000c, 0	this actor's standard motion 0x0100000c	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+naf_b0400	REX	終了	2	0x01CAA	899	-	stdmotionplay_2c2	0x0100000c, 0	this actor's standard motion entry 12 of 0x01EFE9D0: render event 0x3001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 naf_b0400	REX	終了	3	0x01CB0	900	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	REX	終了	4	0x01CB6	901	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	REX	終了	5	0x01CBC	902	-	setcharfogstatus	1	-	-	-	-	-		01 verb-table.tsv

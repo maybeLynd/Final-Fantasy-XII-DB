@@ -145,13 +145,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 6,519 |
-| empty | 304 |
+| `resolved` | 6,543 |
+| empty | 280 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its functions. In `bog_a0201` (event `133`), `監督.ナブレウス湿原C` starts scene cut 0,
 reads three models, hides the party and files `バインドオン` on `VAN`, `BALFLAIR` and `FRAN`, waiting for all three. At cut

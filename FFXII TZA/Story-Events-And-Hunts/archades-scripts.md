@@ -205,13 +205,13 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 77,758 |
-| empty | 4,696 |
+| `resolved` | 78,370 |
+| empty | 4,084 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for
-the step, for example the standard motion that `stdmotionplay` plays or the variable that receives a result, and `-`
-otherwise.
+the step, for example the variable that holds the standard motion `stdmotionplay` plays, or the variable that receives a
+result, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `alc_c0180` (event `732`), `プロデューサー.main` reads its
 models (`0x03000000` to `0x03000006`) and motion 1 of `alc_c0180.mot`, and waits while `scratch1_var_1` is 0. It then

@@ -17,10 +17,18 @@ for byte.
 
 ### The path of a list
 
-A list's key is `0x00674A00` of a path `event\<folder>\<name>` or `plan_map\<folder>\<name>` (`0x001B6350`). The
-`path` column gives the path that hashes to the key among 1,281 candidates: every `<folder>\<name>` pair of folder
-names under `plan_master/<lang>/event/` and `plan_master/<lang>/plan_map/` of the nine language trees, 346 of them
-`event`. No two candidates share a hash.
+A list's key is `0x00674A00` of a name (`0x001B6350`): for a `fontex_expand` or `fontex_subtitle` list a path
+`event\<folder>\<name>` or `plan_map\<folder>\<name>`, and for a `fontmonster` list `handbook_monster<NNN>.txt`.
+
+The `path` column gives the path that hashes to the key among 1,281 candidates: every `<folder>\<name>` pair of
+folder names under `plan_master/<lang>/event/` and `plan_master/<lang>/plan_map/` of the nine language trees, 346 of
+them `event`. No two candidates share a hash.
+
+The `fontmonster` keys are the hashes of `handbook_monster000.txt` onward, the font names of the Bestiary text
+bundles ([Handbook files](../Game-Files-And-Data-Tables/handbook-files.md)): 000 to 013 in `jp`, 000 to 006 in
+`kr` and `cn` and 000 to 005 in `ch`. The trees that use these fonts ship text bundles 000 to 010 (`in`), 000 to 003
+(`kr`) and 000 to 004 (`cn` and `ch`), so lists 011 to 013 of `jp`, 004 to 006 of `kr`, 005 and 006 of `cn` and 005
+of `ch` belong to no shipped bundle.
 
 | File | Lists | With no value | `event` path | `plan_map` path | No path |
 |---|---:|---:|---:|---:|---:|

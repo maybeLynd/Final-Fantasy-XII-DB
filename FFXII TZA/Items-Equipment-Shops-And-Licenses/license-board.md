@@ -16,10 +16,14 @@ addresses: "0x02EBF1A0, 0x00238260, 0x02EBF038, 0x00328990, 0x0055B3F0, 0x00556F
 ## Where it comes from
 
 The boards are the files `board_1.bin` to `board_12.bin`. Every language's file path table names them at indices
-71-82, and the old single board `license_board.bin`, a file of the same format, at index 70. Seven tables, those
-of the `us`, `uk`, `in`, `fr`, `de`, `es` and `it` languages, point at the copies in `test_battle/in/BinaryFile/`,
-and the three Asian tables at `test_battle/ch/BinaryFile/`; the two sets are identical. The copies in the `cn` and `kr` folders
-differ and are not named by any table.
+71-82, and the old single board `license_board.bin`, a file of the same format, at index 70. Nine tables, those of
+the Japanese, US, French, German, Italian, Spanish, UK, ASIA and IN languages, point at the copies in
+`test_battle/in/BinaryFile/`, and the Korean and the two Chinese tables at `test_battle/ch/BinaryFile/`; the two
+sets are identical. The copies in the `cn` and `kr` folders differ and are not named by any table.
+
+The `cn` and `kr` copies of each board file are byte-identical too. A `cn` or `kr` board differs from the read one in
+two cells only: it holds the Second Board, node 360 (`0x168`), in another square, and leaves the read board's Second
+Board square empty (`0xFFFF`).
 
 `BattleStorage_InitializeWorkArrays` clears the twelve board slots at `0x02EBF1A0` and asks `0x00238260(k)` for
 each board *k* from 0 to 11 (`0x002369E5`-`0x00236A24`). When slot *k* is empty, `0x00238260` requests file index
@@ -70,20 +74,20 @@ The board view `0x0055B3F0` reads the width and height as bytes and keeps each p
 
 ## Shipped data
 
-| Board | File | Job | Squares | Second Board at |
-|---:|---|---|---:|---|
-| 0 | `board_1.bin` | White Mage | 139 | row 9, column 14 |
-| 1 | `board_2.bin` | Uhlan | 132 | row 13, column 12 |
-| 2 | `board_3.bin` | Machinist | 128 | row 6, column 9 |
-| 3 | `board_4.bin` | Red Battlemage | 143 | row 8, column 7 |
-| 4 | `board_5.bin` | Knight | 138 | row 10, column 10 |
-| 5 | `board_6.bin` | Monk | 135 | row 5, column 13 |
-| 6 | `board_7.bin` | Time Battlemage | 136 | row 9, column 13 |
-| 7 | `board_8.bin` | Foebreaker | 137 | row 11, column 15 |
-| 8 | `board_9.bin` | Archer | 128 | row 15, column 12 |
-| 9 | `board_10.bin` | Black Mage | 138 | row 10, column 9 |
-| 10 | `board_11.bin` | Bushi | 134 | row 7, column 9 |
-| 11 | `board_12.bin` | Shikari | 138 | row 8, column 7 |
+| Board | File | Job | Squares | Second Board at | Second Board in the cn and kr copies |
+|---:|---|---|---:|---|---|
+| 0 | `board_1.bin` | White Mage | 139 | row 9, column 14 | row 4, column 18 |
+| 1 | `board_2.bin` | Uhlan | 132 | row 13, column 12 | row 5, column 17 |
+| 2 | `board_3.bin` | Machinist | 128 | row 6, column 9 | row 6, column 19 |
+| 3 | `board_4.bin` | Red Battlemage | 143 | row 8, column 7 | row 4, column 15 |
+| 4 | `board_5.bin` | Knight | 138 | row 10, column 10 | row 6, column 17 |
+| 5 | `board_6.bin` | Monk | 135 | row 5, column 13 | row 8, column 18 |
+| 6 | `board_7.bin` | Time Battlemage | 136 | row 9, column 13 | row 5, column 16 |
+| 7 | `board_8.bin` | Foebreaker | 137 | row 11, column 15 | row 12, column 17 |
+| 8 | `board_9.bin` | Archer | 128 | row 15, column 12 | row 8, column 17 |
+| 9 | `board_10.bin` | Black Mage | 138 | row 10, column 9 | row 8, column 15 |
+| 10 | `board_11.bin` | Bushi | 134 | row 7, column 9 | row 4, column 19 |
+| 11 | `board_12.bin` | Shikari | 138 | row 8, column 7 | row 5, column 15 |
 
 Every file is 1,160 bytes, magic `licd`, 24 by 24, and no node number appears twice on one board. The names are
 the node records' own name words.
@@ -99,6 +103,12 @@ line each: the board, its file and job, the row and column (0-23, row first, as 
 node number, and the node's name and LP cost from the node record (`+0x00` name word, `+0x04` LP;
 [Licenses](licenses.md)). Each board's square count and Second Board square in it agree with the table above.
 
+`license_board.bin`, the single 24 x 24 board at index 70, ships in `ch`, `cn`, `in` and `kr`, four identical
+1,160-byte copies. No call site requests index 70: the one kind-2 request `0x00384420` is reached only from the
+pack, board and text-group loads (`0x0038440A`, `0x0023837D`, `0x0023861E`). The
+board the game reads in its place is the pack's entry `+0x11C`, which the battle-pack load stores at `0x02EBF200`;
+the file equals that entry for its 1,160 bytes.
+
 ## Loader behaviour
 
 1. `BattleStorage_InitializeWorkArrays` zeroes the twelve slots and requests each board once (`0x002369E5`-`0x00236A24`).
@@ -110,7 +120,9 @@ node number, and the node's name and LP cost from the node record (`+0x00` name 
 
 - A board is plain data: change a cell to move or add a square, `0xFFFF` to remove one. Every node number must
   stay below the node table's count, 361.
-- Edit the `in` and `ch` copies together; the `cn` and `kr` copies are never loaded.
+- Edit the `in` and `ch` copies together; the `cn` and `kr` copies are never loaded. Each board is read at the
+  size its language's size table gives, 1,160 bytes, so a board of another size needs index `0x47 +` board changed
+  in every `.fst` ([File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)).
 - The loader accepts any four bytes in place of `licd`.
 
 ## Related

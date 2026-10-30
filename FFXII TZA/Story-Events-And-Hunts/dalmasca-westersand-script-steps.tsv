@@ -5461,7 +5461,7 @@ wdl_a06	砂漠の商人	talk	2	0x078A7	3947	-	case	lt(0x049c)	-	-	-	-	-	resolved
 wdl_a06	砂漠の商人	talk	3	0x078AA	3948	シナリオフラグ = lt(0x049c)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 wdl_a06	砂漠の商人	talk	4	0x078AD	3949	シナリオフラグ = lt(0x049c)	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 wdl_a06	砂漠の商人	talk	5	0x078B3	3950	シナリオフラグ = lt(0x049c)	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠の商人	talk	6	0x078B9	3951	シナリオフラグ = lt(0x049c)	stdmotionplay	0x01000002	this actor's standard motion 0x01000002	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+wdl_a06	砂漠の商人	talk	6	0x078B9	3951	シナリオフラグ = lt(0x049c)	stdmotionplay	0x01000002	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠の商人	talk	7	0x078BF	3952	シナリオフラグ = lt(0x049c)	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	8	0x078C5	3953	シナリオフラグ = lt(0x049c)	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 wdl_a06	砂漠の商人	talk	9	0x078CB	3954	シナリオフラグ = lt(0x049c)	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -5490,13 +5490,13 @@ wdl_a06	砂漠の商人	talk	31	0x0798B	3983	シナリオフラグ = lt(0x049c)	
 wdl_a06	砂漠の商人	talk	32	0x07991	3984	シナリオフラグ = lt(0x049c)	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	33	0x07997	3985	シナリオフラグ = lt(0x049c)	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	34	0x0799D	3986	シナリオフラグ = lt(0x049c)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠の商人	talk	35	0x079A6	3987	シナリオフラグ = lt(0x049c)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠の商人	talk	35	0x079A6	3987	シナリオフラグ = lt(0x049c)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠の商人	talk	36	0x079A9	3988	シナリオフラグ = lt(0x049c)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠の商人	talk	37	0x079AC	3989	-	case	lte(0x05f0)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠の商人	talk	38	0x079AF	3990	シナリオフラグ = lte(0x05f0)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 wdl_a06	砂漠の商人	talk	39	0x079B2	3991	シナリオフラグ = lte(0x05f0)	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 wdl_a06	砂漠の商人	talk	40	0x079B8	3992	シナリオフラグ = lte(0x05f0)	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠の商人	talk	41	0x079BE	3993	シナリオフラグ = lte(0x05f0)	stdmotionplay	0x01000002	this actor's standard motion 0x01000002	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+wdl_a06	砂漠の商人	talk	41	0x079BE	3993	シナリオフラグ = lte(0x05f0)	stdmotionplay	0x01000002	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠の商人	talk	42	0x079C4	3994	シナリオフラグ = lte(0x05f0)	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	43	0x079CA	3995	シナリオフラグ = lte(0x05f0)	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 wdl_a06	砂漠の商人	talk	44	0x079D0	3996	シナリオフラグ = lte(0x05f0)	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -5525,13 +5525,13 @@ wdl_a06	砂漠の商人	talk	66	0x07A90	4025	シナリオフラグ = lte(0x05f0)
 wdl_a06	砂漠の商人	talk	67	0x07A96	4026	シナリオフラグ = lte(0x05f0)	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	68	0x07A9C	4027	シナリオフラグ = lte(0x05f0)	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	69	0x07AA2	4028	シナリオフラグ = lte(0x05f0)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠の商人	talk	70	0x07AAB	4029	シナリオフラグ = lte(0x05f0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠の商人	talk	70	0x07AAB	4029	シナリオフラグ = lte(0x05f0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠の商人	talk	71	0x07AAE	4030	シナリオフラグ = lte(0x05f0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠の商人	talk	72	0x07AB1	4031	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠の商人	talk	73	0x07AB4	4032	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 wdl_a06	砂漠の商人	talk	74	0x07AB7	4033	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 wdl_a06	砂漠の商人	talk	75	0x07ABD	4034	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠の商人	talk	76	0x07AC3	4035	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	stdmotionplay	0x01000002	this actor's standard motion 0x01000002	-	-	-	-		0x0034E110, 0x003580C0 (read here)
+wdl_a06	砂漠の商人	talk	76	0x07AC3	4035	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	stdmotionplay	0x01000002	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠の商人	talk	77	0x07AC9	4036	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	78	0x07ACF	4037	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 wdl_a06	砂漠の商人	talk	79	0x07AD5	4038	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -5560,7 +5560,7 @@ wdl_a06	砂漠の商人	talk	101	0x07B95	4067	シナリオフラグ is none of l
 wdl_a06	砂漠の商人	talk	102	0x07B9B	4068	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	103	0x07BA1	4069	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠の商人	talk	104	0x07BA7	4070	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠の商人	talk	105	0x07BB0	4071	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠の商人	talk	105	0x07BB0	4071	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠の商人	talk	106	0x07BB3	4072	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠の商人	talk	107	0x07BC5	4074	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	ショップ_GADGET	init	1	0x07BC6	4083	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5589,7 +5589,7 @@ wdl_a06	砂漠のチョコボ	バインド	9	0x07C4F	4121	-	fetchambient	-	-	-	-
 wdl_a06	砂漠のチョコボ	バインド	10	0x07C55	4122	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のチョコボ	バインド	11	0x07C5B	4123	-	stdmotionread	1	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のチョコボ	バインド	12	0x07C5E	4124	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-wdl_a06	砂漠のチョコボ	バインド	13	0x07C67	4125	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のチョコボ	バインド	13	0x07C67	4125	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のチョコボ	バインド	14	0x07C6D	4126	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のチョコボ	バインド	15	0x07C7F	4127	-	rgbatrans	1, 1, 1, 0, 0	this actor's script colour channels 6 to 9: red 1, green 1, blue 1, alpha 0	-	over 0 frames plus one	-	-	resolved	17 ../Graphics/character-fades.md
 wdl_a06	砂漠のチョコボ	バインド	16	0x07C82	4128	-	istouchucsync	-	the calling actor and the controlled character	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5608,7 +5608,7 @@ wdl_a06	砂漠のバンガ	バインド	7	0x07CC9	4152	-	showshadow	-	the callin
 wdl_a06	砂漠のバンガ	バインド	8	0x07CD5	4153	-	bindp2_d4	0x03000008, 2, 2	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	バインド	9	0x07CDB	4154	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	バインド	10	0x07CDE	4155	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-wdl_a06	砂漠のバンガ	バインド	11	0x07CE7	4156	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ	バインド	11	0x07CE7	4156	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ	バインド	12	0x07CF9	4157	-	rgbatrans	1, 1, 1, 0, 0	this actor's script colour channels 6 to 9: red 1, green 1, blue 1, alpha 0	-	over 0 frames plus one	-	-	resolved	17 ../Graphics/character-fades.md
 wdl_a06	砂漠のバンガ	バインド	13	0x07CFC	4158	-	istouchucsync	-	the calling actor and the controlled character	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	バインド	14	0x07CFF	4159	-	clearhidecomplete	-	the calling actor's model visibility	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5648,7 +5648,7 @@ wdl_a06	砂漠のバンガ	talk	7	0x07E68	4223	シナリオフラグ = lt(0x049c
 wdl_a06	砂漠のバンガ	talk	8	0x07E6E	4224	シナリオフラグ = lt(0x049c)	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 wdl_a06	砂漠のバンガ	talk	9	0x07E72	4225	シナリオフラグ = lt(0x049c)	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talk	10	0x07E75	4227	シナリオフラグ = lt(0x049c); isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-wdl_a06	砂漠のバンガ	talk	11	0x07E7E	4228	シナリオフラグ = lt(0x049c); isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ	talk	11	0x07E7E	4228	シナリオフラグ = lt(0x049c); isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ	talk	12	0x07E87	4232	シナリオフラグ = lt(0x049c); not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 wdl_a06	砂漠のバンガ	talk	13	0x07E8B	4234	シナリオフラグ = lt(0x049c)	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 wdl_a06	砂漠のバンガ	talk	14	0x07E91	4235	シナリオフラグ = lt(0x049c)	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -5663,7 +5663,7 @@ wdl_a06	砂漠のバンガ	talk	22	0x07EC1	4243	シナリオフラグ = lt(0x049
 wdl_a06	砂漠のバンガ	talk	23	0x07EC7	4244	シナリオフラグ = lt(0x049c)	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	talk	24	0x07ECD	4245	シナリオフラグ = lt(0x049c)	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	talk	25	0x07ED3	4246	シナリオフラグ = lt(0x049c)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠のバンガ	talk	26	0x07EDC	4247	シナリオフラグ = lt(0x049c)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ	talk	26	0x07EDC	4247	シナリオフラグ = lt(0x049c)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ	talk	27	0x07EDF	4248	シナリオフラグ = lt(0x049c)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talk	28	0x07EE2	4249	-	case	lte(0x05f0)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talk	29	0x07EE5	4250	シナリオフラグ = lte(0x05f0)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -5674,7 +5674,7 @@ wdl_a06	砂漠のバンガ	talk	33	0x07EFA	4254	シナリオフラグ = lte(0x05
 wdl_a06	砂漠のバンガ	talk	34	0x07F00	4255	シナリオフラグ = lte(0x05f0)	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 wdl_a06	砂漠のバンガ	talk	35	0x07F04	4256	シナリオフラグ = lte(0x05f0)	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talk	36	0x07F07	4258	シナリオフラグ = lte(0x05f0); isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-wdl_a06	砂漠のバンガ	talk	37	0x07F10	4259	シナリオフラグ = lte(0x05f0); isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ	talk	37	0x07F10	4259	シナリオフラグ = lte(0x05f0); isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ	talk	38	0x07F19	4263	シナリオフラグ = lte(0x05f0); not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 wdl_a06	砂漠のバンガ	talk	39	0x07F1D	4265	シナリオフラグ = lte(0x05f0)	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 wdl_a06	砂漠のバンガ	talk	40	0x07F23	4266	シナリオフラグ = lte(0x05f0)	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -5689,7 +5689,7 @@ wdl_a06	砂漠のバンガ	talk	48	0x07F53	4274	シナリオフラグ = lte(0x05
 wdl_a06	砂漠のバンガ	talk	49	0x07F59	4275	シナリオフラグ = lte(0x05f0)	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	talk	50	0x07F5F	4276	シナリオフラグ = lte(0x05f0)	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	talk	51	0x07F65	4277	シナリオフラグ = lte(0x05f0)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠のバンガ	talk	52	0x07F6E	4278	シナリオフラグ = lte(0x05f0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ	talk	52	0x07F6E	4278	シナリオフラグ = lte(0x05f0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ	talk	53	0x07F71	4279	シナリオフラグ = lte(0x05f0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talk	54	0x07F74	4280	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talk	55	0x07F77	4281	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -5700,7 +5700,7 @@ wdl_a06	砂漠のバンガ	talk	59	0x07F8C	4285	シナリオフラグ is none of
 wdl_a06	砂漠のバンガ	talk	60	0x07F92	4286	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 wdl_a06	砂漠のバンガ	talk	61	0x07F96	4287	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talk	62	0x07F99	4289	シナリオフラグ is none of lt(0x049c), lte(0x05f0); isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-wdl_a06	砂漠のバンガ	talk	63	0x07FA2	4290	シナリオフラグ is none of lt(0x049c), lte(0x05f0); isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ	talk	63	0x07FA2	4290	シナリオフラグ is none of lt(0x049c), lte(0x05f0); isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ	talk	64	0x07FAB	4294	シナリオフラグ is none of lt(0x049c), lte(0x05f0); not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 wdl_a06	砂漠のバンガ	talk	65	0x07FAF	4296	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 wdl_a06	砂漠のバンガ	talk	66	0x07FB5	4297	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -5715,7 +5715,7 @@ wdl_a06	砂漠のバンガ	talk	74	0x07FE5	4305	シナリオフラグ is none of
 wdl_a06	砂漠のバンガ	talk	75	0x07FEB	4306	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	talk	76	0x07FF1	4307	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	talk	77	0x07FF7	4308	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	砂漠のバンガ	talk	78	0x08000	4309	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ	talk	78	0x08000	4309	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ	talk	79	0x08003	4310	シナリオフラグ is none of lt(0x049c), lte(0x05f0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talk	80	0x08015	4312	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	talkhold	1	0x08016	4317	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5731,7 +5731,7 @@ wdl_a06	砂漠のバンガ	歩く範囲	5	0x0805E	4336	-	setpos	96.6999969, 20, 
 wdl_a06	砂漠のバンガ	歩く範囲	6	0x08064	4337	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 wdl_a06	砂漠のバンガ	歩く範囲	7	0x0806A	4338	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	歩く範囲	8	0x0806D	4339	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-wdl_a06	砂漠のバンガ	歩く範囲	9	0x08076	4340	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ	歩く範囲	9	0x08076	4340	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ	歩く範囲	10	0x0807C	4341	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	砂漠のバンガ	歩く範囲戻す	1	0x08083	4346	-	setradius_221	0.800000012, 0.800000012	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ	歩く範囲戻す	2	0x08086	4347	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5751,7 +5751,7 @@ wdl_a06	砂漠のバンガ２	バインド	11	0x080D4	4378	file_var_s9_3 == 1	se
 wdl_a06	砂漠のバンガ２	バインド	12	0x080DA	4379	file_var_s9_3 == 1	stdmotionread	18	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ２	バインド	13	0x080DD	4380	file_var_s9_3 == 1	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ２	バインド	14	0x080E3	4381	file_var_s9_3 == 1	stdmotionvariation	1	-	-	-	-	-		01 verb-table.tsv
-wdl_a06	砂漠のバンガ２	バインド	15	0x080EC	4382	file_var_s9_3 == 1	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	砂漠のバンガ２	バインド	15	0x080EC	4382	file_var_s9_3 == 1	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	砂漠のバンガ２	バインド	16	0x080FE	4383	file_var_s9_3 == 1	rgbatrans	1, 1, 1, 0, 0	this actor's script colour channels 6 to 9: red 1, green 1, blue 1, alpha 0	-	over 0 frames plus one	-	-	resolved	17 ../Graphics/character-fades.md
 wdl_a06	砂漠のバンガ２	バインド	17	0x08101	4384	file_var_s9_3 == 1	istouchucsync	-	the calling actor and the controlled character	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	砂漠のバンガ２	バインド	18	0x08104	4385	file_var_s9_3 == 1	clearhidecomplete	-	the calling actor's model visibility	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5846,7 +5846,7 @@ wdl_a06	のの	バインド	10	0x0830F	4509	file_var_s9_2 == 1	fetchambient	-	-	
 wdl_a06	のの	バインド	11	0x08315	4510	file_var_s9_2 == 1	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	のの	バインド	12	0x0831B	4511	file_var_s9_2 == 1	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	のの	バインド	13	0x0831E	4512	file_var_s9_2 == 1	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-wdl_a06	のの	バインド	14	0x08327	4513	file_var_s9_2 == 1	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion 0x01000000	-	float 0 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	のの	バインド	14	0x08327	4513	file_var_s9_2 == 1	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	のの	バインド	15	0x08339	4514	file_var_s9_2 == 1	rgbatrans	1, 1, 1, 0, 0	this actor's script colour channels 6 to 9: red 1, green 1, blue 1, alpha 0	-	over 0 frames plus one	-	-	resolved	17 ../Graphics/character-fades.md
 wdl_a06	のの	バインド	16	0x0833C	4515	file_var_s9_2 == 1	istouchucsync	-	the calling actor and the controlled character	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	のの	バインド	17	0x0833F	4516	file_var_s9_2 == 1	clearhidecomplete	-	the calling actor's model visibility	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5860,7 +5860,7 @@ wdl_a06	のの	talk	5	0x0836D	4528	-	sysRaturna	-1	argument 1: the actor the cal
 wdl_a06	のの	talk	6	0x08373	4529	-	store	regI2 = 0	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 wdl_a06	のの	talk	7	0x08377	4530	-	if	isturn()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	のの	talk	8	0x0837A	4532	isturn()	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-wdl_a06	のの	talk	9	0x08383	4533	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion 0x01000002	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	のの	talk	9	0x08383	4533	isturn()	stdmotionplay_2c2	0x01000002, 20	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	のの	talk	10	0x0838C	4537	not (isturn())	store	regI2 = 1	variable regI2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 wdl_a06	のの	talk	11	0x08390	4539	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 wdl_a06	のの	talk	12	0x08396	4540	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -5875,7 +5875,7 @@ wdl_a06	のの	talk	20	0x083C6	4548	-	setmaphighmodeldepth	-1	argument 1: the dr
 wdl_a06	のの	talk	21	0x083CC	4549	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	のの	talk	22	0x083D2	4550	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 wdl_a06	のの	talk	23	0x083D8	4551	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-wdl_a06	のの	talk	24	0x083E1	4552	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion 0x01000000	-	float 20 passed on to 0x003DDB40	-	-		0x0034E410, 0x003580C0 (read here)
+wdl_a06	のの	talk	24	0x083E1	4552	-	stdmotionplay_2c2	0x01000000, 20	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 20 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 wdl_a06	のの	talk	25	0x083E4	4553	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	のの	talkhold	1	0x083E5	4558	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 wdl_a06	のの	talkterm	1	0x083FF	4563	-	if	((getrotangzx() - getdestrotangzx_227(0)) * (getrotangzx() - getdestrotangzx_227(0))) > 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
