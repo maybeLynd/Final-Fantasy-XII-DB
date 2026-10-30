@@ -1,0 +1,495 @@
+folders	table	index	sublocation_name	group	palette	gate	name_text_id	map_value	map_cells	counter	guide_file	byte_05	line
+ch cn de es fr in it kr us	directory	0	rbn01_s01	16	0	0xFFFF	60138						
+ch cn de es fr in it kr us	directory	1	fon01_s01	26	0	0xFFFF	60140						
+ch cn de es fr in it kr us	directory	2	mic01_s01	3	0	0xFFFF	60141						
+ch cn de es fr in it kr us	directory	3	bds01_s01	23	0	0xFFFF	60142						
+ch cn de es fr in it kr us	directory	4	bog01_s01	10	0	0xFFFF	60144						
+ch cn de es fr in it kr us	directory	5	ene01_s01	20	0	0xFFFF	60145						
+ch cn de es fr in it kr us	directory	6	enw01_s01	21	0	0xFFFF	60146						
+ch cn de es fr in it kr us	directory	7	grm01_s01	17	0	0xFFFF	60147						
+ch cn de es fr in it kr us	directory	8	nac01_s01	37	0	0x0051	60148						
+ch cn de es fr in it kr us	directory	9	naf01_s01	15	0	0xFFFF	60149						
+ch cn de es fr in it kr us	directory	10	nal01_s01	2	0	0x0052	60150						
+ch cn de es fr in it kr us	directory	11	ozm01_s01	29	0	0xFFFF	60151						
+ch cn de es fr in it kr us	directory	12	rwg01_s01	22	0	0xFFFF	60152						
+ch cn de es fr in it kr us	directory	13	sav01_s01	14	0	0xFFFF	60153						
+ch cn de es fr in it kr us	directory	14	slm01_s01	39	0	0xFFFF	60154						
+ch cn de es fr in it kr us	directory	15	wdl01_s01	18	0	0xFFFF	60155						
+ch cn de es fr in it kr us	directory	16	ztc01_s01	33	0	0xFFFF	60156						
+ch cn de es fr in it kr us	directory	17	glf01_s01	48	0	0xFFFF	60157						
+ch cn de es fr in it kr us	directory	18	hne01_s01	45	0	0xFFFF	60158						
+ch cn de es fr in it kr us	directory	19	mfr01_s01	30	0	0xFFFF	60159						
+ch cn de es fr in it kr us	directory	20	vic01_s01	50	0	0xFFFF	60160						
+ch cn de es fr in it kr us	directory	21	dst01_s01	7	0	0xFFFF	60161						
+ch cn de es fr in it kr us	directory	22	rrp01_s01	32	0	0xFFFF	60162						
+ch cn de es fr in it kr us	directory	23	alc01_s01	38	0	0xFFFF	60163						
+ch cn de es fr in it kr us	directory	24	alc01_s02	49	0	0xFFFF	60164						
+ch cn de es fr in it kr us	directory	25	frs01_s01	9	0	0xFFFF	60165						
+ch cn de es fr in it kr us	directory	26	byu01_s01	36	0	0xFFFF	60166						
+ch cn de es fr in it kr us	directory	27	lus01_s01	19	0	0xFFFF	60167						
+ch cn de es fr in it kr us	directory	28	mnt01_s01	12	0	0xFFFF	60168						
+ch cn de es fr in it kr us	directory	29	mrm01_s01	34	0	0xFFFF	60169						
+ch cn de es fr in it kr us	directory	30	pbc01_s01	25	0	0xFFFF	60170						
+ch cn de es fr in it kr us	directory	31	pla01_s01	8	0	0xFFFF	60171						
+ch cn de es fr in it kr us	directory	32	rsn01_s01	31	0	0xFFFF	60172						
+ch cn de es fr in it kr us	directory	33	rui01_s01	11	0	0xFFFF	60174						
+ch cn de es fr in it kr us	directory	34	rwf01_s01	28	0	0xFFFF	60175						
+ch cn de es fr in it kr us	directory	35	srb01_s01	27	0	0xFFFF	60176						
+ch cn de es fr in it kr us	directory	36	var01_s01	47	0	0xFFFF	60177						
+ch cn de es fr in it kr us	directory	37	gol01_s01	24	0	0xFFFF	60178						
+ch cn de es fr in it kr us	directory	38	bul01_s01	46	0	0xFFFF	60179						
+ch cn de es fr in it kr us	directory	39	gil01_s01	42	0	0xFFFF	60180						
+ch cn de es fr in it kr us	directory	40	gil01_s02	43	1	0xFFFF	60181						
+ch cn de es fr in it kr us	directory	41	dor01_s01	53	0	0xFFFF	60182						
+ch cn de es fr in it kr us	directory	42	rbl03_s01	57	0	0xFFFF	60183						
+ch cn de es fr in it kr us	directory	43	rbl02_s01	56	0	0xFFFF	60184						
+ch cn de es fr in it kr us	directory	44	rbl01_s01	55	0	0xFFFF	60185						
+ch cn de es fr in it kr us	directory	45	rbl04_s01	58	0	0xFFFF	60186						
+ch cn de es fr in it kr us	directory	46	bhm01_s01	52	2	0xFFFF	60187						
+ch cn de es fr in it kr us	directory	47	sav01_s02	14	0	0x0109	60154						
+ch cn de es fr in it kr us	maps	0						0xFFFF	255				
+ch cn de es fr in it kr us	maps	1						0xFFFE	254				
+ch cn de es fr in it kr us	maps	2						0xFFFE	254				
+ch cn de es fr in it kr us	maps	3						0xFFFE	254				
+ch cn de es fr in it kr us	maps	4						0xFFFE	254				
+ch cn de es fr in it kr us	maps	5						0xFFFE	254				
+ch cn de es fr in it kr us	maps	6						0xFFFE	254				
+ch cn de es fr in it kr us	maps	7						0xFFFE	254				
+ch cn de es fr in it kr us	maps	8						0xFFFE	254				
+ch cn de es fr in it kr us	maps	9						0xFFFE	254				
+ch cn de es fr in it kr us	maps	10						0xFFFE	254				
+ch cn de es fr in it kr us	maps	11						0xFFFE	254				
+ch cn de es fr in it kr us	maps	12						0xFFFE	254				
+ch cn de es fr in it kr us	maps	13						0xFFFE	254				
+ch cn de es fr in it kr us	maps	14						0xFFFE	254				
+ch cn de es fr in it kr us	maps	15						0xFFFE	254				
+ch cn de es fr in it kr us	maps	16						0xFFFE	254				
+ch cn de es fr in it kr us	maps	17						0xFFFE	254				
+ch cn de es fr in it kr us	maps	18						0xFFFE	254				
+ch cn de es fr in it kr us	maps	19						0xFFFE	254				
+ch cn de es fr in it kr us	maps	20						0xFFFE	254				
+ch cn de es fr in it kr us	maps	21						0xFFFE	254				
+ch cn de es fr in it kr us	maps	22						0xFFFE	254				
+ch cn de es fr in it kr us	maps	23						0xFFFE	254				
+ch cn de es fr in it kr us	maps	24						0xFFFE	254				
+ch cn de es fr in it kr us	maps	25						0xFFFE	254				
+ch cn de es fr in it kr us	maps	26						0xFFFE	254				
+ch cn de es fr in it kr us	maps	27						0xFFFE	254				
+ch cn de es fr in it kr us	maps	28						0xFFFE	254				
+ch cn de es fr in it kr us	maps	29						0xFFFE	254				
+ch cn de es fr in it kr us	maps	30						0xFFFE	254				
+ch cn de es fr in it kr us	maps	31						0xFFFE	254				
+ch cn de es fr in it kr us	maps	32						0xFFFE	254				
+ch cn de es fr in it kr us	maps	33						0xFFFE	254				
+ch cn de es fr in it kr us	maps	34						0xFFFE	254				
+ch cn de es fr in it kr us	maps	35						0xFFFE	254				
+ch cn de es fr in it kr us	maps	36						0xFFFE	254				
+ch cn de es fr in it kr us	maps	37						0xFFFE	254				
+ch cn de es fr in it kr us	maps	38						0xFFFE	254				
+ch cn de es fr in it kr us	maps	39						0xFFFE	254				
+ch cn de es fr in it kr us	maps	40						0xFFFE	254				
+ch cn de es fr in it kr us	maps	41						0xFFFE	254				
+ch cn de es fr in it kr us	maps	42						0xFFFE	254				
+ch cn de es fr in it kr us	maps	43						0xFFFE	254				
+ch cn de es fr in it kr us	maps	44						0xFFFE	254				
+ch cn de es fr in it kr us	maps	45						0xFFFE	254				
+ch cn de es fr in it kr us	maps	46						0xFFFE	254				
+ch cn de es fr in it kr us	maps	47						0xFFFE	254				
+ch cn de es fr in it kr us	maps	48						0xFFFE	254				
+ch cn de es fr in it kr us	maps	49						0xFFFE	254				
+ch cn de es fr in it kr us	maps	50						0xFFFE	254				
+ch cn de es fr in it kr us	maps	51						0xFFFE	254				
+ch cn de es fr in it kr us	maps	52						0xFFFE	254				
+ch cn de es fr in it kr us	maps	53						0xFFFE	254				
+ch cn de es fr in it kr us	maps	54						0xFFFE	254				
+ch cn de es fr in it kr us	maps	55						0xFFFE	254				
+ch cn de es fr in it kr us	maps	56						0xFFFE	254				
+ch cn de es fr in it kr us	maps	57						0xFFFE	254				
+ch cn de es fr in it kr us	maps	58						0xFFFE	254				
+ch cn de es fr in it kr us	maps	59						0xFFFE	254				
+ch cn de es fr in it kr us	maps	60						0xFFFF	255				
+ch cn de es fr in it kr us	maps	61						0xFFFE	254				
+ch cn de es fr in it kr us	maps	62						0xFFFE	254				
+ch cn de es fr in it kr us	maps	63						0xFFFE	254				
+ch cn de es fr in it kr us	maps	64						0xFFFE	254				
+ch cn de es fr in it kr us	maps	65						0xFFFE	254				
+ch cn de es fr in it kr us	maps	66						0xFFFE	254				
+ch cn de es fr in it kr us	maps	67						0xFFFE	254				
+ch cn de es fr in it kr us	maps	68						0xFFFE	254				
+ch cn de es fr in it kr us	maps	69						0xFFFE	254				
+ch cn de es fr in it kr us	maps	70						0xFFFE	254				
+ch cn de es fr in it kr us	maps	71						0xFFFE	254				
+ch cn de es fr in it kr us	maps	72						0xFFFE	254				
+ch cn de es fr in it kr us	maps	73						0xFFFE	254				
+ch cn de es fr in it kr us	maps	74						0xFFFE	254				
+ch cn de es fr in it kr us	maps	75						0xFFFE	254				
+ch cn de es fr in it kr us	maps	76						0xFFFE	254				
+ch cn de es fr in it kr us	maps	77						0xFFFE	254				
+ch cn de es fr in it kr us	maps	78						0xFFFE	254				
+ch cn de es fr in it kr us	maps	79						0xFFFE	254				
+ch cn de es fr in it kr us	maps	80						0xFFFE	254				
+ch cn de es fr in it kr us	maps	81						0xFFFE	254				
+ch cn de es fr in it kr us	maps	82						0xFFFE	254				
+ch cn de es fr in it kr us	maps	83						0xFFFE	254				
+ch cn de es fr in it kr us	maps	84						0xFFFE	254				
+ch cn de es fr in it kr us	maps	85						0xFFFE	254				
+ch cn de es fr in it kr us	maps	86						0xFFFE	254				
+ch cn de es fr in it kr us	maps	87						0xFFFE	254				
+ch cn de es fr in it kr us	maps	88						0xFFFE	254				
+ch cn de es fr in it kr us	maps	89						0xFFFE	254				
+ch cn de es fr in it kr us	maps	90						0xFFFE	254				
+ch cn de es fr in it kr us	maps	91						0xFFFE	254				
+ch cn de es fr in it kr us	maps	92						0xFFFE	254				
+ch cn de es fr in it kr us	maps	93						0xFFFE	254				
+ch cn de es fr in it kr us	maps	94						0xFFFE	254				
+ch cn de es fr in it kr us	maps	95						0xFFFE	254				
+ch cn de es fr in it kr us	maps	96						0xFFFE	254				
+ch cn de es fr in it kr us	maps	97						0xFFFE	254				
+ch cn de es fr in it kr us	maps	98						0xFFFE	254				
+ch cn de es fr in it kr us	maps	99						0xFFFE	254				
+ch cn de es fr in it kr us	maps	100						0xFFFE	254				
+ch cn de es fr in it kr us	maps	101						0xFFFE	254				
+ch cn de es fr in it kr us	maps	102						0xFFFE	254				
+ch cn de es fr in it kr us	maps	103						0xFFFE	254				
+ch cn de es fr in it kr us	maps	104						0xFFFE	254				
+ch cn de es fr in it kr us	maps	105						0xFFFE	254				
+ch cn de es fr in it kr us	maps	106						0xFFFE	254				
+ch cn de es fr in it kr us	maps	107						0xFFFE	254				
+ch cn de es fr in it kr us	maps	108						0xFFFE	254				
+ch cn de es fr in it kr us	maps	109						0xFFFE	254				
+ch cn de es fr in it kr us	maps	110						0xFFFE	254				
+ch cn de es fr in it kr us	maps	111						0xFFFE	254				
+ch cn de es fr in it kr us	maps	112						0xFFFE	254				
+ch cn de es fr in it kr us	maps	113						0xFFFE	254				
+ch cn de es fr in it kr us	maps	114						0xFFFE	254				
+ch cn de es fr in it kr us	maps	115						0xFFFE	254				
+ch cn de es fr in it kr us	maps	116						0xFFFE	254				
+ch cn de es fr in it kr us	maps	117						0xFFFE	254				
+ch cn de es fr in it kr us	maps	118						0xFFFF	255				
+ch cn de es fr in it kr us	maps	119						0xFFFF	255				
+ch cn de es fr in it kr us	maps	120						0xFFFF	255				
+ch cn de es fr in it kr us	maps	121						0xFFFF	255				
+ch cn de es fr in it kr us	maps	122						0xFFFF	255				
+ch cn de es fr in it kr us	maps	123						0xFFFF	255				
+ch cn de es fr in it kr us	maps	124						0xFFFF	255				
+ch cn de es fr in it kr us	maps	125						0xFFFE	254				
+ch cn de es fr in it kr us	maps	126						0xFFFE	254				
+ch cn de es fr in it kr us	maps	127						0xFFFE	254				
+ch cn de es fr in it kr us	maps	128						0xFFFE	254				
+ch cn de es fr in it kr us	maps	129						0xFFFE	254				
+ch cn de es fr in it kr us	maps	130						0xFFFE	254				
+ch cn de es fr in it kr us	maps	131						0xFFFE	254				
+ch cn de es fr in it kr us	maps	132						0xFFFE	254				
+ch cn de es fr in it kr us	maps	133						0xFFFE	254				
+ch cn de es fr in it kr us	maps	134						0xFFFE	254				
+ch cn de es fr in it kr us	maps	135						0xFFFE	254				
+ch cn de es fr in it kr us	maps	136						0xFFFE	254				
+ch cn de es fr in it kr us	maps	137						0xFFFE	254				
+ch cn de es fr in it kr us	maps	138						0xFFFE	254				
+ch cn de es fr in it kr us	maps	139						0xFFFE	254				
+ch cn de es fr in it kr us	maps	140						0xFFFE	254				
+ch cn de es fr in it kr us	maps	141						0xFFFE	254				
+ch cn de es fr in it kr us	maps	142						0xFFFE	254				
+ch cn de es fr in it kr us	maps	143						0xFFFE	254				
+ch cn de es fr in it kr us	maps	144						0xFFFE	254				
+ch cn de es fr in it kr us	maps	145						0xFFFE	254				
+ch cn de es fr in it kr us	maps	146						0xFFFE	254				
+ch cn de es fr in it kr us	maps	147						0xFFFE	254				
+ch cn de es fr in it kr us	maps	148						0xFFFE	254				
+ch cn de es fr in it kr us	maps	149						0xFFFE	254				
+ch cn de es fr in it kr us	maps	150						0xFFFE	254				
+ch cn de es fr in it kr us	maps	151						0xFFFE	254				
+ch cn de es fr in it kr us	maps	152						0xFFFE	254				
+ch cn de es fr in it kr us	maps	153						0xFFFE	254				
+ch cn de es fr in it kr us	maps	154						0xFFFE	254				
+ch cn de es fr in it kr us	maps	155						0xFFFE	254				
+ch cn de es fr in it kr us	maps	156						0xFFFE	254				
+ch cn de es fr in it kr us	maps	157						0xFFFE	254				
+ch cn de es fr in it kr us	maps	158						0xFFFE	254				
+ch cn de es fr in it kr us	maps	159						0xFFFE	254				
+ch cn de es fr in it kr us	maps	160						0xFFFE	254				
+ch cn de es fr in it kr us	maps	161						0xFFFE	254				
+ch cn de es fr in it kr us	maps	162						0xFFFE	254				
+ch cn de es fr in it kr us	maps	163						0xFFFE	254				
+ch cn de es fr in it kr us	maps	164						0xFFFE	254				
+ch cn de es fr in it kr us	maps	165						0xFFFE	254				
+ch cn de es fr in it kr us	maps	166						0xFFFE	254				
+ch cn de es fr in it kr us	maps	167						0xFFFE	254				
+ch cn de es fr in it kr us	maps	168						0xFFFE	254				
+ch cn de es fr in it kr us	maps	169						0xFFFE	254				
+ch cn de es fr in it kr us	maps	170						0xFFFE	254				
+ch cn de es fr in it kr us	maps	171						0xFFFE	254				
+ch cn de es fr in it kr us	maps	172						0xFFFE	254				
+ch cn de es fr in it kr us	maps	173						0xFFFE	254				
+ch cn de es fr in it kr us	maps	174						0xFFFE	254				
+ch cn de es fr in it kr us	maps	175						0xFFFE	254				
+ch cn de es fr in it kr us	maps	176						0xFFFE	254				
+ch cn de es fr in it kr us	maps	177						0xFFFE	254				
+ch cn de es fr in it kr us	maps	178						0xFFFE	254				
+ch cn de es fr in it kr us	maps	179						0xFFFE	254				
+ch cn de es fr in it kr us	maps	180						0xFFFE	254				
+ch cn de es fr in it kr us	maps	181						0xFFFE	254				
+ch cn de es fr in it kr us	maps	182						0xFFFE	254				
+ch cn de es fr in it kr us	maps	183						0xFFFE	254				
+ch cn de es fr in it kr us	maps	184						0xFFFE	254				
+ch cn de es fr in it kr us	maps	185						0xFFFE	254				
+ch cn de es fr in it kr us	maps	186						0xFFFE	254				
+ch cn de es fr in it kr us	maps	187						0xFFFE	254				
+ch cn de es fr in it kr us	maps	188						0xFFFE	254				
+ch cn de es fr in it kr us	maps	189						0xFFFE	254				
+ch cn de es fr in it kr us	maps	190						0xFFFE	254				
+ch cn de es fr in it kr us	maps	191						0xFFFE	254				
+ch cn de es fr in it kr us	maps	192						0xFFFE	254				
+ch cn de es fr in it kr us	maps	193						0xFFFE	254				
+ch cn de es fr in it kr us	maps	194						0xFFFE	254				
+ch cn de es fr in it kr us	maps	195						0xFFFE	254				
+ch cn de es fr in it kr us	maps	196						0xFFFE	254				
+ch cn de es fr in it kr us	maps	197						0xFFFE	254				
+ch cn de es fr in it kr us	maps	198						0xFFFE	254				
+ch cn de es fr in it kr us	maps	199						0xFFFE	254				
+ch cn de es fr in it kr us	maps	200						0xFFFE	254				
+ch cn de es fr in it kr us	maps	201						0xFFFE	254				
+ch cn de es fr in it kr us	maps	202						0xFFFE	254				
+ch cn de es fr in it kr us	maps	203						0xFFFE	254				
+ch cn de es fr in it kr us	maps	204						0xFFFE	254				
+ch cn de es fr in it kr us	maps	205						0xFFFE	254				
+ch cn de es fr in it kr us	maps	206						0xFFFE	254				
+ch cn de es fr in it kr us	maps	207						0xFFFE	254				
+ch cn de es fr in it kr us	maps	208						0xFFFE	254				
+ch cn de es fr in it kr us	maps	209						0xFFFE	254				
+ch cn de es fr in it kr us	maps	210						0xFFFE	254				
+ch cn de es fr in it kr us	maps	211						0xFFFE	254				
+ch cn de es fr in it kr us	maps	212						0xFFFE	254				
+ch cn de es fr in it kr us	maps	213						0xFFFE	254				
+ch cn de es fr in it kr us	maps	214						0xFFFE	254				
+ch cn de es fr in it kr us	maps	215						0xFFFE	254				
+ch cn de es fr in it kr us	maps	216						0xFFFE	254				
+ch cn de es fr in it kr us	maps	217						0xFFFE	254				
+ch cn de es fr in it kr us	maps	218						0xFFFE	254				
+ch cn de es fr in it kr us	maps	219						0xFFFE	254				
+ch cn de es fr in it kr us	maps	220						0xFFFE	254				
+ch cn de es fr in it kr us	maps	221						0xFFFE	254				
+ch cn de es fr in it kr us	maps	222						0xFFFE	254				
+ch cn de es fr in it kr us	maps	223						0xFFFE	254				
+ch cn de es fr in it kr us	maps	224						0xFFFE	254				
+ch cn de es fr in it kr us	maps	225						0xFFFE	254				
+ch cn de es fr in it kr us	maps	226						0xFFFE	254				
+ch cn de es fr in it kr us	maps	227						0xFFFE	254				
+ch cn de es fr in it kr us	maps	228						0xFFFE	254				
+ch cn de es fr in it kr us	maps	229						0xFFFE	254				
+ch cn de es fr in it kr us	maps	230						0xFFFE	254				
+ch cn de es fr in it kr us	maps	231						0xFFFE	254				
+ch cn de es fr in it kr us	maps	232						0xFFFE	254				
+ch cn de es fr in it kr us	maps	233						0xFFFE	254				
+ch cn de es fr in it kr us	maps	234						0xFFFE	254				
+ch cn de es fr in it kr us	maps	235						0xFFFE	254				
+ch cn de es fr in it kr us	maps	236						0xFFFE	254				
+ch cn de es fr in it kr us	maps	237						0xFFFE	254				
+ch cn de es fr in it kr us	maps	238						0xFFFE	254				
+ch cn de es fr in it kr us	maps	239						0xFFFE	254				
+ch cn de es fr in it kr us	maps	240						0xFFFE	254				
+ch cn de es fr in it kr us	maps	241						0xFFFE	254				
+ch cn de es fr in it kr us	maps	242						0xFFFE	254				
+ch cn de es fr in it kr us	maps	243						0xFFFE	254				
+ch cn de es fr in it kr us	maps	244						0xFFFE	254				
+ch cn de es fr in it kr us	maps	245						0xFFFE	254				
+ch cn de es fr in it kr us	maps	246						0xFFFE	254				
+ch cn de es fr in it kr us	maps	247						0xFFFE	254				
+ch cn de es fr in it kr us	maps	248						0xFFFE	254				
+ch cn de es fr in it kr us	maps	249						0xFFFE	254				
+ch cn de es fr in it kr us	maps	250						0xFFFE	254				
+ch cn de es fr in it kr us	maps	251						0xFFFE	254				
+ch cn de es fr in it kr us	maps	252						0xFFFE	254				
+ch cn de es fr in it kr us	maps	253						0xFFFE	254				
+ch cn de es fr in it kr us	maps	254						0xFFFE	254				
+ch cn de es fr in it kr us	maps	255						0xFFFE	254				
+ch cn de es fr in it kr us	maps	256						0xFFFE	254				
+ch cn de es fr in it kr us	maps	257						0xFFFE	254				
+ch cn de es fr in it kr us	maps	258						0xFFFE	254				
+ch cn de es fr in it kr us	maps	259						0xFFFE	254				
+ch cn de es fr in it kr us	maps	260						0xFFFE	254				
+ch cn de es fr in it kr us	maps	261						0xFFFE	254				
+ch cn de es fr in it kr us	maps	262						0xFFFE	254				
+ch cn de es fr in it kr us	maps	263						0xFFFE	254				
+ch cn de es fr in it kr us	maps	264						0xFFFE	254				
+ch cn de es fr in it kr us	maps	265						0xFFFE	254				
+ch cn de es fr in it kr us	maps	266						0xFFFE	254				
+ch cn de es fr in it kr us	maps	267						0xFFFE	254				
+ch cn de es fr in it kr us	maps	268						0xFFFE	254				
+ch cn de es fr in it kr us	maps	269						0xFFFE	254				
+ch cn de es fr in it kr us	maps	270						0xFFFE	254				
+ch cn de es fr in it kr us	maps	271						0xFFFE	254				
+ch cn de es fr in it kr us	maps	272						0xFFFE	254				
+ch cn de es fr in it kr us	maps	273						0xFFFE	254				
+ch cn de es fr in it kr us	maps	274						0xFFFE	254				
+ch cn de es fr in it kr us	maps	275						0xFFFE	254				
+ch cn de es fr in it kr us	maps	276						0xFFFE	254				
+ch cn de es fr in it kr us	maps	277						0xFFFE	254				
+ch cn de es fr in it kr us	maps	278						0xFFFE	254				
+ch cn de es fr in it kr us	maps	279						0xFFFE	254				
+ch cn de es fr in it kr us	maps	280						0xFFFE	254				
+ch cn de es fr in it kr us	maps	281						0xFFFE	254				
+ch cn de es fr in it kr us	maps	282						0xFFFE	254				
+ch cn de es fr in it kr us	maps	283						0xFFFE	254				
+ch cn de es fr in it kr us	maps	284						0xFFFE	254				
+ch cn de es fr in it kr us	maps	285						0xFFFE	254				
+ch cn de es fr in it kr us	maps	286						0xFFFE	254				
+ch cn de es fr in it kr us	maps	287						0xFFFE	254				
+ch cn de es fr in it kr us	maps	288						0xFFFE	254				
+ch cn de es fr in it kr us	maps	289						0xFFFE	254				
+ch cn de es fr in it kr us	maps	290						0xFFFE	254				
+ch cn de es fr in it kr us	maps	291						0xFFFE	254				
+ch cn de es fr in it kr us	maps	292						0xFFFE	254				
+ch cn de es fr in it kr us	maps	293						0xFFFE	254				
+ch cn de es fr in it kr us	maps	294						0xFFFE	254				
+ch cn de es fr in it kr us	maps	295						0xFFFE	254				
+ch cn de es fr in it kr us	maps	296						0xFFFE	254				
+ch cn de es fr in it kr us	maps	297						0xFFFE	254				
+ch cn de es fr in it kr us	maps	298						0xFFFE	254				
+ch cn de es fr in it kr us	maps	299						0xFFFE	254				
+ch cn de es fr in it kr us	maps	300						0xFFFE	254				
+ch cn de es fr in it kr us	maps	301						0xFFFE	254				
+ch cn de es fr in it kr us	maps	302						0xFFFE	254				
+ch cn de es fr in it kr us	maps	303						0xFFFE	254				
+ch cn de es fr in it kr us	maps	304						0xFFFE	254				
+ch cn de es fr in it kr us	maps	305						0xFFFE	254				
+ch cn de es fr in it kr us	maps	306						0xFFFE	254				
+ch cn de es fr in it kr us	maps	307						0xFFFE	254				
+ch cn de es fr in it kr us	maps	308						0xFFFE	254				
+ch cn de es fr in it kr us	maps	309						0xFFFE	254				
+ch cn de es fr in it kr us	maps	310						0xFFFE	254				
+ch cn de es fr in it kr us	maps	311						0xFFFE	254				
+ch cn de es fr in it kr us	maps	312						0xFFFE	254				
+ch cn de es fr in it kr us	maps	313						0xFFFE	254				
+ch cn de es fr in it kr us	maps	314						0xFFFE	254				
+ch cn de es fr in it kr us	maps	315						0xFFFE	254				
+ch cn de es fr in it kr us	maps	316						0xFFFE	254				
+ch cn de es fr in it kr us	maps	317						0xFFFE	254				
+ch cn de es fr in it kr us	maps	318						0xFFFE	254				
+ch cn de es fr in it kr us	maps	319						0xFFFE	254				
+ch cn de es fr in it kr us	maps	320						0xFFFE	254				
+ch cn de es fr in it kr us	maps	321						0xFFFE	254				
+ch cn de es fr in it kr us	maps	322						0xFFFE	254				
+ch cn de es fr in it kr us	maps	323						0xFFFE	254				
+ch cn de es fr in it kr us	maps	324						0xFFFE	254				
+ch cn de es fr in it kr us	maps	325						0xFFFE	254				
+ch cn de es fr in it kr us	maps	326						0xFFFE	254				
+ch cn de es fr in it kr us	maps	327						0xFFFE	254				
+ch cn de es fr in it kr us	maps	328						0xFFFE	254				
+ch cn de es fr in it kr us	maps	329						0xFFFE	254				
+ch cn de es fr in it kr us	maps	330						0xFFFE	254				
+ch cn de es fr in it kr us	maps	331						0xFFFE	254				
+ch cn de es fr in it kr us	maps	332						0xFFFE	254				
+ch cn de es fr in it kr us	maps	333						0xFFFE	254				
+ch cn de es fr in it kr us	maps	334						0xFFFE	254				
+ch cn de es fr in it kr us	maps	335						0xFFFE	254				
+ch cn de es fr in it kr us	maps	336						0xFFFE	254				
+ch cn de es fr in it kr us	maps	337						0xFFFF	255				
+ch cn de es fr in it kr us	maps	338						0xFFFE	254				
+ch cn de es fr in it kr us	maps	339						0xFFFE	254				
+ch cn de es fr in it kr us	maps	340						0xFFFE	254				
+ch cn de es fr in it kr us	maps	341						0xFFFE	254				
+ch cn de es fr in it kr us	maps	342						0xFFFE	254				
+ch cn de es fr in it kr us	maps	343						0xFFFE	254				
+ch cn de es fr in it kr us	maps	344						0xFFFE	254				
+ch cn de es fr in it kr us	maps	345						0xFFFE	254				
+ch cn de es fr in it kr us	maps	346						0xFFFE	254				
+ch cn de es fr in it kr us	maps	347						0xFFFE	254				
+ch cn de es fr in it kr us	maps	348						0xFFFE	254				
+ch cn de es fr in it kr us	maps	349						0xFFFE	254				
+ch cn de es fr in it kr us	maps	350						0xFFFE	254				
+ch cn de es fr in it kr us	maps	351						0xFFFE	254				
+ch cn de es fr in it kr us	maps	352						0xFFFE	254				
+ch cn de es fr in it kr us	maps	353						0xFFFE	254				
+ch cn de es fr in it kr us	maps	354						0xFFFE	254				
+ch cn de es fr in it kr us	maps	355						0xFFFE	254				
+ch cn de es fr in it kr us	maps	356						0xFFFE	254				
+ch cn de es fr in it kr us	maps	357						0xFFFE	254				
+ch cn de es fr in it kr us	maps	358						0xFFFE	254				
+ch cn de es fr in it kr us	maps	359						0xFFFE	254				
+ch cn de es fr in it kr us	maps	360						0xFFFE	254				
+ch cn de es fr in it kr us	maps	361						0xFFFE	254				
+ch cn de es fr in it kr us	maps	362						0xFFFE	254				
+ch cn de es fr in it kr us	maps	363						0xFFFE	254				
+ch cn de es fr in it kr us	maps	364						0xFFFE	254				
+ch cn de es fr in it kr us	maps	365						0xFFFE	254				
+ch cn de es fr in it kr us	maps	366						0xFFFE	254				
+ch cn de es fr in it kr us	maps	367						0xFFFE	254				
+ch cn de es fr in it kr us	maps	368						0x0000	0				
+ch cn de es fr in it kr us	guide schedule	0				0x402D				0	0	0	0
+ch cn de es fr in it kr us	guide schedule	1				0x4069				22	0	0	1
+ch cn de es fr in it kr us	guide schedule	2				0x406A				25	0	0	2
+ch cn de es fr in it kr us	guide schedule	3				0x402E				35	0	0	3
+ch cn de es fr in it kr us	guide schedule	4				0x406B				45	0	0	4
+ch cn de es fr in it kr us	guide schedule	5				0x406C				62	0	0	5
+ch cn de es fr in it kr us	guide schedule	6				0x402F				68	0	0	6
+ch cn de es fr in it kr us	guide schedule	7				0x406D				78	0	0	7
+ch cn de es fr in it kr us	guide schedule	8				0x4030				105	0	0	8
+ch cn de es fr in it kr us	guide schedule	9				0x4031				110	0	0	9
+ch cn de es fr in it kr us	guide schedule	10				0x4032				130	0	0	10
+ch cn de es fr in it kr us	guide schedule	11				0x406E				145	0	0	11
+ch cn de es fr in it kr us	guide schedule	12				0x406F				160	0	0	12
+ch cn de es fr in it kr us	guide schedule	13				0x4033				175	0	0	13
+ch cn de es fr in it kr us	guide schedule	14				0x4070				180	0	0	14
+ch cn de es fr in it kr us	guide schedule	15				0x4071				200	0	0	15
+ch cn de es fr in it kr us	guide schedule	16				0x4072				215	0	0	16
+ch cn de es fr in it kr us	guide schedule	17				0x4034				230	0	0	17
+ch cn de es fr in it kr us	guide schedule	18				0x4073				265	0	0	18
+ch cn de es fr in it kr us	guide schedule	19				0x4074				302	0	0	19
+ch cn de es fr in it kr us	guide schedule	20				0x4075				316	0	0	20
+ch cn de es fr in it kr us	guide schedule	21				0x4035				323	0	0	21
+ch cn de es fr in it kr us	guide schedule	22				0x4036				343	0	0	22
+ch cn de es fr in it kr us	guide schedule	23				0x4037				350	0	0	23
+ch cn de es fr in it kr us	guide schedule	24				0x4076				375	0	0	24
+ch cn de es fr in it kr us	guide schedule	25				0x4038				390	0	0	25
+ch cn de es fr in it kr us	guide schedule	26				0x4077				420	0	0	26
+ch cn de es fr in it kr us	guide schedule	27				0x4039				546	0	0	27
+ch cn de es fr in it kr us	guide schedule	28				0x4078				580	0	0	28
+ch cn de es fr in it kr us	guide schedule	29				0x4079				645	0	0	29
+ch cn de es fr in it kr us	guide schedule	30				0x407A				680	0	0	30
+ch cn de es fr in it kr us	guide schedule	31				0x407B				710	0	0	31
+ch cn de es fr in it kr us	guide schedule	32				0x407C				730	0	0	32
+ch cn de es fr in it kr us	guide schedule	33				0x403A				920	0	0	33
+ch cn de es fr in it kr us	guide schedule	34				0x407D				970	0	0	34
+ch cn de es fr in it kr us	guide schedule	35				0x405B				1000	0	0	35
+ch cn de es fr in it kr us	guide schedule	36				0x407E				1100	0	0	36
+ch cn de es fr in it kr us	guide schedule	37				0x403B				1210	0	0	37
+ch cn de es fr in it kr us	guide schedule	38				0x407F				1270	0	0	38
+ch cn de es fr in it kr us	guide schedule	39				0x405C				1338	0	0	39
+ch cn de es fr in it kr us	guide schedule	40				0x4080				1345	0	0	40
+ch cn de es fr in it kr us	guide schedule	41				0x4081				1374	0	0	41
+ch cn de es fr in it kr us	guide schedule	42				0x4097				1380	0	0	42
+ch cn de es fr in it kr us	guide schedule	43				0x4082				1390	0	0	43
+ch cn de es fr in it kr us	guide schedule	44				0x4083				1450	0	0	44
+ch cn de es fr in it kr us	guide schedule	45				0x403C				1580	0	0	45
+ch cn de es fr in it kr us	guide schedule	46				0x4084				1625	0	0	46
+ch cn de es fr in it kr us	guide schedule	47				0x403D				1650	0	0	47
+ch cn de es fr in it kr us	guide schedule	48				0x4085				1740	0	0	48
+ch cn de es fr in it kr us	guide schedule	49				0x4086				1760	0	0	49
+ch cn de es fr in it kr us	guide schedule	50				0x403E				1810	0	0	50
+ch cn de es fr in it kr us	guide schedule	51				0x403F				1950	0	0	51
+ch cn de es fr in it kr us	guide schedule	52				0x4088				1982	0	0	52
+ch cn de es fr in it kr us	guide schedule	53				0x4040				2010	0	0	53
+ch cn de es fr in it kr us	guide schedule	54				0x4089				2200	0	0	54
+ch cn de es fr in it kr us	guide schedule	55				0x408A				2250	0	0	55
+ch cn de es fr in it kr us	guide schedule	56				0x405D				3050	0	0	56
+ch cn de es fr in it kr us	guide schedule	57				0x405E				3070	0	0	57
+ch cn de es fr in it kr us	guide schedule	58				0x408B				3100	0	0	58
+ch cn de es fr in it kr us	guide schedule	59				0x405F				3150	0	0	59
+ch cn de es fr in it kr us	guide schedule	60				0x408C				3210	0	0	60
+ch cn de es fr in it kr us	guide schedule	61				0x4042				3250	0	0	61
+ch cn de es fr in it kr us	guide schedule	62				0x408D				3255	0	0	62
+ch cn de es fr in it kr us	guide schedule	63				0x408E				3260	0	0	63
+ch cn de es fr in it kr us	guide schedule	64				0x408F				3350	0	0	64
+ch cn de es fr in it kr us	guide schedule	65				0x4090				3400	0	0	65
+ch cn de es fr in it kr us	guide schedule	66				0x4043				4100	0	0	66
+ch cn de es fr in it kr us	guide schedule	67				0x4060				4160	0	0	67
+ch cn de es fr in it kr us	guide schedule	68				0x4091				4250	0	0	68
+ch cn de es fr in it kr us	guide schedule	69				0x4092				4370	0	0	69
+ch cn de es fr in it kr us	guide schedule	70				0x4054				5000	0	0	70
+ch cn de es fr in it kr us	guide schedule	71				0x4044				5150	0	0	71
+ch cn de es fr in it kr us	guide schedule	72				0x4093				5200	0	0	72
+ch cn de es fr in it kr us	guide schedule	73				0x4094				5303	0	0	73
+ch cn de es fr in it kr us	guide schedule	74				0x4095				5320	0	0	74
+ch cn de es fr in it kr us	guide schedule	75				0x4045				6100	0	0	75
+ch cn de es fr in it kr us	guide schedule	76				0x4096				6150	0	0	76

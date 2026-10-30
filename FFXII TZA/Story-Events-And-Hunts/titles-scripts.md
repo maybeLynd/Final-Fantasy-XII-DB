@@ -9,7 +9,7 @@ addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D
 
 The table [titles-scripts.tsv](titles-scripts.tsv) has one row per script function of the title group `ttl` that does
 something a player can observe. It covers the four zone scripts and the ten scene scripts of the group, from
-`plan_master/us`:
+`plan_master/us`, and the zone script `ttl_a01_e3`, which ships only in `plan_master/cn` and `plan_master/kr`:
 
 | Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
 |---|---|---|---:|---:|---:|---|
@@ -17,6 +17,7 @@ something a player can observe. It covers the four zone scripts and the ten scen
 | `ttl_b01` | zone | field `13` | 1 | 2 | 1 | 0 |
 | `ttl_c01` | zone | field `14` | 7 | 15 | 2 | 0 |
 | `ttl_d01` | zone | field `1147` | 1 | 2 | 1 | 0 |
+| `ttl_a01_e3` | zone | named by no path array, cn and kr only | 20 | 70 | 4 | 0 |
 | `ttl_z0000` | scene | event `215` | 11 | 71 | 0 | 0 |
 | `ttl_z0001` | scene | event `216` | 11 | 91 | 0 | 0 |
 | `ttl_z0002` | scene | event `217` | 11 | 84 | 0 | 0 |
@@ -30,7 +31,8 @@ something a player can observe. It covers the four zone scripts and the ten scen
 
 [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) gives the four fields no map name, so the `place`
 column names each by its script; the region after it, Pharos at Ridorana, is the entry their `map_ref.bin` rows
-select.
+select. No path array names `ttl_a01_e3`, so it has no field, and its `place` cell says that it is a zone script
+named by no path array that ships in cn and kr only.
 
 A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
 items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party.
@@ -47,6 +49,13 @@ title scenes](titles-scenes.md).
   start is not done (`isFirstStartDone() == 0`); then it requests `スクリーン表示.EF_タイトル画面`.
 - The title screen script holds one line of text, the autosave notice: "This game will occasionally save
   automatically. Please do not exit the game while the save icon is visible."
+- The cn and kr title screen (`ttl_a01_e3`, in `plan_map/ttl_a/ttl_a01/global` beside `ttl_a01`; the cn and kr files
+  are byte-identical). `常駐監督.main` runs the same loop as `ttl_a01`'s, with two differences:
+  - before scene 2 it shows a warning page, while the game's first start is not done and under one further test;
+  - no statement of the listing requests the rating page that `ttl_a01` shows after scene 2.
+
+  An added actor, `SERIES_PAGES`, plays the pages (`Warning_Page_Play`, `Logo_Page_Play`, `ESRBrating_page_Play` and
+  their `_Sync` functions). Its four rows are the title and icon functions of `ttl_a01`.
 - `EF_タイトル画面` shows the title commands (`コマンド制御.表示`) and, under a test, loads event 0 in slot 0
   (`eventread_e8(0, 0)`); the asset path table names no scene script for event 0, so its `scenes` cell reads
   `event, event 0`.
@@ -121,8 +130,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 ### Every step
 
 The steps table [`titles-script-steps.tsv`](titles-script-steps.tsv) has one row for each step of every function of
-the fourteen scripts, in the order the function runs them: each call, request, store, branch, loop, case and return.
-It has 5,550 rows.
+the fifteen scripts, in the order the function runs them: each call, request, store, branch, loop, case and return.
+It has 6,224 rows.
 
 A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
 arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
@@ -138,6 +147,7 @@ the functions it starts on other actors.
 | `ttl_z0000` | 510 | `ttl_z0007` | 449 |
 | `ttl_z0001` | 824 | `ttl_z0008` | 685 |
 | `ttl_z0002` | 667 | `ttl_z0009` | 154 |
+| | | `ttl_a01_e3` | 674 |
 
 The five shared helper actors have their steps once, in [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv)
 (1,283 rows over 26 templates for 29 functions: the template of a function that only returns, cecbbef6fb, serves the
@@ -151,8 +161,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 5,390 |
-| empty | 160 |
+| `resolved` | 6,030 |
+| empty | 194 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give

@@ -257,12 +257,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 36,151 |
-| empty | 200 |
+| `resolved` | 36,202 |
+| empty | 149 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give
-for the step, for example the variable that receives a result, and `-` otherwise.
+for the step, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `grm_a0401` (event `318`), `AD.main` reads models
 `0x03000000` to `0x03000002` and motion 1 of `grm_a0401.mot`, waits while `scratch1_var_1` is 0 and files `イベント準備` on

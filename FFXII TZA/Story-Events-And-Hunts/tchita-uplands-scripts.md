@@ -153,12 +153,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 6,836 |
-| empty | 28 |
+| `resolved` | 6,840 |
+| empty | 24 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give
-for the step, for example the variable that receives a result, and `-` otherwise.
+for the step, and `-` otherwise.
 
 A function reads from top to bottom. In `pla_a05` (The Shaded Path), `旅人.チョコボ用トーク` fades the screen out over 15
 frames, places the party and starts camera shot `pla_a0501` (800 frames in 1 segment), then fades in over 15 frames.

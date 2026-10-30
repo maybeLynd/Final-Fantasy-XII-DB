@@ -143,8 +143,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 12,149 |
-| empty | 66 |
+| `resolved` | 12,166 |
+| empty | 49 |
 | `does not ship`, with the fact | 3 |
 
 The three `does not ship` rows are `motionread` calls in `ene_a04`, `ene_a05` and `ene_a06`, whose motion files

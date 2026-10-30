@@ -141,14 +141,14 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 11,545 |
-| empty | 90 |
+| `resolved` | 11,591 |
+| empty | 44 |
 | `does not ship`, with the fact | 1 |
 
 The one `does not ship` row is a `motionread` call in `rrp_a03` that reads entry 3 of `rrp_a03.mot`, an empty entry. A
 row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give
-for the step, for example the variable that receives a result, and `-` otherwise.
+for the step, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `rrp_z9900` (event `605`), `ボイス監督.main` loops: when
 `scratch1_var_1` is 1 it plays voice slot 0, shows text `0x01000000` in message window 0 with `amese`, waits for the

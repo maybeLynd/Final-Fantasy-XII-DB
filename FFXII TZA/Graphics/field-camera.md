@@ -127,13 +127,13 @@ wall and auto terms.
 ### Stick, mouse and recentre
 
 `0x0032C910` reads the dead zone `+0xF4` (`0x0046DB20`: 50) and the two camera axes `0x0046DB10(0)` and
-`0x0046DB10(1)`, centred at `0x80`:
+`0x0046DB10(1)`, centred at `0x80`, and the pad word `0x0036FF80()` (through `0x0046DB40`). While `+0x374` is 0 it takes 0 for both axes and the pad word (`0x0032C92C`, `0x0032C939`, `0x0032C95B`-`0x0032C960`), so the stick neither turns the camera nor starts a recentre:
 
 - `0x0032D3D0` turns the horizontal axis into the heading rate `+0xF8`. Past the dead zone the rate is
   `0.4 × 2π / (30 × [0x01DFE0B4])` per frame times the deflection beyond it, over `128 − 50`, eased
   as `(2 × old + new) / 3`.
 - A deflection toward a side whose wall probe is hit counts as zero.
-- With no stick input and the mouse enabled (`+0x374`, 1 after `0x0032B790`), a mouse movement of 7 or
+- With no stick input and camera input enabled (`+0x374`, 1 after `0x0032B790`; `0x02098354` for the first controller, which `tutorial_set_behindcameraenable` sets), a mouse movement of 7 or
   more (`0x001E0CE0`, negated by Camera X-Axis Inverted) drives the same rate, times Mouse Sensitivity
   Left/Right (`0x0017E420`) and 0.2.
 - `0x0032D620` does the same for the level rate `+0xFC` from the vertical axis, `0x001E0D30` and
@@ -261,7 +261,7 @@ Follow camera (controller + `0x2B0`):
 | `+0x360` | `u32` | framed actor |  |
 | `+0x368` | `f32` | travelled distance |  |
 | `+0x370` | `i32` | recentre deflection |  |
-| `+0x374` | `u32` | mouse enabled | 1 |
+| `+0x374` | `u32` | camera input enabled (stick, pad, mouse) | 1 |
 
 ## State
 

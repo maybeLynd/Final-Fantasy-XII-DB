@@ -1,0 +1,60 @@
+file	folders	cell	offset	bytes	serves	layout	sha256	index_values	zero_bytes	smallest	largest
+face_guest07.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 7	rows of the partytop_8_c rectangle's width	d297507f5973e06f1ddc852d2fc3360e2e3a39b93d1f089c613b491522741db3	238	0	1	255
+face_guest08.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 8	rows of the partytop_8_c rectangle's width	7cf0944a6e1a4615b49cd92ace6fef77dd844449527c86fed365b0e828c3407d	189	0	3	229
+face_guest09.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 9	rows of the partytop_8_c rectangle's width	7cf0944a6e1a4615b49cd92ace6fef77dd844449527c86fed365b0e828c3407d	189	0	3	229
+face_guest10.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 10	rows of the partytop_8_c rectangle's width	1200d3215128ba1f87ae67180b943e591d7d86014d1f0e8d08bd8295b091a3fa	219	0	2	251
+face_guest11.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 11	rows of the partytop_8_c rectangle's width	473724bce5c02034330d22b06a3f672e040c27e625e411680fde7dc63f226701	195	0	2	251
+face_guest12.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 12	rows of the partytop_8_c rectangle's width	473724bce5c02034330d22b06a3f672e040c27e625e411680fde7dc63f226701	195	0	2	251
+face_guest13.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 13	rows of the partytop_8_c rectangle's width	1200d3215128ba1f87ae67180b943e591d7d86014d1f0e8d08bd8295b091a3fa	219	0	2	251
+face_guest14.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 14	rows of the partytop_8_c rectangle's width	892f4a637c4c037061e35717d6b69b2de99d89730052977759dc3375d3229375	161	0	3	248
+face_guest15.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 15	rows of the partytop_8_c rectangle's width	df9b1ab05edec0c75c53cfe1d89b5c2744139aed0f6a41b97dd7a19679d13e73	182	0	1	240
+face_guest16.bin	ch cn de es fr in it kr us	0	0x0	12288	guest character id 16	rows of the partytop_8_c rectangle's width	892f4a637c4c037061e35717d6b69b2de99d89730052977759dc3375d3229375	161	0	3	248
+map_efe00.bin	ch cn in it kr us	0	0x0	8192	area flag bit 0x1	first cell, 64 rows of 128	476ff20d35932f9b17fde81414f94b1acd50e76f7a31e49153fb43e776bb179a	249	5000	0	255
+map_efe00.bin	ch cn in it kr us	1	0x2000	8192	area flag bit 0x1	second cell, the 64 rows below the first	2693c5352d042f468d5dab0e44897353981b124df17f946436bbca5b7c60bb28	233	4823	0	255
+map_efe00.bin	de	0	0x0	8192	area flag bit 0x1	first cell, 64 rows of 128	3b2cf37524037faa42221360eeace3c0c780002e8389f6cf2b33903ecdaf6f95	249	5000	0	255
+map_efe00.bin	de	1	0x2000	8192	area flag bit 0x1	second cell, the 64 rows below the first	c0861802c05cc6bb6e0a871f6621332fd61e7cff969a84f6a8cdca5c98db65db	234	4823	0	255
+map_efe00.bin	es	0	0x0	8192	area flag bit 0x1	first cell, 64 rows of 128	002bad6be9fe4cd9c52abf1936f46626ed5efd943721b26233621c8479649365	249	5000	0	255
+map_efe00.bin	es	1	0x2000	8192	area flag bit 0x1	second cell, the 64 rows below the first	268c09a5bada54e77c3f6776b100b94ca1059cbd6395ea44e5d281cbfe4926f7	234	4823	0	255
+map_efe00.bin	fr	0	0x0	8192	area flag bit 0x1	first cell, 64 rows of 128	35466ec808ee8382d3a172aaf4693f84f3c56cbf186824b53982d4b94773140a	249	5000	0	255
+map_efe00.bin	fr	1	0x2000	8192	area flag bit 0x1	second cell, the 64 rows below the first	24329bc1534614e8034062a6343271d3c4700c9f4cfe621388191c4e85df2101	233	4823	0	255
+map_efe01.bin	ch cn de in it kr us	0	0x0	8192	area flag bit 0x2	first cell, 64 rows of 128	6e37adda88e719069efcaf1e3a347acf9b8aaddc76199aae9878f3b43082acf8	247	5000	0	255
+map_efe01.bin	ch cn de in it kr us	1	0x2000	8192	area flag bit 0x2	second cell, the 64 rows below the first	7fbefcdc910a2af907bc370df28d498fc5168f7eb89865336b097b25bd6787fb	234	4823	0	255
+map_efe01.bin	es fr	0	0x0	8192	area flag bit 0x2	first cell, 64 rows of 128	12e533862a01915d36db67a513b4df6f084fc330da5f646427cdb356563c6877	248	5000	0	255
+map_efe01.bin	es fr	1	0x2000	8192	area flag bit 0x2	second cell, the 64 rows below the first	86705873c959d8a542f347c8c08422c87d6de5bd2da3b3c1612e399a0147473e	232	4823	0	255
+map_efe02.bin	ch cn de es fr in it kr us	0	0x0	8192	area flag bit 0x4	first cell, 64 rows of 128	937414b9e1f18d33a1a48d29032457b903c96936ab2470aff21f9792a922f975	173	2752	0	255
+map_efe02.bin	ch cn de es fr in it kr us	1	0x2000	8192	area flag bit 0x4	second cell, the 64 rows below the first	e40e1721c994707fce450e879d62a47e4864850c7a6b787e979aeeece3cab4ae	234	2752	0	255
+map_efe03.bin	ch cn de es fr in it kr us	0	0x0	8192	area flag bit 0x8	first cell, 64 rows of 128	ec7215b8857d348c7ed0946ca1aed8a8327e58c7ad2a988ab92d0efd6f1b027a	182	2752	0	255
+map_efe03.bin	ch cn de es fr in it kr us	1	0x2000	8192	area flag bit 0x8	second cell, the 64 rows below the first	c6902171fe07bc47bdee129b4b418f0031f04925bb53d45e02d1a8a1aa36985e	233	2752	0	254
+map_efe04.bin	ch cn de es fr in it kr us	0	0x0	8192	area flag bit 0x10	first cell, 64 rows of 128	4021c8d86e66fce61e3dcfd068bc6179ad519989f2eaa385161d1e3785e824c7	177	2752	0	255
+map_efe04.bin	ch cn de es fr in it kr us	1	0x2000	8192	area flag bit 0x10	second cell, the 64 rows below the first	04ca5c65455cefe74c6dd8f388b1754ae9abb14ddf5ea92f12e298be3a671256	241	2752	0	255
+map_efe05.bin	ch cn de es fr in it kr us	0	0x0	8192	area flag bit 0x20	first cell, 64 rows of 128	ce4f927f4e2ea0a9d18604dee0d11a4344e807562e7971bd80ed5a978a5b7d82	188	2752	0	255
+map_efe05.bin	ch cn de es fr in it kr us	1	0x2000	8192	area flag bit 0x20	second cell, the 64 rows below the first	de336b725596945ef903057b718c24dd9904deec49237c68adffc6e6f447ffd2	232	2752	0	255
+map_efe06.bin	ch cn de es fr in it kr us	0	0x0	8192	area flag bit 0x40	first cell, 64 rows of 128	b7e013fad69d0cfc421ce03ba2def88bfa793e5945f7f69ec3db5d810523a01e	256	2870	0	255
+map_efe06.bin	ch cn de es fr in it kr us	1	0x2000	8192	area flag bit 0x40	second cell, the 64 rows below the first	99c6bae2ef0cd27a1d2524eefcfd3bd62aac4e6a6528e45a8a57e7693515354b	256	2870	0	255
+mini_guest_face.bin	ch cn de in it kr	0	0x0	8192	guest character id 7	128 rows of 64	0a83f044cde0990a6535b1bf8296f96c7ab8fc419a0a62ce9065be1316dc560f	224	4579	0	255
+mini_guest_face.bin	ch cn de in it kr	1	0x2000	8192	guest character id 8	128 rows of 64	ab1b154ba4602adb5734d469007469badefc627f1aac9e23593a51d77d30ceb9	205	4116	0	255
+mini_guest_face.bin	ch cn de in it kr	2	0x4000	8192	guest character id 9	128 rows of 64	bd0400ed8132df1f886ebd13387ac7605034b43ccf6b9c8168ad9299a25dfd77	216	4331	0	255
+mini_guest_face.bin	ch cn de in it kr	3	0x6000	8192	guest character id 10	128 rows of 64	0f9d8f1b0149166df5406a8cd4de73d51bff3af4b4f9a251974b68535dd6b87b	224	4249	0	255
+mini_guest_face.bin	ch cn de in it kr	4	0x8000	8192	guest character id 11	128 rows of 64	824d78e6907747057c49e464714756aa0493feaf2fed86744b4c1daa649a2ae7	179	3961	0	255
+mini_guest_face.bin	ch cn de in it kr	5	0xA000	8192	guest character id 12	128 rows of 64	a9008b3ea7e7cd89edaa2353ba31e143299f9386d0e63f09906a0e41c91026d3	180	4416	0	255
+mini_guest_face.bin	ch cn de in it kr	6	0xC000	8192	guest character id 13	128 rows of 64	0f9d8f1b0149166df5406a8cd4de73d51bff3af4b4f9a251974b68535dd6b87b	224	4249	0	255
+mini_guest_face.bin	ch cn de in it kr	7	0xE000	8192	guest character id 14	128 rows of 64	dd7b5b4ba2ec1c86edf2295a117818dd3392fe77cda4e02684b67ad89781492f	184	4334	0	255
+mini_guest_face.bin	ch cn de in it kr	8	0x10000	8192	guest character id 15	128 rows of 64	caf6532371d15fedc3e292e8353525bc1e8368299bed45a51fd676ad4bb8a6c2	230	4044	0	255
+mini_guest_face.bin	es fr	0	0x0	8192	guest character id 7	128 rows of 64	bf5e8463d349b801ee458fa5c510b450a4e62ec3e7e5eef9b9407c869c0d579b	225	4579	0	255
+mini_guest_face.bin	es fr	1	0x2000	8192	guest character id 8	128 rows of 64	823617948cb263dc90b35d82ac1761b31abe5c11c145d1e08ca520687b2a432d	199	4180	0	255
+mini_guest_face.bin	es fr	2	0x4000	8192	guest character id 9	128 rows of 64	c570a31474dac4144dbeba073a12c331ee7e197c62f5b9af49b2d1b2b5e1762b	216	4384	0	255
+mini_guest_face.bin	es fr	3	0x6000	8192	guest character id 10	128 rows of 64	90c5d1ce376e5f09e9673d5863b99ab125a9f7cf0b395628f04eecd3139eab59	220	4246	0	255
+mini_guest_face.bin	es fr	4	0x8000	8192	guest character id 11	128 rows of 64	146ff63967e71d34e4fff56029639bba386b874f92db8e7c204f888ac32b34a3	175	3961	0	255
+mini_guest_face.bin	es fr	5	0xA000	8192	guest character id 12	128 rows of 64	61cfe6cb3020a5f361ffc8af3aef25a004dbd0725d0b1000876bf34d239aeb94	170	4416	0	255
+mini_guest_face.bin	es fr	6	0xC000	8192	guest character id 13	128 rows of 64	75d842dd3329b63b2dafb7e8a47809c335484241225a9aeb9ce9986f35a49fdc	220	4246	0	255
+mini_guest_face.bin	es fr	7	0xE000	8192	guest character id 14	128 rows of 64	5e2afa341c50a479f05c2c654008a0f0e4499e0b339ceeead64b4ff11cd7820e	175	4330	0	255
+mini_guest_face.bin	es fr	8	0x10000	8192	guest character id 15	128 rows of 64	e601702f3392f93aea0bcc85ae56b57f9e0fda9208ec861168c6b138b916fcdf	235	4250	0	255
+mini_guest_face.bin	us	0	0x0	8192	guest character id 7	128 rows of 64	bf5e8463d349b801ee458fa5c510b450a4e62ec3e7e5eef9b9407c869c0d579b	225	4579	0	255
+mini_guest_face.bin	us	1	0x2000	8192	guest character id 8	128 rows of 64	823617948cb263dc90b35d82ac1761b31abe5c11c145d1e08ca520687b2a432d	199	4180	0	255
+mini_guest_face.bin	us	2	0x4000	8192	guest character id 9	128 rows of 64	c570a31474dac4144dbeba073a12c331ee7e197c62f5b9af49b2d1b2b5e1762b	216	4384	0	255
+mini_guest_face.bin	us	3	0x6000	8192	guest character id 10	128 rows of 64	90c5d1ce376e5f09e9673d5863b99ab125a9f7cf0b395628f04eecd3139eab59	220	4246	0	255
+mini_guest_face.bin	us	4	0x8000	8192	guest character id 11	128 rows of 64	146ff63967e71d34e4fff56029639bba386b874f92db8e7c204f888ac32b34a3	175	3961	0	255
+mini_guest_face.bin	us	5	0xA000	8192	guest character id 12	128 rows of 64	61cfe6cb3020a5f361ffc8af3aef25a004dbd0725d0b1000876bf34d239aeb94	170	4416	0	255
+mini_guest_face.bin	us	6	0xC000	8192	guest character id 13	128 rows of 64	75d842dd3329b63b2dafb7e8a47809c335484241225a9aeb9ce9986f35a49fdc	220	4246	0	255
+mini_guest_face.bin	us	7	0xE000	8192	guest character id 14	128 rows of 64	5e2afa341c50a479f05c2c654008a0f0e4499e0b339ceeead64b4ff11cd7820e	175	4330	0	255
+mini_guest_face.bin	us	8	0x10000	8192	guest character id 15	128 rows of 64	3d44a9423d9c2fbfb6c7dc5ad57dadd04db7c55e981f1a5fc7e59037e198cc61	256	4044	0	255

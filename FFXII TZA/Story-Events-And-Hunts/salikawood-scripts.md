@@ -186,14 +186,14 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 10,609 |
-| empty | 56 |
+| `resolved` | 10,632 |
+| empty | 33 |
 | `does not ship`, with the fact | 2 |
 
 The two `does not ship` rows are `motionread` calls that read entry 1 of `frs_d01.mot`, an empty entry. A row whose
 `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the script writes
 them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give for the step,
-for example the variable that receives a result, and `-` otherwise.
+and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `frs_b0200` (event `200`), `DIRECTOR.main` files
 `AD.準備_ad`, reads motion 1 of `frs_b0200.mot`, waits for both and waits while `scratch1_var_1` is 0. It reads event

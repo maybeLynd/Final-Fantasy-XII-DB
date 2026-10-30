@@ -217,7 +217,7 @@ when the binding actor's class bits (`+0x03 & 0xE0`) are `0x60`, its position `+
 
 `0x0025AB30` undoes a binding by the actor's kind byte `+0x04`: kind 2 runs `0x003DE5F0`, which releases
 the light and clears the entry's handle, actor and focus flag; kinds 1 and 3 run `0x002E3AF0` and
-`0x002E3D00`. The area initialiser `0x00266D10` resets all 16 entries through `0x003DE710`.
+`0x002E3D00`. The start-up initialiser `0x00266D10` resets all 16 entries through `0x003DE710`.
 
 ### Script ambient colours
 

@@ -153,6 +153,14 @@ and how often each language's staff-roll text asks for its code.
   the `us` tables, asks for them, so they are never fetched.
 - Inside each sheet the 78 cells of a table cover every byte exactly once, and every code a staff-roll line
   asks for has a record in its font's table, for every language id.
+- Faces 0 to 5 hold 36, 1, 10, 31, 12 and 1 records in the `ch`, `cn` and `kr` tables, the same with 45 in face 3 in
+  `in`, and 92, 0, 10, 150, 12 and 0 in `us` and `it`, whose two copies are identical.
+
+Every glyph record of the 12 tables in the five distinct `fontpack_fs.bin` contents, with the folders that hold each:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`btm-exfont-bitmaps-fontpack-glyphs-rows.tsv`](btm-exfont-bitmaps-fontpack-glyphs-rows.tsv) | 3,178 | glyph record: face, the table's offset, count and bytes `+0x08` to `+0x0F`, index, code and character, cell and rounded size, bytes `+0x04` to `+0x07`, sheet offset and cell length |
 
 ## Loader behaviour
 

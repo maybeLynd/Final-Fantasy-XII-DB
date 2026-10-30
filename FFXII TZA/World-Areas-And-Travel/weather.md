@@ -147,6 +147,10 @@ tagged `MapRef` with the completion `0x002678A0` (`0x00268803`); then file 2, `i
 with no completion (`0x00268838`). That block's pointer goes to `0x02099D98` (`0x00268829`, cleared at `0x00268772`),
 and no instruction reads `0x02099D98` by its address.
 
+`test_area_ref.bin` is 321 `u16` values, one per area index 0 to 320: value n is the first field whose
+`map_ref.bin` row has area n. The fields of each area are consecutive, so value n + 1 minus 1 is area n's last
+field, and area 320 ends at field 1,314. An area holds 1 to 28 fields.
+
 `map_ref.bin` is bound at `0x02099D88`; `0x02099D90` is the address of its `+0x14` table, which the load completion
 `0x002678A0` sets, so it also serves as the loaded test (both tested at
 `0x0026D98F`, `0x0026D9CC` and by `0x00264F10`). The field's row is at `header[+4] + field * 8`; its first
@@ -236,6 +240,48 @@ The six wind presets (`0x01EFFA30`, floats then a mode dword):
 
 Presets 7 cannot occur in the shipped data; the table has six rows and the qwords after row 6 are
 code pointers.
+
+### What the sky is
+
+The sky is part of each map's remastered scene. Each piece is an ordinary mesh instance `nodename<N>`
+with the mesh `nodename<N>Shape`, attached to YM00 instance N
+([Map art](map-art.md#matching-models-to-instances)). A piece belongs to the sky when its instance's
+flag word `+0x0C` has `0x10000000`. This is the set the script verb `setskyonly` keeps: while
+`0x0209A704` is set, the draw-list build `0x002F5550` skips every instance without that bit
+(`0x002F5E03`-`0x002F5E10`).
+
+- In each of the 195 map packs with sky instances, they are instances 0 to n-1. None of these packs has
+  an instance with `0x400`.
+- Every piece has one material, a `PhyreDefaultLitShader` variant. Its `TextureSampler` texture is the
+  picture: sky domes, cloud layers, stars, moons and distant mountains.
+- 971 of the 988 pieces use a material group named with `sky`. The other 17 are the distant mountains
+  of `sav01` and `sav02`.
+- A piece is drawn only in the weather slots whose bits it carries: `0x1000000`, `0x2000000` and
+  `0x4000000` for slots 1 to 3, tested against `0x0209A6E8` (`0x002F5DF9`). So a weather change swaps sky
+  pieces in and out.
+  - 488 pieces are in all three slots, 177 only in slot 1, 39 only in slot 2 and 93 only in slot 3.
+  - 81 are in slots 1 and 2, and 110 in slots 2 and 3.
+- The draw pass `0x002F4520` draws at once every instance up to the last one with `0x10000000` or `0x400`
+  (`0x002F4804`), then posts the map's opaque command ([Map art](map-art.md#drawing-an-instance)). So
+  the sky is drawn before the rest of the map.
+- The same bit sets the object's flag `+0xC1` (`0x002F4D3C`, `0x001E69A0`). `0x001E2AF0` then draws the piece
+  with a pass chosen by its mode `+0x78` (`0x001E30BD`):
+  - mode 0: `DefaultMapRenderPassNztNzwAtNoBlending`;
+  - mode 1: the linear blend (source alpha over inverse source alpha);
+  - mode 2: the additive blend;
+  - mode 3: the subtractive blend.
+- All four passes test depth with ALWAYS and write no depth, so the map drawn afterwards covers the sky.
+  The mode starts from the flag word's `(flag >> 1) & 7` (`0x002F4A72`-`0x002F4A9C`): it is 0 on 402 sky
+  instances, 1 on 403 and 2 on 194.
+- Neither the direction `0x02CA43A0` nor the tangent `0x02CA43B0` reaches the sky. Their only readers are
+  `0x0040B430` (`0x0040B4C4`) and the model simulation stage `0x0040FF30` (`0x00410083`, `0x0041008A`), so
+  `setmapwind` and the wind presets do not change how the sky is drawn.
+- `sky_spec` is the specular companion of `nal0102`'s `tex/sky.dds`, and both of its asset lists name
+  it. `0x001A7F10` pairs it with that texture, and `0x001E6110` binds it as `SpecularMap` of the sky piece
+  (`m_extraFlag` `0xC`). `sky_n` is bound as `NormalMap` by `0x001E55C0` in the same way.
+- `Sky_mirror.dds` of `rbn5101` is the `TextureSampler` of the upper-floor material
+  `_collada_rbn5101_Upper_floor__phong49`. Two floor instances draw it. The map's sky piece binds
+  `alc0200_sky.dds`.
 
 ### What combat reads
 
@@ -415,13 +461,16 @@ Over its 2,328 entries the wind preset is 0 on 1,180, 1 on 550, 2 on 420, 4 on 1
 on 1, so the strong-wind class 2 covers 178 entries; the elevation class is 0 on 1,865, 1 on 214 and
 2 on 249; sector 0 holds 1,603 of the azimuths and sector 8 (180 degrees) 217.
 
-The two files row by row, decoded with the layouts above:
+The three files row by row, decoded with the layouts above:
 
 | table | rows | what each row holds |
 |---|---:|---|
 | [`weather-fields.tsv`](weather-fields.tsv) | 1,315 | one field of `map_ref.bin` (row n is field n): its selector, block, area and group, the group's terrain class, and for each weather slot the lane's four bytes, its environment index, the combat class and terrain flag the two lookup tables give it (0 out of range, as the code reads), and the MWeather wind preset, wind class, azimuth sector and elevation class of that selector and slot |
 | [`weather-mweather-entries.tsv`](weather-mweather-entries.tsv) | 2,328 | every selector 0 to 775 and slot 1 to 3 of `gramap_weatherinfo.bin`: the entry number, its 9 bits, the wind preset, the azimuth sector and the elevation class |
+| [`weather-test-area-ref.tsv`](weather-test-area-ref.tsv) | 321 | one value of `test_area_ref.bin`: the area index, its offset, the area's first and last field and its field count |
 | [`weather-terrain-groups.tsv`](weather-terrain-groups.tsv) | 32 | the `+0x14` table, the terrain class per field group: 0 for 17 groups, 1 for one, 2 for two, 3 for three and 4 for nine |
+| [`weather-sky-instances.tsv`](weather-sky-instances.tsv) | 999 | one sky instance (flag `0x10000000`) of a map pack, over 195 packs: the scene drawn (five packs use another map's scene through `0x01EF9490`), the instance number, flag word and weather slots, the mesh instance and mesh, segments, indices and indexed vertices, `m_extraFlag`, material, effect variant, `TextureSampler` texture and the file it loads; 11 instances have no mesh instance in the scene |
+| [`weather-sky-textures.tsv`](weather-sky-textures.tsv) | 1,052 | one texture binding of a material that a sky instance draws or that binds a texture named `sky`: the scene, material, effect variant, parameter, texture, the file it loads, and how many sky and other instances draw the material |
 
 The zone scripts (`ps2data/plan_master/us/plan_map/<area>/<zone>/global/<zone>.ebp`, 769 files,
 the script section at `+0x80`, its `+0x64` section a count of 3 then three bytes) author 17

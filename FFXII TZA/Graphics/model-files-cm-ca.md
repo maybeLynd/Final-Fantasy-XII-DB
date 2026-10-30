@@ -240,7 +240,61 @@ record +(i+1) x 0x20   part i's selector bytes
 | `@FDM` | in 1,045 (all but 21 weapons); 30,023 keys, all below `0x10000` |
 | `@FTE` | in 1,044; 2,127 textures, 1 to 17 per file; 2,081 8-bit and 46 4-bit; pixel data packed in record order up to the entry's end in all |
 | `@FCT` | in 1,044; 1,972 palettes of 256 colours (1,618), 128 (318) or 16 (36); four pages in all |
-| palette page 3 | mean colourfulness (max − min channel) 30.6, 30.5, 21.4 and 1.6 on pages 0 to 3; grey on page 3 only in 1,818 of the 1,970 palettes whose pages fit |
+| palette page 3 | mean colourfulness (max − min channel) 30.6, 30.5, 21.4 and 1.6 on pages 0 to 3; page 3 is near-grey (no colour's red, green and blue differ by more than 13) in 1,962 of the 1,970 palettes whose pages fit, and the only near-grey page in 1,856 of them; equal red, green and blue in every colour of page 3 in one; the other 8 are second and third palettes of `hc1005_02`, `hc1005_03` and `hc1006_01` to `hc1006_03`, spread 37 to 88 |
+
+Every file, entry and record of the 4,230 files, decoded with the layouts above. The tables join by `path`, the
+file's path under `ps2data/obj_finish/in/`. `bound_id` joins [model-asset-list.tsv](model-asset-list.tsv), and the
+weapons' special-id bones and node keys per model are in [weapon-bones.tsv](weapon-bones.tsv). A field the layouts do
+not name is given by its offsets, as hex bytes.
+
+| table | rows | one row per |
+|---|---:|---|
+| [`model-files-cm-ca-files.tsv`](model-files-cm-ca-files.tsv) | 4,230 | `.cm` or `.ca` file: folder, container version, size, content length, entry count, SHA-256, the entries' tags in order and the bound id that names it |
+| [`model-files-cm-ca-entries.tsv`](model-files-cm-ca-entries.tsv) | 78,618 | container entry: index, file offset, tag, kind, length, count and name |
+| [`model-files-cm-ca-ca-slots.tsv`](model-files-cm-ca-ca-slots.tsv) | 63,836 | non-empty slot of a version-1 `.ca`: its row and column and the entry's tag |
+| [`model-files-cm-ca-heads.tsv`](model-files-cm-ca-heads.tsv) | 1,066 | `.cm`: the header fields of its `@FCP`, `@FTR`, `@FOR`, `@FDM` and `@FTE` entries |
+| [`model-files-cm-ca-fcp-sections.tsv`](model-files-cm-ca-fcp-sections.tsv) | 6,454 | present `@FCP` section: offset, span and length |
+| [`model-files-cm-ca-special-bones.tsv`](model-files-cm-ca-special-bones.tsv) | 740 | `.cm` outside `weapon`: its special-id bones |
+| [`model-files-cm-ca-ftr-nodes.tsv`](model-files-cm-ca-ftr-nodes.tsv) | 27,561 | `@FTR` node: key, parent, flags and pool indices |
+| [`model-files-cm-ca-for-records.tsv`](model-files-cm-ca-for-records.tsv) | 1,275 | `@FOR` record: key, selectors per part and scale |
+| [`model-files-cm-ca-fdm-keys.tsv`](model-files-cm-ca-fdm-keys.tsv) | 30,023 | `@FDM` key: its position in the key table |
+| [`model-files-cm-ca-fte-textures.tsv`](model-files-cm-ca-fte-textures.tsv) | 2,127 | `@FTE` texture: sizes, format and pixel data offset |
+| [`model-files-cm-ca-fct-palettes.tsv`](model-files-cm-ca-fct-palettes.tsv) | 1,972 | `@FCT` palette: sizes, data offset, grey pages, the largest channel spread of each page and the SHA-256 of its colours |
+
+| Column | Table | Meaning |
+|---|---|---|
+| `folder`, `version`, `size`, `content_length`, `entries` | files | the kind folder, the container version, the file's bytes, `+0x08` and the container's count `+0x0C` |
+| `sha256` | files | the SHA-256 of the whole file |
+| `entry_set` | files | the entries' tags in index order; a run of one tag is written `tag xN` |
+| `bound_id` | files | the bound id whose `cm` names the `.cm`, or whose `lane_files` name the `.ca`; `-` for a `.ca` no lane names |
+| `index`, `offset` | entries | the entry's index in the offset table (the slot in a version-1 `.ca`) and its offset in the file |
+| `tag`, `kind`, `length`, `count`, `name` | entries | the entry header's `+0x00`, `+0x04`, `+0x08`, `+0x0C` and `+0x10` |
+| `slot`, `row`, `column` | ca-slots | the slot, and for a slot below 80 × rows its row and column (slot = row × 80 + column); `-` for the slots after them |
+| `fcp_byte00`, `fcp_byte01`, `fcp_sections` | heads | `@FCP` payload bytes `+0x00` and `+0x01`, and the sections whose offset is not 0 |
+| `fcp_section2_length`, `fcp_event_map`, `fcp_version` | heads | payload `+0x24`, the six bytes at `+0x2C` and the version byte `+0x32` |
+| `fcp_26_2b`, `fcp_33_39` | heads | payload bytes `+0x26`–`+0x2B` and `+0x33`–`+0x39` |
+| `ftr_nodes`, `ftr_pool_offset`, `ftr_extra_slots` | heads | `@FTR` `+0x30`, `+0x34` and `+0x38` |
+| `for_records`, `for_31`, `for_table_b_stride`, `for_options` | heads | `@FOR` bytes `+0x30` to `+0x33` |
+| `for_table_a`, `for_table_b`, `for_records_offset` | heads | `@FOR` `+0x34`, `+0x36` and `+0x38` |
+| `for_lod_distances`, `for_lod_highest`, `for_lod_d0_cm`, `for_lod_d1_cm` | heads | `@FOR` `+0x3A`, `+0x3B`, `+0x3C` and `+0x3E` |
+| `for_table_a_bytes`, `for_table_b_bytes` | heads | the bytes of table A and of table B, up to the next table |
+| `fdm_30`, `fdm_keys_offset`, `fdm_keys`, `fdm_34_4f` | heads | `@FDM` `+0x30`, `+0x32`, the key count, and the bytes from `+0x34` to the key table |
+| `fte_always_slots` | heads | the texture slots listed after the count at `@FTE` `+0x30` |
+| `section`, `offset`, `span`, `length` | fcp-sections | the section, its offset in the payload, the bytes to the next section or the payload's end, and the length for section 2 (`+0x24`) and section 8 (`0x10` + count × `0x1D0`) |
+| `special_bones_0_31`, `special_bones_104_106` | special-bones | as in weapon-bones.tsv: the set entries of section 1's table at `+0x14C` and of `+0x3A`–`+0x3E`, as "id: bone", or "none" |
+| `node`, `number`, `record` | ftr-nodes | the node's position, the node number of its `+0x40` table word, and its record offset in the entry |
+| `key`, `parent`, `byte_03`, `flags` | ftr-nodes | the key as `0x00409250` reads it, the parent (`-` for none), record byte `+0x03` and the flags `+0x04` |
+| `pool_indices`, `pool_index_list` | ftr-nodes | the record's u16 pool indices in stored order: one for each of flag bits `0x80000000`, `0x400000` and `0x20000000`, sixteen for `0x200000`, and one for each translation and angle bit; the list fills every record |
+| `record`, `key`, `selectors_0`–`selectors_2` | for-records | the record's position, its key, and the selector counts at `+0x05`, `+0x06` and `+0x07` |
+| `scale`, `part_0`–`part_2` | for-records | float `+0x18`, and each part's selector bytes at `+0x20`, `+0x40` and `+0x60` |
+| `bytes_01_04`, `bytes_08_17`, `bytes_1c_1f`, `bytes_80_df` | for-records | record bytes `+0x01`–`+0x04`, `+0x08`–`+0x17`, `+0x1C`–`+0x1F` and `+0x80`–`+0xDF` (`-` when all zero) |
+| `position`, `key` | fdm-keys | the key's position in the table and the key |
+| `vram_bytes`, `width`, `height`, `format` | fte-textures | record `+0x00`, `+0x04`, `+0x06` and `+0x08` |
+| `upload_width`, `upload_height`, `upload_bytes`, `pixel_offset` | fte-textures | record `+0x0A`, `+0x0C`, `+0x14` and `+0x18`; each texture's pixel data is its upload bytes long, and the next starts where it ends |
+| `dword_1c` | fte-textures | record `+0x1C` |
+| `vram_bytes`, `palette_bytes`, `colours`, `upload_width`, `pages`, `upload_height` | fct-palettes | record `+0x00`, `+0x02`, palette bytes / 4, `+0x04`, `+0x05` and `+0x06` |
+| `dword_08`, `data_offset`, `data_bytes` | fct-palettes | record `+0x08`, `+0x0C`, and the bytes of the four pages inside the entry |
+| `grey_pages`, `page_spreads`, `sha256` | fct-palettes | the pages on which every colour has equal red, green and blue, the largest max − min channel difference over each page's colours, pages 0 to 3 (both `-` when the pages do not fit), and the SHA-256 of the data bytes |
 
 ## Loader behaviour
 

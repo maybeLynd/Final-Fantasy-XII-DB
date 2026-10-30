@@ -1,0 +1,689 @@
+pack	folders	entry	offset	bytes	sha256	entry_same_bytes_in	magic	bound_as	tim2_version	tim2_pictures	total_size	clut_size	image_size	header_size	clut_colours	tex0_psm	clut_type	image_type	width	height	ext_block	sprite_records	other_pictures
+texpack_ys.bin	ch cn es fr in it kr us	0	0x40	147904	77aaa37a6795038d9ea9ea2c00cb514dec7d6db3466f087b200583f5094459a3	ch cn de es fr in it kr us	TIM2	buttonicon	216	1	147888	16384	131072	0x1B0	4096	0x13	3	5	512	256	yes	40	
+texpack_ys.bin	ch cn es fr in it kr us	1	0x24200	82432	965ce37a14ae84e377539c21391941cf3fd449f2c2d7d7259f0c195a7e5807f3	ch cn de es fr in it kr us	TIM2	bt_win_0_c	216	1	82368	16384	65536	0x1C0	4096	0x13	3	5	256	256	yes	42	
+texpack_ys.bin	ch cn es fr in it kr us	2	0x38400	21696	12a2e285d73cf40c518166113f8372748c6e89f84598bbff0f7ee3d44a0a3e14	ch cn de es fr in it kr us	TIM2	cm_win_c	216	1	21680	5120	16384	0xB0	1280	0x13	3	5	128	128	yes	10	
+texpack_ys.bin	ch cn es fr in it kr us	3	0x3D8C0	148032	134c9b5cde555b58dbae497d9ff6091e4f7981893f2a5f1dcd9f622b5ec478ce	ch cn es fr in it kr us	TIM2	cursol_4_p	216	1	147984	16384	131072	0x210	4096	0x13	3	5	512	256	yes	50	
+texpack_ys.bin	ch cn es fr in it kr us	4	0x61B00	1058880	a794a519f11248a707fabf62a583ae4a64a02923156994ae80d43c81ec5b4172	ch cn de es fr in it kr us	TIM2	keyboard	216	1	1058864	1024	1048576	0x2430	256	0x13	3	5	1024	1024	yes	1142	
+texpack_ys.bin	ch cn es fr in it kr us	5	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	6	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	7	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	8	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	9	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	10	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	11	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	12	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	13	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	14	0xFFFFFFFF																				
+texpack_ys.bin	ch cn es fr in it kr us	15	0xFFFFFFFF																				
+texpack_ys.bin	de	0	0x40	147904	77aaa37a6795038d9ea9ea2c00cb514dec7d6db3466f087b200583f5094459a3	ch cn de es fr in it kr us	TIM2	buttonicon	216	1	147888	16384	131072	0x1B0	4096	0x13	3	5	512	256	yes	40	
+texpack_ys.bin	de	1	0x24200	82432	965ce37a14ae84e377539c21391941cf3fd449f2c2d7d7259f0c195a7e5807f3	ch cn de es fr in it kr us	TIM2	bt_win_0_c	216	1	82368	16384	65536	0x1C0	4096	0x13	3	5	256	256	yes	42	
+texpack_ys.bin	de	2	0x38400	21696	12a2e285d73cf40c518166113f8372748c6e89f84598bbff0f7ee3d44a0a3e14	ch cn de es fr in it kr us	TIM2	cm_win_c	216	1	21680	5120	16384	0xB0	1280	0x13	3	5	128	128	yes	10	
+texpack_ys.bin	de	3	0x3D8C0	148032	feb1d63c6c3b306cd308662d99fe75ce21c9fd17aba0924e3432ffe24cc32bb4	de	TIM2	cursol_4_p	216	1	147984	16384	131072	0x210	4096	0x13	3	5	512	256	yes	50	
+texpack_ys.bin	de	4	0x61B00	1058880	a794a519f11248a707fabf62a583ae4a64a02923156994ae80d43c81ec5b4172	ch cn de es fr in it kr us	TIM2	keyboard	216	1	1058864	1024	1048576	0x2430	256	0x13	3	5	1024	1024	yes	1142	
+texpack_ys.bin	de	5	0xFFFFFFFF																				
+texpack_ys.bin	de	6	0xFFFFFFFF																				
+texpack_ys.bin	de	7	0xFFFFFFFF																				
+texpack_ys.bin	de	8	0xFFFFFFFF																				
+texpack_ys.bin	de	9	0xFFFFFFFF																				
+texpack_ys.bin	de	10	0xFFFFFFFF																				
+texpack_ys.bin	de	11	0xFFFFFFFF																				
+texpack_ys.bin	de	12	0xFFFFFFFF																				
+texpack_ys.bin	de	13	0xFFFFFFFF																				
+texpack_ys.bin	de	14	0xFFFFFFFF																				
+texpack_ys.bin	de	15	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	0	0x40	5440	c54a0b207d65d74bbae9171cdc5956d1c1a93acedfa2bbda2cffdef313b6fd60	in_sdver	TIM2	buttonicon	216	1	5424	1024	4096	0x130	256	0x14	3	4	128	64	yes	24	
+texpack_ys.bin	in_sdver	1	0x1580	9600	368bb8d4d3dcb4e71d51c37c3a1b2b5c1cae542a541087dc46343b808a151441	in_sdver	TIM2	bt_win_0_c	216	1	9584	5120	4096	0x170	1280	0x13	3	5	64	64	yes	34	
+texpack_ys.bin	in_sdver	2	0x3B00	7360	6dded5b3aaed684ee5832a514e8ab667caf5d3c79a19553fdc25b028647d293e	in_sdver	TIM2	cm_win_c	216	1	7344	3072	4096	0xB0	768	0x13	3	5	64	64	yes	10	
+texpack_ys.bin	in_sdver	3	0x57C0	9760	e443d1daeeb96a2583307bb2dfc9b7197cfc9b46e2b54b76c10204ab1e691c6b	in_sdver	TIM2	cursol_4_p	216	1	9744	1024	8192	0x210	256	0x14	3	4	128	128	yes	50	
+texpack_ys.bin	in_sdver	4	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	5	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	6	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	7	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	8	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	9	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	10	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	11	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	12	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	13	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	14	0xFFFFFFFF																				
+texpack_ys.bin	in_sdver	15	0xFFFFFFFF																				
+tex2pack_ys.bin	ch	0	0x40	635840	0a284ac54e07344713ad130e6892ebacd7a5059a2a3e2017026acefcb16738b5	ch	TIM2	battle_4_c	216	1	635776	109568	524288	0x780	27392	0x13	3	5	1024	512	yes	216	
+tex2pack_ys.bin	ch	1	0x9B400	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	ch	2	0xA1080	541056	e2d5e8dc5f161b133f7223c2770b221fc2fcc8cbd4bea49528deb301462d288c	ch cn in kr	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	ch	3	0x125200	289280	c76293ca1b598481bafac2c08610b5e807afe0532df38b5e3cc8741ebe9dfe76	ch	TIM2	battle_4_p	216	1	289264	26624	262144	0x1F0	6656	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	ch	4	0x16BC00	9344	718a081d95670f632cf96d3d1e052d733e15e6c8cf5b0694b88a30211db827bb	ch cn de in it kr	TIM2	mini_face_c	216	1	9328	1024	8192	0x70	256	0x13	3	5	64	128	yes	2	
+tex2pack_ys.bin	ch	5	0x16E080	584384	cef33b0e78edb3aa5f1d394af9f7197f1f94bf73bc6cdbeb67759e94eecd8d4e	ch cn in kr us	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	ch	6	0x1FCB40	2116480	62187b976d7cd868b6e161ab19a8a8ed5af59dbe9587bd09291491ee7aad7a3d	ch cn de in it kr	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	ch	7	0x4016C0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	ch	8	0x405B00	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	ch	9	0x490180	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	ch	10	0x498640	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	ch	11	0xFFFFFFFF																				
+tex2pack_ys.bin	ch	12	0xFFFFFFFF																				
+tex2pack_ys.bin	ch	13	0xFFFFFFFF																				
+tex2pack_ys.bin	ch	14	0xFFFFFFFF																				
+tex2pack_ys.bin	ch	15	0xFFFFFFFF																				
+tex2pack_ys.bin	cn	0	0x40	635840	ad7030b9cb0fc25956eb58632f9f38b30350754d0c86727c1dbaee3e8c2ab18c	cn	TIM2	battle_4_c	216	1	635776	109568	524288	0x780	27392	0x13	3	5	1024	512	yes	216	
+tex2pack_ys.bin	cn	1	0x9B400	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	cn	2	0xA1080	541056	e2d5e8dc5f161b133f7223c2770b221fc2fcc8cbd4bea49528deb301462d288c	ch cn in kr	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	cn	3	0x125200	289280	553244f52dd158dac2ebe8aa517ad9ad428428c36f6dcb0c3c2386edd532b475	cn	TIM2	battle_4_p	216	1	289264	26624	262144	0x1F0	6656	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	cn	4	0x16BC00	9344	718a081d95670f632cf96d3d1e052d733e15e6c8cf5b0694b88a30211db827bb	ch cn de in it kr	TIM2	mini_face_c	216	1	9328	1024	8192	0x70	256	0x13	3	5	64	128	yes	2	
+tex2pack_ys.bin	cn	5	0x16E080	584384	cef33b0e78edb3aa5f1d394af9f7197f1f94bf73bc6cdbeb67759e94eecd8d4e	ch cn in kr us	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	cn	6	0x1FCB40	2116480	62187b976d7cd868b6e161ab19a8a8ed5af59dbe9587bd09291491ee7aad7a3d	ch cn de in it kr	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	cn	7	0x4016C0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	cn	8	0x405B00	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	cn	9	0x490180	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	cn	10	0x498640	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	cn	11	0xFFFFFFFF																				
+tex2pack_ys.bin	cn	12	0xFFFFFFFF																				
+tex2pack_ys.bin	cn	13	0xFFFFFFFF																				
+tex2pack_ys.bin	cn	14	0xFFFFFFFF																				
+tex2pack_ys.bin	cn	15	0xFFFFFFFF																				
+tex2pack_ys.bin	de	0	0x40	635840	0fd035f9307d30e41bba5227edc761d646bdcd488055795ae0c40be06b93e156	de	TIM2	battle_4_c	216	1	635792	109568	524288	0x790	27392	0x13	3	5	1024	512	yes	218	
+tex2pack_ys.bin	de	1	0x9B400	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	de	2	0xA1080	541056	2d315afab254333cf8cebdc06debe536747fddc12e94e53584349b777b25c45c	de	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	de	3	0x125200	299520	25d623a8d739bece8b17afd741d294cf65819d3bf0aa02d6796e67ed90b951c5	de	TIM2	battle_4_p	216	1	299504	36864	262144	0x1F0	9216	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	de	4	0x16E400	9344	718a081d95670f632cf96d3d1e052d733e15e6c8cf5b0694b88a30211db827bb	ch cn de in it kr	TIM2	mini_face_c	216	1	9328	1024	8192	0x70	256	0x13	3	5	64	128	yes	2	
+tex2pack_ys.bin	de	5	0x170880	584384	c38c51a0c62b93a0525aa311f8b5a71fbbed74003cc1e69ac6b8b6acf910b1ea	de	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	de	6	0x1FF340	2116480	62187b976d7cd868b6e161ab19a8a8ed5af59dbe9587bd09291491ee7aad7a3d	ch cn de in it kr	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	de	7	0x403EC0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	de	8	0x408300	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	de	9	0x492980	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	de	10	0x49AE40	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	de	11	0xFFFFFFFF																				
+tex2pack_ys.bin	de	12	0xFFFFFFFF																				
+tex2pack_ys.bin	de	13	0xFFFFFFFF																				
+tex2pack_ys.bin	de	14	0xFFFFFFFF																				
+tex2pack_ys.bin	de	15	0xFFFFFFFF																				
+tex2pack_ys.bin	es	0	0x40	636864	14cb29ece43f30dd3d214f6ff0c8ee70ad9ae290cedb5ad1049a4f8af6fe8c26	es	TIM2	battle_4_c	216	1	636800	110592	524288	0x780	27648	0x13	3	5	1024	512	yes	216	
+tex2pack_ys.bin	es	1	0x9B800	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	es	2	0xA1480	541056	ab9b35b131dd355bf22963e3ee3a11bca07cfd6e88b03dacc972e442a3f7d565	es	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	es	3	0x125600	289280	b0d8f660ce5a4aaee7fb8053177ec9da3959ccff39a6de50198c265c86e47013	es	TIM2	battle_4_p	216	1	289264	26624	262144	0x1F0	6656	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	es	4	0x16C000	17536	20c5b2f42d7c07ce28a30856e19191bb78d21898f1f4201e5821ac06c3d32214	es fr us	TIM2	mini_face_c	216	1	17520	1024	16384	0x70	256	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	es	5	0x170480	584384	f6df081ccebf0a849cbf20ac3ea4a4329edcd3203bc7c3ceeb939cf89e2d1a2d	es	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	es	6	0x1FEF40	2116480	daec0976367441f873006325aa28a04074fac3e039c96e1d6f0a6ecc7b3be447	es fr	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	es	7	0x403AC0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	es	8	0x407F00	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	es	9	0x492580	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	es	10	0x49AA40	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	es	11	0xFFFFFFFF																				
+tex2pack_ys.bin	es	12	0xFFFFFFFF																				
+tex2pack_ys.bin	es	13	0xFFFFFFFF																				
+tex2pack_ys.bin	es	14	0xFFFFFFFF																				
+tex2pack_ys.bin	es	15	0xFFFFFFFF																				
+tex2pack_ys.bin	fr	0	0x40	636864	6d551beaaffd6385a0cd0994af0974af903fae6dfd4fa19bd348a7973415c85f	fr	TIM2	battle_4_c	216	1	636800	110592	524288	0x780	27648	0x13	3	5	1024	512	yes	216	
+tex2pack_ys.bin	fr	1	0x9B800	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	fr	2	0xA1480	541056	91b37044cb7b06f670bf5c3e37a8f4274d0fd6a5c232b9cce9b2a98e036b724e	fr	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	fr	3	0x125600	289280	c6ab01d32e7341faf74874aa101d9e9d35b9c8bf9d5816a06a50f8a02f2410a1	fr	TIM2	battle_4_p	216	1	289264	26624	262144	0x1F0	6656	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	fr	4	0x16C000	17536	20c5b2f42d7c07ce28a30856e19191bb78d21898f1f4201e5821ac06c3d32214	es fr us	TIM2	mini_face_c	216	1	17520	1024	16384	0x70	256	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	fr	5	0x170480	584384	6fb1fb071ad528196ffcf417d4aef8b4f9d69f236aab743649f6b0e8a3781321	fr	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	fr	6	0x1FEF40	2116480	daec0976367441f873006325aa28a04074fac3e039c96e1d6f0a6ecc7b3be447	es fr	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	fr	7	0x403AC0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	fr	8	0x407F00	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	fr	9	0x492580	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	fr	10	0x49AA40	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	fr	11	0xFFFFFFFF																				
+tex2pack_ys.bin	fr	12	0xFFFFFFFF																				
+tex2pack_ys.bin	fr	13	0xFFFFFFFF																				
+tex2pack_ys.bin	fr	14	0xFFFFFFFF																				
+tex2pack_ys.bin	fr	15	0xFFFFFFFF																				
+tex2pack_ys.bin	in	0	0x40	635840	d20318d73ea1e6e5bd4b4afce0d367dd3e150e27f337d571ef415fb21bf55651	in	TIM2	battle_4_c	216	1	635776	109568	524288	0x780	27392	0x13	3	5	1024	512	yes	216	
+tex2pack_ys.bin	in	1	0x9B400	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	in	2	0xA1080	541056	e2d5e8dc5f161b133f7223c2770b221fc2fcc8cbd4bea49528deb301462d288c	ch cn in kr	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	in	3	0x125200	289280	d29887245fdd9ccf042c53d8807ebbcf52ad361a8164da62fb79a750d68c1d91	in	TIM2	battle_4_p	216	1	289264	26624	262144	0x1F0	6656	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	in	4	0x16BC00	9344	718a081d95670f632cf96d3d1e052d733e15e6c8cf5b0694b88a30211db827bb	ch cn de in it kr	TIM2	mini_face_c	216	1	9328	1024	8192	0x70	256	0x13	3	5	64	128	yes	2	
+tex2pack_ys.bin	in	5	0x16E080	584384	cef33b0e78edb3aa5f1d394af9f7197f1f94bf73bc6cdbeb67759e94eecd8d4e	ch cn in kr us	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	in	6	0x1FCB40	2116480	62187b976d7cd868b6e161ab19a8a8ed5af59dbe9587bd09291491ee7aad7a3d	ch cn de in it kr	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	in	7	0x4016C0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	in	8	0x405B00	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	in	9	0x490180	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	in	10	0x498640	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	in	11	0xFFFFFFFF																				
+tex2pack_ys.bin	in	12	0xFFFFFFFF																				
+tex2pack_ys.bin	in	13	0xFFFFFFFF																				
+tex2pack_ys.bin	in	14	0xFFFFFFFF																				
+tex2pack_ys.bin	in	15	0xFFFFFFFF																				
+tex2pack_ys.bin	it	0	0x40	635840	36f05467a9b148588b35d9793e1f11b62feeca8b30bd2c34d247ae300243ff84	it	TIM2	battle_4_c	216	1	635776	109568	524288	0x780	27392	0x13	3	5	1024	512	yes	216	
+tex2pack_ys.bin	it	1	0x9B400	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	it	2	0xA1080	541056	41cd6c6e12bc37424a76d15e85bd27ed60f2aa99f71769a803147473a4ac78e4	it	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	it	3	0x125200	289280	c2aabba986855420f331b4d414e33fdcc350fe38789f1dfd716125063ef24956	it	TIM2	battle_4_p	216	1	289264	26624	262144	0x1F0	6656	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	it	4	0x16BC00	9344	718a081d95670f632cf96d3d1e052d733e15e6c8cf5b0694b88a30211db827bb	ch cn de in it kr	TIM2	mini_face_c	216	1	9328	1024	8192	0x70	256	0x13	3	5	64	128	yes	2	
+tex2pack_ys.bin	it	5	0x16E080	584384	92a9a17602f8ef46d7762064d2b31de4b62dd7ab07be3a28569f384b1f821f82	it	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	it	6	0x1FCB40	2116480	62187b976d7cd868b6e161ab19a8a8ed5af59dbe9587bd09291491ee7aad7a3d	ch cn de in it kr	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	it	7	0x4016C0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	it	8	0x405B00	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	it	9	0x490180	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	it	10	0x498640	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	it	11	0xFFFFFFFF																				
+tex2pack_ys.bin	it	12	0xFFFFFFFF																				
+tex2pack_ys.bin	it	13	0xFFFFFFFF																				
+tex2pack_ys.bin	it	14	0xFFFFFFFF																				
+tex2pack_ys.bin	it	15	0xFFFFFFFF																				
+tex2pack_ys.bin	kr	0	0x40	635840	00f406a23addabc19120a1a8619ccc62ec0eed77cd5a3b586442edc0c9ad0c99	kr	TIM2	battle_4_c	216	1	635776	109568	524288	0x780	27392	0x13	3	5	1024	512	yes	216	
+tex2pack_ys.bin	kr	1	0x9B400	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	kr	2	0xA1080	541056	e2d5e8dc5f161b133f7223c2770b221fc2fcc8cbd4bea49528deb301462d288c	ch cn in kr	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	kr	3	0x125200	289280	a5ea33b4b571c9f8e2bceffc516275582d183a1bc5f14abebdf0031159d2386a	kr	TIM2	battle_4_p	216	1	289264	26624	262144	0x1F0	6656	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	kr	4	0x16BC00	9344	718a081d95670f632cf96d3d1e052d733e15e6c8cf5b0694b88a30211db827bb	ch cn de in it kr	TIM2	mini_face_c	216	1	9328	1024	8192	0x70	256	0x13	3	5	64	128	yes	2	
+tex2pack_ys.bin	kr	5	0x16E080	584384	cef33b0e78edb3aa5f1d394af9f7197f1f94bf73bc6cdbeb67759e94eecd8d4e	ch cn in kr us	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	kr	6	0x1FCB40	2116480	62187b976d7cd868b6e161ab19a8a8ed5af59dbe9587bd09291491ee7aad7a3d	ch cn de in it kr	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	kr	7	0x4016C0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	kr	8	0x405B00	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	kr	9	0x490180	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	kr	10	0x498640	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	kr	11	0xFFFFFFFF																				
+tex2pack_ys.bin	kr	12	0xFFFFFFFF																				
+tex2pack_ys.bin	kr	13	0xFFFFFFFF																				
+tex2pack_ys.bin	kr	14	0xFFFFFFFF																				
+tex2pack_ys.bin	kr	15	0xFFFFFFFF																				
+tex2pack_ys.bin	us	0	0x40	636864	1f1c112480e5f0c5ad36d46dec934c73949aef000002f6af68e3c2549089900e	us	TIM2	battle_4_c	216	1	636800	110592	524288	0x780	27648	0x13	3	5	1024	512	yes	216	
+tex2pack_ys.bin	us	1	0x9B800	23680	6272aa5db5a1589c23ab80d5a88c2a5bcbdacaf64771c944abd88b5ef2d089aa	ch cn de es fr in it kr us	TIM2	targetline_p	216	1	23664	7168	16384	0x70	1792	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	us	2	0xA1480	541056	d51d98dce5f8baa333bcb5ea998192823547e4a85c96b280cb17a943665f9d90	us	TIM2	s_font_c	216	1	541024	16384	524288	0x160	4096	0x13	3	5	1024	512	yes	32	
+tex2pack_ys.bin	us	3	0x125600	289280	086f5d08147674f719831d36eb0e3e04b48fdc2251a25a491dee31c8dfe69116	us	TIM2	battle_4_p	216	1	289264	26624	262144	0x1F0	6656	0x13	3	5	1024	256	yes	48	
+tex2pack_ys.bin	us	4	0x16C000	17536	20c5b2f42d7c07ce28a30856e19191bb78d21898f1f4201e5821ac06c3d32214	es fr us	TIM2	mini_face_c	216	1	17520	1024	16384	0x70	256	0x13	3	5	128	128	yes	2	
+tex2pack_ys.bin	us	5	0x170480	584384	cef33b0e78edb3aa5f1d394af9f7197f1f94bf73bc6cdbeb67759e94eecd8d4e	ch cn in kr us	TIM2	partytop_4_c	216	1	584368	58368	524288	0x6B0	14592	0x13	3	5	1024	512	yes	194	
+tex2pack_ys.bin	us	6	0x1FEF40	2116480	ec731ef316ba02711750375332b1ca6f735bdae861e224f94f7f684024f560c8	us	TIM2	partytop_8_c	216	1	2116432	18432	2097152	0x350	4608	0x13	3	5	1024	2048	yes	88	
+tex2pack_ys.bin	us	7	0x403AC0	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	us	8	0x407F00	566912	b676f741cba239f6c09cde65c533b14223cab9ff427f6e783c428679db6b37a5	ch cn de es fr in it kr us	TIM2	icons_c	216	1	566896	40960	524288	0x670	10240	0x13	3	5	1024	512	yes	192	
+tex2pack_ys.bin	us	9	0x492580	33984	2bb21d70f7c0ce01bb7359eee72de94516d1277c4cc3ad4f7df41f49ed43425c	ch cn de es fr in it kr us	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	us	10	0x49AA40	66704	bea163611d64ad5aa0bc68323bbba7fed0d5743057f772dd5ef8562e6891e62d	ch cn de es fr in it kr us	TIM2		216	1	66688	1024	65536	0x80	256	0x13	3	5	256	256	yes	4	
+tex2pack_ys.bin	us	11	0xFFFFFFFF																				
+tex2pack_ys.bin	us	12	0xFFFFFFFF																				
+tex2pack_ys.bin	us	13	0xFFFFFFFF																				
+tex2pack_ys.bin	us	14	0xFFFFFFFF																				
+tex2pack_ys.bin	us	15	0xFFFFFFFF																				
+tex2pack_ys.bin	in_sdver	0	0x40	41216	651154c2e67d7499d603c7be2dfd842eb5b0eb6cb04d845bc39c93c9dec5ab0e	in_sdver	TIM2	battle_4_c	216	1	41152	6464	32768	0x780	1616	0x14	3	4	256	256	yes	216	
+tex2pack_ys.bin	in_sdver	1	0xA140	8320	1e39e78aac913106431689410270a0ddf294abd4e293a2f348c3c8c421ce64aa	in_sdver	TIM2	targetline_p	216	1	8304	4096	4096	0x70	1024	0x13	3	5	64	64	yes	2	
+tex2pack_ys.bin	in_sdver	2	0xC1C0	17280	292bcf0384abbbc738e3cfa4b68dee9dd825d5ce82bf4813566f1b77a840f2c7	in_sdver	TIM2	s_font_c	216	1	17248	512	16384	0x160	128	0x14	3	4	256	128	yes	32	
+tex2pack_ys.bin	in_sdver	3	0x10540	17920	fd26c35ffce261723f25f98e91146261024ee66026357b5db15bdfb52c9e7044	in_sdver	TIM2	battle_4_p	216	1	17904	1024	16384	0x1F0	256	0x14	3	4	256	128	yes	48	
+tex2pack_ys.bin	in_sdver	4	0x14B40	5248	7bcb13da621328d9db5fca421e42effe2a8abe7fbdb4a89457fc70aed70464b7	in_sdver	TIM2	mini_face_c	216	1	5232	1024	4096	0x70	256	0x13	3	5	64	64	yes	2	
+tex2pack_ys.bin	in_sdver	5	0x15FC0	38016	163023ba50e2565a7adb333f6d6790c1521d641aae0934c8e5533fc9ef315cdd	in_sdver	TIM2	partytop_4_c	216	1	37968	3648	32768	0x610	912	0x14	3	4	256	256	yes	176	
+tex2pack_ys.bin	in_sdver	6	0x1F440	79680	c5d8b09d4a36c0cf2e12de83d800710fc914c189018ddf41babb9f09d55615cc	in_sdver	TIM2	partytop_8_c	216	1	79648	13312	65536	0x320	3328	0x13	3	5	256	256	yes	82	
+tex2pack_ys.bin	in_sdver	7	0x32B80	17472	602d35022af5023f0fdfeb1c1c7fa107da9a59eba5dd8ae15e2d8c83dedeb9c4	ch cn de es fr in it kr us in_sdver	TIM2	party_grd_2	4	1	17456	1024	16384	0x30	256	0x13	3	5	128	128	no		
+tex2pack_ys.bin	in_sdver	8	0x36FC0	36480	18ed3af7dbf06941ad03bc65c8cad6e7f9f77c632a6220a9e9e42c4bdf3b9134	in_sdver	TIM2	icons_c	216	1	36416	2048	32768	0x640	512	0x14	3	4	256	256	yes	186	
+tex2pack_ys.bin	in_sdver	9	0x3FE40	33984	3ad13c8766f963193450407fe0c027513162c56a14b38c728b373f58f8802003	in_sdver	TIM2	extra_c	216	1	33936	1024	32768	0x90	256	0x13	3	5	256	128	yes	6	
+tex2pack_ys.bin	in_sdver	10	0x48300	17552	ad32f6a9108604975e320d05b4b5d6e23544d9eb74ab03b6999582e583eb3e82	in_sdver	TIM2		216	1	17536	1024	16384	0x80	256	0x13	3	5	128	128	yes	4	
+tex2pack_ys.bin	in_sdver	11	0xFFFFFFFF																				
+tex2pack_ys.bin	in_sdver	12	0xFFFFFFFF																				
+tex2pack_ys.bin	in_sdver	13	0xFFFFFFFF																				
+tex2pack_ys.bin	in_sdver	14	0xFFFFFFFF																				
+tex2pack_ys.bin	in_sdver	15	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	0	0x80	4736	fdef6ae25dce6c065a8c90a9eb03522f0cb3fc784384ad4afc38a5a5ae60199c	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	ch cn	1	0x1300	10688	176319fabbbcdfe698612afdaa3e88fe8c44a41d2de778b862ab5b780e490c03	ch cn kr	4d525000																
+mrppack_ys.bin	ch cn	2	0x3CC0	832	bd18f4cb2fb7543c931f69f9d397daf9aab55bc3074363846af6bf171d87cdca	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	3	0x4000	1984	9cc4eed0b8f3437b9d179fc92aededeaafc30db32adc2b85fa992728d1edb6c1	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	4	0x47C0	1600	6b36abda67647942e5e74831a656f4a4638420d6f5b291ab40b07e246502c2b3	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	5	0x4E00	1088	ebb1dc4e37d58547a142a4b4252689fdeba82ea25cf959e55b4bf7e97cee9e6b	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	ch cn	6	0x5240	4672	e3cdb73f7f18279198dfbdfaeeb442833da77ee0510d265059ba0366c2b1f794	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	7	0x6480	7360	485551956c82617b574d40f3aa8ff6804c1dddc11dad98a75e5b3b228f8609e0	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	8	0x8140	2112	0f426afd2087a45e08ab94331baa2f612307d9432c08e817d54a824453c01556	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	9	0x8980	3136	25875b1ebf7ee063a2570c7f91b8aa6f0594e4c2b3fda6306f25bb09e0241edf	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	10	0x95C0	3584	29f73832eb0c3a54d0cf3cc91c1dc8cb30144e9f3549e5026dd01a8eb7630cca	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	11	0xA3C0	1728	99acb1a67f64050bcaf8eb38adf7c626a5a75ef186bfc42df953dcafadbf845b	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	12	0xAA80	7360	b9c8219c309db48177d31171119ba811e8648e4161ca4def9d441e8d9ad95046	ch cn	4d525000																
+mrppack_ys.bin	ch cn	13	0xC740	1472	c76fba2de53e373e4bca5ac82dd575d46eb9a9481acd2c1abb618d7afc23388c	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	14	0xCD00	1344	55cefe65edd1c5b759cf4613df8c7424e2990a4efc0958d75a735fc5f7c67548	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	ch cn	15	0xD240	1344	39792d713f8af0341093e722d48ceb444f306acf61962aee5b1c40352ce25952	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	16	0xD780	448	d8270881546eae8197d854b18b6a5988f73ca3d6c8834577af9e8ebbc4171de1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	ch cn	17	0xD940	512	2934ff84493a061e63bb7bcdb296f587c975d9c327d84932af391bfc8482e035	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	ch cn	18	0xDB40	704	371b23bc96d995c32632674f5c3f65aac682825cd6cd462eba7c08445598872c	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	19	0xDE00	704	0af987f41bf8884dc23c28f51af6d8654fe28a8adfdca2545c9e863fdb8de58e	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	20	0xE0C0	320	a91353d83dde1bff9c28d4c93951c2a1349b52ab983704b00560184d21a17726	ch cn in kr	4d525000																
+mrppack_ys.bin	ch cn	21	0xE200	29120	a315fb0191653790f76220a7343f48ea70ec859f7c71804623ba41c870c58cd1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	ch cn	22	0x153C0	17408	e03af3ff169123c0afc11ab0da1d86f8f409b0f282eabb7c4ba558d5bb9a627a	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	ch cn	23	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	24	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	25	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	26	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	27	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	28	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	29	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	30	0xFFFFFFFF																				
+mrppack_ys.bin	ch cn	31	0xFFFFFFFF																				
+mrppack_ys.bin	de	0	0x80	4736	fdef6ae25dce6c065a8c90a9eb03522f0cb3fc784384ad4afc38a5a5ae60199c	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	de	1	0x1300	10816	0cbc18e58deea8dfd1c1daacde64c4d003f8ca366f16a6dbc3378e35c88dc9ed	de	4d525000																
+mrppack_ys.bin	de	2	0x3D40	832	7c4e9e291da71f5f89a732cf0f57bb2aa47b4eb20c046daa35207e1aed6d58c1	de es fr it us	4d525000																
+mrppack_ys.bin	de	3	0x4080	1984	abe61d6c02304c47539da5fa20f9439ddacef9e168252869bc429a00afed718f	de es fr it us	4d525000																
+mrppack_ys.bin	de	4	0x4840	1600	3d759839449c60cf0aa3e4a7e0dd1a1b671426f8e2d336298ab53bfdb3699c08	de	4d525000																
+mrppack_ys.bin	de	5	0x4E80	1088	ebb1dc4e37d58547a142a4b4252689fdeba82ea25cf959e55b4bf7e97cee9e6b	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	de	6	0x52C0	4672	61615f833a671b16d10400a267e87ba17f23d0993c85bbff2448ab3e497dc5de	de	4d525000																
+mrppack_ys.bin	de	7	0x6500	7360	a8c9aa7e23513ce107f4e53d50acc6cdbae0041c4f10cf782220466a2b21de95	de	4d525000																
+mrppack_ys.bin	de	8	0x81C0	2112	31a8060e1f8f416ad7e7c5098cc69d60ba3e9a30a0c355ec13f2031b7771a67e	de	4d525000																
+mrppack_ys.bin	de	9	0x8A00	3136	49f873b69b3b602ea6cf47cd11a25ff366c965ccbef2e8d26e963dca5d57ce87	de	4d525000																
+mrppack_ys.bin	de	10	0x9640	3584	64060a89ae9b1cd04193ee67e5c024cbdbaaf326430b7ab01cf526ed6f5b0459	de es fr it us	4d525000																
+mrppack_ys.bin	de	11	0xA440	1728	0d28fdb22e054cb87ce7446a98b0e7fc6e371ff3a05fb8a9cdaeadf930dcb179	de es fr it	4d525000																
+mrppack_ys.bin	de	12	0xAB00	7360	93a980088e84b60145dd15c23f50f2927db6a09c5efd5f0ba3ce79a6c7d73636	de	4d525000																
+mrppack_ys.bin	de	13	0xC7C0	1472	955d928ce8b0a197a0ab0dcf1a0f27f394d2cadb0fb4441673e4bc2838c18ac0	de es fr it us	4d525000																
+mrppack_ys.bin	de	14	0xCD80	1344	55cefe65edd1c5b759cf4613df8c7424e2990a4efc0958d75a735fc5f7c67548	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	de	15	0xD2C0	1344	ad42d9b5a9aad7fe756461b4d7947668d0f9714ddf44edc7ceb3b4b633fbf5e8	de es fr it us	4d525000																
+mrppack_ys.bin	de	16	0xD800	448	d8270881546eae8197d854b18b6a5988f73ca3d6c8834577af9e8ebbc4171de1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	de	17	0xD9C0	512	2934ff84493a061e63bb7bcdb296f587c975d9c327d84932af391bfc8482e035	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	de	18	0xDBC0	704	cdb822127ad298ea459beb5d7d6f4f6449ffd94e361373d3a3491c84703e3812	de us	4d525000																
+mrppack_ys.bin	de	19	0xDE80	704	24d9b0837a2d25e0c1ce1e38d94517b3772f935bf5b46e37b096a3660faf7eae	de	4d525000																
+mrppack_ys.bin	de	20	0xE140	320	906fbcb8c632abf58b7aea683e81603c7ee6a0e02268ab90bd86a2a47b325319	de es fr it us	4d525000																
+mrppack_ys.bin	de	21	0xE280	29120	a315fb0191653790f76220a7343f48ea70ec859f7c71804623ba41c870c58cd1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	de	22	0x15440	17408	e03af3ff169123c0afc11ab0da1d86f8f409b0f282eabb7c4ba558d5bb9a627a	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	de	23	0xFFFFFFFF																				
+mrppack_ys.bin	de	24	0xFFFFFFFF																				
+mrppack_ys.bin	de	25	0xFFFFFFFF																				
+mrppack_ys.bin	de	26	0xFFFFFFFF																				
+mrppack_ys.bin	de	27	0xFFFFFFFF																				
+mrppack_ys.bin	de	28	0xFFFFFFFF																				
+mrppack_ys.bin	de	29	0xFFFFFFFF																				
+mrppack_ys.bin	de	30	0xFFFFFFFF																				
+mrppack_ys.bin	de	31	0xFFFFFFFF																				
+mrppack_ys.bin	es	0	0x80	4736	fdef6ae25dce6c065a8c90a9eb03522f0cb3fc784384ad4afc38a5a5ae60199c	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	es	1	0x1300	10816	b73d5c685e0ffbd77dcced5820f6eb034ced99f101b88685f5f7e329b40b217b	es	4d525000																
+mrppack_ys.bin	es	2	0x3D40	832	7c4e9e291da71f5f89a732cf0f57bb2aa47b4eb20c046daa35207e1aed6d58c1	de es fr it us	4d525000																
+mrppack_ys.bin	es	3	0x4080	1984	abe61d6c02304c47539da5fa20f9439ddacef9e168252869bc429a00afed718f	de es fr it us	4d525000																
+mrppack_ys.bin	es	4	0x4840	1600	00b86ddf0d22b9ccf8e9c77577cd1c6e338e73cb22799a5ae8fc0410d6719d0d	es	4d525000																
+mrppack_ys.bin	es	5	0x4E80	1088	ebb1dc4e37d58547a142a4b4252689fdeba82ea25cf959e55b4bf7e97cee9e6b	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	es	6	0x52C0	4672	dcd31c3c8434fd5b97161f1326a9386908d5cde94a26916d96c5cfd974acfecb	es	4d525000																
+mrppack_ys.bin	es	7	0x6500	7360	6e364e0feda7bcc2d873d54f302ded85b2c9eda7640bcb3b5fcf37b7ae390ca3	es	4d525000																
+mrppack_ys.bin	es	8	0x81C0	2112	a31ca549addbd2cff1e560d920df110760eb4aa0e71fde2acbcb37e182a342e2	es	4d525000																
+mrppack_ys.bin	es	9	0x8A00	3136	731c048a455670c0851f3047e55eb3bb3ca12505e19d0105df5712f8f5556816	es	4d525000																
+mrppack_ys.bin	es	10	0x9640	3584	64060a89ae9b1cd04193ee67e5c024cbdbaaf326430b7ab01cf526ed6f5b0459	de es fr it us	4d525000																
+mrppack_ys.bin	es	11	0xA440	1728	0d28fdb22e054cb87ce7446a98b0e7fc6e371ff3a05fb8a9cdaeadf930dcb179	de es fr it	4d525000																
+mrppack_ys.bin	es	12	0xAB00	7360	ac197c85d778c835147ef12d231b71d13885afad27cc64e1952941b7db932601	es	4d525000																
+mrppack_ys.bin	es	13	0xC7C0	1472	955d928ce8b0a197a0ab0dcf1a0f27f394d2cadb0fb4441673e4bc2838c18ac0	de es fr it us	4d525000																
+mrppack_ys.bin	es	14	0xCD80	1344	55cefe65edd1c5b759cf4613df8c7424e2990a4efc0958d75a735fc5f7c67548	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	es	15	0xD2C0	1344	ad42d9b5a9aad7fe756461b4d7947668d0f9714ddf44edc7ceb3b4b633fbf5e8	de es fr it us	4d525000																
+mrppack_ys.bin	es	16	0xD800	448	d8270881546eae8197d854b18b6a5988f73ca3d6c8834577af9e8ebbc4171de1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	es	17	0xD9C0	512	2934ff84493a061e63bb7bcdb296f587c975d9c327d84932af391bfc8482e035	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	es	18	0xDBC0	704	a07ef9253b0568fb5e3a4450f6fbd31a4cdf13d82732b2b3823b8c4b9b9fd312	es	4d525000																
+mrppack_ys.bin	es	19	0xDE80	704	16b89428499e5b27c1a57ff48b88f598973456b8e9088577da4a837093308801	es us	4d525000																
+mrppack_ys.bin	es	20	0xE140	320	906fbcb8c632abf58b7aea683e81603c7ee6a0e02268ab90bd86a2a47b325319	de es fr it us	4d525000																
+mrppack_ys.bin	es	21	0xE280	29120	a315fb0191653790f76220a7343f48ea70ec859f7c71804623ba41c870c58cd1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	es	22	0x15440	17408	e03af3ff169123c0afc11ab0da1d86f8f409b0f282eabb7c4ba558d5bb9a627a	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	es	23	0xFFFFFFFF																				
+mrppack_ys.bin	es	24	0xFFFFFFFF																				
+mrppack_ys.bin	es	25	0xFFFFFFFF																				
+mrppack_ys.bin	es	26	0xFFFFFFFF																				
+mrppack_ys.bin	es	27	0xFFFFFFFF																				
+mrppack_ys.bin	es	28	0xFFFFFFFF																				
+mrppack_ys.bin	es	29	0xFFFFFFFF																				
+mrppack_ys.bin	es	30	0xFFFFFFFF																				
+mrppack_ys.bin	es	31	0xFFFFFFFF																				
+mrppack_ys.bin	fr	0	0x80	4736	fdef6ae25dce6c065a8c90a9eb03522f0cb3fc784384ad4afc38a5a5ae60199c	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	fr	1	0x1300	10816	7964b73dfe2b6a88bfd37db9cf25cc6a8183c328cb41d38e0da13053b7df6d7d	fr	4d525000																
+mrppack_ys.bin	fr	2	0x3D40	832	7c4e9e291da71f5f89a732cf0f57bb2aa47b4eb20c046daa35207e1aed6d58c1	de es fr it us	4d525000																
+mrppack_ys.bin	fr	3	0x4080	1984	abe61d6c02304c47539da5fa20f9439ddacef9e168252869bc429a00afed718f	de es fr it us	4d525000																
+mrppack_ys.bin	fr	4	0x4840	1600	15a239a37c40ed4a28627f417ec4131bafb4593626c4d6d504bcf90430530b98	fr	4d525000																
+mrppack_ys.bin	fr	5	0x4E80	1088	ebb1dc4e37d58547a142a4b4252689fdeba82ea25cf959e55b4bf7e97cee9e6b	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	fr	6	0x52C0	4672	e30c3fa12048c3d2c7788753131786336045e2ebe5a4b9984818a0d33f737fea	fr	4d525000																
+mrppack_ys.bin	fr	7	0x6500	7360	6263c6005045292028d5664ae17e94c74f56b665eb4f4a06316d869b641bbf9e	fr it us	4d525000																
+mrppack_ys.bin	fr	8	0x81C0	2112	aff69289b299da14a566243bbd24017565f80a0b294fc5bd5230a1a8534c364d	fr	4d525000																
+mrppack_ys.bin	fr	9	0x8A00	3136	54d8460839dece5466e26a4af1dbfa1f71b4401b0ed9289418b83e7ecceab0ba	fr	4d525000																
+mrppack_ys.bin	fr	10	0x9640	3584	64060a89ae9b1cd04193ee67e5c024cbdbaaf326430b7ab01cf526ed6f5b0459	de es fr it us	4d525000																
+mrppack_ys.bin	fr	11	0xA440	1728	0d28fdb22e054cb87ce7446a98b0e7fc6e371ff3a05fb8a9cdaeadf930dcb179	de es fr it	4d525000																
+mrppack_ys.bin	fr	12	0xAB00	7360	018b9eeb0e06a8937845658c76da6ac74ccfcf81f6be79719b5cebc3346e315f	fr	4d525000																
+mrppack_ys.bin	fr	13	0xC7C0	1472	955d928ce8b0a197a0ab0dcf1a0f27f394d2cadb0fb4441673e4bc2838c18ac0	de es fr it us	4d525000																
+mrppack_ys.bin	fr	14	0xCD80	1344	55cefe65edd1c5b759cf4613df8c7424e2990a4efc0958d75a735fc5f7c67548	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	fr	15	0xD2C0	1344	ad42d9b5a9aad7fe756461b4d7947668d0f9714ddf44edc7ceb3b4b633fbf5e8	de es fr it us	4d525000																
+mrppack_ys.bin	fr	16	0xD800	448	d8270881546eae8197d854b18b6a5988f73ca3d6c8834577af9e8ebbc4171de1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	fr	17	0xD9C0	512	2934ff84493a061e63bb7bcdb296f587c975d9c327d84932af391bfc8482e035	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	fr	18	0xDBC0	704	d1bbfc2cd27f15b97152f9a82a1d4b72fa76d84573e689d19ef9554806054bd9	fr	4d525000																
+mrppack_ys.bin	fr	19	0xDE80	704	4ec87a46170628520a7bd6ae9c1339079d0080bb94664354763afc18db251f36	fr	4d525000																
+mrppack_ys.bin	fr	20	0xE140	320	906fbcb8c632abf58b7aea683e81603c7ee6a0e02268ab90bd86a2a47b325319	de es fr it us	4d525000																
+mrppack_ys.bin	fr	21	0xE280	29120	a315fb0191653790f76220a7343f48ea70ec859f7c71804623ba41c870c58cd1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	fr	22	0x15440	17408	e03af3ff169123c0afc11ab0da1d86f8f409b0f282eabb7c4ba558d5bb9a627a	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	fr	23	0xFFFFFFFF																				
+mrppack_ys.bin	fr	24	0xFFFFFFFF																				
+mrppack_ys.bin	fr	25	0xFFFFFFFF																				
+mrppack_ys.bin	fr	26	0xFFFFFFFF																				
+mrppack_ys.bin	fr	27	0xFFFFFFFF																				
+mrppack_ys.bin	fr	28	0xFFFFFFFF																				
+mrppack_ys.bin	fr	29	0xFFFFFFFF																				
+mrppack_ys.bin	fr	30	0xFFFFFFFF																				
+mrppack_ys.bin	fr	31	0xFFFFFFFF																				
+mrppack_ys.bin	in	0	0x80	4736	fdef6ae25dce6c065a8c90a9eb03522f0cb3fc784384ad4afc38a5a5ae60199c	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	in	1	0x1300	10688	e7087ab05140360b2d5ef18d5b588ecdc19fbef0269c4f732509a49b057dd2fc	in	4d525000																
+mrppack_ys.bin	in	2	0x3CC0	832	bd18f4cb2fb7543c931f69f9d397daf9aab55bc3074363846af6bf171d87cdca	ch cn in kr	4d525000																
+mrppack_ys.bin	in	3	0x4000	1984	9cc4eed0b8f3437b9d179fc92aededeaafc30db32adc2b85fa992728d1edb6c1	ch cn in kr	4d525000																
+mrppack_ys.bin	in	4	0x47C0	1600	6b36abda67647942e5e74831a656f4a4638420d6f5b291ab40b07e246502c2b3	ch cn in kr	4d525000																
+mrppack_ys.bin	in	5	0x4E00	1088	ebb1dc4e37d58547a142a4b4252689fdeba82ea25cf959e55b4bf7e97cee9e6b	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	in	6	0x5240	4672	e3cdb73f7f18279198dfbdfaeeb442833da77ee0510d265059ba0366c2b1f794	ch cn in kr	4d525000																
+mrppack_ys.bin	in	7	0x6480	7360	485551956c82617b574d40f3aa8ff6804c1dddc11dad98a75e5b3b228f8609e0	ch cn in kr	4d525000																
+mrppack_ys.bin	in	8	0x8140	2112	0f426afd2087a45e08ab94331baa2f612307d9432c08e817d54a824453c01556	ch cn in kr	4d525000																
+mrppack_ys.bin	in	9	0x8980	3136	25875b1ebf7ee063a2570c7f91b8aa6f0594e4c2b3fda6306f25bb09e0241edf	ch cn in kr	4d525000																
+mrppack_ys.bin	in	10	0x95C0	3584	29f73832eb0c3a54d0cf3cc91c1dc8cb30144e9f3549e5026dd01a8eb7630cca	ch cn in kr	4d525000																
+mrppack_ys.bin	in	11	0xA3C0	1728	99acb1a67f64050bcaf8eb38adf7c626a5a75ef186bfc42df953dcafadbf845b	ch cn in kr	4d525000																
+mrppack_ys.bin	in	12	0xAA80	7360	f591deafb003e652aefdf2ee751ef9ba735b6ce3e88be05a880bd4fc62add210	in	4d525000																
+mrppack_ys.bin	in	13	0xC740	1472	c76fba2de53e373e4bca5ac82dd575d46eb9a9481acd2c1abb618d7afc23388c	ch cn in kr	4d525000																
+mrppack_ys.bin	in	14	0xCD00	1344	55cefe65edd1c5b759cf4613df8c7424e2990a4efc0958d75a735fc5f7c67548	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	in	15	0xD240	1344	39792d713f8af0341093e722d48ceb444f306acf61962aee5b1c40352ce25952	ch cn in kr	4d525000																
+mrppack_ys.bin	in	16	0xD780	448	d8270881546eae8197d854b18b6a5988f73ca3d6c8834577af9e8ebbc4171de1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	in	17	0xD940	512	2934ff84493a061e63bb7bcdb296f587c975d9c327d84932af391bfc8482e035	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	in	18	0xDB40	704	371b23bc96d995c32632674f5c3f65aac682825cd6cd462eba7c08445598872c	ch cn in kr	4d525000																
+mrppack_ys.bin	in	19	0xDE00	704	0af987f41bf8884dc23c28f51af6d8654fe28a8adfdca2545c9e863fdb8de58e	ch cn in kr	4d525000																
+mrppack_ys.bin	in	20	0xE0C0	320	a91353d83dde1bff9c28d4c93951c2a1349b52ab983704b00560184d21a17726	ch cn in kr	4d525000																
+mrppack_ys.bin	in	21	0xE200	29120	a315fb0191653790f76220a7343f48ea70ec859f7c71804623ba41c870c58cd1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	in	22	0x153C0	17408	e03af3ff169123c0afc11ab0da1d86f8f409b0f282eabb7c4ba558d5bb9a627a	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	in	23	0xFFFFFFFF																				
+mrppack_ys.bin	in	24	0xFFFFFFFF																				
+mrppack_ys.bin	in	25	0xFFFFFFFF																				
+mrppack_ys.bin	in	26	0xFFFFFFFF																				
+mrppack_ys.bin	in	27	0xFFFFFFFF																				
+mrppack_ys.bin	in	28	0xFFFFFFFF																				
+mrppack_ys.bin	in	29	0xFFFFFFFF																				
+mrppack_ys.bin	in	30	0xFFFFFFFF																				
+mrppack_ys.bin	in	31	0xFFFFFFFF																				
+mrppack_ys.bin	it	0	0x80	4736	fdef6ae25dce6c065a8c90a9eb03522f0cb3fc784384ad4afc38a5a5ae60199c	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	it	1	0x1300	10816	835c1d4834aeab73d6863549c382c188caae47f39e2c0c9fbdf40e5acf53d9f7	it	4d525000																
+mrppack_ys.bin	it	2	0x3D40	832	7c4e9e291da71f5f89a732cf0f57bb2aa47b4eb20c046daa35207e1aed6d58c1	de es fr it us	4d525000																
+mrppack_ys.bin	it	3	0x4080	1984	abe61d6c02304c47539da5fa20f9439ddacef9e168252869bc429a00afed718f	de es fr it us	4d525000																
+mrppack_ys.bin	it	4	0x4840	1600	d34e881419f0f877cb152464a0da26f7ebd17077fe90afe3f15cd2817a00ba74	it	4d525000																
+mrppack_ys.bin	it	5	0x4E80	1088	ebb1dc4e37d58547a142a4b4252689fdeba82ea25cf959e55b4bf7e97cee9e6b	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	it	6	0x52C0	4672	7b63bef39cfea8a3eb655e636949e87f78c4855dd8a9c0c855d480b17474d5b8	it	4d525000																
+mrppack_ys.bin	it	7	0x6500	7360	6263c6005045292028d5664ae17e94c74f56b665eb4f4a06316d869b641bbf9e	fr it us	4d525000																
+mrppack_ys.bin	it	8	0x81C0	2112	71c94762610d5526ae10d8a353771f54bdd71c596c05b44cedc9dfb00e843d2d	it us	4d525000																
+mrppack_ys.bin	it	9	0x8A00	3136	ae34273511a98a81321746d6fbfc82e313d34ada8d4de422eeea04653cfdd0a0	it	4d525000																
+mrppack_ys.bin	it	10	0x9640	3584	64060a89ae9b1cd04193ee67e5c024cbdbaaf326430b7ab01cf526ed6f5b0459	de es fr it us	4d525000																
+mrppack_ys.bin	it	11	0xA440	1728	0d28fdb22e054cb87ce7446a98b0e7fc6e371ff3a05fb8a9cdaeadf930dcb179	de es fr it	4d525000																
+mrppack_ys.bin	it	12	0xAB00	7360	ff563154816929ef815c2edf57612ffd9ab6b914a6ee1baf4c637812103a49b6	it	4d525000																
+mrppack_ys.bin	it	13	0xC7C0	1472	955d928ce8b0a197a0ab0dcf1a0f27f394d2cadb0fb4441673e4bc2838c18ac0	de es fr it us	4d525000																
+mrppack_ys.bin	it	14	0xCD80	1344	55cefe65edd1c5b759cf4613df8c7424e2990a4efc0958d75a735fc5f7c67548	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	it	15	0xD2C0	1344	ad42d9b5a9aad7fe756461b4d7947668d0f9714ddf44edc7ceb3b4b633fbf5e8	de es fr it us	4d525000																
+mrppack_ys.bin	it	16	0xD800	448	d8270881546eae8197d854b18b6a5988f73ca3d6c8834577af9e8ebbc4171de1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	it	17	0xD9C0	512	2934ff84493a061e63bb7bcdb296f587c975d9c327d84932af391bfc8482e035	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	it	18	0xDBC0	704	790e5b2eaa1520c2a24e85c85f65b212ef51974dc2d1e8784ff9950cbf2f36ba	it	4d525000																
+mrppack_ys.bin	it	19	0xDE80	704	36562ec7dbe35146dedab78d2b6849506448fd8bdc13a434c61338d61f2cf8c0	it	4d525000																
+mrppack_ys.bin	it	20	0xE140	320	906fbcb8c632abf58b7aea683e81603c7ee6a0e02268ab90bd86a2a47b325319	de es fr it us	4d525000																
+mrppack_ys.bin	it	21	0xE280	29120	a315fb0191653790f76220a7343f48ea70ec859f7c71804623ba41c870c58cd1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	it	22	0x15440	17408	e03af3ff169123c0afc11ab0da1d86f8f409b0f282eabb7c4ba558d5bb9a627a	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	it	23	0xFFFFFFFF																				
+mrppack_ys.bin	it	24	0xFFFFFFFF																				
+mrppack_ys.bin	it	25	0xFFFFFFFF																				
+mrppack_ys.bin	it	26	0xFFFFFFFF																				
+mrppack_ys.bin	it	27	0xFFFFFFFF																				
+mrppack_ys.bin	it	28	0xFFFFFFFF																				
+mrppack_ys.bin	it	29	0xFFFFFFFF																				
+mrppack_ys.bin	it	30	0xFFFFFFFF																				
+mrppack_ys.bin	it	31	0xFFFFFFFF																				
+mrppack_ys.bin	kr	0	0x80	4736	fdef6ae25dce6c065a8c90a9eb03522f0cb3fc784384ad4afc38a5a5ae60199c	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	kr	1	0x1300	10688	176319fabbbcdfe698612afdaa3e88fe8c44a41d2de778b862ab5b780e490c03	ch cn kr	4d525000																
+mrppack_ys.bin	kr	2	0x3CC0	832	bd18f4cb2fb7543c931f69f9d397daf9aab55bc3074363846af6bf171d87cdca	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	3	0x4000	1984	9cc4eed0b8f3437b9d179fc92aededeaafc30db32adc2b85fa992728d1edb6c1	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	4	0x47C0	1600	6b36abda67647942e5e74831a656f4a4638420d6f5b291ab40b07e246502c2b3	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	5	0x4E00	1088	ebb1dc4e37d58547a142a4b4252689fdeba82ea25cf959e55b4bf7e97cee9e6b	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	kr	6	0x5240	4672	e3cdb73f7f18279198dfbdfaeeb442833da77ee0510d265059ba0366c2b1f794	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	7	0x6480	7360	485551956c82617b574d40f3aa8ff6804c1dddc11dad98a75e5b3b228f8609e0	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	8	0x8140	2112	0f426afd2087a45e08ab94331baa2f612307d9432c08e817d54a824453c01556	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	9	0x8980	3136	25875b1ebf7ee063a2570c7f91b8aa6f0594e4c2b3fda6306f25bb09e0241edf	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	10	0x95C0	3584	29f73832eb0c3a54d0cf3cc91c1dc8cb30144e9f3549e5026dd01a8eb7630cca	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	11	0xA3C0	1728	99acb1a67f64050bcaf8eb38adf7c626a5a75ef186bfc42df953dcafadbf845b	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	12	0xAA80	7360	21a4f078c50af6c7855cf905a5dcb388631ff609e208cc1b5df598384e17e405	kr	4d525000																
+mrppack_ys.bin	kr	13	0xC740	1472	c76fba2de53e373e4bca5ac82dd575d46eb9a9481acd2c1abb618d7afc23388c	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	14	0xCD00	1344	55cefe65edd1c5b759cf4613df8c7424e2990a4efc0958d75a735fc5f7c67548	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	kr	15	0xD240	1344	39792d713f8af0341093e722d48ceb444f306acf61962aee5b1c40352ce25952	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	16	0xD780	448	d8270881546eae8197d854b18b6a5988f73ca3d6c8834577af9e8ebbc4171de1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	kr	17	0xD940	512	2934ff84493a061e63bb7bcdb296f587c975d9c327d84932af391bfc8482e035	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	kr	18	0xDB40	704	371b23bc96d995c32632674f5c3f65aac682825cd6cd462eba7c08445598872c	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	19	0xDE00	704	0af987f41bf8884dc23c28f51af6d8654fe28a8adfdca2545c9e863fdb8de58e	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	20	0xE0C0	320	a91353d83dde1bff9c28d4c93951c2a1349b52ab983704b00560184d21a17726	ch cn in kr	4d525000																
+mrppack_ys.bin	kr	21	0xE200	29120	a315fb0191653790f76220a7343f48ea70ec859f7c71804623ba41c870c58cd1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	kr	22	0x153C0	17408	e03af3ff169123c0afc11ab0da1d86f8f409b0f282eabb7c4ba558d5bb9a627a	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	kr	23	0xFFFFFFFF																				
+mrppack_ys.bin	kr	24	0xFFFFFFFF																				
+mrppack_ys.bin	kr	25	0xFFFFFFFF																				
+mrppack_ys.bin	kr	26	0xFFFFFFFF																				
+mrppack_ys.bin	kr	27	0xFFFFFFFF																				
+mrppack_ys.bin	kr	28	0xFFFFFFFF																				
+mrppack_ys.bin	kr	29	0xFFFFFFFF																				
+mrppack_ys.bin	kr	30	0xFFFFFFFF																				
+mrppack_ys.bin	kr	31	0xFFFFFFFF																				
+mrppack_ys.bin	us	0	0x80	4736	fdef6ae25dce6c065a8c90a9eb03522f0cb3fc784384ad4afc38a5a5ae60199c	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	us	1	0x1300	10816	49b93f7913bbcbc438f81eab06d5fc9120310a8a457842179eafcff96093386a	us	4d525000																
+mrppack_ys.bin	us	2	0x3D40	832	7c4e9e291da71f5f89a732cf0f57bb2aa47b4eb20c046daa35207e1aed6d58c1	de es fr it us	4d525000																
+mrppack_ys.bin	us	3	0x4080	1984	abe61d6c02304c47539da5fa20f9439ddacef9e168252869bc429a00afed718f	de es fr it us	4d525000																
+mrppack_ys.bin	us	4	0x4840	1600	d5d65137dba0a483af721ee2616fb9b145040f3ed0a54f72511ad8c8d52ab9cd	us	4d525000																
+mrppack_ys.bin	us	5	0x4E80	1088	ebb1dc4e37d58547a142a4b4252689fdeba82ea25cf959e55b4bf7e97cee9e6b	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	us	6	0x52C0	4672	578e9dc291ca5adc720b7811b8356df95983d0e2905e1cffda28313b606e8a4a	us	4d525000																
+mrppack_ys.bin	us	7	0x6500	7360	6263c6005045292028d5664ae17e94c74f56b665eb4f4a06316d869b641bbf9e	fr it us	4d525000																
+mrppack_ys.bin	us	8	0x81C0	2112	71c94762610d5526ae10d8a353771f54bdd71c596c05b44cedc9dfb00e843d2d	it us	4d525000																
+mrppack_ys.bin	us	9	0x8A00	3136	382116fc06dc6c77b14500fae1a99364c0f870f9f6cef9ae31847e89fe62ab9a	us	4d525000																
+mrppack_ys.bin	us	10	0x9640	3584	64060a89ae9b1cd04193ee67e5c024cbdbaaf326430b7ab01cf526ed6f5b0459	de es fr it us	4d525000																
+mrppack_ys.bin	us	11	0xA440	1728	4a88035c248e6ed4532024892546e8794feac3138d45d5c9aca47a41cf3c286f	us	4d525000																
+mrppack_ys.bin	us	12	0xAB00	7360	0e31234044d122ec10227d5675a270a788c662990442a244273be6664e23178b	us	4d525000																
+mrppack_ys.bin	us	13	0xC7C0	1472	955d928ce8b0a197a0ab0dcf1a0f27f394d2cadb0fb4441673e4bc2838c18ac0	de es fr it us	4d525000																
+mrppack_ys.bin	us	14	0xCD80	1344	55cefe65edd1c5b759cf4613df8c7424e2990a4efc0958d75a735fc5f7c67548	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	us	15	0xD2C0	1344	ad42d9b5a9aad7fe756461b4d7947668d0f9714ddf44edc7ceb3b4b633fbf5e8	de es fr it us	4d525000																
+mrppack_ys.bin	us	16	0xD800	448	d8270881546eae8197d854b18b6a5988f73ca3d6c8834577af9e8ebbc4171de1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	us	17	0xD9C0	512	2934ff84493a061e63bb7bcdb296f587c975d9c327d84932af391bfc8482e035	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	us	18	0xDBC0	704	cdb822127ad298ea459beb5d7d6f4f6449ffd94e361373d3a3491c84703e3812	de us	4d525000																
+mrppack_ys.bin	us	19	0xDE80	704	16b89428499e5b27c1a57ff48b88f598973456b8e9088577da4a837093308801	es us	4d525000																
+mrppack_ys.bin	us	20	0xE140	320	906fbcb8c632abf58b7aea683e81603c7ee6a0e02268ab90bd86a2a47b325319	de es fr it us	4d525000																
+mrppack_ys.bin	us	21	0xE280	29120	a315fb0191653790f76220a7343f48ea70ec859f7c71804623ba41c870c58cd1	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	us	22	0x15440	17408	e03af3ff169123c0afc11ab0da1d86f8f409b0f282eabb7c4ba558d5bb9a627a	ch cn de es fr in it kr us	4d525000																
+mrppack_ys.bin	us	23	0xFFFFFFFF																				
+mrppack_ys.bin	us	24	0xFFFFFFFF																				
+mrppack_ys.bin	us	25	0xFFFFFFFF																				
+mrppack_ys.bin	us	26	0xFFFFFFFF																				
+mrppack_ys.bin	us	27	0xFFFFFFFF																				
+mrppack_ys.bin	us	28	0xFFFFFFFF																				
+mrppack_ys.bin	us	29	0xFFFFFFFF																				
+mrppack_ys.bin	us	30	0xFFFFFFFF																				
+mrppack_ys.bin	us	31	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	0	0x80	3200	e8a330a4fd4a7fd06fbea04ae9f193d23d5ca7db75a70e4bf6a1949a79cae6a2	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	1	0xD00	10560	9eb37e72ab7b65e854341676d4c3853cbbdbd51684f6ba357dad29382e097d35	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	2	0x3640	832	d17926f81bb4356ed7df39af22606e798e946de34f84f779b3664c7614a0e0ea	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	3	0x3980	1984	b5c6f64702a3853cf0c027754266b47c330f017f11c2b95b254131817e0612a6	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	4	0x4140	1600	9e2228984333f74e89ec1bfad3c636d34280f127580edbe8f4c527fabd0811fd	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	5	0x4780	1088	83a7890c21afcdbff72ff7bec6550610796e193b55a981b207ac5814769f7c6e	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	6	0x4BC0	4224	b3f587fc06894c0b27cc5ff8bfd37213f0381ff8a39d8b4804d0914e83bd76c2	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	7	0x5C40	7168	a0b223e26d6e62e77a9c804cea70829b6fb5d3d51cb2c3d670be3d6fc76b96b4	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	8	0x7840	2112	3d853ddb5d506345de178b4391f8ce4432802c7b75725ac04f97863fdc75214f	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	9	0x8080	3136	83018da4386035bb548c5208c5673c858c0429e91b540d697885ef724674c55a	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	10	0x8CC0	1600	86d4173a523b272c7869185f5acaf1d17d6d4eb0460610a5459b934ea1eae518	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	11	0x9300	1600	2b6f7ddc123a03a1e90ba0665e7f08ff3fb259cc3182c1547946b48cf582920d	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	12	0x9940	4992	7e76955d6008470becbe3bbb7cd3c4015933baa24d3515bb6070f2a2e28ffbe9	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	13	0xACC0	1472	b533ecf6aa8573972979282f94d8c0caebf164755a661f7bed90d89dad6e2320	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	14	0xB280	1344	d41437f377999cab5dc3aee844b7f803ff67e5805746c0c8e7ca8c1c3e83cfdb	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	15	0xB7C0	1344	4c5cc54cf28cd9d9916670b8658232e006139cbe269d04e5368947af46cfd029	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	16	0xBD00	448	d236bade4d791b81dba97920d5f4e4f43c62eb9e8035b4d57607844d66b15ed7	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	17	0xBEC0	512	e2ce7b7c3a4276f9ed1647e4885fe7492827120c4a08815c50efe6fe31c633e7	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	18	0xC0C0	704	dd18d85f1bbcb09d5e03db689a9c2eede956e1ca3ed7a324f9e25323ada0f55d	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	19	0xC380	704	ec4abf1ceb7ad5d255a1ed4e269e8b60d6e816702eafc155f65f2ade1d80d9fe	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	20	0xC640	304	0db5deaf5733183a5c33e89f62de645d4b209be956b764b95be197c7cf2f9907	in_sdver	4d525000																
+mrppack_ys.bin	in_sdver	21	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	22	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	23	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	24	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	25	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	26	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	27	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	28	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	29	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	30	0xFFFFFFFF																				
+mrppack_ys.bin	in_sdver	31	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	0	0x40	1088	adb27ce2735e74bfeb7aaf48687365a0dfd2da8ce6fddb4e8b7e8000c1f37647	ch cn de es fr in it kr us in_sdver	CLT2		4	1	1072	1024	0	0x30	256	0x0	3	5	0	0	no		
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	1	0x480	2112	1a075d222cb9f05ad102a4244fd367da430eef82811a8d573b49539e9f9e1465	ch cn de es fr in it kr us in_sdver	CLT2		4	1	2096	2048	0	0x30	512	0x0	3	5	0	0	no		
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	2	0xCC0	2112	8fb9789762c1f227e5944e27d71987ce0c9251bc4666961d408a4a30d83db298	ch cn de es fr in it kr us in_sdver	CLT2		4	1	2096	2048	0	0x30	512	0x0	3	5	0	0	no		
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	3	0x1500	1088	0439cb2a1c3f36bf8485a61f4e92d09008bc2f03e59a73ebfdc38626769e34da	ch cn de es fr in it kr us in_sdver	CLT2		4	1	1072	1024	0	0x30	256	0x0	3	5	0	0	no		
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	4	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	5	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	6	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	7	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	8	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	9	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	10	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	11	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	12	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	13	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	14	0xFFFFFFFF																				
+clutpack_ys.bin	ch cn de es fr in it kr us in_sdver	15	0xFFFFFFFF																				
+fontpack_fs.bin	ch	0	0x40	12352	acd66d88bc0b305745fd300997ff442e1fd393141dc5d26923195fcd26c3ae79	ch	0c000900																
+fontpack_fs.bin	ch	1	0x3080	640	d0d17a7b412339a808fbbc9509e92bdd6c0a4254d21a75b1256858e774aceddf	ch cn in kr	00000000																
+fontpack_fs.bin	ch	2	0x3300	4608	cd02540ee51e3fec573117fec216e1fa33c3174a4a0b807d90a8f80f7b7afd3b	ch cn in kr	00000000																
+fontpack_fs.bin	ch	3	0x3300	4608	cd02540ee51e3fec573117fec216e1fa33c3174a4a0b807d90a8f80f7b7afd3b	ch cn in kr	00000000																
+fontpack_fs.bin	ch	4	0x4500	5120	f3e50c0053acf0dd0ccd109b2bb2d4294f522fa68bab26501a491bdbf92d15ec	ch cn in it kr us	00000000																
+fontpack_fs.bin	ch	5	0x5900	3968	429eff6eec469497151b2c25518a18bf2b6cc17bf14bbb61df25d7f78735ce23	ch cn kr	00000000																
+fontpack_fs.bin	ch	6	0x6880	1536	29defe415d508a7b9bb8444ee26c9929b9f68cfc27db4225333aed014f20b6af	ch cn in kr	00001111																
+fontpack_fs.bin	ch	7	0xFFFFFFFF																				
+fontpack_fs.bin	ch	8	0xFFFFFFFF																				
+fontpack_fs.bin	ch	9	0xFFFFFFFF																				
+fontpack_fs.bin	ch	10	0xFFFFFFFF																				
+fontpack_fs.bin	ch	11	0xFFFFFFFF																				
+fontpack_fs.bin	ch	12	0xFFFFFFFF																				
+fontpack_fs.bin	ch	13	0xFFFFFFFF																				
+fontpack_fs.bin	ch	14	0xFFFFFFFF																				
+fontpack_fs.bin	ch	15	0xFFFFFFFF																				
+fontpack_fs.bin	cn	0	0x40	12352	fa77160ee94187ae92049f02db7f08c4782afdc3b5a926a8c9fc907c968e724f	cn	0c000900																
+fontpack_fs.bin	cn	1	0x3080	640	d0d17a7b412339a808fbbc9509e92bdd6c0a4254d21a75b1256858e774aceddf	ch cn in kr	00000000																
+fontpack_fs.bin	cn	2	0x3300	4608	cd02540ee51e3fec573117fec216e1fa33c3174a4a0b807d90a8f80f7b7afd3b	ch cn in kr	00000000																
+fontpack_fs.bin	cn	3	0x3300	4608	cd02540ee51e3fec573117fec216e1fa33c3174a4a0b807d90a8f80f7b7afd3b	ch cn in kr	00000000																
+fontpack_fs.bin	cn	4	0x4500	5120	f3e50c0053acf0dd0ccd109b2bb2d4294f522fa68bab26501a491bdbf92d15ec	ch cn in it kr us	00000000																
+fontpack_fs.bin	cn	5	0x5900	3968	429eff6eec469497151b2c25518a18bf2b6cc17bf14bbb61df25d7f78735ce23	ch cn kr	00000000																
+fontpack_fs.bin	cn	6	0x6880	1536	29defe415d508a7b9bb8444ee26c9929b9f68cfc27db4225333aed014f20b6af	ch cn in kr	00001111																
+fontpack_fs.bin	cn	7	0xFFFFFFFF																				
+fontpack_fs.bin	cn	8	0xFFFFFFFF																				
+fontpack_fs.bin	cn	9	0xFFFFFFFF																				
+fontpack_fs.bin	cn	10	0xFFFFFFFF																				
+fontpack_fs.bin	cn	11	0xFFFFFFFF																				
+fontpack_fs.bin	cn	12	0xFFFFFFFF																				
+fontpack_fs.bin	cn	13	0xFFFFFFFF																				
+fontpack_fs.bin	cn	14	0xFFFFFFFF																				
+fontpack_fs.bin	cn	15	0xFFFFFFFF																				
+fontpack_fs.bin	in	0	0x40	12544	0a88dc00993f8a82ed865b0d54e9bd109dc36736daaa5b88baa2dfbe5682f523	in	0c000900																
+fontpack_fs.bin	in	1	0x3140	640	d0d17a7b412339a808fbbc9509e92bdd6c0a4254d21a75b1256858e774aceddf	ch cn in kr	00000000																
+fontpack_fs.bin	in	2	0x33C0	4608	cd02540ee51e3fec573117fec216e1fa33c3174a4a0b807d90a8f80f7b7afd3b	ch cn in kr	00000000																
+fontpack_fs.bin	in	3	0x33C0	4608	cd02540ee51e3fec573117fec216e1fa33c3174a4a0b807d90a8f80f7b7afd3b	ch cn in kr	00000000																
+fontpack_fs.bin	in	4	0x45C0	5120	f3e50c0053acf0dd0ccd109b2bb2d4294f522fa68bab26501a491bdbf92d15ec	ch cn in it kr us	00000000																
+fontpack_fs.bin	in	5	0x59C0	5760	d96969b8d96e1c56d11e67b28694f80b6f7e93b5b846587ad68046178fd4b8cc	in	00000000																
+fontpack_fs.bin	in	6	0x7040	1536	29defe415d508a7b9bb8444ee26c9929b9f68cfc27db4225333aed014f20b6af	ch cn in kr	00001111																
+fontpack_fs.bin	in	7	0xFFFFFFFF																				
+fontpack_fs.bin	in	8	0xFFFFFFFF																				
+fontpack_fs.bin	in	9	0xFFFFFFFF																				
+fontpack_fs.bin	in	10	0xFFFFFFFF																				
+fontpack_fs.bin	in	11	0xFFFFFFFF																				
+fontpack_fs.bin	in	12	0xFFFFFFFF																				
+fontpack_fs.bin	in	13	0xFFFFFFFF																				
+fontpack_fs.bin	in	14	0xFFFFFFFF																				
+fontpack_fs.bin	in	15	0xFFFFFFFF																				
+fontpack_fs.bin	it us	0	0x40	16256	491de5e8a0b2ba9bb64a4d925efff69ecc61118ff0ebf872f21323a4e8df149a	it us	0c000900																
+fontpack_fs.bin	it us	1	0x3FC0	640	49d7255b4d0de0f61a0087893b6de2b3ff3195e81c4950b35edfc572dddb5f4d	it us	de090900																
+fontpack_fs.bin	it us	2	0x4240	11648	b3c3f014c7f80e0e33df704e8dce77f4c86294a79b122fdbe1bcfce6d11869bc	it us	00000000																
+fontpack_fs.bin	it us	3	0x4240	11648	b3c3f014c7f80e0e33df704e8dce77f4c86294a79b122fdbe1bcfce6d11869bc	it us	00000000																
+fontpack_fs.bin	it us	4	0x6FC0	5120	f3e50c0053acf0dd0ccd109b2bb2d4294f522fa68bab26501a491bdbf92d15ec	ch cn in it kr us	00000000																
+fontpack_fs.bin	it us	5	0x83C0	38272	456981ed784d9b7a28bf4f81c7522fb7ce5936c76117449392b1145a88e34730	it us	00000000																
+fontpack_fs.bin	it us	6	0x11940	1536	7f5aec8b45fea82828b51b1070369afba722825036b943f3f792a4b2b17e3440	it us	0x00325523																
+fontpack_fs.bin	it us	7	0xFFFFFFFF																				
+fontpack_fs.bin	it us	8	0xFFFFFFFF																				
+fontpack_fs.bin	it us	9	0xFFFFFFFF																				
+fontpack_fs.bin	it us	10	0xFFFFFFFF																				
+fontpack_fs.bin	it us	11	0xFFFFFFFF																				
+fontpack_fs.bin	it us	12	0xFFFFFFFF																				
+fontpack_fs.bin	it us	13	0xFFFFFFFF																				
+fontpack_fs.bin	it us	14	0xFFFFFFFF																				
+fontpack_fs.bin	it us	15	0xFFFFFFFF																				
+fontpack_fs.bin	kr	0	0x40	12352	e92bd02519ed3858d844c1d2d69bbc62edaabf52ff51198fe2a3b822bc092b2c	kr	0c000900																
+fontpack_fs.bin	kr	1	0x3080	640	d0d17a7b412339a808fbbc9509e92bdd6c0a4254d21a75b1256858e774aceddf	ch cn in kr	00000000																
+fontpack_fs.bin	kr	2	0x3300	4608	cd02540ee51e3fec573117fec216e1fa33c3174a4a0b807d90a8f80f7b7afd3b	ch cn in kr	00000000																
+fontpack_fs.bin	kr	3	0x3300	4608	cd02540ee51e3fec573117fec216e1fa33c3174a4a0b807d90a8f80f7b7afd3b	ch cn in kr	00000000																
+fontpack_fs.bin	kr	4	0x4500	5120	f3e50c0053acf0dd0ccd109b2bb2d4294f522fa68bab26501a491bdbf92d15ec	ch cn in it kr us	00000000																
+fontpack_fs.bin	kr	5	0x5900	3968	429eff6eec469497151b2c25518a18bf2b6cc17bf14bbb61df25d7f78735ce23	ch cn kr	00000000																
+fontpack_fs.bin	kr	6	0x6880	1536	29defe415d508a7b9bb8444ee26c9929b9f68cfc27db4225333aed014f20b6af	ch cn in kr	00001111																
+fontpack_fs.bin	kr	7	0xFFFFFFFF																				
+fontpack_fs.bin	kr	8	0xFFFFFFFF																				
+fontpack_fs.bin	kr	9	0xFFFFFFFF																				
+fontpack_fs.bin	kr	10	0xFFFFFFFF																				
+fontpack_fs.bin	kr	11	0xFFFFFFFF																				
+fontpack_fs.bin	kr	12	0xFFFFFFFF																				
+fontpack_fs.bin	kr	13	0xFFFFFFFF																				
+fontpack_fs.bin	kr	14	0xFFFFFFFF																				
+fontpack_fs.bin	kr	15	0xFFFFFFFF																				
+fontpack_it.bin	ch	0	0x40	551680	a4f8e01b21d887741c84d8e9f3ad17982ffb0684f3e4159887e6a8b17063f83b	ch	TIM2		4	2	546624	0	527040	0x4C80	0	0x0	3	4	640	1647	no		384x26 type 4
+fontpack_it.bin	ch	1	0x86B40	2112	fbcb8dfda8bd58bf2b7746a5653ab7744c08250ed0ad3d089fe9867656aadeed	ch cn in it kr us	TIM2		4	1	2096	0	2048	0x30	0	0x0	0	3	32	16	no		
+fontpack_it.bin	ch	2	0x87380	192	22b9f7d24e56ed0894cece0470f2314bd6f6ebd6b42278683f3d50e77da7a31d	ch cn in kr	047e8080																
+fontpack_it.bin	ch	3	0x87440	1024	92aa89806cb7d5659c85251081922d6851ef57a6aec7236f9c72855d76d08334	ch cn in kr	bc00bc00																
+fontpack_it.bin	ch	4	0x87840	576	2dba1ef6ec0950b52bda48d311a31ba0fc7bf27f2454b5b69fa4f146a5a498ce	ch cn in kr	bc00bc00																
+fontpack_it.bin	ch	5	0x87A80	1164	2b5c64723806e48d2814113e517b3bbbc223da3f236a7dba9d778fcc5084fcb7	ch cn in it kr us	91000000																
+fontpack_it.bin	ch	6	0xFFFFFFFF																				
+fontpack_it.bin	ch	7	0xFFFFFFFF																				
+fontpack_it.bin	ch	8	0xFFFFFFFF																				
+fontpack_it.bin	ch	9	0xFFFFFFFF																				
+fontpack_it.bin	ch	10	0xFFFFFFFF																				
+fontpack_it.bin	ch	11	0xFFFFFFFF																				
+fontpack_it.bin	ch	12	0xFFFFFFFF																				
+fontpack_it.bin	ch	13	0xFFFFFFFF																				
+fontpack_it.bin	ch	14	0xFFFFFFFF																				
+fontpack_it.bin	ch	15	0xFFFFFFFF																				
+fontpack_it.bin	cn	0	0x40	547264	8889d23d79c3a09040233528b4d212fd82b389179a50e6fbd83524351ea37533	cn	TIM2		4	2	546192	0	526720	0x4C10	0	0x0	3	4	640	1646	no		120x16 type 4
+fontpack_it.bin	cn	1	0x85A00	2112	fbcb8dfda8bd58bf2b7746a5653ab7744c08250ed0ad3d089fe9867656aadeed	ch cn in it kr us	TIM2		4	1	2096	0	2048	0x30	0	0x0	0	3	32	16	no		
+fontpack_it.bin	cn	2	0x86240	192	22b9f7d24e56ed0894cece0470f2314bd6f6ebd6b42278683f3d50e77da7a31d	ch cn in kr	047e8080																
+fontpack_it.bin	cn	3	0x86300	1024	92aa89806cb7d5659c85251081922d6851ef57a6aec7236f9c72855d76d08334	ch cn in kr	bc00bc00																
+fontpack_it.bin	cn	4	0x86700	576	2dba1ef6ec0950b52bda48d311a31ba0fc7bf27f2454b5b69fa4f146a5a498ce	ch cn in kr	bc00bc00																
+fontpack_it.bin	cn	5	0x86940	1164	2b5c64723806e48d2814113e517b3bbbc223da3f236a7dba9d778fcc5084fcb7	ch cn in it kr us	91000000																
+fontpack_it.bin	cn	6	0xFFFFFFFF																				
+fontpack_it.bin	cn	7	0xFFFFFFFF																				
+fontpack_it.bin	cn	8	0xFFFFFFFF																				
+fontpack_it.bin	cn	9	0xFFFFFFFF																				
+fontpack_it.bin	cn	10	0xFFFFFFFF																				
+fontpack_it.bin	cn	11	0xFFFFFFFF																				
+fontpack_it.bin	cn	12	0xFFFFFFFF																				
+fontpack_it.bin	cn	13	0xFFFFFFFF																				
+fontpack_it.bin	cn	14	0xFFFFFFFF																				
+fontpack_it.bin	cn	15	0xFFFFFFFF																				
+fontpack_it.bin	in	0	0x40	301184	cd50d3fd954ba89ed23f5628ce7515d4e462187f1baa067d29dfa27ec039146a	in	TIM2		216	2	298704	0	287680	0x2B10	0	0x0	3	4	640	877	no		216x22 type 4
+fontpack_it.bin	in	1	0x498C0	2112	fbcb8dfda8bd58bf2b7746a5653ab7744c08250ed0ad3d089fe9867656aadeed	ch cn in it kr us	TIM2		4	1	2096	0	2048	0x30	0	0x0	0	3	32	16	no		
+fontpack_it.bin	in	2	0x4A100	192	22b9f7d24e56ed0894cece0470f2314bd6f6ebd6b42278683f3d50e77da7a31d	ch cn in kr	047e8080																
+fontpack_it.bin	in	3	0x4A1C0	1024	92aa89806cb7d5659c85251081922d6851ef57a6aec7236f9c72855d76d08334	ch cn in kr	bc00bc00																
+fontpack_it.bin	in	4	0x4A5C0	576	2dba1ef6ec0950b52bda48d311a31ba0fc7bf27f2454b5b69fa4f146a5a498ce	ch cn in kr	bc00bc00																
+fontpack_it.bin	in	5	0x4A800	1164	2b5c64723806e48d2814113e517b3bbbc223da3f236a7dba9d778fcc5084fcb7	ch cn in it kr us	91000000																
+fontpack_it.bin	in	6	0xFFFFFFFF																				
+fontpack_it.bin	in	7	0xFFFFFFFF																				
+fontpack_it.bin	in	8	0xFFFFFFFF																				
+fontpack_it.bin	in	9	0xFFFFFFFF																				
+fontpack_it.bin	in	10	0xFFFFFFFF																				
+fontpack_it.bin	in	11	0xFFFFFFFF																				
+fontpack_it.bin	in	12	0xFFFFFFFF																				
+fontpack_it.bin	in	13	0xFFFFFFFF																				
+fontpack_it.bin	in	14	0xFFFFFFFF																				
+fontpack_it.bin	in	15	0xFFFFFFFF																				
+fontpack_it.bin	it	0	0x40	90112	0269fe643cc5631e6d059c19315abd16515cce1c72bafe7919dcee4275563806	it	TIM2		4	2	83312	0	72320	0x2AF0	0	0x0	3	4	640	226	no		312x43 type 4
+fontpack_it.bin	it	1	0x16040	2112	fbcb8dfda8bd58bf2b7746a5653ab7744c08250ed0ad3d089fe9867656aadeed	ch cn in it kr us	TIM2		4	1	2096	0	2048	0x30	0	0x0	0	3	32	16	no		
+fontpack_it.bin	it	2	0x16880	192	28dc72c7bfa60d46f20ca154fef38b2c16ad3cb595aa8a02a835a2cabdaffc36	it us	047e8080																
+fontpack_it.bin	it	3	0x16940	1664	3e790f008e25af8e066c2f34efdf2dc669881778fd037f201bff98112efeb20e	it	32013201																
+fontpack_it.bin	it	4	0x16FC0	704	d5d56d4d2fcff67ee773cc9e5b06888b4e5bebe9b6442710c5086a587a7eb63c	it us	32013201																
+fontpack_it.bin	it	5	0x17280	1164	2b5c64723806e48d2814113e517b3bbbc223da3f236a7dba9d778fcc5084fcb7	ch cn in it kr us	91000000																
+fontpack_it.bin	it	6	0xFFFFFFFF																				
+fontpack_it.bin	it	7	0xFFFFFFFF																				
+fontpack_it.bin	it	8	0xFFFFFFFF																				
+fontpack_it.bin	it	9	0xFFFFFFFF																				
+fontpack_it.bin	it	10	0xFFFFFFFF																				
+fontpack_it.bin	it	11	0xFFFFFFFF																				
+fontpack_it.bin	it	12	0xFFFFFFFF																				
+fontpack_it.bin	it	13	0xFFFFFFFF																				
+fontpack_it.bin	it	14	0xFFFFFFFF																				
+fontpack_it.bin	it	15	0xFFFFFFFF																				
+fontpack_it.bin	kr	0	0x40	279296	42a35381c2a98eedeb3b75b6b20ff025110aff801a129a98547c4721ef39add0	kr	TIM2		4	2	278976	0	268480	0x2900	0	0x0	3	4	640	839	no		104x4 type 4
+fontpack_it.bin	kr	1	0x44340	2112	fbcb8dfda8bd58bf2b7746a5653ab7744c08250ed0ad3d089fe9867656aadeed	ch cn in it kr us	TIM2		4	1	2096	0	2048	0x30	0	0x0	0	3	32	16	no		
+fontpack_it.bin	kr	2	0x44B80	192	22b9f7d24e56ed0894cece0470f2314bd6f6ebd6b42278683f3d50e77da7a31d	ch cn in kr	047e8080																
+fontpack_it.bin	kr	3	0x44C40	1024	92aa89806cb7d5659c85251081922d6851ef57a6aec7236f9c72855d76d08334	ch cn in kr	bc00bc00																
+fontpack_it.bin	kr	4	0x45040	576	2dba1ef6ec0950b52bda48d311a31ba0fc7bf27f2454b5b69fa4f146a5a498ce	ch cn in kr	bc00bc00																
+fontpack_it.bin	kr	5	0x45280	1164	2b5c64723806e48d2814113e517b3bbbc223da3f236a7dba9d778fcc5084fcb7	ch cn in it kr us	91000000																
+fontpack_it.bin	kr	6	0xFFFFFFFF																				
+fontpack_it.bin	kr	7	0xFFFFFFFF																				
+fontpack_it.bin	kr	8	0xFFFFFFFF																				
+fontpack_it.bin	kr	9	0xFFFFFFFF																				
+fontpack_it.bin	kr	10	0xFFFFFFFF																				
+fontpack_it.bin	kr	11	0xFFFFFFFF																				
+fontpack_it.bin	kr	12	0xFFFFFFFF																				
+fontpack_it.bin	kr	13	0xFFFFFFFF																				
+fontpack_it.bin	kr	14	0xFFFFFFFF																				
+fontpack_it.bin	kr	15	0xFFFFFFFF																				
+fontpack_it.bin	us	0	0x40	90176	67f702dcec9a6dfbb9d32de3cc52f003f7af5de5a16b8972bc2c426dded05d61	us	TIM2		4	2	83008	0	72000	0x2B00	0	0x0	3	4	640	225	no		488x29 type 4
+fontpack_it.bin	us	1	0x16080	2112	fbcb8dfda8bd58bf2b7746a5653ab7744c08250ed0ad3d089fe9867656aadeed	ch cn in it kr us	TIM2		4	1	2096	0	2048	0x30	0	0x0	0	3	32	16	no		
+fontpack_it.bin	us	2	0x168C0	192	28dc72c7bfa60d46f20ca154fef38b2c16ad3cb595aa8a02a835a2cabdaffc36	it us	047e8080																
+fontpack_it.bin	us	3	0x16980	1984	defddc5788e9cb92c859c10bc9912389667f08a97eca7bfd2c6f9ec00b470811	us	32013201																
+fontpack_it.bin	us	4	0x17140	704	d5d56d4d2fcff67ee773cc9e5b06888b4e5bebe9b6442710c5086a587a7eb63c	it us	32013201																
+fontpack_it.bin	us	5	0x17400	1164	2b5c64723806e48d2814113e517b3bbbc223da3f236a7dba9d778fcc5084fcb7	ch cn in it kr us	91000000																
+fontpack_it.bin	us	6	0xFFFFFFFF																				
+fontpack_it.bin	us	7	0xFFFFFFFF																				
+fontpack_it.bin	us	8	0xFFFFFFFF																				
+fontpack_it.bin	us	9	0xFFFFFFFF																				
+fontpack_it.bin	us	10	0xFFFFFFFF																				
+fontpack_it.bin	us	11	0xFFFFFFFF																				
+fontpack_it.bin	us	12	0xFFFFFFFF																				
+fontpack_it.bin	us	13	0xFFFFFFFF																				
+fontpack_it.bin	us	14	0xFFFFFFFF																				
+fontpack_it.bin	us	15	0xFFFFFFFF																				

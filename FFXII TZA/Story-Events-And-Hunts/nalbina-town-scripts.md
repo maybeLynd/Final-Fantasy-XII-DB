@@ -133,8 +133,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 14,957 |
-| empty | 92 |
+| `resolved` | 14,992 |
+| empty | 57 |
 | `does not ship`, with the fact | 2 |
 
 The two `does not ship` rows are `motionread` calls that read an empty entry: entry 2 of `nac_a01.mot` and entry 0 of

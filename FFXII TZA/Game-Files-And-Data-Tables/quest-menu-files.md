@@ -205,6 +205,7 @@ A `QHT0` entry, read by `0x00473CC0(entry, step)`:
 |---|---|
 | languages | `ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr`, `us`; every folder has all six loaded files |
 | `menuquest.dat` | 540 bytes, identical in all nine: 66 quests, group 0 19 (ids 0-22), group 1 45 hunts (ids 128-172), group 2 2 (ids 50, 51) |
+| `menuquest.dat` keys | bits 18-19 are 1 and bits 28-31 are 4 in group 0's 19 records, both 0 in the other 47; the two group 2 records have text -1; 64 row pictures, picture 0 on three records |
 | hunt row pictures | bits 20-27 run 19 to 63 for the hunts |
 | `menuquest.lst` | 1,684 (`in`) to 2,036 (`es`) bytes; 66 entries naming the same 66 ids, `stringsAt` `0x220` |
 | `.lst` thresholds | 3 for 44 hunts, 4 for one, 0 for the 21 other quests |
@@ -219,10 +220,14 @@ A `QHT0` entry, read by `0x00473CC0(entry, step)`:
 | `menuquest.nfs` | 208 to 29,008 bytes ([TIM2 images](tim2-images.md)) |
 | size table | the US table sizes `0x128`-`0x12C` and `0x13A` only |
 
+[`quest-menu-files-dat-rows.tsv`](quest-menu-files-dat-rows.tsv) lists the 66 records of `menuquest.dat`, the
+same in all nine folders: offset, text, the key and its fields, and the record's position in its group.
+
 [`quest-menu-files-lst-rows.tsv`](quest-menu-files-lst-rows.tsv) lists the nine `.lst` files, with size,
 SHA-256, the language ids that load each and the header, then their 594 directory entries: quest id,
 `menuquest.dat` record and group, `textAt`, the threshold byte and the value `0x0037E5B0` takes from it, the
 pad bytes, the string, the line decoded with the language's font, and what the Hunts row shows.
+
 [`quest-menu-files-nfs-rows.tsv`](quest-menu-files-nfs-rows.tsv) lists the nine `.nfs` files and their ten
 pictures.
 
@@ -246,6 +251,16 @@ pictures.
 - The second `in` picture, 504 x 23, has header size `0x30`, so `0x0039BF50` fills no block for it. The
   identical `us` and `it` files carry version byte 216, the other seven 4. Every file passes the registry
   test of `0x0039BEC0` (`TIM2` and a low nibble of 1 at `+0x40`).
+
+Every record of the 27 group files, decoded with the layouts above. Each distinct content is listed once with the
+folders that hold it, split where those folders draw text with different fonts; the texts are decoded with the font
+of each folder's language, in the notation of the `.lst` table.
+
+| table | rows | one row per |
+|---|---:|---|
+| [`quest-menu-files-bin-files-rows.tsv`](quest-menu-files-bin-files-rows.tsv) | 27 | group file: folder, size, SHA-256, the folders with the same bytes, `sectionAt`, pad and count |
+| [`quest-menu-files-bin-rows.tsv`](quest-menu-files-bin-rows.tsv) | 586 | record: quest id and `menuquest.dat` record, `item[6]`, `fill`, the three texts, the section-2 part count, the 52 progress values, and the `QHD0` and `QHT0` entry headers |
+| [`quest-menu-files-bin-steps-rows.tsv`](quest-menu-files-bin-steps-rows.tsv) | 1,063 | `QHD0` step: `a`, `b`, location, the `shown` and `labelled` bits with the values of progress / 5 they cover, and the step's two `QHT0` labels |
 
 ## Loader behaviour
 

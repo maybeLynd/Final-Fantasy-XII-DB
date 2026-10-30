@@ -1,0 +1,517 @@
+folders	table	index	area_name	x	y	next	until	region	picture	beside_name	name_text_id	gate	key_item	name2_text_id	extra_gate	extra_type	extra_03	area_a	area_a_name	area_b	area_b_name	route_type	byte_03	dest_value
+ch cn de kr us	region	0									-1													
+ch cn de kr us	region	1									60000													
+ch cn de kr us	region	2									60001													
+ch cn de kr us	region	3									60002													
+ch cn de kr us	region	4									60003													
+ch cn de kr us	region	5									60004													
+ch cn de kr us	region	6									60005													
+ch cn de kr us	region	7									60006													
+ch cn de kr us	region	8									60007													
+ch cn de kr us	region	9									60008													
+ch cn de kr us	region	10									60009													
+ch cn de kr us	region	11									60010													
+ch cn de kr us	area	0	none	0	0	255 255 255 255	65535	0	0	-14 -50	-1	0xFFFF	0xFFFF	-1	0xFFFF	0	0000000000							
+ch cn de kr us	area	1	rbn	856	711	2 7 6 38	65535	1	1	10 10	60100	0x4012	0x8040	60100	0x4049	0	0000000000							
+ch cn de kr us	area	2	grm	871	623	4 1 6 4	65535	1	2	-14 0	60101	0xFFFF	0x8041	60101	0x4033	0	0000000000							
+ch cn de kr us	area	3	nal	967	532	8 5 4 37	65535	1	3	30 4	60102	0x4013	0x8042	60102	0xFFFF	0	0000000000							
+ch cn de kr us	area	4	mic	891	563	3 2 2 3	65535	1	4	-14 0	60103	0xFFFF	0x8043	60103	0xFFFF	0	0000000000							
+ch cn de kr us	area	5	dst	963	664	3 38 38 37	65535	1	5	34 0	60104	0x4014	0x8057	60104	0x402F	0	0000000000							
+ch cn de kr us	area	6	wdl	739	711	22 7 22 1	65535	1	6	-6 46	60105	0x4015	0x8058	60105	0xFFFF	0	0000000000							
+ch cn de kr us	area	7	sav	872	796	1 17 6 5	65535	1	7	10 12	60106	0x4016	0xFFFF	60106	0x4031	0	0000000000							
+ch cn de kr us	area	8	mnt	955	440	9 3 255 9	65535	2	8	30 8	60107	0x4017	0x8059	60107	0xFFFF	0	0000000000							
+ch cn de kr us	area	9	frs	995	372	14 8 10 14	65535	2	9	26 12	60108	0xFFFF	0x8044	60108	0xFFFF	0	0000000000							
+ch cn de kr us	area	10	bog	887	323	11 9 255 9	65535	2	10	-14 0	60109	0xFFFF	0x8045	60109	0xFFFF	0	0000000000							
+ch cn de kr us	area	11	bds	899	271	255 10 10 9	65535	2	11	-14 0	60110	0xFFFF	0x8046	60110	0xFFFF	0	0000000000							
+ch cn de kr us	area	12	alc	1299	140	255 16 14 16	65535	3	12	30 4	60111	0x4018	0x8047	60111	0x4041	0	0000000000							
+ch cn de kr us	area	13	dor	1283	100	255 12 14 12	10	3	13	30 0	60112	0xFFFF	0xFFFF	60112	0xFFFF	0	0000000000							
+ch cn de kr us	area	14	fon	1063	324	15 9 9 15	65535	3	14	22 20	60113	0x4019	0x805B	60113	0xFFFF	0	0000000000							
+ch cn de kr us	area	15	pla	1288	287	16 37 14 33	65535	3	15	10 6	60114	0x401A	0x805C	60114	0xFFFF	0	0000000000							
+ch cn de kr us	area	16	rui	1331	216	12 15 12 33	65535	3	16	32 4	60115	0xFFFF	0x8048	60115	0xFFFF	0	0000000000							
+ch cn de kr us	area	17	ozm	892	903	7 19 25 27	65535	4	17	10 8	60116	0x401B	0xFFFF	60116	0xFFFF	0	0000000000							
+ch cn de kr us	area	18	glf	699	995	25 29 23 19	65535	4	18	-14 0	60117	0xFFFF	0x8054	60117	0x403C	1	0000000000							
+ch cn de kr us	area	19	hne	883	1027	17 28 18 27	65535	4	19	-14 0	60118	0xFFFF	0x8049	60118	0x403E	1	0000000000							
+ch cn de kr us	area	20	byu	1547	736	21 30 37 35	65535	5	20	30 4	60119	0x401C	0x804A	60119	0xFFFF	0	0000000000							
+ch cn de kr us	area	21	lus	1567	696	34 20 37 35	65535	5	21	34 0	60120	0xFFFF	0x804B	60120	0x4039	0	0000000000							
+ch cn de kr us	area	22	ene	623	671	10 25 23 6	65535	6	22	-10 0	60121	0x401D	0x805A	60121	0xFFFF	0	0000000000							
+ch cn de kr us	area	23	enw	439	703	24 25 24 22	65535	6	23	-6 16	60122	0x401E	0xFFFF	60122	0xFFFF	0	0000000000							
+ch cn de kr us	area	24	rwg	344	635	255 23 255 23	65535	6	24	-14 -50	60123	0xFFFF	0x804C	60123	0x4061	1	0000000000							
+ch cn de kr us	area	25	ztc	644	819	22 18 23 6	65535	6	25	10 12	60124	0xFFFF	0x804D	60124	0xFFFF	0	0000000000							
+ch cn de kr us	area	26	gol	1096	1088	27 31 28 31	65535	7	26	10 8	60125	0xFFFF	0x804E	60125	0xFFFF	0	0000000000							
+ch cn de kr us	area	27	vic	1072	1004	17 26 19 26	65535	7	27	10 8	60126	0xFFFF	0x8055	60126	0xFFFF	0	0000000000							
+ch cn de kr us	area	28	mfr	896	1128	19 31 29 26	65535	7	28	10 12	60127	0xFFFF	0x804F	60127	0xFFFF	0	0000000000							
+ch cn de kr us	area	29	gil	711	1167	18 255 255 28	65535	7	29	-14 0	60128	0xFFFF	0x8050	60128	0x4062	1	0000000000							
+ch cn de kr us	area	30	bul	1468	1012	20 31 31 36	65535	8	30	10 8	60129	0xFFFF	0x8056	60129	0x4052	1	0000000000							
+ch cn de kr us	area	31	pbc	1263	1128	37 32 26 30	65535	8	31	34 0	60130	0x401F	0xFFFF	60130	0xFFFF	0	0000000000							
+ch cn de kr us	area	32	mrm	1291	1176	31 255 31 30	65535	8	32	30 8	60131	0xFFFF	0x8051	60131	0x4053	1	0000000000							
+ch cn de kr us	area	33	srb	1611	367	16 34 15 34	65535	3	33	-10 6	60132	0x4020	0xFFFF	60132	0xFFFF	0	0000000000							
+ch cn de kr us	area	34	var	1672	527	33 21 33 35	65535	3	34	10 8	60133	0x4021	0x8052	60133	0x4054	0	0000000000							
+ch cn de kr us	area	35	rwf	1947	871	34 36 20 255	65535	9	35	-14 0	60134	0x4022	0xFFFF	60134	0x4044	0	0000000000							
+ch cn de kr us	area	36	dgl	1951	903	35 255 30 255	65535	9	36	-14 8	60135	0xFFFF	0x8053	60135	0xFFFF	0	0000000000							
+ch cn de kr us	area	37	rsn	1296	616	15 27 3 20	1450	10	37	10 8	60136	0xFFFF	0xFFFF	60136	0xFFFF	0	0000000000							
+ch cn de kr us	area	38	bhm	887	700	2 1 1 5	65535	11	38	34 0	60137	0x4023	0xFFFF	60137	0x4045	0	0000000000							
+ch cn de kr us	route	0		856	662													1	rbn	2	grm	0	0	
+ch cn de kr us	route	1		914	698													1	rbn	5	dst	0	0	
+ch cn de kr us	route	2		794	718													1	rbn	6	wdl	0	0	
+ch cn de kr us	route	3		858	754													1	rbn	7	sav	0	0	
+ch cn de kr us	route	4		0	0													2	grm	4	mic	0	0	
+ch cn de kr us	route	5		922	536													3	nal	4	mic	0	0	
+ch cn de kr us	route	6		950	574													3	nal	5	dst	0	0	
+ch cn de kr us	route	7		952	490													3	nal	8	mnt	0	0	
+ch cn de kr us	route	8		908	632													4	mic	5	dst	0	0	
+ch cn de kr us	route	9		820	666													5	dst	6	wdl	0	0	
+ch cn de kr us	route	10		948	750													5	dst	7	sav	0	0	
+ch cn de kr us	route	11		930	554													5	dst	8	mnt	0	0	
+ch cn de kr us	route	12		792	782													6	wdl	7	sav	0	0	
+ch cn de kr us	route	13		678	686													6	wdl	22	ene	0	0	
+ch cn de kr us	route	14		708	768													6	wdl	25	ztc	0	0	
+ch cn de kr us	route	15		892	848													7	sav	17	ozm	0	0	
+ch cn de kr us	route	16		968	404													8	mnt	9	frs	0	0	
+ch cn de kr us	route	17		940	338													9	frs	10	bog	0	0	
+ch cn de kr us	route	18		952	318													9	frs	11	bds	0	0	
+ch cn de kr us	route	19		1026	340													9	frs	14	fon	0	0	
+ch cn de kr us	route	20		898	298													10	bog	11	bds	0	0	
+ch cn de kr us	route	21		1324	170													12	alc	16	rui	0	0	
+ch cn de kr us	route	22		1302	116													12	alc	13	dor	0	0	
+ch cn de kr us	route	23		1172	296													14	fon	15	pla	0	0	
+ch cn de kr us	route	24		1324	260													15	pla	16	rui	0	0	
+ch cn de kr us	route	25		1462	310													15	pla	33	srb	0	0	
+ch cn de kr us	route	26		818	986													17	ozm	18	glf	0	0	
+ch cn de kr us	route	27		880	962													17	ozm	19	hne	0	0	
+ch cn de kr us	route	28		750	882													17	ozm	25	ztc	0	0	
+ch cn de kr us	route	29		986	1016													17	ozm	26	gol	0	0	
+ch cn de kr us	route	30		884	1080													19	hne	28	mfr	0	0	
+ch cn de kr us	route	31		0	0													20	byu	21	lus	0	0	
+ch cn de kr us	route	32		528	694													22	ene	23	enw	0	0	
+ch cn de kr us	route	33		616	750													22	ene	25	ztc	0	0	
+ch cn de kr us	route	34		396	658													23	enw	24	rwg	0	0	
+ch cn de kr us	route	35		510	806													23	enw	25	ztc	0	0	
+ch cn de kr us	route	36		1096	1044													26	gol	27	vic	0	0	
+ch cn de kr us	route	37		1004	1122													26	gol	28	mfr	0	0	
+ch cn de kr us	route	38		1172	1128													26	gol	31	pbc	0	0	
+ch cn de kr us	route	39		794	1142													28	mfr	29	gil	0	0	
+ch cn de kr us	route	40		1076	1186													28	mfr	31	pbc	0	0	
+ch cn de kr us	route	41		1384	1086													30	bul	31	pbc	0	0	
+ch cn de kr us	route	42		0	0													31	pbc	32	mrm	0	0	
+ch cn de kr us	route	43		1666	438													33	srb	34	var	0	0	
+ch cn de kr us	route	44		1966	890													35	rwf	36	dgl	0	0	
+ch cn de kr us	route	45		1068	400													1	rbn	12	alc	1	0	
+ch cn de kr us	route	46		1068	400													12	alc	1	rbn	2	0	
+ch cn de kr us	route	47		900	594													1	rbn	3	nal	3	0	
+ch cn de kr us	route	48		900	594													3	nal	1	rbn	4	0	
+ch cn de kr us	route	49		1146	710													1	rbn	20	byu	5	0	
+ch cn de kr us	route	50		1146	710													20	byu	1	rbn	6	0	
+ch cn de kr us	route	51		1112	322													3	nal	12	alc	7	0	
+ch cn de kr us	route	52		1112	322													12	alc	3	nal	8	0	
+ch cn de kr us	route	53		1340	522													3	nal	34	var	9	0	
+ch cn de kr us	route	54		1340	522													34	var	3	nal	10	0	
+ch cn de kr us	route	55		1586	638													20	byu	34	var	11	0	
+ch cn de kr us	route	56		1586	638													34	var	20	byu	12	0	
+ch cn de kr us	route	57		1508	326													12	alc	34	var	13	0	
+ch cn de kr us	route	58		1508	326													34	var	12	alc	14	0	
+ch cn de kr us	route	59		0	0													22	ene	22	ene	15	0	
+ch cn de kr us	destination	0																1	rbn				0	788
+ch cn de kr us	destination	1																3	nal				0	800
+ch cn de kr us	destination	2																5	dst				0	231
+ch cn de kr us	destination	3																6	wdl				0	350
+ch cn de kr us	destination	4																7	sav				0	248
+ch cn de kr us	destination	5																8	mnt				0	1151
+ch cn de kr us	destination	6																12	alc				0	794
+ch cn de kr us	destination	7																14	fon				0	483
+ch cn de kr us	destination	8																15	pla				0	142
+ch cn de kr us	destination	9																17	ozm				0	533
+ch cn de kr us	destination	10																20	byu				0	791
+ch cn de kr us	destination	11																22	ene				0	386
+ch cn de kr us	destination	12																23	enw				0	394
+ch cn de kr us	destination	13																31	pbc				0	473
+ch cn de kr us	destination	14																33	srb				0	500
+ch cn de kr us	destination	15																34	var				0	797
+ch cn de kr us	destination	16																35	rwf				0	509
+ch cn de kr us	destination	17																38	bhm				0	924
+es	region	0									-1													
+es	region	1									60000													
+es	region	2									60001													
+es	region	3									60002													
+es	region	4									60003													
+es	region	5									60004													
+es	region	6									60005													
+es	region	7									60006													
+es	region	8									60007													
+es	region	9									60008													
+es	region	10									60009													
+es	region	11									60010													
+es	area	0	none	0	0	255 255 255 255	65535	0	0	-14 -50	-1	0xFFFF	0xFFFF	-1	0xFFFF	0	0000000000							
+es	area	1	rbn	855	712	2 7 6 38	65535	1	1	34 20	60100	0x4012	0x8040	60100	0x4049	0	0000000000							
+es	area	2	grm	871	623	4 1 6 4	65535	1	2	-14 -30	60101	0xFFFF	0x8041	60101	0x4033	0	0000000000							
+es	area	3	nal	967	532	8 5 4 37	65535	1	3	30 4	60102	0x4013	0x8042	60102	0xFFFF	0	0000000000							
+es	area	4	mic	891	563	3 2 2 3	65535	1	4	-14 0	60103	0xFFFF	0x8043	60103	0xFFFF	0	0000000000							
+es	area	5	dst	963	664	3 38 38 37	65535	1	5	34 0	60104	0x4014	0x8057	60104	0x402F	0	0000000000							
+es	area	6	wdl	740	711	22 7 22 1	65535	1	6	6 30	60105	0x4015	0x8058	60105	0xFFFF	0	0000000000							
+es	area	7	sav	872	796	1 17 6 5	65535	1	7	10 0	60106	0x4016	0xFFFF	60106	0x4031	0	0000000000							
+es	area	8	mnt	955	440	9 3 255 9	65535	2	8	30 8	60107	0x4017	0x8059	60107	0xFFFF	0	0000000000							
+es	area	9	frs	995	372	14 8 10 14	65535	2	9	26 12	60108	0xFFFF	0x8044	60108	0xFFFF	0	0000000000							
+es	area	10	bog	887	323	11 9 255 9	65535	2	10	-14 0	60109	0xFFFF	0x8045	60109	0xFFFF	0	0000000000							
+es	area	11	bds	899	271	255 10 10 9	65535	2	11	-14 0	60110	0xFFFF	0x8046	60110	0xFFFF	0	0000000000							
+es	area	12	alc	1299	140	255 16 14 16	65535	3	12	30 4	60111	0x4018	0x8047	60111	0x4041	0	0000000000							
+es	area	13	dor	1283	100	255 12 14 12	10	3	13	30 0	60112	0xFFFF	0xFFFF	60112	0xFFFF	0	0000000000							
+es	area	14	fon	1063	324	15 9 9 15	65535	3	14	22 20	60113	0x4019	0x805B	60113	0xFFFF	0	0000000000							
+es	area	15	pla	1288	287	16 37 14 33	65535	3	15	10 6	60114	0x401A	0x805C	60114	0xFFFF	0	0000000000							
+es	area	16	rui	1331	216	12 15 12 33	65535	3	16	32 4	60115	0xFFFF	0x8048	60115	0xFFFF	0	0000000000							
+es	area	17	ozm	892	903	7 19 25 27	65535	4	17	10 8	60116	0x401B	0xFFFF	60116	0xFFFF	0	0000000000							
+es	area	18	glf	699	995	25 29 23 19	65535	4	18	-14 0	60117	0xFFFF	0x8054	60117	0x403C	1	0000000000							
+es	area	19	hne	883	1027	17 28 18 27	65535	4	19	-14 0	60118	0xFFFF	0x8049	60118	0x403E	1	0000000000							
+es	area	20	byu	1548	736	21 30 37 35	65535	5	20	30 4	60119	0x401C	0x804A	60119	0xFFFF	0	0000000000							
+es	area	21	lus	1567	696	34 20 37 35	65535	5	21	34 0	60120	0xFFFF	0x804B	60120	0x4039	0	0000000000							
+es	area	22	ene	623	671	10 25 23 6	65535	6	22	-10 0	60121	0x401D	0x805A	60121	0xFFFF	0	0000000000							
+es	area	23	enw	440	703	24 25 24 22	65535	6	23	-14 0	60122	0x401E	0xFFFF	60122	0xFFFF	0	0000000000							
+es	area	24	rwg	343	634	255 23 255 23	65535	6	24	26 0	60123	0xFFFF	0x804C	60123	0x4061	1	0000000000							
+es	area	25	ztc	644	819	22 18 23 6	65535	6	25	10 12	60124	0xFFFF	0x804D	60124	0xFFFF	0	0000000000							
+es	area	26	gol	1096	1088	27 31 28 31	65535	7	26	10 8	60125	0xFFFF	0x804E	60125	0xFFFF	0	0000000000							
+es	area	27	vic	1072	1004	17 26 19 26	65535	7	27	10 8	60126	0xFFFF	0x8055	60126	0xFFFF	0	0000000000							
+es	area	28	mfr	896	1128	19 31 29 26	65535	7	28	10 12	60127	0xFFFF	0x804F	60127	0xFFFF	0	0000000000							
+es	area	29	gil	711	1167	18 255 255 28	65535	7	29	-14 0	60128	0xFFFF	0x8050	60128	0x4062	1	0000000000							
+es	area	30	bul	1468	1012	20 31 31 36	65535	8	30	10 8	60129	0xFFFF	0x8056	60129	0x4052	1	0000000000							
+es	area	31	pbc	1263	1128	37 32 26 30	65535	8	31	34 0	60130	0x401F	0xFFFF	60130	0xFFFF	0	0000000000							
+es	area	32	mrm	1291	1176	31 255 31 30	65535	8	32	30 8	60131	0xFFFF	0x8051	60131	0x4053	1	0000000000							
+es	area	33	srb	1611	367	16 34 15 34	65535	3	33	-10 6	60132	0x4020	0xFFFF	60132	0xFFFF	0	0000000000							
+es	area	34	var	1672	527	33 21 33 35	65535	3	34	10 8	60133	0x4021	0x8052	60133	0x4054	0	0000000000							
+es	area	35	rwf	1947	871	34 36 20 255	65535	9	35	-14 0	60134	0x4022	0xFFFF	60134	0x4044	0	0000000000							
+es	area	36	dgl	1951	903	35 255 30 255	65535	9	36	-14 8	60135	0xFFFF	0x8053	60135	0xFFFF	0	0000000000							
+es	area	37	rsn	1296	616	15 27 3 20	1450	10	37	10 2	60136	0xFFFF	0xFFFF	60136	0xFFFF	0	0000000000							
+es	area	38	bhm	887	700	2 1 1 5	65535	11	38	34 0	60137	0x4023	0xFFFF	60137	0x4045	0	0000000000							
+es	route	0		856	662													1	rbn	2	grm	0	0	
+es	route	1		914	698													1	rbn	5	dst	0	0	
+es	route	2		794	718													1	rbn	6	wdl	0	0	
+es	route	3		858	754													1	rbn	7	sav	0	0	
+es	route	4		0	0													2	grm	4	mic	0	0	
+es	route	5		922	536													3	nal	4	mic	0	0	
+es	route	6		950	574													3	nal	5	dst	0	0	
+es	route	7		952	490													3	nal	8	mnt	0	0	
+es	route	8		908	632													4	mic	5	dst	0	0	
+es	route	9		820	666													5	dst	6	wdl	0	0	
+es	route	10		948	750													5	dst	7	sav	0	0	
+es	route	11		930	554													5	dst	8	mnt	0	0	
+es	route	12		792	782													6	wdl	7	sav	0	0	
+es	route	13		678	686													6	wdl	22	ene	0	0	
+es	route	14		708	768													6	wdl	25	ztc	0	0	
+es	route	15		892	848													7	sav	17	ozm	0	0	
+es	route	16		968	404													8	mnt	9	frs	0	0	
+es	route	17		940	338													9	frs	10	bog	0	0	
+es	route	18		952	318													9	frs	11	bds	0	0	
+es	route	19		1026	340													9	frs	14	fon	0	0	
+es	route	20		898	298													10	bog	11	bds	0	0	
+es	route	21		1324	170													12	alc	16	rui	0	0	
+es	route	22		1302	116													12	alc	13	dor	0	0	
+es	route	23		1172	296													14	fon	15	pla	0	0	
+es	route	24		1324	260													15	pla	16	rui	0	0	
+es	route	25		1462	310													15	pla	33	srb	0	0	
+es	route	26		818	986													17	ozm	18	glf	0	0	
+es	route	27		880	962													17	ozm	19	hne	0	0	
+es	route	28		750	882													17	ozm	25	ztc	0	0	
+es	route	29		986	1016													17	ozm	26	gol	0	0	
+es	route	30		884	1080													19	hne	28	mfr	0	0	
+es	route	31		0	0													20	byu	21	lus	0	0	
+es	route	32		528	694													22	ene	23	enw	0	0	
+es	route	33		616	750													22	ene	25	ztc	0	0	
+es	route	34		396	658													23	enw	24	rwg	0	0	
+es	route	35		510	806													23	enw	25	ztc	0	0	
+es	route	36		1096	1044													26	gol	27	vic	0	0	
+es	route	37		1004	1122													26	gol	28	mfr	0	0	
+es	route	38		1172	1128													26	gol	31	pbc	0	0	
+es	route	39		794	1142													28	mfr	29	gil	0	0	
+es	route	40		1076	1186													28	mfr	31	pbc	0	0	
+es	route	41		1384	1086													30	bul	31	pbc	0	0	
+es	route	42		0	0													31	pbc	32	mrm	0	0	
+es	route	43		1666	438													33	srb	34	var	0	0	
+es	route	44		1966	890													35	rwf	36	dgl	0	0	
+es	route	45		1068	400													1	rbn	12	alc	1	0	
+es	route	46		1068	400													12	alc	1	rbn	2	0	
+es	route	47		900	594													1	rbn	3	nal	3	0	
+es	route	48		900	594													3	nal	1	rbn	4	0	
+es	route	49		1146	710													1	rbn	20	byu	5	0	
+es	route	50		1146	710													20	byu	1	rbn	6	0	
+es	route	51		1112	322													3	nal	12	alc	7	0	
+es	route	52		1112	322													12	alc	3	nal	8	0	
+es	route	53		1340	522													3	nal	34	var	9	0	
+es	route	54		1340	522													34	var	3	nal	10	0	
+es	route	55		1586	638													20	byu	34	var	11	0	
+es	route	56		1586	638													34	var	20	byu	12	0	
+es	route	57		1508	326													12	alc	34	var	13	0	
+es	route	58		1508	326													34	var	12	alc	14	0	
+es	route	59		0	0													22	ene	22	ene	15	0	
+es	destination	0																1	rbn				0	788
+es	destination	1																3	nal				0	800
+es	destination	2																5	dst				0	231
+es	destination	3																6	wdl				0	350
+es	destination	4																7	sav				0	248
+es	destination	5																8	mnt				0	1151
+es	destination	6																12	alc				0	794
+es	destination	7																14	fon				0	483
+es	destination	8																15	pla				0	142
+es	destination	9																17	ozm				0	533
+es	destination	10																20	byu				0	791
+es	destination	11																22	ene				0	386
+es	destination	12																23	enw				0	394
+es	destination	13																31	pbc				0	473
+es	destination	14																33	srb				0	500
+es	destination	15																34	var				0	797
+es	destination	16																35	rwf				0	509
+es	destination	17																38	bhm				0	924
+fr	region	0									-1													
+fr	region	1									60000													
+fr	region	2									60001													
+fr	region	3									60002													
+fr	region	4									60003													
+fr	region	5									60004													
+fr	region	6									60005													
+fr	region	7									60006													
+fr	region	8									60007													
+fr	region	9									60008													
+fr	region	10									60009													
+fr	region	11									60010													
+fr	area	0	none	0	0	255 255 255 255	65535	0	0	-14 -50	-1	0xFFFF	0xFFFF	-1	0xFFFF	0	0000000000							
+fr	area	1	rbn	856	711	2 7 6 38	65535	1	1	10 5	60100	0x4012	0x8040	60100	0x4049	0	0000000000							
+fr	area	2	grm	871	623	4 1 6 4	65535	1	2	-14 0	60101	0xFFFF	0x8041	60101	0x4033	0	0000000000							
+fr	area	3	nal	967	532	8 5 4 37	65535	1	3	30 4	60102	0x4013	0x8042	60102	0xFFFF	0	0000000000							
+fr	area	4	mic	891	563	3 2 2 3	65535	1	4	-14 0	60103	0xFFFF	0x8043	60103	0xFFFF	0	0000000000							
+fr	area	5	dst	963	664	3 38 38 37	65535	1	5	34 0	60104	0x4014	0x8057	60104	0x402F	0	0000000000							
+fr	area	6	wdl	739	711	22 7 22 1	65535	1	6	4 44	60105	0x4015	0x8058	60105	0xFFFF	0	0000000000							
+fr	area	7	sav	872	796	1 17 6 5	65535	1	7	10 7	60106	0x4016	0xFFFF	60106	0x4031	0	0000000000							
+fr	area	8	mnt	955	440	9 3 255 9	65535	2	8	30 8	60107	0x4017	0x8059	60107	0xFFFF	0	0000000000							
+fr	area	9	frs	995	372	14 8 10 14	65535	2	9	26 12	60108	0xFFFF	0x8044	60108	0xFFFF	0	0000000000							
+fr	area	10	bog	887	323	11 9 255 9	65535	2	10	-14 0	60109	0xFFFF	0x8045	60109	0xFFFF	0	0000000000							
+fr	area	11	bds	899	271	255 10 10 9	65535	2	11	-14 0	60110	0xFFFF	0x8046	60110	0xFFFF	0	0000000000							
+fr	area	12	alc	1299	140	255 16 14 16	65535	3	12	30 4	60111	0x4018	0x8047	60111	0x4041	0	0000000000							
+fr	area	13	dor	1283	100	255 12 14 12	10	3	13	30 0	60112	0xFFFF	0xFFFF	60112	0xFFFF	0	0000000000							
+fr	area	14	fon	1063	324	15 9 9 15	65535	3	14	22 20	60113	0x4019	0x805B	60113	0xFFFF	0	0000000000							
+fr	area	15	pla	1288	287	16 37 14 33	65535	3	15	10 -4	60114	0x401A	0x805C	60114	0xFFFF	0	0000000000							
+fr	area	16	rui	1331	216	12 15 12 33	65535	3	16	32 4	60115	0xFFFF	0x8048	60115	0xFFFF	0	0000000000							
+fr	area	17	ozm	892	903	7 19 25 27	65535	4	17	10 8	60116	0x401B	0xFFFF	60116	0xFFFF	0	0000000000							
+fr	area	18	glf	699	995	25 29 23 19	65535	4	18	-14 0	60117	0xFFFF	0x8054	60117	0x403C	1	0000000000							
+fr	area	19	hne	883	1027	17 28 18 27	65535	4	19	-14 0	60118	0xFFFF	0x8049	60118	0x403E	1	0000000000							
+fr	area	20	byu	1547	736	21 30 37 35	65535	5	20	30 4	60119	0x401C	0x804A	60119	0xFFFF	0	0000000000							
+fr	area	21	lus	1567	696	34 20 37 35	65535	5	21	34 0	60120	0xFFFF	0x804B	60120	0x4039	0	0000000000							
+fr	area	22	ene	623	671	10 25 23 6	65535	6	22	-10 0	60121	0x401D	0x805A	60121	0xFFFF	0	0000000000							
+fr	area	23	enw	440	703	24 25 24 22	65535	6	23	-6 0	60122	0x401E	0xFFFF	60122	0xFFFF	0	0000000000							
+fr	area	24	rwg	344	635	255 23 255 23	65535	6	24	-14 -50	60123	0xFFFF	0x804C	60123	0x4061	1	0000000000							
+fr	area	25	ztc	644	819	22 18 23 6	65535	6	25	10 12	60124	0xFFFF	0x804D	60124	0xFFFF	0	0000000000							
+fr	area	26	gol	1096	1088	27 31 28 31	65535	7	26	10 8	60125	0xFFFF	0x804E	60125	0xFFFF	0	0000000000							
+fr	area	27	vic	1072	1004	17 26 19 26	65535	7	27	10 8	60126	0xFFFF	0x8055	60126	0xFFFF	0	0000000000							
+fr	area	28	mfr	896	1128	19 31 29 26	65535	7	28	10 12	60127	0xFFFF	0x804F	60127	0xFFFF	0	0000000000							
+fr	area	29	gil	711	1167	18 255 255 28	65535	7	29	-14 0	60128	0xFFFF	0x8050	60128	0x4062	1	0000000000							
+fr	area	30	bul	1468	1012	20 31 31 36	65535	8	30	10 8	60129	0xFFFF	0x8056	60129	0x4052	1	0000000000							
+fr	area	31	pbc	1263	1128	37 32 26 30	65535	8	31	34 0	60130	0x401F	0xFFFF	60130	0xFFFF	0	0000000000							
+fr	area	32	mrm	1291	1176	31 255 31 30	65535	8	32	30 8	60131	0xFFFF	0x8051	60131	0x4053	1	0000000000							
+fr	area	33	srb	1611	367	16 34 15 34	65535	3	33	-10 6	60132	0x4020	0xFFFF	60132	0xFFFF	0	0000000000							
+fr	area	34	var	1672	527	33 21 33 35	65535	3	34	10 8	60133	0x4021	0x8052	60133	0x4054	0	0000000000							
+fr	area	35	rwf	1947	871	34 36 20 255	65535	9	35	-14 0	60134	0x4022	0xFFFF	60134	0x4044	0	0000000000							
+fr	area	36	dgl	1951	903	35 255 30 255	65535	9	36	-14 8	60135	0xFFFF	0x8053	60135	0xFFFF	0	0000000000							
+fr	area	37	rsn	1296	616	15 27 3 20	1450	10	37	10 8	60136	0xFFFF	0xFFFF	60136	0xFFFF	0	0000000000							
+fr	area	38	bhm	887	700	2 1 1 5	65535	11	38	34 0	60137	0x4023	0xFFFF	60137	0x4045	0	0000000000							
+fr	route	0		856	662													1	rbn	2	grm	0	0	
+fr	route	1		914	698													1	rbn	5	dst	0	0	
+fr	route	2		794	718													1	rbn	6	wdl	0	0	
+fr	route	3		858	754													1	rbn	7	sav	0	0	
+fr	route	4		0	0													2	grm	4	mic	0	0	
+fr	route	5		922	536													3	nal	4	mic	0	0	
+fr	route	6		950	574													3	nal	5	dst	0	0	
+fr	route	7		952	490													3	nal	8	mnt	0	0	
+fr	route	8		908	632													4	mic	5	dst	0	0	
+fr	route	9		820	666													5	dst	6	wdl	0	0	
+fr	route	10		948	750													5	dst	7	sav	0	0	
+fr	route	11		930	554													5	dst	8	mnt	0	0	
+fr	route	12		792	782													6	wdl	7	sav	0	0	
+fr	route	13		678	686													6	wdl	22	ene	0	0	
+fr	route	14		708	768													6	wdl	25	ztc	0	0	
+fr	route	15		892	848													7	sav	17	ozm	0	0	
+fr	route	16		968	404													8	mnt	9	frs	0	0	
+fr	route	17		940	338													9	frs	10	bog	0	0	
+fr	route	18		952	318													9	frs	11	bds	0	0	
+fr	route	19		1026	340													9	frs	14	fon	0	0	
+fr	route	20		898	298													10	bog	11	bds	0	0	
+fr	route	21		1324	170													12	alc	16	rui	0	0	
+fr	route	22		1302	116													12	alc	13	dor	0	0	
+fr	route	23		1172	296													14	fon	15	pla	0	0	
+fr	route	24		1324	260													15	pla	16	rui	0	0	
+fr	route	25		1462	310													15	pla	33	srb	0	0	
+fr	route	26		818	986													17	ozm	18	glf	0	0	
+fr	route	27		880	962													17	ozm	19	hne	0	0	
+fr	route	28		750	882													17	ozm	25	ztc	0	0	
+fr	route	29		986	1016													17	ozm	26	gol	0	0	
+fr	route	30		884	1080													19	hne	28	mfr	0	0	
+fr	route	31		0	0													20	byu	21	lus	0	0	
+fr	route	32		528	694													22	ene	23	enw	0	0	
+fr	route	33		616	750													22	ene	25	ztc	0	0	
+fr	route	34		396	658													23	enw	24	rwg	0	0	
+fr	route	35		510	806													23	enw	25	ztc	0	0	
+fr	route	36		1096	1044													26	gol	27	vic	0	0	
+fr	route	37		1004	1122													26	gol	28	mfr	0	0	
+fr	route	38		1172	1128													26	gol	31	pbc	0	0	
+fr	route	39		794	1142													28	mfr	29	gil	0	0	
+fr	route	40		1076	1186													28	mfr	31	pbc	0	0	
+fr	route	41		1384	1086													30	bul	31	pbc	0	0	
+fr	route	42		0	0													31	pbc	32	mrm	0	0	
+fr	route	43		1666	438													33	srb	34	var	0	0	
+fr	route	44		1966	890													35	rwf	36	dgl	0	0	
+fr	route	45		1068	400													1	rbn	12	alc	1	0	
+fr	route	46		1068	400													12	alc	1	rbn	2	0	
+fr	route	47		900	594													1	rbn	3	nal	3	0	
+fr	route	48		900	594													3	nal	1	rbn	4	0	
+fr	route	49		1146	710													1	rbn	20	byu	5	0	
+fr	route	50		1146	710													20	byu	1	rbn	6	0	
+fr	route	51		1112	322													3	nal	12	alc	7	0	
+fr	route	52		1112	322													12	alc	3	nal	8	0	
+fr	route	53		1340	522													3	nal	34	var	9	0	
+fr	route	54		1340	522													34	var	3	nal	10	0	
+fr	route	55		1586	638													20	byu	34	var	11	0	
+fr	route	56		1586	638													34	var	20	byu	12	0	
+fr	route	57		1508	326													12	alc	34	var	13	0	
+fr	route	58		1508	326													34	var	12	alc	14	0	
+fr	route	59		0	0													22	ene	22	ene	15	0	
+fr	destination	0																1	rbn				0	788
+fr	destination	1																3	nal				0	800
+fr	destination	2																5	dst				0	231
+fr	destination	3																6	wdl				0	350
+fr	destination	4																7	sav				0	248
+fr	destination	5																8	mnt				0	1151
+fr	destination	6																12	alc				0	794
+fr	destination	7																14	fon				0	483
+fr	destination	8																15	pla				0	142
+fr	destination	9																17	ozm				0	533
+fr	destination	10																20	byu				0	791
+fr	destination	11																22	ene				0	386
+fr	destination	12																23	enw				0	394
+fr	destination	13																31	pbc				0	473
+fr	destination	14																33	srb				0	500
+fr	destination	15																34	var				0	797
+fr	destination	16																35	rwf				0	509
+fr	destination	17																38	bhm				0	924
+in it	region	0									-1													
+in it	region	1									60000													
+in it	region	2									60001													
+in it	region	3									60002													
+in it	region	4									60003													
+in it	region	5									60004													
+in it	region	6									60005													
+in it	region	7									60006													
+in it	region	8									60007													
+in it	region	9									60008													
+in it	region	10									60009													
+in it	region	11									60010													
+in it	area	0	none	0	0	255 255 255 255	65535	0	0	-14 -50	-1	0xFFFF	0xFFFF	-1	0xFFFF	0	0000000000							
+in it	area	1	rbn	856	711	2 7 6 38	65535	1	1	10 10	60100	0x4012	0x8040	60100	0x4049	0	0000000000							
+in it	area	2	grm	871	623	4 1 6 4	65535	1	2	-14 0	60101	0xFFFF	0x8041	60101	0x4033	0	0000000000							
+in it	area	3	nal	967	532	8 5 4 37	65535	1	3	30 4	60102	0x4013	0x8042	60102	0xFFFF	0	0000000000							
+in it	area	4	mic	891	563	3 2 2 3	65535	1	4	-14 0	60103	0xFFFF	0x8043	60103	0xFFFF	0	0000000000							
+in it	area	5	dst	963	664	3 38 38 37	65535	1	5	34 0	60104	0x4014	0x8057	60104	0x402F	0	0000000000							
+in it	area	6	wdl	739	711	22 7 22 1	65535	1	6	-6 16	60105	0x4015	0x8058	60105	0xFFFF	0	0000000000							
+in it	area	7	sav	872	796	1 17 6 5	65535	1	7	10 12	60106	0x4016	0xFFFF	60106	0x4031	0	0000000000							
+in it	area	8	mnt	955	440	9 3 255 9	65535	2	8	30 8	60107	0x4017	0x8059	60107	0xFFFF	0	0000000000							
+in it	area	9	frs	995	372	14 8 10 14	65535	2	9	26 12	60108	0xFFFF	0x8044	60108	0xFFFF	0	0000000000							
+in it	area	10	bog	887	323	11 9 255 9	65535	2	10	-14 0	60109	0xFFFF	0x8045	60109	0xFFFF	0	0000000000							
+in it	area	11	bds	899	271	255 10 10 9	65535	2	11	-14 0	60110	0xFFFF	0x8046	60110	0xFFFF	0	0000000000							
+in it	area	12	alc	1299	140	255 16 14 16	65535	3	12	30 4	60111	0x4018	0x8047	60111	0x4041	0	0000000000							
+in it	area	13	dor	1283	100	255 12 14 12	10	3	13	30 0	60112	0xFFFF	0xFFFF	60112	0xFFFF	0	0000000000							
+in it	area	14	fon	1063	324	15 9 9 15	65535	3	14	22 20	60113	0x4019	0x805B	60113	0xFFFF	0	0000000000							
+in it	area	15	pla	1288	287	16 37 14 33	65535	3	15	10 6	60114	0x401A	0x805C	60114	0xFFFF	0	0000000000							
+in it	area	16	rui	1331	216	12 15 12 33	65535	3	16	32 4	60115	0xFFFF	0x8048	60115	0xFFFF	0	0000000000							
+in it	area	17	ozm	892	903	7 19 25 27	65535	4	17	10 8	60116	0x401B	0xFFFF	60116	0xFFFF	0	0000000000							
+in it	area	18	glf	699	995	25 29 23 19	65535	4	18	-14 0	60117	0xFFFF	0x8054	60117	0x403C	1	0000000000							
+in it	area	19	hne	883	1027	17 28 18 27	65535	4	19	-14 0	60118	0xFFFF	0x8049	60118	0x403E	1	0000000000							
+in it	area	20	byu	1547	736	21 30 37 35	65535	5	20	30 4	60119	0x401C	0x804A	60119	0xFFFF	0	0000000000							
+in it	area	21	lus	1567	696	34 20 37 35	65535	5	21	34 0	60120	0xFFFF	0x804B	60120	0x4039	0	0000000000							
+in it	area	22	ene	623	671	10 25 23 6	65535	6	22	-10 0	60121	0x401D	0x805A	60121	0xFFFF	0	0000000000							
+in it	area	23	enw	439	703	24 25 24 22	65535	6	23	-6 16	60122	0x401E	0xFFFF	60122	0xFFFF	0	0000000000							
+in it	area	24	rwg	344	635	255 23 255 23	65535	6	24	-14 -50	60123	0xFFFF	0x804C	60123	0x4061	1	0000000000							
+in it	area	25	ztc	644	819	22 18 23 6	65535	6	25	10 12	60124	0xFFFF	0x804D	60124	0xFFFF	0	0000000000							
+in it	area	26	gol	1096	1088	27 31 28 31	65535	7	26	10 8	60125	0xFFFF	0x804E	60125	0xFFFF	0	0000000000							
+in it	area	27	vic	1072	1004	17 26 19 26	65535	7	27	10 8	60126	0xFFFF	0x8055	60126	0xFFFF	0	0000000000							
+in it	area	28	mfr	896	1128	19 31 29 26	65535	7	28	10 12	60127	0xFFFF	0x804F	60127	0xFFFF	0	0000000000							
+in it	area	29	gil	711	1167	18 255 255 28	65535	7	29	-14 0	60128	0xFFFF	0x8050	60128	0x4062	1	0000000000							
+in it	area	30	bul	1468	1012	20 31 31 36	65535	8	30	10 8	60129	0xFFFF	0x8056	60129	0x4052	1	0000000000							
+in it	area	31	pbc	1263	1128	37 32 26 30	65535	8	31	34 0	60130	0x401F	0xFFFF	60130	0xFFFF	0	0000000000							
+in it	area	32	mrm	1291	1176	31 255 31 30	65535	8	32	30 8	60131	0xFFFF	0x8051	60131	0x4053	1	0000000000							
+in it	area	33	srb	1611	367	16 34 15 34	65535	3	33	-10 6	60132	0x4020	0xFFFF	60132	0xFFFF	0	0000000000							
+in it	area	34	var	1672	527	33 21 33 35	65535	3	34	10 8	60133	0x4021	0x8052	60133	0x4054	0	0000000000							
+in it	area	35	rwf	1947	871	34 36 20 255	65535	9	35	-14 0	60134	0x4022	0xFFFF	60134	0x4044	0	0000000000							
+in it	area	36	dgl	1951	903	35 255 30 255	65535	9	36	-14 8	60135	0xFFFF	0x8053	60135	0xFFFF	0	0000000000							
+in it	area	37	rsn	1296	616	15 27 3 20	1450	10	37	10 8	60136	0xFFFF	0xFFFF	60136	0xFFFF	0	0000000000							
+in it	area	38	bhm	887	700	2 1 1 5	65535	11	38	34 0	60137	0x4023	0xFFFF	60137	0x4045	0	0000000000							
+in it	route	0		856	662													1	rbn	2	grm	0	0	
+in it	route	1		914	698													1	rbn	5	dst	0	0	
+in it	route	2		794	718													1	rbn	6	wdl	0	0	
+in it	route	3		858	754													1	rbn	7	sav	0	0	
+in it	route	4		0	0													2	grm	4	mic	0	0	
+in it	route	5		922	536													3	nal	4	mic	0	0	
+in it	route	6		950	574													3	nal	5	dst	0	0	
+in it	route	7		952	490													3	nal	8	mnt	0	0	
+in it	route	8		908	632													4	mic	5	dst	0	0	
+in it	route	9		820	666													5	dst	6	wdl	0	0	
+in it	route	10		948	750													5	dst	7	sav	0	0	
+in it	route	11		930	554													5	dst	8	mnt	0	0	
+in it	route	12		792	782													6	wdl	7	sav	0	0	
+in it	route	13		678	686													6	wdl	22	ene	0	0	
+in it	route	14		708	768													6	wdl	25	ztc	0	0	
+in it	route	15		892	848													7	sav	17	ozm	0	0	
+in it	route	16		968	404													8	mnt	9	frs	0	0	
+in it	route	17		940	338													9	frs	10	bog	0	0	
+in it	route	18		952	318													9	frs	11	bds	0	0	
+in it	route	19		1026	340													9	frs	14	fon	0	0	
+in it	route	20		898	298													10	bog	11	bds	0	0	
+in it	route	21		1324	170													12	alc	16	rui	0	0	
+in it	route	22		1302	116													12	alc	13	dor	0	0	
+in it	route	23		1172	296													14	fon	15	pla	0	0	
+in it	route	24		1324	260													15	pla	16	rui	0	0	
+in it	route	25		1462	310													15	pla	33	srb	0	0	
+in it	route	26		818	986													17	ozm	18	glf	0	0	
+in it	route	27		880	962													17	ozm	19	hne	0	0	
+in it	route	28		750	882													17	ozm	25	ztc	0	0	
+in it	route	29		986	1016													17	ozm	26	gol	0	0	
+in it	route	30		884	1080													19	hne	28	mfr	0	0	
+in it	route	31		0	0													20	byu	21	lus	0	0	
+in it	route	32		528	694													22	ene	23	enw	0	0	
+in it	route	33		616	750													22	ene	25	ztc	0	0	
+in it	route	34		396	658													23	enw	24	rwg	0	0	
+in it	route	35		510	806													23	enw	25	ztc	0	0	
+in it	route	36		1096	1044													26	gol	27	vic	0	0	
+in it	route	37		1004	1122													26	gol	28	mfr	0	0	
+in it	route	38		1172	1128													26	gol	31	pbc	0	0	
+in it	route	39		794	1142													28	mfr	29	gil	0	0	
+in it	route	40		1076	1186													28	mfr	31	pbc	0	0	
+in it	route	41		1384	1086													30	bul	31	pbc	0	0	
+in it	route	42		0	0													31	pbc	32	mrm	0	0	
+in it	route	43		1666	438													33	srb	34	var	0	0	
+in it	route	44		1966	890													35	rwf	36	dgl	0	0	
+in it	route	45		1068	400													1	rbn	12	alc	1	0	
+in it	route	46		1068	400													12	alc	1	rbn	2	0	
+in it	route	47		900	594													1	rbn	3	nal	3	0	
+in it	route	48		900	594													3	nal	1	rbn	4	0	
+in it	route	49		1146	710													1	rbn	20	byu	5	0	
+in it	route	50		1146	710													20	byu	1	rbn	6	0	
+in it	route	51		1112	322													3	nal	12	alc	7	0	
+in it	route	52		1112	322													12	alc	3	nal	8	0	
+in it	route	53		1340	522													3	nal	34	var	9	0	
+in it	route	54		1340	522													34	var	3	nal	10	0	
+in it	route	55		1586	638													20	byu	34	var	11	0	
+in it	route	56		1586	638													34	var	20	byu	12	0	
+in it	route	57		1508	326													12	alc	34	var	13	0	
+in it	route	58		1508	326													34	var	12	alc	14	0	
+in it	route	59		0	0													22	ene	22	ene	15	0	
+in it	destination	0																1	rbn				0	788
+in it	destination	1																3	nal				0	800
+in it	destination	2																5	dst				0	231
+in it	destination	3																6	wdl				0	350
+in it	destination	4																7	sav				0	248
+in it	destination	5																8	mnt				0	1151
+in it	destination	6																12	alc				0	794
+in it	destination	7																14	fon				0	483
+in it	destination	8																15	pla				0	142
+in it	destination	9																17	ozm				0	533
+in it	destination	10																20	byu				0	791
+in it	destination	11																22	ene				0	386
+in it	destination	12																23	enw				0	394
+in it	destination	13																31	pbc				0	473
+in it	destination	14																33	srb				0	500
+in it	destination	15																34	var				0	797
+in it	destination	16																35	rwf				0	509
+in it	destination	17																38	bhm				0	924

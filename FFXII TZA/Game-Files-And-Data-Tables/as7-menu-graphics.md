@@ -83,6 +83,13 @@ Measured over every `.as7` in the archive.
 | silhouette groups | pages `516 × g` to `516 × g + 257` and the next 258 each decode to 264,192 bytes beginning with a `TIM2` header, for all six groups |
 | `Item_Clut.bin` | 7,168 bytes in `in` and `ch`, identical: seven 1,024-byte palettes |
 | `itemgra_c.tm2` | 128 x 128, 8-bit, 512 colours in nine locales; 64 x 64 in `in_sdver` |
+| `Item_Clut.bin` alpha | `0x80` in 1,791 of the 1,792 colours, 0 in the other |
+
+Every colour of `Item_Clut.bin`, whose `in` and `ch` copies are identical:
+
+| table | rows | one row per |
+|---|---:|---|
+| [`as7-menu-graphics-item-clut-rows.tsv`](as7-menu-graphics-item-clut-rows.tsv) | 1,792 | colour: palette 0 to 6, index, file offset, R, G, B and alpha |
 
 ## Loader behaviour
 

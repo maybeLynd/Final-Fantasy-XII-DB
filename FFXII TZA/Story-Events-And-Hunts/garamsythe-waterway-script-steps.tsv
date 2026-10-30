@@ -463,7 +463,7 @@ grm_a02	setup	event	3	0x013BF	50	シナリオフラグ = lt(175)	break	-	-	-	-	-
 grm_a02	setup	event	4	0x013C2	51	-	case	lte(175)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a02	setup	event	5	0x013C2	52	シナリオフラグ = lte(175)	stopenvsoundall	-	the map's ambient sounds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a02	setup	event	6	0x013C8	53	シナリオフラグ = lte(175)	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_a02	setup	event	7	0x013CB	54	シナリオフラグ = lte(175)	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
+grm_a02	setup	event	7	0x013CB	54	シナリオフラグ = lte(175)	entrydeny	-	actor manager slot 0, the field's	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a02	setup	event	8	0x013CE	55	シナリオフラグ = lte(175)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a02	setup	event	9	0x013E0	57	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a02	__MJ_CTRL000	init	1	0x013E4	66	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1286,7 +1286,7 @@ grm_a03	SB1_王宮突入	touch	7	0x02722	609	local_var_s9f1_1 = 6	sethpmenu	0	th
 grm_a03	SB1_王宮突入	touch	8	0x02728	610	local_var_s9f1_1 = 6	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 grm_a03	SB1_王宮突入	touch	9	0x0272B	611	local_var_s9f1_1 = 6	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a03	SB1_王宮突入	touch	10	0x02745	613	-	if	(0x040000 bitor getquestscenarioflag(4)) == 0x04001e	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_a03	SB1_王宮突入	touch	11	0x02748	615	(0x040000 bitor getquestscenarioflag(4)) == 0x04001e	ucmovecancel	-	-	-	-	-	-		01 verb-table.tsv
+grm_a03	SB1_王宮突入	touch	11	0x02748	615	(0x040000 bitor getquestscenarioflag(4)) == 0x04001e	ucmovecancel	-	the scripted walk of the character the player controls, cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a03	SB1_王宮突入	touch	12	0x02754	617	-	sysReq	1, 操作キャラ_CPT::上見る	actor `操作キャラ_CPT`	-	-	files 操作キャラ_CPT::上見る on channel 1; does not wait	操作キャラ_CPT.上見る	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_a03	SB1_王宮突入	touch	13	0x02763	618	-	if	(0x040000 bitor getquestscenarioflag(4)) == 0x04001e	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a03	SB1_王宮突入	touch	14	0x02769	620	(0x040000 bitor getquestscenarioflag(4)) == 0x04001e	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -2013,7 +2013,7 @@ grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	
 grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	9	0x028B3	824	-	sysReq	1, system_crystal_actor::showoff	actor `system_crystal_actor`	-	-	files system_crystal_actor::showoff on channel 1; does not wait	system_crystal_actor.showoff	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	10	0x028B7	825	-	sysReqall	2, reqArr3	actor `MAP_SETACTOR_クリスタル`	-	-	files each pair of MAP_SETACTOR_クリスタル::clearHitObj_ForMapObj_DynamicChange on channel 2; does not wait	MAP_SETACTOR_クリスタル.clearHitObj_ForMapObj_DynamicChange	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	11	0x028BD	826	-	if	istownmap()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	12	0x028C0	828	istownmap()	ucmovecancel	-	-	-	-	-	-		01 verb-table.tsv
+grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	12	0x028C0	828	istownmap()	ucmovecancel	-	the scripted walk of the character the player controls, cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	13	0x028C9	832	not (istownmap())	ucmovecancel_52d	0	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	14	0x028CF	833	not (istownmap())	ucmovecancel_52d	1	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	イベント管理	ガラムガンビットチュートリアル_再生	15	0x028D5	834	not (istownmap())	ucmovecancel_52d	2	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2263,7 +2263,7 @@ grm_a04	ダルマスカ兵士死体	Init_配置	8	0x04913	2678	-	bindp2_d4	0x030
 grm_a04	ダルマスカ兵士死体	Init_配置	9	0x04916	2679	-	fetchambient	-	the calling actor's model tint, taken from the ground under it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体	Init_配置	10	0x0491C	2680	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体	Init_配置	11	0x04925	2681	-	setradius_221	0.5, 1	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_a04	ダルマスカ兵士死体	Init_配置	12	0x04948	2682	-	setposoffset	(-0.100000001 * sin(normalang(1.74532926))), 0, (-0.100000001 * cos(normalang(1.74532926))), 2	-	-	-	-	-		01 verb-table.tsv
+grm_a04	ダルマスカ兵士死体	Init_配置	12	0x04948	2682	-	setposoffset	(-0.100000001 * sin(normalang(1.74532926))), 0, (-0.100000001 * cos(normalang(1.74532926))), 2	argument 1: x of the calling actor's position offset / argument 2: y (height) of the offset, context +0x44 / argument 3: z of the offset, context +0x48 / argument 4: where the offset applies, context +0x107 bits 0x1 and 0x2 (0x0026B230, which re-places the actor when bit 0x2 changes)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体	Init_配置	13	0x0494E	2683	-	setfreetargettype	4	argument 1: the calling actor's target class, the low nibble of +0x0E	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体	Init_配置	14	0x04954	2684	-	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体	Init_配置	15	0x0495A	2685	-	talkradius	0.5	argument 1: the margin of the calling actor's talk ellipse, the area the player stands in to talk to it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2356,7 +2356,7 @@ grm_a04	ダルマスカ兵士死体２	Init_配置	7	0x04BB9	2823	-	bindp2_d4	0x
 grm_a04	ダルマスカ兵士死体２	Init_配置	8	0x04BBC	2824	-	fetchambient	-	the calling actor's model tint, taken from the ground under it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体２	Init_配置	9	0x04BC2	2825	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体２	Init_配置	10	0x04BCB	2826	-	setradius_221	0.5, 1	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_a04	ダルマスカ兵士死体２	Init_配置	11	0x04BEE	2827	-	setposoffset	(-0.100000001 * sin(normalang(1.74532926))), 0, (-0.100000001 * cos(normalang(1.74532926))), 2	-	-	-	-	-		01 verb-table.tsv
+grm_a04	ダルマスカ兵士死体２	Init_配置	11	0x04BEE	2827	-	setposoffset	(-0.100000001 * sin(normalang(1.74532926))), 0, (-0.100000001 * cos(normalang(1.74532926))), 2	argument 1: x of the calling actor's position offset / argument 2: y (height) of the offset, context +0x44 / argument 3: z of the offset, context +0x48 / argument 4: where the offset applies, context +0x107 bits 0x1 and 0x2 (0x0026B230, which re-places the actor when bit 0x2 changes)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体２	Init_配置	12	0x04BF4	2828	-	motionstartframe	0	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体２	Init_配置	13	0x04BFD	2829	-	motionloopframe	0, -1	argument 1: the first frame of the calling actor's motion loop / argument 2: the last frame of the loop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	ダルマスカ兵士死体２	Init_配置	14	0x04C03	2830	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3104,7 +3104,7 @@ grm_a06	treasure_03	talk	15	0x02473	882	-	setmapmodelstatus	1	argument 1: whethe
 grm_a06	treasure_03	talk	16	0x02479	883	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a06	treasure_03	talk	17	0x0247F	884	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 grm_a06	treasure_03	talk	18	0x02482	885	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_a06	override_actor	init	1	0x02486	901	-	set_force_ignore_timestop	1	-	-	-	-	-		01 verb-table.tsv
+grm_a06	override_actor	init	1	0x02486	901	-	set_force_ignore_timestop	1	argument 1: whether the calling actor keeps running through a time stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a06	override_actor	init	2	0x02489	902	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a06	override_actor	乗っ取り処理	1	0x0248D	907	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 grm_a06	override_actor	乗っ取り処理	2	0x02499	908	-	aturn	file_var_s15_1, file_var_s15_2, file_var_s15_3	argument 1: the x of the world point the calling actor turns its body and head to face (an ACT form: the named actor) / argument 2: the height of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3122,7 +3122,7 @@ grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	1	0x024C0	935	-	modelread	
 grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	2	0x024C6	936	-	modelreadsync	0x03000002	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	3	0x024CC	937	-	stdmotionread	0	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	4	0x024CF	938	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	5	0x024D5	939	-	set_talk_wituout_hide_status	1	-	-	-	-	-		01 verb-table.tsv
+grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	5	0x024D5	939	-	set_talk_wituout_hide_status	1	argument 1: whether the calling actor's talks leave the world running	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	6	0x024E1	940	-	setpos	255, 9, 54	this actor, placed at (255, 9, 54)	-	-	-	-	resolved	0x0034EBC0 (read here)
 grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	7	0x024E7	941	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 grm_a06	ガラムサイズ地図宝壺	daiji_box_bind	8	0x024ED	942	-	talkang	6.28318548	argument 1: the calling actor's talk half-angle in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3751,7 +3751,7 @@ grm_b02	ボスイベント起動	ガラムサイズ帝国兵	9	0x02E81	932	-	set
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	10	0x02E8D	933	-	sysReq	1, system_crystal_actor::showoff	actor `system_crystal_actor`	-	-	files system_crystal_actor::showoff on channel 1; does not wait	system_crystal_actor.showoff	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	11	0x02E91	934	-	sysReqall	2, reqArr2	-	-	-	files each pair of 2, reqArr2 on channel 2; does not wait	-		01 ../Scripts-And-Script-Commands/script-requests.md
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	12	0x02E97	935	-	if	istownmap()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_b02	ボスイベント起動	ガラムサイズ帝国兵	13	0x02E9A	937	istownmap()	ucmovecancel	-	-	-	-	-	-		01 verb-table.tsv
+grm_b02	ボスイベント起動	ガラムサイズ帝国兵	13	0x02E9A	937	istownmap()	ucmovecancel	-	the scripted walk of the character the player controls, cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	14	0x02EA3	941	not (istownmap())	ucmovecancel_52d	0	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	15	0x02EA9	942	not (istownmap())	ucmovecancel_52d	1	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	16	0x02EAF	943	not (istownmap())	ucmovecancel_52d	2	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3852,7 +3852,7 @@ grm_b02	ボスイベント起動	ガラムサイズ帝国兵	110	0x031BE	1038	-	
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	111	0x031C4	1039	-	bganimesync	25	argument 1: the map animation slot to wait on (the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0, that bganimeplay starts)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	112	0x031D0	1040	-	sysReqew	1, アーシェ前::レクト配置	actor `アーシェ前`	-	-	files アーシェ前::レクト配置 on channel 1; waits until it ends	アーシェ前.レクト配置	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	113	0x031DA	1041	-	sysReqew	1, アーシェ_STAY::モデル配置	actor `アーシェ_STAY`	-	-	files アーシェ_STAY::モデル配置 on channel 1; waits until it ends	アーシェ_STAY.モデル配置	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-grm_b02	ボスイベント起動	ガラムサイズ帝国兵	114	0x031DB	1042	-	resetemergency	-	-	-	-	-	-		01 verb-table.tsv
+grm_b02	ボスイベント起動	ガラムサイズ帝国兵	114	0x031DB	1042	-	resetemergency	-	the four party roster members' engagement, ended at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	115	0x031E1	1043	-	store	シナリオフラグ = 0x0101	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	116	0x031ED	1044	-	setquestscenarioflag	5, 20	argument 1: the quest id q, clamped to 0-255 / argument 2: the scenario value stored there, clamped to 0-255, which getquestscenarioflag (0x0046B180) returns for the quest	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	117	0x031F9	1045	-	sysReqew	4, SAKIYOMI_grm_b0280::sakiyomi_init	actor `SAKIYOMI_grm_b0280`	-	-	files SAKIYOMI_grm_b0280::sakiyomi_init on channel 4; waits until it ends	SAKIYOMI_grm_b0280.sakiyomi_init	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -5874,7 +5874,7 @@ grm_c01	ボスイベント起動	プリン	231	0x01A65	604	-	settrapshowstatus	1
 grm_c01	ボスイベント起動	プリン	232	0x01A6B	605	-	store	g_btl_プリン = 2	variable g_btl_プリン (global u_char@0x0a05)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_c01	ボスイベント起動	プリン	233	0x01A71	606	-	sysSystem	0x029a	none: SYSTEM pops and discards 0x029a	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c01	ボスイベント起動	プリン	234	0x01A79	607	-	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_c01	ボスイベント起動	プリン	235	0x01A82	609	getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+grm_c01	ボスイベント起動	プリン	235	0x01A82	609	getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c01	ボスイベント起動	プリン	236	0x01A88	611	-	sysSystem	0x0309	none: SYSTEM pops and discards 0x0309	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c01	ボスイベント起動	プリン	237	0x01A8C	612	-	store	シナリオフラグ = 0x0109	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_c01	ボスイベント起動	プリン	238	0x01A98	613	-	setquestscenarioflag	5, 40	argument 1: the quest id q, clamped to 0-255 / argument 2: the scenario value stored there, clamped to 0-255, which getquestscenarioflag (0x0046B180) returns for the quest	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6721,7 +6721,7 @@ grm_e01	setup	battle	3	0x01A2D	49	-	btlAtelSetActiveActorMax	6	argument 1: the c
 grm_e01	setup	battle	4	0x01A30	50	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e01	setup	battle	5	0x01A39	51	-	store	file_var_s0_2 = 0x0258	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e01	setup	battle	6	0x01A43	52	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e01	setup	battle	7	0x01A46	54	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e01	setup	battle	7	0x01A46	54	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e01	setup	battle	8	0x01A4F	56	-	btlAtelSetEntryStruct	0x03000064	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e01	setup	battle	9	0x01A52	57	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e01	__MJ_CTRL000	init	1	0x01A56	66	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -7419,7 +7419,7 @@ grm_e02	setup	battle	3	0x01D3D	50	-	btlAtelSetActiveActorMax	6	argument 1: the c
 grm_e02	setup	battle	4	0x01D40	51	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e02	setup	battle	5	0x01D49	52	-	store	file_var_s0_2 = 0x0258	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e02	setup	battle	6	0x01D53	53	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e02	setup	battle	7	0x01D56	55	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e02	setup	battle	7	0x01D56	55	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e02	setup	battle	8	0x01D5F	57	-	btlAtelSetEntryStruct	0x03000078	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e02	setup	battle	9	0x01D62	58	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e02	__MJ_CTRL000	init	1	0x01D66	67	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -8679,7 +8679,7 @@ grm_e03	crystaldummyPC	main	1	0x048FE	-	-	shared template	49e5d2277d	-	-	-	-	cry
 grm_e03	crystaldummyPC	クリスタルタッチ	1	0x04A52	-	-	shared template	7c1a793fd0	-	-	-	-	crystaldummyPC.クリスタルタッチ, template 7c1a793fd0	resolved	shared-zone-script-steps.tsv
 grm_e03	crystaldummyPC	クリスタルビュー	1	0x04A7D	-	-	shared template	76961a6cd9	-	-	-	-	crystaldummyPC.クリスタルビュー, template 76961a6cd9	resolved	shared-zone-script-steps.tsv
 grm_e03	crystaldummyPC	クリスタルリリース	1	0x04AA8	-	-	shared template	240d9cbf96	-	-	-	-	crystaldummyPC.クリスタルリリース, template 240d9cbf96	resolved	shared-zone-script-steps.tsv
-grm_e03	override_actor	init	1	0x04AB8	2651	-	set_force_ignore_timestop	1	-	-	-	-	-		01 verb-table.tsv
+grm_e03	override_actor	init	1	0x04AB8	2651	-	set_force_ignore_timestop	1	argument 1: whether the calling actor keeps running through a time stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e03	override_actor	init	2	0x04ABB	2652	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e03	override_actor	乗っ取り処理	1	0x04ABF	2657	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 grm_e03	override_actor	乗っ取り処理	2	0x04ACB	2658	-	aturn	file_var_s13_1, file_var_s13_2, file_var_s13_3	argument 1: the x of the world point the calling actor turns its body and head to face (an ACT form: the named actor) / argument 2: the height of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8697,7 +8697,7 @@ grm_e03	ガラムキャンドル宝壺	daiji_box_bind	1	0x04AF2	2685	-	modelread
 grm_e03	ガラムキャンドル宝壺	daiji_box_bind	2	0x04AF8	2686	-	modelreadsync	0x03000004	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e03	ガラムキャンドル宝壺	daiji_box_bind	3	0x04AFE	2687	-	stdmotionread	0	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e03	ガラムキャンドル宝壺	daiji_box_bind	4	0x04B01	2688	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e03	ガラムキャンドル宝壺	daiji_box_bind	5	0x04B07	2689	-	set_talk_wituout_hide_status	1	-	-	-	-	-		01 verb-table.tsv
+grm_e03	ガラムキャンドル宝壺	daiji_box_bind	5	0x04B07	2689	-	set_talk_wituout_hide_status	1	argument 1: whether the calling actor's talks leave the world running	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e03	ガラムキャンドル宝壺	daiji_box_bind	6	0x04B13	2690	-	setpos	171.199997, 16, 300.299988	this actor, placed at (171.199997, 16, 300.299988)	-	-	-	-	resolved	0x0034EBC0 (read here)
 grm_e03	ガラムキャンドル宝壺	daiji_box_bind	7	0x04B19	2691	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 grm_e03	ガラムキャンドル宝壺	daiji_box_bind	8	0x04B1F	2692	-	talkang	6.28318548	argument 1: the calling actor's talk half-angle in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8760,7 +8760,7 @@ grm_e04	setup	battle	2	0x008F7	50	-	btlAtelSetDecidingEntryPointTimes	3	argument
 grm_e04	setup	battle	3	0x008FD	51	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e04	setup	battle	4	0x00900	52	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e04	setup	battle	5	0x0090D	53	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e04	setup	battle	6	0x00910	55	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e04	setup	battle	6	0x00910	55	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e04	setup	battle	7	0x00919	57	-	btlAtelSetEntryStruct	0x03000014	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e04	setup	battle	8	0x0091C	58	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e04	__MJ_CTRL000	init	1	0x00920	67	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -8910,7 +8910,7 @@ grm_e05	setup	battle	4	0x00F90	58	-	nowjumpindex	-	result stored in file_var_s0_
 grm_e05	setup	battle	5	0x00F99	59	-	store	file_var_s0_2 = 0x0258	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e05	setup	battle	6	0x00F9F	60	-	store	file_var_s0_3 = g_btl_nm_ホワイトムース	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e05	setup	battle	7	0x00FA9	61	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e05	setup	battle	8	0x00FAC	63	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e05	setup	battle	8	0x00FAC	63	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e05	setup	battle	9	0x00FB5	65	-	btlAtelSetEntryStruct	0x0300006c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e05	setup	battle	10	0x00FB8	66	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e05	__MJ_CTRL000	init	1	0x00FBC	75	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -9220,7 +9220,7 @@ grm_e06	setup	battle	3	0x0199D	50	-	btlAtelSetActiveActorMax	6	argument 1: the c
 grm_e06	setup	battle	4	0x019A0	51	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e06	setup	battle	5	0x019A9	52	-	store	file_var_s0_2 = 0x0258	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e06	setup	battle	6	0x019B3	53	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e06	setup	battle	7	0x019B6	55	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e06	setup	battle	7	0x019B6	55	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e06	setup	battle	8	0x019BF	57	-	btlAtelSetEntryStruct	0x03000060	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e06	setup	battle	9	0x019C2	58	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e06	__MJ_CTRL000	init	1	0x019C6	67	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -9922,7 +9922,7 @@ grm_e07	setup	battle	2	0x01CE7	52	-	btlAtelSetDecidingEntryPointTimes	3	argument
 grm_e07	setup	battle	3	0x01CED	53	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e07	setup	battle	4	0x01CF0	54	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e07	setup	battle	5	0x01CFD	55	-	if	scratch2_var_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e07	setup	battle	6	0x01D00	57	scratch2_var_2 == 0	getplaytime	-	result stored in scratch2_var_2	-	-	-	-		01 verb-table.tsv
+grm_e07	setup	battle	6	0x01D00	57	scratch2_var_2 == 0	getplaytime	-	result stored in scratch2_var_2; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e07	setup	battle	7	0x01D09	59	-	btlAtelSetEntryStruct	0x03000068	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e07	setup	battle	8	0x01D0C	60	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e07	__MJ_CTRL000	init	1	0x01D10	69	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -10775,7 +10775,7 @@ grm_e08	setup	init	1	0x01640	40	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-
 grm_e08	setup	battle	1	0x01641	45	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e08	setup	battle	2	0x01644	46	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e08	setup	battle	3	0x01651	47	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e08	setup	battle	4	0x01654	49	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e08	setup	battle	4	0x01654	49	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e08	setup	battle	5	0x0165A	51	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e08	__MJ_CTRL000	init	1	0x0165E	60	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e08	__MJ_CTRL000	init	2	0x01664	61	-	setmapjumpgroup	5	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11697,7 +11697,7 @@ grm_e09	setup	battle	2	0x01D67	48	-	btlAtelSetDecidingEntryPointTimes	3	argument
 grm_e09	setup	battle	3	0x01D6D	49	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e09	setup	battle	4	0x01D70	50	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e09	setup	battle	5	0x01D7D	51	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e09	setup	battle	6	0x01D80	53	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e09	setup	battle	6	0x01D80	53	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e09	setup	battle	7	0x01D89	55	-	btlAtelSetEntryStruct	0x03000038	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e09	setup	battle	8	0x01D8C	56	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e09	__MJ_CTRL000	init	1	0x01D90	65	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -12987,7 +12987,7 @@ grm_e10	setup	battle	2	0x01FB7	48	-	btlAtelSetDecidingEntryPointTimes	3	argument
 grm_e10	setup	battle	3	0x01FBD	49	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e10	setup	battle	4	0x01FC0	50	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e10	setup	battle	5	0x01FCD	51	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e10	setup	battle	6	0x01FD0	53	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e10	setup	battle	6	0x01FD0	53	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e10	setup	battle	7	0x01FD9	55	-	btlAtelSetEntryStruct	0x03000060	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e10	setup	battle	8	0x01FDC	56	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e10	setup	map	1	0x01FE4	61	-	if	g_btl_キュクレイン != 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -14053,7 +14053,7 @@ grm_e11	setup	init	1	0x01680	40	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-
 grm_e11	setup	battle	1	0x01681	45	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e11	setup	battle	2	0x01684	46	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e11	setup	battle	3	0x01691	47	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e11	setup	battle	4	0x01694	49	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e11	setup	battle	4	0x01694	49	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e11	setup	battle	5	0x0169A	51	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e11	__MJ_CTRL000	init	1	0x0169E	60	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e11	__MJ_CTRL000	init	2	0x016A4	61	-	setmapjumpgroup	5	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -14974,7 +14974,7 @@ grm_e12	setup	battle	2	0x01D77	48	-	btlAtelSetDecidingEntryPointTimes	3	argument
 grm_e12	setup	battle	3	0x01D7D	49	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e12	setup	battle	4	0x01D80	50	-	nowjumpindex	-	result stored in file_var_s0_1; the entrance the party came in by	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e12	setup	battle	5	0x01D8D	51	-	if	scratch2_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_e12	setup	battle	6	0x01D90	53	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1	-	-	-	-		01 verb-table.tsv
+grm_e12	setup	battle	6	0x01D90	53	scratch2_var_1 == 0	getplaytime	-	result stored in scratch2_var_1; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e12	setup	battle	7	0x01D99	55	-	btlAtelSetEntryStruct	0x03000038	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e12	setup	battle	8	0x01D9C	56	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e12	__MJ_CTRL000	init	1	0x01DA0	65	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18244,7 +18244,7 @@ grm_e13	スイッチあ	talk	8	0x08FEA	3839	-	if	not ((global_var_13 & 1))	-	-	-
 grm_e13	スイッチあ	talk	9	0x08FF3	3841	not ((global_var_13 & 1))	if	haveitem(0x80af)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチあ	talk	10	0x08FFD	3843	not ((global_var_13 & 1)); haveitem(0x80af)	store	global_var_13 = global_var_13 bitor 1	variable global_var_13 (global u_char@0x09e5)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e13	スイッチあ	talk	11	0x09003	3844	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e13	スイッチあ	talk	12	0x09009	3845	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignmesbyid	0	-	-	-	-	-		01 verb-table.tsv
+grm_e13	スイッチあ	talk	12	0x09009	3845	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignmesbyid	0	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e13	スイッチあ	talk	13	0x09015	3846	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチい::フィールドサインＯＫ	actor `スイッチい`	-	-	files スイッチい::フィールドサインＯＫ on channel 1; waits until it ends	スイッチい.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチあ	talk	14	0x0901F	3847	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチう::フィールドサインＯＫ	actor `スイッチう`	-	-	files スイッチう::フィールドサインＯＫ on channel 1; waits until it ends	スイッチう.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチあ	talk	15	0x09029	3848	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチえ::フィールドサインＯＫ	actor `スイッチえ`	-	-	files スイッチえ::フィールドサインＯＫ on channel 1; waits until it ends	スイッチえ.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18340,7 +18340,7 @@ grm_e13	スイッチあ	talk	104	0x094F5	3994	-	setstatuserrordispdenystatus	0	a
 grm_e13	スイッチあ	talk	105	0x094FB	3995	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 grm_e13	スイッチあ	talk	106	0x094FE	3996	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチあ	フィールドサインＯＫ	1	0x09502	4001	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e13	スイッチあ	フィールドサインＯＫ	2	0x09508	4002	-	fieldsignmesbyid	0	-	-	-	-	-		01 verb-table.tsv
+grm_e13	スイッチあ	フィールドサインＯＫ	2	0x09508	4002	-	fieldsignmesbyid	0	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e13	スイッチあ	フィールドサインＯＫ	3	0x0950B	4003	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチい	init	1	0x0950F	4012	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチい	init	2	0x09515	4013	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18363,7 +18363,7 @@ grm_e13	スイッチい	talk	8	0x0957C	4038	-	if	not ((global_var_13 & 1))	-	-	-
 grm_e13	スイッチい	talk	9	0x09585	4040	not ((global_var_13 & 1))	if	haveitem(0x80af)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチい	talk	10	0x0958F	4042	not ((global_var_13 & 1)); haveitem(0x80af)	store	global_var_13 = global_var_13 bitor 1	variable global_var_13 (global u_char@0x09e5)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e13	スイッチい	talk	11	0x09595	4043	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e13	スイッチい	talk	12	0x0959B	4044	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignmesbyid	1	-	-	-	-	-		01 verb-table.tsv
+grm_e13	スイッチい	talk	12	0x0959B	4044	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignmesbyid	1	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e13	スイッチい	talk	13	0x095A7	4045	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチあ::フィールドサインＯＫ	actor `スイッチあ`	-	-	files スイッチあ::フィールドサインＯＫ on channel 1; waits until it ends	スイッチあ.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチい	talk	14	0x095B1	4046	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチう::フィールドサインＯＫ	actor `スイッチう`	-	-	files スイッチう::フィールドサインＯＫ on channel 1; waits until it ends	スイッチう.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチい	talk	15	0x095BB	4047	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチえ::フィールドサインＯＫ	actor `スイッチえ`	-	-	files スイッチえ::フィールドサインＯＫ on channel 1; waits until it ends	スイッチえ.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18459,7 +18459,7 @@ grm_e13	スイッチい	talk	104	0x09A87	4193	-	setstatuserrordispdenystatus	0	a
 grm_e13	スイッチい	talk	105	0x09A8D	4194	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 grm_e13	スイッチい	talk	106	0x09A90	4195	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチい	フィールドサインＯＫ	1	0x09A94	4200	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e13	スイッチい	フィールドサインＯＫ	2	0x09A9A	4201	-	fieldsignmesbyid	1	-	-	-	-	-		01 verb-table.tsv
+grm_e13	スイッチい	フィールドサインＯＫ	2	0x09A9A	4201	-	fieldsignmesbyid	1	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e13	スイッチい	フィールドサインＯＫ	3	0x09A9D	4202	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチう	init	1	0x09AA1	4211	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチう	init	2	0x09AA7	4212	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18482,7 +18482,7 @@ grm_e13	スイッチう	talk	8	0x09B0E	4237	-	if	not ((global_var_13 & 1))	-	-	-
 grm_e13	スイッチう	talk	9	0x09B17	4239	not ((global_var_13 & 1))	if	haveitem(0x80af)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチう	talk	10	0x09B21	4241	not ((global_var_13 & 1)); haveitem(0x80af)	store	global_var_13 = global_var_13 bitor 1	variable global_var_13 (global u_char@0x09e5)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e13	スイッチう	talk	11	0x09B27	4242	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e13	スイッチう	talk	12	0x09B2D	4243	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignmesbyid	2	-	-	-	-	-		01 verb-table.tsv
+grm_e13	スイッチう	talk	12	0x09B2D	4243	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignmesbyid	2	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e13	スイッチう	talk	13	0x09B39	4244	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチあ::フィールドサインＯＫ	actor `スイッチあ`	-	-	files スイッチあ::フィールドサインＯＫ on channel 1; waits until it ends	スイッチあ.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチう	talk	14	0x09B43	4245	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチい::フィールドサインＯＫ	actor `スイッチい`	-	-	files スイッチい::フィールドサインＯＫ on channel 1; waits until it ends	スイッチい.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチう	talk	15	0x09B4D	4246	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチえ::フィールドサインＯＫ	actor `スイッチえ`	-	-	files スイッチえ::フィールドサインＯＫ on channel 1; waits until it ends	スイッチえ.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18578,7 +18578,7 @@ grm_e13	スイッチう	talk	104	0x0A019	4392	-	setstatuserrordispdenystatus	0	a
 grm_e13	スイッチう	talk	105	0x0A01F	4393	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 grm_e13	スイッチう	talk	106	0x0A022	4394	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチう	フィールドサインＯＫ	1	0x0A026	4399	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e13	スイッチう	フィールドサインＯＫ	2	0x0A02C	4400	-	fieldsignmesbyid	2	-	-	-	-	-		01 verb-table.tsv
+grm_e13	スイッチう	フィールドサインＯＫ	2	0x0A02C	4400	-	fieldsignmesbyid	2	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e13	スイッチう	フィールドサインＯＫ	3	0x0A02F	4401	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチえ	init	1	0x0A033	4410	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチえ	init	2	0x0A039	4411	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18601,7 +18601,7 @@ grm_e13	スイッチえ	talk	8	0x0A0A0	4436	-	if	not ((global_var_13 & 1))	-	-	-
 grm_e13	スイッチえ	talk	9	0x0A0A9	4438	not ((global_var_13 & 1))	if	haveitem(0x80af)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチえ	talk	10	0x0A0B3	4440	not ((global_var_13 & 1)); haveitem(0x80af)	store	global_var_13 = global_var_13 bitor 1	variable global_var_13 (global u_char@0x09e5)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_e13	スイッチえ	talk	11	0x0A0B9	4441	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e13	スイッチえ	talk	12	0x0A0BF	4442	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignmesbyid	3	-	-	-	-	-		01 verb-table.tsv
+grm_e13	スイッチえ	talk	12	0x0A0BF	4442	not ((global_var_13 & 1)); haveitem(0x80af)	fieldsignmesbyid	3	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e13	スイッチえ	talk	13	0x0A0CB	4443	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチあ::フィールドサインＯＫ	actor `スイッチあ`	-	-	files スイッチあ::フィールドサインＯＫ on channel 1; waits until it ends	スイッチあ.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチえ	talk	14	0x0A0D5	4444	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチい::フィールドサインＯＫ	actor `スイッチい`	-	-	files スイッチい::フィールドサインＯＫ on channel 1; waits until it ends	スイッチい.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_e13	スイッチえ	talk	15	0x0A0DF	4445	not ((global_var_13 & 1)); haveitem(0x80af)	sysReqew	1, スイッチう::フィールドサインＯＫ	actor `スイッチう`	-	-	files スイッチう::フィールドサインＯＫ on channel 1; waits until it ends	スイッチう.フィールドサインＯＫ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -18697,7 +18697,7 @@ grm_e13	スイッチえ	talk	104	0x0A5AB	4591	-	setstatuserrordispdenystatus	0	a
 grm_e13	スイッチえ	talk	105	0x0A5B1	4592	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 grm_e13	スイッチえ	talk	106	0x0A5B4	4593	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	スイッチえ	フィールドサインＯＫ	1	0x0A5B8	4598	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e13	スイッチえ	フィールドサインＯＫ	2	0x0A5BE	4599	-	fieldsignmesbyid	3	-	-	-	-	-		01 verb-table.tsv
+grm_e13	スイッチえ	フィールドサインＯＫ	2	0x0A5BE	4599	-	fieldsignmesbyid	3	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e13	スイッチえ	フィールドサインＯＫ	3	0x0A5C1	4600	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e13	system_crystal_actor	init	1	0x0A5C2	-	-	shared template	b37432546f	-	-	-	-	system_crystal_actor.init, template b37432546f	resolved	shared-zone-script-steps.tsv
 grm_e13	system_crystal_actor	main	1	0x0AA00	-	-	shared template	1e0c45e223	-	-	-	-	system_crystal_actor.main, template 1e0c45e223	resolved	shared-zone-script-steps.tsv
@@ -21139,7 +21139,7 @@ grm_f01	ボスイベント起動	キュクレイン	265	0x04D15	2036	-	settrapsh
 grm_f01	ボスイベント起動	キュクレイン	266	0x04D1B	2037	-	store	g_btl_キュクレイン = 2	variable g_btl_キュクレイン (global u_char@0x0a1c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_f01	ボスイベント起動	キュクレイン	267	0x04D21	2038	-	sysSystem	0x029a	none: SYSTEM pops and discards 0x029a	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_f01	ボスイベント起動	キュクレイン	268	0x04D29	2039	-	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_f01	ボスイベント起動	キュクレイン	269	0x04D32	2041	getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+grm_f01	ボスイベント起動	キュクレイン	269	0x04D32	2041	getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_f01	ボスイベント起動	キュクレイン	270	0x04D38	2043	-	sysSystem	0x0309	none: SYSTEM pops and discards 0x0309	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_f01	ボスイベント起動	キュクレイン	271	0x04D39	2044	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_f01	Map_Director	init	1	0x04D41	2053	-	if	g_btl_キュクレイン != 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -22403,7 +22403,7 @@ grm_a0200	セリフ	cut_03_01	53	0x015AD	578	file_var_s6_2 is none of 0	default	
 grm_a0200	セリフ	cut_03_01	54	0x015AD	579	file_var_s6_2 is none of 0; file_var_s6_1 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0200	セリフ	cut_03_01	55	0x015BF	581	file_var_s6_2 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0200	セリフ	cut_03_01	56	0x015D4	583	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
-grm_a0200	セリフ	cut_03_01	57	0x015E3	584	-	voiceplay_28c	11, 3, 250, 127	-	-	-	-	-		01 verb-table.tsv
+grm_a0200	セリフ	cut_03_01	57	0x015E3	584	-	voiceplay_28c	11, 3, 250, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0200	セリフ	cut_03_01	58	0x015E6	585	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0200	セリフ	cut_03_02	1	0x015E7	590	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0200	ボイスパン	init	1	0x015E8	599	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -24366,7 +24366,7 @@ grm_a0400	エアバイク	配置c6	3	0x03BAC	2044	-	return	-	-	-	-	-	-	resolved	
 grm_a0400	エアバイク	配置c7	1	0x03BB6	2049	-	setpos	227.990005, 13.1499996, 2.92000008	this actor, placed at (227.990005, 13.1499996, 2.92000008)	-	-	-	-	resolved	0x0034EBC0 (read here)
 grm_a0400	エアバイク	配置c7	2	0x03BBC	2050	-	dir	0.17453292	this actor, turned to facing 0.17453292	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 grm_a0400	エアバイク	配置c7	3	0x03BBF	2051	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_a0400	エアバイク	解除	1	0x03BC0	2056	-	resetambient	-	-	-	-	-	-		01 verb-table.tsv
+grm_a0400	エアバイク	解除	1	0x03BC0	2056	-	resetambient	-	the calling actor's model tint, given back to the ground	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0400	エアバイク	解除	2	0x03BC6	2057	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0400	エアバイク	解除	3	0x03BCC	2058	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0400	エアバイク	解除	4	0x03BD2	2059	-	setcharclipall	1	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -25743,13 +25743,13 @@ grm_b0200	メッセージ	メスクローズ	3	0x02500	722	-	return	0	-	-	-	-	-	
 grm_b0200	メッセージ	メスクローズ	4	0x02501	723	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	init	1	0x02502	732	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	cut_01	1	0x02506	737	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-grm_b0200	ボイス	cut_01	2	0x02515	738	-	voiceplay_28c	15, 0, 192, 127	-	-	-	-	-		01 verb-table.tsv
+grm_b0200	ボイス	cut_01	2	0x02515	738	-	voiceplay_28c	15, 0, 192, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_01	3	0x0251B	739	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	cut_02	1	0x02522	744	-	voicepan	0, 64	-	-	-	-	-		01 verb-table.tsv
 grm_b0200	ボイス	cut_02	2	0x02528	745	-	voiceplay	1	argument 1: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_02	3	0x0252E	746	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	cut_03	1	0x02532	751	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-grm_b0200	ボイス	cut_03	2	0x02538	752	-	voicestop	1	-	-	-	-	-		01 verb-table.tsv
+grm_b0200	ボイス	cut_03	2	0x02538	752	-	voicestop	1	argument 1: the voice line to stop, the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_03	3	0x0253E	753	-	voiceplay	3	argument 1: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_03	4	0x02547	754	-	voiceplay_28b	15, 2	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_03	5	0x0254D	755	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -25762,7 +25762,7 @@ grm_b0200	ボイス	メッセージ02	2	0x02573	769	-	voiceplay	6	argument 1: th
 grm_b0200	ボイス	メッセージ02	3	0x02579	770	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	メッセージ03	1	0x02580	775	-	voiceplay_28b	15, 8	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	メッセージ03	2	0x02586	776	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_b0200	ボイス	メッセージ04	1	0x02593	781	-	voiceplay_28c	12, 0x01000000, 72, 127	-	-	-	-	-		01 verb-table.tsv
+grm_b0200	ボイス	メッセージ04	1	0x02593	781	-	voiceplay_28c	12, 0x01000000, 72, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	メッセージ04	2	0x02599	782	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 grm_b0200	ボイス	メッセージ04	3	0x0259F	783	-	voiceplay	0x01000001	argument 1: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	メッセージ04	4	0x025A5	784	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -25779,7 +25779,7 @@ grm_b0200	ボイス	cut_09	2	0x025E6	802	-	voiceplay_28b	15, 0x01000006	argument
 grm_b0200	ボイス	cut_09	3	0x025EC	803	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 grm_b0200	ボイス	cut_09	4	0x025F5	804	-	voiceplay_28b	12, 0x01000005	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_09	5	0x025FB	805	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_b0200	ボイス	メッセージ06	1	0x025FF	810	-	voicestop	0x01000005	-	-	-	-	-		01 verb-table.tsv
+grm_b0200	ボイス	メッセージ06	1	0x025FF	810	-	voicestop	0x01000005	argument 1: the voice line to stop, the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	メッセージ06	2	0x0260B	811	-	voiceplay_b5	0x01000007, 32, 127	-	-	-	-	-		01 verb-table.tsv
 grm_b0200	ボイス	メッセージ06	3	0x02611	812	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	メッセージ07	1	0x02615	817	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -28474,8 +28474,8 @@ grm_b0280	ＡＤ	準備	2	0x01329	219	-	sysReqew	1, ＰＣ管理::パーティ�
 grm_b0280	ＡＤ	準備	3	0x0132D	220	-	sysReqall	1, reqArr0	actor `ボイス`, actor `アーシェ_BND`, actor `ヴァン_BND`, actor `バルフレア_BND`, actor `フラン_BND`	-	-	files each pair of ボイス::イベント準備, アーシェ_BND::イベント準備, ヴァン_BND::イベント準備, バルフレア_BND::イベント準備, フラン_BND::イベント準備 on channel 1; does not wait	ボイス.イベント準備, アーシェ_BND.イベント準備, ヴァン_BND.イベント準備, バルフレア_BND.イベント準備, フラン_BND.イベント準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_b0280	ＡＤ	準備	4	0x01330	221	-	sysReqwaitall	reqArr0	actor `ボイス`, actor `アーシェ_BND`, actor `ヴァン_BND`, actor `バルフレア_BND`, actor `フラン_BND`	-	-	waits until ボイス::イベント準備, アーシェ_BND::イベント準備, ヴァン_BND::イベント準備, バルフレア_BND::イベント準備, フラン_BND::イベント準備 are no longer on their actors	ボイス.イベント準備, アーシェ_BND.イベント準備, ヴァン_BND.イベント準備, バルフレア_BND.イベント準備, フラン_BND.イベント準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_b0280	ＡＤ	準備	5	0x01333	222	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_b0280	ＡＤ	Ｃ０１_ゲストとして	1	0x01337	227	-	unkCall_5c4	4	-	-	-	-	-		01 verb-table.tsv
-grm_b0280	ＡＤ	Ｃ０１_ゲストとして	2	0x0133D	228	-	unkCall_5c2	1	-	-	-	-	-		01 verb-table.tsv
+grm_b0280	ＡＤ	Ｃ０１_ゲストとして	1	0x01337	227	-	unkCall_5c4	4	argument 1: the count the marked event slot's queued events are raised to, plus one	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_b0280	ＡＤ	Ｃ０１_ゲストとして	2	0x0133D	228	-	unkCall_5c2	1	argument 1: which add-motion table the characters' poses use	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0280	ＡＤ	Ｃ０１_ゲストとして	3	0x01343	229	-	startscene	1	scene cut 1, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 grm_b0280	ＡＤ	Ｃ０１_ゲストとして	4	0x01349	230	-	store	scratch1_var_1 = 1	variable scratch1_var_1 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_b0280	ＡＤ	Ｃ０１_ゲストとして	5	0x01355	231	-	sysReq	1, EventLightActor::setEventLight	actor `EventLightActor`	-	-	files EventLightActor::setEventLight on channel 1; does not wait	EventLightActor.setEventLight	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -28524,10 +28524,10 @@ grm_b0280	ＡＤ	Ｃ０２_すかしやがって	15	0x0145D	277	-	startscene	202
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	16	0x01463	278	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	17	0x01470	279	-	if	file_var_s0_1 == skipcheck(0)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	18	0x01476	281	file_var_s0_1 == skipcheck(0)	store	file_var_s0_2 = 1	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-grm_b0280	ＡＤ	Ｃ０２_すかしやがって	19	0x0147C	282	file_var_s0_1 == skipcheck(0)	cameraratio	0	-	-	-	-	-		01 verb-table.tsv
+grm_b0280	ＡＤ	Ｃ０２_すかしやがって	19	0x0147C	282	file_var_s0_1 == skipcheck(0)	cameraratio	0	argument 1: the rate of camera entry 0 of side A of the running manager slot's camera tables	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	20	0x01482	283	file_var_s0_1 == skipcheck(0)	store	file_var_s1_1 = 48	variable file_var_s1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	21	0x0148E	284	file_var_s0_1 == skipcheck(0)	sysReqew	1, イベント特殊効果画面_EV::システムメッセージ表示_音量復帰特殊	actor `イベント特殊効果画面_EV`	-	-	files イベント特殊効果画面_EV::システムメッセージ表示_音量復帰特殊 on channel 1; waits until it ends	イベント特殊効果画面_EV.システムメッセージ表示_音量復帰特殊	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-grm_b0280	ＡＤ	Ｃ０２_すかしやがって	22	0x01492	286	-	cameraratio	1	-	-	-	-	-		01 verb-table.tsv
+grm_b0280	ＡＤ	Ｃ０２_すかしやがって	22	0x01492	286	-	cameraratio	1	argument 1: the rate of camera entry 0 of side A of the running manager slot's camera tables	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	23	0x01498	287	-	startscene	0x012e	scene cut 0x012e, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	24	0x0149E	288	-	sysReqall	1, reqArr8	actor `アーシェ_BND`	-	-	files each pair of アーシェ_BND::カット０２ｃ on channel 1; does not wait	アーシェ_BND.カット０２ｃ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	25	0x014A4	289	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -28556,7 +28556,7 @@ grm_b0280	ＡＤ	Ｃ０２_すかしやがって	47	0x01521	311	-	seteventfogsta
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	48	0x01527	312	-	setlightallcutstatus	0	every light cut, off	-	-	-	-	resolved	25 ../EBP-Script-Files/ebp-lighting-lgt2.md
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	49	0x0152D	313	-	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	50	0x01530	314	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_b0280	ＡＤ	Ｃ０２_すかしやがって	51	0x01536	315	-	unkCall_5c2	0	-	-	-	-	-		01 verb-table.tsv
+grm_b0280	ＡＤ	Ｃ０２_すかしやがって	51	0x01536	315	-	unkCall_5c2	0	argument 1: which add-motion table the characters' poses use	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	52	0x0153F	316	-	sysReqwait	曲::カット０２ｅ	actor `曲`	-	-	waits until 曲::カット０２ｅ is no longer on its actor	曲.カット０２ｅ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_b0280	ＡＤ	Ｃ０２_すかしやがって	53	0x01540	317	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0280	ＡＤ	終了	1	0x01544	322	-	startscene	0x03e7	scene cut 0x03e7, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
@@ -29371,7 +29371,7 @@ grm_c0100	監督	main	25	0x01549	66	-	maskopenfast	0	argument 1: popped and igno
 grm_c0100	監督	main	26	0x0154C	67	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0100	監督	main	27	0x0154F	68	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0100	監督	main	28	0x01555	69	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-grm_c0100	監督	main	29	0x01558	70	-	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
+grm_c0100	監督	main	29	0x01558	70	-	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0100	監督	main	30	0x0155B	71	-	startspotsound	-	the map's sound emitters (the pack's SP1 block)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0100	監督	main	31	0x01561	72	-	setcharseplayall	1	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0100	監督	main	32	0x01567	73	-	store	file_var_s0_3 = 0	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -30504,10 +30504,10 @@ grm_c0101	監督	main	61	0x010EB	117	-	maskopenfast	0	argument 1: popped and ign
 grm_c0101	監督	main	62	0x010EE	118	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	監督	main	63	0x010F1	119	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	監督	main	64	0x010F7	120	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-grm_c0101	監督	main	65	0x010FA	121	-	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
+grm_c0101	監督	main	65	0x010FA	121	-	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	監督	main	66	0x010FD	122	-	startspotsound	-	the map's sound emitters (the pack's SP1 block)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	監督	main	67	0x01103	123	-	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_c0101	監督	main	68	0x01109	124	-	partysetlod	1	-	-	-	-	-		01 verb-table.tsv
+grm_c0101	監督	main	68	0x01109	124	-	partysetlod	1	argument 1: the party members' model level of detail, as setlod 0x0160 sets it for one actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	監督	main	69	0x01115	125	-	bganimeplay_9e	21, 0, 0	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	監督	main	70	0x0111B	126	-	setnavimapindex	1	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	監督	main	71	0x01127	127	-	setmapidfloor	1, 0, 0	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30655,7 +30655,7 @@ grm_c0101	監督	main	212	0x015D9	270	-	setstatuserrordispdenystatus	0	argument 
 grm_c0101	監督	main	213	0x015DF	271	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 grm_c0101	監督	main	214	0x015EB	272	-	sysReqew	1, カメラ::カメラクリア	actor `カメラ`	-	-	files カメラ::カメラクリア on channel 1; waits until it ends	カメラ.カメラクリア	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_c0101	監督	main	215	0x015EF	273	-	effectcancel_e4	0	effect slot 0: set to state 4 and its queue entry released	-	-	-	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
-grm_c0101	監督	main	216	0x015F5	274	-	partysetlod	-1	-	-	-	-	-		01 verb-table.tsv
+grm_c0101	監督	main	216	0x015F5	274	-	partysetlod	-1	argument 1: the party members' model level of detail, as setlod 0x0160 sets it for one actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	監督	main	217	0x015FB	275	-	eventsounddispose	0	event sound slot 0, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 grm_c0101	監督	main	218	0x01601	276	-	eventsounddispose	1	event sound slot 1, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 grm_c0101	監督	main	219	0x01607	277	-	sysReqall	1, reqArr6	actor `ボス巨大`, actor `ボス巨大ハイドのみ`, actor `ボス小`, actor `ボス中`, actor `ボス大`	-	-	files each pair of ボス巨大::ボス乗っ取り解除, ボス巨大ハイドのみ::ボス乗っ取り解除, ボス小::ボス乗っ取り解除, ボス中::ボス乗っ取り解除, ボス大::ボス乗っ取り解除 on channel 1; does not wait	ボス巨大.ボス乗っ取り解除, ボス巨大ハイドのみ.ボス乗っ取り解除, ボス小.ボス乗っ取り解除, ボス中.ボス乗っ取り解除, ボス大.ボス乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -34637,7 +34637,7 @@ grm_f0101	カメラ	カメラクリア	19	0x0186D	588	-	return	-	-	-	-	-	-	resol
 grm_f0101	シェイク	init	1	0x0186E	597	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_f0101	シェイク	シェイク01	1	0x0186F	602	-	camerashakeclear	-	the camera-shake bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_f0101	シェイク	シェイク01	2	0x01878	603	-	camerashakestart_1a3	0, 0x0d000000	argument 1: which of the current manager's four camera-shake entries starts the shake (0-3; a larger value is refused by ja at 0x003DD26C) / argument 2: the row of the scene's CML1 camera-shake list [manager +0xF0] to play (the low 24 bits; the row must be below the list count +0x04, checked at 0x003DD27E; row +0x14 is the shake)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_f0101	シェイク	シェイク01	3	0x0187E	604	-	camerashakesync_1a4	0	-	-	-	-	-		01 verb-table.tsv
+grm_f0101	シェイク	シェイク01	3	0x0187E	604	-	camerashakesync_1a4	0	argument 1: the camera shake entry, 0-3, of the calling script's manager slot whose shake the script waits for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_f0101	シェイク	シェイク01	4	0x01881	605	-	camerashakeclear	-	the camera-shake bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_f0101	シェイク	シェイク01	5	0x01887	606	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_f0101	シェイク	シェイク01	6	0x01888	607	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -35878,8 +35878,8 @@ grm_g0101	Director	main	138	0x00D20	167	-	return	-	-	-	-	-	-	resolved	01 ../Scri
 grm_g0101	Camera	init	1	0x00D21	176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_g0101	Camera	ready	1	0x00D22	181	-	camerasync	-	camera channel 0	-	-	waits while camera channel 0 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 grm_g0101	Camera	ready	2	0x00D25	182	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_g0101	Camera	clear2	1	0x00D2F	187	-	resumebehindcamera	2, 0, 0	-	-	-	-	-		01 verb-table.tsv
-grm_g0101	Camera	clear2	2	0x00D32	188	-	resumebehindcamerasync	-	-	-	-	-	-		01 verb-table.tsv
+grm_g0101	Camera	clear2	1	0x00D2F	187	-	resumebehindcamera	2, 0, 0	argument 1: the frames the swing back to the behind camera takes (popped as a float by 0x00267DB0) / argument 2: a word 0x00257830 keeps at 0x02096400; the blend step 0x00257520 ignores it (the store 0x0025786F is its one reference in the image) / argument 3: the ease of the swing, kept at 0x02096404 and read each frame by 0x00257520 as 0x00256650(ease, counter / duration)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_g0101	Camera	clear2	2	0x00D32	188	-	resumebehindcamerasync	-	the swing back to the behind camera that resumebehindcamera started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Camera	clear2	3	0x00D35	189	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Camera	clear2	4	0x00D41	190	-	unkCall_5ac	0, 0, 0	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Camera	clear2	5	0x00D44	191	-	camerashakeclear	-	the camera-shake bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -36168,7 +36168,7 @@ grm_g0101	Van	ready	1	0x014B4	652	-	capturepc	-1	the character the player contro
 grm_g0101	Van	ready	2	0x014BA	653	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Van	ready	3	0x014C0	654	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Van	ready	4	0x014CC	655	-	setpos	124.570114, -2, 140.895142	this actor, placed at (124.570114, -2, 140.895142)	-	-	-	-	resolved	0x0034EBC0 (read here)
-grm_g0101	Van	ready	5	0x014CF	656	-	set_microphone_camera	-	-	-	-	-	-		01 verb-table.tsv
+grm_g0101	Van	ready	5	0x014CF	656	-	set_microphone_camera	-	the place sounds are heard from, moved to the camera	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Van	ready	6	0x014D5	657	-	bindh	0x03000001	argument 1: the model to attach to the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Van	ready	7	0x014DB	658	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Van	ready	8	0x014DE	659	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

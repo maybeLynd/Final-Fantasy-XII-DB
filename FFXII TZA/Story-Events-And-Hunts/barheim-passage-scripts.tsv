@@ -206,3 +206,15 @@ mic_d0101	scene, event 183	イベント特殊効果画面_EV	だいじなもの�
 mic_d0101	scene, event 183	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 mic_d0101	scene, event 183	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s3_1; receives the item held in file_var_s9_1	-	-	-	-	1	-
 mic_e0400	scene, event 187	監督	ザルエラ巻き戻りイベント	requested by プロデューサー.main	-	0; 1; 2	Vaan What happened? We almost had that thing! / Basch It would seem this creature had...other ideas. It has no taste for a drawn out battle. / Balthier Once more, from the top, then?	-	-	-	-	-	-	-	-	-	-	1	-
+mic_b03	zone script, named by no path array	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Great Central Passage (Barheim Passage), field 61, entrance 3	-	-	-	1	-
+mic_b03	zone script, named by no path array	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	, field 64, entrance 1	-	-	-	1	-
+mic_b04	zone script, named by no path array	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	, field 63, entrance 2	-	-	-	1	-
+mic_b04	zone script, named by no path array	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	, field 65, entrance 1	-	-	-	1	-
+mic_b04	zone script, named by no path array	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	, field 65, entrance 2	-	-	-	1	-
+mic_b05	zone script, named by no path array	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	, field 64, entrance 2	-	-	-	1	-
+mic_b05	zone script, named by no path array	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	, field 64, entrance 3	-	-	-	1	-
+mic_b05	zone script, named by no path array	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	, field 67, entrance 1	-	-	-	1	-
+mic_b07	zone script, named by no path array	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
+mic_b07	zone script, named by no path array	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	, field 65, entrance 3	-	-	-	1	-
+mic_b07	zone script, named by no path array	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Terminus No. 7 (Barheim Passage), field 71, entrance 1	-	-	-	1	-
+mic_b08	zone script, named by no path array	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Great Central Passage (Barheim Passage), field 61, entrance 4	-	-	-	1	-

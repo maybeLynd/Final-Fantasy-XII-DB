@@ -68,12 +68,12 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 939 |
-| empty | 10 |
+| `resolved` | 943 |
+| empty | 6 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give
-for the step, for example the variable that receives a result, and `-` otherwise.
+for the step, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `msg_z0001` (event `399`), `Movie監督.main` reads an
 effect into effect slot 0 and waits for it,  readies movie 25, waits 180 frames and plays it. It starts `監視監督.Movie監視`

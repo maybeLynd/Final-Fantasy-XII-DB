@@ -13,3 +13,4 @@ ttl_z0006	scene	scene, event 433	21	83	0	0
 ttl_z0007	scene	scene, event 434	15	58	0	0
 ttl_z0008	scene	scene, event 358	20	94	0	0
 ttl_z0009	scene	scene, event 436	4	16	1	0
+ttl_a01_e3	zone	zone script, named by no path array, ships in cn and kr only	20	70	4	0

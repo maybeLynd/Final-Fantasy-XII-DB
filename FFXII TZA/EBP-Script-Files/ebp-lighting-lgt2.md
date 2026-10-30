@@ -132,6 +132,24 @@ Measured over all 10,036 EBP2 containers in the nine language trees.
 | request `filter` / `test` | 1/1 (43,803), 3/7 (4,905), 3/6 (3,015) |
 | request `flags` | 0 (51,327), 1 (396) |
 
+The rows, once per light set (the nine trees carry the same bytes):
+
+- [`ebp-lighting-lgt2-sets.tsv`](ebp-lighting-lgt2-sets.tsv) has the 140 sets: the script path under each language's
+  `plan_master`, the languages, the section's SHA-256 and length, `listOffset`, `+0x08`, `lightCount`, and the chunk
+  count and types in chain order.
+- [`ebp-lighting-lgt2-lights.tsv`](ebp-lighting-lgt2-lights.tsv) has the 5,747 light records with their fields by the
+  layout above and their 0x70 bytes. The record's `s16` words at `+0x04` and `+0x0C` and its floats at `+0x18` and
+  `+0x1C` are given as stored, whichever kind reads them.
+- [`ebp-lighting-lgt2-chunks.tsv`](ebp-lighting-lgt2-chunks.tsv) has the 561 chunks, each with its offset, size, type,
+  `n` and entries:
+  - type 0: `first` and `count`;
+  - type 2: `cutId:status:first+count`;
+  - type 3: the record indices;
+  - type 6: `type3Index:id`.
+
+Map packs carry the same section as their slot 17 ([map_ctrl pack](../World-Areas-And-Travel/mpk-map-pack.md)): 212 light
+sets with `+0x08` 0 in all, chunk type 7 in 20 of them, and their own rows beside that page.
+
 ## Loader behaviour
 
 ### The bind

@@ -367,6 +367,24 @@ destination: {u16 value, u8 area, u8 0}
 | icons (`us`) | 609 entries: kind 3 88, kind 5 423, kind 8 13, kind 9 85 |
 | area pictures | `worldmap/bin/areatim2/loca_00.tm2` to `loca_38.tm2` in `in` only, 1,049,728 bytes each, named by every language's array |
 
+Every shipped map file and every record in it, decoded with the layouts above. The record tables list each distinct
+content once, with the folders that hold it; the four `_e3` sloc files are included. Sub-location and area names are
+the define names of the shipped `menumap_world.h`. Guide lines are decoded with the font of each folder's language,
+and `{expansion glyph N}` marks glyph N of the guide file's own picture.
+
+| table | rows | one row per |
+|---|---:|---|
+| [`menu-map-files-files-rows.tsv`](menu-map-files-files-rows.tsv) | 507 | shipped file: folder, size, SHA-256, the folders with the same bytes, magic and header fields |
+| [`menu-map-files-sloc-rows.tsv`](menu-map-files-sloc-rows.tsv) | 644 | sloc zone record: field id, `LCMPOS1` and `NAVIICN2` offsets and the icon count of each kind |
+| [`menu-map-files-sloc-pictures-rows.tsv`](menu-map-files-sloc-pictures-rows.tsv) | 654 | sloc picture: key field id and variant, picture and NPS2 offsets, the TIM2 header fields, the NPS2 width and height, and the NPS2 dwords `+0x04` to `+0x14` as stored |
+| [`menu-map-files-sloc-icons-rows.tsv`](menu-map-files-sloc-icons-rows.tsv) | 1,053 | `NAVIICN2` icon entry: record, kind, `from`, `at`, icon number, gate and bytes `+0x0C` to `+0x0F` |
+| [`menu-map-files-lmap-rows.tsv`](menu-map-files-lmap-rows.tsv) | 288 | lmap record: zone, marker, link and member counts and the zoom levels |
+| [`menu-map-files-lmap-entries-rows.tsv`](menu-map-files-lmap-entries-rows.tsv) | 6,822 | lmap zone, marker, link and member, every field, with the gate kind of each zone |
+| [`menu-map-files-cmap-rows.tsv`](menu-map-files-cmap-rows.tsv) | 494 | cmap directory entry, maps value and guide-schedule entry |
+| [`menu-map-files-gmap-rows.tsv`](menu-map-files-gmap-rows.tsv) | 800 | guide line: counter, gate, text offset, text length and the line decoded |
+| [`menu-map-files-wmap-rows.tsv`](menu-map-files-wmap-rows.tsv) | 516 | wmap region, area with its extra record, route and destination |
+| [`menu-map-files-amap-rows.tsv`](menu-map-files-amap-rows.tsv) | 98 | amap area (type and name text) and persistence group (area and map item) |
+
 ## Loader behaviour
 
 ### The map-data widget

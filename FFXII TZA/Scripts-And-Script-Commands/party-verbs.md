@@ -146,7 +146,7 @@ snapshot      0x022C2580 u16[9]: the edited copy of map 0; 0x003261D0 compacts i
 roster array  0x0209A1F0: 4 × actor pointer (0x00263750)
 selector      0..6 main character, 7..25 guest (0x00322350), 0xFF empty slot
 busy bit 0x80000   0x003601B0(0x13) / 0x003601C0(0x13): a party change in progress
-appearance    actor +0x08 bits 1-2 (map-id pair), bit 0x8 and +0x09 bit 0x40 (hit reaction); presentation +0x13 LOD, +0x151 bit 0x8 blob shadow; render record +0x304 bits 12-13 projection shadow
+appearance    actor +0x08 bits 0x2 and 0x4 (map-id pair), bit 0x8 and +0x09 bit 0x40 (collision with other characters); presentation +0x13 LOD, +0x151 bit 0x8 blob shadow; render record +0x304 bits 0x1000 and 0x2000 projection shadow
 motion frame  push motion, float, flag; 0x003580C0 pops flag, float, motion
 ```
 

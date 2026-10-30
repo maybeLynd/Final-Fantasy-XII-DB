@@ -2118,7 +2118,7 @@ rui_a02	treasure_07	talk	15	0x046AA	1574	-	setmapmodelstatus	1	argument 1: wheth
 rui_a02	treasure_07	talk	16	0x046B0	1575	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a02	treasure_07	talk	17	0x046B6	1576	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 rui_a02	treasure_07	talk	18	0x046B9	1577	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_a02	override_actor	init	1	0x046BD	1593	-	set_force_ignore_timestop	1	-	-	-	-	-		01 verb-table.tsv
+rui_a02	override_actor	init	1	0x046BD	1593	-	set_force_ignore_timestop	1	argument 1: whether the calling actor keeps running through a time stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a02	override_actor	init	2	0x046C0	1594	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a02	override_actor	乗っ取り処理	1	0x046C4	1599	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_a02	override_actor	乗っ取り処理	2	0x046D0	1600	-	aturn	file_var_s29_1, file_var_s29_2, file_var_s29_3	argument 1: the x of the world point the calling actor turns its body and head to face (an ACT form: the named actor) / argument 2: the height of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2136,7 +2136,7 @@ rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	1	0x046F7	1627	-	modelread
 rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	2	0x046FD	1628	-	modelreadsync	0x03000002	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	3	0x04703	1629	-	stdmotionread	0	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	4	0x04706	1630	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	5	0x0470C	1631	-	set_talk_wituout_hide_status	1	-	-	-	-	-		01 verb-table.tsv
+rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	5	0x0470C	1631	-	set_talk_wituout_hide_status	1	argument 1: whether the calling actor's talks leave the world running	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	6	0x04718	1632	-	setpos	213.084869, 11.5481796, 84.1711121	this actor, placed at (213.084869, 11.5481796, 84.1711121)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	7	0x0471E	1633	-	dir	-1.52810001	this actor, turned to facing -1.52810001	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rui_a02	ソーヘン地下宮殿地図	daiji_box_bind	8	0x04724	1634	-	talkang	6.28318548	argument 1: the calling actor's talk half-angle in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3324,7 +3324,7 @@ rui_a04	監督	main	93	0x0243F	337	local_var_s4f0_1; scratch1_var_1 = 2	break	-	
 rui_a04	監督	main	94	0x0245B	339	local_var_s4f0_1	while	sysIsdead2_49f(THIRD_シーク) != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a04	監督	main	95	0x02464	341	local_var_s4f0_1; loop while sysIsdead2_49f(THIRD_シーク) != 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rui_a04	監督	main	96	0x0249B	343	local_var_s4f0_1	THIRD_シーク.setpos	(getx_12b(-1) + (sin(getrotangzx_12e(-1)) * 3)), gety_12c(-1), (getz_12d(-1) + (cos(getrotangzx_12e(-1)) * 3))	target actor `THIRD_シーク` (this script) / the target actor, placed at ((getx_12b(-1) + (sin(getrotangzx_12e(-1)) * 3)), gety_12c(-1), (getz_12d(-1) + (cos(getrotangzx_12e(-1)) * 3)))	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 0x0034EBC0 (read here)
-rui_a04	監督	main	97	0x024A4	344	local_var_s4f0_1	THIRD_シーク.sysDira	-1	target actor `THIRD_シーク` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
+rui_a04	監督	main	97	0x024A4	344	local_var_s4f0_1	THIRD_シーク.sysDira	-1	target actor `THIRD_シーク` (this script) / argument 1: the actor the target actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a04	監督	main	98	0x024B0	345	local_var_s4f0_1	resetbehindcamera	getrotangzx_12e(-1), 0.5	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a04	監督	main	99	0x024B6	346	local_var_s4f0_1	setnoupdatebehindcamera	1	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a04	監督	main	100	0x024B9	347	local_var_s4f0_1	label	local_jmp_31	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4304,7 +4304,7 @@ rui_a05	Map_Director	init	10	0x02AD3	845	nowjumpindex() = 2	break	-	-	-	-	-	-	re
 rui_a05	Map_Director	init	11	0x02AD6	846	-	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a05	Map_Director	init	12	0x02AD9	847	nowjumpindex() = 1	if	getsummonmode()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a05	Map_Director	init	13	0x02ADF	849	nowjumpindex() = 1; getsummonmode()	store	local_var_s7f0_1 = 1	variable local_var_s7f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-rui_a05	Map_Director	init	14	0x02AE2	850	nowjumpindex() = 1; getsummonmode()	fadecancel	-	-	-	-	-	-		01 verb-table.tsv
+rui_a05	Map_Director	init	14	0x02AE2	850	nowjumpindex() = 1; getsummonmode()	fadecancel	-	fade layer 0, freed at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a05	Map_Director	init	15	0x02AE8	851	nowjumpindex() = 1; getsummonmode()	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 rui_a05	Map_Director	init	16	0x02AEB	852	nowjumpindex() = 1; getsummonmode()	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a05	Map_Director	init	17	0x02AF1	853	nowjumpindex() = 1; getsummonmode()	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -9419,7 +9419,7 @@ rui_c01	監督	main	172	0x016F5	314	g_btl_アーリマン == 1; not (scratch1_va
 rui_c01	監督	main	173	0x016FB	315	g_btl_アーリマン == 1; not (scratch1_var_4 == 0); not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))); getnowmapmusicno() != -1	musicread	getnowmapmusicno()	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c01	監督	main	174	0x01701	316	g_btl_アーリマン == 1; not (scratch1_var_4 == 0); not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))); getnowmapmusicno() != -1	musicreadsync	getnowmapmusicno()	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c01	監督	main	175	0x01707	319	g_btl_アーリマン == 1; not (scratch1_var_4 == 0)	fadein	15	the screen fade, in	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-rui_c01	監督	main	176	0x0170A	321	g_btl_アーリマン == 1	resetemergency	-	-	-	-	-	-		01 verb-table.tsv
+rui_c01	監督	main	176	0x0170A	321	g_btl_アーリマン == 1	resetemergency	-	the four party roster members' engagement, ended at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c01	監督	main	177	0x01713	322	g_btl_アーリマン == 1	spotsoundtrans	0, 127	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c01	監督	main	178	0x01716	323	g_btl_アーリマン == 1	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c01	監督	main	179	0x01719	324	g_btl_アーリマン == 1	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9434,8 +9434,8 @@ rui_c01	監督	main	187	0x0173D	332	g_btl_アーリマン == 1	setstatuserrordis
 rui_c01	監督	main	188	0x01743	333	g_btl_アーリマン == 1	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 rui_c01	監督	main	189	0x01749	334	g_btl_アーリマン == 1	store	g_btl_アーリマン = 2	variable g_btl_アーリマン (global u_char@0x0a0c)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rui_c01	監督	main	190	0x01753	335	g_btl_アーリマン == 1	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_c01	監督	main	191	0x0175C	337	g_btl_アーリマン == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
-rui_c01	監督	main	192	0x0175F	339	g_btl_アーリマン == 1	killallfast	-	-	-	-	-	-		01 verb-table.tsv
+rui_c01	監督	main	191	0x0175C	337	g_btl_アーリマン == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rui_c01	監督	main	192	0x0175F	339	g_btl_アーリマン == 1	killallfast	-	every enemy unit	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c01	監督	main	193	0x0176B	340	g_btl_アーリマン == 1	sysReq	1, big_door_east::フィールドサインＯＮ	actor `big_door_east`	-	-	files big_door_east::フィールドサインＯＮ on channel 1; does not wait	big_door_east.フィールドサインＯＮ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_c01	監督	main	194	0x01775	341	g_btl_アーリマン == 1	sysReq	1, big_door_south::フィールドサインＯＮ	actor `big_door_south`	-	-	files big_door_south::フィールドサインＯＮ on channel 1; does not wait	big_door_south.フィールドサインＯＮ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_c01	監督	main	195	0x01779	342	g_btl_アーリマン == 1	setnavimapindex	0	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10210,7 +10210,7 @@ rui_d01	監督	main	173	0x01890	329	g_btl_マンドラゴラーズ == 1; not (sc
 rui_d01	監督	main	174	0x01896	330	g_btl_マンドラゴラーズ == 1; not (scratch1_var_4 == 0); not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))); getnowmapmusicno() != -1	musicread	getnowmapmusicno()	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d01	監督	main	175	0x0189C	331	g_btl_マンドラゴラーズ == 1; not (scratch1_var_4 == 0); not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))); getnowmapmusicno() != -1	musicreadsync	getnowmapmusicno()	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d01	監督	main	176	0x018A2	334	g_btl_マンドラゴラーズ == 1; not (scratch1_var_4 == 0)	fadein	15	the screen fade, in	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-rui_d01	監督	main	177	0x018A5	336	g_btl_マンドラゴラーズ == 1	resetemergency	-	-	-	-	-	-		01 verb-table.tsv
+rui_d01	監督	main	177	0x018A5	336	g_btl_マンドラゴラーズ == 1	resetemergency	-	the four party roster members' engagement, ended at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d01	監督	main	178	0x018AE	337	g_btl_マンドラゴラーズ == 1	spotsoundtrans	0, 127	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d01	監督	main	179	0x018B1	338	g_btl_マンドラゴラーズ == 1	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d01	監督	main	180	0x018B4	339	g_btl_マンドラゴラーズ == 1	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10225,7 +10225,7 @@ rui_d01	監督	main	188	0x018D8	347	g_btl_マンドラゴラーズ == 1	setstatu
 rui_d01	監督	main	189	0x018DE	348	g_btl_マンドラゴラーズ == 1	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 rui_d01	監督	main	190	0x018E4	349	g_btl_マンドラゴラーズ == 1	store	g_btl_マンドラゴラーズ = 2	variable g_btl_マンドラゴラーズ (global u_char@0x0a0e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rui_d01	監督	main	191	0x018EE	350	g_btl_マンドラゴラーズ == 1	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_d01	監督	main	192	0x018F7	352	g_btl_マンドラゴラーズ == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+rui_d01	監督	main	192	0x018F7	352	g_btl_マンドラゴラーズ == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d01	監督	main	193	0x01903	354	g_btl_マンドラゴラーズ == 1	sysReq	1, big_door_01::フィールドサインＯＮ	actor `big_door_01`	-	-	files big_door_01::フィールドサインＯＮ on channel 1; does not wait	big_door_01.フィールドサインＯＮ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_d01	監督	main	194	0x0190D	355	g_btl_マンドラゴラーズ == 1	sysReq	1, big_door_02::フィールドサインＯＮ	actor `big_door_02`	-	-	files big_door_02::フィールドサインＯＮ on channel 1; does not wait	big_door_02.フィールドサインＯＮ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_d01	監督	main	195	0x01917	356	g_btl_マンドラゴラーズ == 1	sysReq	1, big_door_03::フィールドサインＯＮ	actor `big_door_03`	-	-	files big_door_03::フィールドサインＯＮ on channel 1; does not wait	big_door_03.フィールドサインＯＮ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -11074,7 +11074,7 @@ rui_e01	監督	main	179	0x09F22	330	g_btl_魔神竜 == 1; Boss_Enter_End[5] == 1
 rui_e01	監督	main	180	0x09F28	331	g_btl_魔神竜 == 1; Boss_Enter_End[5] == 1	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 rui_e01	監督	main	181	0x09F2E	332	g_btl_魔神竜 == 1; Boss_Enter_End[5] == 1	store	g_btl_魔神竜 = 2	variable g_btl_魔神竜 (global u_char@0x0a18)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rui_e01	監督	main	182	0x09F38	333	g_btl_魔神竜 == 1; Boss_Enter_End[5] == 1	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_e01	監督	main	183	0x09F41	335	g_btl_魔神竜 == 1; Boss_Enter_End[5] == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+rui_e01	監督	main	183	0x09F41	335	g_btl_魔神竜 == 1; Boss_Enter_End[5] == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e01	監督	main	184	0x09F4A	340	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	sysSystem	0x0145	none: SYSTEM pops and discards 0x0145	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e01	監督	main	185	0x09F51	341	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	store	Boss_Enter_End[5] = 1	variable Boss_Enter_End[5] (global u_char[8]@0x0ce6)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rui_e01	監督	main	186	0x09F57	342	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -11193,7 +11193,7 @@ rui_e01	監督	main	298	0x0A2A4	470	g_btl_魔神竜 == 1; not (Boss_Enter_End[5]
 rui_e01	監督	main	299	0x0A2AA	471	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1); not (scratch1_var_4 == 0); not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))); getnowmapmusicno() != -1	musicread	getnowmapmusicno()	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e01	監督	main	300	0x0A2B0	472	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1); not (scratch1_var_4 == 0); not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))); getnowmapmusicno() != -1	musicreadsync	getnowmapmusicno()	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e01	監督	main	301	0x0A2B6	475	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1); not (scratch1_var_4 == 0)	fadein	15	the screen fade, in	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-rui_e01	監督	main	302	0x0A2B9	477	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	resetemergency	-	-	-	-	-	-		01 verb-table.tsv
+rui_e01	監督	main	302	0x0A2B9	477	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	resetemergency	-	the four party roster members' engagement, ended at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e01	監督	main	303	0x0A2C2	478	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	spotsoundtrans	0, 127	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e01	監督	main	304	0x0A2C5	479	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e01	監督	main	305	0x0A2C8	480	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11208,7 +11208,7 @@ rui_e01	監督	main	313	0x0A2EC	488	g_btl_魔神竜 == 1; not (Boss_Enter_End[5]
 rui_e01	監督	main	314	0x0A2F2	489	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 rui_e01	監督	main	315	0x0A2F8	490	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	store	g_btl_魔神竜 = 2	variable g_btl_魔神竜 (global u_char@0x0a18)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rui_e01	監督	main	316	0x0A302	491	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1)	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_e01	監督	main	317	0x0A30B	493	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1); getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+rui_e01	監督	main	317	0x0A30B	493	g_btl_魔神竜 == 1; not (Boss_Enter_End[5] == 1); getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e01	監督	main	318	0x0A30E	497	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e01	振動処理	init	1	0x0A30F	506	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e01	振動処理	石扉ジャンプ振動開始	1	0x0A313	511	-	vibplay	6	argument 1: the controller vibration pattern	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11764,7 +11764,7 @@ rui_a0400	PRODUCER	main	43	0x0136A	83	-	pausesestop	-	every sound-effect bank	-	
 rui_a0400	PRODUCER	main	44	0x0136D	84	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0400	PRODUCER	main	45	0x01373	85	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 rui_a0400	PRODUCER	main	46	0x0137F	86	-	setmapwind	0, 6, 0	argument 1: the wind preset (1 to 6; 0 copies none) / argument 2: the sun's azimuth in sectors of 22.5 degrees / argument 3: the sun's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_a0400	PRODUCER	main	47	0x01382	87	-	partystdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
+rui_a0400	PRODUCER	main	47	0x01382	87	-	partystdmotiondispose	-	the standard-motion lanes of the four party roster members, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0400	PRODUCER	main	48	0x01388	88	-	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rui_a0400	PRODUCER	main	49	0x0138E	89	-	motionread	1	motion 1 of `rui_a0400.mot` (bytes 0x3000, length 0x458C0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 rui_a0400	PRODUCER	main	50	0x01394	90	-	motionread	2	motion 2 of `rui_a0400.mot` (bytes 0x49000, length 0x17B4F0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
@@ -11798,7 +11798,7 @@ rui_a0400	PRODUCER	main	77	0x01443	117	-	sethpmenufast	1	argument 1: show or hid
 rui_a0400	PRODUCER	main	78	0x01449	118	-	setcharclipall	1	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0400	PRODUCER	main	79	0x0144F	119	-	setzclipoverdraw	0	argument 1: the depth scale the calling actor's model is drawn with	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0400	PRODUCER	main	80	0x01452	120	-	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_a0400	PRODUCER	main	81	0x01455	121	-	partystdmotionrecover	-	-	-	-	-	-		01 verb-table.tsv
+rui_a0400	PRODUCER	main	81	0x01455	121	-	partystdmotionrecover	-	the four party roster members' models, rebuilt one at a time	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0400	PRODUCER	main	82	0x0145B	122	-	show_freetarget_group	0	argument 1: the group of non-party actors shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0400	PRODUCER	main	83	0x01461	123	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rui_a0400	PRODUCER	main	84	0x01467	124	-	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -13254,7 +13254,7 @@ rui_a0500	AD	カット４_ad	11	0x01FB7	535	-	sysReqwait	ATEL_EFFECT::カット�
 rui_a0500	AD	カット４_ad	12	0x01FBE	536	-	sysReqwait	CAMERA::カット４	actor `CAMERA`	-	-	waits until CAMERA::カット４ is no longer on its actor	CAMERA.カット４	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_a0500	AD	カット４_ad	13	0x01FC5	537	-	sysReqwait	SE::cut_04	actor `SE`	-	-	waits until SE::cut_04 is no longer on its actor	SE.cut_04	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_a0500	AD	カット４_ad	14	0x01FC6	538	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_a0500	AD	カット５_ad	1	0x01FCA	543	-	unkCall_5c4	6	-	-	-	-	-		01 verb-table.tsv
+rui_a0500	AD	カット５_ad	1	0x01FCA	543	-	unkCall_5c4	6	argument 1: the count the marked event slot's queued events are raised to, plus one	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0500	AD	カット５_ad	2	0x01FD0	544	-	startscene	5	scene cut 5, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 rui_a0500	AD	カット５_ad	3	0x01FD6	545	-	sysReqall	1, reqArr10	actor `SE`	-	-	files each pair of SE::cut_05 on channel 1; does not wait	SE.cut_05	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_a0500	AD	カット５_ad	4	0x01FDC	546	-	sysReqall	1, reqArr11	actor `CAMERA`, actor `ATEL_EFFECT`, actor `BG_EFFECT`, actor `遺跡エレベータ`, actor `PC00`, actor `PC01`, actor `PC02`, actor `PC03`	-	-	files each pair of CAMERA::カット５, ATEL_EFFECT::カット５, BG_EFFECT::カット５, 遺跡エレベータ::カット５, PC00::カット５, PC01::カット５, PC02::カット５, PC03::カット５ on channel 1; does not wait	CAMERA.カット５, ATEL_EFFECT.カット５, BG_EFFECT.カット５, 遺跡エレベータ.カット５, PC00.カット５, PC01.カット５, PC02.カット５, PC03.カット５	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -13429,7 +13429,7 @@ rui_a0500	遺跡エレベータ	準備	1	0x02373	922	-	return	-	-	-	-	-	-	resolv
 rui_a0500	遺跡エレベータ	カット１	1	0x02377	927	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0500	遺跡エレベータ	カット１	2	0x02383	928	-	setpos	13, 12.4900837, 53	this actor, placed at (13, 12.4900837, 53)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rui_a0500	遺跡エレベータ	カット１	3	0x02389	929	-	dir	-3.14155412	this actor, turned to facing -3.14155412	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-rui_a0500	遺跡エレベータ	カット１	4	0x02398	930	-	getpos_12a	7, &file_var_s7_1, &file_var_s7_2, &file_var_s7_3	-	-	-	-	-		01 verb-table.tsv
+rui_a0500	遺跡エレベータ	カット１	4	0x02398	930	-	getpos_12a	7, &file_var_s7_1, &file_var_s7_2, &file_var_s7_3	argument 1: the actor whose position is read / argument 2: a script variable, passed by reference (resolved by 0x002650B0), that receives the x of the position, movement context +0x00 / argument 3: the variable that receives the y (the height), context +0x04 / argument 4: the variable that receives the z, context +0x08	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0500	遺跡エレベータ	カット１	5	0x0239E	931	-	bindp2	0x03000000	model b3 (section 12 entry 0, bound id 0x620003)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 rui_a0500	遺跡エレベータ	カット１	6	0x023A4	932	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0500	遺跡エレベータ	カット１	7	0x023AA	933	-	bgeffectactor	48	argument 1: the slot (0-63, clamped) of the background-effect actor table 0x022D98B0 that names the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -13439,7 +13439,7 @@ rui_a0500	遺跡エレベータ	カット４	2	0x023BA	940	-	motionplay_bb	0x110
 rui_a0500	遺跡エレベータ	カット４	3	0x023BD	941	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a0500	遺跡エレベータ	カット５	1	0x023C7	946	-	setpos	113.293068, 18.0150013, 38.1893463	this actor, placed at (113.293068, 18.0150013, 38.1893463)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rui_a0500	遺跡エレベータ	カット５	2	0x023CD	947	-	dir	3.00000011e-06	this actor, turned to facing 3.00000011e-06	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-rui_a0500	遺跡エレベータ	カット５	3	0x023DC	948	-	getpos_12a	7, &file_var_s7_1, &file_var_s7_2, &file_var_s7_3	-	-	-	-	-		01 verb-table.tsv
+rui_a0500	遺跡エレベータ	カット５	3	0x023DC	948	-	getpos_12a	7, &file_var_s7_1, &file_var_s7_2, &file_var_s7_3	argument 1: the actor whose position is read / argument 2: a script variable, passed by reference (resolved by 0x002650B0), that receives the x of the position, movement context +0x00 / argument 3: the variable that receives the y (the height), context +0x04 / argument 4: the variable that receives the z, context +0x08	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0500	遺跡エレベータ	カット５	4	0x023E2	949	-	bindp2	0x03000001	model b2 (section 12 entry 1, bound id 0x620002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 rui_a0500	遺跡エレベータ	カット５	5	0x023E8	950	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a0500	遺跡エレベータ	カット５	6	0x023EE	951	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -15098,7 +15098,7 @@ rui_b0300	AD	カット４_ad	5	0x0250F	929	-	sysReqwait	ATEL_EFFECT::カット�
 rui_b0300	AD	カット４_ad	6	0x02516	930	-	sysReqwait	CAMERA::カット４	actor `CAMERA`	-	-	waits until CAMERA::カット４ is no longer on its actor	CAMERA.カット４	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_b0300	AD	カット４_ad	7	0x0251D	931	-	sysReqwait	SE::cut_04	actor `SE`	-	-	waits until SE::cut_04 is no longer on its actor	SE.cut_04	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_b0300	AD	カット４_ad	8	0x0251E	932	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_b0300	AD	カット５_ad	1	0x02522	937	-	unkCall_5c4	6	-	-	-	-	-		01 verb-table.tsv
+rui_b0300	AD	カット５_ad	1	0x02522	937	-	unkCall_5c4	6	argument 1: the count the marked event slot's queued events are raised to, plus one	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_b0300	AD	カット５_ad	2	0x02528	938	-	startscene	5	scene cut 5, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 rui_b0300	AD	カット５_ad	3	0x0252E	939	-	sysReqall	1, reqArr9	actor `SE`	-	-	files each pair of SE::cut_05 on channel 1; does not wait	SE.cut_05	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_b0300	AD	カット５_ad	4	0x02534	940	-	sysReqall	1, reqArr10	actor `CAMERA`, actor `BG_EFFECT`, actor `ATEL_EFFECT`, actor `BG_ANIME`, actor `遺跡エレベータ`, actor `PC00`, actor `PC01`, actor `PC02`, actor `PC03`	-	-	files each pair of CAMERA::カット５, BG_EFFECT::カット５, ATEL_EFFECT::カット５, BG_ANIME::カット５, 遺跡エレベータ::カット５, PC00::カット５, PC01::カット５, PC02::カット５, PC03::カット５ on channel 1; does not wait	CAMERA.カット５, BG_EFFECT.カット５, ATEL_EFFECT.カット５, BG_ANIME.カット５, 遺跡エレベータ.カット５, PC00.カット５, PC01.カット５, PC02.カット５, PC03.カット５	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -15177,13 +15177,13 @@ rui_b0300	遺跡エレベータ	後半準備	1	0x02726	1051	-	modelread	0x030000
 rui_b0300	遺跡エレベータ	後半準備	2	0x0272C	1052	-	modelreadsync	0x03000001	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_b0300	遺跡エレベータ	後半準備	3	0x02738	1053	-	setpos	13, 12.4900837, 53	this actor, placed at (13, 12.4900837, 53)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rui_b0300	遺跡エレベータ	後半準備	4	0x0273E	1054	-	dir	-3.14155412	this actor, turned to facing -3.14155412	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-rui_b0300	遺跡エレベータ	後半準備	5	0x0274D	1055	-	getpos_12a	8, &file_var_s8_1, &file_var_s8_2, &file_var_s8_3	-	-	-	-	-		01 verb-table.tsv
+rui_b0300	遺跡エレベータ	後半準備	5	0x0274D	1055	-	getpos_12a	8, &file_var_s8_1, &file_var_s8_2, &file_var_s8_3	argument 1: the actor whose position is read / argument 2: a script variable, passed by reference (resolved by 0x002650B0), that receives the x of the position, movement context +0x00 / argument 3: the variable that receives the y (the height), context +0x04 / argument 4: the variable that receives the z, context +0x08	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_b0300	遺跡エレベータ	後半準備	6	0x02753	1056	-	bindp2	0x03000000	model b2 (section 12 entry 0, bound id 0x620002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 rui_b0300	遺跡エレベータ	後半準備	7	0x02759	1057	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_b0300	遺跡エレベータ	後半準備	8	0x0275F	1058	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_b0300	遺跡エレベータ	後半準備	9	0x02765	1059	-	bgeffectactor	48	argument 1: the slot (0-63, clamped) of the background-effect actor table 0x022D98B0 that names the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_b0300	遺跡エレベータ	後半準備	10	0x02768	1060	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_b0300	遺跡エレベータ	カット１	1	0x02775	1065	-	getpos_12a	8, &file_var_s8_1, &file_var_s8_2, &file_var_s8_3	-	-	-	-	-		01 verb-table.tsv
+rui_b0300	遺跡エレベータ	カット１	1	0x02775	1065	-	getpos_12a	8, &file_var_s8_1, &file_var_s8_2, &file_var_s8_3	argument 1: the actor whose position is read / argument 2: a script variable, passed by reference (resolved by 0x002650B0), that receives the x of the position, movement context +0x00 / argument 3: the variable that receives the y (the height), context +0x04 / argument 4: the variable that receives the z, context +0x08	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_b0300	遺跡エレベータ	カット１	2	0x0277B	1066	-	bindp2	0x03000000	model b2 (section 12 entry 0, bound id 0x620002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 rui_b0300	遺跡エレベータ	カット１	3	0x02781	1067	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_b0300	遺跡エレベータ	カット１	4	0x02787	1068	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -17517,8 +17517,8 @@ rui_d0100	Camera	init	1	0x01A9E	276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-
 rui_d0100	Camera	ready	1	0x01A9F	281	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0100	Camera	clear	1	0x01AA3	286	-	camerastart	0x02000000	camera row 0 `cut008`: shot 8 `cut008`, channel 0	-	the shot is keys only, with no timed segment	-	-	resolved	0x0034FE00 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 rui_d0100	Camera	clear	2	0x01AA9	287	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rui_d0100	Camera	clear	3	0x01AB5	288	-	resumebehindcamera	20, 0, 0	-	-	-	-	-		01 verb-table.tsv
-rui_d0100	Camera	clear	4	0x01AB8	289	-	resumebehindcamerasync	-	-	-	-	-	-		01 verb-table.tsv
+rui_d0100	Camera	clear	3	0x01AB5	288	-	resumebehindcamera	20, 0, 0	argument 1: the frames the swing back to the behind camera takes (popped as a float by 0x00267DB0) / argument 2: a word 0x00257830 keeps at 0x02096400; the blend step 0x00257520 ignores it (the store 0x0025786F is its one reference in the image) / argument 3: the ease of the swing, kept at 0x02096404 and read each frame by 0x00257520 as 0x00256650(ease, counter / duration)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rui_d0100	Camera	clear	4	0x01AB8	289	-	resumebehindcamerasync	-	the swing back to the behind camera that resumebehindcamera started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0100	Camera	clear	5	0x01ABB	290	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0100	Camera	clear	6	0x01ABE	291	-	camerashakeclear	-	the camera-shake bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0100	Camera	clear	7	0x01AC4	292	-	setfocusstatus	0	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19474,7 +19474,7 @@ rui_d0101	PC3	clear	2	0x0299E	1629	-	usecharhit	1	argument 1: whether the callin
 rui_d0101	PC3	clear	3	0x029A1	1630	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_d0101	PC3	clear	4	0x029A4	1631	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_マンドラ	init	1	0x029A5	1640	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_d0101	BOSS_マンドラ	ready	1	0x029A6	1645	-	captureactor	-	-	-	-	-	-		01 verb-table.tsv
+rui_d0101	BOSS_マンドラ	ready	1	0x029A6	1645	-	captureactor	-	the actor of manager 0 with the calling actor's own entry name, taken over by the caller	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_マンドラ	ready	2	0x029AC	1646	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_マンドラ	ready	3	0x029AF	1647	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_マンドラ	cut0001	1	0x029B3	1652	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19492,7 +19492,7 @@ rui_d0101	BOSS_マンドラ	clear	2	0x029DC	1683	-	usecharhit	1	argument 1: whet
 rui_d0101	BOSS_マンドラ	clear	3	0x029DF	1684	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_d0101	BOSS_マンドラ	clear	4	0x029E2	1685	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_トマト	init	1	0x029E3	1694	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_d0101	BOSS_トマト	ready	1	0x029E4	1699	-	captureactor	-	-	-	-	-	-		01 verb-table.tsv
+rui_d0101	BOSS_トマト	ready	1	0x029E4	1699	-	captureactor	-	the actor of manager 0 with the calling actor's own entry name, taken over by the caller	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_トマト	ready	2	0x029EA	1700	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_トマト	ready	3	0x029ED	1701	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_トマト	cut0001	1	0x029F1	1706	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19510,7 +19510,7 @@ rui_d0101	BOSS_トマト	clear	2	0x02A1A	1737	-	usecharhit	1	argument 1: whether
 rui_d0101	BOSS_トマト	clear	3	0x02A1D	1738	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_d0101	BOSS_トマト	clear	4	0x02A20	1739	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_オニオン	init	1	0x02A21	1748	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_d0101	BOSS_オニオン	ready	1	0x02A22	1753	-	captureactor	-	-	-	-	-	-		01 verb-table.tsv
+rui_d0101	BOSS_オニオン	ready	1	0x02A22	1753	-	captureactor	-	the actor of manager 0 with the calling actor's own entry name, taken over by the caller	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_オニオン	ready	2	0x02A28	1754	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_オニオン	ready	3	0x02A2B	1755	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_オニオン	cut0001	1	0x02A2F	1760	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19528,7 +19528,7 @@ rui_d0101	BOSS_オニオン	clear	2	0x02A58	1791	-	usecharhit	1	argument 1: whet
 rui_d0101	BOSS_オニオン	clear	3	0x02A5B	1792	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_d0101	BOSS_オニオン	clear	4	0x02A5E	1793	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_ウネ	init	1	0x02A5F	1802	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_d0101	BOSS_ウネ	ready	1	0x02A60	1807	-	captureactor	-	-	-	-	-	-		01 verb-table.tsv
+rui_d0101	BOSS_ウネ	ready	1	0x02A60	1807	-	captureactor	-	the actor of manager 0 with the calling actor's own entry name, taken over by the caller	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_ウネ	ready	2	0x02A66	1808	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_ウネ	ready	3	0x02A69	1809	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_ウネ	cut0001	1	0x02A6D	1814	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19546,7 +19546,7 @@ rui_d0101	BOSS_ウネ	clear	2	0x02A96	1845	-	usecharhit	1	argument 1: whether th
 rui_d0101	BOSS_ウネ	clear	3	0x02A99	1846	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_d0101	BOSS_ウネ	clear	4	0x02A9C	1847	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_パンプキン	init	1	0x02A9D	1856	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_d0101	BOSS_パンプキン	ready	1	0x02A9E	1861	-	captureactor	-	-	-	-	-	-		01 verb-table.tsv
+rui_d0101	BOSS_パンプキン	ready	1	0x02A9E	1861	-	captureactor	-	the actor of manager 0 with the calling actor's own entry name, taken over by the caller	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_パンプキン	ready	2	0x02AA4	1862	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0101	BOSS_パンプキン	ready	3	0x02AA7	1863	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0101	BOSS_パンプキン	cut0001	1	0x02AAB	1868	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -20066,7 +20066,7 @@ rui_e0100	PC00	END_s	17	0x019EF	796	-	shows	-	the calling actor's off-hand model
 rui_e0100	PC00	END_s	18	0x019F5	797	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC00	END_s	19	0x019FB	798	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC00	END_s	20	0x01A01	799	-	setcharseplay	0	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0100	PC00	END_s	21	0x01A04	800	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0100	PC00	END_s	21	0x01A04	800	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC00	END_s	22	0x01A07	801	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0100	PC00	END_s	23	0x01A0A	802	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0100	PC01	init	1	0x01A0B	817	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -20320,7 +20320,7 @@ rui_e0100	PC01	END_s	4	0x0209A	1150	-	shows	-	the calling actor's off-hand model
 rui_e0100	PC01	END_s	5	0x020A0	1151	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC01	END_s	6	0x020A6	1152	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC01	END_s	7	0x020AC	1153	-	setcharseplay	0	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0100	PC01	END_s	8	0x020AF	1154	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0100	PC01	END_s	8	0x020AF	1154	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC01	END_s	9	0x020B2	1155	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0100	PC01	END_s	10	0x020B5	1156	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0100	PC02	init	1	0x020B6	1165	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -20576,7 +20576,7 @@ rui_e0100	PC02	END_s	4	0x0274B	1500	-	shows	-	the calling actor's off-hand model
 rui_e0100	PC02	END_s	5	0x02751	1501	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC02	END_s	6	0x02757	1502	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC02	END_s	7	0x0275D	1503	-	setcharseplay	0	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0100	PC02	END_s	8	0x02760	1504	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0100	PC02	END_s	8	0x02760	1504	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC02	END_s	9	0x02763	1505	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0100	PC02	END_s	10	0x02766	1506	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0100	PC03	init	1	0x02767	1515	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -20589,7 +20589,7 @@ rui_e0100	PC03	CUT01	1	0x0277E	1529	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-
 rui_e0100	PC03	END_s	1	0x0277F	1534	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC03	END_s	2	0x02785	1535	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC03	END_s	3	0x0278B	1536	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0100	PC03	END_s	4	0x0278E	1537	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0100	PC03	END_s	4	0x0278E	1537	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC03	END_s	5	0x02791	1538	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0100	PC03	END_s	6	0x02794	1539	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0100	PC03	END_s	7	0x02797	1540	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -21166,7 +21166,7 @@ rui_e0101	PC00	END_s	4	0x0A920	887	-	dir	2.16180611	this actor, turned to facing
 rui_e0101	PC00	END_s	5	0x0A926	888	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC00	END_s	6	0x0A92C	889	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC00	END_s	7	0x0A932	890	-	setcharseplay	0	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0101	PC00	END_s	8	0x0A935	891	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0101	PC00	END_s	8	0x0A935	891	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC00	END_s	9	0x0A938	892	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0101	PC00	END_s	10	0x0A93B	893	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	PC01	init	1	0x0A93C	909	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -21360,7 +21360,7 @@ rui_e0101	PC01	END_s	5	0x0AE00	1180	-	dir	2.8248589	this actor, turned to facing
 rui_e0101	PC01	END_s	6	0x0AE06	1181	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC01	END_s	7	0x0AE0C	1182	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC01	END_s	8	0x0AE12	1183	-	setcharseplay	0	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0101	PC01	END_s	9	0x0AE15	1184	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0101	PC01	END_s	9	0x0AE15	1184	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC01	END_s	10	0x0AE18	1185	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0101	PC01	END_s	11	0x0AE1B	1186	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	PC02	init	1	0x0AE1C	1195	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -21591,7 +21591,7 @@ rui_e0101	PC02	END_s	4	0x0B421	1503	-	dir	1.70573199	this actor, turned to facin
 rui_e0101	PC02	END_s	5	0x0B427	1504	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC02	END_s	6	0x0B42D	1505	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC02	END_s	7	0x0B433	1506	-	setcharseplay	0	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0101	PC02	END_s	8	0x0B436	1507	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0101	PC02	END_s	8	0x0B436	1507	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC02	END_s	9	0x0B439	1508	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0101	PC02	END_s	10	0x0B43C	1509	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	PC03	init	1	0x0B43D	1518	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -21603,6 +21603,6 @@ rui_e0101	PC03	CUT02	1	0x0B452	1535	-	setpos	19.8220177, 0.100000001, 59.4597092
 rui_e0101	PC03	CUT02	2	0x0B458	1536	-	dir	2.32170796	this actor, turned to facing 2.32170796	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rui_e0101	PC03	CUT02	3	0x0B45B	1537	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	PC03	END_s	1	0x0B45C	1542	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-rui_e0101	PC03	END_s	2	0x0B45F	1543	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0101	PC03	END_s	2	0x0B45F	1543	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC03	END_s	3	0x0B462	1544	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0101	PC03	END_s	4	0x0B465	1545	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

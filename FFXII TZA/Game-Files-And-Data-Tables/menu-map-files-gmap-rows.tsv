@@ -1,0 +1,801 @@
+file	folders	line	counter	gate	text_offset	word_06	text_bytes	text
+menumap_guide00.bin	ch	0	0	0x402D	0x0000	0	33	要是沒在簽署{expansion glyph 0}式結束前救出{expansion glyph 1}下……！
+menumap_guide00.bin	ch	1	22	0x4069	0x0022	0	27	巴修將軍在簽署{expansion glyph 0}式的會場……！
+menumap_guide00.bin	ch	2	25	0x406A	0x003E	0	34	今天狀態不錯呢……剩下的也{expansion glyph 2}緊解決吧！
+menumap_guide00.bin	ch	3	35	0x402E	0x0061	0	38	有什麼事嗎？去密捷羅先生的道具店看看吧。
+menumap_guide00.bin	ch	4	45	0x406B	0x0088	0	29	凱茲那傢{expansion glyph 3}會不會還在沙海亭啊？
+menumap_guide00.bin	ch	5	62	0x406C	0x00A6	0	29	現在都要從東門出去城鎮……對吧。
+menumap_guide00.bin	ch	6	68	0x402F	0x00C4	0	32	標的怪物應該在東達瑪斯卡沙漠那裡。
+menumap_guide00.bin	ch	7	78	0x406D	0x00E5	0	37	標的怪物討伐完畢！好了，回拉巴納斯塔吧。
+menumap_guide00.bin	ch	8	105	0x4030	0x010B	0	34	鬧區的達朗爺爺應該會知道些什麼吧……
+menumap_guide00.bin	ch	9	110	0x4031	0x012E	0	27	在居札草原的聚落{expansion glyph 4}{expansion glyph 4}看好了。
+menumap_guide00.bin	ch	10	130	0x4032	0x014A	0	29	叫金恩的孩子好像在聚落南邊吧。
+menumap_guide00.bin	ch	11	145	0x406E	0x0168	0	38	找到發光的黑水晶，可以將能源儲存於陰石吧。
+menumap_guide00.bin	ch	12	160	0x406F	0x018F	0	32	讓達朗爺爺看太陽石，他會很吃驚嗎？
+menumap_guide00.bin	ch	13	175	0x4033	0x01B0	0	24	要先從５號倉庫下去水路呢。
+menumap_guide00.bin	ch	14	180	0x4070	0x01C9	0	52	拉巴納斯塔底下的加藍賽茲水路……聽說可以從那裡進入王宮？
+menumap_guide00.bin	ch	15	200	0x4071	0x01FE	0	26	一定要找到寶物庫的暗門喔……！
+menumap_guide00.bin	ch	16	215	0x4072	0x0219	0	41	怎麼鬧哄哄的……？先不管這個，快點離開這裡吧！
+menumap_guide00.bin	ch	17	230	0x4034	0x0243	0	18	總之得先脫離水路……
+menumap_guide00.bin	ch	18	265	0x4073	0x0256	0	23	看來已經靠近了水路出口。
+menumap_guide00.bin	ch	19	302	0x4074	0x026E	0	33	那爾比納的牢房？事情變得很嚴重呢……
+menumap_guide00.bin	ch	20	316	0x4075	0x0290	0	27	……現在的首要之務是上去地面。
+menumap_guide00.bin	ch	21	323	0x4035	0x02AC	0	35	只要打倒吸附住配線的模仿怪就好了吧。
+menumap_guide00.bin	ch	22	343	0x4036	0x02D0	0	34	潘妮蘿應該會擔心，回去拉巴納斯塔吧。
+menumap_guide00.bin	ch	23	350	0x4037	0x02F3	0	38	潘妮蘿在哪裡？也得向達朗爺爺報告才行呢。
+menumap_guide00.bin	ch	24	375	0x4076	0x031A	0	53	交給一個叫阿茲拉斯的人啊……不過，為什麼要給他騎士團的劍？
+menumap_guide00.bin	ch	25	390	0x4038	0x0350	0	35	巴夫雷爾他們好像在某處的店裡休息呢。
+menumap_guide00.bin	ch	26	420	0x4077	0x0374	0	43	西門旁的總站吧……搭飛空艇前往空中都市卜耶巴！
+menumap_guide00.bin	ch	27	546	0x4039	0x03A0	0	33	路蘇魔石礦在哪裡？等著我喔，潘妮蘿！
+menumap_guide00.bin	ch	28	580	0x4078	0x03C2	0	33	潘妮蘿應該在魔石礦深處……就快到了！
+menumap_guide00.bin	ch	29	645	0x4079	0x03E4	0	26	現在該擔心潘妮蘿。{expansion glyph 2}緊返回！
+menumap_guide00.bin	ch	30	680	0x407A	0x03FF	0	47	潘妮蘿沒事真是太好了……這次是翁德爾侯爵的府邸啊。
+menumap_guide00.bin	ch	31	710	0x407B	0x042F	0	36	只要四處放出風聲就好了吧？包在我身上！
+menumap_guide00.bin	ch	32	730	0x407C	0x0454	0	29	準備好之後就去見翁德爾侯爵吧。
+menumap_guide00.bin	ch	33	920	0x403A	0x0472	0	35	那傢{expansion glyph 3}是公主？還是救{expansion glyph 5}比較好，應該吧。
+menumap_guide00.bin	ch	34	970	0x407D	0x0496	0	19	潘妮蘿究{expansion glyph 6}在哪裡……？
+menumap_guide00.bin	ch	35	1000	0x405B	0x04AA	0	42	只要去起降埠，應該就會看到逃離用的飛空艇了！
+menumap_guide00.bin	ch	36	1100	0x407E	0x04D5	0	29	再跟翁德爾侯爵見一次面看看吧。
+menumap_guide00.bin	ch	37	1210	0x403B	0x04F3	0	35	目的地在沙海的遙遠西邊……感覺好遠啊。
+menumap_guide00.bin	ch	38	1270	0x407F	0x0517	0	33	先往西前進，橫越大沙海奧格·焉薩吧。
+menumap_guide00.bin	ch	39	1338	0x405C	0x0539	0	51	應該差不多橫越大沙海的一半了吧？就這樣繼續往西前進吧。
+menumap_guide00.bin	ch	40	1345	0x4080	0x056D	0	25	死者山谷……瑞斯沃爾王墓啊。
+menumap_guide00.bin	ch	41	1374	0x4081	0x0587	0	41	雅雪所說的寶物好像在瑞斯沃爾王墓的深處呢。
+menumap_guide00.bin	ch	42	1380	0x4097	0x05B1	0	37	{expansion glyph 7}曉之斷片{expansion glyph 8}在瑞斯沃爾王墓的最深處啊。
+menumap_guide00.bin	ch	43	1390	0x4082	0x05D7	0	41	既然{expansion glyph 7}曉之斷片{expansion glyph 8}已經到手，差不多該回地面啦。
+menumap_guide00.bin	ch	44	1450	0x4083	0x0601	0	19	怎麼能在這裡被打倒！
+menumap_guide00.bin	ch	45	1580	0x403C	0x0615	0	43	戈利夫族的村里似乎在比居札草原更南邊的地方。
+menumap_guide00.bin	ch	46	1625	0x4084	0x0641	0	30	戈利夫族……可以{expansion glyph 4}到破魔石的事嗎？
+menumap_guide00.bin	ch	47	1650	0x403D	0x0660	0	38	接下來是布爾歐密謝司啊。好像在很東邊呢。
+menumap_guide00.bin	ch	48	1740	0x4085	0x0687	0	62	與外界隔絕的維埃拉族村里，是法蘭的故鄉啊。去找那個叫妙琳的孩子吧。
+menumap_guide00.bin	ch	49	1760	0x4086	0x06C6	0	42	很可能在黑涅魔石礦……是在歐茲莫內平原南方吧。
+menumap_guide00.bin	ch	50	1810	0x403E	0x06F1	0	13	妙琳……在哪裡？
+menumap_guide00.bin	ch	51	1950	0x403F	0x06FF	0	40	畢{expansion glyph 6}還有拉薩的事，{expansion glyph 2}緊前往布爾歐密謝司吧。
+menumap_guide00.bin	ch	52	1982	0x4088	0x0728	0	32	神都布爾歐密謝司……好安靜的城鎮啊。
+menumap_guide00.bin	ch	53	2010	0x4040	0x0749	0	29	在彌利亞姆遺跡取得霸王之劍吧。
+menumap_guide00.bin	ch	54	2200	0x4089	0x0767	0	27	霸王之劍……雅雪會怎麼使用呢。
+menumap_guide00.bin	ch	55	2250	0x408A	0x0783	0	35	布爾歐密謝司的方向在冒煙……{expansion glyph 2}緊返回！
+menumap_guide00.bin	ch	56	3050	0x405D	0x07A7	0	44	穿越那爾比納北方的莫斯佛拉山地與薩利卡樹林吧。
+menumap_guide00.bin	ch	57	3070	0x405E	0x07D4	0	50	終於要踏上帝國領土了啊……帝都阿凱迪斯好像在東北方向。
+menumap_guide00.bin	ch	58	3100	0x408B	0x0807	0	43	繼續往東北前進似乎比較好……但帝都還遠得很啊。
+menumap_guide00.bin	ch	59	3150	0x405F	0x0833	0	41	只要突破索亨地下宮殿，就成功潛入阿凱迪斯了！
+menumap_guide00.bin	ch	60	3210	0x408C	0x085D	0	45	這次要穿過舊城區往{expansion glyph 7}上{expansion glyph 8}走……沒辦法輕鬆抵達啊。
+menumap_guide00.bin	ch	61	3250	0x4042	0x088B	0	33	必須找出潛入卓克羅爾研究所的方法。
+menumap_guide00.bin	ch	62	3255	0x408D	0x08AD	0	34	要收集白葉章啊……好，到處{expansion glyph 4}話看看吧。
+menumap_guide00.bin	ch	63	3260	0x408E	0x08D0	0	22	好，前往卓克羅爾研究所！
+menumap_guide00.bin	ch	64	3350	0x408F	0x08E7	0	33	卓克羅爾研究所……狀況好像怪怪的喔……
+menumap_guide00.bin	ch	65	3400	0x4090	0x0909	0	31	希德博士是在研究所的上方樓層嗎？
+menumap_guide00.bin	ch	66	4100	0x4043	0x0929	0	50	基魯菲岡啊……總之就調查葛爾摩大森林深處的幻妖森林吧。
+menumap_guide00.bin	ch	67	4160	0x4060	0x095C	0	45	穿過濃霧往幻妖森林南邊前進……但沒那麼容易通過。
+menumap_guide00.bin	ch	68	4250	0x4091	0x098A	0	38	古代都市基魯菲岡……究{expansion glyph 6}是誰建造出來的！？
+menumap_guide00.bin	ch	69	4370	0x4092	0x09B1	0	44	真不可思議的地方……要找到正確的路，別被迷惑了。
+menumap_guide00.bin	ch	70	5000	0x4054	0x09DE	0	29	回巴馮海姆跟雷達斯商量看看吧。
+menumap_guide00.bin	ch	71	5150	0x4044	0x09FC	0	37	如果是光輝號應該能飛到黎鐸亞納大瀑布。
+menumap_guide00.bin	ch	72	5200	0x4093	0x0A22	0	25	馬上就到黎鐸亞納大燈塔了！
+menumap_guide00.bin	ch	73	5303	0x4094	0x0A3C	0	40	黎鐸亞納大燈塔……要去燈塔，往上走就好了吧？
+menumap_guide00.bin	ch	74	5320	0x4095	0x0A65	0	41	目標是{expansion glyph 7}天陽之{expansion glyph 9}{expansion glyph 8}……解開燈塔的機關前進吧。
+menumap_guide00.bin	ch	75	6100	0x4045	0x0A8F	0	33	要用光輝號衝進空中要塞巴哈姆特{expansion glyph 10}！
+menumap_guide00.bin	ch	76	6150	0x4096	0x0AB1	0	51	就在巴哈姆特的中{expansion glyph 11}地帶讓裴因的野心和這場戰爭終結吧！
+menumap_guide00.bin	cn	0	0	0x402D	0x0000	0	33	要是没在签署{expansion glyph 0}式结束前救出{expansion glyph 1}下……！
+menumap_guide00.bin	cn	1	22	0x4069	0x0022	0	27	巴修将军在签署{expansion glyph 0}式的会场……！
+menumap_guide00.bin	cn	2	25	0x406A	0x003E	0	35	今天状态不错呢……剩下的也{expansion glyph 2}紧解决吧！
+menumap_guide00.bin	cn	3	35	0x402E	0x0062	0	35	有什么事吗？去密捷罗先生的道具店看看吧。
+menumap_guide00.bin	cn	4	45	0x406B	0x0086	0	29	凯兹那家伙会不会还在沙海亭啊？
+menumap_guide00.bin	cn	5	62	0x406C	0x00A4	0	27	现在都要从东门出去城镇……对吧。
+menumap_guide00.bin	cn	6	68	0x402F	0x00C0	0	31	{expansion glyph 3}赏怪物应该在东达玛斯卡沙漠那里。
+menumap_guide00.bin	cn	7	78	0x406D	0x00E0	0	37	{expansion glyph 3}赏怪物讨伐完毕！好了，回拉巴纳斯塔吧。
+menumap_guide00.bin	cn	8	105	0x4030	0x0106	0	32	闹区的达朗爷爷应该会知道些什么吧……
+menumap_guide00.bin	cn	9	110	0x4031	0x0127	0	27	在居札草原的聚落{expansion glyph 4}{expansion glyph 4}看好了。
+menumap_guide00.bin	cn	10	130	0x4032	0x0143	0	29	叫金恩的孩子好像在聚落南边吧。
+menumap_guide00.bin	cn	11	145	0x406E	0x0161	0	39	关于发光的黑水晶，可以将能源储存于阴石吧。
+menumap_guide00.bin	cn	12	160	0x406F	0x0189	0	30	让达朗爷爷看太阳石，他会很吃惊吗？
+menumap_guide00.bin	cn	13	175	0x4033	0x01A8	0	24	要先从５号仓库下去水路呢。
+menumap_guide00.bin	cn	14	180	0x4070	0x01C1	0	52	拉巴纳斯塔底下的加蓝赛兹水路……听说可以从那里进入王宫？
+menumap_guide00.bin	cn	15	200	0x4071	0x01F6	0	26	一定要找到宝物库的暗门喔……！
+menumap_guide00.bin	cn	16	215	0x4072	0x0211	0	38	怎么闹哄哄的……？先不管这个，快点离开这里吧！
+menumap_guide00.bin	cn	17	230	0x4034	0x0238	0	18	总之得先脱离水路……
+menumap_guide00.bin	cn	18	265	0x4073	0x024B	0	23	看来已经靠近了水路出口。
+menumap_guide00.bin	cn	19	302	0x4074	0x0263	0	32	那尔比纳的牢房？事情变得很严重呢……
+menumap_guide00.bin	cn	20	316	0x4075	0x0284	0	26	……现在的首要之务是上去地面。
+menumap_guide00.bin	cn	21	323	0x4035	0x029F	0	35	只要打倒吸附住配线的模仿怪就好了吧。
+menumap_guide00.bin	cn	22	343	0x4036	0x02C3	0	34	潘妮萝应该会担心，回去拉巴纳斯塔吧。
+menumap_guide00.bin	cn	23	350	0x4037	0x02E6	0	37	潘妮萝在哪里？也得向达朗爷爷报告才行呢。
+menumap_guide00.bin	cn	24	375	0x4076	0x030C	0	52	交给一个叫阿兹拉斯的人啊……不过，为什么要给他骑士团的剑？
+menumap_guide00.bin	cn	25	390	0x4038	0x0341	0	34	巴夫雷尔他们好像在某处的店里休息呢。
+menumap_guide00.bin	cn	26	420	0x4077	0x0364	0	42	西门旁的总站吧……搭飞空艇前往空中都市卜耶巴！
+menumap_guide00.bin	cn	27	546	0x4039	0x038F	0	33	路苏魔石矿在哪里？等着我喔，潘妮萝！
+menumap_guide00.bin	cn	28	580	0x4078	0x03B1	0	33	潘妮萝应该在魔石矿深处……就快到了！
+menumap_guide00.bin	cn	29	645	0x4079	0x03D3	0	25	现在该担心潘妮萝。{expansion glyph 2}紧返回！
+menumap_guide00.bin	cn	30	680	0x407A	0x03ED	0	44	潘妮萝没事真是太好了……这次是翁德尔侯爵的府邸啊。
+menumap_guide00.bin	cn	31	710	0x407B	0x041A	0	36	只要四处放出风声就好了吧？包在我身上！
+menumap_guide00.bin	cn	32	730	0x407C	0x043F	0	27	准备好之后就去见翁德尔侯爵吧。
+menumap_guide00.bin	cn	33	920	0x403A	0x045B	0	35	那家伙是公主？还是救{expansion glyph 5}比较好，应该吧。
+menumap_guide00.bin	cn	34	970	0x407D	0x047F	0	19	潘妮萝究{expansion glyph 6}在哪里……？
+menumap_guide00.bin	cn	35	1000	0x405B	0x0493	0	41	只要去起降埠，应该就会看到逃离用的飞空艇了！
+menumap_guide00.bin	cn	36	1100	0x407E	0x04BD	0	27	再跟翁德尔侯爵见一次面看看吧。
+menumap_guide00.bin	cn	37	1210	0x403B	0x04D9	0	35	目的地在沙海的遥远西边……感觉好远啊。
+menumap_guide00.bin	cn	38	1270	0x407F	0x04FD	0	34	先往西前进，横越大沙海奥格·焉萨吧。
+menumap_guide00.bin	cn	39	1338	0x405C	0x0520	0	50	应该差不多横越大沙海的一半了吧？就这样继续往西前进吧。
+menumap_guide00.bin	cn	40	1345	0x4080	0x0553	0	24	死者山谷……瑞斯沃尔王墓啊。
+menumap_guide00.bin	cn	41	1374	0x4081	0x056C	0	39	雅雪所说的宝物好像在瑞斯沃尔王墓的深处呢。
+menumap_guide00.bin	cn	42	1380	0x4097	0x0594	0	36	{expansion glyph 7}晓之断片{expansion glyph 8}在瑞斯沃尔王墓的最深处啊。
+menumap_guide00.bin	cn	43	1390	0x4082	0x05B9	0	42	既然{expansion glyph 7}晓之断片{expansion glyph 8}已经到手，差不多该回地面啦。
+menumap_guide00.bin	cn	44	1450	0x4083	0x05E4	0	17	怎么能在这里被打倒！
+menumap_guide00.bin	cn	45	1580	0x403C	0x05F6	0	43	戈利夫族的村里似乎在比居札草原更南边的地方。
+menumap_guide00.bin	cn	46	1625	0x4084	0x0622	0	30	戈利夫族……可以{expansion glyph 4}到破魔石的事吗？
+menumap_guide00.bin	cn	47	1650	0x403D	0x0641	0	39	接下来是布尔欧密谢司啊。好像在满东边的呢。
+menumap_guide00.bin	cn	48	1740	0x4085	0x0669	0	55	维埃拉的隔绝村里，是法兰的故乡啊。去找那个叫妙琳的孩子吧。
+menumap_guide00.bin	cn	49	1760	0x4086	0x06A1	0	43	可疑的是黑涅魔石矿……是在欧兹莫内平原南方吧。
+menumap_guide00.bin	cn	50	1810	0x403E	0x06CD	0	13	妙琳……在哪里？
+menumap_guide00.bin	cn	51	1950	0x403F	0x06DB	0	39	毕{expansion glyph 6}还有拉萨的事，{expansion glyph 2}紧前往布尔欧密谢司吧。
+menumap_guide00.bin	cn	52	1982	0x4088	0x0703	0	30	神都布尔欧密谢司……好安静的城镇啊。
+menumap_guide00.bin	cn	53	2010	0x4040	0x0722	0	28	在弥利亚姆遗迹取得霸王之剑吧。
+menumap_guide00.bin	cn	54	2200	0x4089	0x073F	0	26	霸王之剑……雅雪会怎么使用呢。
+menumap_guide00.bin	cn	55	2250	0x408A	0x075A	0	36	布尔欧密谢司的方位有烟飘来……{expansion glyph 2}紧返回！
+menumap_guide00.bin	cn	56	3050	0x405D	0x077F	0	43	穿越那尔比纳北方的莫斯佛拉山地与萨利卡树林吧。
+menumap_guide00.bin	cn	57	3070	0x405E	0x07AB	0	50	终于要踏上帝国领土了啊……帝都阿凯迪斯好像在东北方向。
+menumap_guide00.bin	cn	58	3100	0x408B	0x07DE	0	43	继续往东北前进似乎比较好……但帝都还远得很啊。
+menumap_guide00.bin	cn	59	3150	0x405F	0x080A	0	41	只要突破索亨地下宫殿，就成功潜入阿凯迪斯了！
+menumap_guide00.bin	cn	60	3210	0x408C	0x0834	0	43	这次要穿过旧城区往{expansion glyph 7}上{expansion glyph 8}走……没办法轻松抵达啊。
+menumap_guide00.bin	cn	61	3250	0x4042	0x0860	0	32	 必须找出潜入卓克罗尔研究所的方法。
+menumap_guide00.bin	cn	62	3255	0x408D	0x0881	0	34	要收集白叶章啊……好，到处{expansion glyph 4}话看看吧。
+menumap_guide00.bin	cn	63	3260	0x408E	0x08A4	0	20	好，前往卓克罗尔研究所！
+menumap_guide00.bin	cn	64	3350	0x408F	0x08B9	0	32	卓克罗尔研究所……状况好像怪怪的喔……
+menumap_guide00.bin	cn	65	3400	0x4090	0x08DA	0	29	希德博士是在研究所的上面楼层吗？
+menumap_guide00.bin	cn	66	4100	0x4043	0x08F8	0	49	基鲁菲冈啊……总之就调查葛尔摩大森林深处的幻妖森林吧。
+menumap_guide00.bin	cn	67	4160	0x4060	0x092A	0	44	穿过浓雾往幻妖森林南边前进……但没那么容易通过。
+menumap_guide00.bin	cn	68	4250	0x4091	0x0957	0	36	古代都市基鲁菲冈……究{expansion glyph 6}是谁造出来的！？
+menumap_guide00.bin	cn	69	4370	0x4092	0x097C	0	43	真不可思议的地方……要找到正确的路，别被迷惑了。
+menumap_guide00.bin	cn	70	5000	0x4054	0x09A8	0	28	回巴冯海姆跟雷达斯商量看看吧。
+menumap_guide00.bin	cn	71	5150	0x4044	0x09C5	0	35	如果是光辉号应该能飞到黎铎亚纳大瀑布。
+menumap_guide00.bin	cn	72	5200	0x4093	0x09E9	0	24	马上就到黎铎亚纳大灯塔了！
+menumap_guide00.bin	cn	73	5303	0x4094	0x0A02	0	39	黎铎亚纳大灯塔……要去灯塔，往上走就好了吧？
+menumap_guide00.bin	cn	74	5320	0x4095	0x0A2A	0	41	目标是{expansion glyph 7}天阳之{expansion glyph 9}{expansion glyph 8}……解开灯塔的机关前进吧。
+menumap_guide00.bin	cn	75	6100	0x4045	0x0A54	0	33	要用光辉号冲进空中要塞巴哈姆特{expansion glyph 10}！
+menumap_guide00.bin	cn	76	6150	0x4096	0x0A76	0	50	就在巴哈姆特的中{expansion glyph 11}地带让裴因的野心和这场战争终结吧！
+menumap_guide00.bin	de	0	0	0x402D	0x0000	0	56	Seine Majestät braucht Hilfe ... vor Ende der Zeremonie!
+menumap_guide00.bin	de	1	22	0x4069	0x0039	0	38	Hauptmann Basch ist im Zeremoniensaal!
+menumap_guide00.bin	de	2	25	0x406A	0x0060	0	48	Das läuft doch wie geschmiert. Weiter aufräumen!
+menumap_guide00.bin	de	3	35	0x402E	0x0091	0	44	"Was er wohl will? Auf zu ""Migelos Allerlei""!"
+menumap_guide00.bin	de	4	45	0x406B	0x00BE	0	45	Kytes könnte sich noch im Sandmeer aufhalten.
+menumap_guide00.bin	de	5	62	0x406C	0x00EC	0	54	Der einzige Weg aus der Stadt ist momentan das Osttor.
+menumap_guide00.bin	de	6	68	0x402F	0x0123	0	53	Streunertomate muss irgendwo in der Ostwüste stecken.
+menumap_guide00.bin	de	7	78	0x406D	0x0159	0	53	Die Mob-Jagd war erfolgreich. Zurück nach Rabanastre!
+menumap_guide00.bin	de	8	105	0x4030	0x018F	0	43	Dalan in der Unterstadt weiß sicher Rat ...
+menumap_guide00.bin	de	9	110	0x4031	0x01BB	0	43	Warum nicht zur Siedlung in der Giza-Ebene?
+menumap_guide00.bin	de	10	130	0x4032	0x01E7	0	37	Jin befindet sich im Süden der Ebene.
+menumap_guide00.bin	de	11	145	0x406E	0x020D	0	46	Den Schattenstein an den Obsidianten aufladen.
+menumap_guide00.bin	de	12	160	0x406F	0x023C	0	39	Dem alten Dalan den Sonnenstein zeigen.
+menumap_guide00.bin	de	13	175	0x4033	0x0264	0	47	Erst mal die Treppe am Speicher Nr. 5 hinunter.
+menumap_guide00.bin	de	14	180	0x4070	0x0294	0	64	Die Garamseys-Kanalisation unter Rabanastre führt in den Palast.
+menumap_guide00.bin	de	15	200	0x4071	0x02D5	0	38	Die Geheimtür zur Schatzkammer finden.
+menumap_guide00.bin	de	16	215	0x4072	0x02FC	0	24	Flucht heißt die Devise!
+menumap_guide00.bin	de	17	230	0x4034	0x0315	0	41	Einen Weg aus der Kanalisation finden ...
+menumap_guide00.bin	de	18	265	0x4073	0x033F	0	49	Der Ausgang der Kanalisation scheint nah zu sein.
+menumap_guide00.bin	de	19	302	0x4074	0x0371	0	45	Die Nalbina-Festung ... Ein gefahrvoller Ort.
+menumap_guide00.bin	de	20	316	0x4075	0x039F	0	50	Die Rückkehr zur Oberfläche hat höchste Priorität.
+menumap_guide00.bin	de	21	323	0x4035	0x03D2	0	38	Die Mimiks an den Leitungen erledigen!
+menumap_guide00.bin	de	22	343	0x4036	0x03F9	0	49	Penelo sorgt sich sicher. Zurück nach Rabanastre!
+menumap_guide00.bin	de	23	350	0x4037	0x042B	0	68	Ob Penelo bei Migelo ist? Sie und Dalan müssen die Trophäe sehen ...
+menumap_guide00.bin	de	24	375	0x4076	0x0470	0	45	Einem Mann namens Azelas das Schwert bringen.
+menumap_guide00.bin	de	25	390	0x4038	0x049E	0	49	Balthier und Fran stecken irgendwo in Rabanastre.
+menumap_guide00.bin	de	26	420	0x4077	0x04D0	0	53	Vom Terminal am Westtor per Luftschiff nach Bhujerba.
+menumap_guide00.bin	de	27	546	0x4039	0x0506	0	43	Wo sind die Lhusu-Minen? Penelo, harre aus!
+menumap_guide00.bin	de	28	580	0x4078	0x0532	0	54	Irgendwo in den Lhusu-Minen muss sich Penelo befinden!
+menumap_guide00.bin	de	29	645	0x4079	0x0569	0	40	Penelo schwebt in Gefahr! Zurück zu ihr!
+menumap_guide00.bin	de	30	680	0x407A	0x0592	0	61	Penelo ist gerettet. Marquis Ondore wartet in seinem Anwesen.
+menumap_guide00.bin	de	31	710	0x407B	0x05D0	0	40	Ein paar Gerüchte streuen? Kein Problem!
+menumap_guide00.bin	de	32	730	0x407C	0x05F9	0	44	Vorbereitungen treffen und dann zum Marquis.
+menumap_guide00.bin	de	33	920	0x403A	0x0626	0	58	Die ist Prinzessin? Dann vielleicht doch besser retten ...
+menumap_guide00.bin	de	34	970	0x407D	0x0661	0	27	Wo mag Penelo bloß stecken?
+menumap_guide00.bin	de	35	1000	0x405B	0x067D	0	48	Im Andockhafen sollte es ein Fluchtschiff geben!
+menumap_guide00.bin	de	36	1100	0x407E	0x06AE	0	46	Ein weiteres Treffen mit dem Marquis steht an.
+menumap_guide00.bin	de	37	1210	0x403B	0x06DD	0	54	Das Ziel liegt westlich der Sandsee. Verdammt weit ...
+menumap_guide00.bin	de	38	1270	0x407F	0x0714	0	40	Gen Westen durch die Ogir-Yensa-Sandsee.
+menumap_guide00.bin	de	39	1338	0x405C	0x073D	0	53	Die Hälfte des Weges geschafft! Weiter gen Westen ...
+menumap_guide00.bin	de	40	1345	0x4080	0x0773	0	45	Zu Raithwalls Grabstätte im Tal der Toten ...
+menumap_guide00.bin	de	41	1374	0x4081	0x07A1	0	41	Der Schatz befindet sich tief im Grab ...
+menumap_guide00.bin	de	42	1380	0x4097	0x07CB	0	65	Der Morgen-Splitter schlummert tief in der Grabstätte Raithwalls!
+menumap_guide00.bin	de	43	1390	0x4082	0x080D	0	56	Der Morgen-Splitter ist sichergestellt. Ab nach draußen!
+menumap_guide00.bin	de	44	1450	0x4083	0x0846	0	37	Jetzt bloß nicht unterkriegen lassen!
+menumap_guide00.bin	de	45	1580	0x403C	0x086C	0	56	Die Heimat der Garif soll südlich der Giza-Ebene liegen.
+menumap_guide00.bin	de	46	1625	0x4084	0x08A5	0	49	Die Garif könnten etwas über den Nethizit wissen.
+menumap_guide00.bin	de	47	1650	0x403D	0x08D7	0	56	Als Nächstes nach Bur-Omisace, weit in östliche Gefilde.
+menumap_guide00.bin	de	48	1740	0x4085	0x0910	0	47	In Frans Heimat lebt eine Viera namens Mjrn ...
+menumap_guide00.bin	de	49	1760	0x4086	0x0940	0	48	Zu den Henna-Minen im Süden der Ozmone-Ebene ...
+menumap_guide00.bin	de	50	1810	0x403E	0x0971	0	28	Mjrn ... Wo steckt sie bloß?
+menumap_guide00.bin	de	51	1950	0x403F	0x098E	0	41	Auf nach Bur-Omisace, Larsas Gesuch eilt!
+menumap_guide00.bin	de	52	1982	0x4088	0x09B8	0	41	Bur-Omisace ist ein Hort des Friedens ...
+menumap_guide00.bin	de	53	2010	0x4040	0x09E2	0	65	In den Stillschrein von Miriam, das Schwert der Könige zu finden!
+menumap_guide00.bin	de	54	2200	0x4089	0x0A24	0	45	Was wird Ashe mit dem Schwert der Könige tun?
+menumap_guide00.bin	de	55	2250	0x408A	0x0A52	0	51	Rauchschwaden über Bur-Omisace ... Schnell, zurück!
+menumap_guide00.bin	de	56	3050	0x405D	0x0A86	0	50	Über die Mosphora-Berge und durch den Salika-Wald!
+menumap_guide00.bin	de	57	3070	0x405E	0x0AB9	0	53	Endlich imperialer Boden! Archadis liegt nordöstlich.
+menumap_guide00.bin	de	58	3100	0x408B	0x0AEF	0	36	Weit im Nordosten liegt Archadis ...
+menumap_guide00.bin	de	59	3150	0x405F	0x0B14	0	43	Durch den Sohen-Höhlenpalast nach Archadis!
+menumap_guide00.bin	de	60	3210	0x408C	0x0B40	0	60	Ein gesellschaftlicher Aufstieg. Leichter gesagt, als getan.
+menumap_guide00.bin	de	61	3250	0x4042	0x0B7D	0	48	Einen Weg in das Draklor-Laboratorium finden ...
+menumap_guide00.bin	de	62	3255	0x408D	0x0BAE	0	34	Es gilt, Weißknospen zu finden ...
+menumap_guide00.bin	de	63	3260	0x408E	0x0BD1	0	29	Auf zum Draklor-Laboratorium!
+menumap_guide00.bin	de	64	3350	0x408F	0x0BEF	0	34	Irgendetwas stimmt nicht im Labor!
+menumap_guide00.bin	de	65	3400	0x4090	0x0C12	0	58	Doktor Cid befindet sich vermutlich in der obersten Ebene.
+menumap_guide00.bin	de	66	4100	0x4043	0x0C4D	0	65	Den Verwunschenen Wald durchsuchen. Auf zum Golmore-Dschungel ...
+menumap_guide00.bin	de	67	4160	0x4060	0x0C8F	0	47	Durch die Nebel gen Süden. Verborgene Pfade ...
+menumap_guide00.bin	de	68	4250	0x4091	0x0CBF	0	49	Das Antike Giruvegan ... Wer mag es erbaut haben?
+menumap_guide00.bin	de	69	4370	0x4092	0x0CF1	0	45	Welch seltsamer Ort ... Bloß nicht verlaufen.
+menumap_guide00.bin	de	70	5000	0x4054	0x0D1F	0	52	Zurück nach Balfonheim, um Rat mit Reddas zu halten.
+menumap_guide00.bin	de	71	5150	0x4044	0x0D54	0	70	Mit der {0F 20 81 94}Strahl{0F 20 81 80} sollte der Ridorana-Katarakt zu erreichen sein.
+menumap_guide00.bin	de	72	5200	0x4093	0x0D9B	0	44	Das Ridorana-Richtfeuer ist zum Greifen nah!
+menumap_guide00.bin	de	73	5303	0x4094	0x0DC8	0	52	Das Wichtigste an einem Leuchtturm ist seine Spitze.
+menumap_guide00.bin	de	74	5320	0x4095	0x0DFD	0	58	Vorbei an den Rätseln des Richtfeuers zum Sonnen-Gespinst.
+menumap_guide00.bin	de	75	6100	0x4045	0x0E38	0	53	Mit der {0F 20 81 94}Strahl{0F 20 81 80} zur Luftfeste {0F 20 81 94}Bahamut{0F 20 81 80}!
+menumap_guide00.bin	de	76	6150	0x4096	0x0E6E	0	47	Vayne im Zentrum der Luftfeste Bahamut stellen!
+menumap_guide00.bin	es	0	0	0x402D	0x0000	0	56	¡Hay que encontrar al Rey antes de que firme el tratado!
+menumap_guide00.bin	es	1	22	0x4069	0x0039	0	37	¡El Capitán debe llegar hasta el Rey!
+menumap_guide00.bin	es	2	25	0x406A	0x005F	0	39	Hoy no me para nadie. ¡Manos a la obra!
+menumap_guide00.bin	es	3	35	0x402E	0x0087	0	49	¿Qué querrá Migelo? Mejor ir a verle a la tienda.
+menumap_guide00.bin	es	4	45	0x406B	0x00B9	0	28	¿Seguirá Kytes por el Oasis?
+menumap_guide00.bin	es	5	62	0x406C	0x00D6	0	64	Ahora mismo solo se puede salir de la ciudad por la Puerta Este.
+menumap_guide00.bin	es	6	68	0x402F	0x0117	0	53	Esta escoria estará por el Desierto de Dalmasca Este.
+menumap_guide00.bin	es	7	78	0x406D	0x014D	0	54	¡La escoria es historia! Hora de regresar a Rabanasta.
+menumap_guide00.bin	es	8	105	0x4030	0x0184	0	49	Quizá el Viejo Dalan del Barrio Bajo sepa algo...
+menumap_guide00.bin	es	9	110	0x4031	0x01B6	0	39	Quizá en el poblado de Giza sepan algo.
+menumap_guide00.bin	es	10	130	0x4032	0x01DE	0	46	Parece ser que Jinn está al sur del poblado...
+menumap_guide00.bin	es	11	145	0x406E	0x020D	0	76	Así que tengo que encontrar cuarzos iridiscentes para cargar la Umbricita...
+menumap_guide00.bin	es	12	160	0x406F	0x025A	0	64	Al viejo Dalan le va a dar un patatús cuando vea esta Heliocita.
+menumap_guide00.bin	es	13	175	0x4033	0x029B	0	52	Por el Depósito n.° 5 se puede ir a los Acueductos.
+menumap_guide00.bin	es	14	180	0x4070	0x02D0	0	79	Así que es posible llegar al Palacio a través de los Acueductos de Garamsais...
+menumap_guide00.bin	es	15	200	0x4071	0x0320	0	46	¡Ninguna puerta oculta me apartará del tesoro!
+menumap_guide00.bin	es	16	215	0x4072	0x034F	0	52	Hay demasiado jaleo... ¡Será mejor largarse de aquí!
+menumap_guide00.bin	es	17	230	0x4034	0x0384	0	33	Hay que salir de aquí como sea...
+menumap_guide00.bin	es	18	265	0x4073	0x03A6	0	35	La salida no puede estar muy lejos.
+menumap_guide00.bin	es	19	302	0x4074	0x03CA	0	49	¿Las mazmorras de Nalbina?... Estamos arreglados.
+menumap_guide00.bin	es	20	316	0x4075	0x03FC	0	35	Tengo que salir de aquí a la de ya.
+menumap_guide00.bin	es	21	323	0x4035	0x0420	0	64	Hay que acabar con esos mímicos que no se separan de los cables.
+menumap_guide00.bin	es	22	343	0x4036	0x0461	0	47	Penelo estará preocupada. Mejor ir a Rabanasta.
+menumap_guide00.bin	es	23	350	0x4037	0x0491	0	48	¿Y Penelo?... Pero antes, debo informar a Dalan.
+menumap_guide00.bin	es	24	375	0x4076	0x04C2	0	61	¿Para qué querrá ese tal Azelas una espada de la vieja Orden?
+menumap_guide00.bin	es	25	390	0x4038	0x0500	0	37	Balthier estará tomando algo por ahí.
+menumap_guide00.bin	es	26	420	0x4077	0x0526	0	64	Directo al aeródromo de la Puerta Oeste... ¡y de ahí a Bhujerba!
+menumap_guide00.bin	es	27	546	0x4039	0x0567	0	41	¿Las Minas de Lhusu?... ¡Aguanta, Penelo!
+menumap_guide00.bin	es	28	580	0x4078	0x0591	0	59	Penelo, sé que estás en algún lugar de las minas. ¡Resiste!
+menumap_guide00.bin	es	29	645	0x4079	0x05CD	0	34	¡Debo volver y encontrar a Penelo!
+menumap_guide00.bin	es	30	680	0x407A	0x05F0	0	54	Menos mal que Penelo está bien. Ahora, a ver a Ondore.
+menumap_guide00.bin	es	31	710	0x407B	0x0627	0	54	"""Rumores"" es mi segundo apellido. ¡A soltar la lengua!"
+menumap_guide00.bin	es	32	730	0x407C	0x065E	0	58	Será mejor ir acabando aquí y hacerle una visita a Ondore.
+menumap_guide00.bin	es	33	920	0x403A	0x0699	0	52	¿Esa chica era una princesa?... Mejor ayudarla, ¿no?
+menumap_guide00.bin	es	34	970	0x407D	0x06CE	0	29	¿Dónde te has metido, Penelo?
+menumap_guide00.bin	es	35	1000	0x405B	0x06EC	0	50	¡En el muelle habrá un barco volador para escapar!
+menumap_guide00.bin	es	36	1100	0x407E	0x071F	0	40	Tendré que hacerle otra visita a Ondore.
+menumap_guide00.bin	es	37	1210	0x403B	0x0748	0	49	Hay que ir al oeste de las Arenas... Qué lejos...
+menumap_guide00.bin	es	38	1270	0x407F	0x077A	0	53	Rumbo al oeste, más allá de las Arenas de Ogul Yensa.
+menumap_guide00.bin	es	39	1338	0x405C	0x07B0	0	47	¿Estaremos a mitad de camino? Sigamos al oeste.
+menumap_guide00.bin	es	40	1345	0x4080	0x07E0	0	51	El Valle de los Muertos... La tumba de Raithwall...
+menumap_guide00.bin	es	41	1374	0x4081	0x0814	0	72	El tesoro del que habla Ashe podría estar en la Tumba del Rey Raithwall.
+menumap_guide00.bin	es	42	1380	0x4097	0x085D	0	77	Así que el Guijo del alba está en lo más profundo de la Tumba de Raithwall...
+menumap_guide00.bin	es	43	1390	0x4082	0x08AB	0	62	Ahora que tenemos el Guijo del alba, solo queda salir de aquí.
+menumap_guide00.bin	es	44	1450	0x4083	0x08EA	0	48	¡No pienso dejarme vencer en un sitio como este!
+menumap_guide00.bin	es	45	1580	0x403C	0x091B	0	51	El poblado garif está al sur de la Pradera de Giza.
+menumap_guide00.bin	es	46	1625	0x4084	0x094F	0	51	¿Sabrán decirme algo los garif sobre las neticitas?
+menumap_guide00.bin	es	47	1650	0x403D	0x0983	0	44	Y ahora, a Bur-Omisais. Está lejos, al este.
+menumap_guide00.bin	es	48	1740	0x4085	0x09B0	0	61	Así que este es el hogar de Fran... Hay que encontrar a Mjrn.
+menumap_guide00.bin	es	49	1760	0x4086	0x09EE	0	54	Rumbo a las Minas de Henne, al sur del Campo de Ozmon.
+menumap_guide00.bin	es	50	1810	0x403E	0x0A25	0	22	¿Dónde estará Mjrn?...
+menumap_guide00.bin	es	51	1950	0x403F	0x0A3C	0	57	Larsa también quiere ir a Bur-Omisais. Mejor darse prisa.
+menumap_guide00.bin	es	52	1982	0x4088	0x0A76	0	58	En el Monte Sagrado Bur-Omisais... se respira tanta paz...
+menumap_guide00.bin	es	53	2010	0x4040	0x0AB1	0	57	Hay que buscar la Espada de reyes en el Templo de Miliam.
+menumap_guide00.bin	es	54	2200	0x4089	0x0AEB	0	48	¿Qué pretende hacer Ashe con la Espada de reyes?
+menumap_guide00.bin	es	55	2250	0x408A	0x0B1C	0	56	¡Sale humo del Monte Bur-Omisais! ¡Debemos darnos prisa!
+menumap_guide00.bin	es	56	3050	0x405D	0x0B55	0	53	Hay que cruzar Salika y Mosfora, al norte de Nalbina.
+menumap_guide00.bin	es	57	3070	0x405E	0x0B8B	0	50	Ya estamos en el Imperio. Arcadis está al noreste.
+menumap_guide00.bin	es	58	3100	0x408B	0x0BBE	0	64	Arcadis está al noreste... Nos queda un buen trecho por delante.
+menumap_guide00.bin	es	59	3150	0x405F	0x0BFF	0	47	Si atravesamos Sochen, ya estaremos en Arcadis.
+menumap_guide00.bin	es	60	3210	0x408C	0x0C2F	0	96	Así que hay que atravesar el Casco Viejo de Arcadis y luego hacia arriba... Habrá que esmerarse.
+menumap_guide00.bin	es	61	3250	0x4042	0x0C90	0	51	Hay que colarse en el Laboratorio Draklor como sea.
+menumap_guide00.bin	es	62	3255	0x408D	0x0CC4	0	78	Ahora toca ponerse a recolectar Hojas blancas... Será mejor preguntar un poco.
+menumap_guide00.bin	es	63	3260	0x408E	0x0D13	0	24	¡Al Laboratorio Draklor!
+menumap_guide00.bin	es	64	3350	0x408F	0x0D2C	0	28	Aquí hay bengal encerrado...
+menumap_guide00.bin	es	65	3400	0x4090	0x0D49	0	66	Así que el doctor Cid está en el nivel superior del Laboratorio...
+menumap_guide00.bin	es	66	4100	0x4043	0x0D8C	0	58	Giruvegan... Antes habrá que explorar la Selva de Golmore.
+menumap_guide00.bin	es	67	4160	0x4060	0x0DC7	0	63	Hay que cruzar la niebla e ir al sur por el Bosque Encantado...
+menumap_guide00.bin	es	68	4250	0x4091	0x0E07	0	29	¿Quién habrá construido esto?
+menumap_guide00.bin	es	69	4370	0x4092	0x0E25	0	70	Este sitio es muy extraño... Será mejor ir con cuidado de no perderse.
+menumap_guide00.bin	es	70	5000	0x4054	0x0E6C	0	55	Mejor volver a Balfonheim para ver si Reddas sabe algo.
+menumap_guide00.bin	es	71	5150	0x4044	0x0EA4	0	65	Con el Strahl podríamos llegar hasta las Cataratas de Ridorana...
+menumap_guide00.bin	es	72	5200	0x4093	0x0EE6	0	45	¡Ya casi estamos en el Gran Faro de Ridorana!
+menumap_guide00.bin	es	73	5303	0x4094	0x0F14	0	33	La cosa está clara. ¡Para arriba!
+menumap_guide00.bin	es	74	5320	0x4095	0x0F36	0	86	Tendremos que arreglárnoslas para resolver esto si queremos llegar al Cristal del sol.
+menumap_guide00.bin	es	75	6100	0x4045	0x0F8D	0	44	¡Usaremos el Strahl para abordar al Bahamut!
+menumap_guide00.bin	es	76	6150	0x4096	0x0FBA	0	89	Los planes de Vayne y esta guerra... ¡llegarán a su fin en el corazón de {0F 20 81 94}Bahamut{0F 20 81 80}!
+menumap_guide00.bin	fr	0	0	0x402D	0x0000	0	51	Il faut sauver le Roi avant qu'il signe le traité !
+menumap_guide00.bin	fr	1	22	0x4069	0x0034	0	45	Le capitaine doit absolument trouver le roi !
+menumap_guide00.bin	fr	2	25	0x406A	0x0062	0	63	J'assure, aujourd'hui. A ce rythme, ça devrait être vite fini !
+menumap_guide00.bin	fr	3	35	0x402E	0x00A2	0	58	Je devrais aller voir ce que Migelo me veut à son magasin.
+menumap_guide00.bin	fr	4	45	0x406B	0x00DD	0	52	Je me demande si Kytes est encore à La Mer de Sable.
+menumap_guide00.bin	fr	5	62	0x406C	0x0112	0	68	Il faut passer par la porte est pour sortir de la ville, c'est ça...
+menumap_guide00.bin	fr	6	68	0x402F	0x0157	0	55	La cible du contrat doit se trouver dans le désert est.
+menumap_guide00.bin	fr	7	78	0x406D	0x018F	0	65	Adieu, Cible, bon débarras ! Retournons à Rabanastre, maintenant.
+menumap_guide00.bin	fr	8	105	0x4030	0x01D1	0	57	Je devrais demander conseil à Dalan, dans la basse-ville.
+menumap_guide00.bin	fr	9	110	0x4031	0x020B	0	51	Il faut que j'aille au village des plaines de Giza.
+menumap_guide00.bin	fr	10	130	0x4032	0x023F	0	55	Si j'ai bien compris, Jinn doit être au sud du village.
+menumap_guide00.bin	fr	11	145	0x406E	0x0277	0	94	Je dois faire le tour des cristaux noirs pour que la Pierre de l'Eclipse absorbe leur énergie.
+menumap_guide00.bin	fr	12	160	0x406F	0x02D6	0	65	Dalan va en faire une tête quand il verra ces Pierres du Soleil !
+menumap_guide00.bin	fr	13	175	0x4033	0x0318	0	59	Il faut que j'aille au hangar n°5 pour accéder aux égouts.
+menumap_guide00.bin	fr	14	180	0x4070	0x0354	0	82	On peut entrer dans le palais par les égouts de Garamsythe au sous-sol, c'est ça ?
+menumap_guide00.bin	fr	15	200	0x4071	0x03A7	0	59	Je finirai bien par trouver la porte qui mène aux trésors !
+menumap_guide00.bin	fr	16	215	0x4072	0x03E3	0	70	Qu'est-ce que c'est que tout ce remue-ménage ? Mieux vaut s'éloigner !
+menumap_guide00.bin	fr	17	230	0x4034	0x042A	0	51	Il faut trouver un moyen de sortir de ces égouts...
+menumap_guide00.bin	fr	18	265	0x4073	0x045E	0	35	On dirait que la sortie est proche.
+menumap_guide00.bin	fr	19	302	0x4074	0x0482	0	39	Le cachot de Nalbina ? Me voilà bien...
+menumap_guide00.bin	fr	20	316	0x4075	0x04AA	0	39	Commençons déjà par chercher la sortie.
+menumap_guide00.bin	fr	21	323	0x4035	0x04D2	0	56	Eliminons les mimics avant qu'ils absorbent le courant !
+menumap_guide00.bin	fr	22	343	0x4036	0x050B	0	52	Penelo doit s'inquiéter. Rentrons vite à Rabanastre.
+menumap_guide00.bin	fr	23	350	0x4037	0x0540	0	58	J'ai hâte de montrer à Penelo et Dalan ce que j'ai trouvé.
+menumap_guide00.bin	fr	24	375	0x4076	0x057B	0	94	Je dois apporter ça à un certain Azelas. Mais que va-t-il faire d'une épée de l'Ordre Ancien ?
+menumap_guide00.bin	fr	25	390	0x4038	0x05DA	0	62	Si j'étais un pirate du ciel fatigué et assoiffé, j'irais où ?
+menumap_guide00.bin	fr	26	420	0x4077	0x0619	0	66	L'aérogare est du côté de la porte ouest. En route pour Bhujerba !
+menumap_guide00.bin	fr	27	546	0x4039	0x065C	0	54	En route vers les mines de Lhusu... J'arrive, Penelo !
+menumap_guide00.bin	fr	28	580	0x4078	0x0693	0	73	Penelo doit se trouver quelque part au fond des mines. Encore un effort !
+menumap_guide00.bin	fr	29	645	0x4079	0x06DD	0	64	Je m'inquiète pour Penelo. Je dois revenir en arrière, et vite !
+menumap_guide00.bin	fr	30	680	0x407A	0x071E	0	73	Heureusement, Penelo n'a rien. Maintenant, allons voir le marquis Ondore.
+menumap_guide00.bin	fr	31	710	0x407B	0x0768	0	83	Il suffit de répandre des rumeurs à droite et à gauche, c'est ça ? Je m'en charge !
+menumap_guide00.bin	fr	32	730	0x407C	0x07BC	0	48	Finissons les préparatifs et allons voir Ondore.
+menumap_guide00.bin	fr	33	920	0x403A	0x07ED	0	60	Si c'est bien elle la Princesse, je ferais mieux de l'aider.
+menumap_guide00.bin	fr	34	970	0x407D	0x082A	0	34	Mais où peut bien être Penelo... ?
+menumap_guide00.bin	fr	35	1000	0x405B	0x084D	0	59	Retournons à l'aire d'envol et échappons-nous en vaisseau !
+menumap_guide00.bin	fr	36	1100	0x407E	0x0889	0	34	Retournons voir le marquis Ondore.
+menumap_guide00.bin	fr	37	1210	0x403B	0x08AC	0	57	L'ouest de la mer de sable... C'est pas la porte à côté !
+menumap_guide00.bin	fr	38	1270	0x407F	0x08E6	0	59	Direction l'ouest, au-delà de la mer de sable d'Ogir-Yensa.
+menumap_guide00.bin	fr	39	1338	0x405C	0x0922	0	67	On a franchi la moitié de la mer de sable. Continuons vers l'ouest.
+menumap_guide00.bin	fr	40	1345	0x4080	0x0966	0	47	La vallée des morts... le tombeau de Raithwall.
+menumap_guide00.bin	fr	41	1374	0x4081	0x0996	0	72	Le trésor dont parlait Ashe semble être au fond du tombeau de Raithwall.
+menumap_guide00.bin	fr	42	1380	0x4097	0x09DF	0	67	L'Eclat de l'Aube se trouve tout au fond du Tombeau de Raithwall...
+menumap_guide00.bin	fr	43	1390	0x4082	0x0A23	0	69	Maintenant que nous avons l'Eclat de l'Aube, retournons à la surface.
+menumap_guide00.bin	fr	44	1450	0x4083	0x0A69	0	47	Pas question de mourir dans un endroit pareil !
+menumap_guide00.bin	fr	45	1580	0x403C	0x0A99	0	53	Le village des garifs est au sud des plaines de Giza.
+menumap_guide00.bin	fr	46	1625	0x4084	0x0ACF	0	73	Je me demande si les garifs savent quelque chose au sujet des nihilithes.
+menumap_guide00.bin	fr	47	1650	0x403D	0x0B19	0	51	Bur-Omisace doit se trouver tout à l'est du Kerwon.
+menumap_guide00.bin	fr	48	1740	0x4085	0x0B4D	0	67	Ce village est donc celui de Fran.... Cherchons cette fameuse Mjrn.
+menumap_guide00.bin	fr	49	1760	0x4086	0x0B91	0	75	Les mines de Henne, donc... Elles se trouvent au sud de la plaine d'Ozmone.
+menumap_guide00.bin	fr	50	1810	0x403E	0x0BDD	0	29	Bon, où se cache cette Mjrn ?
+menumap_guide00.bin	fr	51	1950	0x403F	0x0BFB	0	58	Larsa et Ashe doivent aller à Bur-Omisace. Dépêchons-nous.
+menumap_guide00.bin	fr	52	1982	0x4088	0x0C36	0	63	En tout cas, le sanctuaire de Bur-Omisace est calme, c'est sûr.
+menumap_guide00.bin	fr	53	2010	0x4040	0x0C76	0	53	L'Epée des Rois nous attend dans le temple de Miliam.
+menumap_guide00.bin	fr	54	2200	0x4089	0x0CAC	0	59	Je me demande ce qu'Ashe compte faire de l'Epée des Rois...
+menumap_guide00.bin	fr	55	2250	0x408A	0x0CE8	0	51	Il y a de la fumée du côté de Bur-Omisace... Vite !
+menumap_guide00.bin	fr	56	3050	0x405D	0x0D1C	0	65	Direction Nalbina, puis le col du Mosphore et la forêt de Salika.
+menumap_guide00.bin	fr	57	3070	0x405E	0x0D5E	0	59	Alors c'est ça, l'empire... Archadès doit être au nord-est.
+menumap_guide00.bin	fr	58	3100	0x408B	0x0D9A	0	59	Continuons vers le nord-est. La capitale est encore loin...
+menumap_guide00.bin	fr	59	3150	0x405F	0x0DD6	0	62	Plus que le palais de Sohen à franchir, et on sera à Archadès.
+menumap_guide00.bin	fr	60	3210	0x408C	0x0E15	0	73	Traversons la vieille Archadès et continuons vers le haut. Pas évident...
+menumap_guide00.bin	fr	61	3250	0x4042	0x0E5F	0	62	Il faut trouver un moyen d'entrer dans le laboratoire Draklor.
+menumap_guide00.bin	fr	62	3255	0x408D	0x0E9E	0	89	Alors il suffit de trouver des feuilles blanches ? Je vais essayer d'interroger des gens.
+menumap_guide00.bin	fr	63	3260	0x408E	0x0EF8	0	38	En route pour le laboratoire Draklor !
+menumap_guide00.bin	fr	64	3350	0x408F	0x0F1F	0	54	Il y a quelque chose qui cloche dans ce laboratoire...
+menumap_guide00.bin	fr	65	3400	0x4090	0x0F56	0	45	Le docteur se trouve en haut du laboratoire ?
+menumap_guide00.bin	fr	66	4100	0x4043	0x0F84	0	51	Gilvégane... Le bois des charmes est censé y mener.
+menumap_guide00.bin	fr	67	4160	0x4060	0x0FB8	0	53	Il faut trouver une issue au sud du bois des charmes.
+menumap_guide00.bin	fr	68	4250	0x4091	0x0FEE	0	38	Qui a bien pu construire cet endroit ?
+menumap_guide00.bin	fr	69	4370	0x4092	0x1015	0	55	Quel drôle d'endroit... Essayons de ne pas nous égarer.
+menumap_guide00.bin	fr	70	5000	0x4054	0x104D	0	32	Allons voir Reddas à Balfonheim.
+menumap_guide00.bin	fr	71	5150	0x4044	0x106E	0	57	Le Sillage doit pouvoir voler jusqu'au phare de Ridorana.
+menumap_guide00.bin	fr	72	5200	0x4093	0x10A8	0	50	Nous sommes presque arrivés au phare de Ridorana !
+menumap_guide00.bin	fr	73	5303	0x4094	0x10DB	0	62	Dans un phare, une seule option possible : aller vers le haut.
+menumap_guide00.bin	fr	74	5320	0x4095	0x111A	0	80	Nous devons trouver le Criste-solaire... Essayons de comprendre comment avancer.
+menumap_guide00.bin	fr	75	6100	0x4045	0x116B	0	48	Nous allons aborder le Bahamut avec le Sillage !
+menumap_guide00.bin	fr	76	6150	0x4096	0x119C	0	103	Nous devons mettre un terme aux ambitions de Vayne et à ce conflit ! En route pour le cœur du Bahamut !
+menumap_guide00.bin	in	0	0	0x402D	0x0000	0	33	調印式が終わる前に{expansion glyph 0}下をお救いしなければ……！
+menumap_guide00.bin	in	1	22	0x4069	0x0022	0	24	バッシュ{expansion glyph 1}軍は調印式の場に……！
+menumap_guide00.bin	in	2	25	0x406A	0x003B	0	34	今日は調子がいいな……残りもさっさと片付けてやる！
+menumap_guide00.bin	in	3	35	0x402E	0x005E	0	31	何の用かな？ ミゲロさんの道具屋に行ってみよう。
+menumap_guide00.bin	in	4	45	0x406B	0x007E	0	22	カイツのやつ、まだ砂海亭にいるかな？
+menumap_guide00.bin	in	5	62	0x406C	0x0095	0	31	今、街の外へ出るには東門から……だったな。
+menumap_guide00.bin	in	6	68	0x402F	0x00B5	0	26	モブは東ダルマスカ砂漠のどこかにいるはずだ。
+menumap_guide00.bin	in	7	78	0x406D	0x00D0	0	27	モブ討伐完了！ さ、ラバナスタに帰ろう。
+menumap_guide00.bin	in	8	105	0x4030	0x00EC	0	30	ダウンタウンのダラン爺なら何か知ってるよな……。
+menumap_guide00.bin	in	9	110	0x4031	0x010B	0	26	ギーザ草原の集落で{expansion glyph 2}を{expansion glyph 3}いてみるか。
+menumap_guide00.bin	in	10	130	0x4032	0x0126	0	23	ジンって子は集落の南にいるんだっけ。
+menumap_guide00.bin	in	11	145	0x406E	0x013E	0	35	光る黒水晶をめぐって、陰石にエネルギーをためるのか。
+menumap_guide00.bin	in	12	160	0x406F	0x0162	0	25	ダラン爺、太陽石を見せたら驚くかな？
+menumap_guide00.bin	in	13	175	0x4033	0x017C	0	27	まず５番倉庫から水路に{expansion glyph 4}りるんだったな。
+menumap_guide00.bin	in	14	180	0x4070	0x0198	0	40	ラバナスタ地下のガラムサイズ水路……そこから王宮へ入れるって？
+menumap_guide00.bin	in	15	200	0x4071	0x01C1	0	27	宝物庫の隠し扉、見つけてやるぞ……！
+menumap_guide00.bin	in	16	215	0x4072	0x01DD	0	35	なんだか{expansion glyph 5}がしいな……？ それより、{expansion glyph 6}くここから離れよう！
+menumap_guide00.bin	in	17	230	0x4034	0x0201	0	25	とにかく水路から抜け出さないと……。
+menumap_guide00.bin	in	18	265	0x4073	0x021B	0	27	どうやら水路の出口に近づいているみたいだ。
+menumap_guide00.bin	in	19	302	0x4074	0x0237	0	32	ナルビナの牢獄だって？ 大変なことになったな……。
+menumap_guide00.bin	in	20	316	0x4075	0x0258	0	30	……今はまず、地上に出ることだけ考えよう。
+menumap_guide00.bin	in	21	323	0x4035	0x0277	0	31	むき出た配線に吸いつくミミックを倒せばいいんだな。
+menumap_guide00.bin	in	22	343	0x4036	0x0297	0	29	パンネロが心配してそうだし、ラバナスタに帰ろう。
+menumap_guide00.bin	in	23	350	0x4037	0x02B5	0	28	パンネロはどこだ？ ダラン爺にも報告しないとな。
+menumap_guide00.bin	in	24	375	0x4076	0x02D2	0	37	アズラスって人に届けるのか……でも、なんで騎士{expansion glyph 7}の剣を？
+menumap_guide00.bin	in	25	390	0x4038	0x02F8	0	27	バルフレアたちは、どこかの店で休んでそうだな。
+menumap_guide00.bin	in	26	420	0x4077	0x0314	0	41	西門そばのターミナルだな……飛空艇で空中都市ビュエルバへ！
+menumap_guide00.bin	in	27	546	0x4039	0x033E	0	30	ルース魔石鉱ってどこだ？ 待ってろよ、パンネロ！
+menumap_guide00.bin	in	28	580	0x4078	0x035D	0	29	魔石鉱の{expansion glyph 8}にパンネロがいるはず……もうすぐだ！
+menumap_guide00.bin	in	29	645	0x4079	0x037B	0	24	今はパンネロが心配だ。急いで戻ろう！
+menumap_guide00.bin	in	30	680	0x407A	0x0394	0	42	パンネロが無事で良かった……今度はオンドール侯爵の屋{expansion glyph 9}か。
+menumap_guide00.bin	in	31	710	0x407B	0x03BF	0	26	あちこちでウワサを流せばいいんだろ？ {expansion glyph 10}せとけ！
+menumap_guide00.bin	in	32	730	0x407C	0x03DA	0	29	準備ができたらオンドール侯爵に{expansion glyph 11}いにいこう。
+menumap_guide00.bin	in	33	920	0x403A	0x03F8	0	28	あいつが王女？ 助けた方がいいよな、たぶん。
+menumap_guide00.bin	in	34	970	0x407D	0x0415	0	22	パンネロ、いったいどこにいるんだ……？
+menumap_guide00.bin	in	35	1000	0x405B	0x042C	0	35	発着ポートに行けば、脱出用の飛空艇があるはずだ！
+menumap_guide00.bin	in	36	1100	0x407E	0x0450	0	26	もう一度オンドール侯爵に{expansion glyph 11}ってみよう。
+menumap_guide00.bin	in	37	1210	0x403B	0x046B	0	30	目的地は砂海のずっと西か……遠そうだな。
+menumap_guide00.bin	in	38	1270	0x407F	0x048A	0	32	まずは西に進んで大砂海オグル・エンサを{expansion glyph 12}えよう。
+menumap_guide00.bin	in	39	1338	0x405C	0x04AB	0	36	大砂海も半分ぐらいは{expansion glyph 12}えたかな？ このまま西に進もう。
+menumap_guide00.bin	in	40	1345	0x4080	0x04D0	0	26	死者の谷……レイスウォール王墓か。
+menumap_guide00.bin	in	41	1374	0x4081	0x04EB	0	40	アーシェの言うお宝は、レイスウォール王墓の{expansion glyph 8}にあるみたいだな。
+menumap_guide00.bin	in	42	1380	0x4097	0x0514	0	34	{expansion glyph 13}暁の断片{expansion glyph 14}はレイスウォール王墓の一番{expansion glyph 8}か。
+menumap_guide00.bin	in	43	1390	0x4082	0x0537	0	37	{expansion glyph 13}暁の断片{expansion glyph 14}は手に入れたし、そろそろ地上へ戻ろう。
+menumap_guide00.bin	in	44	1450	0x4083	0x055D	0	16	こんなところで倒れてたまるか！
+menumap_guide00.bin	in	45	1580	0x403C	0x056E	0	32	ガリフ族の里って、ギーザ草原のもっと南みたいだ。
+menumap_guide00.bin	in	46	1625	0x4084	0x058F	0	27	ガリフ族……破魔石の{expansion glyph 2}を{expansion glyph 3}けるのかな？
+menumap_guide00.bin	in	47	1650	0x403D	0x05AB	0	28	次はブルオミシェイスか。かなり東の方らしいな。
+menumap_guide00.bin	in	48	1740	0x4085	0x05C8	0	38	ヴィエラの隠れ里、フランの{expansion glyph 15}{expansion glyph 16}か。ミュリンって子を探そう。
+menumap_guide00.bin	in	49	1760	0x4086	0x05EF	0	39	怪しいのはヘネ魔石鉱……オズモーネ平原の南、だったな。
+menumap_guide00.bin	in	50	1810	0x403E	0x0617	0	16	ミュリン……どこにいるんだ？
+menumap_guide00.bin	in	51	1950	0x403F	0x0628	0	32	ラーサーの用事もあるし、ブルオミシェイスに急ごう。
+menumap_guide00.bin	in	52	1982	0x4088	0x0649	0	30	神都ブルオミシェイス……なんだか静かな街だな。
+menumap_guide00.bin	in	53	2010	0x4040	0x0668	0	27	ミリアム遺跡で覇王の剣を手に入れよう。
+menumap_guide00.bin	in	54	2200	0x4089	0x0684	0	27	覇王の剣……アーシェはどう使うんだろ。
+menumap_guide00.bin	in	55	2250	0x408A	0x06A0	0	31	ブルオミシェイスの方角から煙が……急いで戻ろう！
+menumap_guide00.bin	in	56	3050	0x405D	0x06C0	0	37	ナルビナの北にあるモスフォーラ山地とサリカ樹林を{expansion glyph 12}えよう。
+menumap_guide00.bin	in	57	3070	0x405E	0x06E6	0	42	いよいよ帝国の{expansion glyph 17}土か……帝都アルケイディスは北東の方らしい。
+menumap_guide00.bin	in	58	3100	0x408B	0x0711	0	39	このまま北東へ進めばいいらしいけど……帝都はまだまだ遠いな。
+menumap_guide00.bin	in	59	3150	0x405F	0x0739	0	41	ソーヘン地下宮殿を突破すれば、アルケイディスに{expansion glyph 18}入成功だ！
+menumap_guide00.bin	in	60	3210	0x408C	0x0763	0	49	今度は旧市街を抜けて{expansion glyph 13}上{expansion glyph 14}を目指すのか……一{expansion glyph 19}{expansion glyph 20}じゃいかないな。
+menumap_guide00.bin	in	61	3250	0x4042	0x0795	0	31	ドラクロア研究所に忍び込む方法を探さなきゃ。
+menumap_guide00.bin	in	62	3255	0x408D	0x07B5	0	43	ホワイトリーフってのを集めるのか……よし、あちこちで{expansion glyph 2}を{expansion glyph 3}いてみよう。
+menumap_guide00.bin	in	63	3260	0x408E	0x07E1	0	17	さあ、ドラクロア研究所へ！
+menumap_guide00.bin	in	64	3350	0x408F	0x07F3	0	33	ドラクロア研究所……なんだか様子がおかしいぞ……
+menumap_guide00.bin	in	65	3400	0x4090	0x0815	0	29	ドクター・シドがいるのは研究所の上層階か？
+menumap_guide00.bin	in	66	4100	0x4043	0x0833	0	45	ギルヴェガンか……とにかくゴルモア大森林の{expansion glyph 8}、幻妖の森を調べよう。
+menumap_guide00.bin	in	67	4160	0x4060	0x0861	0	42	霧を抜けて幻妖の森を南へ進もう……ただでは通れそうにないけど。
+menumap_guide00.bin	in	68	4250	0x4091	0x088C	0	33	古代都市ギルヴェガン……いったい誰が造ったんだ！？
+menumap_guide00.bin	in	69	4370	0x4092	0x08AE	0	40	不思{expansion glyph 21}な場所だ……惑わされないよう、正しい道をたどろう。
+menumap_guide00.bin	in	70	5000	0x4054	0x08D7	0	29	バーフォンハイムに戻ってレダスと相{expansion glyph 22}してみよう。
+menumap_guide00.bin	in	71	5150	0x4044	0x08F5	0	31	シュトラールならリドルアナ大瀑布まで飛べるはずだ。
+menumap_guide00.bin	in	72	5200	0x4093	0x0915	0	20	リドルアナ大灯台まではもうすぐだ！
+menumap_guide00.bin	in	73	5303	0x4094	0x092A	0	39	リドルアナ大灯台……灯台なら、上を目指せばいいんだよな？
+menumap_guide00.bin	in	74	5320	0x4095	0x0952	0	40	目指すは{expansion glyph 13}天陽の繭{expansion glyph 14}……灯台のしかけを解いて進もう。
+menumap_guide00.bin	in	75	6100	0x4045	0x097B	0	31	シュトラールで空中要塞バハムートに突っ込むぞ！
+menumap_guide00.bin	in	76	6150	0x4096	0x099B	0	40	バハムートの心{expansion glyph 23}部でヴェインの野望を、この戦いを終わらせよう！
+menumap_guide00.bin	it	0	0	0x402D	0x0000	0	51	Devo raggiungere il Re prima che firmi il trattato!
+menumap_guide00.bin	it	1	22	0x4069	0x0034	0	41	Il capitano Basch deve raggiungere il re!
+menumap_guide00.bin	it	2	25	0x406A	0x005E	0	60	Oggi è giornata... Sistemerò tutto in quattro e quattr'otto!
+menumap_guide00.bin	it	3	35	0x402E	0x009B	0	48	Cosa vorrà Migelo? Dovrei andare al suo negozio.
+menumap_guide00.bin	it	4	45	0x406B	0x00CC	0	58	Chissà se Kytes è ancora nella Taverna del Mare di sabbia?
+menumap_guide00.bin	it	5	62	0x406C	0x0107	0	59	Ora per uscire dalla città bisogna passare dalla Porta est.
+menumap_guide00.bin	it	6	68	0x402F	0x0143	0	53	Il ricercato deve essere nel Deserto est di Dalmasca.
+menumap_guide00.bin	it	7	78	0x406D	0x0179	0	60	Il ricercato è sistemato! Ora possiamo tornare a Rabanastre.
+menumap_guide00.bin	it	8	105	0x4030	0x01B6	0	55	Forse il vecchio Dalan della Città bassa sa qualcosa...
+menumap_guide00.bin	it	9	110	0x4031	0x01EE	0	51	Meglio chiedere al villaggio della Pianura di Giza.
+menumap_guide00.bin	it	10	130	0x4032	0x0222	0	43	Jin... dovrebbe essere a sud del villaggio.
+menumap_guide00.bin	it	11	145	0x406E	0x024E	0	76	Il cristallo nero... È per quello che l'Ombralite viene caricata di energia?
+menumap_guide00.bin	it	12	160	0x406F	0x029B	0	66	Chissà che faccia farà il vecchio Dalan quando vedrà l'Eliolite...
+menumap_guide00.bin	it	13	175	0x4033	0x02DE	0	42	Posso raggiungere i canali dal Deposito 5.
+menumap_guide00.bin	it	14	180	0x4070	0x0309	0	80	Dai Canali sotterranei di Garamsythe si arriva davvero al palazzo di Rabanastre?
+menumap_guide00.bin	it	15	200	0x4071	0x035A	0	57	La sala del tesoro ha una porta segreta, e io la troverò!
+menumap_guide00.bin	it	16	215	0x4072	0x0394	0	67	C'è qualcosa di strano nell'aria. Conviene andare via, e in fretta!
+menumap_guide00.bin	it	17	230	0x4034	0x03D8	0	39	L'importante ora è uscire dai canali...
+menumap_guide00.bin	it	18	265	0x4073	0x0400	0	43	L'uscita dei canali non dev'essere lontana.
+menumap_guide00.bin	it	19	302	0x4074	0x042C	0	62	Ho capito bene? Le segrete di Nalbina? Allora si mette male...
+menumap_guide00.bin	it	20	316	0x4075	0x046B	0	40	Prima di tutto pensiamo a uscire da qui.
+menumap_guide00.bin	it	21	323	0x4035	0x0494	0	54	Bisogna eliminare i Mimik che assorbono l'elettricità.
+menumap_guide00.bin	it	22	343	0x4036	0x04CB	0	53	Penelo sarà in pensiero. Meglio tornare a Rabanastre.
+menumap_guide00.bin	it	23	350	0x4037	0x0501	0	55	Ma dov'è Penelo? E devo anche andare dal vecchio Dalan!
+menumap_guide00.bin	it	24	375	0x4076	0x0539	0	68	È da consegnare ad Azelas? Ma perché proprio una spada da cavaliere?
+menumap_guide00.bin	it	25	390	0x4038	0x057E	0	53	Dove andrei se fossi un aviopirata stanco e assetato?
+menumap_guide00.bin	it	26	420	0x4077	0x05B4	0	60	L'aerodromo della Porta ovest... E da lì si vola a Bhujerba!
+menumap_guide00.bin	it	27	546	0x4039	0x05F1	0	45	Alle miniere di Lhusu! Penelo, sto arrivando!
+menumap_guide00.bin	it	28	580	0x4078	0x061F	0	55	Penelo dev'essere in fondo alle miniere. Sto arrivando!
+menumap_guide00.bin	it	29	645	0x4079	0x0657	0	61	Penelo potrebbe essere in pericolo. Torniamo subito indietro!
+menumap_guide00.bin	it	30	680	0x407A	0x0695	0	81	Fortunatamente Penelo sta bene. Ora però bisogna andare alla residenza di Ondore.
+menumap_guide00.bin	it	31	710	0x407B	0x06E7	0	46	Bisogna spargere la voce, giusto? Ci penso io!
+menumap_guide00.bin	it	32	730	0x407C	0x0716	0	53	Terminati i preparativi, andremo dal marchese Ondore.
+menumap_guide00.bin	it	33	920	0x403A	0x074C	0	40	La Principessa? Forse è meglio aiutarla.
+menumap_guide00.bin	it	34	970	0x407D	0x0775	0	17	Penelo, dove sei?
+menumap_guide00.bin	it	35	1000	0x405B	0x0787	0	48	Allo scalo ci sarà pure un'aeronave per fuggire!
+menumap_guide00.bin	it	36	1100	0x407E	0x07B8	0	50	Proviamo di nuovo a incontrare il marchese Ondore.
+menumap_guide00.bin	it	37	1210	0x403B	0x07EB	0	49	A ovest del Mare di sabbia... Non proprio vicino.
+menumap_guide00.bin	it	38	1270	0x407F	0x081D	0	56	Cominciamo andando a ovest e attraversiamo l'Ogir Yensa!
+menumap_guide00.bin	it	39	1338	0x405C	0x0856	0	55	Dovremmo essere a metà strada. Proseguiamo verso ovest.
+menumap_guide00.bin	it	40	1345	0x4080	0x088E	0	44	La Valle dei morti... La tomba di Raithwall?
+menumap_guide00.bin	it	41	1374	0x4081	0x08BB	0	77	Il tesoro di cui parlava Ashe dev'essere nella parte più interna della tomba.
+menumap_guide00.bin	it	42	1380	0x4097	0x0909	0	85	Nelle profondità della Tomba di Raithwall... È lì che si trova il Frammento d'aurora.
+menumap_guide00.bin	it	43	1390	0x4082	0x095F	0	69	Ora che abbiamo il Frammento d'aurora possiamo tornare in superficie.
+menumap_guide00.bin	it	44	1450	0x4083	0x09A5	0	34	Questo non è il momento di cedere!
+menumap_guide00.bin	it	45	1580	0x403C	0x09C8	0	57	Il villaggio dei garif è a sud, oltre la Pianura di Giza.
+menumap_guide00.bin	it	46	1625	0x4084	0x0A02	0	46	La negalite... Bisognerebbe chiedere ai garif.
+menumap_guide00.bin	it	47	1650	0x403D	0x0A31	0	50	Bur-Omisace si trova a est. Sarà un lungo viaggio.
+menumap_guide00.bin	it	48	1740	0x4085	0x0A64	0	61	Il villaggio delle viera, e di Fran. Proviamo a cercare Mjrn.
+menumap_guide00.bin	it	49	1760	0x4086	0x0AA2	0	61	Magari nelle Miniere di Henne, a sud della Pianura di Ozmone.
+menumap_guide00.bin	it	50	1810	0x403E	0x0AE0	0	11	Dov'è Mjrn?
+menumap_guide00.bin	it	51	1950	0x403F	0x0AEC	0	52	Anche Larsa deve andare a Bur-Omisace. Sbrighiamoci!
+menumap_guide00.bin	it	52	1982	0x4088	0x0B21	0	57	Devo dire che Bur-Omisace è una città davvero tranquilla.
+menumap_guide00.bin	it	53	2010	0x4040	0x0B5B	0	48	La Spada dei re ci aspetta nel Tempio di Miriam.
+menumap_guide00.bin	it	54	2200	0x4089	0x0B8C	0	48	La Spada dei re... Chissà com'è in mano ad Ashe.
+menumap_guide00.bin	it	55	2250	0x408A	0x0BBD	0	61	Verso Bur-Omisace si sta levando del fumo. Torniamo indietro!
+menumap_guide00.bin	it	56	3050	0x405D	0x0BFB	0	62	A nord di Nalbina, oltre i Monti Mosfora e il Bosco di Salika!
+menumap_guide00.bin	it	57	3070	0x405E	0x0C3A	0	55	Eccoci nella terra dell'Impero... Archades è a nordest.
+menumap_guide00.bin	it	58	3100	0x408B	0x0C72	0	71	La direzione è giusta, verso nord-est, ma la capitale è ancora lontana.
+menumap_guide00.bin	it	59	3150	0x405F	0x0CBA	0	58	Se attraversiamo il Palazzo di Sochen, saremo ad Archades!
+menumap_guide00.bin	it	60	3210	0x408C	0x0CF5	0	67	Bisogna salire passando dalla vecchia Archades, ma non sarà facile.
+menumap_guide00.bin	it	61	3250	0x4042	0x0D39	0	61	Bisogna trovare il modo di penetrare nel Laboratorio Draklor.
+menumap_guide00.bin	it	62	3255	0x408D	0x0D77	0	79	Dobbiamo raccogliere delle Foglie bianche. Cominciamo chiedendo un po' in giro.
+menumap_guide00.bin	it	63	3260	0x408E	0x0DC7	0	31	Avanti, al Laboratorio Draklor!
+menumap_guide00.bin	it	64	3350	0x408F	0x0DE7	0	56	Il Laboratorio Draklor... C'è qualcosa che non quadra...
+menumap_guide00.bin	it	65	3400	0x4090	0x0E20	0	49	Il dottor Cid è all'ultimo piano del laboratorio?
+menumap_guide00.bin	it	66	4100	0x4043	0x0E52	0	86	Giruvegan... cominciamo dalla Foresta stregata, nel profondo della Giungla di Golmore.
+menumap_guide00.bin	it	67	4160	0x4060	0x0EA9	0	52	Andare a sud della Foresta stregata: facile a dirsi.
+menumap_guide00.bin	it	68	4250	0x4091	0x0EDE	0	54	Giruvegan... Mi piacerebbe sapere chi l'ha progettata!
+menumap_guide00.bin	it	69	4370	0x4092	0x0F15	0	61	Questo posto fa confondere. Bisogna seguire la strada giusta.
+menumap_guide00.bin	it	70	5000	0x4054	0x0F53	0	49	Meglio tornare a Balfonheim e parlare con Reddas.
+menumap_guide00.bin	it	71	5150	0x4044	0x0F85	0	60	Con la Strahl si potrebbe arrivare alle Cascate di Ridorana.
+menumap_guide00.bin	it	72	5200	0x4093	0x0FC2	0	29	Il Faro di Ridorana è vicino!
+menumap_guide00.bin	it	73	5303	0x4094	0x0FE0	0	42	Ridorana... Se è un faro, si potrà salire.
+menumap_guide00.bin	it	74	5320	0x4095	0x100B	0	68	Per arrivare al Bozzolo solare bisogna superare le insidie del faro.
+menumap_guide00.bin	it	75	6100	0x4045	0x1050	0	63	Useremo la Strahl per entrare nella Bahamut, la fortezza aerea!
+menumap_guide00.bin	it	76	6150	0x4096	0x1090	0	84	Nel cuore della Bahamut, per mettere fine alla follia di Vayne e a questa battaglia!
+menumap_guide00.bin	kr	0	0	0x402D	0x0000	0	40	조인식이 끝나기 전에 폐하를 구해야 해……!
+menumap_guide00.bin	kr	1	22	0x4069	0x0029	0	25	바슈 장군은 조인식장에……!
+menumap_guide00.bin	kr	2	25	0x406A	0x0043	0	47	오늘은 느낌이 좋군…… 나머지도 얼른 정리해 주지!
+menumap_guide00.bin	kr	3	35	0x402E	0x0073	0	47	무슨 용건이지? 미겔로 씨의 도구 상점에 가 보자.
+menumap_guide00.bin	kr	4	45	0x406B	0x00A3	0	34	카이츠 녀석, 아직 사해정에 있을까?
+menumap_guide00.bin	kr	5	62	0x406C	0x00C6	0	49	지금 도시 밖으로 나가려면 동문……으로 가라고 했지.
+menumap_guide00.bin	kr	6	68	0x402F	0x00F8	0	45	몹은 동부 달마스카 사막 어딘가에 있을 것이다.
+menumap_guide00.bin	kr	7	78	0x406D	0x0126	0	40	몹 토벌 완료! 자, 라바나스타로 돌아가자.
+menumap_guide00.bin	kr	8	105	0x4030	0x014F	0	44	다운타운의 달란 영감이라면 뭔가 알고 있겠지……
+menumap_guide00.bin	kr	9	110	0x4031	0x017C	0	40	기자 초원의 취락에서 이야기를 들어 볼까.
+menumap_guide00.bin	kr	10	130	0x4032	0x01A5	0	40	진이라는 아이는 취락 남쪽에 있다고 했지?
+menumap_guide00.bin	kr	11	145	0x406E	0x01CE	0	51	빛나는 흑수정을 둘러서 음석에 에너지를 모으는 건가.
+menumap_guide00.bin	kr	12	160	0x406F	0x0202	0	47	달란 영감에게 태양석을 보여 주면 깜짝 놀라겠지?
+menumap_guide00.bin	kr	13	175	0x4033	0x0232	0	39	우선 5번 창고를 거쳐 수로로 내려가랬지.
+menumap_guide00.bin	kr	14	180	0x4070	0x025A	0	72	라바나스타 지하의 가람사이스 수로…… 그곳을 통해 왕궁에 들어갈 수 있다고?
+menumap_guide00.bin	kr	15	200	0x4071	0x02A3	0	35	보물창고의 비밀 문을 찾고 말겠어……!
+menumap_guide00.bin	kr	16	215	0x4072	0x02C7	0	52	뭔가 소란스러운데……? 그보다 여기서 빨리 벗어나야 해!
+menumap_guide00.bin	kr	17	230	0x4034	0x02FC	0	29	일단 수로에서 빠져나가야 해……
+menumap_guide00.bin	kr	18	265	0x4073	0x031A	0	45	아무래도 수로의 출구에 접근하고 있는 것 같군.
+menumap_guide00.bin	kr	19	302	0x4074	0x0348	0	36	날비나의 감옥이라고? 이거 야단났군……
+menumap_guide00.bin	kr	20	316	0x4075	0x036D	0	44	……지금은 일단 지상으로 나가는 것만 생각하자.
+menumap_guide00.bin	kr	21	323	0x4035	0x039A	0	48	벗겨진 배선에 들러붙은 미믹을 쓰러뜨리면 되겠지.
+menumap_guide00.bin	kr	22	343	0x4036	0x03CB	0	43	페넬로가 걱정할 테니 라바나스타로 돌아가자.
+menumap_guide00.bin	kr	23	350	0x4037	0x03F7	0	52	페넬로는 어디 있지? 달란 영감에게도 보고해야 하는데.
+menumap_guide00.bin	kr	24	375	0x4076	0x042C	0	59	아젤라스라는 사람에게 전달하라고…… 그런데 {expansion glyph 0} 기사단의 검을?
+menumap_guide00.bin	kr	25	390	0x4038	0x0468	0	42	발프레아 일행은 어느 가게에서 쉬고 있겠군.
+menumap_guide00.bin	kr	26	420	0x4077	0x0493	0	60	서문 {expansion glyph 1}의 터미널이지…… 비공정으로 공중 도시 뷔에르바에 가자!
+menumap_guide00.bin	kr	27	546	0x4039	0x04D0	0	39	루스 마석광이 어디지? 기다려라, 페넬로!
+menumap_guide00.bin	kr	28	580	0x4078	0x04F8	0	45	마석광 안쪽에 페넬로가 있어…… 얼마 안 남았다!
+menumap_guide00.bin	kr	29	645	0x4079	0x0526	0	40	지금은 페넬로가 걱정이야. 어서 돌아가자!
+menumap_guide00.bin	kr	30	680	0x407A	0x054F	0	61	페넬로가 무사해서 다행이야…… 이번에는 온도어 후작의 저택인가.
+menumap_guide00.bin	kr	31	710	0x407B	0x058D	0	46	여기저기 소문을 퍼뜨리면 되는 거지? 나만 {expansion glyph 2}어!
+menumap_guide00.bin	kr	32	730	0x407C	0x05BC	0	38	준비가 되면 온도어 후작을 만나러 가자.
+menumap_guide00.bin	kr	33	920	0x403A	0x05E3	0	43	저 사람이 공주? 구하는 편이 낫겠지? 아마도?
+menumap_guide00.bin	kr	34	970	0x407D	0x060F	0	30	페넬로, 대체 어디 있는 거야……?
+menumap_guide00.bin	kr	35	1000	0x405B	0x062E	0	43	발착 포트로 가면 탈출용 비공정이 있을 거야!
+menumap_guide00.bin	kr	36	1100	0x407E	0x065A	0	29	다시 온도어 후작을 만나 보자.
+menumap_guide00.bin	kr	37	1210	0x403B	0x0678	0	35	목적지는 사해의 서쪽…… {expansion glyph 3} 멀겠는걸.
+menumap_guide00.bin	kr	38	1270	0x407F	0x069C	0	47	우선 서쪽으로 가서 대사해 오기르 옌사를 건너자.
+menumap_guide00.bin	kr	39	1338	0x405C	0x06CC	0	50	대사해를 반 정도 건{expansion glyph 4}나? 이대로 서쪽으로 가야겠군.
+menumap_guide00.bin	kr	40	1345	0x4080	0x06FF	0	30	사자의 계곡…… 레이스월 왕묘라.
+menumap_guide00.bin	kr	41	1374	0x4081	0x071E	0	51	아쉐가 말한 보물은 레이스월 왕묘 안에 있는 것 같군.
+menumap_guide00.bin	kr	42	1380	0x4097	0x0752	0	52	{expansion glyph 5}여명의 단편{expansion glyph 6}은 레이스월 왕묘 가장 깊은 곳에 있군.
+menumap_guide00.bin	kr	43	1390	0x4082	0x0787	0	55	{expansion glyph 5}여명의 단편{expansion glyph 6}은 손에 넣었으니 슬슬 지상으로 돌아가자.
+menumap_guide00.bin	kr	44	1450	0x4083	0x07BF	0	31	누가 이런 곳에서 쓰러질 줄 알고!
+menumap_guide00.bin	kr	45	1580	0x403C	0x07DF	0	47	가리프족의 마을은 기자 초원의 남쪽에 있나 보군.
+menumap_guide00.bin	kr	46	1625	0x4084	0x080F	0	44	가리프족…… 파마석의 이야기를 들을 수 있을까?
+menumap_guide00.bin	kr	47	1650	0x403D	0x083C	0	46	다음은 부르오미세이스로군. {expansion glyph 3} 동쪽인 모양이야.
+menumap_guide00.bin	kr	48	1740	0x4085	0x086B	0	62	비에라의 숨겨진 마을, 프란의 고향이군. 뮤린이라는 아이를 찾자.
+menumap_guide00.bin	kr	49	1760	0x4086	0x08AA	0	50	헤네 마석광이 수상해…… 오즈모네 평원의 남쪽이었지.
+menumap_guide00.bin	kr	50	1810	0x403E	0x08DD	0	19	뮤린…… 어디에 있지?
+menumap_guide00.bin	kr	51	1950	0x403F	0x08F1	0	50	라사의 용건도 있고 빨리 부르오미세이스로 가야겠다.
+menumap_guide00.bin	kr	52	1982	0x4088	0x0924	0	43	신도 부르오미세이스…… 뭔가 조용한 도시로군.
+menumap_guide00.bin	kr	53	2010	0x4040	0x0950	0	38	미리암 유적에서 패왕의 검을 손에 넣자.
+menumap_guide00.bin	kr	54	2200	0x4089	0x0977	0	35	패왕의 검…… 아쉐는 어떻게 사용할까.
+menumap_guide00.bin	kr	55	2250	0x408A	0x099B	0	45	부르오미세이스 쪽에서 연기가…… 어서 돌아가자!
+menumap_guide00.bin	kr	56	3050	0x405D	0x09C9	0	56	날비나 북쪽에 있는 모스포라 산지와 살리카 숲을 통과하자.
+menumap_guide00.bin	kr	57	3070	0x405E	0x0A02	0	57	{expansion glyph 7} 제국의 영토인가…… 제도 아르케이디스는 북동쪽인 것 같군.
+menumap_guide00.bin	kr	58	3100	0x408B	0x0A3C	0	57	이대로 북동쪽으로 가면 될 것 같은데…… 제도는 아직 멀었군.
+menumap_guide00.bin	kr	59	3150	0x405F	0x0A76	0	54	소헨 지하 궁전을 돌파하면 아르케이디스에 잠입 성공이다!
+menumap_guide00.bin	kr	60	3210	0x408C	0x0AAD	0	62	이번에는 구 시가지를 지나서 {expansion glyph 5}위{expansion glyph 6}를 노린다…… 만만하지 않겠군.
+menumap_guide00.bin	kr	61	3250	0x4042	0x0AEC	0	44	드라클로어 연구소에 잠입할 방법을 찾아야 해.
+menumap_guide00.bin	kr	62	3255	0x408D	0x0B19	0	57	화이트 리프라는 걸 모으면 되나…… 좋아, 여기저기 물어보자.
+menumap_guide00.bin	kr	63	3260	0x408E	0x0B53	0	29	자, 드라클로어 연구소로 가자!
+menumap_guide00.bin	kr	64	3350	0x408F	0x0B71	0	42	드라클로어 연구소…… 뭔가 이상해 보이는데……
+menumap_guide00.bin	kr	65	3400	0x4090	0x0B9C	0	43	시드 박사는 연구소의 꼭대기 층에 있는 건가?
+menumap_guide00.bin	kr	66	4100	0x4043	0x0BC8	0	63	기루베간…… 일단 골모어 대삼림 안쪽에 있는 환요의 숲을 조사하자.
+menumap_guide00.bin	kr	67	4160	0x4060	0x0C08	0	68	안개를 뚫고 환요의 숲을 통해 남쪽으로 가자…… 말처럼 쉽지는 않겠지만.
+menumap_guide00.bin	kr	68	4250	0x4091	0x0C4D	0	42	고대 도시 기루베간…… 대체 누가 만든 거야!?
+menumap_guide00.bin	kr	69	4370	0x4092	0x0C78	0	51	신기한 곳이군…… 길을 잃지 않게 바른 길을 찾아 가자.
+menumap_guide00.bin	kr	70	5000	0x4054	0x0CAC	0	45	발폰하임으로 돌아가서 레다스와 이야기해 보자.
+menumap_guide00.bin	kr	71	5150	0x4044	0x0CDA	0	52	슈트랄이라면 리도르아나 대폭포까지 날아갈 수 있겠지.
+menumap_guide00.bin	kr	72	5200	0x4093	0x0D0F	0	23	{expansion glyph 7} 리도르아나 대등대야!
+menumap_guide00.bin	kr	73	5303	0x4094	0x0D27	0	50	리도르아나 대등대…… 등대니까 위로 올라가면 되겠지?
+menumap_guide00.bin	kr	74	5320	0x4095	0x0D5A	0	53	목적지는 {expansion glyph 5}천양의 고치{expansion glyph 6}…… 등대의 장치를 풀면서 가자.
+menumap_guide00.bin	kr	75	6100	0x4045	0x0D90	0	38	슈트랄로 공중요새 바하무트에 침투한다!
+menumap_guide00.bin	kr	76	6150	0x4096	0x0DB7	0	59	바하무트의 심장부에서 베인의 야망을, 이 싸움을 끝내는 거야!
+menumap_guide00.bin	us	0	0	0x402D	0x0000	0	49	I must reach the King before he signs the treaty!
+menumap_guide00.bin	us	1	22	0x4069	0x0032	0	32	The captain must reach the king!
+menumap_guide00.bin	us	2	25	0x406A	0x0053	0	38	I'm on a roll today. Time to clean up!
+menumap_guide00.bin	us	3	35	0x402E	0x007A	0	54	What could Migelo want? Better go see him at his shop.
+menumap_guide00.bin	us	4	45	0x406B	0x00B1	0	42	I wonder if Kytes is still at the Sandsea.
+menumap_guide00.bin	us	5	62	0x406C	0x00DC	0	55	The Eastgate's the only way out of town right now, huh.
+menumap_guide00.bin	us	6	68	0x402F	0x0114	0	56	That mark should be somewhere in the Dalmasca Estersand.
+menumap_guide00.bin	us	7	78	0x406D	0x014D	0	46	Got that mark. Time to get back to Rabanastre.
+menumap_guide00.bin	us	8	105	0x4030	0x017C	0	55	Old Dalan in Lowtown must know a way into the palace...
+menumap_guide00.bin	us	9	110	0x4031	0x01B4	0	47	Better head down to the village on Giza Plains.
+menumap_guide00.bin	us	10	130	0x4032	0x01E4	0	41	So, Jinn's...south of the village, right?
+menumap_guide00.bin	us	11	145	0x406E	0x020E	0	69	So I just need to find the Dark Crystals to power up this Shadestone.
+menumap_guide00.bin	us	12	160	0x406F	0x0254	0	64	Old Dalan's gonna cough up a chocobo when he sees this Sunstone!
+menumap_guide00.bin	us	13	175	0x4033	0x0295	0	59	Storehouse 5's my way down to the sewers. I'll start there.
+menumap_guide00.bin	us	14	180	0x4070	0x02D1	0	73	So the Garamsythe Waterway under the city's the way into the palace, huh?
+menumap_guide00.bin	us	15	200	0x4071	0x031B	0	51	Okay, treasury door. You can't stay hidden forever!
+menumap_guide00.bin	us	16	215	0x4072	0x034F	0	47	What's all that commotion? Time to make tracks!
+menumap_guide00.bin	us	17	230	0x4034	0x037F	0	45	I've gotta find my way out of these sewers...
+menumap_guide00.bin	us	18	265	0x4073	0x03AD	0	36	I must be getting close to the exit.
+menumap_guide00.bin	us	19	302	0x4074	0x03D2	0	40	The Nalbina Dungeons? Great. Just great.
+menumap_guide00.bin	us	20	316	0x4075	0x03FB	0	33	I need to get out of here, quick.
+menumap_guide00.bin	us	21	323	0x4035	0x041D	0	53	Gotta stop those mimics from feeding on the conduits.
+menumap_guide00.bin	us	22	343	0x4036	0x0453	0	60	Penelo must be worried sick. Better head back to Rabanastre.
+menumap_guide00.bin	us	23	350	0x4037	0x0490	0	58	Can't wait to show Old Dalan and Penelo...wherever she is.
+menumap_guide00.bin	us	24	375	0x4076	0x04CB	0	57	What does this Azelas guy need with a Sword of the Order?
+menumap_guide00.bin	us	25	390	0x4038	0x0505	0	61	Now, if I were a tired, thirsty sky pirate, where would I be?
+menumap_guide00.bin	us	26	420	0x4077	0x0543	0	81	Just need to get to the aerodrome by the Westgate and then Bhujerba, here I come!
+menumap_guide00.bin	us	27	546	0x4039	0x0595	0	51	Time to find the Lhusu Mines... I'm coming, Penelo!
+menumap_guide00.bin	us	28	580	0x4078	0x05C9	0	54	She's in the mines somewhere... Hang in there, Penelo!
+menumap_guide00.bin	us	29	645	0x4079	0x0600	0	34	I need to go back and find Penelo!
+menumap_guide00.bin	us	30	680	0x407A	0x0623	0	27	Time to pay Ondore a visit.
+menumap_guide00.bin	us	31	710	0x407B	0x063F	0	32	Rumors? Oh, I can spread rumors.
+menumap_guide00.bin	us	32	730	0x407C	0x0660	0	41	Time to finish up here and go see Ondore.
+menumap_guide00.bin	us	33	920	0x403A	0x068A	0	74	I can't believe {0F 20 81 94}she's{0F 20 81 80} Princess Ashe. Better help her out, I guess.
+menumap_guide00.bin	us	34	970	0x407D	0x06D5	0	22	Where are you, Penelo?
+menumap_guide00.bin	us	35	1000	0x405B	0x06EC	0	59	If we can get to a launch bay, we can escape on an airship.
+menumap_guide00.bin	us	36	1100	0x407E	0x0728	0	33	Time to pay Ondore another visit.
+menumap_guide00.bin	us	37	1210	0x403B	0x074A	0	34	West of the sandsea. Sounds...far.
+menumap_guide00.bin	us	38	1270	0x407F	0x076D	0	32	West, to the Ogir-Yensa Sandsea.
+menumap_guide00.bin	us	39	1338	0x405C	0x078E	0	69	We must be about halfway across the sandsea. Gotta keep heading west.
+menumap_guide00.bin	us	40	1345	0x4080	0x07D4	0	43	The Valley of the Dead... Raithwall's tomb.
+menumap_guide00.bin	us	41	1374	0x4081	0x0800	0	79	Sounds like this treasure Ashe's been talking about is inside Raithwall's tomb.
+menumap_guide00.bin	us	42	1380	0x4097	0x0850	0	73	So the Dawn Shard sleeps in the innermost chambers of Raithwall's tomb...
+menumap_guide00.bin	us	43	1390	0x4082	0x089A	0	65	Well, we've got the Dawn Shard. Now all we need's some fresh air!
+menumap_guide00.bin	us	44	1450	0x4083	0x08DC	0	39	I'm not gonna die on this hunk of junk!
+menumap_guide00.bin	us	45	1580	0x403C	0x0904	0	49	The Garif village should be south of Giza Plains.
+menumap_guide00.bin	us	46	1625	0x4084	0x0936	0	45	I wonder what the Garif know about nethicite.
+menumap_guide00.bin	us	47	1650	0x403D	0x0964	0	43	Mt Bur-Omisace should be in eastern Kerwon.
+menumap_guide00.bin	us	48	1740	0x4085	0x0990	0	48	So this is Fran's home. I hope we can find Mjrn.
+menumap_guide00.bin	us	49	1760	0x4086	0x09C1	0	52	Henne Mines is the place, south of the Ozmone Plain.
+menumap_guide00.bin	us	50	1810	0x403E	0x09F6	0	23	So, where is this Mjrn?
+menumap_guide00.bin	us	51	1950	0x403F	0x0A0E	0	61	Larsa and Ashe both need to get to Bur-Omisace. Better hurry.
+menumap_guide00.bin	us	52	1982	0x4088	0x0A4C	0	57	I'll say one thing about Mt Bur-Omisace. It's real quiet.
+menumap_guide00.bin	us	53	2010	0x4040	0x0A86	0	58	We can get the Sword of Kings in the Stilshrine of Miriam.
+menumap_guide00.bin	us	54	2200	0x4089	0x0AC1	0	58	I wonder what Ashe is going to do with the Sword of Kings.
+menumap_guide00.bin	us	55	2250	0x408A	0x0AFC	0	80	That smoke's coming from Mt Bur-Omisace, and where there's smoke—we gotta hurry!
+menumap_guide00.bin	us	56	3050	0x405D	0x0B4D	0	82	Need to head north of Nalbina, through the Mosphoran Highwaste and the Salikawood.
+menumap_guide00.bin	us	57	3070	0x405E	0x0BA0	0	59	So this is the Empire. Archades should be to the northeast.
+menumap_guide00.bin	us	58	3100	0x408B	0x0BDC	0	63	Straight northeast to Archades... I only wish it wasn't so far.
+menumap_guide00.bin	us	59	3150	0x405F	0x0C1C	0	56	We'll use the Sochen Cave Palace to sneak into Archades.
+menumap_guide00.bin	us	60	3210	0x408C	0x0C55	0	80	So we go through Old Archades, and then up? I knew it wasn't going to be simple.
+menumap_guide00.bin	us	61	3250	0x4042	0x0CA6	0	59	Gotta find some way to sneak inside the Draklor Laboratory.
+menumap_guide00.bin	us	62	3255	0x408D	0x0CE2	0	65	So we just need to collect Pinewood Chops? Guess I'll ask around.
+menumap_guide00.bin	us	63	3260	0x408E	0x0D24	0	25	On to Draklor Laboratory!
+menumap_guide00.bin	us	64	3350	0x408F	0x0D3E	0	24	Something's not right...
+menumap_guide00.bin	us	65	3400	0x4090	0x0D57	0	51	So Doctor Cid's on the top level of the laboratory?
+menumap_guide00.bin	us	66	4100	0x4043	0x0D8B	0	78	Hmm, Giruvegan... Better start by exploring the Feywood beyond Golmore Jungle.
+menumap_guide00.bin	us	67	4160	0x4060	0x0DDA	0	73	Cross the Mist and head south through the Feywood. Easier said than done.
+menumap_guide00.bin	us	68	4250	0x4091	0x0E24	0	30	Who could've built this place?
+menumap_guide00.bin	us	69	4370	0x4092	0x0E43	0	43	This is a weird place. Better not get lost.
+menumap_guide00.bin	us	70	5000	0x4054	0x0E6F	0	62	Better go back to Balfonheim and see if Reddas knows anything.
+menumap_guide00.bin	us	71	5150	0x4044	0x0EAE	0	65	The {0F 20 81 94}Strahl{0F 20 81 80} should be able to reach the Ridorana Cataract.
+menumap_guide00.bin	us	72	5200	0x4093	0x0EF0	0	39	We're almost to the Pharos at Ridorana!
+menumap_guide00.bin	us	73	5303	0x4094	0x0F18	0	28	Well, no place to go but up.
+menumap_guide00.bin	us	74	5320	0x4095	0x0F35	0	73	If we're going to get to the Sun-cryst, we need to figure out this place.
+menumap_guide00.bin	us	75	6100	0x4045	0x0F7F	0	60	We'll take the {0F 20 81 94}Strahl{0F 20 81 80} to get aboard {0F 20 81 94}Bahamut!{0F 20 81 80}
+menumap_guide00.bin	us	76	6150	0x4096	0x0FBC	0	65	Vayne's plans, and this war, end in the heart of {0F 20 81 94}Bahamut{0F 20 81 80}!
+menumap_guide01.bin	ch	0	460	0xFFFF	0x0000	0	130	骨坐魂魂最散才菜{line}ＴB血ＲMａ酒赤ａｃｍ功Ｔ恩擇（元ｍｗLムＣ貨荷迦吵{line}啦U步Ｉ迦晚ｍＬｅｈＨＨNＣｊＴａ鬍恩]l葵Ｉ翟赫ｍ{line}腳L吵②ｐ指ｑＣムＬＧＲムLCｐｐ恩啦U步ｑ悟ｔｊｆ{line}舉計ｊＴｌＡ吵
+menumap_guide01.bin	ch	1	645	0xFFFF	0x0083	0	49	骨坐魂魂最散才裁{line}EＩｈ恩擴第擲ｐ具擺_逢噁8Ｉ結ムL喧喧吵
+menumap_guide01.bin	ch	2	670	0xFFFF	0x00B5	0	50	骨坐魂魂最散才載{line}_步?葵ｊ擴第擲ｐ具擺_逢噁8S烏ｍ桂Ｌ啦U步吵
+menumap_guide01.bin	ch	3	710	0xFFFF	0x00E8	0	91	骨坐魂魂最散採塞{line}酒赤ａｃＩ鍾惜ｌ全Ａｉ烏ｆBL月恩荊擴第擲啦aX步賴w沉8噁彥{line}S紫Ｙａ捷牙層Ｉ果吉收ｚｊ軒TｉＡＬ吵
+menumap_guide01.bin	ch	4	830	0xFFFF	0x0144	0	141	骨坐魂魂最散採彩{line}_逢噁8S另Ｅａ啦aX步ｑ恩Ｈｆｈz彥[se是Ｉ血謹{line}琴S桂ｅａ果吉收ｐ碟ｉs=噁0S結BL吵②ｐｗLムＡ{line}ｊ效縮ＩCａJＶ８L華ｐe沉s[兄ｑ恩烤敘ｐ敲S數Ｌ{line}愛/9sy酒赤ｐ台SｊJＥL吵
+menumap_guide01.bin	ch	5	1010	0xFFFF	0x01D2	0	130	骨坐魂魂最散採才{line}變縮ｐ厲恩具擺_噁5W噁ｐ滋溼S擺ＲMｈＡL]l葵Ｉ{line}啦aX步ｍ８ＡＲｆSＶL吵啦aX步ｑ]l葵ｍ功Ｔｈ斷{line}ＴＯｍ主Ｔ恩悟及ＨJ值王C愛/9sy酒赤ｉ８Lｊ固效{line}ＶL喧喧吵
+menumap_guide01.bin	in	0	460	0xFFFF	0x0000	0	130	dummy:27{line}しめ出された市民たちに対し、{expansion glyph 0}圧的にふるまう帝国兵。{line}ヴァンが兵士にくってかかろうとした時、ミゲロが仲裁に{line}入る。その場はうまくおさまるものの、ヴァンは今ひとつ{line}{expansion glyph 1}然としない。
+menumap_guide01.bin	in	1	645	0xFFFF	0x0083	0	49	dummy:28{line}やがて、{expansion glyph 2}政{expansion glyph 3}の着{expansion glyph 4}パレードが始まる……。
+menumap_guide01.bin	in	2	670	0xFFFF	0x00B5	0	50	dummy:29{line}パンネロと{expansion glyph 2}政{expansion glyph 3}の着{expansion glyph 4}パレードを見に行くヴァン。
+menumap_guide01.bin	in	3	710	0xFFFF	0x00E8	0	91	dummy:30{line}市民たちが複雑な思いで見つめる中、新{expansion glyph 2}政{expansion glyph 3}ヴェイン・ソリドール{line}を乗せた飛空艇が大聖{expansion glyph 5}へと進んでいく。
+menumap_guide01.bin	in	4	830	0xFFFF	0x0144	0	141	dummy:31{line}パレードを終えたヴェインは、かつてダルマスカ軍が出陣{line}式を行った大聖{expansion glyph 5}の前でスピーチを始める。そのふるまい{line}と{expansion glyph 6}説がもたらすある種のカリスマ性は、不{expansion glyph 7}の{expansion glyph 8}を{expansion glyph 9}く{line}ラバナスタ市民の心をとらえる。
+menumap_guide01.bin	in	5	1010	0xFFFF	0x01D2	0	130	dummy:32{line}{expansion glyph 10}説の後、着{expansion glyph 4}パーティーの準備を{expansion glyph 4}されているミゲロが{line}ヴェインにあいさつをする。ヴェインはミゲロに対して{expansion glyph 11}{line}しげに接し、今日から自分もラバナスタ市民であると宣{expansion glyph 6}{line}する……。
+menumap_guide01.bin	cn	0	323	0x4035	0x0000	0	68	"林淋琳娃淋麟娃累令@冷淋娃励淋碍礼零列音林林烈裂廉淋淋娃""林恋路淋露娃ＤＫＢＢ4"
+menumap_guide01.bin	cn	1	343	0x4036	0x0045	0	57	）４Ｄ４ＢＥ淋廊娃娃淋弄朗淋楼/淋淋弄浪０１０Ｄ０ＩＪＨ４淋漏林牢/露娃ＤＫＢＢ4
+menumap_guide01.bin	cn	2	350	0x4037	0x007F	0	56	）４Ｄ４ＢＥ淋淋淋恋路娃列（Ｂ３ ：０Ｂ０Ｄ淋林永狼老郎淋淋娃!淋露娃ＤＫＢＢ4
+menumap_guide01.bin	cn	3	390	0x4038	0x00B8	0	60	。０ＢＪ７８４Ｈ淋列六淋露麓`淋恋和淋歪弄惑腕墙夷淋淋楼/淋淋露娃ＤＫＢＢ4
+menumap_guide01.bin	cn	4	546	0x4039	0x00F5	0	51	个菊乖乘淋淋淋淋恋路娃列豫娃舒淋林牢暗露于４Ｄ４ＢＥ娃娃ＤＫＢＢ4
+menumap_guide01.bin	cn	5	920	0x403A	0x0129	0	57	"淋经""淋淋亢从仍娃列价淋墙估佛淋怪""淋娃暗淋露麓估淋林恋娃ＤＫＢＢ4"
+menumap_guide01.bin	es fr it us	0	323	0x4035	0x0000	0	68	{expansion glyph 0}{expansion glyph 1}{expansion glyph 2}・{expansion glyph 1}{expansion glyph 3}・{expansion glyph 4}{expansion glyph 5}↓{expansion glyph 6}{expansion glyph 1}・{expansion glyph 7}{expansion glyph 1}常{expansion glyph 8}{expansion glyph 9}{expansion glyph 10}ヤ{expansion glyph 0}{expansion glyph 0}{expansion glyph 11}{expansion glyph 12}{expansion glyph 13}{expansion glyph 1}{expansion glyph 1}・＞{expansion glyph 0}{expansion glyph 14}{expansion glyph 15}{expansion glyph 1}{expansion glyph 16}・null>
+menumap_guide01.bin	es fr it us	1	343	0x4036	0x0045	0	57	Penelo{expansion glyph 1}{expansion glyph 17}・・{expansion glyph 1}{expansion glyph 18}{expansion glyph 19}{expansion glyph 1}{expansion glyph 20}≧{expansion glyph 1}{expansion glyph 1}{expansion glyph 18}{expansion glyph 21}abanastre{expansion glyph 1}{expansion glyph 22}{expansion glyph 0}{expansion glyph 23}≧{expansion glyph 16}・null>
+menumap_guide01.bin	es fr it us	2	350	0x4037	0x007F	0	56	Penelo{expansion glyph 1}{expansion glyph 1}{expansion glyph 1}{expansion glyph 14}{expansion glyph 15}・{expansion glyph 10}Old Dalan{expansion glyph 1}{expansion glyph 0}ょ{expansion glyph 24}{expansion glyph 25}{expansion glyph 26}{expansion glyph 1}{expansion glyph 1}・→{expansion glyph 1}{expansion glyph 16}・null>
+menumap_guide01.bin	es fr it us	3	390	0x4038	0x00B8	0	60	Balthier{expansion glyph 1}{expansion glyph 10}{expansion glyph 27}{expansion glyph 1}{expansion glyph 16}{expansion glyph 28}←{expansion glyph 1}{expansion glyph 14}{expansion glyph 29}{expansion glyph 1}{expansion glyph 30}{expansion glyph 18}{expansion glyph 31}{expansion glyph 32}暗ｓ{expansion glyph 1}{expansion glyph 1}{expansion glyph 20}≧{expansion glyph 1}{expansion glyph 1}{expansion glyph 16}・null>
+menumap_guide01.bin	es fr it us	4	546	0x4039	0x00F5	0	51	{expansion glyph 33}氷{expansion glyph 34}{expansion glyph 35}{expansion glyph 1}{expansion glyph 1}{expansion glyph 1}{expansion glyph 1}{expansion glyph 14}{expansion glyph 15}・{expansion glyph 10}{expansion glyph 36}・{expansion glyph 37}{expansion glyph 1}{expansion glyph 0}{expansion glyph 23}ｈ{expansion glyph 16}{expansion glyph 38}enelo・・null>
+menumap_guide01.bin	es fr it us	5	920	0x403A	0x0129	0	57	{expansion glyph 1}ゅ＞{expansion glyph 1}{expansion glyph 1}{expansion glyph 39}{expansion glyph 40}{expansion glyph 41}・{expansion glyph 10}{expansion glyph 42}{expansion glyph 1}暗{expansion glyph 43}{expansion glyph 44}{expansion glyph 1}効＞{expansion glyph 1}・ｈ{expansion glyph 1}{expansion glyph 16}{expansion glyph 28}{expansion glyph 43}{expansion glyph 1}{expansion glyph 0}{expansion glyph 14}・null>
+menumap_guide01.bin	kr	0	1580	0x403C	0x0000	0	32	1펠케{glyph 1528}G{expansion glyph 0}リロ、탈위 랙연GaリA{expansion glyph 1}Xムるメ。
+menumap_guide01.bin	kr	1	1625	0x4084	0x0021	0	26	1펠케{glyph 1528}（（{expansion glyph 2}{glyph 1626}{glyph 1512}G{expansion glyph 3}o{expansion glyph 4}ザjGエC！
+menumap_guide01.bin	kr	2	1650	0x403D	0x003C	0	28	{expansion glyph 5}H알풀z레!wt@エ。エCi{expansion glyph 6}G{glyph 1620}hデるC。
+menumap_guide01.bin	kr	3	1740	0x4085	0x0059	0	42	자sx디G{glyph 1281}k{expansion glyph 0}、천극G{expansion glyph 7}{expansion glyph 8}エ。레네펠블リロ{expansion glyph 9}o{expansion glyph 10}マァ。
+menumap_guide01.bin	kr	4	1760	0x4086	0x0084	0	41	{glyph 1438}デるGH훔중 럽앤출（（차않둠중 닿연G{expansion glyph 1}、メリムC。
+menumap_guide01.bin	kr	5	1810	0x403E	0x00AE	0	18	레네펠블（（BスDるjpメ！
+menumap_guide01.bin	kr	6	1950	0x403F	0x00C1	0	30	편럴G{glyph 1643}{expansion glyph 11}aみjデ、알풀z레!wt@D{expansion glyph 12}ゼァ。
+menumap_guide01.bin	kr	7	1982	0x4088	0x00E0	0	34	퇴꽃 꿩티차후칠것내（（Cpメエ{expansion glyph 13}エC{expansion glyph 14}メC。
+menumap_guide01.bin	kr	8	2010	0x4040	0x0103	0	29	후행팸 귀딱ン{expansion glyph 15}{glyph 1379}G{glyph 1429}o{glyph 1466}D{glyph 1578}kgァ。
+menumap_guide01.bin	kr	9	2200	0x4089	0x0121	0	23	{expansion glyph 15}{glyph 1379}G{glyph 1429}（（공넘HBァ{glyph 1419}ァpメl。
+menumap_guide01.bin	kr	10	2250	0x408A	0x0139	0	31	알풀z레!wt@G{glyph 1620}{glyph 1416}エh{expansion glyph 16}オ（（{expansion glyph 12}るン{expansion glyph 17}lァ＿
+menumap_guide01.bin	kr	11	3050	0x405D	0x0159	0	41	'풀}'G{expansion glyph 18}Dみj둠내덩편 직즘A망행침 짧o{expansion glyph 19}ィgァ。
+menumap_guide01.bin	kr	12	3070	0x405E	0x0183	0	45	るgるg{glyph 1554}{glyph 1424}G{expansion glyph 20}{glyph 1562}エ（（동꽃 공티너것대내H{expansion glyph 18}{expansion glyph 6}G{glyph 1620}hデる。
+menumap_guide01.bin	kr	13	3100	0x408B	0x01B1	0	36	スGWW{expansion glyph 18}{expansion glyph 6}Q{glyph 1498}ZIるるhデるザB（（{glyph 1554}{expansion glyph 21}HWメWメ{glyph 1435}るC。
+menumap_guide01.bin	kr	14	3150	0x405F	0x01D6	0	42	료담 즘성 콰염o{expansion glyph 22}{expansion glyph 2}ドkI、r풀6t;s@D{expansion glyph 23}{glyph 1578}{glyph 1506}{glyph 1360}メ＿
+menumap_guide01.bin	kr	15	3210	0x408C	0x0201	0	46	{expansion glyph 24}{glyph 1561}H{expansion glyph 25}{expansion glyph 26}{expansion glyph 14}o{expansion glyph 27}ザロ{expansion glyph 28}{glyph 1486}{expansion glyph 29}o{glyph 1637}{expansion glyph 30}ドGエ（（{glyph 1389}{expansion glyph 31}{expansion glyph 32}トbるエCるC。
+menumap_guide01.bin	kr	16	3250	0x4042	0x0230	0	36	간편괴붙원 구핑료D{glyph 1579}L{expansion glyph 33}Y{glyph 1620}{glyph 1621}o{expansion glyph 10}ゾCカb。
+menumap_guide01.bin	kr	17	3255	0x408D	0x0255	0	42	불것방 행천リロGo{glyph 1470}ZjGエ（（gデ、みュスュン{expansion glyph 3}o{expansion glyph 4}るロXgァ。
+menumap_guide01.bin	kr	18	3260	0x408E	0x0280	0	22	ゾみ、간편괴붙원 구핑료Q＿
+menumap_guide01.bin	kr	19	3350	0x408F	0x0297	0	35	간편괴붙원 구핑료（（Cpメエ{expansion glyph 34}{expansion glyph 9}オウエデるミ（（
+menumap_guide01.bin	kr	20	3400	0x4090	0x02BB	0	29	꽂창 밋간オるjGH{expansion glyph 35}{expansion glyph 36}{glyph 1476}G{glyph 1486}{expansion glyph 37}{expansion glyph 38}エ！
+menumap_guide01.bin	kr	21	4100	0x4043	0x02D9	0	49	3풀자w1블エ（（ADエク장둠원 석릎총G{expansion glyph 39}、영춘멜 짧o{expansion glyph 40}Rgァ。
+menumap_guide01.bin	kr	22	4160	0x4060	0x030B	0	41	{expansion glyph 41}o{expansion glyph 27}ザロ영춘멜 짧o{expansion glyph 1}Q{glyph 1498}aァ（（ムメンH{glyph 1551}kマァDCるザB。
+menumap_guide01.bin	kr	23	4250	0x4091	0x0335	0	35	론석 꽃밋 탈따혹회（（るリムる{glyph 1539}オ{expansion glyph 42}リムpメ＿！
+menumap_guide01.bin	kr	24	4370	0x4092	0x0359	0	36	{glyph 1604}{glyph 1434}{expansion glyph 43}C{glyph 1488}{glyph 1476}メ（（{expansion glyph 44}nゾkCるgァ、{glyph 1507}デる{glyph 1572}oムBlァ。
+menumap_guide01.bin	kr	25	5000	0x4054	0x037E	0	32	<＼케y블]t다D{expansion glyph 17}リロ음초내A{expansion glyph 45}{expansion glyph 46}デロXgァ。
+menumap_guide01.bin	kr	26	5150	0x4044	0x039F	0	34	!네:디＼풀Ch펠\풀r'{glyph 1536}{expansion glyph 47}{expansion glyph 48}Wン{glyph 1597}RjHハメ。
+menumap_guide01.bin	kr	27	5200	0x4093	0x03C2	0	22	펠\풀r'{glyph 1536}{expansion glyph 49}{expansion glyph 50}WンHaァドゲメ＿
+menumap_guide01.bin	kr	28	5303	0x4094	0x03D9	0	38	펠\풀r'{glyph 1536}{expansion glyph 49}{expansion glyph 50}（（{expansion glyph 49}{expansion glyph 50}Ch、{glyph 1486}o{glyph 1637}{expansion glyph 30}フIるるpメgC！
+menumap_guide01.bin	kr	29	5320	0x4095	0x0400	0	37	{glyph 1637}{expansion glyph 30}ドH{expansion glyph 28}{glyph 1557}{expansion glyph 51}G{expansion glyph 52}{expansion glyph 29}（（{expansion glyph 49}{expansion glyph 50}Gデエザo{glyph 1381}るロ{glyph 1498}aァ。
+menumap_guide01.bin	kr	30	6100	0x4045	0x0426	0	37	!네:디＼풀ン복든 춘족 킬성법방D{expansion glyph 22}リ{expansion glyph 33}Yミ＿
+menumap_guide01.bin	kr	31	6150	0x4096	0x044C	0	39	<]다＼:G{glyph 1495}{expansion glyph 53}{glyph 1608}ン혹섬G{expansion glyph 54}{expansion glyph 55}o、スG{glyph 1516}るo{expansion glyph 56}nhフgァ＿
+menumap_guide02.bin	cn	0	1000	0x405B	0x0000	0	64	林淋琳麟娃琳累@令怪冷励礼零列烈裂励廉恋路娃露励经馆励励廊弄娃娃ＤＫＢＢ4
+menumap_guide02.bin	cn	1	1210	0x403B	0x0041	0	50	朗楼娃浪励漏闻励励廊牢励狼励厅老郎励麟/励励礼娃ＤＫＢＢ4
+menumap_guide02.bin	cn	2	1338	0x405C	0x0074	0	69	"六漏闻麓永和歪娃惑麓腕""励个乖乘励豫舒励娃豫励于娃励励狼励亢麓经/礼娃ＤＫＢＢ4"
+menumap_guide02.bin	cn	3	1580	0x403C	0x00BA	0	63	"６０Ｈ８５从碍娃仍怪牢励礼价８Ｐ０ ）Ｂ０８ＤＩ励麓经牢励估佛侏励豫""励礼娃ＤＫＢＢ4"
+menumap_guide02.bin	cn	4	1650	0x403D	0x00FA	0	53	俯励。ＫＨq（Ｃ８Ｉ０２４励偃经舒励麓做傅励傲麓腕僵励娃?礼娃ＤＫＢＢ4
+menumap_guide02.bin	cn	5	1760	0x403E	0x0130	0	33	“９ＨＤ老老励励于@励娃馆麓于弄娃娃ＤＫＢＢ4
+menumap_guide02.bin	es fr it us	0	1000	0x405B	0x0000	0	64	{expansion glyph 0}{expansion glyph 1}{expansion glyph 2}{expansion glyph 3}・{expansion glyph 2}{expansion glyph 4}↓{expansion glyph 5}効{expansion glyph 6}{expansion glyph 7}{expansion glyph 8}{expansion glyph 9}{expansion glyph 10}{expansion glyph 11}{expansion glyph 12}{expansion glyph 7}{expansion glyph 13}{expansion glyph 14}{expansion glyph 15}・{expansion glyph 16}{expansion glyph 7}ゅｋ{expansion glyph 7}{expansion glyph 7}{expansion glyph 17}{expansion glyph 18}・・null>
+menumap_guide02.bin	es fr it us	1	1210	0x403B	0x0041	0	50	{expansion glyph 19}{expansion glyph 20}・{expansion glyph 21}{expansion glyph 7}{expansion glyph 22}よ{expansion glyph 7}{expansion glyph 7}{expansion glyph 17}{expansion glyph 23}{expansion glyph 7}{expansion glyph 24}{expansion glyph 7}景{expansion glyph 25}{expansion glyph 26}{expansion glyph 7}{expansion glyph 3}≧{expansion glyph 7}{expansion glyph 7}{expansion glyph 8}・null>
+menumap_guide02.bin	es fr it us	2	1338	0x405C	0x0074	0	69	{expansion glyph 27}{expansion glyph 22}よ{expansion glyph 28}ょ{expansion glyph 29}{expansion glyph 30}・{expansion glyph 31}{expansion glyph 28}{expansion glyph 32}＞{expansion glyph 7}{expansion glyph 33}{expansion glyph 34}{expansion glyph 35}{expansion glyph 7}{expansion glyph 36}{expansion glyph 37}{expansion glyph 7}・{expansion glyph 36}{expansion glyph 7}{expansion glyph 38}・{expansion glyph 7}{expansion glyph 7}{expansion glyph 24}{expansion glyph 7}{expansion glyph 39}{expansion glyph 28}ゅ≧{expansion glyph 8}・null>
+menumap_guide02.bin	es fr it us	3	1580	0x403C	0x00BA	0	63	garif{expansion glyph 40}常・{expansion glyph 41}効{expansion glyph 23}{expansion glyph 7}{expansion glyph 8}{expansion glyph 42}iza Plains{expansion glyph 7}{expansion glyph 28}ゅ{expansion glyph 23}{expansion glyph 7}{expansion glyph 43}{expansion glyph 44}{expansion glyph 45}{expansion glyph 7}{expansion glyph 36}＞{expansion glyph 7}{expansion glyph 8}・null>
+menumap_guide02.bin	es fr it us	4	1650	0x403D	0x00FA	0	53	{expansion glyph 46}{expansion glyph 7}Bur-Omisace{expansion glyph 7}{expansion glyph 47}ゅ{expansion glyph 37}{expansion glyph 7}{expansion glyph 28}{expansion glyph 48}{expansion glyph 49}{expansion glyph 7}{expansion glyph 50}{expansion glyph 28}{expansion glyph 32}{expansion glyph 51}{expansion glyph 7}・↑{expansion glyph 8}・null>
+menumap_guide02.bin	es fr it us	5	1760	0x403E	0x0130	0	33	Mjrn{expansion glyph 25}{expansion glyph 25}{expansion glyph 7}{expansion glyph 7}{expansion glyph 38}↓{expansion glyph 7}・ｋ{expansion glyph 28}{expansion glyph 38}{expansion glyph 18}・・null>
+menumap_guide02.bin	kr	0	1000	0x405B	0x0000	0	64	{glyph 2016}{glyph 2017}{glyph 2018}{glyph 2019}8{glyph 2018}{glyph 2020}e{glyph 2021}귀{glyph 2022}{glyph 2023}{glyph 2024}{glyph 2025}{glyph 2026}{glyph 2027}{glyph 2028}{glyph 2023}{glyph 2029}{glyph 2030}{glyph 2031}8{glyph 2032}{glyph 2023}독라{glyph 2023}{glyph 2023}{glyph 2033}{glyph 2034}88ＨＯＦＦU
+menumap_guide02.bin	kr	1	1210	0x403B	0x0041	0	50	{glyph 2035}{glyph 2036}8{glyph 2037}{glyph 2023}{glyph 2038}왕{glyph 2023}{glyph 2023}{glyph 2033}{glyph 2039}{glyph 2023}{glyph 2040}{glyph 2023}벚{glyph 2041}{glyph 2042}{glyph 2023}{glyph 2019}l{glyph 2023}{glyph 2023}{glyph 2024}8ＨＯＦＦU
+menumap_guide02.bin	kr	2	1338	0x405C	0x0074	0	69	{glyph 2043}{glyph 2038}왕{glyph 2044}약{glyph 2045}{glyph 2046}8{glyph 2047}{glyph 2044}{glyph 2048}w{glyph 2023}{glyph 2049}{glyph 2050}{glyph 2051}{glyph 2023}{glyph 2052}{glyph 2053}{glyph 2023}8{glyph 2052}{glyph 2023}{glyph 2054}8{glyph 2023}{glyph 2023}{glyph 2040}{glyph 2023}{glyph 2055}{glyph 2044}독l{glyph 2024}8ＨＯＦＦU
+menumap_guide02.bin	kr	3	1580	0x403C	0x00BA	0	63	Ａ４ＬＣ９{glyph 2056}착8{glyph 2057}귀{glyph 2039}{glyph 2023}{glyph 2024}{glyph 2058}ＣＴ４ ×Ｆ４ＣＨＭ{glyph 2023}{glyph 2044}독{glyph 2039}{glyph 2023}{glyph 2059}{glyph 2060}{glyph 2061}{glyph 2023}{glyph 2052}w{glyph 2023}{glyph 2024}8ＨＯＦＦU
+menumap_guide02.bin	kr	4	1650	0x403D	0x00FA	0	53	{glyph 2062}{glyph 2023}。ＯＬG＋ＧＣＭ４６８{glyph 2023}{glyph 2063}독{glyph 2053}{glyph 2023}{glyph 2044}{glyph 2064}{glyph 2065}{glyph 2023}{glyph 2066}{glyph 2044}{glyph 2048}{glyph 2067}{glyph 2023}8d{glyph 2024}8ＨＯＦＦU
+menumap_guide02.bin	kr	5	1760	0x403E	0x0130	0	33	「ＤＬＨ{glyph 2041}{glyph 2041}{glyph 2023}{glyph 2023}{glyph 2054}e{glyph 2023}8라{glyph 2044}{glyph 2054}{glyph 2034}88ＨＯＦＦU
+menumap_guide03.bin	cn	0	1950	0x403F	0x0000	0	52	…０ＨＩ０林淋琳麟或林经馆林累<ＫＨq（Ｃ８Ｉ０２４林令林冷/励娃ＤＫＢＢ4
+menumap_guide03.bin	cn	1	2010	0x4040	0x0035	0	60	＋Ｊ８ＢＩ７Ｈ８Ｄ４ Ｅ５ “８Ｈ８０Ｃ林＋ＭＥＨ３ Ｅ５ ～８Ｄ６Ｉ礼零列林烈礼怪暗林娃娃ＤＫＢＢ4
+menumap_guide03.bin	cn	2	3050	0x405D	0x0072	0	76	”０Ｂ１８Ｄ０林裂累@林经馆“ＥＩＦ７ＥＨ０Ｄ ー８６７Ｍ０ＩＪ４林×７４ ＋０Ｂ８Ａ０ＭＥＥ３礼爷廉恋礼路/励娃ＤＫＢＢ4
+menumap_guide03.bin	cn	3	3070	0x405E	0x00BF	0	63	林娃暗林娃暗露廊弄林朗楼浪林厅漏、Ｈ２７０３４Ｉ林裂牢狼林老礼郎六林娃娃ＤＫＢＢ4
+menumap_guide03.bin	cn	4	3150	0x405F	0x00FF	0	64	＋Ｅ２７４Ｄ ，０Ｌ４ ）０Ｂ０２４礼麓和林歪马林励]Ｈ２７０３４Ｉ林惑腕娃个乖乘林娃娃ＤＫＢＢ4
+menumap_guide03.bin	cn	5	3250	0x4042	0x0140	0	57	：Ｈ０ＡＢＥＨ …０１ＥＨ０ＪＥＨＯ林豫舒娃于礼老亢从≥仍林从?林舒龙励娃ＤＫＢＢ4
+menumap_guide03.bin	cn	6	4100	0x4043	0x017A	0	55	＿８ＨＫＬ４６０Ｄ林厅漏林林林麟价×７４ ！４ＯＭＥＥ３礼爷林礼路/励娃ＤＫＢＢ4
+menumap_guide03.bin	es fr it us	0	1950	0x403F	0x0000	0	52	Larsa{expansion glyph 0}{expansion glyph 1}{expansion glyph 2}{expansion glyph 3}ｂ{expansion glyph 0}ゅｋ{expansion glyph 0}{expansion glyph 4}。ur-Omisace{expansion glyph 0}{expansion glyph 5}{expansion glyph 0}{expansion glyph 6}≧{expansion glyph 7}・null>
+menumap_guide03.bin	es fr it us	1	2010	0x4040	0x0035	0	60	Stilshrine of Miriam{expansion glyph 0}Sword of Kings{expansion glyph 8}{expansion glyph 9}{expansion glyph 10}{expansion glyph 0}{expansion glyph 11}{expansion glyph 8}効ｈ{expansion glyph 0}・・null>
+menumap_guide03.bin	es fr it us	2	3050	0x405D	0x0072	0	76	Nalbina{expansion glyph 0}{expansion glyph 12}{expansion glyph 4}↓{expansion glyph 0}ゅｋMosphoran Highwaste{expansion glyph 0}The Salikawood{expansion glyph 8}敵{expansion glyph 13}{expansion glyph 14}{expansion glyph 8}{expansion glyph 15}≧{expansion glyph 7}・null>
+menumap_guide03.bin	es fr it us	3	3070	0x405E	0x00BF	0	63	{expansion glyph 0}・ｈ{expansion glyph 0}・ｈ{expansion glyph 16}{expansion glyph 17}{expansion glyph 18}{expansion glyph 0}{expansion glyph 19}{expansion glyph 20}{expansion glyph 21}{expansion glyph 0}景{expansion glyph 22}Archades{expansion glyph 0}{expansion glyph 12}{expansion glyph 23}{expansion glyph 24}{expansion glyph 0}{expansion glyph 25}{expansion glyph 8}{expansion glyph 26}{expansion glyph 27}{expansion glyph 0}・・null>
+menumap_guide03.bin	es fr it us	4	3150	0x405F	0x00FF	0	64	Sochen Cave Palace{expansion glyph 8}{expansion glyph 28}{expansion glyph 29}{expansion glyph 0}{expansion glyph 30}ｌ{expansion glyph 0}{expansion glyph 7}、rchades{expansion glyph 0}{expansion glyph 31}{expansion glyph 32}・{expansion glyph 33}{expansion glyph 34}{expansion glyph 35}{expansion glyph 0}・・null>
+menumap_guide03.bin	es fr it us	5	3250	0x4042	0x0140	0	57	Draklor Laboratory{expansion glyph 0}{expansion glyph 36}{expansion glyph 37}・{expansion glyph 38}{expansion glyph 8}{expansion glyph 25}{expansion glyph 39}{expansion glyph 40}ｒ{expansion glyph 41}{expansion glyph 0}{expansion glyph 40}↑{expansion glyph 0}{expansion glyph 37}ｃ{expansion glyph 7}・null>
+menumap_guide03.bin	es fr it us	6	4100	0x4043	0x017A	0	55	Giruvegan{expansion glyph 0}景{expansion glyph 22}{expansion glyph 0}{expansion glyph 0}{expansion glyph 0}{expansion glyph 3}{expansion glyph 42}The Feywood{expansion glyph 8}敵{expansion glyph 0}{expansion glyph 8}{expansion glyph 15}≧{expansion glyph 7}・null>
+menumap_guide03.bin	kr	0	1950	0x403F	0x0000	0	52	）４ＬＭ４{glyph 2016}{glyph 2017}{glyph 2018}{glyph 2019}]{glyph 2016}독라{glyph 2016}{glyph 2020}1ＯＬG＋ＧＣＭ４６８{glyph 2016}{glyph 2021}{glyph 2016}{glyph 2022}l{glyph 2023}8ＨＯＦＦU
+menumap_guide03.bin	kr	1	2010	0x4040	0x0035	0	60	＞ＮＣＦＭＢＬＣＨ８ Ｉ９ 「ＣＬＣ４Ｇ{glyph 2016}＞ＱＩＬ７ Ｉ９ （ＣＨＡＭ{glyph 2024}{glyph 2025}{glyph 2026}{glyph 2016}{glyph 2027}{glyph 2024}귀케{glyph 2016}88ＨＯＦＦU
+menumap_guide03.bin	kr	2	3050	0x405D	0x0072	0	76	」４Ｆ５ＣＨ４{glyph 2016}{glyph 2028}{glyph 2020}e{glyph 2016}독라「ＩＭＪＢＩＬ４Ｈ ／ＣＡＢＱ４ＭＮ８{glyph 2016}≦Ｂ８ ＞４ＦＣＥ４ＱＩＩ７{glyph 2024}료{glyph 2029}{glyph 2030}{glyph 2024}{glyph 2031}l{glyph 2023}8ＨＯＦＦU
+menumap_guide03.bin	kr	3	3070	0x405E	0x00BF	0	63	{glyph 2016}8케{glyph 2016}8케{glyph 2032}{glyph 2033}{glyph 2034}{glyph 2016}{glyph 2035}{glyph 2036}{glyph 2037}{glyph 2016}벚{glyph 2038}、Ｌ６Ｂ４７８Ｍ{glyph 2016}{glyph 2028}{glyph 2039}{glyph 2040}{glyph 2016}{glyph 2041}{glyph 2024}{glyph 2042}{glyph 2043}{glyph 2016}88ＨＯＦＦU
+menumap_guide03.bin	kr	4	3150	0x405F	0x00FF	0	64	＞Ｉ６Ｂ８Ｈ ：４Ｐ８ ×４Ｆ４６８{glyph 2024}{glyph 2044}{glyph 2045}{glyph 2016}{glyph 2046}나{glyph 2016}{glyph 2023}0Ｌ６Ｂ４７８Ｍ{glyph 2016}{glyph 2047}{glyph 2048}8{glyph 2049}{glyph 2050}{glyph 2051}{glyph 2016}88ＨＯＦＦU
+menumap_guide03.bin	kr	5	3250	0x4042	0x0140	0	57	？Ｌ４ＥＦＩＬ ）４５ＩＬ４ＮＩＬＳ{glyph 2016}{glyph 2052}{glyph 2053}8{glyph 2054}{glyph 2024}{glyph 2041}{glyph 2055}{glyph 2056}레{glyph 2057}{glyph 2016}{glyph 2056}d{glyph 2016}{glyph 2053}<{glyph 2023}8ＨＯＦＦU
+menumap_guide03.bin	kr	6	4100	0x4043	0x017A	0	55	ーＣＬＯＰ８Ａ４Ｈ{glyph 2016}벚{glyph 2038}{glyph 2016}{glyph 2016}{glyph 2016}{glyph 2019}{glyph 2058}≦Ｂ８ ＿８ＳＱＩＩ７{glyph 2024}료{glyph 2016}{glyph 2024}{glyph 2031}l{glyph 2023}8ＨＯＦＦU
+menumap_guide04.bin	cn	0	4160	0x4060	0x0000	0	84	林淋琳麟累墙令×７４ ！４ＯＭＥＥ３淋冷励累礼淋经/零零累列烈累累礼裂马累廉/累累累娃恋累路娃ＤＫＢＢ4
+menumap_guide04.bin	cn	1	5000	0x4054	0x0055	0	50	。０Ｂ５ＥＤ７４８Ｃ累露累累」４３３０Ｉ累廊弄娃朗累累淋楼/路娃ＤＫＢＢ4
+menumap_guide04.bin	cn	2	5150	0x4044	0x0088	0	60	＋ＪＨ０７Ｂ累淋浪漏牢浪狼淋牢老娃郎六麓累和歪惑淋腕娃累裂烈路娃ＤＫＢＢ4
+menumap_guide04.bin	cn	3	6100	0x4045	0x00C5	0	37	＋ＪＨ０７Ｂ累。０７０ＣＫＪ累个乖乘豫淋累舒娃ＤＫＢＢ4
+menumap_guide04.bin	es fr it us	0	4160	0x4060	0x0000	0	84	{expansion glyph 0}{expansion glyph 1}{expansion glyph 2}{expansion glyph 3}{expansion glyph 4}暗{expansion glyph 5}The Feywood{expansion glyph 1}{expansion glyph 6}{expansion glyph 7}{expansion glyph 4}{expansion glyph 8}{expansion glyph 1}ゅ≧{expansion glyph 9}{expansion glyph 9}{expansion glyph 4}{expansion glyph 10}{expansion glyph 11}{expansion glyph 4}{expansion glyph 4}{expansion glyph 8}{expansion glyph 12}ｌ{expansion glyph 4}{expansion glyph 13}≧{expansion glyph 4}{expansion glyph 4}{expansion glyph 4}・{expansion glyph 14}{expansion glyph 4}{expansion glyph 15}・null>
+menumap_guide04.bin	es fr it us	1	5000	0x4054	0x0055	0	50	Balfonheim{expansion glyph 4}{expansion glyph 16}{expansion glyph 4}{expansion glyph 4}Reddas{expansion glyph 4}{expansion glyph 17}{expansion glyph 18}・{expansion glyph 19}{expansion glyph 4}{expansion glyph 4}{expansion glyph 1}{expansion glyph 20}≧{expansion glyph 15}・null>
+menumap_guide04.bin	es fr it us	2	5150	0x4044	0x0088	0	60	Strahl{expansion glyph 4}{expansion glyph 1}{expansion glyph 21}{expansion glyph 22}{expansion glyph 23}{expansion glyph 21}{expansion glyph 24}{expansion glyph 1}{expansion glyph 23}{expansion glyph 25}・{expansion glyph 26}{expansion glyph 27}{expansion glyph 28}{expansion glyph 4}{expansion glyph 29}{expansion glyph 30}{expansion glyph 31}{expansion glyph 1}{expansion glyph 32}・{expansion glyph 4}{expansion glyph 12}{expansion glyph 11}{expansion glyph 15}・null>
+menumap_guide04.bin	es fr it us	3	6100	0x4045	0x00C5	0	37	Strahl{expansion glyph 4}Bahamut{expansion glyph 4}{expansion glyph 33}{expansion glyph 34}{expansion glyph 35}{expansion glyph 36}{expansion glyph 1}{expansion glyph 4}{expansion glyph 37}・null>
+menumap_guide04.bin	kr	0	4160	0x4060	0x0000	0	84	{glyph 2016}{glyph 2017}{glyph 2018}{glyph 2019}{glyph 2020}찌{glyph 2021}≦Ｂ８ ＿８ＳＱＩＩ７{glyph 2017}{glyph 2022}{glyph 2023}{glyph 2020}{glyph 2024}{glyph 2017}독l{glyph 2025}{glyph 2025}{glyph 2020}{glyph 2026}{glyph 2027}{glyph 2020}{glyph 2020}{glyph 2024}{glyph 2028}나{glyph 2020}{glyph 2029}l{glyph 2020}{glyph 2020}{glyph 2020}8{glyph 2030}{glyph 2020}{glyph 2031}8ＨＯＦＦU
+menumap_guide04.bin	kr	1	5000	0x4054	0x0055	0	50	。４Ｆ９ＩＨＢ８ＣＧ{glyph 2020}{glyph 2032}{glyph 2020}{glyph 2020}＜８７７４Ｍ{glyph 2020}{glyph 2033}{glyph 2034}8{glyph 2035}{glyph 2020}{glyph 2020}{glyph 2017}{glyph 2036}l{glyph 2031}8ＨＯＦＦU
+menumap_guide04.bin	kr	2	5150	0x4044	0x0088	0	60	＞ＮＬ４ＢＦ{glyph 2020}{glyph 2017}{glyph 2037}{glyph 2038}{glyph 2039}{glyph 2037}{glyph 2040}{glyph 2017}{glyph 2039}{glyph 2041}8{glyph 2042}{glyph 2043}{glyph 2044}{glyph 2020}{glyph 2045}{glyph 2046}{glyph 2047}{glyph 2017}{glyph 2048}8{glyph 2020}{glyph 2028}{glyph 2027}{glyph 2031}8ＨＯＦＦU
+menumap_guide04.bin	kr	3	6100	0x4045	0x00C5	0	37	＞ＮＬ４ＢＦ{glyph 2020}。４Ｂ４ＧＯＮ{glyph 2020}{glyph 2049}{glyph 2050}{glyph 2051}{glyph 2052}{glyph 2017}{glyph 2020}{glyph 2053}8ＨＯＦＦU

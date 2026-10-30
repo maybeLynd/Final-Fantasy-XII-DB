@@ -108,6 +108,8 @@ growth rows on [stats](../Damage-And-Battle-Formulas/stats.md) and
 | slot 6 rows | 619 in all, 56 bytes |
 | slot 1 counts | 0 to 24 order sets per area |
 | slot 7 records | 1,773 in all |
+| `pc_skillmotion.bin` | 544 bytes, `in` and `ch` identical: count 33, then 33 slot-7 records; its twelve bytes after the count and each record's `+0x0A`-`+0x0F` are 0 |
+| its records | 11 character models with three motions each, 3000 to 3017, weapon class 1 in all; 3009-3011 on five models and 3012-3014 on two; 33 different files, 18 of them in the archive |
 | trailers | 140 files, 998 records; the other 26 have offset 0 |
 | trailer model letters | `w` 564, `m` 278, `n` 140, `s` 13, `c` 3 |
 | section 19 (`us` scripts) | 271 carry an `FF12AR03` block, `+0x2C` = `0x30` in all, 2,116 slot-7 records in all; 266 with a trailer |
@@ -115,7 +117,8 @@ growth rows on [stats](../Damage-And-Battle-Formulas/stats.md) and
 | `.nmb` counts | 0 to 22; equal to the `.ard`'s slot 2 row count in all 166 |
 | `.nmb` entries | 1,146: `12 BA 00` 1,120 and `12 BB 00` 26, each a one-glyph two-byte string |
 
-Every row of the area files is in six tables. The `ch` and `in` copies are byte-identical. The 1,146 enemy
+Every row of the area files is in six tables, and `pc_skillmotion.bin`'s in a seventh. The `ch` and `in` copies are
+byte-identical. The 1,146 enemy
 definitions are the [bestiary](../Enemy-Spawning/bestiary.md)'s rows, and the 1,422 order sets are on
 [enemy order sets](../Enemy-AI-And-Gambits/enemy-order-sets.md).
 
@@ -125,6 +128,7 @@ definitions are the [bestiary](../Enemy-Spawning/bestiary.md)'s rows, and the 1,
 | [`ard-area-battle-data-class-rows.tsv`](ard-area-battle-data-class-rows.tsv) | 954 | slot 0 class row |
 | [`ard-area-battle-data-stat-rows.tsv`](ard-area-battle-data-stat-rows.tsv) | 1,738 | slot 5 base row (1,119) or slot 6 growth row (619) |
 | [`ard-area-battle-data-motion-overrides.tsv`](ard-area-battle-data-motion-overrides.tsv) | 1,773 | slot 7 record |
+| [`ard-area-battle-data-pcskill-records.tsv`](ard-area-battle-data-pcskill-records.tsv) | 33 | record of `pc_skillmotion.bin`: the model's name, and the kind `0x1E` file its index names, with whether the archive carries it |
 | [`ard-area-battle-data-trailer-records.tsv`](ard-area-battle-data-trailer-records.tsv) | 998 | trailer record: bound model id and lane mask |
 | [`ard-area-battle-data-nmb-entries.tsv`](ard-area-battle-data-nmb-entries.tsv) | 1,146 | `.nmb` entry: its offset and bytes |
 
@@ -201,7 +205,7 @@ Only `+0x2C` and the trailer offset `+0x0C` of this block are read; its `st2e` s
 `0x1E`. It looks for the model and motion in three tables, in order:
 
 1. the global table `0x02B58188` (model and motion only), loaded at start-up by `0x003DCBC0` from kind 9,
-   file 5 (tagged `PCSkill`);
+   file 5 (tagged `PCSkill`, `pc_skillmotion.bin`), laid out like slot 7;
 2. the area's slot 7 (`0x02B58178`), matching model, motion and weapon class;
 3. the table `0x02B58180` installed with the second area root (`0x003DCF10`).
 

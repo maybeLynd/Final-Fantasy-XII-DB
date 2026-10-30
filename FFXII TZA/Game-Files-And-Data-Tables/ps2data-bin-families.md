@@ -96,6 +96,25 @@ the game reads it.
 | families with no loader | 65: the 20 unnamed ones, 40 loose battle tables, and five more |
 | families documented on another page | 114 |
 
+Row tables for the six `packfiles` packs (Pack directories) and for four small `bin_menu` files of `ch` and `in`,
+decoded with the family rows and, for `fontcolor.bin`, the colour table on [Text drawing](../Menus-And-HUD/text-drawing.md).
+Each distinct content is listed once with the folders that hold it. A TIM2 entry's sprite record count runs from its
+record table to the end of the picture header ([Menu sprites](../Menus-And-HUD/menu-sprites.md)).
+
+| table | rows | one row per |
+|---|---:|---|
+| [`ps2data-bin-families-packfiles-files-rows.tsv`](ps2data-bin-families-packfiles-files-rows.tsv) | 52 | pack copy: folder, size, SHA-256, the folders with the same bytes and the directory |
+| [`ps2data-bin-families-packfiles-rows.tsv`](ps2data-bin-families-packfiles-rows.tsv) | 688 | directory entry: offset, size, SHA-256, the folders whose entry has the same bytes, magic, the picture it is bound as, and the TIM2 or CLT2 header with the sprite record count |
+| [`ps2data-bin-families-bin-menu-files-rows.tsv`](ps2data-bin-families-bin-menu-files-rows.tsv) | 10 | copy of `fontcolor.bin`, `item_clut.bin`, `license_chip.bin`, `menu_version.bin` and `monotone_chr.bin`: size, SHA-256, first bytes and header |
+| [`ps2data-bin-families-fontcolor-rows.tsv`](ps2data-bin-families-fontcolor-rows.tsv) | 263 | `fontcolor.bin` entry: the RGBA colour and its bytes, the byte `+4` and bytes `+5` to `+7` |
+| [`ps2data-bin-families-license-chip-rows.tsv`](ps2data-bin-families-license-chip-rows.tsv) | 361 | `license_chip.bin` record: its 64 bytes in 16 four-byte columns by offset |
+| [`ps2data-bin-families-menu-version-rows.tsv`](ps2data-bin-families-menu-version-rows.tsv) | 1 | `menu_version.bin`: its 16 ASCII bytes |
+| [`ps2data-bin-families-monotone-chr-rows.tsv`](ps2data-bin-families-monotone-chr-rows.tsv) | 6 | `monotone_chr.bin` palette: the CLT2 header fields, the palette's SHA-256 and the count of each alpha byte |
+
+The colours of `item_clut.bin` are on [Menu graphics containers](as7-menu-graphics.md), the lists inside the
+`mrppack_ys.bin` entries on [UI typed lists](ui-typed-lists.md) and the glyph records of `fontpack_fs.bin` on
+[ExFont bitmaps](btm-exfont-bitmaps.md).
+
 ### How a family is reached
 
 - **Path arrays.** `0x002DF9A0` installs 41 path-array pointers at `0x0215F000`. Kinds 1, 2, 5, 7, 8, 9 and

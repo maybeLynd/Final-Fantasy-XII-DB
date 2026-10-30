@@ -393,12 +393,13 @@ bytes.
 | slots used | 0 (545), 1 (46), 4 (461), 8 (461), 9 (270), 10 (545), 13 (387), 15 (2), 16 (456), 17 (212), 24 to 27 (421, 136, 32, 17), 28 to 31 (396, 133, 31, 17) |
 | commonest slot sets | {0, 4, 8, 10, 13, 16, 24, 28} 113 packs; with 9 added 48; with 9 and 17 48; with 9, 17, 25, 29 47; {0, 1, 10} 46; {0, 10} 41 |
 | block packs | the 89 `<area>00` packs: 46 carry {0, 1, 10}, 41 {0, 10}, 2 nothing; no other pack is sound-only |
-| YM00 | 461 sections, median 2.9 MB; count 17 and the same 17 tags in every one; 441 stamps are float-shaped values between 1 and 1000 |
-| ACTL | 270 sections, 64 to 1,792 bytes; version 1 and record size 0x16 in all; the index ends where the first record begins and the records end at the aux offset in all 270; 1,822 records, 101 of them tombstones |
-| SP1 | 456 sections, 704 to 9,792 bytes; `listOffset` (`+0x04`) 0x20 in all; the three regions tile areas, emitters, index in 454 (two sections have no emitter index) |
-| SPP1 | 545 lists of 1 to 48 ids, 624 distinct; the weather-table offset `+0x1A` is non-zero in all 545, with 1, 2 or 3 entries in 189, 130 and 226 tables |
-| TIM2 and NPS2 | one picture per section (`u16 +6` = 1); 577 placements, all version "2" |
-| WD | 46 sections, all in `<area>00` packs; record stride 0x20 in the 27 with more than one record |
+| YM00 | 461 sections, median 2.9 MB; count 17 and the same 17 tags, in the same index order, in every one; 441 stamps are float-shaped values between 1 and 1000. [`mpk-map-pack-ym00-chunks.tsv`](mpk-map-pack-ym00-chunks.tsv) has the 8,298 index entries: pack, the section's file offset, entry, tag, the chunk's offset in the section and its bytes (to the next chunk start), its first dword and its SHA-256; the sentinel's row has no bytes |
+| ACTL | 270 sections, 64 to 1,792 bytes; version 1 and record size 0x16 in all; the index ends where the first record begins and the records end at the aux offset in all 270; 1,822 records, 101 of them tombstones. [`mpk-map-pack-actl-rows.tsv`](mpk-map-pack-actl-rows.tsv) has every record: pack, section offset, id (bucket × 100 + slot), bucket, slot, record offset, tombstone, then the record's fields by the layout above |
+| SP1 | 456 sections, 704 to 9,792 bytes; `listOffset` (`+0x04`) 0x20 in all; the three regions tile areas, emitters, index in 454 (two sections have no emitter index). [`mpk-map-pack-sp1-rows.tsv`](mpk-map-pack-sp1-rows.tsv) has each section's header offsets, its weather-slot list, the `u16` prefix list up to the bit `0x8000` word, the index bound and its distinct records; [`mpk-map-pack-sp1-index.tsv`](mpk-map-pack-sp1-index.tsv) every index entry (14,272, of which 11,946 are 0); [`mpk-map-pack-sp1-emitters.tsv`](mpk-map-pack-sp1-emitters.tsv) every distinct non-zero record offset (2,326) with its bytes up to the next record or the index, its list index (`+0x00`), flag byte (`+0x08`), shape byte (`+0x09`) and position (`+0x20` to `+0x28`) as the map sound list page reads them |
+| SPP1 | 545 lists of 1 to 48 ids, 624 distinct; the weather-table offset `+0x1A` is non-zero in all 545, with 1, 2 or 3 entries in 189, 130 and 226 tables. [`mpk-map-pack-spp1-rows.tsv`](mpk-map-pack-spp1-rows.tsv) has each list's header and weather table; [`mpk-map-pack-spp1-ids.tsv`](mpk-map-pack-spp1-ids.tsv) its 6,512 id entries, each with its bank |
+| TIM2 and NPS2 | one picture per section (`u16 +6` = 1); 577 placements, all version "2". [`mpk-map-pack-tim2-rows.tsv`](mpk-map-pack-tim2-rows.tsv) has each picture's header fields and the SHA-256 of its data; [`mpk-map-pack-nps2-rows.tsv`](mpk-map-pack-nps2-rows.tsv) each placement's position and extent |
+| WD | 46 sections, all in `<area>00` packs; record stride 0x20 in the 27 with more than one record. [`mpk-map-pack-wd-rows.tsv`](mpk-map-pack-wd-rows.tsv) has each header and where its trailing data starts; [`mpk-map-pack-wd-records.tsv`](mpk-map-pack-wd-records.tsv) the 225 records' 0x20 bytes |
+| LGT2 | 212 sections; `+0x08` is 0 in all 212 and the chunk chain carries types 3 and 5 in all, 6 in 211, 0 in 198, 2 in 123 and 7 in 20. [`mpk-map-pack-lgt2-rows.tsv`](mpk-map-pack-lgt2-rows.tsv) has each header and its chunk types; [`mpk-map-pack-lgt2-lights.tsv`](mpk-map-pack-lgt2-lights.tsv) the 5,860 light records by the section-014 layout, with their bytes; [`mpk-map-pack-lgt2-chunks.tsv`](mpk-map-pack-lgt2-chunks.tsv) the 976 chunks with their entries |
 | every section | one row each in [`mpk-map-pack-slots-rows.tsv`](mpk-map-pack-slots-rows.tsv), 4,568 rows for the 550 packs: pack, folder, slot, the section's file offset and size, its first bytes, SHA-256 prefix, and whether the 0x40-byte slot before it is zero (it is in all 4,568) |
 
 ## Loader behaviour
@@ -525,7 +526,7 @@ at `+0x20`. `0x00467BF0` appends an entry (`0x005360C0`, which allocates the nod
 `0x00467B20` runs `0x00467B30` on the buffer (its callback at `+0x10`, then its 0x60-byte entry array at
 `+0x08` is freed) and frees the buffer.
 
-The area initialisation `0x00266D10` resets the loader once through `0x00377CC0`: every section pointer
+The start-up initialiser `0x00266D10` resets the loader once through `0x00377CC0`: every section pointer
 and world object pointer is zeroed, `0x02ADD0E0` becomes -1, `0x02ADD118` 1 and `0x02ADD130` the text
 `none`, the start-up tables are requested again (`0x00378540`), and the pending and bind words
 (`0x02ADD0EC`, `0x02ADD0F0`) and `0x02ADD0EA` are cleared.

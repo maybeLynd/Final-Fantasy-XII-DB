@@ -1,0 +1,645 @@
+file	sublocation	sublocation_name	folders	record	record_at	fieldId	lcmOff	naviOff	lcm_magic	navi_magic	navi_kinds	icons	icons_by_kind
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	0	0x30	0x0124	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	1	0x190	0x0121	0x0010	0x0440	LCMPOS1	NAVIICN2	10	7	5:6 9:1
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	2	0x680	0x0122	0x0010	0x0160	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x840	0x0123	0x0010	0x03A0	LCMPOS1	NAVIICN2	10	20	5:15 9:5
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	4	0xD60	0x0133	0x0010	0x0160	LCMPOS1	NAVIICN2	10	5	3:1 5:3 9:1
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	5	0xF50	0x0132	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	6	0x1090	0x0131	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub00.bin	0	rbn01_s01	de in	0	0x30	0x0124	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub00.bin	0	rbn01_s01	de in	1	0x190	0x0121	0x0010	0x0440	LCMPOS1	NAVIICN2	10	7	5:6 9:1
+menumap_sub00.bin	0	rbn01_s01	de in	2	0x680	0x0122	0x0010	0x0160	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x840	0x0123	0x0010	0x03A0	LCMPOS1	NAVIICN2	10	20	5:15 9:5
+menumap_sub00.bin	0	rbn01_s01	de in	4	0xD60	0x0133	0x0010	0x0160	LCMPOS1	NAVIICN2	10	5	3:1 5:3 9:1
+menumap_sub00.bin	0	rbn01_s01	de in	5	0xF50	0x0132	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub00.bin	0	rbn01_s01	de in	6	0x1090	0x0131	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	0	0x30	0x01E3	0x0010	0x0180	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	1	0x210	0x01DE	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	2	0x410	0x01DF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	3	0x750	0x01E0	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	4	0x930	0x01E1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	5	0xB30	0x01E2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	6	0xDD0	0x01E4	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	7	0xFB0	0x01E8	0x0010	0x0340	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	8	0x1350	0x01EB	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	9	0x15D0	0x01EC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	10	0x17B0	0x01ED	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	11	0x18F0	0x01EE	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub01.bin	1	fon01_s01	de in	0	0x30	0x01E3	0x0010	0x0180	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub01.bin	1	fon01_s01	de in	1	0x210	0x01DE	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	2	0x410	0x01DF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	3	0x750	0x01E0	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	4	0x930	0x01E1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	5	0xB30	0x01E2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	6	0xDD0	0x01E4	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	7	0xFB0	0x01E8	0x0010	0x0340	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub01.bin	1	fon01_s01	de in	8	0x1350	0x01EB	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	9	0x15D0	0x01EC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	10	0x17B0	0x01ED	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01.bin	1	fon01_s01	de in	11	0x18F0	0x01EE	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub01_e3.bin	1	fon01_s01	in	0	0x30	0x01E3	0x0010	0x0180	LCMPOS1	NAVIICN2	10	1	8:1
+menumap_sub01_e3.bin	1	fon01_s01	in	1	0x200	0x01DE	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	2	0x400	0x01DF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	3	0x740	0x01E0	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	4	0x920	0x01E1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	5	0xB20	0x01E2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	6	0xDC0	0x01E4	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	7	0xFA0	0x01E8	0x0010	0x0340	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub01_e3.bin	1	fon01_s01	in	8	0x1340	0x01EB	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	9	0x15C0	0x01EC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	10	0x17A0	0x01ED	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub01_e3.bin	1	fon01_s01	in	11	0x18E0	0x01EE	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	0	0x40	0x0035	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	1	0x180	0x0036	0x0010	0x0100	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	2	0x300	0x0037	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	3	0x420	0x0038	0x0010	0x0100	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	4	0x580	0x0039	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	5	0x6B0	0x0045	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	6	0x790	0x0047	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	7	0x8F0	0x003A	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	8	0xA30	0x0046	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	9	0xB60	0x003E	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	10	0xE70	0x037B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	11	0xF50	0x037C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	12	0x1050	0x037D	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	13	0x11E0	0x0042	0x0010	0x0100	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	14	0x1340	0x037E	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	15	0x1470	0x037F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	16	0x1530	0x003D	0x0010	0x0120	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub02.bin	2	mic01_s01	de in	0	0x40	0x0035	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub02.bin	2	mic01_s01	de in	1	0x180	0x0036	0x0010	0x0100	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub02.bin	2	mic01_s01	de in	2	0x300	0x0037	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub02.bin	2	mic01_s01	de in	3	0x420	0x0038	0x0010	0x0100	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub02.bin	2	mic01_s01	de in	4	0x580	0x0039	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub02.bin	2	mic01_s01	de in	5	0x6B0	0x0045	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	de in	6	0x790	0x0047	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	de in	7	0x8F0	0x003A	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub02.bin	2	mic01_s01	de in	8	0xA30	0x0046	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub02.bin	2	mic01_s01	de in	9	0xB60	0x003E	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub02.bin	2	mic01_s01	de in	10	0xE70	0x037B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	de in	11	0xF50	0x037C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	de in	12	0x1050	0x037D	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub02.bin	2	mic01_s01	de in	13	0x11E0	0x0042	0x0010	0x0100	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub02.bin	2	mic01_s01	de in	14	0x1340	0x037E	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub02.bin	2	mic01_s01	de in	15	0x1470	0x037F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub02.bin	2	mic01_s01	de in	16	0x1530	0x003D	0x0010	0x0120	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	0	0x30	0x01A5	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	1	0x110	0x01AA	0x0010	0x0100	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	2	0x260	0x01AF	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	3	0x390	0x01A6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	4	0x490	0x01AE	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	5	0x570	0x01B6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	6	0x610	0x01B9	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	7	0x6B0	0x01BC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	de in	0	0x30	0x01A5	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	de in	1	0x110	0x01AA	0x0010	0x0100	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub03.bin	3	bds01_s01	de in	2	0x260	0x01AF	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub03.bin	3	bds01_s01	de in	3	0x390	0x01A6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	de in	4	0x490	0x01AE	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	de in	5	0x570	0x01B6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	de in	6	0x610	0x01B9	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub03.bin	3	bds01_s01	de in	7	0x6B0	0x01BC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	0	0x30	0x00A7	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	1	0x190	0x00A8	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	2	0x320	0x00A9	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	3	0x5A0	0x00AA	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	4	0x680	0x00AB	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	5	0x760	0x00AF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	6	0x9E0	0x00B0	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	7	0xB10	0x00B1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	8	0xC50	0x00B2	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	9	0xD60	0x00B3	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	10	0xE40	0x00B4	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	0	0x30	0x017B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	1	0x110	0x017C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	2	0x210	0x017D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	3	0x310	0x017E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	4	0x410	0x017F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	5	0x590	0x0180	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	6	0x670	0x0181	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	7	0x7F0	0x0182	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	3:1 5:1 8:1
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	8	0x9C0	0x0183	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	0	0x30	0x0188	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	1	0x170	0x0186	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	2	0x270	0x0187	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	3	0x390	0x0189	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	4	0x4D0	0x018E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	5	0x5D0	0x018F	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	6	0x7D0	0x0190	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	7	0x8C0	0x018A	0x0010	0x0120	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	0	0x40	0x0149	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	1	0x160	0x0137	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	2	0x2A0	0x0139	0x0010	0x0160	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	3	0x450	0x013A	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	4	0x540	0x013F	0x0010	0x0100	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	5	0x690	0x0146	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	6	0x7A0	0x0140	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	7	0x8B0	0x034D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	8	0xA90	0x034F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	9	0xC50	0x0350	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	10	0xE30	0x0142	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	11	0x1100	0x013B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	12	0x1240	0x013C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	13	0x1380	0x013E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	14	0x1540	0x0141	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	de in	0	0x40	0x0149	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub07.bin	7	grm01_s01	de in	1	0x160	0x0137	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub07.bin	7	grm01_s01	de in	2	0x2A0	0x0139	0x0010	0x0160	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub07.bin	7	grm01_s01	de in	3	0x450	0x013A	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07.bin	7	grm01_s01	de in	4	0x540	0x013F	0x0010	0x0100	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07.bin	7	grm01_s01	de in	5	0x690	0x0146	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub07.bin	7	grm01_s01	de in	6	0x7A0	0x0140	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub07.bin	7	grm01_s01	de in	7	0x8B0	0x034D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	de in	8	0xA90	0x034F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	de in	9	0xC50	0x0350	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	de in	10	0xE30	0x0142	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07.bin	7	grm01_s01	de in	11	0x1100	0x013B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	de in	12	0x1240	0x013C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	de in	13	0x1380	0x013E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07.bin	7	grm01_s01	de in	14	0x1540	0x0141	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07_e3.bin	7	grm01_s01	in	0	0x40	0x0149	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub07_e3.bin	7	grm01_s01	in	1	0x160	0x0137	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub07_e3.bin	7	grm01_s01	in	2	0x2A0	0x0139	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07_e3.bin	7	grm01_s01	in	3	0x400	0x013A	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07_e3.bin	7	grm01_s01	in	4	0x4F0	0x013F	0x0010	0x0100	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07_e3.bin	7	grm01_s01	in	5	0x640	0x0146	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub07_e3.bin	7	grm01_s01	in	6	0x750	0x0140	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub07_e3.bin	7	grm01_s01	in	7	0x860	0x034D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07_e3.bin	7	grm01_s01	in	8	0xA40	0x034F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07_e3.bin	7	grm01_s01	in	9	0xC00	0x0350	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07_e3.bin	7	grm01_s01	in	10	0xDE0	0x0142	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub07_e3.bin	7	grm01_s01	in	11	0x10B0	0x013B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07_e3.bin	7	grm01_s01	in	12	0x11F0	0x013C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07_e3.bin	7	grm01_s01	in	13	0x1330	0x013E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub07_e3.bin	7	grm01_s01	in	14	0x14F0	0x0141	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	0	0x20	0x0276	0x0010	0x0320	LCMPOS1	NAVIICN2	10	4	3:1 5:3
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	1	0x3C0	0x0277	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	5	5:3 9:2
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	2	0x5F0	0x0278	0x0010	0x01C0	LCMPOS1	NAVIICN2	10	7	5:4 9:3
+menumap_sub09.bin	9	naf01_s01	ch cn de es fr in it kr us	0	0x20	0x0112	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub09.bin	9	naf01_s01	ch cn de es fr in it kr us	1	0xE0	0x0113	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub09.bin	9	naf01_s01	ch cn de es fr in it kr us	2	0x1C0	0x0117	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub09.bin	9	naf01_s01	ch cn de es fr in it kr us	3	0x2A0	0x0118	0x0010	0x0120	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub09.bin	9	naf01_s01	ch cn de es fr in it kr us	4	0x410	0x011A	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub10.bin	10	nal01_s01	ch cn de es fr in it kr us	0	0x20	0x0030	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub10.bin	10	nal01_s01	ch cn de es fr in it kr us	1	0x110	0x02C5	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub10.bin	10	nal01_s01	ch cn de es fr in it kr us	2	0x200	0x02C6	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub10.bin	10	nal01_s01	ch cn de es fr in it kr us	3	0x2F0	0x0031	0xFFFF	0xFFFF	-	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	0	0x30	0x020D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	1	0x230	0x0212	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	2	0x450	0x0213	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	3	0x6D0	0x0214	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	4	0x8D0	0x020E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	5	0xE30	0x020F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	6	0x10F0	0x0218	0x0010	0x0360	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	7	0x14A0	0x0215	0x0010	0x0160	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub11.bin	11	ozm01_s01	de in	0	0x30	0x020D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	de in	1	0x230	0x0212	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	de in	2	0x450	0x0213	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	de in	3	0x6D0	0x0214	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	de in	4	0x8D0	0x020E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	de in	5	0xE30	0x020F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub11.bin	11	ozm01_s01	de in	6	0x10F0	0x0218	0x0010	0x0360	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub11.bin	11	ozm01_s01	de in	7	0x14A0	0x0215	0x0010	0x0160	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	0	0x30	0x0193	0x0010	0x0100	LCMPOS1	NAVIICN2	10	4	3:1 5:3
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	1	0x1B0	0x0196	0x0010	0x0100	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	2	0x310	0x0197	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	3	0x450	0x019A	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	4	0x620	0x019B	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	5	0x760	0x019C	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	6	0x8A0	0x019F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	7	0x980	0x01A2	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	0	0x30	0x00EC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	1	0x190	0x00F3	0x0010	0x0240	LCMPOS1	NAVIICN2	10	5	3:1 5:2 9:2
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	2	0x460	0x00ED	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	3	0x5F0	0x00EE	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	4	0x830	0x00EF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	5	0xA10	0x00F7	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	6	0xBA0	0x00F8	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	4	3:1 5:1 8:1 9:1
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	7	0xCE0	0x00F9	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x20	0x02BD	0x0010	0x0340	LCMPOS1	NAVIICN2	10	11	5:8 9:3
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	1	0x450	0x02BE	0x0010	0x0400	LCMPOS1	NAVIICN2	10	6	5:5 9:1
+menumap_sub14.bin	14	slm01_s01	de in	0	0x20	0x02BD	0x0010	0x0340	LCMPOS1	NAVIICN2	10	11	5:8 9:3
+menumap_sub14.bin	14	slm01_s01	de in	1	0x450	0x02BE	0x0010	0x0400	LCMPOS1	NAVIICN2	10	6	5:5 9:1
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	0	0x30	0x0159	0x0010	0x0240	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	1	0x2C0	0x015A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	2	0x500	0x015B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	3	0x7C0	0x015C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	4	0xAA0	0x015D	0x0010	0x0200	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	5	0xCF0	0x015E	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	3:1 5:1 8:1
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	6	0xEC0	0x0162	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub15.bin	15	wdl01_s01	de in	0	0x30	0x0159	0x0010	0x0240	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub15.bin	15	wdl01_s01	de in	1	0x2C0	0x015A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub15.bin	15	wdl01_s01	de in	2	0x500	0x015B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub15.bin	15	wdl01_s01	de in	3	0x7C0	0x015C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub15.bin	15	wdl01_s01	de in	4	0xAA0	0x015D	0x0010	0x0200	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub15.bin	15	wdl01_s01	de in	5	0xCF0	0x015E	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	3:1 5:1 8:1
+menumap_sub15.bin	15	wdl01_s01	de in	6	0xEC0	0x0162	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	0	0x30	0x0240	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	1	0x1C0	0x0241	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	2	0x4E0	0x0242	0x0010	0x0340	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	3	0x870	0x0249	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	4	0xBB0	0x024E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	5	0xE50	0x0245	0x0010	0x02C0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	6	0x1160	0x0246	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	7	0x1280	0x024A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	8	0x15E0	0x024B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	9	0x17E0	0x024C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	0	0x20	0x02EF	0x0010	0x0180	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	1	0x1F0	0x02F0	0x0010	0x0100	LCMPOS1	NAVIICN2	10	3	5:1 9:2
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	2	0x360	0x02F1	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	9:2
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	0	0x40	0x02C8	0x0010	0x0200	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	1	0x290	0x02C9	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	2	0x560	0x02CA	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	3	0x830	0x02CB	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	4	0x9C0	0x02CC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	5	0xBA0	0x02CD	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	6	0xD30	0x02CE	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	7	0xEC0	0x02D2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	8	0x10A0	0x02D5	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	9	0x11E0	0x02D6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	10	0x1460	0x02D7	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	11	0x1690	0x02DA	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	12	0x17D0	0x02DD	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	13	0x1910	0x02CF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	14	0x1AF0	0x02D8	0x0010	0x0540	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	de in	0	0x40	0x02C8	0x0010	0x0200	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	de in	1	0x290	0x02C9	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	de in	2	0x560	0x02CA	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub18.bin	18	hne01_s01	de in	3	0x830	0x02CB	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub18.bin	18	hne01_s01	de in	4	0x9C0	0x02CC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	de in	5	0xBA0	0x02CD	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	de in	6	0xD30	0x02CE	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub18.bin	18	hne01_s01	de in	7	0xEC0	0x02D2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	de in	8	0x10A0	0x02D5	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	de in	9	0x11E0	0x02D6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	de in	10	0x1460	0x02D7	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub18.bin	18	hne01_s01	de in	11	0x1690	0x02DA	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	de in	12	0x17D0	0x02DD	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	de in	13	0x1910	0x02CF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub18.bin	18	hne01_s01	de in	14	0x1AF0	0x02D8	0x0010	0x0540	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	0	0x30	0x021B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	1	0x390	0x021C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	2	0x610	0x021D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	3	0xB90	0x021E	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	4	0xDC0	0x0221	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	5	0xF50	0x0224	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	6	0x1030	0x0225	0x0010	0x0140	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	7	0x11F0	0x0226	0x0010	0x0100	LCMPOS1	NAVIICN2	10	7	5:6 9:1
+menumap_sub19.bin	19	mfr01_s01	de in	0	0x30	0x021B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub19.bin	19	mfr01_s01	de in	1	0x390	0x021C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub19.bin	19	mfr01_s01	de in	2	0x610	0x021D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub19.bin	19	mfr01_s01	de in	3	0xB90	0x021E	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub19.bin	19	mfr01_s01	de in	4	0xDC0	0x0221	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub19.bin	19	mfr01_s01	de in	5	0xF50	0x0224	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub19.bin	19	mfr01_s01	de in	6	0x1030	0x0225	0x0010	0x0140	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub19.bin	19	mfr01_s01	de in	7	0x11F0	0x0226	0x0010	0x0100	LCMPOS1	NAVIICN2	10	7	5:6 9:1
+menumap_sub20.bin	20	vic01_s01	ch cn de es fr in it kr us	0	0x20	0x0300	0x0010	0x0180	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub20.bin	20	vic01_s01	ch cn de es fr in it kr us	1	0x200	0x02FE	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub20.bin	20	vic01_s01	ch cn de es fr in it kr us	2	0x2C0	0x02FF	0x0010	0x0120	LCMPOS1	NAVIICN2	10	2	9:2
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	0	0x30	0x00E3	0x0010	0x0220	LCMPOS1	NAVIICN2	10	3	5:1 9:2
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	1	0x2C0	0x00E4	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	2	0x590	0x00E5	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	3	0x790	0x00E6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	4	0xA30	0x00E8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	5	0xCD0	0x0081	0x0010	0x0180	LCMPOS1	NAVIICN2	10	3	3:1 5:1 9:1
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	6	0xEC0	0x0082	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	7	0x1020	0x0084	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	8	0x1220	0x0085	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	9	0x13C0	0x00E9	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	10	0x15B0	0x00E7	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	3	3:1 8:1 9:1
+menumap_sub21.bin	21	dst01_s01	de in	0	0x30	0x00E3	0x0010	0x0220	LCMPOS1	NAVIICN2	10	3	5:1 9:2
+menumap_sub21.bin	21	dst01_s01	de in	1	0x2C0	0x00E4	0x0010	0x0280	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub21.bin	21	dst01_s01	de in	2	0x590	0x00E5	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	de in	3	0x790	0x00E6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	de in	4	0xA30	0x00E8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	de in	5	0xCD0	0x0081	0x0010	0x0180	LCMPOS1	NAVIICN2	10	3	3:1 5:1 9:1
+menumap_sub21.bin	21	dst01_s01	de in	6	0xEC0	0x0082	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	de in	7	0x1020	0x0084	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	de in	8	0x1220	0x0085	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub21.bin	21	dst01_s01	de in	9	0x13C0	0x00E9	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub21.bin	21	dst01_s01	de in	10	0x15B0	0x00E7	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	3	3:1 8:1 9:1
+menumap_sub22.bin	22	rrp01_s01	ch cn de es fr in it kr us	0	0x20	0x0237	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub22.bin	22	rrp01_s01	ch cn de es fr in it kr us	1	0x150	0x0238	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub22.bin	22	rrp01_s01	ch cn de es fr in it kr us	2	0x210	0x0239	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub22.bin	22	rrp01_s01	ch cn de es fr in it kr us	3	0x2B0	0x023A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub22.bin	22	rrp01_s01	ch cn de es fr in it kr us	4	0x370	0x023C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	0	0x30	0x0281	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	1	0x150	0x027B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	2	0x230	0x027C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	3	0x2F0	0x02F4	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	4	0x3F0	0x0280	0x0010	0x02C0	LCMPOS1	NAVIICN2	10	5	5:4 9:1
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	5	0x740	0x02E9	0x0010	0x0140	LCMPOS1	NAVIICN2	10	5	5:4 9:1
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x910	0x02EA	0x0010	0x0220	LCMPOS1	NAVIICN2	10	8	5:8
+menumap_sub23.bin	23	alc01_s01	de in	0	0x30	0x0281	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub23.bin	23	alc01_s01	de in	1	0x150	0x027B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub23.bin	23	alc01_s01	de in	2	0x230	0x027C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub23.bin	23	alc01_s01	de in	3	0x2F0	0x02F4	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub23.bin	23	alc01_s01	de in	4	0x3F0	0x0280	0x0010	0x02C0	LCMPOS1	NAVIICN2	10	5	5:4 9:1
+menumap_sub23.bin	23	alc01_s01	de in	5	0x740	0x02E9	0x0010	0x0140	LCMPOS1	NAVIICN2	10	5	5:4 9:1
+menumap_sub23.bin	23	alc01_s01	de in	6	0x910	0x02EA	0x0010	0x0220	LCMPOS1	NAVIICN2	10	8	5:8
+menumap_sub24.bin	24	alc01_s02	ch cn de es fr in it kr us	0	0x20	0x02FB	0x0010	0x0100	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub24.bin	24	alc01_s02	ch cn de es fr in it kr us	1	0x170	0x02FA	0x0010	0x0100	LCMPOS1	NAVIICN2	10	2	3:1 9:1
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	0	0x30	0x0097	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	1	0x190	0x0098	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	2	0x3C0	0x0099	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	3	0x5E0	0x009A	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	4	0x770	0x009B	0x0010	0x0140	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	5	0x910	0x009E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	6	0xA50	0x00A2	0x0010	0x0240	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	7	0xCE0	0x00A3	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	8	0xF80	0x009C	0x0010	0x0200	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	9	0x11E0	0x009D	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	10	0x1370	0x038C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	de in	0	0x30	0x0097	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	de in	1	0x190	0x0098	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub25.bin	25	frs01_s01	de in	2	0x3C0	0x0099	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	de in	3	0x5E0	0x009A	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub25.bin	25	frs01_s01	de in	4	0x770	0x009B	0x0010	0x0140	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub25.bin	25	frs01_s01	de in	5	0x910	0x009E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	de in	6	0xA50	0x00A2	0x0010	0x0240	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub25.bin	25	frs01_s01	de in	7	0xCE0	0x00A3	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25.bin	25	frs01_s01	de in	8	0xF80	0x009C	0x0010	0x0200	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub25.bin	25	frs01_s01	de in	9	0x11E0	0x009D	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub25.bin	25	frs01_s01	de in	10	0x1370	0x038C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25_e3.bin	25	frs01_s01	in	0	0x30	0x0097	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25_e3.bin	25	frs01_s01	in	1	0x190	0x0098	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub25_e3.bin	25	frs01_s01	in	2	0x3C0	0x0099	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25_e3.bin	25	frs01_s01	in	3	0x5E0	0x009A	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub25_e3.bin	25	frs01_s01	in	4	0x770	0x009B	0x0010	0x0140	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub25_e3.bin	25	frs01_s01	in	5	0x910	0x009E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25_e3.bin	25	frs01_s01	in	6	0xA50	0x00A2	0x0010	0x0240	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub25_e3.bin	25	frs01_s01	in	7	0xCE0	0x00A3	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25_e3.bin	25	frs01_s01	in	8	0xF80	0x009C	0x0010	0x0200	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub25_e3.bin	25	frs01_s01	in	9	0x11D0	0x009D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub25_e3.bin	25	frs01_s01	in	10	0x1310	0x038C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x20	0x0323	0x0010	0x0560	LCMPOS1	NAVIICN2	10	11	5:10 9:1
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	1	0x670	0x0324	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	5	5:4 9:1
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	2	0x8E0	0x0325	0x0010	0x0260	LCMPOS1	NAVIICN2	10	5	5:4 9:1
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	3	0xBD0	0x0326	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	3	3:1 5:1 9:1
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	4	0xDE0	0x0329	0x0010	0x0480	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	5	0x12C0	0x032A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x20	0x0323	0x0010	0x0560	LCMPOS1	NAVIICN2	10	10	5:9 9:1
+menumap_sub26_e3.bin	26	byu01_s01	us	1	0x660	0x0324	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	5	5:4 9:1
+menumap_sub26_e3.bin	26	byu01_s01	us	2	0x8D0	0x0325	0x0010	0x0260	LCMPOS1	NAVIICN2	10	5	5:4 9:1
+menumap_sub26_e3.bin	26	byu01_s01	us	3	0xBC0	0x0326	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub26_e3.bin	26	byu01_s01	us	4	0xDB0	0x0329	0x0010	0x0480	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub26_e3.bin	26	byu01_s01	us	5	0x1280	0x032A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	0	0x40	0x0165	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	1	0x250	0x0166	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	2	0x3D0	0x0167	0x0010	0x0320	LCMPOS1	NAVIICN2	10	3	5:2 9:1
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	3	0x760	0x0168	0x0010	0x0180	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	4	0x930	0x016D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	5	0xBF0	0x016E	0x0010	0x0300	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	6	0xF50	0x016F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	7	0x10D0	0x0171	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	8	0x1250	0x0174	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	5:2 9:1
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	9	0x1420	0x0176	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	5:2 9:1
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	10	0x15F0	0x0178	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	11	0x1690	0x0385	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	12	0x1810	0x0386	0x0010	0x0260	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	13	0x1AC0	0x0387	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	14	0x1D60	0x0388	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	15	0x1E20	0x0389	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub27.bin	27	lus01_s01	de in	0	0x40	0x0165	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub27.bin	27	lus01_s01	de in	1	0x250	0x0166	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	de in	2	0x3D0	0x0167	0x0010	0x0320	LCMPOS1	NAVIICN2	10	3	5:2 9:1
+menumap_sub27.bin	27	lus01_s01	de in	3	0x760	0x0168	0x0010	0x0180	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub27.bin	27	lus01_s01	de in	4	0x930	0x016D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	de in	5	0xBF0	0x016E	0x0010	0x0300	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub27.bin	27	lus01_s01	de in	6	0xF50	0x016F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	de in	7	0x10D0	0x0171	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	de in	8	0x1250	0x0174	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	5:2 9:1
+menumap_sub27.bin	27	lus01_s01	de in	9	0x1420	0x0176	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	5:2 9:1
+menumap_sub27.bin	27	lus01_s01	de in	10	0x15F0	0x0178	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	de in	11	0x1690	0x0385	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	de in	12	0x1810	0x0386	0x0010	0x0260	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub27.bin	27	lus01_s01	de in	13	0x1AC0	0x0387	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	de in	14	0x1D60	0x0388	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub27.bin	27	lus01_s01	de in	15	0x1E20	0x0389	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	0	0x30	0x00D1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	1	0x230	0x00D2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x530	0x047F	0x0010	0x0420	LCMPOS1	NAVIICN2	10	10	3:1 5:7 8:1 9:1
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	3	0xA30	0x00D7	0x0010	0x0340	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	4	0xDE0	0x00D8	0x0010	0x0340	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	5	0x1170	0x00D9	0x0010	0x0220	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	6	0x13F0	0x00DA	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	7	0x15F0	0x00DB	0x0010	0x0180	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	8	0x17C0	0x00DF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	9	0x1880	0x00DC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	de in	0	0x30	0x00D1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	de in	1	0x230	0x00D2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x530	0x047F	0x0010	0x0420	LCMPOS1	NAVIICN2	10	10	3:1 5:7 8:1 9:1
+menumap_sub28.bin	28	mnt01_s01	de in	3	0xA30	0x00D7	0x0010	0x0340	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub28.bin	28	mnt01_s01	de in	4	0xDE0	0x00D8	0x0010	0x0340	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub28.bin	28	mnt01_s01	de in	5	0x1170	0x00D9	0x0010	0x0220	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub28.bin	28	mnt01_s01	de in	6	0x13F0	0x00DA	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	de in	7	0x15F0	0x00DB	0x0010	0x0180	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub28.bin	28	mnt01_s01	de in	8	0x17C0	0x00DF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub28.bin	28	mnt01_s01	de in	9	0x1880	0x00DC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	0	0x30	0x0251	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	1	0x110	0x0252	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	2	0x220	0x0255	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	3	0x360	0x0256	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	4	0x4A0	0x0257	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	5	0x5E0	0x0258	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	6	0x720	0x025B	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	7	0x860	0x025E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	8	0x960	0x025F	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	9	0xA90	0x0260	0x0010	0x0100	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	10	0xBF0	0x0261	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	11	0xD20	0x0264	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	12	0xDE0	0x0267	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	13	0xE80	0x026A	0xFFFF	0x0010	-	NAVIICN2	10	1	5:1
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	0	0x30	0x01CF	0x0010	0x0100	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	1	0x180	0x01D0	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	2	0x380	0x01D1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	3	0x500	0x01D4	0x0010	0x02C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	4	0x810	0x01D5	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	5	0xA50	0x01D6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	6	0xC50	0x01D9	0x0010	0x0160	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	7	0xE10	0x01DA	0x0010	0x0160	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	8	0xFC0	0x01DB	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub30.bin	30	pbc01_s01	de in	0	0x30	0x01CF	0x0010	0x0100	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub30.bin	30	pbc01_s01	de in	1	0x180	0x01D0	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub30.bin	30	pbc01_s01	de in	2	0x380	0x01D1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub30.bin	30	pbc01_s01	de in	3	0x500	0x01D4	0x0010	0x02C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub30.bin	30	pbc01_s01	de in	4	0x810	0x01D5	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub30.bin	30	pbc01_s01	de in	5	0xA50	0x01D6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub30.bin	30	pbc01_s01	de in	6	0xC50	0x01D9	0x0010	0x0160	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub30.bin	30	pbc01_s01	de in	7	0xE10	0x01DA	0x0010	0x0160	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub30.bin	30	pbc01_s01	de in	8	0xFC0	0x01DB	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	0	0x30	0x0091	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	1	0x370	0x0089	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	2	0x650	0x008A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	3	0x910	0x008B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	4	0xC70	0x008C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	5	0xEB0	0x0090	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	6	0x1050	0x0092	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	7	0x1190	0x0093	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	8	0x1480	0x0094	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	9	0x1660	0x008E	0x0010	0x0220	LCMPOS1	NAVIICN2	10	3	3:1 5:1 8:1
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	10	0x18F0	0x0095	0x0010	0x0240	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	11	0x1B90	0x008D	0x0010	0x0220	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub31.bin	31	pla01_s01	de in	0	0x30	0x0091	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	de in	1	0x370	0x0089	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	de in	2	0x650	0x008A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	de in	3	0x910	0x008B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	de in	4	0xC70	0x008C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	de in	5	0xEB0	0x0090	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	de in	6	0x1050	0x0092	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	de in	7	0x1190	0x0093	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub31.bin	31	pla01_s01	de in	8	0x1480	0x0094	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub31.bin	31	pla01_s01	de in	9	0x1660	0x008E	0x0010	0x0220	LCMPOS1	NAVIICN2	10	3	3:1 5:1 8:1
+menumap_sub31.bin	31	pla01_s01	de in	10	0x18F0	0x0095	0x0010	0x0240	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub31.bin	31	pla01_s01	de in	11	0x1B90	0x008D	0x0010	0x0220	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	0	0x30	0x0228	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	1	0x130	0x022B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	2	0x310	0x022C	0x0010	0x0140	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	3	0x4B0	0x022D	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	4	0x690	0x022E	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	5	0x820	0x0231	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	6	0xA00	0x0234	0x0010	0x0180	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	7	0xBE0	0x036C	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	3	3:1 5:2
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	0	0x30	0x00BB	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	1	0x170	0x00BA	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	2	0x3A0	0x00C2	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	3	0x490	0x00C1	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	4	0x5A0	0x00C6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	5	0x660	0x00C0	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	6	0xAC0	0x00B8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	7	0x1120	0x00B9	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	8	0x14E0	0x00C8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	9	0x15C0	0x00CA	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	10	0x1660	0x00BC	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub33.bin	33	rui01_s01	de in	0	0x30	0x00BB	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub33.bin	33	rui01_s01	de in	1	0x170	0x00BA	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub33.bin	33	rui01_s01	de in	2	0x3A0	0x00C2	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub33.bin	33	rui01_s01	de in	3	0x490	0x00C1	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub33.bin	33	rui01_s01	de in	4	0x5A0	0x00C6	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	de in	5	0x660	0x00C0	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	de in	6	0xAC0	0x00B8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	de in	7	0x1120	0x00B9	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	de in	8	0x14E0	0x00C8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	de in	9	0x15C0	0x00CA	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub33.bin	33	rui01_s01	de in	10	0x1660	0x00BC	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub34.bin	34	rwf01_s01	ch cn de es fr in it kr us	0	0x20	0x01FD	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub34.bin	34	rwf01_s01	ch cn de es fr in it kr us	1	0x120	0x01FF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub34.bin	34	rwf01_s01	ch cn de es fr in it kr us	2	0x200	0x0382	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub34.bin	34	rwf01_s01	ch cn de es fr in it kr us	3	0x2C0	0x0205	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub34.bin	34	rwf01_s01	ch cn de es fr in it kr us	4	0x3A0	0x0206	0x0010	0x0160	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	0	0x30	0x01F1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	1	0x1F0	0x01F2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	2	0x4F0	0x01F3	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	3	0x6B0	0x01F7	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	4	0x970	0x01F8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	5	0xBB0	0x01F9	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	6	0xDF0	0x01FA	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	7	0x10E0	0x01F4	0x0010	0x01C0	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub35.bin	35	srb01_s01	de in	0	0x30	0x01F1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	de in	1	0x1F0	0x01F2	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	de in	2	0x4F0	0x01F3	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	de in	3	0x6B0	0x01F7	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	de in	4	0x970	0x01F8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	de in	5	0xBB0	0x01F9	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub35.bin	35	srb01_s01	de in	6	0xDF0	0x01FA	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub35.bin	35	srb01_s01	de in	7	0x10E0	0x01F4	0x0010	0x01C0	LCMPOS1	NAVIICN2	10	2	3:1 8:1
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	0	0x20	0x0337	0x0010	0x0140	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	1	0x1C0	0x0338	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	2	0x390	0x0339	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	7	5:6 9:1
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	3	0x6E0	0x033A	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	4	0x800	0x033B	0x0010	0x0180	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	5	0x9F0	0x033C	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub36.bin	36	var01_s01	de in	0	0x20	0x0337	0x0010	0x0140	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub36.bin	36	var01_s01	de in	1	0x1C0	0x0338	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub36.bin	36	var01_s01	de in	2	0x390	0x0339	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	7	5:6 9:1
+menumap_sub36.bin	36	var01_s01	de in	3	0x6E0	0x033A	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub36.bin	36	var01_s01	de in	4	0x800	0x033B	0x0010	0x0180	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub36.bin	36	var01_s01	de in	5	0x9F0	0x033C	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	0	0x30	0x01BF	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	1	0x320	0x01C0	0x0010	0x0660	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	2	0x9E0	0x01C1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	3	0xF00	0x01C2	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	4	0x1130	0x01C5	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	5	0x1420	0x01C8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	6	0x1600	0x01CB	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	7	0x16E0	0x01CC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub37.bin	37	gol01_s01	de in	0	0x30	0x01BF	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub37.bin	37	gol01_s01	de in	1	0x320	0x01C0	0x0010	0x0660	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub37.bin	37	gol01_s01	de in	2	0x9E0	0x01C1	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub37.bin	37	gol01_s01	de in	3	0xF00	0x01C2	0x0010	0x01E0	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub37.bin	37	gol01_s01	de in	4	0x1130	0x01C5	0x0010	0x02A0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub37.bin	37	gol01_s01	de in	5	0x1420	0x01C8	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub37.bin	37	gol01_s01	de in	6	0x1600	0x01CB	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub37.bin	37	gol01_s01	de in	7	0x16E0	0x01CC	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	0	0x20	0x02E6	0x0010	0x0160	LCMPOS1	NAVIICN2	10	5	3:1 5:2 9:2
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	1	0x210	0x02E0	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	2	0x2B0	0x02E2	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	3	0x3C0	0x02E5	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	0	0x30	0x02AE	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	1	0x130	0x02AF	0xFFFF	0x0010	-	NAVIICN2	10	2	5:2
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	2	0x1A0	0x02B2	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	3	0x2B0	0x02B3	0x0010	0x0140	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	4	0x460	0x02B6	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	3:1
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	5	0x5F0	0x02B7	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	2	5:1 9:1
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	6	0x6F0	0x02BA	0xFFFF	0x0010	-	NAVIICN2	10	2	5:2
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	0	0x20	0x03AB	0x0010	0x0140	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	1	0x1E0	0x03AC	0x0010	0x0140	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x20	0x03F0	0x0010	0x0F40	LCMPOS1	NAVIICN2	10	37	3:5 5:32
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x11F0	0x03FB	0x0010	0x0FE0	LCMPOS1	NAVIICN2	10	36	3:4 5:32
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x2450	0x042B	0x0010	0x0F40	LCMPOS1	NAVIICN2	10	38	3:6 5:32
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x3630	0x0417	0x0010	0x0C20	LCMPOS1	NAVIICN2	10	34	3:2 5:32
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	4	0x44B0	0x011E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub41.bin	41	dor01_s01	de in	0	0x20	0x03F0	0x0010	0x0F40	LCMPOS1	NAVIICN2	10	37	3:5 5:32
+menumap_sub41.bin	41	dor01_s01	de in	1	0x11F0	0x03FB	0x0010	0x0FE0	LCMPOS1	NAVIICN2	10	36	3:4 5:32
+menumap_sub41.bin	41	dor01_s01	de in	2	0x2450	0x042B	0x0010	0x0F40	LCMPOS1	NAVIICN2	10	38	3:6 5:32
+menumap_sub41.bin	41	dor01_s01	de in	3	0x3630	0x0417	0x0010	0x0C20	LCMPOS1	NAVIICN2	10	34	3:2 5:32
+menumap_sub41.bin	41	dor01_s01	de in	4	0x44B0	0x011E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	0	0x30	0x020A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	1	0x130	0x044D	0x0010	0x0140	LCMPOS1	NAVIICN2	10	3	3:1 5:2
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	2	0x2E0	0x0457	0x0010	0x0160	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	3	0x4B0	0x045A	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	4	0x5F0	0x045B	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	5:2
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	5	0x730	0x045C	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	6	0x7F0	0x045E	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	7	0x920	0x045F	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	8	0xA20	0x044E	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	9	0xB60	0x0462	0x0010	0x0100	LCMPOS1	NAVIICN2	10	4	5:4
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	0	0x30	0x044F	0x0010	0x01A0	LCMPOS1	NAVIICN2	10	3	3:1 5:2
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	1	0x240	0x046E	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	2	0x380	0x0470	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	3	0x460	0x0472	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	4	0x520	0x0450	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	2	3:1 5:1
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	5	0x660	0x046D	0x0010	0x0120	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	6	0x7F0	0x0451	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	3	3:1 5:2
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	0	0x20	0x0474	0xFFFF	0x0010	-	NAVIICN2	10	1	5:1
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	1	0x80	0x0475	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	2	0x1D0	0x0477	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	4	3:1 5:3
+menumap_sub44.bin	44	rbl01_s01	de in	0	0x20	0x0474	0xFFFF	0x0010	-	NAVIICN2	10	1	5:1
+menumap_sub44.bin	44	rbl01_s01	de in	1	0x80	0x0475	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub44.bin	44	rbl01_s01	de in	2	0x1D0	0x0477	0x0010	0x00E0	LCMPOS1	NAVIICN2	10	4	3:1 5:3
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	0	0x30	0x0463	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	1	0x1C0	0x0464	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	2	0x300	0x0465	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	3	0x440	0x0466	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	5:1
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	4	0x5D0	0x0467	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	5	0x710	0x0468	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	6	0x850	0x0469	0x0010	0x0140	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	7	0xA00	0x046A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	8	0xB40	0x046B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub46.bin	46	bhm01_s01	ch cn es fr it kr us	0	0x20	0x0307	0x0010	0x0120	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub46.bin	46	bhm01_s01	ch cn es fr it kr us	1	0x1B0	0x0306	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub46.bin	46	bhm01_s01	ch cn es fr it kr us	2	0x5B0	0x0308	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub46.bin	46	bhm01_s01	ch cn es fr it kr us	3	0x9B0	0x030B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub46.bin	46	bhm01_s01	de in	0	0x20	0x0307	0x0010	0x0120	LCMPOS1	NAVIICN2	10	3	5:3
+menumap_sub46.bin	46	bhm01_s01	de in	1	0x1B0	0x0306	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub46.bin	46	bhm01_s01	de in	2	0x5B0	0x0308	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub46.bin	46	bhm01_s01	de in	3	0x9B0	0x030B	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	0	0x30	0x00FD	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	1	0x190	0x0104	0x0010	0x0140	LCMPOS1	NAVIICN2	10	2	3:1 9:1
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	2	0x330	0x00FE	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	3	0x3F0	0x00FF	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	4	0x4B0	0x0100	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	5	0x6B0	0x0108	0x0010	0x0140	LCMPOS1	NAVIICN2	10	1	9:1
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	6	0x840	0x0109	0x0010	0x00C0	LCMPOS1	NAVIICN2	10	3	3:1 8:1 9:1
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	7	0x970	0x010A	0x0010	0xFFFF	LCMPOS1	-	-	0	-
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	8	0xA90	0x010E	0x0010	0x00A0	LCMPOS1	NAVIICN2	10	1	9:1

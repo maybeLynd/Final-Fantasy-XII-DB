@@ -1,0 +1,1054 @@
+file	sublocation	sublocation_name	folders	record	fieldId	kind	entry	entry_at	from_x	from_y	at_x	at_y	icon	gate	bytes_0C
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	1	0x0121	5	0	0x602	112	78	94	70	6	0x0000	00012c01
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	1	0x0121	5	1	0x612	94	70	94	70	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	1	0x0121	5	2	0x622	43	79	64	70	12	0x0139	00012e01
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	1	0x0121	5	3	0x632	64	70	64	70	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	1	0x0121	5	4	0x642	135	88	151	94	19	0x0000	0004d859
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	1	0x0121	5	5	0x652	43	79	64	70	12	0x0138	0004165a
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	1	0x0121	9	0	0x662	64	66	64	66	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	2	0x0122	5	0	0x812	32	111	50	122	5	0x0001	0004e859
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	2	0x0122	5	1	0x822	32	111	50	122	5	0x0078	00030200
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	0	0xC12	143	37	169	3	13	0x0000	00013001
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	1	0xC22	169	3	169	3	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	2	0xC32	115	52	75	47	7	0x0000	00012a01
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	3	0xC42	75	47	75	47	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	4	0xC52	140	101	169	78	4	0x0000	00012801
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	5	0xC62	169	78	169	78	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	6	0xC72	114	118	97	120	3	0x0000	00012701
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	7	0xC82	97	120	97	120	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	8	0xC92	140	138	169	115	5	0x0000	00012901
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	9	0xCA2	169	115	169	115	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	10	0xCB2	119	42	93	20	8	0x0000	00012b01
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	11	0xCC2	93	20	93	20	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	12	0xCD2	118	72	131	73	19	0x0000	0004e159
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	13	0xCE2	130	139	130	139	24	0x402E	0004ea59
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	5	14	0xCF2	179	-7	179	-7	24	0x4046	0004eb59
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	9	0	0xD02	140	138	168	146	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	9	1	0xD12	0	0	0	0	-1	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	9	2	0xD22	0	0	0	0	-1	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	9	3	0xD32	169	-1	169	-1	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	3	0x0123	9	4	0xD42	97	116	97	116	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	4	0x0133	3	0	0xEF2	83	15	95	-4	1	0x0000	0002d501
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	4	0x0133	5	0	0xF02	70	15	62	-4	10	0x0000	00011403
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	4	0x0133	5	1	0xF12	62	-4	62	-4	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	4	0x0133	5	2	0xF22	70	15	70	15	24	0x404D	00011403
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	4	0x0133	9	0	0xF32	72	19	72	19	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	5	0x0132	3	0	0x1062	12	31	-9	25	2	0x0000	0002d201
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	5	0x0132	5	0	0x1072	35	25	48	15	19	0x0000	0004e059
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	6	0x0131	3	0	0x1182	31	41	26	64	1	0x0000	0002d501
+menumap_sub00.bin	0	rbn01_s01	ch cn es fr it kr us	6	0x0131	5	0	0x1192	75	33	75	33	24	0x4047	0004ec59
+menumap_sub00.bin	0	rbn01_s01	de in	1	0x0121	5	0	0x602	112	78	94	70	6	0x0000	00012c01
+menumap_sub00.bin	0	rbn01_s01	de in	1	0x0121	5	1	0x612	94	70	94	70	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	1	0x0121	5	2	0x622	43	79	64	70	12	0x0139	00012e01
+menumap_sub00.bin	0	rbn01_s01	de in	1	0x0121	5	3	0x632	64	70	64	70	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	1	0x0121	5	4	0x642	135	88	151	94	19	0x0000	0004d859
+menumap_sub00.bin	0	rbn01_s01	de in	1	0x0121	5	5	0x652	43	79	64	70	12	0x0138	0004165a
+menumap_sub00.bin	0	rbn01_s01	de in	1	0x0121	9	0	0x662	64	66	64	66	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	2	0x0122	5	0	0x812	32	111	50	122	5	0x0001	0004e859
+menumap_sub00.bin	0	rbn01_s01	de in	2	0x0122	5	1	0x822	32	111	50	122	5	0x0078	00030200
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	0	0xC12	143	37	169	3	13	0x0000	00013001
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	1	0xC22	169	3	169	3	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	2	0xC32	115	52	75	47	7	0x0000	00012a01
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	3	0xC42	75	47	75	47	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	4	0xC52	140	101	169	78	4	0x0000	00012801
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	5	0xC62	169	78	169	78	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	6	0xC72	114	118	97	120	3	0x0000	00012701
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	7	0xC82	97	120	97	120	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	8	0xC92	140	138	169	115	5	0x0000	00012901
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	9	0xCA2	169	115	169	115	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	10	0xCB2	119	42	93	20	8	0x0000	00012b01
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	11	0xCC2	93	20	93	20	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	12	0xCD2	118	72	131	73	19	0x0000	0004e159
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	13	0xCE2	130	139	130	139	24	0x402E	0004ea59
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	5	14	0xCF2	179	-7	179	-7	24	0x4046	0004eb59
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	9	0	0xD02	140	138	168	146	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	9	1	0xD12	0	0	0	0	-1	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	9	2	0xD22	0	0	0	0	-1	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	9	3	0xD32	169	-1	169	-1	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	3	0x0123	9	4	0xD42	97	116	97	116	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	4	0x0133	3	0	0xEF2	83	15	95	-4	1	0x0000	0002d501
+menumap_sub00.bin	0	rbn01_s01	de in	4	0x0133	5	0	0xF02	70	15	62	-4	10	0x0000	00011403
+menumap_sub00.bin	0	rbn01_s01	de in	4	0x0133	5	1	0xF12	62	-4	62	-4	14	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	4	0x0133	5	2	0xF22	70	15	70	15	24	0x404D	00011403
+menumap_sub00.bin	0	rbn01_s01	de in	4	0x0133	9	0	0xF32	72	19	72	19	17	0x0000	00000000
+menumap_sub00.bin	0	rbn01_s01	de in	5	0x0132	3	0	0x1062	12	31	-9	25	2	0x0000	0002d201
+menumap_sub00.bin	0	rbn01_s01	de in	5	0x0132	5	0	0x1072	35	25	48	15	19	0x0000	0004e059
+menumap_sub00.bin	0	rbn01_s01	de in	6	0x0131	3	0	0x1182	31	41	26	64	1	0x0000	0002d501
+menumap_sub00.bin	0	rbn01_s01	de in	6	0x0131	5	0	0x1192	75	33	75	33	24	0x4047	0004ec59
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	0	0x01E3	3	0	0x1E2	18	46	46	46	1	0x0000	0002d501
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	0	0x01E3	8	0	0x1F2	19	55	-8	55	15	0x4019	0002b101
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	7	0x01E8	3	0	0x1322	121	99	108	153	2	0x0000	0002d201
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	7	0x01E8	5	0	0x1332	149	116	171	113	5	0x0000	00031800
+menumap_sub01.bin	1	fon01_s01	ch cn es fr it kr us	11	0x01EE	3	0	0x1A62	42	46	62	62	1	0x0000	0002d501
+menumap_sub01.bin	1	fon01_s01	de in	0	0x01E3	3	0	0x1E2	18	46	46	46	1	0x0000	0002d501
+menumap_sub01.bin	1	fon01_s01	de in	0	0x01E3	8	0	0x1F2	19	55	-8	55	15	0x4019	0002b101
+menumap_sub01.bin	1	fon01_s01	de in	7	0x01E8	3	0	0x1322	121	99	108	153	2	0x0000	0002d201
+menumap_sub01.bin	1	fon01_s01	de in	7	0x01E8	5	0	0x1332	149	116	171	113	5	0x0000	00031800
+menumap_sub01.bin	1	fon01_s01	de in	11	0x01EE	3	0	0x1A62	42	46	62	62	1	0x0000	0002d501
+menumap_sub01_e3.bin	1	fon01_s01	in	0	0x01E3	8	0	0x1E2	19	55	-8	55	15	0x4019	0002b101
+menumap_sub01_e3.bin	1	fon01_s01	in	7	0x01E8	3	0	0x1312	121	99	108	153	2	0x0000	0002d201
+menumap_sub01_e3.bin	1	fon01_s01	in	7	0x01E8	5	0	0x1322	149	116	171	113	5	0x0000	00031800
+menumap_sub01_e3.bin	1	fon01_s01	in	11	0x01EE	3	0	0x1A52	42	46	62	62	1	0x0000	0002d501
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	0	0x0035	3	0	0x152	12	12	-6	-13	1	0x0000	0002d501
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	0	0x0035	5	0	0x162	30	39	56	39	5	0x0000	00030c00
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	1	0x0036	5	0	0x2B2	103	35	103	35	20	0x0081	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	1	0x0036	5	1	0x2C2	84	135	84	135	20	0x0082	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	1	0x0036	5	2	0x2D2	91	248	91	248	20	0x0083	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	1	0x0036	5	3	0x2E2	20	313	20	313	20	0x0084	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	2	0x0037	5	0	0x3F2	59	15	59	15	20	0x0085	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	2	0x0037	5	1	0x402	34	32	34	32	20	0x0086	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	3	0x0038	5	0	0x552	45	71	45	71	20	0x0087	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	3	0x0038	5	1	0x562	108	98	108	98	20	0x0088	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	4	0x0039	5	0	0x672	67	26	67	26	20	0x0089	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	4	0x0039	5	1	0x682	23	53	23	53	20	0x008A	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	4	0x0039	5	2	0x692	15	10	15	10	21	0x4035	0004f059
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	7	0x003A	5	0	0xA02	56	57	56	57	20	0x008B	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	7	0x003A	5	1	0xA12	40	92	40	92	20	0x008C	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	8	0x0046	3	0	0xB42	43	18	72	1	1	0x0000	0002d501
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	9	0x003E	5	0	0xE32	77	29	77	29	20	0x008E	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	9	0x003E	5	1	0xE42	77	88	77	88	20	0x008F	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	9	0x003E	5	2	0xE52	111	16	111	16	20	0x0090	0004ef59
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	12	0x037D	9	0	0x11C2	122	179	122	179	17	0x0000	00000000
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	13	0x0042	3	0	0x1312	11	36	-21	25	2	0x402A	0002d201
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	13	0x0042	5	0	0x1322	11	36	-21	25	1	0x4055	0002d501
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	14	0x037E	3	0	0x1452	33	17	43	-23	1	0x0000	0002d501
+menumap_sub02.bin	2	mic01_s01	ch cn es fr it kr us	16	0x003D	5	0	0x1682	135	78	135	78	20	0x008D	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	0	0x0035	3	0	0x152	12	12	-6	-13	1	0x0000	0002d501
+menumap_sub02.bin	2	mic01_s01	de in	0	0x0035	5	0	0x162	30	39	56	39	5	0x0000	00030c00
+menumap_sub02.bin	2	mic01_s01	de in	1	0x0036	5	0	0x2B2	103	35	103	35	20	0x0081	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	1	0x0036	5	1	0x2C2	84	135	84	135	20	0x0082	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	1	0x0036	5	2	0x2D2	91	248	91	248	20	0x0083	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	1	0x0036	5	3	0x2E2	20	313	20	313	20	0x0084	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	2	0x0037	5	0	0x3F2	59	15	59	15	20	0x0085	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	2	0x0037	5	1	0x402	34	32	34	32	20	0x0086	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	3	0x0038	5	0	0x552	45	71	45	71	20	0x0087	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	3	0x0038	5	1	0x562	108	98	108	98	20	0x0088	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	4	0x0039	5	0	0x672	67	26	67	26	20	0x0089	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	4	0x0039	5	1	0x682	23	53	23	53	20	0x008A	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	4	0x0039	5	2	0x692	15	10	15	10	21	0x4035	0004f059
+menumap_sub02.bin	2	mic01_s01	de in	7	0x003A	5	0	0xA02	56	57	56	57	20	0x008B	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	7	0x003A	5	1	0xA12	40	92	40	92	20	0x008C	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	8	0x0046	3	0	0xB42	43	18	72	1	1	0x0000	0002d501
+menumap_sub02.bin	2	mic01_s01	de in	9	0x003E	5	0	0xE32	77	29	77	29	20	0x008E	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	9	0x003E	5	1	0xE42	77	88	77	88	20	0x008F	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	9	0x003E	5	2	0xE52	111	16	111	16	20	0x0090	0004ef59
+menumap_sub02.bin	2	mic01_s01	de in	12	0x037D	9	0	0x11C2	122	179	122	179	17	0x0000	00000000
+menumap_sub02.bin	2	mic01_s01	de in	13	0x0042	3	0	0x1312	11	36	-21	25	2	0x402A	0002d201
+menumap_sub02.bin	2	mic01_s01	de in	13	0x0042	5	0	0x1322	11	36	-21	25	1	0x4055	0002d501
+menumap_sub02.bin	2	mic01_s01	de in	14	0x037E	3	0	0x1452	33	17	43	-23	1	0x0000	0002d501
+menumap_sub02.bin	2	mic01_s01	de in	16	0x003D	5	0	0x1682	135	78	135	78	20	0x008D	0004ef59
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	1	0x01AA	9	0	0x242	81	50	81	50	17	0x0000	00000000
+menumap_sub03.bin	3	bds01_s01	ch cn es fr it kr us	2	0x01AF	9	0	0x372	44	11	44	11	17	0x0000	00000000
+menumap_sub03.bin	3	bds01_s01	de in	1	0x01AA	9	0	0x242	81	50	81	50	17	0x0000	00000000
+menumap_sub03.bin	3	bds01_s01	de in	2	0x01AF	9	0	0x372	44	11	44	11	17	0x0000	00000000
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	1	0x00A8	3	0	0x302	19	35	0	47	1	0x0000	0002d501
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	6	0x00B0	3	0	0xAF2	27	38	11	56	2	0x0165	0002d201
+menumap_sub04.bin	4	bog01_s01	ch cn de es fr in it kr us	8	0x00B2	9	0	0xD42	32	31	32	31	17	0x0000	00000000
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	7	0x0182	3	0	0x982	48	14	30	-12	2	0x0000	0002d201
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	7	0x0182	5	0	0x992	37	19	12	12	5	0x4027	00030f00
+menumap_sub05.bin	5	ene01_s01	ch cn de es fr in it kr us	7	0x0182	8	0	0x9A2	57	16	83	-12	15	0x401D	0002b101
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	5	0x018F	3	0	0x7A2	64	38	40	68	1	0x0001	0002d501
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	5	0x018F	5	0	0x7B2	57	16	75	2	5	0x4027	00031100
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	6	0x0190	9	0	0x8A2	99	22	99	22	17	0x0000	00000000
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	7	0x018A	3	0	0xA12	69	25	89	67	1	0x0000	0002d501
+menumap_sub06.bin	6	enw01_s01	ch cn de es fr in it kr us	7	0x018A	8	0	0xA22	63	25	52	67	15	0x401E	0002b101
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	0	0x0149	5	0	0x132	16	16	8	16	19	0x0000	0004e159
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	0	0x0149	9	0	0x142	51	20	51	20	17	0x0000	00000000
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	1	0x0137	3	0	0x272	35	28	28	8	1	0x0000	0002d501
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	1	0x0137	5	0	0x282	30	42	29	43	19	0x0000	0004e159
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	2	0x0139	9	0	0x432	35	12	35	12	24	0x4070	00041c5a
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	3	0x013A	3	0	0x522	13	31	-8	42	1	0x0000	0002d501
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	4	0x013F	3	0	0x672	21	79	-1	83	1	0x0000	0002d501
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	5	0x0146	9	0	0x782	54	27	54	27	17	0x0000	00000000
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	6	0x0140	9	0	0x892	61	62	61	62	17	0x0000	00000000
+menumap_sub07.bin	7	grm01_s01	ch cn es fr it kr us	10	0x0142	3	0	0x10E2	52	26	91	6	1	0x0000	0002d501
+menumap_sub07.bin	7	grm01_s01	de in	0	0x0149	5	0	0x132	16	16	8	16	19	0x0000	0004e159
+menumap_sub07.bin	7	grm01_s01	de in	0	0x0149	9	0	0x142	51	20	51	20	17	0x0000	00000000
+menumap_sub07.bin	7	grm01_s01	de in	1	0x0137	3	0	0x272	35	28	28	8	1	0x0000	0002d501
+menumap_sub07.bin	7	grm01_s01	de in	1	0x0137	5	0	0x282	30	42	29	43	19	0x0000	0004e159
+menumap_sub07.bin	7	grm01_s01	de in	2	0x0139	9	0	0x432	35	12	35	12	24	0x4070	00041c5a
+menumap_sub07.bin	7	grm01_s01	de in	3	0x013A	3	0	0x522	13	31	-8	42	1	0x0000	0002d501
+menumap_sub07.bin	7	grm01_s01	de in	4	0x013F	3	0	0x672	21	79	-1	83	1	0x0000	0002d501
+menumap_sub07.bin	7	grm01_s01	de in	5	0x0146	9	0	0x782	54	27	54	27	17	0x0000	00000000
+menumap_sub07.bin	7	grm01_s01	de in	6	0x0140	9	0	0x892	61	62	61	62	17	0x0000	00000000
+menumap_sub07.bin	7	grm01_s01	de in	10	0x0142	3	0	0x10E2	52	26	91	6	1	0x0000	0002d501
+menumap_sub07_e3.bin	7	grm01_s01	in	0	0x0149	5	0	0x132	16	16	8	16	19	0x0000	0004e159
+menumap_sub07_e3.bin	7	grm01_s01	in	0	0x0149	9	0	0x142	51	20	51	20	17	0x0000	00000000
+menumap_sub07_e3.bin	7	grm01_s01	in	1	0x0137	3	0	0x272	35	28	28	8	1	0x0000	0002d501
+menumap_sub07_e3.bin	7	grm01_s01	in	1	0x0137	5	0	0x282	30	42	29	43	19	0x0000	0004e159
+menumap_sub07_e3.bin	7	grm01_s01	in	3	0x013A	3	0	0x4D2	13	31	-8	42	1	0x0000	0002d501
+menumap_sub07_e3.bin	7	grm01_s01	in	4	0x013F	3	0	0x622	21	79	-1	83	1	0x0000	0002d501
+menumap_sub07_e3.bin	7	grm01_s01	in	5	0x0146	9	0	0x732	54	27	54	27	17	0x0000	00000000
+menumap_sub07_e3.bin	7	grm01_s01	in	6	0x0140	9	0	0x842	61	62	61	62	17	0x0000	00000000
+menumap_sub07_e3.bin	7	grm01_s01	in	10	0x0142	3	0	0x1092	52	26	91	6	1	0x0000	0002d501
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	0	0x0276	3	0	0x372	70	64	78	36	2	0x0000	0002d201
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	0	0x0276	5	0	0x382	63	77	46	93	5	0x0001	00030500
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	0	0x0276	5	1	0x392	63	77	46	93	5	0x0001	00030500
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	0	0x0276	5	2	0x3A2	63	77	46	93	5	0x0000	00030500
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	1	0x0277	5	0	0x592	41	62	20	47	7	0x0000	00030600
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	1	0x0277	5	1	0x5A2	64	37	51	14	6	0x0000	00030700
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	1	0x0277	5	2	0x5B2	63	54	77	74	8	0x0000	00030800
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	1	0x0277	9	0	0x5C2	62	42	62	42	17	0x0000	00000000
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	1	0x0277	9	1	0x5D2	55	64	55	64	17	0x0000	00000000
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	2	0x0278	5	0	0x7E2	65	37	80	22	10	0x0000	00012003
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	2	0x0278	5	1	0x7F2	80	22	80	22	14	0x0000	00000000
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	2	0x0278	5	2	0x802	39	45	50	16	3	0x0000	00030300
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	2	0x0278	5	3	0x812	55	59	85	56	4	0x0000	00030400
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	2	0x0278	9	0	0x822	80	18	80	18	17	0x0000	00000000
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	2	0x0278	9	1	0x832	28	19	28	19	17	0x0000	00000000
+menumap_sub08.bin	8	nac01_s01	ch cn de es fr in it kr us	2	0x0278	9	2	0x842	50	43	50	43	17	0x0000	00000000
+menumap_sub09.bin	9	naf01_s01	ch cn de es fr in it kr us	3	0x0118	3	0	0x3F2	27	27	39	46	1	0x0000	0002d501
+menumap_sub09.bin	9	naf01_s01	ch cn de es fr in it kr us	4	0x011A	5	0	0x502	18	18	18	18	24	0x402D	0004e959
+menumap_sub09.bin	9	naf01_s01	ch cn de es fr in it kr us	4	0x011A	5	1	0x512	18	18	18	18	24	0x4069	0004e959
+menumap_sub10.bin	10	nal01_s01	ch cn de es fr in it kr us	0	0x0030	3	0	0xF2	46	34	22	17	1	0x0000	0002d501
+menumap_sub10.bin	10	nal01_s01	ch cn de es fr in it kr us	1	0x02C5	5	0	0x1E2	58	19	58	19	20	0x005D	0004e759
+menumap_sub10.bin	10	nal01_s01	ch cn de es fr in it kr us	2	0x02C6	3	0	0x2D2	23	10	9	-15	1	0x0000	0002d501
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	6	0x0218	9	0	0x1482	31	53	31	53	17	0x0000	00000000
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	7	0x0215	3	0	0x1632	41	13	51	-20	1	0x0000	0002d501
+menumap_sub11.bin	11	ozm01_s01	ch cn es fr it kr us	7	0x0215	8	0	0x1642	35	18	18	-20	15	0x401B	0002b101
+menumap_sub11.bin	11	ozm01_s01	de in	6	0x0218	9	0	0x1482	31	53	31	53	17	0x0000	00000000
+menumap_sub11.bin	11	ozm01_s01	de in	7	0x0215	3	0	0x1632	41	13	51	-20	1	0x0000	0002d501
+menumap_sub11.bin	11	ozm01_s01	de in	7	0x0215	8	0	0x1642	35	18	18	-20	15	0x401B	0002b101
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	0	0x0193	3	0	0x162	12	65	8	34	2	0x0067	0002d201
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	0	0x0193	5	0	0x172	70	76	24	125	5	0x4028	00031200
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	0	0x0193	5	1	0x182	15	68	15	68	22	0x0097	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	0	0x0193	5	2	0x192	185	68	185	68	24	0x4051	0004f659
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	1	0x0196	5	0	0x2E2	97	35	97	35	22	0x0098	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	1	0x0196	5	1	0x2F2	79	35	79	35	22	0x0099	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	3	0x019A	5	0	0x5E2	67	79	67	79	22	0x009C	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	3	0x019A	5	1	0x5F2	67	90	67	90	22	0x009B	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	3	0x019A	5	2	0x602	76	84	76	84	22	0x009A	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	4	0x019B	5	0	0x732	88	71	88	71	22	0x009D	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	4	0x019B	5	1	0x742	88	59	88	59	21	0x00A1	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	5	0x019C	5	0	0x872	88	101	88	101	22	0x009E	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	5	0x019C	5	1	0x882	88	110	88	110	21	0x00A0	0004f559
+menumap_sub12.bin	12	rwg01_s01	ch cn de es fr in it kr us	7	0x01A2	5	0	0xA52	60	16	60	16	22	0x009F	0004f559
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	1	0x00F3	3	0	0x402	25	65	15	80	1	0x0000	0002d501
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	1	0x00F3	5	0	0x412	44	26	64	20	5	0x0000	00030b00
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	1	0x00F3	5	1	0x422	27	42	27	42	24	0x4031	0001f300
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	1	0x00F3	9	0	0x432	42	49	42	49	17	0x0000	00000000
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	1	0x00F3	9	1	0x442	53	49	53	49	17	0x0000	00000000
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	2	0x00ED	5	0	0x5D2	49	65	49	65	20	0x005A	0004e359
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	3	0x00EE	5	0	0x802	55	96	55	96	20	0x0091	0004e459
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	3	0x00EE	9	0	0x812	100	105	100	105	17	0x0000	00000000
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	5	0x00F7	5	0	0xB82	114	85	114	85	20	0x0092	0004e659
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	6	0x00F8	3	0	0xC92	32	35	23	63	1	0x0000	0002d501
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	6	0x00F8	5	0	0xCA2	32	35	32	35	24	0x406E	00041e5a
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	6	0x00F8	8	0	0xCB2	39	36	47	63	15	0x4016	0002b101
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	6	0x00F8	9	0	0xCC2	45	32	45	32	17	0x0000	00000000
+menumap_sub13.bin	13	sav01_s01	ch cn de es fr in it kr us	7	0x00F9	5	0	0xDF2	79	52	79	52	20	0x0093	0004e559
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	5	0	0x392	124	42	162	28	12	0x0000	0001c002
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	5	1	0x3A2	162	28	162	28	14	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	5	2	0x3B2	52	52	49	23	5	0x0000	00030000
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	5	3	0x3C2	21	109	21	109	24	0x404C	00015803
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	5	4	0x3D2	20	124	1	140	14	0x0001	00000000
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	5	5	0x3E2	138	12	138	0	19	0x0000	0004df59
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	5	6	0x3F2	128	100	150	133	19	0x0000	0004dd59
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	5	7	0x402	69	37	69	37	24	0x0059	0004e259
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	9	0	0x412	124	46	124	46	17	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	9	1	0x422	23	110	23	110	17	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	0	0x02BD	9	2	0x432	69	34	69	34	17	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	1	0x02BE	5	0	0x882	108	79	88	94	12	0x0000	0001bf02
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	1	0x02BE	5	1	0x892	88	94	88	94	14	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	1	0x02BE	5	2	0x8A2	99	36	99	10	5	0x0000	00030100
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	1	0x02BE	5	3	0x8B2	122	98	123	112	19	0x0000	0004d959
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	1	0x02BE	5	4	0x8C2	112	79	112	79	24	0x404B	0004ee59
+menumap_sub14.bin	14	slm01_s01	ch cn es fr it kr us	1	0x02BE	9	0	0x8D2	88	90	88	90	17	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	5	0	0x392	124	42	162	28	12	0x0000	0001c002
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	5	1	0x3A2	162	28	162	28	14	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	5	2	0x3B2	52	52	49	23	5	0x0000	00030000
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	5	3	0x3C2	21	109	21	109	24	0x404C	00015803
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	5	4	0x3D2	20	124	1	140	14	0x0001	00000000
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	5	5	0x3E2	138	12	138	0	19	0x0000	0004df59
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	5	6	0x3F2	128	100	150	133	19	0x0000	0004dd59
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	5	7	0x402	69	37	69	37	24	0x0059	0004e259
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	9	0	0x412	124	46	124	46	17	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	9	1	0x422	23	110	23	110	17	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	de in	0	0x02BD	9	2	0x432	69	34	69	34	17	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	de in	1	0x02BE	5	0	0x882	108	79	88	94	12	0x0000	0001bf02
+menumap_sub14.bin	14	slm01_s01	de in	1	0x02BE	5	1	0x892	88	94	88	94	14	0x0000	00000000
+menumap_sub14.bin	14	slm01_s01	de in	1	0x02BE	5	2	0x8A2	99	36	99	10	5	0x0000	00030100
+menumap_sub14.bin	14	slm01_s01	de in	1	0x02BE	5	3	0x8B2	122	98	123	112	19	0x0000	0004d959
+menumap_sub14.bin	14	slm01_s01	de in	1	0x02BE	5	4	0x8C2	112	79	112	79	24	0x404B	0004ee59
+menumap_sub14.bin	14	slm01_s01	de in	1	0x02BE	9	0	0x8D2	88	90	88	90	17	0x0000	00000000
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	0	0x0159	9	0	0x2A2	100	169	100	169	17	0x0000	00000000
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	4	0x015D	9	0	0xCD2	95	93	95	93	17	0x0000	00000000
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	5	0x015E	3	0	0xE82	50	33	41	-2	2	0x0000	0002d201
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	5	0x015E	5	0	0xE92	56	45	66	75	5	0x0000	00030a00
+menumap_sub15.bin	15	wdl01_s01	ch cn es fr it kr us	5	0x015E	8	0	0xEA2	53	24	65	-2	15	0x4015	0002b101
+menumap_sub15.bin	15	wdl01_s01	de in	0	0x0159	9	0	0x2A2	100	169	100	169	17	0x0000	00000000
+menumap_sub15.bin	15	wdl01_s01	de in	4	0x015D	9	0	0xCD2	95	93	95	93	17	0x0000	00000000
+menumap_sub15.bin	15	wdl01_s01	de in	5	0x015E	3	0	0xE82	50	33	41	-2	2	0x0000	0002d201
+menumap_sub15.bin	15	wdl01_s01	de in	5	0x015E	5	0	0xE92	56	45	66	75	5	0x0000	00030a00
+menumap_sub15.bin	15	wdl01_s01	de in	5	0x015E	8	0	0xEA2	53	24	65	-2	15	0x4015	0002b101
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	0	0x0240	9	0	0x1A2	89	99	89	99	17	0x0000	00000000
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	2	0x0242	9	0	0x852	75	71	75	71	17	0x0000	00000000
+menumap_sub16.bin	16	ztc01_s01	ch cn de es fr in it kr us	5	0x0245	3	0	0x1142	47	44	91	74	1	0x0000	0002d501
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	0	0x02EF	3	0	0x1D2	48	25	68	-6	2	0x0000	0002d201
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	1	0x02F0	5	0	0x322	48	40	32	42	5	0x4059	00031300
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	1	0x02F0	9	0	0x332	72	71	72	71	17	0x0000	00000000
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	1	0x02F0	9	1	0x342	72	88	72	88	17	0x0000	00000000
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	2	0x02F1	9	0	0x452	80	17	80	17	17	0x0000	00000000
+menumap_sub17.bin	17	glf01_s01	ch cn de es fr in it kr us	2	0x02F1	9	1	0x462	61	54	61	54	17	0x0000	00000000
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	0	0x02C8	5	0	0x272	72	57	72	57	21	0x00A5	0004f859
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	1	0x02C9	5	0	0x542	34	35	34	35	21	0x00A6	0004f859
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	2	0x02CA	9	0	0x812	152	68	152	68	17	0x0000	00000000
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	3	0x02CB	9	0	0x9A2	79	166	79	166	17	0x0000	00000000
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	5	0x02CD	5	0	0xD12	36	35	36	35	21	0x00A7	0004f859
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	6	0x02CE	3	0	0xEA2	15	58	-11	52	2	0x0000	0002d201
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	10	0x02D7	5	0	0x1672	26	35	26	35	21	0x00A8	0004f859
+menumap_sub18.bin	18	hne01_s01	ch cn es fr it kr us	14	0x02D8	5	0	0x2062	52	102	52	102	21	0x00A9	0004f859
+menumap_sub18.bin	18	hne01_s01	de in	0	0x02C8	5	0	0x272	72	57	72	57	21	0x00A5	0004f859
+menumap_sub18.bin	18	hne01_s01	de in	1	0x02C9	5	0	0x542	34	35	34	35	21	0x00A6	0004f859
+menumap_sub18.bin	18	hne01_s01	de in	2	0x02CA	9	0	0x812	152	68	152	68	17	0x0000	00000000
+menumap_sub18.bin	18	hne01_s01	de in	3	0x02CB	9	0	0x9A2	79	166	79	166	17	0x0000	00000000
+menumap_sub18.bin	18	hne01_s01	de in	5	0x02CD	5	0	0xD12	36	35	36	35	21	0x00A7	0004f859
+menumap_sub18.bin	18	hne01_s01	de in	6	0x02CE	3	0	0xEA2	15	58	-11	52	2	0x0000	0002d201
+menumap_sub18.bin	18	hne01_s01	de in	10	0x02D7	5	0	0x1672	26	35	26	35	21	0x00A8	0004f859
+menumap_sub18.bin	18	hne01_s01	de in	14	0x02D8	5	0	0x2062	52	102	52	102	21	0x00A9	0004f859
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	3	0x021E	3	0	0xDA2	66	43	48	19	1	0x0000	0002d501
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	4	0x0221	9	0	0xF32	54	93	54	93	17	0x0000	00000000
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	6	0x0225	5	0	0x11A2	69	55	69	55	20	0x00CC	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	6	0x0225	5	1	0x11B2	133	66	133	66	20	0x00CD	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	6	0x0225	5	2	0x11C2	69	143	69	143	20	0x00CE	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	6	0x0225	5	3	0x11D2	157	131	157	131	20	0x00CF	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	7	0x0226	5	0	0x1322	7	176	7	176	21	0x00C6	0004045a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	7	0x0226	5	1	0x1332	54	40	54	40	20	0x00C7	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	7	0x0226	5	2	0x1342	134	44	134	44	20	0x00C8	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	7	0x0226	5	3	0x1352	126	100	126	100	20	0x00C9	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	7	0x0226	5	4	0x1362	182	144	182	144	20	0x00CA	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	7	0x0226	5	5	0x1372	50	176	50	176	20	0x00CB	0004055a
+menumap_sub19.bin	19	mfr01_s01	ch cn es fr it kr us	7	0x0226	9	0	0x1382	109	159	109	159	17	0x0000	00000000
+menumap_sub19.bin	19	mfr01_s01	de in	3	0x021E	3	0	0xDA2	66	43	48	19	1	0x0000	0002d501
+menumap_sub19.bin	19	mfr01_s01	de in	4	0x0221	9	0	0xF32	54	93	54	93	17	0x0000	00000000
+menumap_sub19.bin	19	mfr01_s01	de in	6	0x0225	5	0	0x11A2	69	55	69	55	20	0x00CC	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	6	0x0225	5	1	0x11B2	133	66	133	66	20	0x00CD	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	6	0x0225	5	2	0x11C2	69	143	69	143	20	0x00CE	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	6	0x0225	5	3	0x11D2	157	131	157	131	20	0x00CF	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	7	0x0226	5	0	0x1322	7	176	7	176	21	0x00C6	0004045a
+menumap_sub19.bin	19	mfr01_s01	de in	7	0x0226	5	1	0x1332	54	40	54	40	20	0x00C7	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	7	0x0226	5	2	0x1342	134	44	134	44	20	0x00C8	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	7	0x0226	5	3	0x1352	126	100	126	100	20	0x00C9	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	7	0x0226	5	4	0x1362	182	144	182	144	20	0x00CA	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	7	0x0226	5	5	0x1372	50	176	50	176	20	0x00CB	0004055a
+menumap_sub19.bin	19	mfr01_s01	de in	7	0x0226	9	0	0x1382	109	159	109	159	17	0x0000	00000000
+menumap_sub20.bin	20	vic01_s01	ch cn de es fr in it kr us	0	0x0300	3	0	0x1D2	11	42	-9	30	2	0x0000	0002d201
+menumap_sub20.bin	20	vic01_s01	ch cn de es fr in it kr us	0	0x0300	5	0	0x1E2	17	42	34	30	5	0x0000	00031400
+menumap_sub20.bin	20	vic01_s01	ch cn de es fr in it kr us	2	0x02FF	9	0	0x412	121	18	121	18	17	0x0000	00000000
+menumap_sub20.bin	20	vic01_s01	ch cn de es fr in it kr us	2	0x02FF	9	1	0x422	27	24	27	24	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	0	0x00E3	5	0	0x282	39	188	39	188	24	0x4048	0004ed59
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	0	0x00E3	9	0	0x292	39	188	39	188	24	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	0	0x00E3	9	1	0x2A2	110	125	110	125	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	1	0x00E4	9	0	0x572	137	100	137	100	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	5	0x0081	3	0	0xE82	70	46	87	25	2	0x0000	0002d201
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	5	0x0081	5	0	0xE92	53	31	64	-7	5	0x0162	00030900
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	5	0x0081	9	0	0xEA2	31	39	31	39	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	9	0x00E9	9	0	0x1592	48	66	48	66	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	10	0x00E7	3	0	0x16A2	26	24	10	56	1	0x0000	0002d501
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	10	0x00E7	8	0	0x16B2	22	34	36	56	15	0x4014	0002b101
+menumap_sub21.bin	21	dst01_s01	ch cn es fr it kr us	10	0x00E7	9	0	0x16C2	24	15	24	15	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	de in	0	0x00E3	5	0	0x282	39	188	39	188	24	0x4048	0004ed59
+menumap_sub21.bin	21	dst01_s01	de in	0	0x00E3	9	0	0x292	39	188	39	188	24	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	de in	0	0x00E3	9	1	0x2A2	110	125	110	125	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	de in	1	0x00E4	9	0	0x572	137	100	137	100	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	de in	5	0x0081	3	0	0xE82	70	46	87	25	2	0x0000	0002d201
+menumap_sub21.bin	21	dst01_s01	de in	5	0x0081	5	0	0xE92	53	31	64	-7	5	0x0162	00030900
+menumap_sub21.bin	21	dst01_s01	de in	5	0x0081	9	0	0xEA2	31	39	31	39	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	de in	9	0x00E9	9	0	0x1592	48	66	48	66	17	0x0000	00000000
+menumap_sub21.bin	21	dst01_s01	de in	10	0x00E7	3	0	0x16A2	26	24	10	56	1	0x0000	0002d501
+menumap_sub21.bin	21	dst01_s01	de in	10	0x00E7	8	0	0x16B2	22	34	36	56	15	0x4014	0002b101
+menumap_sub21.bin	21	dst01_s01	de in	10	0x00E7	9	0	0x16C2	24	15	24	15	17	0x0000	00000000
+menumap_sub22.bin	22	rrp01_s01	ch cn de es fr in it kr us	0	0x0237	3	0	0x132	12	12	1	-9	1	0x0000	0002d501
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	3	0x02F4	3	0	0x3C2	11	96	27	116	2	0x0000	0002d201
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	3	0x02F4	5	0	0x3D2	29	93	29	93	22	0x00C2	0004015a
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	4	0x0280	5	0	0x6E2	52	10	37	-17	8	0x0000	00018302
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	4	0x0280	5	1	0x6F2	37	-17	37	-17	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	4	0x0280	5	2	0x702	131	39	142	12	7	0x0000	00018202
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	4	0x0280	5	3	0x712	142	12	142	12	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	4	0x0280	9	0	0x722	37	-21	37	-21	17	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	5	0x02E9	5	0	0x8B2	26	34	10	8	3	0x0000	0001eb02
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	5	0x02E9	5	1	0x8C2	10	8	10	8	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	5	0x02E9	5	2	0x8D2	32	55	32	55	22	0x00C3	0004015a
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	5	0x02E9	5	3	0x8E2	32	55	32	55	20	0x00C5	0004025a
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	5	0x02E9	9	0	0x8F2	10	4	10	4	17	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x02EA	5	0	0xB62	87	53	73	30	6	0x0000	0001ed02
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x02EA	5	1	0xB72	73	30	73	30	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x02EA	5	2	0xB82	113	49	136	33	5	0x0000	0001ec02
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x02EA	5	3	0xB92	136	33	136	33	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x02EA	5	4	0xBA2	177	78	195	78	10	0x0000	00011a03
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x02EA	5	5	0xBB2	195	78	195	78	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x02EA	5	6	0xBC2	30	49	30	49	20	0x00C4	0004025a
+menumap_sub23.bin	23	alc01_s01	ch cn es fr it kr us	6	0x02EA	5	7	0xBD2	177	78	195	52	1	0x0000	0002d501
+menumap_sub23.bin	23	alc01_s01	de in	3	0x02F4	3	0	0x3C2	11	96	27	116	2	0x0000	0002d201
+menumap_sub23.bin	23	alc01_s01	de in	3	0x02F4	5	0	0x3D2	29	93	29	93	22	0x00C2	0004015a
+menumap_sub23.bin	23	alc01_s01	de in	4	0x0280	5	0	0x6E2	52	10	37	-17	8	0x0000	00018302
+menumap_sub23.bin	23	alc01_s01	de in	4	0x0280	5	1	0x6F2	37	-17	37	-17	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	de in	4	0x0280	5	2	0x702	131	39	142	12	7	0x0000	00018202
+menumap_sub23.bin	23	alc01_s01	de in	4	0x0280	5	3	0x712	142	12	142	12	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	de in	4	0x0280	9	0	0x722	37	-21	37	-21	17	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	de in	5	0x02E9	5	0	0x8B2	26	34	10	8	3	0x0000	0001eb02
+menumap_sub23.bin	23	alc01_s01	de in	5	0x02E9	5	1	0x8C2	10	8	10	8	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	de in	5	0x02E9	5	2	0x8D2	32	55	32	55	22	0x00C3	0004015a
+menumap_sub23.bin	23	alc01_s01	de in	5	0x02E9	5	3	0x8E2	32	55	32	55	20	0x00C5	0004025a
+menumap_sub23.bin	23	alc01_s01	de in	5	0x02E9	9	0	0x8F2	10	4	10	4	17	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	de in	6	0x02EA	5	0	0xB62	87	53	73	30	6	0x0000	0001ed02
+menumap_sub23.bin	23	alc01_s01	de in	6	0x02EA	5	1	0xB72	73	30	73	30	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	de in	6	0x02EA	5	2	0xB82	113	49	136	33	5	0x0000	0001ec02
+menumap_sub23.bin	23	alc01_s01	de in	6	0x02EA	5	3	0xB92	136	33	136	33	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	de in	6	0x02EA	5	4	0xBA2	177	78	195	78	10	0x0000	00011a03
+menumap_sub23.bin	23	alc01_s01	de in	6	0x02EA	5	5	0xBB2	195	78	195	78	14	0x0000	00000000
+menumap_sub23.bin	23	alc01_s01	de in	6	0x02EA	5	6	0xBC2	30	49	30	49	20	0x00C4	0004025a
+menumap_sub23.bin	23	alc01_s01	de in	6	0x02EA	5	7	0xBD2	177	78	195	52	1	0x0000	0002d501
+menumap_sub24.bin	24	alc01_s02	ch cn de es fr in it kr us	0	0x02FB	5	0	0x152	120	72	141	74	5	0x0000	00031900
+menumap_sub24.bin	24	alc01_s02	ch cn de es fr in it kr us	1	0x02FA	3	0	0x2A2	33	86	46	99	1	0x0000	0002d501
+menumap_sub24.bin	24	alc01_s02	ch cn de es fr in it kr us	1	0x02FA	9	0	0x2B2	71	14	71	14	17	0x0000	00000000
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	1	0x0098	5	0	0x3A2	132	59	132	59	20	0x00BE	0004fe59
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	3	0x009A	9	0	0x752	67	164	67	164	17	0x0000	00000000
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	4	0x009B	5	0	0x8E2	46	41	46	41	20	0x00BB	0004fe59
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	4	0x009B	5	1	0x8F2	46	56	46	56	20	0x00BC	0004fe59
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	6	0x00A2	9	0	0xCC2	69	171	69	171	17	0x0000	00000000
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	8	0x009C	3	0	0x11B2	71	69	97	58	1	0x0000	0002d501
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	8	0x009C	5	0	0x11C2	92	80	92	80	20	0x00BD	0004fe59
+menumap_sub25.bin	25	frs01_s01	ch cn es fr it kr us	9	0x009D	3	0	0x1352	144	144	175	158	2	0x0000	0002d201
+menumap_sub25.bin	25	frs01_s01	de in	1	0x0098	5	0	0x3A2	132	59	132	59	20	0x00BE	0004fe59
+menumap_sub25.bin	25	frs01_s01	de in	3	0x009A	9	0	0x752	67	164	67	164	17	0x0000	00000000
+menumap_sub25.bin	25	frs01_s01	de in	4	0x009B	5	0	0x8E2	46	41	46	41	20	0x00BB	0004fe59
+menumap_sub25.bin	25	frs01_s01	de in	4	0x009B	5	1	0x8F2	46	56	46	56	20	0x00BC	0004fe59
+menumap_sub25.bin	25	frs01_s01	de in	6	0x00A2	9	0	0xCC2	69	171	69	171	17	0x0000	00000000
+menumap_sub25.bin	25	frs01_s01	de in	8	0x009C	3	0	0x11B2	71	69	97	58	1	0x0000	0002d501
+menumap_sub25.bin	25	frs01_s01	de in	8	0x009C	5	0	0x11C2	92	80	92	80	20	0x00BD	0004fe59
+menumap_sub25.bin	25	frs01_s01	de in	9	0x009D	3	0	0x1352	144	144	175	158	2	0x0000	0002d201
+menumap_sub25_e3.bin	25	frs01_s01	in	1	0x0098	5	0	0x3A2	132	59	132	59	20	0x00BE	0004fe59
+menumap_sub25_e3.bin	25	frs01_s01	in	3	0x009A	9	0	0x752	67	164	67	164	17	0x0000	00000000
+menumap_sub25_e3.bin	25	frs01_s01	in	4	0x009B	5	0	0x8E2	46	41	46	41	20	0x00BB	0004fe59
+menumap_sub25_e3.bin	25	frs01_s01	in	4	0x009B	5	1	0x8F2	46	56	46	56	20	0x00BC	0004fe59
+menumap_sub25_e3.bin	25	frs01_s01	in	6	0x00A2	9	0	0xCC2	69	171	69	171	17	0x0000	00000000
+menumap_sub25_e3.bin	25	frs01_s01	in	8	0x009C	5	0	0x11B2	92	80	92	80	20	0x00BD	0004fe59
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	0	0x5B2	128	50	146	22	4	0x0000	00012e03
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	1	0x5C2	146	22	146	22	14	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	2	0x5D2	112	93	89	80	3	0x0000	00012d03
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	3	0x5E2	89	80	89	80	14	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	4	0x5F2	112	123	143	113	7	0x0000	00013003
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	5	0x602	143	113	143	113	14	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	6	0x612	17	54	0	30	10	0x0000	00011703
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	7	0x622	17	54	0	30	14	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	8	0x632	120	41	120	41	24	0x404F	0004f259
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	5	9	0x642	17	54	0	56	2	0x0000	0002d201
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	0	0x0323	9	0	0x652	0	26	0	26	17	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	1	0x0324	5	0	0x882	67	38	96	10	13	0x0000	00013403
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	1	0x0324	5	1	0x892	96	10	96	10	14	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	1	0x0324	5	2	0x8A2	49	109	72	105	12	0x0000	00013303
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	1	0x0324	5	3	0x8B2	72	105	72	105	14	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	1	0x0324	9	0	0x8C2	72	101	72	101	17	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	2	0x0325	5	0	0xB72	46	80	46	63	8	0x0000	00013103
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	2	0x0325	5	1	0xB82	46	63	46	63	14	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	2	0x0325	5	2	0xB92	96	54	124	38	6	0x0000	00013203
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	2	0x0325	5	3	0xBA2	124	38	124	38	14	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	2	0x0325	9	0	0xBB2	71	100	71	100	17	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	3	0x0326	3	0	0xDA2	47	104	21	119	1	0x0000	0002d501
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	3	0x0326	5	0	0xDB2	56	116	77	133	5	0x0000	00030d00
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	3	0x0326	9	0	0xDC2	52	95	52	95	17	0x0000	00000000
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	4	0x0329	5	0	0x1292	24	59	7	99	5	0x0000	00030d00
+menumap_sub26.bin	26	byu01_s01	ch cn de es fr in it kr us	4	0x0329	9	0	0x12A2	24	77	24	77	17	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	0	0x5B2	128	50	146	22	4	0x0000	00012e03
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	1	0x5C2	146	22	146	22	14	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	2	0x5D2	112	93	89	80	3	0x0000	00012d03
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	3	0x5E2	89	80	89	80	14	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	4	0x5F2	112	123	143	113	7	0x0000	00013003
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	5	0x602	143	113	143	113	14	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	6	0x612	17	54	0	30	10	0x0000	00011703
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	7	0x622	17	54	0	30	14	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	5	8	0x632	120	41	120	41	24	0x404F	0004f259
+menumap_sub26_e3.bin	26	byu01_s01	us	0	0x0323	9	0	0x642	0	26	0	26	17	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	1	0x0324	5	0	0x872	67	38	96	10	13	0x0000	00013403
+menumap_sub26_e3.bin	26	byu01_s01	us	1	0x0324	5	1	0x882	96	10	96	10	14	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	1	0x0324	5	2	0x892	49	109	72	105	12	0x0000	00013303
+menumap_sub26_e3.bin	26	byu01_s01	us	1	0x0324	5	3	0x8A2	72	105	72	105	14	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	1	0x0324	9	0	0x8B2	72	101	72	101	17	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	2	0x0325	5	0	0xB62	46	80	46	63	8	0x0000	00013103
+menumap_sub26_e3.bin	26	byu01_s01	us	2	0x0325	5	1	0xB72	46	63	46	63	14	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	2	0x0325	5	2	0xB82	96	54	124	38	6	0x0000	00013203
+menumap_sub26_e3.bin	26	byu01_s01	us	2	0x0325	5	3	0xB92	124	38	124	38	14	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	2	0x0325	9	0	0xBA2	71	100	71	100	17	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	3	0x0326	9	0	0xD92	52	95	52	95	17	0x0000	00000000
+menumap_sub26_e3.bin	26	byu01_s01	us	4	0x0329	9	0	0x1262	24	77	24	77	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	0	0x0165	5	0	0x212	129	89	129	89	24	0x404E	0004f159
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	0	0x0165	5	1	0x222	56	115	56	115	22	0x00F1	00040a5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	0	0x0165	5	2	0x232	56	100	56	100	21	0x00F6	00040b5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	2	0x0167	5	0	0x722	71	164	72	164	22	0x00F2	00040a5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	2	0x0167	5	1	0x732	71	179	71	179	21	0x00F8	00040b5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	2	0x0167	9	0	0x742	185	113	185	113	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	3	0x0168	3	0	0x912	50	10	67	-13	2	0x0000	0002d201
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	5	0x016E	5	0	0xF22	83	48	83	48	21	0x00F7	00040b5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	5	0x016E	9	0	0xF32	167	30	167	30	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	8	0x0174	5	0	0x13E2	151	82	151	82	22	0x00F4	00040a5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	8	0x0174	5	1	0x13F2	119	55	119	55	21	0x00F9	00040b5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	8	0x0174	9	0	0x1402	19	139	19	139	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	9	0x0176	5	0	0x15B2	51	17	51	17	22	0x00F5	00040a5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	9	0x0176	5	1	0x15C2	51	31	51	31	21	0x00FA	00040b5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	9	0x0176	9	0	0x15D2	16	155	16	155	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	12	0x0386	5	0	0x1AA2	57	132	57	132	22	0x00F3	00040a5a
+menumap_sub27.bin	27	lus01_s01	ch cn es fr it kr us	15	0x0389	3	0	0x1F92	36	12	53	-11	1	0x0000	0002d501
+menumap_sub27.bin	27	lus01_s01	de in	0	0x0165	5	0	0x212	129	89	129	89	24	0x404E	0004f159
+menumap_sub27.bin	27	lus01_s01	de in	0	0x0165	5	1	0x222	56	115	56	115	22	0x00F1	00040a5a
+menumap_sub27.bin	27	lus01_s01	de in	0	0x0165	5	2	0x232	56	100	56	100	21	0x00F6	00040b5a
+menumap_sub27.bin	27	lus01_s01	de in	2	0x0167	5	0	0x722	71	164	72	164	22	0x00F2	00040a5a
+menumap_sub27.bin	27	lus01_s01	de in	2	0x0167	5	1	0x732	71	179	71	179	21	0x00F8	00040b5a
+menumap_sub27.bin	27	lus01_s01	de in	2	0x0167	9	0	0x742	185	113	185	113	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	de in	3	0x0168	3	0	0x912	50	10	67	-13	2	0x0000	0002d201
+menumap_sub27.bin	27	lus01_s01	de in	5	0x016E	5	0	0xF22	83	48	83	48	21	0x00F7	00040b5a
+menumap_sub27.bin	27	lus01_s01	de in	5	0x016E	9	0	0xF32	167	30	167	30	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	de in	8	0x0174	5	0	0x13E2	151	82	151	82	22	0x00F4	00040a5a
+menumap_sub27.bin	27	lus01_s01	de in	8	0x0174	5	1	0x13F2	119	55	119	55	21	0x00F9	00040b5a
+menumap_sub27.bin	27	lus01_s01	de in	8	0x0174	9	0	0x1402	19	139	19	139	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	de in	9	0x0176	5	0	0x15B2	51	17	51	17	22	0x00F5	00040a5a
+menumap_sub27.bin	27	lus01_s01	de in	9	0x0176	5	1	0x15C2	51	31	51	31	21	0x00FA	00040b5a
+menumap_sub27.bin	27	lus01_s01	de in	9	0x0176	9	0	0x15D2	16	155	16	155	17	0x0000	00000000
+menumap_sub27.bin	27	lus01_s01	de in	12	0x0386	5	0	0x1AA2	57	132	57	132	22	0x00F3	00040a5a
+menumap_sub27.bin	27	lus01_s01	de in	15	0x0389	3	0	0x1F92	36	12	53	-11	1	0x0000	0002d501
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	3	0	0x982	62	96	60	142	2	0x0000	0002d201
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	5	0	0x992	91	76	122	132	5	0x0000	00031700
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	5	1	0x9A2	131	42	131	42	21	0x00E5	0004085a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	5	2	0x9B2	119	63	119	63	21	0x00E6	0004105a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	5	3	0x9C2	121	86	121	86	21	0x00E7	0004115a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	5	4	0x9D2	94	105	94	105	21	0x00E8	0004125a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	5	5	0x9E2	44	86	44	86	21	0x00E9	0004135a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	5	6	0x9F2	83	65	83	65	21	0x00EA	0004145a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	8	0	0xA02	65	87	86	42	15	0x4017	0002b101
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	2	0x047F	9	0	0xA12	95	75	95	75	17	0x0000	00000000
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	3	0x00D7	5	0	0xDA2	35	56	35	56	20	0x00EB	0004095a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	3	0x00D7	5	1	0xDB2	36	68	36	68	20	0x00EC	0004095a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	3	0x00D7	5	2	0xDC2	53	157	53	157	20	0x00ED	0004095a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	4	0x00D8	5	0	0x1152	146	39	146	39	20	0x00EE	0004095a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	5	0x00D9	5	0	0x13C2	59	32	59	32	20	0x00EF	0004095a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	5	0x00D9	5	1	0x13D2	76	23	76	23	20	0x00F0	0004095a
+menumap_sub28.bin	28	mnt01_s01	ch cn es fr it kr us	7	0x00DB	9	0	0x17A2	76	56	76	56	17	0x0000	00000000
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	3	0	0x982	62	96	60	142	2	0x0000	0002d201
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	5	0	0x992	91	76	122	132	5	0x0000	00031700
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	5	1	0x9A2	131	42	131	42	21	0x00E5	0004085a
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	5	2	0x9B2	119	63	119	63	21	0x00E6	0004105a
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	5	3	0x9C2	121	86	121	86	21	0x00E7	0004115a
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	5	4	0x9D2	94	105	94	105	21	0x00E8	0004125a
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	5	5	0x9E2	44	86	44	86	21	0x00E9	0004135a
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	5	6	0x9F2	83	65	83	65	21	0x00EA	0004145a
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	8	0	0xA02	65	87	86	42	15	0x4017	0002b101
+menumap_sub28.bin	28	mnt01_s01	de in	2	0x047F	9	0	0xA12	95	75	95	75	17	0x0000	00000000
+menumap_sub28.bin	28	mnt01_s01	de in	3	0x00D7	5	0	0xDA2	35	56	35	56	20	0x00EB	0004095a
+menumap_sub28.bin	28	mnt01_s01	de in	3	0x00D7	5	1	0xDB2	36	68	36	68	20	0x00EC	0004095a
+menumap_sub28.bin	28	mnt01_s01	de in	3	0x00D7	5	2	0xDC2	53	157	53	157	20	0x00ED	0004095a
+menumap_sub28.bin	28	mnt01_s01	de in	4	0x00D8	5	0	0x1152	146	39	146	39	20	0x00EE	0004095a
+menumap_sub28.bin	28	mnt01_s01	de in	5	0x00D9	5	0	0x13C2	59	32	59	32	20	0x00EF	0004095a
+menumap_sub28.bin	28	mnt01_s01	de in	5	0x00D9	5	1	0x13D2	76	23	76	23	20	0x00F0	0004095a
+menumap_sub28.bin	28	mnt01_s01	de in	7	0x00DB	9	0	0x17A2	76	56	76	56	17	0x0000	00000000
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	1	0x0252	3	0	0x202	17	37	-14	18	2	0x0000	0002d201
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	2	0x0255	5	0	0x332	44	126	44	126	22	0x00AA	0004f559
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	2	0x0255	5	1	0x342	44	40	44	40	21	0x00B9	0004fd59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	4	0x0257	5	0	0x592	21	33	21	33	25	0x00AD	0004f959
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	4	0x0257	5	1	0x5A2	21	33	21	33	28	0x00AE	0004fa59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	4	0x0257	5	2	0x5B2	21	33	21	33	26	0x00AF	0004fb59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	4	0x0257	5	3	0x5C2	21	33	21	33	27	0x00B0	0004fc59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	5	0x0258	5	0	0x6D2	165	158	165	158	25	0x00B1	0004f959
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	5	0x0258	5	1	0x6E2	165	158	165	158	28	0x00B2	0004fa59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	5	0x0258	5	2	0x6F2	165	158	165	158	26	0x00B3	0004fb59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	5	0x0258	5	3	0x702	165	158	165	158	27	0x00B4	0004fc59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	6	0x025B	5	0	0x812	146	35	146	35	25	0x00B5	0004f959
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	6	0x025B	5	1	0x822	146	35	146	35	28	0x00B6	0004fa59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	6	0x025B	5	2	0x832	146	35	146	35	26	0x00B7	0004fb59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	6	0x025B	5	3	0x842	146	35	146	35	27	0x00B8	0004fc59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	8	0x025F	5	0	0xA72	78	32	78	32	21	0x00BA	0004fd59
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	9	0x0260	3	0	0xBC2	59	34	87	14	1	0x007F	0002d501
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	9	0x0260	5	0	0xBD2	59	34	87	14	16	0x0080	0002d301
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	10	0x0261	5	0	0xD02	45	25	45	25	22	0x00AB	0004f559
+menumap_sub29.bin	29	mrm01_s01	ch cn de es fr in it kr us	13	0x026A	5	0	0xEC2	40	25	40	25	22	0x00AC	0004f559
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	0	0x01CF	3	0	0x162	65	47	49	25	1	0x0000	0002d501
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	3	0x01D4	9	0	0x7F2	120	111	120	111	17	0x0000	00000000
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	6	0x01D9	3	0	0xDE2	35	16	49	-4	1	0x0000	0002d501
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	6	0x01D9	8	0	0xDF2	30	16	15	-4	15	0x401F	0002b101
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	7	0x01DA	9	0	0xFA2	38	23	38	23	17	0x0000	00000000
+menumap_sub30.bin	30	pbc01_s01	ch cn es fr it kr us	8	0x01DB	9	0	0x1192	40	73	40	73	17	0x0000	00000000
+menumap_sub30.bin	30	pbc01_s01	de in	0	0x01CF	3	0	0x162	65	47	49	25	1	0x0000	0002d501
+menumap_sub30.bin	30	pbc01_s01	de in	3	0x01D4	9	0	0x7F2	120	111	120	111	17	0x0000	00000000
+menumap_sub30.bin	30	pbc01_s01	de in	6	0x01D9	3	0	0xDE2	35	16	49	-4	1	0x0000	0002d501
+menumap_sub30.bin	30	pbc01_s01	de in	6	0x01D9	8	0	0xDF2	30	16	15	-4	15	0x401F	0002b101
+menumap_sub30.bin	30	pbc01_s01	de in	7	0x01DA	9	0	0xFA2	38	23	38	23	17	0x0000	00000000
+menumap_sub30.bin	30	pbc01_s01	de in	8	0x01DB	9	0	0x1192	40	73	40	73	17	0x0000	00000000
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	7	0x0093	9	0	0x1462	99	100	99	100	17	0x0000	00000000
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	9	0x008E	3	0	0x18B2	16	38	5	70	2	0x0000	0002d201
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	9	0x008E	5	0	0x18C2	16	37	16	37	20	0x00BF	0004ff59
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	9	0x008E	8	0	0x18D2	24	38	50	8	15	0x401A	0002b101
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	10	0x0095	3	0	0x1B62	17	27	0	68	1	0x0000	0002d501
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	10	0x0095	5	0	0x1B72	14	21	14	21	20	0x00FB	0004ff59
+menumap_sub31.bin	31	pla01_s01	ch cn es fr it kr us	11	0x008D	3	0	0x1DE2	45	15	71	-4	1	0x0000	0002d501
+menumap_sub31.bin	31	pla01_s01	de in	7	0x0093	9	0	0x1462	99	100	99	100	17	0x0000	00000000
+menumap_sub31.bin	31	pla01_s01	de in	9	0x008E	3	0	0x18B2	16	38	5	70	2	0x0000	0002d201
+menumap_sub31.bin	31	pla01_s01	de in	9	0x008E	5	0	0x18C2	16	37	16	37	20	0x00BF	0004ff59
+menumap_sub31.bin	31	pla01_s01	de in	9	0x008E	8	0	0x18D2	24	38	50	8	15	0x401A	0002b101
+menumap_sub31.bin	31	pla01_s01	de in	10	0x0095	3	0	0x1B62	17	27	0	68	1	0x0000	0002d501
+menumap_sub31.bin	31	pla01_s01	de in	10	0x0095	5	0	0x1B72	14	21	14	21	20	0x00FB	0004ff59
+menumap_sub31.bin	31	pla01_s01	de in	11	0x008D	3	0	0x1DE2	45	15	71	-4	1	0x0000	0002d501
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	0	0x0228	3	0	0x102	42	32	80	8	1	0x4064	0002d501
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	0	0x0228	5	0	0x112	34	37	34	37	24	0x4050	0004f359
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	2	0x022C	5	0	0x482	28	65	28	65	21	0x0095	0004f459
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	2	0x022C	5	1	0x492	63	65	63	65	21	0x0095	0004f459
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	4	0x022E	5	0	0x802	57	63	57	63	21	0x0094	0004f459
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	6	0x0234	5	0	0xBB2	25	60	25	66	12	0x0001	00016c03
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	6	0x0234	5	1	0xBC2	25	66	25	66	14	0x0001	00000000
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	7	0x036C	3	0	0xCD2	14	20	-2	7	1	0x0000	0002d501
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	7	0x036C	5	0	0xCE2	33	20	59	7	5	0x405A	00030e00
+menumap_sub32.bin	32	rsn01_s01	ch cn de es fr in it kr us	7	0x036C	5	1	0xCF2	23	30	23	30	24	0x403A	0004155a
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	0	0x00BB	5	0	0x142	63	25	63	25	21	0x00C0	0004005a
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	0	0x00BB	9	0	0x152	37	109	37	109	17	0x0000	00000000
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	1	0x00BA	3	0	0x382	50	15	13	-10	1	0x0164	0002d501
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	2	0x00C2	5	0	0x472	43	46	43	46	22	0x011B	0004185a
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	3	0x00C1	9	0	0x582	90	51	90	51	17	0x0000	00000000
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	10	0x00BC	3	0	0x1732	28	61	57	53	2	0x0000	0002d201
+menumap_sub33.bin	33	rui01_s01	ch cn es fr it kr us	10	0x00BC	5	0	0x1742	20	60	20	60	22	0x00C1	0004185a
+menumap_sub33.bin	33	rui01_s01	de in	0	0x00BB	5	0	0x142	63	25	63	25	21	0x00C0	0004005a
+menumap_sub33.bin	33	rui01_s01	de in	0	0x00BB	9	0	0x152	37	109	37	109	17	0x0000	00000000
+menumap_sub33.bin	33	rui01_s01	de in	1	0x00BA	3	0	0x382	50	15	13	-10	1	0x0164	0002d501
+menumap_sub33.bin	33	rui01_s01	de in	2	0x00C2	5	0	0x472	43	46	43	46	22	0x011B	0004185a
+menumap_sub33.bin	33	rui01_s01	de in	3	0x00C1	9	0	0x582	90	51	90	51	17	0x0000	00000000
+menumap_sub33.bin	33	rui01_s01	de in	10	0x00BC	3	0	0x1732	28	61	57	53	2	0x0000	0002d201
+menumap_sub33.bin	33	rui01_s01	de in	10	0x00BC	5	0	0x1742	20	60	20	60	22	0x00C1	0004185a
+menumap_sub34.bin	34	rwf01_s01	ch cn de es fr in it kr us	0	0x01FD	3	0	0xF2	71	24	87	-8	1	0x0000	0002d501
+menumap_sub34.bin	34	rwf01_s01	ch cn de es fr in it kr us	0	0x01FD	8	0	0x102	14	14	-2	-8	15	0x4022	0002b101
+menumap_sub34.bin	34	rwf01_s01	ch cn de es fr in it kr us	4	0x0206	3	0	0x532	50	14	37	-8	1	0x0000	0002d501
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	6	0x01FA	9	0	0x10C2	93	80	93	80	17	0x0000	00000000
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	7	0x01F4	3	0	0x12D2	45	41	61	75	1	0x0000	0002d501
+menumap_sub35.bin	35	srb01_s01	ch cn es fr it kr us	7	0x01F4	8	0	0x12E2	54	37	88	41	15	0x4020	0002b101
+menumap_sub35.bin	35	srb01_s01	de in	6	0x01FA	9	0	0x10C2	93	80	93	80	17	0x0000	00000000
+menumap_sub35.bin	35	srb01_s01	de in	7	0x01F4	3	0	0x12D2	45	41	61	75	1	0x0000	0002d501
+menumap_sub35.bin	35	srb01_s01	de in	7	0x01F4	8	0	0x12E2	54	37	88	41	15	0x4020	0002b101
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	0	0x0337	3	0	0x192	37	45	46	19	2	0x0000	0002d201
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	0	0x0337	5	0	0x1A2	50	47	73	41	5	0x0000	00031200
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	1	0x0338	5	0	0x352	43	84	34	61	5	0x0000	00031a00
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	1	0x0338	5	1	0x362	72	54	64	35	7	0x0000	00031b00
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	1	0x0338	5	2	0x372	57	74	68	91	6	0x0000	00031c00
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	2	0x0339	5	0	0x662	52	37	20	-5	3	0x0000	00014103
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	2	0x0339	5	1	0x672	40	9	20	-5	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	2	0x0339	5	2	0x682	44	48	30	69	8	0x0000	00014203
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	2	0x0339	5	3	0x692	30	69	30	69	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	2	0x0339	5	4	0x6A2	71	85	94	95	13	0x0000	00014403
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	2	0x0339	5	5	0x6B2	94	95	94	95	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	2	0x0339	9	0	0x6C2	94	91	94	91	17	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	3	0x033A	5	0	0x7D2	21	83	21	83	24	0x4054	00040d5a
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	3	0x033A	9	0	0x7E2	26	83	26	83	17	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	4	0x033B	5	0	0x9B2	68	54	95	36	10	0x0000	00011d03
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	4	0x033B	5	1	0x9C2	95	36	95	36	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	4	0x033B	5	2	0x9D2	68	54	95	62	1	0x0000	0002d501
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	5	0x033C	5	0	0xC02	52	16	40	-10	12	0x0000	00014303
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	5	0x033C	5	1	0xC12	40	-10	40	-10	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	5	0x033C	5	2	0xC22	76	16	88	-10	12	0x0000	00014503
+menumap_sub36.bin	36	var01_s01	ch cn es fr it kr us	5	0x033C	5	3	0xC32	88	-10	88	-10	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	de in	0	0x0337	3	0	0x192	37	45	46	19	2	0x0000	0002d201
+menumap_sub36.bin	36	var01_s01	de in	0	0x0337	5	0	0x1A2	50	47	73	41	5	0x0000	00031200
+menumap_sub36.bin	36	var01_s01	de in	1	0x0338	5	0	0x352	43	84	34	61	5	0x0000	00031a00
+menumap_sub36.bin	36	var01_s01	de in	1	0x0338	5	1	0x362	72	54	64	35	7	0x0000	00031b00
+menumap_sub36.bin	36	var01_s01	de in	1	0x0338	5	2	0x372	57	74	68	91	6	0x0000	00031c00
+menumap_sub36.bin	36	var01_s01	de in	2	0x0339	5	0	0x662	52	37	20	-5	3	0x0000	00014103
+menumap_sub36.bin	36	var01_s01	de in	2	0x0339	5	1	0x672	40	9	20	-5	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	de in	2	0x0339	5	2	0x682	44	48	30	69	8	0x0000	00014203
+menumap_sub36.bin	36	var01_s01	de in	2	0x0339	5	3	0x692	30	69	30	69	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	de in	2	0x0339	5	4	0x6A2	71	85	94	95	13	0x0000	00014403
+menumap_sub36.bin	36	var01_s01	de in	2	0x0339	5	5	0x6B2	94	95	94	95	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	de in	2	0x0339	9	0	0x6C2	94	91	94	91	17	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	de in	3	0x033A	5	0	0x7D2	21	83	21	83	24	0x4054	00040d5a
+menumap_sub36.bin	36	var01_s01	de in	3	0x033A	9	0	0x7E2	26	83	26	83	17	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	de in	4	0x033B	5	0	0x9B2	68	54	95	36	10	0x0000	00011d03
+menumap_sub36.bin	36	var01_s01	de in	4	0x033B	5	1	0x9C2	95	36	95	36	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	de in	4	0x033B	5	2	0x9D2	68	54	95	62	1	0x0000	0002d501
+menumap_sub36.bin	36	var01_s01	de in	5	0x033C	5	0	0xC02	52	16	40	-10	12	0x0000	00014303
+menumap_sub36.bin	36	var01_s01	de in	5	0x033C	5	1	0xC12	40	-10	40	-10	14	0x0000	00000000
+menumap_sub36.bin	36	var01_s01	de in	5	0x033C	5	2	0xC22	76	16	88	-10	12	0x0000	00014503
+menumap_sub36.bin	36	var01_s01	de in	5	0x033C	5	3	0xC32	88	-10	88	-10	14	0x0000	00000000
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	0	0x01BF	5	0	0x302	54	174	54	174	20	0x00A2	0004f759
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	1	0x01C0	5	0	0x9B2	193	76	193	76	20	0x00A3	0004f759
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	1	0x01C0	5	1	0x9C2	87	100	87	100	20	0x00A4	0004f759
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	3	0x01C2	3	0	0x1112	41	24	60	4	2	0x0000	0002d201
+menumap_sub37.bin	37	gol01_s01	ch cn es fr it kr us	4	0x01C5	9	0	0x1402	71	71	71	71	17	0x0000	00000000
+menumap_sub37.bin	37	gol01_s01	de in	0	0x01BF	5	0	0x302	54	174	54	174	20	0x00A2	0004f759
+menumap_sub37.bin	37	gol01_s01	de in	1	0x01C0	5	0	0x9B2	193	76	193	76	20	0x00A3	0004f759
+menumap_sub37.bin	37	gol01_s01	de in	1	0x01C0	5	1	0x9C2	87	100	87	100	20	0x00A4	0004f759
+menumap_sub37.bin	37	gol01_s01	de in	3	0x01C2	3	0	0x1112	41	24	60	4	2	0x0000	0002d201
+menumap_sub37.bin	37	gol01_s01	de in	4	0x01C5	9	0	0x1402	71	71	71	71	17	0x0000	00000000
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	0	0x02E6	3	0	0x1B2	16	31	2	11	2	0x0000	0002d201
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	0	0x02E6	5	0	0x1C2	15	40	-6	54	5	0x0000	00031500
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	0	0x02E6	5	1	0x1D2	22	41	46	38	5	0x0000	00031600
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	0	0x02E6	9	0	0x1E2	12	36	12	36	17	0x0000	00000000
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	0	0x02E6	9	1	0x1F2	12	36	12	36	17	0x0000	00000000
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	2	0x02E2	9	0	0x3A2	134	50	134	50	17	0x0000	00000000
+menumap_sub38.bin	38	bul01_s01	ch cn de es fr in it kr us	3	0x02E5	9	0	0x532	14	49	14	49	17	0x0000	00000000
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	0	0x02AE	3	0	0x102	81	73	104	89	2	0x0000	0002d201
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	0	0x02AE	5	0	0x112	20	63	20	63	22	0x00D0	0004065a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	1	0x02AF	5	0	0x172	114	38	114	38	22	0x00D1	0004065a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	1	0x02AF	5	1	0x182	38	38	38	38	22	0x00D2	0004065a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	2	0x02B2	5	0	0x272	126	22	126	22	22	0x00D3	0004065a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	2	0x02B2	5	1	0x282	126	90	126	90	21	0x00D4	0004035a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	2	0x02B2	5	2	0x292	87	219	87	219	21	0x00D5	0004035a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	3	0x02B3	5	0	0x422	162	160	162	160	21	0x00D6	0004035a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	3	0x02B3	5	1	0x432	186	30	186	30	21	0x00D7	0004035a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	3	0x02B3	5	2	0x442	87	175	87	175	21	0x00D8	0004035a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	4	0x02B6	3	0	0x5D2	36	25	63	-10	1	0x0000	0002d501
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	5	0x02B7	5	0	0x6C2	222	32	222	32	22	0x011A	0004065a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	5	0x02B7	9	0	0x6D2	27	130	27	130	17	0x0000	00000000
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	6	0x02BA	5	0	0x732	52	21	52	21	22	0x00D9	0004065a
+menumap_sub39.bin	39	gil01_s01	ch cn de es fr in it kr us	6	0x02BA	5	1	0x742	52	158	52	158	22	0x00DA	0004065a
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	0	0x03AB	5	0	0x192	87	98	87	98	23	0x00FD	00040c5a
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	0	0x03AB	5	1	0x1A2	98	142	98	142	23	0x00FE	00040c5a
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	0	0x03AB	5	2	0x1B2	109	186	109	186	23	0x00FF	00040c5a
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	0	0x03AB	5	3	0x1C2	119	232	119	232	23	0x0100	00040c5a
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	1	0x03AC	5	0	0x352	131	26	131	26	23	0x0101	00040c5a
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	1	0x03AC	5	1	0x362	143	78	143	78	23	0x0102	00040c5a
+menumap_sub40.bin	40	gil01_s02	ch cn de es fr in it kr us	1	0x03AC	5	2	0x372	154	127	154	127	23	0x0103	00040c5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	3	0	0xF92	28	71	28	71	21	0x0123	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	3	1	0xFA2	61	92	61	92	21	0x0124	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	3	2	0xFB2	98	92	98	92	21	0x0125	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	3	3	0xFC2	131	102	131	102	21	0x0126	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	3	4	0xFD2	80	14	80	14	22	0x0127	00040f5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	0	0xFE2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	1	0xFF2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	2	0x1002	28	36	29	13	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	3	0x1012	28	28	28	28	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	4	0x1022	29	56	29	56	12	0x0001	0001f303
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	5	0x1032	28	71	28	71	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	6	0x1042	29	87	29	87	12	0x0001	0001f503
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	7	0x1052	28	102	28	102	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	8	0x1062	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	9	0x1072	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	10	0x1082	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	11	0x1092	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	12	0x10A2	62	66	62	66	12	0x0001	0001f703
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	13	0x10B2	61	81	61	81	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	14	0x10C2	62	77	62	77	12	0x0001	0001f803
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	15	0x10D2	61	92	61	92	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	16	0x10E2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	17	0x10F2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	18	0x1102	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	19	0x1112	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	20	0x1122	99	66	99	66	12	0x0001	0001f903
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	21	0x1132	98	81	98	81	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	22	0x1142	99	77	99	77	12	0x0001	0001fa03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	23	0x1152	98	92	98	92	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	24	0x1162	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	25	0x1172	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	26	0x1182	132	13	132	13	12	0x0001	0001f203
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	27	0x1192	131	28	131	28	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	28	0x11A2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	29	0x11B2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	30	0x11C2	132	87	132	87	12	0x0001	0001f603
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	0	0x03F0	5	31	0x11D2	131	102	131	102	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	3	0	0x2202	110	27	100	12	1	0x010A	0002d501
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	3	1	0x2212	80	34	80	34	22	0x0128	00040f5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	3	2	0x2222	60	38	60	38	21	0x012A	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	3	3	0x2232	99	38	99	38	21	0x012B	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	0	0x2242	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	1	0x2252	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	2	0x2262	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	3	0x2272	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	4	0x2282	30	76	30	76	12	0x0001	0001fc03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	5	0x2292	29	91	29	91	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	6	0x22A2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	7	0x22B2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	8	0x22C2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	9	0x22D2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	10	0x22E2	61	23	61	23	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	11	0x22F2	60	38	60	38	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	12	0x2302	61	86	61	86	12	0x0001	00010204
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	13	0x2312	60	101	60	101	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	14	0x2322	61	98	61	98	12	0x0001	00010304
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	15	0x2332	60	113	60	113	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	16	0x2342	100	12	100	12	12	0x0001	00010004
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	17	0x2352	99	27	99	27	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	18	0x2362	100	23	100	23	12	0x0001	00010104
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	19	0x2372	99	38	99	38	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	20	0x2382	100	86	100	86	12	0x0001	00010404
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	21	0x2392	99	101	99	101	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	22	0x23A2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	23	0x23B2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	24	0x23C2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	25	0x23D2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	26	0x23E2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	27	0x23F2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	28	0x2402	132	76	132	76	12	0x0001	0001fd03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	29	0x2412	131	91	131	91	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	30	0x2422	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	1	0x03FB	5	31	0x2432	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	3	0	0x33C2	28	132	28	132	21	0x011D	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	3	1	0x33D2	61	37	61	37	21	0x011E	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	3	2	0x33E2	99	48	99	48	21	0x011F	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	3	3	0x33F2	99	123	99	123	21	0x0120	00040e5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	3	4	0x3402	80	44	80	44	22	0x0121	00040f5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	3	5	0x3412	80	117	80	117	22	0x0122	00040f5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	0	0x3422	29	13	29	13	12	0x0001	00012c04
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	1	0x3432	28	28	28	28	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	2	0x3442	29	43	29	43	12	0x0001	00012e04
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	3	0x3452	28	58	28	58	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	4	0x3462	29	87	29	87	12	0x0001	00013004
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	5	0x3472	28	102	28	102	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	6	0x3482	29	117	29	117	12	0x0001	00013204
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	7	0x3492	28	132	28	132	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	8	0x34A2	62	22	62	22	12	0x0001	00013404
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	9	0x34B2	61	37	61	37	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	10	0x34C2	62	33	62	33	12	0x0001	00013504
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	11	0x34D2	61	48	61	48	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	12	0x34E2	62	97	62	97	12	0x0001	00013804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	13	0x34F2	61	112	61	112	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	14	0x3502	62	108	62	108	12	0x0001	00013904
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	15	0x3512	61	123	61	123	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	16	0x3522	100	22	100	22	12	0x0001	00013604
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	17	0x3532	99	37	99	37	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	18	0x3542	100	33	100	33	12	0x0001	00013704
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	19	0x3552	99	48	99	48	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	20	0x3562	100	97	100	97	12	0x0001	00013a04
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	21	0x3572	99	112	99	112	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	22	0x3582	100	108	100	108	12	0x0001	00013b04
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	23	0x3592	99	123	99	123	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	24	0x35A2	132	13	132	13	12	0x0001	00012d04
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	25	0x35B2	131	28	131	28	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	26	0x35C2	132	43	132	43	12	0x0001	00012f04
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	27	0x35D2	131	58	131	58	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	28	0x35E2	132	87	132	87	12	0x0001	00013104
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	29	0x35F2	131	102	131	102	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	30	0x3602	132	117	132	117	12	0x0001	00013304
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	2	0x042B	5	31	0x3612	131	132	131	132	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	3	0	0x4282	52	37	70	18	1	0x0000	0002d501
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	3	1	0x4292	37	59	37	59	22	0x0129	00040f5a
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	0	0x42A2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	1	0x42B2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	2	0x42C2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	3	0x42D2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	4	0x42E2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	5	0x42F2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	6	0x4302	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	7	0x4312	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	8	0x4322	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	9	0x4332	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	10	0x4342	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	11	0x4352	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	12	0x4362	30	38	30	38	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	13	0x4372	29	53	29	53	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	14	0x4382	30	50	30	50	12	0x0001	00011904
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	15	0x4392	29	65	29	65	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	16	0x43A2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	17	0x43B2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	18	0x43C2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	19	0x43D2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	20	0x43E2	67	38	67	38	12	0x0001	00011a04
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	21	0x43F2	66	53	66	53	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	22	0x4402	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	23	0x4412	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	24	0x4422	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	25	0x4432	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	26	0x4442	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	27	0x4452	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	28	0x4462	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	29	0x4472	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	30	0x4482	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	ch cn es fr it kr us	3	0x0417	5	31	0x4492	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	3	0	0xF92	28	71	28	71	21	0x0123	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	3	1	0xFA2	61	92	61	92	21	0x0124	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	3	2	0xFB2	98	92	98	92	21	0x0125	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	3	3	0xFC2	131	102	131	102	21	0x0126	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	3	4	0xFD2	80	14	80	14	22	0x0127	00040f5a
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	0	0xFE2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	1	0xFF2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	2	0x1002	28	36	29	13	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	3	0x1012	28	28	28	28	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	4	0x1022	29	56	29	56	12	0x0001	0001f303
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	5	0x1032	28	71	28	71	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	6	0x1042	29	87	29	87	12	0x0001	0001f503
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	7	0x1052	28	102	28	102	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	8	0x1062	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	9	0x1072	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	10	0x1082	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	11	0x1092	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	12	0x10A2	62	66	62	66	12	0x0001	0001f703
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	13	0x10B2	61	81	61	81	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	14	0x10C2	62	77	62	77	12	0x0001	0001f803
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	15	0x10D2	61	92	61	92	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	16	0x10E2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	17	0x10F2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	18	0x1102	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	19	0x1112	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	20	0x1122	99	66	99	66	12	0x0001	0001f903
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	21	0x1132	98	81	98	81	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	22	0x1142	99	77	99	77	12	0x0001	0001fa03
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	23	0x1152	98	92	98	92	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	24	0x1162	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	25	0x1172	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	26	0x1182	132	13	132	13	12	0x0001	0001f203
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	27	0x1192	131	28	131	28	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	28	0x11A2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	29	0x11B2	0	0	0	0	12	0x0001	0001f103
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	30	0x11C2	132	87	132	87	12	0x0001	0001f603
+menumap_sub41.bin	41	dor01_s01	de in	0	0x03F0	5	31	0x11D2	131	102	131	102	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	3	0	0x2202	110	27	100	12	1	0x010A	0002d501
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	3	1	0x2212	80	34	80	34	22	0x0128	00040f5a
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	3	2	0x2222	60	38	60	38	21	0x012A	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	3	3	0x2232	99	38	99	38	21	0x012B	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	0	0x2242	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	1	0x2252	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	2	0x2262	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	3	0x2272	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	4	0x2282	30	76	30	76	12	0x0001	0001fc03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	5	0x2292	29	91	29	91	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	6	0x22A2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	7	0x22B2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	8	0x22C2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	9	0x22D2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	10	0x22E2	61	23	61	23	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	11	0x22F2	60	38	60	38	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	12	0x2302	61	86	61	86	12	0x0001	00010204
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	13	0x2312	60	101	60	101	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	14	0x2322	61	98	61	98	12	0x0001	00010304
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	15	0x2332	60	113	60	113	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	16	0x2342	100	12	100	12	12	0x0001	00010004
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	17	0x2352	99	27	99	27	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	18	0x2362	100	23	100	23	12	0x0001	00010104
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	19	0x2372	99	38	99	38	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	20	0x2382	100	86	100	86	12	0x0001	00010404
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	21	0x2392	99	101	99	101	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	22	0x23A2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	23	0x23B2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	24	0x23C2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	25	0x23D2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	26	0x23E2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	27	0x23F2	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	28	0x2402	132	76	132	76	12	0x0001	0001fd03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	29	0x2412	131	91	131	91	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	30	0x2422	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	1	0x03FB	5	31	0x2432	0	0	0	0	12	0x0001	0001ff03
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	3	0	0x33C2	28	132	28	132	21	0x011D	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	3	1	0x33D2	61	37	61	37	21	0x011E	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	3	2	0x33E2	99	48	99	48	21	0x011F	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	3	3	0x33F2	99	123	99	123	21	0x0120	00040e5a
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	3	4	0x3402	80	44	80	44	22	0x0121	00040f5a
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	3	5	0x3412	80	117	80	117	22	0x0122	00040f5a
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	0	0x3422	29	13	29	13	12	0x0001	00012c04
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	1	0x3432	28	28	28	28	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	2	0x3442	29	43	29	43	12	0x0001	00012e04
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	3	0x3452	28	58	28	58	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	4	0x3462	29	87	29	87	12	0x0001	00013004
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	5	0x3472	28	102	28	102	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	6	0x3482	29	117	29	117	12	0x0001	00013204
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	7	0x3492	28	132	28	132	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	8	0x34A2	62	22	62	22	12	0x0001	00013404
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	9	0x34B2	61	37	61	37	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	10	0x34C2	62	33	62	33	12	0x0001	00013504
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	11	0x34D2	61	48	61	48	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	12	0x34E2	62	97	62	97	12	0x0001	00013804
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	13	0x34F2	61	112	61	112	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	14	0x3502	62	108	62	108	12	0x0001	00013904
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	15	0x3512	61	123	61	123	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	16	0x3522	100	22	100	22	12	0x0001	00013604
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	17	0x3532	99	37	99	37	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	18	0x3542	100	33	100	33	12	0x0001	00013704
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	19	0x3552	99	48	99	48	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	20	0x3562	100	97	100	97	12	0x0001	00013a04
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	21	0x3572	99	112	99	112	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	22	0x3582	100	108	100	108	12	0x0001	00013b04
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	23	0x3592	99	123	99	123	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	24	0x35A2	132	13	132	13	12	0x0001	00012d04
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	25	0x35B2	131	28	131	28	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	26	0x35C2	132	43	132	43	12	0x0001	00012f04
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	27	0x35D2	131	58	131	58	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	28	0x35E2	132	87	132	87	12	0x0001	00013104
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	29	0x35F2	131	102	131	102	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	30	0x3602	132	117	132	117	12	0x0001	00013304
+menumap_sub41.bin	41	dor01_s01	de in	2	0x042B	5	31	0x3612	131	132	131	132	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	3	0	0x4282	52	37	70	18	1	0x0000	0002d501
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	3	1	0x4292	37	59	37	59	22	0x0129	00040f5a
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	0	0x42A2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	1	0x42B2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	2	0x42C2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	3	0x42D2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	4	0x42E2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	5	0x42F2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	6	0x4302	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	7	0x4312	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	8	0x4322	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	9	0x4332	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	10	0x4342	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	11	0x4352	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	12	0x4362	30	38	30	38	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	13	0x4372	29	53	29	53	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	14	0x4382	30	50	30	50	12	0x0001	00011904
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	15	0x4392	29	65	29	65	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	16	0x43A2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	17	0x43B2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	18	0x43C2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	19	0x43D2	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	20	0x43E2	67	38	67	38	12	0x0001	00011a04
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	21	0x43F2	66	53	66	53	14	0x0000	00000000
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	22	0x4402	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	23	0x4412	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	24	0x4422	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	25	0x4432	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	26	0x4442	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	27	0x4452	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	28	0x4462	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	29	0x4472	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	30	0x4482	0	0	0	0	12	0x0001	00011804
+menumap_sub41.bin	41	dor01_s01	de in	3	0x0417	5	31	0x4492	0	0	0	0	12	0x0001	00011804
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	1	0x044D	3	0	0x2A2	72	36	94	42	2	0x0000	0002d201
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	1	0x044D	5	0	0x2B2	49	59	49	59	22	0x00DB	0004065a
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	1	0x044D	5	1	0x2C2	78	59	78	59	22	0x00DF	0004075a
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	2	0x0457	5	0	0x472	167	98	167	98	12	0x0001	00015904
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	2	0x0457	5	1	0x482	173	99	173	99	14	0x0001	00000000
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	2	0x0457	5	2	0x492	166	99	166	99	20	0x00E4	0004175a
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	3	0x045A	5	0	0x5C2	23	0	23	0	12	0x0001	00015904
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	3	0x045A	5	1	0x5D2	22	14	22	14	14	0x0000	00000000
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	4	0x045B	5	0	0x702	16	108	16	108	22	0x00DC	0004065a
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	4	0x045B	5	1	0x712	72	16	72	16	22	0x0114	0004075a
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	6	0x045E	5	0	0x902	81	74	81	74	22	0x0115	0004075a
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	8	0x044E	3	0	0xB32	64	83	46	76	1	0x0000	0002d501
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	8	0x044E	5	0	0xB42	73	97	73	97	22	0x0111	0004075a
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	9	0x0462	5	0	0xC92	75	13	75	13	12	0x0001	00016104
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	9	0x0462	5	1	0xCA2	72	27	72	27	14	0x0000	00000000
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	9	0x0462	5	2	0xCB2	132	97	132	97	22	0x00DD	0004065a
+menumap_sub42.bin	42	rbl03_s01	ch cn de es fr in it kr us	9	0x0462	5	3	0xCC2	40	98	40	98	22	0x0116	0004075a
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	0	0x044F	3	0	0x202	25	44	0	56	1	0x0000	0002d501
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	0	0x044F	5	0	0x212	124	64	124	64	22	0x00DE	0004065a
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	0	0x044F	5	1	0x222	30	64	30	64	22	0x0112	0004075a
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	4	0x0450	3	0	0x632	66	78	47	75	1	0x0000	0002d501
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	4	0x0450	5	0	0x642	72	98	72	98	22	0x0113	0004075a
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	5	0x046D	5	0	0x7B2	75	14	75	14	12	0x0001	00016c04
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	5	0x046D	5	1	0x7C2	72	26	72	26	14	0x0000	00000000
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	5	0x046D	5	2	0x7D2	42	97	42	97	22	0x00E0	0004075a
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	6	0x0451	3	0	0x8C2	56	75	41	60	1	0x0000	0002d501
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	6	0x0451	5	0	0x8D2	64	96	64	96	22	0x00E1	0004075a
+menumap_sub43.bin	43	rbl02_s01	ch cn de es fr in it kr us	6	0x0451	5	1	0x8E2	36	96	36	96	22	0x010F	0004065a
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	0	0x0474	5	0	0x62	36	128	36	128	22	0x0110	0004065a
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	1	0x0475	5	0	0x192	102	103	102	103	12	0x0001	00019e02
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	1	0x0475	5	1	0x1A2	89	117	89	117	14	0x0000	00000000
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	1	0x0475	5	2	0x1B2	83	118	83	118	22	0x00E2	0004075a
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	2	0x0477	3	0	0x2E2	35	44	23	22	1	0x011C	0002d501
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	2	0x0477	5	0	0x2F2	90	91	90	91	12	0x0001	00019c02
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	2	0x0477	5	1	0x302	109	104	109	104	14	0x0000	00000000
+menumap_sub44.bin	44	rbl01_s01	ch cn es fr it kr us	2	0x0477	5	2	0x312	74	106	74	106	22	0x00E3	0004075a
+menumap_sub44.bin	44	rbl01_s01	de in	0	0x0474	5	0	0x62	36	128	36	128	22	0x0110	0004065a
+menumap_sub44.bin	44	rbl01_s01	de in	1	0x0475	5	0	0x192	102	103	102	103	12	0x0001	00019e02
+menumap_sub44.bin	44	rbl01_s01	de in	1	0x0475	5	1	0x1A2	89	117	89	117	14	0x0000	00000000
+menumap_sub44.bin	44	rbl01_s01	de in	1	0x0475	5	2	0x1B2	83	118	83	118	22	0x00E2	0004075a
+menumap_sub44.bin	44	rbl01_s01	de in	2	0x0477	3	0	0x2E2	35	44	23	22	1	0x011C	0002d501
+menumap_sub44.bin	44	rbl01_s01	de in	2	0x0477	5	0	0x2F2	90	91	90	91	12	0x0001	00019c02
+menumap_sub44.bin	44	rbl01_s01	de in	2	0x0477	5	1	0x302	109	104	109	104	14	0x0000	00000000
+menumap_sub44.bin	44	rbl01_s01	de in	2	0x0477	5	2	0x312	74	106	74	106	22	0x00E3	0004075a
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	0	0x0463	5	0	0x1A2	22	56	22	56	22	0x0117	0004075a
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	3	0x0466	5	0	0x5B2	22	56	22	56	22	0x0118	0004075a
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	6	0x0469	5	0	0x9C2	35	40	35	40	12	0x0001	0001aa02
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	6	0x0469	5	1	0x9D2	29	55	29	55	14	0x0000	00000000
+menumap_sub45.bin	45	rbl04_s01	ch cn de es fr in it kr us	6	0x0469	5	2	0x9E2	22	56	22	56	22	0x0119	0004075a
+menumap_sub46.bin	46	bhm01_s01	ch cn es fr it kr us	0	0x0307	5	0	0x172	231	203	231	203	23	0x0104	00040c5a
+menumap_sub46.bin	46	bhm01_s01	ch cn es fr it kr us	0	0x0307	5	1	0x182	232	147	232	147	23	0x0105	00040c5a
+menumap_sub46.bin	46	bhm01_s01	ch cn es fr it kr us	0	0x0307	5	2	0x192	171	91	171	91	23	0x0106	00040c5a
+menumap_sub46.bin	46	bhm01_s01	de in	0	0x0307	5	0	0x172	231	203	231	203	23	0x0104	00040c5a
+menumap_sub46.bin	46	bhm01_s01	de in	0	0x0307	5	1	0x182	232	147	232	147	23	0x0105	00040c5a
+menumap_sub46.bin	46	bhm01_s01	de in	0	0x0307	5	2	0x192	171	91	171	91	23	0x0106	00040c5a
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	1	0x0104	3	0	0x302	25	65	15	80	1	0x0000	0002d501
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	1	0x0104	9	0	0x312	40	49	40	49	17	0x0000	00000000
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	5	0x0108	9	0	0x822	96	87	96	87	17	0x0000	00000000
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	6	0x0109	3	0	0x932	32	35	23	63	1	0x0000	0002d501
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	6	0x0109	8	0	0x942	39	36	47	63	15	0x4016	0002b101
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	6	0x0109	9	0	0x952	45	31	45	31	17	0x0000	00000000
+menumap_sub47.bin	47	sav01_s02	ch cn de es fr in it kr us	8	0x010E	9	0	0xB62	66	48	66	48	17	0x0000	00000000

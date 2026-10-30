@@ -8,9 +8,13 @@ addresses: "0x0032FCA0, 0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349B
 ## What it lists
 
 The table [developer-scripts.tsv](developer-scripts.tsv) has one row per script function of the developer scripts
-that does something a player can observe. It covers the eighteen scripts under `event/evt_t` of `plan_master/us`. The
-nineteenth folder there, `evt_t0020`, holds an `.ebp` with no `EBP2` header and no code
-([story counter values](story-counter-values.md)).
+that does something a player can observe. It covers the eighteen scripts under `event/evt_t` of `plan_master/us`.
+
+The nineteenth folder there, `evt_t0020`, holds a bare script image of version 7 in place of an `EBP2` container
+([EBP script container](../EBP-Script-Files/ebp-script-container.md),
+[story counter values](story-counter-values.md)). Its first word is `0x80000007`, version 7 with the marker
+`0x8000`, its length word at +0x4 is `0x970`, the file's 2,416 bytes, and +0x90 holds the build stamp `07/09 18:02`.
+The file is byte-identical in all nine language folders, and no language folder holds an `EBP2` copy of it.
 
 No path array names these scripts: the [asset path table](../Game-Files-And-Data-Tables/asset-paths.md) has no
 entry for any of them. An event id `n` names the scene script at index `4n` of the event file table, so none of them
@@ -146,9 +150,9 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 76,279 |
+| `resolved` | 76,296 |
 | `does not ship` | 63 |
-| empty | 1,729 |
+| empty | 1,712 |
 
 A script that no path array names has no motion or sound entry there. For these scripts the steps read the `.mot` and
 `.snd` in the script's own folder, when one ships there, and the `resolution` cell says so. Only `evt_t0005` and

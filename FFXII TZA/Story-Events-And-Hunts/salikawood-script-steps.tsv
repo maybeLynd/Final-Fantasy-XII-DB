@@ -1215,7 +1215,7 @@ frs_a02	NPC01	NPC挙動	19	0x0D630	1664	local_var_s24f0_1 = 1	setweight	-1	this 
 frs_a02	NPC01	NPC挙動	20	0x0D636	1665	local_var_s24f0_1 = 1	setkubifuristatus	1	argument 1: whether the calling actor's head shakes (rig controller 15)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	NPC01	NPC挙動	21	0x0D63C	1666	local_var_s24f0_1 = 1	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 frs_a02	NPC01	NPC挙動	22	0x0D642	1667	local_var_s24f0_1 = 1	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_a02	NPC01	NPC挙動	23	0x0D648	1668	local_var_s24f0_1 = 1	motionlooppreset	1	-	-	-	-	-		01 verb-table.tsv
+frs_a02	NPC01	NPC挙動	23	0x0D648	1668	local_var_s24f0_1 = 1	motionlooppreset	1	argument 1: the loop preset the calling actor's next motion takes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	NPC01	NPC挙動	24	0x0D64E	1669	local_var_s24f0_1 = 1	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	NPC01	NPC挙動	25	0x0D657	1670	local_var_s24f0_1 = 1	motionplay_bb	0x10000003, 20	animation 3 of motion 0 of `frs_a02.mot` (bytes 0x800, length 0x255B0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 frs_a02	NPC01	NPC挙動	26	0x0D65A	1671	local_var_s24f0_1 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1357,13 +1357,13 @@ frs_a02	乗っ取り00	乗っ取る	30	0x0D9AC	1891	-	setpos2	173.775635, -13.02
 frs_a02	乗っ取り00	乗っ取る	31	0x0D9B2	1892	-	dir	1.87181604	this actor, turned to facing 1.87181604	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 frs_a02	乗っ取り00	乗っ取る	32	0x0D9B8	1893	-	stdmotionplay	0x01000016	this actor's standard motion entry 22 of 0x01EFE9D0: render event 0x4024, slot 36 `ev_talk_over`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 frs_a02	乗っ取り00	乗っ取る	33	0x0D9BB	1894	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a02	乗っ取り00	モグ見送る	1	0x0D9BF	1899	-	sysDira	NPC01	actor `NPC01` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+frs_a02	乗っ取り00	モグ見送る	1	0x0D9BF	1899	-	sysDira	NPC01	actor `NPC01` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	乗っ取り00	モグ見送る	2	0x0D9C5	1900	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	乗っ取り00	モグ見送る	3	0x0D9C8	1901	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a02	乗っ取り00	乗っ取り解除	1	0x0D9C9	1906	-	showparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	乗っ取り00	乗っ取り解除	2	0x0D9CC	1907	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	乗っ取り00	乗っ取り解除	3	0x0D9CF	1908	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a02	override_actor	init	1	0x0D9D3	1924	-	set_force_ignore_timestop	1	-	-	-	-	-		01 verb-table.tsv
+frs_a02	override_actor	init	1	0x0D9D3	1924	-	set_force_ignore_timestop	1	argument 1: whether the calling actor keeps running through a time stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	override_actor	init	2	0x0D9D6	1925	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a02	override_actor	乗っ取り処理	1	0x0D9DA	1930	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 frs_a02	override_actor	乗っ取り処理	2	0x0D9E6	1931	-	aturn	file_var_s26_1, file_var_s26_2, file_var_s26_3	argument 1: the x of the world point the calling actor turns its body and head to face (an ACT form: the named actor) / argument 2: the height of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1381,7 +1381,7 @@ frs_a02	サリカ樹林地図	daiji_box_bind	1	0x0DA0D	1958	-	modelread	0x030000
 frs_a02	サリカ樹林地図	daiji_box_bind	2	0x0DA13	1959	-	modelreadsync	0x03000009	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	サリカ樹林地図	daiji_box_bind	3	0x0DA19	1960	-	stdmotionread	0	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	サリカ樹林地図	daiji_box_bind	4	0x0DA1C	1961	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_a02	サリカ樹林地図	daiji_box_bind	5	0x0DA22	1962	-	set_talk_wituout_hide_status	1	-	-	-	-	-		01 verb-table.tsv
+frs_a02	サリカ樹林地図	daiji_box_bind	5	0x0DA22	1962	-	set_talk_wituout_hide_status	1	argument 1: whether the calling actor's talks leave the world running	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a02	サリカ樹林地図	daiji_box_bind	6	0x0DA2E	1963	-	setpos	173.172638, -12.1304493, 131.763718	this actor, placed at (173.172638, -12.1304493, 131.763718)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_a02	サリカ樹林地図	daiji_box_bind	7	0x0DA34	1964	-	dir	-2.66799998	this actor, turned to facing -2.66799998	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 frs_a02	サリカ樹林地図	daiji_box_bind	8	0x0DA3A	1965	-	talkang	6.28318548	argument 1: the calling actor's talk half-angle in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1539,12 +1539,12 @@ frs_a03	__MJ_CTRL002	mapjump	6	0x0B25D	203	-	releasemapjumpgroupflag	0x0166	flag
 frs_a03	__MJ_CTRL002	mapjump	7	0x0B269	204	-	ucmove	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the point the party leader walks to (the controlled character, 0x003590D0 and 0x003588B0; with no leader the three values are popped and dropped) / argument 2: y of the point / argument 3: z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a03	__MJ_CTRL002	mapjump	8	0x0B275	205	-	crossfade	0, 1, 15	argument 1: the crossfade's flags / argument 2: the capture mode of the still picture / argument 3: the crossfade's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a03	__MJ_CTRL002	mapjump	9	0x0B27C	206	-	if	not (getchocobomodebit())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a03	__MJ_CTRL002	mapjump	10	0x0B2A7	209	-	lockbehindcamera	(((local_var_s3f1_2 - mp_map_set_x) * 1) + mp_map_set_x), (gety_12c(-1) + 4), (((local_var_s3f1_4 - mp_map_set_z) * 1) + mp_map_set_z)	-	-	-	-	-		01 verb-table.tsv
+frs_a03	__MJ_CTRL002	mapjump	10	0x0B2A7	209	-	lockbehindcamera	(((local_var_s3f1_2 - mp_map_set_x) * 1) + mp_map_set_x), (gety_12c(-1) + 4), (((local_var_s3f1_4 - mp_map_set_z) * 1) + mp_map_set_z)	argument 1: x of the point the follow camera's eye is locked to / argument 2: y (the height) of the point; the scripts pass gety_12c(-1) plus 0 to 6, the controlled character's height raised a little / argument 3: z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a03	__MJ_CTRL002	mapjump	11	0x0B2AA	210	-	sysucoff	-	result stored in regI3; takes control away from the player	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a03	__MJ_CTRL002	mapjump	12	0x0B2AF	211	-	if	regI3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a03	__MJ_CTRL002	mapjump	13	0x0B2B2	213	regI3	clearmapjumpstatus	-	ends the map-jump state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a03	__MJ_CTRL002	mapjump	14	0x0B2B5	214	regI3	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_a03	__MJ_CTRL002	mapjump	15	0x0B2B8	215	regI3	unlockbehindcamera	-	-	-	-	-	-		01 verb-table.tsv
+frs_a03	__MJ_CTRL002	mapjump	15	0x0B2B8	215	regI3	unlockbehindcamera	-	the follow camera's eye lock	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a03	__MJ_CTRL002	mapjump	16	0x0B2BB	216	regI3	sysucon	-	gives control back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a03	__MJ_CTRL002	mapjump	17	0x0B2C1	220	not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a03	__MJ_CTRL002	mapjump	18	0x0B2CA	221	not (regI3)	steppoint	30	argument 1: the number of a step mark of the current manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2224,7 +2224,7 @@ frs_a04	監督	main	11	0x0AC1D	425	local_var_s6f0_1; scratch1_var_1 = 2	break	-	
 frs_a04	監督	main	12	0x0AC39	427	local_var_s6f0_1	while	sysIsdead2_49f(THIRD_カロリーヌ) != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a04	監督	main	13	0x0AC42	429	local_var_s6f0_1; loop while sysIsdead2_49f(THIRD_カロリーヌ) != 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 frs_a04	監督	main	14	0x0AC79	431	local_var_s6f0_1	THIRD_カロリーヌ.setpos	(getx_12b(-1) + (sin(getrotangzx_12e(-1)) * 3)), gety_12c(-1), (getz_12d(-1) + (cos(getrotangzx_12e(-1)) * 3))	target actor `THIRD_カロリーヌ` (this script) / the target actor, placed at ((getx_12b(-1) + (sin(getrotangzx_12e(-1)) * 3)), gety_12c(-1), (getz_12d(-1) + (cos(getrotangzx_12e(-1)) * 3)))	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 0x0034EBC0 (read here)
-frs_a04	監督	main	15	0x0AC82	432	local_var_s6f0_1	THIRD_カロリーヌ.sysDira	-1	target actor `THIRD_カロリーヌ` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
+frs_a04	監督	main	15	0x0AC82	432	local_var_s6f0_1	THIRD_カロリーヌ.sysDira	-1	target actor `THIRD_カロリーヌ` (this script) / argument 1: the actor the target actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a04	監督	main	16	0x0AC8E	433	local_var_s6f0_1	resetbehindcamera	getrotangzx_12e(-1), 0.5	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a04	監督	main	17	0x0AC94	434	local_var_s6f0_1	setnoupdatebehindcamera	1	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a04	監督	main	18	0x0AC97	435	local_var_s6f0_1	label	local_jmp_14	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3788,7 +3788,7 @@ frs_a05	NPC01	NPC挙動	26	0x0DC74	2130	local_var_s24f0_1 = 2	setweight	-1	this 
 frs_a05	NPC01	NPC挙動	27	0x0DC7A	2131	local_var_s24f0_1 = 2	setkubifuristatus	1	argument 1: whether the calling actor's head shakes (rig controller 15)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	NPC挙動	28	0x0DC80	2132	local_var_s24f0_1 = 2	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 frs_a05	NPC01	NPC挙動	29	0x0DC86	2133	local_var_s24f0_1 = 2	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_a05	NPC01	NPC挙動	30	0x0DC8C	2134	local_var_s24f0_1 = 2	motionlooppreset	1	-	-	-	-	-		01 verb-table.tsv
+frs_a05	NPC01	NPC挙動	30	0x0DC8C	2134	local_var_s24f0_1 = 2	motionlooppreset	1	argument 1: the loop preset the calling actor's next motion takes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	NPC挙動	31	0x0DC92	2135	local_var_s24f0_1 = 2	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	NPC挙動	32	0x0DC9B	2136	local_var_s24f0_1 = 2	motionplay_bb	0x10000002, 20	animation 2 of motion 0 of `frs_a05.mot` (bytes 0x800, length 0x21400)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 frs_a05	NPC01	NPC挙動	33	0x0DC9E	2137	local_var_s24f0_1 = 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3798,7 +3798,7 @@ frs_a05	NPC01	NPC挙動	36	0x0DCAA	2140	local_var_s24f0_1 = 3	setweight	-1	this 
 frs_a05	NPC01	NPC挙動	37	0x0DCB0	2141	local_var_s24f0_1 = 3	setkubifuristatus	1	argument 1: whether the calling actor's head shakes (rig controller 15)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	NPC挙動	38	0x0DCB6	2142	local_var_s24f0_1 = 3	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 frs_a05	NPC01	NPC挙動	39	0x0DCBC	2143	local_var_s24f0_1 = 3	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_a05	NPC01	NPC挙動	40	0x0DCC2	2144	local_var_s24f0_1 = 3	motionlooppreset	1	-	-	-	-	-		01 verb-table.tsv
+frs_a05	NPC01	NPC挙動	40	0x0DCC2	2144	local_var_s24f0_1 = 3	motionlooppreset	1	argument 1: the loop preset the calling actor's next motion takes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	NPC挙動	41	0x0DCC8	2145	local_var_s24f0_1 = 3	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	NPC挙動	42	0x0DCD1	2146	local_var_s24f0_1 = 3	motionplay_bb	0x10000002, 20	animation 2 of motion 0 of `frs_a05.mot` (bytes 0x800, length 0x21400)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 frs_a05	NPC01	NPC挙動	43	0x0DCD4	2147	local_var_s24f0_1 = 3	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4067,10 +4067,10 @@ frs_a05	乗っ取り00	乗っ取る２	30	0x0E34B	2517	-	setpos2	43.8826675, -3.
 frs_a05	乗っ取り00	乗っ取る２	31	0x0E351	2518	-	dir	-1.61590004	this actor, turned to facing -1.61590004	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 frs_a05	乗っ取り00	乗っ取る２	32	0x0E357	2519	-	stdmotionplay	0x01000016	this actor's standard motion entry 22 of 0x01EFE9D0: render event 0x4024, slot 36 `ev_talk_over`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 frs_a05	乗っ取り00	乗っ取る２	33	0x0E35A	2520	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a05	乗っ取り00	モグ見送る	1	0x0E35E	2525	-	sysDira	NPC01	actor `NPC01` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+frs_a05	乗っ取り00	モグ見送る	1	0x0E35E	2525	-	sysDira	NPC01	actor `NPC01` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	乗っ取り00	モグ見送る	2	0x0E364	2526	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	乗っ取り00	モグ見送る	3	0x0E367	2527	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a05	乗っ取り00	モグ見送る２	1	0x0E36B	2532	-	sysDira	NPC02	actor `NPC02` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+frs_a05	乗っ取り00	モグ見送る２	1	0x0E36B	2532	-	sysDira	NPC02	actor `NPC02` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	乗っ取り00	モグ見送る２	2	0x0E371	2533	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	乗っ取り00	モグ見送る２	3	0x0E374	2534	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a05	乗っ取り00	乗っ取り解除	1	0x0E375	2539	-	showparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4751,7 +4751,7 @@ frs_a06	NPC01	NPC挙動	46	0x0F01F	2924	local_var_s16f0_1 = 2	setweight	-1	this 
 frs_a06	NPC01	NPC挙動	47	0x0F025	2925	local_var_s16f0_1 = 2	setkubifuristatus	1	argument 1: whether the calling actor's head shakes (rig controller 15)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a06	NPC01	NPC挙動	48	0x0F02B	2926	local_var_s16f0_1 = 2	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 frs_a06	NPC01	NPC挙動	49	0x0F031	2927	local_var_s16f0_1 = 2	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_a06	NPC01	NPC挙動	50	0x0F037	2928	local_var_s16f0_1 = 2	motionlooppreset	1	-	-	-	-	-		01 verb-table.tsv
+frs_a06	NPC01	NPC挙動	50	0x0F037	2928	local_var_s16f0_1 = 2	motionlooppreset	1	argument 1: the loop preset the calling actor's next motion takes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a06	NPC01	NPC挙動	51	0x0F03D	2929	local_var_s16f0_1 = 2	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a06	NPC01	NPC挙動	52	0x0F046	2930	local_var_s16f0_1 = 2	motionplay_bb	0x10000004, 20	animation 4 of motion 0 of `frs_a06.mot` (bytes 0x800, length 0x2D600)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 frs_a06	NPC01	NPC挙動	53	0x0F049	2931	local_var_s16f0_1 = 2	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4912,7 +4912,7 @@ frs_a06	乗っ取り00	乗っ取る	30	0x0F412	3168	-	setpos2	84.4266586, -8.515
 frs_a06	乗っ取り00	乗っ取る	31	0x0F418	3169	-	dir	2.31204009	this actor, turned to facing 2.31204009	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 frs_a06	乗っ取り00	乗っ取る	32	0x0F41E	3170	-	stdmotionplay	0x01000016	this actor's standard motion entry 22 of 0x01EFE9D0: render event 0x4024, slot 36 `ev_talk_over`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 frs_a06	乗っ取り00	乗っ取る	33	0x0F421	3171	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a06	乗っ取り00	モグ見送る	1	0x0F425	3176	-	sysDira	NPC01	actor `NPC01` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+frs_a06	乗っ取り00	モグ見送る	1	0x0F425	3176	-	sysDira	NPC01	actor `NPC01` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a06	乗っ取り00	モグ見送る	2	0x0F42B	3177	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a06	乗っ取り00	モグ見送る	3	0x0F42E	3178	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a06	乗っ取り00	乗っ取り解除	1	0x0F42F	3183	-	showparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6183,7 +6183,7 @@ frs_b02	監督	main	188	0x0B9DE	732	g_btl_ボムキング == 1; Boss_Enter_End[4
 frs_b02	監督	main	189	0x0B9E4	733	g_btl_ボムキング == 1; Boss_Enter_End[4] == 1	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 frs_b02	監督	main	190	0x0B9EA	734	g_btl_ボムキング == 1; Boss_Enter_End[4] == 1	store	g_btl_ボムキング = 2	variable g_btl_ボムキング (global u_char@0x0a16)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 frs_b02	監督	main	191	0x0B9F4	735	g_btl_ボムキング == 1; Boss_Enter_End[4] == 1	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_b02	監督	main	192	0x0B9FD	737	g_btl_ボムキング == 1; Boss_Enter_End[4] == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+frs_b02	監督	main	192	0x0B9FD	737	g_btl_ボムキング == 1; Boss_Enter_End[4] == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b02	監督	main	193	0x0BA03	739	g_btl_ボムキング == 1; Boss_Enter_End[4] == 1	setnavimapindex	0	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b02	監督	main	194	0x0BA13	740	g_btl_ボムキング == 1; Boss_Enter_End[4] == 1	store	g_com_マップ通行制限フラグ[2] = g_com_マップ通行制限フラグ[2] bitor 32	variable g_com_マップ通行制限フラグ[2] (global u_char[8]@0x0c72)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 frs_b02	監督	main	195	0x0BA16	741	g_btl_ボムキング == 1; Boss_Enter_End[4] == 1	resumebattle	-	the battle of the field	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6318,7 +6318,7 @@ frs_b02	監督	main	323	0x0BDC4	891	g_btl_ボムキング == 1; not (Boss_Enter_
 frs_b02	監督	main	324	0x0BDCA	892	g_btl_ボムキング == 1; not (Boss_Enter_End[4] == 1)	store	g_btl_ボムキング = 2	variable g_btl_ボムキング (global u_char@0x0a16)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 frs_b02	監督	main	325	0x0BDD0	893	g_btl_ボムキング == 1; not (Boss_Enter_End[4] == 1)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 frs_b02	監督	main	326	0x0BDDA	894	g_btl_ボムキング == 1; not (Boss_Enter_End[4] == 1)	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_b02	監督	main	327	0x0BDE3	896	g_btl_ボムキング == 1; not (Boss_Enter_End[4] == 1); getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+frs_b02	監督	main	327	0x0BDE3	896	g_btl_ボムキング == 1; not (Boss_Enter_End[4] == 1); getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b02	監督	main	328	0x0BDE9	898	g_btl_ボムキング == 1; not (Boss_Enter_End[4] == 1)	setnavimapindex	0	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b02	監督	main	329	0x0BDF9	899	g_btl_ボムキング == 1; not (Boss_Enter_End[4] == 1)	store	g_com_マップ通行制限フラグ[2] = g_com_マップ通行制限フラグ[2] bitor 32	variable g_com_マップ通行制限フラグ[2] (global u_char[8]@0x0c72)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 frs_b02	監督	main	330	0x0BDFC	900	g_btl_ボムキング == 1; not (Boss_Enter_End[4] == 1)	resumebattle	-	the battle of the field	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6681,12 +6681,12 @@ frs_c01	__MJ_CTRL002	mapjump	61	0x0B878	301	not (getchocobomodebit())	releasemap
 frs_c01	__MJ_CTRL002	mapjump	62	0x0B884	302	not (getchocobomodebit())	ucmove	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the point the party leader walks to (the controlled character, 0x003590D0 and 0x003588B0; with no leader the three values are popped and dropped) / argument 2: y of the point / argument 3: z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c01	__MJ_CTRL002	mapjump	63	0x0B890	303	not (getchocobomodebit())	crossfade	0, 1, 15	argument 1: the crossfade's flags / argument 2: the capture mode of the still picture / argument 3: the crossfade's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c01	__MJ_CTRL002	mapjump	64	0x0B897	304	not (getchocobomodebit())	if	not (getchocobomodebit())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_c01	__MJ_CTRL002	mapjump	65	0x0B8C2	307	not (getchocobomodebit())	lockbehindcamera	(((local_var_s3f1_3 - mp_map_set_x) * 1.10000002) + mp_map_set_x), (gety_12c(-1) + 4), (((local_var_s3f1_5 - mp_map_set_z) * 1.10000002) + mp_map_set_z)	-	-	-	-	-		01 verb-table.tsv
+frs_c01	__MJ_CTRL002	mapjump	65	0x0B8C2	307	not (getchocobomodebit())	lockbehindcamera	(((local_var_s3f1_3 - mp_map_set_x) * 1.10000002) + mp_map_set_x), (gety_12c(-1) + 4), (((local_var_s3f1_5 - mp_map_set_z) * 1.10000002) + mp_map_set_z)	argument 1: x of the point the follow camera's eye is locked to / argument 2: y (the height) of the point; the scripts pass gety_12c(-1) plus 0 to 6, the controlled character's height raised a little / argument 3: z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c01	__MJ_CTRL002	mapjump	66	0x0B8C5	308	not (getchocobomodebit())	sysucoff	-	result stored in regI3; takes control away from the player	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c01	__MJ_CTRL002	mapjump	67	0x0B8CA	309	not (getchocobomodebit())	if	regI3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_c01	__MJ_CTRL002	mapjump	68	0x0B8CD	311	not (getchocobomodebit()); regI3	clearmapjumpstatus	-	ends the map-jump state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c01	__MJ_CTRL002	mapjump	69	0x0B8D0	312	not (getchocobomodebit()); regI3	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_c01	__MJ_CTRL002	mapjump	70	0x0B8D3	313	not (getchocobomodebit()); regI3	unlockbehindcamera	-	-	-	-	-	-		01 verb-table.tsv
+frs_c01	__MJ_CTRL002	mapjump	70	0x0B8D3	313	not (getchocobomodebit()); regI3	unlockbehindcamera	-	the follow camera's eye lock	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c01	__MJ_CTRL002	mapjump	71	0x0B8D6	314	not (getchocobomodebit()); regI3	sysucon	-	gives control back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c01	__MJ_CTRL002	mapjump	72	0x0B8DC	318	not (getchocobomodebit()); not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c01	__MJ_CTRL002	mapjump	73	0x0B8E5	319	not (getchocobomodebit()); not (regI3)	steppoint	30	argument 1: the number of a step mark of the current manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7137,7 +7137,7 @@ frs_c02	setup	battle	2	0x0B907	57	-	btlAtelSetDecidingEntryPointTimes	3	argument
 frs_c02	setup	battle	3	0x0B90D	58	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c02	setup	battle	4	0x0B913	59	-	store	file_var_s0_1 = 4	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 frs_c02	setup	battle	5	0x0B919	60	-	store	file_var_s0_2 = 5	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-frs_c02	setup	battle	6	0x0B91C	61	-	getplaytime	-	result stored in file_var_s0_3	-	-	-	-		01 verb-table.tsv
+frs_c02	setup	battle	6	0x0B91C	61	-	getplaytime	-	result stored in file_var_s0_3; the game's play time in seconds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_c02	setup	battle	7	0x0B925	62	-	store	file_var_s0_4 = 39	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 frs_c02	setup	battle	8	0x0B92E	63	-	sysDVAR	25, scratch2_var_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_c02	setup	battle	9	0x0B932	64	-	btlAtelSetEntryStruct	0x030000e0	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9277,7 +9277,7 @@ frs_d01	親方	talk	134	0x0ECD0	1705	シナリオフラグ = lt(0x0bfe); not (gl
 frs_d01	親方	talk	135	0x0ECDC	1706	シナリオフラグ = lt(0x0bfe); not (global_var_2[0] == 0); not (not (global_var_1 == 0))	unkCall_5ac	1, 15.5, 11	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_d01	親方	talk	136	0x0ECEB	1707	シナリオフラグ = lt(0x0bfe); not (global_var_2[0] == 0); not (not (global_var_1 == 0))	setposparty	67.8407593, 5.00299501, 43.5079498, 1.63310003	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_d01	親方	talk	137	0x0ECF1	1708	シナリオフラグ = lt(0x0bfe); not (global_var_2[0] == 0); not (not (global_var_1 == 0))	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
-frs_d01	親方	talk	138	0x0ECF4	1709	シナリオフラグ = lt(0x0bfe); not (global_var_2[0] == 0); not (not (global_var_1 == 0))	resetemergency	-	-	-	-	-	-		01 verb-table.tsv
+frs_d01	親方	talk	138	0x0ECF4	1709	シナリオフラグ = lt(0x0bfe); not (global_var_2[0] == 0); not (not (global_var_1 == 0))	resetemergency	-	the four party roster members' engagement, ended at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_d01	親方	talk	139	0x0ECFA	1710	シナリオフラグ = lt(0x0bfe); not (global_var_2[0] == 0); not (not (global_var_1 == 0))	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 frs_d01	親方	talk	140	0x0ED00	1711	シナリオフラグ = lt(0x0bfe); not (global_var_2[0] == 0); not (not (global_var_1 == 0))	fadein	30	the screen fade, in	-	30 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 frs_d01	親方	talk	141	0x0ED06	1712	シナリオフラグ = lt(0x0bfe); not (global_var_2[0] == 0); not (not (global_var_1 == 0))	unkCall_5cf	1	argument 1: whether the calling event keeps the depth-mask pass forced on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10009,7 +10009,7 @@ frs_b0200	PC00	準備	4	0x0195A	991	-	hide	-	this actor's body, hidden	-	-	-	-	r
 frs_b0200	PC00	準備	5	0x0195D	992	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b0200	PC00	終了	1	0x01967	997	-	setpos	125.499474, 2.22200298, 138.368576	this actor, placed at (125.499474, 2.22200298, 138.368576)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0200	PC00	終了	2	0x0196D	998	-	dir	-2.36159897	this actor, turned to facing -2.36159897	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-frs_b0200	PC00	終了	3	0x01970	999	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+frs_b0200	PC00	終了	3	0x01970	999	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC00	終了	4	0x01976	1000	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC00	終了	5	0x0197C	1001	-	setcharfogstatus	1	argument 1: fog on the actor's model on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC00	終了	6	0x0197F	1002	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -10023,7 +10023,7 @@ frs_b0200	PC01	準備	4	0x01999	1021	-	hide	-	this actor's body, hidden	-	-	-	-	
 frs_b0200	PC01	準備	5	0x0199C	1022	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b0200	PC01	終了	1	0x019A6	1027	-	setpos	125.34198, 2.22305107, 139.67601	this actor, placed at (125.34198, 2.22305107, 139.67601)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0200	PC01	終了	2	0x019AC	1028	-	dir	-2.3018589	this actor, turned to facing -2.3018589	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-frs_b0200	PC01	終了	3	0x019AF	1029	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+frs_b0200	PC01	終了	3	0x019AF	1029	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC01	終了	4	0x019B5	1030	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC01	終了	5	0x019BB	1031	-	setcharfogstatus	1	argument 1: fog on the actor's model on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC01	終了	6	0x019BE	1032	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -10037,7 +10037,7 @@ frs_b0200	PC02	準備	4	0x019D8	1051	-	hide	-	this actor's body, hidden	-	-	-	-	
 frs_b0200	PC02	準備	5	0x019DB	1052	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b0200	PC02	終了	1	0x019E5	1057	-	setpos	126.787354, 2.22508907, 138.004013	this actor, placed at (126.787354, 2.22508907, 138.004013)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0200	PC02	終了	2	0x019EB	1058	-	dir	-2.27392411	this actor, turned to facing -2.27392411	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-frs_b0200	PC02	終了	3	0x019EE	1059	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+frs_b0200	PC02	終了	3	0x019EE	1059	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC02	終了	4	0x019F4	1060	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC02	終了	5	0x019FA	1061	-	setcharfogstatus	1	argument 1: fog on the actor's model on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC02	終了	6	0x019FD	1062	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -10051,7 +10051,7 @@ frs_b0200	PC03	準備	4	0x01A17	1081	-	hide	-	this actor's body, hidden	-	-	-	-	
 frs_b0200	PC03	準備	5	0x01A1A	1082	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b0200	PC03	終了	1	0x01A24	1087	-	setpos	124.127518, 2.21806908, 137.470581	this actor, placed at (124.127518, 2.21806908, 137.470581)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0200	PC03	終了	2	0x01A2A	1088	-	dir	-2.27392411	this actor, turned to facing -2.27392411	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-frs_b0200	PC03	終了	3	0x01A2D	1089	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+frs_b0200	PC03	終了	3	0x01A2D	1089	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC03	終了	4	0x01A33	1090	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC03	終了	5	0x01A39	1091	-	setcharfogstatus	1	argument 1: fog on the actor's model on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	PC03	終了	6	0x01A3C	1092	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -10615,7 +10615,7 @@ frs_b0201	PC00	カット１	1	0x019FA	1012	-	hide	-	this actor's body, hidden	-	
 frs_b0201	PC00	カット１	2	0x01A06	1013	-	setpos	130.200287, 2.22844911, 145.203445	this actor, placed at (130.200287, 2.22844911, 145.203445)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0201	PC00	カット１	3	0x01A0C	1014	-	dir	-2.34547901	this actor, turned to facing -2.34547901	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 frs_b0201	PC00	カット１	4	0x01A0F	1015	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_b0201	PC00	終了	1	0x01A10	1020	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+frs_b0201	PC00	終了	1	0x01A10	1020	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC00	終了	2	0x01A16	1021	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC00	終了	3	0x01A1C	1022	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC00	終了	4	0x01A1F	1023	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -10630,7 +10630,7 @@ frs_b0201	PC01	カット１	1	0x01A3A	1047	-	hide	-	this actor's body, hidden	-	
 frs_b0201	PC01	カット１	2	0x01A46	1048	-	setpos	132.181198, 2.24405694, 145.461044	this actor, placed at (132.181198, 2.24405694, 145.461044)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0201	PC01	カット１	3	0x01A4C	1049	-	dir	-2.03327394	this actor, turned to facing -2.03327394	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 frs_b0201	PC01	カット１	4	0x01A4F	1050	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_b0201	PC01	終了	1	0x01A50	1055	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+frs_b0201	PC01	終了	1	0x01A50	1055	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC01	終了	2	0x01A56	1056	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC01	終了	3	0x01A5C	1057	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC01	終了	4	0x01A5F	1058	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -10645,7 +10645,7 @@ frs_b0201	PC02	カット１	1	0x01A7A	1082	-	hide	-	this actor's body, hidden	-	
 frs_b0201	PC02	カット１	2	0x01A86	1083	-	setpos	130.552673, 2.22823501, 147.029327	this actor, placed at (130.552673, 2.22823501, 147.029327)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0201	PC02	カット１	3	0x01A8C	1084	-	dir	-2.26667404	this actor, turned to facing -2.26667404	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 frs_b0201	PC02	カット１	4	0x01A8F	1085	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_b0201	PC02	終了	1	0x01A90	1090	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+frs_b0201	PC02	終了	1	0x01A90	1090	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC02	終了	2	0x01A96	1091	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC02	終了	3	0x01A9C	1092	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC02	終了	4	0x01A9F	1093	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -10660,7 +10660,7 @@ frs_b0201	PC03	カット１	1	0x01ABA	1117	-	hide	-	this actor's body, hidden	-	
 frs_b0201	PC03	カット１	2	0x01AC6	1118	-	setpos	131.952499, 2.23786902, 147.145325	this actor, placed at (131.952499, 2.23786902, 147.145325)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0201	PC03	カット１	3	0x01ACC	1119	-	dir	-2.26667404	this actor, turned to facing -2.26667404	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 frs_b0201	PC03	カット１	4	0x01ACF	1120	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_b0201	PC03	終了	1	0x01AD0	1125	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+frs_b0201	PC03	終了	1	0x01AD0	1125	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC03	終了	2	0x01AD6	1126	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC03	終了	3	0x01ADC	1127	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0201	PC03	終了	4	0x01ADF	1128	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md

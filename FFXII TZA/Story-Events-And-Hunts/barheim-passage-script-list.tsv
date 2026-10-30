@@ -25,3 +25,8 @@ mic_c0101	scene	scene, event 181	34	158	0	0
 mic_d0100	scene	scene, event 182	13	63	0	0
 mic_d0101	scene	scene, event 183	17	82	15	0
 mic_e0400	scene	scene, event 187	14	85	1	0
+mic_b03	zone	zone script, named by no path array	3	5	2	0
+mic_b04	zone	zone script, named by no path array	4	7	3	0
+mic_b05	zone	zone script, named by no path array	4	7	3	0
+mic_b07	zone	zone script, named by no path array	14	43	3	5
+mic_b08	zone	zone script, named by no path array	2	3	1	0

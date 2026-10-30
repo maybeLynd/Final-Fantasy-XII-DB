@@ -2239,7 +2239,7 @@ mfr_a02	PlayerJack0	end_player_jack	4	0x04F1D	1085	local_var_s24f2_1	usemapid	1	
 mfr_a02	PlayerJack0	end_player_jack	5	0x04F23	1086	local_var_s24f2_1	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a02	PlayerJack0	end_player_jack	6	0x04F26	1087	local_var_s24f2_1	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_a02	PlayerJack0	end_player_jack	7	0x04F29	1089	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_a02	override_actor	init	1	0x04F2D	1111	-	set_force_ignore_timestop	1	-	-	-	-	-		01 verb-table.tsv
+mfr_a02	override_actor	init	1	0x04F2D	1111	-	set_force_ignore_timestop	1	argument 1: whether the calling actor keeps running through a time stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a02	override_actor	init	2	0x04F30	1112	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a02	override_actor	乗っ取り処理	1	0x04F34	1117	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_a02	override_actor	乗っ取り処理	2	0x04F40	1118	-	aturn	file_var_s28_1, file_var_s28_2, file_var_s28_3	argument 1: the x of the world point the calling actor turns its body and head to face (an ACT form: the named actor) / argument 2: the height of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2257,7 +2257,7 @@ mfr_a02	ロケ地図	daiji_box_bind	1	0x04F67	1145	-	modelread	0x03000002	argume
 mfr_a02	ロケ地図	daiji_box_bind	2	0x04F6D	1146	-	modelreadsync	0x03000002	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a02	ロケ地図	daiji_box_bind	3	0x04F73	1147	-	stdmotionread	0	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a02	ロケ地図	daiji_box_bind	4	0x04F76	1148	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mfr_a02	ロケ地図	daiji_box_bind	5	0x04F7C	1149	-	set_talk_wituout_hide_status	1	-	-	-	-	-		01 verb-table.tsv
+mfr_a02	ロケ地図	daiji_box_bind	5	0x04F7C	1149	-	set_talk_wituout_hide_status	1	argument 1: whether the calling actor's talks leave the world running	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a02	ロケ地図	daiji_box_bind	6	0x04F88	1150	-	setpos	285.379883, 8.00076866, 184.162415	this actor, placed at (285.379883, 8.00076866, 184.162415)	-	-	-	-	resolved	0x0034EBC0 (read here)
 mfr_a02	ロケ地図	daiji_box_bind	7	0x04F8E	1151	-	dir	2.34186196	this actor, turned to facing 2.34186196	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 mfr_a02	ロケ地図	daiji_box_bind	8	0x04F94	1152	-	talkang	6.28318548	argument 1: the calling actor's talk half-angle in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4435,7 +4435,7 @@ mfr_a04	イベントレクト	touchon	33	0x039A1	1288	-	unkCall_5ac	1, 2.3580000
 mfr_a04	イベントレクト	touchon	34	0x039AD	1289	-	sysReq	1, system_crystal_actor::showoff	actor `system_crystal_actor`	-	-	files system_crystal_actor::showoff on channel 1; does not wait	system_crystal_actor.showoff	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mfr_a04	イベントレクト	touchon	35	0x039B1	1290	-	sysReqall	2, reqArr2	-	-	-	files each pair of 2, reqArr2 on channel 2; does not wait	-		01 ../Scripts-And-Script-Commands/script-requests.md
 mfr_a04	イベントレクト	touchon	36	0x039B7	1291	-	if	istownmap()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_a04	イベントレクト	touchon	37	0x039BA	1293	istownmap()	ucmovecancel	-	-	-	-	-	-		01 verb-table.tsv
+mfr_a04	イベントレクト	touchon	37	0x039BA	1293	istownmap()	ucmovecancel	-	the scripted walk of the character the player controls, cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	イベントレクト	touchon	38	0x039C3	1297	not (istownmap())	ucmovecancel_52d	0	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	イベントレクト	touchon	39	0x039C9	1298	not (istownmap())	ucmovecancel_52d	1	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	イベントレクト	touchon	40	0x039CF	1299	not (istownmap())	ucmovecancel_52d	2	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4473,7 +4473,7 @@ mfr_a04	イベントレクト	touchon	71	0x03AA3	1333	-	setstatuserrordispdenyst
 mfr_a04	イベントレクト	touchon	72	0x03AA9	1334	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 mfr_a04	イベントレクト	touchon	73	0x03AAC	1335	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a04	進入不可	init	1	0x03AB4	1344	-	if	シナリオフラグ < 0x1004	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_a04	進入不可	init	2	0x03AC6	1346	シナリオフラグ < 0x1004	setrect	185.600006, 8, 0x018a, 6.80000019, 11.8599997	-	-	-	-	-		01 verb-table.tsv
+mfr_a04	進入不可	init	2	0x03AC6	1346	シナリオフラグ < 0x1004	setrect	185.600006, 8, 0x018a, 6.80000019, 11.8599997	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	進入不可	init	3	0x03ACC	1347	シナリオフラグ < 0x1004	seteventwakerect	1	argument 1: the calling actor's stop-zone flag, byte +0x0C bit 0x20 = (value != 0), through 0x0026A660	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	進入不可	init	4	0x03ACF	1349	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a04	進入不可	touchon	1	0x03AD3	1354	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -5103,7 +5103,7 @@ mfr_b01	EventDirector	main	273	0x022AA	604	g_btl_ラフレシア == 1	settrapsho
 mfr_b01	EventDirector	main	274	0x022B0	605	g_btl_ラフレシア == 1	store	g_btl_ラフレシア = 2	variable g_btl_ラフレシア (global u_char@0x0a0d)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_b01	EventDirector	main	275	0x022B6	606	g_btl_ラフレシア == 1	sysSystem	0x029a	none: SYSTEM pops and discards 0x029a	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_b01	EventDirector	main	276	0x022BE	607	g_btl_ラフレシア == 1	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b01	EventDirector	main	277	0x022C7	609	g_btl_ラフレシア == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+mfr_b01	EventDirector	main	277	0x022C7	609	g_btl_ラフレシア == 1; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b01	EventDirector	main	278	0x022CD	611	g_btl_ラフレシア == 1	sysSystem	0x0309	none: SYSTEM pops and discards 0x0309	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_b01	EventDirector	main	279	0x022D1	612	g_btl_ラフレシア == 1	store	シナリオフラグ = 0x1068	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_b01	EventDirector	main	280	0x022D4	614	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5677,7 +5677,7 @@ mfr_c01	PlayerJack0	end_player_jack	4	0x030DF	908	local_var_s21f2_1	usemapid	1	a
 mfr_c01	PlayerJack0	end_player_jack	5	0x030E5	909	local_var_s21f2_1	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c01	PlayerJack0	end_player_jack	6	0x030E8	910	local_var_s21f2_1	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_c01	PlayerJack0	end_player_jack	7	0x030EB	912	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c01	override_actor	init	1	0x030EF	934	-	set_force_ignore_timestop	1	-	-	-	-	-		01 verb-table.tsv
+mfr_c01	override_actor	init	1	0x030EF	934	-	set_force_ignore_timestop	1	argument 1: whether the calling actor keeps running through a time stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c01	override_actor	init	2	0x030F2	935	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c01	override_actor	乗っ取り処理	1	0x030F6	940	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_c01	override_actor	乗っ取り処理	2	0x03102	941	-	aturn	file_var_s25_1, file_var_s25_2, file_var_s25_3	argument 1: the x of the world point the calling actor turns its body and head to face (an ACT form: the named actor) / argument 2: the height of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5695,7 +5695,7 @@ mfr_c01	ロケ地図	daiji_box_bind	1	0x03129	968	-	modelread	0x03000002	argumen
 mfr_c01	ロケ地図	daiji_box_bind	2	0x0312F	969	-	modelreadsync	0x03000002	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c01	ロケ地図	daiji_box_bind	3	0x03135	970	-	stdmotionread	0	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c01	ロケ地図	daiji_box_bind	4	0x03138	971	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mfr_c01	ロケ地図	daiji_box_bind	5	0x0313E	972	-	set_talk_wituout_hide_status	1	-	-	-	-	-		01 verb-table.tsv
+mfr_c01	ロケ地図	daiji_box_bind	5	0x0313E	972	-	set_talk_wituout_hide_status	1	argument 1: whether the calling actor's talks leave the world running	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c01	ロケ地図	daiji_box_bind	6	0x0314A	973	-	setpos	179.119797, 7.99052191, 599.198364	this actor, placed at (179.119797, 7.99052191, 599.198364)	-	-	-	-	resolved	0x0034EBC0 (read here)
 mfr_c01	ロケ地図	daiji_box_bind	7	0x03150	974	-	dir	-3.01889396	this actor, turned to facing -3.01889396	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 mfr_c01	ロケ地図	daiji_box_bind	8	0x03156	975	-	talkang	6.28318548	argument 1: the calling actor's talk half-angle in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5950,7 +5950,7 @@ mfr_c02	Map_Director	main	12	0x04486	343	mp_gil_flg00 & 8	sysReqsw	1, hokora03::
 mfr_c02	Map_Director	main	13	0x0448E	345	-	if	mp_gil_flg00 & 16	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c02	Map_Director	main	14	0x04494	347	mp_gil_flg00 & 16	store	scratch2_var_5 = 1	variable scratch2_var_5 (scratch2 char@0x87)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_c02	Map_Director	main	15	0x04497	349	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c02	hokora00	init	1	0x044A7	358	-	setrect	0x012c, 17, 60, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c02	hokora00	init	1	0x044A7	358	-	setrect	0x012c, 17, 60, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora00	init	2	0x044AD	359	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora00	init	3	0x044B0	360	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora00	init	4	0x044B6	361	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -5985,7 +5985,7 @@ mfr_c02	hokora00	touchon	21	0x0457A	404	scratch2_var_2 = 2	sysReqsw	1, hokora02_
 mfr_c02	hokora00	touchon	22	0x04582	405	scratch2_var_2 = 2	store	mp_gil_flg00 = mp_gil_flg00 bitor 2	variable mp_gil_flg00 (global u_char@0x0920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_c02	hokora00	touchon	23	0x04585	406	scratch2_var_2 = 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c02	hokora00	touchon	24	0x04597	408	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c02	hokora01	init	1	0x045A7	417	-	setrect	0x0144, 17, 124, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c02	hokora01	init	1	0x045A7	417	-	setrect	0x0144, 17, 124, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora01	init	2	0x045AD	418	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora01	init	3	0x045B0	419	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora01	init	4	0x045B6	420	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -6017,7 +6017,7 @@ mfr_c02	hokora01	touchon	16	0x04670	466	scratch2_var_2 == 1; scratch2_var_3 = 1	
 mfr_c02	hokora01	touchon	17	0x04678	467	scratch2_var_2 == 1; scratch2_var_3 = 1	store	mp_gil_flg00 = mp_gil_flg00 bitor 4	variable mp_gil_flg00 (global u_char@0x0920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_c02	hokora01	touchon	18	0x0467B	468	scratch2_var_2 == 1; scratch2_var_3 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c02	hokora01	touchon	19	0x04687	471	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c02	hokora02	init	1	0x04697	480	-	setrect	236, 17, 48, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c02	hokora02	init	1	0x04697	480	-	setrect	236, 17, 48, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora02	init	2	0x0469D	481	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora02	init	3	0x046A0	482	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora02	init	4	0x046A6	483	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -6049,7 +6049,7 @@ mfr_c02	hokora02	touchon	16	0x04760	529	scratch2_var_2 == 2; scratch2_var_4 = 1	
 mfr_c02	hokora02	touchon	17	0x04768	530	scratch2_var_2 == 2; scratch2_var_4 = 1	store	mp_gil_flg00 = mp_gil_flg00 bitor 8	variable mp_gil_flg00 (global u_char@0x0920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_c02	hokora02	touchon	18	0x0476B	531	scratch2_var_2 == 2; scratch2_var_4 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c02	hokora02	touchon	19	0x04777	534	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c02	hokora03	init	1	0x04787	543	-	setrect	236, 17, 136, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c02	hokora03	init	1	0x04787	543	-	setrect	236, 17, 136, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora03	init	2	0x0478D	544	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora03	init	3	0x04790	545	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c02	hokora03	init	4	0x04796	546	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -7070,7 +7070,7 @@ mfr_c03	Map_Director	map_fog_change	2	0x04B9C	634	loop from regI0 = 0 while regI
 mfr_c03	Map_Director	map_fog_change	3	0x04BA2	635	loop from regI0 = 0 while regI0 < 80, then regI0 = (regI0 + 1) each pass	seteventfogstatus	1	argument 1: the event fog switch 0x02EBF9C8 = value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	Map_Director	map_fog_change	4	0x04BA8	636	loop from regI0 = 0 while regI0 < 80, then regI0 = (regI0 + 1) each pass	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mfr_c03	Map_Director	map_fog_change	5	0x04BAE	638	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c03	hokora00	init	1	0x04BBE	647	-	setrect	152, 17, 228, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c03	hokora00	init	1	0x04BBE	647	-	setrect	152, 17, 228, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora00	init	2	0x04BC4	648	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora00	init	3	0x04BC7	649	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora00	init	4	0x04BCD	650	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -7114,7 +7114,7 @@ mfr_c03	hokora00	touchon	28	0x04CCD	708	scratch2_var_2; scratch2_var_3 = 3	sysRe
 mfr_c03	hokora00	touchon	29	0x04CD5	709	scratch2_var_2; scratch2_var_3 = 3	store	mp_gil_flg01 = mp_gil_flg01 bitor 4	variable mp_gil_flg01 (global u_char@0x0921)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_c03	hokora00	touchon	30	0x04CD8	710	scratch2_var_2; scratch2_var_3 = 3	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c03	hokora00	touchon	31	0x04CF0	713	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c03	hokora01	init	1	0x04D00	722	-	setrect	160, 17, 172, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c03	hokora01	init	1	0x04D00	722	-	setrect	160, 17, 172, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora01	init	2	0x04D06	723	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora01	init	3	0x04D09	724	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora01	init	4	0x04D0F	725	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -7158,7 +7158,7 @@ mfr_c03	hokora01	touchon	28	0x04E17	783	scratch2_var_3 == 1; scratch2_var_4 = 3	
 mfr_c03	hokora01	touchon	29	0x04E1F	784	scratch2_var_3 == 1; scratch2_var_4 = 3	store	mp_gil_flg01 = mp_gil_flg01 bitor 16	variable mp_gil_flg01 (global u_char@0x0921)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_c03	hokora01	touchon	30	0x04E22	785	scratch2_var_3 == 1; scratch2_var_4 = 3	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c03	hokora01	touchon	31	0x04E3A	788	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c03	hokora02	init	1	0x04E4A	797	-	setrect	208, 17, 0x0110, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c03	hokora02	init	1	0x04E4A	797	-	setrect	208, 17, 0x0110, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora02	init	2	0x04E50	798	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora02	init	3	0x04E53	799	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora02	init	4	0x04E59	800	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -7190,7 +7190,7 @@ mfr_c03	hokora02	touchon	16	0x04F23	846	scratch2_var_3 == 2 or scratch2_var_4 ==
 mfr_c03	hokora02	touchon	17	0x04F2B	847	scratch2_var_3 == 2 or scratch2_var_4 == 1; scratch2_var_5 = 1	store	mp_gil_flg01 = mp_gil_flg01 bitor 64	variable mp_gil_flg01 (global u_char@0x0921)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_c03	hokora02	touchon	18	0x04F2E	848	scratch2_var_3 == 2 or scratch2_var_4 == 1; scratch2_var_5 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c03	hokora02	touchon	19	0x04F3A	851	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c03	hokora03	init	1	0x04F4A	860	-	setrect	80, 17, 168, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c03	hokora03	init	1	0x04F4A	860	-	setrect	80, 17, 168, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora03	init	2	0x04F50	861	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora03	init	3	0x04F53	862	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora03	init	4	0x04F59	863	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -7222,7 +7222,7 @@ mfr_c03	hokora03	touchon	16	0x05023	909	scratch2_var_3 == 3 or scratch2_var_4 ==
 mfr_c03	hokora03	touchon	17	0x0502B	910	scratch2_var_3 == 3 or scratch2_var_4 == 2; scratch2_var_6 = 1	store	mp_gil_flg01 = mp_gil_flg01 bitor 128	variable mp_gil_flg01 (global u_char@0x0921)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mfr_c03	hokora03	touchon	18	0x0502E	911	scratch2_var_3 == 3 or scratch2_var_4 == 2; scratch2_var_6 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c03	hokora03	touchon	19	0x0503A	914	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_c03	hokora04	init	1	0x0504A	923	-	setrect	76, 17, 0x0130, 2, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_c03	hokora04	init	1	0x0504A	923	-	setrect	76, 17, 0x0130, 2, 2	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora04	init	2	0x05050	924	-	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora04	init	3	0x05053	925	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	hokora04	init	4	0x05059	926	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -8218,7 +8218,7 @@ mfr_a0400	Director	main	118	0x00EBB	160	-	sysReqall	1, reqArr13	actor `CamDir`, 
 mfr_a0400	Director	main	119	0x00EC1	161	-	motiondispose	1	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a0400	Director	main	120	0x00EC7	162	-	motiondispose	2	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a0400	Director	main	121	0x00ECD	163	-	setcharclipall	1	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mfr_a0400	Director	main	122	0x00ED9	164	-	resumebehindcamera	0, 0, 2	-	-	-	-	-		01 verb-table.tsv
+mfr_a0400	Director	main	122	0x00ED9	164	-	resumebehindcamera	0, 0, 2	argument 1: the frames the swing back to the behind camera takes (popped as a float by 0x00267DB0) / argument 2: a word 0x00257830 keeps at 0x02096400; the blend step 0x00257520 ignores it (the store 0x0025786F is its one reference in the image) / argument 3: the ease of the swing, kept at 0x02096404 and read each frame by 0x00257520 as 0x00256650(ease, counter / duration)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a0400	Director	main	123	0x00EE2	165	-	resetbehindcamera	0, -0.100000001	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a0400	Director	main	124	0x00EE5	166	-	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a0400	Director	main	125	0x00EEB	167	-	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9225,7 +9225,7 @@ mfr_b0100	PC00	カット１	7	0x01705	845	-	hide	-	this actor's body, hidden	-	-
 mfr_b0100	PC00	カット１	8	0x01708	846	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_b0100	PC00	カット２	1	0x01709	851	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0100	PC00	カット２	2	0x0170C	852	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0100	PC00	終了	1	0x0170D	857	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0100	PC00	終了	1	0x0170D	857	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	PC00	終了	2	0x01710	858	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0100	PC00	終了	3	0x0171C	859	-	setpos	189.109131, 8.0008173, 452.738586	this actor, placed at (189.109131, 8.0008173, 452.738586)	-	-	-	-	resolved	0x0034EBC0 (read here)
 mfr_b0100	PC00	終了	4	0x01722	860	-	dir	1.73971295	this actor, turned to facing 1.73971295	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -9245,7 +9245,7 @@ mfr_b0100	PC01	カット１	6	0x01767	889	-	move	186.374985, 8.00421906, 427.755
 mfr_b0100	PC01	カット１	7	0x0176A	890	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_b0100	PC01	カット２	1	0x0176B	895	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0100	PC01	カット２	2	0x0176E	896	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0100	PC01	終了	1	0x0176F	901	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0100	PC01	終了	1	0x0176F	901	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	PC01	終了	2	0x01772	902	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0100	PC01	終了	3	0x0177E	903	-	setpos	187.629501, 8, 452.006592	this actor, placed at (187.629501, 8, 452.006592)	-	-	-	-	resolved	0x0034EBC0 (read here)
 mfr_b0100	PC01	終了	4	0x01784	904	-	dir	1.42162097	this actor, turned to facing 1.42162097	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -9265,7 +9265,7 @@ mfr_b0100	PC02	カット１	6	0x017C9	933	-	move	187.215302, 8.00481224, 426.433
 mfr_b0100	PC02	カット１	7	0x017CC	934	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_b0100	PC02	カット２	1	0x017CD	939	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0100	PC02	カット２	2	0x017D0	940	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0100	PC02	終了	1	0x017D1	945	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0100	PC02	終了	1	0x017D1	945	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	PC02	終了	2	0x017D4	946	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0100	PC02	終了	3	0x017E0	947	-	setpos	188.213333, 8, 453.989899	this actor, placed at (188.213333, 8, 453.989899)	-	-	-	-	resolved	0x0034EBC0 (read here)
 mfr_b0100	PC02	終了	4	0x017E6	948	-	dir	1.860026	this actor, turned to facing 1.860026	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -9285,7 +9285,7 @@ mfr_b0100	PC03	カット１	6	0x0182B	977	-	move	183.922623, 8.19248009, 426.682
 mfr_b0100	PC03	カット１	7	0x0182E	978	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_b0100	PC03	カット２	1	0x0182F	983	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0100	PC03	カット２	2	0x01832	984	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0100	PC03	終了	1	0x01833	989	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0100	PC03	終了	1	0x01833	989	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	PC03	終了	2	0x01836	990	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0100	PC03	終了	3	0x01842	991	-	setpos	187.184647, 8, 453.358795	this actor, placed at (187.184647, 8, 453.358795)	-	-	-	-	resolved	0x0034EBC0 (read here)
 mfr_b0100	PC03	終了	4	0x01848	992	-	dir	1.42162097	this actor, turned to facing 1.42162097	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -9461,7 +9461,7 @@ mfr_b0101	DIRECTOR	main	164	0x01021	246	skipcheck(0); getsummonmodebit() or getc
 mfr_b0101	DIRECTOR	main	165	0x01027	247	skipcheck(0); getsummonmodebit() or getchocobomodebit(); not (istownmap())	fadesync_d3	1	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0101	DIRECTOR	main	166	0x0102A	250	skipcheck(0)	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0101	DIRECTOR	main	167	0x01030	251	skipcheck(0)	store	scratch1_var_2 = 1	variable scratch1_var_2 (scratch1 short@0x16)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-mfr_b0101	DIRECTOR	main	168	0x01033	252	skipcheck(0)	resetemergency	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0101	DIRECTOR	main	168	0x01033	252	skipcheck(0)	resetemergency	-	the four party roster members' engagement, ended at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0101	DIRECTOR	main	169	0x01042	254	-	setposparty	183.91272, 8.00018978, 461.636261, 0	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0101	DIRECTOR	main	170	0x01048	255	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mfr_b0101	DIRECTOR	main	171	0x0104E	256	-	eventdispose_f2	1	event manager slot 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
@@ -9712,7 +9712,7 @@ mfr_b0101	PC00	準備	1	0x01558	796	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-
 mfr_b0101	PC00	カット１	1	0x0155C	801	-	capturepc	0	party slot 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC00	カット１	2	0x0155F	802	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC00	カット１	3	0x01562	803	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0101	PC00	終了	1	0x01563	808	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0101	PC00	終了	1	0x01563	808	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0101	PC00	終了	2	0x01566	809	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC00	終了	3	0x01569	810	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC00	終了	4	0x0156C	811	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9721,7 +9721,7 @@ mfr_b0101	PC01	準備	1	0x0156E	825	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-
 mfr_b0101	PC01	カット１	1	0x01572	830	-	capturepc	1	party slot 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC01	カット１	2	0x01575	831	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC01	カット１	3	0x01578	832	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0101	PC01	終了	1	0x01579	837	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0101	PC01	終了	1	0x01579	837	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0101	PC01	終了	2	0x0157C	838	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC01	終了	3	0x0157F	839	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC01	終了	4	0x01582	840	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9730,7 +9730,7 @@ mfr_b0101	PC02	準備	1	0x01584	854	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-
 mfr_b0101	PC02	カット１	1	0x01588	859	-	capturepc	2	party slot 2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC02	カット１	2	0x0158B	860	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC02	カット１	3	0x0158E	861	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0101	PC02	終了	1	0x0158F	866	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0101	PC02	終了	1	0x0158F	866	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0101	PC02	終了	2	0x01592	867	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC02	終了	3	0x01595	868	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC02	終了	4	0x01598	869	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9739,7 +9739,7 @@ mfr_b0101	PC03	準備	1	0x0159A	883	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-
 mfr_b0101	PC03	カット１	1	0x0159E	888	-	capturepc	3	party slot 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC03	カット１	2	0x015A1	889	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC03	カット１	3	0x015A4	890	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0101	PC03	終了	1	0x015A5	895	-	refreshparty	-	-	-	-	-	-		01 verb-table.tsv
+mfr_b0101	PC03	終了	1	0x015A5	895	-	refreshparty	-	the four party roster members' models and motions, refreshed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0101	PC03	終了	2	0x015A8	896	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC03	終了	3	0x015AB	897	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_b0101	PC03	終了	4	0x015AE	898	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

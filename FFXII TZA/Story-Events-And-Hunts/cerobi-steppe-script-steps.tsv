@@ -3044,7 +3044,7 @@ srb_a01	竜じいさん	じいさん登場４	1	0x11897	4322	-	usecharhit	0	argu
 srb_a01	竜じいさん	じいさん登場４	2	0x1189D	4323	-	motionread	2	motion 2 of `srb_a01.mot` (bytes 0x800, length 0x115E0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_a01	竜じいさん	じいさん登場４	3	0x118A3	4324	-	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_a01	竜じいさん	じいさん登場４	4	0x118AF	4325	-	setpos2	463.363953, 15.6940718, 218.895935	this actor, placed at (463.363953, 15.6940718, 218.895935)	-	-	-	-	resolved	0x0034F210 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_a01	竜じいさん	じいさん登場４	5	0x118B5	4326	-	sysDira	-1	-	-	-	-	-		01 verb-table.tsv
+srb_a01	竜じいさん	じいさん登場４	5	0x118B5	4326	-	sysDira	-1	argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a01	竜じいさん	じいさん登場４	6	0x118BB	4327	-	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a01	竜じいさん	じいさん登場４	7	0x118C1	4328	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a01	竜じいさん	じいさん登場４	8	0x118CA	4329	-	motionplay_bb	0x12000004, 20	animation 4 of motion 2 of `srb_a01.mot` (bytes 0x800, length 0x115E0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -3153,10 +3153,10 @@ srb_a01	風車ＰＣ乗っ取り	init	1	0x11B8A	4470	-	return	-	-	-	-	-	-	resolv
 srb_a01	風車ＰＣ乗っ取り	main	1	0x11B8B	4475	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a01	風車ＰＣ乗っ取り	talk	1	0x11B8C	4480	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a01	風車ＰＣ乗っ取り	風車１セット	1	0x11B90	4485	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_a01	風車ＰＣ乗っ取り	風車１セット	2	0x11B96	4486	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_a01	風車ＰＣ乗っ取り	風車１セット	2	0x11B96	4486	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a01	風車ＰＣ乗っ取り	風車１セット	3	0x11B9C	4487	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a01	風車ＰＣ乗っ取り	風車１セット	4	0x11B9F	4488	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_a01	風車ＰＣ乗っ取り	モグ向く	1	0x11BA3	4511	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_a01	風車ＰＣ乗っ取り	モグ向く	1	0x11BA3	4511	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a01	風車ＰＣ乗っ取り	モグ向く	2	0x11BA9	4512	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a01	風車ＰＣ乗っ取り	モグ向く	3	0x11BAC	4513	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a01	風車ＰＣ乗っ取り	じいさん登場４	1	0x11BB0	4518	-	sysRlookata	竜じいさん	actor `竜じいさん` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6593,7 +6593,7 @@ srb_a02	竜じいさん	じいさん登場４	1	0x123C2	4791	-	usecharhit	0	argu
 srb_a02	竜じいさん	じいさん登場４	2	0x123C8	4792	-	motionread	2	motion 2 of `srb_a02.mot` (bytes 0x800, length 0x115E0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_a02	竜じいさん	じいさん登場４	3	0x123CE	4793	-	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_a02	竜じいさん	じいさん登場４	4	0x123DA	4794	-	setpos2	463.363953, 15.6940718, 218.895935	this actor, placed at (463.363953, 15.6940718, 218.895935)	-	-	-	-	resolved	0x0034F210 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_a02	竜じいさん	じいさん登場４	5	0x123E0	4795	-	sysDira	-1	-	-	-	-	-		01 verb-table.tsv
+srb_a02	竜じいさん	じいさん登場４	5	0x123E0	4795	-	sysDira	-1	argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a02	竜じいさん	じいさん登場４	6	0x123E6	4796	-	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a02	竜じいさん	じいさん登場４	7	0x123EC	4797	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a02	竜じいさん	じいさん登場４	8	0x123F5	4798	-	motionplay_bb	0x12000004, 20	animation 4 of motion 2 of `srb_a02.mot` (bytes 0x800, length 0x115E0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -6702,10 +6702,10 @@ srb_a02	風車ＰＣ乗っ取り	init	1	0x126B5	4939	-	return	-	-	-	-	-	-	resolv
 srb_a02	風車ＰＣ乗っ取り	main	1	0x126B6	4944	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a02	風車ＰＣ乗っ取り	talk	1	0x126B7	4949	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a02	風車ＰＣ乗っ取り	風車１セット	1	0x126BB	4954	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_a02	風車ＰＣ乗っ取り	風車１セット	2	0x126C1	4955	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_a02	風車ＰＣ乗っ取り	風車１セット	2	0x126C1	4955	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a02	風車ＰＣ乗っ取り	風車１セット	3	0x126C7	4956	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a02	風車ＰＣ乗っ取り	風車１セット	4	0x126CA	4957	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_a02	風車ＰＣ乗っ取り	モグ向く	1	0x126CE	4980	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_a02	風車ＰＣ乗っ取り	モグ向く	1	0x126CE	4980	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a02	風車ＰＣ乗っ取り	モグ向く	2	0x126D4	4981	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a02	風車ＰＣ乗っ取り	モグ向く	3	0x126D7	4982	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a02	風車ＰＣ乗っ取り	じいさん登場４	1	0x126DB	4987	-	sysRlookata	竜じいさん	actor `竜じいさん` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10066,7 +10066,7 @@ srb_a03	竜じいさん	じいさん登場４	1	0x11E86	4636	-	usecharhit	0	argu
 srb_a03	竜じいさん	じいさん登場４	2	0x11E8C	4637	-	motionread	2	motion 2 of `srb_a03.mot` (bytes 0x800, length 0x115E0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_a03	竜じいさん	じいさん登場４	3	0x11E92	4638	-	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_a03	竜じいさん	じいさん登場４	4	0x11E9E	4639	-	setpos2	463.363953, 15.6940718, 218.895935	this actor, placed at (463.363953, 15.6940718, 218.895935)	-	-	-	-	resolved	0x0034F210 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_a03	竜じいさん	じいさん登場４	5	0x11EA4	4640	-	sysDira	-1	-	-	-	-	-		01 verb-table.tsv
+srb_a03	竜じいさん	じいさん登場４	5	0x11EA4	4640	-	sysDira	-1	argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a03	竜じいさん	じいさん登場４	6	0x11EAA	4641	-	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a03	竜じいさん	じいさん登場４	7	0x11EB0	4642	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a03	竜じいさん	じいさん登場４	8	0x11EB9	4643	-	motionplay_bb	0x12000004, 20	animation 4 of motion 2 of `srb_a03.mot` (bytes 0x800, length 0x115E0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -10175,10 +10175,10 @@ srb_a03	風車ＰＣ乗っ取り	init	1	0x12179	4784	-	return	-	-	-	-	-	-	resolv
 srb_a03	風車ＰＣ乗っ取り	main	1	0x1217A	4789	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a03	風車ＰＣ乗っ取り	talk	1	0x1217B	4794	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a03	風車ＰＣ乗っ取り	風車１セット	1	0x1217F	4799	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_a03	風車ＰＣ乗っ取り	風車１セット	2	0x12185	4800	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_a03	風車ＰＣ乗っ取り	風車１セット	2	0x12185	4800	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a03	風車ＰＣ乗っ取り	風車１セット	3	0x1218B	4801	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a03	風車ＰＣ乗っ取り	風車１セット	4	0x1218E	4802	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_a03	風車ＰＣ乗っ取り	モグ向く	1	0x12192	4825	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_a03	風車ＰＣ乗っ取り	モグ向く	1	0x12192	4825	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a03	風車ＰＣ乗っ取り	モグ向く	2	0x12198	4826	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a03	風車ＰＣ乗っ取り	モグ向く	3	0x1219B	4827	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a03	風車ＰＣ乗っ取り	じいさん登場４	1	0x1219F	4832	-	sysRlookata	竜じいさん	actor `竜じいさん` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10325,7 +10325,7 @@ srb_a04	ym_shutoraljump	shtjump	31	0x0C385	687	file_var_s5_1 = 248; mp_sav初回
 srb_a04	ym_shutoraljump	shtjump	32	0x0C38B	688	file_var_s5_1 = 248; mp_sav初回 == 0; シナリオフラグ < 0x05c3	setmapjumpgroupflag	0x0108	flags set: 0x0108: Set or tested in Aerodrome (Archades); Aerodrome (Bhujerba); Yardang Labyrinth, Passage Entrance (Dalmasca Estersand); 14 more regions	-	-	-	-	resolved	this page's How a call is read
 srb_a04	ym_shutoraljump	shtjump	33	0x0C391	689	file_var_s5_1 = 248; mp_sav初回 == 0; シナリオフラグ < 0x05c3	releasemapjumpgroupflag	0x0107	flags released: 0x0107: Set or tested in Aerodrome (Archades); Aerodrome (Bhujerba); Yardang Labyrinth, Passage Entrance (Dalmasca Estersand); 14 more regions	-	-	-	-	resolved	this page's How a call is read
 srb_a04	ym_shutoraljump	shtjump	34	0x0C39E	691	file_var_s5_1 = 248; mp_sav初回 == 0; not (シナリオフラグ < 0x05c3)	else if	シナリオフラグ >= 0x0654	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_a04	ym_shutoraljump	shtjump	35	0x0C3A1	693	file_var_s5_1 = 248; mp_sav初回 == 0; not (シナリオフラグ < 0x05c3); シナリオフラグ >= 0x0654	getplayhour	-	result stored in mp_sav初訪時間	-	-	-	-		01 verb-table.tsv
+srb_a04	ym_shutoraljump	shtjump	35	0x0C3A1	693	file_var_s5_1 = 248; mp_sav初回 == 0; not (シナリオフラグ < 0x05c3); シナリオフラグ >= 0x0654	getplayhour	-	result stored in mp_sav初訪時間; the hours of the game's play time	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a04	ym_shutoraljump	shtjump	36	0x0C3AE	694	file_var_s5_1 = 248; mp_sav初回 == 0; not (シナリオフラグ < 0x05c3); シナリオフラグ >= 0x0654	store	mp_sav補正時間 = mp_sav初訪時間 % 3	variable mp_sav補正時間 (global u_char@0x0985)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 srb_a04	ym_shutoraljump	shtjump	37	0x0C3B8	695	file_var_s5_1 = 248; mp_sav初回 == 0; not (シナリオフラグ < 0x05c3); シナリオフラグ >= 0x0654	if	mp_sav補正時間 < 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a04	ym_shutoraljump	shtjump	38	0x0C3C2	697	file_var_s5_1 = 248; mp_sav初回 == 0; not (シナリオフラグ < 0x05c3); シナリオフラグ >= 0x0654; mp_sav補正時間 < 0	store	mp_sav補正時間 = mp_sav補正時間 * -1	variable mp_sav補正時間 (global u_char@0x0985)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -13198,7 +13198,7 @@ srb_a04	竜じいさん	じいさん登場４	1	0x128F4	5809	-	usecharhit	0	argu
 srb_a04	竜じいさん	じいさん登場４	2	0x128FA	5810	-	motionread	2	motion 2 of `srb_a04.mot` (bytes 0x800, length 0x115E0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_a04	竜じいさん	じいさん登場４	3	0x12900	5811	-	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_a04	竜じいさん	じいさん登場４	4	0x1290C	5812	-	setpos2	463.363953, 15.6940718, 218.895935	this actor, placed at (463.363953, 15.6940718, 218.895935)	-	-	-	-	resolved	0x0034F210 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_a04	竜じいさん	じいさん登場４	5	0x12912	5813	-	sysDira	-1	-	-	-	-	-		01 verb-table.tsv
+srb_a04	竜じいさん	じいさん登場４	5	0x12912	5813	-	sysDira	-1	argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a04	竜じいさん	じいさん登場４	6	0x12918	5814	-	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a04	竜じいさん	じいさん登場４	7	0x1291E	5815	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a04	竜じいさん	じいさん登場４	8	0x12927	5816	-	motionplay_bb	0x12000004, 20	animation 4 of motion 2 of `srb_a04.mot` (bytes 0x800, length 0x115E0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -13307,10 +13307,10 @@ srb_a04	風車ＰＣ乗っ取り	init	1	0x12BE7	5957	-	return	-	-	-	-	-	-	resolv
 srb_a04	風車ＰＣ乗っ取り	main	1	0x12BE8	5962	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a04	風車ＰＣ乗っ取り	talk	1	0x12BE9	5967	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a04	風車ＰＣ乗っ取り	風車１セット	1	0x12BED	5972	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_a04	風車ＰＣ乗っ取り	風車１セット	2	0x12BF3	5973	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_a04	風車ＰＣ乗っ取り	風車１セット	2	0x12BF3	5973	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a04	風車ＰＣ乗っ取り	風車１セット	3	0x12BF9	5974	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a04	風車ＰＣ乗っ取り	風車１セット	4	0x12BFC	5975	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_a04	風車ＰＣ乗っ取り	モグ向く	1	0x12C00	5998	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_a04	風車ＰＣ乗っ取り	モグ向く	1	0x12C00	5998	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a04	風車ＰＣ乗っ取り	モグ向く	2	0x12C06	5999	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_a04	風車ＰＣ乗っ取り	モグ向く	3	0x12C09	6000	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_a04	風車ＰＣ乗っ取り	じいさん登場４	1	0x12C0D	6005	-	sysRlookata	竜じいさん	actor `竜じいさん` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16825,7 +16825,7 @@ srb_b01	竜じいさん	じいさん登場４	1	0x12770	4892	-	usecharhit	0	argu
 srb_b01	竜じいさん	じいさん登場４	2	0x12776	4893	-	motionread	2	motion 2 of `srb_b01.mot` (bytes 0x800, length 0x115E0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_b01	竜じいさん	じいさん登場４	3	0x1277C	4894	-	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_b01	竜じいさん	じいさん登場４	4	0x12788	4895	-	setpos2	463.363953, 15.6940718, 218.895935	this actor, placed at (463.363953, 15.6940718, 218.895935)	-	-	-	-	resolved	0x0034F210 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_b01	竜じいさん	じいさん登場４	5	0x1278E	4896	-	sysDira	-1	-	-	-	-	-		01 verb-table.tsv
+srb_b01	竜じいさん	じいさん登場４	5	0x1278E	4896	-	sysDira	-1	argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b01	竜じいさん	じいさん登場４	6	0x12794	4897	-	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b01	竜じいさん	じいさん登場４	7	0x1279A	4898	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b01	竜じいさん	じいさん登場４	8	0x127A3	4899	-	motionplay_bb	0x12000004, 20	animation 4 of motion 2 of `srb_b01.mot` (bytes 0x800, length 0x115E0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -16934,10 +16934,10 @@ srb_b01	風車ＰＣ乗っ取り	init	1	0x12A63	5040	-	return	-	-	-	-	-	-	resolv
 srb_b01	風車ＰＣ乗っ取り	main	1	0x12A64	5045	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b01	風車ＰＣ乗っ取り	talk	1	0x12A65	5050	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b01	風車ＰＣ乗っ取り	風車１セット	1	0x12A69	5055	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_b01	風車ＰＣ乗っ取り	風車１セット	2	0x12A6F	5056	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_b01	風車ＰＣ乗っ取り	風車１セット	2	0x12A6F	5056	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b01	風車ＰＣ乗っ取り	風車１セット	3	0x12A75	5057	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b01	風車ＰＣ乗っ取り	風車１セット	4	0x12A78	5058	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_b01	風車ＰＣ乗っ取り	モグ向く	1	0x12A7C	5081	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_b01	風車ＰＣ乗っ取り	モグ向く	1	0x12A7C	5081	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b01	風車ＰＣ乗っ取り	モグ向く	2	0x12A82	5082	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b01	風車ＰＣ乗っ取り	モグ向く	3	0x12A85	5083	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b01	風車ＰＣ乗っ取り	じいさん登場４	1	0x12A89	5088	-	sysRlookata	竜じいさん	actor `竜じいさん` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -20120,7 +20120,7 @@ srb_b02	竜じいさん	じいさん登場４	1	0x117A4	4498	-	usecharhit	0	argu
 srb_b02	竜じいさん	じいさん登場４	2	0x117AA	4499	-	motionread	2	motion 2 of `srb_b02.mot` (bytes 0x800, length 0x115E0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_b02	竜じいさん	じいさん登場４	3	0x117B0	4500	-	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_b02	竜じいさん	じいさん登場４	4	0x117BC	4501	-	setpos2	463.363953, 15.6940718, 218.895935	this actor, placed at (463.363953, 15.6940718, 218.895935)	-	-	-	-	resolved	0x0034F210 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_b02	竜じいさん	じいさん登場４	5	0x117C2	4502	-	sysDira	-1	-	-	-	-	-		01 verb-table.tsv
+srb_b02	竜じいさん	じいさん登場４	5	0x117C2	4502	-	sysDira	-1	argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b02	竜じいさん	じいさん登場４	6	0x117C8	4503	-	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b02	竜じいさん	じいさん登場４	7	0x117CE	4504	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b02	竜じいさん	じいさん登場４	8	0x117D7	4505	-	motionplay_bb	0x12000004, 20	animation 4 of motion 2 of `srb_b02.mot` (bytes 0x800, length 0x115E0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -20229,10 +20229,10 @@ srb_b02	風車ＰＣ乗っ取り	init	1	0x11A97	4646	-	return	-	-	-	-	-	-	resolv
 srb_b02	風車ＰＣ乗っ取り	main	1	0x11A98	4651	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b02	風車ＰＣ乗っ取り	talk	1	0x11A99	4656	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b02	風車ＰＣ乗っ取り	風車１セット	1	0x11A9D	4661	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_b02	風車ＰＣ乗っ取り	風車１セット	2	0x11AA3	4662	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_b02	風車ＰＣ乗っ取り	風車１セット	2	0x11AA3	4662	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b02	風車ＰＣ乗っ取り	風車１セット	3	0x11AA9	4663	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b02	風車ＰＣ乗っ取り	風車１セット	4	0x11AAC	4664	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_b02	風車ＰＣ乗っ取り	モグ向く	1	0x11AB0	4687	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_b02	風車ＰＣ乗っ取り	モグ向く	1	0x11AB0	4687	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b02	風車ＰＣ乗っ取り	モグ向く	2	0x11AB6	4688	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b02	風車ＰＣ乗っ取り	モグ向く	3	0x11AB9	4689	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b02	風車ＰＣ乗っ取り	じいさん登場４	1	0x11ABD	4694	-	sysRlookata	竜じいさん	actor `竜じいさん` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -23300,7 +23300,7 @@ srb_b03	竜じいさん	じいさん登場４	1	0x115C7	4290	-	usecharhit	0	argu
 srb_b03	竜じいさん	じいさん登場４	2	0x115CD	4291	-	motionread	2	motion 2 of `srb_b03.mot` (bytes 0x800, length 0x115E0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_b03	竜じいさん	じいさん登場４	3	0x115D3	4292	-	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_b03	竜じいさん	じいさん登場４	4	0x115DF	4293	-	setpos2	463.363953, 15.6940718, 218.895935	this actor, placed at (463.363953, 15.6940718, 218.895935)	-	-	-	-	resolved	0x0034F210 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_b03	竜じいさん	じいさん登場４	5	0x115E5	4294	-	sysDira	-1	-	-	-	-	-		01 verb-table.tsv
+srb_b03	竜じいさん	じいさん登場４	5	0x115E5	4294	-	sysDira	-1	argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b03	竜じいさん	じいさん登場４	6	0x115EB	4295	-	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b03	竜じいさん	じいさん登場４	7	0x115F1	4296	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b03	竜じいさん	じいさん登場４	8	0x115FA	4297	-	motionplay_bb	0x12000004, 20	animation 4 of motion 2 of `srb_b03.mot` (bytes 0x800, length 0x115E0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -23409,10 +23409,10 @@ srb_b03	風車ＰＣ乗っ取り	init	1	0x118BA	4438	-	return	-	-	-	-	-	-	resolv
 srb_b03	風車ＰＣ乗っ取り	main	1	0x118BB	4443	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b03	風車ＰＣ乗っ取り	talk	1	0x118BC	4448	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b03	風車ＰＣ乗っ取り	風車１セット	1	0x118C0	4453	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_b03	風車ＰＣ乗っ取り	風車１セット	2	0x118C6	4454	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_b03	風車ＰＣ乗っ取り	風車１セット	2	0x118C6	4454	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b03	風車ＰＣ乗っ取り	風車１セット	3	0x118CC	4455	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b03	風車ＰＣ乗っ取り	風車１セット	4	0x118CF	4456	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_b03	風車ＰＣ乗っ取り	モグ向く	1	0x118D3	4479	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_b03	風車ＰＣ乗っ取り	モグ向く	1	0x118D3	4479	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b03	風車ＰＣ乗っ取り	モグ向く	2	0x118D9	4480	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b03	風車ＰＣ乗っ取り	モグ向く	3	0x118DC	4481	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b03	風車ＰＣ乗っ取り	じいさん登場４	1	0x118E0	4486	-	sysRlookata	竜じいさん	actor `竜じいさん` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -23916,7 +23916,7 @@ srb_b04	賞金首監督	main	13	0x0F26D	1049	local_var_s10f0_1; scratch1_var_1 =
 srb_b04	賞金首監督	main	14	0x0F289	1051	local_var_s10f0_1	while	sysIsdead2_49f(THIRD_ヴィエラ) != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b04	賞金首監督	main	15	0x0F292	1053	local_var_s10f0_1; loop while sysIsdead2_49f(THIRD_ヴィエラ) != 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 srb_b04	賞金首監督	main	16	0x0F2C9	1055	local_var_s10f0_1	THIRD_ヴィエラ.setpos	(getx_12b(-1) + (sin(getrotangzx_12e(-1)) * 3)), gety_12c(-1), (getz_12d(-1) + (cos(getrotangzx_12e(-1)) * 3))	target actor `THIRD_ヴィエラ` (this script) / the target actor, placed at ((getx_12b(-1) + (sin(getrotangzx_12e(-1)) * 3)), gety_12c(-1), (getz_12d(-1) + (cos(getrotangzx_12e(-1)) * 3)))	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 0x0034EBC0 (read here)
-srb_b04	賞金首監督	main	17	0x0F2D2	1056	local_var_s10f0_1	THIRD_ヴィエラ.sysDira	-1	target actor `THIRD_ヴィエラ` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
+srb_b04	賞金首監督	main	17	0x0F2D2	1056	local_var_s10f0_1	THIRD_ヴィエラ.sysDira	-1	target actor `THIRD_ヴィエラ` (this script) / argument 1: the actor the target actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	賞金首監督	main	18	0x0F2DE	1057	local_var_s10f0_1	resetbehindcamera	getrotangzx_12e(-1), 0.5	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	賞金首監督	main	19	0x0F2E4	1058	local_var_s10f0_1	setnoupdatebehindcamera	1	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	賞金首監督	main	20	0x0F2E7	1059	local_var_s10f0_1	label	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -27186,7 +27186,7 @@ srb_b04	竜じいさん	じいさん登場４	1	0x14912	5238	-	usecharhit	0	argu
 srb_b04	竜じいさん	じいさん登場４	2	0x14918	5239	-	motionread	2	motion 2 of `srb_b04.mot` (bytes 0x800, length 0x115E0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_b04	竜じいさん	じいさん登場４	3	0x1491E	5240	-	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 srb_b04	竜じいさん	じいさん登場４	4	0x1492A	5241	-	setpos2	463.363953, 15.6940718, 218.895935	this actor, placed at (463.363953, 15.6940718, 218.895935)	-	-	-	-	resolved	0x0034F210 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_b04	竜じいさん	じいさん登場４	5	0x14930	5242	-	sysDira	-1	-	-	-	-	-		01 verb-table.tsv
+srb_b04	竜じいさん	じいさん登場４	5	0x14930	5242	-	sysDira	-1	argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	竜じいさん	じいさん登場４	6	0x14936	5243	-	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	竜じいさん	じいさん登場４	7	0x1493C	5244	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	竜じいさん	じいさん登場４	8	0x14945	5245	-	motionplay_bb	0x12000004, 20	animation 4 of motion 2 of `srb_b04.mot` (bytes 0x800, length 0x115E0)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -27295,10 +27295,10 @@ srb_b04	風車ＰＣ乗っ取り	init	1	0x14C05	5386	-	return	-	-	-	-	-	-	resolv
 srb_b04	風車ＰＣ乗っ取り	main	1	0x14C06	5391	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b04	風車ＰＣ乗っ取り	talk	1	0x14C07	5396	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b04	風車ＰＣ乗っ取り	風車１セット	1	0x14C0B	5401	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-srb_b04	風車ＰＣ乗っ取り	風車１セット	2	0x14C11	5402	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_b04	風車ＰＣ乗っ取り	風車１セット	2	0x14C11	5402	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	風車ＰＣ乗っ取り	風車１セット	3	0x14C17	5403	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	風車ＰＣ乗っ取り	風車１セット	4	0x14C1A	5404	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-srb_b04	風車ＰＣ乗っ取り	モグ向く	1	0x14C1E	5427	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+srb_b04	風車ＰＣ乗っ取り	モグ向く	1	0x14C1E	5427	-	sysDira	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns at once to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	風車ＰＣ乗っ取り	モグ向く	2	0x14C24	5428	-	sysRlookata	大工モーグリ	actor `大工モーグリ` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 srb_b04	風車ＰＣ乗っ取り	モグ向く	3	0x14C27	5429	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 srb_b04	風車ＰＣ乗っ取り	じいさん登場４	1	0x14C2B	5434	-	sysRlookata	竜じいさん	actor `竜じいさん` (this script) / argument 1: the actor the calling actor turns its head toward, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

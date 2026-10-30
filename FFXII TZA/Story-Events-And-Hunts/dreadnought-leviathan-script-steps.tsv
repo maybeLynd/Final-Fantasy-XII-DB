@@ -304,8 +304,8 @@ rsn_a01	ゲージ	main	7	0x45611	966	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 rsn_a01	ゲージ	ゲージ表示	1	0x45624	971	-	ames_1fe	0, 0x0100001b, 0x0601, 0x0121, 4, 0	-	line 27: EMERGENCY	-	-	-	resolved	this page's How a call is read
 rsn_a01	ゲージ	ゲージ表示	2	0x4562A	972	-	setgaugecountermax	100	argument 1: the gauge's maximum (x 60 for a timer), stored at +0xE0 by 0x004073B0, which also sets the thresholds at its quarters and +0xF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	ゲージ	ゲージ表示	3	0x45630	973	-	setgaugecounter	100	argument 1: the counter gauge's value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_a01	ゲージ	ゲージ表示	4	0x45639	974	-	setgaugechangeratio	0x01c2, 100	-	-	-	-	-		01 verb-table.tsv
-rsn_a01	ゲージ	ゲージ表示	5	0x4563F	975	-	changegaugecounterbyratio	0	-	-	-	-	-		01 verb-table.tsv
+rsn_a01	ゲージ	ゲージ表示	4	0x45639	974	-	setgaugechangeratio	0x01c2, 100	argument 1: the numerator of the gauge's ramp rate / argument 2: the denominator of the ramp rate, the counter's +0x110; 0 makes changegaugecounterbyratio do nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_a01	ゲージ	ゲージ表示	5	0x4563F	975	-	changegaugecounterbyratio	0	argument 1: the value the gauge moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	ゲージ	ゲージ表示	6	0x45645	976	-	setgaugeshowstatus	1	argument 1: show (non-zero) or hide (0) the script gauge. Non-zero	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	ゲージ	ゲージ表示	7	0x45648	977	-	startgaugetimer	-	the script gauge's timer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	ゲージ	ゲージ表示	8	0x4564B	978	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -488,8 +488,8 @@ rsn_a01	警報状態	警報状態	6	0x47381	2762	-	animeplay	102	argument 1: the
 rsn_a01	警報状態	警報状態	7	0x47387	2763	-	store	local_var_s19f0_2 = 1	variable local_var_s19f0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_a01	警報状態	警報状態	8	0x4738D	2764	-	store	local_var_s19f0_1 = 1	variable local_var_s19f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_a01	警報状態	警報状態	9	0x47397	2765	-	if	not (eventsoundisplay(scratch2_var_4))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_a01	警報状態	警報状態	10	0x4739D	2767	not (eventsoundisplay(scratch2_var_4))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_a01	警報状態	警報状態	11	0x473A6	2768	not (eventsoundisplay(scratch2_var_4))	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_a01	警報状態	警報状態	10	0x4739D	2767	not (eventsoundisplay(scratch2_var_4))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_a01	警報状態	警報状態	11	0x473A6	2768	not (eventsoundisplay(scratch2_var_4))	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	警報状態	警報状態	12	0x473B2	2770	-	for	regI1 = 0, regI1 < 30, regI1 = (regI1 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a01	警報状態	警報状態	13	0x473C4	2772	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass	if	scratch2_var_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a01	警報状態	警報状態	14	0x473C7	2774	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass; scratch2_var_2	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -512,9 +512,9 @@ rsn_a01	警報状態	警報状態	30	0x4744F	2799	not (scratch2_var_2); loop fro
 rsn_a01	警報状態	警報状態	31	0x47455	2801	not (scratch2_var_2)	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	警報状態	警報状態	32	0x4745B	2802	not (scratch2_var_2)	if	not (scratch1_var_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a01	警報状態	警報状態	33	0x47462	2806	-	if	not (scratch2_var_2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_a01	警報状態	警報状態	34	0x47465	2808	not (scratch2_var_2)	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
-rsn_a01	警報状態	警報状態	35	0x4746B	2809	not (scratch2_var_2)	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
-rsn_a01	警報状態	警報状態	36	0x47474	2810	not (scratch2_var_2)	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_a01	警報状態	警報状態	34	0x47465	2808	not (scratch2_var_2)	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_a01	警報状態	警報状態	35	0x4746B	2809	not (scratch2_var_2)	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_a01	警報状態	警報状態	36	0x47474	2810	not (scratch2_var_2)	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	警報状態	警報状態	37	0x4747A	2811	not (scratch2_var_2)	animestop	102	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	警報状態	警報状態	38	0x47480	2813	-	store	scratch2_var_2 = 0	variable scratch2_var_2 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_a01	警報状態	警報状態	39	0x47486	2814	-	store	scratch1_var_7 = 0	variable scratch1_var_7 (scratch1 short@0x2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -535,7 +535,7 @@ rsn_a01	警報状態	警報状態	53	0x474DA	2828	-	store	scratch1_var_21 = 0	va
 rsn_a01	警報状態	警報状態	54	0x474E0	2829	-	store	file_var_s19_1 = 1	variable file_var_s19_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_a01	警報状態	警報状態	55	0x474E6	2830	-	store	file_var_s19_2 = 0	variable file_var_s19_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_a01	警報状態	警報状態	56	0x474E9	2831	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_a01	警報状態	ＳＥストップ	1	0x474ED	2836	-	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
+rsn_a01	警報状態	ＳＥストップ	1	0x474ED	2836	-	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a01	警報状態	ＳＥストップ	2	0x474F0	2837	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a01	警報時間	init	1	0x474F1	2856	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a01	警報時間	警報状態	1	0x474F2	2861	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1187,7 +1187,7 @@ rsn_a01	BOSS_雑魚剣士兵02	init	5	0x49171	3954	-	return	-	-	-	-	-	-	resolved
 rsn_b01	setup	init	1	0x45100	68	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b01	setup	battle	1	0x45101	73	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	setup	battle	2	0x4510D	74	-	btlAtelSetSpawnDistance	50, 60, 70	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b01	setup	battle	3	0x45113	75	-	btlAtelSetSpawnLimitDegree	180	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	setup	battle	3	0x45113	75	-	btlAtelSetSpawnLimitDegree	180	argument 1: the heading arc, in degrees, in which enemies appear around the party leader	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	setup	battle	4	0x45119	76	-	store	file_var_s0_1 = 5	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	setup	battle	5	0x4511F	77	-	btlAtelSetEntryStruct	0x03000140	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	setup	battle	6	0x45122	78	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1287,7 +1287,7 @@ rsn_b01	イベント管理	警報ギミックチュートリアル_再生	7	0x45
 rsn_b01	イベント管理	警報ギミックチュートリアル_再生	8	0x4545E	293	-	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	警報ギミックチュートリアル_再生	9	0x45464	294	-	hide_freetarget_group	0	argument 1: the actor group whose members are hidden (negative means every actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	警報ギミックチュートリアル_再生	10	0x4546A	295	-	if	istownmap()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b01	イベント管理	警報ギミックチュートリアル_再生	11	0x4546D	297	istownmap()	ucmovecancel	-	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	イベント管理	警報ギミックチュートリアル_再生	11	0x4546D	297	istownmap()	ucmovecancel	-	the scripted walk of the character the player controls, cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	警報ギミックチュートリアル_再生	12	0x45476	301	not (istownmap())	ucmovecancel_52d	0	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	警報ギミックチュートリアル_再生	13	0x4547C	302	not (istownmap())	ucmovecancel_52d	1	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	警報ギミックチュートリアル_再生	14	0x45482	303	not (istownmap())	ucmovecancel_52d	2	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1331,7 +1331,7 @@ rsn_b01	イベント管理	パンネロ合流_再生	7	0x45549	354	not (istownma
 rsn_b01	イベント管理	パンネロ合流_再生	8	0x4554F	356	-	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	9	0x45555	357	-	hide_freetarget_group	0	argument 1: the actor group whose members are hidden (negative means every actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	10	0x4555B	358	-	if	istownmap()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b01	イベント管理	パンネロ合流_再生	11	0x4555E	360	istownmap()	ucmovecancel	-	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	イベント管理	パンネロ合流_再生	11	0x4555E	360	istownmap()	ucmovecancel	-	the scripted walk of the character the player controls, cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	12	0x45567	364	not (istownmap())	ucmovecancel_52d	0	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	13	0x4556D	365	not (istownmap())	ucmovecancel_52d	1	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	14	0x45573	366	not (istownmap())	ucmovecancel_52d	2	argument 1: the index of the party member whose move is cancelled	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1340,8 +1340,8 @@ rsn_b01	イベント管理	パンネロ合流_再生	16	0x4557C	369	-	ucoff	-	us
 rsn_b01	イベント管理	パンネロ合流_再生	17	0x45586	370	-	if	scratch1_var_1 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b01	イベント管理	パンネロ合流_再生	18	0x4558F	372	scratch1_var_1 != 0	store	scratch2_var_3 = 1	variable scratch2_var_3 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	イベント管理	パンネロ合流_再生	19	0x45592	373	scratch1_var_1 != 0	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b01	イベント管理	パンネロ合流_再生	20	0x45595	375	-	killallfast	-	-	-	-	-	-		01 verb-table.tsv
-rsn_b01	イベント管理	パンネロ合流_再生	21	0x45598	376	-	disposeentry	-	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	イベント管理	パンネロ合流_再生	20	0x45595	375	-	killallfast	-	every enemy unit	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b01	イベント管理	パンネロ合流_再生	21	0x45598	376	-	disposeentry	-	the models of manager 0's battle-eligible actors, taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	22	0x4559E	377	-	addpartymember	5	party: Penelo joins	-	-	-	-	resolved	this page's How a call is read
 rsn_b01	イベント管理	パンネロ合流_再生	23	0x455A4	378	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_b01	イベント管理	パンネロ合流_再生	24	0x455A7	379	-	showparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1351,8 +1351,8 @@ rsn_b01	イベント管理	パンネロ合流_再生	27	0x455C7	382	-	setquestsc
 rsn_b01	イベント管理	パンネロ合流_再生	28	0x455CD	383	-	store	シナリオフラグ = 0x03e8	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	イベント管理	パンネロ合流_再生	29	0x455D3	384	-	removeguestbattlemember	11	party: Vossler leaves as a guest	-	-	-	-	resolved	this page's How a call is read
 rsn_b01	イベント管理	パンネロ合流_再生	30	0x455D6	385	-	recoverentry	-	-	-	-	-	-		01 verb-table.tsv
-rsn_b01	イベント管理	パンネロ合流_再生	31	0x455E5	386	-	getpos_12a	-1, &local_var_s5f2_1, &local_var_s5f2_2, &local_var_s5f2_3	-	-	-	-	-		01 verb-table.tsv
-rsn_b01	イベント管理	パンネロ合流_再生	32	0x455EB	387	-	getrotangzx_12e	-1	result stored in local_var_s5f2_4	-	-	-	-		01 verb-table.tsv
+rsn_b01	イベント管理	パンネロ合流_再生	31	0x455E5	386	-	getpos_12a	-1, &local_var_s5f2_1, &local_var_s5f2_2, &local_var_s5f2_3	argument 1: the actor whose position is read / argument 2: a script variable, passed by reference (resolved by 0x002650B0), that receives the x of the position, movement context +0x00 / argument 3: the variable that receives the y (the height), context +0x04 / argument 4: the variable that receives the z, context +0x08	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b01	イベント管理	パンネロ合流_再生	32	0x455EB	387	-	getrotangzx_12e	-1	result stored in local_var_s5f2_4; argument 1: the actor whose facing is read	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	33	0x455F4	388	-	partyusemapid	1	argument 1: whether the party members move on the map's floor, usemapid for the party	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	34	0x45603	389	-	setposparty	local_var_s5f2_1, local_var_s5f2_2, local_var_s5f2_3, local_var_s5f2_4	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	35	0x45606	390	-	unlockmapjump	-	map jumps, released by the calling script's manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1445,8 +1445,8 @@ rsn_b01	ゲージ	main	7	0x45C3A	754	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 rsn_b01	ゲージ	ゲージ表示	1	0x45C4D	759	-	ames_1fe	0, 0x01000002, 0x0601, 0x0121, 4, 0	-	line 2: EMERGENCY	-	-	-	resolved	this page's How a call is read
 rsn_b01	ゲージ	ゲージ表示	2	0x45C53	760	-	setgaugecountermax	100	argument 1: the gauge's maximum (x 60 for a timer), stored at +0xE0 by 0x004073B0, which also sets the thresholds at its quarters and +0xF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	ゲージ	ゲージ表示	3	0x45C59	761	-	setgaugecounter	100	argument 1: the counter gauge's value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b01	ゲージ	ゲージ表示	4	0x45C62	762	-	setgaugechangeratio	0x01c2, 100	-	-	-	-	-		01 verb-table.tsv
-rsn_b01	ゲージ	ゲージ表示	5	0x45C68	763	-	changegaugecounterbyratio	0	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	ゲージ	ゲージ表示	4	0x45C62	762	-	setgaugechangeratio	0x01c2, 100	argument 1: the numerator of the gauge's ramp rate / argument 2: the denominator of the ramp rate, the counter's +0x110; 0 makes changegaugecounterbyratio do nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b01	ゲージ	ゲージ表示	5	0x45C68	763	-	changegaugecounterbyratio	0	argument 1: the value the gauge moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	ゲージ	ゲージ表示	6	0x45C6E	764	-	setgaugeshowstatus	1	argument 1: show (non-zero) or hide (0) the script gauge. Non-zero	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	ゲージ	ゲージ表示	7	0x45C71	765	-	startgaugetimer	-	the script gauge's timer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	ゲージ	ゲージ表示	8	0x45C74	766	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1981,8 +1981,8 @@ rsn_b01	警報状態	警報状態	6	0x46BBC	1883	-	animeplay	101	argument 1: the
 rsn_b01	警報状態	警報状態	7	0x46BC2	1884	-	store	local_var_s27f0_2 = 1	variable local_var_s27f0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	警報状態	警報状態	8	0x46BC8	1885	-	store	local_var_s27f0_1 = 1	variable local_var_s27f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	警報状態	警報状態	9	0x46BD2	1886	-	if	not (eventsoundisplay(scratch2_var_8))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b01	警報状態	警報状態	10	0x46BD8	1888	not (eventsoundisplay(scratch2_var_8))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_b01	警報状態	警報状態	11	0x46BE1	1889	not (eventsoundisplay(scratch2_var_8))	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	警報状態	警報状態	10	0x46BD8	1888	not (eventsoundisplay(scratch2_var_8))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b01	警報状態	警報状態	11	0x46BE1	1889	not (eventsoundisplay(scratch2_var_8))	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	警報状態	警報状態	12	0x46BED	1891	-	for	regI1 = 0, regI1 < 30, regI1 = (regI1 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b01	警報状態	警報状態	13	0x46BFF	1893	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass	if	scratch2_var_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b01	警報状態	警報状態	14	0x46C02	1895	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass; scratch2_var_3	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2005,9 +2005,9 @@ rsn_b01	警報状態	警報状態	30	0x46C8A	1920	not (scratch2_var_3); loop fro
 rsn_b01	警報状態	警報状態	31	0x46C90	1922	not (scratch2_var_3)	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	警報状態	警報状態	32	0x46C96	1923	not (scratch2_var_3)	if	not (scratch1_var_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b01	警報状態	警報状態	33	0x46C9D	1927	-	if	not (scratch2_var_3)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b01	警報状態	警報状態	34	0x46CA0	1929	not (scratch2_var_3)	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
-rsn_b01	警報状態	警報状態	35	0x46CA6	1930	not (scratch2_var_3)	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
-rsn_b01	警報状態	警報状態	36	0x46CAF	1931	not (scratch2_var_3)	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	警報状態	警報状態	34	0x46CA0	1929	not (scratch2_var_3)	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b01	警報状態	警報状態	35	0x46CA6	1930	not (scratch2_var_3)	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b01	警報状態	警報状態	36	0x46CAF	1931	not (scratch2_var_3)	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	警報状態	警報状態	37	0x46CB5	1932	not (scratch2_var_3)	animestop	101	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	警報状態	警報状態	38	0x46CBB	1934	-	store	scratch2_var_3 = 0	variable scratch2_var_3 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	警報状態	警報状態	39	0x46CC1	1935	-	store	scratch1_var_3 = 0	variable scratch1_var_3 (scratch1 short@0x2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2028,7 +2028,7 @@ rsn_b01	警報状態	警報状態	53	0x46D15	1949	-	store	scratch1_var_17 = 0	va
 rsn_b01	警報状態	警報状態	54	0x46D1B	1950	-	store	file_var_s27_1 = 1	variable file_var_s27_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	警報状態	警報状態	55	0x46D21	1951	-	store	file_var_s24_23 = 0	variable file_var_s24_23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	警報状態	警報状態	56	0x46D24	1952	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b01	警報状態	ＳＥストップ	1	0x46D28	1957	-	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	警報状態	ＳＥストップ	1	0x46D28	1957	-	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	警報状態	ＳＥストップ	2	0x46D2B	1958	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b01	警報時間	init	1	0x46D2C	1972	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b01	警報時間	警報状態	1	0x46D2D	1977	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2727,7 +2727,7 @@ rsn_b02	setup	init	1	0x44C20	62	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-
 rsn_b02	setup	battle	1	0x44C21	67	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	setup	battle	2	0x44C2D	68	-	btlAtelSetSpawnDistance	10, 90, 100	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	setup	battle	3	0x44C33	69	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b02	setup	battle	4	0x44C39	70	-	btlAtelSetSpawnLimitDegree	180	-	-	-	-	-		01 verb-table.tsv
+rsn_b02	setup	battle	4	0x44C39	70	-	btlAtelSetSpawnLimitDegree	180	argument 1: the heading arc, in degrees, in which enemies appear around the party leader	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	setup	battle	5	0x44C3F	71	-	store	file_var_s0_1 = 5	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b02	setup	battle	6	0x44C45	72	-	btlAtelSetEntryStruct	0x030000d0	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	setup	battle	7	0x44C48	73	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2878,8 +2878,8 @@ rsn_b02	ゲージ	main	7	0x45151	384	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 rsn_b02	ゲージ	ゲージ表示	1	0x45164	389	-	ames_1fe	0, 0x01000000, 0x0601, 0x0121, 4, 0	-	line 0: EMERGENCY	-	-	-	resolved	this page's How a call is read
 rsn_b02	ゲージ	ゲージ表示	2	0x4516A	390	-	setgaugecountermax	100	argument 1: the gauge's maximum (x 60 for a timer), stored at +0xE0 by 0x004073B0, which also sets the thresholds at its quarters and +0xF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	ゲージ	ゲージ表示	3	0x45170	391	-	setgaugecounter	100	argument 1: the counter gauge's value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b02	ゲージ	ゲージ表示	4	0x45179	392	-	setgaugechangeratio	0x01c2, 100	-	-	-	-	-		01 verb-table.tsv
-rsn_b02	ゲージ	ゲージ表示	5	0x4517F	393	-	changegaugecounterbyratio	0	-	-	-	-	-		01 verb-table.tsv
+rsn_b02	ゲージ	ゲージ表示	4	0x45179	392	-	setgaugechangeratio	0x01c2, 100	argument 1: the numerator of the gauge's ramp rate / argument 2: the denominator of the ramp rate, the counter's +0x110; 0 makes changegaugecounterbyratio do nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b02	ゲージ	ゲージ表示	5	0x4517F	393	-	changegaugecounterbyratio	0	argument 1: the value the gauge moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	ゲージ	ゲージ表示	6	0x45185	394	-	setgaugeshowstatus	1	argument 1: show (non-zero) or hide (0) the script gauge. Non-zero	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	ゲージ	ゲージ表示	7	0x45188	395	-	startgaugetimer	-	the script gauge's timer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	ゲージ	ゲージ表示	8	0x4518B	396	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3407,8 +3407,8 @@ rsn_b02	警報状態	警報状態	6	0x45E82	1278	-	animeplay	103	argument 1: the
 rsn_b02	警報状態	警報状態	7	0x45E88	1279	-	store	local_var_s22f0_2 = 1	variable local_var_s22f0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b02	警報状態	警報状態	8	0x45E8E	1280	-	store	local_var_s22f0_1 = 1	variable local_var_s22f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b02	警報状態	警報状態	9	0x45E98	1281	-	if	not (eventsoundisplay(scratch2_var_7))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b02	警報状態	警報状態	10	0x45E9E	1283	not (eventsoundisplay(scratch2_var_7))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_b02	警報状態	警報状態	11	0x45EA7	1284	not (eventsoundisplay(scratch2_var_7))	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b02	警報状態	警報状態	10	0x45E9E	1283	not (eventsoundisplay(scratch2_var_7))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b02	警報状態	警報状態	11	0x45EA7	1284	not (eventsoundisplay(scratch2_var_7))	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	警報状態	警報状態	12	0x45EB3	1286	-	for	regI1 = 0, regI1 < 30, regI1 = (regI1 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b02	警報状態	警報状態	13	0x45EC5	1288	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass	if	scratch2_var_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b02	警報状態	警報状態	14	0x45EC8	1290	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass; scratch2_var_3	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3431,9 +3431,9 @@ rsn_b02	警報状態	警報状態	30	0x45F50	1315	not (scratch2_var_3); loop fro
 rsn_b02	警報状態	警報状態	31	0x45F56	1317	not (scratch2_var_3)	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	警報状態	警報状態	32	0x45F5C	1318	not (scratch2_var_3)	if	not (scratch1_var_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b02	警報状態	警報状態	33	0x45F63	1322	-	if	not (scratch2_var_3)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b02	警報状態	警報状態	34	0x45F66	1324	not (scratch2_var_3)	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
-rsn_b02	警報状態	警報状態	35	0x45F6C	1325	not (scratch2_var_3)	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
-rsn_b02	警報状態	警報状態	36	0x45F75	1326	not (scratch2_var_3)	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b02	警報状態	警報状態	34	0x45F66	1324	not (scratch2_var_3)	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b02	警報状態	警報状態	35	0x45F6C	1325	not (scratch2_var_3)	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b02	警報状態	警報状態	36	0x45F75	1326	not (scratch2_var_3)	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	警報状態	警報状態	37	0x45F7B	1327	not (scratch2_var_3)	animestop	103	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	警報状態	警報状態	38	0x45F81	1329	-	store	scratch2_var_3 = 0	variable scratch2_var_3 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b02	警報状態	警報状態	39	0x45F87	1330	-	store	scratch1_var_2 = 0	variable scratch1_var_2 (scratch1 short@0x2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3454,7 +3454,7 @@ rsn_b02	警報状態	警報状態	53	0x45FDB	1344	-	store	scratch1_var_16 = 0	va
 rsn_b02	警報状態	警報状態	54	0x45FE1	1345	-	store	file_var_s22_1 = 1	variable file_var_s22_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b02	警報状態	警報状態	55	0x45FE7	1346	-	store	file_var_s22_2 = 0	variable file_var_s22_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b02	警報状態	警報状態	56	0x45FEA	1347	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b02	警報状態	ＳＥストップ	1	0x45FEE	1352	-	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
+rsn_b02	警報状態	ＳＥストップ	1	0x45FEE	1352	-	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b02	警報状態	ＳＥストップ	2	0x45FF1	1353	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b02	警報時間	init	1	0x45FF2	1372	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b02	警報時間	警報状態	1	0x45FF3	1377	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4171,7 +4171,7 @@ rsn_b03	setup	battle	1	0x45ED1	70	-	btlAtelSetupActorStart	-	the enemy placement
 rsn_b03	setup	battle	2	0x45ED7	71	-	btlAtelSetDecidingEntryPointTimes	3	argument 1: the number of placement attempts for automatic enemy placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	setup	battle	3	0x45EE3	72	-	btlAtelSetSpawnDistance	50, 60, 70	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	setup	battle	4	0x45EE9	73	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b03	setup	battle	5	0x45EEF	74	-	btlAtelSetSpawnLimitDegree	180	-	-	-	-	-		01 verb-table.tsv
+rsn_b03	setup	battle	5	0x45EEF	74	-	btlAtelSetSpawnLimitDegree	180	argument 1: the heading arc, in degrees, in which enemies appear around the party leader	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	setup	battle	6	0x45EF5	75	-	store	file_var_s0_1 = 6	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b03	setup	battle	7	0x45EFB	76	-	btlAtelSetEntryStruct	0x0300017c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	setup	battle	8	0x45EFE	77	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4260,8 +4260,8 @@ rsn_b03	ゲージ	main	7	0x461BD	258	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 rsn_b03	ゲージ	ゲージ表示	1	0x461D0	263	-	ames_1fe	0, 0x01000000, 0x0601, 0x0121, 4, 0	-	line 0: EMERGENCY	-	-	-	resolved	this page's How a call is read
 rsn_b03	ゲージ	ゲージ表示	2	0x461D6	264	-	setgaugecountermax	100	argument 1: the gauge's maximum (x 60 for a timer), stored at +0xE0 by 0x004073B0, which also sets the thresholds at its quarters and +0xF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	ゲージ	ゲージ表示	3	0x461DC	265	-	setgaugecounter	100	argument 1: the counter gauge's value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b03	ゲージ	ゲージ表示	4	0x461E5	266	-	setgaugechangeratio	0x01c2, 100	-	-	-	-	-		01 verb-table.tsv
-rsn_b03	ゲージ	ゲージ表示	5	0x461EB	267	-	changegaugecounterbyratio	0	-	-	-	-	-		01 verb-table.tsv
+rsn_b03	ゲージ	ゲージ表示	4	0x461E5	266	-	setgaugechangeratio	0x01c2, 100	argument 1: the numerator of the gauge's ramp rate / argument 2: the denominator of the ramp rate, the counter's +0x110; 0 makes changegaugecounterbyratio do nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b03	ゲージ	ゲージ表示	5	0x461EB	267	-	changegaugecounterbyratio	0	argument 1: the value the gauge moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	ゲージ	ゲージ表示	6	0x461F1	268	-	setgaugeshowstatus	1	argument 1: show (non-zero) or hide (0) the script gauge. Non-zero	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	ゲージ	ゲージ表示	7	0x461F4	269	-	startgaugetimer	-	the script gauge's timer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	ゲージ	ゲージ表示	8	0x461F7	270	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5428,8 +5428,8 @@ rsn_b03	警報状態	警報状態	6	0x485D8	2350	-	animeplay	103	argument 1: the
 rsn_b03	警報状態	警報状態	7	0x485DE	2351	-	store	local_var_s23f0_2 = 1	variable local_var_s23f0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b03	警報状態	警報状態	8	0x485E4	2352	-	store	local_var_s23f0_1 = 1	variable local_var_s23f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b03	警報状態	警報状態	9	0x485EE	2353	-	if	not (eventsoundisplay(scratch2_var_8))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b03	警報状態	警報状態	10	0x485F4	2355	not (eventsoundisplay(scratch2_var_8))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_b03	警報状態	警報状態	11	0x485FD	2356	not (eventsoundisplay(scratch2_var_8))	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b03	警報状態	警報状態	10	0x485F4	2355	not (eventsoundisplay(scratch2_var_8))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b03	警報状態	警報状態	11	0x485FD	2356	not (eventsoundisplay(scratch2_var_8))	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	警報状態	警報状態	12	0x48609	2358	-	for	regI1 = 0, regI1 < 30, regI1 = (regI1 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b03	警報状態	警報状態	13	0x4861B	2360	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass	if	scratch2_var_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b03	警報状態	警報状態	14	0x4861E	2362	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass; scratch2_var_3	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5452,9 +5452,9 @@ rsn_b03	警報状態	警報状態	30	0x486A6	2387	not (scratch2_var_3); loop fro
 rsn_b03	警報状態	警報状態	31	0x486AC	2389	not (scratch2_var_3)	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	警報状態	警報状態	32	0x486B2	2390	not (scratch2_var_3)	if	not (scratch1_var_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b03	警報状態	警報状態	33	0x486B9	2394	-	if	not (scratch2_var_3)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b03	警報状態	警報状態	34	0x486BC	2396	not (scratch2_var_3)	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
-rsn_b03	警報状態	警報状態	35	0x486C2	2397	not (scratch2_var_3)	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
-rsn_b03	警報状態	警報状態	36	0x486CB	2398	not (scratch2_var_3)	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b03	警報状態	警報状態	34	0x486BC	2396	not (scratch2_var_3)	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b03	警報状態	警報状態	35	0x486C2	2397	not (scratch2_var_3)	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b03	警報状態	警報状態	36	0x486CB	2398	not (scratch2_var_3)	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	警報状態	警報状態	37	0x486D1	2399	not (scratch2_var_3)	animestop	103	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	警報状態	警報状態	38	0x486D7	2401	-	store	scratch2_var_3 = 0	variable scratch2_var_3 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b03	警報状態	警報状態	39	0x486DD	2402	-	store	scratch1_var_2 = 0	variable scratch1_var_2 (scratch1 short@0x2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5475,7 +5475,7 @@ rsn_b03	警報状態	警報状態	53	0x48731	2416	-	store	scratch1_var_16 = 0	va
 rsn_b03	警報状態	警報状態	54	0x48737	2417	-	store	file_var_s23_1 = 1	variable file_var_s23_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b03	警報状態	警報状態	55	0x4873D	2418	-	store	file_var_s20_23 = 0	variable file_var_s20_23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b03	警報状態	警報状態	56	0x48740	2419	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b03	警報状態	ＳＥストップ	1	0x48744	2424	-	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
+rsn_b03	警報状態	ＳＥストップ	1	0x48744	2424	-	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	警報状態	ＳＥストップ	2	0x48747	2425	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b03	警報時間	init	1	0x48748	2439	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b03	警報時間	警報状態	1	0x48749	2444	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6206,7 +6206,7 @@ rsn_b04	setup	init	1	0x44ED0	65	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-
 rsn_b04	setup	battle	1	0x44ED1	70	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	setup	battle	2	0x44EDD	71	-	btlAtelSetSpawnDistance	10, 90, 100	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	setup	battle	3	0x44EE3	72	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b04	setup	battle	4	0x44EE9	73	-	btlAtelSetSpawnLimitDegree	180	-	-	-	-	-		01 verb-table.tsv
+rsn_b04	setup	battle	4	0x44EE9	73	-	btlAtelSetSpawnLimitDegree	180	argument 1: the heading arc, in degrees, in which enemies appear around the party leader	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	setup	battle	5	0x44EEF	74	-	store	file_var_s0_1 = 5	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b04	setup	battle	6	0x44EF5	75	-	btlAtelSetEntryStruct	0x030000bc	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	setup	battle	7	0x44EF8	76	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6233,8 +6233,8 @@ rsn_b04	ゲージ	main	7	0x44F6D	127	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 rsn_b04	ゲージ	ゲージ表示	1	0x44F80	132	-	ames_1fe	0, 0x01000000, 0x0601, 0x0121, 4, 0	-	line 0: EMERGENCY	-	-	-	resolved	this page's How a call is read
 rsn_b04	ゲージ	ゲージ表示	2	0x44F86	133	-	setgaugecountermax	100	argument 1: the gauge's maximum (x 60 for a timer), stored at +0xE0 by 0x004073B0, which also sets the thresholds at its quarters and +0xF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	ゲージ	ゲージ表示	3	0x44F8C	134	-	setgaugecounter	100	argument 1: the counter gauge's value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b04	ゲージ	ゲージ表示	4	0x44F95	135	-	setgaugechangeratio	0x01c2, 100	-	-	-	-	-		01 verb-table.tsv
-rsn_b04	ゲージ	ゲージ表示	5	0x44F9B	136	-	changegaugecounterbyratio	0	-	-	-	-	-		01 verb-table.tsv
+rsn_b04	ゲージ	ゲージ表示	4	0x44F95	135	-	setgaugechangeratio	0x01c2, 100	argument 1: the numerator of the gauge's ramp rate / argument 2: the denominator of the ramp rate, the counter's +0x110; 0 makes changegaugecounterbyratio do nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b04	ゲージ	ゲージ表示	5	0x44F9B	136	-	changegaugecounterbyratio	0	argument 1: the value the gauge moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	ゲージ	ゲージ表示	6	0x44FA1	137	-	setgaugeshowstatus	1	argument 1: show (non-zero) or hide (0) the script gauge. Non-zero	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	ゲージ	ゲージ表示	7	0x44FA4	138	-	startgaugetimer	-	the script gauge's timer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	ゲージ	ゲージ表示	8	0x44FA7	139	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6931,8 +6931,8 @@ rsn_b04	警報状態	警報状態	6	0x461B0	1416	-	animeplay	106	argument 1: the
 rsn_b04	警報状態	警報状態	7	0x461B6	1417	-	store	local_var_s21f0_2 = 1	variable local_var_s21f0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b04	警報状態	警報状態	8	0x461BC	1418	-	store	local_var_s21f0_1 = 1	variable local_var_s21f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b04	警報状態	警報状態	9	0x461C6	1419	-	if	not (eventsoundisplay(scratch2_var_8))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b04	警報状態	警報状態	10	0x461CC	1421	not (eventsoundisplay(scratch2_var_8))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_b04	警報状態	警報状態	11	0x461D5	1422	not (eventsoundisplay(scratch2_var_8))	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b04	警報状態	警報状態	10	0x461CC	1421	not (eventsoundisplay(scratch2_var_8))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b04	警報状態	警報状態	11	0x461D5	1422	not (eventsoundisplay(scratch2_var_8))	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	警報状態	警報状態	12	0x461E1	1424	-	for	regI1 = 0, regI1 < 30, regI1 = (regI1 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b04	警報状態	警報状態	13	0x461F3	1426	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass	if	scratch2_var_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b04	警報状態	警報状態	14	0x461F6	1428	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass; scratch2_var_3	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6955,9 +6955,9 @@ rsn_b04	警報状態	警報状態	30	0x4627E	1453	not (scratch2_var_3); loop fro
 rsn_b04	警報状態	警報状態	31	0x46284	1455	not (scratch2_var_3)	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	警報状態	警報状態	32	0x4628A	1456	not (scratch2_var_3)	if	not (scratch1_var_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b04	警報状態	警報状態	33	0x46291	1460	-	if	not (scratch2_var_3)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b04	警報状態	警報状態	34	0x46294	1462	not (scratch2_var_3)	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
-rsn_b04	警報状態	警報状態	35	0x4629A	1463	not (scratch2_var_3)	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
-rsn_b04	警報状態	警報状態	36	0x462A3	1464	not (scratch2_var_3)	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b04	警報状態	警報状態	34	0x46294	1462	not (scratch2_var_3)	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b04	警報状態	警報状態	35	0x4629A	1463	not (scratch2_var_3)	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_b04	警報状態	警報状態	36	0x462A3	1464	not (scratch2_var_3)	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	警報状態	警報状態	37	0x462A9	1465	not (scratch2_var_3)	animestop	106	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	警報状態	警報状態	38	0x462AF	1467	-	store	scratch2_var_3 = 0	variable scratch2_var_3 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b04	警報状態	警報状態	39	0x462B5	1468	-	store	scratch1_var_2 = 0	variable scratch1_var_2 (scratch1 short@0x2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -6978,7 +6978,7 @@ rsn_b04	警報状態	警報状態	53	0x46309	1482	-	store	scratch1_var_16 = 0	va
 rsn_b04	警報状態	警報状態	54	0x4630F	1483	-	store	file_var_s21_1 = 1	variable file_var_s21_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b04	警報状態	警報状態	55	0x46315	1484	-	store	file_var_s5_24 = 0	variable file_var_s5_24	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b04	警報状態	警報状態	56	0x46318	1485	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b04	警報状態	ＳＥストップ	1	0x4631C	1490	-	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
+rsn_b04	警報状態	ＳＥストップ	1	0x4631C	1490	-	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	警報状態	ＳＥストップ	2	0x4631F	1491	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b04	警報時間	init	1	0x46320	1505	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b04	警報時間	警報状態	1	0x46321	1510	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7722,7 +7722,7 @@ rsn_c01	setup	battle	1	0x45361	68	-	btlAtelSetupActorStart	-	the enemy placement
 rsn_c01	setup	battle	2	0x45367	69	-	btlAtelSetDecidingEntryPointTimes	3	argument 1: the number of placement attempts for automatic enemy placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	setup	battle	3	0x45373	70	-	btlAtelSetSpawnDistance	50, 60, 70	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	setup	battle	4	0x45379	71	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_c01	setup	battle	5	0x4537F	72	-	btlAtelSetSpawnLimitDegree	180	-	-	-	-	-		01 verb-table.tsv
+rsn_c01	setup	battle	5	0x4537F	72	-	btlAtelSetSpawnLimitDegree	180	argument 1: the heading arc, in degrees, in which enemies appear around the party leader	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	setup	battle	6	0x45385	73	-	store	file_var_s0_1 = 5	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_c01	setup	battle	7	0x4538B	74	-	btlAtelSetEntryStruct	0x03000210	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	setup	battle	8	0x4538E	75	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7745,8 +7745,8 @@ rsn_c01	ゲージ	main	7	0x453F0	114	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 rsn_c01	ゲージ	ゲージ表示	1	0x45403	119	-	ames_1fe	0, 0x01000000, 0x0601, 0x0121, 4, 0	-	line 0: EMERGENCY	-	-	-	resolved	this page's How a call is read
 rsn_c01	ゲージ	ゲージ表示	2	0x45409	120	-	setgaugecountermax	100	argument 1: the gauge's maximum (x 60 for a timer), stored at +0xE0 by 0x004073B0, which also sets the thresholds at its quarters and +0xF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	ゲージ	ゲージ表示	3	0x4540F	121	-	setgaugecounter	100	argument 1: the counter gauge's value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_c01	ゲージ	ゲージ表示	4	0x45418	122	-	setgaugechangeratio	0x01c2, 100	-	-	-	-	-		01 verb-table.tsv
-rsn_c01	ゲージ	ゲージ表示	5	0x4541E	123	-	changegaugecounterbyratio	0	-	-	-	-	-		01 verb-table.tsv
+rsn_c01	ゲージ	ゲージ表示	4	0x45418	122	-	setgaugechangeratio	0x01c2, 100	argument 1: the numerator of the gauge's ramp rate / argument 2: the denominator of the ramp rate, the counter's +0x110; 0 makes changegaugecounterbyratio do nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_c01	ゲージ	ゲージ表示	5	0x4541E	123	-	changegaugecounterbyratio	0	argument 1: the value the gauge moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	ゲージ	ゲージ表示	6	0x45424	124	-	setgaugeshowstatus	1	argument 1: show (non-zero) or hide (0) the script gauge. Non-zero	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	ゲージ	ゲージ表示	7	0x45427	125	-	startgaugetimer	-	the script gauge's timer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	ゲージ	ゲージ表示	8	0x4542A	126	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8329,8 +8329,8 @@ rsn_c01	警報状態	警報状態	6	0x46487	1259	-	animeplay	103	argument 1: the
 rsn_c01	警報状態	警報状態	7	0x4648D	1260	-	store	local_var_s15f0_2 = 1	variable local_var_s15f0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_c01	警報状態	警報状態	8	0x46493	1261	-	store	local_var_s15f0_1 = 1	variable local_var_s15f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_c01	警報状態	警報状態	9	0x4649D	1262	-	if	not (eventsoundisplay(scratch2_var_7))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_c01	警報状態	警報状態	10	0x464A3	1264	not (eventsoundisplay(scratch2_var_7))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_c01	警報状態	警報状態	11	0x464AC	1265	not (eventsoundisplay(scratch2_var_7))	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_c01	警報状態	警報状態	10	0x464A3	1264	not (eventsoundisplay(scratch2_var_7))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_c01	警報状態	警報状態	11	0x464AC	1265	not (eventsoundisplay(scratch2_var_7))	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	警報状態	警報状態	12	0x464B8	1267	-	for	regI1 = 0, regI1 < 30, regI1 = (regI1 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_c01	警報状態	警報状態	13	0x464CA	1269	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass	if	scratch2_var_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_c01	警報状態	警報状態	14	0x464CD	1271	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass; scratch2_var_2	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8353,9 +8353,9 @@ rsn_c01	警報状態	警報状態	30	0x46555	1296	not (scratch2_var_2); loop fro
 rsn_c01	警報状態	警報状態	31	0x4655B	1298	not (scratch2_var_2)	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	警報状態	警報状態	32	0x46561	1299	not (scratch2_var_2)	if	not (scratch1_var_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_c01	警報状態	警報状態	33	0x46568	1303	-	if	not (scratch2_var_2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_c01	警報状態	警報状態	34	0x4656B	1305	not (scratch2_var_2)	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
-rsn_c01	警報状態	警報状態	35	0x46571	1306	not (scratch2_var_2)	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
-rsn_c01	警報状態	警報状態	36	0x4657A	1307	not (scratch2_var_2)	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_c01	警報状態	警報状態	34	0x4656B	1305	not (scratch2_var_2)	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_c01	警報状態	警報状態	35	0x46571	1306	not (scratch2_var_2)	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_c01	警報状態	警報状態	36	0x4657A	1307	not (scratch2_var_2)	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	警報状態	警報状態	37	0x46580	1308	not (scratch2_var_2)	animestop	103	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	警報状態	警報状態	38	0x46586	1310	-	store	scratch2_var_2 = 0	variable scratch2_var_2 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_c01	警報状態	警報状態	39	0x4658C	1311	-	store	scratch1_var_2 = 0	variable scratch1_var_2 (scratch1 short@0x2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -8376,7 +8376,7 @@ rsn_c01	警報状態	警報状態	53	0x465E0	1325	-	store	scratch1_var_16 = 0	va
 rsn_c01	警報状態	警報状態	54	0x465E6	1326	-	store	file_var_s15_1 = 1	variable file_var_s15_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_c01	警報状態	警報状態	55	0x465EC	1327	-	store	file_var_s4_23 = 0	variable file_var_s4_23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_c01	警報状態	警報状態	56	0x465EF	1328	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_c01	警報状態	ＳＥストップ	1	0x465F3	1333	-	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
+rsn_c01	警報状態	ＳＥストップ	1	0x465F3	1333	-	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	警報状態	ＳＥストップ	2	0x465F6	1334	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_c01	警報時間	init	1	0x465F7	1348	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_c01	警報時間	警報状態	1	0x465F8	1353	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9248,7 +9248,7 @@ rsn_d01	常駐監督	main	123	0x441F7	292	シナリオフラグ >= 0x03a2 and �
 rsn_d01	常駐監督	main	124	0x441FD	293	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	store	g_com_set_get_label = 0x8076	variable g_com_set_get_label (global int@0x0c88)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_d01	常駐監督	main	125	0x44209	294	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	sysReqew	1, イベント特殊効果画面::だいじなものゲット	actor `イベント特殊効果画面`	-	-	files イベント特殊効果画面::だいじなものゲット on channel 1; waits until it ends	イベント特殊効果画面.だいじなものゲット	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_d01	常駐監督	main	126	0x44211	295	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	if	getnowmapmusicno() != -1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_d01	常駐監督	main	127	0x4421A	297	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
+rsn_d01	常駐監督	main	127	0x4421A	297	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6; getnowmapmusicno() != -1	musiccrossplay	getnowmapmusicno(), 90	argument 1: the music track to change to (a negative value is the track now playing, 0x002DEC00) / argument 2: the crossfade length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	常駐監督	main	128	0x44223	299	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	spotsoundtrans	0, 127	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	常駐監督	main	129	0x44226	300	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	常駐監督	main	130	0x44229	301	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -9317,8 +9317,8 @@ rsn_d01	ゲージ	main	7	0x447C7	590	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 rsn_d01	ゲージ	ゲージ表示	1	0x447DA	595	-	ames_1fe	0, 0x01000003, 0x0601, 0x0121, 4, 0	-	line 3: EMERGENCY	-	-	-	resolved	this page's How a call is read
 rsn_d01	ゲージ	ゲージ表示	2	0x447E0	596	-	setgaugecountermax	100	argument 1: the gauge's maximum (x 60 for a timer), stored at +0xE0 by 0x004073B0, which also sets the thresholds at its quarters and +0xF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	ゲージ	ゲージ表示	3	0x447E6	597	-	setgaugecounter	100	argument 1: the counter gauge's value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_d01	ゲージ	ゲージ表示	4	0x447EF	598	-	setgaugechangeratio	0x01c2, 100	-	-	-	-	-		01 verb-table.tsv
-rsn_d01	ゲージ	ゲージ表示	5	0x447F5	599	-	changegaugecounterbyratio	0	-	-	-	-	-		01 verb-table.tsv
+rsn_d01	ゲージ	ゲージ表示	4	0x447EF	598	-	setgaugechangeratio	0x01c2, 100	argument 1: the numerator of the gauge's ramp rate / argument 2: the denominator of the ramp rate, the counter's +0x110; 0 makes changegaugecounterbyratio do nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_d01	ゲージ	ゲージ表示	5	0x447F5	599	-	changegaugecounterbyratio	0	argument 1: the value the gauge moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	ゲージ	ゲージ表示	6	0x447FB	600	-	setgaugeshowstatus	1	argument 1: show (non-zero) or hide (0) the script gauge. Non-zero	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	ゲージ	ゲージ表示	7	0x447FE	601	-	startgaugetimer	-	the script gauge's timer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	ゲージ	ゲージ表示	8	0x44801	602	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9597,8 +9597,8 @@ rsn_d01	警報状態	警報状態	6	0x44E37	1121	-	animeplay	101	argument 1: the
 rsn_d01	警報状態	警報状態	7	0x44E3D	1122	-	store	local_var_s14f0_2 = 1	variable local_var_s14f0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_d01	警報状態	警報状態	8	0x44E43	1123	-	store	local_var_s14f0_1 = 1	variable local_var_s14f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_d01	警報状態	警報状態	9	0x44E4D	1124	-	if	not (eventsoundisplay(scratch2_var_8))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_d01	警報状態	警報状態	10	0x44E53	1126	not (eventsoundisplay(scratch2_var_8))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_d01	警報状態	警報状態	11	0x44E5C	1127	not (eventsoundisplay(scratch2_var_8))	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_d01	警報状態	警報状態	10	0x44E53	1126	not (eventsoundisplay(scratch2_var_8))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_d01	警報状態	警報状態	11	0x44E5C	1127	not (eventsoundisplay(scratch2_var_8))	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	警報状態	警報状態	12	0x44E68	1129	-	for	regI1 = 0, regI1 < 30, regI1 = (regI1 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_d01	警報状態	警報状態	13	0x44E7A	1131	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass	if	scratch2_var_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_d01	警報状態	警報状態	14	0x44E7D	1133	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass; scratch2_var_2	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9621,9 +9621,9 @@ rsn_d01	警報状態	警報状態	30	0x44F05	1158	not (scratch2_var_2); loop fro
 rsn_d01	警報状態	警報状態	31	0x44F0B	1160	not (scratch2_var_2)	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	警報状態	警報状態	32	0x44F11	1161	not (scratch2_var_2)	if	not (scratch1_var_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_d01	警報状態	警報状態	33	0x44F18	1165	-	if	not (scratch2_var_2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_d01	警報状態	警報状態	34	0x44F1B	1167	not (scratch2_var_2)	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
-rsn_d01	警報状態	警報状態	35	0x44F21	1168	not (scratch2_var_2)	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
-rsn_d01	警報状態	警報状態	36	0x44F2A	1169	not (scratch2_var_2)	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_d01	警報状態	警報状態	34	0x44F1B	1167	not (scratch2_var_2)	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_d01	警報状態	警報状態	35	0x44F21	1168	not (scratch2_var_2)	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_d01	警報状態	警報状態	36	0x44F2A	1169	not (scratch2_var_2)	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	警報状態	警報状態	37	0x44F30	1170	not (scratch2_var_2)	animestop	101	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	警報状態	警報状態	38	0x44F36	1172	-	store	scratch2_var_2 = 0	variable scratch2_var_2 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_d01	警報状態	警報状態	39	0x44F3C	1173	-	store	scratch1_var_5 = 0	variable scratch1_var_5 (scratch1 short@0x2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -9644,7 +9644,7 @@ rsn_d01	警報状態	警報状態	53	0x44F90	1187	-	store	scratch1_var_19 = 0	va
 rsn_d01	警報状態	警報状態	54	0x44F96	1188	-	store	file_var_s14_1 = 1	variable file_var_s14_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_d01	警報状態	警報状態	55	0x44F9C	1189	-	store	file_var_s14_2 = 0	variable file_var_s14_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_d01	警報状態	警報状態	56	0x44F9F	1190	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_d01	警報状態	ＳＥストップ	1	0x44FA3	1195	-	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
+rsn_d01	警報状態	ＳＥストップ	1	0x44FA3	1195	-	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	警報状態	ＳＥストップ	2	0x44FA6	1196	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_d01	警報時間	init	1	0x44FA7	1215	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_d01	警報時間	警報状態	1	0x44FA8	1220	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -10453,8 +10453,8 @@ rsn_y01	ゲージ	main	7	0x4564D	802	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 rsn_y01	ゲージ	ゲージ表示	1	0x45660	807	-	ames_1fe	0, 0x0100001f, 0x0601, 0x0121, 4, 0	-	line 31: EMERGENCY	-	-	-	resolved	this page's How a call is read
 rsn_y01	ゲージ	ゲージ表示	2	0x45666	808	-	setgaugecountermax	100	argument 1: the gauge's maximum (x 60 for a timer), stored at +0xE0 by 0x004073B0, which also sets the thresholds at its quarters and +0xF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	ゲージ	ゲージ表示	3	0x4566C	809	-	setgaugecounter	100	argument 1: the counter gauge's value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_y01	ゲージ	ゲージ表示	4	0x45675	810	-	setgaugechangeratio	0x01c2, 100	-	-	-	-	-		01 verb-table.tsv
-rsn_y01	ゲージ	ゲージ表示	5	0x4567B	811	-	changegaugecounterbyratio	0	-	-	-	-	-		01 verb-table.tsv
+rsn_y01	ゲージ	ゲージ表示	4	0x45675	810	-	setgaugechangeratio	0x01c2, 100	argument 1: the numerator of the gauge's ramp rate / argument 2: the denominator of the ramp rate, the counter's +0x110; 0 makes changegaugecounterbyratio do nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_y01	ゲージ	ゲージ表示	5	0x4567B	811	-	changegaugecounterbyratio	0	argument 1: the value the gauge moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	ゲージ	ゲージ表示	6	0x45681	812	-	setgaugeshowstatus	1	argument 1: show (non-zero) or hide (0) the script gauge. Non-zero	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	ゲージ	ゲージ表示	7	0x45684	813	-	startgaugetimer	-	the script gauge's timer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	ゲージ	ゲージ表示	8	0x45687	814	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -11103,7 +11103,7 @@ rsn_y01	ルルチェ	talkterm	1	0x4817A	3220	-	if	((getrotangzx() - getdestrotan
 rsn_y01	ルルチェ	talkterm	2	0x48180	3222	((getrotangzx() - getdestrotangzx_227(0)) * (getrotangzx() - getdestrotangzx_227(0))) > 0	setaturnlookatlockstatus	1	argument 1: how the calling actor's untimed turns are made	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	ルルチェ	talkterm	3	0x48189	3223	((getrotangzx() - getdestrotangzx_227(0)) * (getrotangzx() - getdestrotangzx_227(0))) > 0	aturn_261	getdestrotangzx_227(0)	argument 1: the world heading, in radians, the calling actor turns to (an ACT form: the named actor), the scripts' getdestrotangzx_227(0) or a literal	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	ルルチェ	talkterm	4	0x4818C	3225	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_y01	override_actor	init	1	0x48190	3241	-	set_force_ignore_timestop	1	-	-	-	-	-		01 verb-table.tsv
+rsn_y01	override_actor	init	1	0x48190	3241	-	set_force_ignore_timestop	1	argument 1: whether the calling actor keeps running through a time stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	override_actor	init	2	0x48193	3242	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_y01	override_actor	乗っ取り処理	1	0x48197	3247	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rsn_y01	override_actor	乗っ取り処理	2	0x481A3	3248	-	aturn	file_var_s23_1, file_var_s23_2, file_var_s23_3	argument 1: the x of the world point the calling actor turns its body and head to face (an ACT form: the named actor) / argument 2: the height of the point / argument 3: the z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11121,7 +11121,7 @@ rsn_y01	コンパネキー宝壺	daiji_box_bind	1	0x481CA	3275	-	modelread	0x030
 rsn_y01	コンパネキー宝壺	daiji_box_bind	2	0x481D0	3276	-	modelreadsync	0x03000006	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	コンパネキー宝壺	daiji_box_bind	3	0x481D6	3277	-	stdmotionread	0	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	コンパネキー宝壺	daiji_box_bind	4	0x481D9	3278	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_y01	コンパネキー宝壺	daiji_box_bind	5	0x481DF	3279	-	set_talk_wituout_hide_status	1	-	-	-	-	-		01 verb-table.tsv
+rsn_y01	コンパネキー宝壺	daiji_box_bind	5	0x481DF	3279	-	set_talk_wituout_hide_status	1	argument 1: whether the calling actor's talks leave the world running	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	コンパネキー宝壺	daiji_box_bind	6	0x481EB	3280	-	setpos	123.900002, -13.0000114, 248.800003	this actor, placed at (123.900002, -13.0000114, 248.800003)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rsn_y01	コンパネキー宝壺	daiji_box_bind	7	0x481F1	3281	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 rsn_y01	コンパネキー宝壺	daiji_box_bind	8	0x481F7	3282	-	talkang	6.28318548	argument 1: the calling actor's talk half-angle in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11232,8 +11232,8 @@ rsn_y01	警報状態	警報状態	6	0x48458	3491	-	animeplay	105	argument 1: the
 rsn_y01	警報状態	警報状態	7	0x4845E	3492	-	store	local_var_s28f0_2 = 1	variable local_var_s28f0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_y01	警報状態	警報状態	8	0x48464	3493	-	store	local_var_s28f0_1 = 1	variable local_var_s28f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_y01	警報状態	警報状態	9	0x4846E	3494	-	if	not (eventsoundisplay(scratch2_var_6))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_y01	警報状態	警報状態	10	0x48474	3496	not (eventsoundisplay(scratch2_var_6))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_y01	警報状態	警報状態	11	0x4847D	3497	not (eventsoundisplay(scratch2_var_6))	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_y01	警報状態	警報状態	10	0x48474	3496	not (eventsoundisplay(scratch2_var_6))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_y01	警報状態	警報状態	11	0x4847D	3497	not (eventsoundisplay(scratch2_var_6))	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	警報状態	警報状態	12	0x48489	3499	-	for	regI1 = 0, regI1 < 30, regI1 = (regI1 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_y01	警報状態	警報状態	13	0x4849B	3501	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass	if	scratch2_var_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_y01	警報状態	警報状態	14	0x4849E	3503	loop from regI1 = 0 while regI1 < 30, then regI1 = (regI1 + 1) each pass; scratch2_var_2	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11256,9 +11256,9 @@ rsn_y01	警報状態	警報状態	30	0x48526	3528	not (scratch2_var_2); loop fro
 rsn_y01	警報状態	警報状態	31	0x4852C	3530	not (scratch2_var_2)	resetmapambient	-	the map's script ambient colour	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	警報状態	警報状態	32	0x48532	3531	not (scratch2_var_2)	if	not (scratch1_var_1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_y01	警報状態	警報状態	33	0x48539	3535	-	if	not (scratch2_var_2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_y01	警報状態	警報状態	34	0x4853C	3537	not (scratch2_var_2)	stopenvsound	-	-	-	-	-	-		01 verb-table.tsv
-rsn_y01	警報状態	警報状態	35	0x48542	3538	not (scratch2_var_2)	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
-rsn_y01	警報状態	警報状態	36	0x4854B	3539	not (scratch2_var_2)	envsoundtrans	0, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_y01	警報状態	警報状態	34	0x4853C	3537	not (scratch2_var_2)	stopenvsound	-	the map's weather ambience only	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_y01	警報状態	警報状態	35	0x48542	3538	not (scratch2_var_2)	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_y01	警報状態	警報状態	36	0x4854B	3539	not (scratch2_var_2)	envsoundtrans	0, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	警報状態	警報状態	37	0x48551	3540	not (scratch2_var_2)	animestop	105	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	警報状態	警報状態	38	0x48557	3542	-	store	scratch2_var_2 = 0	variable scratch2_var_2 (scratch2 u_char@0x80)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_y01	警報状態	警報状態	39	0x4855D	3543	-	store	scratch1_var_6 = 0	variable scratch1_var_6 (scratch1 short@0x2a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -11279,7 +11279,7 @@ rsn_y01	警報状態	警報状態	53	0x485B1	3557	-	store	scratch1_var_20 = 0	va
 rsn_y01	警報状態	警報状態	54	0x485B7	3558	-	store	file_var_s28_1 = 1	variable file_var_s28_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_y01	警報状態	警報状態	55	0x485BD	3559	-	store	file_var_s28_2 = 0	variable file_var_s28_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_y01	警報状態	警報状態	56	0x485C0	3560	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_y01	警報状態	ＳＥストップ	1	0x485C4	3565	-	changeenvsoundweather	1	-	-	-	-	-		01 verb-table.tsv
+rsn_y01	警報状態	ＳＥストップ	1	0x485C4	3565	-	changeenvsoundweather	1	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_y01	警報状態	ＳＥストップ	2	0x485C7	3566	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_y01	警報時間	init	1	0x485C8	3585	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_y01	警報時間	警報状態	1	0x485C9	3590	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12958,7 +12958,7 @@ rsn_a0100	ボイス	発音	32	0x493E4	787	file_var_s0_2 = 5	voicestandby	6	argum
 rsn_a0100	ボイス	発音	33	0x493EA	788	file_var_s0_2 = 5	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_a0100	ボイス	発音	34	0x493F3	789	file_var_s0_2 = 5	voiceplay_28b	22, 6	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0100	ボイス	発音	35	0x493F9	790	file_var_s0_2 = 5	wait	40	-	-	40 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_a0100	ボイス	発音	36	0x493FF	791	file_var_s0_2 = 5	voicestop	5	-	-	-	-	-		01 verb-table.tsv
+rsn_a0100	ボイス	発音	36	0x493FF	791	file_var_s0_2 = 5	voicestop	5	argument 1: the voice line to stop, the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0100	ボイス	発音	37	0x49402	792	file_var_s0_2 = 5	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0100	ボイス	発音	38	0x49405	793	-	case	6	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0100	ボイス	発音	39	0x49408	794	file_var_s0_2 = 6	voicestandby	9	argument 1: the voice line to prepare	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -12968,7 +12968,7 @@ rsn_a0100	ボイス	発音	42	0x4941D	797	file_var_s0_2 = 6	voicestandby	7	argum
 rsn_a0100	ボイス	発音	43	0x49423	798	file_var_s0_2 = 6	wait	3	-	-	3 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_a0100	ボイス	発音	44	0x4942C	799	file_var_s0_2 = 6	voiceplay_28b	18, 7	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0100	ボイス	発音	45	0x49432	800	file_var_s0_2 = 6	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_a0100	ボイス	発音	46	0x49438	801	file_var_s0_2 = 6	voicestop	6	-	-	-	-	-		01 verb-table.tsv
+rsn_a0100	ボイス	発音	46	0x49438	801	file_var_s0_2 = 6	voicestop	6	argument 1: the voice line to stop, the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0100	ボイス	発音	47	0x4943E	802	file_var_s0_2 = 6	voicestandby	8	argument 1: the voice line to prepare	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0100	ボイス	発音	48	0x49444	803	file_var_s0_2 = 6	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_a0100	ボイス	発音	49	0x4944D	804	file_var_s0_2 = 6	voiceplay_28b	19, 8	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -12984,7 +12984,7 @@ rsn_a0100	ボイス	発音	58	0x4947D	813	file_var_s0_2 = 7	voicestandby	0x01000
 rsn_a0100	ボイス	発音	59	0x49480	814	file_var_s0_2 = 7	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0100	ボイス	発音	60	0x49483	815	-	case	8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0100	ボイス	発音	61	0x49486	816	file_var_s0_2 = 8	wait	file_var_s0_6	-	-	frames held in file_var_s0_6	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_a0100	ボイス	発音	62	0x49495	817	file_var_s0_2 = 8	voiceplay_28c	23, 0x01000000, 192, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_a0100	ボイス	発音	62	0x49495	817	file_var_s0_2 = 8	voiceplay_28c	23, 0x01000000, 192, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0100	ボイス	発音	63	0x4949B	818	file_var_s0_2 = 8	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_a0100	ボイス	発音	64	0x494A4	819	file_var_s0_2 = 8	voiceplay_28b	18, 0x01000001	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0100	ボイス	発音	65	0x494AA	820	file_var_s0_2 = 8	wait	3	-	-	3 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -16963,7 +16963,7 @@ rsn_a0102	MovieCtrl	movie_play	6	0x44E2A	960	not (skipcheck(0))	movieplay	23	arg
 rsn_a0102	MovieCtrl	movie_play	7	0x44E36	961	not (skipcheck(0))	sysReq	1, MovieFrameCtrl::movie_play	actor `MovieFrameCtrl`	-	-	files MovieFrameCtrl::movie_play on channel 1; does not wait	MovieFrameCtrl.movie_play	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_a0102	MovieCtrl	movie_play	8	0x44E40	962	not (skipcheck(0))	sysReq	1, movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	files movieSkip監督::Skip監視 on channel 1; does not wait	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_a0102	MovieCtrl	movie_play	9	0x44E47	963	not (skipcheck(0))	sysReqwait	movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	waits until movieSkip監督::Skip監視 is no longer on its actor	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-rsn_a0102	MovieCtrl	movie_play	10	0x44E48	964	not (skipcheck(0))	movieplaysync	-	-	-	-	-	-		01 verb-table.tsv
+rsn_a0102	MovieCtrl	movie_play	10	0x44E48	964	not (skipcheck(0))	movieplaysync	-	the movie now playing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	MovieCtrl	movie_play	11	0x44E4B	965	not (skipcheck(0))	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	MovieCtrl	movie_play	12	0x44E4E	966	not (skipcheck(0))	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	MovieCtrl	movie_play	13	0x44E57	967	not (skipcheck(0))	sysFreqcancel2_575	MovieFrameCtrl, 0	actor `MovieFrameCtrl` (this script) / argument 1: the actor whose requests are cancelled, an ordinal of the calling script's manager (0x00264010; a negative value the controlled character), which the listings print as the actor's name / argument 2: the channel bound	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -17063,7 +17063,7 @@ rsn_a0102	movieSkip監督	Skip監視	1	0x45048	1162	-	store	file_var_s8_1 = 0	va
 rsn_a0102	movieSkip監督	Skip監視	2	0x4504E	1163	-	store	local_var_s12f1_1 = 0	variable local_var_s12f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_a0102	movieSkip監督	Skip監視	3	0x45054	1164	-	store	local_var_s12f1_2 = 0	variable local_var_s12f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_a0102	movieSkip監督	Skip監視	4	0x45057	1165	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_a0102	movieSkip監督	Skip監視	5	0x45057	1166	-	padt	-	result stored in local_var_s12f1_3	-	-	-	-		01 verb-table.tsv
+rsn_a0102	movieSkip監督	Skip監視	5	0x45057	1166	-	padt	-	result stored in local_var_s12f1_3; the buttons newly pressed this game frame	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	6	0x4505D	1167	-	getmoviestatus	-	result stored in local_var_s12f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	7	0x4506A	1168	-	if	local_var_s12f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0102	movieSkip監督	Skip監視	8	0x45074	1170	local_var_s12f1_4 == 3	if	local_var_s12f1_3 & 8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -17080,14 +17080,14 @@ rsn_a0102	movieSkip監督	Skip監視	18	0x450C1	1187	local_var_s12f1_4 == 3; loc
 rsn_a0102	movieSkip監督	Skip監視	19	0x450C4	1188	local_var_s12f1_4 == 3; local_var_s12f1_3 & 8; local_var_s12f1_1 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0102	movieSkip監督	Skip監視	20	0x450E2	1191	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8)	else if	(local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0102	movieSkip監督	Skip監視	21	0x450EB	1193	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	sebsoundplay	0, 2	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_a0102	movieSkip監督	Skip監視	22	0x450F4	1194	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	straightpcmtrans	29, 0	-	-	-	-	-		01 verb-table.tsv
+rsn_a0102	movieSkip監督	Skip監視	22	0x450F4	1194	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	straightpcmtrans	29, 0	argument 1: ignored / argument 2: ignored, as argument 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	23	0x450FA	1195	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	24	0x45103	1196	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	fadeout_d0	2, 15	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	25	0x45109	1197	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	fadesync_d3	2	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	26	0x4510C	1198	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	27	0x4510F	1199	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	getmoviestatus	-	result stored in local_var_s12f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	28	0x4511C	1200	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	if	local_var_s12f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_a0102	movieSkip監督	Skip監視	29	0x4511F	1202	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1; local_var_s12f1_4 == 3	moviecancel	-	-	-	-	-	-		01 verb-table.tsv
+rsn_a0102	movieSkip監督	Skip監視	29	0x4511F	1202	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1; local_var_s12f1_4 == 3	moviecancel	-	the movie now playing, stopped and ended	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	30	0x45122	1204	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	31	0x4512B	1205	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	fadeout_d0	0, 0	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	movieSkip監督	Skip監視	32	0x45134	1206	local_var_s12f1_4 == 3; not (local_var_s12f1_3 & 8); (local_var_s12f1_3 & get_pad_ok()) and local_var_s12f1_1 == 1	fadein_d2	2, 0	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -17754,7 +17754,7 @@ rsn_b0100	Director	main	60	0x43F47	119	-	startscene	0	scene cut 0, reported to t
 rsn_b0100	Director	main	61	0x43F4D	120	-	store	scratch1_var_2 = 0	variable scratch1_var_2 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b0100	Director	main	62	0x43F59	121	-	sysReq	1, EventLightActor::setEventLight	actor `EventLightActor`	-	-	files EventLightActor::setEventLight on channel 1; does not wait	EventLightActor.setEventLight	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0100	Director	main	63	0x43F5D	122	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-rsn_b0100	Director	main	64	0x43F60	123	-	partystdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
+rsn_b0100	Director	main	64	0x43F60	123	-	partystdmotiondispose	-	the standard-motion lanes of the four party roster members, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	65	0x43F66	124	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	66	0x43F6C	125	-	maskopenfast	0	argument 1: popped and ignored (304 of the 305 calls pass 0). The verb opens the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	67	0x43F6F	126	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -17804,7 +17804,7 @@ rsn_b0100	Director	main	110	0x44078	169	-	startspotsound	-	the map's sound emitt
 rsn_b0100	Director	main	111	0x4407E	170	-	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	112	0x44088	171	-	if	file_var_s0_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b0100	Director	main	113	0x44091	173	file_var_s0_1 == 0	if	not (skipcheck(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_b0100	Director	main	114	0x4409D	175	file_var_s0_1 == 0; not (skipcheck(0))	envsoundtrans	60, 32	-	-	-	-	-		01 verb-table.tsv
+rsn_b0100	Director	main	114	0x4409D	175	file_var_s0_1 == 0; not (skipcheck(0))	envsoundtrans	60, 32	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	115	0x440A9	177	file_var_s0_1 == 0	sysReq	1, EV_setambient::start	actor `EV_setambient`	-	-	files EV_setambient::start on channel 1; does not wait	EV_setambient.start	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0100	Director	main	116	0x440B0	179	-	startscene_4b3	1, -1	argument 1: the scene number n / argument 2: the loading flag 0x022C253D after the scene start	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	117	0x440B6	180	-	store	scratch1_var_2 = 1	variable scratch1_var_2 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -18086,7 +18086,7 @@ rsn_b0100	Director	main	392	0x447D4	503	-	store	scratch1_var_2 = 11	variable scr
 rsn_b0100	Director	main	393	0x447E0	504	-	sysReq	1, EventLightActor::setEventLight	actor `EventLightActor`	-	-	files EventLightActor::setEventLight on channel 1; does not wait	EventLightActor.setEventLight	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0100	Director	main	394	0x447E4	505	-	sysReqall	1, reqArr11	actor `Camera`, actor `Sound`, actor `Van`, actor `Lar`, actor `Pnr`	-	-	files each pair of Camera::cut011, Sound::cut011, Van::cut011, Lar::cut011, Pnr::cut011 on channel 1; does not wait	Camera.cut011, Sound.cut011, Van.cut011, Lar.cut011, Pnr.cut011	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0100	Director	main	395	0x447EA	506	-	motiondispose	2	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_b0100	Director	main	396	0x447F9	507	-	voiceplay_28c	8, 0x03000000, 50, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b0100	Director	main	396	0x447F9	507	-	voiceplay_28c	8, 0x03000000, 50, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	397	0x44802	508	-	sysReqwait	Mes::m013	actor `Mes`	-	-	waits until Mes::m013 is no longer on its actor	Mes.m013	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0100	Director	main	398	0x4480C	509	-	sysReq	1, Mes::m014	actor `Mes`	-	-	files Mes::m014 on channel 1; does not wait	Mes.m014	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0100	Director	main	399	0x44810	510	-	wait	75	-	-	75 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -18200,7 +18200,7 @@ rsn_b0100	Director	main	506	0x44B0D	632	-	sysReqwait	Music::cut014	actor `Music`
 rsn_b0100	Director	main	507	0x44B0E	633	-	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	508	0x44B18	634	-	if	file_var_s0_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b0100	Director	main	509	0x44B21	636	file_var_s0_1 == 0	sysReqwait	EV_setambient::start	actor `EV_setambient`	-	-	waits until EV_setambient::start is no longer on its actor	EV_setambient.start	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-rsn_b0100	Director	main	510	0x44B28	637	file_var_s0_1 == 0	envsoundtrans	40, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_b0100	Director	main	510	0x44B28	637	file_var_s0_1 == 0	envsoundtrans	40, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Director	main	511	0x44B31	639	-	sysReqwait	Van::cut014	actor `Van`	-	-	waits until Van::cut014 is no longer on its actor	Van.cut014	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0100	Director	main	512	0x44B35	640	-	sysReqall	7, reqArr16	actor `Camera`, actor `Sound`, actor `Van`, actor `Lar`, actor `Pnr`, actor `Ash`, actor `Wsr`, actor `Bsh`, actor `Blf`, actor `Frn`, actor `PC0`, actor `PC1`, actor `PC2`, actor `PC3`, actor `Stone`	-	-	files each pair of Camera::clear, Sound::clear, Van::clear, Lar::clear, Pnr::clear, Ash::clear, Wsr::clear, Bsh::clear, Blf::clear, Frn::clear, PC0::clear, PC1::clear, PC2::clear, PC3::clear, Stone::clear on channel 7; does not wait	Camera.clear, Sound.clear, Van.clear, Lar.clear, Pnr.clear, Ash.clear, Wsr.clear, Bsh.clear, Blf.clear, Frn.clear, PC0.clear, PC1.clear, PC2.clear, PC3.clear, Stone.clear	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0100	Director	main	513	0x44B3E	641	-	sysReqwait	Van::clear	actor `Van`	-	-	waits until Van::clear is no longer on its actor	Van.clear	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -19115,7 +19115,7 @@ rsn_b0100	Van	cut014	3	0x46449	2082	-	usemapid	1	argument 1: whether the calling
 rsn_b0100	Van	cut014	4	0x4644C	2083	-	charcachedispose	-	the model holds of the calling script's manager (actor byte +0x15)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Van	cut014	5	0x4644F	2084	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Van	cut014	6	0x46455	2085	-	wait	18	-	-	18 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_b0100	Van	cut014	7	0x46458	2086	-	partystdmotionrecover	-	-	-	-	-	-		01 verb-table.tsv
+rsn_b0100	Van	cut014	7	0x46458	2086	-	partystdmotionrecover	-	the four party roster members' models, rebuilt one at a time	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0100	Van	cut014	8	0x4645B	2087	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b0100	Lar	init	1	0x4645C	2096	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b0100	Lar	ready	1	0x46460	2101	-	bindp2	0x03000009	model c16 (section 12 entry 9, bound id 0x630010)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
@@ -19615,7 +19615,7 @@ rsn_b0180	ＡＤ	イベント先読み	3	0x00BCC	172	-	motionread	1	motion 1 of 
 rsn_b0180	ＡＤ	イベント先読み	4	0x00BD2	173	-	motionreadsync	1	motion 1	-	-	waits while motion 1 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 rsn_b0180	ＡＤ	イベント先読み	5	0x00BD5	174	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b0180	ＡＤ	準備	1	0x00BD9	179	-	startscene	100	scene cut 100, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
-rsn_b0180	ＡＤ	準備	2	0x00BDF	180	-	unkCall_5c4	4	-	-	-	-	-		01 verb-table.tsv
+rsn_b0180	ＡＤ	準備	2	0x00BDF	180	-	unkCall_5c4	4	argument 1: the count the marked event slot's queued events are raised to, plus one	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b0180	ＡＤ	準備	3	0x00BEB	181	-	sysReqew	1, ＰＣ管理::パーティ初期設定	actor `ＰＣ管理`	-	-	files ＰＣ管理::パーティ初期設定 on channel 1; waits until it ends	ＰＣ管理.パーティ初期設定	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0180	ＡＤ	準備	4	0x00BEF	182	-	sysReqall	1, reqArr0	actor `ボイス`, actor `ウォースラ_BND`, actor `操作キャラ_BND`	-	-	files each pair of ボイス::イベント準備, ウォースラ_BND::イベント準備, 操作キャラ_BND::イベント準備 on channel 1; does not wait	ボイス.イベント準備, ウォースラ_BND.イベント準備, 操作キャラ_BND.イベント準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_b0180	ＡＤ	準備	5	0x00BF2	183	-	sysReqwaitall	reqArr0	actor `ボイス`, actor `ウォースラ_BND`, actor `操作キャラ_BND`	-	-	waits until ボイス::イベント準備, ウォースラ_BND::イベント準備, 操作キャラ_BND::イベント準備 are no longer on their actors	ボイス.イベント準備, ウォースラ_BND.イベント準備, 操作キャラ_BND.イベント準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -20900,7 +20900,7 @@ rsn_d0180	Director	main	50	0x432F5	97	-	settrapshowstatus	0	all sixteen trap mar
 rsn_d0180	Director	main	51	0x43301	98	-	setmapwind	0, 0, 0	argument 1: the wind preset (1 to 6; 0 copies none) / argument 2: the sun's azimuth in sectors of 22.5 degrees / argument 3: the sun's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	52	0x43307	99	-	setcharclipall	0	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	53	0x43316	100	-	setposparty	134.230255, -13.0000067, 234.159042, 0	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_d0180	Director	main	54	0x43319	101	-	partystdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
+rsn_d0180	Director	main	54	0x43319	101	-	partystdmotiondispose	-	the standard-motion lanes of the four party roster members, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	55	0x4331F	102	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_d0180	Director	main	56	0x43325	103	-	modelread	0x03000000	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	57	0x4332B	104	-	modelread	0x03000001	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -20956,15 +20956,15 @@ rsn_d0180	Director	main	106	0x4345B	153	-	sysReqall	1, reqArr1	actor `Camera`, a
 rsn_d0180	Director	main	107	0x43461	154	-	voicestandby	0	argument 1: the voice line to prepare	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	108	0x43467	155	-	wait	33	-	-	33 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_d0180	Director	main	109	0x43470	156	-	if	not (skipcheck(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_d0180	Director	main	110	0x43479	158	not (skipcheck(0))	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_d0180	Director	main	111	0x43482	159	not (skipcheck(0))	envsoundtrans	0, 80	-	-	-	-	-		01 verb-table.tsv
+rsn_d0180	Director	main	110	0x43479	158	not (skipcheck(0))	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_d0180	Director	main	111	0x43482	159	not (skipcheck(0))	envsoundtrans	0, 80	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	112	0x43488	160	not (skipcheck(0))	store	file_var_s0_1 = 2	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_d0180	Director	main	113	0x4348E	162	-	wait	7	-	-	7 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_d0180	Director	main	114	0x43498	163	-	if	file_var_s0_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_d0180	Director	main	115	0x434A4	165	file_var_s0_2 == 0	sysReq	3, EV_setambient::start	actor `EV_setambient`	-	-	files EV_setambient::start on channel 3; does not wait	EV_setambient.start	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_d0180	Director	main	116	0x434A8	167	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_d0180	Director	main	117	0x434B1	168	-	if	not (skipcheck(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_d0180	Director	main	118	0x434BD	170	not (skipcheck(0))	envsoundtrans	90, 32	-	-	-	-	-		01 verb-table.tsv
+rsn_d0180	Director	main	118	0x434BD	170	not (skipcheck(0))	envsoundtrans	90, 32	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	119	0x434C3	172	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_d0180	Director	main	120	0x434C6	173	-	sysReqwaitall	reqArr1	actor `Camera`, actor `Van`, actor `Frn`, actor `Blf`, actor `Bsh`, actor `Ash`, actor `Wsr`	-	-	waits until Camera::cut001, Van::cut001, Frn::cut001, Blf::cut001, Bsh::cut001, Ash::cut001, Wsr::cut001 are no longer on their actors	Camera.cut001, Van.cut001, Frn.cut001, Blf.cut001, Bsh.cut001, Ash.cut001, Wsr.cut001	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_d0180	Director	main	121	0x434CC	174	-	startscene	2	scene cut 2, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
@@ -21090,10 +21090,10 @@ rsn_d0180	Director	main	240	0x4381D	297	-	startenvsoundall	-	turns the map's amb
 rsn_d0180	Director	main	241	0x43829	298	-	sysReq	5, Music::clear_music	actor `Music`	-	-	files Music::clear_music on channel 5; does not wait	Music.clear_music	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_d0180	Director	main	242	0x43830	299	-	sysReqwait	Music::clear_music	actor `Music`	-	-	waits until Music::clear_music is no longer on its actor	Music.clear_music	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_d0180	Director	main	243	0x43838	300	-	if	file_var_s0_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_d0180	Director	main	244	0x4383E	302	file_var_s0_1 == 1	changeenvsoundweather	2	-	-	-	-	-		01 verb-table.tsv
-rsn_d0180	Director	main	245	0x43847	303	file_var_s0_1 == 1	envsoundtrans	20, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_d0180	Director	main	244	0x4383E	302	file_var_s0_1 == 1	changeenvsoundweather	2	argument 1: the weather selection (1 to 3) whose ambience starts	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_d0180	Director	main	245	0x43847	303	file_var_s0_1 == 1	envsoundtrans	20, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	246	0x43854	305	not (file_var_s0_1 == 1)	else if	file_var_s0_1 == 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_d0180	Director	main	247	0x4385D	307	not (file_var_s0_1 == 1); file_var_s0_1 == 2	envsoundtrans	20, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_d0180	Director	main	247	0x4385D	307	not (file_var_s0_1 == 1); file_var_s0_1 == 2	envsoundtrans	20, 127	argument 1: the frames the ambience's volume change takes / argument 2: the ambience's new volume, 0 to 127 (0x002DF1E0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	248	0x43863	309	-	modeldispose	0x03000000	argument 1: the model to release	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	249	0x43869	310	-	modeldispose	0x03000001	argument 1: the model to release	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Director	main	250	0x4386F	311	-	modeldispose	0x03000002	argument 1: the model to release	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -21599,7 +21599,7 @@ rsn_d0180	Ash	cut005	3	0x4453D	1187	-	motionloop	0	argument 1: whether the motio
 rsn_d0180	Ash	cut005	4	0x44543	1188	-	motionstartframe	40	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Ash	cut005	5	0x44549	1189	-	motionplay	0x14000000	animation 0 of motion 4 of `rsn_d0180.mot` (bytes 0x7C000, length 0xB8F0)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 rsn_d0180	Ash	cut005	6	0x4454F	1190	-	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_d0180	Ash	cut005	7	0x44552	1191	-	partystdmotionrecover	-	-	-	-	-	-		01 verb-table.tsv
+rsn_d0180	Ash	cut005	7	0x44552	1191	-	partystdmotionrecover	-	the four party roster members' models, rebuilt one at a time	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d0180	Ash	cut005	8	0x44555	1192	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_d0180	Wsr	init	1	0x44556	1201	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_d0180	Wsr	ready	1	0x4455A	1206	-	bindp2	0x03000006	model c19 (section 12 entry 6, bound id 0x630013)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
@@ -22789,13 +22789,13 @@ rsn_z0100	監督	リヴァイアサン艦橋にて	59	0x0263E	173	-	settrapshows
 rsn_z0100	監督	リヴァイアサン艦橋にて	60	0x02644	174	-	movieplay	12	argument 1: popped and not used	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	監督	リヴァイアサン艦橋にて	61	0x02650	175	-	sysReq	1, movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	files movieSkip監督::Skip監視 on channel 1; does not wait	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0100	監督	リヴァイアサン艦橋にて	62	0x02657	176	-	sysReqwait	movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	waits until movieSkip監督::Skip監視 is no longer on its actor	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-rsn_z0100	監督	リヴァイアサン艦橋にて	63	0x02658	177	-	movieplaysync	-	-	-	-	-	-		01 verb-table.tsv
+rsn_z0100	監督	リヴァイアサン艦橋にて	63	0x02658	177	-	movieplaysync	-	the movie now playing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	監督	リヴァイアサン艦橋にて	64	0x0265B	178	-	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	監督	リヴァイアサン艦橋にて	65	0x0265E	179	-	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	監督	リヴァイアサン艦橋にて	66	0x02668	180	-	if	file_var_s1_1 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0100	監督	リヴァイアサン艦橋にて	67	0x0266E	183	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	監督	リヴァイアサン艦橋にて	68	0x02678	184	-	if	file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0100	監督	リヴァイアサン艦橋にて	69	0x0267E	186	file_var_s1_1 == 1	skipexec	0	-	-	-	-	-		01 verb-table.tsv
+rsn_z0100	監督	リヴァイアサン艦橋にて	69	0x0267E	186	file_var_s1_1 == 1	skipexec	0	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	監督	リヴァイアサン艦橋にて	70	0x0268A	188	-	setmapwind	0, 6, 0	argument 1: the wind preset (1 to 6; 0 copies none) / argument 2: the sun's azimuth in sectors of 22.5 degrees / argument 3: the sun's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	監督	リヴァイアサン艦橋にて	71	0x02696	189	-	sysReqew	1, カメラ::カメラ00	actor `カメラ`	-	-	files カメラ::カメラ00 on channel 1; waits until it ends	カメラ.カメラ00	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0100	監督	リヴァイアサン艦橋にて	72	0x0269A	190	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -23564,12 +23564,12 @@ rsn_z0100	ボイス	v_A1	2	0x03CD2	1239	-	voiceplay_28b	12, 0x01000001	argument 
 rsn_z0100	ボイス	v_A1	3	0x03CD8	1240	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0100	ボイス	v_A2	1	0x03CDF	1245	-	voiceplay_28b	12, 0x01000003	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	ボイス	v_A2	2	0x03CE5	1246	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_z0100	ボイス	v_A2	3	0x03CEB	1247	-	voicestop	0x01000003	-	-	-	-	-		01 verb-table.tsv
+rsn_z0100	ボイス	v_A2	3	0x03CEB	1247	-	voicestop	0x01000003	argument 1: the voice line to stop, the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	ボイス	v_A2	4	0x03CF4	1248	-	voiceplay_28b	11, 0x01000004	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	ボイス	v_A2	5	0x03CFA	1249	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0100	ボイス	v_3	1	0x03D01	1254	-	voiceplay_28b	12, 0x01000005	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	ボイス	v_3	2	0x03D07	1255	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0100	ボイス	v_5	1	0x03D14	1260	-	voiceplay_28c	14, 0x01000006, 224, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_z0100	ボイス	v_5	1	0x03D14	1260	-	voiceplay_28c	14, 0x01000006, 224, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	ボイス	v_5	2	0x03D1A	1261	-	wait	35	-	-	35 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_z0100	ボイス	v_5	3	0x03D23	1262	-	voicepan	0x01000006, 64	-	-	-	-	-		01 verb-table.tsv
 rsn_z0100	ボイス	v_5	4	0x03D29	1263	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -23904,7 +23904,7 @@ rsn_z0100	movieSkip監督	Skip監視	1	0x044A5	1980	-	store	file_var_s1_1 = 0	va
 rsn_z0100	movieSkip監督	Skip監視	2	0x044AB	1981	-	store	local_var_s9f1_1 = 0	variable local_var_s9f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z0100	movieSkip監督	Skip監視	3	0x044B1	1982	-	store	local_var_s9f1_2 = 0	variable local_var_s9f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z0100	movieSkip監督	Skip監視	4	0x044B4	1983	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0100	movieSkip監督	Skip監視	5	0x044B4	1984	-	padt	-	result stored in local_var_s9f1_3	-	-	-	-		01 verb-table.tsv
+rsn_z0100	movieSkip監督	Skip監視	5	0x044B4	1984	-	padt	-	result stored in local_var_s9f1_3; the buttons newly pressed this game frame	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	6	0x044BA	1985	-	getmoviestatus	-	result stored in local_var_s9f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	7	0x044C7	1986	-	if	local_var_s9f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0100	movieSkip監督	Skip監視	8	0x044D1	1988	local_var_s9f1_4 == 3	if	local_var_s9f1_3 & 8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -23921,14 +23921,14 @@ rsn_z0100	movieSkip監督	Skip監視	18	0x0451E	2005	local_var_s9f1_4 == 3; loca
 rsn_z0100	movieSkip監督	Skip監視	19	0x04521	2006	local_var_s9f1_4 == 3; local_var_s9f1_3 & 8; local_var_s9f1_1 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0100	movieSkip監督	Skip監視	20	0x0453F	2009	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8)	else if	(local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0100	movieSkip監督	Skip監視	21	0x04548	2011	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	sebsoundplay	0, 2	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_z0100	movieSkip監督	Skip監視	22	0x04551	2012	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	straightpcmtrans	29, 0	-	-	-	-	-		01 verb-table.tsv
+rsn_z0100	movieSkip監督	Skip監視	22	0x04551	2012	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	straightpcmtrans	29, 0	argument 1: ignored / argument 2: ignored, as argument 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	23	0x04557	2013	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	24	0x04560	2014	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	fadeout_d0	2, 15	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	25	0x04566	2015	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	fadesync_d3	2	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	26	0x04569	2016	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	27	0x0456C	2017	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	getmoviestatus	-	result stored in local_var_s9f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	28	0x04579	2018	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	if	local_var_s9f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0100	movieSkip監督	Skip監視	29	0x0457C	2020	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1; local_var_s9f1_4 == 3	moviecancel	-	-	-	-	-	-		01 verb-table.tsv
+rsn_z0100	movieSkip監督	Skip監視	29	0x0457C	2020	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1; local_var_s9f1_4 == 3	moviecancel	-	the movie now playing, stopped and ended	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	30	0x0457F	2022	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	31	0x04588	2023	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	fadeout_d0	0, 0	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	movieSkip監督	Skip監視	32	0x04591	2024	local_var_s9f1_4 == 3; not (local_var_s9f1_3 & 8); (local_var_s9f1_3 & get_pad_ok()) and local_var_s9f1_1 == 1	fadein_d2	2, 0	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -25659,7 +25659,7 @@ rsn_z0101	監督	main	5	0x0D27D	44	-	sysDVAR	6, file_var_s0_4	none: the debug-va
 rsn_z0101	監督	main	6	0x0D284	45	-	sysDVAR	7, file_var_s0_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	監督	main	7	0x0D28B	46	-	sysDVAR	8, file_var_s0_6	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	監督	main	8	0x0D292	47	-	sysDVAR	10, file_var_s0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0101	監督	main	9	0x0D296	48	-	unkCall_5c2	2	-	-	-	-	-		01 verb-table.tsv
+rsn_z0101	監督	main	9	0x0D296	48	-	unkCall_5c2	2	argument 1: which add-motion table the characters' poses use	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	監督	main	10	0x0D2A2	49	-	sysReq	1, 背景曲::曲読込み	actor `背景曲`	-	-	files 背景曲::曲読込み on channel 1; does not wait	背景曲.曲読込み	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0101	監督	main	11	0x0D2A6	50	-	modelread	0x03000000	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	監督	main	12	0x0D2AC	51	-	modelread	0x03000001	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -26137,7 +26137,7 @@ rsn_z0101	監督	main	483	0x0E00C	534	-	sysReqwait	帝兵Ｃ::キャラ解除	ac
 rsn_z0101	監督	main	484	0x0E013	535	-	sysReqwait	ギース剣::キャラ準備	actor `ギース剣`	-	-	waits until ギース剣::キャラ準備 is no longer on its actor	ギース剣.キャラ準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0101	監督	main	485	0x0E014	536	-	showparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	監督	main	486	0x0E01D	537	-	sysReqwait	背景曲::曲Fout停止	actor `背景曲`	-	-	waits until 背景曲::曲Fout停止 is no longer on its actor	背景曲.曲Fout停止	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-rsn_z0101	監督	main	487	0x0E021	538	-	unkCall_5c2	0	-	-	-	-	-		01 verb-table.tsv
+rsn_z0101	監督	main	487	0x0E021	538	-	unkCall_5c2	0	argument 1: which add-motion table the characters' poses use	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	監督	main	488	0x0E027	539	-	setcharclipall	1	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	監督	main	489	0x0E031	540	-	if	getsummonmodebit() or getchocobomodebit()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	監督	main	490	0x0E038	542	getsummonmodebit() or getchocobomodebit()	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -27798,7 +27798,7 @@ rsn_z0101	フラン	配置c10	1	0x10D3D	3089	-	motionloopframe	0, -1	argument 1:
 rsn_z0101	フラン	配置c10	2	0x10D43	3090	-	motionstartframe	0	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	フラン	配置c10	3	0x10D49	3091	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	フラン	配置c10	4	0x10D4F	3092	-	motionplay	0x11000002	animation 2 of motion 1 of `rsn_z0101.mot` (bytes 0x800, length 0x415E0)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
-rsn_z0101	フラン	配置c10	5	0x10D55	3093	-	rlookatr	-0.52359879	-	-	-	-	-		01 verb-table.tsv
+rsn_z0101	フラン	配置c10	5	0x10D55	3093	-	rlookatr	-0.52359879	argument 1: the yaw of the calling actor's head look, as rlookatr_4bb's first argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	フラン	配置c10	6	0x10D58	3094	-	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	フラン	配置c10	7	0x10D5E	3095	-	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	フラン	配置c10	8	0x10D61	3096	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -27828,11 +27828,11 @@ rsn_z0101	フラン	配置c18	1	0x10E1A	3151	-	wait	15	-	-	15 frames	waits	-	res
 rsn_z0101	フラン	配置c18	2	0x10E1D	3152	-	bindhoff	-	the calling actor's head slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	フラン	配置c18	3	0x10E29	3153	-	setpos	40.8853226, 0, 45.7836266	this actor, placed at (40.8853226, 0, 45.7836266)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rsn_z0101	フラン	配置c18	4	0x10E2F	3154	-	dir	-2.82253194	this actor, turned to facing -2.82253194	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-rsn_z0101	フラン	配置c18	5	0x10E35	3155	-	rlookatr	-0.261799395	-	-	-	-	-		01 verb-table.tsv
+rsn_z0101	フラン	配置c18	5	0x10E35	3155	-	rlookatr	-0.261799395	argument 1: the yaw of the calling actor's head look, as rlookatr_4bb's first argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	フラン	配置c18	6	0x10E3B	3156	-	label	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	フラン	配置c18	7	0x10E3E	3157	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	フラン	配置c19	1	0x10E48	3162	-	dir	-2.88388801	this actor, turned to facing -2.88388801	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-rsn_z0101	フラン	配置c19	2	0x10E4E	3163	-	rlookatr	0	-	-	-	-	-		01 verb-table.tsv
+rsn_z0101	フラン	配置c19	2	0x10E4E	3163	-	rlookatr	0	argument 1: the yaw of the calling actor's head look, as rlookatr_4bb's first argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	フラン	配置c19	3	0x10E54	3164	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	フラン	配置c19	4	0x10E5A	3165	-	wait	80	-	-	80 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_z0101	フラン	配置c19	5	0x10E60	3166	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -28043,7 +28043,7 @@ rsn_z0101	パンネロ	配置c10	3	0x113CF	3558	-	motionloopframe	0, -1	argument
 rsn_z0101	パンネロ	配置c10	4	0x113D5	3559	-	motionstartframe	0	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	パンネロ	配置c10	5	0x113DB	3560	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	パンネロ	配置c10	6	0x113E1	3561	-	motionplay	0x11000006	animation 6 of motion 1 of `rsn_z0101.mot` (bytes 0x800, length 0x415E0)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
-rsn_z0101	パンネロ	配置c10	7	0x113E7	3562	-	rlookatr	-0.52359879	-	-	-	-	-		01 verb-table.tsv
+rsn_z0101	パンネロ	配置c10	7	0x113E7	3562	-	rlookatr	-0.52359879	argument 1: the yaw of the calling actor's head look, as rlookatr_4bb's first argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	パンネロ	配置c10	8	0x113F0	3563	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	パンネロ	配置c11	1	0x11406	3568	-	setpos	41.1399345, 0, 44.9515266	this actor, placed at (41.1399345, 0, 44.9515266)	-	-	-	-	resolved	0x0034EBC0 (read here)
 rsn_z0101	パンネロ	配置c11	2	0x1140C	3569	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -28059,7 +28059,7 @@ rsn_z0101	パンネロ	配置c13	4	0x1145C	3586	-	return	0	-	-	-	-	-	resolved	01
 rsn_z0101	パンネロ	配置c14	1	0x1146F	3591	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	パンネロ	配置c15	1	0x11476	3596	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	パンネロ	配置c16	1	0x11483	3601	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0101	パンネロ	配置c17	1	0x11487	3606	-	rlookatr	0.17453292	-	-	-	-	-		01 verb-table.tsv
+rsn_z0101	パンネロ	配置c17	1	0x11487	3606	-	rlookatr	0.17453292	argument 1: the yaw of the calling actor's head look, as rlookatr_4bb's first argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	パンネロ	配置c17	2	0x11490	3607	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	パンネロ	配置c18	1	0x114A0	3612	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	パンネロ	配置c19	1	0x114AA	3617	-	dir	-2.57708693	this actor, turned to facing -2.57708693	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -28069,7 +28069,7 @@ rsn_z0101	パンネロ	配置c19	4	0x114BF	3620	-	motionloop	1	argument 1: wheth
 rsn_z0101	パンネロ	配置c19	5	0x114C5	3621	-	motionplay	0x15000009	animation 9 of motion 5 of `rsn_z0101.mot` (bytes 0x12D800, length 0x7E540)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 rsn_z0101	パンネロ	配置c19	6	0x114CB	3622	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	パンネロ	配置c19	7	0x114D1	3623	-	wait	60	-	-	60 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_z0101	パンネロ	配置c19	8	0x114D7	3624	-	rlookatr	0.17453292	-	-	-	-	-		01 verb-table.tsv
+rsn_z0101	パンネロ	配置c19	8	0x114D7	3624	-	rlookatr	0.17453292	argument 1: the yaw of the calling actor's head look, as rlookatr_4bb's first argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	パンネロ	配置c19	9	0x114E0	3625	-	lookatrt	0, 200	argument 1: the yaw, in radians, the calling actor's head turns to in the angle form of the head look / argument 2: the frames the head turn takes (the scripts write it as an integer; the float pop converts it)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	パンネロ	配置c19	10	0x114E3	3626	-	goto	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	パンネロ	配置c19	11	0x114E9	3627	-	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -29246,7 +29246,7 @@ rsn_z0200	監督	init	1	0x03961	215	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-
 rsn_z0200	監督	砂漠の牙	1	0x03965	220	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 rsn_z0200	監督	砂漠の牙	2	0x0396B	221	-	store	scratch1_var_2 = 0	variable scratch1_var_2 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z0200	監督	砂漠の牙	3	0x03977	222	-	sysReq	1, EventLightActor::setEventLight	actor `EventLightActor`	-	-	files EventLightActor::setEventLight on channel 1; does not wait	EventLightActor.setEventLight	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-rsn_z0200	監督	砂漠の牙	4	0x03978	223	-	partystdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	監督	砂漠の牙	4	0x03978	223	-	partystdmotiondispose	-	the standard-motion lanes of the four party roster members, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	5	0x0397E	224	-	sysReqall	1, reqArr2	actor `PC_00`, actor `PC_01`, actor `PC_02`, actor `PC_03`	-	-	files each pair of PC_00::乗っ取り, PC_01::乗っ取り, PC_02::乗っ取り, PC_03::乗っ取り on channel 1; does not wait	PC_00.乗っ取り, PC_01.乗っ取り, PC_02.乗っ取り, PC_03.乗っ取り	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0200	監督	砂漠の牙	6	0x03984	225	-	sysReqall	2, reqArr3	actor `VAN`, actor `ASHE`, actor `BASH`, actor `ウォースラ`, actor `BALFLAIR`, actor `FRAN`, actor `帝国兵A`, actor `帝国兵B`, actor `帝国兵C`, actor `ギース`, actor `暁の断片`, actor `手枷1`, actor `手枷2`, actor `手枷3`, actor `手枷4`, actor `手枷5`, actor `手枷6`, actor `ダミーカメラ`	-	-	files each pair of VAN::バインドオン, ASHE::バインドオン, BASH::バインドオン, ウォースラ::バインドオン, BALFLAIR::バインドオン, FRAN::バインドオン, 帝国兵A::バインドオン, 帝国兵B::バインドオン, 帝国兵C::バインドオン, ギース::バインドオン, 暁の断片::バインドオン, 手枷1::バインドオン, 手枷2::バインドオン, 手枷3::バインドオン, 手枷4::バインドオン, 手枷5::バインドオン, 手枷6::バインドオン, ダミーカメラ::バインドオン on channel 2; does not wait	VAN.バインドオン, ASHE.バインドオン, BASH.バインドオン, ウォースラ.バインドオン, BALFLAIR.バインドオン, FRAN.バインドオン, 帝国兵A.バインドオン, 帝国兵B.バインドオン, 帝国兵C.バインドオン, ギース.バインドオン, 暁の断片.バインドオン, 手枷1.バインドオン, 手枷2.バインドオン, 手枷3.バインドオン, 手枷4.バインドオン, 手枷5.バインドオン, 手枷6.バインドオン, ダミーカメラ.バインドオン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0200	監督	砂漠の牙	7	0x0398D	226	-	sysReqwait	VAN::バインドオン	actor `VAN`	-	-	waits until VAN::バインドオン is no longer on its actor	VAN.バインドオン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -29284,7 +29284,7 @@ rsn_z0200	監督	砂漠の牙	38	0x03A5D	258	not (skipcheck(0))	fadein	0	the scr
 rsn_z0200	監督	砂漠の牙	39	0x03A69	259	not (skipcheck(0))	sysReq	1, ムービーメッセージ::メッセージ監視	actor `ムービーメッセージ`	-	-	files ムービーメッセージ::メッセージ監視 on channel 1; does not wait	ムービーメッセージ.メッセージ監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0200	監督	砂漠の牙	40	0x03A73	260	not (skipcheck(0))	sysReq	1, movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	files movieSkip監督::Skip監視 on channel 1; does not wait	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0200	監督	砂漠の牙	41	0x03A7A	261	not (skipcheck(0))	sysReqwait	movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	waits until movieSkip監督::Skip監視 is no longer on its actor	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-rsn_z0200	監督	砂漠の牙	42	0x03A7B	262	not (skipcheck(0))	movieplaysync	-	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	監督	砂漠の牙	42	0x03A7B	262	not (skipcheck(0))	movieplaysync	-	the movie now playing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	43	0x03A7E	263	not (skipcheck(0))	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	44	0x03A81	264	not (skipcheck(0))	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	45	0x03A8A	265	not (skipcheck(0))	sysFreqcancel2_575	ムービーメッセージ, 0	actor `ムービーメッセージ` (this script) / argument 1: the actor whose requests are cancelled, an ordinal of the calling script's manager (0x00264010; a negative value the controlled character), which the listings print as the actor's name / argument 2: the channel bound	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -29304,7 +29304,7 @@ rsn_z0200	監督	砂漠の牙	58	0x03ADF	279	not (skipcheck(0)); file_var_s1_1 !
 rsn_z0200	監督	砂漠の牙	59	0x03AE5	280	not (skipcheck(0)); file_var_s1_1 != 0	musicclear	-1	argument 1: the music track whose track slot is emptied; a negative value is the current track (0x002DEC00), and with none current the verb empties all four slots (0x00360D70, as musicclearall)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	60	0x03AEB	283	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	61	0x03AFC	284	-	if	skipcheck(0) or file_var_s1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0200	監督	砂漠の牙	62	0x03B02	286	skipcheck(0) or file_var_s1_1 == 1	skipexec	0	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	監督	砂漠の牙	62	0x03B02	286	skipcheck(0) or file_var_s1_1 == 1	skipexec	0	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	63	0x03B0E	288	-	setmapwind	5, 6, 0	argument 1: the wind preset (1 to 6; 0 copies none) / argument 2: the sun's azimuth in sectors of 22.5 degrees / argument 3: the sun's elevation class	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	64	0x03B11	289	-	startenvsound	-	the area's weather ambience	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	65	0x03B14	290	-	stopspotsound	-	the map's sound emitters (the pack's SP1 block)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -29594,7 +29594,7 @@ rsn_z0200	監督	砂漠の牙	348	0x0430B	573	-	sysReq	2, カメラ::カメラ22
 rsn_z0200	監督	砂漠の牙	349	0x0430F	574	-	sysReqall	2, reqArr29	actor `SE`, actor `BASH`, actor `ウォースラ`, actor `BALFLAIR`, actor `帝国兵A`, actor `帝国兵B`, actor `帝国兵C`	-	-	files each pair of SE::cut_22, BASH::cut_22, ウォースラ::cut_22, BALFLAIR::cut_22, 帝国兵A::cut_22, 帝国兵B::cut_22, 帝国兵C::cut_22 on channel 2; does not wait	SE.cut_22, BASH.cut_22, ウォースラ.cut_22, BALFLAIR.cut_22, 帝国兵A.cut_22, 帝国兵B.cut_22, 帝国兵C.cut_22	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0200	監督	砂漠の牙	350	0x0431B	575	-	sysReq	1, メッセージ::メッセージ25	actor `メッセージ`	-	-	files メッセージ::メッセージ25 on channel 1; does not wait	メッセージ.メッセージ25	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0200	監督	砂漠の牙	351	0x0431F	576	-	wait	140	-	-	140 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_z0200	監督	砂漠の牙	352	0x04322	577	-	partystdmotionrecover	-	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	監督	砂漠の牙	352	0x04322	577	-	partystdmotionrecover	-	the four party roster members' models, rebuilt one at a time	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	353	0x04325	578	-	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	監督	砂漠の牙	354	0x0432B	579	-	fadeout	10	the screen fade, out	-	10 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 rsn_z0200	監督	砂漠の牙	355	0x0432E	580	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30597,7 +30597,7 @@ rsn_z0200	ボイス	v_18	4	0x05C79	2082	-	voiceplay_b5	0x03000008, 127, 127	-	-	
 rsn_z0200	ボイス	v_18	5	0x05C7F	2083	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_z0200	ボイス	v_18	6	0x05C88	2084	-	voiceplay_28b	18, 0x03000009	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	ボイス	v_18	7	0x05C8E	2085	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0200	ボイス	v_19	1	0x05C9B	2090	-	voiceplay_28c	20, 0x02000002, 127, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	ボイス	v_19	1	0x05C9B	2090	-	voiceplay_28c	20, 0x02000002, 127, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	ボイス	v_19	2	0x05CA1	2091	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_z0200	ボイス	v_19	3	0x05CAA	2092	-	voiceplay_28b	21, 0x02000000	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	ボイス	v_19	4	0x05CB0	2093	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -31047,7 +31047,7 @@ rsn_z0200	movieSkip監督	Skip監視	1	0x06683	2951	-	store	file_var_s1_1 = 0	va
 rsn_z0200	movieSkip監督	Skip監視	2	0x06689	2952	-	store	local_var_s13f1_1 = 0	variable local_var_s13f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z0200	movieSkip監督	Skip監視	3	0x0668F	2953	-	store	local_var_s13f1_2 = 0	variable local_var_s13f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z0200	movieSkip監督	Skip監視	4	0x06692	2954	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0200	movieSkip監督	Skip監視	5	0x06692	2955	-	padt	-	result stored in local_var_s13f1_3	-	-	-	-		01 verb-table.tsv
+rsn_z0200	movieSkip監督	Skip監視	5	0x06692	2955	-	padt	-	result stored in local_var_s13f1_3; the buttons newly pressed this game frame	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	6	0x06698	2956	-	getmoviestatus	-	result stored in local_var_s13f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	7	0x066A5	2957	-	if	local_var_s13f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0200	movieSkip監督	Skip監視	8	0x066AF	2959	local_var_s13f1_4 == 3	if	local_var_s13f1_3 & 8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -31064,14 +31064,14 @@ rsn_z0200	movieSkip監督	Skip監視	18	0x066FC	2976	local_var_s13f1_4 == 3; loc
 rsn_z0200	movieSkip監督	Skip監視	19	0x066FF	2977	local_var_s13f1_4 == 3; local_var_s13f1_3 & 8; local_var_s13f1_1 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0200	movieSkip監督	Skip監視	20	0x0671D	2980	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8)	else if	(local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0200	movieSkip監督	Skip監視	21	0x06726	2982	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	sebsoundplay	0, 2	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_z0200	movieSkip監督	Skip監視	22	0x0672F	2983	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	straightpcmtrans	29, 0	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	movieSkip監督	Skip監視	22	0x0672F	2983	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	straightpcmtrans	29, 0	argument 1: ignored / argument 2: ignored, as argument 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	23	0x06735	2984	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	24	0x0673E	2985	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	fadeout_d0	2, 15	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	25	0x06744	2986	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	fadesync_d3	2	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	26	0x06747	2987	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	27	0x0674A	2988	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	getmoviestatus	-	result stored in local_var_s13f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	28	0x06757	2989	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	if	local_var_s13f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0200	movieSkip監督	Skip監視	29	0x0675A	2991	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1; local_var_s13f1_4 == 3	moviecancel	-	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	movieSkip監督	Skip監視	29	0x0675A	2991	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1; local_var_s13f1_4 == 3	moviecancel	-	the movie now playing, stopped and ended	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	30	0x0675D	2993	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	31	0x06766	2994	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	fadeout_d0	0, 0	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	movieSkip監督	Skip監視	32	0x0676F	2995	local_var_s13f1_4 == 3; not (local_var_s13f1_3 & 8); (local_var_s13f1_3 & get_pad_ok()) and local_var_s13f1_1 == 1	fadein_d2	2, 0	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -33095,7 +33095,7 @@ rsn_z0201	DIRECTOR	main	269	0x03265	325	local_var_s0f1_3 == skipcheck(0)	sysReq	
 rsn_z0201	DIRECTOR	main	270	0x0326F	326	local_var_s0f1_3 == skipcheck(0)	sysReq	1, ムービーメッセージ::メッセージ監視	actor `ムービーメッセージ`	-	-	files ムービーメッセージ::メッセージ監視 on channel 1; does not wait	ムービーメッセージ.メッセージ監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0201	DIRECTOR	main	271	0x03279	327	local_var_s0f1_3 == skipcheck(0)	sysReq	1, movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	files movieSkip監督::Skip監視 on channel 1; does not wait	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z0201	DIRECTOR	main	272	0x03280	328	local_var_s0f1_3 == skipcheck(0)	sysReqwait	movieSkip監督::Skip監視	actor `movieSkip監督`	-	-	waits until movieSkip監督::Skip監視 is no longer on its actor	movieSkip監督.Skip監視	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-rsn_z0201	DIRECTOR	main	273	0x03281	329	local_var_s0f1_3 == skipcheck(0)	movieplaysync	-	-	-	-	-	-		01 verb-table.tsv
+rsn_z0201	DIRECTOR	main	273	0x03281	329	local_var_s0f1_3 == skipcheck(0)	movieplaysync	-	the movie now playing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	DIRECTOR	main	274	0x03284	330	local_var_s0f1_3 == skipcheck(0)	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	DIRECTOR	main	275	0x03287	331	local_var_s0f1_3 == skipcheck(0)	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	DIRECTOR	main	276	0x03290	332	local_var_s0f1_3 == skipcheck(0)	sysFreqcancel2_575	ムービーメッセージ, 0	actor `ムービーメッセージ` (this script) / argument 1: the actor whose requests are cancelled, an ordinal of the calling script's manager (0x00264010; a negative value the controlled character), which the listings print as the actor's name / argument 2: the channel bound	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -34245,7 +34245,7 @@ rsn_z0201	movieSkip監督	Skip監視	1	0x04C40	2506	-	store	file_var_s0_1 = 0	va
 rsn_z0201	movieSkip監督	Skip監視	2	0x04C46	2507	-	store	local_var_s23f1_1 = 0	variable local_var_s23f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z0201	movieSkip監督	Skip監視	3	0x04C4C	2508	-	store	local_var_s23f1_2 = 0	variable local_var_s23f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z0201	movieSkip監督	Skip監視	4	0x04C4F	2509	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0201	movieSkip監督	Skip監視	5	0x04C4F	2510	-	padt	-	result stored in local_var_s23f1_3	-	-	-	-		01 verb-table.tsv
+rsn_z0201	movieSkip監督	Skip監視	5	0x04C4F	2510	-	padt	-	result stored in local_var_s23f1_3; the buttons newly pressed this game frame	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	6	0x04C55	2511	-	getmoviestatus	-	result stored in local_var_s23f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	7	0x04C62	2512	-	if	local_var_s23f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0201	movieSkip監督	Skip監視	8	0x04C6C	2514	local_var_s23f1_4 == 3	if	local_var_s23f1_3 & 8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -34262,14 +34262,14 @@ rsn_z0201	movieSkip監督	Skip監視	18	0x04CB9	2531	local_var_s23f1_4 == 3; loc
 rsn_z0201	movieSkip監督	Skip監視	19	0x04CBC	2532	local_var_s23f1_4 == 3; local_var_s23f1_3 & 8; local_var_s23f1_1 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0201	movieSkip監督	Skip監視	20	0x04CDA	2535	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8)	else if	(local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0201	movieSkip監督	Skip監視	21	0x04CE3	2537	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	sebsoundplay	0, 2	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_z0201	movieSkip監督	Skip監視	22	0x04CEC	2538	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	straightpcmtrans	29, 0	-	-	-	-	-		01 verb-table.tsv
+rsn_z0201	movieSkip監督	Skip監視	22	0x04CEC	2538	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	straightpcmtrans	29, 0	argument 1: ignored / argument 2: ignored, as argument 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	23	0x04CF2	2539	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	24	0x04CFB	2540	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	fadeout_d0	2, 15	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	25	0x04D01	2541	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	fadesync_d3	2	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	26	0x04D04	2542	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	27	0x04D07	2543	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	getmoviestatus	-	result stored in local_var_s23f1_4; the movie player's state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	28	0x04D14	2544	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	if	local_var_s23f1_4 == 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rsn_z0201	movieSkip監督	Skip監視	29	0x04D17	2546	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1; local_var_s23f1_4 == 3	moviecancel	-	-	-	-	-	-		01 verb-table.tsv
+rsn_z0201	movieSkip監督	Skip監視	29	0x04D17	2546	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1; local_var_s23f1_4 == 3	moviecancel	-	the movie now playing, stopped and ended	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	30	0x04D1A	2548	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	31	0x04D23	2549	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	fadeout_d0	0, 0	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0201	movieSkip監督	Skip監視	32	0x04D2C	2550	local_var_s23f1_4 == 3; not (local_var_s23f1_3 & 8); (local_var_s23f1_3 & get_pad_ok()) and local_var_s23f1_1 == 1	fadein_d2	2, 0	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

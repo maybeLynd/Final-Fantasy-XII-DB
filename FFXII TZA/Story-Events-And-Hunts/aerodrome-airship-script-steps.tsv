@@ -350,7 +350,7 @@ pas_z0000	ストリーミング	離陸_ガヤ準備	3	0x01BE6	556	-	return	-	-	-
 pas_z0000	ストリーミング	離陸_ガヤ再生	1	0x01BEA	561	-	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 pas_z0000	ストリーミング	離陸_ガヤ再生	2	0x01BF0	562	-	voiceplay	0	argument 1: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ストリーミング	離陸_ガヤ再生	3	0x01BF3	563	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ストリーミング	離陸_ガヤ終了	1	0x01BF7	568	-	voicestop	0	-	-	-	-	-		01 verb-table.tsv
+pas_z0000	ストリーミング	離陸_ガヤ終了	1	0x01BF7	568	-	voicestop	0	argument 1: the voice line to stop, the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ストリーミング	離陸_ガヤ終了	2	0x01BFD	569	-	voicedispose	0	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ストリーミング	離陸_ガヤ終了	3	0x01C00	570	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ストリーミング	到着_ガヤ準備	1	0x01C04	575	-	voicestandby	0x01000000	argument 1: the voice line to prepare	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -359,7 +359,7 @@ pas_z0000	ストリーミング	到着_ガヤ準備	3	0x01C0D	577	-	return	-	-	-
 pas_z0000	ストリーミング	到着_ガヤ再生	1	0x01C11	582	-	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 pas_z0000	ストリーミング	到着_ガヤ再生	2	0x01C17	583	-	voiceplay	0x01000000	argument 1: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ストリーミング	到着_ガヤ再生	3	0x01C1A	584	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ストリーミング	到着_ガヤ終了	1	0x01C1E	589	-	voicestop	0x01000000	-	-	-	-	-		01 verb-table.tsv
+pas_z0000	ストリーミング	到着_ガヤ終了	1	0x01C1E	589	-	voicestop	0x01000000	argument 1: the voice line to stop, the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ストリーミング	到着_ガヤ終了	2	0x01C24	590	-	voicedispose	1	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ストリーミング	到着_ガヤ終了	3	0x01C27	591	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	BGモデル	init	1	0x01C28	600	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

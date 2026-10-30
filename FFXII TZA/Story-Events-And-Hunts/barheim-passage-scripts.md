@@ -9,7 +9,8 @@ addresses: "0x00348DF0, 0x00349800, 0x0034A420, 0x0034A090, 0x00349BF0, 0x00264D
 
 The table [barheim-passage-scripts.tsv](barheim-passage-scripts.tsv) has one row per script function of Barheim
 Passage that does something a player can observe. It covers the seventeen zone scripts and the nine scene scripts of
-the region, from `plan_master/us`:
+the region that the path arrays name, and the five zone scripts of the region that no path array names, all from
+`plan_master/us`:
 
 | Script | Kind | Map or scene | Actors | Functions | Rows | Shared helpers |
 |---|---|---|---:|---:|---:|---|
@@ -39,12 +40,17 @@ the region, from `plan_master/us`:
 | `mic_d0100` | scene | event `182` | 13 | 63 | 0 | 0 |
 | `mic_d0101` | scene | event `183` | 17 | 82 | 15 | 0 |
 | `mic_e0400` | scene | event `187` | 14 | 85 | 1 | 0 |
+| `mic_b03` | zone | named by no path array | 3 | 5 | 2 | 0 |
+| `mic_b04` | zone | named by no path array | 4 | 7 | 3 | 0 |
+| `mic_b05` | zone | named by no path array | 4 | 7 | 3 | 0 |
+| `mic_b07` | zone | named by no path array | 14 | 43 | 3 | 5 |
+| `mic_b08` | zone | named by no path array | 2 | 3 | 1 | 0 |
 
-The Lightworks, North-South Junction, Terminus No. 4 Adjunct and Terminus No. 7 Adjunct carry the five helper actors
-that many zone scripts share: the crystal (`system_crystal_actor`, `telepoeffectctrl`, `crystaldummyPC`, `saveactor`)
-and the key-item and message helper `イベント特殊効果画面`; Great Eastern Passage and The Zeviah Span carry the key-item and
-message helper alone. Their functions are described once on [Shared zone-script actors](shared-zone-script-actors.md)
-and have no rows here; the Shared helpers column counts them.
+The Lightworks, North-South Junction, Terminus No. 4 Adjunct, Terminus No. 7 Adjunct and `mic_b07` carry the five
+helper actors that many zone scripts share: the crystal (`system_crystal_actor`, `telepoeffectctrl`, `crystaldummyPC`,
+`saveactor`) and the key-item and message helper `イベント特殊効果画面`; Great Eastern Passage and The Zeviah Span carry the
+key-item and message helper alone. Their functions are described once on [Shared zone-script
+actors](shared-zone-script-actors.md) and have no rows here; the Shared helpers column counts them.
 
 A function is listed when it shows a line, sets or releases a story flag, writes the story counter, gives or takes
 items, jumps to another map, makes one of the battle calls below, loads a scene or changes the party.
@@ -101,6 +107,16 @@ Passage scenes](barheim-passage-scenes.md).
 - The Lightworks, Great Eastern Passage, Op Sector 36, Special Op Sector 3, Op Sector 37, Op Sector 29, Great Central
   Passage, The Zeviah Subterrane, Terminus No. 7, East-West Bypass, The Zeviah Span, West Annex, Terminus No. 7
   Adjunct and Special Op Sector 5 hold 3, 7, 3, 3, 5, 3, 4, 9, 2, 5, 12, 13, 1 and 8 treasure chests.
+- The five zone scripts that no path array names, `mic_b03`, `mic_b04`, `mic_b05`, `mic_b07` and `mic_b08`:
+  - the zone path array names no file at kind 5 ids 189 to 197 and 201 to 206, the zone entries of fields 63 to 65,
+    67 and 68 ([asset paths](../Game-Files-And-Data-Tables/asset-paths.md)), and those fields have no map
+    name ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md));
+  - their rows are map jumps among fields 63, 64, 65 and 67, and out to Great Central Passage, field 61 (from
+    `mic_b03` and `mic_b08`), and Terminus No. 7, field 71 (from `mic_b07`). Fields 63 to 65 and 67 have no map
+    name, so their `jumps` cells start with the comma before `field`;
+  - no other row of the area script tables names field 63, 64, 65, 67 or 68 as a jump destination;
+  - `mic_b07` also carries the five helper actors and the chocobo dismount
+    `choco_sum_ctrl_murasawa.sumcho_byebye`, which releases flag `0x0073`.
 
 ### How a call is read
 
@@ -150,8 +166,8 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 ### Every step
 
 The steps table [`barheim-passage-script-steps.tsv`](barheim-passage-script-steps.tsv) has one row for each step of
-every function of the twenty-six scripts, in the order the function runs them: each call, request, store, branch,
-loop, case and return. It has 36,522 rows.
+every function of the thirty-one scripts, in the order the function runs them: each call, request, store, branch,
+loop, case and return. It has 36,957 rows.
 
 A row gives where the step sits in the script, the branch it runs under, the verb and its arguments, and what those
 arguments name in the game: the actor, the model, the animation and its motion file, the effect file, the event sound,
@@ -160,24 +176,27 @@ the functions it starts on other actors.
 
 | Script | Steps | Script | Steps |
 |---|---:|---|---:|
-| `mic_a01` | 2,135 | `mic_e02` | 1,316 |
-| `mic_a02` | 3,215 | `mic_e03` | 492 |
-| `mic_a03` | 2,389 | `mic_e04` | 297 |
-| `mic_a04` | 2,776 | `mic_e05` | 260 |
-| `mic_a05` | 2,786 | `mic_a0100` | 1,052 |
-| `mic_a06` | 2,577 | `mic_a0600` | 894 |
-| `mic_b01` | 1,761 | `mic_b0600` | 1,511 |
-| `mic_b02` | 3,405 | `mic_b0601` | 2,319 |
-| `mic_b06` | 540 | `mic_c0100` | 850 |
-| `mic_c01` | 972 | `mic_c0101` | 1,246 |
-| `mic_c02` | 584 | `mic_d0100` | 674 |
-| `mic_d01` | 819 | `mic_d0101` | 924 |
-| `mic_e01` | 295 | `mic_e0400` | 433 |
+| `mic_a01` | 2,135 | `mic_e04` | 297 |
+| `mic_a02` | 3,215 | `mic_e05` | 260 |
+| `mic_a03` | 2,389 | `mic_a0100` | 1,052 |
+| `mic_a04` | 2,776 | `mic_a0600` | 894 |
+| `mic_a05` | 2,786 | `mic_b0600` | 1,511 |
+| `mic_a06` | 2,577 | `mic_b0601` | 2,319 |
+| `mic_b01` | 1,761 | `mic_c0100` | 850 |
+| `mic_b02` | 3,405 | `mic_c0101` | 1,246 |
+| `mic_b06` | 540 | `mic_d0100` | 674 |
+| `mic_c01` | 972 | `mic_d0101` | 924 |
+| `mic_c02` | 584 | `mic_e0400` | 433 |
+| `mic_d01` | 819 | `mic_b03` | 63 |
+| `mic_e01` | 295 | `mic_b04` | 94 |
+| `mic_e02` | 1,316 | `mic_b05` | 94 |
+| `mic_e03` | 492 | `mic_b07` | 152 |
+| | | `mic_b08` | 32 |
 
 The five shared helper actors have their steps once, in [`shared-zone-script-steps.tsv`](shared-zone-script-steps.tsv)
 (1,283 rows over 26 templates for 29 functions: the template of a function that only returns, cecbbef6fb, serves the
 `init` of イベント特殊効果画面, telepoeffectctrl and crystaldummyPC and the `main` of saveactor). In this table each of their
-functions has a single `shared template` row naming the template; Barheim Passage has 136 such rows.
+functions has a single `shared template` row naming the template; Barheim Passage has 165 such rows.
 
 An actor that runs another actor's code would have one `same code` row naming the actor whose steps it runs; this
 table has none.
@@ -186,8 +205,8 @@ The steps by their `resolution` cell:
 
 | Resolution | Steps |
 |---|---:|
-| `resolved` | 36,348 |
-| empty | 174 |
+| `resolved` | 36,854 |
+| empty | 103 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
 script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give

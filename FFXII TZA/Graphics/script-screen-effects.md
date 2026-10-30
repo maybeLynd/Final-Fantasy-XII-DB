@@ -149,7 +149,7 @@ The five `objmblur*` verbs keep a 0x18-byte block at `0x02B58C20` and never draw
   `ret` at `0x0016D6A0`, and resets it: zero, except `0x80` at `+0x07`;
 - `objmblurclear` (`0x01C4`) jumps through `0x0017E7D0` to the same `ret`.
 
-The area initialiser `0x00266D10` resets the block with the same defaults through `0x003DDD10`, which
+The start-up initialiser `0x00266D10` resets the block with the same defaults through `0x003DDD10`, which
 also resets the four blur sprites, the motion blur staging block and the blur fade task `0x02B58C48`.
 
 ### Soft focus
@@ -414,7 +414,7 @@ depth word is `((0xFFFF - a - k * t) << 12) | 0xFF0`:
 
 ### Area changes and skips
 
-- The area unload `0x002628B0` and the area initialiser `0x00266D10` both call the cut-in reset
+- The area unload `0x002628B0` and the start-up initialiser `0x00266D10` both call the cut-in reset
   `0x003DF900` and the motion blur reset `0x003DE320`, so no script needs `resetcutinparam` or
   `resetmoveblurparam`.
 - `0x003DE210` ends a running blur fade (progress set to its duration, direction out), forgets the
