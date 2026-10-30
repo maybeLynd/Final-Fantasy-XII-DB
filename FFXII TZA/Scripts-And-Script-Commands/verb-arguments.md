@@ -7,7 +7,7 @@ addresses: "0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x0026B4E0, 0x0026B4
 
 ## What it lists
 
-[verb-arguments.tsv](verb-arguments.tsv) has 892 rows for 594 script verbs, one row per argument.
+[verb-arguments.tsv](verb-arguments.tsv) has 969 rows for 644 script verbs, one row per argument.
 
 - **The verbs.** They are taken in order of how many operations of the shipped scene and zone scripts call them, so
   the verbs that most scene steps use come first.
@@ -39,12 +39,12 @@ How an argument is read:
 
 | Fact | Value |
 |---|---|
-| rows | 892 |
-| verbs | 594 |
-| verbs with no argument (one argument-0 row each) | 168 |
-| verbs by argument count | 1: 260; 2: 89; 3: 41; 4: 24; 5: 7; 6: 4; 8: 1 |
-| argument rows by type | int 527; float 197 |
-| rows that name a page | 892 |
+| rows | 969 |
+| verbs | 644 |
+| verbs with no argument (one argument-0 row each) | 181 |
+| verbs by argument count | 1: 280; 2: 99; 3: 45; 4: 27; 5: 7; 6: 4; 8: 1 |
+| argument rows by type | int 573; float 215 |
+| rows that name a page | 969 |
 | the first verbs in the table | `stdmotionplay`, `usemapid`, `motionloop`, `lookatoff`, `motionstartframe` |
 
 ### Standard motions
