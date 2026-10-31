@@ -592,6 +592,10 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
 - `test_area_ref.bin` restates `map_ref.bin`'s areas: value n is area n's first field. Its block is kept at
   `0x02099D98`, which no instruction reads by its address; keep its values matching `map_ref.bin` when fields are
   added or moved between areas.
+- `map_ref.bin`'s readers take the field number as the row (`0x00264F26`, `0x0026D987`) and the row's block word as the
+  block (`0x0026D9ED`) without a bound. The shipped rows cover fields 0 to 1,314, past the highest field number 1,311
+  ([Zone asset list](zone-asset-list.md)), and every row's block is below the 93 blocks, so a replacement that drops
+  rows or blocks makes those reads land past its tables.
 
 ## Related
 

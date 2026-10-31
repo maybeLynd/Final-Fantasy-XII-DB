@@ -185,6 +185,7 @@ Every record of the six files, decoded with the layouts above:
 | [`small-bin-tables-legend-buttons.tsv`](small-bin-tables-legend-buttons.tsv) | 27 | section 0 button: name text id and button mask |
 | [`small-bin-tables-legend-signals.tsv`](small-bin-tables-legend-signals.tsv) | 24 | section 1 signal: the word, its label text id and its button |
 | [`small-bin-tables-legend-scenes.tsv`](small-bin-tables-legend-scenes.tsv) | 19 | section 2 scene: offset, scene id, `a`, `b`, and its signal/flag pairs |
+| [`small-bin-tables-legend-prompts.tsv`](small-bin-tables-legend-prompts.tsv) | 24 | button prompt: its scene and entry, the label's text id and `us` text, the button's name text id and mask, the button that answers it, and the call sites that ask for the scene |
 | [`small-bin-tables-quest-window.tsv`](small-bin-tables-quest-window.tsv) | 173 | `questbase.bin` entry: the word, value A, the text index and the flag bit `0x4000000` |
 | [`small-bin-tables-summon-colours.tsv`](small-bin-tables-summon-colours.tsv) | 64 | summon colour record: the six scale bytes and the four tint bytes |
 
@@ -258,6 +259,24 @@ window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 
 - **Showing.** `0x0029E330(scene)` builds the legend and `0x0029DDF0` copies it into the HUD object
   `[0x0209C498] + 0x158` at `+0xD0` only when it differs. Its callers are menu screens (`0x00295D20`,
   `0x0029E110`, `0x002B7B80`, `0x002BAF80`, `0x002D5EB0`, `0x005789D0`).
+- **Prompts.** A scene is a legend of one or two prompts, each a button picture and a label
+  ([`small-bin-tables-legend-prompts.tsv`](small-bin-tables-legend-prompts.tsv)). The button names are inline icons
+  (`0F 40`-`0F 6B`, [text codes](../Menus-And-HUD/text-codes.md)) from text group 18, and the labels are text group 5,
+  `key_signal`.
+- **Answers.** Buttons `0x16` and `0x1A` answer to the confirm word `0x01E0C2A0` and `0x17` to the cancel word
+  `0x01E0C2A4` (`0x0029DBE0`), Circle and Cross ([controls](../Controls-And-Input/controls.md)).
+- **Scenes shown.** Scene 5 is "Sort" on the inventory (`0x00565E00`). Scenes 6 to 8 pair "Log" or "Previous" with
+  "Next", "Close" or "Confirm" on the message window's signal (`0x002A8550`, `0x002A86A0`). Scene 11 is "View Hunt Map" on
+  the quest list (`0x005789D0`), and scene 12 is "Sprint" and "Dismount" on the chocobo control window (`0x003CAB00`),
+  also built by the pause task (`0x00228C70`) and the pause overlay (`0x00229590`).
+- **Scenes shown, continued.** Scene 13 is "Toggle Zoom" on the map pages (`0x002B7B80`, `0x002BAF80`) and the License
+  Board (`0x0055E9E0`). Scene 14 is "Shuffle" on the special-attack window (`0x002D5EB0`). Scenes 15 to 18 are "Skip",
+  "Exit to Title Menu", "Quit Game" and "Back" from the pause task, and scene 19 is "Toggle Board" on the License
+  Board grid view (`0x005595E0`).
+- **Scenes no caller asks for.** The 20 branches to `0x0029DA70`, `0x0029E330` and `0x00295D20` are all calls, and none
+  passes scenes 1 to 4, 9 or 10. Their labels are "Sort" (4), "Log" and "Next" (9), "Exit to Title Menu" (10), and
+  for scenes 1 to 3 the labels `0xC5A8`, `0xC5A9` and `0xC54A`, which are empty in `us` and `it`, `DUMMY` in `es` and
+  `/` in `fr`.
 - **Panes.** `0x0029E3B0(legend)`, run by `0x0029DDF0`, closes the old pane (`0x0029DF20`) and opens the next of the
   object's panes, `[0x0209C498] + 0x160 + 0x148 x [+0x3F0]`, under it (`0x00246AD0`). It copies up to four entries,
   their two strings, flags `& 0x3FFF` and byte `+0x13`, and measures the names (`0x0029CD90`) for the widest,

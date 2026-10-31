@@ -1,0 +1,1142 @@
+pair	pair_hex	first_name	second_name	names_differ	set_by_scripts	released_by_scripts	tested_by_scripts
+0	0x0000	Rabanastran	Rabanastran	no	-	-	-
+1	0x0001	Imperial	Imperial	no	-	-	-
+2	0x0002	Rabanastran	Rabanastran	no	-	-	-
+3	0x0003	Awein	Awein	no	-	-	-
+4	0x0004	Rabanastran	Rabanastran	no	-	-	-
+5	0x0005	Chocobo Aficionado	Chocobo Aficionado	no	-	-	-
+6	0x0006	Batahn	Batahn	no	-	-	-
+7	0x0007	Bandalla	Bandalla	no	-	-	-
+8	0x0008	Wistful Bangaa	Wistful Bangaa	no	-	-	-
+9	0x0009	Lively Bangaa	Lively Bangaa	no	-	-	-
+10	0x000A	Rabanastran	Rabanastran	no	-	-	-
+11	0x000B	Adept Adventurer	Adept Adventurer	no	-	-	-
+12	0x000C	Rabanastran	Rabanastran	no	-	-	-
+13	0x000D	Tough Knight	Tough Knight	no	-	-	-
+14	0x000E	Patient Bangaa	Patient Bangaa	no	-	-	-
+15	0x000F	Bucco	Bucco	no	-	-	-
+16	0x0010	Imperial	Sherral	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+17	0x0011	Rabanastran	Rabanastran	no	-	-	-
+18	0x0012	Lord Vain	Lord Vain	no	-	-	-
+19	0x0013	Rabanastran	Rabanastran	no	-	-	-
+20	0x0014	Adventurer	Adventurer	no	-	-	-
+21	0x0015	Rabanastran	Rabanastran	no	-	-	-
+22	0x0016	Rabanastran	Rabanastran	no	-	-	-
+23	0x0017	Hapless Merchant	Hapless Merchant	no	-	-	-
+24	0x0018	Merchant	Merchant	no	-	-	-
+25	0x0019	Desert Merchant	Desert Merchant	no	-	-	-
+26	0x001A	Rabanastran	Rabanastran	no	-	-	-
+27	0x001B	Trader	Trader	no	-	-	-
+28	0x001C	Headhunter	Headhunter	no	-	-	-
+29	0x001D	Rabanastran	Rabanastran	no	-	-	-
+30	0x001E	Sesirus	Sesirus	no	-	-	-
+31	0x001F	Dalan	Dalan	no	-	-	-
+32	0x0020	Rabanastran	Rabanastran	no	-	-	-
+33	0x0021	Rabanastran	Rabanastran	no	-	-	-
+34	0x0022	Rabanastran	Rabanastran	no	-	-	-
+35	0x0023	Bungling Hunter	Bungling Hunter	no	-	-	-
+36	0x0024	Rabanastran	Rabanastran	no	-	-	-
+37	0x0025	Rabanastran	Rabanastran	no	-	-	-
+38	0x0026	Rabanastran	Rabanastran	no	-	-	-
+39	0x0027	Journeyman	Journeyman	no	-	-	-
+40	0x0028	Rabanastran	Rabanastran	no	-	-	-
+41	0x0029	Erstwhile Adventurer	Erstwhile Adventurer	no	-	-	-
+42	0x002A	Adventurer	Adventurer	no	-	-	-
+43	0x002B	Merchant	Merchant	no	-	-	-
+44	0x002C	Rabanastran	Rabanastran	no	-	-	-
+45	0x002D	Rabanastran	Rabanastran	no	-	-	-
+46	0x002E	Tomaj	Tomaj	no	-	-	-
+47	0x002F	Kytes	Kytes	no	-	-	-
+48	0x0030	Filo	Filo	no	-	-	-
+49	0x0031	Rabanastran	Rabanastran	no	-	-	-
+50	0x0032	Rabanastran	Rabanastran	no	-	-	-
+51	0x0033	Rabanastran	Rabanastran	no	-	-	-
+52	0x0034	Gurdy	Gurdy	no	rbn_a14 (array)	-	-
+53	0x0035	Rabanastran	Rabanastran	no	-	-	-
+54	0x0036	Rabanastran	Rabanastran	no	-	-	-
+55	0x0037	Rabanastran	Rabanastran	no	-	-	-
+56	0x0038	Rabanastran	Rabanastran	no	-	-	-
+57	0x0039	Rabanastran	Rabanastran	no	-	-	-
+58	0x003A	Rabanastran	Rabanastran	no	-	-	-
+59	0x003B	Rabanastran	Rabanastran	no	-	-	-
+60	0x003C	Rabanastran	Rabanastran	no	-	-	-
+61	0x003D	Rabanastran	Rabanastran	no	-	-	-
+62	0x003E	Swarthy Bangaa	Swarthy Bangaa	no	-	-	-
+63	0x003F	Rabanastran	Rabanastran	no	-	-	-
+64	0x0040	Seasoned Adventurer	Seasoned Adventurer	no	-	-	-
+65	0x0041	Rabanastran	Rabanastran	no	-	-	-
+66	0x0042	Rabanastran	Rabanastran	no	-	-	-
+67	0x0043	Johm	Johm	no	-	-	-
+68	0x0044	Troubled Woman	Troubled Woman	no	rbn_a02	-	-
+69	0x0045	Novice Adventurer	Novice Adventurer	no	-	-	-
+70	0x0046	Dispirited Woman	Dispirited Woman	no	-	-	-
+71	0x0047	Sotted Imperial	Sotted Imperial	no	-	-	-
+72	0x0048	Imperial	Imperial	no	-	-	-
+73	0x0049	Barkeep	Barkeep	no	-	-	-
+74	0x004A	Rabanastran	Rabanastran	no	-	-	-
+75	0x004B	Tavernmaster	Tavernmaster	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+76	0x004C	Earnest Seeq	Earnest Seeq	no	-	-	-
+77	0x004D	Rabanastran	Rabanastran	no	-	-	-
+78	0x004E	Imperial	Imperial	no	-	-	-
+79	0x004F	Town Gossip	Town Gossip	no	-	-	-
+80	0x0050	Rabanastran	Rabanastran	no	-	-	-
+81	0x0051	Rabanastran	Rabanastran	no	-	-	-
+82	0x0052	Migelo	Migelo	no	-	-	-
+83	0x0053	NOT USED miresu	NOT USED miresu	no	-	-	-
+84	0x0054	Rabanastran	Rabanastran	no	-	-	-
+85	0x0055	Barkeep	Barkeep	no	-	-	-
+86	0x0056	Traveler	Traveler	no	-	-	-
+87	0x0057	Rabanastran	Rabanastran	no	-	-	-
+88	0x0058	Rabanastran	Rabanastran	no	-	-	-
+89	0x0059	Bright-eyed Boy	Bright-eyed Boy	no	-	-	-
+90	0x005A	Rabanastran	Rabanastran	no	-	-	-
+91	0x005B	Rabanastran	Rabanastran	no	-	-	-
+92	0x005C	Reluctant Adventurer	Reluctant Adventurer	no	-	-	-
+93	0x005D	Nekram	Nekram	no	-	-	-
+94	0x005E	Rabanastran	Rabanastran	no	-	-	-
+95	0x005F	Rabanastran	Rabanastran	no	-	-	-
+96	0x0060	Rabanastran	Rabanastran	no	-	-	-
+97	0x0061	Yamoora	Yamoora	no	-	-	-
+98	0x0062	Rabanastran	Rabanastran	no	-	-	-
+99	0x0063	Rabanastran	Rabanastran	no	-	-	-
+100	0x0064	NOT USED nire	NOT USED nire	no	-	-	-
+101	0x0065	Rabanastran	Rabanastran	no	-	-	-
+102	0x0066	Busy Messenger	Busy Messenger	no	-	-	-
+103	0x0067	Rabanastran	Rabanastran	no	-	-	-
+104	0x0068	Rabanastran	Arryl	yes	-	-	-
+105	0x0069	Rabanastran	Nathyl	yes	-	-	-
+106	0x006A	Rabanastran	Hedg	yes	-	-	-
+107	0x006B	Rabanastran	Wakk	yes	-	-	-
+108	0x006C	Rabanastran	Cotze	yes	rbn_a19	-	-
+109	0x006D	NOT USED racchi	NOT USED racchi	no	-	-	-
+110	0x006E	Rabanastran	Rabanastran	no	-	-	-
+111	0x006F	Rabanastran	Rabanastran	no	-	-	-
+112	0x0070	Barkeep	Barkeep	no	-	-	-
+113	0x0071	Imperial	Imperial	no	-	-	-
+114	0x0072	Randel	Randel	no	-	-	-
+115	0x0073	Rabanastran	Rabanastran	no	-	-	-
+116	0x0074	Reks's Friend	Reks's Friend	no	-	-	-
+117	0x0075	Greenhorn	Greenhorn	no	-	-	-
+118	0x0076	Merchant	Merchant	no	-	-	-
+119	0x0077	Conspicuous Bangaa	Conspicuous Bangaa	no	-	-	-
+120	0x0078	Clan Watch	Clan Watch	no	-	-	-
+121	0x0079	Clan Provisioner	Clan Provisioner	no	-	-	-
+122	0x007A	Mysterious Merchant	Mysterious Merchant	no	-	-	-
+123	0x007B	Rabanastran	Gatsly	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+124	0x007C	Rabanastran	Rabanastran	no	-	-	-
+125	0x007D	Lonely Boy	Lonely Boy	no	-	-	-
+126	0x007E	Rabanastran	Rabanastran	no	-	-	-
+127	0x007F	Rabanastran	Rabanastran	no	-	-	-
+128	0x0080	Wise Moogle	Wise moogle	yes	-	-	-
+129	0x0081	Rabanastran	Rabanastran	no	-	-	-
+130	0x0082	Courier	Courier	no	-	-	-
+131	0x0083	Rabanastran	Rabanastran	no	-	-	-
+132	0x0084	Clan Member	Clan Member	no	-	-	-
+133	0x0085	Clan Member	Clan Member	no	-	-	-
+134	0x0086	Clan Member	Clan Member	no	-	-	-
+135	0x0087	Clan Member	Clan Member	no	-	-	-
+136	0x0088	Rabanastran	Rabanastran	no	-	-	-
+137	0x0089	Rabanastran	Rabanastran	no	-	-	-
+138	0x008A	Rabanastran	Rabanastran	no	-	-	-
+139	0x008B	Imperial	Imperial	no	-	-	-
+140	0x008C	Rabanastran	Rabanastran	no	-	-	-
+141	0x008D	Rabanastran	Rabanastran	no	-	-	-
+142	0x008E	Traveler	Traveler	no	-	-	-
+143	0x008F	Merchant	Merchant	no	-	-	-
+144	0x0090	Rabanastran	Rabanastran	no	-	-	-
+145	0x0091	Bhujerban	Bhujerban	no	-	-	-
+146	0x0092	Rabanastran	Rabanastran	no	-	-	-
+147	0x0093	Flights to Nalbina	Flights to Nalbina	no	-	-	-
+148	0x0094	Flights to Bhujerba	Flights to Bhujerba	no	-	-	-
+149	0x0095	Flights to Archades	Flights to Archades	no	-	-	-
+150	0x0096	Docent	Docent	no	-	-	-
+151	0x0097	Private Airships	Private Airships	no	-	-	-
+152	0x0098	Rabanastran	Rabanastran	no	-	-	-
+153	0x0099	Rabanastran	Rabanastran	no	-	-	-
+154	0x009A	Rabanastran	Rabanastran	no	-	-	-
+155	0x009B	Cartographers' Guild	Cartographers' Guild	no	-	evt_t0090	-
+156	0x009C	Curious Woman	Curious Woman	no	-	-	-
+157	0x009D	Viera	Wandering Viera	yes	-	-	-
+158	0x009E	Viera	Viera	no	-	-	-
+159	0x009F	Viera	Ktjn	yes	rbn_a14	-	-
+160	0x00A0	Shop Clerk	Shop Clerk	no	-	-	-
+161	0x00A1	Imperial	Imperial	no	-	-	-
+162	0x00A2	Rabanastran	Rabanastran	no	-	-	-
+163	0x00A3	Rabanastran	Rabanastran	no	-	-	-
+164	0x00A4	Riby	Riby	no	-	-	-
+165	0x00A5	Panamis	Panamis	no	-	-	-
+166	0x00A6	Rabanastran	Rabanastran	no	-	-	-
+167	0x00A7	Rabanastran	Rabanastran	no	-	-	-
+168	0x00A8	Rabanastran	Rabanastran	no	-	-	-
+169	0x00A9	Rabanastran	Rabanastran	no	-	-	-
+170	0x00AA	Rabanastran	Rabanastran	no	-	-	-
+171	0x00AB	Helpful Man	Helpful Man	no	-	-	-
+172	0x00AC	Roepp	Roepp	no	-	-	-
+173	0x00AD	Rabanastran	Rabanastran	no	-	-	-
+174	0x00AE	Rabanastran	Rabanastran	no	-	-	-
+175	0x00AF	Yugri	Yugri	no	-	-	-
+176	0x00B0	NOT USED samudaru	NOT USED samudaru	no	-	-	-
+177	0x00B1	Barkeep	Barkeep	no	-	-	-
+178	0x00B2	Rabanastran	Rabanastran	no	-	-	-
+179	0x00B3	Trader	Trader	no	-	-	-
+180	0x00B4	Rabanastran	Rabanastran	no	-	-	-
+181	0x00B5	Imperial	Imperial	no	-	-	-
+182	0x00B6	Rabanastran	Rabanastran	no	-	-	-
+183	0x00B7	Imperial	Imperial	no	-	-	-
+184	0x00B8	Imperial	Imperial	no	-	-	-
+185	0x00B9	Imperial	Imperial	no	-	-	-
+186	0x00BA	Imperial	Imperial	no	-	-	-
+187	0x00BB	Imperial	Imperial	no	-	-	-
+188	0x00BC	Imperial	Imperial	no	-	-	-
+189	0x00BD	Imperial	Imperial	no	-	-	-
+190	0x00BE	Imperial	Imperial	no	-	-	-
+191	0x00BF	Imperial	Imperial	no	-	-	-
+192	0x00C0	Imperial	Imperial	no	-	-	-
+193	0x00C1	Imperial	Imperial	no	-	-	-
+194	0x00C2	Imperial	Imperial	no	-	-	-
+195	0x00C3	Imperial	Imperial	no	-	-	-
+196	0x00C4	Imperial	Imperial	no	-	-	-
+197	0x00C5	Imperial	Imperial	no	-	-	-
+198	0x00C6	Imperial	Imperial	no	-	-	-
+199	0x00C7	Imperial	Imperial	no	-	-	-
+200	0x00C8	Imperial	Imperial	no	-	-	-
+201	0x00C9	Imperial	Imperial	no	-	-	-
+202	0x00CA	Imperial	Imperial	no	-	-	-
+203	0x00CB	Imperial	Imperial	no	-	-	-
+204	0x00CC	Imperial	Imperial	no	-	-	-
+205	0x00CD	Imperial	Imperial	no	-	-	-
+206	0x00CE	Imperial	Imperial	no	-	-	-
+207	0x00CF	Imperial	Imperial	no	-	-	-
+208	0x00D0	Imperial	Imperial	no	-	-	-
+209	0x00D1	Imperial	Imperial	no	-	-	-
+210	0x00D2	Rabanastran	Rabanastran	no	-	-	-
+211	0x00D3	Amal	Amal	no	-	-	-
+212	0x00D4	Traveler	Traveler	no	-	-	-
+213	0x00D5	Telvus	Telvus	no	-	-	-
+214	0x00D6	Rabanastran	Rabanastran	no	-	-	-
+215	0x00D7	Imperial	Imperial	no	-	-	-
+216	0x00D8	Lovestruck Man	Lovestruck Man	no	-	-	-
+217	0x00D9	Rabanastran	Rabanastran	no	-	-	-
+218	0x00DA	Rabanastran	Rabanastran	no	-	-	-
+219	0x00DB	Merchant	Merchant	no	-	-	-
+220	0x00DC	Cockatrice	Agytha	yes	-	evt_t0090 x3	-
+221	0x00DD	Nomad	Arjie	yes	-	evt_t0090 x2	-
+222	0x00DE	Cockatrice	Chit	yes	vic_a01	evt_t0090 x3	-
+223	0x00DF	Nomad	Dania	yes	rbn_a14 (array)	evt_t0090 x3	-
+224	0x00E0	Elder Brunoa	Elder Brunoa	no	sav_e01	evt_t0090 x4	-
+225	0x00E1	Nomad Youth	Jinn	yes	-	evt_t0090 x2	-
+226	0x00E2	Nomad Youth	Camina	yes	sav_b01	evt_t0090 x2	-
+227	0x00E3	Cockatrice	Renn	yes	-	evt_t0090 x2	-
+228	0x00E4	Nomad	Lesina	yes	-	evt_t0090 x2	-
+229	0x00E5	Nomad	Masyua	yes	-	evt_t0090 x2	-
+230	0x00E6	Cockatrice	Moomer	yes	var_a01	evt_t0090 x2	-
+231	0x00E7	Nomad	Nanau	yes	rbn_a14 (array); sav_b01 x2	evt_t0090 x2	-
+232	0x00E8	Nomad Youth	Roaklo	yes	sav_b01 x2; sav_f02	evt_t0090 x2	-
+233	0x00E9	Quiet Man	Sadeen	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	evt_t0090 x3	-
+234	0x00EA	Cockatrice	Sassan	yes	dst_b01 x5; dst_b02 x4	evt_t0090 x2	-
+235	0x00EB	Cockatrice	Shurry	yes	-	evt_t0090 x2	-
+236	0x00EC	Nomad Youth	Terra	yes	sav_b01	evt_t0090 x4	-
+237	0x00ED	Nomad Youth	Tott	yes	-	evt_t0090 x2	-
+238	0x00EE	Cockatrice	Cockatrice	no	-	evt_t0090	-
+239	0x00EF	Nomad Elder	Elder Brunoa	yes	sav_b01	evt_t0090	-
+240	0x00F0	Cartographers' Guild	Nutsy	yes	sav_b01	-	sav_b01
+241	0x00F1	Weary Seeq	Weary Seeq	no	-	-	-
+242	0x00F2	Tiny Wayfarer	Tiny Wayfarer	no	-	-	-
+243	0x00F3	Viera Wayfarer	Viera Wayfarer	no	-	-	-
+244	0x00F4	Bayay	Bayay	no	-	-	-
+245	0x00F5	Daguza	Daguza	no	-	-	-
+246	0x00F6	No. 102	No. 102	no	-	-	-
+247	0x00F7	No. 691	No. 691	no	-	-	-
+248	0x00F8	No. 124	No. 124	no	-	-	-
+249	0x00F9	Galeedo	Galeedo	no	-	-	-
+250	0x00FA	No. 982	No. 982	no	-	-	-
+251	0x00FB	No. 643	No. 643	no	-	-	-
+252	0x00FC	No. 823	No. 823	no	-	-	-
+253	0x00FD	No. 474	No. 474	no	-	-	-
+254	0x00FE	Gwitch	Gwitch	no	-	-	-
+255	0x00FF	No. 395	No. 395	no	-	-	-
+256	0x0100	No. 546	No. 546	no	-	-	-
+257	0x0101	Maza	Maza	no	-	-	-
+258	0x0102	Melvic	Melvic	no	-	-	-
+259	0x0103	Mirral	Mirral	no	-	-	-
+260	0x0104	No. 278	No. 278	no	-	-	-
+261	0x0105	No. 381	No. 381	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+262	0x0106	Plark	Plark	no	-	-	-
+263	0x0107	Prisoner	Prisoner	no	-	-	-
+264	0x0108	Prisoner	Prisoner	no	-	-	-
+265	0x0109	No. 502	No. 502	no	-	-	-
+266	0x010A	Cutraz	Cutraz	no	-	-	-
+267	0x010B	Seak	Seak	no	-	-	-
+268	0x010C	No. 281	No. 281	no	-	-	-
+269	0x010D	Tolsaga	Tolsaga	no	-	-	-
+270	0x010E	Willem	Willem	no	-	-	-
+271	0x010F	Villager	Villager	no	-	-	-
+272	0x0110	Village Elder	Village Elder	no	-	-	-
+273	0x0111	Villager	Villager	no	-	-	-
+274	0x0112	Village Youth	Tchigri	yes	-	-	-
+275	0x0113	Village Elder	Village Elder	no	-	-	-
+276	0x0114	Villager	Villager	no	-	-	-
+277	0x0115	Dantro	Dantro	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+278	0x0116	A Boy & His...Dog?	A Boy & His...Dog?	no	-	-	-
+279	0x0117	A Boy & His...Dog?	Arryl & Nathyl	yes	-	-	-
+280	0x0118	Mistempered Seeq	Mistempered Seeq	no	-	-	-
+281	0x0119	Bumbling Seeq	Bumbling Seeq	no	-	-	-
+282	0x011A	Shifty Seeq	Shifty Seeq	no	-	-	-
+283	0x011B	Villager	Dantro's Wife	yes	-	-	-
+284	0x011C	Imperial Watch	Imperial Watch	no	-	-	-
+285	0x011D	Shady Merchant	Idzo	yes	-	-	-
+286	0x011E	Low Moaning	Low Moaning	no	-	-	-
+287	0x011F	Unlucky Merchant	Unlucky Merchant	no	-	-	-
+288	0x0120	Unlucky Merchant	Unlucky Merchant	no	-	-	-
+289	0x0121	Desert Wayfarer	Desert Wayfarer	no	-	-	-
+290	0x0122	Village Youth	Village Youth	no	-	-	-
+291	0x0123	Village Elder	Village Elder	no	-	-	-
+292	0x0124	Villager	Villager	no	-	-	-
+293	0x0125	Merandil	Merandil	no	-	-	-
+294	0x0126	Naldeahe	Naldeahe	no	-	-	-
+295	0x0127	Villager	Villager	no	-	-	-
+296	0x0128	Villager	Villager	no	-	-	-
+297	0x0129	Villager	Villager	no	-	-	-
+298	0x012A	Ruksel	Ruksel	no	-	-	-
+299	0x012B	Shiuba	Shiuba	no	-	-	-
+300	0x012C	Village Youth	Uhla	yes	-	-	-
+301	0x012D	Villager	Villager	no	-	-	-
+302	0x012E	Village Elder	Village Elder	no	-	-	-
+303	0x012F	Basch	Basch	no	-	-	-
+304	0x0130	Dalmascan	Dalmascan	no	-	-	-
+305	0x0131	Timorous Bangaa	Timorous Bangaa	no	-	-	-
+306	0x0132	Shady Bangaa	Shady Bangaa	no	-	-	-
+307	0x0133	Bhujerban	Bhujerban	no	-	-	-
+308	0x0134	Sniffing Seeq	Sniffing Seeq	no	-	-	-
+309	0x0135	Pondering Seeq	Pondering Seeq	no	-	-	-
+310	0x0136	Bhujerban	Bhujerban	no	-	-	-
+311	0x0137	Archadian Wayfarer	Archadian Wayfarer	no	-	-	-
+312	0x0138	Proud Wayfarer	Proud Wayfarer	no	-	-	-
+313	0x0139	Bhujerban	Bhujerban	no	-	-	-
+314	0x013A	Bhujerban	Bhujerban	no	-	-	-
+315	0x013B	Bhujerban	Bhujerban	no	-	-	-
+316	0x013C	Bhujerban	Bhujerban	no	-	-	-
+317	0x013D	Bhujerban	Bhujerban	no	-	-	-
+318	0x013E	Bhujerban	Bhujerban	no	-	-	-
+319	0x013F	Bhujerban	Bhujerban	no	-	-	-
+320	0x0140	Bhujerban	Bhujerban	no	-	-	-
+321	0x0141	Bhujerban	Bhujerban	no	-	-	-
+322	0x0142	Giddy Bangaa	Giddy Bangaa	no	-	-	-
+323	0x0143	Slovenly Bangaa	Slovenly Bangaa	no	-	-	-
+324	0x0144	Bhujerban	Bhujerban	no	-	-	-
+325	0x0145	Bhujerban	Bhujerban	no	-	-	-
+326	0x0146	Bhujerban	Bhujerban	no	-	-	-
+327	0x0147	Spoony Seeq	Spoony Seeq	no	-	-	-
+328	0x0148	Bhujerban	Bhujerban	no	-	-	-
+329	0x0149	Bhujerban	Bhujerban	no	-	-	-
+330	0x014A	Bhujerban	Bhujerban	no	-	-	-
+331	0x014B	Bhujerban	Bhujerban	no	-	-	-
+332	0x014C	Bhujerban	Bhujerban	no	-	-	-
+333	0x014D	Bhujerban	Bhujerban	no	-	-	-
+334	0x014E	Bhujerban	Bhujerban	no	-	-	-
+335	0x014F	Bhujerban	Bhujerban	no	-	-	-
+336	0x0150	Bhujerban	Bhujerban	no	-	-	-
+337	0x0151	Bhujerban	Bhujerban	no	-	-	-
+338	0x0152	Bhujerban	Bhujerban	no	-	-	-
+339	0x0153	Bhujerban	Bhujerban	no	-	-	-
+340	0x0154	Bhujerban	Bhujerban	no	-	-	-
+341	0x0155	Bhujerban	Bhujerban	no	-	-	-
+342	0x0156	Bhujerban	Bhujerban	no	-	-	-
+343	0x0157	Bhujerban	Bhujerban	no	-	-	-
+344	0x0158	Bhujerban	Bhujerban	no	-	-	-
+345	0x0159	Bhujerban	Bhujerban	no	-	-	-
+346	0x015A	Weary Bhujerban	Weary Bhujerban	no	-	-	-
+347	0x015B	Sleepy Bangaa	Sleepy Bangaa	no	-	-	-
+348	0x015C	Sleepy Seeq	Sleepy Seeq	no	-	-	-
+349	0x015D	Bhujerban	Bhujerban	no	-	-	-
+350	0x015E	Bhujerban	Bhujerban	no	-	-	-
+351	0x015F	Bhujerban	Bhujerban	no	-	-	-
+352	0x0160	Bhujerban	Bhujerban	no	-	-	-
+353	0x0161	Bhujerban	Bhujerban	no	-	-	-
+354	0x0162	Bhujerban	Bhujerban	no	-	-	-
+355	0x0163	Bhujerban	Bhujerban	no	-	-	-
+356	0x0164	Bhujerban	Bhujerban	no	-	-	-
+357	0x0165	Bhujerban	Bhujerban	no	-	-	-
+358	0x0166	Bhujerban	Bhujerban	no	-	-	-
+359	0x0167	Bhujerban	Bhujerban	no	-	-	-
+360	0x0168	Bhujerban	Bhujerban	no	-	-	-
+361	0x0169	Poporu the 'Paw	Poporu the 'Paw	no	-	-	-
+362	0x016A	Imperial Guard	Imperial Guard	no	-	-	-
+363	0x016B	Tiko	Tiko	no	-	-	-
+364	0x016C	Targe	Targe	no	-	-	-
+365	0x016D	Rithil	Rithil	no	-	-	-
+366	0x016E	Mait	Mait	no	-	-	-
+367	0x016F	Clio	Clio	no	-	-	-
+368	0x0170	Bashketi	Bashketi	no	-	-	-
+369	0x0171	Niray	Niray	no	rbn_a14 (array)	-	-
+370	0x0172	Drunken Imperial	Drunken Imperial	no	-	-	-
+371	0x0173	Sharp-Eyed Man	Sharp-Eyed Man	no	-	-	-
+372	0x0174	Melisa	Melisa	no	-	-	-
+373	0x0175	Magu	Magu	no	-	-	-
+374	0x0176	Resistance	Resistance	no	-	-	-
+375	0x0177	Traveler	Traveler	no	-	-	-
+376	0x0178	Monied Archadian	Monied Archadian	no	-	-	-
+377	0x0179	Bhujerban	Bhujerban	no	-	-	-
+378	0x017A	Bhujerban	Bhujerban	no	-	-	-
+379	0x017B	Rabanastran	Rabanastran	no	-	-	-
+380	0x017C	Flights to Rabanastre	Flights to Rabanastre	no	-	-	-
+381	0x017D	Flights to Balfonheim	Flights to Balfonheim	no	-	-	-
+382	0x017E	Docent	Docent	no	-	-	-
+383	0x017F	Private Airships	Private Airships	no	-	-	-
+384	0x0180	Bhujerban	Bhujerban	no	-	-	-
+385	0x0181	Shop Clerk	Shop Clerk	no	-	-	-
+386	0x0182	Cloudborne Patron	Cloudborne Patron	no	-	-	-
+387	0x0183	Bhujerban Sainikah	Bhujerban Sainikah	no	-	-	-
+388	0x0184	Cloudborne Resident	Cloudborne Resident	no	-	-	-
+389	0x0185	Street Kid	Nethi	yes	-	-	-
+390	0x0186	Street Kid	Serulo	yes	-	-	-
+391	0x0187	Street Kid	Tohli	yes	-	-	-
+392	0x0188	Shop Clerk	Shop Clerk	no	-	-	-
+393	0x0189	Street Kid	Street Kid	no	-	-	-
+394	0x018A	Cartographers' Guild	Cartographers' Guild	no	-	-	-
+395	0x018B	City Parijanah	City Parijanah	no	-	-	-
+396	0x018C	Pilika	Pilika	no	rbn_a14 (array)	-	-
+397	0x018D	Ondore's Attendant	Ondore's Attendant	no	-	-	-
+398	0x018E	Lhusu Parivir	Aekom	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+399	0x018F	Bhujerban	Asuha	yes	-	-	-
+400	0x0190	Docent	Hanna	yes	-	-	-
+401	0x0191	Miners' Ender Boy	Miclio	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+402	0x0192	Bhujerban Resistance	Bhujerban Resistance	no	-	-	-
+403	0x0193	Bhujerban Resistance	Havharo	yes	-	-	-
+404	0x0194	Lhusu Parivir	Lhusu Parivir	no	-	-	-
+405	0x0195	Street Vendor	Street Vendor	no	-	-	-
+406	0x0196	Street Vendor	Street Vendor	no	-	-	-
+407	0x0197	Cloudborne Kid	Cloudborne Kid	no	-	-	-
+408	0x0198	City Parijanah	City Parijanah	no	-	-	-
+409	0x0199	Lhusu Miner	Lhusu Miner	no	-	-	-
+410	0x019A	NOT USED	NOT USED	no	-	-	-
+411	0x019B	NOT USED	NOT USED	no	-	-	-
+412	0x019C	NOT USED	NOT USED	no	-	-	-
+413	0x019D	Great-chief Uball-Ka	Great-chief Uball-Ka	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+414	0x019E	NOT USED	NOT USED	no	-	-	-
+415	0x019F	Garif Youth	Asdalu	yes	-	evt_t0090	-
+416	0x01A0	War-chief Supinelu	War-chief Supinelu	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+417	0x01A1	Garif Herder	Garif Herder	no	-	-	-
+418	0x01A2	Garif Elder	Low-chief Sugumu	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+419	0x01A3	Garif Craftsman	Garif Craftsman	no	-	-	-
+420	0x01A4	Garif Warrior	Warrior Guromu	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+421	0x01A5	Garif Elder	Garif Elder	no	-	-	-
+422	0x01A6	Garif Elder	Old War-chief Kadalu	yes	-	-	-
+423	0x01A7	Garif Elder	Garif Elder	no	-	-	-
+424	0x01A8	Garif Warrior	Garif Warrior	no	-	-	-
+425	0x01A9	Garif Herder	Garif Herder	no	-	-	-
+426	0x01AA	Garif Youth	Garif Youth	no	-	-	-
+427	0x01AB	Geomancer Yugelu	Geomancer Yugelu	no	-	-	-
+428	0x01AC	NOT USED	NOT USED	no	-	-	-
+429	0x01AD	Garif Trader	Garif Trader	no	-	-	-
+430	0x01AE	NOT USED	NOT USED	no	-	-	-
+431	0x01AF	NOT USED	NOT USED	no	-	-	-
+432	0x01B0	NOT USED	NOT USED	no	-	-	-
+433	0x01B1	Anchor	Anchor	no	-	-	-
+434	0x01B2	Treasure	Treasure	no	-	-	-
+435	0x01B3	Rabanastre Crystal	Rabanastre Crystal	no	-	-	-
+436	0x01B4	Nalbina Crystal	Nalbina Crystal	no	-	-	-
+437	0x01B5	Barheim Crystal	Barheim Crystal	no	-	-	-
+438	0x01B6	Estersand Crystal	Estersand Crystal	no	-	-	-
+439	0x01B7	Westersand Crystal	Westersand Crystal	no	-	-	-
+440	0x01B8	Bhujerba Crystal	Bhujerba Crystal	no	-	-	-
+441	0x01B9	Lhusu Crystal	Lhusu Crystal	no	-	-	-
+442	0x01BA	Yensa Crystal	Yensa Crystal	no	-	-	-
+443	0x01BB	Tomb Crystal	Tomb Crystal	no	-	-	-
+444	0x01BC	Mosphoran Crystal	Mosphoran Crystal	no	-	-	-
+445	0x01BD	Salika Crystal	Salika Crystal	no	-	-	-
+446	0x01BE	Nabreus Crystal	Nabreus Crystal	no	-	-	-
+447	0x01BF	Jahara Crystal	Jahara Crystal	no	-	-	-
+448	0x01C0	Henne Crystal	Henne Crystal	no	-	-	-
+449	0x01C1	Golmore Crystal	Golmore Crystal	no	-	-	-
+450	0x01C2	Eruyt Crystal	Eruyt Crystal	no	-	-	-
+451	0x01C3	Giruvegan Crystal	Giruvegan Crystal	no	-	-	-
+452	0x01C4	Bur-Omisace Crystal	Bur-Omisace Crystal	no	-	-	-
+453	0x01C5	Miriam Crystal	Miriam Crystal	no	-	-	-
+454	0x01C6	Phon Crystal	Phon Crystal	no	-	-	-
+455	0x01C7	Tchita Crystal	Tchita Crystal	no	-	-	-
+456	0x01C8	Sochen Crystal	Sochen Crystal	no	-	-	-
+457	0x01C9	Archades Crystal	Archades Crystal	no	-	-	-
+458	0x01CA	Balfonheim Crystal	Balfonheim Crystal	no	-	-	-
+459	0x01CB	Ridorana Crystal	Ridorana Crystal	no	-	-	-
+460	0x01CC	(Crystal 26)	(Crystal 26)	no	-	-	-
+461	0x01CD	(Crystal 27)	(Crystal 27)	no	-	-	-
+462	0x01CE	(Crystal 28)	(Crystal 28)	no	-	-	-
+463	0x01CF	(Crystal 29)	(Crystal 29)	no	-	-	-
+464	0x01D0	(Crystal 30)	(Crystal 30)	no	-	-	-
+465	0x01D1	(Crystal 31)	(Crystal 31)	no	-	-	-
+466	0x01D2	Gate Crystal	Gate Crystal	no	-	-	-
+467	0x01D3	Life Crystal	Life Crystal	no	-	-	-
+468	0x01D4	Urn	Urn	no	-	-	-
+469	0x01D5	Save Crystal	Save Crystal	no	-	-	-
+470	0x01D6	Al-Cid	Al-Cid	no	-	-	-
+471	0x01D7	Anastasis	Anastasis	no	-	-	-
+472	0x01D8	Traveling Merchant	Traveling Merchant	no	-	-	-
+473	0x01D9	Traveling Merchant	Traveling Merchant	no	-	-	-
+474	0x01DA	Kiltias	Kiltias	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+475	0x01DB	Wounded Kiltias	Wounded Kiltias	no	-	-	-
+476	0x01DC	Ieeha	Ieeha	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+477	0x01DD	Cartographers' Guild	Cartographers' Guild	no	-	-	-
+478	0x01DE	Acolyte	Acolyte	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+479	0x01DF	Refugee	Refugee	no	-	-	-
+480	0x01E0	Wounded Refugee	Wounded Refugee	no	-	-	-
+481	0x01E1	Wandering Viera	Wandering Viera	no	-	-	-
+482	0x01E2	Relj	Relj	no	-	-	-
+483	0x01E3	NOT USED	NOT USED	no	-	-	-
+484	0x01E4	Huntmaster	Huntmaster	no	-	-	-
+485	0x01E5	Game Hunter	Game Hunter	no	-	-	-
+486	0x01E6	Atak	Atak	no	-	-	-
+487	0x01E7	Blok	Blok	no	-	-	-
+488	0x01E8	Stok	Stok	no	-	-	-
+489	0x01E9	Aspiring Writer	Aspiring Writer	no	-	-	-
+490	0x01EA	NOT USED	NOT USED	no	-	-	-
+491	0x01EB	Phon Camper	Phon Camper	no	-	-	-
+492	0x01EC	The Man Who Fell	Fallen Bhujerban	yes	-	-	-
+493	0x01ED	Cartographers' Guild	Cartographers' Guild	no	-	-	-
+494	0x01EE	NOT USED	NOT USED	no	-	-	-
+495	0x01EF	NOT USED	NOT USED	no	-	-	-
+496	0x01F0	NOT USED	NOT USED	no	-	-	-
+497	0x01F1	NOT USED	NOT USED	no	-	-	-
+498	0x01F2	NOT USED	NOT USED	no	-	-	-
+499	0x01F3	NOT USED	NOT USED	no	-	-	-
+500	0x01F4	NOT USED	NOT USED	no	-	-	-
+501	0x01F5	NOT USED	NOT USED	no	-	-	-
+502	0x01F6	NOT USED	NOT USED	no	-	-	-
+503	0x01F7	NOT USED	NOT USED	no	-	-	-
+504	0x01F8	NOT USED	NOT USED	no	-	-	-
+505	0x01F9	Vendor of Goods	Vendor of Goods	no	-	-	-
+506	0x01FA	NOT USED	NOT USED	no	-	-	-
+507	0x01FB	NOT USED SHOP NPC	NOT USED SHOP NPC	no	-	-	-
+508	0x01FC	Salve-apprentice	Alja	yes	vic_a02	evt_t0090 x3	-
+509	0x01FD	Warder-swordmaiden	Kjrs	yes	vic_a02 x3	evt_t0090 x3	-
+510	0x01FE	Salve-maker	Hala	yes	-	evt_t0090 x3	-
+511	0x01FF	Mjrn	Mjrn	no	-	evt_t0090 x4	-
+512	0x0200	Viera Maiden	Nera	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array); vic_a02	evt_t0090 x3	-
+513	0x0201	Warder-chief	Rael	yes	vic_a02 x3	evt_t0090 x3	-
+514	0x0202	Warder-apprentice	Rena	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	evt_t0090 x3	-
+515	0x0203	Jote	Jote	no	-	evt_t0090 x3	-
+516	0x0204	Wood-dweller	Wood-dweller	no	-	-	-
+517	0x0205	Wood-dweller	Wood-dweller	no	-	-	-
+518	0x0206	Wood-dweller	Wood-dweller	no	-	-	-
+519	0x0207	Wood-dweller	Wood-dweller	no	-	-	-
+520	0x0208	NOT USED	NOT USED	no	-	-	-
+521	0x0209	NOT USED	NOT USED	no	-	-	-
+522	0x020A	NOT USED	NOT USED	no	-	-	-
+523	0x020B	Wood-dweller	Wood-dweller	no	-	-	-
+524	0x020C	Wood-warder	Wood-warder	no	-	-	-
+525	0x020D	Wood-dweller	Wood-dweller	no	-	-	-
+526	0x020E	Wood-dweller	Wood-dweller	no	-	-	-
+527	0x020F	Wood-dweller	Wood-dweller	no	-	-	-
+528	0x0210	Wood-dweller	Wood-dweller	no	-	-	-
+529	0x0211	Wood-warder	Wood-warder	no	-	-	-
+530	0x0212	NOT USED	NOT USED	no	-	-	-
+531	0x0213	NOT USED	NOT USED	no	-	-	-
+532	0x0214	NOT USED	NOT USED	no	-	-	-
+533	0x0215	NOT USED	NOT USED	no	-	-	-
+534	0x0216	NOT USED	NOT USED	no	-	-	-
+535	0x0217	NOT USED	NOT USED	no	-	-	-
+536	0x0218	NOT USED	NOT USED	no	-	-	-
+537	0x0219	NOT USED	NOT USED	no	-	-	-
+538	0x021A	NOT USED	NOT USED	no	-	-	-
+539	0x021B	NOT USED	NOT USED	no	-	-	-
+540	0x021C	NOT USED	NOT USED	no	-	-	-
+541	0x021D	NOT USED	NOT USED	no	-	-	-
+542	0x021E	NOT USED	NOT USED	no	-	-	-
+543	0x021F	NOT USED	NOT USED	no	-	-	-
+544	0x0220	NOT USED	NOT USED	no	-	-	-
+545	0x0221	NOT USED	NOT USED	no	-	-	-
+546	0x0222	NOT USED	NOT USED	no	-	-	-
+547	0x0223	NOT USED	NOT USED	no	-	-	-
+548	0x0224	NOT USED	NOT USED	no	-	-	-
+549	0x0225	NOT USED	NOT USED	no	-	-	-
+550	0x0226	Adventurer	Adventurer	no	-	-	-
+551	0x0227	Roamantics	Roamantics	no	-	-	-
+552	0x0228	Saloon Steward	Saloon Steward	no	-	-	-
+553	0x0229	Deck Swab	Deck Swab	no	-	-	-
+554	0x022A	Chief Steward	Chief Steward	no	-	-	-
+555	0x022B	Storekeeper	Storekeeper	no	-	-	-
+556	0x022C	Traveling Merchant	Traveling Merchant	no	-	-	-
+557	0x022D	Assistant Storekeeper	Assistant Storekeeper	no	-	-	-
+558	0x022E	Imperial	Imperial	no	-	-	-
+559	0x022F	Steward	Steward	no	-	-	-
+560	0x0230	Traveler	Traveler	no	-	-	-
+561	0x0231	Suspicious Bangaa	Suspicious Bangaa	no	-	-	-
+562	0x0232	Clumsy Bangaa	Clumsy Bangaa	no	-	-	-
+563	0x0233	Migrant Laborer	Migrant Laborer	no	-	-	-
+564	0x0234	Boonswaggled Bookkeeper	Boonswaggled Bookkeeper	no	-	-	-
+565	0x0235	Machinist	Machinist	no	-	-	-
+566	0x0236	Machinist's Apprentice	Machinist's Apprentice	no	-	-	-
+567	0x0237	Stately Gentleman	Stately Gentleman	no	-	-	-
+568	0x0238	Wayward Seeq	Wayward Seeq	no	-	-	-
+569	0x0239	Energetic Boy	Energetic Boy	no	-	-	-
+570	0x023A	Loving Man	Loving Man	no	-	-	-
+571	0x023B	Innocent Girl	Innocent Girl	no	-	-	-
+572	0x023C	Impudent Boy	Impudent Boy	no	-	-	-
+573	0x023D	Troubled Passenger	Troubled Passenger	no	-	-	-
+574	0x023E	Paranoid Man	Paranoid Man	no	-	-	-
+575	0x023F	Lovelorn Seeq	Lovelorn Seeq	no	-	-	-
+576	0x0240	Bohemian	Bohemian	no	-	-	-
+577	0x0241	Fine Chocobo	Fine Chocobo	no	-	-	-
+578	0x0242	Charming Woman	Charming Woman	no	-	-	-
+579	0x0243	Mischievous Boy	Mischievous Boy	no	-	-	-
+580	0x0244	Perceptive Boy	Perceptive Boy	no	-	-	-
+581	0x0245	Man of Renown	Man of Renown	no	-	-	-
+582	0x0246	Contrite Thief	Contrite Thief	no	rbn_a14 (array)	-	-
+583	0x0247	Rabanastran	Balzac	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+584	0x0248	Cynical Boy	Cynical Boy	no	-	-	-
+585	0x0249	Well-spoken Boy	Well-spoken Boy	no	-	-	-
+586	0x024A	Impoverished Man	Impoverished Man	no	-	-	-
+587	0x024B	Dalmascan Patriot	Dalmascan Patriot	no	-	-	-
+588	0x024C	Rabanastran	Rabanastran	no	-	-	-
+589	0x024D	Wandering Woman	Wandering Woman	no	-	-	-
+590	0x024E	Careful Listener	Careful Listener	no	-	-	-
+591	0x024F	Rabanastran	Rabanastran	no	-	-	-
+592	0x0250	Rabanastran	Rabanastran	no	-	-	-
+593	0x0251	Deadbeat	Deadbeat	no	-	-	-
+594	0x0252	Water-watcher	Water-watcher	no	-	-	-
+595	0x0253	Rabanastran	Rabanastran	no	-	-	-
+596	0x0254	Rabanastran	Northon	yes	rbn_a04	-	-
+597	0x0255	Vexed Father	Vexed Father	no	-	-	-
+598	0x0256	Kindly Girl	Kindly Girl	no	-	-	-
+599	0x0257	Angry Woman	Angry Woman	no	-	-	-
+600	0x0258	Laughing Seeq	Laughing Seeq	no	-	-	-
+601	0x0259	Watchful Seeq	Watchful Seeq	no	-	-	-
+602	0x025A	Furious Bangaa	Furious Bangaa	no	-	-	-
+603	0x025B	Traveling Merchant	Traveling Merchant	no	-	-	-
+604	0x025C	Rabanastran	Rabanastran	no	-	-	-
+605	0x025D	Rabanastran	Rabanastran	no	-	-	-
+606	0x025E	Jolly Seeq	Jolly Seeq	no	-	-	-
+607	0x025F	Rabanastran	Samal	yes	slm_a01	-	-
+608	0x0260	Resigned Boy	Resigned Boy	no	-	-	-
+609	0x0261	Resolute Boy	Resolute Boy	no	-	-	-
+610	0x0262	Awestruck Girl	Awestruck Girl	no	-	-	-
+611	0x0263	Somber Woman	Somber Woman	no	-	-	-
+612	0x0264	Ex-Adventurer	Ex-Adventurer	no	-	-	-
+613	0x0265	Frustrated Man	Frustrated Man	no	-	-	-
+614	0x0266	Well-spoken Girl	Well-spoken Girl	no	-	-	-
+615	0x0267	Guileless Girl	Guileless Girl	no	-	-	-
+616	0x0268	Rabanastran	Rabanastran	no	-	-	-
+617	0x0269	Friendly Boy	Friendly Boy	no	-	-	-
+618	0x026A	Rabanastran	Rabanastran	no	-	-	-
+619	0x026B	Guileful Boy	Guileful Boy	no	-	-	-
+620	0x026C	Headhunter	Headhunter	no	-	-	-
+621	0x026D	Caring Woman	Milha	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); slm_a01; var_a14 (array)	-	-
+622	0x026E	Rabanastran	Sameel	yes	-	-	-
+623	0x026F	Rabanastran	Deeg	yes	-	-	-
+624	0x0270	Traveling Merchant	Traveling Merchant	no	-	-	-
+625	0x0271	Patient Boy	Patient Boy	no	-	-	-
+626	0x0272	Rabanastran	Rabanastran	no	-	-	-
+627	0x0273	Refugee	Koqmihn	yes	rbn_a14 (array)	-	-
+628	0x0274	Refugee	Refugee	no	-	-	-
+629	0x0275	Fussbudget	Fussbudget	no	-	-	-
+630	0x0276	Rabanastran	Rabanastran	no	-	-	-
+631	0x0277	Rabanastran	Rabanastran	no	-	-	-
+632	0x0278	Rabanastran	Tomaj	yes	-	-	-
+633	0x0279	Enigmatic Merchant	Enigmatic Merchant	no	-	-	-
+634	0x027A	Demented Merchant	Demented Merchant	no	-	-	-
+635	0x027B	Fidget	Fidget	no	-	-	-
+636	0x027C	Layabout	Layabout	no	-	-	-
+637	0x027D	dummy_monster	dummy_monster	no	-	-	-
+638	0x027E	dummy_monster	dummy_monster	no	-	-	-
+639	0x027F	dummy_monster	dummy_monster	no	-	-	-
+640	0x0280	dummy_monster	dummy_monster	no	-	-	-
+641	0x0281	dummy_monster	dummy_monster	no	-	-	-
+642	0x0282	dummy_monster	dummy_monster	no	-	-	-
+643	0x0283	dummy_monster	dummy_monster	no	-	-	-
+644	0x0284	dummy_monster	dummy_monster	no	-	-	-
+645	0x0285	dummy_monster	dummy_monster	no	-	-	-
+646	0x0286	dummy_monster	dummy_monster	no	-	-	-
+647	0x0287	dummy_monster	dummy_monster	no	-	-	-
+648	0x0288	dummy_monster	dummy_monster	no	-	-	-
+649	0x0289	dummy_monster	dummy_monster	no	-	-	-
+650	0x028A	dummy_monster	dummy_monster	no	-	-	-
+651	0x028B	dummy_monster	dummy_monster	no	-	-	-
+652	0x028C	dummy_monster	dummy_monster	no	-	-	-
+653	0x028D	dummy_monster	dummy_monster	no	-	-	-
+654	0x028E	dummy_monster	dummy_monster	no	-	-	-
+655	0x028F	dummy_monster	dummy_monster	no	-	-	-
+656	0x0290	dummy_monster	dummy_monster	no	-	-	-
+657	0x0291	dummy_monster	dummy_monster	no	-	-	-
+658	0x0292	dummy_monster	dummy_monster	no	-	-	-
+659	0x0293	dummy_monster	dummy_monster	no	-	-	-
+660	0x0294	dummy_monster	dummy_monster	no	-	-	-
+661	0x0295	dummy_monster	dummy_monster	no	-	-	-
+662	0x0296	dummy_monster	dummy_monster	no	-	-	-
+663	0x0297	dummy_monster	dummy_monster	no	-	-	-
+664	0x0298	dummy_monster	dummy_monster	no	-	-	-
+665	0x0299	dummy_monster	dummy_monster	no	-	-	-
+666	0x029A	dummy_monster	dummy_monster	no	-	-	-
+667	0x029B	dummy_monster	dummy_monster	no	-	-	-
+668	0x029C	dummy_monster	dummy_monster	no	-	-	-
+669	0x029D	Corpulent Merchant	Corpulent Merchant	no	-	-	-
+670	0x029E	Itinerant Hand	Itinerant Hand	no	-	-	-
+671	0x029F	Homebound Man	Homebound Man	no	-	-	-
+672	0x02A0	Imperial Provisioner	Imperial Provisioner	no	-	-	-
+673	0x02A1	Jovy	Jovy	no	-	-	-
+674	0x02A2	Sharp-eyed Man	Sharp-eyed Man	no	-	-	-
+675	0x02A3	Nalbinite	Nalbinite	no	-	-	-
+676	0x02A4	Merchant	Merchant	no	-	-	-
+677	0x02A5	Traveling Merchant	Traveling Merchant	no	-	-	-
+678	0x02A6	Shopkeep	Shopkeep	no	-	-	-
+679	0x02A7	Antiqued Armors	Antiqued Armors	no	-	-	-
+680	0x02A8	Troublesome Technicks	Troublesome Technicks	no	-	-	-
+681	0x02A9	Weapons of War	Weapons of War	no	-	-	-
+682	0x02AA	Portentous Provisions	Portentous Provisions	no	-	-	-
+683	0x02AB	Luckless Merchant	Luckless Merchant	no	-	-	-
+684	0x02AC	Morning Star Gambits	Morning Star Gambits	no	-	-	-
+685	0x02AD	Mysterious Magicks	Mysterious Magicks	no	-	-	-
+686	0x02AE	Shy Bangaa	Shy Bangaa	no	-	-	-
+687	0x02AF	Imperial	Imperial	no	-	-	-
+688	0x02B0	Imperial?	Imperial?	no	-	-	-
+689	0x02B1	Wayfarer	Wayfarer	no	-	-	-
+690	0x02B2	Barrong	Barrong	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+691	0x02B3	Morgen	Morgen	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+692	0x02B4	Popol	Popol	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+693	0x02B5	Zammadria	Zammadria	no	rbn_a14 (array)	-	-
+694	0x02B6	Imperial	Imperial	no	-	-	-
+695	0x02B7	Lulucce	Lulucce	no	-	evt_t0090	-
+696	0x02B8	Malloud	Malloud	no	-	-	-
+697	0x02B9	Tetran	Tetran	no	-	evt_t0090	-
+698	0x02BA	Archadian	Archadian	no	-	-	-
+699	0x02BB	Archadian	Archadian	no	-	-	-
+700	0x02BC	Archadian	Archadian	no	-	-	-
+701	0x02BD	Ivaness	Ivaness	no	-	-	-
+702	0x02BE	Hymms	Hymms	no	-	-	-
+703	0x02BF	Suspicious Bangaa	Suspicious Bangaa	no	-	-	-
+704	0x02C0	Elza	Elza	no	-	-	-
+705	0x02C1	Froj	Froj	no	-	-	-
+706	0x02C2	Horne	Horne	no	-	-	-
+707	0x02C3	Kyangshin	Kyangshin	no	-	-	-
+708	0x02C4	Milmal	Milmal	no	-	-	-
+709	0x02C5	Hadden	Hadden	no	-	-	-
+710	0x02C6	Josta	Josta	no	-	-	-
+711	0x02C7	Mannu	Mannu	no	-	-	-
+712	0x02C8	Hurdy	Hurdy	no	-	-	-
+713	0x02C9	July	July	no	-	-	-
+714	0x02CA	Flamboyant Man	Flamboyant Man	no	-	-	-
+715	0x02CB	Ma'kenroh	Ma'kenroh	no	-	-	-
+716	0x02CC	Moogling Attendant	Moogling Attendant	no	-	-	-
+717	0x02CD	Montblanc	Montblanc	no	rbn_a14 (array)	-	-
+718	0x02CE	Nameless One	Nameless One	no	-	-	-
+719	0x02CF	Nazz	Nazz	no	-	-	-
+720	0x02D0	Nono	Nono	no	-	-	-
+721	0x02D1	Desert Nomad	Yarvan	yes	-	-	-
+722	0x02D2	Follower of the Light	Fierna	yes	-	-	-
+723	0x02D3	Nalbinan	Heste	yes	-	-	-
+724	0x02D4	Archadian	Nobyl	yes	-	-	-
+725	0x02D5	Rimzat	Rimzat	no	-	-	-
+726	0x02D6	Burrogh	Burrogh	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+727	0x02D7	Pomi	Pomi	no	-	-	-
+728	0x02D8	Father	Father	no	-	-	-
+729	0x02D9	Mother	Mother	no	-	-	-
+730	0x02DA	Son	Son	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+731	0x02DB	Quiet Nu Mou	Ma'kleou	yes	-	-	-
+732	0x02DC	Roh'kenmou	Roh'kenmou	no	-	-	-
+733	0x02DD	Roh'kenmu	Roh'kenmu	no	-	-	-
+734	0x02DE	Yrlon	Yrlon	no	-	evt_t0090	-
+735	0x02DF	Kait	Kait	no	-	evt_t0090	-
+736	0x02E0	Sot	Ruksel	yes	-	-	-
+737	0x02E1	Cat Lover	Lyon	yes	-	-	-
+738	0x02E2	Ex-researcher	Dunn	yes	-	-	-
+739	0x02E3	Raz	Raz	no	-	-	-
+740	0x02E4	Rikken	Rikken	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+741	0x02E5	Roh'kenmau	Roh'kenmau	no	-	-	-
+742	0x02E6	Dyce	Dyce	no	-	-	-
+743	0x02E7	Dilah	Dilah	no	-	-	-
+744	0x02E8	Sorbet	Sorbet	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+745	0x02E9	Desert Merchant	Imabakk	yes	-	evt_t0090	-
+746	0x02EA	Desert Merchant	Lohen	yes	-	evt_t0090	-
+747	0x02EB	Kurtz	Kurtz	no	-	-	-
+748	0x02EC	Valet	Valet	no	-	-	-
+749	0x02ED	Palace Servant	Palace Servant	no	-	-	-
+750	0x02EE	Well-dressed Man	Well-dressed Man	no	-	-	-
+751	0x02EF	NOT USED	NOT USED	no	-	-	-
+752	0x02F0	NOT USED	NOT USED	no	-	-	-
+753	0x02F1	Caravaner	Caravaner	no	-	-	-
+754	0x02F2	Caravaner	Va'Kansa	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+755	0x02F3	Caravaner	Luccio	yes	-	-	-
+756	0x02F4	NOT USED	NOT USED	no	-	-	-
+757	0x02F5	Moogle Boss	Moogle Boss	no	-	-	-
+758	0x02F6	Layabout	Layabout	no	-	-	-
+759	0x02F7	Forest Traveler	Forest Traveler	no	-	-	-
+760	0x02F8	Armor Seller	Armor Seller	no	-	-	-
+761	0x02F9	Lebleu's Daughter	Lebleu's Daughter	no	-	-	-
+762	0x02FA	Magickery Proprietor	Magickery Proprietor	no	-	-	-
+763	0x02FB	Granch	Granch	no	-	-	-
+764	0x02FC	Technick Seller	Technick Seller	no	-	-	-
+765	0x02FD	Weapon Seller	Weapon Seller	no	-	-	-
+766	0x02FE	Stranded Merchant	Stranded Merchant	no	-	-	-
+767	0x02FF	Emma	Emma	no	-	-	-
+768	0x0300	Waterfront Gambits	Waterfront Gambits	no	-	-	-
+769	0x0301	Quayside Magickery	Quayside Magickery	no	-	-	-
+770	0x0302	Odo	Odo	no	-	-	-
+771	0x0303	Beruny	Beruny	no	-	-	-
+772	0x0304	The Leapin' Bangaa	The Leapin' Bangaa	no	-	-	-
+773	0x0305	Baknamy Merchant	Baknamy Merchant	no	-	-	-
+774	0x0306	Lofty Sky Pirate	Lofty Sky Pirate	no	-	-	-
+775	0x0307	Laboring Bangaa	Laboring Bangaa	no	-	-	-
+776	0x0308	Miffed Moogle	Miffed Moogle	no	-	-	-
+777	0x0309	Hardy Pirate	Hardy Pirate	no	-	-	-
+778	0x030A	Port Wench	Port Wench	no	-	-	-
+779	0x030B	Born Sky Pirate	Born Sky Pirate	no	-	-	-
+780	0x030C	Bangaa Runner	Bangaa Runner	no	-	-	-
+781	0x030D	Lazy Man	Lazy Man	no	-	-	-
+782	0x030E	Fisherman	Fisherman	no	-	-	-
+783	0x030F	Well-informed Man	Well-informed Man	no	-	-	-
+784	0x0310	Beldame	Beldame	no	-	-	-
+785	0x0311	Kind Pirate	Kind Pirate	no	-	-	-
+786	0x0312	Hawker	Hawker	no	-	-	-
+787	0x0313	Bazaar-goer	Bazaar-goer	no	-	-	-
+788	0x0314	Anti-Imperialist	Anti-Imperialist	no	-	-	-
+789	0x0315	Proper Pirate	Proper Pirate	no	-	-	-
+790	0x0316	Hard-working Bangaa	Hard-working Bangaa	no	-	-	-
+791	0x0317	Fair Trader	Fair Trader	no	-	-	-
+792	0x0318	Dyed-in-the-wool Sky Pirate	Dyed-in-the-wool Sky Pirate	no	-	-	-
+793	0x0319	Thoughtful Quayhand	Thoughtful Quayhand	no	-	-	-
+794	0x031A	Seafarer	Seafarer	no	-	-	-
+795	0x031B	Gloss-eyed Man	Gloss-eyed Man	no	-	-	-
+796	0x031C	Wild-eyed Pirate	Wild-eyed Pirate	no	-	-	-
+797	0x031D	Well-traveled Man	Well-traveled Man	no	-	-	-
+798	0x031E	Irritable Bangaa	Irritable Bangaa	no	-	-	-
+799	0x031F	Queasy Boy	Queasy Boy	no	-	-	-
+800	0x0320	Quayhand	Quayhand	no	-	-	-
+801	0x0321	Quayhand	Quayhand	no	-	-	-
+802	0x0322	Resting Fisherman	Resting Fisherman	no	-	-	-
+803	0x0323	Manse Watch	Manse Watch	no	-	-	-
+804	0x0324	Placid Pirate	Placid Pirate	no	-	-	-
+805	0x0325	Contemplative Viera	Contemplative Viera	no	-	-	-
+806	0x0326	Fishing Enthusiast	Fishing Enthusiast	no	-	-	-
+807	0x0327	Jolly Pirate	Jolly Pirate	no	-	-	-
+808	0x0328	Man of Reason	Man of Reason	no	-	-	-
+809	0x0329	Disciplined Pirate	Disciplined Pirate	no	-	-	-
+810	0x032A	Airship Pilot	Airship Pilot	no	-	-	-
+811	0x032B	Troubadour	Troubadour	no	-	-	-
+812	0x032C	Sleepy Man	Sleepy Man	no	-	-	-
+813	0x032D	Worried Pirate	Worried Pirate	no	-	-	-
+814	0x032E	Dubious Sky Pirate	Dubious Sky Pirate	no	-	-	-
+815	0x032F	Fishmonger	Fishmonger	no	-	-	-
+816	0x0330	Muscled Pirate	Muscled Pirate	no	-	-	-
+817	0x0331	Horizon-watcher	Horizon-watcher	no	-	-	-
+818	0x0332	Old Fisherman	Old Fisherman	no	-	-	-
+819	0x0333	Blunt Woman	Blunt Woman	no	-	-	-
+820	0x0334	Quayhag	Quayhag	no	-	-	-
+821	0x0335	Watchwoman	Watchwoman	no	-	-	-
+822	0x0336	Garrulous Pirate	Garrulous Pirate	no	-	-	-
+823	0x0337	Perplexed Pirate	Perplexed Pirate	no	-	-	-
+824	0x0338	Carefree Man	Carefree Man	no	-	-	-
+825	0x0339	Quiet Bangaa	Quiet Bangaa	no	-	-	-
+826	0x033A	Would-be Seafarer	Would-be Seafarer	no	-	-	-
+827	0x033B	Prattling Pirate	Prattling Pirate	no	-	-	-
+828	0x033C	Seafarer's Wife	Seafarer's Wife	no	-	-	-
+829	0x033D	Reddas Freeman	Reddas Freeman	no	-	-	-
+830	0x033E	Reddas Freewoman	Reddas Freewoman	no	-	-	-
+831	0x033F	World-weary Woman	World-weary Woman	no	-	-	-
+832	0x0340	Bangaa in His Cups	Bangaa in His Cups	no	-	-	-
+833	0x0341	Viera Wayfarer	Viera Wayfarer	no	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+834	0x0342	Whitecap Wench	Whitecap Wench	no	rbn_a14 (array)	-	-
+835	0x0343	Quay Rat	Quay Rat	no	-	-	-
+836	0x0344	Man of the Quay	Man of the Quay	no	-	-	-
+837	0x0345	Relaxed Man	Relaxed Man	no	-	-	-
+838	0x0346	Resting Pirate	Resting Pirate	no	-	-	-
+839	0x0347	Seeq Merchant	Seeq Merchant	no	-	-	-
+840	0x0348	Whitecap Sisters	Whitecap Sisters	no	-	-	-
+841	0x0349	Pirate Gossip	Pirate Gossip	no	-	-	-
+842	0x034A	Teller of Tales	Teller of Tales	no	-	-	-
+843	0x034B	Strident Bangaa	Strident Bangaa	no	-	-	-
+844	0x034C	Seahand	Seahand	no	-	-	-
+845	0x034D	Feeble Bangaa	Feeble Bangaa	no	-	-	-
+846	0x034E	Angry Woman	Angry Woman	no	-	-	-
+847	0x034F	Troubled Pirate	Troubled Pirate	no	-	-	-
+848	0x0350	Wingless Sky Pirate	Wingless Sky Pirate	no	-	-	-
+849	0x0351	Weeping Woman	Weeping Woman	no	-	-	-
+850	0x0352	Glassy-eyed Man	Glassy-eyed Man	no	-	-	-
+851	0x0353	Welcoming Party	Welcoming Party	no	-	-	-
+852	0x0354	Sky Pirate	Sky Pirate	no	-	-	-
+853	0x0355	Man of Hope	Man of Hope	no	-	-	-
+854	0x0356	Garif Warrior	Warrior Hsemu	yes	-	-	-
+855	0x0357	Wayward Bangaa	Wayward Bangaa	no	-	-	-
+856	0x0358	Chocobo Wrangler	Chocobo Wrangler	no	-	-	-
+857	0x0359	Sky Watch	Sky Watch	no	-	-	-
+858	0x035A	Sky Watch	Sky Watch	no	-	-	-
+859	0x035B	Sea Watch	Sea Watch	no	-	-	-
+860	0x035C	Mummer	Mummer	no	-	-	-
+861	0x035D	Archadian Gentry	Proud Mother	yes	-	-	-
+862	0x035E	Archadian Gentry	Traveling Gentleman	yes	-	-	-
+863	0x035F	Archadian Ardent	Poor Husband	yes	-	-	-
+864	0x0360	Archadian Ardent	Ardent Woman	yes	-	-	-
+865	0x0361	Archadian Gentry	Look-alike	yes	-	-	-
+866	0x0362	Archadian Ardent	Talented Woman	yes	-	-	-
+867	0x0363	Archadian Ardent	Man from Giza	yes	-	-	-
+868	0x0364	Archadian Gentry	Judge's Wife	yes	-	-	-
+869	0x0365	Archadian Ardent	Laborer	yes	-	-	-
+870	0x0366	Archadian Gentry	Family-minded Girl	yes	-	-	-
+871	0x0367	Archadian Gentry	Tutor	yes	-	-	-
+872	0x0368	Archadian Gentry	Avid Traveler	yes	-	-	-
+873	0x0369	Archadian Ardent	Poor Wife	yes	-	-	-
+874	0x036A	Archadian Ardent	Ardent Man	yes	-	-	-
+875	0x036B	Archadian Gentry	Look-alike	yes	-	-	-
+876	0x036C	Archadian Gentry	Akademician	yes	-	-	-
+877	0x036D	Archadian Gentry	Daughter-in-Law	yes	-	-	-
+878	0x036E	Archadian Ardent	Would-be Judge	yes	-	-	-
+879	0x036F	Archadian Gentry	Antsy Man	yes	-	-	-
+880	0x0370	Archadian Gentry	Reminiscing Lady	yes	-	-	-
+881	0x0371	Archadian Gentry	Worried Partner	yes	-	-	-
+882	0x0372	Archadian Gentry	Moneyed Gentleman	yes	-	-	-
+883	0x0373	Archadian Gentry	Sewing Master	yes	-	-	-
+884	0x0374	Archadian Gentry	Clothing Seller	yes	-	-	-
+885	0x0375	Archadian Gentry	Smitten Woman	yes	-	-	-
+886	0x0376	Archadian Gentry	Historian	yes	-	-	-
+887	0x0377	Archadian Gentry	Music Appreciator	yes	-	-	-
+888	0x0378	Archadian Gentry	Artisan Architect	yes	-	-	-
+889	0x0379	Archadian Gentry	Farce-Goer	yes	-	-	-
+890	0x037A	Archadian Gentry	Heedless Partner	yes	-	-	-
+891	0x037B	Archadian Gentry	Boutiquere	yes	-	-	-
+892	0x037C	Archadian Gentry	Cloth Trader	yes	-	-	-
+893	0x037D	Archadian Gentry	Enchanting Model	yes	-	-	-
+894	0x037E	Archadian Gentry	Smitten Man	yes	-	-	-
+895	0x037F	Archadian Gentry	Perceptive Man	yes	-	-	-
+896	0x0380	Archadian Gentry	Lutenist	yes	-	-	-
+897	0x0381	Archadian Gentry	Builder	yes	-	-	-
+898	0x0382	Archadian Gentry	Girl on an Errand	yes	-	-	-
+899	0x0383	Cab Guide	Cab Guide	no	-	-	-
+900	0x0384	Researcher	Determined Researcher	yes	-	-	-
+901	0x0385	Archadian Gentry	Faded Star	yes	-	-	-
+902	0x0386	Researcher	Failed Researcher	yes	-	-	-
+903	0x0387	Archadian Gentry	Worried Husband	yes	-	-	-
+904	0x0388	Archadian Gentry	Athletic Woman	yes	-	-	-
+905	0x0389	Archadian Gentry	Gentleman Onlooker	yes	-	-	-
+906	0x038A	Archadian Gentry	Ex-Researcher	yes	-	-	-
+907	0x038B	Archadian Gentry	Aspiring Starlet	yes	-	-	-
+908	0x038C	Archadian Gentry	Senior Researcher	yes	-	-	-
+909	0x038D	Archadian Gentry	Materialistic Woman	yes	-	-	-
+910	0x038E	Archadian Gentry	Avid Reader	yes	-	-	-
+911	0x038F	Archadian Ardent	Eager Crier	yes	-	-	-
+912	0x0390	Attendant	Tour Leader	yes	-	-	-
+913	0x0391	Archadian Gentry	Researcher's Wife	yes	-	-	-
+914	0x0392	Archadian Gentry	Good Brother	yes	-	-	-
+915	0x0393	Archadian Ardent	Vegetable Seller	yes	-	-	-
+916	0x0394	Archadian Gentry	Dangerous Chef	yes	-	-	-
+917	0x0395	Attendant	Happy Novelist	yes	-	-	-
+918	0x0396	Archadian Gentry	Good Son	yes	-	-	-
+919	0x0397	Archadian Gentry	Romantic Lady	yes	-	-	-
+920	0x0398	Archadian Gentry	Bhujerban Lady	yes	-	-	-
+921	0x0399	Archadian Gentry	Lazy Profiteer	yes	-	-	-
+922	0x039A	Archadian Gentry	Waiting Woman	yes	-	-	-
+923	0x039B	Archadian Ardent	Greenseller	yes	-	-	-
+924	0x039C	Archadian Gentry	Philosopher of Cuisine	yes	-	-	-
+925	0x039D	Archadian Ardent	Tarot Reader	yes	-	-	-
+926	0x039E	Archadian Gentry	Traveling Lady	yes	-	-	-
+927	0x039F	Archadian Gentry	Lucky Man	yes	-	-	-
+928	0x03A0	Archadian Gentry	Foppish Man	yes	alc_b05	-	-
+929	0x03A1	Archadian Gentry	Sultry Woman	yes	alc_b05	-	-
+930	0x03A2	Nu Mou	Musician	yes	-	-	-
+931	0x03A3	Archadian Ardent	Hopeful Writer	yes	-	-	-
+932	0x03A4	Archadian Gentry	Hesitant Man	yes	-	-	-
+933	0x03A5	Archadian Ardent	Insecure Seeq	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+934	0x03A6	Archadian Gentry	Eager Learner	yes	-	-	-
+935	0x03A7	Archadian Gentry	Quiet Woman	yes	-	-	-
+936	0x03A8	Archadian Gentry	UNUSED NPC	yes	-	-	-
+937	0x03A9	Imperial	UNUSED NPC	yes	-	-	-
+938	0x03AA	Archadian Gentry	Imperious Man	yes	-	-	-
+939	0x03AB	Archadian Gentry	Curious Boy	yes	-	-	-
+940	0x03AC	Archadian Gentry	UNUSED NPC	yes	-	-	-
+941	0x03AD	Archadian Gentry	UNUSED NPC	yes	-	-	-
+942	0x03AE	Archadian Gentry	Haughty Boy	yes	-	-	-
+943	0x03AF	Imperial	Imperial	no	-	-	-
+944	0x03B0	Archadian Gentry	Entrepreneur	yes	-	-	-
+945	0x03B1	Archadian Gentry	Prideful Boy	yes	-	-	-
+946	0x03B2	Archadian Gentry	Ruined Woman	yes	-	-	-
+947	0x03B3	Archadian Gentry	Three Timer	yes	-	-	-
+948	0x03B4	Archadian Gentry	Enthusiastic Boy	yes	-	-	-
+949	0x03B5	Attendant	Attendant	no	-	-	-
+950	0x03B6	Archadian Gentry	Seeq-Hater	yes	-	-	-
+951	0x03B7	Archadian Gentry	Single Gentry	yes	-	-	-
+952	0x03B8	Imperial	Imperial	no	-	-	-
+953	0x03B9	Archadian Ardent	Homesick Man	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+954	0x03BA	Archadian Ardent	Willful Woman	yes	alc_f03	-	-
+955	0x03BB	Archadian Ardent	Meek Man	yes	alc_f03	-	-
+956	0x03BC	Archadian Gentry	Appreciator of Shields	yes	-	-	-
+957	0x03BD	Archadian Gentry	Prospective Dealer	yes	-	-	-
+958	0x03BE	Archadian Ardent	Bargain Hunter	yes	-	-	-
+959	0x03BF	Archadian Gentry	Adventuresome Child	yes	-	-	-
+960	0x03C0	Archadian Gentry	Impressed Nuncle	yes	-	-	-
+961	0x03C1	Archadian Gentry	Once-Commander	yes	-	-	-
+962	0x03C2	-	-	no	-	-	-
+963	0x03C3	Chopmaster	Chopmaster	no	-	-	-
+964	0x03C4	Archadian Ardent	Patient Man	yes	-	-	-
+965	0x03C5	Archadian Vulgar	Fermon	yes	alc_f04 (array); byu_a18 (array); fon_b01 (array); nac_a02 (array); rbn_a16 (array); var_a14 (array)	-	-
+966	0x03C6	Bloom of the Outcast	Bloom of the Outcast	no	-	-	-
+967	0x03C7	Sandsea Moogle	Sandsea Moogle	no	-	-	-
+968	0x03C8	Urutan Outcast	Urutan Outcast	no	-	-	-
+969	0x03C9	Wounded Imperial	Wounded Imperial	no	-	-	-
+970	0x03CA	Waiting Bangaa	Waiting Bangaa	no	-	-	-
+971	0x03CB	Waiting Bangaa	Waiting Bangaa	no	-	-	-
+972	0x03CC	Man in Queue	Man in Queue	no	-	-	-
+973	0x03CD	Man from Queue	Man from Queue	no	-	-	-
+974	0x03CE	Queue Watch	Queue Watch	no	-	-	-
+975	0x03CF	Queue Watch	Queue Watch	no	-	-	-
+976	0x03D0	Frightened Child	Frightened Child	no	-	-	-
+977	0x03D1	Despondent Man	Despondent Man	no	-	-	-
+978	0x03D2	Stalwart Sky Pirate	Stalwart Sky Pirate	no	-	-	-
+979	0x03D3	Hawker	Hawker	no	-	-	-
+980	0x03D4	Shifty-Eyed Man	Shifty-Eyed Man	no	-	-	-
+981	0x03D5	Caravaner	Adair	yes	-	-	-
+982	0x03D6	Caravaner	Caravaner	no	-	-	-
+983	0x03D7	Caravaner	Caravaner	no	-	-	-
+984	0x03D8	Determined Traveler	Determined Traveler	no	-	-	-
+985	0x03D9	Concerned Woman	Concerned Woman	no	-	-	-
+986	0x03DA	Scout	Scout	no	-	-	-
+987	0x03DB	Scout	Scout	no	-	-	-
+988	0x03DC	Learned Man	Learned Man	no	-	-	-
+989	0x03DD	Viera Wayfarer	Viera Wayfarer	no	-	-	-
+990	0x03DE	Weather Eye	Weather Eye	no	-	-	-
+991	0x03DF	Deeg	Deeg	no	-	-	-
+992	0x03E0	Traveler	Traveler	no	-	-	-
+993	0x03E1	Craftsmoogle	Craftsmoogle	no	-	-	-
+994	0x03E2	Overseer	Overseer	no	-	-	-
+995	0x03E3	Bandit Chief	Bandit Chief	no	-	-	-
+996	0x03E4	Beachcomber	Ada	yes	-	-	-
+997	0x03E5	Torrie	Torrie	no	-	-	-
+998	0x03E6	Captive Villager	Captive Villager	no	-	-	-
+999	0x03E7	Wise Elder	Wise Elder	no	-	-	-
+1000	0x03E8	Recovering Traveler	Recovering Traveler	no	-	-	-
+1001	0x03E9	Archadian Vulgar	Shifty-Eyed Man	yes	-	-	-
+1002	0x03EA	Archadian Vulgar	Beasley	yes	-	-	-
+1003	0x03EB	Archadian Vulgar	Nervous Seeq	yes	-	-	-
+1004	0x03EC	Archadian Vulgar	Indefatigable Granny	yes	-	-	-
+1005	0x03ED	Archadian Vulgar	Lucky Man	yes	-	-	-
+1006	0x03EE	Archadian Vulgar	Worried Grandson	yes	-	-	-
+1007	0x03EF	Archadian Vulgar	Broken Man	yes	-	-	-
+1008	0x03F0	Archadian Vulgar	Frustrated Woman	yes	-	-	-
+1009	0x03F1	Archadian Vulgar	Little Sister	yes	-	-	-
+1010	0x03F2	Archadian Vulgar	Fallen Man	yes	-	-	-
+1011	0x03F3	Archadian Vulgar	Trembling Woman	yes	-	-	-
+1012	0x03F4	Archadian Vulgar	Disparaging Woman	yes	-	-	-
+1013	0x03F5	Archadian Vulgar	Nay-Sayer	yes	-	-	-
+1014	0x03F6	Archadian Vulgar	Sighing Boy	yes	-	-	-
+1015	0x03F7	Shady Seeq	Shady Seeq	no	-	-	-
+1016	0x03F8	Archadian Vulgar	Braggart	yes	ald_a02	-	-
+1017	0x03F9	Archadian Vulgar	Defiant Lad	yes	ald_a02	-	-
+1018	0x03FA	Proper Gent	Ex-Broker	yes	-	-	-
+1019	0x03FB	Archadian Vulgar	Loiterer	yes	-	-	-
+1020	0x03FC	Archadian Vulgar	Resting Man	yes	-	-	-
+1021	0x03FD	Archadian Vulgar	Proud Brother	yes	ald_a02	-	-
+1022	0x03FE	Archadian Ardent	Weary Brother	yes	ald_a02	-	-
+1023	0x03FF	Archadian Vulgar	Leaving Man	yes	ald_a02	-	-
+1024	0x0400	Archadian Vulgar	Waiting Woman	yes	ald_a02	-	-
+1025	0x0401	Archadian Vulgar	Man at the Gate	yes	-	-	-
+1026	0x0402	Archadian Vulgar	Fisherman	yes	-	-	-
+1027	0x0403	Archadian Vulgar	Frank Woman	yes	-	-	-
+1028	0x0404	Archadian Vulgar	Hungry Child	yes	-	-	-
+1029	0x0405	Archadian Vulgar	Cautious Woman	yes	-	-	-
+1030	0x0406	Archadian Vulgar	Suspicious Woman	yes	-	-	-
+1031	0x0407	Archadian Vulgar	Busy Girl	yes	-	-	-
+1032	0x0408	Stranded Merchant	Stranded Merchant	no	-	-	-
+1033	0x0409	Archadian Vulgar	Stairbottom Elder	yes	-	-	-
+1034	0x040A	Archadian Vulgar	Hating Man	yes	-	-	-
+1035	0x040B	Archadian Vulgar	Indecisive Man	yes	-	-	-
+1036	0x040C	Archadian Vulgar	Wary Woman	yes	-	-	-
+1037	0x040D	Archadian Vulgar	Quiet Talker	yes	-	-	-
+1038	0x040E	Proper Gent	Fresh Ardent	yes	-	-	-
+1039	0x040F	Archadian Vulgar	Precocious Girl	yes	-	-	-
+1040	0x0410	Archadian Vulgar	Returnee	yes	-	-	-
+1041	0x0411	Archadian Vulgar	Wall Child	yes	-	-	-
+1042	0x0412	Archadian Vulgar	Dreaming Man	yes	ald_a02	-	-
+1043	0x0413	Archadian Vulgar	Sensible Man	yes	ald_a02	-	-
+1044	0x0414	Archadian Vulgar	Distinguished Elder	yes	ald_a02	-	-
+1045	0x0415	Archadian Vulgar	Granddaughter	yes	ald_a02	-	-
+1046	0x0416	Archadian Vulgar	Perplexed Grandpa	yes	-	-	-
+1047	0x0417	Streetear	Jules	yes	ald_a01	-	-
+1048	0x0418	Outfitters	Outfitters	no	-	-	-
+1049	0x0419	Wyrm Philosopher	Wyrm Philosopher	no	-	-	-
+1050	0x041A	Ashkroft	Ashkroft	no	-	-	-
+1051	0x041B	Docent	Docent	no	-	-	-
+1052	0x041C	Informed Citydweller	Informed Citydweller	no	-	-	-
+1053	0x041D	Informed Sainikah	Informed Sainikah	no	-	-	-
+1054	0x041E	Informed Parijanah	Informed Parijanah	no	-	-	-
+1055	0x041F	Archadian Gentry	Perfumed Lady	yes	-	-	-
+1056	0x0420	Archadian Gentry	Lady of Means	yes	-	-	-
+1057	0x0421	Archadian Gentry	Proper Gentleman	yes	-	-	-
+1058	0x0422	Archadian Gentry	Cheeky Child	yes	-	-	-
+1059	0x0423	Researcher	Researcher	no	-	-	-
+1060	0x0424	Researcher	Researcher	no	-	-	-
+1061	0x0425	Archadian Gentry	Gentle Gentleman	yes	-	-	-
+1062	0x0426	Archadian Gentry	Hesitant Traveler	yes	-	-	-
+1063	0x0427	Archadian Gentry	Weary Man	yes	-	-	-
+1064	0x0428	Archadian Gentry	Proud Horticulturist	yes	-	-	-
+1065	0x0429	Archadian Gentry	Pleasant Woman	yes	-	-	-
+1066	0x042A	Archadian Gentry	Bristly Mother	yes	-	-	-
+1067	0x042B	Archadian Gentry	Idle Gentleman	yes	-	-	-
+1068	0x042C	Archadian Gentry	Hunt Club Owner	yes	-	-	-
+1069	0x042D	Stonemason?	Stonemason?	no	-	-	-
+1070	0x042E	Lirschell	Lirschell	no	-	-	-
+1071	0x042F	Pilgrim	Pilgrim	no	-	-	-
+1072	0x0430	Wayward Chocobo	Wayward Chocobo	no	-	-	-
+1073	0x0431	Researcher	Junior Researcher	yes	-	-	-
+1074	0x0432	Researcher	Senior Researcher	yes	-	-	-
+1075	0x0433	Researcher	Nethicite Researcher	yes	-	-	-
+1076	0x0434	Informed Shopkeep	Informed Shopkeep	no	-	-	-
+1077	0x0435	Informed Wayfarer	Informed Wayfarer	no	-	-	-
+1078	0x0436	Archadian Ardent	Longing Man	yes	-	-	-
+1079	0x0437	Proper Gent	Otto	yes	-	-	-
+1080	0x0438	High-chief Zayalu	High-chief Zayalu	no	-	-	-
+1081	0x0439	Judge	Judge Hausen	yes	-	-	-
+1082	0x043A	Confused Sky Pirate	Confused Sky Pirate	no	-	-	-
+1083	0x043B	Excited Bangaa	Excited Bangaa	no	-	-	-
+1084	0x043C	Pompous Gentleman	Pompous Gentleman	no	-	-	-
+1085	0x043D	Pirate's Son	Pirate's Son	no	-	-	-
+1086	0x043E	Machinist	Machinist	no	-	-	-
+1087	0x043F	Melancholy Father	Melancholy Father	no	-	-	-
+1088	0x0440	Flighty Sky Pirate	Flighty Sky Pirate	no	-	-	-
+1089	0x0441	Kindly Seeq	Kindly Seeq	no	-	-	-
+1090	0x0442	Cartographers' Guild	Cartographers' Guild	no	-	-	-
+1091	0x0443	Shady Bangaa	Shady Bangaa	no	-	-	-
+1092	0x0444	Game Hunter	Unmotivated Hunter	yes	-	-	-
+1093	0x0445	Game Hunter	Little Hunter	yes	-	-	-
+1094	0x0446	Game Hunter	Neophyte Hunter	yes	-	-	-
+1095	0x0447	Game Hunter	Helpful Hunter	yes	-	-	-
+1096	0x0448	Game Hunter	Cheery Hunter	yes	-	-	-
+1097	0x0449	Game Hunter	Proud Hunter	yes	-	-	-
+1098	0x044A	Game Hunter	Nice Hunter	yes	-	-	-
+1099	0x044B	Game Hunter	Concerned Hunter	yes	-	-	-
+1100	0x044C	Shady Bangaa	Shady Bangaa	no	-	-	-
+1101	0x044D	Shady Bangaa	Shady Bangaa	no	-	-	-
+1102	0x044E	Shady Bangaa	Shady Bangaa	no	-	-	-
+1103	0x044F	Excitable Fellow	Enthusiastic Streetear	yes	-	-	-
+1104	0x0450	Realistic Man	Realistic Man	no	-	-	-
+1105	0x0451	Laid-back Seeq	Laid-back Seeq	no	-	-	-
+1106	0x0452	Well-informed Bangaa	Well-informed Bangaa	no	-	-	-
+1107	0x0453	Bhujerban	Bhujerban	no	-	-	-
+1108	0x0454	???	???	no	-	-	-
+1109	0x0455	Miners' Ender	Miners' Ender	no	-	-	-
+1110	0x0456	Miners' Ender Kid	Miners' Ender Kid	no	-	-	-
+1111	0x0457	Bhujerban Guru	Bhujerban Guru	no	-	-	-
+1112	0x0458	Energetic Child	Energetic Child	no	-	-	-
+1113	0x0459	Bandit Chief	Bandit Chief	no	-	-	-
+1114	0x045A	Bandit Chief	Bandit Chief	no	-	-	-
+1115	0x045B	Recovering Traveler	Recovering Traveler	no	-	-	-
+1116	0x045C	Recovering Traveler	Recovering Traveler	no	-	-	-
+1117	0x045D	Desert Wayfarer	Desert Wayfarer	no	-	-	-
+1118	0x045E	Villager	Villager	no	-	-	-
+1119	0x045F	Bhujerban	Bhujerban	no	-	-	-
+1120	0x0460	Cloudborne Patron	Cloudborne Patron	no	-	-	-
+1121	0x0461	Miners' Ender	Miners' Ender	no	-	-	-
+1122	0x0462	Cloudborne Resident	Cloudborne Resident	no	-	-	-
+1123	0x0463	Informed Citydweller	Informed Citydweller	no	-	-	-
+1124	0x0464	Informed Wayfarer	Informed Wayfarer	no	-	-	-
+1125	0x0465	Kiltias	Kiltias	no	-	-	-
+1126	0x0466	Wounded Kiltias	Wounded Kiltias	no	-	-	-
+1127	0x0467	Refugee	Refugee	no	-	-	-
+1128	0x0468	Wounded Refugee	Wounded Refugee	no	-	-	-
+1129	0x0469	Game Hunter	Game Hunter	no	-	-	-
+1130	0x046A	Phon Camper	Phon Camper	no	-	-	-
+1131	0x046B	Traveler	Traveler	no	-	-	-
+1132	0x046C	Palace Servant	Palace Servant	no	-	-	-
+1133	0x046D	Shop Clerk	Shop Clerk	no	-	-	-
+1134	0x046E	Merchant	Merchant	no	-	-	-
+1135	0x046F	Bohemian	Bohemian	no	-	-	-
+1136	0x0470	Informed Shopkeep	Informed Shopkeep	no	-	-	-
+1137	0x0471	Bhujerban Guru	Bhujerban Guru	no	-	-	-
+1138	0x0472	Shop Clerk	Shop Clerk	no	-	-	-
+1139	0x0473	Shop Clerk	Shop Clerk	no	-	-	-
+1140	0x0474	Informed Shopkeep	Informed Shopkeep	no	-	-	-

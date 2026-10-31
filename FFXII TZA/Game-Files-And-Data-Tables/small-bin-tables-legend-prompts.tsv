@@ -1,0 +1,25 @@
+scene	entry	signal	label_text_id	label_us	button	button_name_text_id	button_mask	pressed_by	requested_by
+1	0	0	0xC5A8	(empty string)	7	0x2BF54	0x8000	Square	no call site passes this scene
+2	0	1	0xC5A9	(empty string)	7	0x2BF54	0x8000	Square	no call site passes this scene
+3	0	2	0xC54A	(empty string)	14	0x2BF5B	0x200	R2	no call site passes this scene
+4	0	3	0xC54B	Sort	7	0x2BF54	0x8000	Square	no call site passes this scene
+5	0	3	0xC54B	Sort	7	0x2BF54	0x8000	Square	the inventory screen 0x00565E00 (0x00566382, through 0x00295D20)
+6	0	4	0xC990	Previous	6	0x2BF53	0x1000	Triangle	the message window's signal 0x002A8550 (0x002A85C4) and 0x002A86A0 (0x002A8AC1), by signal kind
+6	1	5	0xC994	Next	22	0x2BFAA	0x0	the confirm button (0x01E0C2A0)	the message window's signal 0x002A8550 (0x002A85C4) and 0x002A86A0 (0x002A8AC1), by signal kind
+7	0	12	0xC992	Log	6	0x2BF53	0x1000	Triangle	the message window's signal 0x002A8550 (0x002A85C4) and 0x002A86A0 (0x002A8AC1), by signal kind
+7	1	6	0xC995	Close	22	0x2BFAA	0x0	the confirm button (0x01E0C2A0)	the message window's signal 0x002A8550 (0x002A85C4) and 0x002A86A0 (0x002A8AC1), by signal kind
+8	0	12	0xC992	Log	6	0x2BF53	0x1000	Triangle	the message window's signal 0x002A8550 (0x002A85C4) and 0x002A86A0 (0x002A8AC1), by signal kind
+8	1	7	0xC993	Confirm	22	0x2BFAA	0x0	the confirm button (0x01E0C2A0)	the message window's signal 0x002A8550 (0x002A85C4) and 0x002A86A0 (0x002A8AC1), by signal kind
+9	0	12	0xC992	Log	6	0x2BF53	0x1000	Triangle	no call site passes this scene
+9	1	5	0xC994	Next	22	0x2BFAA	0x0	the confirm button (0x01E0C2A0)	no call site passes this scene
+10	0	10	0xC79C	Exit to Title Menu	7	0x2BF54	0x8000	Square	no call site passes this scene
+11	0	15	0xC9F5	View Hunt Map	7	0x2BF54	0x8000	Square	the quest list 0x005789D0 (0x00578C85)
+12	0	13	0xC8C8	Sprint	22	0x2BFAA	0x0	the confirm button (0x01E0C2A0)	the pause task 0x00228C70 (0x00228D86), the pause overlay 0x00229590 (0x002299FA), the chocobo control window 0x003CAB00 (0x003CABE1)
+12	1	14	0xC8C9	Dismount	23	0x2BFAB	0x0	the cancel button (0x01E0C2A4)	the pause task 0x00228C70 (0x00228D86), the pause overlay 0x00229590 (0x002299FA), the chocobo control window 0x003CAB00 (0x003CABE1)
+13	0	16	0xC9F6	Toggle Zoom	19	0x2BF63	0x300	L2 + R2	the map pages 0x002B7B80 (0x002B8DDC) and 0x002BAF80 (0x002BC1C4), the License Board 0x0055E9E0 (0x0055EDB6, through 0x00295D20)
+14	0	18	0xC4E2	Shuffle	14	0x2BF5B	0x200	R2	the special-attack window 0x002D5EB0 (0x002D612D)
+15	0	19	0xC92C	Skip	22	0x2BFAA	0x0	the confirm button (0x01E0C2A0)	the pause task 0x00228C70 (0x00228CC9)
+16	0	20	0xC79C	Exit to Title Menu	7	0x2BF54	0x8000	Square	the pause task 0x00228C70 (0x00228D02)
+17	0	21	0xC9F9	Quit Game	6	0x2BF53	0x1000	Triangle	the pause task 0x00228C70 (0x00228D3B)
+18	0	22	0xC800	Back	24	0x2BF81	0x8	Start	the pause task 0x00228C70 (0x00228D74), the pause overlay 0x00229590 (0x002299E8)
+19	0	23	0xC9F8	Toggle Board	6	0x2BF53	0x1000	Triangle	the License Board grid view 0x005595E0 (0x00559679)

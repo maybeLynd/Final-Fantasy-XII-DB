@@ -174,6 +174,20 @@ Examples from the `us` file:
 | 220 | Cockatrice | Agytha |
 | 221 | Nomad | Arjie |
 
+### Every pair and what reveals its second name
+
+[`npc-name-pairs.tsv`](npc-name-pairs.tsv) has one row for each of the 1,141 pairs of the `us` file. A row gives the
+pair, its two names, whether they differ, and the scripts that set, release or test the pair's flag with
+`settalknpcname` (`0x399`), `releasetalknpcname` (`0x39A`) and `istalknpcname` (`0x39B`), counted over the 1,114 `us`
+scripts.
+
+- 247 pairs have two different names. Each second name appears once flag `id` of the 2048-bit bank is set: by any
+  message window whose speaker has that name id (`0x002E16B0`), or by `settalknpcname`. `releasetalknpcname` clears the
+  flag, and the first name comes back.
+- 93 pairs appear in the scripts' 57 `settalknpcname`, 79 `releasetalknpcname` and 1 `istalknpcname` calls.
+- Seven `settalknpcname` calls take the id from a script array. The table lists such a script under every id the
+  array is given, marked "(array)".
+
 ### Where each name is given
 
 [`npc-names-maps.tsv`](npc-names-maps.tsv) has one row per name pair and script, from every `setnpcname` step

@@ -116,6 +116,61 @@ Both tables have one row per shipped file, in path order within each language tr
 | `decodes` | `yes` when the file reads to its end as the decode row of Shipped data states, otherwise `no at` the offset where reading stops |
 | `loaded` | `read by` the languages whose namespace 5 or 8 array names the file at a script index with a size, or `named by no path array`. UK's size table has no entry in namespaces 5 and 8, so no UK language is listed |
 
+### Language trees
+
+The eight other trees carry the `us` scripts with their own text. Measured against the `us` file of the same path:
+
+- sections 8 to 12, 14, 16 and 19 are byte-identical in every tree;
+- section 4 differs in four maps (`bhm_a02`, `gil_i01`, `gil_i02`, `naf_b04`) in `ch`, `cn`, `de`, `es`, `in` and
+  `kr`, the same blocks in all six ([navigation icons](ebp-navigation-icons.md)): `gil_i01` has two minimap markers
+  more (gates 257 and 258) and `gil_i02` two fewer, and `naf_b04` lacks its icon-24 marker;
+- sections 2 and 3 hold each tree's text, and section 6 its glyph sheets: 67 or 68 files in the Latin-script trees,
+  556 to 633 in `in`, `kr`, `cn` and `ch`, every one in a file that has text section 2 or 3;
+- the script image (section 0) differs in 2,323 files: `ch`, `cn` and `kr` 311, `in` 294, `de`, `es`, `fr` and `it`
+  274; `cn` and `kr` also ship `ttl_a01_e3`, a second title script with no `us` file.
+
+In most of those images the code is the `us` code and the difference is in the msp area (`+0x40`): the picture block
+that scripts register with `registshape` and place with `setshapepos_183`. Ten pictures occur. Each tree redraws them,
+most in its own words: `GATE TIMER` becomes `TOR GEÖFFNET` in `de` and `NOTORIETY` becomes `噂レベル` in `in`.
+Where a tree's picture is larger or holds more colours, the image grows and the references behind it move.
+
+The code changes are:
+
+- the screen positions of picture parts and message windows;
+- the message slot of the Royal Palace icon window;
+- in `ch`, `cn` and `kr`, 392 calls `setcharclipall(1)`, and code for an early-ending build that does not run: it
+  sits under verb `0x5B4`, which always answers 0 (`0x00355930`), or in `ttl_a01_e3`, which no path array names.
+
+[Language-tree script differences](../Story-Events-And-Hunts/script-language-differences.md) says what each
+one does in the game.
+
+Differences per tree and kind, with the scripts in brackets:
+
+| Kind | `ch` | `cn` | `de` | `es` | `fr` | `in` | `it` | `kr` |
+|---|---|---|---|---|---|---|---|---|
+| picture block bytes (`data-area-constant`) | 682 (294) | 684 (295) | 564 (274) | 564 (274) | 564 (274) | 682 (294) | 873 (274) | 684 (295) |
+| screen position (`coordinate-or-camera`) | 29 (14) | 29 (14) | 17 (14) | 648 (27) | 22 (11) | 29 (14) | 1,232 (129) | - |
+| code added or removed (`call-added-or-removed`) | 413 (17) | 435 (18) | - | - | - | - | - | 435 (18) |
+| image length (`image-length`) | 52 (52) | 53 (53) | - | - | - | 39 (39) | 103 (103) | 53 (53) |
+| message slot (`message-slot`) | 13 (2) | 13 (2) | 13 (2) | 13 (2) | 13 (2) | 13 (2) | 13 (2) | 13 (2) |
+| minimap marker, section 4 (`navigation-icon`) | 13 (4) | 13 (4) | 13 (4) | 13 (4) | - | 13 (4) | - | 13 (4) |
+| reference into the msp area (`data-area-reference`) | 10 (4) | 10 (4) | - | - | - | 10 (4) | 1 (1) | 10 (4) |
+| listing numbering, no byte change in the code (`listing-renumbering`) | 16 (2) | 38 (3) | - | - | - | - | - | 38 (3) |
+| variables of added code (`variable-declaration`, `variable-offset`) | 4 (2) | 14 (3) | - | - | - | - | - | 14 (3) |
+| branch condition (`branch-condition`) | 1 (1) | 4 (2) | - | - | - | - | - | 4 (2) |
+| fade length, verb argument (`wait-or-timing`, `verb-argument`) | - | 3 (1) | - | - | - | - | - | 3 (1) |
+| image header table (`header-table`) | - | - | - | - | - | 1 (1) | - | - |
+| file with no `us` twin (`script-file-added`) | - | 1 (1) | - | - | - | - | - | 1 (1) |
+
+No tree changes a text id passed to a verb, a camera verb, or the author, source name or build stamp of an image, and
+no script of any tree calls `setbehindcameratype` (`0x1CB`).
+
+| Table | Rows | One row per |
+|---|---:|---|
+| [`ebp-language-differences.tsv`](ebp-language-differences.tsv) | 9,251 | tree, script, actor, function and difference: `kind`, the `us` and tree code or bytes, what it changes, and the listing line or image offset it was read at |
+| [`ebp-language-summary.tsv`](ebp-language-summary.tsv) | 60 | tree and kind: scripts and differences |
+| [`ebp-language-pictures.tsv`](ebp-language-pictures.tsv) | 10 | picture block: size, frames, scripts, and per tree whether it differs and the words it draws |
+
 ## Loader behaviour
 
 ### Requesting a script

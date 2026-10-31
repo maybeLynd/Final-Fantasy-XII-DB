@@ -61,6 +61,15 @@ chest actor's talk and touch ranges
 ([movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md)); it reads no
 record field.
 
+### When a chest is set out
+
+A chest is set out each time its zone script starts. All 1,966 `setuptreasure` steps of the `us` zone scripts stand
+in a chest actor's `init` with no condition before them. No step of a chest actor tests a condition, and no step of
+another actor names a chest actor (the steps tables of the area script pages, for example
+[Giza Plains scripts](../Story-Events-And-Hunts/giza-plains-scripts.md)). So a
+chest has no story condition of its own: the story decides it through when its zone can be entered, and then the
+opened flag and the presence roll below decide whether the chest is there.
+
 ### Is the chest there: the presence roll
 
 `setuptreasure` hides the actor, takes the chest model from the map header and rolls through `0x002FAED0`

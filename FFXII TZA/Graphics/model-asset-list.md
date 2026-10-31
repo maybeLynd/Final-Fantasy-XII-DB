@@ -83,6 +83,52 @@ The motion class belongs to the weapon, so a few weapons share another category'
 set 3, four spears set 9, a pole set 12 and a gun set 1 ([Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md)).
 A 10-lane monster's files are `_00`, `_10`, `_e1`-`_e6`, `_t1` and `_t2`, in that order.
 
+### The action motions (kind 30)
+
+Kind 30's path array `0x01ED7740` names 2,324 `.ca` files, each `<model>_<lane>_<number>.ca`, and 1,969 of them ship.
+They are the motions a unit plays for an action, outside its lanes.
+
+The battle code asks the skill-motion cache for a
+model, a motion number and a weapon class (`0x00325B40`, [Character render records](character-render-records.md)). The
+cache sizes the file with `0x003DC8D0` and reads it with `0x003DC5B0`, and both take the file from `0x003DCA30`. That
+function always gives kind 30 (`0x003DCA49`) and looks the model and motion up in three tables, in order
+([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)):
+
+| Table | Records | Files named | Of them shipped |
+|---|---:|---:|---:|
+| `pc_skillmotion.bin` (global) | 33 | 33 | 18 |
+| the areas' `.ard` slot 7 | 1,773 in 136 areas | 1,043 | 1,025 |
+| the script containers' section 19, slot 7 | 2,116 in 271 containers | 1,161 | 1,130 |
+
+`0x003DCA30` is the only code that gives kind 30. Every other read request passes another kind
+([File requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md)), and
+`0x003DCA49` is the only store of 30 as a kind. So a kind 30 file is read only when one of the three tables names its
+index. [`model-asset-list-action-motions.tsv`](model-asset-list-action-motions.tsv) gives, for each of the 2,324 ids,
+the tables, areas, script containers, motions, weapon classes and models that name it:
+
+| Ids | Count |
+|---|---:|
+| shipped, named by one table | 631 |
+| shipped, named by two tables | 771 |
+| shipped, named by no table, so never read | 567: 495 NPC files (`n10` 134, `n11` 276, `n12` 85), 63 monster files (`m10` 20, `m11` 21, `m12` 22) and 9 summon files |
+| not shipped, named by a table | 47; every size table gives them −1, and the cache refuses a failed size (`0x003DCD00` returns `0x80000001`) |
+| not shipped and named by no table | 308 |
+
+One script container's section 19 is not an area block: `evt_t0020.ebp` holds 8 zero bytes and then `03 21 21 21`
+where the `FF12AR03` tag would be.
+
+Replacing a file:
+
+- The tables pick a file by index. A replaced file changes the motion everywhere its index is named; the table lists
+  those areas and containers. To change the motion in one area only, point that area's record at another index.
+- The file is read whole, with the size the language's `.fst` gives (`0x0032E400`, from `0x003DC8D0`), so a resized file
+  needs its new size in every `.fst`. `0x003DC8D0` keeps the size for a model, motion and weapon class in one of
+  sixteen entries and does not clear them.
+- The cache counts 32 KiB units, `(size + 0x7FFF) >> 15` (`0x003DCE13`-`0x003DCE22`). It files a new entry only while
+  the units of the entries in use plus the new ones stay at 4 or below (`0x003DCE38`-`0x003DCE3E`), and returns 0
+  otherwise. A file larger than 131,072 bytes therefore never fits; the largest shipped one is 130,208 bytes.
+- An index no table names is never read, so a file added at such an index needs a table record that names it.
+
 ### Shipped data
 
 | Fact | Value |

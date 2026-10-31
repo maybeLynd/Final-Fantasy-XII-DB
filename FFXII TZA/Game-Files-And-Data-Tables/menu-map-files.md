@@ -386,6 +386,7 @@ and `{expansion glyph N}` marks glyph N of the guide file's own picture.
 | [`menu-map-files-amap-rows.tsv`](menu-map-files-amap-rows.tsv) | 98 | amap area (type and name text) and persistence group (area and map item) |
 | [`menu-map-files-world-areas.tsv`](menu-map-files-world-areas.tsv) | 39 | World Map area as the `us` file gives it: code, name, region, the story counter at which it disappears, its gate and extra gate as story counter bands, its map key item by name, its neighbours by code and its destination value |
 | [`menu-map-files-names.tsv`](menu-map-files-names.tsv) | 138 | name text id of every wmap region and area, amap area and cmap sub-location, with the `us` string it resolves to |
+| [`menu-map-files-gates.tsv`](menu-map-files-gates.tsv) | 742 | every gate word of the `us` files: the entry, the word, the reader that tests it with its instruction address, and what opens it as a story counter band, a story flag, a key item or a fixed answer |
 
 Names and gates in those two tables are resolved as the engine resolves them:
 
@@ -405,6 +406,32 @@ What they show:
 - 29 areas name a map key item.
 - 45 of the 48 sub-location name ids resolve to an empty `us` string. `sav01_s01` reads `Giza Plains - The Dry`, and
   `slm01_s01` and `sav01_s02` read `Giza Plains - The Rains`.
+
+[`menu-map-files-gates.tsv`](menu-map-files-gates.tsv) gives what opens each of the 742 gate words of the `us` files:
+lmap zones, markers and links, NAVIICN2 icons, the cmap directory and guide schedule, gmap lines, and the World Map's
+area gates, extra gates and map key items. Each row names the reader that tests the word, with its instruction
+address. The readers decode the words this way:
+
+- A key item word passes when the item is owned (`0x00309EC0`): an lmap zone whose flags have a bit of
+  `0xFC0` (`0x003C18F7`), and a World Map area's map key item (`0x003BD64C`, `0x003C0C31`). A zone whose key item is not
+  owned still passes while its draw state has a bit of `0x401` (`0x003C190D`).
+- Every other word goes to the story gate `0x0032A8A0` ([Story flags](../Story-Events-And-Hunts/story-flags.md)). With
+  bit `0x4000` it reads a story schedule record, given as story counter bands. Index 0 opens, index 1 shuts, and any
+  other index is a Primary flag, explained by its row in [Story flag ids](../Story-Events-And-Hunts/story-flag-ids.md).
+- An icon's gate goes to `0x0032A8A0` with no `0xFFFF` test (`0x003DFB8D`), so 0 shows the icon and 1 hides it. The other
+  readers let `0xFFFF` pass before the gate.
+- A marker's unlock gate `+0x12` is passed over when the area map of its sub-location is owned (`0x003C1027`). Its
+  second gate `+0x16` is tested first and refuses on a fail (`0x003C0F8E`).
+
+The 742 words are 177 lmap words (26 key items, 121 flags, 30 schedule bands), 323 icon words (175 flags, 41
+schedule bands and 107 of index 1), 3 cmap directory flags, 77 guide schedule bands, 100 gmap lines that carry a
+copy of a schedule gate, and on the World Map 29 key items and 33 schedule bands.
+
+Five icon flags, `0x5D`, `0x9B`, `0x9C`, `0xC4` and `0xC5`, are set by no `us` script, by no battle order record and by no entry of the new-game list
+([Story flags](../Story-Events-And-Hunts/story-flags.md), Primary writers).
+Battle orders write a story flag through `0x0032ABE0` (`0x00329EEC`-`0x00329EF7`) when `0x002FE660` runs a register order
+whose word `+0x06` is kind 8. The 4,467 register orders of the 166 area files' order sets write kinds 10, 9 and 1, and
+no weighted run of `battle_pack.bin` entry `+0x2C` holds a register order in any language.
 
 ## Loader behaviour
 
