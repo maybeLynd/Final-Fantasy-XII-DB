@@ -25,6 +25,13 @@ What opens the three menu scenes: script verb `openfullscreenmenu_48d` with sele
 those load events 437, 438 and 439 through `0x003CA140`. Of the 1,274 `openfullscreenmenu_48d` calls of the `us`
 scripts that decode (`evt_t0020` has no `EBP2` header), two pass selector 6: `grm_a0480` with parameter 0 and `rbn_a03` with 2. The `opened_by` column gives each.
 
+No shipped script requests `men_z0002`:
+
+- Event 438 loads for mode `0x41` on menu `0x16` or on menu 2: the menu dispatcher `0x0027FB70` sends both menus to one arm (table `0x00280090`, entries 0 and 20), which hands modes `0x40` and `0x41` to `0x002D7070` (`0x0027FE8C`).
+- Verbs `0x48D` (`0x00346308`) and `0x472` (`0x00347112`) give menu `0x16` mode `0x41` only for parameter 1 of selector 6 (`0x002E1A9A`), and give menu 2, which every selector above 6 opens (`0x002E0E00`), their parameter unchanged. No script of the nine language trees passes selector 6 with parameter 1 or a selector above 6, and none calls verb `0x472`.
+- The other writers of the request's mode word (`0x0215F1A8`) store 0 (`0x002E0B9D`, `0x002E15DF`, `0x002E1AFA`) or, through the native request `0x002E1B10`, 0, `0x21` or, for menu 2, payload word 2 (`global_flag[2]`, `+0x4`), or 1 when that word is 0 (`0x00253F31`-`0x00253F44`).
+- Scripts store only 0 to 15 in that word, apart from the byte fills of `btlctrl` and `mapctrl` (0 or `0xFF` in every byte), and no enemy order writes a payload word.
+
 ### The scenes
 
 - `men_z0001`, the Gambit Screen tutorial (`gambit_tutorial.main`), holds nine lines of Balthier, each beginning with
@@ -40,6 +47,7 @@ scripts that decode (`evt_t0020` has no `EBP2` header), two pass selector 6: `gr
   map when you are unsure of where to go next."
 - `men_z0005`, loaded and played in field 13 (`ttl_b01`), is the staff roll ([Staff roll](../Menus-And-HUD/staff-roll.md)).
 - No scene gives an item, sets a flag, writes the story counter or changes the party.
+- The tutorial battle groups 1 to 4 ([Tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md)) reach a battle only through script verb `0x45C`, which no script of the nine language trees calls.
 
 ### Every step
 

@@ -21,6 +21,8 @@ flags](story-flags.md), reader `0x00377970`), and each scene read, `eventread` o
 the counter with a literal: the read needs the counter at least, below or at the value, and the rest of its guard
 still applies. A scene's name is the `scene` of the area scene table row with that `event_id`.
 
+It names the hunts posted from the value, on the clan boards or on Montblanc's list of marks, with the clan rank each needs ([hunts](hunts.md), `posted`), and the airship routes that open, with the fare ([chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)). It lists, by region, the exits whose condition compares the counter with a literal ([script censuses](script-censuses.md); each exit's row gives the whole condition) and the monsters placed only when the counter passes a test ([enemy spawning](../Enemy-Spawning/enemy-spawning.md)), each with its test.
+
 The table lists every value a script writes to it, from the 1,114 `us` scripts under `plan_master/us` that decode;
 `evt_t0020` has no `EBP2` header and holds no code.
 
@@ -90,7 +92,7 @@ not test the counter, such as `touch`, `touchon` and named event functions, whic
 | `developer_scripts` | those scripts, with `xN` for N writes |
 | `explanation` | what the value marks, in English: the developers' name for it from the `evt_t0505` scenario menu (below), translated, then the maps whose scripts write it, as map name (region) from `planmapname.bin`; for the two values with neither, 1899 and 4090, the developer menu that sets it and the value it precedes |
 | `developer_name` | the developers' own name for the value: each `SF_` line of the `evt_t0505` scenario menu that writes it, in menu order, `;` between lines; `-` for the values the menu has no line for |
-| `unlocks` | what opens or changes when the counter reaches the value: shop lists on sale, Clan Primer entries, story schedule records turning true or false, and scene reads that need the counter at least, below or at it; `-` when none |
+| `unlocks` | what opens or changes when the counter reaches the value: shop lists on sale, Clan Primer entries, story schedule records turning true or false, scene reads that need the counter at least, below or at it, hunts posted, airship routes opening, and the exits and monster placements whose condition tests the counter; `-` when none |
 
 ### The developers' names
 

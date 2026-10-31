@@ -2,7 +2,7 @@
 title: "Fonts: the font files a language uses, their kerning pairs and expansion lists, and how digits and glyphs are laid out"
 kind: "format"
 category: "Menus and HUD"
-addresses: "0x001B44A0, 0x001B4D70, 0x001B5230, 0x001FDC10, 0x001FDDD0, 0x001B4C00, 0x002AC2F0, 0x002AE610"
+addresses: "0x001B44A0, 0x001B4D70, 0x001B5230, 0x001FDC10, 0x001FDDD0, 0x001B4C00, 0x002AC2F0, 0x002AE610, 0x0017FBC0, 0x0017FB90, 0x0039BAD0, 0x0039BEC0"
 ---
 
 ## What the player sees
@@ -347,6 +347,12 @@ number writer `0x002B3770`, the encoders `0x002B5AB0` and `0x002B5A20`, the text
 
 Two more lookups sit beside it: `0x0039C100()` returns entry `[0x02AEE894]` of the 26-entry table `0x02AEE898`, and
 `0x0039C120(n)` entry n - 1 with n clamped to 1-26; the battle menu's `0x0027E530` reads both.
+
+The font a code is drawn with is a slot of the font manager: two-byte codes whose lead is at least `[0x01E0CDF8]` use
+the context's index `+0xA6`, the place of its glyph sheet in `0x02AEE810`, and other codes index 0, or 7 with the
+context's bit `0x800` in `0x002AC2F0` (0 in the drawer `0x002B0280`; `0x0017FD30`, `0x001E9D20`). font00 takes the first empty slot, 0,
+fontex_subtitle slot 7 for language ids 1 to 6 and 9, and fontguide, fontquest and fonttutorial the first empty slot, filed by the screen as
+it registers its sheet ([Font files](fonts-files.md), Which text fonts 1, 3, 4, 5 and 6 draw).
 
 `0x002AC2F0` turns a text code into a glyph index:
 

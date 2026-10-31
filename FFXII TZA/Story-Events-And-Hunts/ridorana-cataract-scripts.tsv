@@ -39,19 +39,19 @@ rwf_b02	Path of Hidden Blessing (Ridorana Cataract)	ロケタイイベント	起
 rwf_b02	Path of Hidden Blessing (Ridorana Cataract)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000040	-	-	-	-	1	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Path of Hidden Blessing (Ridorana Cataract), field 518, entrance 2	-	-	-	1	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Wellspring (Pharos - First Ascent), field 1101, entrance 3	-	-	-	1	-
-rwf_c01	They Who Thirst Not (Pharos - First Ascent)	常駐監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	at least 5300; below 5303; = 5300	-	-	-	rwf_c0100, event 370; rwf_c0101, event 371	-	1	-
+rwf_c01	They Who Thirst Not (Pharos - First Ascent)	常駐監督	main	main	no name shown	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	at least 5300; below 5303; = 5300	-	-	-	rwf_c0100, event 370; rwf_c0101, event 371	-	1	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	Read_Event_RWF_C01	sakiyomi_init	requested by 常駐監督.init, ボス登場.touch	-	-	-	-	-	-	-	-	-	-	-	rwf_c0102, event 373	-	5	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	wanted_kansi	main	main	-	-	-	-	-	-	-	-	-	-	every foe in a group removed	-	-	1	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	ボス登場	touch	touch	-	-	-	-	-	-	5300: After a boss battle	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	pos_z0000, event 427	-	4	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	扉開く	touchon	touchon	-	-	-	-	-	-	5303: After the door of the Pharos	= 5300	-	The Wellspring (Pharos - First Ascent), field 1101, entrance 0	-	-	-	5	-
-rwf_c01	They Who Thirst Not (Pharos - First Ascent)	レイスウォールの文字	talk	talk	-	2	"These words appear to have been cut into the stone long ago: ""Lo, seeker in days unborn, god-blade bearer! Know you: this tower challenges the sky. ""Ware the watcher, the ward of the Three Waits, soul-hungry, unsated. ""He without power, want it not. He with power, trust it not. He with sight, heed it not. ""Rend illusion, cut the true path. —In blood, Raithwall"""	-	-	-	-	-	-	-	-	-	-	1	-
+rwf_c01	They Who Thirst Not (Pharos - First Ascent)	レイスウォールの文字	talk	talk	no name shown	2	"These words appear to have been cut into the stone long ago: ""Lo, seeker in days unborn, god-blade bearer! Know you: this tower challenges the sky. ""Ware the watcher, the ward of the Three Waits, soul-hungry, unsated. ""He without power, want it not. He with power, trust it not. He with sight, heed it not. ""Rend illusion, cut the true path. —In blood, Raithwall"""	-	-	-	-	-	-	-	-	-	-	1	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000040	-	-	-	-	1	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000058	-	-	-	-	1	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000070	-	-	-	-	1	-
 rwf_c01	They Who Thirst Not (Pharos - First Ascent)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000088	-	-	-	-	1	-
 rwf_d01	Colosseum (Ridorana Cataract)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Echoes from Time's Garden (Ridorana Cataract), field 511, entrance 1	-	-	-	1	-
 rwf_d01	Colosseum (Ridorana Cataract)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	City of Other Days (Ridorana Cataract), field 517, entrance 2	-	-	-	1	-
-rwf_d01	Colosseum (Ridorana Cataract)	監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	rwf_d0100, event 374; rwf_d0101, event 375; pos_z0000, event 427	-	1	-
+rwf_d01	Colosseum (Ridorana Cataract)	監督	main	main	no name shown	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	rwf_d0100, event 374; rwf_d0101, event 375; pos_z0000, event 427	-	1	-
 rwf_d01	Colosseum (Ridorana Cataract)	ボス登場01	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	pos_z0000, event 427	-	5	-
 rwf_d01	Colosseum (Ridorana Cataract)	ボス登場02	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	pos_z0000, event 427	-	5	-
 rwf_d01	Colosseum (Ridorana Cataract)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000040	-	-	-	-	1	-
@@ -64,17 +64,17 @@ rwf_d01	Colosseum (Ridorana Cataract)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	trea
 rwf_d01	Colosseum (Ridorana Cataract)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000e8	-	-	-	-	1	-
 rwf_d01	Colosseum (Ridorana Cataract)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000100	-	-	-	-	1	-
 rwf_d01	Colosseum (Ridorana Cataract)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000118	-	-	-	-	1	-
-rwf_d01	Colosseum (Ridorana Cataract)	大瀑布地図宝壺	talk	talk	-	system message 102	Your location map for this area is complete!	Bank512, second half 0x0016: Set or tested in Colosseum (Ridorana Cataract)	-	-	-	-	receives Ridorana Cataract	-	-	-	-	2	-
-rwf_a0100	scene, event 372	セリフ	cut_01	requested by 監督.main	-	2	A tower on distant shore.	-	-	-	-	-	-	-	-	-	-	3	-
+rwf_d01	Colosseum (Ridorana Cataract)	大瀑布地図宝壺	talk	talk	system message	system message 102	Your location map for this area is complete!	Bank512, second half 0x0016: Set or tested in Colosseum (Ridorana Cataract)	-	-	-	-	receives Ridorana Cataract	-	-	-	-	2	-
+rwf_a0100	scene, event 372	セリフ	cut_01	requested by 監督.main	Fran	2	A tower on distant shore.	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_a0100	scene, event 372	セリフ	cut_02	requested by 監督.main	-	3	And about its peak, a piercing Mist.	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_a0100	scene, event 372	セリフ	cut_04	requested by 監督.main	-	4; 5; 6; 7; 8	And in that Mist, the Sun-cryst waits. / My lady. / Your words still sound of doubt. Pray you reach your answer, ere we the Sun-cryst. / And? Should I choose revenge, what then? / Then your woe shall be your own.	-	-	-	-	-	-	-	-	-	-	3	-
-rwf_a0100	scene, event 372	セリフ	cut_05	requested by 監督.main	-	9; 10; 11	Vaan. A word. / If something untoward should happen to me, you're taking the Strahl. / Untoward? What's this about?	-	-	-	-	-	-	-	-	-	-	3	-
+rwf_a0100	scene, event 372	セリフ	cut_05	requested by 監督.main	Balthier; Vaan	9; 10; 11	Vaan. A word. / If something untoward should happen to me, you're taking the Strahl. / Untoward? What's this about?	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_a0100	scene, event 372	セリフ	cut_06	requested by 監督.main	-	12; 13	I am the leading man. Might need to do something heroic. / Don't worry, I'll show you how to fly her.	-	-	-	-	-	-	-	-	-	-	3	-
-rwf_a0100	scene, event 372	movieSkip監督	Skip監視	requested by 監督.main	-	14	Skip	-	-	-	-	-	-	-	-	-	-	1	-
+rwf_a0100	scene, event 372	movieSkip監督	Skip監視	requested by 監督.main	no name shown	14	Skip	-	-	-	-	-	-	-	-	-	-	1	-
 rwf_c0102	scene, event 373	セリフ	cut_02	requested by 監督.main	-	2; 3; 4	Hey, Fran. Something's written on the wall. / Engraved by someone, it seems. / It's quite old.	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_c0102	scene, event 373	セリフ	cut_03	requested by 監督.main	-	5; 6	"""Lo, seeker in days unborn, god-blade bearer. / ""Know you: this tower challenges the sky."	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_c0102	scene, event 373	セリフ	cut_04_ex	requested by 監督.main	-	7	"""Ware the watcher; the ward of the Three Waits, soul-hungry, unsated."	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_c0102	scene, event 373	セリフ	cut_05	requested by 監督.main	-	8; 9; 10; 11; 12; 13	"""He without power, want it not. / ""He with power, trust it not. / ""He with sight, heed it not. / ""Rend illusion, cut the true path. / ""In blood, Raithwall."" / The Dynast-King?"	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_c0102	scene, event 373	セリフ	cut_06	requested by 監督.main	-	14; 15	Does it startle you? / The Dynast-King took his sword from the Occuria. It was here he claimed the nethicite.	-	-	-	-	-	-	-	-	-	-	3	-
-rwf_c0102	scene, event 373	セリフ	cut_07	requested by 監督.main	-	16	He must have known he was not the last the Occuria would choose. He left this for you.	-	-	-	-	-	-	-	-	-	-	3	-
+rwf_c0102	scene, event 373	セリフ	cut_07	requested by 監督.main	Fran	16	He must have known he was not the last the Occuria would choose. He left this for you.	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_c0102	scene, event 373	セリフ	cut_07_ex	requested by 監督.main	-	17; 18; 19	Rend illusion, cut the true path. / Words of much mystery. / Yet his blood runs in your veins. Perhaps it whispers to you the truth?	-	-	-	-	-	-	-	-	-	-	3	-

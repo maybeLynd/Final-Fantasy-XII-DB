@@ -1,0 +1,124 @@
+---
+title: "Barheim Passage dialogue: every line and caption of the Barheim Passage scripts in all nine languages"
+kind: "reference"
+category: "Menus and HUD"
+addresses: "0x00348DF0, 0x0034ADA0, 0x00264D60, 0x00264D90, 0x00355A00, 0x00357120, 0x002AC825, 0x002AC957, 0x002AD151, 0x001E9D20, 0x001FDD60, 0x00674A00, 0x001B6350"
+---
+
+## What it lists
+
+[barheim-passage-dialogue.tsv](barheim-passage-dialogue.tsv) has one row per string of sections 2 and 3 of the Barheim Passage scripts, with the string in each of the nine language trees (`us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch`): 243 rows from 13 zone scripts under `plan_map/` and 6 scene scripts under `event/`. Section 2 holds the lines (233 rows) and section 3 the captions (10 rows) ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
+
+### How a script finds a row
+
+A row's key is the script, the section and the text id, the entry number in that section:
+
+- `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
+- `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
+- The `lines` column of `barheim-passage-scripts.tsv`, the table of [Barheim Passage scripts](../Story-Events-And-Hunts/barheim-passage-scripts.md), names section 2 rows by the same key: 53 of its rows name 97 of the 233 section 2 rows here. The `quoted_lines` column of its steps table quotes 97 of them, in 141 steps.
+
+### The scripts
+
+| Script | Kind | Section 2 rows | Section 3 rows | Named in the scripts table | Quoted by a step |
+|---|---|---:|---:|---:|---:|
+| `mic_a0100` | scene | 8 | 0 | 8 | 8 |
+| `mic_a0600` | scene | 11 | 0 | 11 | 11 |
+| `mic_b0600` | scene | 32 | 0 | 31 | 31 |
+| `mic_b0601` | scene | 9 | 0 | 9 | 9 |
+| `mic_d0101` | scene | 1 | 0 | 1 | 1 |
+| `mic_e0400` | scene | 3 | 0 | 3 | 3 |
+| `mic_a01` | zone | 48 | 5 | 23 | 23 |
+| `mic_a02` | zone | 3 | 0 | 0 | 0 |
+| `mic_a04` | zone | 1 | 1 | 1 | 1 |
+| `mic_a05` | zone | 4 | 2 | 4 | 4 |
+| `mic_a06` | zone | 1 | 0 | 0 | 0 |
+| `mic_b02` | zone | 1 | 1 | 1 | 1 |
+| `mic_b06` | zone | 26 | 0 | 0 | 0 |
+| `mic_b07` | zone | 25 | 0 | 0 | 0 |
+| `mic_c01` | zone | 1 | 0 | 1 | 1 |
+| `mic_c02` | zone | 25 | 0 | 0 | 0 |
+| `mic_e02` | zone | 8 | 1 | 4 | 4 |
+| `mic_e03` | zone | 1 | 0 | 0 | 0 |
+| `mic_e04` | zone | 25 | 0 | 0 | 0 |
+
+### Where the languages differ
+
+Every script ships in all nine trees with the same number of strings in each, so every row has a string in every language: the `missing` column is empty in all 243 rows.
+
+Empty strings per tree: `us` 16, `de` 16, `es` 16, `fr` 16, `it` 16. No `in`, `kr`, `cn` or `ch` string is empty.
+
+16 rows are empty in all five of `us`, `de`, `es`, `fr` and `it`: all of them hold only control codes in `in`, `kr`, `cn` and `ch`, such as `{spacing:8181}`.
+
+The rows whose `us` to `it` strings hold Japanese text, kana or kanji:
+
+- `mic_c01` 2/0: in `us`, `de`, `es`, `fr` and `it`.
+- `mic_e02` 2/0: in `us`, `de`, `es`, `fr` and `it`.
+
+### The alternate font and the expansion lists
+
+`{alt-font}` is the escape `0F 21`, which switches the string to the alternate font record (`0x002AD151`) ([Text codes](text-codes.md)), font 3, `fontex_subtitle` ([Text drawing](text-drawing.md), [Fonts](fonts.md)).
+
+In the `in`, `kr`, `cn` and `ch` trees the expansion codes of a string draw their glyphs from the expansion list keyed by `0x00674A00` of the script's path, `event\<folder>\<name>` or `plan_map\<folder>\<name>` (`0x001B6350`): `0x001E9D20` binds the running font's list for that key, which `0x001FDD60` finds in the font's map `+0xA8` ([Fonts](fonts.md), Expansion lists).
+
+A string that carries `{alt-font}` therefore takes the list of `fontex_subtitle`, and every other string the list of `fontex_expand` ([Font expansion lists](fonts-expansion-lists.md)). Non-empty strings per list:
+
+| List | `in` | `kr` | `cn` | `ch` |
+|---|---:|---:|---:|---:|
+| `fontex_subtitle` (with `{alt-font}`) | 58 | 58 | 58 | 58 |
+| `fontex_expand` | 185 | 185 | 185 | 185 |
+
+No cell of the `in`, `kr`, `cn` or `ch` columns holds `{exp:...}`: every expansion code there has a glyph in its list. No `us` font asks for a `.fex`, so in the `us` to `it` columns `{alt-font}` changes the font only ([Fonts](fonts.md)); the table writes an expansion code there as `{exp:0xN}`, N its ordinal: `us` 2, `de` 2, `es` 2, `fr` 2, `it` 2.
+
+### Choice lists
+
+63 `us` strings end in a choice list, `{choice:n}[a|b|...]` with its n options between the brackets: token `0x0E` (`0x002AC825`) ([Text codes](text-codes.md), Choice lists). Options per list in `us`: 37 with 2, 11 with 3, 10 with 11, 5 with 26.
+
+Strings with a choice list per tree: `us` 63, `de` 63, `es` 63, `fr` 63, `it` 63, `in` 63, `kr` 63, `cn` 63, `ch` 63.
+
+### Reading the text
+
+Each cell is the string decoded with its tree's font. Control codes are written as placeholders, `{name}` or `{name:payload}` with the payload bytes in hex; [Text codes](text-codes.md) gives each code. A backslash comes before a literal backslash, brace, square bracket or bar of the game text.
+
+Examples, by script, section and id:
+
+- `mic_e02` 2/3, a line with a line break (`{line}`). `us`: `{instant:8181}Gilgamesh{line}Come, Enkidu!`; `in`: `{spacing:8181}{instant:8181}ギルガメッシュ{line}帰るぞ！{blank}エンキドゥ！！`.
+- `mic_b0600` 2/7, a line drawn with the alternate font. `us`: `{alt-font}{speed:8180}{center:8180}{line}My brother did.`; `in`: `{spacing:8180}{alt-font}{speed:8180}─{advance:8098}─兄さんが{blank}見た`.
+- `mic_b0600` 2/0, a line that ends in a choice list. `us`: `View scene again?{line}{choice:2}[Yes|No]`; `in`: `{spacing:8181}もう一度？{line}{choice:2}[もう一度|やめる]`.
+- `mic_a01` 3/0, a caption. `us`: `Timeworn Device`; `de`: `Antiquierte Apparatur`; `in`: `{spacing:8181}古びた装置`.
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `script` | the script file under `plan_master/<language>/`: `plan_map/...` for a zone script, `event/...` for a scene script |
+| `section` | `2` for a line of the message bank, `3` for a caption |
+| `id` | the entry number in that section, from 0: the text id a verb passes |
+| `us` to `ch` | the string in that language tree, decoded with the tree's font |
+| `missing` | the languages whose tree has no string at this key (no such script, or a shorter section), comma-separated; empty when all nine have one |
+| `same_bytes` | the groups of languages whose string bytes are identical, each group's languages joined by `=` and the groups by `;`; only groups of two or more, and the languages in `missing` take no part |
+
+An empty cell under a language not in `missing` is an empty string.
+
+## Data
+
+| Fact | Value |
+|---|---|
+| rows | 243: 233 in section 2, 10 in section 3 |
+| scripts | 19: 13 zone, 6 scene |
+| strings per tree | `us` 243, `de` 243, `es` 243, `fr` 243, `it` 243, `in` 243, `kr` 243, `cn` 243, `ch` 243 |
+| non-empty strings per tree | `us` 227, `de` 227, `es` 227, `fr` 227, `it` 227, `in` 243, `kr` 243, `cn` 243, `ch` 243 |
+| strings with `{alt-font}` | `us` 58, `de` 58, `es` 58, `fr` 58, `it` 58, `in` 58, `kr` 58, `cn` 58, `ch` 58 |
+| strings with a choice list | `us` 63, `de` 63, `es` 63, `fr` 63, `it` 63, `in` 63, `kr` 63, `cn` 63, `ch` 63 |
+| section 2 rows the scripts table names | 97 |
+| section 2 rows a step quotes | 97, in 141 steps |
+
+## Related
+
+- [Barheim Passage scripts](../Story-Events-And-Hunts/barheim-passage-scripts.md) - what each function of these scripts shows, with the text ids of its lines.
+- [Barheim Passage scenes](../Story-Events-And-Hunts/barheim-passage-scenes.md) - the scenes these scripts load.
+- [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - the layout of sections 2 and 3, the lookups and the verbs that read them.
+- [Text codes](text-codes.md) - every control code and the choice list.
+- [Fonts](fonts.md) - how a character code becomes a glyph, and the expansion lists.
+- [Font expansion lists](fonts-expansion-lists.md) - every list with the script path it belongs to.
+- [Message windows](message-windows.md) - the window a line is shown in.
+- [NPC names](../Characters-And-Objects/npc-names.md) - the name text a caption becomes.

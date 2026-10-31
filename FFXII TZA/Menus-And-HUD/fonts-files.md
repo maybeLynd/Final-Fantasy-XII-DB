@@ -2,7 +2,7 @@
 title: "Font files: every shipped font data file with its size, its form, its place in the font list and its .dat header"
 kind: "reference"
 category: "Menus and HUD"
-addresses: "0x001B44A0, 0x001B4930, 0x001B4D70, 0x001B4E19, 0x001B5230, 0x001B4C00, 0x001B58E0, 0x001B6230, 0x001EA3C0, 0x001E8070, 0x001E9D20, 0x001E8580, 0x001FDCC0, 0x003643A0, 0x00365810, 0x003649A0, 0x002D8690, 0x0067D3B0"
+addresses: "0x001B44A0, 0x001B4930, 0x001B4D70, 0x001B4E19, 0x001B5230, 0x001B4C00, 0x001B58E0, 0x001B6230, 0x001EA3C0, 0x001E8070, 0x001E9D20, 0x001E8580, 0x001FDCC0, 0x003643A0, 0x00365810, 0x003649A0, 0x002D8690, 0x0067D3B0, 0x0055BAC0, 0x0029FEB0, 0x0029FBD0, 0x0029FF60, 0x00365B30, 0x002DD5D0, 0x002D8910, 0x002B3400, 0x0039BAD0, 0x0017FBC0, 0x0017FB90, 0x0039BEC0, 0x0039C150, 0x003BC4E0, 0x0037F1F0, 0x00575710, 0x005599D0"
 ---
 
 ## What it lists
@@ -94,6 +94,64 @@ The face drawer `0x003649A0` takes each glyph's quad and advance from the font w
 the drawer's four callers, uses it only for text that starts with `ex` (`0x00364980`, `0x002D8720`-`0x002D8727`); it
 sets that byte to its record's byte `+0x64` less 1 when that byte is above 0, and to 0
 otherwise, so a record whose byte `+0x64` is 0 draws in face 0, `font_venus` (`0x002D8729`-`0x002D874B`).
+
+### Where faces 2, 3 and 4 are drawn
+
+`0x002D8690`, its twin `0x002D87D0` and `0x002DD5D0` clear the record's byte `+0x64` after each draw (`0x002D8796`,
+`0x002D88D6`, `0x002DD66D`); `0x002DD5D0` draws the `ex` text that `0x002D8910` and `0x002D89E0` hand it (`0x002D8994`,
+`0x002D8A6E`). So the face is set by whoever fills `+0x64` just before the draw. The License Board and the menu layouts
+set it above 1:
+
+- `0x0055BAC0`, the [Licenses](license-board-screen.md) square drawer, sets it to 3 (`0x0055BE9D`) for a square in
+  state 4 while the board is zoomed in, fills text 19257 (`menu_expansion` row 257, a one-number `ex` template)
+  with the square's `lpCost` (`0x00365B30`, `0x0055BEDE`) and draws it with `0x002D8910` (`0x0055BF18`). The LP cost on a
+  square is face 2, `font_bookman`, whose glyphs are the digits 0 to 9.
+- The menu layouts: a type-5 item's `u16` `+0x12` ([UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md))
+  becomes bits 6-15 of its node (`0x0029FEB0`). The type-5 drawer `0x0029FBD0` (`0x0029FC01`-`0x0029FC11`) and the
+  Licenses list pane `0x005599D0` (`0x00559CBA`-`0x00559CCA`) copy them into `+0x64` and draw the node's text with
+  `0x002D8910` (`0x0029FDFD`, `0x00559D18`). An item with `+0x12` = n draws in face n - 1.
+
+`0x0029FF60` fills such a node's text with the `ex` formatter `0x00365B30` when the field is above 0 (`0x0029FFE5`).
+Over the 4,484 type-5 items of all shipped layout copies, `+0x12` is 0 in 3,182, 1 in 642, 2 in 10, 4 in 330 and
+5 in 320:
+
+| `+0x12` | Face | Font | Text | Layouts and screens |
+|---:|---:|---|---|---|
+| 4 | 3 | `font_iwa_g12` (14) | the headings `STATUS EFFECTS`, `EQUIPMENT`, `NAME`, `EQUIPPED/TOTAL`, `PRICE`, `QUANTITY`, `INVENTORY`, `TOTAL`, `Current` and `New` (`menu_expansion` ids 190300 to 191009) | `shop_new.mrp` records 3 and 7 to 10 (the shops), `mrppack_ys.bin` unit 7 records 2 and 3 and unit 8 records 0, 2 and 11 (the Status and Equip panes), unit 9 records 0 to 3 |
+| 5 | 4 | `font_square` (15) | number templates (`menu_expansion` ids 191400 to 191417, `menu_command_template` 180014) | unit 11 records 1 to 3, 7 and 8 (Licenses list and detail panes), unit 6 records 11, 12, 14 and 15 (Quit, the member rows and the Status and Equip rows), unit 7 records 9 and 17, unit 8 records 13 and 14, unit 9 records 20 and 22, `shop_new.mrp` records 3 and 11 to 15, `party_book.mrp` records 50 and 57 (the Clan Primer back panel) |
+
+No item carries 3: the layouts do not ask for face 2, which the License Board's drawer sets. The one item with 2,
+`quest.mrp` record 7, has no string. The other callers of the drawer pass the face themselves or leave `+0x64` at 0:
+the staff roll's `0x0053E0B0` sets each line's face (staff-roll faces 6 to 11), and `0x005569F0` and the 13 functions
+holding the 23 calls of `0x002D8650` (among them `0x0027E530`) and the call of `0x002D8670` (`0x004046AB`) write no `+0x64`.
+
+### Which text fonts 1, 3, 4, 5 and 6 draw
+
+A text context keeps a font index at `+0xA6`. `0x002B3400` and `0x002B32D0` set it to the place of the context's glyph
+sheet in the sheet table `0x02AEE810`, 1 to 7, or 0 when the sheet is not there (`0x0039BAD0`, `0x002B3420`-`0x002B3425`).
+
+A two-byte code whose lead is at least `[0x01E0CDF8]` is drawn with that index; one-byte codes and lower leads with
+index 0 (`0x002B0280`), and in the character mapping `0x002AC2F0` with 7 once the context's bit `0x800` is set
+(`0x002AC33E`-`0x002AC34E`). `0x0017FD30` passes the index to
+`0x001E9D20`, which finds the record filed under `(group << 32) | index` in the display map `+0xF38` and draws with
+the font keyed by the record's `+0x04` (`0x001E9D50`-`0x001E9DB9`, `0x001B51C0`).
+
+The record's index is a slot of the font manager. `0x0017FBC0(id)` files a font in the first empty of the 16 slots
+(`0x001B6510`, `0x001B4590`) and `0x0017FB90(id, slot)` in the given one (`0x001B6470`); `0x001E7F90` files the record. A
+screen's glyph sheet takes the first empty place of the sheet table from 1 (`0x0039BEC0`). `0x0017FBC0` has four
+callers and `0x0017FB90` one, each with its own id:
+
+- font00 (1): the font pack binder `0x0039C150` files it (`0x0039C27C`) in the first empty slot, slot 0 while no other
+  font holds one: index 0, that of every text without a sheet of its own.
+- fontex_subtitle (3): the same binder files it in slot 7 when the language test `0x00254A10` is 0, language ids 1 to
+  6 and 9 (`0x0039C290`).
+- fontguide (4): `0x003BC4E0`, the map screen's map-data widget, registers the guide picture of `menumap_guide<n>.bin`
+  as a sheet and then the font (`0x003BC7C3`, `0x003BC7CD`), and releases both together (`0x0039BB60`, `0x0017FA70(4)`).
+- fontquest (5): `0x0037F1F0` registers `menuquest.nfs`, the quest menu's name sheet, and then the font (`0x0037F2B9`,
+  `0x0037F2C3`).
+- fonttutorial (6): `0x00575710` registers a Traveler's Tips text bundle's glyph sheet and then the font (`0x0057576C`,
+  `0x005757E5`); only the `ch`, `cn`, `in` and `kr` tutorial bundles carry a sheet
+  ([Handbook files](../Game-Files-And-Data-Tables/handbook-files.md)).
 
 ### The two bitmap fonts
 

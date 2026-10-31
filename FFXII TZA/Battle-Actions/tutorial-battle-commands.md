@@ -32,7 +32,9 @@ group (0, 2, 4, 5, 6). Group *g* is rows end[*g* − 1] to end[*g*] − 1, with 
 The battle menu builder `0x0031EB20` asks with the request's word `+0x04` as the group and the member's type byte
 (stats `+0x04`) ([Battle menu](../Menus-And-HUD/battle-menu.md)). `0x0027E050` and `0x0027D740` fill that word from the menu's
 word `+0x153A` (`0x0027E2F7`, `0x0027D82F`), which `0x002778C0` copies from `+0x2FF6` of its source (`0x00279296`), which the battle-menu widget procedure
-`0x00279E20` sets (`0x0027A43C`).
+`0x00279E20` sets (`0x0027A43C`) from `+0x61C2`, the word `+0x10` of the message that creates the widget (`0x00279E8B`).
+
+That word is the argument of script verb `0x45C`, `set_interventionmenu_tutorialmode`. Its handler `0x003419D0` stores it at `+0x10FA0` of `[0x0209BE80]` (`0x00290227`). `0x00290CF0` passes it to `0x00276650` as the fifth argument (`0x00290D9D`-`0x00290DC0`) and then zeroes it (`0x00290DD1`). `0x00276650` puts it at `+0x10` of the creation message (`0x00276675`-`0x002766D1`). No script of the nine language trees calls verb `0x45C`, so no shipped battle applies groups 1 to 4.
 
 - **Command rows:** `0x0032A320(group, member, flag, command)` keeps a command when there is no row, or when an
   entry of the row allows it; otherwise the row is greyed with reason `0x2B` (`0x0031ED00`-`0x0031ED1E`).

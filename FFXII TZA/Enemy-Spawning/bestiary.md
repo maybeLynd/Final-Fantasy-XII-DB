@@ -339,6 +339,7 @@ No instruction in that set touches the bytes above, so the TSV gives them raw.
 | `area`, `area_id`, `row`, `id` | the area file, its area number, the definition's row and its id `0x100` + row |
 | `name` | the shipped name |
 | `placements`, `level` | how many placements the us map scripts make, and the level ranges `base`-`base + range` they set |
+| `placed_in` | the maps, as map name (region), whose us scripts place this row: the rows of [`enemy-placements-maps.tsv`](enemy-placements-maps.tsv) whose script lies in this row's area folder, with the same row; `-` when no script places it |
 | `class_row`, `model`, `model_id` | the class row, its model's file name and bound id |
 | `type`, `race` | class row `+0x04`, and its name in the `us` text: battle-text word `0x6800` + type, word bank 13 |
 | `class`, `family` | class row `+0x05`, and its name in the `us` text: battle-text word `0x7000` + class, word bank 14. The `us` text of class 46 carries the prefix "NOT USED" ("NOT USED Wings"; the `de` text is Flugwesen), and the column keeps it as shipped |

@@ -2,7 +2,7 @@
 title: "Script censuses: story writes that lower the counter, save and teleport declarations, exits that choose a destination, and the verbs that steer battle AI"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0x00342490, 0x00343010, 0x00343470, 0x00352C80, 0x003532D0, 0x00264CA0, 0x02099FF0, 0x0026DB30"
+addresses: "0x00342490, 0x00343010, 0x00343470, 0x00352C80, 0x003532D0, 0x00264CA0, 0x02099FF0, 0x0026DB30, 0x00355680, 0x002677F0, 0x0034E260, 0x00265680, 0x003456C0, 0x00233D20, 0x0034A590"
 ---
 
 ## What it lists
@@ -155,6 +155,7 @@ Four kinds of exit name no field in the call; `destination_map` gives the maps t
   came from (verb `0x92`: `0x00314870` reads payload `+0x104C`, which the zone change sets to the old area). 399 rows in
   21 rooms name the corridor whose door jumps into the room: `dor_c01` (66th Floor), `dor_c12` (70th Floor),
   `dor_d01` (67th Floor) or `dor_e01` (68th Floor), each door taking the Lab Access Card.
+- **Draklor rooms no exit enters.** The other 551 room-door rows are in 29 rooms (`dor_a02` to `dor_e16`, such as Rm 6613 West) that no shipped exit enters: in the listings of all nine language trees the only jumps to their field ids are the developer menus `evt_t0084` and `evt_t0509`, no stored room id reaches a jump call, and none of the 29 holds a save crystal.
 - **The World Map picker.** The aerodrome desks of `alc_e01`, `byu_b01`, `nac_b01`, `rbn_b01` and `var_b01` and the
   Strahl flights (`ym_shutoraljump.shtjump`, 13 zones) jump to the value `openfullscreenmenu_48d(0x8000, 0)` returns.
   Selector 0 opens the World Map as a destination picker (menu id 17), which hands back the chosen area's destination
@@ -183,11 +184,43 @@ that value from [Story counter values](story-counter-values.md), or of the last 
 `sysucoff()` in the exit's own function, is the exit lock. `nowmap()` names the map and `nowjumpindex()` the arrival
 entrance.
 
+The engine calls that conditions test read as follows:
+
+- `istownmap()` (`0x053C`, `0x00355680`) is the town flag of the current area: bit `0x8000` of its word in the map-info
+  table (`0x00377C20`, [kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)); 1 in a town.
+- `istouchuc()` (`0x026D`, `0x0033FA40`, `0x002677F0`) is 1 when the controlled character (`0x003590D0`) touches the
+  calling actor: a trigger rect (class 1) tests its party-slot mask `+0x60`, an actor with a contact box (class 3)
+  its contact mask `+0x100` (filled by the touch test `0x0025C230`, `0x0025C6A1`); any other class gives 0. The handler
+  passes `0x002677F0` a 0 that it pushes and pops (`0x0033FA5D`-`0x0033FA65`); a non-zero one would test `+0x228`.
+- `keyscan(m)` (`0x0015`, `0x0034E260`) is 1 when a button of the mask `m` is held: `m & 0x0036FF70()`, the held word
+  after the button map (`0x02AD9E04`, [controls](../Controls-And-Input/controls.md)).
+- `getucstatus()` (`0x014D`, `0x00343690`, `0x00265680`) is 1 while the party is under player control: manager slot 0
+  active and every active manager ready, with no text window holding the field (`0x002E0540`,
+  [EBP text sections](../EBP-Script-Files/ebp-text-sections.md);
+  [player movement](../Movement-And-Pathfinding/player-movement.md)).
+- `get_talk_run_status()` (`0x057C`, `0x003456C0`) returns `0x02099DB4`, the world locks held by running talks (the sum of
+  the managers' `+0x1E0` counters); the talk button works only while it is 0
+  ([script requests](../Scripts-And-Script-Commands/script-requests.md)).
+- `is_enable_run_event()` (`0x04FF`, `0x003475E0`, `0x00233D20`) is 1 when no party-down state is set
+  (`0x02089340 & 0xF00` = 0) and time-stop request 10, the one-at-a-time action display, is not raised
+  (`0x00226BD0(10)`, [time stop](../Engine-Core/time-stop-and-freeze.md)).
+- `getsummonid()` (`0x050D`, `0x0034A590`) is the summoned Esper's character row (block byte `+0x5AD4`, `0x003137E0`)
+  while summon mode is on (`0x003135C0`), and -1 otherwise.
+
 The script globals with a game meaning on a page or in their store lines are named with the developer name in brackets
 once: the airship route code (`global_flag[2]`), the Giza Plains season (`mp_sav季節`), the Pharos offering flags
-(`mp_rbl_flg6`), the Firemane battle state (`g_btl_ブッシュファイア`) and others. Any other variable is named by what
-its store lines put there, with the function and line: a question's answer, the gate-crystal destination chosen in
-the teleport menu, a value set at given lines.
+(`mp_rbl_flg6`), the Firemane battle state (`g_btl_ブッシュファイア`), the Garamsythe sluice gates (1 closed, 0 open),
+the two Lhusu Mines switches and others.
+
+Any other variable is named by what its store lines put there, with the
+function and line: a question's answer with the answer's text, the number the script gives the field picked in the
+destination map menu, or the value set or computed at given lines with the tests under which each store runs.
+
+A store's own tests are not repeated when the row already states them. A cell longer than 600 characters names the
+stores' places only. When every value the script stores in a local or file variable fails a test, and a store without
+a test sets one of them earlier in the exit's own function, that test's clause ends "so this test never passes and the
+exit is never taken"; it ends "so this test always passes" when every value passes. A test the script compares with
+itself is marked the same way.
 
 ### Verbs that steer battle AI
 

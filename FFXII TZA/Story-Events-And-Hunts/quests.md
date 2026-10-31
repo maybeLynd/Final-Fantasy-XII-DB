@@ -80,9 +80,12 @@ Besides these, the menu's quest readers (`0x0037E780`, `0x0037EAA0`, `0x0037EB90
 
 ### The quests
 
-[quest-list.tsv](quest-list.tsv) has one row for each of the 18 quest ids outside the hunts that a shipping script
-sets: 0, 3, 4, 5, 6, 8, 10, 11, 12, 13, 15, 18, 52, 53, 57, 58, 59 and 71. The 45 hunts, quests 128 to 172, are in
-[hunts.tsv](hunts.tsv). The census reads the 1,114 us listings that decode, 769 zone and 345 event scripts;
+[quest-list.tsv](quest-list.tsv) has 30 rows: one for each of the 18 quest ids outside the hunts that a shipping
+script sets, 0, 3, 4, 5, 6, 8, 10, 11, 12, 13, 15, 18, 52, 53, 57, 58, 59 and 71, and one for each of 12 side quests
+with no quest id of their own. The 45 hunts, quests 128 to 172, are in
+[hunts.tsv](hunts.tsv).
+
+The census reads the 1,114 us listings that decode, 769 zone and 345 event scripts;
 `evt_t0020.ebp` has no `EBP2` header and no listing. The developer scripts `evt_t0090` (`デバッグ監督`, the debug
 director), `evt_t0500` (`イベントデバッグメニュー`, the event debug menu) and `evt_t0505` are left out of the rows, cells and counts.
 
@@ -91,6 +94,15 @@ Twelve are story chapters, the ids `menuquest.dat` puts in group 0 (records 0 to
 `questtitle.bin` rows are empty in `us`. Six are quests that `menuquest.dat` does not list: July's soldier at Nalbina
 (52), Rimzat's windvane (53), the Nabudis medallions of Ma'kleou (57), Roh'kenmou (58) and Roh'kenmu (59), and the
 Hunt Club (71).
+
+The twelve side quests have `-` for a quest id: the Craftsmoogles' windmills of the Cerobi Steppe, the Dragon Scale,
+the bottles and their messages, the Feather of the Flock and the escaped cockatrices, the Cactoid Compact, the Ring of
+the Toad, the Errmonea Leaf, the sick traveler and the Barheim Key, the cactoids of the Nebra, the Soul Ward Key,
+Pilika's diary and Ann's letter.
+
+They keep their state in key items and in bytes of the script globals; the cockatrices and the Ring of the Toad also
+step along the scenario byte of hunt quests 160 and 138 after those hunts. The sick traveler and Pilika's diary begin
+once hunt quests 130 and 161 are cleared, and the cactoids of the Nebra once Dantro's wife has the cactus flower.
 
 Few quests use the ordered and cleared bits. `setquestorder(q, 1)` with a literal id runs for 6, 18 and 53, and
 `setquestclear(q, 1)` for 0, 4, 12, 18, 53, 57 and 58, each one line after `setquestorder(q, 0)`, which clears the
@@ -105,14 +117,14 @@ The variable id of `rbn_a14`'s hunt clear is 167 or 170 (lines 2614, 2634), both
 
 | Column | Meaning |
 |---|---|
-| `quest` | the quest id |
-| `kind` | story chapter, with its `menuquest.dat` record, or quest |
+| `quest` | the quest id, or `-` for a side quest without one |
+| `kind` | story chapter, with its `menuquest.dat` record, quest, or side quest (script bytes) |
 | `what_it_is` | the quest in game terms, from its dialogue and scenes |
 | `giver` | the character who asks, by the name the game shows |
 | `place` | the fields where its steps are written, by zone name |
 | `ordered_by`, `cleared_by` | the script, actor, function and line of the order and clear calls, or where the first and last steps are written |
 | `condition` | what the scripts test before the order or the first step |
-| `steps` | each scenario-byte value, what it marks, and where it is written |
+| `steps` | each scenario-byte value, what it marks, and where it is written; for a side quest, each step and the bytes it writes |
 | `reward` | the items the clearing code gives or takes, with [scene-rewards.tsv](scene-rewards.tsv) |
 | `menu_title` | the `questtitle.bin` row of its `menuquest.dat` text id |
 

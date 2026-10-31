@@ -89,7 +89,7 @@ ends the event.
 | `place` | `scene, event` and the scene's event id |
 | `actor`, `function` | the actor and the function, as the script names them |
 | `trigger` | `requested by` and the functions of the same script that request it by name |
-| `speaker` | `-` on every row: the scene names no speaker |
+| `speaker` | `no name shown` for the skip prompt of `movieSkip監督.Skip監視`, whose window shows no name; `-` for the subtitle rows, whose text names no speaker |
 | `lines` | the section 2 entry the function passes to the message verb |
 | `line_text` | the `us` text of that entry; `(empty string)` for an entry with no text |
 | `flags_set`, `flags_released`, `flags_tested` | `-` on every row |

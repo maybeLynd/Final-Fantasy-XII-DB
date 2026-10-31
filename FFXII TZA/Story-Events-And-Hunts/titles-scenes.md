@@ -2,7 +2,7 @@
 title: "Location title scenes: each region title scene and the field scripts that load it"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00"
+addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x0032FC30, 0x003CA140, 0x00309230"
 ---
 
 ## What it lists

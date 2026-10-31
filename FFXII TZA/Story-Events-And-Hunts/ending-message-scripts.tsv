@@ -29,4 +29,4 @@ msg_z0001	scene, event 399	台詞	戴冠式まで	requested by 監視監督.Movi
 msg_z0001	scene, event 399	台詞	ふたりに会	requested by 監視監督.Movie監視	-	28	You should see him! He can hardly wait.	-	-	-	-	-	-	-	-	-	-	4	-
 msg_z0001	scene, event 399	台詞	もちろん２	requested by 監視監督.Movie監視	-	29	I'll be going too, of course.	-	-	-	-	-	-	-	-	-	-	4	-
 msg_z0001	scene, event 399	台詞	空賊デビュー	requested by 監視監督.Movie監視	-	30	Every good sky pirate needs a partner, right?	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	movieSkip監督	Skip監視	requested by Movie監督.main	-	31	Skip	-	-	-	-	-	-	-	-	-	-	1	-
+msg_z0001	scene, event 399	movieSkip監督	Skip監視	requested by Movie監督.main	no name shown	31	Skip	-	-	-	-	-	-	-	-	-	-	1	-

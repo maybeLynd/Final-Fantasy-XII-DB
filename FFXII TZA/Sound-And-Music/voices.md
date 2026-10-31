@@ -227,16 +227,20 @@ A cue is joined to the first that applies:
 1. the line the playing function has on screen when it plays the cue: 130 cues;
 2. the one line of a function the playing function requested just before, without waiting for it: 36;
 3. the playing function's next line, opened within 10 frames with no request or wait for one between: 202;
-4. on the clock of a function that reaches the play, the one line on screen when the cue starts (1,052), or else the
-   one line that opens within 10 frames after it (64); every function that reaches the play gives the same line.
+4. on the clock of a function that reaches the play, the one line on screen when the cue starts (1,053), or else the
+   one line that opens within 10 frames after it (65); every function that reaches the play gives the same line.
 
 A cue these rules reach keeps no line when its `.vpc` bank is the silent stub (17 cues), when a cue of another
-speaker reaches the same line and the line is not a subtitle of two speakers, which starts `- ` (123), or when the
+speaker reaches the same line and the line is not a subtitle of two speakers, which starts `- ` (121), or when the
 listing gives the line to another speaker (1): `ene_a0200` sub-file 2 cue 7, Vossler's, starts on line 36, which
 `TAGmes_ASHE_19` shows between `ASHE::unapaku_on` and `unapaku_off`.
 
-That joins 1,484 cues. The other 1,012 have no line on their clock when they start (424), share their clock with no
-message call (406), start while two or three lines are on screen (41), or keep no line by the rules above (141). In
+Where cues of two speakers reach one line and the listing opens one speaker's mouth with it, that speaker's cue
+keeps the line: Balthier's on `rbn_a1600` line 1, opened after `バルフレア::クチウナオン`, and on `byu_a1880` line 6,
+whose `TAGmes_BALFLAIR_6` requests `BALFLAIR::paku_on`.
+
+That joins 1,486 cues. The other 1,010 have no line on their clock when they start (424), share their clock with no
+message call (406), start while two or three lines are on screen (41), or keep no line by the rules above (139). In
 `nal_d0100`, `ボイス.発音` (line 1232) plays cues 1 and 2 of sub-file 0 in scene 4 (`startscene(file_var_s0_2)`),
 Balthier's cue, a silent stub, and Vaan's 1.56-second cue, and `メッセージ.表示` (line 945), which shows the scenes'
 lines, has no case for scene 4.

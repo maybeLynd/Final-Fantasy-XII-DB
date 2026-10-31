@@ -2,11 +2,11 @@ script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_rele
 nal_a01	Stockade (Nalbina Dungeons)	choco_sum_ctrl_murasawa	sumcho_byebye	requested by telepoeffectctrl.telepoeffect	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	2	-
 nal_a01	Stockade (Nalbina Dungeons)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Arena (Nalbina Dungeons), field 49, entrance 0	-	-	-	1	-
 nal_a01	Stockade (Nalbina Dungeons)	常駐監督	main	main	-	-	-	-	-	-	302: After Vaan wakes; after Aqua wakes / 303: After the pebble	at most 301	-	-	-	nal_a0100, event 30	-	1	-
-nal_a01	Stockade (Nalbina Dungeons)	バル会話	バル会話	requested by BALFLAIR.talk	-	65	Balthier Looks as though our belongings were carted off by the Imperials. Ah, perhaps they've brought our things up to our rooms. How kind. No sense strutting about at a time like this. Save your strength, and stay out of trouble.	-	-	-	-	-	-	-	-	-	-	1	-
-nal_a01	Stockade (Nalbina Dungeons)	ミニゲー範囲制御	警告	requested by 制御ライン11.across, 制御ライン21.across, 制御ライン31.across	-	97	Hey! Where do you think you're going? Any further, and you forfeit, boy.	-	-	-	-	-	-	-	-	-	-	2	-
-nal_a01	Stockade (Nalbina Dungeons)	ミニゲー範囲制御	放棄	requested by 放棄ライン1.across, 放棄ライン2.across, 放棄ライン3.across	-	98	If you don't wanna play, don't waste my time.	-	-	-	-	-	-	-	-	-	-	2	-
+nal_a01	Stockade (Nalbina Dungeons)	バル会話	バル会話	requested by BALFLAIR.talk	Balthier	65	Balthier Looks as though our belongings were carted off by the Imperials. Ah, perhaps they've brought our things up to our rooms. How kind. No sense strutting about at a time like this. Save your strength, and stay out of trouble.	-	-	-	-	-	-	-	-	-	-	1	-
+nal_a01	Stockade (Nalbina Dungeons)	ミニゲー範囲制御	警告	requested by 制御ライン11.across, 制御ライン21.across, 制御ライン31.across	Cutraz	97	Hey! Where do you think you're going? Any further, and you forfeit, boy.	-	-	-	-	-	-	-	-	-	-	2	-
+nal_a01	Stockade (Nalbina Dungeons)	ミニゲー範囲制御	放棄	requested by 放棄ライン1.across, 放棄ライン2.across, 放棄ライン3.across	Cutraz	98	If you don't wanna play, don't waste my time.	-	-	-	-	-	-	-	-	-	-	2	-
 nal_a01	Stockade (Nalbina Dungeons)	Map_Director	init	init	-	-	-	0x0052: Lists Nalbina Dungeons on the map screens	-	-	-	-	-	-	-	-	-	1	-
-nal_a01	Stockade (Nalbina Dungeons)	出口のライン	across	across	-	67	Look, take my advice, and stay out of there!	-	-	-	-	-	-	-	-	-	-	1	-
+nal_a01	Stockade (Nalbina Dungeons)	出口のライン	across	across	No. 281	67	Look, take my advice, and stay out of there!	-	-	-	-	-	-	-	-	-	-	1	-
 nal_a01	Stockade (Nalbina Dungeons)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000c0	-	-	-	-	1	-
 nal_a01	Stockade (Nalbina Dungeons)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000d8	-	-	-	-	1	-
 nal_a01	Stockade (Nalbina Dungeons)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030000f0	-	-	-	-	1	-
@@ -19,7 +19,7 @@ nal_a01	Stockade (Nalbina Dungeons)	PRISON_HUME_H	talk	talk	No. 502	46; 47; 48	Y
 nal_a01	Stockade (Nalbina Dungeons)	PRISON_HUME_H	あいづち1	requested by PRISON_HUME_G.talk	No. 502	49	They don't need a reason, them Imperials toss people in here when they feel like it. Criminals, free-thinkers, bad singers...	-	-	-	-	-	-	-	-	-	-	8	-
 nal_a01	Stockade (Nalbina Dungeons)	PRISON_HUME_I	talk	talk	No. 281	50; 51	"Er...annngh... Damn swine...! What's he talking about ""spy hunting""? What gives him the right... / That Daguza... Swine thinks his manure's made o' gold."	-	-	-	-	-	-	-	-	-	-	7	-
 nal_a01	Stockade (Nalbina Dungeons)	PRISON_HUME_M	talk	talk	No. 691	52; 53; 54	Ah, new arrival? Welcome to the famed Nalbina Dungeons, boy. We're all equals here. Stripped of everything by our kind friend the Empire. All we got is our bones, and those'll be theirs soon enough! Har! / You're in with us, which means you're in here for a long, long time. You're lucky. You get to die slow. If they were going to kill you quick, you'd be down in the oubliette. / Don't even think about going back to see the oubliette, boy. They'd as soon toss you in there as look at you.	-	-	-	-	-	-	-	-	-	-	7	-
-nal_a01	Stockade (Nalbina Dungeons)	PRISON_HUME_O	会話	-	-	55	Shush your babbling! Nobody's asked why you were thrown down here, and nobody cares!	-	-	-	-	-	-	-	-	-	-	8	-
+nal_a01	Stockade (Nalbina Dungeons)	PRISON_HUME_O	会話	-	Maza	55	Shush your babbling! Nobody's asked why you were thrown down here, and nobody cares!	-	-	-	-	-	-	-	-	-	-	8	-
 nal_a01	Stockade (Nalbina Dungeons)	PRISON_HUME_P	talk	talk	No. 124	56; 57; 58	You Dalmascan, boy? I once fought at this fortress to save the King of Dalmasca. It's true. Seems an age ago, now, down here. / Listen, boy. No matter how hard it gets, don't forget your pride in Dalmasca, and your hatred of the Empire! They're all we got. / Accursed Captain... I hope he's burning in the pits of the underworld...	-	-	-	-	-	-	-	-	-	-	5	-
 nal_a01	Stockade (Nalbina Dungeons)	PRISON_BANGA_D	talk	talk	No. 395	59; 60; 61	Escape? There's plenty of folks down here wanting to do that. Never heard of anyone succeeding, though. / I always heard Nalbina Fortress was impenetrable. Just never thought it worked both ways... / If you're thinking of trying to escape, better stop thinking. The lucky ones get thrown in the oubliette...	-	-	-	-	-	-	-	-	-	-	7	-
 nal_a01	Stockade (Nalbina Dungeons)	PRISON_BANGA_E	talk	talk	No. 102	62; 63; 64	Unh...ahh... W-Water... / W-Why bother giving us this brackish swill... A man can't drink this... / Please, just a taste... Cold, clear water... A taste...	-	-	-	-	-	-	-	-	-	-	5	-
@@ -50,7 +50,7 @@ nal_c01	The Black Watch (Nalbina Dungeons)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	
 nal_c01	The Black Watch (Nalbina Dungeons)	常駐ディレクター	init	init	-	-	-	-	-	-	312: After the pursuit of Judge Gabranth; start of the escape from Nalbina Fortress	at least 0; below 312	-	-	-	nal_c0101, event 34; nal_c0100, event 32	-	1	-
 nal_c01	The Black Watch (Nalbina Dungeons)	Map_Director	init	init	-	-	-	0x0052: Lists Nalbina Dungeons on the map screens	-	-	-	-	-	-	-	-	-	1	-
 nal_c01	The Black Watch (Nalbina Dungeons)	アンロック	touchon	touchon	-	-	-	-	-	-	315: After the unlocked door; after the unlock scene	= 312	-	-	every foe in group 0 removed	-	-	3	-
-nal_c01	The Black Watch (Nalbina Dungeons)	閉じた扉	talk	talk	-	0	The door is securely locked.	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c01	The Black Watch (Nalbina Dungeons)	閉じた扉	talk	talk	no name shown	0	The door is securely locked.	-	-	-	-	-	-	-	-	-	-	1	-
 nal_c01	The Black Watch (Nalbina Dungeons)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000180	-	-	-	-	1	-
 nal_c01	The Black Watch (Nalbina Dungeons)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000198	-	-	-	-	1	-
 nal_c01	The Black Watch (Nalbina Dungeons)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001b0	-	-	-	-	1	-
@@ -66,13 +66,13 @@ nal_c02	The Confiscatory (Nalbina Dungeons)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-
 nal_c02	The Confiscatory (Nalbina Dungeons)	SAKIYOMI_nal_c0200	init	init	-	-	-	-	-	-	-	below 310	-	-	-	nal_c0200, event 35	-	4	-
 nal_c02	The Confiscatory (Nalbina Dungeons)	SAKIYOMI_nal_c0200	sakiyomi_init	-	-	-	-	-	-	-	-	-	-	-	-	nal_c0200, event 35	-	4	-
 nal_c02	The Confiscatory (Nalbina Dungeons)	装備変更	touch	touch	-	-	-	-	-	-	310: After recovering the equipment	-	-	-	-	-	-	3	-
-nal_c02	The Confiscatory (Nalbina Dungeons)	閉じた扉	talk	talk	-	25	The door is securely locked.	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c02	The Confiscatory (Nalbina Dungeons)	閉じた扉	talk	talk	no name shown	25	The door is securely locked.	-	-	-	-	-	-	-	-	-	-	1	-
 nal_c02	The Confiscatory (Nalbina Dungeons)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000040	-	-	-	-	1	-
 nal_c02	The Confiscatory (Nalbina Dungeons)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000058	-	-	-	-	1	-
 nal_c02	The Confiscatory (Nalbina Dungeons)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000070	-	-	-	-	1	-
 nal_d01	Oubliette (Nalbina Dungeons)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Black Watch (Nalbina Dungeons), field 709, entrance 1	-	-	-	1	-
 nal_d01	Oubliette (Nalbina Dungeons)	常駐監督	main	main	-	-	-	-	-	-	316: After the captive Basch	at most 315	-	The Lightworks (Barheim Passage), field 53, entrance 0	-	nal_d0100, event 36	-	1	-
-nal_a0100	scene, event 30	ボイス	んんーん	requested by 監督.アクア目覚める	-	0	You're awake.	-	-	-	-	-	-	-	-	-	-	6	-
+nal_a0100	scene, event 30	ボイス	んんーん	requested by 監督.アクア目覚める	Balthier	0	You're awake.	-	-	-	-	-	-	-	-	-	-	6	-
 nal_a0100	scene, event 30	メッセージ	ここは？	requested by 監督.アクア目覚める	-	1	Where are we?	-	-	-	-	-	-	-	-	-	-	3	-
 nal_a0100	scene, event 30	メッセージ	牢獄さ	requested by 監督.アクア目覚める	-	2; 3	Prison, where else? / More a dungeon, but it's really all the same.	-	-	-	-	-	-	-	-	-	-	3	-
 nal_a0100	scene, event 30	メッセージ	びくびくするな1	requested by 監督.アクア目覚める	-	4	Relax, it's just a corpse. Jump at every little thing down here and you'll wear yourself out.	-	-	-	-	-	-	-	-	-	-	3	-
@@ -86,47 +86,47 @@ nal_b0100	scene, event 31	KOE	cut18	requested by AD.main	-	0	No, don't!	-	-	-	-	
 nal_b0100	scene, event 31	KOE	cut26	requested by AD.main	-	1	He was defenseless...	-	-	-	-	-	-	-	-	-	-	22	-
 nal_b0100	scene, event 31	KOE	cut41	requested by AD.main	-	2; 3	Something stinks in here all right. / I've changed my mind. This is no dungeon, it's a sty.	-	-	-	-	-	-	-	-	-	-	22	-
 nal_b0100	scene, event 31	KOE	cut43	requested by AD.main	-	4	I said you're the one that stinks, hamshanks. Hear me now?	-	-	-	-	-	-	-	-	-	-	22	-
-nal_b0100	scene, event 31	KOE	cut44	requested by AD.main	-	5	You all right, Vaan?	-	-	-	-	-	-	-	-	-	-	22	-
+nal_b0100	scene, event 31	KOE	cut44	requested by AD.main	Balthier	5	You all right, Vaan?	-	-	-	-	-	-	-	-	-	-	22	-
 nal_b0101	scene, event 33	AD	main	main	-	-	-	-	-	-	-	-	-	-	-	-	Fran joins; fighting party set: Vaan, Balthier, Fran	1	-
-nal_b0101	scene, event 33	KOE	cut16	requested by AD.main	-	0	Great. They just don't give up, do they?	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut18	requested by AD.main	-	1	Now is looking like a good time for us to leave.	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut21	requested by AD.main	-	2	Through the oubliette, there's a way out.	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut22	requested by AD.main	-	3; 4	Only— / Only you sense the Mist.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut16	requested by AD.main	Balthier	0	Great. They just don't give up, do they?	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut18	requested by AD.main	Balthier	1	Now is looking like a good time for us to leave.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut21	requested by AD.main	Fran	2	Through the oubliette, there's a way out.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut22	requested by AD.main	Fran; Balthier	3; 4	Only— / Only you sense the Mist.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut23	requested by AD.main	-	5	Then we'll need weapons.	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut24	requested by AD.main	-	6	What did you call me? Say that again!	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut24	requested by AD.main	Vaan	6	What did you call me? Say that again!	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut26	requested by AD.main	-	7; 8; 9; 10; 11; 12; 13; 14; 15	What, you couldn't hear? / I merely said that the lot of you are incompetent fools. / If you've the sky pirate in your hands, where is he? / You'd have done better, Ba'Gamnan? / By your own words, it was the Imperial army who caught this sky pirate of yours. / We've done your job for you! / We don't require the assistance of filthy headhunters. / The Empire will restore order here. / Eh? What's that you say now?	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut31	requested by AD.main	-	16; 17	Maybe I'll whet my blade on you... / before I kill Balthier.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut33	requested by AD.main	-	18	That's enough, Ba'Gamnan.	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut35	requested by AD.main	-	19	A Judge.	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut36	requested by AD.main	-	20	Judge?	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut35	requested by AD.main	Fran	19	A Judge.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut36	requested by AD.main	Vaan	20	Judge?	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut37	requested by AD.main	-	21; 22; 23; 24; 25; 26	Hmph. / The self-proclaimed guardians of law and order in Archadia. / They're the elite guard of House Solidor. / Which effectively makes them the commanders of the Imperial army. / If you ask me, they're more executioners than judges. / Not a friendly lot, at any rate. What are they doing here?	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut41	requested by AD.main	-	27; 28	The Emperor is willing to overlook race for his more talented servants. / However, those that do not show respect will receive none in kind.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut43	requested by AD.main	-	29; 30	You travel freely through our lands because the Emperor wills it. / Am I correct?	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut47	requested by AD.main	-	31; 32; 33	Where is the Captain? / We have him in solitary, Your Honor. / We're ready to begin our interrogation.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut48	requested by AD.main	-	34; 35; 36	This does not concern you, bounty hunter. / He's in here somewhere! Find him! / - Bwagi, that way! - I was going this way!	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut51	requested by AD.main	-	37	Time for the hare to follow the fox.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut51	requested by AD.main	Balthier	37	Time for the hare to follow the fox.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut52	requested by AD.main	-	38; 39	The magicks binding the door to the oubliette are quite strong. / Too strong even for my talents.	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut54	requested by AD.main	-	40	That's why we'll get them to open it for us.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut54	requested by AD.main	Balthier	40	That's why we'll get them to open it for us.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut55	requested by AD.main	-	41; 42; 43; 44	How is going deeper into this place— / What's wrong? You don't trust her? / Viera's noses are sharp. / If she says there's a way out, there's a way out.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_c0101	scene, event 34	セリフ	BALFLAIR_ずいぶんとまぁ	requested by ディレクター.CUT10	-	0	There are more turnkeys than cutpurses down here.	-	-	-	-	-	-	-	-	-	-	2	-
 nal_c0101	scene, event 34	セリフ	BALFLAIR_こりゃ	requested by ディレクター.CUT10	-	1	I've had my fill of chains.	-	-	-	-	-	-	-	-	-	-	2	-
 nal_c0101	scene, event 34	セリフ	BALFLAIR_できるだけ	requested by ディレクター.CUT10	-	2	Let's tread lightly, shall we?	-	-	-	-	-	-	-	-	-	-	2	-
-nal_c0200	scene, event 35	システムメッセージ	NALC0200_システムメッセ01	requested by ディレクター.main	-	system message 56; system message 123; 0	You recover your lost items and equipment! / Your location map for this area is complete! / (empty string)	-	-	-	-	-	receives Nalbina Dungeons; items and equipment given back; receives Goddess's Magicite	-	-	-	-	3	-
+nal_c0200	scene, event 35	システムメッセージ	NALC0200_システムメッセ01	requested by ディレクター.main	system message; no name shown	system message 56; system message 123; 0	You recover your lost items and equipment! / Your location map for this area is complete! / (empty string)	-	-	-	-	-	receives Nalbina Dungeons; items and equipment given back; receives Goddess's Magicite	-	-	-	-	3	-
 nal_c0200	scene, event 35	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_2	-	-	-	-	1	-
 nal_c0200	scene, event 35	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_2	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	システムメッセージ表示	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	ゲット＆メッセージ表示	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_2	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	メッセージ＆メッセージ表示	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	SYSMES_GET_SYSMES表示_FADE付	requested by システムメッセージ.NALC0200_システムメッセ01	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_3	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	メッセージ＆同時ゲット表示_FADE付	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_3; receives the item held in file_var_s1_4	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	システムメッセージ表示_音量復帰特殊	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	システムメッセージ表示	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	ゲット＆メッセージ表示	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_2	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	メッセージ＆メッセージ表示	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	SYSMES_GET_SYSMES表示_FADE付	requested by システムメッセージ.NALC0200_システムメッセ01	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_3	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	メッセージ＆同時ゲット表示_FADE付	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_3; receives the item held in file_var_s1_4	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	システムメッセージ表示_音量復帰特殊	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 nal_c0200	scene, event 35	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_2	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	-	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-nal_c0200	scene, event 35	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	-	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_2; receives the item held in file_var_s1_3	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c0200	scene, event 35	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_2; receives the item held in file_var_s1_3	-	-	-	-	1	-
 nal_c0200	scene, event 35	セリフ	FRAN_みて	requested by ディレクター.main	-	1	Look.	-	-	-	-	-	-	-	-	-	-	1	-
 nal_c0200	scene, event 35	セリフ	BALFLAIR_おう	requested by ディレクター.main	-	2	Ah! The prison repository of wrested relics and raiments.	-	-	-	-	-	-	-	-	-	-	1	-
-nal_c0200	scene, event 35	セリフ	VAN_ということは	requested by ディレクター.main	-	3	So our things are in here?	-	-	-	-	-	-	-	-	-	-	1	-
-nal_c0200	scene, event 35	セリフ	BALFLAIR_だといいね	requested by ディレクター.main	-	4	That's what I said.	-	-	-	-	-	-	-	-	-	-	1	-
-nal_c0200	scene, event 35	セリフ	NALC0200_システムメッセ01	-	-	5	(empty string)	-	-	-	-	-	items and equipment given back	-	-	-	-	1	-
+nal_c0200	scene, event 35	セリフ	VAN_ということは	requested by ディレクター.main	Vaan	3	So our things are in here?	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c0200	scene, event 35	セリフ	BALFLAIR_だといいね	requested by ディレクター.main	Balthier	4	That's what I said.	-	-	-	-	-	-	-	-	-	-	1	-
+nal_c0200	scene, event 35	セリフ	NALC0200_システムメッセ01	-	no name shown	5	(empty string)	-	-	-	-	-	items and equipment given back	-	-	-	-	1	-
 nal_d0100	scene, event 36	メッセージ	表示	requested by 監督.main	-	0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20; 21; 22; 23; 24; 25; 26; 27; 28	You have grown very thin, Basch. / Less than a shadow. Less than a man. / Sentenced to death and yet you live. Why? / To silence Ondore. How many times must I say it? / Is that all? / Why not ask Vayne himself? Is he not one of your masters? / We've caught a leader of the insurgence. She is being brought from Rabanastre. / The woman Amalia. / Who could that be? / Such a faithful hound to cling so to a fallen kingdom. / Better than throwing it away. / Throwing it away? As you threw away our homeland? / Who's there? / This the place? / The Mist is flowing through this room. It must be going somewhere. / You! You're no Imperials. Please, you must get me out— / It's against my policy to speak with the dead. Especially when they happen to be kingslayers. / I did not kill him. / Is that so? Glad to hear it. / Please, get me out. For the sake of Dalmasca. / Dalmasca!? / What do you care about Dalmasca!? / Everything that's happened is because of you! / Everyone that's died, every single one! / Even my brother— / You killed my brother! / Quiet! The guards will hear. / I'm dropping it. / Pirates without a sky.	-	-	-	-	-	-	-	-	-	-	1	-

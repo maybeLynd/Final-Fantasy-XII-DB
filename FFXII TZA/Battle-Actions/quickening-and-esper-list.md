@@ -72,6 +72,12 @@ So no `0xC000` id reaches the word `+0x02`, and `+0x04` and `+0x06` have no read
 
 Fourteen scripts share one grant block, the thirteen fight scenes and `pos_z0000` (event 427): it reads the map the scene plays on (`nowmap`) and adds that map's Esper when it is not held, and on Belias's map the Second Board too, which the `pos_z0000` copy leaves out. The opening setup scene `pre_z0000` (event 212) sets the battle bytes of twelve Espers from 0 to 1; Famfrit's (`0x0A1E`) is set to 1 by `dgl_g01` after the battle with Dr. Cid. Each fight runs while its byte is 1. The `obtained` column gives each fight.
 
+For the optional Espers the `obtained` column also gives the way in: the exits into the fight map, the floor groups,
+switches, key items, waystones and story counter values that open them, with their listing lines. Walk results come
+from the collision floor of the map before the fight map: which entrances reach the exit on foot under each floor
+setting the scripts make. Wall records are not modelled, so these results say what the floor allows, not that no
+wall stands in the way.
+
 ## Columns
 
 | Column | Meaning |
@@ -82,7 +88,7 @@ Fourteen scripts share one grant block, the thirteen fight scenes and `pos_z0000
 | `licence_node` | the License Board node the id belongs to |
 | `word_02`, `word_04`, `word_06` | the three words, raw |
 | `explanation` | a one-line summary |
-| `obtained` | for an Esper, the map of its fight, the scene step that grants it, how the map is entered and the story progress the fight tests or sets ("How an Esper is obtained" above); `-` for a Quickening |
+| `obtained` | for an Esper, the map of its fight, the scene step that grants it, how the map is entered, the way in (for the optional Espers) and the story progress the fight tests or sets ("How an Esper is obtained" above); `-` for a Quickening |
 
 ## Related
 

@@ -125,9 +125,34 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 
 ### Speakers, places and scenes
 
-- The speaker is the second name of each pair the actor's `setnpcname` calls name in `us` `npcdic.bin`. The
-  message window opener `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
+- The speaker of a line is the name its window shows. A `{name:P}` header (escape `0F 8`) names pair P in `us`
+  `npcdic.bin`, P read as the parser `0x003FFB00` reads it. A plain name before the first line break,
+  after `{instant:8181}` or at the start of a zone line, shows that name. An `{actor-name}` header (escape `0F >`)
+  shows the name `0x00263990` gives the actor the window speaks for.
+- The header's name comes from `0x002639E0`, which three of the five callers of `0x003FFB00` call next
+  (`0x002ADDAA`, `0x002B16D4`, `0x002B52EF`): the first name while the pair's name flag is clear, the second once it is set. The
+  `speaker` cell gives the second name. The window sets the flag of the pair of the actor it speaks for (next
+  item), and `settalknpcname` sets any pair's ([NPC names](../Characters-And-Objects/npc-names.md)).
+- The window speaks for the message call's target, the calling actor or the actor an `X.` prefix names: `0x002621D0`
+  passes it to the verb, and `0x00348DF0` hands it to `0x002E16B0`. That actor's name is the second name of each pair its
+  `setnpcname` calls name; `0x002E16B0` sets the actor's name flag before the window opens, and `0x00263990` shows the
   second name while that flag is set.
+- An actor no `setnpcname` or `setshopname` call names keeps the name id `0xFFFF` and the empty text the record set-up
+  `0x00266530` writes (`0x0026668B`, `0x0026669B`-`0x002666B4`), so its `{actor-name}` header shows no name; that line reads
+  `no name shown`. A system message reads `system message`.
+- A line whose text carries no name takes the window actor's `setnpcname` name. Failing that, a scene subtitle
+  (centred, or in the subtitle font `{alt-font}`) takes the character the window speaks for.
+- Then any line without a name takes the speaker of the voice cue joined to it ([Voices](../Sound-And-Music/voices.md)),
+  else the actor of the row's `TAGmes_<actor>_<n>` function, else the actor whose mouth function (`paku_on`,
+  `unapaku_on`, `クチウナオン`, `kutipaku_on`, `kutipakuON`) is requested in its window or around the request of its
+  function.
+- A character's game name is the second name its `setnpcname` gives; else the party member whose model its bind verbs
+  name, the `c` entries of the script's [actor manifest](../EBP-Script-Files/ebp-actor-manifest.md) read
+  against the `model` column of the [party table](../Party/party-table.md), a main member before a guest; else
+  the NPC name or string table row whose `in` cell is the actor's name.
+- Any other line without a name reads `no name shown`, apart from a scene subtitle, which keeps its row's cell `-`. A
+  line whose name is `???` reads `???`: the game prints `???` as that speaker's name at that line. A row lists its
+  speakers in line order, each once.
 - A field id is named by its map name, entry `id` of `us` `planmapname.bin` (`0x00377B60`), and its region, the
   entry after the map names that `0x003778B0` selects through the field's group in `map_ref.bin` (`0x00264F90`).
 - An event id `n` names the scene script at index `4n` of the event file table, which `0x0032FCA0` loads for scene
@@ -189,7 +214,7 @@ files `ＡＤ.バインドオフ` and `パーティー全体.イベント終了�
 | `place` | for a zone script, its map (region); for a scene script, `scene, event` and its event id |
 | `actor`, `function` | the actor and the function, as the script names them |
 | `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions of the same script that request it by name; `-` when neither applies |
-| `speaker` | the names `setnpcname` gives the actor, filled only for a row whose lines include a section 2 line; a system message is not spoken by the actor |
+| `speaker` | for an actor with a `setnpcname` call, the second names of its pairs; for any other row with a section 2 line, who speaks each line, in line order, by the rules under "Speakers, places and scenes": a name, `???`, `no name shown` or `system message`; `-` for a row without a section 2 line, and for a scene row with a subtitle none of those rules names |
 | `lines` | the section 2 entries the function passes to the message and ask verbs, and `system message N` for each message from the shared system-message list that the key-item and system-message helper shows for the function ([Shared zone-script actors](shared-zone-script-actors.md)), at the place of the request; two numbers joined by `or` are the values the function's stores leave, and which one is shown is decided at run time |
 | `line_text` | the `us` text of those entries, in the same order, separated by ` / `; for a `system message N` entry, the text of message N in the system-message list |
 | `flags_set`, `flags_released`, `flags_tested` | the flag ids, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md) |

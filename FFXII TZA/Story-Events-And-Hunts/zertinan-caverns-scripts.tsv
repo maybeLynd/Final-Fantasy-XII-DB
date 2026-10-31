@@ -28,7 +28,7 @@ ztc_a03	Hourglass Basin (Zertinan Caverns)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	
 ztc_a03	Hourglass Basin (Zertinan Caverns)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Sandfalls (Zertinan Caverns), field 577, entrance 2	-	-	-	1	-
 ztc_a03	Hourglass Basin (Zertinan Caverns)	__MJ_CTRL004	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Sandfalls (Zertinan Caverns), field 577, entrance 4	-	-	-	1	-
 ztc_a03	Hourglass Basin (Zertinan Caverns)	常駐ディレクター	main	main	War-chief Supinelu	0; 1; 2; 3	We have arrived. The Catoblepas is here. I would defeat it, whatever the cost. See that we do not fail. / We have arrived. The Catoblepas is here. I would defeat it, whatever the cost. See that we do not fail. / It is not here. Yet here it should be... / It is not here. Yet here it should be...	-	-	-	-	-	-	-	-	-	-	1	-
-ztc_a03	Hourglass Basin (Zertinan Caverns)	wanted_kansi	main	main	-	4	At last, it is done. Long have I dreamt this day would come. A reward for your efforts is due, but this is no place for that. I will return to the village now. Seek me there. Go now, with my gratitude.	-	-	-	-	-	-	-	every foe in group 0 removed; every foe in a group removed	-	-	1	-
+ztc_a03	Hourglass Basin (Zertinan Caverns)	wanted_kansi	main	main	War-chief Supinelu	4	At last, it is done. Long have I dreamt this day would come. A reward for your efforts is due, but this is no place for that. I will return to the village now. Seek me there. Go now, with my gratitude.	-	-	-	-	-	-	-	every foe in group 0 removed; every foe in a group removed	-	-	1	-
 ztc_a03	Hourglass Basin (Zertinan Caverns)	treasure_00	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000140	-	-	-	-	1	-
 ztc_a03	Hourglass Basin (Zertinan Caverns)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000158	-	-	-	-	1	-
 ztc_a03	Hourglass Basin (Zertinan Caverns)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000170	-	-	-	-	1	-
@@ -67,7 +67,7 @@ ztc_c01	The Balamka Fault (Zertinan Caverns)	treasure_03	talk	talk	-	-	-	-	-	-	-
 ztc_c01	The Balamka Fault (Zertinan Caverns)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000220	-	-	-	-	1	-
 ztc_c01	The Balamka Fault (Zertinan Caverns)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000238	-	-	-	-	1	-
 ztc_c01	The Balamka Fault (Zertinan Caverns)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000250	-	-	-	-	1	-
-ztc_c01	The Balamka Fault (Zertinan Caverns)	ゼルテニアン地図宝壺	talk	talk	-	system message 105	Your location map for this area is complete!	Bank512, second half 0x0006: Set or tested in The Balamka Fault (Zertinan Caverns)	-	-	-	-	receives Zertinan Caverns	-	-	-	-	2	-
+ztc_c01	The Balamka Fault (Zertinan Caverns)	ゼルテニアン地図宝壺	talk	talk	system message	system message 105	Your location map for this area is complete!	Bank512, second half 0x0006: Set or tested in The Balamka Fault (Zertinan Caverns)	-	-	-	-	receives Zertinan Caverns	-	-	-	-	2	-
 ztc_c02	Drybeam Cavern (Zertinan Caverns)	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Balamka Fault (Zertinan Caverns), field 585, entrance 1	-	-	-	1	-
 ztc_c02	Drybeam Cavern (Zertinan Caverns)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Balamka Fault (Zertinan Caverns), field 585, entrance 4	-	-	-	1	-
 ztc_c02	Drybeam Cavern (Zertinan Caverns)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Athroza Quicksands (Zertinan Caverns), field 590, entrance 1	-	-	-	1	-
@@ -97,23 +97,23 @@ ztc_d01	Athroza Quicksands (Zertinan Caverns)	__MJ_CTRL000	mapjump	mapjump	-	-	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Undershore (Zertinan Caverns), field 581, entrance 2	-	-	-	1	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	__MJ_CTRL002	mapjump	mapjump	-	-	-	-	-	-	-	-	-	Hourglass Basin (Zertinan Caverns), field 578, entrance 3	-	-	-	1	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Balamka Fault (Zertinan Caverns), field 585, entrance 5	-	-	-	1	-
-ztc_d01	Athroza Quicksands (Zertinan Caverns)	監督	main	main	-	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	ztc_d0100, event 320; ztc_d0101, event 321; pos_z0000, event 427	-	1	-
+ztc_d01	Athroza Quicksands (Zertinan Caverns)	監督	main	main	no name shown	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	ztc_d0100, event 320; ztc_d0101, event 321; pos_z0000, event 427	-	1	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	boss_summon_director	summon_effect_recover	requested by 監督.main	-	-	-	-	-	-	-	-	-	-	boss gauge shown	-	-	2	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	ボス登場01	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	pos_z0000, event 427	-	5	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	ボス登場02	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	pos_z0000, event 427	-	5	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	ボス登場03	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	pos_z0000, event 427	-	5	-
 ztc_d01	Athroza Quicksands (Zertinan Caverns)	ボス登場04	touch	touch	-	-	-	-	-	-	-	-	-	-	boss gauge shown; every foe in a group removed	pos_z0000, event 427	-	5	-
 ztc_d0101	scene, event 321	監督	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	2	-
-ztc_d0101	scene, event 321	ゾディアックストーン	召喚獣取得処理	-	-	system message 3	NOT USED (message kind 1: the game names id 0xC014, Adrammelech, and gives it)	-	-	-	-	-	receives Adrammelech (system message 3, kind 1)	-	-	-	-	3	-
+ztc_d0101	scene, event 321	ゾディアックストーン	召喚獣取得処理	-	system message	system message 3	NOT USED (message kind 1: the game names id 0xC014, Adrammelech, and gives it)	-	-	-	-	-	receives Adrammelech (system message 3, kind 1)	-	-	-	-	3	-
 ztc_d0101	scene, event 321	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
 ztc_d0101	scene, event 321	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	requested by ゾディアックストーン.召喚獣取得処理	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	ゲット＆メッセージ表示	-	-	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	メッセージ＆メッセージ表示	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	SYSMES_GET_SYSMES表示_FADE付	-	-	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s11_1	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	メッセージ＆同時ゲット表示_FADE付	-	-	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s11_1; receives the item held in file_var_s11_2	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示_音量復帰特殊	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示	-	no name shown	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	requested by ゾディアックストーン.召喚獣取得処理	no name shown	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	ゲット＆メッセージ表示	-	no name shown	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	メッセージ＆メッセージ表示	-	no name shown	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	SYSMES_GET_SYSMES表示_FADE付	-	no name shown	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s11_1	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	メッセージ＆同時ゲット表示_FADE付	-	no name shown	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s11_1; receives the item held in file_var_s11_2	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示_音量復帰特殊	-	no name shown	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 ztc_d0101	scene, event 321	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s5_1	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-ztc_d0101	scene, event 321	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	-	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s5_1; receives the item held in file_var_s11_1	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+ztc_d0101	scene, event 321	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s5_1; receives the item held in file_var_s11_1	-	-	-	-	1	-

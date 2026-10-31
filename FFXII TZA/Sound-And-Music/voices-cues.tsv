@@ -488,7 +488,7 @@ byu_a1880	0	1	VOICE.cut_2	BLACK	0	This is the one, Havharo. Says he's Captain Ba
 byu_a1880	0	2	VOICE.cut_2	LEADER	-	-	2.22 s	no line on the cue's clock at its start
 byu_a1880	0	3	VOICE.cut_3	BLACK	2	I knew he weren't no captain! That was a mean trick to be playing.	4.42 s	on screen in MESSAGE.TAGmes_BANGAA_3 at the cue's start
 byu_a1880	0	4	VOICE.cut_4	LEADER	3	If at trickery it ended, it would end well enough. But why this boy, and why Captain Ronsenburg?	12.54 s	on screen in MESSAGE.TAGmes_HABARLO_4 at the cue's start
-byu_a1880	0	5	VOICE.cut_4	BALFLAIR	-	-	2.73 s	shares its line with a cue of another speaker
+byu_a1880	0	5	VOICE.cut_4	BALFLAIR	6	A shame if they learnt the Marquis trafficked with the likes of you.	2.73 s	opened by MESSAGE.TAGmes_BALFLAIR_6 within 10 frames after the cue starts
 byu_a1880	1	0	VOICE.cut_4	BLACK	-	-	0.96 s	shares its line with a cue of another speaker
 byu_a1880	1	1	VOICE.cut_4	BALFLAIR	7	Agents masquerading as guides. A hideout at the back of a tavern.	6.27 s	on screen in MESSAGE.TAGmes_BALFLAIR_6 at the cue's start
 byu_a1880	1	2	VOICE.cut_7	BLACK	9	Now you've done it!	1.34 s	on screen in MESSAGE.TAGmes_BANGAA_8 at the cue's start
@@ -1760,7 +1760,7 @@ rbn_a1300	4	1	アーシェ声.cut16	Ashe (アーシェ)	-	-	0.04 s, a silent stu
 rbn_a1300	2	4	フラン声.cut9_1	Fran (フラン)	-	-	1.39 s	no line on the cue's clock at its start
 rbn_a1300	3	0	フラン声.cut10	Fran (フラン)	23	The garif people live by the old ways. Magicite lore is a part of their culture.	15.00 s	on screen in 日本語字幕.cut10 at the cue's start
 rbn_a1300	3	2	フラン声.cut11	Fran (フラン)	30	They live beyond Ozmone Plain.	2.20 s	on screen in 日本語字幕.cut11 at the cue's start
-rbn_a1600	0	0	ボイス.発音	Balthier (バルフレア)	-	-	1.98 s	shares its line with a cue of another speaker
+rbn_a1600	0	0	ボイス.発音	Balthier (バルフレア)	1	As I said, a misunderstanding.	1.98 s	on screen in メッセージ.表示 at the cue's start
 rbn_a1600	0	1	ボイス.発音	Migelo (ミゲロ)	-	-	4.67 s	shares its line with a cue of another speaker
 rbn_a1600	0	2	ボイス.発音	Vaan (ヴァン)	3	What? What about Penelo?	1.45 s	on screen in メッセージ.表示 at the cue's start
 rbn_a1600	0	3	ボイス.発音	Migelo (ミゲロ)	4	Oh, Vaan! They've taken Penelo!	10.71 s	opened by メッセージ.表示 within 10 frames after the cue starts

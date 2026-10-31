@@ -138,7 +138,7 @@ from its base `+0x54`/`+0x56` (`0x00407C90` walks the tree through `+0x18` and `
 
 ### The challenges
 
-[script-gauges-challenges.tsv](script-gauges-challenges.tsv) has one row for each of the 12 challenges the `us`
+[script-gauges-challenges.tsv](script-gauges-challenges.tsv) has 13 rows, one for each challenge listed below that the `us`
 scripts hold: what the player does, where, from when, the limits the script passes, the reward and what a failure does.
 The census reads the 1,114 `us` listings that decode (`evt_t0020.ebp` has no `EBP2` header and no listing).
 `initgauge` is called 268 times in 99 of them: 55 fields of The Great Crystal, 14 of Bhujerba, 12 of Barheim Passage,
@@ -154,7 +154,8 @@ hold their barriers open for 72 to 288 seconds by room. The Demon Wall's two fig
 
 Challenges without a gauge: slipping past the guards of the Royal Palace, the spot-the-difference game of the Nalbina
 Stockade (which no talk in its script opens), fishing with Ruksel on the Nebra, the Hunt Club's trophy contest ([Quests](../Story-Events-And-Hunts/quests.md),
-quest 71) and the miner's stash in the Henne Mines. Trial Mode has its own rows on [Trial Mode
+quest 71), the miner's stash in the Henne Mines and the chops Vaan earns in Archades by carrying the townsfolk's
+tales to one another. Trial Mode has its own rows on [Trial Mode
 scripts](../Story-Events-And-Hunts/trial-mode-scripts.md).
 
 | Column | Meaning |
