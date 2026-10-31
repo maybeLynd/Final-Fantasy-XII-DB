@@ -53,9 +53,23 @@ The table holds 889 types in 25 categories. The largest is `SaveImage` (0x56690 
 | `owner_page` | the page that documents the type |
 | `lifetime` | where the type's storage lives, what creates or fills it and what releases it |
 
+[engine-types-fields.tsv](engine-types-fields.tsv) gives the fields of 883 of the 889 types, 9,473 rows, one per
+field. A type is listed there with every one of its fields; the other 6 types are in engine-types.tsv only.
+
+| Column | Meaning |
+|---|---|
+| `type` | the type, as named in engine-types.tsv |
+| `offset` | the field's byte offset in the type |
+| `size` | the field's size in bytes |
+| `name` | the field's name in this database |
+| `ctype` | the field's C type |
+| `meaning` | what the field holds, with the code that writes or reads it |
+
 ## Data
 
 [engine-types.tsv](engine-types.tsv)
+
+[engine-types-fields.tsv](engine-types-fields.tsv)
 
 ## Related
 

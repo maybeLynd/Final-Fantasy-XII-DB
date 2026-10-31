@@ -353,7 +353,7 @@ Eighty entries: floors 0x00-0x1F, walls 0x20-0x3F, mj groups 0x40-0x4F.
 | `+0x0C` | `u32` | attr | the attribute word (field table in How it works) |
 | `+0x10` | `i16[3]` | vertex | indices into the `0x10`-byte vertex array at [part + 8]; `0x00231A90` reads the vertex colour at `+0xC` |
 | `+0x16` | `i16[3]` | neighbour | polygon id across each edge, -1 for none (`0x0022F9B0`) |
-| `+0x1C` | `u8[4]` | tail | read and written by no function: the polygon array [part + `0x10`] is reached from the map `0x0209A678` by `0x0026E100`, `0x0026E350`, `0x0026E530`, `0x0026E640`, `0x0026E960`, `0x00377560` and `0x00377AB0`, and the polygon readers `0x00230A40`, `0x0022CC50`, `0x0022D4B0`, `0x0022D7E0`, `0x0022DE60`, `0x0022F9B0`, `0x00231A90`, `0x00232090`, `0x002321D0`, `0x00233110` (and its callers `0x00380D30`, `0x00231400`) and `0x00233230` read and write nothing from `+0x1C` to `+0x1F`; nothing fixes its width |
+| `+0x1C` | `u32` | flags | bit `0x400` is tested by `0x0022E7D0` (`0x0022E93B`), from `0x0022D7E0`, and by `0x0022EAC0` (`0x0022ECA2`), from `0x0022DE60`: no contact past the third edge; the polygon readers `0x00230A40`, `0x0022CC50`, `0x0022D4B0`, `0x0022D7E0`, `0x0022DE60`, `0x0022F9B0`, `0x00231A90`, `0x00232090`, `0x002321D0`, `0x00233110` and `0x00233230` read nothing from `+0x1C` to `+0x1F` themselves |
 
 `RouteEdge` (`0x8` bytes, offsets from the start of the edge):
 

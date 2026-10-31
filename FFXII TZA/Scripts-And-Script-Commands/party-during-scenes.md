@@ -47,7 +47,7 @@ give 0, 3 gives 2, any other value 1.
 
 `setupsummonforevent(n)` (`0x0193`, `0x00346FA0`) names a leader: the actor at ordinal `n` of the
 current manager, or for a negative `n` the controlled character (`0x003590D0`, `0x003588B0`).
-`0x003B6F80(leader)` walks the managers among 0 to 2 whose byte `+0x10` has bit `0x1` set and collects,
+`0x003B6F80(leader)` walks managers 0 and 1 (`0x003B7036`) whose byte `+0x10` has bit `0x1` set and collects,
 up to 31, the handles of every actor with byte `+9` bit `0x10` set other than the leader; it clears
 `+9` bits `0x4` and `0x10` on every actor it visits and refreshes it (`0x0026D6D0`).
 

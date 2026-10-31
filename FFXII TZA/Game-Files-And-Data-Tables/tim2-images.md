@@ -103,6 +103,41 @@ adds it back.
 | font pack (`packfiles/fontpack_it.bin`, 6 languages) | directory dwords 0 to 5 are offsets, 6 and 7 are `0xFFFFFFFF`; entry 0 a two-picture 4-bit sheet 640 wide (225 rows `us`, 1,646 `cn`), entry 1 a 32 x 16 picture of image type 3 |
 | script glyph sheets (`us`) | 67 scripts carry a TIM2 in section 6: 58 with one picture, 9 with two; version 4 in 66 and `0xD8` in one; all 4-bit (`imageType` 4); first picture 24 x 23 in 55; gate nibble 1 in all 67 |
 
+### Who requests each picture
+
+The 408 `.tm2` files outside `in_sdver` are 40 `tm2_menu` names (39 in `kr`, `cn` and `ch`, which lack
+`title_logo_fore3`), the six `questtim2` pictures in `in` and `ch`, and the 39 `areatim2` pictures in `in`. The
+requester of each kind 7 id comes from the request sites of
+[PS2Data bin families](ps2data-bin-families.md) Request entries, with the ids the callers compute or read from
+their tables:
+
+| Pictures (kind 7 id) | Files | Requested by | Screen |
+|---|---:|---|---|
+| `cm2_win_c` (`0x2B`), `lic_8_c` (`0x78`), `lic_bk` (`0x7A`), `lic_8_c2` (`0x7C`), `lic_8_c3` (`0x7D`) | 45 | `0x00561390` (`0x0056169E`-`0x0056175E`) | the License Board ([License board screen](../Menus-And-HUD/license-board-screen.md)) |
+| `maru_c` (`0x70`), `maru_c_2` (`0x71`), `lic_b_8_c` (`0x76`), `lic_b_4_c` (`0x77`) | 36 | the chooser window `0x00558FB0` (`0x0055926E`-`0x005592FE`) | the board chooser (same page) |
+| `lic_4_c` (`0x79`) | 9 | `0x00556500` (`0x00556541`), from the start-up step `0x0022A4B0` | the License Board (same page) |
+| `gameover_c` (`0x39`) | 9 | the game-over task `0x003EF830`, entry 0 of the table `0x00D11C88` (`0x003EF9C4`, through `0x00393460`) | the game-over screen ([Game over](../World-Areas-And-Travel/game-over.md)) |
+| `title_logo` (`0x3D`) | 9 | `0x00393FF0` (`0x00394029`) | the screen that also loads `title.mrp` ([Menu resource packages](mrp-menu-resource-packages.md)) |
+| `sf_logo_c` (`0x47`) | 9 | the staff-roll loader `0x0053EB90` (`0x0053ECDF`) | the staff roll ([Staff roll](../Menus-And-HUD/staff-roll.md)) |
+| `shop_8_c` (`0x63`) | 9 | `0x002CBD50` (`0x002CBD85`), from `0x0057B780` | the shops ([Shop screens](../Menus-And-HUD/shop-screens.md)) |
+| `dataface_c` (`0x7F`) | 9 | the save and load setup `0x00582790`, table `0x00D23D80` (`0x005827BC`, through `0x00393460`) | saving and loading ([Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md)) |
+| `itemgra_c` (`0x98`) | 9 | `0x00291C80` from `0x0022A4B0` (`0x00291D04`) | the item pictures ([Menu graphics (.as7)](as7-menu-graphics.md)) |
+| `w_shade_p`, `w_main0` to `w_main3`, `w_icon_p`, `w_line01`, `w_line02` (`0xAA` to `0xB1`) | 72 | `0x00562F90`, entries 0 to 7 of `0x00D231C0` (`0x0056301F`); `w_line01` also `0x00404060` (`0x004040F0`) | the World Map ([Map screens](../Menus-And-HUD/map-screens.md), [World map mesh](world-map-mesh-mg.md)) |
+| `loca_8_c` (`0xB9`), `locaback_c` (`0xBA`) | 18 | the location-map resources `0x00404060` (`0x00404093`, `0x004040C2`) | the location map ([Map screens](../Menus-And-HUD/map-screens.md)) |
+| `q_under_c` (`0xC0`), `q_c00` to `q_c05` (`0xC1` to `0xC6`) | 21 | the Clan Primer hunt list `0x00579AF0`, table `0x00D237E0` (`0x00579F50`, through `0x00393460`) | the Hunts page ([Clan Primer](../Menus-And-HUD/clan-primer.md)) |
+| `hand_4_c` (`0xCD`), `handback_c` (`0xCE`) | 18 | the Clan Primer back panel `0x00574E80`, table `0x00D23628` (`0x00574F78`, through `0x003934F0`) | the Clan Primer |
+| `medal_c` (`0xCF`) | 9 | `0x00572D80`, table `0x00D23668` (`0x00572DAC`, through `0x00393460`), from the Sky Pirate's Den page `0x00572E10` | the Clan Primer |
+| `handback2_c` (`0xD0`) | 9 | `0x0056F2A0` (`0x0056F39B`), from `0x00574E80` | the Bestiary page of the Clan Primer |
+| `tuto_win_c` (`0xD8`) | 9 | the task `0x002D6EE0` of the script verb `fsmenu_loadresource` (`0x002D6F59`, through `0x00249380`) | loaded when a script runs `fsmenu_loadresource` ([Menu screens](../Menus-And-HUD/menu-screens.md)) |
+| `loca_01` to `loca_38` (`0xE9` to `0x10E`) | 38 | `0x003C1D70(area)`, `0xE8` + the area's picture byte (`0x003C1DB4`-`0x003C1DC2`), for the World Map host `0x005632C0`; area n's picture byte is n in every `menumap_world.bin` ([`menu-map-files-wmap-rows.tsv`](menu-map-files-wmap-rows.tsv)), so `loca_NN` is the picture of World Map area NN | the World Map ([Map menu files](menu-map-files.md)) |
+
+Of these request sites, the 121 kind 7 sites with a fixed kind pass no id of `title_c` (`0x3C`), `titlemenu1`
+(`0x3E`), `titlemenu2` (`0x3F`), `lic_over` (`0x7B`), `w_win_c` (`0xB2`), `map_gra_c` (`0xB3`) or `l_mapunder`
+(`0xB7`): 63 files. `0x00562F90` skips entries 8 and 9 of `0x00D231C0` (`0x00562FE0`-`0x00562FE8`), the names
+`w_win_c` and `map_gra_c`. `loca_00` (`0xE8`), the picture of area 0, is not requested by `0x003C1D70`, which
+returns for area 0 before the request (`0x003C1D92`-`0x003C1D95`). The six `title_logo_fore3.tm2` files have no kind
+7 id (named by no path array, above).
+
 ## Loader behaviour
 
 ### The texture binder

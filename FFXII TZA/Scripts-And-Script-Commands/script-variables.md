@@ -185,6 +185,30 @@ Banks:
 | bank size | 512 bytes each |
 | resolver callers | 4: `PUSHV`, `POPV`, `PUSHP`, `PUSHDBG` |
 
+### What each global variable is for
+
+[`script-variables-global-meanings.tsv`](script-variables-global-meanings.tsv) has one row for each of the 620
+save-payload offsets. It is counted over the 1,114 decompiled `us` scripts. A row gives the variable's role, one
+sentence on what the scripts use it for, and its values: those the scripts write, test, switch on or mask. It also
+gives the kinds of steps its tests choose, and the scripts that use it.
+
+| role | variables | how the scripts use it |
+|---|---|---|
+| story counter and global flags | 1 | `0x0`, `global_flag[256]`: element 0 is the story counter |
+| map-set position | 4 | `getmapdestposbyindex` fills them with a map exit's destination: the angle at `0x900`, then x, y and z at `0x904`, `0x908` and `0x90C` |
+| weather slot | 1 | walk exits store `getweatherslot()` in it before the map jump |
+| conversation counter | 17 | a talk function adds 1 to it and switches or tests on it |
+| battle word | 15 | a map's foe setup (`setup.map` or `setup.battle`) tests it |
+| control bit word | 57 | bit tests and bit writes make up at least half of its uses |
+| area state | 326 | its other uses lie in the maps of one area (one three-letter map prefix, such as `rbn`) |
+| game-wide state | 170 | its other uses lie in more than one area |
+| debug display | 13 | `sysDVAR`, the debug display, is the one statement that shows it |
+| declared | 16 | no statement of the shipped scripts reads or writes it; 15 of them appear in the developer test scripts |
+
+The gates column counts the steps under each test of the variable by kind: map exits, floors and walls, items and gil,
+scenes, messages, requests, stores, map models, battles, music and sound, screen and camera, and actors. A step under
+several tests counts once for each variable it tests. Bits are written as values (`0x4` for `& 4`).
+
 ## Operations
 
 Per variable opcode: resolve, then load and push or pop and store. Per field transition:

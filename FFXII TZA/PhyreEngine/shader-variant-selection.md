@@ -234,6 +234,8 @@ The shader files decode as below; the linked tables hold every value.
 | render passes | 78 names across the 93 effects: 48 are names of records in the static pass array `0x01F2D6A0` and 17 of the runtime pass registry ([Post-processing](../Graphics/post-processing.md)); 13 match a record of neither: `ColorPickingRender`, `DefaultMapRenderPass`, `DefaultMapRenderPassNoAlphaTest`, `DepthEdgeDetection`, `DepthLabelOnePass`, `LumaEdgeDetection`, `Resolve`, `SAOCombine`, `Separate`, `USMApply`, `USMBlur`, `USMDownSample`, `USMDownSampleMS` ([render passes](shader-variant-selection-render-passes.tsv)) |
 | effects the executable names | each of the 13 by one path string: `sao` `0x008C66E8`, `unsharpmask` `0x008C6718`, `hbao` `0x008C6750`, `ps2depthoffield` `0x008C6780`, `separablesss` `0x008C67C0`, `gaussianfilter` `0x008C67F8`, `phyrefxaa` `0x008C6830`, `smaa` `0x008C6868`, `depthmask` `0x008C6908`, `brightnessshader` `0x008C6940`, `video` `0x008F8CE0`, `phyretext` `0x0090198F`, `copybuffer` `0x00902DE0` |
 | the six textures | `anisolighting`, `areatexdx10` and `searchtex` are named by executable strings (`0x008F9258`, `0x008C68D0`, `0x008C6898`); `beckmannmap`, `mipmaptest` and `shifttex` are named by no executable path string, no `.ah` or prefetch list, no model import and no other shipped file |
+| program bindings | each of the 5,625 programs is the target of exactly one `PShaderPass` pointer. In every file `PEffectVariant` `+10` points to the render passes; a `PSceneRenderPass` names its pass at `+0` (a `PSceneRenderPassType` user fixup), its one `PShader` at `+5` and one entry-point record per shader pass at `+10`; `PShader` `+8` points to its shader passes; `PShaderPass` `+0`, `+1`, `+2`, `+3` to the vertex, fragment, geometry and compute program (packed offsets, the same in all 93 files). 1,749 render passes, 2,475 shader passes. `0x00608DD0` (`0x00608EC9`) and `0x00608F20` (`0x0060905B`) hand the pass to `0x00629AA0`, which reads the four program pointers at `+0x0`, `+0x8`, `+0x10`, `+0x18` (`0x00629AB8`-`0x00629AC9`) and sets the vertex, geometry, pixel and compute shaders in that order. 149 programs belong to effects no model imports (the 90 of the 13 effects the executable names and the 59 of `phyredefaultlitshader.fx#9aa82ed5…`); 398 to the 13 render passes no pass record names ([program bindings](shader-variant-selection-programs-binding.tsv)) |
+| replacement checks | one row per code: its program objects, files, render passes, entry points, signatures, input-layout formats, constant buffers and bindings, where each bound resource comes from, the meshes, and each check below as passing uses over all uses ([code contract](shader-variant-selection-codes-contract.tsv)) |
 
 ## State
 
@@ -254,6 +256,57 @@ The shader files decode as below; the linked tables hold every value.
 - Material defines such as `SKINNING_ENABLED` in a `PMaterialSwitch` are compile-time names and do not
   go through this registry.
 
+Replacing a program: each program object is bound by one shader pass, and the 5,625 programs hold 335 codes, so a
+code is replaced in every program the [code contract](shader-variant-selection-codes-contract.tsv) lists for it. A
+replacement keeps:
+
+- Its stage and profile word. The creators refuse `vs50`, `ps50` and `gs50` below feature level `0xB000` and the `41`
+  profiles below `0xA100`, and pass `m_compiledCode` with bit `0x80000000` cleared as the code size
+  (`0x0061E077`-`0x0061E081`; [Phyre D3D11 draws and state](phyre-d3d11-draws-and-state.md)).
+- For a vertex program, the input elements its `m_inputLayout` descs name. `0x0061E0B0` builds one element per desc that
+  names a semantic (index `+0x10`, format `+0x14`, slot `+0x18`, offset 0) and hands the program's own code to `CreateInputLayout`
+  (`0x0061E1B9`); a failure returns 9, and `0x00629AA0` returns before the geometry, pixel and compute shaders are set
+  (`0x00629AF0`).
+- Inputs and descs that match. In 52 of the 53 vertex codes every non-system input element has a desc of the same
+  semantic and index
+  and every desc an element; `FxaaVS` (`0x0070564b…`) reads only `SV_VertexID` and has no desc.
+- The slot order of its streams. Desc slot k is vertex buffer k of `IASetVertexBuffers` (`0x00629FA7`), the pass's k-th
+  stream location; in every pass the stream locations are the shader's stream definitions in order, and each desc's
+  render type is the definition at its slot (53 codes).
+- The shipped stream formats. The shipped formats are `R32G32B32_FLOAT` for `Vertex`,
+  `Normal`, `Tangent`, `Binormal` and the four `Skinnable` types, `R32G32B32A32_FLOAT` for `Color` and `SkinWeights`,
+  `R32G32_FLOAT` for `ST` and the seven two-component `Vertex` descs, `R8G8B8A8_UINT` for `SkinIndices`.
+- Only streams the meshes give. The meshes that import a variant give each of its stream definitions a stream of that
+  render data type in 12,320 of 12,320 `chr/` segments, 585 of 588 `chr_shadow/` segments and 274,276 of 274,277 map
+  segments; the open map segment is `pla0103` mesh 396, drawn only by the instance `pPlane1`, which matches no YM00
+  record.
+- A new stream in every mesh. A program that reads a new stream needs a new definition and a stream of its type in
+  every mesh that imports the variant ([Phyre asset files](phyre-asset-files.md)).
+- Its outputs where the next stage reads them. In all 282 pixel and geometry codes every input other than a
+  system-generated value is an output of the pass's previous stage with the same semantic, index and register.
+- `$Globals` at bind point `m_globalConstantBufferIndex`, of `m_constantBufferSize` bytes. `0x0061F650` creates the
+  program's buffer of `[program+0x28]` bytes with bind flag value `0x4`; `0x006231F0`, `0x00623050`, `0x00622F40` and
+  `0x00622D90` upload it with `UpdateSubresource` and bind it at slot `+0x2C` unless that is −1.
+- The same buffer in every program. All 307 codes that carry
+  `$Globals` match in every program that holds them; the other 28 have index `0xFFFFFFFF` and no `$Globals`.
+- The offset, size and name of each `$Globals` variable the pass writes. `0x00628B40` copies each 16-byte value record
+  (`+0x00` u16 offset in the block, `+0x04` offset in the buffer, `+0x08` size, `+0x0C` type) into the program's copy
+  at `[program+0x10]` when the buffer offset is below `m_constantBufferSize` (`0x00628BBB`).
+- The value types the copy takes. Type `0x31` is copied as `size >> 6` 4 × 4 matrices transposed, `0x30` as
+  `size / 48` 4 × 3 matrices transposed, both stopping at a matrix whose first word is `0xFFFFFFFF`, and any other type
+  byte for byte (`0x00628BC5`-`0x00628BEA`). In all 307 codes each record starts at a
+  variable, fits it and carries its name, and every variable the code marks used is written.
+- Each resource at the slot its record names. `0x0062A0A0` binds the parameter of each resource record at slot `+0x04`
+  (−1 skips it) by its parameter type. Every texture, sampler and constant-buffer binding of the 295 codes that have
+  them has a record at its bind point.
+- The tweakable parameter behind each binding. Each record of block 1 that feeds a binding reads one of the variant's
+  tweakable parameters, which carries the binding's name and a parameter type of its kind and dimension (`0x42` 2D,
+  `0x43` 3D, `0x44` cube; 267 codes); each such sampler's state is a `PSamplerState` the effect file's material
+  parameter buffer points to (265 codes).
+- The scene-wide buffer. The only binding fed from block 0 is `SceneWideParameterConstantBuffer`, at
+  `b1` in the vertex, pixel and geometry codes and at `b0` in 34 geometry pass uses; a constant-buffer slot above 7 is
+  logged `Invalid constant buffer location : %d` (`0x0062A508`).
+
 ## Related
 
 - [Phyre post-effect classes](phyre-post-effect-classes.md): the post-effect classes whose render slots reach `0x0060B980`.
@@ -261,3 +314,4 @@ The shader files decode as below; the linked tables hold every value.
 - [Phyre asset files](phyre-asset-files.md): the cluster header, packed namespace and instance lists the measurement reads.
 - [Phyre field schema](phyre-field-schema.md): file-side against runtime member offsets.
 - [Post-processing](../Graphics/post-processing.md): the two render-pass record tables the effects' pass names are matched against.
+- [Phyre D3D11 draws and state](phyre-d3d11-draws-and-state.md): the pass switch, stage caches and shader creators a replacement program goes through.

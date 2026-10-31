@@ -192,6 +192,15 @@ with `0x0061E0B0`: one `D3D11_INPUT_ELEMENT_DESC` per named input of the `0x20`-
 `+0x18`, offset 0, and per-instance data with step rate 1 when byte `+0x10` of the input's stream
 (`+0x08`) is set. `CreateInputLayout` (`+0x58`) stores the layout at `+0x88`; 9 on failure.
 
+The profile word is tested for the two refusals alone; any other value goes to the device call with the code
+unchanged (`0x0061E018`-`0x0061E092`). A refused profile leaves the stage's shader at 0, so the test and the log line
+run again each time the pass is bound (`0x0061DFF4`-`0x0061E04F`), and `0x00629AA0` sets no shader for that stage.
+
+When a creation returns 9, `0x00629AA0`, which creates and sets the stages in the order vertex, geometry, pixel, compute,
+stops there (`0x00629AF0`, `0x00629B50`, `0x00629BAD`, `0x00629C0A`): that stage and the ones after it keep the shaders
+the previous pass set. Its two callers do not test the result and go on to the pass state and the parameters
+(`0x00608EC9`-`0x00608EE5`, `0x0060905B`-`0x00609066`).
+
 ### Switching passes
 
 `0x00608DD0(tracker, pass)` makes a pass current. The pass names its shader pass (`PShaderPassD3D11`) at `+0x28` and

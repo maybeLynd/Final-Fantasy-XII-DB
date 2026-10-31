@@ -1,0 +1,41 @@
+root	languages	extension	paths	same_in_all	differs_in_all	in_some	in_one	groups_of_equal_content
+gamedata/d3d11/artdata/font	us kr ch cn jp	.ah	1	0	1	0	0	us / kr ch cn / jp (1)
+gamedata/d3d11/artdata/font	us kr ch cn jp	.dat	17	2	5	10	0	us / jp (6); us / kr / ch / cn / jp (4); kr / ch / cn / jp (4)
+gamedata/d3d11/artdata/font	us kr ch cn jp	.fex	3	0	2	1	0	us / kr / ch / cn / jp (2); kr / ch / cn / jp (1)
+gamedata/d3d11/artdata/font	us kr ch cn jp	.ker	12	1	2	9	0	us / kr / ch cn / jp (1); us / jp (1); us / kr ch cn jp (1)
+gamedata/d3d11/artdata/font	us kr ch cn jp	.phyre	17	0	6	11	0	us / kr / ch / cn / jp (6); us / jp (6); kr / ch / cn / jp (5)
+gamedata/titleimage	in	.tga	2	2	0	0	0	-
+prefetchdata	us fr de it es kr ch cn jp	.csv	1	1	0	0	0	-
+prefetchdata	us fr de it es kr ch cn jp	.txt	1041	1	1033	7	2	us / fr / de / it / es / kr / ch / cn / jp (971); us fr de it es jp / kr ch cn (62); us fr de it es / jp (3)
+ps2data/cdi	in	.cnf	1	1	0	0	0	-
+ps2data/effect_finish	us fr de it es kr ch in cn jp	.efx	1029	2	3	1024	662	us / fr / de / it / es / kr / ch / cn / jp (183); us / jp (45); us / fr / de / it / es / kr / ch / in jp / cn (2)
+ps2data/image/ff12	us fr de it es kr ch in cn	.bin	25	3	2	20	0	us / fr / de / it / es / kr / ch / in / cn (2)
+ps2data/image/ff12	us fr de it es kr ch in cn	.dbg	4	0	0	4	0	-
+ps2data/image/ff12	us fr de it es kr ch in cn	.ebp	4	0	0	4	0	-
+ps2data/image/ff12	us fr de it es kr ch in cn	.msb	4	0	0	4	0	-
+ps2data/image/ff12	us fr de it es kr ch in cn	.sbn	4	0	0	4	0	-
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.as7	9	0	0	9	0	-
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.bin	103	50	38	15	4	us fr it es kr ch cn / de in (24); us / fr / de / it / es / kr / ch / in / cn (4); us / fr / de / it / es / kr / ch cn / in (2)
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.btm	6	0	0	6	0	-
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.cl2	3	2	0	1	0	-
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.dat	326	120	198	8	1	us de it kr / fr es ch cn / in (191); us / fr / de / it / es / kr / ch / in / cn (5); in / cn (3)
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.h	4	0	0	4	3	us / kr cn (1)
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.ico	1	0	0	1	0	-
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.lst	1	0	1	0	0	us / fr / de / it / es / kr / ch / in / cn (1)
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.mg	1	0	0	1	0	-
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.mrp	12	5	6	1	0	us fr it es kr ch in cn / de (1); us / fr / de / it / es / kr / ch cn / in (1); us de it es / fr / kr ch in cn (1)
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.nfs	1	0	1	0	0	us it / fr es / de / kr / ch / in / cn (1)
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.sys	1	0	0	1	0	-
+ps2data/image/ff12/myoshiok	us fr de it es kr ch in cn	.tm2	85	30	9	46	39	us fr de it es / kr ch in cn (2); us kr ch cn / fr / de / it / es / in (2); us / fr / de / it / es / kr ch in cn (1)
+ps2data/image/ff12/test_battle	us fr de it es kr ch in cn	.bin	94	0	29	65	0	us / fr / de / it / es / kr / ch / in / cn (25); kr cn / ch in (19); us / fr / de it es / kr / ch / in / cn (2)
+ps2data/movie_finish	us in jp	.mh	43	0	0	43	43	-
+ps2data/obj_finish	in	.ca	3164	3164	0	0	0	-
+ps2data/obj_finish	in	.cm	1066	1066	0	0	0	-
+ps2data/plan_master	us fr de it es kr ch in cn	.ard	166	0	0	166	0	-
+ps2data/plan_master	us fr de it es kr ch in cn	.ebp	1116	244	871	1	0	us / fr / de / it / es / kr / ch / in / cn (757); us fr de it es / kr / ch / in / cn (52); us fr de it es / kr ch in cn (31)
+ps2data/plan_master	us fr de it es kr ch in cn	.mot	488	488	0	0	0	-
+ps2data/plan_master	us fr de it es kr ch in cn	.nmb	166	0	0	166	0	-
+ps2data/plan_master	us fr de it es kr ch in cn	.snd	256	256	0	0	0	-
+ps2data/plan_master	us fr de it es kr ch in cn	.vpc	201	199	2	0	0	us fr de it es / kr ch in cn (2)
+ps2data/plan_master	us fr de it es kr ch in cn	.vpcjp	201	201	0	0	0	-
+ps2data/sound/shout	us jp	.sab	132	0	132	0	0	us / jp (132)

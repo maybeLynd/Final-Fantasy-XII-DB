@@ -325,6 +325,32 @@ A line of 128 characters or more before its CR stops the game (`__report_rangech
 `0x001B1C10` registers each loaded texture under the hash of its lower-cased path in the batcher's tree
 `+0x28`.
 
+A draw names a texture and a palette number. The sprite batcher looks up the plain name for 0 and
+`<name>_clut_<n>` (`%s_clut_%d`, `0x008F8118`) for any other n: `0x001B0A20` (`0x001B0A6D`-`0x001B0A90`), reached
+through `0x00181390`, and `0x00215F80` (`0x00215FC2`-`0x00215FD4`), the record method that `0x00215E50` picks for a
+record `0x001B2410` filled with `+0x110` and `+0x118` at 0, as `0x00181930` fills it.
+
+`0x001819A0` sets `+0x110` (`0x001819DD`), so its record takes `0x00216020`, which looks the name up with no suffix (`0x001B10D0`). A name the
+tree does not hold draws nothing ([Sprite batcher](../Graphics/sprite-batcher.md)).
+
+The code references to the two names (`targetline_p` at `0x009152A0` and the pointer `0x01E0C1E0`, `w_line01` at
+`0x009159E8` and the tables `0x00D231C0` and `0x00D232D0`) give these draws; the other references only register or
+look up the PS2 pictures of the same names (`0x0024A4E0`, `0x0024A5A0`):
+
+| Draw | Texture | Palette number | Variant asked for |
+|---|---|---|---|
+| a target line, `0x003F5430` (`0x003F55E4`, `0x003F5A79`) | `targetline_p` | `0x002713B0` of the line's kind `+0x840`: 0, 1, 3 or 5 | plain, `_clut_1`, `_clut_3`, `_clut_5` |
+| a `+0x10F40` mark, `0x003F3710` (`0x003F3860`) | `targetline_p` | `[0x02B5F1F4]`, the mark's `+0x48`, which `0x002911D0` sets from `0x002713B0` (`0x00291204`-`0x00291216`, `0x003F3660`): 0, 1, 3 or 5 | plain, `_clut_1`, `_clut_3`, `_clut_5` |
+| a `+0x10F30` mark, `0x003F70F0` (`0x003F71A4`) | `targetline_p` | `+0x330` + 2 x `+0x32C`: 0 in the mark `0x00291010` zero-fills (`0x002910CB`), then `0x003F77F0` sets `+0x32C` to 0 and `+0x330` to 4 when `0x0030BEF0` answers above 0, else 1 (`0x003F78AC`-`0x003F78BF`) | plain, `_clut_1`, `_clut_4` |
+| a target ring, `0x0028D980` (`0x0028DA24`) | `targetline_p` | `+0xD7C` + 2 x `+0xD78`: `+0xD78` = 0 and `+0xD7C` = the byte of `0x00916010` (`04 00 01 00`) for the ring style 0 to 3 (`0x0029189B`-`0x002918A1`; `0x0028C7EE`-`0x0028C7FB`) | plain, `_clut_1`, `_clut_4` |
+| a world sprite of kind -2, `0x003F0610` (`0x003F1076`) | `targetline_p` | the sprite's `+0xEC`, which `0x003FBA80` sets to 4 for the part's `+0x26C` (`0x003FA659`) 2 or 3, else 3 (`0x003FBB94`-`0x003FBC4A`) | `_clut_3`, `_clut_4` |
+| the World Map path, `0x005621A0` (`0x00562347`) and `0x00562A30` (`0x00562ADE`), through `0x001819A0` | `w_line01` | 0 (`0x00562354`, `0x00562AEB`) | plain |
+| the widget line, `0x00274CB0` (`0x00274DC5`) | `w_line01` | 1 (`0x00274DA3`, `0x00274DC2`) | `_clut_1` |
+
+So the draws ask for `targetline_p` and its `_clut_1`, `_clut_3`, `_clut_4` and `_clut_5`, and for `w_line01` and
+`w_line01_clut_1`. `targetline_p_clut_2` and `targetline_p_clut_6` are loaded and registered at start-up, and
+these draws ask for neither.
+
 ## Modding notes
 
 - A prefetch name only speeds up loading; leaving a file out of every manifest still loads it, just

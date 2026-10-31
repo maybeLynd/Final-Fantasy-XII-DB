@@ -1,0 +1,50 @@
+family	entry	name	rule	first_sentence
+world	6	ラバナスタ・ダウンタウン	the first sentence, <name>は	ラバナスタ・ダウンタウンはラバナスタの市街地を支える下層部分にあたる
+world	20	ハイエナ	the first line, a name in katakana	ハイエナ
+person	10	ヴェイン・カルダス・ソリドール	the first line, a name in katakana	ヴェイン・カルダス・ソリドール
+person	12	グラミス・ガンナ・ソリドール	the first line, a name in katakana	グラミス・ガンナ・ソリドール
+person	13	アルケイディア帝国第１１代皇帝	the first sentence, a designation with no hiragana	アルケイディア帝国第１１代皇帝
+person	14	ラーサー・ファルナス・ソリドール	フルネームは<name>	フルネームはラーサー・ファルナス・ソリドール
+person	26	ラスラ	the first line, a name in katakana	ラスラ
+knowledge	38	イフリート級第１番艦	the first sentence, a designation with no hiragana	イフリート級第１番艦
+knowledge	42	ヴァナ・ディール級１番艦	the first sentence, a designation with no hiragana	ヴァナ・ディール級１番艦
+knowledge	44	ドラクロア ＣＢ５６レモラ戦闘機	the first sentence, a designation with no hiragana	ドラクロア{blank}ＣＢ５６レモラ戦闘機
+knowledge	49	クラン	the first sentence, <name>は	クランは%ivalice%の各地に存在するが、規模の小さなものがほとんどである
+knowledge	51	溶解の指輪	the heading <item>＋<item>＝<result>: the result	水の石＋ボムの灰＝溶解の指輪
+knowledge	52	業風のフィンチ	the heading <item>＋<item>＝<result>: the result	風の水晶＋百のオルギン＝業風のフィンチ
+knowledge	53	光陰の剣	the heading <item>＋<item>＝<result>: the result	闇の魔石＋天上の宝玉＝光陰の剣{blank}
+knowledge	54	魔竜の餌	the heading <item>＋<item>＝<result>: the result	ウジのわいた肉＋とても臭い液＝魔竜の餌
+knowledge	55	知欲の兜	the heading <item>＋<item>＝<result>: the result	鉄くず＋かぼちゃのランプ＝知欲の兜
+knowledge	56	クリーチャーウィップ	the heading <item>＋<item>＝<result>: the result	巨人のなめし皮＋クァールのヒゲ＝クリーチャーウィップ
+knowledge	57	アイアングリーブ	the heading <item>＋<item>＝<result>: the result	輪竜のウロコ＋アリエス＝アイアングリーブ
+knowledge	58	タートルシャワー	the heading <item>＋<item>＝<result>: the result	万年亀の甲羅＋月の砂＝タートルシャワー
+knowledge	59	魔獣の服	the heading <item>＋<item>＝<result>: the result	良質のウールt＋大角＝魔獣の服
+knowledge	60	静黙薬	the heading <item>＋<item>＝<result>: the result	サボテンの実＋ヴァルゴ＝静黙薬
+knowledge	61	グラディウス	the heading <item>＋<item>＝<result>: the result	飛竜の翼＋鉄甲殻＝グラディウス
+knowledge	62	命の衣	the heading <item>＋<item>＝<result>: the result	なめし皮＋怪魚のウロコ＝命の衣
+knowledge	63	沈黙薬	the heading <item>＋<item>＝<result>: the result	輪竜のキモ＋ネズミのしっぽ＝沈黙薬
+knowledge	64	ベヒモスランチ	the heading <item>＋<item>＝<result>: the result	ベヒーモステーキ＋虹色のタマゴ＝ベヒモスランチ
+knowledge	65	嫁入りの冠	the heading <item>＋<item>＝<result>: the result	チョコボの羽根＋モルボルの花＝嫁入りの冠
+knowledge	66	アフターダーク	the heading <item>＋<item>＝<result>: the result	良質の石材＋闇の水晶＝アフターダーク
+knowledge	67	ブレイブハーネス	the heading <item>＋<item>＝<result>: the result	まがった牙＋スレイブハーネス＝ブレイブハーネス
+knowledge	68	氷の刃	the heading <item>＋<item>＝<result>: the result	汚れたウール＋南極の風＝氷の刃
+knowledge	69	シャークウィール	the heading <item>＋<item>＝<result>: the result	フカヒレ＋円月輪＝シャークウィール
+knowledge	70	破壊神の剣	the heading <item>＋<item>＝<result>: the result	戦神のアシュリング＋欠けた剣＝破壊神の剣
+knowledge	71	腐敗の雨	the heading <item>＋<item>＝<result>: the result	邪神の肉＋デスパウダー＝腐敗の雨
+knowledge	72	ゾンビプロテクション	the heading <item>＋<item>＝<result>: the result	闇の石＋シャレコウベ＝ゾンビプロテクション
+knowledge	73	モルボルのなる木	the heading <item>＋<item>＝<result>: the result	モルボルの実＋しあわせの四葉＝モルボルのなる木
+knowledge	74	ソウルスクリーム	the heading <item>＋<item>＝<result>: the result	さけびの根＋神々の怒り＝ソウルスクリーム
+knowledge	75	ワイルドスタイル	the heading <item>＋<item>＝<result>: the result	チョコボの羽根＋クァールの毛皮＝ワイルドスタイル
+knowledge	76	リネンミトン	the heading <item>＋<item>＝<result>: the result	高級ウール＋戦馬のたてがみ＝リネンミトン
+knowledge	77	アダマンインゴット	the heading <item>＋<item>＝<result>: the result	精霊石＋万年亀の甲羅＝アダマンインゴット
+knowledge	78	サイレスシャワー	the heading <item>＋<item>＝<result>: the result	沈黙のトガル＋エーテル水＝サイレスシャワー
+knowledge	79	エビルハンマー	the heading <item>＋<item>＝<result>: the result	修羅の骨＋デビルカクテル＝エビルハンマー
+knowledge	80	スライムボム	the heading <item>＋<item>＝<result>: the result	ガラスの宝玉＋スライムオイル＝スライムボム
+knowledge	81	ボーンマッシャー	the heading <item>＋<item>＝<result>: the result	骨くず＋良質の木材＝ボーンマッシャー
+knowledge	82	精密な落雷衝	the heading <item>＋<item>＝<result>: the result	落雷衝＋千本針＝精密な落雷衝
+knowledge	83	風の腰巻	the heading <item>＋<item>＝<result>: the result	風切りの羽根＋ネズミの皮＝風の腰巻
+knowledge	84	くるくるドリル改	the heading <item>＋<item>＝<result>: the result	エンサのウロコ＋くるくるドリル＝くるくるドリル改
+knowledge	85	しびれ薬	the heading <item>＋<item>＝<result>: the result	カエルの油＋銀色の液体＝しびれ薬
+knowledge	86	悪魔の首飾り	the heading <item>＋<item>＝<result>: the result	血染めの首飾り＋タカの眼球＝悪魔の首飾り
+knowledge	87	灼熱の衣	the heading <item>＋<item>＝<result>: the result	巨人のなめし皮＋獄門の炎＝灼熱の衣null>
+knowledge	97	アンデッドの知識	the heading 知識<number>：<name>	知識１０８：アンデッドの知識

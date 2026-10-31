@@ -82,6 +82,18 @@ its first word to `+0x64` and seven pairs of floats to `+0x10 + 12k` and `+0x14 
 then stores at `+0x18 + 12k` each segment's length between consecutive pairs as a share of their
 total.
 
+The types the game selects: `0x00304060` and `0x00304140` pass `0x0031B950(i)`, the camera type of the party row
+in selection slot i (`0x0031B981`), slot 3 for `0x00304060` (`0x003040AB`-`0x003040B7`) and the saved leader's slot
+`0x00327200()` for `0x00304140` (`0x00304144`-`0x00304152`). `0x0031B8E0` reads it from the row's byte `+0x07`
+(`0x0031B934`): 0 for the 26 main and guest rows, 1 to 13 for the Espers (Belias 1 to Zodiark 13) and 14 for
+the Chocobo (row 26) ([party table](../Party/party-table.md)).
+
+No script calls `setbehindcameratype`:
+there are 0 calls in the 1,114 us scripts and in the 8,914 containers of the other eight language trees. The
+writers of `0x02098DF8` are `0x00259370` and `0x00259E90`, which store 0 (`0x00259383`, `0x00259F8E`), and `0x0025A160`
+(`0x0025A171`). `0x00259FE0` is called from `0x00259370` and `0x0025A160` alone (`0x0025938D`, `0x0025A177`). So type 15 is
+loaded with the others and selected by nothing in the shipped game.
+
 The same walk keeps running totals of those shares, the profile's position at the start of a
 segment, in three controller fields: `+0x1D0` the start of segment 3; `+0x1D4` the start of segment 2,
 or of segment 1 when `+0x2A0` is non-zero; and `+0x1D8` the start of segment 4, or of segment 5 when

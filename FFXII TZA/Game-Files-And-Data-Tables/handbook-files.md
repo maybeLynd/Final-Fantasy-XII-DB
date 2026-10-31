@@ -205,6 +205,9 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | [`handbook-files-page-map.tsv`](handbook-files-page-map.tsv) | 5,238 | page-map slot: the picture file and the picture in that file |
 | [`handbook-files-pictures.tsv`](handbook-files-pictures.tsv) | 6,693 | `himg` picture: offset, size, depth and byte count |
 | [`handbook-files-strings.tsv`](handbook-files-strings.tsv) | 12,168 | string entry: bundle, entry, record, slot and the decoded text |
+| [`handbook-files-glyphs.tsv`](handbook-files-glyphs.tsv) | 7,164 | sheet glyph of a `story`, `world`, `person` or `knowledge` bundle in each tree: its character where decoded, the two best match scores and one use |
+| [`handbook-files-strings-decoded.tsv`](handbook-files-strings-decoded.tsv) | 2,952 | the string entries of those four families, with each decoded sheet character in place |
+| [`handbook-files-entry-names.tsv`](handbook-files-entry-names.tsv) | 49 | entry whose text gives its name: the name and the rule that gives it |
 
 `handbook-files-files.tsv`:
 
@@ -381,6 +384,45 @@ read on its last line.
 When slot 1 finishes loading, `0x00575710` registers the bundle's sheet when `sheet` is not -1
 (`0x0039BEC0`). For `tutorial` it also calls `0x0017FBC0(6)`; for `monster` it registers it as font
 `handbook_monster<NNN>.txt`, `NNN` the bundle number (`0x0017FA90`, `0x0017F790`).
+
+A text writes a sheet character as two bytes, shown as `{exp:0xN}` in the tables:
+
+- **Code.** `0x002AC2F0` takes the `0x00916570` table value for the lead byte's low nibble, plus the second byte less
+  `0x20` (`0x002AC3B4`-`0x002AC3BC`).
+- **Sheet or font.** A lead at or above `[0x01E0CDF8]` is drawn from a sheet. `0x002AB7D0` sets that word to `0x18`, or
+  to `0x1C` for the locales its test picks (`0x002AB7D9`-`0x002AB7E9`).
+- **Record.** The sheet block is the renderer's `+0x68`, or `0x0039BA30` of its font slot `+0xA6`
+  (`0x002AC417`-`0x002AC440`), and the record is `0x0020E600([block + 0x0C]) + 8 × code` (`0x002AC498`-`0x002AC4A7`).
+- **Cell.** Bits 0-9 of the record are x, 10-19 y, 20-24 width and 25-29 height, as `0x002B0280` reads them
+  (`0x002B08BC`-`0x002B0918`).
+
+The `story`, `world`, `person` and `knowledge` bundles are the same bytes in all nine trees, and so are their 796
+sheet glyphs. Each glyph was matched against the JIS X 0208 characters drawn in seven faces of the Japanese system
+fonts MS Gothic, MS Mincho, Meiryo and Yu Gothic. A glyph
+counts as decoded when its best match leads the second by at least 0.011 and the word it makes reads in its
+sentence. That decodes 753 of the 796; the other 43 stay `{exp:0xN}`:
+
+| Family | Glyphs | Decoded | Left | Uses | Uses decoded |
+|---|---:|---:|---:|---:|---:|
+| `story` | 124 | 119 | 5 | 267 | 256 |
+| `world` | 207 | 196 | 11 | 569 | 538 |
+| `person` | 184 | 175 | 9 | 506 | 483 |
+| `knowledge` | 281 | 263 | 18 | 500 | 474 |
+
+In each tree, 73 of the strings still hold an undecoded character
+([`handbook-files-strings-decoded.tsv`](handbook-files-strings-decoded.tsv)). 49 of the 300 entries give their
+name in their own text ([`handbook-files-entry-names.tsv`](handbook-files-entry-names.tsv)).
+
+`handbook-files-glyphs.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `language`, `family`, `bundle`, `N` | the tree, the family, the `hdat` number and the sheet record `N` of `{exp:0xN}` |
+| `character` | the decoded character, or `-` |
+| `best_score`, `second_score`, `best`, `second` | the two best matching characters and their scores |
+| `context` | one use, with the glyph in brackets and six characters each side |
+| `candidates` | `jis` when the best match was taken over JIS X 0208; `game` when it was taken over the characters of the game's own `jp` fonts, after no JIS character led by 0.011 |
+| `decision` | `corpus:` words of the game's other Japanese text that hold the decoded word; `reading:` the word read in the sentence; `shape:` the margin that is too small; `reading, rejected:` the reading that refuses the best match |
 
 ### Pictures
 

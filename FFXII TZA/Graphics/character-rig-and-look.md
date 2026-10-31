@@ -245,8 +245,9 @@ through `0x00519880`.
 - `0x00519100(controller, id)` returns the index of the rotator entry with that id (`+0x1C` of each
   `0x60`-byte entry), or `0xFFF`; authored command `0x24` (`0x005201B0`) uses it.
 - `0x00512EC0(controller)` returns `0x002E9B80(+0x08)` when the low nibble of `+0x0F` is 1, else −1.
-  `0x00512EF0`, run with `0x0040DB70` from `0x003E0720`, numbers the 32 entries of the table at
-  `0x02CA81FC` and clears `0x02CA83F0`, `0x02EBA480` and `0x02EBA481`.
+  `0x00512EF0`, run with `0x0040DB70` from `0x003E0720`, numbers the 32 16-byte entries of the table at
+  `0x02CA81F0` in their byte `+0x0C` (`0x00512F13`), clears the low nibble of their `+0x0F` (`0x00512F10`), and clears
+  `0x02CA83F0`, `0x02EBA480` and `0x02EBA481`.
 
 - `0x002E7C10(actor, target, …, keep)` aims an actor's record at another's: it hands
   `{3, own index, own index, target index}` to `0x00512F30` on the record's `+0x650` block, which for

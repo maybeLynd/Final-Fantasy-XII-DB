@@ -49,7 +49,10 @@ Struct NavDataset base=section:
 
 Portal index 0 means no portal, so the adjacency entries are 1-based and record 0 is padding.
 Across the 461 shipped sections every triangle names a region that lists it back, the adjacency
-matrix is symmetric with an empty diagonal, and the largest region count is exactly 128.
+matrix has an empty diagonal, and the largest region count is exactly 128. The matrix is symmetric
+in which pairs are joined, but 317 pairs in 15 maps name a different portal record in each direction
+over the same edge, with a different class mask, gate or map id, so the edge is open to a class one
+way only.
 Everything is XZ: the two entry points that take world positions (`0x00383620`, `0x00384130`) drop y.
 
 ### Which region a point is in
@@ -255,8 +258,9 @@ null). Otherwise it builds the rectangle from the two points widened by `r`, fla
 to y = 0, computes `0x003A1920(p1, p2)` and discards the result, then walks mask bits 128 to 287
 (from byte `+0x10`).
 
-Bits 128-159 test the segment against the trailer record of that index as a box (kind 0,
-`0x00468D50`) or a circle (kind 1, `0x00468E50`, handed the five dwords `+4` to `+0x14`), bits 160-287 against the registry entry's shape (`0x00468E50`); the first hit
+Bits 128-159 test the segment against the trailer record of that index as a circle of radius `+0xC` (kind 0,
+`0x00468D50`) or an ellipse of radii `+0xC` and `+0x10` turned by the angle `+0x14` in radians (kind 1, `0x00468E50`
+through `0x00468580`, handed the five dwords `+4` to `+0x14`), bits 160-287 against the registry entry's shape (`0x00468E50`); the first hit
 returns 1, else 0. Actor ids 0-127 are never tested here; `0x00391710` is the query that walks the
 listed actors.
 

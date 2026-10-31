@@ -120,6 +120,25 @@ size differs between languages:
 Every model, motion, map pack, magic effect, sound bank and movie entry has one size in all nine. A different size
 proves different content; the table gives the groups of languages that share a size.
 
+The shipped files give the same comparison by content.
+[languages-content-files.tsv](languages-content-files.tsv) takes every file under a language folder, in the 12
+folders of the archive that have language folders, by its path inside the language folder. For each path it gives
+the languages that ship it and the groups of languages whose files have the same SHA-256.
+[languages-content.tsv](languages-content.tsv) counts the paths per folder and file type.
+
+Three of the 12 folders have one language folder only, `in`: `gamedata/titleimage`, `ps2data/cdi` and
+`ps2data/obj_finish` (4,233 paths). Of the 5,578 paths in the other nine:
+
+- 1,605 have one content in every language folder of their folder, among them all 488 `plan_master` motions, all
+  256 `plan_master` sound files and 199 of the 201 `.vpc` files;
+- 2,341 are in every language folder with more than one content: 1,033 `prefetchdata` lists, 871 `plan_master`
+  scripts, 198 `myoshiok` `.dat` and 38 `.bin` files, the 132 `sound/shout` banks (`us` and `jp`) and 29
+  `test_battle` files;
+- 1,632 are in some language folders only, 754 of them in one.
+
+Five of the folders have a `jp` folder: the font folder, `prefetchdata`, `effect_finish`, `movie_finish` and
+`sound/shout`.
+
 ### Rules that depend on the language
 
 - The kill chain cap and display: `0x00317ED0` caps the length at 998 and posts it plus one whenever
