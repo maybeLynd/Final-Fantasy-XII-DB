@@ -38,6 +38,12 @@ Each language's kind 7 path array, installed by `0x002DF9A0`, names its own fold
 the remaining languages use `in`. The same arrays name `menumap_guide05.bin` to `15.bin` and
 `menumap_sub48.bin` to `73.bin`, which do not ship.
 
+A kind 7 site, formula or table gives the id of 477 of the 507 shipped `.bin` files with the shipped data. The guide schedule in `menumap_common.bin` has file byte 0 in
+all 77 entries, so `0x003C1DF0` asks only for `menumap_guide00.bin` and gives no id of the 26 copies of `menumap_guide01.bin`
+to `04`; no path array names the four `_e3` files. [`myoshiok-file-meanings.tsv`](myoshiok-file-meanings.tsv)
+gives every file's kind 7 id, request site, screen and use, each `menumap_subNN.bin` as the zone pictures of
+sub-location NN.
+
 ## Layouts
 
 ### Sub-location slots

@@ -265,6 +265,17 @@ Active). `0x00255290(mode)` maps a UI mode to a halt class, -1 meaning no halt:
 actor, so in Wait mode entering UI mode 1 halts the field and in Active mode it does not. The bit's
 readers are the Config getter, `0x00254740`, `0x00255290`, `0x00225CD0`, `0x00225EB0` and `0x00227680`.
 
+Before the halt, `0x00254740` sets bit `0x1` of `0x02EBDBBC` (`0x003B3B40`) when the class is not -1 and the UI mode is 3,
+`0x14` or `0x18` (in both battle modes), 1 (Wait mode only: `0x002DDC30` answers 0 at `0x00254775`) or 4 (Active mode
+only: its class from `0x00255290` is -1 with the bit clear, `0x002552C7`-`0x002552D2`, and `0x0025475D` returns).
+While that bit is set the effect step `0x0024B9B0` sets bit `0x4` of the effect group mask it tests
+(`0x0024B9F1`-`0x0024B9F9`); `0x0024D540`, `0x0024D9C0` and `0x0024E910` clear it (`0x0024D75B`, `0x0024DA05`, `0x0024E99D`).
+
+In Wait mode the time stop of id 0 also sets bit `0x2` of the input manager's movement-key mode byte (`0x00182D10`,
+reached from `0x00227680` at `0x002277FD`), and its cancel clears it (`0x00182DA0`, from `0x00225CD0` at `0x00225E81` and from
+`0x00225EB0` at `0x00226052`); in Active mode neither call runs ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)).
+The Config painter `0x002403F0` shows the bit's value (`0x0024041E`).
+
 ### The FF12CONFIG file
 
 `0x003692D0` resets the block at `0x02B62DA8` with `0x00408BA0` (`0x00369323`) and then runs `0x00408C30`

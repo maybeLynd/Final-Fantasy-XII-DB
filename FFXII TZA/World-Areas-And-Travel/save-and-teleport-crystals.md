@@ -338,6 +338,11 @@ The common effect table `0x01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 
 returns for it (entry 0 of list 2 in the script's `+0x70` table, its `u16` at `+0x14`), the kind that number gives, and
 for a gate crystal its key item and where teleporting to it arrives.
 
+The same entry gives the spot where the crystal stands. `init` places the actor with `setposbynaviicon(3, 0)`
+(`0x030D`, `0x00352430`). That verb reads the entry through `0x003DFBE0`, `0x003DFDD0` and `0x00264CA0`, then passes the floats
+at `+0x00`, `+0x04`, `+0x08` and `+0x0C` to `setpos2_20d` (`0x00350C30`). The table's `x`, `y` and `z` columns give the
+position, and `facing` gives the heading in radians. All 81 entries carry a spot.
+
 - 56 are save crystals (number 0) and 25 are gate crystals, numbered 1, 3-6, 8-13, 15, 17-25, 28, 29, 32 and 33: each
   number once, the same 25 the `talk` switch names. Number 4, in Barheim Passage's North-South Junction, is a gate
   crystal only while map-jump group flag `0x402A` is set. No crystal has the number 255.

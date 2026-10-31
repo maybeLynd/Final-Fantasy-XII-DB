@@ -433,6 +433,16 @@ slot 2 (`0x005778F0` → `0x00575DD0`, which has no family test), so `menuhandbo
 `hb_tex` label is made, and the picture pane `0x00570630` draws nothing because `0x00576C70`, its only source, returns
 slot 2's label `+0xF8`, which stays 0 (`0x0057068E`).
 
+The Clan Primer opens only the `tutorial` and `monster` families ([Clan Primer](../Menus-And-HUD/clan-primer.md)), so of the
+other four only the unlock tables load (`0x00576F50`); their catalogs, text bundles and picture bundles, 990 files,
+get no id from a kind 7 site, formula or table with the shipped data. Slot 2 asks only for the file the open
+entry's page maps to, so the picture bundles no page-map slot names get no id either: seven `tutorial` files in each language and the 2, 3 and 7 extra
+`monster` files of `kr`, `ch` and `cn`.
+
+Of the 2,930 files, a kind 7 site, formula or table gives the id of 1,865 with the shipped data: the 54 unlock tables, and the catalogs, text bundles and named picture
+bundles of Traveler's Tips and the Bestiary. [`myoshiok-file-meanings.tsv`](myoshiok-file-meanings.tsv) gives each
+file's kind 7 id, request site and the entries it holds.
+
 ### Address width
 
 The readers form addresses inside the loaded files with 32-bit additions (`0x00575E1F`, the catalog

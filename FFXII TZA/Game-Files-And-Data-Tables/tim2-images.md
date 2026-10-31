@@ -131,12 +131,26 @@ their tables:
 | `tuto_win_c` (`0xD8`) | 9 | the task `0x002D6EE0` of the script verb `fsmenu_loadresource` (`0x002D6F59`, through `0x00249380`) | loaded when a script runs `fsmenu_loadresource` ([Menu screens](../Menus-And-HUD/menu-screens.md)) |
 | `loca_01` to `loca_38` (`0xE9` to `0x10E`) | 38 | `0x003C1D70(area)`, `0xE8` + the area's picture byte (`0x003C1DB4`-`0x003C1DC2`), for the World Map host `0x005632C0`; area n's picture byte is n in every `menumap_world.bin` ([`menu-map-files-wmap-rows.tsv`](menu-map-files-wmap-rows.tsv)), so `loca_NN` is the picture of World Map area NN | the World Map ([Map menu files](menu-map-files.md)) |
 
-Of these request sites, the 121 kind 7 sites with a fixed kind pass no id of `title_c` (`0x3C`), `titlemenu1`
+Of these request sites, the 70 kind 7 request sites pass no id of `title_c` (`0x3C`), `titlemenu1`
 (`0x3E`), `titlemenu2` (`0x3F`), `lic_over` (`0x7B`), `w_win_c` (`0xB2`), `map_gra_c` (`0xB3`) or `l_mapunder`
 (`0xB7`): 63 files. `0x00562F90` skips entries 8 and 9 of `0x00D231C0` (`0x00562FE0`-`0x00562FE8`), the names
 `w_win_c` and `map_gra_c`. `loca_00` (`0xE8`), the picture of area 0, is not requested by `0x003C1D70`, which
 returns for area 0 before the request (`0x003C1D92`-`0x003C1D95`). The six `title_logo_fore3.tm2` files have no kind
 7 id (named by no path array, above).
+
+A kind 7 site, formula or table therefore gives the id of 338 of the 408 pictures with the shipped data, and no id
+of the other 70: the 63 copies of those seven names,
+`loca_00` and the six `title_logo_fore3.tm2`. [`myoshiok-file-meanings.tsv`](myoshiok-file-meanings.tsv) gives every
+picture's kind 7 id, request site, screen and use.
+
+`0x00579AF0` loads `q_c00` to `q_c05` as entries 0 to 5 of `0x00D237E0` (ids `0xC1` to `0xC6`, label `q_img_c`) and
+`q_under_c` as entry 6. The Hunts row builder `0x00577C30` picks sheet `2 x (picture / 24)`, plus 1 once the hunt is
+done, and the cell `picture % 24` (`0x00577CE0`-`0x00577CFF`); a sheet number of 6 or more gives sheet 0
+(`0x00577CEE`-`0x00577CF1`). The hunts' pictures run from 19 to 63 ([Quest menu files](quest-menu-files.md)).
+
+The sheets are those seven files: `0x00579AF0` stores their requests at `[0x02CA9748] + 0xD8` (`0x00579F2F`-`0x00579F50`,
+`0x003934B7`), creates the Hunts pane through `0x00577F00` with that address (`0x00579CD8`-`0x00579CFF`), the pane keeps
+it at `+0xC8` (`0x0057800F`), and `0x005780D0` hands it to `0x00577C30` as the sheet array (`0x0057810A`-`0x00578116`).
 
 ## Loader behaviour
 

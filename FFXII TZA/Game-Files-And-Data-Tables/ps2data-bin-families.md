@@ -179,6 +179,50 @@ The kind-2 entry `0x00384420` has three callers: the battle-pack load (`0x003843
 `0x00236C30`, id `0x13`), the board load and the text-group load. No call site passes another kind-2 id,
 so the loose battle tables have no loader.
 
+Kind 7 is requested at 70 call sites: five direct calls of `0x0032E620` (`0x00291D04`, `0x002C900B`, `0x003658C7`,
+`0x00365967`, `0x0039C45D`) and 65 calls of the menu-set wrappers and of the table loops `0x003933F0`, `0x00393460` and
+`0x003934F0`, every one with kind 7 in `edx` or fixed in the loop. The other request sites take the kind from a caller,
+a record or a script ([File requests](file-requests-and-the-read-queue.md)). The by-path request `0x0032E7C0` is
+reached only from the area loaders `0x003306E0` and `0x003319D0` and from `0x00377DC0`, which copies a kind's path
+(`0x002DF880` at `0x00377E09`).
+
+| table | rows | one row per |
+|---|---:|---|
+| [`myoshiok-file-meanings.tsv`](myoshiok-file-meanings.tsv) | 4,137 | file of the 844 `.bin`, 2,885 `.dat` and 408 `.tm2` files under `myoshiok/` outside `in_sdver`: path, extension, kind 7 id, the request site, the screen, what the file is there, the page for that screen, the languages whose array names it, and whether a kind 7 site, formula or table gives its id with the shipped data |
+
+The ids per folder, with the site that asks for them:
+
+- `bin_menu`: one fixed id per site, except `face_guest07` to `16`, id `0x10` + the guest's character id
+  (`0x002CEAE0` at `0x002CEB1A`), and `map_efe00` to `06`, id `0x0E` + the number of the lowest area-flag bit set
+  (`0x003C9950` at `0x003C999B`).
+- `handbook`: `menuhandbook.bin` `0xC8` (`0x003158B0` at `0x003158F8`) and `menuhandbook_order.bin` `0xC9` (`0x00572D80`
+  at `0x00572DEB`); each family's files from the base `[0x00D23740 + 2 x family]`: the catalog + 0 and file `NNN` + 2 +
+  `NNN` (`0x00575C30` at `0x00575CAD`), the unlock table + 1 (`0x00576F50` at `0x00577027`, all six families).
+- `packfiles`: fixed ids, `fontpack_fs.bin` `0xD2` (`0x003658F0`), `mrppack_ys.bin` `0xD3` and `clutpack_ys.bin`
+  `0xD4` (`0x002808D0`), `fontpack_it.bin` `0xD5` (`0x0039C3F0`), `texpack_ys.bin` `0xD6` (`0x002467A0`) and
+  `tex2pack_ys.bin` `0xD7` (`0x00280750`).
+- `quest`: `menuquest.dat` `0x128` (`0x0037F4D0` at `0x0037F740`, `0x00576F50` at `0x00577057`); `menuquest00` to `02.bin`
+  `0x12A` + the quest's group (`0x003800D0` at `0x00380145`).
+- `worldmap`: `menumap_world`, `_location` and `_common.bin` `0xA2` to `0xA4` (`0x003BC2D0`), `menumap_area.bin`
+  `0xA5` (`0x00253780`), `menumap_guideNN.bin` `0x496` + the schedule entry's file byte (`0x003C1DF0` at `0x003C1EBC`),
+  `menumap_subNN.bin` `0x142` + the sub-location (`0x003C1F00` at `0x003C200D`).
+
+A kind 7 site, formula or table gives the id of 760 of the `.bin` files and 1,856 of the `.dat` files with the
+shipped data, and no id of these:
+
+- 20 `.bin` copies no path array names: `menuhandbook.bin` and `menuhandbook_order.bin` in `cn`, `de`, `es`, `fr`,
+  `it`, `kr` and `us`, the two `it` fonts and the four `_e3` sloc files.
+- The two `menu_version.bin` copies: no site of the 70 passes id `0x90`.
+- The 26 copies of `menumap_guide01.bin` to `04`: the file byte is 0 in all 77 schedule entries, so `0x003C1DF0` asks
+  only for `0x496`.
+- The `story`, `world`, `person` and `knowledge` catalogs, text bundles and picture bundles, 990 files: no Clan
+  Primer category opens those families, so only their unlock tables load ([Handbook files](handbook-files.md)).
+- 75 picture bundles no page-map slot names: seven `tutorial` files in each language and the 2, 3 and 7 extra
+  `monster` files of `kr`, `ch` and `cn`.
+
+Outside these sites, the script verb `debug_fileread` (`0x0050DFE0`) requests whatever kind and id its script
+pushes.
+
 ### Pack directories
 
 The six `packfiles/*.bin` files share one container: a fixed directory of `u32` offsets from the file
