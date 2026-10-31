@@ -8,8 +8,8 @@ addresses: "0x003529E0, 0x00353080, 0x0032FCA0, 0x00348DF0, 0x00264D60"
 ## What it lists
 
 The table [ending-message-scenes.tsv](ending-message-scenes.tsv) has one row for the scene script `msg_z0001` under
-`plan_master/us/event`. No zone script shares its file-name prefix, so its `loaded_by` and `next` columns are `-`; the
-zone script that loads it belongs to Sky Fortress Bahamut.
+`plan_master/us/event`. No zone script shares its file-name prefix, so its `next` column is `-`; the
+zone script that loads it belongs to Sky Fortress Bahamut, and `loaded_by` names it.
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
@@ -39,7 +39,7 @@ empty, so the synopsis holds 30 of the 32 entries.
 |---|---|
 | `scene` | the scene script, by its file name |
 | `event_id` | the event id that loads it |
-| `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
+| `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
 | `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / ` |
 | `items` | items the scene's own functions give or take, by name |

@@ -163,6 +163,118 @@ Each cue's bank is a `sabf` container with one sound ([Sound banks](sound-banks.
 Every one of the 4,943 cue words in the event scripts names a sub-file present in that event's `.vpc` and an index
 below its count.
 
+### Packs and cues
+
+[voices-packs.tsv](voices-packs.tsv) has one row per `.vpc` of the `us` folder, 201 rows, with the size of the same
+event's `.vpcjp` beside it; the two files of every event have the same sub-files and cue counts.
+[voices-cues.tsv](voices-cues.tsv) has one row per cue the event scripts play: 2,496 cues of 198 events. The us
+listings cover 1,114 of the 1,115 `us` scripts: `evt_t0020.ebp` has no `EBP2` header and no listing, and its folder
+holds no voice pack.
+
+#### The packs
+
+- `scene`, `place` and the scripts that start each event come from the per-area scene pages
+  ([Archades scenes](../Story-Events-And-Hunts/archades-scenes.md) and the others): 200 of the 201 packs
+  belong to a scene there. `scene` is the first spoken line of the scene, `place` the page's "Loaded in".
+- `0x0032FCA0` reads both packs' directories when the event loads ("The packs" above). 190 packs have the scripts that
+  load their event.
+- The nine summon scene packs, `sum_d0001` to `sum_m0001`, belong to scenes whose event id no zone or scene script
+  names ([Summon scenes](../Story-Events-And-Hunts/summons-scenes.md)), and no zone script names
+  `spc_z0000`'s event 210 ([Special move scenes](../Story-Events-And-Hunts/special-move-scenes.md)).
+  `spc_z0000`'s pack is 2,048 bytes with no sub-file.
+- `evt_t0005` carries a pack but is a developer script with no event id
+  ([Developer scripts](../Story-Events-And-Hunts/developer-scripts.md)), so no event load reads it.
+
+#### The cues
+
+- The 4,943 cue words name 2,496 distinct cues, and 2,531 play calls start them: `voiceplay` 262, `voiceplay_b5` 9,
+  `voiceplay_28b` 2,218 and `voiceplay_28c` 42. 58 of the 2,554 cues in the packs are named by no cue word.
+- `speaker` is the actor whose position among the listing's `actor` declarations the `voiceplay_28b` and
+  `voiceplay_28c` argument gives; all 2,260 arguments fall on a declaration. The game name comes from a
+  [word bank](../Menus-And-HUD/text-word-bank.md), [NPC names](../Menus-And-HUD/text-npc-names.md) or
+  [string table](../Menus-And-HUD/text-string-tables.md) row whose Japanese `in` cell names the actor: 1,029 rows.
+- `length` is the cue's sample count over its rate, read in the cue's `sabf` bank: the `mtrl` record (the `mtrl`
+  chunk's offset + `0x20`) holds the channels at `+0x04`, the codec at `+0x05`, the rate (`u32`, 48,000 for every cue)
+  at `+0x08` and the codec header size (`u32`) at `+0x14`.
+- For codec 7 the codec header holds an HCA header; its `fmt` chunk gives the frame count (big-endian `u32` at
+  `fmt + 8`); a frame is 1,024 samples, a constant of the HCA format. The four codec 3 cues, cues 0 and 1 of
+  `rwg_d0100` sub-file 0 and of `rwg_d0101` sub-file 1, are Ogg Vorbis: the last Ogg page's granule position is the
+  sample count.
+- 89 cues of the `.vpc` packs, 67 of them played, hold the same two-frame HCA bank: after each frame's `FFFF` sync
+  word every byte is 0 but the two-byte checksum, which the HCA format decodes as silence. Their `.vpcjp` cues hold
+  7 to 745 frames, so those lines are voiced only in Japanese. Their `length` reads `0.04 s, a silent stub`.
+
+#### How a cue is joined to its line
+
+Each function of the event's listing is run on the `us` build with English voices: `getff12lang` answers 1 and
+`unkCall_59c` answers 1 ([verb arguments](../Scripts-And-Script-Commands/verb-arguments.md)), and a variable given a
+known value keeps it, so a test or `switch` on known values takes one path. A test that cannot be settled runs every
+branch from the same frame, each on its own path.
+
+The clock: `wait(n)` adds n frames (`0x0034CF90`, [native commands](../Scripts-And-Script-Commands/native-commands.md));
+`voicesync` of a cue the same path started waits out the cue's length; `sysReqew` parks the requester until the
+requested function returns ([script requests](../Scripts-And-Script-Commands/script-requests.md)) and `sysReqwait`
+until an earlier request returns, adding that function's length when all its paths return at one frame. Any other
+wait starts a new clock.
+
+`sysReq` and `sysReqall` start the requested functions on the requester's clock, three requests deep. A message call
+(`amest`, `ames`, `ames_1fe`, `amese`, `aask`, `aaske`, `aask_1ff`) with id `0x01xxxxxx` opens line `xxxxxx` of
+section 2 of the event's dialogue table ([Archades dialogue](../Menus-And-HUD/archades-dialogue.md) and the other area
+pages); the next message call or `mesclose` closes it.
+
+A cue is joined to the first that applies:
+
+1. the line the playing function has on screen when it plays the cue: 130 cues;
+2. the one line of a function the playing function requested just before, without waiting for it: 36;
+3. the playing function's next line, opened within 10 frames with no request or wait for one between: 202;
+4. on the clock of a function that reaches the play, the one line on screen when the cue starts (1,052), or else the
+   one line that opens within 10 frames after it (64); every function that reaches the play gives the same line.
+
+A cue these rules reach keeps no line when its `.vpc` bank is the silent stub (17 cues), when a cue of another
+speaker reaches the same line and the line is not a subtitle of two speakers, which starts `- ` (123), or when the
+listing gives the line to another speaker (1): `ene_a0200` sub-file 2 cue 7, Vossler's, starts on line 36, which
+`TAGmes_ASHE_19` shows between `ASHE::unapaku_on` and `unapaku_off`.
+
+That joins 1,484 cues. The other 1,012 have no line on their clock when they start (424), share their clock with no
+message call (406), start while two or three lines are on screen (41), or keep no line by the rules above (141). In
+`nal_d0100`, `ボイス.発音` (line 1232) plays cues 1 and 2 of sub-file 0 in scene 4 (`startscene(file_var_s0_2)`),
+Balthier's cue, a silent stub, and Vaan's 1.56-second cue, and `メッセージ.表示` (line 945), which shows the scenes'
+lines, has no case for scene 4.
+
+A play that no path reaches with English voices is followed again with `getff12lang` answering 0, Japanese voices.
+One cue is played on that path alone, `rbn_a0200` sub-file 0 cue 13 (`ボイス.なんだと！？`, line 628); its `length` is
+the `.vpcjp` cue's.
+
+#### Columns
+
+Columns of [voices-packs.tsv](voices-packs.tsv):
+
+| Column | Meaning |
+|---|---|
+| `event` | the event script, by its file name; the pack is `<event>.vpc` in the script's folder |
+| `event_id` | the event id from the scene page; `-` for the developer script `evt_t0005` |
+| `scene` | the scene's first spoken line, in quotes, from the scene page's synopsis; for a scene with no spoken line, what it holds instead; for a summon scene, its set and event ids |
+| `place` | where the scene is loaded, the scene page's "Loaded in", a map code given with its map or region name |
+| `sub_files` | the sub-files the `.vpc` holds |
+| `cues` | its cues, over all sub-files |
+| `bytes_us` | the size of the `us` `.vpc` |
+| `bytes_jp` | the size of the `.vpcjp` |
+| `loaded_by` | `0x0032FCA0` reading the pack at the event's load (kind 8 `.vpc`, kind 37 `.vpcjp`), then the zone scripts and functions that load the event, from the scene page |
+
+Columns of [voices-cues.tsv](voices-cues.tsv):
+
+| Column | Meaning |
+|---|---|
+| `event` | the event script |
+| `sub_file` | the sub-file, the slot of the cue word (`slot << 24`) |
+| `index` | the cue's index in the sub-file |
+| `function` | the actor and function that play the cue; two, for the 11 cues two functions play, separated by ` / ` |
+| `speaker` | the game name with the actor's name in brackets; the actor's name alone where the text tables give no game name; `-` for `voiceplay` and `voiceplay_b5`, which name no speaker |
+| `line_index` | the joined line, its id in section 2 of the event's dialogue table; `-` when no line is joined |
+| `line` | the joined line's `us` text, its control codes dropped and each line break a space; `-` when no line is joined |
+| `length` | the cue's length in seconds, from the `.vpc` (the `.vpcjp` for the one cue played only with Japanese voices); `0.04 s, a silent stub` for the 67 cues whose `.vpc` bank is the silent stub |
+| `join` | how the line was joined, or why none was: what the cue's clock holds, a silent stub, or a line of another speaker |
+
 ## State
 
 The eight picks at `0x02B5EC70` are one `i32` per group, the candidate the search gave it. `0x003EBD30`, `0x003EBD70`,

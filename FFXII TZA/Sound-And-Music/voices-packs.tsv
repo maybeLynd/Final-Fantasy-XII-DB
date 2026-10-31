@@ -1,0 +1,202 @@
+event	event_id	scene	place	sub_files	cues	bytes_us	bytes_jp	loaded_by
+alc_a0100	307	"""The complices of the Senate have been quelled, Your Honor."""	Tsenoble	1	6	212992	231424	0x0032FCA0 when event 307 loads (kind 8 .vpc, kind 37 .vpcjp); started by alc_c01 SAKIYOMI_alc_a0100.init, SAKIYOMI_alc_a0100.sakiyomi_init
+alc_b0400	306	"""You're gaping like a fish out of water."""	Trant	2	16	698368	733184	0x0032FCA0 when event 306 loads (kind 8 .vpc, kind 37 .vpcjp); started by alc_b04 EventDirector.main
+alc_z0100	300	"""Doctor Cid does this at Draklor?"""	Archades (alc_z01)	5	17	1593344	1646592	0x0032FCA0 when event 300 loads (kind 8 .vpc, kind 37 .vpcjp); started by alc_z01 常駐監督.main
+alc_z0101	301	"""The Senate may play at intrigue, but Lord Vayne is not one to be brought down easily."""	Archades (alc_z01); Archades (alc_z04)	6	16	1761280	1798144	0x0032FCA0 when event 301 loads (kind 8 .vpc, kind 37 .vpcjp); started by alc_z01 常駐監督.main; alc_z04 常駐監督.main
+alc_z0102	303	"""This crisis would not end were I gone."""	Archades (alc_z01)	1	10	813056	841728	0x0032FCA0 when event 303 loads (kind 8 .vpc, kind 37 .vpcjp); started by alc_z01 常駐監督.main
+alc_z0103	304	"""Restore Dalmasca's sovereignty, and make our amends with Lady Ashe."""	Archades (alc_z01); Archades (alc_z03)	7	26	2353152	2406400	0x0032FCA0 when event 304 loads (kind 8 .vpc, kind 37 .vpcjp); started by alc_z01 常駐監督.main; alc_z03 常駐監督.main
+alc_z0104	305	"""What possible cause could we have to lay hand on our Emperor?"""	Archades (alc_z01)	4	46	2029568	2058240	0x0032FCA0 when event 305 loads (kind 8 .vpc, kind 37 .vpcjp); started by alc_z01 常駐監督.main
+alc_z0200	302	"""The Rozarrian Empire assembles a vast host under guise of martial exercises."""	Archades (alc_z02)	6	20	2502656	2682880	0x0032FCA0 when event 302 loads (kind 8 .vpc, kind 37 .vpcjp); started by alc_z02 常駐監督.main
+ald_a0200	173	"""Smells less like a capital..."""	Alley of Low Whispers	1	7	313344	315392	0x0032FCA0 when event 173 loads (kind 8 .vpc, kind 37 .vpcjp); started by ald_a02 EventDirector.main
+bds_a0100	226	"""This is all that remains of Nabudis. Two years ago it was destroyed utterly by a mysterious force."""	Hall of Effulgent Light	1	7	653312	587776	0x0032FCA0 when event 226 loads (kind 8 .vpc, kind 37 .vpcjp); started by bds_a01 監督.main
+bds_e0100	224	a scene with no text lines	The Crucible	1	3	141312	141312	0x0032FCA0 when event 224 loads (kind 8 .vpc, kind 37 .vpcjp); started by bds_e01 監督.main
+bds_e0101	225	a scene whose only text is a menu question	The Crucible	1	2	73728	73728	0x0032FCA0 when event 225 loads (kind 8 .vpc, kind 37 .vpcjp); started by bds_e01 監督.main
+bhm_a0200	150	"""The Resistance fights their battle well."""	Catwalk	3	11	567296	536576	0x0032FCA0 when event 150 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_a02 常駐監督.init
+bhm_a0400	141	"""Let's get going then."""	Antechamber	1	4	288768	315392	0x0032FCA0 when event 141 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_a04 常駐監督.init
+bhm_b0100	155	"""So you have lived."""	Central Lift	2	10	763904	751616	0x0032FCA0 when event 155 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_b01 ボス監督.main
+bhm_b0101	156	"""Have you your fill of this?"""	Central Lift	2	9	860160	952320	0x0032FCA0 when event 156 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_b01 ボス監督.main
+bhm_c0100	157	"""I bid you welcome to my sky fortress, the Bahamut."""	Central Shaft	3	15	978944	987136	0x0032FCA0 when event 157 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_c01 ボス監督.main
+bhm_c0101	158	"""Your lives are forfeit, and your insurgence with them. Dalmasca will again know order."""	Central Shaft	5	18	1085440	1105920	0x0032FCA0 when event 158 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_c01 ボス監督.main
+bhm_c0102	159	"""Ivalice will know a new Dynast-King, and Man will keep his own history!"""	Central Shaft	6	29	1083392	1343488	0x0032FCA0 when event 159 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_c01 読込監督.bhm_c0102制御
+bhm_d0100	142	"""Venat!"""	Cannon Superstructure	2	11	653312	774144	0x0032FCA0 when event 142 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_d01 ボス監督.main
+bhm_d0101	151	"""Skip"""	Cannon Superstructure	1	9	174080	165888	0x0032FCA0 when event 151 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_d01 ボス監督.main
+bhm_y0100	153	"""Uncle, it is I!"""	Sky Fortress Bahamut (bhm_y01)	3	16	643072	679936	0x0032FCA0 when event 153 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_y01 常駐監督.main
+bhm_y0101	154	"""Squads Flametongue and Ogrenix are away! All ships reporting in."""	Sky Fortress Bahamut (bhm_y01)	3	13	983040	1005568	0x0032FCA0 when event 154 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_y01 常駐監督.main
+bhm_z0100	152	"""Make your target the Resistance heavy cruiser."""	Sky Fortress Bahamut (bhm_z01)	4	22	1081344	1105920	0x0032FCA0 when event 152 loads (kind 8 .vpc, kind 37 .vpcjp); started by bhm_z01 常駐監督.init
+bog_a0201	133	"""This is all that remains of Nabudis. Two years ago it was destroyed utterly by a mysterious force."""	The Muted Scarp	1	7	514048	512000	0x0032FCA0 when event 133 loads (kind 8 .vpc, kind 37 .vpcjp); started by bog_a02 先読み監督.init, 先読み監督.sakiyomi_init
+bul_a0100	193	"""Is he sleeping?"""	Hall of the Light, field 736	10	29	2310144	2428928	0x0032FCA0 when event 193 loads (kind 8 .vpc, kind 37 .vpcjp); started by bul_a01 先読み監督.init, 先読み監督.sakiyomi_init
+bul_a0101	194	"""Let us suppose you approach the Empire with a peaceful resolution."""	Hall of the Light, field 736	7	20	1939456	2011136	0x0032FCA0 when event 194 loads (kind 8 .vpc, kind 37 .vpcjp); started by bul_a01 配置監督.main
+bul_a0200	195	"""Ah, our vagrant princess."""	Hall of the Light, field 737	3	11	876544	929792	0x0032FCA0 when event 195 loads (kind 8 .vpc, kind 37 .vpcjp); started by bul_a02 配置監督.main
+bul_a0201	196	"""He set his very bones about with manufacted nethicite."""	Hall of the Light, field 737	4	26	1628160	1794048	0x0032FCA0 when event 196 loads (kind 8 .vpc, kind 37 .vpcjp); started by bul_a02 配置監督.main
+bul_a0380	740	"""How do you propose we reach Archades?"""	Temple Grounds	1	6	399360	444416	0x0032FCA0 when event 740 loads (kind 8 .vpc, kind 37 .vpcjp); started by bul_a03 配置監督.main
+byu_a0100	271	"""The Lhusu Mines are just up ahead."""	Travica Way	4	19	1232896	1251328	0x0032FCA0 when event 271 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_a01 常駐監督.main
+byu_a0400	272	"""I see you've been out walking without the company of your cortege..."""	Lhusu Square	2	18	716800	761856	0x0032FCA0 when event 272 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_a04 配置監督.init
+byu_a0480	705	"""The Lhusu Mines: one of the richest veins in Ivalice."""	Lhusu Square	1	3	163840	169984	0x0032FCA0 when event 705 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_a04 先読み監督２.init, 先読み監督２.sakiyomi_init
+byu_a0481	725	"""Marquis Ondore announced my execution 2 years ago."""	Lhusu Square	1	9	550912	528384	0x0032FCA0 when event 725 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_a04 先読み監督１.init, 先読み監督１.sakiyomi_init
+byu_a1880	265	"""This is the one, Havharo. Says he's Captain Basch he does."""	The Cloudborne	3	16	704512	753664	0x0032FCA0 when event 265 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_a18 配置監督.main
+byu_b0100	276	"""Balthier, your handkerchief. I thought you might want it back."""	Aerodrome	3	11	702464	753664	0x0032FCA0 when event 276 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_b01 常駐監督.main
+byu_b0101	278	"""Easy."""	Aerodrome	2	8	745472	761856	0x0032FCA0 when event 278 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_b01 常駐監督.main
+byu_w0100	277	"""What are you doing?"""	Bhujerba (byu_w01)	3	41	1118208	1132544	0x0032FCA0 when event 277 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_w01 常駐監督.main
+byu_x0100	275	"""So Vaan really is all right."""	Bhujerba (byu_x01)	2	17	870400	872448	0x0032FCA0 when event 275 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_x01 常駐監督.main
+byu_y0100	273	"""Sir Basch fon Ronsenburg."""	Bhujerba (byu_y01)	4	17	868352	890880	0x0032FCA0 when event 273 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_y01 常駐監督.main
+byu_y0101	274	"""When Vossler learned my father had been killed..."""	Bhujerba (byu_y01)	5	19	1241088	1280000	0x0032FCA0 when event 274 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_y01 常駐監督.main
+byu_z0100	270	"""You've seen to her feeding, yes?"""	Bhujerba (byu_z01)	1	12	694272	614400	0x0032FCA0 when event 270 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_z01 常駐監督.main
+byu_z9900	606	a scene with no text lines	every town field: Travica Way, Cloudborne Row, Miners' End, Lhusu Square, Khus Skygrounds, Kaff Terrace, Targe's Arms, Rithil's Protectives, Mait's Magicks, Clio's Technicks, Bashketi's Gambits, The Staras Residence, The Cloudborne and the Aerodrome	1	5	122880	139264	0x0032FCA0 when event 606 loads (kind 8 .vpc, kind 37 .vpcjp); started by byu_a01 オレバッシュ監督.init; byu_a02 オレバッシュ監督.init; byu_a03 オレバッシュ監督.init; byu_a04 オレバッシュ監督.init, オレバッシュレクト.touch; byu_a07 オレバッシュ監督.init; byu_a08 オレバッシュ監督.init; byu_a11 オレバッシュ監督.init; byu_a12 オレバッシュ監督.init; byu_a14 オレバッシュ監督.init; byu_a15 オレバッシュ監督.init; byu_a16 オレバッシュ監督.init; byu_a17 オレバッシュ監督.init; byu_a18 オレバッシュ監督.init; byu_b01 オレバッシュ監督.init, 常駐監督.main
+dgl_f0100	385	"""So this is the Sun-cryst."""	Womb of the Sun-cryst	2	5	307200	303104	0x0032FCA0 when event 385 loads (kind 8 .vpc, kind 37 .vpcjp); started by dgl_f01 常駐ディレクター.init
+dgl_g0100	386	"""Lord Rasler!?"""	Womb of the Sun-cryst	11	50	3573760	3962880	0x0032FCA0 when event 386 loads (kind 8 .vpc, kind 37 .vpcjp); started by dgl_g01 常駐ディレクター.main
+dgl_g0101	387	"""So you, too, would leave your debts unpaid?"""	Womb of the Sun-cryst	5	34	2566144	2934784	0x0032FCA0 when event 387 loads (kind 8 .vpc, kind 37 .vpcjp); started by dgl_g01 常駐ディレクター.main
+dgl_g0102	388	"""Let him by, Venat. It is done."""	Womb of the Sun-cryst	5	28	1564672	1619968	0x0032FCA0 when event 388 loads (kind 8 .vpc, kind 37 .vpcjp); started by dgl_g01 常駐ディレクター.main
+dgl_g0103	389	"""Behold the manufacted nethicite..."""	Womb of the Sun-cryst	2	4	366592	370688	0x0032FCA0 when event 389 loads (kind 8 .vpc, kind 37 .vpcjp); started by dgl_g01 常駐ディレクター.main
+dor_a0100	179	"""It's too quiet."""	66th Floor	1	6	313344	327680	0x0032FCA0 when event 179 loads (kind 8 .vpc, kind 37 .vpcjp); started by dor_a01 EventDirector.main
+dor_b0100	176	"""Cid!"""	Energy Transitarium	4	21	1040384	1097728	0x0032FCA0 when event 176 loads (kind 8 .vpc, kind 37 .vpcjp); started by dor_b01 EventDirector.main
+dor_b0101	177	"""Venat, you shouldn't have."""	Energy Transitarium	6	18	964608	1064960	0x0032FCA0 when event 177 loads (kind 8 .vpc, kind 37 .vpcjp); started by dor_b01 EventDirector.main
+dor_c1200	175	"""Ah. My apologies. You bear not the stench of Cid's lackies."""	70th Floor	1	13	452608	452608	0x0032FCA0 when event 175 loads (kind 8 .vpc, kind 37 .vpcjp); started by dor_c12 EventDirector.main
+dor_z0100	178	"""He's had visitors. Ones lacking manners, by the look of it."""	Draklor Laboratory (dor_z01)	1	9	372736	362496	0x0032FCA0 when event 178 loads (kind 8 .vpc, kind 37 .vpcjp); started by dor_z01 常駐監督.main
+dst_a0181	724	"""Galbana lilies?"""	The Stepping	1	5	92160	139264	0x0032FCA0 when event 724 loads (kind 8 .vpc, kind 37 .vpcjp); started by dst_a01 常駐監督.init, 常駐監督.main, トマト監視監督.トマト監視
+dst_a0580	710	"""To think Dalmascan air could taste so sweet."""	Passage Entrance	1	4	215040	223232	0x0032FCA0 when event 710 loads (kind 8 .vpc, kind 37 .vpcjp); started by dst_a05 配置監督.main
+ene_a0180	739	"""So, where exactly is Raithwall's tomb?"""	Platform 1 - East Tanks	1	5	258048	282624	0x0032FCA0 when event 739 loads (kind 8 .vpc, kind 37 .vpcjp); started by ene_a01 SAKIYOMI_ene_a0180.init, SAKIYOMI_ene_a0180.sakiyomi_init
+ene_a0200	135	"""A construct to draw oil from the ground."""	Platform 1 - Refinery	3	20	1196032	1249280	0x0032FCA0 when event 135 loads (kind 8 .vpc, kind 37 .vpcjp); started by ene_a02 EventDirector.main
+enw_c0100	328	"""So we've drawn you out at last!"""	Withering Shores	1	6	368640	382976	0x0032FCA0 when event 328 loads (kind 8 .vpc, kind 37 .vpcjp); started by enw_c01 ボス監督.main
+enw_c0101	329	a scene with no text lines	Withering Shores	1	4	81920	114688	0x0032FCA0 when event 329 loads (kind 8 .vpc, kind 37 .vpcjp); started by enw_c01 ボス監督.main
+evt_t0005	-	developer script	developer script, named by no path array	2	3	6144	6144	none: a developer script has no event id, so 0x0032FCA0 has no index for it
+fon_a0600	251	"""It would seem we made the right choice."""	Kaukula Pass	1	4	198656	192512	0x0032FCA0 when event 251 loads (kind 8 .vpc, kind 37 .vpcjp); started by fon_a06 常駐ディレクター.main
+fon_b0100	250	"""Why the capital?"""	Hunters' Camp	5	23	1650688	1701888	0x0032FCA0 when event 250 loads (kind 8 .vpc, kind 37 .vpcjp); started by fon_b01 監督.init
+gil_a0100	207	"""On the farthest shores of the river of time, shrouded deep in the roiling Mist."""	Gate of Earth	1	14	399360	622592	0x0032FCA0 when event 207 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_a01 EventDirector.main
+gil_c0100	208	"""I can't shake the feeling we're somewhere we're not meant to be."""	The Haalmikah Water-Steps	1	6	403456	397312	0x0032FCA0 when event 208 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_c01 EventDirector.main
+gil_d0100	147	a scene with no text lines	Gate of Wind	1	1	45056	45056	0x0032FCA0 when event 147 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_d01 EventDirector.main
+gil_d0101	148	a scene whose only text is a menu question	Gate of Wind	1	3	86016	86016	0x0032FCA0 when event 148 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_d01 EventDirector.main
+gil_d0102	229	"""In tower on distant shore dreams the Sun-cryst."""	Gate of Wind	1	5	378880	366592	0x0032FCA0 when event 229 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_d01 EventDirector.main
+gil_g1000	209	"""I've never seen this much Mist. Are you all right?"""	Crystal Core	1	6	315392	194560	0x0032FCA0 when event 209 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_g10 EventDirector.main
+gil_h0100	149	a scene with no text lines	Crystal Peak	1	1	24576	24576	0x0032FCA0 when event 149 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_h01 EventDirector.main
+gil_h0101	205	a scene whose only text is a menu question	Crystal Peak	1	1	110592	110592	0x0032FCA0 when event 205 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_h01 EventDirector.main
+gil_z0100	206	"""Where is everyone?"""	Siti Bhrusuna	14	43	4145152	4239360	0x0032FCA0 when event 206 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_z01 常駐監督.main
+glf_a0200	327	"""I will accompany you to Mt Bur-Omisace."""	Lull of the Land	3	19	962560	978944	0x0032FCA0 when event 327 loads (kind 8 .vpc, kind 37 .vpcjp); started by glf_a02 常駐ディレクター.init
+glf_a0300	325	"""This nethicite— you have used it."""	The Elderknoll	4	18	1286144	1361920	0x0032FCA0 when event 325 loads (kind 8 .vpc, kind 37 .vpcjp); started by glf_a03 常駐ディレクター.init
+glf_z0100	326	"""To Bur-Omisace?"""	Jahara (glf_z01)	6	27	2107392	2170880	0x0032FCA0 when event 326 loads (kind 8 .vpc, kind 37 .vpcjp); started by glf_z01 常駐ディレクター.init
+gol_a0200	262	"""What is it?"""	The Needlebrake	3	27	882688	872448	0x0032FCA0 when event 262 loads (kind 8 .vpc, kind 37 .vpcjp); started by gol_a02 SAKIYOMI_gol_a0200.init, SAKIYOMI_gol_a0200.sakiyomi_init
+gol_c0100	260	a scene whose only text is a menu question	Dell of the Dreamer	1	4	143360	143360	0x0032FCA0 when event 260 loads (kind 8 .vpc, kind 37 .vpcjp); started by gol_c01 EventDirector.main
+grm_a0200	237	"""Squads 3 through 6 are in place. They stand ready."""	East Waterway Control, field 312	1	4	196608	188416	0x0032FCA0 when event 237 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_a02 常駐ディレクター.main
+grm_a0400	317	"""What happened?"""	East Spur Stairs	2	16	696320	628736	0x0032FCA0 when event 317 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_a04 イベント管理.即席パーティー結成_再生
+grm_a0401	318	"""Insurgents. Most like they thought to take advantage of a lax watch while the fete's on..."""	East Spur Stairs	1	3	366592	358400	0x0032FCA0 when event 318 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_a04 SAKIYOMI_grm_a0401.sakiyomi_init
+grm_b0200	319	"""Who would be next?"""	East Sluice Control, field 319	2	20	514048	706560	0x0032FCA0 when event 319 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_b02 常駐監督.main
+grm_b0202	238	"""You all right?"""	East Sluice Control, field 319	2	23	784384	737280	0x0032FCA0 when event 238 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_b02 常駐監督.main
+grm_b0280	716	"""The situation requires I accept such help as I find."""	East Sluice Control, field 319	1	6	450560	458752	0x0032FCA0 when event 716 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_b02 SAKIYOMI_grm_b0280.init, SAKIYOMI_grm_b0280.sakiyomi_init
+grm_d0102	236	"""Stand where you are!"""	Overflow Cloaca, field 329	1	7	122880	153600	0x0032FCA0 when event 236 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_d01 常駐監督.main
+grm_f0100	314	a scene with no text lines	No. 1 Cloaca	1	3	129024	129024	0x0032FCA0 when event 314 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_f01 常駐監督.main
+grm_f0101	315	a scene whose only text is a menu question	No. 1 Cloaca	1	4	206848	206848	0x0032FCA0 when event 315 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_f01 常駐監督.main
+grm_g0100	235	"""Wow, Vaan. You got 'em all yourself?"""	Overflow Cloaca, field 1145	1	7	436224	475136	0x0032FCA0 when event 235 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_g01 常駐監督.main
+grm_g0101	267	"""Vaan! Hurry it up or they'll find us!"""	Overflow Cloaca, field 1145	1	3	196608	215040	0x0032FCA0 when event 267 loads (kind 8 .vpc, kind 37 .vpcjp); started by grm_g01 常駐監督.main
+hne_a0700	344	"""Look at the magicite. These mines much resemble the ones at Lhusu."""	Staging Shaft	1	11	542720	591872	0x0032FCA0 when event 344 loads (kind 8 .vpc, kind 37 .vpcjp); started by hne_a07 イベント管理.ミュリン_再生
+hne_b0101	341	a scene with no text lines	Ore Separation	1	1	63488	63488	0x0032FCA0 when event 341 loads (kind 8 .vpc, kind 37 .vpcjp); started by hne_b01 常駐監督.main
+hne_b0102	345	"""That thing inside her. What was it?"""	Ore Separation	5	24	1443840	1427456	0x0032FCA0 when event 345 loads (kind 8 .vpc, kind 37 .vpcjp); started by hne_b01 常駐監督.main
+hne_e0100	342	a scene with no text lines	Special Charter Dig	1	1	34816	34816	0x0032FCA0 when event 342 loads (kind 8 .vpc, kind 37 .vpcjp); started by hne_e01 常駐監督.main
+lus_a0100	296	"""You will forgive me for asking, but you are diverting the purest of the magicite—"""	Shaft Entry	3	14	790528	806912	0x0032FCA0 when event 296 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_a01 SAKIYOMI_lus_a0100.init, SAKIYOMI_lus_a0100.sakiyomi_init
+lus_a0180	702	"""It would not seem they follow. We've lost them."""	Shaft Entry	1	2	129024	118784	0x0032FCA0 when event 702 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_a01 イベント管理.バッガモナン振り切った_再生
+lus_c0100	290	"""Now, we fight!"""	Tasche Span	1	4	77824	116736	0x0032FCA0 when event 290 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_c01 常駐監督.main
+lus_c0101	291	"""Fools! You face the mightiest swordsman in all Ivalice!"""	Tasche Span	2	6	278528	372736	0x0032FCA0 when event 291 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_c01 常駐監督.main
+lus_c0102	292	a scene with no text lines	Tasche Span	1	3	28672	73728	0x0032FCA0 when event 292 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_c01 常駐監督.main
+lus_e0100	293	"""Ha ha ha! How long I've waited!"""	Site 7	1	2	102400	133120	0x0032FCA0 when event 293 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_e01 常駐監督.main
+lus_e0101	294	"""That was merely a test of your strength, mortals! A prelude, if you will!"""	Site 7	3	7	352256	380928	0x0032FCA0 when event 294 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_e01 常駐監督.main
+lus_e0102	295	a scene with no text lines	Site 7	2	5	141312	151552	0x0032FCA0 when event 295 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_e01 常駐監督.main
+lus_g0100	297	"""This is what I came here to see."""	Site 2	6	33	1501184	1632256	0x0032FCA0 when event 297 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_g01 常駐監督.main
+lus_g0101	299	"""Confound you!"""	Oltam Span, Transitway 1, Shunia Twinspan, Site 2	1	1	71680	65536	0x0032FCA0 when event 299 loads (kind 8 .vpc, kind 37 .vpcjp); started by lus_a02 常駐監督.init; lus_a03 常駐監督.init; lus_b01 常駐監督.init; lus_g01 常駐監督.init, 常駐監督.main; lus_g02 常駐監督.init, 常駐監督.main; lus_g03 常駐監督.init, 常駐監督.main; lus_g04 常駐監督.init, 常駐監督.main
+mic_a0100	185	"""Spare us your quiddities."""	The Lightworks	2	13	481280	565248	0x0032FCA0 when event 185 loads (kind 8 .vpc, kind 37 .vpcjp); started by mic_a01 イベント常駐監督.main
+mic_a0600	184	"""Hey! Who turned out the lights? One of those!?"""	Op Sector 29	1	7	495616	468992	0x0032FCA0 when event 184 loads (kind 8 .vpc, kind 37 .vpcjp); started by mic_a06 常駐監督.main
+mic_b0600	186	"""The Mist seethes."""	North-South Junction	4	27	1165312	1142784	0x0032FCA0 when event 186 loads (kind 8 .vpc, kind 37 .vpcjp); started by mic_b06 常駐監督.main
+mic_b0601	188	"""Reks, sir. My name's Reks."""	North-South Junction	1	3	647168	645120	0x0032FCA0 when event 188 loads (kind 8 .vpc, kind 37 .vpcjp); started by mic_b06 常駐監督.main
+mic_d0100	182	a scene with no text lines	Terminus No. 7	1	3	110592	110592	0x0032FCA0 when event 182 loads (kind 8 .vpc, kind 37 .vpcjp); started by mic_d01 常駐監督.main
+mic_d0101	183	a scene whose only text is a menu question	Terminus No. 7	1	3	137216	137216	0x0032FCA0 when event 183 loads (kind 8 .vpc, kind 37 .vpcjp); started by mic_d01 常駐監督.main
+mrm_e0100	362	a scene with no text lines	Hall of Worth	1	1	40960	40960	0x0032FCA0 when event 362 loads (kind 8 .vpc, kind 37 .vpcjp); started by mrm_e01 EventDirector.main
+mrm_e0101	363	a scene whose only text is a menu question	Hall of Worth	1	2	94208	94208	0x0032FCA0 when event 363 loads (kind 8 .vpc, kind 37 .vpcjp); started by mrm_e01 EventDirector.main
+mrm_f0100	366	"""From Ashe placing Stone (Cut 13))"""	Vault of the Champion	4	20	935936	813056	0x0032FCA0 when event 366 loads (kind 8 .vpc, kind 37 .vpcjp); started by mrm_f01 SAKIYOMI_mrm_f0100.init, SAKIYOMI_mrm_f0100.sakiyomi_init
+nac_a0300	125	"""見ろよ兄さん きっとすごい値打ちもんだよ"""	West Ward	1	5	266240	331776	0x0032FCA0 when event 125 loads (kind 8 .vpc, kind 37 .vpcjp); started by nac_a03 監督.main
+naf_a0100	240	"""You, there. Can you hear me?"""	Aerial Gardens	4	52	2394112	2553856	0x0032FCA0 when event 240 loads (kind 8 .vpc, kind 37 .vpcjp); started by naf_a01 常駐監督.main
+naf_a0101	241	a scene with no text lines	Aerial Gardens	7	18	38912	1177600	0x0032FCA0 when event 241 loads (kind 8 .vpc, kind 37 .vpcjp); started by naf_a01 常駐監督.main
+naf_a0201	247	"""Captain?"""	Inner Ward	2	6	196608	239616	0x0032FCA0 when event 247 loads (kind 8 .vpc, kind 37 .vpcjp); started by naf_a02 常駐監督.main
+naf_b0100	242	"""Vossler. Where are you?"""	Lower Apartments	1	11	475136	405504	0x0032FCA0 when event 242 loads (kind 8 .vpc, kind 37 .vpcjp); started by naf_b01 常駐監督.main
+naf_b0400	243	"""Intruders! Don't let them escape!"""	The Highhall	1	6	153600	155648	0x0032FCA0 when event 243 loads (kind 8 .vpc, kind 37 .vpcjp); started by naf_b04 常駐監督.main
+naf_b0401	244	"""Your Majesty..."""	The Highhall	5	33	2617344	2768896	0x0032FCA0 when event 244 loads (kind 8 .vpc, kind 37 .vpcjp); started by naf_b04 大広間レクト.touch
+nal_a0100	30	"""You're awake."""	Stockade	3	18	876544	952320	0x0032FCA0 when event 30 loads (kind 8 .vpc, kind 37 .vpcjp); started by nal_a01 常駐監督.main
+nal_b0100	31	"""No, don't!"""	Arena	2	36	1777664	1755136	0x0032FCA0 when event 31 loads (kind 8 .vpc, kind 37 .vpcjp); started by nal_b01 DIRECTOR.main
+nal_b0101	33	"""Great. They just don't give up, do they?"""	Arena	8	45	2392064	2646016	0x0032FCA0 when event 33 loads (kind 8 .vpc, kind 37 .vpcjp); started by nal_b01 DIRECTOR.main
+nal_c0100	32	a scene with no text lines	The Black Watch	2	3	108544	100352	0x0032FCA0 when event 32 loads (kind 8 .vpc, kind 37 .vpcjp); started by nal_c01 常駐ディレクター.init
+nal_c0101	34	"""There are more turnkeys than cutpurses down here."""	The Black Watch	3	6	299008	317440	0x0032FCA0 when event 34 loads (kind 8 .vpc, kind 37 .vpcjp); started by nal_c01 常駐ディレクター.init
+nal_c0200	35	"""Look."""	The Confiscatory	2	6	215040	194560	0x0032FCA0 when event 35 loads (kind 8 .vpc, kind 37 .vpcjp); started by nal_c02 SAKIYOMI_nal_c0200.init, SAKIYOMI_nal_c0200.sakiyomi_init
+nal_d0100	36	"""You have grown very thin, Basch."""	Oubliette	3	34	1249280	1269760	0x0032FCA0 when event 36 loads (kind 8 .vpc, kind 37 .vpcjp); started by nal_d01 常駐監督.main
+ozm_b0400	268	"""I guess this one was a success!"""	Sunlit Path	3	11	808960	804864	0x0032FCA0 when event 268 loads (kind 8 .vpc, kind 37 .vpcjp); started by ozm_b04 常駐ディレクター.init
+ozm_c0180	396	"""Researchers from the Draklor Laboratory. What were they doing here?"""	The Shred	1	3	81920	86016	0x0032FCA0 when event 396 loads (kind 8 .vpc, kind 37 .vpcjp); started by ozm_c01 Read_Event_OZM_C01.init, Read_Event_OZM_C01.sakiyomi_init
+pas_z0000	214	a scene whose only text is a menu question	the Aerodromes of Rabanastre, Nalbina Town, Bhujerba, Archades and Balfonheim Port	2	2	247808	247808	0x0032FCA0 when event 214 loads (kind 8 .vpc, kind 37 .vpcjp); started by each aerodrome's director main and its 発着イベント監視.イベント再生とマップジャンプ (airship departures), and by the debug script evctrl
+pbc_a0300	269	"""Empires parade down city streets, while refugees walk barefoot through the snow."""	Freezing Gorge	1	6	219136	251904	0x0032FCA0 when event 269 loads (kind 8 .vpc, kind 37 .vpcjp); started by pbc_a03 常駐ディレクター.init
+rbl_q0100	379	"""The din of the Mist grows greater."""	Empyrean Ravel	4	10	720896	700416	0x0032FCA0 when event 379 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbl_q01 Read_Event_RBL_Q01.init, Read_Event_RBL_Q01.sakiyomi_init
+rbn_a0100	107	"""Vaan?"""	North End	1	11	782336	845824	0x0032FCA0 when event 107 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a01 常駐監督.main
+rbn_a0200	100	"""Huh? What'd you say?"""	Muthru Bazaar	3	21	1652736	1773568	0x0032FCA0 when event 100 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a02 常駐監督.init
+rbn_a0300	101	"""Hey, that's mine!"""	East End	4	32	808960	907264	0x0032FCA0 when event 101 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a03 常駐監督.EVパンネロ登場イベント
+rbn_a0380	709	"""Penelo said you needed something?"""	East End	1	9	657408	733184	0x0032FCA0 when event 709 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a03 読み込み監督０１.sakiyomi_init
+rbn_a0381	711	"""A lot of kids lost their parents in the war."""	East End	3	7	501760	526336	0x0032FCA0 when event 711 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a03 読み込み監督０２.sakiyomi_init
+rbn_a0382	726	"""The garif are said to dwell in Kerwon."""	Muthru Bazaar	1	8	387072	378880	0x0032FCA0 when event 726 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a02 常駐監督.main
+rbn_a0480	721	"""You there! Let's see some papers, boy."""	Southern Plaza	1	5	514048	534528	0x0032FCA0 when event 721 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a04 読み込み監督０１.init, 読み込み監督０１.sakiyomi_init
+rbn_a0980	707	"""Vaan, is it really you? I heard you got took off to Nalbina!"""	Migelo's Sundries	4	11	481280	499712	0x0032FCA0 when event 707 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a09 常駐監督.init
+rbn_a1300	120	"""So it was the Dawn Shard that brought down the Imperial fleet."""	Samalzalam Manor	5	30	1777664	1839104	0x0032FCA0 when event 120 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a13 常駐監督.main
+rbn_a1600	109	"""As I said, a misunderstanding."""	The Sandsea	2	18	702464	735232	0x0032FCA0 when event 109 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a16 読み込み監督０１.init, 読み込み監督０１.sakiyomi_init
+rbn_a1601	119	"""There you are, Kytes. Stop loafing around!"""	The Sandsea	1	11	694272	761856	0x0032FCA0 when event 119 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a16 常駐監督.init
+rbn_a1700	108	"""I thank you."""	Eastgate, Southgate and Westgate	1	16	456704	514048	0x0032FCA0 when event 108 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a17 常駐監督.main; rbn_a18 常駐監督.init; rbn_a19 常駐監督.main
+rbn_a1701	118	"""Wait a second!"""	Eastgate	6	30	1802240	1974272	0x0032FCA0 when event 118 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_a17 読み込み監督０１.init, 読み込み監督０１.sakiyomi_init
+rbn_x0100	106	"""Now, I'm expecting Doctor Cid. You may leave."""	Rabanastre (rbn_x01)	3	14	974848	1032192	0x0032FCA0 when event 106 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_x01 常駐監督.main
+rbn_y0100	104	"""Is Rabanastre to your liking, my lord?"""	Rabanastre (rbn_y01)	7	29	2332672	2424832	0x0032FCA0 when event 104 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_y01 常駐監督.main
+rbn_z0100	102	"""I brought you some of those flowers you like: Galbana lilies. Remember?"""	Rabanastre (rbn_z01)	1	3	311296	333824	0x0032FCA0 when event 102 loads (kind 8 .vpc, kind 37 .vpcjp); started by rbn_z01 常駐監督.main
+rrp_a0500	266	"""Quite a performance."""	Treasure Room No. 8	5	17	1038336	1097728	0x0032FCA0 when event 266 loads (kind 8 .vpc, kind 37 .vpcjp); started by rrp_a05 常駐ディレクター.main
+rrp_z9900	605	"""Vaan Hellooo!"""	Cellars; Lower Halls	1	3	71680	38912	0x0032FCA0 when event 605 loads (kind 8 .vpc, kind 37 .vpcjp); started by rrp_a02 常駐監督.init; rrp_a03 常駐ディレクター.init
+rsn_a0100	283	"""So you were carrying it all along. The Fates jest."""	Port Launch	3	21	706560	716800	0x0032FCA0 when event 283 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_a01 イベント管理.ウォースラー救援_再生
+rsn_a0101	288	"""Such a great shame."""	Port Launch	1	11	534528	485376	0x0032FCA0 when event 288 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_a01 常駐監督.main
+rsn_a0102	285	"""We've secured an Atomos. Come!"""	Port Launch	1	6	290816	290816	0x0032FCA0 when event 285 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_a01 常駐監督.main
+rsn_b0100	287	"""Vaan!"""	Port Section	4	22	849920	794624	0x0032FCA0 when event 287 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_b01 SAKIYOMI_rsn_b0100.init, SAKIYOMI_rsn_b0100.sakiyomi_init
+rsn_b0180	703	"""Wait. A word of caution before we set out."""	Port Section	1	4	280576	288768	0x0032FCA0 when event 703 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_b01 SAKIYOMI_rsn_b0180.init, SAKIYOMI_rsn_b0180.sakiyomi_init
+rsn_d0100	280	"""Fear not their numbers! Take down the leaders, and the others will follow!"""	Central Brig Access	1	1	51200	69632	0x0032FCA0 when event 280 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_d01 常駐監督.main
+rsn_d0180	704	"""Majesty. We will cut you a path."""	Central Brig Access	1	7	309248	337920	0x0032FCA0 when event 704 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_d01 イベント管理.リヴァイサン脱出開始_再生
+rsn_y0100	284	"""You are unharmed."""	Brig No. 1	1	11	299008	272384	0x0032FCA0 when event 284 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_y01 SAKIYOMI_rsn_y0100.init, SAKIYOMI_rsn_y0100.sakiyomi_init
+rsn_z0100	282	"""The prisoners, my lord."""	Bridge	4	37	1687552	1619968	0x0032FCA0 when event 282 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_z01 イベント管理.ＳＢ３イベント_再生
+rsn_z0101	289	"""Such a tremendous honor to again be graced with your presence, Majesty."""	Bridge	5	28	1626112	1593344	0x0032FCA0 when event 289 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_z01 イベント管理.ＳＢ４イベント_再生
+rsn_z0200	279	"""When we return to Dalmasca, we can announce that you are alive and well."""	Battle Launch	5	39	2045952	2021376	0x0032FCA0 when event 279 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_z02 常駐監督.main
+rsn_z0201	286	"""I know you do. I would ne'er gainsay your loyalty."""	Battle Launch	4	19	1091584	1273856	0x0032FCA0 when event 286 loads (kind 8 .vpc, kind 37 .vpcjp); started by rsn_z02 常駐監督.main
+rui_a0400	168	"""Hey, you sure this rabbit hole's really the way into Archades?"""	Doubt Abandoned	1	6	405504	421888	0x0032FCA0 when event 168 loads (kind 8 .vpc, kind 37 .vpcjp); started by rui_a04 監督.main
+rwf_a0100	372	"""A tower on distant shore."""	Footfalls of the Past	2	9	460800	458752	0x0032FCA0 when event 372 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwf_a01 常駐ディレクター.init
+rwf_c0100	370	a scene with no text lines	They Who Thirst Not	1	4	239616	239616	0x0032FCA0 when event 370 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwf_c01 常駐監督.main
+rwf_c0101	371	a scene with no text lines	They Who Thirst Not	1	1	94208	94208	0x0032FCA0 when event 371 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwf_c01 常駐監督.main
+rwf_c0102	373	"""Hey, Fran. Something's written on the wall."""	They Who Thirst Not	1	13	798720	784384	0x0032FCA0 when event 373 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwf_c01 Read_Event_RWF_C01.sakiyomi_init
+rwf_d0101	375	a scene with no text lines	Colosseum	1	1	65536	65536	0x0032FCA0 when event 375 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwf_d01 監督.main
+rwg_a0100	338	"""Long ago, the gods granted their favor to King Raithwall..."""	Valley of the Dead	4	9	1046528	1042432	0x0032FCA0 when event 338 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwg_a01 SAKIYOMI_rwg_a0100.sakiyomi_init
+rwg_b0100	330	"""Fight or run, we better decide fast!"""	Hall of the Destroyer	2	2	106496	110592	0x0032FCA0 when event 330 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwg_b01 常駐ディレクター.main, Map_Director.main
+rwg_b0200	333	"""The wall comes. We must be quick! Together we can bring it down!"""	Hall of the Sentinel	2	2	122880	118784	0x0032FCA0 when event 333 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwg_b02 Map_Director.main
+rwg_c0100	322	"""Incredible..."""	Royal Passage	3	10	569344	495616	0x0032FCA0 when event 322 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwg_c01 常駐ディレクター.init
+rwg_d0100	336	a scene with no text lines	Cloister of Flame	1	2	81920	94208	0x0032FCA0 when event 336 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwg_d01 常駐ディレクター.main
+rwg_d0101	337	"""In vainglory they arose, shouting challenges at the gods."""	Cloister of Flame	2	9	821248	784384	0x0032FCA0 when event 337 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwg_d01 常駐ディレクター.main
+rwg_d0102	323	"""Fog? Underground?"""	Cloister of Flame	3	8	512000	401408	0x0032FCA0 when event 323 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwg_d01 常駐ディレクター.init
+rwg_e0100	339	"""What's wrong?"""	Chamber of First Light	2	15	471040	473088	0x0032FCA0 when event 339 loads (kind 8 .vpc, kind 37 .vpcjp); started by rwg_e01 常駐ディレクター.init
+sav_b0100	170	"""Penelo? What are you doing here?"""	Nomad Village	3	9	305152	305152	0x0032FCA0 when event 170 loads (kind 8 .vpc, kind 37 .vpcjp); started by sav_b01 SAKIYOMI_sav_b0100.init, SAKIYOMI_sav_b0100.sakiyomi_init
+slm_a0100	110	"""They're the thieves who stole into the palace."""	North Sprawl	4	26	1050624	1069056	0x0032FCA0 when event 110 loads (kind 8 .vpc, kind 37 .vpcjp); started by slm_a01 常駐監督.main
+slm_a0101	113	"""That's right..."""	North Sprawl	1	9	339968	342016	0x0032FCA0 when event 113 loads (kind 8 .vpc, kind 37 .vpcjp); started by slm_a01 常駐監督.main
+slm_a0280	720	"""Hey, Vaan?"""	South Sprawl	1	8	344064	335872	0x0032FCA0 when event 720 loads (kind 8 .vpc, kind 37 .vpcjp); started by slm_a02 読み込み監督０１.init, 読み込み監督０１.sakiyomi_init
+slm_a0300	112	"""Well, well. Look who we have here! Heard you were sent off to Nalbina?"""	Dalan's House	3	15	913408	917504	0x0032FCA0 when event 112 loads (kind 8 .vpc, kind 37 .vpcjp); started by slm_a03 読み込み監督０１.init, 読み込み監督０１.sakiyomi_init
+slm_a0380	722	"""Now you'll be wanting to know how to sneak into the palace, eh?"""	Dalan's House	3	9	1163264	1173504	0x0032FCA0 when event 722 loads (kind 8 .vpc, kind 37 .vpcjp); started by slm_a03 読み込み監督０２.init, 読み込み監督０２.sakiyomi_init
+slm_a0381	714	"""Ah, if it isn't Vaan Ratsbane."""	Dalan's House	3	12	903168	903168	0x0032FCA0 when event 714 loads (kind 8 .vpc, kind 37 .vpcjp); started by slm_a03 常駐監督.EVダラン登場
+slm_z0100	111	"""Then what do you make of Ondore's proclamation? Are you suggesting they fooled even the Marquis?"""	Dalan's Marker	4	27	1124352	1212416	0x0032FCA0 when event 111 loads (kind 8 .vpc, kind 37 .vpcjp); started by slm_z01 常駐監督.EVウォースラ将軍前半
+spc_z0000	210	a scene with no text lines	no zone script names event 210	0	0	2048	2048	0x0032FCA0 when event 210 loads (kind 8 .vpc, kind 37 .vpcjp); no zone script names event 210
+sum_d0001	65	Esper summon scene, set sum_d (events 64-66)	the battle the Esper is summoned in	1	3	264192	264192	0x0032FCA0 when event 65 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+sum_e0001	50	Esper summon scene, set sum_e (events 49-51)	the battle the Esper is summoned in	1	3	131072	131072	0x0032FCA0 when event 50 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+sum_f0001	53	Esper summon scene, set sum_f (events 52-54)	the battle the Esper is summoned in	1	2	79872	79872	0x0032FCA0 when event 53 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+sum_g0001	59	Esper summon scene, set sum_g (events 58-60)	the battle the Esper is summoned in	1	2	147456	147456	0x0032FCA0 when event 59 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+sum_h0001	47	Esper summon scene, set sum_h (events 46-48)	the battle the Esper is summoned in	1	1	24576	24576	0x0032FCA0 when event 47 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+sum_i0001	56	Esper summon scene, set sum_i (events 55-57)	the battle the Esper is summoned in	1	2	126976	126976	0x0032FCA0 when event 56 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+sum_j0001	44	Esper summon scene, set sum_j (events 43-45)	the battle the Esper is summoned in	1	2	49152	49152	0x0032FCA0 when event 44 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+sum_k0001	62	Esper summon scene, set sum_k (events 61-63)	the battle the Esper is summoned in	1	2	36864	36864	0x0032FCA0 when event 62 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+sum_m0001	77	Esper summon scene, set sum_m (events 76-78)	the battle the Esper is summoned in	1	1	32768	32768	0x0032FCA0 when event 77 loads (kind 8 .vpc, kind 37 .vpcjp); a summon scene, whose event id no zone or scene script names
+var_z0100	393	"""They choose to supply the Resistance, yet raise not a sword in aid."""	Balfonheim Port (var_z01)	7	32	2375680	2506752	0x0032FCA0 when event 393 loads (kind 8 .vpc, kind 37 .vpcjp); started by var_z01 常駐監督.main
+var_z0101	394	"""Al-Cid?"""	Balfonheim Port (var_z01)	7	32	2193408	2396160	0x0032FCA0 when event 394 loads (kind 8 .vpc, kind 37 .vpcjp); started by var_z01 常駐監督.main
+var_z0102	395	"""Ships in the water! Send fishing dories if need be, I care not."""	Balfonheim Port (var_z01)	6	22	1802240	1923072	0x0032FCA0 when event 395 loads (kind 8 .vpc, kind 37 .vpcjp); started by var_z01 常駐監督.main
+vic_a0100	253	"""Hey, Mjrn lives here, doesn't she? We're here to see her."""	Fane of the Path	3	25	1216512	1245184	0x0032FCA0 when event 253 loads (kind 8 .vpc, kind 37 .vpcjp); started by vic_a01 SAKIYOMI_vic_a0100.init, SAKIYOMI_vic_a0100.sakiyomi_init
+vic_a0300	255	"""I heard the Wood's whispers."""	Fane of the Path	7	31	1554432	1556480	0x0032FCA0 when event 255 loads (kind 8 .vpc, kind 37 .vpcjp); started by vic_a01 イベント管理.姉と妹_再生
+vic_a0301	256	"""Not bad, Vaan."""	Road of Verdant Praise	2	16	438272	440320	0x0032FCA0 when event 256 loads (kind 8 .vpc, kind 37 .vpcjp); started by vic_a03 イベント管理.ヨーテ後半_再生
+vic_a0380	734	"""In the village ahead you will find her: Mjrn."""	Road of Verdant Praise	1	1	96256	122880	0x0032FCA0 when event 734 loads (kind 8 .vpc, kind 37 .vpcjp); started by vic_a03 イベント管理.ミュリンを呼んできて_再生
+wdl_a0600	232	"""This ""come in handy"" often?"""	The Western Divide	1	12	532480	538624	0x0032FCA0 when event 232 loads (kind 8 .vpc, kind 37 .vpcjp); started by wdl_a06 イベント管理.シュトラール号の光学迷彩_再生
+ztc_d0100	320	a scene whose only text is a menu question	Athroza Quicksands	1	2	79872	79872	0x0032FCA0 when event 320 loads (kind 8 .vpc, kind 37 .vpcjp); started by ztc_d01 監督.main
+ztc_d0101	321	a scene whose only text is a menu question	Athroza Quicksands	1	2	110592	110592	0x0032FCA0 when event 321 loads (kind 8 .vpc, kind 37 .vpcjp); started by ztc_d01 監督.main

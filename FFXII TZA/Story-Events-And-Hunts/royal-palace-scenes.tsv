@@ -1,4 +1,4 @@
 scene	event_id	loaded_by	lines	synopsis	items	party	flags_set	counter_set	next
 rrp_a0500	266	rrp_a05 常駐ディレクター.main	10	Quite a performance. / Who are you? / I play the leading man, who else? / Fran, the magicite. / Now then. I'll take that. / No you won't. I found it. It's mine. / And then when I take it from you, it'll be mine. / Exit stage right. / The gods do not smile on us. / I like it better that way.	-	-	-	220: After Balthier and Fran; after the party	The Garden Stairs (Royal Palace), field 572
-rrp_a0600	258	rrp_a06 常駐ディレクター.main	0	-	-	-	-	-	-
+rrp_a0600	258	rrp_a06 常駐ディレクター.main	0	On The Garden Stairs Vaan and four imperial soldiers, two with swords drawn, play out four camera cuts under screen blur.	-	-	-	-	-
 rrp_z9900	605	rrp_a02 常駐監督.init; rrp_a03 常駐ディレクター.init	3	Vaan Hellooo! / Vaan Over here! / Vaan Hey, bucket head!	-	-	-	-	-

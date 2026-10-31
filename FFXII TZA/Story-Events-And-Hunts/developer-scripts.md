@@ -211,9 +211,10 @@ The scenes table [developer-scenes.tsv](developer-scenes.tsv) has one row per sc
 | Column | Meaning |
 |---|---|
 | `scene` | the script, by its file name |
-| `event_id`, `loaded_by`, `next` | `-` on every row: no script has an event id |
+| `event_id`, `next` | `-` on every row: no script has an event id |
+| `loaded_by` | that the script has no event id: the asset path table has no entry for it |
 | `lines` | the number of entries in the script's section 2, empty strings included |
-| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)` |
+| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)`; a scene with no non-empty entry: one sentence of what its script does; an entry the `us` tree ships in Japanese: an English sentence, then `Authored text (<its English>): ` and the entry |
 | `items`, `party`, `flags_set`, `counter_set` | what the script's own functions give or take, change in the party, set and write, as in the main table |
 
 The steps table [`developer-script-steps.tsv`](developer-script-steps.tsv) has one row per step:

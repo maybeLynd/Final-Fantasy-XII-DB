@@ -57,6 +57,36 @@ then requests the routine function.
 4. The three globals are stored 249 times. 191 stores lead to a routine that gives. The other 58 lead to
    `システムメッセージ表示` and `システムメッセージ表示_FADE付`, which show the value as a message id, not an item.
 
+### Sellers, fees and refunds
+
+The 14 map sellers keep the maps they sell in one array and the prices in another, filled from price ids with
+`getprice` ([Price list](../Rewards-EXP-Gil-And-Loot/price-list.md)) when the talk starts. The player picks a
+map, `subgill` takes the price at the same index, and the map goes into `0xC88` before the request (alc_b06
+`地図屋.talk` :1470-1473, :1559, :1566). A seller's `additemmes` row lists all its maps, its `subgill` row the price
+of each.
+
+Other takes and gives read a value the script sets:
+
+- Gurdy (`ガーディ`, `NPC_MOG_GARDY`, `talk_gardy`) charges a chocobo hire fee, one price id per place: "Welcome to
+  the chocobo stables. Only [value] gil should you wish to hire one, kupo!" (var_a01 `NPC_MOG_GARDY.talk`
+  :4508-4571).
+- The Chopmaster (`NPC_GUILD`) of the five Archades shops sells a Pinewood Chop for 20,000 gil (alc_b05
+  `NPC_GUILD.talk` :1286-1306).
+- Jules asks a fee in two scenes: 1,500 gil in ald_a0180 (`ジュール登場2` :158-175) and 2,500 gil in alc_a0280
+  (`タクシーの乗り方2` :137-151), where the Cab Attendant has just asked 1,000,000 gil for a ride without a chop
+  (:108). Each fee is taken when the scene returns to the map (ald_a01 :4810, :5257; alc_f01 :8073, :8391).
+- The Hunters' Camp Outfitters (`二級男11`) sells 31 reward packages, each once and at its own price, opened by the
+  trophies given to the three Bangaa brothers (fon_b01 :12951-13131). The brothers (`バンガ05`, `バンガ13`,
+  `バンガ15`) offer to take each trophy the player holds, in the order of one 30-trophy table (:9086, :9312-9351).
+- Bhujerba's Madhu buyer (`NPC01`) and South Bank Village's fish buyer pay before they ask: a reward package adds the
+  gil (`0x908B`, 1,000 gil; `0x907D`-`0x907F`, 10, 100 and 200 gil a fish), and `subgill` takes back the gil it
+  added when the player declines (byu_a01 :9019-9091, dst_b01 :17410-17457).
+- At 99,998,999 gil or more (99,990,009 for the fish) those buyers skip the package, and an accepted sale adds the
+  gil with `addgill`.
+- A Pharos orb (`o_tama`) gives 3 Black Orbs per point of its count, at most 9,999. The count starts at 1, each
+  lesser orb (`tama01`-`tama05`) left untaken for its 270 frames adds 1 through `o_tama.map_bright`, and the gift
+  sets it back to 1 (rbl_b01 :929-931, :1471, :1522-1592, :2042-2063).
+
 ### Scope
 
 The rows are every call in a shipping script outside the routine copies; a talk or event function gives only
@@ -69,12 +99,13 @@ developer scripts `evt_t*` hold 957 more calls, which are not rows.
 |---|---|
 | `script` | the script, by its file name |
 | `actor` | the actor that makes the call, or that requests the routine |
+| `actor_name` | the actor's name tag in game, from its name pair in [NPC names](../Characters-And-Objects/npc-names.md) (`npc-names-maps.tsv`): `first / second` when the tag changes once the player has talked to the character, pairs separated by `; ` when the script gives the actor more than one; `-` for an actor with no name pair, such as the directors (`監督`, `トライアル監督`) and the touch areas (`魂レクト`) |
 | `function` | its function |
 | `verb` | the verb, from the table above |
-| `item` | the item id; `gil` for a gil row; `-` when it comes from a table; several ids separated by `/` for a set |
+| `item` | the item id; `gil` for a gil row; several ids separated by `/` for a set, a seller's list or a table |
 | `item_name` | the item's name; for a reward package, the gil and items it holds |
-| `count` | the count or gil amount, or the expression that computes it |
-| `item_source` | where the item comes from, as in the table above |
+| `count` | the count or gil amount, or the rule that sets it: a price with its price id, a fee, a refund, every one the player holds, or a game counter with its global and the lines that change it |
+| `item_source` | where the item comes from, as in the table above, and for a seller or a table what is chosen |
 | `through` | for a routine give, the routine actor and function the caller requested; otherwise `-` |
 | `explanation` | where the give or take happens, as map name (region): see below; a give reads "Given in", a take (`subitem`, `subgill`) "Taken in"; a Trial Mode reward reads "Given after Stage N" or "Never given from this script" |
 

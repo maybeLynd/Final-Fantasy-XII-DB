@@ -244,6 +244,11 @@ track with no shipped bank: 0, 10, 11, 12, 93 and 130.
    page's next first run starts above every id of the page, and the walk stops there. On the last page the last run
    is field 1,311, and the header refuses anything above it.
 3. A track number is the `NNN` of `music/magi_data/win/musicNNN.win.mab` ([Sound banks](sound-banks.md)).
+4. `0x00361010(t)`, the boss-music test, returns 0 for a negative `t` and reads entry `t` with no upper bound
+   (`0x00361010`-`0x00361027`), so a `t` of 256 or more reads past the file's 256 entries.
+5. Four callers of `0x00361010` pass the track of the run lookup `0x003EAA70` (`0x0025DBCE`, `0x00262041`, `0x0026DE59`,
+   `0x0026DF03`), a byte or -1. The fifth is `isbossmusic` (`0x47B`, `0x00349E10`), which passes the script's value
+   unchecked; all 591 of its calls in the `us` scripts pass `getnowmapmusicno_47a(1)`.
 
 ## Modding notes
 

@@ -2,57 +2,62 @@
 title: "Summon scenes: the scenes an Esper's summon plays, in sets of three"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00"
+addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x00306BD0, 0x0032FC30, 0x00309230, 0x00D103B0"
 ---
 
 ## What it lists
 
 The table [summons-scenes.tsv](summons-scenes.tsv) has one row per scene script of the group `sum` under
 `plan_master/us/event`, the summon scenes ([graphics settings](../Engine-Core/graphics-settings.md)). No
-zone script shares their file-name prefix, so their `loaded_by` and `next` columns are `-`, and no `eventread` or
+zone script shares their file-name prefix, so their `next` column is `-`, and no `eventread` or
 `eventread_e8` call of the zone and scene scripts names their event ids 40 to 78.
+
+The battle scene step `0x00306BD0` requests them on scene manager 3 through `0x0032FC30` (`0x00306C56`), by the effect id
+that `0x00309230` gives for the action: the Esper's summon action, its finishing attack, or Dismiss, for which it takes
+the event by the Esper from the table at `0x00D103B0` (Zodiark's 78 is stored at `0x00309266`). The `loaded_by` column
+gives each.
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
-| `sum_a0000` | `40` | - | 0 | - |
-| `sum_a0001` | `41` | - | 1 | - |
-| `sum_a0002` | `42` | - | 0 | - |
-| `sum_b0000` | `73` | - | 0 | - |
-| `sum_b0001` | `74` | - | 0 | - |
-| `sum_b0002` | `75` | - | 0 | - |
-| `sum_c0000` | `67` | - | 0 | - |
-| `sum_c0001` | `68` | - | 1 | - |
-| `sum_c0002` | `69` | - | 0 | - |
-| `sum_d0000` | `64` | - | 0 | - |
-| `sum_d0001` | `65` | - | 1 | - |
-| `sum_d0002` | `66` | - | 0 | - |
-| `sum_e0000` | `49` | - | 0 | - |
-| `sum_e0001` | `50` | - | 0 | - |
-| `sum_e0002` | `51` | - | 0 | - |
-| `sum_f0000` | `52` | - | 0 | - |
-| `sum_f0001` | `53` | - | 1 | - |
-| `sum_f0002` | `54` | - | 0 | - |
-| `sum_g0000` | `58` | - | 0 | - |
-| `sum_g0001` | `59` | - | 0 | - |
-| `sum_g0002` | `60` | - | 0 | - |
-| `sum_h0000` | `46` | - | 0 | - |
-| `sum_h0001` | `47` | - | 0 | - |
-| `sum_h0002` | `48` | - | 0 | - |
-| `sum_i0000` | `55` | - | 0 | - |
-| `sum_i0001` | `56` | - | 0 | - |
-| `sum_i0002` | `57` | - | 0 | - |
-| `sum_j0000` | `43` | - | 0 | - |
-| `sum_j0001` | `44` | - | 1 | - |
-| `sum_j0002` | `45` | - | 0 | - |
-| `sum_k0000` | `61` | - | 0 | - |
-| `sum_k0001` | `62` | - | 0 | - |
-| `sum_k0002` | `63` | - | 0 | - |
-| `sum_l0000` | `70` | - | 0 | - |
-| `sum_l0001` | `71` | - | 0 | - |
-| `sum_l0002` | `72` | - | 0 | - |
-| `sum_m0000` | `76` | - | 0 | - |
-| `sum_m0001` | `77` | - | 1 | - |
-| `sum_m0002` | `78` | - | 0 | - |
+| `sum_a0000` | `40` | the battle scene step `0x00306BD0`: Belias summoned | 0 | - |
+| `sum_a0001` | `41` | the battle scene step `0x00306BD0`: Hellfire | 1 | - |
+| `sum_a0002` | `42` | the battle scene step `0x00306BD0`: Belias dismissed | 0 | - |
+| `sum_b0000` | `73` | the battle scene step `0x00306BD0`: Ultima summoned | 0 | - |
+| `sum_b0001` | `74` | the battle scene step `0x00306BD0`: Eschaton | 0 | - |
+| `sum_b0002` | `75` | the battle scene step `0x00306BD0`: Ultima dismissed | 0 | - |
+| `sum_c0000` | `67` | the battle scene step `0x00306BD0`: Zeromus summoned | 0 | - |
+| `sum_c0001` | `68` | the battle scene step `0x00306BD0`: Big Bang | 1 | - |
+| `sum_c0002` | `69` | the battle scene step `0x00306BD0`: Zeromus dismissed | 0 | - |
+| `sum_d0000` | `64` | the battle scene step `0x00306BD0`: Chaos summoned | 0 | - |
+| `sum_d0001` | `65` | the battle scene step `0x00306BD0`: Tornado | 1 | - |
+| `sum_d0002` | `66` | the battle scene step `0x00306BD0`: Chaos dismissed | 0 | - |
+| `sum_e0000` | `49` | the battle scene step `0x00306BD0`: Hashmal summoned | 0 | - |
+| `sum_e0001` | `50` | the battle scene step `0x00306BD0`: Gaia's Wrath | 0 | - |
+| `sum_e0002` | `51` | the battle scene step `0x00306BD0`: Hashmal dismissed | 0 | - |
+| `sum_f0000` | `52` | the battle scene step `0x00306BD0`: Cúchulainn summoned | 0 | - |
+| `sum_f0001` | `53` | the battle scene step `0x00306BD0`: Blight | 1 | - |
+| `sum_f0002` | `54` | the battle scene step `0x00306BD0`: Cúchulainn dismissed | 0 | - |
+| `sum_g0000` | `58` | the battle scene step `0x00306BD0`: Zalera summoned | 0 | - |
+| `sum_g0001` | `59` | the battle scene step `0x00306BD0`: Condemnation | 0 | - |
+| `sum_g0002` | `60` | the battle scene step `0x00306BD0`: Zalera dismissed | 0 | - |
+| `sum_h0000` | `46` | the battle scene step `0x00306BD0`: Adrammelech summoned | 0 | - |
+| `sum_h0001` | `47` | the battle scene step `0x00306BD0`: Judgment Bolt | 0 | - |
+| `sum_h0002` | `48` | the battle scene step `0x00306BD0`: Adrammelech dismissed | 0 | - |
+| `sum_i0000` | `55` | the battle scene step `0x00306BD0`: Famfrit summoned | 0 | - |
+| `sum_i0001` | `56` | the battle scene step `0x00306BD0`: Tsunami | 0 | - |
+| `sum_i0002` | `57` | the battle scene step `0x00306BD0`: Famfrit dismissed | 0 | - |
+| `sum_j0000` | `43` | the battle scene step `0x00306BD0`: Mateus summoned | 0 | - |
+| `sum_j0001` | `44` | the battle scene step `0x00306BD0`: Frostwave | 1 | - |
+| `sum_j0002` | `45` | the battle scene step `0x00306BD0`: Mateus dismissed | 0 | - |
+| `sum_k0000` | `61` | the battle scene step `0x00306BD0`: Shemhazai summoned | 0 | - |
+| `sum_k0001` | `62` | the battle scene step `0x00306BD0`: Soul Purge | 0 | - |
+| `sum_k0002` | `63` | the battle scene step `0x00306BD0`: Shemhazai dismissed | 0 | - |
+| `sum_l0000` | `70` | the battle scene step `0x00306BD0`: Exodus summoned | 0 | - |
+| `sum_l0001` | `71` | the battle scene step `0x00306BD0`: Meteor | 0 | - |
+| `sum_l0002` | `72` | the battle scene step `0x00306BD0`: Exodus dismissed | 0 | - |
+| `sum_m0000` | `76` | the battle scene step `0x00306BD0`: Zodiark summoned | 0 | - |
+| `sum_m0001` | `77` | the battle scene step `0x00306BD0`: Final Eclipse | 1 | - |
+| `sum_m0002` | `78` | the battle scene step `0x00306BD0`: Zodiark dismissed | 0 | - |
 
 ### The scenes
 
@@ -128,9 +133,9 @@ ends, and waits until `summon.カット１` ends.
 |---|---|
 | `scene` | the scene script, by its file name |
 | `event_id` | the event id that loads it |
-| `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
+| `loaded_by` | the exe step that requests the scene: the battle scene step `0x00306BD0` and the action whose effect id is the event, or for Dismiss, whose effect id is not an event, the event that `0x00309230` takes by the Esper from the table at `0x00D103B0`; with the addresses read |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
-| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)` |
+| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)`; a scene with no non-empty entry: one sentence of what its script does; an entry the `us` tree ships in Japanese: an English sentence, then `Authored text (<its English>): ` and the entry |
 | `items` | items the scene's own functions give or take, by name; a fixed count is written `xN`, and a count the game computes reads `, as many as <expression> gives` |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |

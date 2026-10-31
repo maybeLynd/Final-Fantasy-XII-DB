@@ -8,9 +8,9 @@ addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348D
 ## What it lists
 
 The table [titles-scenes.tsv](titles-scenes.tsv) has one row per scene script of the title group `ttl` under
-`plan_master/us/event`. No zone script shares their file-name prefix, so their `loaded_by` and `next` columns are `-`;
-the zone scripts that load them belong to other regions, and the table below names them from the load records of every
-group.
+`plan_master/us/event`. No zone script shares their file-name prefix, so their `next` column is `-`;
+the zone scripts that load them belong to other regions: `loaded_by` names each, and the table below names their
+fields from the load records of every group.
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
@@ -54,9 +54,9 @@ group.
 |---|---|
 | `scene` | the scene script, by its file name |
 | `event_id` | the event id that loads it |
-| `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
+| `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event; `-` for `ttl_z0007`, whose event no script names |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
-| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)` |
+| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)`; a scene with no non-empty entry: one sentence of what its script does |
 | `items` | items the scene's own functions give or take, by name; a fixed count is written `xN`, and a count the game computes reads `, as many as <expression> gives` |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |

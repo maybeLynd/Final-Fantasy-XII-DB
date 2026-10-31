@@ -1,11 +1,11 @@
 scene	event_id	loaded_by	lines	synopsis	items	party	flags_set	counter_set	next
-ttl_z0000	215	-	0	-	-	-	-	-	-
-ttl_z0001	216	-	0	-	-	-	-	-	-
-ttl_z0002	217	-	0	-	-	-	-	-	-
-ttl_z0003	430	-	0	-	-	-	-	-	-
-ttl_z0004	431	-	0	-	-	-	-	-	-
-ttl_z0005	432	-	0	-	-	-	-	-	-
-ttl_z0006	433	-	0	-	-	-	-	-	-
-ttl_z0007	434	-	0	-	-	-	-	-	-
-ttl_z0008	358	-	0	-	-	-	-	-	-
-ttl_z0009	436	-	0	-	-	-	0x002F: Opens the location map's exits between Garamsythe Waterway and Royal Palace	-	-
+ttl_z0000	215	glf_a01 常駐ディレクター.main; mfr_a01 EventDirector.main; mfr_a03 EventDirector.main; mrm_a01 EventDirector.main; mrm_b01 EventDirector.main; ozm_a01 常駐ディレクター.main; ozm_a02 常駐ディレクター.main; pbc_a01 常駐ディレクター.main; pbc_b02 常駐ディレクター.main	0	Plays a region's location title over the field: the director picks the region's location effect by the field that loaded it (event_global_flag[0]: effects 36, 24, 11, 13, 39, 10, 12, 20, 14, 15) and plays it.	-	-	-	-	-
+ttl_z0001	216	enw_a03 EventDirector.main; enw_a05 EventDirector.main; grm_a01 常駐監督.main; sav_c01 常駐監督.main; sav_c03 常駐監督.main; wdl_a01 常駐監督.main; wdl_a03 常駐監督.main; ztc_a01 常駐ディレクター.main; ztc_b02 常駐ディレクター.main; ztc_c01 常駐ディレクター.main; ztc_c03 常駐ディレクター.main; ztc_c04 常駐ディレクター.main	0	Plays a region's location title over the field: the director picks the region's location effect by the field that loaded it (event_global_flag[0]: effects 41, 1, 3, 2, 5, 27, 28, 29, 35, 26, 8, 4, 9) and plays it.	-	-	-	-	-
+ttl_z0002	217	bds_c02 監督.main; bog_a01 監督.main; bog_b06 監督.main; frs_a01 DIRECTOR.main; mnt_a01 常駐ディレクター.main; mnt_a02 常駐ディレクター.main; pla_b02 監督.main; rwf_b02 常駐ディレクター.init; srb_a01 監督.main; srb_b02 監督.main; var_a01 EventDirector.main; var_a04 EventDirector.main	0	Plays a region's location title over the field: the director picks the region's location effect by the field that loaded it (event_global_flag[0]: effects 16, 18, 7, 30, 31, 21, 22, 33, 37, 38, 40, 46, 19, 42, 43, 45, 23, 34) and plays it.	-	-	-	-	-
+ttl_z0003	430	dst_a01 常駐監督.main	0	Plays the location title in The Stepping (Dalmasca Estersand): the director reads location effect 27 and plays it over the field.	-	-	-	-	-
+ttl_z0004	431	sav_a01 常駐監督.main	0	Plays the location title in Throne Road (Giza Plains): the director reads location effect 29 and plays it over the field.	-	-	-	-	-
+ttl_z0005	432	gol_a01 EventDirector.main	0	Plays the location title in Paths of Chained Light (Golmore Jungle): the director reads location effect 11 and plays it over the field.	-	-	-	-	-
+ttl_z0006	433	hne_a01 常駐監督.main	0	Plays the location title in North Entrance (Henne Mines): the director reads location effect 24 and plays it over the field.	-	-	-	-	-
+ttl_z0007	434	-	0	Plays the location title of Phon Coast: the director reads location effect 37 and plays it over the field.	-	-	-	-	-
+ttl_z0008	358	rbl_a01 常駐ディレクター.main; rbl_a03 常駐ディレクター.main; rbl_g01 常駐ディレクター.main; rbl_n01 常駐ディレクター.main	0	Plays a region's location title over the field: the director picks the region's location effect by the field that loaded it (event_global_flag[0]: effects 19, 42, 43, 45) and plays it.	-	-	-	-	-
+ttl_z0009	436	rrp_a01 常駐ディレクター.main	0	Plays the location title in Cellar Stores (Royal Palace): the director reads location effect 2 and plays it over the field, then sets map-jump group flag 0x002F.	-	-	0x002F: Opens the location map's exits between Garamsythe Waterway and Royal Palace	-	-

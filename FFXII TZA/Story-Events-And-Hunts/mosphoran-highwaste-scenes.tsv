@@ -1,3 +1,3 @@
 scene	event_id	loaded_by	lines	synopsis	items	party	flags_set	counter_set	next
-mnt_c0100	130	mnt_c01 監督.main	0	-	-	-	-	-	mnt_c0101, event 131
-mnt_c0101	131	mnt_c01 監督.main	1	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	mnt_c0100, event 130; pos_z0000, event 427
+mnt_c0100	130	mnt_c01 監督.main	0	Exodus appears in Empyrean Seat and the Esper fight begins to Esper Battle (track 71).	-	-	-	-	mnt_c0101, event 131
+mnt_c0101	131	mnt_c01 監督.main	1	Exodus falls in Empyrean Seat and the party gains the Esper Exodus.	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	mnt_c0100, event 130; pos_z0000, event 427

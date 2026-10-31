@@ -2,21 +2,22 @@
 title: "Tutorial and staff roll scenes: the gambit, license board and map tutorials and the staff roll"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00"
+addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348DF0, 0x00264D60, 0x00354D00, 0x003C9FD0, 0x0032FC30, 0x003CA140"
 ---
 
 ## What it lists
 
 The table [tutorials-scenes.tsv](tutorials-scenes.tsv) has one row per scene script of the group `men` under
-`plan_master/us/event`. No zone script shares their file-name prefix, so their `loaded_by` and `next` columns are `-`.
-Every `eventread` and `eventread_e8` call of the zone and scene scripts names its event id as a number; of the four
-ids, only 429 (`men_z0005`) is named, in field 13 (`ttl_b01`), and the table below gives that field.
+`plan_master/us/event`. No zone script shares their file-name prefix, so their `next` column is `-`. Every
+`eventread` and `eventread_e8` call of the zone and scene scripts names its event id as a number; of the four ids,
+only 429 (`men_z0005`) is named, in field 13 (`ttl_b01`). The menu scene step `0x003C9FD0` requests the other three
+through `0x0032FC30` (`0x003CA07C`) after `0x003CA140` sets their event.
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
-| `men_z0001` | `437` | - | 11 | - |
-| `men_z0002` | `438` | - | 14 | - |
-| `men_z0003` | `439` | - | 1 | - |
+| `men_z0001` | `437` | the menu scene step `0x003C9FD0` (menu mode `0x40`) | 11 | - |
+| `men_z0002` | `438` | the menu scene step `0x003C9FD0` (menu mode `0x41`) | 14 | - |
+| `men_z0003` | `439` | the menu scene step `0x003C9FD0` (menu mode `0x42`) | 1 | - |
 | `men_z0005` | `429` | field 13 (`ttl_b01`) | 0 | - |
 
 What opens the three menu scenes: script verb `openfullscreenmenu_48d` with selector 6 opens menu id 22, and
@@ -86,9 +87,9 @@ button or the OK button. It fades layer 0 out over 60 frames, waits on it, waits
 |---|---|
 | `scene` | the scene script, by its file name |
 | `event_id` | the event id that loads it |
-| `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
+| `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event, or the exe step that requests the scene through `0x0032FC30` |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
-| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)` |
+| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)`; a scene with no non-empty entry: one sentence of what its script does |
 | `items` | items the scene's own functions give or take, by name; a fixed count is written `xN`, and a count the game computes reads `, as many as <expression> gives` |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |

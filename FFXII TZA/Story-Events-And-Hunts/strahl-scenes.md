@@ -9,8 +9,8 @@ addresses: "0x003529E0, 0x00351880, 0x0032FCA0"
 
 The table [strahl-scenes.tsv](strahl-scenes.tsv) has one row for the scene script `str_z0000` under
 `plan_master/us/event`, and the script list [strahl-script-list.tsv](strahl-script-list.tsv) one row with its size.
-No zone script shares its file-name prefix, so its `loaded_by` and `next` columns are `-`; the zone scripts that load it
-belong to other areas.
+No zone script shares its file-name prefix, so its `next` column is `-`; the zone scripts that load it belong to other
+areas, and `loaded_by` names each.
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
@@ -83,7 +83,7 @@ shows the party again and disposes of event manager slot 0.
 |---|---|
 | `scene` | the scene script, by its file name |
 | `event_id` | the event id that loads it |
-| `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
+| `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
 | `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)` |
 | `items` | items the scene's own functions give or take, by name |

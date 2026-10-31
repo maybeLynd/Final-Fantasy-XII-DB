@@ -10,7 +10,8 @@ addresses: "0x003529E0, 0x00351880, 0x0032FCA0"
 The table [aerodrome-airship-scenes.tsv](aerodrome-airship-scenes.tsv) has one row for the scene script `pas_z0000`
 under `plan_master/us/event`, and the script list
 [aerodrome-airship-script-list.tsv](aerodrome-airship-script-list.tsv) one row with its size. No zone script shares
-its file-name prefix, so its `loaded_by` and `next` columns are `-`; the zone scripts that load it are the aerodromes.
+its file-name prefix, so its `next` column is `-`; the zone scripts that load it are the aerodromes, and `loaded_by`
+names each.
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
@@ -78,9 +79,9 @@ the screen out at once. It then shows the free targets again and ends the event.
 |---|---|
 | `scene` | the scene script, by its file name |
 | `event_id` | the event id that loads it |
-| `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
+| `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
-| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)` |
+| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; a choice list is written as `(choices: ...)`; an entry the `us` tree ships in Japanese: an English sentence, then `Authored text (<its English>): ` and the entry |
 | `items` | items the scene's own functions give or take, by name |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |

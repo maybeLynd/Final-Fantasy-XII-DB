@@ -34,6 +34,9 @@ A scene's synopsis is its own text: every non-empty string of its section 2, in 
 it. The scene's message verbs pass these entries to `mes` (`0x00348DF0`), which reads them from the scene's section 2
 through `0x00264D60` ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)).
 
+An entry that the `us` tree ships in Japanese gets an English sentence
+first; the entry follows after `Authored text`, with its English in brackets.
+
 ### What follows a scene
 
 The loading function is read on from the scene's load call. Story counter writes and flag sets up to the next scene
@@ -48,7 +51,7 @@ made by the scene script itself comes first.
 | `event_id` | the event id that loads it |
 | `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event |
 | `lines` | the number of entries in the scene's section 2, empty strings included |
-| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / ` |
+| `synopsis` | the `us` text of every non-empty entry, in entry order, separated by ` / `; an entry the `us` tree ships in Japanese: an English sentence, then `Authored text (<its English>): ` and the entry |
 | `items` | items the scene's own functions give or take, by name; a fixed count is written `xN`, and a count the game computes reads `, as many as <expression> gives` |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene or by its loading function after the load, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |

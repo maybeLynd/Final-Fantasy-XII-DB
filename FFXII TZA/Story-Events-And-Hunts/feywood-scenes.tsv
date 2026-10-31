@@ -1,5 +1,5 @@
 scene	event_id	loaded_by	lines	synopsis	items	party	flags_set	counter_set	next
-mfr_a0400	353	mfr_a04 SAKIYOMI_mfr_a0400.init; mfr_a04 SAKIYOMI_mfr_a0400.sakiyomi_init	0	-	-	-	-	-	-
-mfr_b0100	350	mfr_b01 EventDirector.main	0	-	-	-	-	-	mfr_b0101, event 351
-mfr_b0101	351	mfr_b01 EventDirector.main	0	-	-	-	-	-	mfr_b0100, event 350; pos_z0000, event 427
-mfr_c0300	352	mfr_c03 SAKIYOMI_mfr_c0300.init; mfr_c03 SAKIYOMI_mfr_c0300.sakiyomi_init	0	-	-	-	-	-	-
+mfr_a0400	353	mfr_a04 SAKIYOMI_mfr_a0400.init; mfr_a04 SAKIYOMI_mfr_a0400.sakiyomi_init	0	At Antiquity's End Rasler appears to the party, Ashe, Vaan, Penelo, Fran, Basch and Balthier (Balflear), over nine cuts after the screen fades.	-	-	-	-	-
+mfr_b0100	350	mfr_b01 EventDirector.main	0	Rafflesia appears in Redolent Glade and the fight begins to Clash of Swords (track 206).	-	-	-	-	mfr_b0101, event 351
+mfr_b0101	351	mfr_b01 EventDirector.main	0	Rafflesia falls in Redolent Glade and the remaining foes are removed.	-	-	-	-	mfr_b0100, event 350; pos_z0000, event 427
+mfr_c0300	352	mfr_c03 SAKIYOMI_mfr_c0300.init; mfr_c03 SAKIYOMI_mfr_c0300.sakiyomi_init	0	At The Edge of Reason Belias (actor Velius; the zone script plays the scene from イベント管理.ベリアス開門_再生, 'Belias opens the gate') appears with its weapon and the Gigas gate opens over six cuts, while the leader watches and the music fades out.	-	-	-	-	-

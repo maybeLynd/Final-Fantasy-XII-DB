@@ -8,8 +8,8 @@ addresses: "0x003529E0, 0x00351880, 0x0032FCA0, 0x00345080"
 ## What it lists
 
 The table [victory-pose-scenes.tsv](victory-pose-scenes.tsv) has one row for the scene script `pos_z0000` under
-`plan_master/us/event`. No zone script shares its file-name prefix, so its `loaded_by` and `next` columns are `-`; the
-zone scripts that load it belong to other areas.
+`plan_master/us/event`. No zone script shares its file-name prefix, so its `next` column is `-`; the
+zone scripts that load it belong to other areas, and `loaded_by` names each.
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
@@ -40,9 +40,9 @@ zone scripts that load it belong to other areas.
 |---|---|
 | `scene` | the scene script, by its file name |
 | `event_id` | the event id that loads it |
-| `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
+| `loaded_by` | the zone script, actor and function whose `eventread` or `eventread_e8` call names the event |
 | `lines` | the number of entries in the scene's section 2 |
-| `synopsis` | the `us` text of every non-empty entry; `-` here |
+| `synopsis` | the `us` text of every non-empty entry; a scene with no non-empty entry: one sentence of what its script does |
 | `items` | items the scene's own functions give or take, as `receives` and the item's name |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |

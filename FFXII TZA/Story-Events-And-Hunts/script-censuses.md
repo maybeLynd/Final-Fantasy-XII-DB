@@ -147,6 +147,48 @@ Two examples. The aerodrome desks of `alc_e01`, `byu_b01`, `nac_b01`, `rbn_b01` 
 The Draklor north elevator (`dor_a01` `北ＥＶ実処理`) reads its floor from `file_var_s6_1`. Below counter `0x0D48`
 floor 67 is `dor_a12` (1019); from `0x0D48` it is `dor_d01` (1054). Floors 66, 68 and 69 split the same way.
 
+#### Destinations the call computes
+
+Four kinds of exit name no field in the call; `destination_map` gives the maps they reach:
+
+- **Draklor room doors.** The door (`扉`, door) of a Draklor Laboratory room jumps to `lastmap()`, the area the party
+  came from (verb `0x92`: `0x00314870` reads payload `+0x104C`, which the zone change sets to the old area). 399 rows in
+  21 rooms name the corridor whose door jumps into the room: `dor_c01` (66th Floor), `dor_c12` (70th Floor),
+  `dor_d01` (67th Floor) or `dor_e01` (68th Floor), each door taking the Lab Access Card.
+- **The World Map picker.** The aerodrome desks of `alc_e01`, `byu_b01`, `nac_b01`, `rbn_b01` and `var_b01` and the
+  Strahl flights (`ym_shutoraljump.shtjump`, 13 zones) jump to the value `openfullscreenmenu_48d(0x8000, 0)` returns.
+  Selector 0 opens the World Map as a destination picker (menu id 17), which hands back the chosen area's destination
+  value (`0x003C0250`, stored by `0x002901D0` at `[0x0209BE80] + 0x10FAC`).
+- **Trial Mode.** The last map of a stage set (`tri_a05` to `tri_s05`) jumps from its director (`トライアル監督`, the
+  Trial Mode director) to `nowmap() + 1`, then `+ 3` in its own field (`main` lines 1818-1901): the first map of the
+  next set, `tri_b01` (stage 6) to `tri_t01` (stage 96).
+- **Hell's Challenge.** `dgl_n01` jumps back to the map in `g_iw_陰陽師終了後ジャンプ先` (the Shadowseer fight's return
+  map), which the dais (`ele.talk`) of The Wellspring (`rbl_a01`) and of Penumbra, Umbra and Abyssal - Interior
+  (`rbl_g01`, `rbl_h01`, `rbl_i01`) set to its own map.
+
+The picker's 18 values are the destination table of `menumap_world.bin` (`us`: the count 18 at `0x7AC`, four-byte
+entries from `0x7B0` to `0x7F7`): 788 Rabanastre, 800 Nalbina, 231 Dalmasca Estersand, 350 Dalmasca Westersand, 248
+Giza Plains, 1151 Mosphoran Highwaste, 794 Archades, 483 Phon Coast, 142 Tchita Uplands, 533 Ozmone Plain, 791
+Bhujerba, 386 Ogir-Yensa Sandsea, 394 Nam-Yensa Sandsea, 473 Paramina Rift, 500 Cerobi Steppe, 797 Balfonheim Port,
+509 Ridorana Cataract and 924 the Bahamut.
+
+Every one of the 18 scripts has a `switch` on the returned value that sets the entrance in the same order, and sends
+248 to field 265 (`sav_f02`) while the Giza Plains season `mp_sav季節` is 0, the Rains
+([Weather](../World-Areas-And-Travel/weather.md)).
+
+#### Readable conditions
+
+`condition_text` reads each zone row's condition in game terms. The story counter (`シナリオフラグ`) gets the stage of
+that value from [Story counter values](story-counter-values.md), or of the last value written below it. `regI3`, set by
+`sysucoff()` in the exit's own function, is the exit lock. `nowmap()` names the map and `nowjumpindex()` the arrival
+entrance.
+
+The script globals with a game meaning on a page or in their store lines are named with the developer name in brackets
+once: the airship route code (`global_flag[2]`), the Giza Plains season (`mp_sav季節`), the Pharos offering flags
+(`mp_rbl_flg6`), the Firemane battle state (`g_btl_ブッシュファイア`) and others. Any other variable is named by what
+its store lines put there, with the function and line: a question's answer, the gate-crystal destination chosen in
+the teleport menu, a value set at given lines.
+
 ### Verbs that steer battle AI
 
 32 verbs were taken from the verb table and the verb pages, and 32,071 calls in 915 scripts were counted. 29 verbs
@@ -227,8 +269,9 @@ table). `line` is the listing line of the write or call.
 | `actor`, `function`, `exit_kind` | The exit and its kind (walking exit, door, elevator, warp, gate crystal teleport, Strahl flight, mine cart, trial mode, talk, debug menu, script function) |
 | `line`, `verb`, `verb_id`, `arguments` | The `mapjump` call |
 | `condition` | The conditions of the call and of the stores that give its arguments, joined by `and` |
+| `condition_text` | The same conditions in game terms, one clause per test, joined by `;` (`-` on the developer rows) |
 | `tests` | What the condition tests: story counter, file variable, global flag, party state, arrival or map, item or flag, exit lock, choice or local value, value stored by another map, other |
-| `destination_field`, `destination_map` | The field id and its map |
+| `destination_field`, `destination_map` | The field id, or the expression the call passes, and the map or maps it reaches: for `lastmap()` the corridor that jumps into the room, for the World Map picker the 18 destinations with their entrances, for Trial Mode and `dgl_n01` the map the computed or stored value gives |
 | `entrance`, `mode` | The entrance and mode; `one of ...` when the stores do not pair them |
 | `resolved_from` | `literal`, or the store lines that give the field or entrance |
 | `reach` | `reached` or `unreachable` |

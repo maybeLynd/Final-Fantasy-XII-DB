@@ -2,7 +2,7 @@
 title: "Special move scenes: the scene script, its actors and what it shows"
 kind: "reference"
 category: "Story, events and hunts"
-addresses: "0x0032FCA0"
+addresses: "0x0032FCA0, 0x00306BD0, 0x0032FC30, 0x00309230"
 ---
 
 ## What it lists
@@ -13,7 +13,7 @@ with its size. It is the only script whose name begins `spc_`.
 
 | Scene | Event | Loaded in | Lines | What follows |
 |---|---:|---|---:|---|
-| `spc_z0000` | `210` | no zone script names event 210 | 0 | - |
+| `spc_z0000` | `210` | the battle scene step `0x00306BD0`, for every Quickening and Concurrence | 0 | - |
 
 | Script | Kind | Scene | Actors | Functions | Rows in a scripts table |
 |---|---|---|---:|---:|---:|
@@ -23,7 +23,9 @@ with its size. It is the only script whose name begins `spc_`.
 
 - Event 210 names the scene script at index `4n` of the event file table, which `0x0032FCA0` loads for scene managers
   1 to 3 ([event scenes](../Scripts-And-Script-Commands/event-scenes.md)).
-- No zone script loads event 210 by a literal id, so the table has no loading function.
+- No zone script loads event 210 by a literal id. The battle scene step `0x00306BD0` requests it on scene manager 3
+  through `0x0032FC30` (`0x00306C56`) for every Quickening (actions 208 to 225) and Concurrence (actions 226 to 241),
+  whose effect id is 210 (`0x00309230`); the `loaded_by` cell gives it.
 - The scene's five actors are `監督`, `技読み込み`, `メッセージ監督`, `target00` and `PC00`, whose functions
   include `技読み込み` and `必殺技設定`.
 - Its section 2 has no entries, and no function shows a line, gives an item, writes a flag or the story counter, or
@@ -71,9 +73,9 @@ at once and starts scene cut 0.
 |---|---|
 | `scene` | the scene script, by its file name |
 | `event_id` | the event id that loads it |
-| `loaded_by` | the zone script with the same file-name prefix whose load call names the event; `-` here |
+| `loaded_by` | the exe step that requests the scene: the battle scene step `0x00306BD0` and the actions whose effect id is the event |
 | `lines` | the number of entries in the scene's section 2 |
-| `synopsis` | the `us` text of every non-empty entry; `-` here |
+| `synopsis` | the `us` text of every non-empty entry; a scene with no non-empty entry: one sentence of what its script does |
 | `items` | items the scene's own functions give or take, by name |
 | `party` | members who join and the fighting party the scene sets |
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |

@@ -70,6 +70,8 @@ raise, for every entry but the two of step 2 ([Clan Primer](../Menus-And-HUD/cla
    ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)).
 2. `0x00315820` keeps the count plus one in the save byte `+0x3404` + that number (`0x0031588E`), for a number below
    `0x200` for which `0x00315D50` returns -1.
+   - The count stops at 254: `0x00315820` adds one to it, holds the sum at `0xFE` (`cmova` at `0x00315884`) and stores
+     the sum plus one (`0x0031588E`), so a defeat past 254 leaves the count at 254.
    - It returns another value for two numbers of its `menuhandbook.bin` list, which `0x01EED130` pairs with a
      quest: entry 251, Gilgamesh, with 167, and entry 259, Shadowseer, with 170.
    - A defeat leaves those two counts unchanged, so the 11 Gilgamesh and 3 Shadowseer definitions name an entry

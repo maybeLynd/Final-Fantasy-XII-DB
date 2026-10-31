@@ -78,7 +78,7 @@ The readers of `+0x04`:
 | 3, 88-90 | `0x00387FD0`, `0x00389370` | added to the shield-block chance ([Damage formula](damage-formula.md)) |
 | 119-121 | `0x0038DD20` | added to 100 percent of the heal it computes (`0x02AEE054` × `0x02AEE058`), for each of the user's bits 119-121 set in the bitset at its third argument's `+0x1A` (`0x0038DD3A`-`0x0038DE0B`) |
 | 122-124 | `0x0038DF00` | the same, for bits 122-124, into `0x02AEE010` (`0x0038DF1A`-`0x0038DFEB`) |
-| 125-127 | `0x0038E2D0` | added to the action's power `+0x10` for bits 125-127, the percent of the target's max HP it restores, capped at 100 (`0x0038E335`-`0x0038E3F6`) |
+| 125-127 | `0x0038E2D0` | added to the action's power `+0x10` for bits 125-127 (`0x0038E335`-`0x0038E3F6`), the percent of the target's max HP it restores; the sum is doubled when the user also has augment 14, Item Boost (`+0x1B` bit `0x40` of the bitset at its third argument's `+0x1A`, `0x0038E40C`-`0x0038E412`), then capped at 100 (`0x0038E414`-`0x0038E421`) |
 | 55-57 | `0x00387020` | the default timer, value × 30 × the frame base `0x01DFE0B4`, which `0x0030EA40` and `0x0038FF20` store in the slot `+0x06` names |
 
 ### The functions that read the table
