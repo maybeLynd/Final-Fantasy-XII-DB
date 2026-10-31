@@ -1,0 +1,130 @@
+area	row	name	family	placements	model	same_name_entry
+nal_a	0	No name	Titantoise	1	n1020	-
+nal_a	1	No name	Titantoise	1	n1020	-
+nal_a	2	No name	Titantoise	1	n1020	-
+nal_a	3	No name	Titantoise	1	n1014	-
+nal_a	4	No name	Titantoise	1	n1014	-
+nal_b	0	No name	Seeq	1	n1022	-
+nal_b	1	No name	Seeq	1	n1022	-
+nal_b	2	No name	Seeq	1	n1022	-
+frs_a	6	Krjn	Viera	1	n1203	-
+sav_b	0	No name	Titantoise	1	m1180	-
+sav_b	1	No name	Titantoise	1	m1180	-
+sav_b	2	No name	Titantoise	1	m1180	-
+sav_b	3	No name	Titantoise	1	m1180	-
+sav_b	4	No name	Titantoise	1	m1180	-
+naf_a	0	Basch	Dalmascan Army	1	c1030	-
+naf_a	1	Dalmascan Soldier	Dalmascan Army	1	n1056	-
+naf_a	2	Basch	Dalmascan Army	1	c1030	-
+naf_a	3	Dalmascan Soldier	Dalmascan Army	1	n1208	-
+naf_a	4	Dalmascan Soldier	Dalmascan Army	1	n1208	-
+naf_a	5	Dalmascan Soldier	Dalmascan Army	1	n1208	-
+naf_b	0	Basch	Dalmascan Army	2	c1030	-
+naf_b	1	Dalmascan Soldier	Dalmascan Army	2	n1208	-
+naf_b	2	Dalmascan Soldier	Dalmascan Army	2	n1208	-
+naf_b	3	Dalmascan Soldier	Dalmascan Army	2	n1208	-
+naf_b	10	Imperial Magus	Imperial Army	1	n1207	-
+dor_b	1	Rook	Rook	4	m1172	-
+dor_b	2	Rook	Rook	8	m1172	-
+rbn_a	0	Bangaa	Bangaa	1	n1053	entry 376 of the same name, whose monsters list names other definitions
+rbn_a	1	Seeq	Seeq	1	n1054	entry 372 of the same name, whose monsters list names other definitions
+rbn_a	2	No name	Titantoise	1	n1033	-
+rbn_a	3	Bangaa	Bangaa	1	n1053	entry 376 of the same name, whose monsters list names other definitions
+rbn_a	4	No name	Titantoise	1	n1034	-
+rbn_a	5	Seeq	Seeq	1	n1054	entry 372 of the same name, whose monsters list names other definitions
+rbn_a	6	No name	Titantoise	1	n1033	-
+rbn_a	7	Seeq	Seeq	1	n1054	entry 372 of the same name, whose monsters list names other definitions
+rbn_a	8	No name	Titantoise	1	n1033	-
+rbn_a	9	Bangaa	Bangaa	1	n1053	entry 376 of the same name, whose monsters list names other definitions
+rbn_a	10	No name	Titantoise	1	n1034	-
+rbn_a	11	Seeq	Seeq	1	n1054	entry 372 of the same name, whose monsters list names other definitions
+rbn_a	12	No name	Titantoise	1	n1033	-
+rbn_a	13	Seeq	Seeq	1	n1054	entry 372 of the same name, whose monsters list names other definitions
+grm_b	10	Amalia	Dalmascan Army	1	c1021	-
+srb_b	11	No name	Viera	1	n1057	-
+rsn_a	1	Imperial Swordsman	Imperial Army	1	n1018	-
+rsn_a	2	Imperial Swordsman	Imperial Army	2	n1018	-
+rsn_b	9	Imperial Magus	Imperial Army	8	n1019	-
+rsn_b	10	Imperial Magus	Imperial Army	1	n1019	-
+rsn_b	11	Imperial Hoplite	Imperial Army	3	n1143	-
+rsn_b	12	Imperial Hoplite	Imperial Army	2	n1143	-
+rsn_b	13	Imperial Hoplite	Imperial Army	1	n1143	-
+rsn_b	14	Imperial Hoplite	Imperial Army	1	n1143	-
+rsn_b	15	Imperial Hoplite	Imperial Army	2	n1143	-
+rsn_b	16	Imperial Hoplite	Imperial Army	1	n1143	-
+rsn_b	17	Mastiff	Wolf	1	m1173	-
+rsn_b	18	Mastiff	Wolf	1	m1173	-
+rsn_b	19	Imperial Gunner	Imperial Army	3	n1194	-
+rsn_b	20	Imperial Gunner	Imperial Army	3	n1194	-
+rsn_b	21	Imperial Swordsman	Imperial Army	1	n1018	-
+rsn_c	3	Imperial Magus	Imperial Army	4	n1019	-
+rsn_c	4	Imperial Magus	Imperial Army	1	n1019	-
+rsn_c	5	Imperial Gunner	Imperial Army	1	n1194	-
+rsn_c	6	Imperial Gunner	Imperial Army	1	n1194	-
+rsn_c	7	Imperial Gunner	Imperial Army	1	n1194	-
+rsn_c	8	Imperial Gunner	Imperial Army	1	n1194	-
+rsn_c	9	Imperial Hoplite	Imperial Army	4	n1143	-
+rsn_c	10	Imperial Hoplite	Imperial Army	1	n1143	-
+rsn_c	11	Imperial Hoplite	Imperial Army	1	n1143	-
+rsn_c	12	Mastiff	Wolf	1	m1173	-
+rsn_d	5	Imperial Magus	Imperial Army	1	n1019	-
+nal_c	0	Imperial Hoplite	Imperial Army	1	n1143	-
+nal_c	1	Imperial Hoplite	Imperial Army	1	n1143	-
+nal_c	2	Imperial Hoplite	Imperial Army	1	n1143	-
+nal_c	3	Imperial Marksman	Imperial Army	1	n1018	-
+nal_c	4	Imperial Marksman	Imperial Army	1	n1018	-
+nal_c	5	Imperial Marksman	Imperial Army	1	n1018	-
+nal_c	6	Imperial Marksman	Imperial Army	1	n1018	-
+nal_c	11	Imperial Magus	Imperial Army	2	n1019	-
+nal_c	12	Imperial Magus	Imperial Army	2	n1019	-
+nal_c	13	Imperial Magus	Imperial Army	2	n1019	-
+nal_c	14	Imperial Pilot	Imperial Army	2	n1133	-
+bhm_a	0	Mastiff	Wolf	6	m1175	-
+bhm_a	1	Imperial Gunner	Imperial Army	15	n1194	-
+bhm_a	3	Imperial Pilot	Imperial Army	9	n1133	-
+bhm_a	4	Imperial Beastmaster	Imperial Army	6	n1149	-
+bhm_a	6	Helm-Rook	Rook	3	m1203	-
+bhm_a	7	Spinner-Rook	Rook	3	m1204	-
+bhm_a	8	Sphere-Rook	Rook	2	m1205	-
+bhm_c	0	Vayne	Imperial Army	1	n1061	-
+bhm_c	1	Vayne	Imperial Army	1	n1061	-
+bhm_c	2	Larsa	Imperial Army	1	c1026	-
+bhm_c	3	Vayne Novus	???	1	n1159	-
+bhm_c	4	Vayne Novus	???	1	n1159	-
+bhm_c	5	Sephira	???	1	m1143	-
+bhm_c	6	Sephira	???	1	m1143	-
+bhm_c	7	Sephira	???	1	m1143	-
+bhm_c	8	Sephira	???	1	m1143	-
+bhm_c	9	Sephira	???	1	m1143	-
+bhm_d	0	The Undying	???	1	m1208	-
+rsn_z	0	Vossler	Dalmascan Army	1	c1024	-
+rsn_z	1	Imperial Swordsman	Imperial Army	1	n1018	-
+rsn_z	2	Imperial Swordsman	Imperial Army	2	n1018	-
+lus_g	3	Bwagi	Bangaa	4	n1209	-
+lus_g	4	Gijuk	Bangaa	4	n1209	-
+lus_g	5	Rinok	Bangaa	4	n1209	-
+gil_i	9	Omega Mark XII	Guardian	1	m1280	entry 291 of the same name, whose monsters list names other definitions
+dor_c	0	Mastiff	Wolf	7	m1174	-
+dor_c	3	Imperial Pilot	Imperial Army	4	n1133	-
+dor_c	4	Imperial Hoplite	Imperial Army	4	n1143	-
+dor_d	0	Imperial Hoplite	Imperial Army	4	n1143	-
+dor_e	4	Imperial Pilot	Imperial Army	4	n1133	-
+dor_e	5	Imperial Hoplite	Imperial Army	5	n1143	-
+enw_c	1	Bwagi	Bangaa	1	n1209	-
+enw_c	2	Gijuk	Bangaa	1	n1209	-
+enw_c	3	Rinok	Bangaa	1	n1209	-
+tri_b	5	Imperial Magus	Imperial Army	1	n1019	-
+tri_l	2	Helm-Rook	Rook	2	m1203	-
+tri_l	3	Spinner-Rook	Rook	2	m1204	-
+tri_l	4	Sphere-Rook	Rook	2	m1205	-
+tri_l	11	Bwagi	Bangaa	1	n1209	-
+tri_l	12	Gijuk	Bangaa	1	n1209	-
+tri_l	13	Rinok	Bangaa	1	n1209	-
+tri_n	15	Krjn	Viera	1	n1203	-
+tri_o	0	Krjn	Viera	1	n1203	-
+tri_o	1	Viera Huntress	Viera	5	n1057	-
+tri_r	0	Pirate	Pirate	6	n1079	-
+tri_r	1	Elza	Pirate	1	n1081	-
+tri_r	2	Rikken	Pirate	1	n1080	-
+tri_t	8	Judge Zargabaath	Judge	1	n1146	-
+tri_t	9	Judge Drace	Judge	1	n1147	-

@@ -344,6 +344,43 @@ effect preset rows (`+4 + slot * 8` and the three at `+6 + slot * 8`) of each 0x
 effect table (`0xA0` bytes, type 3 or others at `+0`) is created only when its byte `+7 + slot` is
 non-zero, so each row carries three per-slot enable bytes at `+8`, `+9` and `+0xA`.
 
+[`weather-slot-effects.tsv`](weather-slot-effects.tsv) follows those rows for every map and slot of
+[`weather-maps.tsv`](weather-maps.tsv). For each it gives:
+
+- the banks the field loads (`fields_own` and `fields_block` of
+  [effect files](../Graphics/effect-files-efx-efb.md));
+- the rows of channels 0 and 31 that the slot makes, and how many of them some other slot does not make;
+- the element types their records play, as `0x002FBA60` names them;
+- the pictures those elements draw, and the screen surfaces they sample;
+- the slot's chance from `weather_probability`. A slot whose chance is 0 is never selected by the roll.
+
+The chain from a row to its pictures is on
+[effect element runtime](../Graphics/effect-element-runtime.md).
+[`weather-class-effects.tsv`](weather-class-effects.tsv) counts the slot-limited rows per combat class and wind class,
+over all slots and over the slots a map can select:
+
+- Combat class 0 (fire x0.5, lightning x1.2): 82 of its 90 slots play `NhElementType_VRAIN2`, 67 of the 75 a map can
+  select. It is drawn as untextured lines, 48, 100, 200 or 300 drops an element. The other 8 slots belong to fields
+  that load no bank. 11 slots (10 selectable) also draw four thin white jagged branching vertical lines on black.
+- Combat class 1 (earth x1.2): all 11 play `TsElementType_VMODEL02` with a grey cloudy blotch (8 selectable).
+- Combat class 2 (ice x1.2): all 20 play `TsElementType_SPRITE` (9 selectable). 18 slots (9 selectable) draw
+  scattered white and grey specks and a grey-white cloudy blotch.
+- Combat class 3 (water x1.2): 253 of 352 slots play `TsElementType_VMODEL03` and `TsElementType_VMODEL04` with orange,
+  blue and black marbled swirls, 187 of the 199 a map can select. 88 slots make no zone-start element, 10 of them
+  selectable.
+- Combat class 4 (no rule): 266 of 1,651 slots have a slot-limited element, 197 of them `TsElementType_VLENSFLARE`.
+  Among the 666 a map can select, it is 177, with 142.
+- Wind class 2 (fire x1.2, water x0.5, wind x1.2): 131 of 203 slots have a slot-limited element, `TsElementType_SPRITE`
+  in 77 and `NhElementType_VRAIN2` in 65. Among the 149 a map can select, it is 99, with 58 and 58.
+- Wind classes 0 and 1 (no rule): 2 of 504 and 508 of 1,417 slots; 2 of 176 and 349 of 632 selectable.
+
+None of the 410 shipped banks names 90 of the 708 fields in `fields_own` or `fields_block`, so those fields' slots
+make no zone-start element.
+
+The models a slot draws are a separate test (`0x002F5616`, above). It was read on two maps only. Fading Vale (field
+463, pack `pbc0101`) has 772 model records, and Field of Fallen Wings (field 525, `ozm0101`) has 1,976. All but 5 on
+each are drawn in all three slots, and those 5 are sky instances (flag `0x10000000`).
+
 ### The verbs
 
 | id | name | handler | what it does |
@@ -478,6 +515,8 @@ The three files row by row, decoded with the layouts above:
 | [`weather-terrain-groups.tsv`](weather-terrain-groups.tsv) | 32 | the `+0x14` table, the terrain class per field group: 0 for 17 groups, 1 for one, 2 for two, 3 for three and 4 for nine |
 | [`weather-sky-instances.tsv`](weather-sky-instances.tsv) | 999 | one sky instance (flag `0x10000000`) of a map pack, over 195 packs: the scene drawn (five packs use another map's scene through `0x01EF9490`), the instance number, flag word and weather slots, the mesh instance and mesh, segments, indices and indexed vertices, `m_extraFlag`, material, effect variant, `TextureSampler` texture and the file it loads; 11 instances have no mesh instance in the scene |
 | [`weather-sky-textures.tsv`](weather-sky-textures.tsv) | 1,052 | one texture binding of a material that a sky instance draws or that binds a texture named `sky`: the scene, material, effect variant, parameter, texture, the file it loads, and how many sky and other instances draw the material |
+| [`weather-slot-effects.tsv`](weather-slot-effects.tsv) | 2,124 | one map of `weather-maps.tsv` and slot: the slot's chance, its environment index, combat and wind class, the effect banks the field loads, the rows of channels 0 and 31 the slot makes and how many other slots do not make, the element types they play with a count (and, for types without a picture, how they draw), the pictures drawn with a count, and the screen surfaces sampled |
+| [`weather-class-effects.tsv`](weather-class-effects.tsv) | 8 | one combat class (0 to 4) or wind class (0 to 2): its combat rule, its slots, how many make a zone-start element and a slot-limited one, and per element type and picture the number of slots whose slot-limited rows play or draw it; then for the slots a map can select (chance above 0), their count, how many make a zone-start element and a slot-limited one, and the element types of those |
 
 The zone scripts (`ps2data/plan_master/us/plan_map/<area>/<zone>/global/<zone>.ebp`, 769 files,
 the script section at `+0x80`, its `+0x64` section a count of 3 then three bytes) author 17

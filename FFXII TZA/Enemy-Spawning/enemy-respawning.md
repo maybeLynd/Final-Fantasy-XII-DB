@@ -341,6 +341,17 @@ Globals:
   `|| btlAtelGetRespawnCause() == -1`.
 - No shipped script calls `btlAtelSetMapJumoKeep`; the window is the native 300 seconds.
 - Of the 239 scripts that import the completed-group word, 236 park on it with `waitv`.
+- [`enemy-group-completions.tsv`](enemy-group-completions.tsv) gives the 248 groups that hold a placement: 563
+  placements in 235 scripts, read from the `btlAtelSetEventFlagGroup` call of each placement's `entryNN` function.
+  Group 1 holds 235 of them. Each row names the group's members, its mode, and what the script runs when the group is
+  wiped out:
+  - the steps after the `waitv` on the completed-group word, read in words: lines, story counter and game-wide words
+    set, items and reward packages given, scenes played, fields the party is moved to, battle verbs, music and the
+    functions it starts;
+  - for `mic_d01`, whose Zalera fight tests the word with `if`, the steps under that test: the gauge timer stops and
+    is hidden, and the party moves to field 894, Terminus No. 7 Adjunct.
+- Of the 248, 241 remove every foe in a group, 147 set a game-wide word, 145 play a scene, 134 give items or a
+  reward package, 127 move the party to another field, 42 set the story counter and 11 show a line.
 
 ## Operations
 

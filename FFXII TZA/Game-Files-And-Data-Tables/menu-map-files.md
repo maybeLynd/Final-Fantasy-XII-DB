@@ -413,6 +413,25 @@ What they show:
 - 45 of the 48 sub-location name ids resolve to an empty `us` string. `sav01_s01` reads `Giza Plains - The Dry`, and
   `slm01_s01` and `sav01_s02` read `Giza Plains - The Rains`.
 
+[`menu-map-files-marker-labels.tsv`](menu-map-files-marker-labels.tsv) gives the text of the 42 label ids on the 666
+marker rows of the lmap table, and [`menu-map-files-icon-numbers.tsv`](menu-map-files-icon-numbers.tsv) what the four
+icon kinds and the 26 icon numbers of the NAVIICN2 table show, with the atlas cell each one draws; its `us` counts are
+631 `us` rows, the 609 of the path-array files and the 22 of `menumap_sub26_e3.bin`. Both are resolved as the map
+draws them:
+
+- A marker whose label `+0x0C` is not -1 shows `0x002F9920(label)` (`0x003C25BD`, `0x003C2629`): group 6, `menu_mapname`.
+  The 42 ids are 60201 to 60244 without 60224 and 60225, rows 112 to 155, `To Lowtown` to `To the Subterra` in `us`,
+  with the same row ids in all nine languages.
+- The map draws every icon from `loca_8_c.tm2`, the atlas at `+0x08` of the page's resource record: `0x00400420` takes
+  cell 9 plus the low byte of the icon number from its `eXt` table (`0x0040047D`-`0x0040049C`). `0x004048E0` draws kinds 3
+  to 8 and `0x00403BC0` kind 9, which pulses every icon and passes over icon 14.
+- The legend pairs 14 icon numbers with the text ids `0x187F` to `0x188C` (`0x00916A10`, `0x002BA650`), rows 271 to 284
+  of `menu_mapname`. Those rows are empty in `us` and `it`, `DUMMY` in `es`, and named in `de` and `fr`. The legend's
+  icons, and the point list's icons below `0x13`, are cell 135 plus the icon number of `battle_4_c`: the same
+  pictures at 32 by 32.
+- Icon -1, on two kind 9 entries of `rbn01_s01`, selects cell 264, past the 56 cells of `loca_8_c`; the 8 bytes there
+  read as a cell 0 by 0.
+
 [`menu-map-files-gates.tsv`](menu-map-files-gates.tsv) gives what opens each of the 742 gate words of the `us` files:
 lmap zones, markers and links, NAVIICN2 icons, the cmap directory and guide schedule, gmap lines, and the World Map's
 area gates, extra gates and map key items. Each row names the reader that tests the word, with its instruction

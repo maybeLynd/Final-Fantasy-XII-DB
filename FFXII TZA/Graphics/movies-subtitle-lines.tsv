@@ -1,0 +1,298 @@
+movie_id	movie	order	after_frame	after_seconds	line	printed_by
+0	OPN	1	2269	75.71	In the name of the Father, and in the presence of these holy relics...	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 5
+0	OPN	2	2269	75.71	I hereby pronounce you man and wife from this time forth.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 9
+0	OPN	3	2269	75.71	May the blessings of the gods light your path for all eternity.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 13
+0	OPN	4	2269	75.71	Faram.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 18
+0	OPN	5	3356	111.98	If Archadia should launch an attack by both land and air, our kingdom will stand little—	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 24
+0	OPN	6	3662	122.19	Nabudis has fallen!	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 30
+0	OPN	7	3695	123.29	Impossible!	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 36
+0	OPN	8	3752	125.19	My father?	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 42
+0	OPN	9	3788	126.39	I know not. I am sorry.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 49
+0	OPN	10	3911	130.50	If Nabudis has indeed fallen...	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 55
+0	OPN	11	3911	130.50	it is only a matter of time before they reach the borders of Dalmasca.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 59
+0	OPN	12	3911	130.50	There is nothing to halt their advance.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 64
+0	OPN	13	4251	141.84	Secure Nalbina with all haste.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 71
+0	OPN	14	4322	144.21	I will go.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 77
+0	OPN	15	4396	146.68	And I will go at his side.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 83
+0	OPN	16	5524	184.32	Galtea stand watch over your life.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 89
+0	OPN	17	5674	189.32	That I be considered worthy.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 95
+0	OPN	18	7893	263.36	- Decurion! - Sir!	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 101
+0	OPN	19	8451	281.98	The fortress is lost! We must withdraw!	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 107
+0	OPN	20	8526	284.48	No! The paling still stands!	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 113
+0	OPN	21	8685	289.79	Shield beyond sight, ne'er failing light—	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 119
+0	OPN	22	9301	310.34	The paling's fallen!	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 126
+0	OPN	23	9301	310.34	Then it's over.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 130
+0	OPN	24	9392	313.38	For my father. For my father!	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 136
+0	OPN	25	9551	318.69	Lord Rasler!	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 142
+0	OPN	26	11376	379.58	Blessings of the Great Father descend...	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 148
+0	OPN	27	11376	379.58	and guide your body's return to the earth.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 152
+0	OPN	28	11661	389.09	Great Father guide your spirit's return...	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 158
+0	OPN	29	11661	389.09	to the Mother of All.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 162
+0	OPN	30	11661	389.09	There you shall find peace.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 166
+0	OPN	31	11906	397.26	Faram.	naf_a01, ムービーメッセージ::メッセージ監視EFIGS step 172
+10	ALX	1	1170	39.04	The Empire's debts grow legion.	mrm_a02, EventDirector::ザルガバース「いずれ」 step 2
+10	ALX	2	1572	52.45	There!	mrm_a02, EventDirector::フラン「見て」 step 2
+10	ALX	3	1625	54.22	Smoke?	mrm_a02, EventDirector::ヴァン「煙」 step 6
+10	ALX	4	1685	56.22	What could it mean?	mrm_a02, EventDirector::アーシェ「何」 step 6
+14	DRC	1	355	11.85	Where to?	dor_a0100, ムービー用セリフ::テキスト表示 step 10
+14	DRC	2	410	13.68	Come. This way.	dor_a0100, ムービー用セリフ::テキスト表示 step 23
+15	END	1	205	6.84	Well? Can we fly?	bhm_d0101, 日本語字幕::エンディング字幕 step 11
+15	END	2	250	8.34	- No fuel goes to the glossair engines. - Damn!	bhm_d0101, 日本語字幕::エンディング字幕 step 46
+15	END	3	330	11.01	Vaan, you're in charge. I'm checking the engine room.	bhm_d0101, 日本語字幕::エンディング字幕 step 114
+15	END	4	425	14.18	Fran, with me!	bhm_d0101, 日本語字幕::エンディング字幕 step 148
+15	END	5	567	18.92	Look! Bahamut's glossair rings are stopping!	bhm_d0101, 日本語字幕::エンディング字幕 step 182
+15	END	6	855	28.53	Vaan!	bhm_d0101, 日本語字幕::エンディング字幕 step 216
+15	END	7	875	29.20	As soon as the Strahl's rings move, you take off. Understood?	bhm_d0101, 日本語字幕::エンディング字幕 step 250
+15	END	8	990	33.03	You can fly her, Vaan. Just do it like I told you.	bhm_d0101, 日本語字幕::エンディング字幕 step 284
+15	END	9	1060	35.37	Don't worry.	bhm_d0101, 日本語字幕::エンディング字幕 step 318
+15	END	10	1099	36.67	Penelo, watch for interference from Bahamut's skystone.	bhm_d0101, 日本語字幕::エンディング字幕 step 352
+15	END	11	1190	39.71	The Strahl's a fickle girl. You keep her working for us.	bhm_d0101, 日本語字幕::エンディング字幕 step 386
+15	END	12	1290	43.04	I'll see what I can do.	bhm_d0101, 日本語字幕::エンディング字幕 step 421
+15	END	13	1485	49.55	Basch. Look after Larsa, will you?	bhm_d0101, 日本語字幕::エンディング字幕 step 489
+15	END	14	1637	54.62	If House Solidor should crumble, the Empire would fail, and civil war would take us all.	bhm_d0101, 日本語字幕::エンディング字幕 step 523
+15	END	15	1865	62.23	I understand.	bhm_d0101, 日本語字幕::エンディング字幕 step 557
+15	END	16	1960	65.40	Lord Larsa is our last hope.	bhm_d0101, 日本語字幕::エンディング字幕 step 591
+15	END	17	2270	75.74	Vaan, the power's back!	bhm_d0101, 日本語字幕::エンディング字幕 step 660
+15	END	18	2290	76.41	Vaan, the power's back!	bhm_d0101, 日本語字幕::エンディング字幕 step 626
+15	END	19	2360	78.75	We can go!	bhm_d0101, 日本語字幕::エンディング字幕 step 694
+15	END	20	2393	79.85	Right! Let's go!	bhm_d0101, 日本語字幕::エンディング字幕 step 728
+15	END	21	2483	82.85	Grab onto something!	bhm_d0101, 日本語字幕::エンディング字幕 step 762
+15	END	22	2715	90.59	Sir! It's the Strahl!	bhm_d0101, 日本語字幕::エンディング字幕 step 796
+15	END	23	2762	92.16	She's left Bahamut. She's moving away!	bhm_d0101, 日本語字幕::エンディング字幕 step 830
+15	END	24	2831	94.46	The Strahl! They made it!	bhm_d0101, 日本語字幕::エンディング字幕 step 864
+15	END	25	2915	97.26	At last. The Bahamut has fallen!	bhm_d0101, 日本語字幕::エンディング字幕 step 933
+15	END	26	2960	98.77	At last. The Bahamut has fallen!	bhm_d0101, 日本語字幕::エンディング字幕 step 899
+15	END	27	3020	100.77	The final test is upon us. The Judges shall rule us no more!	bhm_d0101, 日本語字幕::エンディング字幕 step 967
+15	END	28	3170	105.77	Main cannon on the Alexander!	bhm_d0101, 日本語字幕::エンディング字幕 step 1002
+15	END	29	3175	105.94	Main cannon on the Alexander!	bhm_d0101, 日本語字幕::エンディング字幕 step 1036
+15	END	30	3260	108.78	This is Judge Magister Gabranth.	bhm_d0101, 日本語字幕::エンディング字幕 step 1074
+15	END	31	3260	108.78	All quarters cease fire!	bhm_d0101, 日本語字幕::エンディング字幕 step 1144
+15	END	32	3330	111.11	All quarters cease fire!	bhm_d0101, 日本語字幕::エンディング字幕 step 1108
+15	END	33	3330	111.11	This is Judge Magister Gabranth.	bhm_d0101, 日本語字幕::エンディング字幕 step 1178
+15	END	34	3415	113.95	I repeat:	bhm_d0101, 日本語字幕::エンディング字幕 step 1357
+15	END	35	3450	115.12	All units of the Archadian army, hold your fire!	bhm_d0101, 日本語字幕::エンディング字幕 step 1391
+15	END	36	3638	121.39	The battle is over!	bhm_d0101, 日本語字幕::エンディング字幕 step 1425
+15	END	37	3710	123.79	As of this moment, we have signed a cease-fire with Ashelia B'nargin Dalmasca...	bhm_d0101, 日本語字幕::エンディング字幕 step 1459
+15	END	38	3853	128.56	Her Royal Majesty.	bhm_d0101, 日本語字幕::エンディング字幕 step 1493
+15	END	39	4070	135.80	Attention. This is Larsa Ferrinas Solidor.	bhm_d0101, 日本語字幕::エンディング字幕 step 1527
+15	END	40	4170	139.14	My brother Vayne has died with honor in battle.	bhm_d0101, 日本語字幕::エンディング字幕 step 1561
+15	END	41	4278	142.74	The Imperial Fleet is now under my command!	bhm_d0101, 日本語字幕::エンディング字幕 step 1595
+15	END	42	4400	146.81	Sir! Your orders, sir?	bhm_d0101, 日本語字幕::エンディング字幕 step 1629
+15	END	43	4567	152.39	This is Ashelia Dalmasca.	bhm_d0101, 日本語字幕::エンディング字幕 step 1663
+15	END	44	4637	154.72	The Lady Ashe! Thank the gods you live!	bhm_d0101, 日本語字幕::エンディング字幕 step 1697
+15	END	45	4700	156.82	I confirm what Judge Magister Gabranth and Larsa Solidor have said here.	bhm_d0101, 日本語字幕::エンディング字幕 step 1731
+15	END	46	4855	162.00	Please, stand down your attack.	bhm_d0101, 日本語字幕::エンディング字幕 step 1765
+15	END	47	4950	165.17	The war is over.	bhm_d0101, 日本語字幕::エンディング字幕 step 1873
+15	END	48	5050	168.50	Ivalice looks to the horizon.	bhm_d0101, 日本語字幕::エンディング字幕 step 1978
+15	END	49	5180	172.84	A new day has dawned.	bhm_d0101, 日本語字幕::エンディング字幕 step 1905
+15	END	50	5180	172.84	(empty string)	bhm_d0101, 日本語字幕::エンディング字幕 step 2012
+15	END	51	5182	172.91	A new day has dawned.	bhm_d0101, 日本語字幕::エンディング字幕 step 1803
+15	END	52	5290	176.51	We are free!	bhm_d0101, 日本語字幕::エンディング字幕 step 1837
+15	END	53	5290	176.51	(empty string)	bhm_d0101, 日本語字幕::エンディング字幕 step 2046
+15	END	54	5705	190.36	Look Vaan, the Bahamut!	bhm_d0101, 日本語字幕::エンディング字幕 step 2219
+15	END	55	5926	197.73	A message from the Alexander!	bhm_d0101, 日本語字幕::エンディング字幕 step 2287
+15	END	56	5974	199.33	Take it.	bhm_d0101, 日本語字幕::エンディング字幕 step 2321
+15	END	57	6020	200.87	This is Judge Zargabaath, captain of the Alexander, flagship of the 12th Dalmascan Fleet of the Archadian Army.	bhm_d0101, 日本語字幕::エンディング字幕 step 2355
+15	END	58	6219	207.51	I address all ships in Rabanastre's airspace.	bhm_d0101, 日本語字幕::エンディング字幕 step 2389
+15	END	59	6305	210.38	The Bahamut must not be allowed to fall on the city of Rabanastre!	bhm_d0101, 日本語字幕::エンディング字幕 step 2424
+15	END	60	6430	214.55	We are preparing to ram her! Do not interfere!	bhm_d0101, 日本語字幕::エンディング字幕 step 2456
+15	END	61	6435	214.71	We are preparing to ram her! Do not interfere!	bhm_d0101, 日本語字幕::エンディング字幕 step 2520
+15	END	62	6520	217.55	Madness!	bhm_d0101, 日本語字幕::エンディング字幕 step 2552
+15	END	63	6555	218.72	Should she fall, the paling will not hold, and all Rabanastre will be obliterated!	bhm_d0101, 日本語字幕::エンディング字幕 step 2586
+15	END	64	6725	224.39	All ships, concentrate your fire on the Alexander's remains once Bahamut is clear of the city.	bhm_d0101, 日本語字幕::エンディング字幕 step 2620
+15	END	65	6940	231.56	Hasty, aren't they. I think it's a little early to be throwing away our lives just yet.	bhm_d0101, 日本語字幕::エンディング字幕 step 2654
+15	END	66	7064	235.70	Balthier?	bhm_d0101, 日本語字幕::エンディング字幕 step 2688
+15	END	67	7107	237.14	Wait, Balthier, where are you!?	bhm_d0101, 日本語字幕::エンディング字幕 step 2722
+15	END	68	7350	245.25	Ah, Vaan!	bhm_d0101, 日本語字幕::エンディング字幕 step 2756
+15	END	69	7390	246.58	Sounds like you made it out okay!	bhm_d0101, 日本語字幕::エンディング字幕 step 2790
+15	END	70	7482	249.65	The Strahl's a fine airship, eh?	bhm_d0101, 日本語字幕::エンディング字幕 step 2824
+15	END	71	7562	252.32	What does he think he's doing? Balthier!	bhm_d0101, 日本語字幕::エンディング字幕 step 2858
+15	END	72	7650	255.26	Marquis! Stop that fool Judge on the Alexander for me, would you?	bhm_d0101, 日本語字幕::エンディング字幕 step 2892
+15	END	73	7790	259.93	Just getting somewhere with these glossair rings. Almost done!	bhm_d0101, 日本語字幕::エンディング字幕 step 2926
+15	END	74	7905	263.76	Don't want him ramming me before I fix them, do we?	bhm_d0101, 日本語字幕::エンディング字幕 step 2960
+15	END	75	8031	267.97	Balthier! Do you understand exactly what it is you're doing?	bhm_d0101, 日本語字幕::エンディング字幕 step 2994
+15	END	76	8190	273.27	Princess! No need to worry.	bhm_d0101, 日本語字幕::エンディング字幕 step 3028
+15	END	77	8340	278.28	I hope you haven't forgotten my role in this little story.	bhm_d0101, 日本語字幕::エンディング字幕 step 3062
+15	END	78	8415	280.78	I'm the leading man.	bhm_d0101, 日本語字幕::エンディング字幕 step 3096
+15	END	79	8471	282.65	You know what they say about the leading man?	bhm_d0101, 日本語字幕::エンディング字幕 step 3130
+15	END	80	8555	285.45	He never dies.	bhm_d0101, 日本語字幕::エンディング字幕 step 3164
+15	END	81	8976	299.50	Let's fly!	bhm_d0101, 日本語字幕::エンディング字幕 step 3198
+15	END	82	9014	300.77	Fran! Power to the glossair rings.	bhm_d0101, 日本語字幕::エンディング字幕 step 3232
+15	END	83	9120	304.30	Fran?	bhm_d0101, 日本語字幕::エンディング字幕 step 3266
+15	END	84	9228	307.91	Do I have to do everything around here?	bhm_d0101, 日本語字幕::エンディング字幕 step 3298
+15	END	85	9324	311.11	Listen to me, Balthier. Get out of Bahamut immediately!	bhm_d0101, 日本語字幕::エンディング字幕 step 3332
+15	END	86	9453	315.42	Please, Balthier!	bhm_d0101, 日本語字幕::エンディング字幕 step 3366
+15	END	87	9490	316.65	You mustn't die!	bhm_d0101, 日本語字幕::エンディング字幕 step 3400
+15	END	88	9560	318.99	Please, Balthier. Come back.	bhm_d0101, 日本語字幕::エンディング字幕 step 3434
+15	END	89	9765	325.83	I'd say you're in more of a supporting role.	bhm_d0101, 日本語字幕::エンディング字幕 step 3468
+15	END	90	9895	330.16	Fran, please.	bhm_d0101, 日本語字幕::エンディング字幕 step 3502
+15	END	91	10193	340.11	Vaan, the Strahl's in your hands! You'd better take care of her, you hear?	bhm_d0101, 日本語字幕::エンディング字幕 step 3536
+15	END	92	10343	345.11	If there's one scratch on her when I get back—	bhm_d0101, 日本語字幕::エンディング字幕 step 3570
+15	END	93	10420	347.68	Roger that.	bhm_d0101, 日本語字幕::エンディング字幕 step 3605
+15	END	94	10435	348.18	Roger that.	bhm_d0101, 日本語字幕::エンディング字幕 step 3639
+15	END	95	10468	349.28	We'll be waiting for you.	bhm_d0101, 日本語字幕::エンディング字幕 step 3673
+15	END	96	10566	352.55	Balthier...	bhm_d0101, 日本語字幕::エンディング字幕 step 3707
+16	STR_STA	1	199	6.64	This is the Strahl.	rbn_b01, 台詞::シュトラールだ step 2
+16	STR_STA	2	535	17.85	She airship enough for you?	rbn_b01, 台詞::なかなかのもんだろう step 2
+16	STR_STA	3	724	24.16	The Strahl... You really are a sky pirate!	rbn_b01, 台詞::すごいな step 2
+16	STR_STA	4	830	27.69	Well, the headhunters seem to think so.	rbn_b01, 台詞::オレの首で step 2
+16	STR_STA	5	899	30.00	What's the good word? Is she ready?	rbn_b01, 台詞::おつかれ step 2
+16	STR_STA	6	1155	38.54	So, is she armed? How fast is she? Could she take the Ifrit?	rbn_b01, 台詞::スピードは step 2
+16	STR_STA	7	1290	43.04	I suppose I could tell you, but...	rbn_b01, 台詞::教えてやってもいいが step 2
+16	STR_STA	8	1401	46.75	wouldn't you rather see for yourself?	rbn_b01, 台詞::自分で感じたいだろ step 2
+16	STR_STA	9	1740	58.06	Fran, our course.	rbn_b01, 台詞::フラン、航路頼む step 2
+16	STR_STA	10	1797	59.96	The shortest way's over Dorstonis.	rbn_b01, 台詞::最短はドルストニス step 2
+16	STR_STA	11	1891	63.10	How flies Bhujerba?	rbn_b01, 台詞::ビュエルバは step 2
+16	STR_STA	12	1959	65.37	Oh, she's free as can be, for now.	rbn_b01, 台詞::自由を保ってるよ step 2
+16	STR_STA	13	2080	69.40	The Empire took notice when they announced the Princess's unfortunate suicide and your untimely execution.	rbn_b01, 台詞::王女の自殺や step 2
+16	STR_STA	14	2277	75.98	If it becomes known that I am alive, the Marquis will lose their favor.	rbn_b01, 台詞::私が生きていると step 2
+16	STR_STA	15	2392	79.81	I try to steer clear of such things.	rbn_b01, 台詞::いやだねえ step 2
+16	STR_STA	16	2545	84.92	Right. It's time to fly.	rbn_b01, 台詞::あがるぞフラン step 2
+16	STR_STA	17	2637	87.99	And no wagging tongues or you're like to bite them off.	rbn_b01, 台詞::お行儀よく step 2
+16	STR_STA	18	2764	92.23	I'm coming, Penelo.	rbn_b01, 台詞::待ってろ step 2
+17	DIS	1	662	22.09	This might get a little dicey!	rsn_z0201, ムービーメッセージ::メッセージ監視 step 10
+17	DIS	2	711	23.72	The Mist. It manifests now.	rsn_z0201, ムービーメッセージ::メッセージ監視 step 16
+17	DIS	3	787	26.26	Is that what you call this?	rsn_z0201, ムービーメッセージ::メッセージ監視 step 22
+17	DIS	4	1161	38.74	What's that?	rsn_z0201, ムービーメッセージ::メッセージ監視 step 28
+17	DIS	5	1431	47.75	I think it's the Dawn Shard!	rsn_z0201, ムービーメッセージ::メッセージ監視 step 34
+17	DIS	6	1486	49.58	Then what are we waiting for?	rsn_z0201, ムービーメッセージ::メッセージ監視 step 40
+20	LRF	1	520	17.35	What's going on?	rrp_a06, 台詞::あいつらは step 2
+20	LRF	2	843	28.13	The Ifrit, eh? That's quite an entrance.	rrp_a06, 台詞::イフリート step 2
+20	LRF	3	984	32.83	Impeccable timing. If I didn't know better, I'd say they were waiting all along.	rrp_a06, 台詞::手回しがよ step 2
+20	LRF	4	1367	45.61	Stop running!	rrp_a06, 台詞::あ、こらっ step 2
+20	LRF	5	1668	55.66	End of the line!	rrp_a06, 台詞::さぁ、ボウ step 2
+20	LRF	6	1754	58.53	You have something that belongs to me.	rrp_a06, 台詞::観念して、 step 2
+20	LRF	7	2010	67.07	More this way!	rrp_a06, 台詞::ここにもい step 2
+20	LRF	8	2076	69.27	Fran! Let's move!	rrp_a06, 台詞::行け！フラ step 2
+20	LRF	9	2320	77.41	Off with you!	rrp_a06, 台詞::そらよっと step 2
+20	LRF	10	2626	87.62	Let go of me!	rrp_a06, 台詞::放せこのヤ step 2
+20	LRF	11	2659	88.72	Keep this up and I will!	rrp_a06, 台詞::じたばたす step 2
+20	LRF	12	2955	98.60	What's going on, Fran?	rrp_a06, 台詞::どうした？ step 2
+20	LRF	13	2995	99.93	I don't know. It's not heeding me.	rrp_a06, 台詞::わからない step 2
+20	LRF	14	3074	102.57	I don't have time for this.	rrp_a06, 台詞::ちっ、どう step 2
+20	LRF	15	3161	105.47	I— I'm slipping!	rrp_a06, 台詞::うあ、ちょ step 6
+20	LRF	16	3202	106.84	Not good!	rrp_a06, 台詞::くそっ！ step 2
+21	EST	1	765	25.53	Reddas...	dgl_g0102, ムービー用セリフ::テキスト表示 step 4
+23	ESC	1	31	1.03	Can't we go faster?	rsn_a0102, MesDir::movie01 step 2
+23	ESC	2	80	2.67	Not yet.	rsn_a0102, MesDir::movie02 step 2
+23	ESC	3	665	22.19	They passed.	rsn_a0102, MesDir::movie03 step 2
+23	ESC	4	697	23.26	Had we gone too fast, they'd have noticed.	rsn_a0102, MesDir::movie04 step 2
+25	EPL	1	1072	35.77	It's hard to believe a year has passed so quickly.	msg_z0001, 台詞::この一年は step 2
+25	EPL	2	1295	43.21	Rabanastre is finally back to the way it was. Like when my parents were still alive.	msg_z0001, 台詞::ラバナスタ step 2
+25	EPL	3	1624	54.19	We've lost so much.	msg_z0001, 台詞::もちろん、 step 2
+25	EPL	4	1680	56.06	But I think it's important to put the past behind us and keep our eyes on the road ahead.	msg_z0001, 台詞::でも、過去 step 2
+25	EPL	5	2183	72.84	Ashe's coronation is next month.	msg_z0001, 台詞::来月はいよ step 2
+25	EPL	6	2287	76.31	She grows farther and farther away from us...	msg_z0001, 台詞::アーシェが step 2
+25	EPL	7	2380	79.41	but I guess that's how it has to be.	msg_z0001, 台詞::それは仕方 step 2
+25	EPL	8	2464	82.22	She is queen now, after all.	msg_z0001, 台詞::だって、王 step 2
+25	EPL	9	2814	93.89	I am looking forward to seeing you at the ceremony.	msg_z0001, 台詞::戴冠式であ step 2
+25	EPL	10	2944	98.23	You called, my lord?	msg_z0001, 台詞::お呼びです step 2
+25	EPL	11	3416	113.98	How is Basch?	msg_z0001, 台詞::バッシュ小 step 2
+25	EPL	12	3500	116.78	"I know he went with you to Archades ""to further the cause of peace in Ivalice""..."	msg_z0001, 台詞::イヴァリー step 2
+25	EPL	13	3640	121.45	but still, I hope he comes back to Rabanastre, and Ashe, soon.	msg_z0001, 台詞::本当はアー step 2
+25	EPL	14	3808	127.06	She has to keep up appearances now, so she would never say it...	msg_z0001, 台詞::彼女、立場 step 2
+25	EPL	15	3910	130.46	but I think she misses him.	msg_z0001, 台詞::きっと寂し step 2
+25	EPL	16	4110	137.14	Lose Larsa and we lose the Empire.	msg_z0001, 台詞::帝国は一枚 step 2
+25	EPL	17	4211	140.51	Protect him. I would entrust him to no other's care.	msg_z0001, 台詞::頼む、ラー step 2
+25	EPL	18	4363	145.58	I will keep him from harm. I promise you.	msg_z0001, 台詞::心配するな step 2
+25	EPL	19	4463	148.92	For the Empire, and for Dalmasca.	msg_z0001, 台詞::ダルマスカ step 2
+25	EPL	20	4594	153.29	Your words put me at ease, Brother.	msg_z0001, 台詞::それを聞い step 2
+25	EPL	21	4708	157.09	Sorry to leave you.	msg_z0001, 台詞::すまない step 2
+25	EPL	22	4792	159.89	(empty string)	msg_z0001, 台詞::・・・兄さ step 2
+25	EPL	23	5489	183.15	Oh, I haven't told you the most important part!	msg_z0001, 台詞::肝心なこと step 2
+25	EPL	24	5640	188.19	Vaan and I had been taking care of the Strahl, but it was stolen!	msg_z0001, 台詞::預かってい step 2
+25	EPL	25	6495	216.72	We had just finished having her tuned up, too.	msg_z0001, 台詞::メンテナン step 2
+25	EPL	26	6625	221.05	Actually, stolen might not be the right word. If her owner wants her back, there's not much we can do about it, is there.	msg_z0001, 台詞::でも、持ち step 2
+25	EPL	27	7350	245.25	There's still plenty of time before the coronation, so Vaan's going to pay the two of them a visit.	msg_z0001, 台詞::戴冠式まで step 2
+25	EPL	28	7504	250.38	You should see him! He can hardly wait.	msg_z0001, 台詞::ふたりに会 step 2
+25	EPL	29	7989	266.57	I'll be going too, of course.	msg_z0001, 台詞::もちろん２ step 2
+25	EPL	30	8060	268.94	Every good sky pirate needs a partner, right?	msg_z0001, 台詞::空賊デビュー step 2
+26	MEM	1	395	13.18	A marriage of convenience.	fon_b0100, MesDir::movie01 step 2
+26	MEM	2	455	15.18	A symbol of the alliance between Nabradia and Dalmasca.	fon_b0100, MesDir::movie01a step 2
+26	MEM	3	575	19.19	This is how they see our match.	fon_b0100, MesDir::movie01b step 2
+26	MEM	4	675	22.52	They do, do they?	fon_b0100, MesDir::movie02 step 2
+26	MEM	5	734	24.49	These roles we play.	fon_b0100, MesDir::movie03 step 2
+26	MEM	6	820	27.36	I must admit I find it...wearying.	fon_b0100, MesDir::movie04 step 2
+26	MEM	7	1037	34.60	I will play mine.	fon_b0100, MesDir::movie05 step 2
+26	MEM	8	1125	37.54	I would have no other.	fon_b0100, MesDir::movie06 step 2
+27	VAD	1	30	1.00	All ships, prepare to fire on my command.	bhm_y0100, MesDir::movie17 step 2
+27	VAD	2	97	3.24	(empty string)	bhm_y0100, MesDir::movie23 step 2
+27	VAD	3	210	7.01	(empty string)	bhm_y0100, MesDir::movie24 step 2
+27	VAD	4	430	14.35	May fortune favor us all.	bhm_y0100, MesDir::movie01 step 2
+27	VAD	5	760	25.36	This is Orthros leader: Keep your formations tight.	bhm_y0100, MesDir::movie19 step 2
+27	VAD	6	847	28.26	(empty string)	bhm_y0100, MesDir::movie25 step 2
+27	VAD	7	900	30.03	Many and more to choose from, ripe for the taking!	bhm_y0100, MesDir::movie20 step 2
+27	VAD	8	1735	57.89	Remember your training and we'll make it!	bhm_y0100, MesDir::movie21 step 2
+27	VAD	9	1805	60.23	Icebrand, with me!	bhm_y0100, MesDir::movie22 step 2
+27	VAD	10	1922	64.13	All ships clear!	bhm_y0100, MesDir::movie02 step 2
+27	VAD	11	1970	65.73	Give word to the cannons. Make ready and fire!	bhm_y0100, MesDir::movie03 step 2
+27	VAD	12	2534	84.55	We have a clean line!	bhm_y0100, MesDir::movie04 step 2
+27	VAD	13	2578	86.02	Prepare the second volley! Be quick!	bhm_y0100, MesDir::movie05 step 2
+27	VAD	14	2778	92.69	By the gods...	bhm_y0100, MesDir::movie06 step 2
+27	VAD	15	3273	109.21	The Carrier Galuf-Val... She's lost.	bhm_y0100, MesDir::movie07 step 2
+27	VAD	16	3643	121.55	Unknown ship from abaft!	bhm_y0100, MesDir::movie08 step 2
+27	VAD	17	3765	125.63	Could it be?	bhm_y0100, MesDir::movie09 step 2
+30	VNP	1	1492	49.78	We will have order!	rbn_y0100, ムービー用セリフ::テキスト表示 step 4
+30	VNP	2	1500	50.05	We will have order!	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 4
+30	VNP	3	1570	52.39	I give you your new consul...	rbn_y0100, ムービー用セリフ::テキスト表示 step 11
+30	VNP	4	1585	52.89	I give you your new consul...	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 11
+30	VNP	5	1635	54.55	His Imperial Highness Lord Vayne Solidor...	rbn_y0100, ムービー用セリフ::テキスト表示 step 18
+30	VNP	6	1675	55.89	His Imperial Highness Lord Vayne Solidor...	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 18
+30	VNP	7	1720	57.39	Commandant of the Archadian Empire's Western Ar—	rbn_y0100, ムービー用セリフ::テキスト表示 step 25
+30	VNP	8	1820	60.73	Your Excellency!	rbn_y0100, ムービー用セリフ::テキスト表示 step 32
+30	VNP	9	2335	77.91	People of Rabanastre!	rbn_y0100, ムービー用セリフ::テキスト表示 step 39
+30	VNP	10	2340	78.08	People of Rabanastre!	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 39
+30	VNP	11	2388	79.68	Is it with hatred you look upon your consul?	rbn_y0100, ムービー用セリフ::テキスト表示 step 46
+30	VNP	12	2415	80.58	Is it with hatred you look upon your consul?	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 46
+30	VNP	13	2473	82.52	With hatred, you look upon the Empire?	rbn_y0100, ムービー用セリフ::テキスト表示 step 53
+30	VNP	14	2480	82.75	With hatred, you look upon the Empire?	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 53
+30	VNP	15	2553	85.19	- Spit on your Empire! - Go back to Archadia!	rbn_y0100, ムービー用セリフ::テキスト表示 step 60
+30	VNP	16	2682	89.49	There was little point in asking.	rbn_y0100, ムービー用セリフ::テキスト表示 step 67
+30	VNP	17	2758	92.03	But know this: I harbor no idle hopes of frustrating that hatred.	rbn_y0100, ムービー用セリフ::テキスト表示 step 74
+30	VNP	18	2760	92.09	But know this: I harbor no idle hopes of frustrating that hatred.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 74
+30	VNP	19	2915	97.26	Nor shall I ask your fealty.	rbn_y0100, ムービー用セリフ::テキスト表示 step 81
+30	VNP	20	2940	98.10	Nor shall I ask your fealty.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 81
+30	VNP	21	3017	100.67	That is the due of your fallen king, and rightly so.	rbn_y0100, ムービー用セリフ::テキスト表示 step 88
+30	VNP	22	3070	102.44	That is the due of your fallen king, and rightly so.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 88
+30	VNP	23	3137	104.67	King Raminas loved his people.	rbn_y0100, ムービー用セリフ::テキスト表示 step 95
+30	VNP	24	3235	107.94	Strove to bring you peace. His was a rule worthy of your devotion.	rbn_y0100, ムービー用セリフ::テキスト表示 step 102
+30	VNP	25	3245	108.27	King Raminas loved his people.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 95
+30	VNP	26	3330	111.11	Strove to bring you peace. His was a rule worthy of your devotion.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 102
+30	VNP	27	3500	116.78	Even now, he remains among you, protecting you.	rbn_y0100, ムービー用セリフ::テキスト表示 step 109
+30	VNP	28	3505	116.95	Even now, he remains among you, protecting you.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 109
+30	VNP	29	3665	122.29	His ardor for the peace and weal of Dalmasca falters not.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 116
+30	VNP	30	3668	122.39	His ardor for the peace and weal of Dalmasca falters not.	rbn_y0100, ムービー用セリフ::テキスト表示 step 116
+30	VNP	31	3810	127.13	I would ask only that you do your king honor.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 123
+30	VNP	32	3850	128.46	I would ask only that you do your king honor.	rbn_y0100, ムービー用セリフ::テキスト表示 step 123
+30	VNP	33	3952	131.87	Together, let us embrace the peace His Majesty would surely desire.	rbn_y0100, ムービー用セリフ::テキスト表示 step 130
+30	VNP	34	3953	131.90	Together, let us embrace the peace His Majesty would surely desire.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 130
+30	VNP	35	4082	136.20	Two years now divide us from war's bitter end.	rbn_y0100, ムービー用セリフ::テキスト表示 step 137
+30	VNP	36	4175	139.31	Yet still its shadow looms over all, stifling the infant peace.	rbn_y0100, ムービー用セリフ::テキスト表示 step 144
+30	VNP	37	4180	139.47	Yet still its shadow looms over all, stifling the infant peace.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 144
+30	VNP	38	4252	141.88	A pall only you may cast off!	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 151
+30	VNP	39	4300	143.48	A pall only you may cast off!	rbn_y0100, ムービー用セリフ::テキスト表示 step 151
+30	VNP	40	4380	146.15	Achieve but this one thing...	rbn_y0100, ムービー用セリフ::テキスト表示 step 158
+30	VNP	41	4390	146.48	Achieve but this one thing...	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 158
+30	VNP	42	4441	148.18	and your hatred of me, and of the Empire, will grieve me not!	rbn_y0100, ムービー用セリフ::テキスト表示 step 165
+30	VNP	43	4467	149.05	and your hatred of me, and of the Empire, will grieve me not!	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 165
+30	VNP	44	4595	153.32	I will stand fast. I will endure your hatred, suffer your slings and arrows.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 172
+30	VNP	45	4604	153.62	I will stand fast. I will endure your hatred, suffer your slings and arrows.	rbn_y0100, ムービー用セリフ::テキスト表示 step 172
+30	VNP	46	4730	157.82	I will defend Dalmasca!	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 179
+30	VNP	47	4765	158.99	I will defend Dalmasca!	rbn_y0100, ムービー用セリフ::テキスト表示 step 179
+30	VNP	48	4888	163.10	Here I will pay my debt! I swear it now!	rbn_y0100, ムービー用セリフ::テキスト表示 step 186
+30	VNP	49	4890	163.16	Here I will pay my debt! I swear it now!	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 186
+30	VNP	50	5041	168.20	Though King Raminas and Lady Ashe be gone, they stand ever at the side of their people.	rbn_y0100, ムービー用セリフ::テキスト表示 step 193
+30	VNP	51	5045	168.34	Though King Raminas and Lady Ashe be gone, they stand ever at the side of their people.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 193
+30	VNP	52	5255	175.34	In honoring peace...	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 200
+30	VNP	53	5286	176.38	In honoring peace...	rbn_y0100, ムービー用セリフ::テキスト表示 step 200
+30	VNP	54	5344	178.31	you do honor to their memory, and to Dalmasca.	rbn_y0100, ムービー用セリフ::テキスト表示 step 207
+30	VNP	55	5345	178.35	you do honor to their memory, and to Dalmasca.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 207
+30	VNP	56	5516	184.05	What I ask, I ask plain. My hopes now rest with you.	rbn_y0100, ムービー用セリフ::テキスト表示 step 214
+30	VNP	57	5520	184.18	What I ask, I ask plain. My hopes now rest with you.	rbn_y0100, ムービー用セリフ::テキスト表示日本語ボイス step 214
+32	WAR	1	443	14.78	They hide in the sun!	bhm_a0200, Telop::play_telop step 5
+32	WAR	2	590	19.69	Counter-air battery destroyed!	bhm_a0200, Telop::play_telop step 14
+32	WAR	3	770	25.69	Enemy squadrons still incoming!	bhm_a0200, Telop::play_telop step 23
+32	WAR	4	940	31.36	What are you waiting for? Fire! Fire!	bhm_a0200, Telop::play_telop step 32
+32	WAR	5	1095	36.54	Is this their worst?	bhm_a0200, Telop::play_telop step 47
+32	WAR	6	1205	40.21	Evasive hard aport!	bhm_a0200, Telop::play_telop step 77
+32	WAR	7	1334	44.51	The line is drawn.	bhm_a0200, Telop::play_telop step 86

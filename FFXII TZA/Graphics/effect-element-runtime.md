@@ -607,6 +607,47 @@ release arm; 18 types have sub-range arms (9 with a release). 65 types have an a
 248 distinct handlers; the per-type list is on [effect element types](effect-element-types.md).
 `0x005004C0` runs once per definition, from the `0xA00` record handler.
 
+The setup arm also fixes what a definition draws. From a started `0x600` record to its pictures:
+
+- `0x003337B0` opens the sub-entries that the record's bytes `+1` to `+7` name. An event of subtype 0 or 1 reaches
+  `0x00538820`, which births emitter `+0x10` with definition `+0x12` through `0x003A8AE0` (see "Timeline tracks").
+- The setup arm for the definition's type `+0x44` binds its sprite rows with `0x003AA280(0, kind, number)`. Two
+  adjacent bytes name the kind-`0x50` rows and the kind-`0x51` frame sequence:
+  - type `0x02`: `+0x184` and `+0x185` (`0x00538AB0`, `0x00538B0A`-`0x00538B3B`);
+  - type `0xA1`: `+0x1B0` and `+0x1B1` (`0x0053A790`, `0x0053A7DC`-`0x0053A80D`);
+  - types `0x84` and `0x96`: `+0x230` and `+0x231` (`0x00539980`, `0x00539A04`-`0x00539A35`).
+- Types with [draw-source blocks](effect-element-types.md#draw-source-blocks) bind through `0x00431610`. Type `0xA2`'s
+  setup `0x0053A840` has four blocks, from `+0x410`.
+- The first loader of a kind-`0x50` record, `0x00502CB0`, reads in order:
+  - a `u16` row count, a count of texture numbers (byte `+2`, `0x00502CD6`), a count of palette numbers (byte `+3`,
+    `0x00502CDD`) and a dword;
+  - the `0x70`-byte rows (`0x00502D76`);
+  - the texture numbers, each resolved as a kind-`0x52` record (`0x00502DD4`-`0x00502DE0`);
+  - the palette numbers, as kind `0x53` (`0x00502E54`-`0x00502E60`).
+- It copies each row into a `0x90`-byte [sprite row](effect-element-types.md#sprite-row-helpers):
+  - `+0x00` to `+0x5F` as they are: the four corners as x, y, z, w, then four u, v pairs from `+0x40`;
+  - the colour dword `+0x60` (`0x00502D60`);
+  - the word pair `+0x64` to `+0x68` (`0x00502D6D`);
+  - the dword `+0x6C` to `+0x70` (`0x00502D7E`), whose second byte (`+0x71`) is the texture.
+- Type `0xA3` (`NhElementType_VRAIN2`) binds no record. Its setup `0x0054EE70` (`0x00538910`, `0x0053894B`) only rebases
+  four track groups.
+  - Its draw `0x00524A50` builds its packet with `0x00544A50` (`0x00524BD4`), which copies the `0x130`-byte template at
+    `0x02AEA270` (`0x00544A82`).
+  - `0x004DC6B0` fills the template at start-up (`0x0037E2EC`-`0x0037E2F3`). The template unpacks 14 quadwords from `+0x20`
+    (`0x004DC6FD`), and the first of them is a GIF tag: PRIM `0x49` (line, Gouraud shading, alpha blending, texture
+    off), packed, with the registers RGBAQ, XYZF2, RGBAQ, XYZF2 (`0x004DC70F`, `0x004DC716`).
+  - `0x004DB270` sends each batch of the template's routine `0x004DB350` under that tag, with bit `0x8000` set
+    (`0x004DB287`, `0x004DB320`). So the type's drops are drawn as untextured coloured lines.
+  - Birth `0x00524800` allocates definition `+0x1A0` drops and copies the definition's `+0x1A4` and `+0x1C0` onwards
+    to the element. Each step `0x00524C20` moves the drops with `0x00543E80(element + 0x230, emitter position)`
+    (`0x00524CEF`-`0x00524CF6`).
+  - A drop restarts once its y is at or below definition `+0x1A4` plus the emitter's y (`0x005441C0`-`0x005441CD`). It
+    restarts at definition `+0x1C0` plus the emitter's y plus a random fraction of `+0x1C4` (`0x005442B4`-`0x005442CC`).
+  - y is the height: [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md) sets a point's y to the
+    ground height plus its height above the ground (`0x0033A97C`-`0x0033A990`).
+  - In `ozm0101.efb` the three elements restart their drops 6.0 to 8.0, 5.0 to 6.0 and 12.0 to 15.0 above the
+    emitter, and recycle them at 2.0, 2.5 and 10.0 below it. So the drops move down.
+
 ## Layouts
 
 Effect instance (`0x3B0`, `0x0024B270`):

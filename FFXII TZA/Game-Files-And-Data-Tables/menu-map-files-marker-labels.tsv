@@ -1,0 +1,43 @@
+label_id	position	us	source	marker_rows	us_markers
+60201	112	To Lowtown	menu_mapname.bin row 112 (id 60201), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	18	rbn01_s01 7, rbn01_s01 8, grm01_s01 18
+60202	113	To Rabanastre	menu_mapname.bin row 113 (id 60202), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	30	sav01_s01 8, slm01_s01 2, wdl01_s01 8, dst01_s01 17, sav01_s02 9
+60203	114	To the Estersand	menu_mapname.bin row 114 (id 60203), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	48	rbn01_s01 9, mic01_s01 19, mic01_s01 20, nac01_s01 4, sav01_s01 9, wdl01_s01 7, mnt01_s01 11, sav01_s02 10
+60204	115	To the Westersand	menu_mapname.bin row 115 (id 60204), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	36	rbn01_s01 10, ene01_s01 9, sav01_s01 10, ztc01_s01 10, dst01_s01 12, sav01_s02 11
+60205	116	To Giza Plains	menu_mapname.bin row 116 (id 60205), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	24	rbn01_s01 11, ozm01_s01 10, wdl01_s01 9, dst01_s01 16
+60206	117	To the Garamsythe Waterway	menu_mapname.bin row 117 (id 60206), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	18	mic01_s01 18, slm01_s01 3, rrp01_s01 5
+60207	118	To Zertinan Caverns	menu_mapname.bin row 118 (id 60207), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	36	ene01_s01 12, ene01_s01 13, enw01_s01 11, enw01_s01 12, ozm01_s01 11, wdl01_s01 10
+60208	119	To the Ogir-Yensa Sandsea	menu_mapname.bin row 119 (id 60208), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	30	enw01_s01 8, enw01_s01 9, wdl01_s01 11, ztc01_s01 11, ztc01_s01 12
+60209	120	To Old Archades	menu_mapname.bin row 120 (id 60209), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	alc01_s01 7, rui01_s01 11
+60210	121	To Archades	menu_mapname.bin row 121 (id 60210), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	alc01_s02 2
+60211	122	To the Sochen Cave Palace	menu_mapname.bin row 122 (id 60211), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	alc01_s02 3, pla01_s01 14
+60212	123	To the Nabreus Deadlands	menu_mapname.bin row 123 (id 60212), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	bds01_s01 8, frs01_s01 11
+60213	124	To the Necrohol of Nabudis	menu_mapname.bin row 124 (id 60213), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	bog01_s01 11, frs01_s01 12
+60214	125	To the Phon Coast	menu_mapname.bin row 125 (id 60214), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	frs01_s01 13, pla01_s01 13
+60215	126	To the Mosphoran Highwaste	menu_mapname.bin row 126 (id 60215), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	18	nac01_s01 3, dst01_s01 11, frs01_s01 14
+60216	127	To the Salikawood	menu_mapname.bin row 127 (id 60216), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	24	fon01_s01 12, bds01_s01 9, bog01_s01 12, mnt01_s01 10
+60217	128	To Nalbina Fortress	menu_mapname.bin row 128 (id 60217), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	dst01_s01 15, mnt01_s01 12
+60218	129	To the Paramina Rift	menu_mapname.bin row 129 (id 60218), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	24	mfr01_s01 8, mrm01_s01 14, gol01_s01 11, bul01_s01 4
+60219	130	To Mt Bur-Omisace	menu_mapname.bin row 130 (id 60219), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	pbc01_s01 9
+60220	131	To Golmore Jungle	menu_mapname.bin row 131 (id 60220), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	24	ozm01_s01 8, mfr01_s01 9, vic01_s01 3, pbc01_s01 10
+60221	132	To the Feywood	menu_mapname.bin row 132 (id 60221), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	24	hne01_s01 16, pbc01_s01 11, gol01_s01 10, gil01_s01 7
+60222	133	To the Stilshrine of Miriam	menu_mapname.bin row 133 (id 60222), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	pbc01_s01 12
+60223	134	To the Cerobi Steppe	menu_mapname.bin row 134 (id 60223), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	pla01_s01 15, var01_s01 6
+60226	137	To the Tchita Uplands	menu_mapname.bin row 137 (id 60226), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	18	fon01_s01 13, rui01_s01 12, srb01_s01 8
+60227	138	To the Pharos	menu_mapname.bin row 138 (id 60227), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	rwf01_s01 5
+60228	139	To Balfonheim Port	menu_mapname.bin row 139 (id 60228), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	srb01_s01 9
+60229	140	To the Barheim Passage	menu_mapname.bin row 140 (id 60229), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	18	grm01_s01 19, dst01_s01 13, dst01_s01 14
+60230	141	To Ozmone Plain	menu_mapname.bin row 141 (id 60230), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	36	sav01_s01 11, ztc01_s01 15, glf01_s01 3, hne01_s01 15, gol01_s01 8, sav01_s02 12
+60231	142	To the Royal Palace	menu_mapname.bin row 142 (id 60231), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	grm01_s01 17
+60232	143	To the Lhusu Mines	menu_mapname.bin row 143 (id 60232), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	byu01_s01 6
+60233	144	To Bhujerba	menu_mapname.bin row 144 (id 60233), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	lus01_s01 16
+60234	145	To the Nam-Yensa Sandsea	menu_mapname.bin row 145 (id 60234), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	30	ene01_s01 10, ene01_s01 11, rwg01_s01 8, ztc01_s01 13, ztc01_s01 14
+60235	146	To the Tomb of Raithwall	menu_mapname.bin row 146 (id 60235), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	enw01_s01 10
+60236	147	To the Henne Mines	menu_mapname.bin row 147 (id 60236), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	ozm01_s01 9, mfr01_s01 10
+60237	148	To Jahara	menu_mapname.bin row 148 (id 60237), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	ozm01_s01 12
+60238	149	To Eruyt Village	menu_mapname.bin row 149 (id 60238), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	gol01_s01 9
+60239	150	To Giruvegan	menu_mapname.bin row 150 (id 60239), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	mfr01_s01 11
+60240	151	To the Ridorana Cataract	menu_mapname.bin row 151 (id 60240), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	rbl03_s01 10
+60241	152	To the First Ascent	menu_mapname.bin row 152 (id 60241), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	rbl02_s01 7, rbl04_s01 9
+60242	153	To the Second Ascent	menu_mapname.bin row 153 (id 60242), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	12	rbl03_s01 11, rbl01_s01 3
+60243	154	To the Third Ascent	menu_mapname.bin row 154 (id 60243), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	rbl02_s01 8
+60244	155	To the Subterra	menu_mapname.bin row 155 (id 60244), group 6 via 0x002F9920 from 0x003C2320 (0x003C2629)	6	rbl03_s01 12

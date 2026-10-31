@@ -13,6 +13,18 @@ debug verbs and eleven aliased families use. The callbacks are read from the shi
 at `table + 8 + 32 × command`; the names come from the ff12-script catalogue where it has one, and
 from other authored sources otherwise; the argument counts are measured on the handler bodies.
 
+[verb-table-inputs.tsv](verb-table-inputs.tsv) gives one row per verb name, 1,942 in all, with what a call of
+it does:
+
+- `input` (the name), `label` (its call ids) and `domain` (its arguments);
+- `precedence` (which source wins when another one sets the same state) and `takes_effect` (when the effect
+  starts, from the shape);
+- `consumers` (the callbacks), `visible_effect` (what the player sees or which state changes, with the address of
+  the code that does it) and `inert_when`.
+
+The 773 verbs that no shipped US script calls read "none in the shipped game: no step calls it"; the row named `-`
+holds the 19 call ids that have no name.
+
 ### The staff-roll loader
 
 The loader is the `0xC8`-byte task at `0x02CA8A78` with procedure `0x0053EB90` that `0x0053ED10` starts for `fsroll_initialize`.

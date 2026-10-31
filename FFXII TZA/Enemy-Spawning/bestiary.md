@@ -32,6 +32,51 @@ decoder asserts that each definition's `placements` count is its number of lines
 them: the zone the script belongs to, its map name and its region, as the location line shows them
 ([Zone asset list](../World-Areas-And-Travel/zone-asset-list.md)). They fall in 471 zones of 41 regions.
 
+[`enemy-placement-kinds.tsv`](enemy-placement-kinds.tsv) gives each of the 6,229 placements its kind. The kind comes
+from the tables that name the placement or its definition, never from the function's name, and the first test that
+holds sets it:
+
+| Kind | Placements | Test |
+|---|---|---|
+| `Trial Mode` | 550 | the map script is one of the 100 Trial Mode scripts ([Trial Mode scripts](../Story-Events-And-Hunts/trial-mode-scripts.md)) |
+| `story boss` | 156 | the function is one of the functions of a fight in [`story-bosses.tsv`](story-bosses.tsv) |
+| `hunt mark` | 43 | the definition is the mark of a hunt in the mark column of [Hunts](../Story-Events-And-Hunts/hunts.md), 40 hunts in all |
+| `Elite Mark` | 4 | the definition stands in the Clan Primer's Elite Marks section and is no hunt's mark |
+| `rare game` | 208 | the definition stands in the Clan Primer's Rare Game section |
+| `foe` | 5,268 | none of the above |
+
+The `primer_section`, `hunt`, `story_boss` and `trial_mode` columns give each test on its own, so a placement that
+passes two shows both: 15 `story boss` placements are also a hunt's mark, as Ba'Gamnan in Withering Shores is the mark
+of "A Dark Rumor".
+
+`group_chosen_by` names how the zone script picks the groups the placement belongs to, from the `lane` column of
+[`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv):
+
+- 312 placements are in groups that are always constants;
+- the other 5,917 are in at least one group that the automatic selector, a bank-return selector, the selection kept
+  for the lane or the script's loop register picks, or that the area start binds (7 placements).
+
+[`rare-game-spawn-tests.tsv`](rare-game-spawn-tests.tsv) reads in words the spawn tests of the `rare game` placements:
+the 879 rows [`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv) gives them, for 91 definitions, 800
+of them with a test. Each test is rewritten clause by clause:
+
+- call `0x0029(N)` is a roll of 0 to N - 1 (`0x00354BF0`: a Mersenne Twister draw, `0x00379CD0`, times N, shifted right
+  by 32), so "a roll of 0 to 99 is below 20" is a 20 in 100 chance;
+- call `0x05A9()` reads the debug-menu switch "100% Spawn Rare Monster" (`0x003504B0`, `0x0017D430`: byte `+0xC70`,
+  command 197), whose menu the shipped game never opens ([Debug menu](../Engine-Core/debug-menu.md));
+  83 rows test it alone;
+- `getplaymin()` is the minutes of the play clock and `getplaytime()` the play time in seconds (`0x00349700`,
+  `0x00348970`, both from the save header's hours, minutes and seconds at `+0x18` to `+0x1B` through `0x00254C90`);
+- `btlAtelIsPcOnPoint(-1, N)` holds while the party leader (`0x003272A0`) stands inside region record N of the map
+  (`0x0050FFF0`, `0x002374E0`), and call `0x0290(-1, x, z)` is the leader's ground distance to the point x, z
+  (`0x003448F0`, `0x004686D0`);
+- each `g_btl_hunt_` word the tests read is set to 1 in `fon_b01` by Atak, Blok and Stok of the Hunt Club, except
+  `g_btl_hunt_fon_アダマンタイマイ`, which the Huntmaster (`バンガ16`) sets, and to 2 by the `hunt_kansi.main` of
+  its own zones;
+- each script word (`file +0x..`, `scratch2 +0x..`) is given once per row by its writers in
+  [`enemy-spawn-variables.tsv`](enemy-spawn-variables.tsv): a constant by its value, a call result by what the call
+  returns, any other word by its first writer.
+
 The category is the spawn lifecycle's because a definition does nothing until a zone script spawns it: the
 installer `0x0023A570` applies it to a unit through the spawn record ([Spawn record fields](spawn-record-fields.md)).
 
@@ -88,6 +133,22 @@ The catalog is kind-7 resource `0x354`, the Bestiary family's base id at `0x00D2
 build's kind-7 path array `0x01EC73A0`, which `0x002DF9A0` loads in its US case (`0x002DFC0A`) and stores at `0x0215F038` (`0x002DFF7F`), names
 `myoshiok/us/handbook/menuhandbook_monster.bin` for it. Its 384 entry names are all words of bank 8, the monster
 names. One entry serves every variant of a monster: Wolf and Alpha Wolf both count for entry 2, Wolf.
+
+129 of the 1,143 placed definitions, in 250 placements, have `0xFFFF` at class row `+0x52` (an empty `primer_entry`),
+which step 1 skips, so their defeats raise no entry's kill count. No Bestiary entry's monsters list in
+[`clan-primer-entries.tsv`](../Menus-And-HUD/clan-primer-entries.tsv) names them either.
+[`bestiary-no-primer-entry.tsv`](bestiary-no-primer-entry.tsv) lists them. By family:
+
+- Imperial Army 49: Imperial Hoplite 15, Imperial Magus 10, Imperial Gunner 7, Imperial Swordsman 5, Imperial
+  Marksman 4, Imperial Pilot 4, Vayne 2, Imperial Beastmaster 1, Larsa 1;
+- Titantoise 16, all No name; Dalmascan Army 12: Dalmascan Soldier 7, Basch 3, Amalia 1, Vossler 1;
+- Bangaa 12: Bangaa, Bwagi, Gijuk and Rinok 3 each; Seeq 8: Seeq 5, No name 3; Rook 8: Rook, Helm-Rook,
+  Spinner-Rook and Sphere-Rook 2 each;
+- ??? 8: Sephira 5, Vayne Novus 2, The Undying 1; Viera 5: Krjn 3, No name 1, Viera Huntress 1; Wolf 5, all Mastiff;
+- Pirate 3: Pirate, Elza and Rikken; Judge 2: Judge Zargabaath and Judge Drace; Guardian 1: Omega Mark XII.
+
+Nine of them share a name with an entry whose list names other definitions: the 3 Bangaa and 5 Seeq of `rbn_a`
+(entries 376 and 372) and the Omega Mark XII of `gil_i` row 9 (entry 291, which names `gil_i` rows 7 and 8 and `tri_t` row 4).
 
 The 21 definitions whose name word reads No name in the `us` text are placed by the `PRISON_` functions of `nal_a`
 and `nal_b`, the `COCKATRICE_` functions of `sav_b`, the `SND_MAN_` and `SND_WOMAN_` functions of `rbn_a`, and the
