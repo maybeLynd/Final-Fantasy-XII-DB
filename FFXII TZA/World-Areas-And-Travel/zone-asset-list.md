@@ -75,6 +75,58 @@ The zone scripts have a copy in each language folder, and the table names the US
 `in` and `ch` folders (166 each, byte-identical, [Bestiary](../Enemy-Spawning/bestiary.md)), and the
 map packs and the map art sit in folders of their own with no language.
 
+### When each zone opens
+
+[zone-openings.tsv](zone-openings.tsv) gives each of the 708 zones the lowest story counter value (シナリオフラグ,
+[Story progress](../Story-Events-And-Hunts/story-progress.md)) at which an open way leads into it from a zone that
+is already open, with that way, its condition and what the date rests on. The reading starts from the New Game field,
+`naf_a01` (field 274, Aerial Gardens), open at 0.
+
+The 100 Trial Mode stages, `tri_a01` (field 1155) to `tri_t05`, belong to Trial Mode, not to the story, and carry
+no date ([Trial Mode scripts](../Story-Events-And-Hunts/trial-mode-scripts.md)).
+
+A way is one of these:
+
+- a map jump in a zone script whose condition holds at that counter
+  ([Zone changes and map jumps](zone-changes-and-mapjump.md)). A crystal teleport is not a way in: it leads only to
+  a crystal already registered;
+- a walk exit, the map jump of an exit group. It counts where the zone's walk mesh joins the entrance the party arrived
+  by to the exit's floor, under the floor and map-jump settings the zone's start-up script makes at that counter
+  ([Doors, gates and map changes](doors-gates-and-map-changes.md)). The party walks as movement kind 0; an exit the
+  mesh joins only for a chocobo rider (kind 5) counts for a ride;
+- a Strahl destination chosen on the World Map, under that area's gate in
+  [menu-map-files-world-areas.tsv](../Game-Files-And-Data-Tables/menu-map-files-world-areas.tsv): Ridorana Cataract
+  (`rwf_a01`) from 5150 and the Bahamut (`bhm_z01`) from 6100;
+- an airship flight between aerodromes, no earlier than [airship-routes.tsv](airship-routes.tsv) opens a route to
+  that town.
+
+A jump to the map the party came from (`nowmap()` or `lastmap()`), and a way whose condition needs the entrance by
+which the party arrived from the way's own destination, take the party back to where it was and are not ways in.
+
+A condition can test saved values. Each starts at its new-game value: 0, or 1 for the boss words that the new-game
+set-up `pre_z0000` sets to 1. A value is there from the lowest counter at which a store of it can run in an open zone
+under its own condition; a store before the test in the same function counts where its own path holds. A key item a
+condition tests is there from the step of the scene or script that gives it.
+
+566 rows are `dated`, from 0 to 7150 over 51 values; the commonest are 105 (99 zones), 4230 (81) and 1475 (80). The
+highest is `ttl_b01` at 7150, reached by an event in `bhm_d01`. 50 rows name a battle in `basis`, and without that
+battle's store their date moves later: 40 the Zodiark battle (`hne_e01` step 137) and 10 the Firemane battle
+(`grm_d01` step 155). The other rows:
+
+- 100 `Trial Mode`;
+- 39 `no way in`: 38 Draklor Laboratory rooms (`dor_`) and the title map `ttl_c01`. No way the table reads leads
+  into them;
+- 2 `title screen map`: `ttl_a01` and `ttl_d01` ([Title scripts](../Story-Events-And-Hunts/titles-scripts.md));
+- 1 `not dated`: `grm_f01` (No. 1 Cloaca). Its way in from `grm_e08` needs four saved values, `global_var_2`,
+  `global_var_3`, `global_var_5` and `global_var_6`, the sluice gate states, all at 1 (closed). The table names the
+  way and gives no counter, because the reading leaves those four values free.
+
+In 105 rows `basis` also names the walls the way's source zone switches on (`setmapidwall` kind 5, value 0) under a
+condition that is not false at the date. The date does not take them into account: it counts the way open past
+them. Kind 6 writes, which never change where a walking body stops, and writes that switch a wall off are not listed.
+In 67 rows the arrival entrance of a way is held in a saved value; the date then counts the exit group reachable from
+that arrival.
+
 ## Columns
 
 | Column | Meaning |
@@ -100,6 +152,18 @@ The joined columns place 1,926 of the 1,966 chests, all 267 shops, 1,572 of the 
 crystals. The others belong to scripts that no zone-script entry names, so no field loads them: the 40 chests of
 `bts_z01`, the NPC name rows of `bts_z01`, `pre_a01` and `pre_b01`, and the crystal of `mic_b07`. Every zone lies in
 a music run except field 869, `alc_z04` ([Music table](../Sound-And-Music/music-table.md)); its `music_run` is `-`.
+
+### Columns of zone-openings.tsv
+
+| Column | Meaning |
+|---|---|
+| `zone`, `name`, `map_name` | the zone number, its script's name and its map name, as in [zone-asset-list.tsv](zone-asset-list.tsv); `map_name` is `-` for the four `ttl` zones |
+| `opens` | the story counter value at which the zone opens; `-` when the row is not dated |
+| `status` | `dated`, `Trial Mode`, `title screen map`, `no way in`, or `not dated` with the saved values its way in tests |
+| `way_in` | the way: the zone it leads from, its kind (`walk` for an exit group's map jump, `event` for a map jump elsewhere in the zone's scripts, `strahl` for a Strahl destination), then the actor, function and step of the map jump in the step tables; `new game start` for `naf_a01` |
+| `gate` | the way's condition at that step, in the step tables' notation; `-` for a way with no condition |
+| `basis` | what the date rests on, one clause per `; `: how the walk mesh joins the arrival to the exit, an arrival held in a saved value, the battle the date needs and the walls the source zone switches on |
+| `gate_text`, `basis_text` | `gate` and `basis` in words: story counter values with their names, saved values with what they hold and where they are set, items by name |
 
 ## Related
 

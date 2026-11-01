@@ -91,7 +91,7 @@ field id `0x00377B60` takes; a region entry follows the 1,312 area entries.
 
 ### Reading the text
 
-Each cell is the string decoded with its tree's font. Control codes are written as placeholders, `{name}` or
+Each cell is the string decoded with its tree's font. Text codes are written as placeholders, `{name}` or
 `{name:payload}` with the payload bytes in hex; the `placeholder` column of [Text codes](text-codes.md) gives
 each code's form. A backslash comes before a literal backslash, brace, square bracket or bar in the game text.
 
@@ -206,7 +206,7 @@ Empty strings per tree: `us` 2,713, `de` 9, `es` 1, `fr` 437, `it` 2,410, `in` 1
   argument slots.
 - [Battle log](../Battle-Actions/battle-log.md) - which result posts which message.
 - [Bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md) - the table section 57 belongs to.
-- [Text codes](text-codes.md) - every control code and its placeholder.
+- [Text codes](text-codes.md) - every text code and its placeholder.
 - [Text drawing](text-drawing.md) - how the strings are drawn.
 - [Staff roll](staff-roll.md) - the credits text of `menu03` and `menu04`.
 - [Word bank](text-word-bank.md) - the names the battle messages insert.

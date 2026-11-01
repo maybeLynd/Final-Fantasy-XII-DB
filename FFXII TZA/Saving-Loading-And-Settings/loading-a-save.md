@@ -41,7 +41,7 @@ where the save was made.
    - clears the cursor-bank entry and the battle-menu cursor block of step 7 (`0x002CFD10`, `0x003941ED`);
    - asks for map 0 through the jump funnel `0x00314440` (`0x003941FC`)
      ([save file format](save-file-format.md), [changing areas](../World-Areas-And-Travel/changing-areas.md)).
-6. **`btlCallBackAfterReadSaveRam()`.** When the test passes, `0x00233C10` binds the battle-state block `0x02EBF190` to the
+6. **`btlCallBackAfterReadSaveRam()`.** When the test passes, `0x00233C10` binds the party block `0x02EBF190` to the
    loaded image ([save data fields](save-data-fields.md), [party data](../Party/party-data.md)). The empty
    function `0x0016D6A0` runs before it ([jump thunks](../Engine-Core/jump-thunks.md)).
 7. **`YsSaveRam_CallBackInit()`.** `0x002CFD10` (whose argument it ignores) clears entry 4 of the menu cursor bank 6 (`0x002527B0(6, 4, 0)`) and
@@ -63,7 +63,7 @@ and before them `AtelLockSystemAndBattleByMapJump()`, `0x002678C0`, which raises
 
 ## Outcomes
 
-- The battle-state block points at the loaded image, and the scripts start the zone from its transition record.
+- The party block points at the loaded image, and the scripts start the zone from its transition record.
 - The in-game options are the ones in force when the widget was created, not the loaded image's.
 - The menu and battle-menu cursors start from their defaults.
 - The gameplay generator is reseeded from the clock, so a reload does not repeat earlier rolls.

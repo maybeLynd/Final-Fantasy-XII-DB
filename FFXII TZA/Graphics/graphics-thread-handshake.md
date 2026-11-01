@@ -37,8 +37,8 @@ values that pass through it are successive values of one cell, not separate fiel
 
 ### The GS register batch
 
-`0x0036D400(a, b)` builds the frame's GS environment ([Phyre frame](../PhyreEngine/the-frame.md)
-lists its callers and the pass-mask bits that supply `a` and `b`). It reads the width `0x022D8EAC`
+`0x0036D400(a, b)` builds the batch ([Phyre frame](../PhyreEngine/the-frame.md)
+lists its callers and the pass bits that supply `a` and `b`). It reads the width `0x022D8EAC`
 (512) and height `0x022D8EB4` (448), stores width / 2000.0 and height / 2000.0 at `0x022D8EF0` and
 `0x022D8EF4` and 1.0 at `0x022D8EF8` and `0x022D8EFC`, and composes two register values:
 

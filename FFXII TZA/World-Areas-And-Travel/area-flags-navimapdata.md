@@ -30,7 +30,7 @@ file, and this page is that record.
 ### The table and how it is loaded
 
 The area table is the shipped file `navimapdata.bin`: a 4-byte tag `NAV` 0x02, a 32-bit record count,
-and one 3-byte record per area id. The shipped file has 1,154 records and is 3,470 bytes, exactly
+and one 3-byte record per [field id](zone-changes-and-mapjump.md#what-names-a-map), the number that names a map. The shipped file has 1,154 records and is 3,470 bytes, exactly
 8 + 3 × 1,154. Three byte-identical copies ship, in the `ch`, `cn` and `in` image folders.
 
 The World/Area/Field start-up routine `0x00378540` requests it as resource (9, 8) under the key
@@ -52,7 +52,7 @@ so the table stays loaded for the run.
 Every record is a little-endian 16-bit word at `+0` and `+1` plus a third byte at `+2`. Seven short
 functions read it, and each takes one part:
 
-| Reader | Part | Area id from | Returns |
+| Reader | Part | Field id from | Returns |
 |---|---|---|---|
 | `0x00377C20` (thunk `0x00313F60`) | word bit `0x8000`, the town flag | the current area (`0x003148F0`) | 0 or 1 |
 | `0x00377480` | word bit `0x8000` | its argument | 0 or 1 |
@@ -63,7 +63,7 @@ functions read it, and each takes one part:
 | `0x00377C70` | third byte bits `0x70`, the default leader | the current area | 0 to 7 |
 
 All seven share one prologue: load the table pointer, return the default when it is null, compare the
-area id unsigned against the count at `+4` and return the default when it is not below it, then read
+field id unsigned against the count at `+4` and return the default when it is not below it, then read
 bytes `+8` and `+9` (or `+10`) of `table + 3 × id`. `0x00377C20` is the model: `0x00377C29` loads the
 pointer, `0x00377C33` tests it, `0x00377C35`-`0x00377C39` bounds the id, `0x00377C42`-`0x00377C53` assembles
 the word from two byte loads, `0x00377C55` shifts by 15.
@@ -72,9 +72,9 @@ These seven are the only code that reads the table. Its address is held only in 
 word holds it as an absolute or image-relative value, the key `"MapInfo"` has its one reference in `0x00378540`, and
 each reader returns only its own bits. So no code reads third-byte bits 1-3 or bit `0x80` as a field.
 
-### The current area id
+### The current field id
 
-The implicit readers take the area id from `0x003148F0`, which returns the save-data field
+The implicit readers take the field id from `0x003148F0`, which returns the save-data field
 `+0x1044` of the persistent payload (`0x002EF2B0` returns the payload base, the save image's `+0x200`).
 A negative value is clamped to 0 (`0x00314903 cmovs`), so a negative saved id reads record 0 rather
 than nothing. During a zone change this field already holds the area being entered, so every implicit
@@ -232,7 +232,7 @@ Census of the 1,154 records in `navimapdata.bin`:
 The towns, with the names the `us` `planmapname.bin` gives through the name indexer `0x00377B60`
 (offset table at `+0x10`, 1,312 entries; ids with no name entry are omitted):
 
-| Area ids | Towns |
+| Field ids | Towns |
 |---|---|
 | 0-22 | no name entries |
 | 48, 50, 51 | Stockade, rbn_z01, Oubliette |
@@ -281,20 +281,20 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 |---|---|---|---|
 | `0x00378540` | `()` | resource (9, 8) `"MapInfo"` | installs the table pointer through `0x00378B80` into `0x02ADD100` |
 | `0x00377C20` | `()` | word bit `0x8000` of the current area | 0/1; 65 callers plus 47 through `0x00313F60` |
-| `0x00377480` | `(areaId)` | word bit `0x8000` | 0/1; caller `0x0026C8C0` |
-| `0x00377A40` | `(areaId)` | word bit `0x4000` | 0/1; five menu callers |
+| `0x00377480` | `(fieldId)` | word bit `0x8000` | 0/1; caller `0x0026C8C0` |
+| `0x00377A40` | `(fieldId)` | word bit `0x4000` | 0/1; five menu callers |
 | `0x00377BA0` | `()` | payload `+0x1062` bit `0x80`, then `+0x1063` bits 4-5 or word bits `0x3000` | 0-3; four callers through `0x00320160` |
-| `0x003779F0` | `(areaId)` | word bits `0xFFF` | 0-4,094 or -1; nine callers |
+| `0x003779F0` | `(fieldId)` | word bits `0xFFF` | 0-4,094 or -1; nine callers |
 | `0x00377700` | `()` | third byte bit `0x1`, payload `+0x1062` bit `0x1` | 1 when both are clear, else 0; six callers |
 | `0x00377C70` | `()` | third byte bits `0x70` | 0-7; callers `0x00326500`, `0x003266C0`, `0x0031C000` |
-| `0x003148F0` | `()` | payload `+0x1044` | the current or pending area id, negatives clamped to 0 |
+| `0x003148F0` | `()` | payload `+0x1044` | the current or pending field id, negatives clamped to 0 |
 
 ## State
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
 | `0x02ADD100` | `void*` | the loaded table | `0x00378540` (null), `0x00378B80` (delivery) |
-| payload `+0x1044` | `i32` | current or pending area id | the zone change (see the zone changes page) |
+| payload `+0x1044` | `i32` | current or pending field id | the zone change (see the zone changes page) |
 | payload `+0x1062` bit `0x1` | bit | vetoes the hold flag | the zone change record's flag byte |
 | payload `+0x1062` bit `0x80` | bit | enables the MP regime override | the zone change record's flag byte |
 | payload `+0x1063` bits 4-5 | 2 bits | the overriding MP regime | the zone change record |

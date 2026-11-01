@@ -29,7 +29,7 @@ table at `0x01EEBCC0` has fifteen records of `0x58` bytes:
 
 | Offset | Field |
 |---|---|
-| `+0x00` / `+0x08` | region A: offset into the battle state block `[0x02EBF190]`, and the pointer the rebaser derives from it |
+| `+0x00` / `+0x08` | region A: offset into the party block `[0x02EBF190]`, and the pointer the rebaser derives from it |
 | `+0x10` | region A length in 16-bit words |
 | `+0x18` / `+0x20`, `+0x28` / `+0x30` | regions B and C the same way (0 = none) |
 | `+0x38` | class, 5 to 19 |
@@ -198,7 +198,7 @@ reading the validator `0x00322C50` and the query filler `0x0031C5D0` as the two 
      classes 1, 19, 22 and 23 have no slot.
    - Which entry each slot takes is the Shipped data table on
      [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md#shipped-data).
-   - Classes 3 and 4 use the area slots `0x02EBF120` and `0x02EBF150`, bound from the `.ard` by `0x003EA710`
+   - Classes 3 and 4 use the area-table slots `0x02EBF120` and `0x02EBF150`, bound from the `.ard` by `0x003EA710`
      through `0x0023A160` (categories 2 and 0) and unbound by `0x003EA820` at each area load (`0x0023A160(category, 0)`,
      `0x003EA8E1`-`0x003EA90D`), so they change with the area.
 4. **Row.** `row = id − base`, valid when `0 ≤ row < [table + 0x04]`: the validator's shared tail refuses
@@ -332,7 +332,7 @@ Globals:
 | `0x0031E598` | `u32[32]` | query filler arm RVAs | by class - 1 (28 distinct) |
 | `0x01EED1B0` | `...` | category maps | the derived-index category maps, by nibble: {ptr map, u32 count}[11] |
 
-Battle state block [`0x02EBF190`]:
+Party block [`0x02EBF190`]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -417,7 +417,7 @@ runs on the state block.
 ## State
 
 The descriptor table's run-time fields (pointers and cumulative bases), the inventory regions of
-the battle state block, the discovery dword, the derived-index lists, the two static query
+the party block, the discovery dword, the derived-index lists, the two static query
 records.
 
 ## Modding notes

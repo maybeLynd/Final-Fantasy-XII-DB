@@ -20,7 +20,7 @@ addresses: "0x00254B50, 0x0215F1A0, 0x002E1B10, 0x002E1A60, 0x002E0DA0, 0x002E09
 
 1. It keeps the low 15 bits as the id (`0x00254B69`).
 2. It refuses while the request latch `0x02092734` is 1 (`0x00254B71`).
-3. It refuses when the combined action policy has a bit whose word in `0x01E0C2C0` holds the id (`0x00254B80`-`0x00254BC1`);
+3. It refuses when the combined action availability mask has a bit whose word in `0x01E0C2C0` holds the id (`0x00254B80`-`0x00254BC1`);
    that can refuse ids 1, 2, 3, 5, 14 and 21 ([Action availability](../Controls-And-Input/action-availability.md)).
 4. It closes what is open (`0x0017E7D0`, `0x0035DA80`, `0x003C8990`) and dispatches through the byte map `0x00254C70`
    (`0x00254BD6`-`0x00254BF9`). The same three calls are `0x00254FC0`, which `0x0026C3E0` runs (`0x0026C4EC`).
@@ -76,7 +76,7 @@ The mailbox at `0x0215F1A0` holds one request:
 (`0x0034631C`) and polls it until a menu closes (`0x00352E04`). `0x002E0660` clears `0x0215F1AF` for
 `clear_callpartymenu_status` (`0x00357440`), and `0x002E0F90` reads it for `is_callpartymenu_status` (`0x0033F239`).
 
-`0x002E1B10(id, parameter)` posts; for id 2 it also refuses on policy bit `0x1` (`0x002E1B27`-`0x002E1B33`). A second post before
+`0x002E1B10(id, parameter)` posts; for id 2 it also refuses on availability bit `0x1` (`0x002E1B27`-`0x002E1B33`). A second post before
 delivery overwrites the first and still answers 1 (`0x002E1B35`-`0x002E1B47`).
 
 | Poster | Posts |
@@ -138,7 +138,7 @@ open with no fade (`0x0027FF6D`-`0x0027FF77`).
 The drain `0x002E09A0` runs once per world tick:
 
 1. While manager slot 0 is not ready, it throws the request away (`0x002E0B8B`-`0x002E0BAA`).
-2. A pending id 2 is dropped when `0x0037B330` answers non-zero or policy bit `0x1` or `0x8` is set (`0x002E0BC0`-`0x002E0C65`).
+2. A pending id 2 is dropped when `0x0037B330` answers non-zero or availability bit `0x1` or `0x8` is set (`0x002E0BC0`-`0x002E0C65`).
 3. While a party record is busy or another request word is held, it waits and keeps the request (`0x002E0C87`-`0x002E0CC2`).
 4. It then tests `0x00226BA0` and `0x0053DD10` for ids other than 12, 15, 17, 18 and 19 (`0x002E0CC9`-`0x002E0CF3`), but
    `0x0053DD10` always answers 1, so this never holds a request.
@@ -147,7 +147,7 @@ The drain `0x002E09A0` runs once per world tick:
 
 ### While a menu is open
 
-When the router opens a full-screen id, 2, 6, 8-11, 15-19 or 22 (`0x00253BC0`), the drain sets action-policy row 7 to
+When the router opens a full-screen id, 2, 6, 8-11, 15-19 or 22 (`0x00253BC0`), the drain sets action availability row 7 to
 `0x100203` and the main loop's mode to 4 (`0x002E0D2A`-`0x002E0D39`). Mode 4 captures the screen once and becomes mode 3,
 which waits each frame for the menu to close (`0x0022BB62`). Then the loop returns to mode 2, sets the flags `0x0215F1AE` and
 `0x0215F1AF` (`0x002E1BA0`) and clears row 7 (`0x0022BB81`-`0x0022BBC5`). While row 7 is set, the router refuses ids 1, 2, 3, 5 and
@@ -193,10 +193,10 @@ No other instruction names `0x0209E66C`.
 - A script opens a screen with `openfullscreenmenu_48d(selector, parameter)`; bit `0x8000` on the selector skips the fade.
 - Two posts in one tick keep only the second.
 - A request the router refuses during delivery is lost, not retried.
-- A selector above 6 with bit `0x8000` set becomes id `0x8002` and skips the policy bit `0x1` test at `0x002E1AAF`.
+- A selector above 6 with bit `0x8000` set becomes id `0x8002` and skips the availability bit `0x1` test at `0x002E1AAF`.
 
 ## Related
 
-- [Action availability](../Controls-And-Input/action-availability.md) - the policy bits that refuse requests.
+- [Action availability](../Controls-And-Input/action-availability.md) - the availability bits that refuse requests.
 - [Controls](../Controls-And-Input/controls.md) - the buttons the arbiter reads.
 - [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) - the shop a request 10 opens.

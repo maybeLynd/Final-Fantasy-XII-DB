@@ -41,7 +41,7 @@ count + 1 times) turns them into addresses. `0x00236C30(1)` then sends 42 of the
 ### Area tables
 
 `0x003EA820(area)` loads the area's `.ard` (kind `0x15`, file `area × 2`). It first unbinds the five
-area slots and calls `0x0023A160(category, 0)` for each, so an area without a `.ard` leaves them null.
+area-table slots and calls `0x0023A160(category, 0)` for each, so an area without a `.ard` leaves them null.
 On delivery `0x003EA710` binds the sections through `0x0023A160(category, address)`:
 
 | Category | `.ard` header field | Slot | Binder |
@@ -194,7 +194,7 @@ the id's top nibble (5–19), −1 for nibble 15.
 
 ### Runtime blocks and dead cells
 
-- `0x02EBF190` is not a table. It always holds `0x002EF640() + 0x4E68C`, the battle state block (magic
+- `0x02EBF190` is not a table. It always holds `0x002EF640() + 0x4E68C`, the party block (magic
   `0x05071901` at `+0`; 40 party battle records of `0x1C8` bytes from `+8`), written by `0x00233C10` when
   null and by `0x00238A80`.
 - `0x02EBF178` is written only by `0x00324510`, a builder for 301 kind-`0x1A` files that never runs: its
@@ -310,7 +310,7 @@ titles the game loads as files of their own, and id 40, which no path array name
 ## State
 
 The 64 slots, the pack pointer `0x0208E680`, the two lookup grids and their extents
-(`0x0208D300`–`0x0208D318`), and the battle state block behind `0x02EBF190`.
+(`0x0208D300`–`0x0208D318`), and the party block behind `0x02EBF190`.
 
 ## Modding notes
 

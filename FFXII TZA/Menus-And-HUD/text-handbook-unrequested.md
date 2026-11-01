@@ -55,4 +55,4 @@ the Bestiary text ([Clan Primer text](text-handbook.md)).
   families.
 - [Clan Primer](clan-primer.md) - the categories the Clan Primer lists.
 - [Clan Primer text](text-handbook.md) - the Bestiary and Traveler's Tips text.
-- [Text codes](text-codes.md) - the control codes and their placeholders.
+- [Text codes](text-codes.md) - the text codes and their placeholders.

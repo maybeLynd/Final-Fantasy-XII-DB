@@ -96,7 +96,7 @@ and re-selects when the requester differs, exactly as the script path does.
 | `0x0025C230` | 3 `touch` ch 3 / 8 `fieldsign1` ch 3 / 13 `fieldsign2` ch 6, mode 1; 4 `touchon` ch 4 and 5 `touchoff` ch 2, mode 0 | a class-3 actor whose record box contains a party actor (`0x003DA5A0`); the on and off edges of the contact mask at record `+0x100` |
 | `0x0025C830` | the same slots at the same channels | a class-1 trigger record with `+0x5D` bit `0x1` placed and bit `0x2` (outer box) or bit `0x4` (inner box) set; `touchon` with flag 2 raises a stop zone |
 | `0x0025BAD0` | 16 `talkhold` ch 6 (ch 4 for type 7), mode 1, flag 5 | the focus actor stands in the talk box of a talk-armed actor; the actor is also registered as the talk candidate at `0x0209A2B4` |
-| `0x00268D10` | 2 `talk` or 10, ch 7, mode 0 | the talk button gate `0x0026DFB0` passes for the registered candidate; a filed slot 2 sets `+0x0B` bit `0x8`, runs `0x00268EA0` and takes capability row 3 |
+| `0x00268D10` | 2 `talk` or 10, ch 7, mode 0 | the talk button gate `0x0026DFB0` passes for the registered candidate; a filed slot 2 sets `+0x0B` bit `0x8`, runs `0x00268EA0` and takes action availability row 3 |
 | `0x00268EA0` | 16 `talkhold` ch 6/4 mode 1 flag 5; 17 `talkterm` ch 5 (3 for type 7) mode 2 flag 4 | the talk countdown `+0x118` is re-armed |
 | `0x0025B2E0` | 6 `across` ch 5, mode 0 | a party actor's last move crosses the type-2 line record (`0x003A17D0`) |
 | `0x0025B600` | 12 `mapjump` ch 6, mode 0 | the focus actor's collision record names a map-exit owner in `0x0209A210` and `0x003B7730` allows it |

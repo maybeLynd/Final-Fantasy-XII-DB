@@ -76,7 +76,7 @@ opened flag and the presence roll below decide whether the chest is there.
 ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md) has the placement):
 
 1. When the opened flag `record[+0x09]` is set (`0x0032AA60`, bit *n* of the 256-bit chest and trap set at `+0x14B4`
-   of the save payload, [persistent flag banks](../Story-Events-And-Hunts/story-flags.md)), there is no chest
+   of the save payload, the first half of Bank512 of the [Story flags](../Story-Events-And-Hunts/story-flags.md)), there is no chest
    (`0x002FAEE2`-`0x002FAEF0`).
 2. Otherwise a chest when `draw % 100 < record[+0x0A]` (`0x002FAEF2`-`0x002FAF1F`), the draw coming from the gameplay
    Mersenne Twister `0x00379CD0`
@@ -369,7 +369,7 @@ The 35 pieces of equipment chests give only with Treasure Hunter:
 - [Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md): the opening sequence, the latch and the grant.
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): what `setuptreasure` does in order and the placement decode.
 - [Which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md): the presence and contents draws.
-- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the chest and trap flags.
+- [Story flags](../Story-Events-And-Hunts/story-flags.md): the chest and trap flags, in Bank512.
 - [Traps](traps.md): the other user of the chest and trap flag set, and its own ring of three.
 - [Augments](../Damage-And-Battle-Formulas/augments.md) and [augment list](../Damage-And-Battle-Formulas/augment-list.md): augment 25 and the two layers.
 - [Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md): the Diamond Armlet.

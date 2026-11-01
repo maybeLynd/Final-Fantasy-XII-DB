@@ -91,10 +91,10 @@ Populated kinds in the US table, with the first sized path of each kind's array:
 | 38 | 366 | 396 | 21,632 – 1,001,792 | `effect_finish\jp\magic\m0000.efx` |
 | 39 | 64 | 63 | 56,384 – 85,312 | `sound\shout\jp\shout00\shout00.win.sab` |
 
-All paths begin `PS2Data\`. Kind 5 holds each area's script set, three files per area: id `3a` its
-global `.ebp`, `3a + 1` its `.mot` and `3a + 2` its `.fpk`. The area loader `0x0032FCA0` asks for kind
-5, index `area × 3`, for area slot 0 (and slots above 4), kind 8 with index `area × 4` for slots 1 to
-3, and kind 1 with index `area + 0x6B` for slot 4.
+All paths begin `PS2Data\`. Kind 5 holds each zone's script set, three files per field id `a`: id `3a` its
+global `.ebp`, `3a + 1` its `.mot` and `3a + 2` its `.fpk`. The loader `0x0032FCA0` asks for kind
+5, index `n × 3`, for manager slot 0 (and slots above 4), kind 8 with index `n × 4` for slots 1 to
+3, and kind 1 with index `n + 0x6B` for slot 4, `n` being the slot's script number (the field id for slot 0).
 
 Of the ten empty kinds, six (3, 17, 18, 29, 36, 40) point at runtime slots rather than path arrays.
 Four have arrays the table never sizes: kind 6 (`image\FF12\isowaki\ousi00.bin` and `dummy.bin`

@@ -100,7 +100,7 @@ address, shape 1 passes `+0x10`, `+0x14`, `+0x18` to `0x002EBFA0` by value, any 
 nothing; then `0x002EC3F0` and `0x002E8EE0` run. A push while pushed and a pop with nothing pushed do
 nothing.
 
-The interruption is a script taking the actor. `0x00263230(record, 1)` runs when an actor-resource
+The interruption is a script taking the actor. `0x00263230(record, 1)` runs when a request
 entry starts script execution. When no script is running on the roster (`0x02099DB4` at or below 0)
 it registers `0x00226BE0(6, 0, 0, 0, 4, 0x00377700() != 0)` when `0x0209A2A8` is set and the record's
 byte `+0x0C` is non-negative, and resolves the party focus actor with `0x02099D70` pointed at slot 0

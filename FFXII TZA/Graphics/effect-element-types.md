@@ -455,7 +455,7 @@ the type's apply body: `0x004640A0` (`0x40`), `0x00464BD0` (`0x41`), `0x0047BD30
 
 ### Sub-range draw packets
 
-The sub-range draws build a PS2-style packet in the data arena instead of emitting primitives. Each
+The sub-range draws build a PS2-style packet in the packet arena instead of emitting primitives. Each
 one asks a size function for the packet's length in quadwords, gives up when the cursor `0x02F8F2D0`
 plus that length would reach the end `0x02F8F2D8`, lets a builder write the packet at the cursor and
 return the new cursor, and hands the packet to a finaliser (`0x0052329D`–`0x0052335F` for type `0x68`).

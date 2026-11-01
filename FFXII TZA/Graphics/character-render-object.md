@@ -79,7 +79,7 @@ pointers from `+0x30`; with one it copies the template.
 It then writes defaults into the parameter block: `sunIndex` -1, `fresnelRefEnabled` and `eCameraLightEnabled` 1, `PS2ZBiasEnabled`,
 `PS2ZBiasOriginal`, `PS2ZBiasInstance` and `paletteEnabled` 0, among others. A descriptor's word
 `+0x10` is the byte offset into the block and `+0x12 & 0x1FFF` its size; every write checks it fits.
-The offset of each name is in [the binding table](character-render-object-shader-binding-record-0x318-slots.tsv).
+The offset of each name is in [the shader binding record's table](character-render-object-shader-binding-record-0x318-slots.tsv).
 
 ### The z-bias and matrix publish
 
@@ -108,7 +108,7 @@ record `+0x284` bit `0x1000` (`0x0017F220`), slots 22, 23, 24, 15, slot 26 with 
 `+0x6C0` (`0x0017F260`), slot 12, slot 17, slot 6, and slot 16 (`0x0017F210`). Slot 8 is described on
 [character lighting and shadows](character-lighting-and-shadows.md).
 
-Slot 16, `0x001FA3D0`, builds the draw list. For each mesh instance in the vector at `+0x30` and each
+Slot 16, `0x001FA3D0`, builds the object's draw list. For each mesh instance in the vector at `+0x30` and each
 part descriptor (32 bytes) whose two id bytes and `+0x49C` match a mesh, it picks a technique table by
 the part's kind byte (`0x01DFE1D0`, `0x01DFE2F0`, or `ChrOpaque` for kinds above `0x10`), switches to the
 `0x01F83020` / `0x01F83040` set while `+0x4A8` is below 0.75, then calls slots 19, 20 (kinds 2, 5, 10, 13),
@@ -232,7 +232,7 @@ the instance (`0x005049E0`).
   resources to `value` (`0x003CD7F0`); its caller is `0x004213E0`.
 - When the bank's byte `+0x62` is 1, `0x00477F20` walks the instances with `0x004781A0` instead of
   sorting them: an instance with `+0x08` bit `0x1` takes the bank's byte `+0x66` into `+0xB2` and
-  `0x003A2C80` copies its `0x260` bytes into the display list's data arena as an entry keyed by its
+  `0x003A2C80` copies its `0x260` bytes into the draw list's packet arena as an entry keyed by its
   `+0x04` shifted right by 4. The entry's function is the bare `ret` `0x0016D6A0`, so the drain
   draws nothing for it (`0x004781AA`–`0x004781D1`).
 
@@ -318,7 +318,7 @@ The vtable has 31 slots (`0x00903B68`, read from the image):
 | 11 | `0x001F8BE0` | `+0x4A0` = argument / 128, `+0x4A4` = 1 |
 | 13 | `0x001FB120` | z-bias and matrix publish |
 | 15 | `0x001F9A60` | set `+0x49C` |
-| 16 | `0x001FA3D0` | build and submit the draw list |
+| 16 | `0x001FA3D0` | build and submit the object's draw list |
 | 17 | `0x001F5C10` | empty the `+0x390` vector |
 | 21, 22, 23, 25 | `0x001FA810`, `0x001F9FE0`, `0x001F9A70`, `0x001FAD40` | set `+0x4B6`, `+0x4B8`, `+0x4BC`, `+0x4B0` |
 | 24 | `0x001FA1A0` | refraction parameters |

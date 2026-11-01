@@ -1,0 +1,117 @@
+track	section_0_original	section_1_reorchestrated	section_2_ost	material_per_version	seconds_per_version	versions_with_one_sample_data	material_no_version_plays	same_sample_data_in_other_banks
+7	31_FinalFantasyXII-GameOver	bgm_007_take2	bgm_007s	Original 0, Reorchestrated 1, OST 2	Original 20.78, Reorchestrated 27.35, OST 21.74	-	-	-
+15	32_FinalFantasyXII-NalbinaFortressUndergroundPrison	bgm_015	bgm_015s	Original 0, Reorchestrated 1, OST 2	Original 256.96, Reorchestrated 124.97, OST 274.52	-	-	-
+16	49_FinalFantasyXII-TheSandsea	bgm_016	bgm_016s	Original 0, Reorchestrated 1, OST 2	Original 140.95, Reorchestrated 67.86, OST 140.74	-	-	-
+17	99_FinalFantasyXII-ThemeoftheEmpire(PartialLoop)	bgm_017	99_FinalFantasyXII-ThemeoftheEmpire(PartialLoop)2	Original 2, Reorchestrated 1, OST 2	Original 151.0, Reorchestrated 69.97, OST 151.0	Original and OST	0	-
+18	72_FinalFantasyXII-TheMosphoranHighwaste	bgm_018	bgm_018s	Original 0, Reorchestrated 1, OST 2	Original 208.94, Reorchestrated 80.85, OST 169.56	-	-	-
+19	07_FinalFantasyXII-TheRoyalCapitalofRabanastre~TownWardUpperStratum	bgm_019	bgm_019s	Original 0, Reorchestrated 1, OST 2	Original 328.96, Reorchestrated 161.37, OST 327.47	-	-	-
+20	20_FinalFantasyXII-GizaPlains	bgm_020	bgm_020s	Original 0, Reorchestrated 1, OST 2	Original 285.95, Reorchestrated 135.4, OST 282.37	-	-	OST (material 2) = track 201 material 2; Original (material 0) = track 201 material 0
+21	56_FinalFantasyXII-TheGolmoreJungle	bgm_021	bgm_021s	Original 0, Reorchestrated 1, OST 2	Original 227.97, Reorchestrated 110.68, OST 229.67	-	-	-
+22	41_FinalFantasyXII-SecretofNethicite	bgm_022	bgm_022s	Original 0, Reorchestrated 1, OST 2	Original 202.71, Reorchestrated 99.16, OST 141.57	-	-	-
+23	29_FinalFantasyXII-DarkCloud(ImperialVersion)	bgm_023	bgm_023s	Original 0, Reorchestrated 1, OST 2	Original 176.79, Reorchestrated 56.45, OST 65.45	-	-	-
+24	19_FinalFantasyXII-ASmallBargain	bgm_024	bgm_024s	Original 0, Reorchestrated 1, OST 2	Original 7.19, Reorchestrated 8.36, OST 8.62	-	-	-
+25	06_FinalFantasyXII-ASmallHappiness	bgm_025	bgm_025s	Original 0, Reorchestrated 1, OST 2	Original 7.62, Reorchestrated 8.55, OST 7.85	-	-	-
+26	58_FinalFantasyXII-YouReallyareaChild	bgm_026	58_FinalFantasyXII-YouReallyareaChild2	Original 2, Reorchestrated 1, OST 2	Original 8.51, Reorchestrated 8.75, OST 8.51	Original and OST	0	-
+27	28_FinalFantasyXII-VictoryFanfare(FinalFantasyXIIVersion)	bgm_027	bgm_027s	Original 0, Reorchestrated 1, OST 2	Original 44.01, Reorchestrated 19.97, OST 19.05	-	-	-
+28	23_FinalFantasyXII-AnOmen	bgm_028	bgm_028s	Original 0, Reorchestrated 1, OST 2	Original 171.01, Reorchestrated 81.79, OST 118.81	-	-	-
+29	36_FinalFantasyXII-TheBarheimPassage	bgm_029	bgm_029s	Original 0, Reorchestrated 1, OST 2	Original 231.21, Reorchestrated 111.89, OST 110.72	-	-	-
+30	64_FinalFantasyXII-TimeforaRest	bgm_030	bgm_030s	Original 0, Reorchestrated 1, OST 2	Original 130.94, Reorchestrated 63.06, OST 61.97	-	-	-
+31	04_FinalFantasyXII-AuditoryHallucination	bgm_031	bgm_031s	Original 0, Reorchestrated 1, OST 2	Original 192.96, Reorchestrated 96.15, OST 106.73	-	-	-
+32	08_FinalFantasyXII-Penelo'sTheme	bgm_032	bgm_032s	Original 0, Reorchestrated 1, OST 2	Original 145.96, Reorchestrated 84.93, OST 106.11	-	-	-
+33	33_FinalFantasyXII-TheBarbarians	bgm_033	bgm_033s	Original 0, Reorchestrated 1, OST 2	Original 148.44, Reorchestrated 69.78, OST 77.95	-	-	-
+34	02_FinalFantasyXII-Infiltration	bgm_034	bgm_034s	Original 0, Reorchestrated 1, OST 2	Original 199.7, Reorchestrated 95.06, OST 107.61	-	-	-
+35	34_FinalFantasyXII-BattleDrum	bgm_035	bgm_035s	Original 0, Reorchestrated 1, OST 2	Original 166.95, Reorchestrated 79.62, OST 85.46	-	-	-
+36	03_FinalFantasyXII-BossBattle	bgm_036	bgm_036s	Original 0, Reorchestrated 1, OST 2	Original 203.84, Reorchestrated 98.15, OST 106.07	-	-	OST (material 2) = track 101 material 2; OST (material 2) = track 205 material 2; Original (material 0) = track 205 material 0; Reorchestrated (material 1) = track 101 material 1
+37	17_FinalFantasyXII-TheDamalscaWestersand	bgm_037	bgm_037s	Original 0, Reorchestrated 1, OST 2	Original 176.58, Reorchestrated 85.33, OST 83.22	-	-	-
+38	76_FinalFantasyXII-Nap	bgm_038	bgm_038s	Original 0, Reorchestrated 1, OST 2	Original 12.8, Reorchestrated 14.46, OST 13.91	-	-	-
+39	62_FinalFantasyXII-AbandoningPower	bgm_039	bgm_039s	Original 0, Reorchestrated 1, OST 2	Original 154.99, Reorchestrated 76.78, OST 78.36	-	-	-
+40	12_FinalFantasyXII-Naivete	bgm_040	bgm_040s	Original 0, Reorchestrated 1, OST 2	Original 181.44, Reorchestrated 88.64, OST 134.42	-	-	-
+41	82_FinalFantasyXII-Giruvegan'sMystery	bgm_041	bgm_041s	Original 0, Reorchestrated 1, OST 2	Original 169.75, Reorchestrated 80.3, OST 81.24	-	-	-
+42	57_FinalFantasyXII-EruytVillage	bgm_042	bgm_042s	Original 0, Reorchestrated 1, OST 2	Original 251.61, Reorchestrated 123.86, OST 131.69	-	-	-
+43	92_FinalFantasyXII-BattleDrum(Incomplete)	92_FinalFantasyXII-BattleDrum(Incomplete)2	92_FinalFantasyXII-BattleDrum(Incomplete)22	Original 2, Reorchestrated 2, OST 2	Original 46.55, Reorchestrated 46.55, OST 46.55	Original and Reorchestrated and OST	0, 1	-
+44	98_FinalFantasyXII-SkyFortressBahamut	bgm_044	98_FinalFantasyXII-SkyFortressBahamut2	Original 2, Reorchestrated 1, OST 2	Original 180.97, Reorchestrated 70.27, OST 180.97	Original and OST	0	-
+45	66_FinalFantasyXII-TheSalikawood	bgm_045	bgm_045s	Original 0, Reorchestrated 1, OST 2	Original 155.67, Reorchestrated 73.73, OST 74.28	-	-	-
+46	63_FinalFantasyXII-TheStillshrineofMiriam	bgm_046	bgm_046s	Original 0, Reorchestrated 1, OST 2	Original 203.37, Reorchestrated 106.45, OST 98.79	-	-	-
+47	85_FinalFantasyXII-TothePeak	bgm_047	bgm_047s	Original 0, Reorchestrated 1, OST 2	Original 207.17, Reorchestrated 101.61, OST 98.94	-	-	-
+48	83_FinalFantasyXII-TothePlaceoftheGods	bgm_048	bgm_048s	Original 0, Reorchestrated 1, OST 2	Original 203.95, Reorchestrated 99.35, OST 102.12	-	-	-
+49	77_FinalFantasyXII-TheZertinanCaverns	bgm_049	bgm_049s	Original 0, Reorchestrated 1, OST 2	Original 209.49, Reorchestrated 104.51, OST 108.01	-	-	-
+50	55_FinalFantasyXII-OzmonePlain	bgm_050	bgm_050s	Original 0, Reorchestrated 1, OST 2	Original 150.21, Reorchestrated 70.46, OST 72.11	-	-	-
+51	43_FinalFantasyXII-SpeechlessFight	bgm_051	bgm_051s	Original 0, Reorchestrated 1, OST 2	Original 160.49, Reorchestrated 76.86, OST 106.77	-	-	-
+52	16_FinalFantasyXII-QuietDetermination	bgm_052	bgm_052s	Original 0, Reorchestrated 1, OST 2	Original 219.29, Reorchestrated 112.06, OST 115.93	-	-	-
+53	25_FinalFantasyXII-NalbinaFortressTownWard	bgm_053	bgm_053s	Original 0, Reorchestrated 1, OST 2	Original 151.55, Reorchestrated 78.06, OST 77.31	-	-	-
+54	40_FinalFantasyXII-TheSkycityofBhujerba	bgm_054	bgm_054s	Original 0, Reorchestrated 1, OST 2	Original 227.99, Reorchestrated 112.94, OST 130.09	-	-	-
+55	22_FinalFantasyXII-TheGaramscytheWaterway	bgm_055	bgm_055s	Original 0, Reorchestrated 1, OST 2	Original 175.55, Reorchestrated 90.15, OST 89.92	-	-	-
+56	73_FinalFantasyXII-TheCerobiSteppe	bgm_056	bgm_056s	Original 0, Reorchestrated 1, OST 2	Original 193.73, Reorchestrated 104.21, OST 96.83	-	-	OST (material 2) = track 200 material 2; Original (material 0) = track 200 material 0
+57	84_FinalFantasyXII-BeginningoftheEnd	bgm_057	bgm_057s	Original 0, Reorchestrated 1, OST 2	Original 215.96, Reorchestrated 108.57, OST 109.61	-	-	-
+58	54_FinalFantasyXII-Jahara,LandoftheGarif	bgm_058	bgm_058s	Original 0, Reorchestrated 1, OST 2	Original 299.52, Reorchestrated 153.02, OST 147.14	-	-	-
+59	65_FinalFantasyXII-TheWhiteRoom	bgm_059	bgm_059s	Original 0, Reorchestrated 1, OST 2	Original 232.02, Reorchestrated 123.75, OST 136.32	-	-	-
+60	79_FinalFantasyXII-TheForgottenCapital	bgm_060	bgm_060s	Original 0, Reorchestrated 1, OST 2	Original 254.29, Reorchestrated 124.14, OST 134.68	-	-	-
+61	35_FinalFantasyXII-ThemeoftheEmpire	bgm_061	35_FinalFantasyXII-ThemeoftheEmpire2	Original 2, Reorchestrated 1, OST 2	Original 155.95, Reorchestrated 87.32, OST 155.95	Original and OST	0	Original (material 2) = track 102 material 0; Original (material 2) = track 102 material 2; Reorchestrated (material 1) = track 102 material 1
+62	70_FinalFantasyXII-AMoment'sRest	bgm_062	bgm_062s	Original 0, Reorchestrated 1, OST 2	Original 270.38, Reorchestrated 133.03, OST 144.64	-	-	OST (material 2) = track 202 material 2; Original (material 0) = track 202 material 0
+63	48_FinalFantasyXII-TheTombofRaithwall	bgm_063	bgm_063s	Original 0, Reorchestrated 1, OST 2	Original 212.39, Reorchestrated 104.32, OST 116.91	-	-	-
+64	15_FinalFantasyXII-RabanastreDowntown	bgm_064	bgm_064s	Original 0, Reorchestrated 1, OST 2	Original 170.79, Reorchestrated 77.03, OST 76.12	-	-	-
+65	51_FinalFantasyXII-Sorrow(ImperialVersion)	bgm_065	bgm_065s	Original 0, Reorchestrated 1, OST 2	Original 179.33, Reorchestrated 92.86, OST 97.05	-	-	-
+66	RB_Kanasi_edit	bgm_066	bgm_066s	Original 0, Reorchestrated 1, OST 2	Original 102.1, Reorchestrated 106.03, OST 133.27	-	-	-
+67	14_FinalFantasyXII-SignsofChange	bgm_067	bgm_067s	Original 0, Reorchestrated 1, OST 2	Original 141.97, Reorchestrated 78.29, OST 83.52	-	-	-
+68	46_FinalFantasyXII-StateofEmergency	bgm_068	bgm_068s	Original 0, Reorchestrated 1, OST 2	Original 195.95, Reorchestrated 95.74, OST 99.82	-	-	-
+69	47_FinalFantasyXII-Upheaval(ImperialVersion)	bgm_069	bgm_069s	Original 0, Reorchestrated 1, OST 2	Original 193.98, Reorchestrated 76.57, OST 103.27	-	-	-
+70	53_FinalFantasyXII-DesperateFight	bgm_070	bgm_070s	Original 0, Reorchestrated 1, OST 2	Original 171.95, Reorchestrated 94.34, OST 95.27	-	-	-
+71	50_FinalFantasyXII-EsperBattle	bgm_071	bgm_071s	Original 0, Reorchestrated 1, OST 2	Original 203.95, Reorchestrated 99.09, OST 101.33	-	-	-
+72	recBGM_072_FinalFantasyThemL	bgm_072	bgm_072s	Original 0, Reorchestrated 1, OST 2	Original 127.0, Reorchestrated 73.26, OST 64.41	-	-	OST (material 2) = track 114 material 2; Original (material 0) = track 114 material 0; Reorchestrated (material 1) = track 114 material 1
+73	78_FinalFantasyXII-ALandofMemories	bgm_073	bgm_073s	Original 0, Reorchestrated 1, OST 2	Original 242.35, Reorchestrated 117.93, OST 126.83	-	-	-
+74	24_FinalFantasyXII-Rebellion	bgm_074	bgm_074s	Original 0, Reorchestrated 1, OST 2	Original 178.01, Reorchestrated 84.61, OST 97.26	-	-	-
+75	52_FinalFantasyXII-SeekingPower	bgm_075	bgm_075s	Original 0, Reorchestrated 1, OST 2	Original 193.81, Reorchestrated 94.34, OST 97.6	-	-	-
+76	45_FinalFantasyXII-ChallengingtheEmpire	bgm_076	bgm_076s	Original 0, Reorchestrated 1, OST 2	Original 198.93, Reorchestrated 101.08, OST 146.75	-	-	-
+77	44_FinalFantasyXII-TheDreadnaughtLeviathanBridge	bgm_077	bgm_077s	Original 0, Reorchestrated 1, OST 2	Original 234.01, Reorchestrated 132.65, OST 125.7	-	-	-
+78	68_FinalFantasyXII-Destiny	bgm_078	bgm_078s	Original 0, Reorchestrated 1, OST 2	Original 177.96, Reorchestrated 86.14, OST 111.51	-	-	-
+79	26_FinalFantasyXII-ThePrincess'Vision	bgm_079	bgm_079s	Original 0, Reorchestrated 1, OST 2	Original 206.95, Reorchestrated 99.86, OST 198.36	-	-	-
+80	13_FinalFantasyXII-Coexistence(ImperialVersion)	bgm_080	bgm_080s	Original 0, Reorchestrated 1, OST 2	Original 177.98, Reorchestrated 82.94, OST 83.05	-	-	-
+81	RB_Mattari_edit	bgm_081	bgm_081s	Original 0, Reorchestrated 1, OST 2	Original 80.02, Reorchestrated 82.73, OST 87.06	-	-	-
+82	60_FinalFantasyXII-AnImminentThreat	bgm_082	bgm_082s	Original 0, Reorchestrated 1, OST 2	Original 172.84, Reorchestrated 85.42, OST 102.06	-	-	-
+83	71_FinalFantasyXII-NeartheWater	bgm_083	bgm_083s	Original 0, Reorchestrated 1, OST 2	Original 193.0, Reorchestrated 90.3, OST 92.89	-	-	-
+84	81_FinalFantasyXII-Ashe'sTheme	bgm_084	81_FinalFantasyXII-Ashe'sTheme2	Original 2, Reorchestrated 1, OST 2	Original 330.99, Reorchestrated 93.65, OST 330.99	Original and OST	0	-
+85	01_FinalFantasyXII-Unknown1	bgm_085	01_FinalFantasyXII-Unknown12	Original 2, Reorchestrated 1, OST 2	Original 180.97, Reorchestrated 65.62, OST 180.97	Original and OST	0	Original (material 2) = track 204 material 0; Original (material 2) = track 204 material 2
+86	18_FinalFantasyXII-ClanHeadquarters	bgm_086	bgm_086s	Original 0, Reorchestrated 1, OST 2	Original 166.98, Reorchestrated 99.93, OST 95.74	-	-	-
+87	02_FinalFantasyXII-Unknown2	bgm_087	02_FinalFantasyXII-Unknown22	Original 2, Reorchestrated 1, OST 2	Original 180.97, Reorchestrated 102.49, OST 180.97	Original and OST	0	-
+88	67_FinalFantasyXII-ThePhonCoast	bgm_088	bgm_088s	Original 0, Reorchestrated 1, OST 2	Original 238.98, Reorchestrated 115.18, OST 115.95	-	-	-
+89	80_FinalFantasyXII-TheFeywood	bgm_089	bgm_089s	Original 0, Reorchestrated 1, OST 2	Original 254.76, Reorchestrated 131.5, OST 128.28	-	-	-
+90	59_FinalFantasyXII-Chocobo(FFXIIVersion)	bgm_090	bgm_090s	Original 0, Reorchestrated 1, OST 2	Original 123.95, Reorchestrated 64.6, OST 59.75	-	-	-
+91	74_FinalFantasyXII-Esper	bgm_091	bgm_091s	Original 0, Reorchestrated 1, OST 2	Original 165.76, Reorchestrated 83.29, OST 86.31	-	-	-
+92	69_FinalFantasyXII-TheSochenCavePalace	bgm_092	bgm_092s	Original 0, Reorchestrated 1, OST 2	Original 218.75, Reorchestrated 106.6, OST 223.53	-	-	-
+94	42_FinalFantasyXII-DarkNight(ImperialVersion)	bgm_094	bgm_094s	Original 0, Reorchestrated 1, OST 2	Original 125.74, Reorchestrated 60.07, OST 65.26	-	-	-
+95	27_FinalFantasyXII-ClashofSwords	bgm_095	bgm_095s	Original 0, Reorchestrated 1, OST 2	Original 155.97, Reorchestrated 80.32, OST 97.69	-	-	OST (material 2) = track 106 material 2; OST (material 2) = track 203 material 2; OST (material 2) = track 206 material 2; Original (material 0) = track 106 material 0; Original (material 0) = track 203 material 0; Original (material 0) = track 206 material 0; Reorchestrated (material 1) = track 106 material 1
+96	88_FinalFantasyXII-BattleforFreedom	bgm_096	bgm_096s	Original 0, Reorchestrated 1, OST 2	Original 531.71, Reorchestrated 378.6, OST 432.6	-	-	-
+97	61_FinalFantasyXII-ClashontheBigBridge(FFXIIVersion)	bgm_097	bgm_097s	Original 0, Reorchestrated 1, OST 2	Original 176.36, Reorchestrated 85.93, OST 103.94	-	-	-
+98	recBGM_098_KoakutoL	bgm_098	bgm_098s	Original 0, Reorchestrated 1, OST 2	Original 194.43, Reorchestrated 91.75, OST 98.18	-	-	-
+99	75_FinalFantasyXII-ThePortofBalfonheim	bgm_099	75_FinalFantasyXII-ThePortofBalfonheim2	Original 2, Reorchestrated 1, OST 2	Original 188.71, Reorchestrated 91.18, OST 188.71	Original and OST	0	-
+100	11_FinalFantasyXII-TheDamalscaEastersand	bgm_100	bgm_100s	Original 0, Reorchestrated 1, OST 2	Original 242.94, Reorchestrated 125.01, OST 124.39	-	-	-
+101	93_FinalFantasyXII-BossBattle	bgm_036	bgm_036s	Original 0, Reorchestrated 1, OST 2	Original 180.97, Reorchestrated 98.15, OST 106.07	-	-	OST (material 2) = track 205 material 2; OST (material 2) = track 36 material 2; Original (material 0) = track 207 material 0; Original (material 0) = track 207 material 2; Reorchestrated (material 1) = track 36 material 1
+102	35_FinalFantasyXII-ThemeoftheEmpire	bgm_061	35_FinalFantasyXII-ThemeoftheEmpire2	Original 2, Reorchestrated 1, OST 2	Original 155.95, Reorchestrated 87.32, OST 155.95	Original and OST	0	Original (material 2) = track 61 material 0; Original (material 2) = track 61 material 2; Reorchestrated (material 1) = track 61 material 1
+103	09_FinalFantasyXII-TheDreamofBecomingaSkyPirate	bgm_103	bgm_103s	Original 0, Reorchestrated 1, OST 2	Original 34.09, Reorchestrated 34.92, OST 34.88	-	-	-
+104	90_FinalFantasyXII-ALandofMemories	bgm_104	bgm_1042	Original 0, Reorchestrated 2, OST 2	Original 180.33, Reorchestrated 120.19, OST 120.19	Reorchestrated and OST	1	-
+105	38_FinalFantasyXII-Basch'sReminiscence	bgm_105	bgm_105s	Original 0, Reorchestrated 1, OST 2	Original 118.95, Reorchestrated 55.96, OST 55.51	-	-	-
+106	27_FinalFantasyXII-ClashofSwords	bgm_095	bgm_095s	Original 0, Reorchestrated 1, OST 2	Original 155.97, Reorchestrated 80.32, OST 97.69	-	-	OST (material 2) = track 203 material 2; OST (material 2) = track 206 material 2; OST (material 2) = track 95 material 2; Original (material 0) = track 203 material 0; Original (material 0) = track 206 material 0; Original (material 0) = track 95 material 0; Reorchestrated (material 1) = track 95 material 1
+107	30_FinalFantasyXII-PromisewithBalthier	bgm_107	bgm_107s	Original 0, Reorchestrated 1, OST 2	Original 36.91, Reorchestrated 38.53, OST 36.67	-	-	-
+108	21_FinalFantasyXII-SeparationwithPenelo	bgm_108	bgm_108s	Original 0, Reorchestrated 1, OST 2	Original 30.19, Reorchestrated 30.89, OST 30.34	-	-	-
+109	87_FinalFantasyXII-ShakingBahamut	bgm_109	bgm_109s	Original 0, Reorchestrated 1, OST 2	Original 41.05, Reorchestrated 41.62, OST 41.51	-	-	-
+110	91_FinalFantasyXII-Ashe'sTheme(Intro)	bgm_110	91_FinalFantasyXII-Ashe'sTheme(Intro)22	Original 2, Reorchestrated 1, OST 2	Original 10.33, Reorchestrated 9.83, OST 10.33	Original and OST	0	-
+111	86_FinalFantasyXII-SkyFortressBahamut	bgm_111	86_FinalFantasyXII-SkyFortressBahamut2	Original 2, Reorchestrated 1, OST 2	Original 225.77, Reorchestrated 99.01, OST 225.77	Original and OST	0	-
+112	97_FinalFantasyXII-SkyFortressBahamut(PartialLoop)	bgm_112	97_FinalFantasyXII-SkyFortressBahamut(PartialLoop)2	Original 2, Reorchestrated 1, OST 2	Original 22.42, Reorchestrated 24.0, OST 22.42	Original and OST	0	-
+113	05_FinalFantasyXII-SecretPractice	bgm_113	bgm_113s	Original 0, Reorchestrated 1, OST 2	Original 136.75, Reorchestrated 65.07, OST 71.06	-	-	-
+114	recBGM_072_FinalFantasyThemL	bgm_072	bgm_072s	Original 0, Reorchestrated 1, OST 2	Original 127.0, Reorchestrated 73.26, OST 64.41	-	-	OST (material 2) = track 72 material 2; Original (material 0) = track 72 material 0; Reorchestrated (material 1) = track 72 material 1
+115	89_FinalFantasyXII-EndoftheBattle	bgm_115	bgm_115s	Original 0, Reorchestrated 1, OST 2	Original 74.52, Reorchestrated 78.12, OST 73.77	-	-	-
+116	96_FinalFantasyXII-NeartheWater(PartialLoop)	bgm_116	96_FinalFantasyXII-NeartheWater(PartialLoop)2	Original 2, Reorchestrated 1, OST 2	Original 64.28, Reorchestrated 67.41, OST 64.28	Original and OST	0	-
+200	73_FinalFantasyXII-TheCerobiSteppe	bgm_200	bgm_056s	Original 0, Reorchestrated 1, OST 2	Original 193.73, Reorchestrated 108.95, OST 96.83	-	-	OST (material 2) = track 56 material 2; Original (material 0) = track 56 material 0
+201	20_FinalFantasyXII-GizaPlains	bgm_201	bgm_020s	Original 0, Reorchestrated 1, OST 2	Original 285.95, Reorchestrated 97.75, OST 282.37	-	-	OST (material 2) = track 20 material 2; Original (material 0) = track 20 material 0
+202	70_FinalFantasyXII-AMoment'sRest	bgm_202	bgm_062s	Original 0, Reorchestrated 1, OST 2	Original 270.38, Reorchestrated 104.98, OST 144.64	-	-	OST (material 2) = track 62 material 2; Original (material 0) = track 62 material 0
+203	27_FinalFantasyXII-ClashofSwords	bgm_203	bgm_095s	Original 0, Reorchestrated 1, OST 2	Original 155.97, Reorchestrated 86.34, OST 97.69	-	-	OST (material 2) = track 106 material 2; OST (material 2) = track 206 material 2; OST (material 2) = track 95 material 2; Original (material 0) = track 106 material 0; Original (material 0) = track 206 material 0; Original (material 0) = track 95 material 0
+204	01_FinalFantasyXII-Unknown1	bgm_204	01_FinalFantasyXII-Unknown12	Original 2, Reorchestrated 1, OST 2	Original 180.97, Reorchestrated 110.17, OST 180.97	Original and OST	0	Original (material 2) = track 85 material 0; Original (material 2) = track 85 material 2
+205	03_FinalFantasyXII-BossBattle	bgm_205	bgm_036s	Original 0, Reorchestrated 1, OST 2	Original 203.84, Reorchestrated 94.53, OST 106.07	-	-	OST (material 2) = track 101 material 2; OST (material 2) = track 36 material 2; Original (material 0) = track 36 material 0
+206	27_FinalFantasyXII-ClashofSwords	bgm_206	bgm_095s	Original 0, Reorchestrated 1, OST 2	Original 155.97, Reorchestrated 111.55, OST 97.69	-	-	OST (material 2) = track 106 material 2; OST (material 2) = track 203 material 2; OST (material 2) = track 95 material 2; Original (material 0) = track 106 material 0; Original (material 0) = track 203 material 0; Original (material 0) = track 95 material 0; Reorchestrated (material 1) = track 207 material 1
+207	93_FinalFantasyXII-BossBattle	bgm_206	93_FinalFantasyXII-BossBattle2	Original 2, Reorchestrated 1, OST 2	Original 180.97, Reorchestrated 111.55, OST 180.97	Original and OST	0	Original (material 2) = track 101 material 0; Reorchestrated (material 1) = track 206 material 1
+208	E208	E2082	E20822	Original 2, Reorchestrated 2, OST 2	Original 106.71, Reorchestrated 106.71, OST 106.71	Original and Reorchestrated and OST	0, 1	-
+209	E209	E2092	E20922	Original 2, Reorchestrated 2, OST 2	Original 91.09, Reorchestrated 91.09, OST 91.09	Original and Reorchestrated and OST	0, 1	-
+210	E210	E2102	E21022	Original 2, Reorchestrated 2, OST 2	Original 23.98, Reorchestrated 23.98, OST 23.98	Original and Reorchestrated and OST	0, 1	-
+211	bgm_211	bgm_2112	bgm_21122	Original 2, Reorchestrated 2, OST 2	Original 61.06, Reorchestrated 61.06, OST 61.06	Original and Reorchestrated and OST	0, 1	-
+212	E207	E2072	E2073	Original 2, Reorchestrated 2, OST 2	Original 149.72, Reorchestrated 149.72, OST 149.72	Original and Reorchestrated and OST	0, 1	-
+213	bgm_213original	bgm_213	bgm_213soundtrack	Original 0, Reorchestrated 1, OST 2	Original 111.83, Reorchestrated 126.49, OST 112.73	-	-	-

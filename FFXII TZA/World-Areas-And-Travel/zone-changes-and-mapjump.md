@@ -119,7 +119,7 @@ sets `0x022C2528` = 1 and notifies the file cache. `0x003145E0` is also called b
 `0x0032FC30(0, map)` calls `0x003EA6E0(map, byte 0x022C6D1D)`, then `0x0032FCA0(0, map)`, `0x0025D4D0(0)`, and sets
 bit `0x1` of `0x022C6E48`, the start hold. A branch guarded by `0x005C5230(5)` is dead in this build.
 
-That dead branch calls `0x003319D0(map)`. It takes the zone's `.ebp` path (namespace 5, index
+That dead branch calls `0x003319D0(map)`. It takes the zone's `.ebp` path (kind 5, index
 `map * 3`) and makes four sibling paths with `0x00331F50`, which replaces every occurrence of one
 substring with another: the folder `global` becomes `entry`, `entry`, `treasure` or `icon` and the
 extension `eps`, `ard`, `eps` or `icn`. Each file that exists (`0x0032E400(0xFF, path)`) is read into
@@ -130,9 +130,9 @@ a block labelled `POSENT`, `MAPARD`, `TREENT` or `NV_ICON` with the source name 
 ### Where the files come from
 
 `0x0032FCA0(m, ctx)` unloads the manager (`0x002628B0`), resets it (`0x0032ED80`), stores `ctx` at
-`0x022C6D28[m]` and `0x022C6D40[m]`, and chooses the archive namespace and base index:
+`0x022C6D28[m]` and `0x022C6D40[m]`, and chooses the resource kind and base index:
 
-| Manager | Namespace | Base index | Used for |
+| Manager | Kind | Base index | Used for |
 |---:|---:|---|---|
 | 0 | 5 | `ctx * 3` | the zone |
 | 1 to 3 | 8 | `ctx * 4` | event scenes |
@@ -145,8 +145,8 @@ It then queues the asynchronous loads, each setting a bit of the manager's pendi
 |---|---:|---|
 | `base + 2` (callback `0x00331760`, buffer `0x022C6E98[m]`) | `0x1000` | managers 1 to 4 |
 | `base + 1` (callback `0x003302B0`, buffer `0x022C6E70[m]`) | `0x2000` | managers 0 to 3 |
-| `base + 3` from namespace 8 (callback `0x00331820`) | `0x8000` | managers 1 to 3 |
-| `base + 3` from namespace `0x25` (callback `0x003317C0`) | `0x4000` | managers 1 to 3 |
+| `base + 3` from kind 8 (callback `0x00331820`) | `0x8000` | managers 1 to 3 |
+| `base + 3` from kind `0x25` (callback `0x003317C0`) | `0x4000` | managers 1 to 3 |
 | the primary payload, `0x00330310(m, ctx, ns, base)` (callback `0x003304A0`) | `0x20000` | all |
 
 Pending bit `0x1` is a start hold, not a load. `0x0032ED70(m)` sets it, `0x0032F6C0(m)` reads the mask without
@@ -195,7 +195,7 @@ transition reason.
 The End handlers of verbs `0xE7` and `0xE8` (the `eventread` pair; table records `0xE8` and `0xE9`,
 first slots `0x00353080` and `0x003522C0`) call `0x0032FC30(m, id)` and `0x0032ED70(m)` with `m` = the scene slot
 plus 1, clamped to 1 to 3, when `0x00264170()` is non-zero and `0x001C3370()` is not 1. `0x00353080` first
-calls `0x00314D40(1)`. A scene is therefore loaded into manager 1, 2 or 3 from namespace 8 at index
+calls `0x00314D40(1)`. A scene is therefore loaded into manager 1, 2 or 3 from kind 8 at index
 `id * 4` when the verb finishes, through the same pending-mask pipeline as a zone.
 
 ### The menu scene in manager 3
@@ -271,9 +271,9 @@ index into three tables.
 
 The archive file table is the first:
 
-- `0x0032FCA0` loads a zone from namespace 5 at index `id * 3`, and `0x002DF980(ns, i)` returns
+- `0x0032FCA0` loads a zone from [resource kind](../Game-Files-And-Data-Tables/file-size-tables-fst.md) 5 at index `id * 3`, and `0x002DF980(ns, i)` returns
   `[[0x0215F000 + ns*8] + i*8]`, a path pointer.
-- `0x002DF9A0` fills `0x0215F000`. Its ten arms store ten language copies of the namespace-5 table
+- `0x002DF9A0` fills `0x0215F000`. Its ten arms store ten language copies of the kind-5 table
   (`0x0215F028` is written at `0x002DFC03`, `0x002DFC71`, `0x002DFCD1`, `0x002DFD31`, `0x002DFD91`, `0x002DFDE3`,
   `0x002DFE35`, `0x002DFEBF`, `0x002DFF18` and `0x002DFF71`); the `us` copy is `0x01EE23A0` (`0x002DFBFC`).
 - Each id has three path pointers, `.ebp`, `.mot` and `.fpk`, of the form
@@ -287,7 +287,7 @@ The archive file table is the first:
 | `0x132` | `rbn_a18` |
 | `0x320` | `nac_b01` |
 
-The `MapRef` resource (namespace 9, loaded by `0x00268750`) has 8 bytes per field id; `0x00264F90(id)` reads
+The `MapRef` resource (kind 9, loaded by `0x00268750`) has 8 bytes per field id; `0x00264F90(id)` reads
 its `+6` word, the persistence group written to the transition record. The music table `0x003EAA70` is the
 third.
 
@@ -322,7 +322,7 @@ third.
 | `0x0025BFB0` | reinitialises and unloads the requested managers |
 | `0x0026A5F0(m)` | ORs manager `m` into `0x02099ABC`; 0 also requests 1 to 3 |
 | `0x0032FC30(m, ctx)` | area refresh, begins the load, sets pending bit `0x1` |
-| `0x0032FCA0(m, ctx)` | chooses namespace and index, queues the loads |
+| `0x0032FCA0(m, ctx)` | chooses kind and index, queues the loads |
 | `0x00330310` | the primary payload load, pending bit `0x20000` |
 | `0x0032ED70` / `0x0032F6C0` / `0x00332130` | set the start hold, read the mask without it, release the hold |
 | `0x003321E0` | busy bit `0x80` from the pending masks |

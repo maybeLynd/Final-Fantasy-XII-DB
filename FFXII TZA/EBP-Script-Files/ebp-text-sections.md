@@ -49,9 +49,9 @@ Both banks are used in place inside the loaded `.ebp`. The handler stores only t
 and the record field), and a lookup returns that address plus the entry's low 16 bits (`0x00264D85`-`0x00264D8A`), so
 a string is read from the section itself ([looking up a string](#looking-up-a-string)).
 
-A text id is an entry number. The strings are glyph codes and control codes, not ASCII: the
+A script text id is an entry number. The strings are glyph codes and text codes, not ASCII: the
 character codes are on [battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)
-and [fonts](../Menus-And-HUD/fonts.md), and the control codes, including the choice list `0x0E`, on
+and [fonts](../Menus-And-HUD/fonts.md), and the text codes, including the choice list `0x0E`, on
 [text codes](../Menus-And-HUD/text-codes.md).
 
 ## Shipped data
@@ -86,7 +86,7 @@ The most common `us` captions are `NOT USED` (351), `Ancient Door` (219), `dummy
 in the record field (`+0xA0`, `+0xA8`):
 
 1. A null bank returns `0x01CEB638`, an empty string.
-2. The id is masked to 24 bits (`0x00264D77`), so bits `0xFF000000` of a text id do nothing.
+2. The id is masked to 24 bits (`0x00264D77`), so bits `0xFF000000` of a script text id do nothing.
 3. The count is the whole first dword, sign-extended and shifted right by 2 (`0x00264D74`,
    `0x00264D7D`); an id at or above it returns `0x01CEB638` (`0x00264D83`).
 4. Otherwise the result is the section address plus the entry's low 16 bits (`0x00264D85`).
@@ -166,7 +166,7 @@ therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-
   bad id, and the string comes from whatever lies past the table.
 - Set bit `0x10000` on a section 2 entry whose string holds a choice list, as the shipped banks do; `mes`
   does not open a window for a flagged entry and `aask_1ff` opens one only for a flagged entry.
-- Bits 17-31 of an entry and bits 24-31 of a text id have no effect, and section 3's flag is
+- Bits 17-31 of an entry and bits 24-31 of a script text id have no effect, and section 3's flag is
   never read.
 - Write strings in the language's glyph codes; captions in `ch`, `cn`, `in` and `kr` keep their
   `0x0F` escape.
@@ -174,7 +174,7 @@ therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-
 ## Related
 
 - [EBP script container](ebp-script-container.md): the directory and the walker that dispatches these sections.
-- [Text codes](../Menus-And-HUD/text-codes.md): the control codes inside the strings.
+- [Text codes](../Menus-And-HUD/text-codes.md): the text codes inside the strings.
 - [Fonts](../Menus-And-HUD/fonts.md): how a character code becomes a glyph.
 - [Battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md): the other text banks and their character codes.
 - [NPC names](../Characters-And-Objects/npc-names.md): how the caption stored as an actor's name is shown.

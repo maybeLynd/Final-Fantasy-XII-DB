@@ -105,32 +105,32 @@ registers a block nothing was read into.
 ### Script motion slots
 
 `motionread` (`0x00A2`, `0x003492A0`), `motionreadsync` (`0x00A3`, poll `0x003499C0`) and `motiondispose`
-(`0x00A4`, `0x0034A6A0`) work on 80 records of `0x1C` bytes at `0x02B581A0`, five area slots of sixteen.
-The area slot is the running script's (`[[0x02099D70] + 0x28]`), the motion number is the verb argument.
+(`0x00A4`, `0x0034A6A0`) work on 80 records of `0x1C` bytes at `0x02B581A0`, five manager slots of sixteen.
+The [manager slot](../Characters-And-Objects/actor-managers.md#the-slot-array) is the running script's (`[[0x02099D70] + 0x28]`), the motion number is the verb argument.
 A record moves through these states (`+0x04`):
 
 | State | Meaning | Entered by |
 |---|---|---|
 | 0 | idle | reset, a failed sweep, a completed dispose |
 | 2 | armed | `0x003DDA20`, from state 0 only, also sets bit `i` of `0x02B58A60[g]` |
-| 1 | allocated but held; never read | the sweep, when the area slot's hold byte `0x02099011 + g × 0x288` is set |
+| 1 | allocated but held; never read | the sweep, when the manager slot's hold byte `0x02099011 + g × 0x288` is set |
 | 3 | read in flight | `0x003DDA70` |
 | 4 | registered | the completion `0x003DD850` |
 | 5 | dispose requested while in flight | `0x003DD420` on state 3 |
 
 The sweep `0x003DD4C0` runs over every record with its pending bit and state 2:
 
-1. The area slot's file comes from `0x0032F240` (enable byte `0x022C6D18 + g`, selector `0x022C6D28 + 4g`)
+1. The manager slot's file comes from `0x0032F240` (enable byte `0x022C6D18 + g`, selector `0x022C6D28 + 4g`)
    and `0x0032F170`: kind 5, index `3s` for slot 0; kind 8, index `4s` for slots 1–3; kind 1, index
    `s + 0x6B` for slot 4. The motion is read from index + 1, the area's `.mot`.
 2. The offset and length come from the first `0x88` bytes of that `.mot`, which the area loader keeps
    at `0x022C6E70[g]`: byte 0 is an active flag, then sixteen `{u32 offset, u32 length}` pairs from `+8`
-   (`0x0032F260`, `0x0032F290`). Area slot 4 and an inactive header give −1, so slot 4 never loads.
-3. It allocates the length in arena 6, or first in arena 11 when `0x0037B330()` is 2 and the area slot's
+   (`0x0032F260`, `0x0032F290`). Manager slot 4 and an inactive header give −1, so slot 4 never loads.
+3. It allocates the length in arena 6, or first in arena 11 when `0x0037B330()` is 2 and the manager slot's
    byte `+0x17` has bit `0x40` (route byte `+0x0D` = 1; `0x0037B330` answers only 0 or 4, so this
    route is never taken), pins the block and stores the handle, length,
    offset, kind and index + 1.
-4. A held area slot goes to state 1; otherwise `0x003DDA70` files the read (`0x0032E620`) with the record's
+4. A held manager slot goes to state 1; otherwise `0x003DDA70` files the read (`0x0032E620`) with the record's
    address as the callback argument and sets state 3 without checking the result.
 
 Any failure sets state 0 and leaves the pending bit, and the next sweep skips the record until it is
@@ -303,7 +303,7 @@ Motion slot (`0x1C`), `0x02B581A0` + (g*16 + i)*`0x1C`:
 | `+0x00` | `...` | handle |  |
 | `+0x04` | `...` | state |  |
 | `+0x08` | `...` | armer argument | 0 |
-| `+0x0C` | `u8` | area slot |  |
+| `+0x0C` | `u8` | manager slot |  |
 | `+0x0D` | `u8` | route | 1 = arena 11 |
 | `+0x0E` | `u16` | motion number |  |
 | `+0x10` | `i16` | kind |  |
@@ -334,13 +334,13 @@ The bank at manager `+0xD90`, the 32 effect tickets and 32 instance handles with
 counter, the context lists `0x020910A0`, the current context `0x02F97340`, and the 80 motion slots with
 their five pending masks at `0x02B58A60`.
 
-The pending masks are five `u32` at `0x02B58A60 + 4 × g`, one per area slot `g`; bit `i` marks motion record `i` of
+The pending masks are five `u32` at `0x02B58A60 + 4 × g`, one per manager slot `g`; bit `i` marks motion record `i` of
 that slot as armed and not yet swept:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02B58A68` | `u32` | 0 (zero-filled tail of `.data`) | the pending mask of area slot 2; the reset's 8-byte store also clears slot 3's mask `0x02B58A6C` | `0x003DD7E0` (`0x003DD7F4`, 0; called from `0x00266D10` at `0x00267112`); `0x003DD790(g)` (`0x003DD7D0`, 0 after it clears the slot's sixteen records; reached from `0x0026C8C0` at `0x0026CDE3`); `0x003DDA20` (`0x003DDA5F`, sets bit `i`); `0x003DD4C0` (`0x003DD672`, clears bit `i` once the record is handled) | `0x003DD4C0` (`0x003DD4F0`, the whole mask; `0x003DD510`, bit `i`) |
-| `0x02B58A70` | `u32` | 0 (zero-filled tail of `.data`) | the pending mask of area slot 4 | `0x003DD7E0` (`0x003DD7FB`, 0); `0x003DD790`, `0x003DDA20` and `0x003DD4C0` as above | `0x003DD4C0` as above |
+| `0x02B58A68` | `u32` | 0 (zero-filled tail of `.data`) | the pending mask of manager slot 2; the reset's 8-byte store also clears slot 3's mask `0x02B58A6C` | `0x003DD7E0` (`0x003DD7F4`, 0; called from `0x00266D10` at `0x00267112`); `0x003DD790(g)` (`0x003DD7D0`, 0 after it clears the slot's sixteen records; reached from `0x0026C8C0` at `0x0026CDE3`); `0x003DDA20` (`0x003DDA5F`, sets bit `i`); `0x003DD4C0` (`0x003DD672`, clears bit `i` once the record is handled) | `0x003DD4C0` (`0x003DD4F0`, the whole mask; `0x003DD510`, bit `i`) |
+| `0x02B58A70` | `u32` | 0 (zero-filled tail of `.data`) | the pending mask of manager slot 4 | `0x003DD7E0` (`0x003DD7FB`, 0); `0x003DD790`, `0x003DDA20` and `0x003DD4C0` as above | `0x003DD4C0` as above |
 
 The other three masks follow the same accesses; the reset clears slots 0 and 1 with one 8-byte store at `0x02B58A60`
 (`0x003DD7ED`). `0x003DD790`, `0x003DDA20` and the sweep reach each mask as `0x02B58A60 + 4 × g` (`0x003DD7C9`, `0x003DDA47`,
@@ -354,7 +354,7 @@ The other three masks follow the same accesses; the reset clears slots 0 and 1 w
   effect context.
 - Every `.cm` file with an `@FEF` section needs a non-NULL entry in the `0x02B64380` table for its name,
   or loading it ends the game.
-- `motionread` loads only motions 0–15 of area slots 0–3, from the offsets in the first `0x88` bytes of
+- `motionread` loads only motions 0–15 of manager slots 0–3, from the offsets in the first `0x88` bytes of
   the area's `.mot`; give each a length of at least 1.
 - Call `motiondispose` before reusing a motion number: `motionread` does nothing unless the slot is
   idle.

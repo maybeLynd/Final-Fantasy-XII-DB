@@ -59,7 +59,7 @@ technick, `0x6xxx` gambit.
 | `3` | clan rank | the clan rank at least the threshold (`0x002FAE14`-`0x002FAE1F`) |
 
 Kinds 1 and 2 read the story operand bank through `0x00321190(3, 0, operand)`, a signed 16-bit value; element 0 is
-the word at the start of the save payload ([Save data](../Saving-Loading-And-Settings/save-data-fields.md)). When no
+the main story counter, the word at the start of the save payload ([Story progress](../Story-Events-And-Hunts/story-progress.md), [Save data](../Saving-Loading-And-Settings/save-data-fields.md)). When no
 entry passes, the last entry of the ladder is returned, so its list is sold anyway (`0x002FAE21`-`0x002FAE2D`).
 
 Of the shipped ladders, 43 end in an entry with no condition, two in a story threshold of 0 (Dyce, shops 17 and
@@ -101,7 +101,7 @@ the equipment; the shop's transaction function `0x0056D370` asks it (`0x0056D630
 The name id of shop *n* is the first word of its row, returned by `0x002FAE40(n)` (`0x002FAE85`-`0x002FAEA4`). The
 script verb `0x4A9` `setshopname(n)` gives an actor that name (`0x0034C183`-`0x0034C18A`), and it is shown through the
 NPC-name dictionary `npcdic.bin` ([NPC names](../Characters-And-Objects/npc-names.md)); the shop screens read it too
-(`0x0057B98F`, `0x0057C022`). A name id's pair has a second name, shown once its persistent flag is set: shops 10,
+(`0x0057B98F`, `0x0057C022`). A name id's pair has a second name, shown once its story flag in Bank2048 is set ([Story flags](../Story-Events-And-Hunts/story-flags.md)): shops 10,
 11 and 23 carry one.
 
 ### Clan rank

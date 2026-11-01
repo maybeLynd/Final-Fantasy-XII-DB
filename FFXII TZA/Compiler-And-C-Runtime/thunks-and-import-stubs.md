@@ -70,34 +70,12 @@ an indirect call, among them the vector constructor and destructor iterators (`0
 
 ### Jump forwarders
 
-A forwarder is a body that is exactly one `jmp rel32` into `.text`, followed by `int3` padding or by
-another start. It sits at a `.pdata` begin, or right after an `int3`, a `ret` or another `jmp rel32`.
-It is itself a start: a `.pdata` begin, the target of a `call` or `jmp rel32`, a qword in `.rdata`
-or `.data`, the target of a rip-relative `lea`, or an `E9` right after `int3` padding. The terminate
-pads, which jump to `0x00861EAE`, are not forwarders.
+A forwarder is a body that is exactly one `jmp rel32` into `.text`. The image has 763 of them, with 763
+distinct targets, besides the 86 terminate pads that jump to `0x00861EAE`.
+[Jump thunks](../Engine-Core/jump-thunks.md) gives the rule, what reaches each forwarder, the
+terminate pads, and a table of 568 of the forwarders and 85 of the pads with their callers and targets.
 
-By this rule the image has 763 forwarders with 763 distinct targets; 33 of the targets are
-themselves forwarders. Each forwarder is counted once, in the first row that fits:
-
-| Reached by | Forwarders |
-|---|---:|
-| a direct `call` | 234 |
-| its address held as a qword or taken by `lea`, and no call | 404 |
-| only a `jmp` from another function | 113 |
-| nothing | 12 |
-
-384 forwarders are held as a qword at all, 26 are taken by `lea`, and 158 are jumped to at all. The
-twelve that nothing reaches are `0x006DAA00`, `0x006DAA10`, `0x006DAA20`, `0x006DAA30`, `0x006DAA40`,
-`0x006DF270`, `0x006DF280`, `0x007122F0`, `0x00719360`, `0x00719370`, `0x00809930` and `0x00809940`.
-
-So 751 forwarders are reached by something. `0x0017CDE0` is one of them: it is the qword at `0x008C5788`,
-slot 5 of the `GameApplication` vtable `0x008C5760`, and the `lea` at `0x00298290` takes it.
-
-The terminate pads are 86 bodies of `jmp 0x00861EAE`. 85 are packed back to back from `0x008A26E4` to
-`0x008A508D`. The 86th, `0x008A5B1F`, stands alone after the `ret` of a funclet that ends at `0x008A5B1E`.
-
-[Jump thunks](../Engine-Core/jump-thunks.md) tabulates 568 of the forwarders and 85 of
-the terminate pads with their callers and targets. The member list
+The member list
 [`thunks-and-import-stubs-internal-tail-call-forwarders.tsv`](thunks-and-import-stubs-internal-tail-call-forwarders.tsv) holds 749 rows. The 14 forwarders it
 leaves out are the twelve that nothing reaches and `0x0026DC50` and `0x0036E9A0`, which are reached
 only by jumps.

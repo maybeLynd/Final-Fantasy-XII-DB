@@ -117,8 +117,9 @@ decoded reference `ref` and element `index`, `size` being 2 for the width nibble
 through the six class bases ([script variables](script-variables.md)); classes 6 and 7 fall to
 base 0. 57 handlers call it; a store through it is a raw dword whatever the declared width.
 
-`PUSHACT` (`0x00261806`) packs an actor as `(word + 0xE of the actor's binding entry) << 16 |
-index | 0x4000`, or `0x8000` when the index is past the binding table's count. The request
+`PUSHACT` (`0x00261806`) packs an actor as `(word + 0xE of the actor's tag-table entry) << 16 |
+index | 0x4000`, or `0x8000` when the index is past the count of the script image's `+0x80` table,
+the [per-actor tag tables](script-interpreter.md#registers) (`0x0026181B`). The request
 opcodes and `0x0025AF60` decode the same encoding: bit `0x4000` marks a live handle, bit `0x8000` refuses.
 
 ### Results
@@ -143,7 +144,7 @@ family array       0x02B57EF0: 16 × u64 table pointer
 command table      +0 s32 count, +4 zero, then records from +8: +0 begin, +8 poll, +0x10 null, +0x18 result (32 bytes)
 value stack        0x02099AC0: +0 s32 depth, +0x04 u8 tag[64], +0x44 u8 source[64], +0x84 u32 zero[64], +0x184 u32 value[64]
 reference          (offset + index × width) | class << 24 | 0x70000000; tag 1; source byte = width
-actor handle       word +0xE of binding entry << 16 | index | 0x4000; 0x8000 none
+actor handle       word +0xE of the +0x80 tag-table entry << 16 | index | 0x4000; 0x8000 none
 wait slot          +8 target ordinal, +0xC result, +0x10 A, +0x14 wait kind, +0x15 phase, +0x18 scratch[16]
 ```
 

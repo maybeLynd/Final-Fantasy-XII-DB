@@ -38,7 +38,7 @@ to 13 in `ch`: exactly the values N its `{exp:0xN}` take in the `in`, `kr`, `cn`
 
 ### Reading the text
 
-Each cell is the slot's text decoded with its tree's font, control codes written as placeholders (the `placeholder`
+Each cell is the slot's text decoded with its tree's font, text codes written as placeholders (the `placeholder`
 column of [Text codes](text-codes.md)). `{line}` ends a line and `{page}` a page: every Bestiary slot after
 slot 0 opens with a heading line and one `{page}`, 624 per language. Slot 0 and the Traveler's Tips text have none.
 
@@ -82,5 +82,5 @@ Tips is one bundle everywhere.
 - [Clan Primer](clan-primer.md) - the Bestiary and Traveler's Tips pages and how entries unlock.
 - [Clan Primer entries](clan-primer-entries.md) - the entries in order.
 - [Font expansion lists](fonts-expansion-lists.md) and [Fonts](fonts.md) - the expansion lists and font ids.
-- [Text codes](text-codes.md) - the control codes and their placeholders.
+- [Text codes](text-codes.md) - the text codes and their placeholders.
 - [Unrequested handbook text](text-handbook-unrequested.md) - the story, world, person and knowledge books.

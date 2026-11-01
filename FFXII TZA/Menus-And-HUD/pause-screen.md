@@ -23,7 +23,7 @@ The field's input arbiter calls `0x00228380` before it reads a button and reads 
    (`0x00228490`).
 2. It answers 0 while `0x003603C0` or `0x001D6B70` answers non-zero, or while `0x01FD4950` is 0. `0x01FD4950` is set once,
    by `0x00229AD0`, which the title asset's factory `0x00394460` runs ([Widgets](widgets.md)).
-3. With action policy bit `0x200000` set (`0x002E0FA0`) it goes on only when `0x002E1020(1)` also has bit `0x200000`, and then passes argument 0
+3. With action availability bit `0x200000` set (`0x002E0FA0`) it goes on only when `0x002E1020(1)` also has bit `0x200000`, and then passes argument 0
    to the overlay of step 5 ([Action availability](../Controls-And-Input/action-availability.md)).
 4. With an overlay open it answers 1. With the count `0x01FD46FC` above 0 it counts it down and answers 1.
 5. Otherwise, while the inactive-window task exists, it builds the overlay through `0x002282F0(argument)`; with no task
@@ -56,7 +56,7 @@ On message 1 the overlay (`0x00229961`-`0x00229A98`):
    `0x00182FF0(0)`), below;
 2. keeps its argument at `+0xC8`, sets state `+0xC0` to 0, and takes the 1920 x 1080 frame from `0x01E0C1D8` and
    `0x01E0C1DC` as its size;
-3. sets bits `0x2`, `0x1`, `0x100000` and `0x200` of action policy row 15 (`0x002E1C20`): bits `0x1`, `0x2` and `0x200` keep the main menu, the battle
+3. sets bits `0x2`, `0x1`, `0x100000` and `0x200` of action availability row 15 (`0x002E1C20`): bits `0x1`, `0x2` and `0x200` keep the main menu, the battle
    menu and Escape Mode shut, and no reader tests bit `0x100000`;
 4. builds button legend scenes `0x12` and `0x0C` (`0x0029DA70`) and formats text `0x467C`, which holds only size and baseline codes,
    with it into `0x01FD4960` (`0x002B4090`);
@@ -84,7 +84,7 @@ Each tick (message 2) moves the overlay through its states:
 | `1` | layer 3's widget reports `+0xE8` (`0x002CCC70(3)`) | pauses, below; state 2 |
 | `2` | message 15, the close | state 3 |
 | `3` | nothing | resumes, below; closes layer 3 (`0x002CCBC0(3)`), state 4 |
-| `4` | layer 3's widget at `[0x0209AC30] + 0x2A8` to be gone | clears the four policy bits (`0x002E1CA0`), turns the framework pause byte off (`0x0017E720(0)`) and releases itself |
+| `4` | layer 3's widget at `[0x0209AC30] + 0x2A8` to be gone | clears the four availability bits (`0x002E1CA0`), turns the framework pause byte off (`0x0017E720(0)`) and releases itself |
 
 On message 4 it draws, once paused with `+0xC8` set, a sprite of the battle atlas (`0x0035D460`) centred on the frame
 (`0x002D8CB0`), and in every state the text at `0x01FD4960` (`0x002D8910`).
@@ -143,14 +143,14 @@ The task is the `0xD0`-byte widget at `0x01FD4948` with procedure `0x002284F0` (
 - The pause screen is a focus-loss pause only. The overlay is built only while the inactive-window task exists
   (`0x00228435`), and one call in the executable starts the task, `0x002283AE`, taken when the window is not in
   front.
-- What stops play is the audio mask, the policy bits and the task holding the input; the framework pause byte
+- What stops play is the audio mask, the availability bits and the task holding the input; the framework pause byte
   is set and cleared alongside them.
 - `0x01FD46FC` makes the opener answer 1 for five calls after a pause screen closes, which keeps the field input off
   for those frames.
 
 ## Related
 
-- [Action availability](../Controls-And-Input/action-availability.md) - row 15 and policy bit `0x200000`.
+- [Action availability](../Controls-And-Input/action-availability.md) - row 15 and availability bit `0x200000`.
 - [Controls](../Controls-And-Input/controls.md) - the input arbiter that calls the opener.
 - [Widgets](widgets.md) - the focus, the roots and the release.
 - [Audio manager](../Sound-And-Music/audio-manager.md) - the paused kinds.

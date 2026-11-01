@@ -70,7 +70,7 @@ band 1, so every magnitude yields `walkRatio`.
 The clamp and the widths, which sum to 1.95, put every magnitude in a band. `0x00235EA0()` is the run
 speed: while riding (`0x00303EC0()`
 non-zero) the chocobo definition's speed (`0x003045A0`: `0x003204E0(0x00263750(3), 1)`, doubled when the
-battle-state block's `+0x5AE0` has bit `0x2`); otherwise the party leader's (`0x003272A0`) battle unit
+party block's `+0x5AE0` has bit `0x2`); otherwise the party leader's (`0x003272A0`) battle unit
 float `+0x17C`, or `5.0 / (30.0 * [0x01DFE0B8])` without a leader.
 
 ### Camera-relative, and applied

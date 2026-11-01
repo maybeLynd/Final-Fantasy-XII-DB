@@ -287,6 +287,20 @@ banks; section 2 `bgm_<NNN>s` in most. The game starts every music in the sectio
 The other 113 are in [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv). Tracks 102, 106 and 114 carry the
 same three section names as 61, 95 and 72.
 
+Each section has one layer, and the layer names the material it plays: `0x007C3570` takes layer *k* from the
+section's offset table (`0x007D03B0`) for every *k* below the section's byte `+0x05` (`0x007C3682`) and requests the
+material `u16 +0x04` of that layer (`0x007C3616`, `0x007C364F`). The `inst` chunk is empty in every bank. Section *n*
+plays material *n* in 320 of the 348 sections.
+
+In 94 banks the three versions play three materials with different sample data. In 15 banks Original and OST both
+play material 2 (tracks 17, 26, 44, 61, 84, 85, 87, 99, 102, 110, 111, 112, 116, 204 and 207), in six all three
+versions play material 2 (43, 208, 209, 210, 211 and 212), and in track 104 Reorchestrated and OST play material 2.
+These 22 banks hold 28 materials that no version plays.
+
+[`music-versions.tsv`](music-versions.tsv) gives each bank's three section names, the material and seconds of each
+version, the versions that play one sample data, the materials no version plays and the other banks that hold the
+same sample data.
+
 ### The block banks
 
 The 248 block banks hold 6,395 sound records. 4,410 have byte `+0x04` set and can play; 1,985 are empty. The

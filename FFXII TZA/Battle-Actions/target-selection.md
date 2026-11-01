@@ -7,7 +7,7 @@ addresses: "0x0031EB20, 0x00322A80, 0x003230E0, 0x00322490, 0x0046B870, 0x0046B6
 
 ## What the player sees
 
-When you choose an action, the target list holds only what that action may affect: the user itself,
+When you choose an action, the menu's target list holds only what that action may affect: the user itself,
 the user's allies and the user's foes, each allowed or not by a flag of the action.
 
 - **Range.** A living target is listed only when it is within 24 units, measured on the ground, of
@@ -160,7 +160,7 @@ lesser of the two `0x00265090` floats) and the candidate's larger radius (`0x003
 actor). The candidate with the smallest gap below the action row's reach `+0x05` / 10 wins (`0x0038517D`); with none,
 it returns 0.
 
-Each battle unit keeps a bounce slot beside every entry of its target list: 32 slots of `0x10` bytes at `+0x988`,
+Each battle unit keeps a bounce slot beside every entry of the action's target list ([Area of effect](area-of-effect.md)): 32 slots of `0x10` bytes at `+0x988`,
 slot i beside the entry at `+0x780` + `0x10` x i. The Reflect arm marks an entry bounced by writing code 8 to its
 result (`0x00390E35`) and the new target from `0x00384F40` to the result's `+0x10` (`0x00390E42`).
 

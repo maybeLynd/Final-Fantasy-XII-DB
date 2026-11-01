@@ -67,6 +67,8 @@ gives each.
   (yes / no), and `sum_c0001`, `sum_f0001` and `sum_j0001` ask `大技再度見ます？` (`見る` / `見ない`). The other 33 scenes hold no
   entries.
 - No scene gives an item, sets a flag, writes the story counter or changes the party.
+- The scripts table [`summons-scripts.tsv`](summons-scripts.tsv), with the columns of the zone scripts tables,
+  has no row: no function of the thirty-nine scripts shows a line, and no step asks the replay questions above.
 
 ### Every step
 
@@ -154,7 +156,7 @@ The steps table [`summons-script-steps.tsv`](summons-script-steps.tsv) has one r
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |
-| `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its control codes dropped; `-` for every other step |
+| `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its text codes dropped; `-` for every other step |
 | `timing` | the frames, fade lengths and speeds the step uses |
 | `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
 | `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |

@@ -63,7 +63,7 @@ Slot 7 record (`0x10`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bound model id |  |
+| `+0x00` | `u32` | bound id |  |
 | `+0x04` | `u16` | weapon class |  |
 | `+0x06` | `u16` | motion |  |
 | `+0x08` | `u16` | file index |  |
@@ -78,7 +78,7 @@ Trailer record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bound model id |  |
+| `+0x00` | `u32` | bound id |  |
 | `+0x04` | `u32` | lane mask |  |
 
 .nmb:
@@ -129,7 +129,7 @@ definitions are the [bestiary](../Enemy-Spawning/bestiary.md)'s rows, and the 1,
 | [`ard-area-battle-data-stat-rows.tsv`](ard-area-battle-data-stat-rows.tsv) | 1,738 | slot 5 base row (1,119) or slot 6 growth row (619) |
 | [`ard-area-battle-data-motion-overrides.tsv`](ard-area-battle-data-motion-overrides.tsv) | 1,773 | slot 7 record |
 | [`ard-area-battle-data-pcskill-records.tsv`](ard-area-battle-data-pcskill-records.tsv) | 33 | record of `pc_skillmotion.bin`: the model's name, and the kind `0x1E` file its index names, with whether the archive carries it |
-| [`ard-area-battle-data-trailer-records.tsv`](ard-area-battle-data-trailer-records.tsv) | 998 | trailer record: bound model id and lane mask |
+| [`ard-area-battle-data-trailer-records.tsv`](ard-area-battle-data-trailer-records.tsv) | 998 | trailer record: bound id and lane mask |
 | [`ard-area-battle-data-nmb-entries.tsv`](ard-area-battle-data-nmb-entries.tsv) | 1,146 | `.nmb` entry: its offset and bytes |
 
 - The class row columns are the fields of the class row on
@@ -147,7 +147,7 @@ definitions are the [bestiary](../Enemy-Spawning/bestiary.md)'s rows, and the 1,
 
 ### When an area loads
 
-`0x0032FC30(slot, n)`, for area slot 0, calls `0x003EA6E0(n, force)`, which reads the area number with
+`0x0032FC30(slot, n)`, for manager slot 0, calls `0x003EA6E0(n, force)`, which reads the area number with
 `0x00264ED0` and returns at once when it equals the loaded one (`0x02B5E0B8`) and `force` is 0. The force
 byte is never set, so re-entering the same area keeps the file.
 
@@ -190,7 +190,7 @@ inside it, so the loaded block is no longer a copy of the file.
 
 A script container (`.ebp`) can carry a second `FF12AR03` block in directory slot 19
 ([script container](../EBP-Script-Files/ebp-script-container.md)). When the container arrives,
-`0x003304A0` passes it to `0x003320D0` (`0x00330666`), which drops the area slot and jumps to `0x003EAA00`:
+`0x003304A0` passes it to `0x003320D0` (`0x00330666`), which drops the manager slot and jumps to `0x003EAA00`:
 
 1. a block already held is unbound (`0x003DCF10(0)`) and released (`0x00331880`);
 2. the new block becomes root 1 (`0x02B5E0C8`);
@@ -216,7 +216,7 @@ The first match gives the file index; none gives −1.
 `0x003EA650(n)` returns root `n`'s trailer (`n` 0 or 1, the `.ard` and the second area root). The task
 `0x0037C3F0`, which `0x0037C910` installs (called from `0x00261F90`, `0x003473A0` and `0x00359800`), walks three
 lists in turn: root 0's trailer, root 1's, and, when it was started with argument 1, an `{id, mask}`
-table at `+0x80` of area slot 0's loaded data. For each record it:
+table at `+0x80` of manager slot 0's loaded data. For each record it:
 
 1. finds or creates the model's name binding (`0x002EAE20`) and marks it (`0x002EBD40`);
 2. waits until the model is loaded (`0x002E4C20`);
@@ -233,14 +233,14 @@ argument (`0x0037C6C3`-`0x0037C6D4`).
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02ADD955` | `i8` | 0 (zero-filled tail of `.data`) | the list being walked: 0 root 0's trailer, 1 root 1's, 2 the `{id, mask}` table at `+0x80` of area slot 0's data | `0x0037C910`, 0 (`0x0037C932`); the task `0x0037C3F0`, 1 more (`0x0037C6A8`) | the task `0x0037C3F0`: `0x0037C430`, `0x0037C4E0`, `0x0037C566`, `0x0037C5AD` and `0x0037C661`, which compare it with 2; `0x0037C493`, as the root number passed to `0x003EA650` (sign-extended); `0x0037C689`, to step it |
+| `0x02ADD955` | `i8` | 0 (zero-filled tail of `.data`) | the list being walked: 0 root 0's trailer, 1 root 1's, 2 the `{id, mask}` table at `+0x80` of manager slot 0's data | `0x0037C910`, 0 (`0x0037C932`); the task `0x0037C3F0`, 1 more (`0x0037C6A8`) | the task `0x0037C3F0`: `0x0037C430`, `0x0037C4E0`, `0x0037C566`, `0x0037C5AD` and `0x0037C661`, which compare it with 2; `0x0037C493`, as the root number passed to `0x003EA650` (sign-extended); `0x0037C689`, to step it |
 | `0x02ADD958` | `void*` | 0 (zero-filled tail of `.data`) | the current record's name binding, the answer of `0x002EAE20` | the task `0x0037C3F0` (`0x0037C536`); `0x0037C910`, 0 (`0x0037C924`) | the task: `0x002E4C20` (`0x0037C550`), `0x002EB5D0` (`0x0037C5D9`), `0x002ECA30` (`0x0037C60B`) and `0x002E4C30` (`0x0037C631`) |
 | `0x02ADD960` | `void*` | 0 (zero-filled tail of `.data`) | the answer of `0x002EB5D0(binding, lane)` for the lane being tried; a non-zero answer sends the lane to `0x002ECA30` | the task (`0x0037C5ED`); `0x0037C910`, 0 (`0x0037C92B`) | the task, from the register it stores (`0x0037C5F4`) |
 | `0x02ADD970` | `u32` | 0 (zero-filled tail of `.data`) | the task's argument: 1 adds the third list | `0x0037C910`, the argument (`0x0037C918`); the task, 0 at its end (`0x0037C6D4`) | the task (`0x0037C695`), which makes the list limit 3 when it is 1 and 2 otherwise |
 
 ### Models kept through an area change
 
-When an area slot is unloaded (slots 1–3 in `0x002628B0`, slot 0 in `0x0025AFC0`, which `0x0032F850` and
+When a manager slot is unloaded (slots 1–3 in `0x002628B0`, slot 0 in `0x0025AFC0`, which `0x0032F850` and
 `0x0032FB70` call), the game:
 
 1. runs `0x0035A3A0`, which, for each trailer record of both roots whose model is already loaded
@@ -283,7 +283,7 @@ The cache's next-entry index:
   size table (`0x003DCC59`), so a grown file needs its new size in every `.fst`. A size of 0 or less leaves the
   global table empty, and every lookup goes to the area's tables (`0x003DCC62`, `0x003DCA5D`).
 - The global lookup takes the count at `+0x00` and the records from `+0x10` without checking either against the
-  buffer (`0x003DCA5F`-`0x003DCA88`). The first record whose bound model id and motion match gives the file
+  buffer (`0x003DCA5F`-`0x003DCA88`). The first record whose [bound id](../Scripts-And-Script-Commands/script-name-bindings.md#the-bound-id-what-a-script-names) and motion match gives the file
   (`0x003DCA8C`), whatever its weapon class, so an entry there wins over every area's slot 7 and the second root's
   table for that model and motion.
 

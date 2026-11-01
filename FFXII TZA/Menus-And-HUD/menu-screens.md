@@ -635,7 +635,7 @@ The layout units of `layoutUnits` and the functions that read them:
 | 2 | the party is riding a chocobo (`0x00303EE0`, `0x002832DC`-`0x002832F8`) | the member list, which refuses party changes with "You cannot change party members while mounted" (`0x0BE1`, `0x00285DEB`-`0x00285DF5`; `0x00284CD4`) |
 | 3 | an Esper is summoned (`0x003135E0`, `0x002832FE`-`0x0028331A`) | the member list ("You cannot remove a summoner with an active Esper from the party", `0x0BE2`, `0x00285DFC`-`0x00285E06`; `0x00284CDC`), `0x002830A0` (`0x002830AB`) and `0x002CF710` (`0x002CF717`) |
 | 4 | a member pick shows only the six main characters: the License Board pick sets it when it opens and clears it when it leaves (`0x00560A4E`, `0x005609CB`), the member-record panel sets it from its creation record (`0x002CC07E`-`0x002CC097`), and the name panel saves, clears and restores it (`0x002C153A`-`0x002C1581`) | the member steps (`0x0027ED47`, `0x0027EDEA`, `0x0027F3A2`-`0x0027F3C7`, `0x0027F486`) and the panels `0x002CBC50`, `0x002CC2A0`, `0x002CC660` (`0x002CBCDF`, `0x002CC31F`, `0x002CC392`, `0x002CC6FF`), which skip guests and members past id 5 |
-| 5 | bit `0x400` of the action policy `0x002E0FA0()`, set in towns ([Action availability](../Controls-And-Input/action-availability.md); `0x0028332E`-`0x00283348`) | no instruction tests it |
+| 5 | bit `0x400` of the combined action availability mask `0x002E0FA0()`, set in towns ([Action availability](../Controls-And-Input/action-availability.md); `0x0028332E`-`0x00283348`) | no instruction tests it |
 
 `stepFlash` (`+0xDE9`), which step arrow flashes for 4 frames:
 

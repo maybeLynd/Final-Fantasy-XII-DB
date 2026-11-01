@@ -21,7 +21,7 @@ shows the same bytes through the Chinese font.
 
 ### Reading the text
 
-Each message is decoded with the tree's font and its control codes written as placeholders (the `placeholder`
+Each message is decoded with the tree's font and its text codes written as placeholders (the `placeholder`
 column of [Text codes](text-codes.md)). Every message opens with `{spacing:8181}`. A choice list is written
 `{choice:n}` followed by its `n` options in square brackets, separated by a bar; `hidden=` gives the mask of options
 the list hides. The start of `ctrl.msb` message 0, the top debug menu, in the `in` column:
@@ -61,5 +61,5 @@ The 194 messages hold 112 choice lists, 71 argument inserts (`{arg:..}`) and 484
 
 - [ATEL debug companions](../EBP-Script-Files/atel-debug-companions.md) - the `.msb` layout, its source
   and symbol siblings, and why the game never opens them.
-- [Text codes](text-codes.md) - the control codes and their placeholders.
+- [Text codes](text-codes.md) - the text codes and their placeholders.
 - [Message windows](message-windows.md) - how the game's own script messages and choice lists are shown.

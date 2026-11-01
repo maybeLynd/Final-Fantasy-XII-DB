@@ -7,7 +7,7 @@ addresses: "0x002FEF30, 0x0030FED0, 0x0030E360, 0x00300530, 0x0030C470"
 
 ## What it lists
 
-Every battle unit has a combat stats record at unit `+0x698`. Party records sit in the battle state block
+Every battle unit has a combat stats record at unit `+0x698`. Party records sit in the party block
 at `[0x02EBF190] + 8 + k * 0x1C8`; an enemy's record is the stats page of its spawn record. Byte `+0x05` says
 which kind a record is, and several fields mean different things for the two kinds:
 

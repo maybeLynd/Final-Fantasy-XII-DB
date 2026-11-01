@@ -260,14 +260,14 @@ only while `0x00265680` answers non-zero (`0x00253D0D`), from held and pressed o
 
 While `0x003135E0` (bit `0x1` of `+0x5B04` of `0x02EBF190`) and `0x0035C750` (bit `0x10` of the mode word `0x022C83E8`, not the battle mode register `0x022C83EC` of [Escape Mode](escape.md)) both answer non-zero, the
 confirm button, the four directions and Square are dropped from the presses (`0x00253D3D`-`0x00253D5E`). The arms then
-run in this order, and the policy bits are those of [Action availability](action-availability.md):
+run in this order, and the availability bits are those of [Action availability](action-availability.md):
 
 | Presses | Condition | What happens |
 |---|---|---|
-| Triangle alone, held and pressed | policy bit `0x1` clear | the main menu, request 2 (`0x00253D61`-`0x00253D78`) |
-| Select or L3 | see [Menus](../Menus-And-HUD/menus.md) | the map requests; `0x002500F0(mask, 2)` answers 1 when policy bit `0x800` is clear, `0x00236760` answers 0 and `0x002E25B0(2)` allows request 2 (`0x00253E6D`) |
+| Triangle alone, held and pressed | availability bit `0x1` clear | the main menu, request 2 (`0x00253D61`-`0x00253D78`) |
+| Select or L3 | see [Menus](../Menus-And-HUD/menus.md) | the map requests; `0x002500F0(mask, 2)` answers 1 when availability bit `0x800` is clear, `0x00236760` answers 0 and `0x002E25B0(2)` allows request 2 (`0x00253E6D`) |
 | any | `0x02092730` is 0 and `0x00303EC0` answers non-zero | `0x003CA200`, and the presses are cleared (`0x00253F62`-`0x00253F70`) |
-| Square | `0x02092730` is 0, policy bit `0x400` clear, `0x003669D0` answers 0 | `0x002F1710`, then request 1 (`0x00253F7C`-`0x00253F98`, `0x002541B9`-`0x002541C7`) |
+| Square | `0x02092730` is 0, availability bit `0x400` clear, `0x003669D0` answers 0 | `0x002F1710`, then request 1 (`0x00253F7C`-`0x00253F98`, `0x002541B9`-`0x002541C7`) |
 | cancel | `0x02092730` is 0 | `0x003C8950` (`0x00253F9D`-`0x00253FA9`) |
 | Left or Right | L1 not held, `0x003669D0` answers 0, `0x02092730` is 0 or 3 | unless `0x02092734` is 1 or request 5 is refused, the target-cycling route `0x0035DA80`, `0x003C8990`, `0x003C87B0(5)` (`0x00253FB3`-`0x00254044`) |
 | Up or Down, or wheel notches | L1 not held, two of the nine members `0x00320040(3, i)` returns have `+0x60` not negative and flag bit `0x2` clear or flag `0x4008` is set, `0x02092730` is 0 or 5 | request 3; with the area's bit `0x8000` the wheel total is cleared first (`0x00254052`-`0x002540D2`) |
@@ -305,7 +305,7 @@ The R2 toggle after the arms is on [Escape Mode](escape.md).
 
 The field's target cursor is the object in `0x02B47730`: `+0xC4` the chosen target's handle, `+0xC8` the handle it
 shows, `+0xCC` the pick and `+0xC0` its state bits. `0x003C9250(mode)`, called from `0x003C87B0` and `0x003C8B70`, chooses
-from the target list at `0x022C83F0` (a count, then handles from `+8`) for the controlled character `0x0035BAD0()`
+from the field target cycle list at `0x022C83F0` (a count, then handles from `+8`; code `0x1A` of the list builder `0x0031EB20`, filled by the party rebuild of [Party list](../Menus-And-HUD/party-list.md)) for the controlled character `0x0035BAD0()`
 (`0x022C806C`), and gives 0 without a cursor, a character or a list:
 
 1. `0x0035DCC0` fills one 12-byte entry per handle (the handle, its screen x through `0x00249110`, its index) and
@@ -323,7 +323,7 @@ The cursor's setters:
   bit `0x8000` is set, `0x003C93E0(+8)` when its `+4` and `+8` differ (`0x003C94DD`), otherwise `+0xC8` = 0.
 - `0x003C94F0()` does the same only while `+0xC0` bit `0x4` is set, and otherwise clears `+0xC8`; the menu steps
   `0x00276D30`, `0x002778C0`, `0x00279E20` and `0x0027B880` call it.
-- `0x003C9370(h)` answers 1 when `h` is one of the handles of the target list `0x022C83F0` (`0x0035D3E0`) and 0
+- `0x003C9370(h)` answers 1 when `h` is one of the handles of the field target cycle list `0x022C83F0` (`0x0035D3E0`) and 0
   otherwise; `0x003C87B0` (`0x003C8847`) and `0x003C8B70` (`0x003C8FB2`) call it.
 
 ## Layouts

@@ -120,7 +120,7 @@ nothing otherwise; a rejected write is indistinguishable from a successful one.
 
 ### The camera entry tables
 
-`+0x110` and `+0x170` are two arrays of four 24-byte entries: side A at `+0x110` is bound against
+`+0x110` and `+0x170` are two arrays of four 24-byte entries: side A at `+0x110`, the four shot channels of the [scripted camera](../Graphics/scripted-camera.md), is bound against
 the camera-shot table `[slot + 0xD8]` and side B at `+0x170` against the camera-shake table
 `[slot + 0xF0]`. Each table is checked for a null pointer and the record index against its count at
 `+0x04`; the entry index must be below 4.

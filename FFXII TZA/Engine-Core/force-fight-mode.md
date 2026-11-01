@@ -89,7 +89,7 @@ The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 fun
 | `0x00307FF0` | the two global writes alone (`0x022C1F48 &= 0xF9`, `0x022C1F40` = 0), run by the area initialisation `0x002342F0` and by `0x002348E0`, which first tears down every enemy unit (`0x00300E40`) |
 | `0x00308130` | "may the unit engage", after running `0x00307D10`, answers false for a unit with the two statuses clear; otherwise true for unit `+4` bit `0x10000`, and false when `0x022C1F48` bit `0x1` is clear. With bit `0x1` set it first arms the clock through `0x003081E0` (`0x00308192`): when unit `+0` bit `0x800000` is clear and `+0xDCC` is 0, `+0xDCC = trunc(0x0032A150() + trunc([0x01DFE0B8] * 30) * ((0x00328370() & 3) * 0.25 + 0.5))`, the sum stored as an integer. It then answers true when unit `+0x698` is null or that block's byte `+5` is non-zero (`0x003081A1`, `0x003081A9`), and otherwise when the clock `0x0032A150()` is at or past `+0xDCC` (`0x003081B2`) |
 | `0x00309A90` | the approach distance is 3.8 at party-control level 1 or 2.2 otherwise, instead of the fighting value 24.0 ([party control modes](party-control-modes.md)) |
-| `0x00313A00` | the capability row writes: the second of its fourteen bits is set (`0x002E1C20`) instead of cleared (`0x002E1CA0`) while a unit's action is being shown (`0x02089350`, [Action phases](../Battle-Actions/action-phases.md)) or the party is fleeing |
+| `0x00313A00` | the action availability row writes: the second of its fourteen bits is set (`0x002E1C20`) instead of cleared (`0x002E1CA0`) while a unit's action is being shown (`0x02089350`, [Action phases](../Battle-Actions/action-phases.md)) or the party is fleeing |
 | `0x00234590` | the orchestrator's reset loop runs once each time the predicate changes against the battle-state word's bit `0x8` ([frame update order](frame-update-order.md)) |
 | `0x00336710`, `0x00339BF0`, `0x0033A720`, `0x0033C310`, `0x0033CEF0` | battle locomotion: order `0x4022` counts as the engaged order `0x4124` while fleeing; the arrival divisors are 1.5 and 0.25 while fleeing against 3 and 5 while fighting; for a party unit on order `0x4022` the turn class is `0xA0` instead of `0xC0` and the search flag 4 instead of 2, while a fighting party unit on `0x4022` gets speed `+0xFC` outright in `0x00339BF0` ([battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)) |
 
@@ -169,3 +169,4 @@ it.
   arrival divisors.
 - [Party control modes](party-control-modes.md): the approach distance by level.
 - [Frame update order](frame-update-order.md): the input arbiter and the orchestrator's reset loop.
+- [Escape Mode](../Controls-And-Input/escape.md): the R2 toggle that clears the flag, its latch, overrides and arming.

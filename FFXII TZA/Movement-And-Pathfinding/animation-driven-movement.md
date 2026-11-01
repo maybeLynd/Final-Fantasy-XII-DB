@@ -73,7 +73,7 @@ Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 ### The pool
 
 `0x003AF2B0`, from the character render system's initialiser (`0x00426C34`), allocates 128 entries of
-`0x60` bytes at `[0x02B3F530]` once (arena class 6, `0x3000` bytes), clears every entry's active
+`0x60` bytes at `[0x02B3F530]` once ([arena 6](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md#the-arenas), `0x3000` bytes), clears every entry's active
 byte, and zeroes the serial `0x02B3F538` and the two switches `0x02B3F53C` and `0x02B3F540`. The pool is
 global; each render record owns a list at `+0x550` whose entries are linked through the pool.
 

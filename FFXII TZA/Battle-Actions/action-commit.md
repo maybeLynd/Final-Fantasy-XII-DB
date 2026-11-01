@@ -34,7 +34,7 @@ callers: action selection `0x00305AB0` (`0x00305B2F`, `0x00305C9B`), the AI orde
 1. With `reset` non-zero it first calls `0x003105D0`, the action cancel and reset (`0x0030F788`).
 2. The target handle is resolved with `0x0031B7E0`; a handle that does not resolve leaves the target
    null and the commit still goes ahead (`0x0030F78F`-`0x0030F79E`).
-3. **Action ids.** An id up to `0x21E` clears the target list at unit `+0x778` (`0x00316CF0`) and
+3. **Action ids.** An id up to `0x21E` clears the action's target list at unit `+0x778` (`0x00316CF0`) and
    appends the target's `+0x10` object, or 0 (`0x00316CD0`) (`0x0030F7A1`-`0x0030F7D7`). An id above it is
    accepted only when `(u16)(id - 0x4000) <= 0x166`, that is `0x4000`-`0x4166`, and then the list is
    left alone; any other id returns 0 (`0x0030F7D9`-`0x0030F7EC`).
@@ -142,7 +142,7 @@ No other instruction reaches `0x022BEB90`-`0x022BED93`. The reset's store is `0x
 
 ## Related
 
-- [Area of effect](area-of-effect.md) - the target list the commit starts, and the stats-record list.
+- [Area of effect](area-of-effect.md) - the action's target list the commit starts, and the stats-record list.
 - [Target selection](target-selection.md) - how the menu's target is chosen before the commit.
 - [Combos](combos.md) - the commit repeated for every extra hit.
 - [Gambits and enmity](../Enemy-AI-And-Gambits/gambits.md) - the gambit

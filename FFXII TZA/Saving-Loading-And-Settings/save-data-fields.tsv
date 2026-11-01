@@ -427,4 +427,4 @@ offset	region	function	site	kind	instruction	via	note
 0x4E488	transition metadata	0x002EF410	0x002EF432	r	mov edx, dword ptr [rcx + 0x28]	arg0 from 0x00584210 at 0x00584378	
 0x4E488	transition metadata	0x002EF540	0x002EF562	r	mov eax, dword ptr [rip + 0x1ec33a0]	0x02164280	
 0x4E488	transition metadata	0x002EF540	0x002EF568	w	mov dword ptr [rcx + 0x28], eax	arg0 from 0x00229B40 at 0x00229CFE	
-0x4E48C	battle-state block			range	0x4E48C-0x5589B: the block's accesses through its pointer are in ../Party/party-data.md	0x02EBF190	
+0x4E48C	party block			range	0x4E48C-0x5589B: the block's accesses through its pointer are in ../Party/party-data.md	0x02EBF190	

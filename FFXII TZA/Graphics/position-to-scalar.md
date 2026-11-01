@@ -21,7 +21,7 @@ it while status display is denied, and dims it while a time stop is running.
 definition; its byte `+0x44` is the element kind. Kinds `0x40` and `0xA0` and above skip the
 distance fade and keep alpha `0x80`.
 
-The fade record is the one at `+0x2F0` of the effect container being drawn, `[0x02F97348]`, unless
+The distance-fade record is the one at `+0x2F0` of the effect container being drawn, `[0x02F97348]`, unless
 that record's first byte is `0xFF`; then it is the definition's own record at `+0x50`. A record
 whose kind byte is 0 leaves the alpha at `0x80`.
 
@@ -111,7 +111,7 @@ multiplies the result by the element's colour `+0x240`, and draws the point in t
 
 ## Layouts
 
-The fade record (in the container at `+0x2F0`, or in the element definition at `+0x50`):
+The distance-fade record (in the container at `+0x2F0`, or in the element definition at `+0x50`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -161,7 +161,7 @@ is non-zero (`0x00377536`), but every store to `0x02ADD0F4` writes 0 (`0x0037754
 
 ## Modding notes
 
-- An effect's own fade distances are the four `i16` words of its fade record; setting both of a
+- An effect's own fade distances are the four `i16` words of its distance-fade record; setting both of a
   pair equal turns that fade off.
 - Mode 2 ignores the axis in lane 1, so an effect authored with it does not fade as the camera rises.
 - The result is a modulate (128 is unchanged), so the alpha never exceeds the element's own.

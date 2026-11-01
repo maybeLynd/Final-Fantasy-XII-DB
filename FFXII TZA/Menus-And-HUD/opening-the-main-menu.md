@@ -14,12 +14,12 @@ does nothing.
 ## Steps
 
 1. **The post.** On Triangle the input arbiter posts id 2 to the mailbox with `0x002E1B10`, which refuses while the
-   mailbox is blocked or policy bit `0x1` is set ([menus](menus.md#the-mailbox),
+   mailbox is blocked or availability bit `0x1` is set ([menus](menus.md#the-mailbox),
    [action availability](../Controls-And-Input/action-availability.md#the-combined-mask)).
 2. **The delivery.** Once per world tick the drain `0x002E09A0` takes the request: it throws it away while manager
-   slot 0 is not ready, drops id 2 when `0x0037B330` answers non-zero or policy bit `0x1` or `0x8` is set, and waits while a
+   slot 0 is not ready, drops id 2 when `0x0037B330` answers non-zero or availability bit `0x1` or `0x8` is set, and waits while a
    party record is busy ([menus](menus.md#delivery)).
-3. **The router.** `0x00254B50` refuses while the request latch is set or when the combined action policy blocks the
+3. **The router.** `0x00254B50` refuses while the request latch is set or when the combined action availability mask blocks the
    id, then closes what is open and dispatches by id ([menus](menus.md#the-router),
    [action availability](../Controls-And-Input/action-availability.md#what-each-bit-blocks)).
 4. **The generic route.** `0x00280A00` refuses while a menu widget sits at the root, sets the request word and latch
@@ -30,7 +30,7 @@ does nothing.
 6. **The opening run.** `0x00280D20` installs the menu's descriptor (`0x00247570`) and opens it under the root through
    `0x00246AC0`, which hands it to `0x00246AD0`: the widget is attached, its forward run starts and message 14 is sent
    ([widgets](widgets.md#the-tree), [widgets](widgets.md#opening-and-closing-runs), [widget messages](widget-messages.md)).
-7. **While it is open.** The drain sets action-policy row 7 to `0x100203` and the main loop to mode 4, which
+7. **While it is open.** The drain sets action availability row 7 to `0x100203` and the main loop to mode 4, which
    captures the screen once and becomes mode 3, waiting each frame for the menu to close
    ([menus](menus.md#while-a-menu-is-open)).
 8. **An entry.** The entry dispatcher `0x00281ED0` opens each entry's screen by its `menu_command.bin` id

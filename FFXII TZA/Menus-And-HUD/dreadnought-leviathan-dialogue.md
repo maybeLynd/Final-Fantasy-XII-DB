@@ -49,7 +49,7 @@ Every script ships in all nine trees with the same number of strings in each, so
 
 Empty strings per tree: `us` 16, `de` 16, `es` 17, `fr` 16, `it` 22. No `in`, `kr`, `cn` or `ch` string is empty.
 
-16 rows are empty in all five of `us`, `de`, `es`, `fr` and `it`: all of them hold only control codes in `in`, `kr`, `cn` and `ch`, such as `{spacing:8181}`.
+16 rows are empty in all five of `us`, `de`, `es`, `fr` and `it`: all of them hold only text codes in `in`, `kr`, `cn` and `ch`, such as `{spacing:8181}`.
 
 Empty in some trees only:
 
@@ -95,7 +95,7 @@ Strings with a choice list per tree: `us` 36, `de` 36, `es` 36, `fr` 36, `it` 36
 
 ### Reading the text
 
-Each cell is the string decoded with its tree's font. Control codes are written as placeholders, `{name}` or `{name:payload}` with the payload bytes in hex; [Text codes](text-codes.md) gives each code. A backslash comes before a literal backslash, brace, square bracket or bar of the game text.
+Each cell is the string decoded with its tree's font. Text codes are written as placeholders, `{name}` or `{name:payload}` with the payload bytes in hex; [Text codes](text-codes.md) gives each code. A backslash comes before a literal backslash, brace, square bracket or bar of the game text.
 
 Examples, by script, section and id:
 
@@ -135,7 +135,7 @@ An empty cell under a language not in `missing` is an empty string.
 - [Dreadnought Leviathan scripts](../Story-Events-And-Hunts/dreadnought-leviathan-scripts.md) - what each function of these scripts shows, with the text ids of its lines.
 - [Dreadnought Leviathan scenes](../Story-Events-And-Hunts/dreadnought-leviathan-scenes.md) - the scenes these scripts load.
 - [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - the layout of sections 2 and 3, the lookups and the verbs that read them.
-- [Text codes](text-codes.md) - every control code and the choice list.
+- [Text codes](text-codes.md) - every text code and the choice list.
 - [Fonts](fonts.md) - how a character code becomes a glyph, and the expansion lists.
 - [Font expansion lists](fonts-expansion-lists.md) - every list with the script path it belongs to.
 - [Message windows](message-windows.md) - the window a line is shown in.

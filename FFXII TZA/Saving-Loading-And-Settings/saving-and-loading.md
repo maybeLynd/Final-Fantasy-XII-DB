@@ -407,7 +407,7 @@ SaveloadManager (`0x01F81260`, `0x001C18E0`) to `0x001C1720(manager, field, stor
 
 1. It returns 0 when the manager's dword `+0x0C` is not 0 (the constructor `0x001C0E20` clears it) or
    the field id is not positive.
-2. When bit `0x1000` of the battle-state block's flag dword is set (`0x00236760`), the story value is replaced
+2. When bit `0x1000` of the party block's flag dword is set (`0x00236760`), the story value is replaced
    by -2.
 3. It walks the rows of the vector at `+0x50` (16 bytes each, see Layouts). A row matches when its
    field equals the field, its entrance is 0 or equal, and its story value is 0, equal, or its variable

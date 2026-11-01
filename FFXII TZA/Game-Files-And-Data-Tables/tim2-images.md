@@ -236,7 +236,7 @@ returns the first block whose flags have `0x8000` and not `0x10000`, or null.
 
 A script container (`.ebp`) can carry a glyph sheet in directory slot 6
 ([script container](../EBP-Script-Files/ebp-script-container.md)). When the container arrives,
-`0x003304A0` passes that section, with the area slot in the low four bits, to `0x00330060` (`0x00330565`), which:
+`0x003304A0` passes that section, with the manager slot in the low four bits, to `0x00330060` (`0x00330565`), which:
 
 1. stores it at `0x022C6CF0[g]` and in the area record (`0x0026C860`, `0x02098EC0 + g × 0x288`);
 2. clears pending bit `0x40` of `0x022C6E48[g]`;

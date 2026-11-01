@@ -195,7 +195,7 @@ Each weighted entry, 4 bytes:
 
 ### From the menu to the list
 
-Each party member's twelve gambit lines are stored as a bank of `0x34` bytes in the battle state block
+Each party member's twelve gambit lines are stored as a bank of `0x34` bytes in the party block
 `[0x02EBF190]`: the bank of member `k` is `+0x5B10 + (k * 3 + selected) * 0x34`, with the selected set at
 `+0x7370 + 4 * k` (`0x00327E27`-`0x00327E4B`). `0x00327DE0(stats)` rebuilds the member's order set at
 `0x02089378 + type * 0x170` from it (`0x00327DE0`-`0x00327F70`):

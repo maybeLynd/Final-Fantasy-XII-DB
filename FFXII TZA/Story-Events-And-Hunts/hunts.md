@@ -55,7 +55,7 @@ Each line is read from the shipped files in these steps:
    5 is `k` (`0x0037EF70`, `0x0037EE10`);
 6. each code `0F 38` in the text replaced by the name it stands for: `0x003FFB00` turns its payload into a name id
    and the text interpreter (`0x002ADDAA`) takes the name from `0x002639E0`, entry `2 x id` of `npcdic.bin`, or
-   `2 x id + 1` once persistent flag `id` is set ([NPC names](../Characters-And-Objects/npc-names.md));
+   `2 x id + 1` once story flag `id` of Bank2048 is set ([NPC names](../Characters-And-Objects/npc-names.md));
 7. every one-byte text code through the glyph table of the shipped `us` font `font00.dat`
    ([Fonts](../Menus-And-HUD/fonts.md)).
 

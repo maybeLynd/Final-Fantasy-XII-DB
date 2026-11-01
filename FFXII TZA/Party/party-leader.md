@@ -72,8 +72,8 @@ summoner becomes the controlled member ([Quickenings and summons](../Battle-Acti
 
 ### The default controlled member
 
-`0x00326500` turns the party's leader selector into the leader handle; [Party slots](party-slots.md) and
-[Party data](party-data.md) call the selector at `+0x5AA4` of the party block "the leader" too. The member it
+`0x00326500` turns the party's leader selector, `+0x5AA4` of the party block ([Party slots](party-slots.md),
+[Party data](party-data.md)), into the leader handle. The member it
 picks depends on the battle mode (`0x00326516`-`0x00326542`):
 
 | Battle mode | Member |
@@ -121,7 +121,7 @@ summon mode when the summoner is down (`0x0023B17C`-`0x0023B1B8`). It is publish
 | 1, inverted | `0x0209A2C5` (`0x0026BD40`) | read by the gameplay capability checks |
 
 The full list of contributions, and the gameplay checks that read `0x0209A2C5`, are on
-[Gameplay capability policy](../Controls-And-Input/action-availability.md).
+[Action availability](../Controls-And-Input/action-availability.md).
 
 ### The movement locks
 

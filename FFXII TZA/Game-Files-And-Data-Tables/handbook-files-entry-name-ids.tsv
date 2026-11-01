@@ -1,0 +1,301 @@
+family	entry	name_text_id	text_row	us	de	es	fr	it	in	kr	cn	ch	text_name	text_name_rule	first_line
+story	0	0x113C8	65	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	バレンディア大陸とガルテア半島をつなぎ、さらには西の大陸オーダリアとの回廊に位置する小国、ダルマスカ。
+story	1	0x113C9	66	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国のダルマスカ侵攻から３ヶ月がすぎた頃、ダルマスカ国王ラミナスはついに敗北を認め、停戦を受け入れる。
+story	2	0x113CA	67	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	帝国兵の攻撃をかわしつつ、城塞の内部へ入ることに成功したレックスとバッシュ。しかし、先行したウォースラを見失ってしまう。
+story	3	0x113CB	68	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	城塞の上層まであとわずかというところで、バッシュたちの潜入がアルケイディア軍に知れわたってしまう。
+story	4	0x113CC	69	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	広間へたどりついたレックスが目にしたのは、争った跡とすでに息絶えたダルマスカ王ラミナスの姿だった。
+story	5	0x113CD	70	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国との戦争が終わって２年。ダルマスカ王国は帝国の属領となり、人々はつらい暮らしを強いられながらもたくましく生きていた。
+story	6	0x113CE	71	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	旧ダルマスカ王国の首都ラバナスタ。
+story	7	0x113D0	73	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ミゲロのおつかいで酒場に向かったヴァンは、顔なじみのトマジからモンスター討伐の話を聞く。
+story	8	0x113D1	74	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	砂漠でモンスターを退治したヴァンは、ラバナスタの街へ戻ろうと東門へやってくる。ところが新しい執政官の着任パレードが行われるため、門は封鎖されていた。
+story	9	0x113D5	78	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	帝国の統治によってだんだんと変わってゆくラバナスタを感じ、落ちこむパンネロ。ヴァンはパンネロを元気づけるために、ラバナスタ王宮へ宝を盗みに行くと決める。
+story	10	0x113D6	79	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ラバナスタのダウンタウンで、ダランに王宮潜入の計画を打ち明けるヴァン。
+story	11	0x113D6	79	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ラバナスタのダウンタウンで、ダランに王宮潜入の計画を打ち明けるヴァン。
+story	12	0x113D6	79	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ラバナスタのダウンタウンで、ダランに王宮潜入の計画を打ち明けるヴァン。
+story	13	0x113D6	79	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ラバナスタのダウンタウンで、ダランに王宮潜入の計画を打ち明けるヴァン。
+story	14	0x113D8	81	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ギーザ草原から戻ったヴァンは、ダランから宝物庫の封印を解く魔石「クレセントストーン」をもらう。
+story	15	0x113DA	83	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	たどりついた宝物庫で、黒灰色の魔石を見つけたヴァン。そこへ２人組の空賊が現れる。手に入れた魔石をわたせと迫られるが、ヴァンはそれを拒む。
+story	16	0x113DC	85	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	戦艦イフリートの主砲は、ラバナスタ王宮の中庭に大穴を開け、その下に位置する水路の天井をも突き破った。
+story	17	0x113DD	86	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ガラムサイズ水路を進んでいる途中で、ヴァンたち３人は帝国兵と戦う女性に出会う。追いつめられていく女戦士に対し、ヴァンは思わず助けの手をさしのべる。
+story	18	0x113DF	88	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	地下水路の出口には、ヴェインが武装した帝国兵を連れて待ちかまえていた。なすすべなく捕われる一行。
+story	19	0x113E2	91	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	目覚めると、ヴァンはナルビナ城塞の地下雑居房にいた。そこは牢獄とはいうものの、自由に歩き回ることができるようになっている。すでにフランは抜け道をさがしに出ていったという。
+story	20	0x113E4	93	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	雑居房の奥で、乱暴をはたらくシーク族の囚人たちを見たヴァン。彼らのふるまいを放っておけず、ヴァンは囚人を止めるが、それをきっかけに標的となってしまう。
+story	21	0x113E5	94	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	地下牢に、武装した帝国兵と賞金稼ぎバッガモナン一味がやって来る。バッガモナンはバルフレアをさがしていた。さらに、帝国軍司法機関の騎士「ジャッジ」が姿を現す。ジャッジの狙いはヴァンたちではないらしく、その場からすぐに去って行く。
+story	22	0x113E9	98	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	魔法によって封印された扉を開け、先へと進むジャッジ。ヴァンたちも後に続き、地下の独居房へ着く。そこに捕えられていたのは、ダルマスカ国王を暗殺したバッシュ将軍だった。
+story	23	0x113EB	100	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	地下道で見つけた装備を取るバッシュ。その腕は囚われる前と変わりなかった。バッシュを信用できないヴァンは、ことあるごとにくってかかろうとする。
+story	24	0x113EE	103	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	現在不使用
+story	25	0x113EE	103	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	地下道を抜け、ラバナスタへの帰還を果たした４人。
+story	26	0x113F0	105	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダランを訪ねたヴァンは、ダルマスカ騎士団の剣を届けるよう頼まれ、ダウンタウンにある民家へ向かう。ヴァンが剣を届けた先は、反帝国組織のアジトだった。
+story	27	0x113F1	106	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	バルフレアは酒場にいたが、ミゲロと何やらもめていた。賞金稼ぎのバッガモナン一味が、パンネロをバルフレアの知り合いと勘違いして連れ去ったのだった。
+story	28	0x113F6	111	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	空中都市ビュエルバに着いたヴァンたち。バッガモナンの呼び出しに応じてルース魔石鉱へ向かおうとしたところ、高貴な服をまとった少年に呼び止められる。
+story	29	0x113F7	112	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ラモンを連れて、ルース魔石鉱に来たヴァンたち。坑内に入ろうとしたところ、中からオンドール侯爵が出てくるのに気づく。侯爵はジャッジと行動を共にしていた。
+story	30	0x113F8	113	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	魔石鉱の奥で、魔石らしきものを取り出すラモン。魔石はあやしげな光を放つ。それは「破魔石」と呼ばれる特殊な魔石で、アルケイディア帝国の研究機関によって作られたものだった。
+story	31	0x113F9	114	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ラモンを追って、魔石鉱の入口に戻ってきたヴァンたち。そこでラモンはオンドール侯爵、ジャッジ・ギースと話をしており、そばにはパンネロもいた。彼はアルケイディア皇帝の四男、ラーサー・ソリドールだった。
+story	32	0x113FA	115	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	パンネロとラーサーは、オンドール侯爵邸の一室にいた。ラーサーがヴェインの弟と知ったパンネロは、助けられたことに感謝しつつも、不安を隠せなかった。
+story	33	0x11401	122	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	帝国軍の巨大戦艦、リヴァイアサンへと連行された一行。そこにはジャッジ・ギースとアマリアの姿があった。
+story	34	0x11403	124	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	厳しい警戒網をくぐり抜け、ついにリヴァイアサン艦内の一室に閉じこめられていたアーシェをを助け出す。
+story	35	0x11404	125	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	リヴァイアサンから脱出する途中、ラーサーに連れられたパンネロに会う。
+story	36	0x11406	127	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ジャッジ・ギースを退けたところに、ウォースラがやって来る。一行はウォースラの案内で小型飛空艇に乗り込み、リヴァイアサンから脱出した。
+story	37	0x1140A	131	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	亡命を勧められたアーシェは、ひとりで行動を起こそうとシュトラール号へ乗りこんでいた。しかし、後からついてきていたヴァンに見つかってしまう。アーシェは身の証となるもうひとつの破魔石をさがそうとしていた。
+story	38	0x1140D	134	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ビュエルバを出発し、西ダルマスカ砂漠に到着した一行。目指すレイスウォール王墓は、飛空艇の移動が不可能な土地「ヤクト」にあるため、この先は徒歩で進まなくてはならなかった。
+story	39	0x11412	139	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	エンサ砂海を越えて、死者の谷へ着いた一行。アーシェは王墓を前に、覇王レイスウォールと「暁の断片」のことを語る。暁の断片とは、レイスウォール王の血統の証として残されたものだった。
+story	40	0x11413	140	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	「暁の断片」は王墓の最深部にあった。石に歩みよろうとするアーシェの目の前に、死んだラスラの幻影が現れる。しかし、ラスラが見えているのはアーシェとヴァンの２人だけだった。やがて幻は姿を消してしまう。
+story	41	0x11416	143	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	暁の断片を手に入れて地上へと戻ってきた一行。そこにはリヴァイアサン艦隊が待ち受けていた。
+story	42	0x11418	145	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ウォースラを退け、シヴァを脱出する一行。
+story	43	0x1141D	150	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	暁の断片を回収した一行は、ラバナスタの街に身を隠していた。破魔石に秘められた強大な力を知ったアーシェは、その力をダルマスカ再興に使おうと考えていた。
+story	44	0x11420	153	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ガリフ族の長老から話を聞き、落胆するアーシェ。そこへラーサーが現れ、神都ブルオミシェイスへ同行してほしいと頼まれる。
+story	45	0x11421	154	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	神都ブルオミシェイスへの途上、一行はゴルモア大森林へ入る。しかし森には封印が施されており、先に進むことができなかった。
+story	46	0x11422	155	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	フランはヴィエラ族の里に入ろうとしなかった。フランはヴァンにミュリンを呼んできてほしいと頼む。
+story	47	0x11423	156	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ミュリンをさがしてヘネ魔石鉱内部を進む一行は、そこで何者かに襲われて全滅した帝国兵を見つける。
+story	48	0x11424	157	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヘネ魔石鉱でミュリンを見つけた一行。自我がないままのミュリンの手から人造破魔石が転がり落ちる。石が砕けるのと同時に気を失うミュリン。
+story	49	0x11425	158	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヴィエラ族の里へミュリンを送り届けた一行に、ヨーテは「レンテの涙」をわたした。
+story	50	0x11429	162	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	神都ブルオミシェイスでアーシェとラーサーを待っていたのは、キルティア教の代表者である大賢者アナスタシスとロザリア帝国の統治者一族のひとりアルシドだった。
+story	51	0x1142B	164	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルシドがもたらした知らせに驚きを隠せないラーサー。一方、この機にダルマスカの王位を継承するつもりだったアーシェだが、時期を改めることにする。
+story	52	0x1142C	165	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ミリアム遺跡で「覇王の剣」を手に入れたアーシェ。その力が本物かどうかを確かめるため、暁の断片を斬ることにする。
+story	53	0x1142D	166	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ミリアム遺跡を出た一行の頭上を、アルケイディア帝国の戦艦アレキサンダーが艦隊を連れて移動していく。艦隊がやってきた方角にはブルオミシェイスがあり、そこからは黒煙が上がっていた……。
+story	54	0x1142E	167	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ブルオミシェイスに戻った一行は、無残な戦いの跡を目にする。街にアルケイディア軍が押し寄せたのだった。
+story	55	0x1142F	168	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ジャッジ・ベルガを倒したが、アナスタシスはすでに息を引き取っていた。ラーサーの身を案じるパンネロ。そこへ傷を負ったアルシドが現れる。ラーサーは帝国軍によって連れ去られていた。
+story	56	0x11430	169	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国領へ入った一行は、ナルドア海沿岸を進んでいた。バルフレアは海岸の集落で、自分の身の上について語った。
+story	57	0x11435	174	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディス市街からドラクロア研究所への潜入に成功した一行は、バルフレアの案内でシドの研究室までやってくる。しかし部屋は何者かに荒らされており、シドの姿も見当たらなかった。
+story	58	0x11436	175	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ドクター・シドはドラクロア研究所の屋上にいた。シドの前には剣をかまえた男が立っている。帝国兵が追っていたのはこの男だった。
+story	59	0x11437	176	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ドクター・シドを倒そうとした時、シドの背後に黒い影が現れ、シドを助ける。シドはその影のことをヴェーネスと呼んだ。シドはアーシェに「ギルヴェガンへ行け」と言い残して研究所から去っていく。
+story	60	0x1143A	179	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	帝都から逃れた一行は、港町バーフォンハイムで解放軍の近況を聞く。オンドール侯爵はアルケイディアとの戦争を避けられないと考えていた。しかし、破魔石を持つ帝国に解放軍の力だけで対抗するのは難しかった。
+story	61	0x1143B	180	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	幻妖の森の奥に着いた一行は、ギルヴェガンへ進むための門を見つけ、中へ入った。失われた古代都市は強いミストに満ちていた。
+story	62	0x1143D	182	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	古代都市ギルヴェガンの最深部で、オキューリア族の王に会うアーシェ。彼らは古の昔からイヴァリースを見守り、時には破魔石を与えて歴史を導いていた。
+story	63	0x1143E	183	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	港町バーフォンハイムに戻った一行は、オキューリア族の王の話をレダスに伝えた。「天陽の繭」をさがしていると聞いたレダスは、ナルドア海に強いミストで守られている大灯台があると語る。
+story	64	0x11441	186	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	リドルアナ大灯台の頂上で「天陽の繭」を見つける一行。天陽の繭を砕こうと近づくアーシェの前に、ラスラの幻が現れる。ラスラの姿にとまどうアーシェ。
+story	65	0x11443	188	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ジャッジ・ガブラスを退けた一行の前にドクター・シドが現れる。私情で剣を抜き、あげく戦いに敗れたガブラスを叱責するシド。
+story	66	0x11445	190	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダメージを受け、倒れるドクター・シド。目的を果たしたことに満足しつつ、シドは消滅する。
+story	67	0x11447	192	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	天陽の繭を消滅させ、港町バーフォンハイムに戻ってきた一行をアルシドが待っていた。アルケイディア軍と一部の解放軍が交戦状態に入ったと告げるアルシド。オンドール侯爵は主力艦隊をつれて戦闘空域へ向かったという。
+story	68	0x1144C	197	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	オンドール侯爵の率いる解放軍の主力艦隊がラバナスタの上空に到着する。艦隊から次々と発進する戦闘艇。対するアルケイディア軍も応戦の準備をととのえ、やがて両軍は戦いを開始する。
+world	0	0x11490	223	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	バレンディア、オーダリア、ケルオンの３大陸により構成される世界。豊かな自然と季候に恵まれている。各地域の気候帯は大気中のミスト濃度と密接な関係がある。
+world	1	0x11491	224	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	イヴァリースの西側に位置する大陸。中央部の肥沃な平野には大帝国ロザリアがある。ロザリア以東は砂漠が大半を占める乾燥気候となっている。
+world	2	0x11492	225	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	オーダリア大陸の北東にある大陸。一般に気候は穏やかで過ごしやすい。他の２大陸に比べるとミストが非常に安定している。
+world	3	0x11493	226	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	オーダリア大陸の南東に位置する大陸。大陸の７割が森林におおわれている。地域による気候の差が激しく、未開の土地も多い。
+world	4	0x11494	227	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ナルドア海の上空に浮かぶ大陸。大小いくつかの浮遊大陸があるが、これらがいつ、どのようにして生まれたのかは謎に包まれている。
+world	5	0x114A1	240	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	旧ダルマスカ王国の首都。古代ガルテア人の都でもあり、様々な国家の首都として機能してきた。ここ数百年の間はダルマスカ王家が治めていたが、２年前にアルケイディア帝国との戦争に敗れ、現在は帝国領となっている。
+world	6	0x114A2	241	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ラバナスタ・ダウンタウン	the first sentence, <name>は	ラバナスタ・ダウンタウンはラバナスタの市街地を支える下層部分にあたる。ラバナスタは二層構造となっており、ダウンタウンにある巨大な柱の上に、市街地がのっかっている。アルケイディア帝国との戦争以前は主に商人たちが倉庫や荷物の集積場として使っていた。
+world	7	0x114A3	242	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ラバナスタ市街を北へ抜けると、ラバナスタ王宮がある。アルケイディアとの戦争前は王家の住居や騎士団の詰め所などに使われていた。現在はアルケイディア本国から派遣されてくる執政官の住居および執務の場となっている。
+world	8	0x114A4	243	The Garamsythe Waterway	Die Garamseys-Kanalisation	Acueductos de Garamsais	Egouts de Garamsythe	Canali di Garamsythe	ガラムサイズ水路	가람사이스 수로	加蓝赛兹水路	加藍賽茲水路	-	-	王都ラバナスタの地下に広がる地下水道。何世紀もの間に増改築され、今では広大なダンジョンとなっている。迷路のような水路の中には、ラバナスタ王宮へと通じるものもあると言われている。
+world	9	0x114A4	243	The Garamsythe Waterway	Die Garamseys-Kanalisation	Acueductos de Garamsais	Egouts de Garamsythe	Canali di Garamsythe	ガラムサイズ水路	가람사이스 수로	加蓝赛兹水路	加藍賽茲水路	-	-	王都ラバナスタの地下に広がる地下水道。何世紀もの間に増改築され、今では広大なダンジョンとなっている。迷路のような水路の中には、ラバナスタ王宮へと通じるものもあると言われている。
+world	10	0x114A5	244	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	旧ダルマスカ王国と旧ナブラディア王国の国境に位置するオアシスに築かれた要塞。高い山と砂漠に守られ、幾度となく敵の侵略を阻んできた。
+world	11	0x114A6	245	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ナルビナ城塞の基部を閉じて作られた牢獄。もともと複雑な構造の地下部分をアルケイディア軍が牢に作り変えた。中には凶悪犯や政治犯、旧ダルマスカ／ナブラディア軍の捕虜、その他の軽犯罪者などが無秩序に収容されている。奥には独居房もあり、アルケイディア本国の司法局による判決を必要とする者たちが入れられている。
+world	12	0x114A7	246	The Barheim Passage	Die Barheim-Tunnel	Túneles de Balheim	Passage de Barheim	Gallerie di Barheim	バルハイム地下道	바르하임 지하도	柏尔海姆地下道	柏爾海姆地下道	-	-	ナルビナ城塞の下に広がる地下道。元は城塞に物資を運び込むための鉄道であったが、飛空艇による輸送が確立してから使用されなくなり、閉鎖された。
+world	13	0x114A7	246	The Barheim Passage	Die Barheim-Tunnel	Túneles de Balheim	Passage de Barheim	Gallerie di Barheim	バルハイム地下道	바르하임 지하도	柏尔海姆地下道	柏爾海姆地下道	-	-	ナルビナ城塞の下に広がる地下道。元は城塞に物資を運び込むための鉄道であったが、飛空艇による輸送が確立してから使用されなくなり、閉鎖された。
+world	14	0x114A8	247	The Dalmasca Estersand	Die Ostwüste Dalmascas	Desierto de Dalmasca Este	Désert est de Dalmasca	Deserto est di Dalmasca	東ダルマスカ砂漠	동부 달마스카 사막	东达玛斯卡沙漠	東達瑪斯卡沙漠	-	-	ダルマスカ地方の広大な砂漠地帯のうち、王都ラバナスタの東側に位置する砂漠。野生のモンスターが多く生息しており、街に討伐依頼が寄せられることも珍しくない。
+world	15	0x114A8	247	The Dalmasca Estersand	Die Ostwüste Dalmascas	Desierto de Dalmasca Este	Désert est de Dalmasca	Deserto est di Dalmasca	東ダルマスカ砂漠	동부 달마스카 사막	东达玛斯卡沙漠	東達瑪斯卡沙漠	-	-	ダルマスカ地方の広大な砂漠地帯のうち、王都ラバナスタの東側に位置する砂漠。野生のモンスターが多く生息しており、街に討伐依頼が寄せられることも珍しくない。
+world	16	0x114A9	248	The Dalmasca Westersand	Die Westwüste Dalmascas	Desierto de Dalmasca Oeste	Désert ouest de Dalmasca	Deserto ovest di Dalmasca	西ダルマスカ砂漠	서부 달마스카 사막	西达玛斯卡沙漠	西達瑪斯卡沙漠	-	-	ダルマスカ地方に広がる砂漠地帯のうち、西側に位置する砂漠。ラバナスタと他の街を結ぶ役割はなく、通商ルートとしては使われていない。
+world	17	0x114A9	248	The Dalmasca Westersand	Die Westwüste Dalmascas	Desierto de Dalmasca Oeste	Désert ouest de Dalmasca	Deserto ovest di Dalmasca	西ダルマスカ砂漠	서부 달마스카 사막	西达玛斯卡沙漠	西達瑪斯卡沙漠	-	-	ダルマスカ地方に広がる砂漠地帯のうち、西側に位置する砂漠。ラバナスタと他の街を結ぶ役割はなく、通商ルートとしては使われていない。
+world	18	0x114AA	249	Giza Plains	Die Giza-Ebene	Pradera de Giza	Plaines de Giza	Pianura di Giza	ギーザ草原	기자 초원	居札草原	居札草原	-	-	王都ラバナスタの南に広がる広大なサバンナ。乾期と雨期があり、時期によって地形が大きく異なる。草原のいたるところに大きな黒水晶があり、乾期には日の光を吸収して金色に輝いている。
+world	19	0x114AA	249	Giza Plains	Die Giza-Ebene	Pradera de Giza	Plaines de Giza	Pianura di Giza	ギーザ草原	기자 초원	居札草原	居札草原	-	-	王都ラバナスタの南に広がる広大なサバンナ。乾期と雨期があり、時期によって地形が大きく異なる。草原のいたるところに大きな黒水晶があり、乾期には日の光を吸収して金色に輝いている。
+world	20	0x114B0	255	Giza Plains - The Rains	Die Giza-Ebene (Regenzeit)	Pradera de Giza (estación de lluvias)	Plaines de Giza (saison des pluies)	Pianura di Giza (stagione umida)	ギーザ草原（雨季）	기자 초원(우기)	居札草原（雨季）	居札草原（雨季）	ハイエナ	the first line, a name in katakana	ハイエナ
+world	21	0x114B1	256	The Ogir-Yensa Sandsea	Die Ogir-Yensa-Sandsee	Arenas de Ogul Yensa	Mer de sable d'Ogir-Yensa	Mare di sabbia Ogir Yensa	大砂海オグル・エンサ	대사해 오기르 옌사	大沙海奥格·焉萨	大沙海奧格·焉薩	-	-	ヤクト・エンサの東に位置する砂漠。大部分が目の細かな砂でおおわれ、まるで水のように見えることから、砂海と呼ばれている。
+world	22	0x114B1	256	The Ogir-Yensa Sandsea	Die Ogir-Yensa-Sandsee	Arenas de Ogul Yensa	Mer de sable d'Ogir-Yensa	Mare di sabbia Ogir Yensa	大砂海オグル・エンサ	대사해 오기르 옌사	大沙海奥格·焉萨	大沙海奧格·焉薩	-	-	ヤクト・エンサの東に位置する砂漠。大部分が目の細かな砂でおおわれ、まるで水のように見えることから、砂海と呼ばれている。
+world	23	0x114B2	257	The Nam-Yensa Sandsea	Die Nam-Yensa-Sandsee	Arenas de Nam Yensa	Mer de sable de Nam-Yensa	Mare di sabbia Nam Yensa	大砂海ナム・エンサ	대사해 냄 옌사	大沙海那姆·焉萨	大沙海那姆·焉薩	-	-	ヤクト・エンサの西に位置する砂漠。なだらかな砂の丘の下に粒の細かい砂が波うつように広がっており、オグル・エンサとともにエンサ大砂海と呼ばれている。
+world	24	0x114B2	257	The Nam-Yensa Sandsea	Die Nam-Yensa-Sandsee	Arenas de Nam Yensa	Mer de sable de Nam-Yensa	Mare di sabbia Nam Yensa	大砂海ナム・エンサ	대사해 냄 옌사	大沙海那姆·焉萨	大沙海那姆·焉薩	-	-	ヤクト・エンサの西に位置する砂漠。なだらかな砂の丘の下に粒の細かい砂が波うつように広がっており、オグル・エンサとともにエンサ大砂海と呼ばれている。
+world	25	0x114B3	258	Zertinan Caverns	Die Zertenian-Grotten	Cueva Certeniana	Grottes de Zertina	Caverne di Zertinan	ゼルテニアン洞窟	제르티난 동굴	杰尔提尼安洞窟	傑爾提尼安洞窟	-	-	オーダリア大陸とケルオン大陸にはさまれた内海に広がる巨大な地下洞窟。中は複雑に枝分かれしており、ヤクト・エンサからダルマスカ地方、さらにはバンクール地方へとつながっている。
+world	26	0x114B3	258	Zertinan Caverns	Die Zertenian-Grotten	Cueva Certeniana	Grottes de Zertina	Caverne di Zertinan	ゼルテニアン洞窟	제르티난 동굴	杰尔提尼安洞窟	傑爾提尼安洞窟	-	-	オーダリア大陸とケルオン大陸にはさまれた内海に広がる巨大な地下洞窟。中は複雑に枝分かれしており、ヤクト・エンサからダルマスカ地方、さらにはバンクール地方へとつながっている。
+world	27	0x114B4	259	The Tomb of Raithwall	Die Grabstätte Raithwalls	Tumba del Rey Raithwall	Tombeau de Raithwall	Tomba di Raithwall	レイスウォール王墓	레이스월 왕묘	瑞斯沃尔王墓	瑞斯沃爾王墓	-	-	ヤクト・エンサの西、死者の谷の奥にあるレイスウォール王の墓所。ナルドア海周辺を一代で平定した偉業を称え、ガルテア連邦時代に建てられた。内部にはすでに失われた技術も多く使われている。
+world	28	0x114B4	259	The Tomb of Raithwall	Die Grabstätte Raithwalls	Tumba del Rey Raithwall	Tombeau de Raithwall	Tomba di Raithwall	レイスウォール王墓	레이스월 왕묘	瑞斯沃尔王墓	瑞斯沃爾王墓	-	-	ヤクト・エンサの西、死者の谷の奥にあるレイスウォール王の墓所。ナルドア海周辺を一代で平定した偉業を称え、ガルテア連邦時代に建てられた。内部にはすでに失われた技術も多く使われている。
+world	29	0x114B9	264	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	空中大陸ドルストニスにある自治都市。飛空艇での移動が一般的に広まった時代、ドルストニスに魔石の鉱脈が発見されたのを機に魔石鉱と街が作られた。空中大陸で採れる魔石は量、質とも他のクリスタル鉱山に勝っており、石の流通を行うビュエルバは豊かに繁栄した。
+world	30	0x114BA	265	The Lhusu Mines	Die Lhusu-Minen	Minas de Lhusu	Mines de Lhusu	Miniere di Lhusu	ルース魔石鉱	루스 마석광	路苏魔石矿	路蘇魔石礦	-	-	空中大陸ドルストニスにあるクリスタル鉱山。鉱脈が発見されてからかなりの時が過ぎているが、今もなお質のいい魔石が産出されている。それは空中大陸に数ヶ所の鉱山があり、他の魔石鉱とバランスを取りつつ採掘を進めてきたためである。
+world	31	0x114BA	265	The Lhusu Mines	Die Lhusu-Minen	Minas de Lhusu	Mines de Lhusu	Miniere di Lhusu	ルース魔石鉱	루스 마석광	路苏魔石矿	路蘇魔石礦	-	-	空中大陸ドルストニスにあるクリスタル鉱山。鉱脈が発見されてからかなりの時が過ぎているが、今もなお質のいい魔石が産出されている。それは空中大陸に数ヶ所の鉱山があり、他の魔石鉱とバランスを取りつつ採掘を進めてきたためである。
+world	32	0x114BC	267	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国の首都。都市国家として誕生した頃は街も小さかったが、ガルテア連邦時代よりしだいに国力が増すにつれて都も大きくなった。国が帝政になったおりに街の中心部を移動、現在の市街地が作られた。
+world	33	0x114BD	268	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディス市街地の外れに位置する区画。国が帝政に移行するのに合わせて新市街が作られ、それまで使われていた区画は旧市街となった。
+world	34	0x114BE	269	The Draklor Laboratory	Das Draklor-Laboratorium	Laboratorio Draklor	Laboratoire Draklor	Laboratorio Draklor	ドラクロア研究所	드라클로어 연구소	卓克罗尔研究所	卓克羅爾研究所	-	-	帝都アルケイディスの北東、官庁街から少し離れた場所にある兵器開発研究所。アルケイディア帝国軍によって管理運営されている。現所長はドクター・シド。
+world	35	0x114BE	269	The Draklor Laboratory	Das Draklor-Laboratorium	Laboratorio Draklor	Laboratoire Draklor	Laboratorio Draklor	ドラクロア研究所	드라클로어 연구소	卓克罗尔研究所	卓克羅爾研究所	-	-	帝都アルケイディスの北東、官庁街から少し離れた場所にある兵器開発研究所。アルケイディア帝国軍によって管理運営されている。現所長はドクター・シド。
+world	36	0x114BF	270	Phon Coast	Die Phon-Küste	Costa de Fon	Côte de Phon	Costa Phon	フォーン海岸	폰 해안	丰恩海岸	豐恩海岸	-	-	アルケイディア地方とナブラディア地方を隔てるフォーン海峡一帯の沿岸部。白い砂にみずみずしい草木の生い茂る美しい浜辺が続いている。
+world	37	0x114BF	270	Phon Coast	Die Phon-Küste	Costa de Fon	Côte de Phon	Costa Phon	フォーン海岸	폰 해안	丰恩海岸	豐恩海岸	-	-	アルケイディア地方とナブラディア地方を隔てるフォーン海峡一帯の沿岸部。白い砂にみずみずしい草木の生い茂る美しい浜辺が続いている。
+world	38	0x114C0	271	Tchita Uplands	Das Tchita-Hochland	Meseta de Chitta	Landes de Tsita	Prateria di Tchita	ツィッタ大草原	칫타 대초원	椎塔大草原	椎塔大草原	-	-	アルケイディア地方の南に広がる丘陵地帯。飛空艇が一般的な交通手段となるまでは、街道として多くの旅人たちに使われていた。
+world	39	0x114C0	271	Tchita Uplands	Das Tchita-Hochland	Meseta de Chitta	Landes de Tsita	Prateria di Tchita	ツィッタ大草原	칫타 대초원	椎塔大草原	椎塔大草原	-	-	アルケイディア地方の南に広がる丘陵地帯。飛空艇が一般的な交通手段となるまでは、街道として多くの旅人たちに使われていた。
+world	40	0x114C1	272	The Sochen Cave Palace	Der Sohen-Höhlenpalast	Palacio Subterráneo de Sochen	Palais enfoui de Sohen	Palazzo sotterraneo di Sochen	ソーヘン地下宮殿	소헨 지하 궁전	索亨地下宫殿	索亨地下宮殿	-	-	アルケイディア地方にある巨大な地下迷宮。自然の洞窟と遺跡が混在しており、その全容はまだ把握されていない。壁面などに一部ガルテア様式が見られることから、建造はガルテア連邦時代と考えられている。
+world	41	0x114C1	272	The Sochen Cave Palace	Der Sohen-Höhlenpalast	Palacio Subterráneo de Sochen	Palais enfoui de Sohen	Palazzo sotterraneo di Sochen	ソーヘン地下宮殿	소헨 지하 궁전	索亨地下宫殿	索亨地下宮殿	-	-	アルケイディア地方にある巨大な地下迷宮。自然の洞窟と遺跡が混在しており、その全容はまだ把握されていない。壁面などに一部ガルテア様式が見られることから、建造はガルテア連邦時代と考えられている。
+world	42	0x114C2	273	Cerobi Steppe	Die Cerobi-Steppe	Alturas de Cerobi	Plateaux de Cérobi	Altopiano di Cerobi	セロビ台地	세로비 대지	榭洛比台地	榭洛比台地	-	-	アルケイディア地方の東に位置する高台の丘陵地帯。港町バーフォンハイムへと続く街道が走っている。セロビ台地からバーフォンハイムの一帯は上空の気流が不安定であるため、陸路も比較的よく使われている。
+world	43	0x114C2	273	Cerobi Steppe	Die Cerobi-Steppe	Alturas de Cerobi	Plateaux de Cérobi	Altopiano di Cerobi	セロビ台地	세로비 대지	榭洛比台地	榭洛比台地	-	-	アルケイディア地方の東に位置する高台の丘陵地帯。港町バーフォンハイムへと続く街道が走っている。セロビ台地からバーフォンハイムの一帯は上空の気流が不安定であるため、陸路も比較的よく使われている。
+world	44	0x114C3	274	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ナルドア海に面した港町。有数の漁場として知られ、古くから栄えてきた。漁業だけでなく操船技術を生かした海運業と造船業もさかんに行われている。飛空艇の普及により需要は減ったが、充分な収益をあげている。
+world	45	0x114C9	280	The Nabreus Deadlands	Die Nabreus-Sümpfe	Pantanal de Nabreus	Terres-mortes de Nabreus	Palude di Nabreus	ナブレウス湿原	나브레우스 습원	拿普留士湿地	拿普留士濕地	-	-	かつてナブラディア王国の首都ナブディスとして繁栄した場所。２年前にアルケイディア帝国との戦争で街は消滅、ミストの漂う不気味な湿原へと姿を変えた。
+world	46	0x114C9	280	The Nabreus Deadlands	Die Nabreus-Sümpfe	Pantanal de Nabreus	Terres-mortes de Nabreus	Palude di Nabreus	ナブレウス湿原	나브레우스 습원	拿普留士湿地	拿普留士濕地	-	-	かつてナブラディア王国の首都ナブディスとして繁栄した場所。２年前にアルケイディア帝国との戦争で街は消滅、ミストの漂う不気味な湿原へと姿を変えた。
+world	47	0x114CA	281	The Necrohol of Nabudis	Die Totenstadt Nabudis	Nabudis, capital de los muertos	Nécropole de Nabudis	Nabudis	死都ナブディス	사도 나부디스	死都拿普迪斯	死都拿普迪斯	-	-	かつてナブラディア王家が居城としていた王宮。湖の中央に建ち「白緑（びゃくろく）宮」と呼ばれた城も２年前の王都ナブディス消滅のおりに廃墟と化した。建物としての形はかろうじて残っているものの、内部は崩れ落ち、大半が水没している。
+world	48	0x114CA	281	The Necrohol of Nabudis	Die Totenstadt Nabudis	Nabudis, capital de los muertos	Nécropole de Nabudis	Nabudis	死都ナブディス	사도 나부디스	死都拿普迪斯	死都拿普迪斯	-	-	かつてナブラディア王家が居城としていた王宮。湖の中央に建ち「白緑（びゃくろく）宮」と呼ばれた城も２年前の王都ナブディス消滅のおりに廃墟と化した。建物としての形はかろうじて残っているものの、内部は崩れ落ち、大半が水没している。
+world	49	0x114CB	282	The Mosphoran Highwaste	Die Mosphora-Berge	Montes Mosfora	Col du Mosphore	Monti Mosfora	モスフォーラ山地	모스포라 산지	莫斯佛拉山地	莫斯佛拉山地	-	-	ダルマスカ地方とナブラディア地方を隔てる山岳。奇妙な形の岩が多く、せり出して山道の屋根となっているものや尖塔に似たものなどさまざまである。
+world	50	0x114CB	282	The Mosphoran Highwaste	Die Mosphora-Berge	Montes Mosfora	Col du Mosphore	Monti Mosfora	モスフォーラ山地	모스포라 산지	莫斯佛拉山地	莫斯佛拉山地	-	-	ダルマスカ地方とナブラディア地方を隔てる山岳。奇妙な形の岩が多く、せり出して山道の屋根となっているものや尖塔に似たものなどさまざまである。
+world	51	0x114CC	283	The Salikawood	Der Salika-Wald	Bosque de Salika	Forêt de Salika	Bosco di Salika	サリカ樹林	살리카 숲	萨利卡树林	薩利卡樹林	-	-	ナブラディア地方に広がる森林地帯。うっそうとした森の中にはアルケイディア地方へ抜けるための林道が作られている。しかし、巨木の間にかけられた木の橋には苔が生えくさりかけているものも多い。
+world	52	0x114CC	283	The Salikawood	Der Salika-Wald	Bosque de Salika	Forêt de Salika	Bosco di Salika	サリカ樹林	살리카 숲	萨利卡树林	薩利卡樹林	-	-	ナブラディア地方に広がる森林地帯。うっそうとした森の中にはアルケイディア地方へ抜けるための林道が作られている。しかし、巨木の間にかけられた木の橋には苔が生えくさりかけているものも多い。
+world	53	0x114D1	288	The Ridorana Cataract	Der Ridorana-Katarakt	Cataratas de Ridorana	Cataractes de Ridorana	Cascate di Ridorana	リドルアナ大瀑布	리도르아나 대폭포	黎铎亚纳大瀑布	黎鐸亞納大瀑布	-	-	外ナルドア海にある孤島。沖に出てわずかの場所に大穴が開いており、海水の流れ落ちる大瀑布となっている。島の奥には巨大な塔がそびえ、周囲には遺跡が広がっている。その規模から、かつて都市として栄えていたと推測されているが、その都市がいつ作られ、どのように滅んだのかを示す記録は一切見つかっていない。
+world	54	0x114D1	288	The Ridorana Cataract	Der Ridorana-Katarakt	Cataratas de Ridorana	Cataractes de Ridorana	Cascate di Ridorana	リドルアナ大瀑布	리도르아나 대폭포	黎铎亚纳大瀑布	黎鐸亞納大瀑布	-	-	外ナルドア海にある孤島。沖に出てわずかの場所に大穴が開いており、海水の流れ落ちる大瀑布となっている。島の奥には巨大な塔がそびえ、周囲には遺跡が広がっている。その規模から、かつて都市として栄えていたと推測されているが、その都市がいつ作られ、どのように滅んだのかを示す記録は一切見つかっていない。
+world	55	0x114D2	289	The Pharos	Das Richtfeuer von Ridorana	Gran Faro	Phare de Ridorana	Faro	大灯台	대등대	大灯塔	大燈塔	-	-	リドルアナ大瀑布の孤島にそびえる巨大な塔。本当は灯台ではないが、最上部が不思議な輝きを発し、闇夜でも辺りを明るく照らすことから灯台と呼ばれている。
+world	56	0x114D2	289	The Pharos	Das Richtfeuer von Ridorana	Gran Faro	Phare de Ridorana	Faro	大灯台	대등대	大灯塔	大燈塔	-	-	リドルアナ大瀑布の孤島にそびえる巨大な塔。本当は灯台ではないが、最上部が不思議な輝きを発し、闇夜でも辺りを明るく照らすことから灯台と呼ばれている。
+world	57	0x114D5	292	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	バンクール地方にあるガリフ族の集落。周辺にはこの他にいくつか集落があるが、互いの交流は少ない。集落の長と長老たちが先祖代々の生活を守り村を治めている。
+world	58	0x114D6	293	Ozmone Plain	Die Ozmone-Ebene	Campo de Ozmon	Plaine d'Ozmone	Pianura di Ozmone	オズモーネ平原	오즈모네 평원	欧兹莫内平原	歐茲莫內平原	-	-	バンクール地方に広がる草原地帯。ダルマスカ地方との境に位置しており、ところどころに石灰岩がのぞく。
+world	59	0x114D6	293	Ozmone Plain	Die Ozmone-Ebene	Campo de Ozmon	Plaine d'Ozmone	Pianura di Ozmone	オズモーネ平原	오즈모네 평원	欧兹莫内平原	歐茲莫內平原	-	-	バンクール地方に広がる草原地帯。ダルマスカ地方との境に位置しており、ところどころに石灰岩がのぞく。
+world	60	0x114DB	298	The Henne Mines	Die Henna-Minen	Minas de Henne	Mines de Henne	Miniere di Henne	ヘネ魔石鉱	헤네 마석광	黑涅魔石矿	黑涅魔石礦	-	-	バンクール地方の山岳地帯にあるクリスタル鉱山。周辺の魔石鉱が資源不足により次々と閉山していく中、今もなおいろいろな種類の魔石が産出されている。
+world	61	0x114DB	298	The Henne Mines	Die Henna-Minen	Minas de Henne	Mines de Henne	Miniere di Henne	ヘネ魔石鉱	헤네 마석광	黑涅魔石矿	黑涅魔石礦	-	-	バンクール地方の山岳地帯にあるクリスタル鉱山。周辺の魔石鉱が資源不足により次々と閉山していく中、今もなおいろいろな種類の魔石が産出されている。
+world	62	0x114D8	295	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ゴルモア大森林にあるヴィエラ族の隠し里。ヴィエラ族の集落は森の中に点在しているが、いずれも他の種族が立ち入れないよう結界がはられている。
+world	63	0x114D9	296	Golmore Jungle	Der Dschungel von Golmore	Selva de Golmore	Jungle de Golmore	Giungla di Golmore	ゴルモア大森林	골모어 대삼림	葛尔摩大森林	葛爾摩大森林	-	-	ヤクト・ディフォールに広がる大森林。人の手がほとんど入っておらず、古の姿を保っている。森にはヴィエラ族の住む里があるが、そこへ至る道は隠されている。
+world	64	0x114D9	296	Golmore Jungle	Der Dschungel von Golmore	Selva de Golmore	Jungle de Golmore	Giungla di Golmore	ゴルモア大森林	골모어 대삼림	葛尔摩大森林	葛爾摩大森林	-	-	ヤクト・ディフォールに広がる大森林。人の手がほとんど入っておらず、古の姿を保っている。森にはヴィエラ族の住む里があるが、そこへ至る道は隠されている。
+world	65	0x114DA	297	The Feywood	Der Verwunschene Wald	Bosque Encantado	Bois des charmes	Foresta stregata	幻妖の森	환요의 숲	幻妖森林	幻妖森林	-	-	ゴルモア大森林のさらに奥地に広がる太古の森。ミストの濃度が高いために「森の民」と呼ばれるヴィエラ族ですらほとんど近寄らない。標高が高く、森には雪が舞うこともしばしばである。
+world	66	0x114DA	297	The Feywood	Der Verwunschene Wald	Bosque Encantado	Bois des charmes	Foresta stregata	幻妖の森	환요의 숲	幻妖森林	幻妖森林	-	-	ゴルモア大森林のさらに奥地に広がる太古の森。ミストの濃度が高いために「森の民」と呼ばれるヴィエラ族ですらほとんど近寄らない。標高が高く、森には雪が舞うこともしばしばである。
+world	67	0x114DC	299	The Ancient City of Giruvegan	Das antike Giruvegan	Giruvegan, ciudad centenaria	Gilvégane, la cité perdue	Giruvegan	古代都市ギルヴェガン	고대 도시 기루베간	古代都市基鲁菲冈	古代都市基魯菲岡	-	-	ヤクト・ディフォールの奥地にあると言われる古代都市。強いミストの影響により、正確な場所は不明。かつて人間たちが知恵を得る前に栄えていたという伝説の古代文明の遺跡という説が一般的だが、真偽は定かでない。
+world	68	0x114DC	299	The Ancient City of Giruvegan	Das antike Giruvegan	Giruvegan, ciudad centenaria	Gilvégane, la cité perdue	Giruvegan	古代都市ギルヴェガン	고대 도시 기루베간	古代都市基鲁菲冈	古代都市基魯菲岡	-	-	ヤクト・ディフォールの奥地にあると言われる古代都市。強いミストの影響により、正確な場所は不明。かつて人間たちが知恵を得る前に栄えていたという伝説の古代文明の遺跡という説が一般的だが、真偽は定かでない。
+world	69	0x114E1	304	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヤクト・ラムーダの北に位置するキルティア教の総本山。そもそもは創始者キルティアが教えを説き広めていた地で後世に信者たちが神殿を築きあげた。ガルテア連邦時代に書かれた歴史書にはすでに「神都」の記述がある。
+world	70	0x114E2	305	Paramina Rift	Die Paramina-Schluchten	Gran Barranco de Paramina	Gorges de Paramina	Gole di Paramina	パラミナ大峡谷	파라미나 대협곡	帕拉密纳大峡谷	帕拉密納大峽谷	-	-	ヤクト・ラムーダの山岳地帯に走る大峡谷。霜と雪が辺り一面をおおう不毛の土地。凍りついた河には飛空艇の残骸が沈んでいる。また、ガルテア連邦期に作られたであろう遺跡を見つけることができる。
+world	71	0x114E2	305	Paramina Rift	Die Paramina-Schluchten	Gran Barranco de Paramina	Gorges de Paramina	Gole di Paramina	パラミナ大峡谷	파라미나 대협곡	帕拉密纳大峡谷	帕拉密納大峽谷	-	-	ヤクト・ラムーダの山岳地帯に走る大峡谷。霜と雪が辺り一面をおおう不毛の土地。凍りついた河には飛空艇の残骸が沈んでいる。また、ガルテア連邦期に作られたであろう遺跡を見つけることができる。
+world	72	0x114E3	306	The Stilshrine of Miriam	Der Stillschrein von Miriam	Templo de Miliam	Temple de Miliam	Tempio di Miriam	ミリアム遺跡	미리암 유적	弥利亚姆遗迹	彌利亞姆遺跡	-	-	ヤクト・ラムーダの奥地にある古代神殿。レイスウォール王墓と同じくガルテア連邦時代に建てられたもの。かつてキルティア教の大僧正がレイスウォール王の遺産を納めたと言われている。
+world	73	0x114E3	306	The Stilshrine of Miriam	Der Stillschrein von Miriam	Templo de Miliam	Temple de Miliam	Tempio di Miriam	ミリアム遺跡	미리암 유적	弥利亚姆遗迹	彌利亞姆遺跡	-	-	ヤクト・ラムーダの奥地にある古代神殿。レイスウォール王墓と同じくガルテア連邦時代に建てられたもの。かつてキルティア教の大僧正がレイスウォール王の遺産を納めたと言われている。
+person	0	0x114F4	314	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	旧ダルマスカ王国の首都ラバナスタに暮らす少年。１７歳。
+person	1	0x114F5	315	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヴァンの幼なじみの少女。２年前の戦争で家族を失った。１６歳。
+person	2	0x114F5	315	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヴァンの幼なじみの少女。２年前の戦争で家族を失った。１６歳。
+person	3	0x114F5	315	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヴァンの幼なじみの少女。２年前の戦争で家族を失った。１６歳。
+person	4	0x114F6	316	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヴィエラ族の相棒フランと共に大空を駆け回る空賊。２２歳。
+person	5	0x114F6	316	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヴィエラ族の相棒フランと共に大空を駆け回る空賊。２２歳。
+person	6	0x114F7	317	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	バルフレアとコンビを組むヴィエラ族の女性。
+person	7	0x114F7	317	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	バルフレアとコンビを組むヴィエラ族の女性。
+person	8	0x114F8	318	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国との戦争で滅亡したダルマスカ王国の王女。王家の血を継ぐ最後のひとりで正統な王位継承者。
+person	9	0x114F9	319	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	旧ダルマスカ王国の将軍。勇猛果敢な武将として知られている。
+person	10	0x114FB	321	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ヴェイン・カルダス・ソリドール	the first line, a name in katakana	ヴェイン・カルダス・ソリドール。アルケイディア帝国皇帝グラミスの第３子。２７歳。
+person	11	0x114FB	321	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国皇帝グラミスの第３子。フルネームはヴェイン・カルダス・ソリドール。２７歳。
+person	12	0x114FC	322	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	グラミス・ガンナ・ソリドール	the first line, a name in katakana	グラミス・ガンナ・ソリドール。
+person	13	0x114FC	322	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	アルケイディア帝国第１１代皇帝	the first sentence, a designation with no hiragana	アルケイディア帝国第１１代皇帝。６３歳。フルネームはグラミス・ガンナ・ソリドール。
+person	14	0x114FD	323	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ラーサー・ファルナス・ソリドール	フルネームは<name>	フルネームはラーサー・ファルナス・ソリドール。
+person	15	0x114FD	323	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国皇帝グラミスの第４子。フルネームはラーサー・ファルナス・ソリドール。１２歳。
+person	16	0x114FD	323	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国皇帝グラミスの第４子。フルネームはラーサー・ファルナス・ソリドール。１２歳。
+person	17	0x114FE	324	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国軍の兵器開発を行う秘密機関、ドラクロア研究所の所長。
+person	18	0x114FE	324	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国軍の兵器開発を行う秘密機関、ドラクロア研究所の所長。
+person	19	0x114FF	325	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国公安総局、通称ジャッジに所属する騎士で第９局のジャッジマスター。
+person	20	0x11500	326	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国軍に登録されているジャッジマスターのひとり。第１３局を取りまとめる。
+person	21	0x11501	327	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国軍に登録されているジャッジマスターのひとり。第４局を取りまとめる。
+person	22	0x11502	328	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国軍に登録されているジャッジマスターのひとり。第２局をとりまとめる。
+person	23	0x11503	329	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国軍に登録されているジャッジマスターのひとり。第１０局をとりまとめる。
+person	24	0x11515	347	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	かつて公安第１３局の指揮をとっていたジャッジマスター。
+person	25	0x114FA	320	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国軍にはさまざまな兵種が存在する。
+person	26	0x11504	330	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ラスラ	the first line, a name in katakana	ラスラ
+person	27	0x11505	331	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ナブラディア王国の第２王子。隣国ダルマスカのアーシェ王女と結婚し嫡男のない同国へ婿入りした。
+person	28	0x11506	332	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダルマスカ王国軍の少年兵。正規兵ではなく、アルケイディア帝国軍のダルマスカ侵攻をきっかけに軍隊へ志願した。１７歳。
+person	29	0x11506	332	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ヴァンの実兄。享年１７歳。
+person	30	0x11507	333	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダルマスカ王国の将軍。勇猛果敢な武将として知られている。
+person	31	0x11508	334	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	旧ダルマスカ王国の将軍。勇猛果敢な武将として知られている。
+person	32	0x11509	335	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダルマスカ王国の将軍。数々の戦いで勝利を収めてきた英雄。バッシュとは互いの実力を認め合う戦友。
+person	33	0x11509	335	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダルマスカ王国の将軍。数々の戦いで勝利を収めてきた英雄。バッシュとは互いの実力を認め合う戦友。
+person	34	0x11509	335	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダルマスカ王国の将軍。数々の戦いで勝利を収めてきた英雄。バッシュとは互いの実力を認め合う戦友。
+person	35	0x1150A	336	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダルマスカ王国の王。国民の平安を第一に考えた統治を行う名君。
+person	36	0x1150A	336	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ダルマスカ王国の王。国民の平安を第一に考えた統治を行う名君。
+person	37	0x1150B	337	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	かつてガルテア半島からオーダリアとバレンディアの両大陸にまたがる広大な領域を一代で統一、ガルテア連邦を作りあげた。
+person	38	0x1150C	338	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	バンガ族の賞金稼ぎ。バルフレアを目の敵にしており、追いかけ回している。
+person	39	0x11522	360	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	賞金稼ぎバッガモナンの手下たち。
+person	40	0x1150D	339	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	バンガ族の商人。ラバナスタにおける実力者。
+person	41	0x1150E	340	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ラバナスタ・ダウンタウンに暮らす老人。ラバナスタの人は彼のことを「物知りダラン」と呼ぶ。
+person	42	0x1150F	341	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	空中都市ビュエルバを治める人物。フルネームはハルム・オンドール４世。６１歳。
+person	43	0x1150F	341	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	空中都市ビュエルバを治める人物。フルネームはハルム・オンドール４世。６１歳。
+person	44	0x11510	342	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	エルトの里の長。森に住むヴィエラらしく他の種族との交流を好ましく思っていない。
+person	45	0x11511	343	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	エルトの里に住むヴィエラ。フランの実の妹。
+person	46	0x11512	344	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	キルティア教の大僧正であり、神都ブルオミシェイスの統治者。
+person	47	0x11513	345	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ロザリア帝国を支配するマルガラス家のひとり。フルネームはアルシド・マルガラス。２７歳。
+person	48	0x11514	346	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	港町バーフォンハイムにおいて力を持つ空賊。３３歳。
+person	49	0x11514	346	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	港町バーフォンハイムにおいて力を持つ空賊。３３歳。
+person	50	0x11516	348	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	オキューリア族を統べる王。
+person	51	0x11517	349	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	太古の昔にイヴァリースを支配したオキューリア族のひとり。
+person	52	0x11518	350	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	王都ラバナスタに拠点をおくクラン「セントリオ」の中心メンバー。
+person	53	0x1151B	353	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	クラン「セントリオ」のリーダー、モンブランの弟妹たち。
+person	54	0x11520	358	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国に対し抵抗運動を行う女戦士。
+person	55	0x11520	358	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国に対し抵抗運動を行う女戦士。
+person	56	0x11521	359	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	空中都市ビュエルバにいた身なりの上品な少年。
+knowledge	0	0x11558	377	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	現在の%ivalice%においてもっとも繁栄している種族。大規模な都市や国家を形成、統治しているのは%hume%だけである。
+knowledge	1	0x11559	378	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	全身を硬いウロコにおおわれた亜人種。耳が垂れ下がっているのが特徴的。知能や生活習慣は%hume%に近く、%hume%社会にもっとも深く溶けこんでいる種と言える。
+knowledge	2	0x1155A	379	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	でっぷりとした体格の亜人種。%hume%に比べてやや知能が低く粗雑なところがある。
+knowledge	3	0x1155B	380	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	森の民と呼ばれる細身で背の高い亜人種。長い耳と銀色の髪が特徴的。視覚と聴覚が非常に鋭い。
+knowledge	4	0x1155C	381	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	小柄で全身を毛でおおわれた愛らしい姿の種族。コウモリのような小さい羽を持つが飛ぶことはできない。
+knowledge	5	0x1155D	382	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	老人のようにしわくちゃの顔をしており、やせて骨ばった体つきの種族。非力だが知能がずばぬけて高く、幼少より複数言語と魔法を使役する能力を持っている。寿命は長く%hume%の３倍ほどである。
+knowledge	6	0x1155E	383	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	緑色の肌をした小柄な体格の種族。彼らにとって大気中の酸素は有害であるため、常にガスマスクを身につけて生活している。
+knowledge	7	0x1155F	384	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	筋骨隆々とした巨漢の種族。全身を毛でおおわれている。%region_bancour%で家畜を放牧して暮らしている。
+knowledge	8	0x11560	385	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	エンサ砂海に住む凶暴で好戦的な種族。昆虫のように外皮が硬く、その顔は極めて恐ろしい。普段は布で体をおおい隠している。
+knowledge	9	0x115C6	487	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	湿り気をおびた肌と長く伸びた口唇部を持つ種族。乾燥を嫌い、暗がりや湿度の高い場所を好む。
+knowledge	10	0x11561	386	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	どの知的生命体よりも早く%ivalice%に存在していたといわれる伝説の種族。すでに消滅したと思われていたが、%kerwon_full%の奥地に眠る古代都市でずっと歴史の流れを見つめていた。その寿命は数万年に及び、彼らは「不滅」とすら自称する。
+knowledge	11	0x11562	387	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%rabanasta_full%を中心にガルテア半島一帯を治める小国。国土こそ狭いが、３つの大陸を結ぶ位置にあるため交易の中心地として栄えてきた。
+knowledge	12	0x11563	388	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%dalmasca_full%の隣国。%dalmasca%と%nabradia%の開祖は共に%ivalice%を統一した覇王の血統である。
+knowledge	13	0x11564	389	The Archadian Empire	Das Archadianische Imperium	Imperio de Arcadia	L'Empire d'Archadia	Impero di Archadia	アルケイディア帝国	아르케이디아 제국	阿凯迪亚帝国	阿凱迪亞帝國	-	-	%valendia_full%において最も強い勢力を持つ大国。元は議会を中心とする共和国であったが、軍部の台頭に応じて２００年程前に帝政へと移行した。
+knowledge	14	0x11565	390	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%ordalia_full%の西に位置する大国。%archadia_full%に匹敵する軍事力を持つ。
+knowledge	15	0x11566	391	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	数千年の昔、%ivalice%に絶対的な力を以って君臨する者たちがいた。彼らは地上に存在する万物を支配し、意のままに使役していた。
+knowledge	16	0x11567	392	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%ivalice%にさまざまの都市国家が乱立し、各地で争いが絶えなかった時代。%valendia_full%にある小国の貴族であった%wraithwall%は、神より授かったとされる剣と魔石を手に大陸統一へ向けて遠征を開始する。
+knowledge	17	0x11568	393	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	現在不使用
+knowledge	18	0x11569	394	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	２年前、強大な軍事力を誇る%archadia_full%に危機感を覚えた%nabradia_full%は、%rozarria_full%と盟約を結び%nabradia%の国境付近に%rozarria%軍を駐留させる政策を打ち出した。
+knowledge	19	0x1156A	395	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%wraithwall_king%の死後、%dalmasca%の地を譲り受けた王の第２王子がおこした血統。
+knowledge	20	0x1156B	396	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%archadia_full%の名門貴族。元老院議席を代々持ち、かつ法務庁を統括してきた。
+knowledge	21	0x1156C	397	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	アルケイディア帝国の法務庁直下の特殊騎士団。正式には公安総局といい「ジャッジ」は通称である。
+knowledge	22	0x1156D	398	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	飛空石の力で船体を中に浮かせ、プロペラやグロセア推進などにより空中を飛行する航空機。数世紀前に%moogle%族によって発明されたと言われる。
+knowledge	23	0x1156E	399	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	飛空艇で大空を自在に駆け回る自由人たちの総称。空賊とひとまとめに呼ばれているが、活動内容は個々人によって異なる。未知の土地や伝説の宝を追い求める者もいれば、貿易船を襲撃して金品を奪う悪人もいる。
+knowledge	24	0x1156F	400	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	今から２０００年ほど前に予言者%kiltia_short%によって始められた宗教。%ordalia%各地の民族宗教を二元論で体系化している。光の神・善神ファーラムを主神とする多神教でさまざまな神が存在する。
+knowledge	25	0x11570	401	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	モンスターや獣を倒して手に入る素材から作られる商品を加工品と呼ぶ。
+knowledge	26	0x11571	402	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	大気中のミストや地中に含まれる魔石の影響により飛空石が正常に働かない場所を%jagd%と呼ぶ。
+knowledge	27	0x11572	403	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	世界のあらゆる場所に存在する自然エネルギーで、生物や気候風土に影響を与える。ミストはさまざまの作用を発生させ、魔法もその一種である。
+knowledge	28	0x11573	404	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	魔力、すなわちミストを含んだ石の総称。魔法行使の触媒となる魔法石や飛空艇の浮力となる飛空石、映像や音声を記録する記憶石などさまざまな種類が存在する。
+knowledge	29	0x11574	405	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	魔石の一種。放出されたミストを吸収し魔法を無効化するという特殊な能力を持っている。
+knowledge	30	0x11575	406	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%dalmasca%王家に伝わる魔石で王族であることの証となる秘宝。%rabanasta_palace%の宝物庫に隠され、その在処は代々王にのみ伝えられてきた。
+knowledge	31	0x11576	407	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	覇王%wraithwall%の遺産である秘宝。王の血を受け継ぐ者だけが持つことを許されている。
+knowledge	32	0x11577	408	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	かつて%ivalice%を統一、平定した%wraithwall_king%が残した秘宝。王の血統であることの証として%nabradia_full%に伝えられた。
+knowledge	33	0x11578	409	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	かつて%occuria%族の手で作り出された巨大な破魔石。%wraithwall_king%が残した３つの破魔石もこの石から削り取られた。%riddleana_falls%にそびえる塔の頂上部に封印されている。
+knowledge	34	0x11579	410	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	かつて%ivalice%を治めた覇王%wraithwall%が神より授かったと言われる剣。破魔石を砕き、その力を絶つことができる。
+knowledge	35	0x115C7	488	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%gilvegan_full%において%ashe%が%occuria%族の王より授かった剣。破魔石の母体である「%sunlight_cocoon%」を切ることが出来る。
+knowledge	36	0x11587	424	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	古の昔に神が創りあげた異形の者たち。
+knowledge	37	0x1157A	411	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%alexander%級１番艦。艦種は大型空母。
+knowledge	38	0x1157B	412	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	イフリート級第１番艦	the first sentence, a designation with no hiragana	イフリート級第１番艦。艦種は巡洋戦艦。
+knowledge	39	0x1157C	413	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%shiva%級１番艦。艦種は軽巡洋艦。
+knowledge	40	0x1157D	414	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%leviathan%級１番艦。艦種は戦艦。
+knowledge	41	0x1157E	415	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%bahamut%級１番艦。艦種は空中要塞。
+knowledge	42	0x1157F	416	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ヴァナ・ディール級１番艦	the first sentence, a designation with no hiragana	ヴァナ・ディール級１番艦。艦種は大型空母。
+knowledge	43	0x11580	417	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%archadis_full%に本社を構えるＹＰＡ社によって製造された飛空艇。正式名はＹＰＡ{blank}ＧＢ４７試作戦闘機。
+knowledge	44	0x11581	418	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ドラクロア ＣＢ５６レモラ戦闘機	the first sentence, a designation with no hiragana	ドラクロア{blank}ＣＢ５６レモラ戦闘機。
+knowledge	45	0x11582	419	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%drcid%はかねてより思考型の戦闘兵器「ルーク」を開発しており、%delacroix_lab%における戦闘で試作機の実戦投入を行っている。
+knowledge	46	0x11583	420	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	モンスター退治を生業とする団体。個人や自警団などでは対処しきれないような事態が発生した際に呼ばれ、収拾にあたる。
+knowledge	47	0x11584	421	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%ivalice%においてモンスターとは一般に民間人の生活を脅かす生物を指す。
+knowledge	48	0x11585	422	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	%rabanasta_full%に本部を置く新鋭のクラン。%moogle%族の青年%s_montbranc%によって作られた。
+knowledge	49	0x11586	423	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	クラン	the first sentence, <name>は	クランは%ivalice%の各地に存在するが、規模の小さなものがほとんどである。しかし大都市を活動の拠点とするクランの中にはメンバーが多く、世間に名が知れたものもある。
+knowledge	50	0x115C8	489	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	ハンターの中でも特にレアモンスターを狙っている者たちの集まりを%fon_hunter%という。%fone_full%のキャンプには%fon_hunter%の拠点がおかれている。
+knowledge	51	0x11595	438	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	溶解の指輪	the heading <item>＋<item>＝<result>: the result	水の石＋ボムの灰＝溶解の指輪
+knowledge	52	0x11596	439	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	業風のフィンチ	the heading <item>＋<item>＝<result>: the result	風の水晶＋百のオルギン＝業風のフィンチ
+knowledge	53	0x11597	440	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	光陰の剣	the heading <item>＋<item>＝<result>: the result	闇の魔石＋天上の宝玉＝光陰の剣{blank}
+knowledge	54	0x11598	441	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	魔竜の餌	the heading <item>＋<item>＝<result>: the result	ウジのわいた肉＋とても臭い液＝魔竜の餌
+knowledge	55	0x11599	442	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	知欲の兜	the heading <item>＋<item>＝<result>: the result	鉄くず＋かぼちゃのランプ＝知欲の兜
+knowledge	56	0x1159A	443	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	クリーチャーウィップ	the heading <item>＋<item>＝<result>: the result	巨人のなめし皮＋クァールのヒゲ＝クリーチャーウィップ
+knowledge	57	0x1159B	444	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	アイアングリーブ	the heading <item>＋<item>＝<result>: the result	輪竜のウロコ＋アリエス＝アイアングリーブ
+knowledge	58	0x1159C	445	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	タートルシャワー	the heading <item>＋<item>＝<result>: the result	万年亀の甲羅＋月の砂＝タートルシャワー
+knowledge	59	0x1159D	446	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	魔獣の服	the heading <item>＋<item>＝<result>: the result	良質のウールt＋大角＝魔獣の服
+knowledge	60	0x1159E	447	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	静黙薬	the heading <item>＋<item>＝<result>: the result	サボテンの実＋ヴァルゴ＝静黙薬
+knowledge	61	0x1159F	448	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	グラディウス	the heading <item>＋<item>＝<result>: the result	飛竜の翼＋鉄甲殻＝グラディウス
+knowledge	62	0x115A0	449	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	命の衣	the heading <item>＋<item>＝<result>: the result	なめし皮＋怪魚のウロコ＝命の衣
+knowledge	63	0x115A1	450	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	沈黙薬	the heading <item>＋<item>＝<result>: the result	輪竜のキモ＋ネズミのしっぽ＝沈黙薬
+knowledge	64	0x115A2	451	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ベヒモスランチ	the heading <item>＋<item>＝<result>: the result	ベヒーモステーキ＋虹色のタマゴ＝ベヒモスランチ
+knowledge	65	0x115A3	452	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	嫁入りの冠	the heading <item>＋<item>＝<result>: the result	チョコボの羽根＋モルボルの花＝嫁入りの冠
+knowledge	66	0x115A4	453	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	アフターダーク	the heading <item>＋<item>＝<result>: the result	良質の石材＋闇の水晶＝アフターダーク
+knowledge	67	0x115A5	454	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ブレイブハーネス	the heading <item>＋<item>＝<result>: the result	まがった牙＋スレイブハーネス＝ブレイブハーネス
+knowledge	68	0x115A6	455	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	氷の刃	the heading <item>＋<item>＝<result>: the result	汚れたウール＋南極の風＝氷の刃
+knowledge	69	0x115A7	456	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	シャークウィール	the heading <item>＋<item>＝<result>: the result	フカヒレ＋円月輪＝シャークウィール
+knowledge	70	0x115A8	457	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	破壊神の剣	the heading <item>＋<item>＝<result>: the result	戦神のアシュリング＋欠けた剣＝破壊神の剣
+knowledge	71	0x115A9	458	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	腐敗の雨	the heading <item>＋<item>＝<result>: the result	邪神の肉＋デスパウダー＝腐敗の雨
+knowledge	72	0x115AA	459	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ゾンビプロテクション	the heading <item>＋<item>＝<result>: the result	闇の石＋シャレコウベ＝ゾンビプロテクション
+knowledge	73	0x115AB	460	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	モルボルのなる木	the heading <item>＋<item>＝<result>: the result	モルボルの実＋しあわせの四葉＝モルボルのなる木
+knowledge	74	0x115AC	461	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ソウルスクリーム	the heading <item>＋<item>＝<result>: the result	さけびの根＋神々の怒り＝ソウルスクリーム
+knowledge	75	0x115AD	462	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ワイルドスタイル	the heading <item>＋<item>＝<result>: the result	チョコボの羽根＋クァールの毛皮＝ワイルドスタイル
+knowledge	76	0x115AE	463	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	リネンミトン	the heading <item>＋<item>＝<result>: the result	高級ウール＋戦馬のたてがみ＝リネンミトン
+knowledge	77	0x115AF	464	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	アダマンインゴット	the heading <item>＋<item>＝<result>: the result	精霊石＋万年亀の甲羅＝アダマンインゴット
+knowledge	78	0x115B0	465	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	サイレスシャワー	the heading <item>＋<item>＝<result>: the result	沈黙のトガル＋エーテル水＝サイレスシャワー
+knowledge	79	0x115B1	466	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	エビルハンマー	the heading <item>＋<item>＝<result>: the result	修羅の骨＋デビルカクテル＝エビルハンマー
+knowledge	80	0x115B2	467	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	スライムボム	the heading <item>＋<item>＝<result>: the result	ガラスの宝玉＋スライムオイル＝スライムボム
+knowledge	81	0x115B3	468	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	ボーンマッシャー	the heading <item>＋<item>＝<result>: the result	骨くず＋良質の木材＝ボーンマッシャー
+knowledge	82	0x115B4	469	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	精密な落雷衝	the heading <item>＋<item>＝<result>: the result	落雷衝＋千本針＝精密な落雷衝
+knowledge	83	0x115B5	470	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	風の腰巻	the heading <item>＋<item>＝<result>: the result	風切りの羽根＋ネズミの皮＝風の腰巻
+knowledge	84	0x115B6	471	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	くるくるドリル改	the heading <item>＋<item>＝<result>: the result	エンサのウロコ＋くるくるドリル＝くるくるドリル改
+knowledge	85	0x115B7	472	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	しびれ薬	the heading <item>＋<item>＝<result>: the result	カエルの油＋銀色の液体＝しびれ薬
+knowledge	86	0x115B8	473	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	悪魔の首飾り	the heading <item>＋<item>＝<result>: the result	血染めの首飾り＋タカの眼球＝悪魔の首飾り
+knowledge	87	0x115B9	474	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	灼熱の衣	the heading <item>＋<item>＝<result>: the result	巨人のなめし皮＋獄門の炎＝灼熱の衣null>
+knowledge	88	0x115BA	475	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	天地創造の時代に神により創られた現世の闇を司る獣。
+knowledge	89	0x115BB	476	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	古くから竜騎士伝説により伝えられる怪鳥として知られているが、標高の高い険しい山々に生息するため、実際にその姿を見た者は少ない。
+knowledge	90	0x115BC	477	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	地獄と呼ばれる世界の罪人の総称。
+knowledge	91	0x115BD	478	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	成体と違い擬態化することなく周囲を徘徊している。
+knowledge	92	0x115BE	479	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	古から強力無比の力を持つと言われ愛されてきた竜。
+knowledge	93	0x115BF	480	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	緑褐色の体と不気味な触手を持ったおぞましい姿のモンスター。
+knowledge	94	0x115C0	481	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	色鮮やかな姿とは裏腹にとても獰猛な性格を持つ肉食性の妖魚。
+knowledge	95	0x115C1	482	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	戦場に大砲や爆弾などの兵器が持ち込まれて以来誕生した魔法生物。
+knowledge	96	0x115C2	483	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	全身をゲル状の物質でおおわれ、邪悪な眼と口を持つ軟体生物。
+knowledge	97	0x115C3	484	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	アンデッドの知識	the heading 知識<number>：<name>	知識１０８：アンデッドの知識
+knowledge	98	0x115C4	485	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	石像に神の魂が宿ると偶像崇拝する彫刻家により、悪魔の手から神聖なる遺跡を守るために作られた。
+knowledge	99	0x115C5	486	-	/Unused	DUMMY	NOT USED	-	／	／	／	／	-	-	古代より自然界に存在するすべての事物には精霊が宿るとされており、火に宿る精霊をサラマンドと呼ぶ。

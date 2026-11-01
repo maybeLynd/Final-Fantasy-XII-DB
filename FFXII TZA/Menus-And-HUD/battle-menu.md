@@ -53,7 +53,7 @@ The list widget keeps a chain of callback records `{fn*, argument, previous, nex
 | `6`, `7` | Summon and Quickening actions, list `0xB` | "Summon", "Quickening" |
 | `10`-`14` | the magicks of one school, list `0xB` | "White Magicks" to "Arcane Magicks" |
 | `15` | technicks, list `0xB` | "Technicks" |
-| `16`-`19` | a target list, codes `0x10`, `0xD`, `0xF`, `0x1C` (`0x01E0C398`) | the action's name |
+| `16`-`19` | a menu target list ([Target selection](../Battle-Actions/target-selection.md)), codes `0x10`, `0xD`, `0xF`, `0x1C` (`0x01E0C398`) | the action's name |
 
 The command lists are `{flag, id}` pairs; each list's row count is an immediate (`0x0031EBA2`, `0x0031EBBF`,
 `0x0031EBEC`; `0x0031EB83`-`0x0031EBEC`):
@@ -565,7 +565,7 @@ entry 0 and nothing else forms the table's address (the walker `0x0031B690` and 
 ## Related
 
 - [Command availability](../Battle-Actions/command-availability.md) - which commands and actions are offered.
-- [Target selection](../Battle-Actions/target-selection.md) - the target lists.
+- [Target selection](../Battle-Actions/target-selection.md) - the menu's target lists and their builder.
 - [Action phases](../Battle-Actions/action-phases.md) - what happens after an action is issued.
 - [Menus](menus.md) - the router ids that open the menu.
 - [Gambits screen](gambit-screen.md) - the same on/off switch for a member's gambits.

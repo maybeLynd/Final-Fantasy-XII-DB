@@ -15,7 +15,7 @@ is in the party; afterwards the party is as it was.
 
 ### The nine seats
 
-The party lives in the battle state block `[0x02EBF190]` as five slot maps of nine two-byte seats each, `0x12`
+The party lives in the party block `[0x02EBF190]` as five slot maps of nine two-byte seats each, `0x12`
 bytes apart (`0x0031BA3D`-`0x0031BAAA`):
 
 | Map | Offset | Read by |
@@ -27,8 +27,8 @@ bytes apart (`0x0031BA3D`-`0x0031BAAA`):
 | 4 | `+0x5A90` | the members' field actors and the chocobo mount: `0x0031C470` and `0x00320230` (for `0x0035A490`, `0x0035AD40`), `0x0031C0F0`, `0x0031C250`, and `0x0031B950`, the map-4 twin of `0x0031B810` (for `0x00304060`, `0x00304140`) |
 
 Seats 0-3 are the active members and seats 4-8 the reserve. The low byte of a seat is the member's selector,
-the row of the party table and of the forty member records; `0xFF` is an empty seat. The leader's selector is
-kept at `+0x5AA4`.
+the row of the party table and of the forty member records; `0xFF` is an empty seat. The leader selector is
+kept at `+0x5AA4`; [Party leader](party-leader.md) turns it into the leader, the handle `0x022C7FE0`.
 
 ### Reading a seat
 
@@ -59,7 +59,7 @@ joins or leaves ([Party members](party-members.md)).
 1. A selector is seated and its record activated with `0x00316DF0` (`0x00329D53`-`0x00329D9E`).
 2. An empty byte empties the seat, deactivating the record that was there with `0x00323540`
    (`0x00329D0D`-`0x00329D51`).
-3. The first byte becomes the leader `+0x5AA4`, and `0x00326500` asks for the default controlled member
+3. The first byte becomes the leader selector `+0x5AA4`, and `0x00326500` asks for the default controlled member
    (`0x00329DBB`-`0x00329DC8`).
 4. Maps 1-4 become copies of map 0 (`0x00329DE3`-`0x00329E27`).
 
@@ -79,7 +79,7 @@ empties the reserve of map 1, and makes maps 2 and 4 copies of map 1, after savi
 | 4, event party | only the leader's seat is kept, in maps 1, 2 and 4 | `0x0032683F`-`0x003268EE` |
 | 5, second event party | map 4 is restored; only the leader's seat is kept, in maps 1 and 2 | `0x00326783`-`0x0032683A` |
 
-In modes 4 and 5 the leader is `+0x5AA4`, or with the area's town bit the area's leader at the controlled
+In modes 4 and 5 the leader's seat is that of the leader selector `+0x5AA4`, or with the area's town bit the area's leader at the controlled
 member's seat (`0x003267B7`-`0x003267E8`, `0x0032686E`-`0x0032689F`).
 
 Then, for each active seat whose battle unit holds a different member than map 1 now says, the unit is given
@@ -95,8 +95,8 @@ once; bit `0x1` of `0x022C25A0` marks the snapshot as taken (`0x003278C0` reads 
 1. For each seat 0 to 3 that map 1 holds (`0x00322C50(0x17, i)`, the byte at `[0x02EBF190] + 0x5A5A + 2i`) whose unit
    (`0x002367A0`) has first-byte bit `0x8`, the 48-byte record at `0x022C25B0 + 0x30 x i` gets the member's type at `+0` and
    `+1`, the unit id at `+4`, the position at `+0x10` (`0x00265020`) and the angle at `+0x20` (`0x00265200`).
-2. `0x022C25A4` takes the saved leader `[0x02EBF190] + 0x5AA4`, and `0x022C25A5` the controlled member's type (`0x003590D0`),
-   or the saved leader when there is none.
+2. `0x022C25A4` takes the leader selector `[0x02EBF190] + 0x5AA4`, and `0x022C25A5` the controlled member's type (`0x003590D0`),
+   or the leader selector when no member is controlled.
 
 `0x00326D60`, from the menu close `0x00281E00` (`0x00281EA8`), reads the snapshot (`0x00326D67`) and clears the mark when
 it is done (`0x00327125`). `0x00327360`, run by the area
@@ -117,7 +117,7 @@ The records' member words and unit ids, seat 0's member word being the base `0x0
 
 ## Layouts
 
-The slot maps in the battle state block:
+The slot maps in the party block:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -128,7 +128,7 @@ The slot maps in the battle state block:
 | `+0x48` | `u16[9]` | map4 | rebuilt copy (`0x0031BA3D`) |
 | `+0x5A` | `u8[2]` | pad5A | `+0x5AA2`: written only with the whole block (the clear `0x002370D3`, the save image's clears, copies and file read) and read by no other instruction; nothing fixes its width |
 
-The maps start at `[0x02EBF190] + 0x5A48`; the leader is the dword at `+0x5AA4`
+The maps start at `[0x02EBF190] + 0x5A48`; the leader selector is the dword at `+0x5AA4`
 ([Party data](party-data.md)).
 
 ## State

@@ -1,5 +1,5 @@
 ---
-title: "Phyre frame: from the frame tick to the drawn picture, the draw-layer mask and the GS register stream"
+title: "Phyre frame: from the frame tick to the drawn picture, the per-draw mask and the GS register batch"
 kind: "system"
 category: "PhyreEngine"
 addresses: "0x0022B0B0, 0x022C7F90, 0x00358450, 0x00358510, 0x0036D400, 0x003A1D50, 0x004FE420, 0x003A1DB0, 0x0036F360, 0x02EBEFC0, 0x00184460, 0x00864F30, 0x00864E90, 0x00678B50, 0x0016D6A0"

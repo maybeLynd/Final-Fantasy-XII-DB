@@ -104,8 +104,8 @@ descriptor's `+0x100` (`0x0057E310`).
 | `+0x57` | `u8` | flags | bit `0x1` from `0x00236760` (Trial Mode stash pending), bit `0x2` from `0x00236740` (New Game+), bit `0x4` from `0x00236780` (New Game-) (`0x00583F5A`-`0x00583F7D`) |
 | `+0x58` | `u32` | date | constant `0x20050223`, written by `0x00253A80` and never read |
 | `+0x5C` | `u32` | clearsize constant 0x1538, the size 0x002EF2DD clears at payload +0 |  |
-| `+0x60` | `u32` | stamp | constant `0x05071901`, the battle-state block's stamp |
-| `+0x64` | `u32` | blocksize constant 0x7410, the battle-state block's size |  |
+| `+0x60` | `u32` | stamp | constant `0x05071901`, the party block's stamp |
+| `+0x64` | `u32` | blocksize constant 0x7410, the party block's size |  |
 | `+0x68` | `u32` | magic2 | `0x0131F3EA`, tested by `0x00255260` |
 | `+0x6C` | `u32` | size2 | `0x4818`, tested by `0x00255260`; the image-backed state block's size |
 | `+0x70` | `u8[36]` | stash | the mode-3 stash: `+0x70` ticks, `+0x78` hours, `+0x7A` minutes, `+0x7B` seconds, `+0x7C` walked (`0x00320D50`), `+0x80` to `+0x93` the five dwords of the world-transition record (`0x00584210`; the last stored at `0x005842B1` and read back at `0x0058435C`) |
@@ -146,9 +146,9 @@ The buffers are `0x566C0` apart, 48 bytes more than the image.
 | Image offset | Payload offset | Content |
 |---|---|---|
 | `+0x01244` | `+0x1044` | the active or pending area id (`0x00584210` stashes the five dwords `+0x1244` to `+0x1257` and stores `0x483` here through `0x00314DC0`, `0x005842D7`-`0x005842DF`) |
-| `+0x02200` | `+0x2000` | the copy of the battle-state block head that `0x00235AF0` compares |
+| `+0x02200` | `+0x2000` | the copy of the party block head that `0x00235AF0` compares |
 | `+0x08200` | `+0x8000` | the image-backed state block, `0x4818` bytes, bound to `0x020927C0` by `0x00253970`; its `+0x47E8` (image `+0xC9E8`) mirrors the play clock |
-| `+0x4E68C` | `+0x4E48C` | the battle-state block, 29,712 bytes, bound to `0x02EBF190` by `0x00233C10` (`0x00233C25`-`0x00233C33`) |
+| `+0x4E68C` | `+0x4E48C` | the party block, 29,712 bytes, bound to `0x02EBF190` by `0x00233C10` (`0x00233C25`-`0x00233C33`) |
 | `+0x0E200` | `+0xE000` | the finaliser's checksum copy |
 
 ## Loader behaviour

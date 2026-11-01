@@ -158,10 +158,10 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
     then to `0x003589B0` of roster entry 0, so under an event claim the focus is the first selected
     unit; at level 1 it also runs `0x00317400(unit)`; the result goes out through `0x003594B0`
     (`0x022C7FE4`, `0x022C7FF8` = 1).
-- the selection maps `0x003266C0` (the no-commit wrapper): the selector `+0x5A48` (nine 2-byte
+- the [slot maps](../Party/party-slots.md#the-nine-seats) `0x003266C0` (the no-commit wrapper): map 0 at `+0x5A48` (nine 2-byte
   entries) is copied whole to `+0x5A5A` and `+0x5A7E`; entries 4 to 8 of the first copy are then
   set to -1 and it is copied again to `+0x5A6C` and `+0x5A90`. The per-level loops touch entries
-  0 to 3 only, and `+0x5A7E` keeps the full selector.
+  0 to 3 only, and `+0x5A7E` keeps all of map 0.
   - level 1: only the summoner's entry (`0x00313800`) and entry 3 (the Esper's row `+0x5AD4`)
     survive in the three maps;
   - level 2: entry 3 becomes row `0x1A` in the first and third maps and -1 in the second; the
@@ -210,15 +210,15 @@ on both of its sides ([save data fields](../Saving-Loading-And-Settings/save-dat
 
 ## Layouts
 
-Battle state block [`0x02EBF190`]:
+Party block [`0x02EBF190`]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x5A48` | `u8[18]` | selector entries | nine 2-byte selector entries |
-| `+0x5A5A` | `u8[18]` | selection map | one of the three selection maps, nine 2-byte entries each (entries 0-3 rebuilt by level) |
-| `+0x5A6C` | `u8[18]` | selection map | one of the three selection maps, nine 2-byte entries each (entries 0-3 rebuilt by level) |
-| `+0x5A7E` | `...` | selector copy | the selector's full copy |
-| `+0x5A90` | `u8[18]` | selection map | one of the three selection maps, nine 2-byte entries each (entries 0-3 rebuilt by level) |
+| `+0x5A48` | `u8[18]` | slot map 0 | nine 2-byte seats |
+| `+0x5A5A` | `u8[18]` | slot map 1 | nine 2-byte seats (seats 0-3 rebuilt by level) |
+| `+0x5A6C` | `u8[18]` | slot map 2 | nine 2-byte seats (seats 0-3 rebuilt by level) |
+| `+0x5A7E` | `u8[18]` | slot map 3 | a whole copy of map 0 |
+| `+0x5A90` | `u8[18]` | slot map 4 | nine 2-byte seats (seats 0-3 rebuilt by level) |
 | `+0x5AA4` | `u8` | saved leader |  |
 | `+0x5AD0` | `u16` | summon flags | bit `0x2` the timer runs |
 | `+0x5AD4` | `u8` | Esper's row | `0x1B` after reset |
@@ -278,8 +278,8 @@ first dispatcher run after it.
 
 ## State
 
-The mode word and the previous level; the summon block; the ride block; the selector, the saved
-leader and the three selection maps; the two source bytes.
+The mode word and the previous level; the summon block; the ride block; the five slot maps, the saved
+leader; the two source bytes.
 
 ## Modding notes
 

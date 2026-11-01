@@ -18,7 +18,7 @@ and `+0xC0` of a record it holds:
 | [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 759 |
 | [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 392 |
 | [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 26 |
-| [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the resource entries behind `+0xA0` | 88 |
+| [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the request entries behind `+0xA0` | 88 |
 
 Every way to a record was followed: the manager pools and the static records the table's own rows resolve, the
 handle resolver `0x003588B0` and the current-actor getter `0x00358940`, the 251 functions proven to take a record in an
@@ -36,7 +36,7 @@ pointers and through the entry resolvers `0x003DB550` and `0x002651A0`.
 | `+0x030` | 8 | the battle unit |
 | `+0x038` | 8 | the frame callback |
 | `+0x040` | `0x20` | the script entry and its three section pointers |
-| `+0x060` | 4 | the resource entry list heads and flags |
+| `+0x060` | 4 | the request entry list heads and flags |
 | `+0x064` | `0x20` | the script VM's four integer and four float registers |
 | `+0x088` | `0x18` | the channel counts and the channel tail and head arrays |
 | `+0x0A0` | `0x20` | the four interior pointers |
@@ -45,7 +45,7 @@ pointers and through the entry resolvers `0x003DB550` and `0x002651A0`.
 | `+0x104` | `0x1C` | sentinels and counters the initialiser sets |
 | `+0x120` | `0x230` | the movement context (class 1 and above; the position is its first three floats) |
 | `+0x350` | `0x188` | the secondary context (class 3) |
-| after | | the resource entry pool and the wait slots, at the offsets the actor record page's table gives per sequence |
+| after | | the request entry pool and the wait slots, at the offsets the actor record page's table gives per sequence |
 
 ## Columns
 

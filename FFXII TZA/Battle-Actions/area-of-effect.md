@@ -41,7 +41,7 @@ moment.
 `0x0030D160` (1,004 bytes) is called once, by the standard-action state machine at
 `0x00304EE2`, as `(unit, effectiveActionId, focusHandle, buffer)`: the action id comes from
 `0x00387090` (`0x00304ECC`), the focus handle from the action context `+0x60`, and the buffer is the
-context's target list at `+0xC8` (context = unit `+0x6B0`, so the list is at unit `+0x778`)
+action's target list, at context `+0xC8` (context = unit `+0x6B0`, so the list is at unit `+0x778`)
 (`0x00304ED1`-`0x00304EE2`). It returns the list's count (`0x0030D51C`).
 
 1. The chosen target is resolved from the focus handle (`0x0031B7E0`); if it does not resolve the

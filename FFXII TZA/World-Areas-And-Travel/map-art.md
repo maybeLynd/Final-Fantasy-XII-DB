@@ -222,9 +222,9 @@ twice and tail-jumps to `0x0018C3C0`. The calls the map draw makes:
 | `0x00180650(…, o, …)` | `0x001A94C0`, `0x001A4FE0` | queues the object for drawing |
 | `0x001809A0()` | `0x0018C3C0` | posts the map opaque command once |
 
-### Building the draw list
+### Building the map draw list
 
-The draw-list build `0x002F5550` asks `0x001803A0` and `0x00180430` once (`0x002F5D4D`, `0x002F5D56`) and then
+The map draw-list build `0x002F5550` asks `0x001803A0` and `0x00180430` once (`0x002F5D4D`, `0x002F5D56`) and then
 walks the instances. For each it takes the object (`0x002F5D84`) and asks `0x001804F0` (`0x002F5D95`):
 
 - An instance whose object has bit `0x10` of `m_extraFlag` set (`0x001803D0`, `0x002F5DBE`) is skipped.
@@ -437,7 +437,7 @@ offset, its asset lists and the zones that draw the map.
 | 1 | `0x001E5080` | the model counts as in view |
 | 2 | `0x00180600` (`0x001E5250`) | left out while the tag-24 entry's `+0xC8` exceeds 1.0 |
 | 3 | `0x00180460` (`0x001E4B40`) | keep the YM00 placement row |
-| 4 | `0x001803D0` (`0x001E4AE0`) | the instance is skipped in the draw list |
+| 4 | `0x001803D0` (`0x001E4AE0`) | the instance is skipped in the map draw list |
 | 5 | `0x00180410` (`0x001E4B20`) | exempt from the hidden-model set |
 | 6 | `0x001E5080` | the model counts as in view |
 | 7 | `0x001803F0` (`0x001E4B00`) | the draw pass uses white instead of the instance colour |
@@ -507,7 +507,7 @@ Entering a zone, as the map-art context sees it:
 ## Related
 
 - [MPK map pack](mpk-map-pack.md): the `YM00` tags that give the instance count and the paletted textures.
-- [Doors, gates and map changes](doors-gates-and-map-changes.md): the hidden-model sets the draw list applies.
+- [Doors, gates and map changes](doors-gates-and-map-changes.md): the hidden-model sets the map draw list applies.
 - [Weather](weather.md): the weather slot behind the shadow set.
 - [Zone changes](zone-changes-and-mapjump.md): when the pack request that names the map happens.
 - [Texture animation lists](../Game-Files-And-Data-Tables/texture-animation-lists-ta.md): the `.ta` chain the load restarts.

@@ -138,7 +138,7 @@ bit is set (`0x0038BE04`-`0x0038BE1A`).
 ### Numerology
 
 Recipe 56 (action `0xB0`, Numerology) runs slot 49 (`0x00389C60`) and slot 144 (`0x0038EAF0`). The count is byte
-`+0x5B0E` of the battle state block `[0x02EBF190]`:
+`+0x5B0E` of the party block `[0x02EBF190]`:
 
 1. The hit chance becomes `row[+0x12] - count * count / 4` (`0x00389D0B`-`0x00389D19`).
 2. With a stored preview (bit `0x1` of the user's 64-byte record `+0x12`) and a count below 17, a roll under
@@ -156,7 +156,7 @@ Recipe 56 (action `0xB0`, Numerology) runs slot 49 (`0x00389C60`) and slot 144 (
 ### Traveler
 
 Recipe 60 (action `0xB4`, Traveler) runs slot 146 (`0x0038EBE0`). `0x00320D50` returns the walked distance in
-the battle state block (`+0x5AC8` and `+0x5ACC`):
+the party block (`+0x5AC8` and `+0x5ACC`):
 
 ```python
 d = ((total % 1000) - [+0x5B00] + 1000) % 1000            0x0038EC49-0x0038EC93
@@ -173,7 +173,7 @@ Recipe 16 (Knot of Rust `0x91`, Devour Soul `0xC4`) runs slot 121 (`0x0038D970`)
 
 - **Deposit:** the user's max HP (doubled under Bubble; under Disease its current HP, at least 1) divided
   by `MT19937 % 10 + 1` is the damage, and a third of it is added to the bank, at most 60,000
-  (`0x0038D976`-`0x0038D9F2`). The bank is the word `rustBank` at `+0x5B0C` of the battle-state block `[0x02EBF190]`
+  (`0x0038D976`-`0x0038D9F2`). The bank is the word `rustBank` at `+0x5B0C` of the party block `[0x02EBF190]`
   (`0x0038D9C1`, `0x0038D9DE`; [Party data](../Party/party-data.md)), one bank for every user.
 - **Withdrawal:** with a stored preview, the bank moves into the user's record and is emptied; the damage
   is the record's value (`0x0038DA49`-`0x0038DA6A`).

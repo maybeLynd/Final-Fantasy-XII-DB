@@ -32,7 +32,7 @@ Every script ships in all nine trees with the same number of strings in each, so
 
 Empty strings per tree: `us` 2, `de` 2, `es` 2, `fr` 2, `it` 2. No `in`, `kr`, `cn` or `ch` string is empty.
 
-2 rows are empty in all five of `us`, `de`, `es`, `fr` and `it`: all of them hold only control codes in `in`, `kr`, `cn` and `ch`, such as `{spacing:8181}`.
+2 rows are empty in all five of `us`, `de`, `es`, `fr` and `it`: all of them hold only text codes in `in`, `kr`, `cn` and `ch`, such as `{spacing:8181}`.
 
 ### The alternate font and the expansion lists
 
@@ -52,7 +52,7 @@ Strings with a choice list per tree: `us` 17, `de` 17, `es` 17, `fr` 17, `it` 17
 
 ### Reading the text
 
-Each cell is the string decoded with its tree's font. Control codes are written as placeholders, `{name}` or `{name:payload}` with the payload bytes in hex; [Text codes](text-codes.md) gives each code. A backslash comes before a literal backslash, brace, square bracket or bar of the game text.
+Each cell is the string decoded with its tree's font. Text codes are written as placeholders, `{name}` or `{name:payload}` with the payload bytes in hex; [Text codes](text-codes.md) gives each code. A backslash comes before a literal backslash, brace, square bracket or bar of the game text.
 
 Examples, by script, section and id:
 
@@ -89,7 +89,7 @@ An empty cell under a language not in `missing` is an empty string.
 
 - [Skyferry scripts](../Story-Events-And-Hunts/skyferry-scripts.md) - what each function of these scripts shows, with the text ids of its lines.
 - [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - the layout of sections 2 and 3, the lookups and the verbs that read them.
-- [Text codes](text-codes.md) - every control code and the choice list.
+- [Text codes](text-codes.md) - every text code and the choice list.
 - [Fonts](fonts.md) - how a character code becomes a glyph, and the expansion lists.
 - [Font expansion lists](fonts-expansion-lists.md) - every list with the script path it belongs to.
 - [Message windows](message-windows.md) - the window a line is shown in.

@@ -58,7 +58,7 @@ Strings with a choice list per tree: `us` 6, `de` 6, `es` 6, `fr` 6, `it` 6, `in
 
 ### Reading the text
 
-Each cell is the string decoded with its tree's font. Control codes are written as placeholders, `{name}` or `{name:payload}` with the payload bytes in hex; [Text codes](text-codes.md) gives each code. A backslash comes before a literal backslash, brace, square bracket or bar of the game text.
+Each cell is the string decoded with its tree's font. Text codes are written as placeholders, `{name}` or `{name:payload}` with the payload bytes in hex; [Text codes](text-codes.md) gives each code. A backslash comes before a literal backslash, brace, square bracket or bar of the game text.
 
 Examples, by script, section and id:
 
@@ -94,7 +94,7 @@ An empty cell under a language not in `missing` is an empty string.
 
 - [Summon scenes](../Story-Events-And-Hunts/summons-scenes.md) - the scenes, their text and the scripts that load them.
 - [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - the layout of sections 2 and 3, the lookups and the verbs that read them.
-- [Text codes](text-codes.md) - every control code and the choice list.
+- [Text codes](text-codes.md) - every text code and the choice list.
 - [Fonts](fonts.md) - how a character code becomes a glyph, and the expansion lists.
 - [Font expansion lists](fonts-expansion-lists.md) - every list with the script path it belongs to.
 - [Message windows](message-windows.md) - the window a line is shown in.

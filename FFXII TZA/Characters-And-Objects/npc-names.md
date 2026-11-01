@@ -43,8 +43,8 @@ Entry `2 * id` is pair `id`'s first name and entry `2 * id + 1` its second.
 
 - when the actor's `i16` at `+0x102` is negative, the name is the literal text pointer at `+0xF8`
   (the spawn entry's own text; for such an actor `0x00263A10` returns the word at `+0x100`, and 0 otherwise);
-- otherwise bit `0x4000` of the id is stripped, the 2048-bit persistent flag bank is asked for flag `id`
-  (`0x0032A930`, [persistent flag banks](../Story-Events-And-Hunts/story-flags.md)), and
+- otherwise bit `0x4000` of the id is stripped, the 2048-bit story flag bank Bank2048 is asked for flag `id`
+  (`0x0032A930`, [Story flags](../Story-Events-And-Hunts/story-flags.md)), and
   `0x003EAC10(id, flagSet)` returns the first name while the flag is clear and the second once it is
   set.
 
@@ -222,8 +222,8 @@ What it shows:
 
 ## Modding notes
 
-- To rename a character, edit its pair in `npcdic.bin`; to make a reveal happen, set persistent flag
-  `id` in the 2048-bit bank. The second name needs no script change.
+- To rename a character, edit its pair in `npcdic.bin`; to make a reveal happen, set story flag
+  `id` in Bank2048. The second name needs no script change.
 - Pairs whose two strings are identical are inert: setting their flag changes nothing visible, and
   the set of visible reveals differs by language (247 ids in English, 275 in French).
 - Ids with bit `0x4000` set reach the same pair as without it: `0x00269F40` strips the bit on store and
@@ -237,7 +237,7 @@ What it shows:
 
 ## Related
 
-- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the 2048-bit bank the name flag lives in.
+- [Story flags](../Story-Events-And-Hunts/story-flags.md): Bank2048, the 2048-bit bank the name flag lives in.
 - [Languages](../Saving-Loading-And-Settings/languages.md): which language folder the dictionary is loaded from.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): where the flag bank sits in the save.
 - [Actor record: the record every field actor is driven through, its pool, its classes, its sub-objects and its lifetime](actor-record.md): the set-up that starts an actor with `+0xF8` the empty string and `+0x102` = `0xFFFF`.

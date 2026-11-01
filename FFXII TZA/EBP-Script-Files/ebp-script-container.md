@@ -21,11 +21,11 @@ language trees. Four control scripts (`btlctrl`, `ctrl`, `evctrl`, `mapctrl`) si
 `ps2data/image/ff12/<language>/bin/` in the `in` and `ch` trees only.
 
 The game never opens a script by name. `0x0032FCA0(manager, id)` turns a script manager index and a
-script id into a `(namespace, index)` pair and resolves it through the path tables
-(`0x002DF980` returns `[0x0215F000 + namespace × 8][index]`, the tables `0x002DF9A0` installs per
+script id into a `(kind, index)` pair of a [resource kind](../Game-Files-And-Data-Tables/file-size-tables-fst.md) and resolves it through the path tables
+(`0x002DF980` returns `[0x0215F000 + kind × 8][index]`, the tables `0x002DF9A0` installs per
 language; see [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md)):
 
-| Manager | Namespace | Index | Files at index, +1, +2, +3 |
+| Manager | Kind | Index | Files at index, +1, +2, +3 |
 |---|---|---|---|
 | 0 (zone) | 5 | id × 3 | `.ebp`, `.mot`, `.fpk` |
 | 1 to 3 (events) | 8 | id × 4 | `.ebp`, `.mot`, `.snd`, `.vpc` |
@@ -97,7 +97,7 @@ Measured over every `.ebp` in `FFXII_TZA.vbf`.
 | section 6 by tree | 67 or 68 files in each Latin-script tree; 556 `kr`, 584 `cn`, 603 `ch`, 633 `in`; plus 3 control scripts in each of `in` and `ch` |
 | first bytes | the word or tag in the section table, the same in every file that has the section |
 | file tables | [ebp-script-container-files-event.tsv](ebp-script-container-files-event.tsv), 3,114 event scripts, and [ebp-script-container-files-plan-map.tsv](ebp-script-container-files-plan-map.tsv), 6,923 zone scripts: every file of every tree with its bytes, SHA-256, the path-array entry that names it, the size check, the decode check and whether the game loads it |
-| named by a path array | 2,934 event scripts (326 per tree), each at an index 4 × id of namespace 8, and 6,372 zone scripts (708 per tree), each at an index 3 × id of namespace 5; in all 9,306 every naming language's size table gives the file's exact size |
+| named by a path array | 2,934 event scripts (326 per tree), each at an index 4 × id of kind 8, and 6,372 zone scripts (708 per tree), each at an index 3 × id of kind 5; in all 9,306 every naming language's size table gives the file's exact size |
 | decode | 10,028 files read to their end: the directory walk above, the sections cut at each next offset and the last at the end of the file, and section 0 disassembled through the image's `length` (`+0x04`), the rest of the section zero padding under 64 bytes; the 9 `evt_t0020` files stop at offset 0, where no header begins |
 | named by no path array | 180 event scripts, 20 per tree (`dst_z9900` and the developer scripts `evt_t0005` to `evt_t0509`), and 551 zone scripts, 61 per tree and 62 in `kr` and `cn` (31 `bts_` test maps, 12 `dor_`, 5 `bds_`, 5 `mic_b`, 3 `pre_`, 2 `asp_b`, 2 `tst_`, `vic_a04`, and `ttl_a01_e3` in `kr` and `cn`): no language's path array names them, and the script load `0x0032FCA0` takes a script's path from those arrays through the resolver `0x002DF980` |
 
@@ -111,10 +111,10 @@ Both tables have one row per shipped file, in path order within each language tr
 | `family` | `event` or `plan_map` |
 | `path` | the file's path in the archive |
 | `bytes`, `sha256` | the file's size and SHA-256 |
-| `named_by` | each size-table kind and id whose path array names the file, with the languages of that array ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)); `-` when no array names it. Namespace 37 entries are listed too: `0x0032FCA0` asks namespace 37 only for index + 3, the `.vpcjp` |
+| `named_by` | each size-table kind and id whose path array names the file, with the languages of that array ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)); `-` when no array names it. Kind 37 entries are listed too: `0x0032FCA0` asks kind 37 only for index + 3, the `.vpcjp` |
 | `fst_size_matches` | `yes` when the size table of every naming language that sizes the entry gives the file's size; `-` for a file no array names |
 | `decodes` | `yes` when the file reads to its end as the decode row of Shipped data states, otherwise `no at` the offset where reading stops |
-| `loaded` | `read by` the languages whose namespace 5 or 8 array names the file at a script index with a size, or `named by no path array`. UK's size table has no entry in namespaces 5 and 8, so no UK language is listed |
+| `loaded` | `read by` the languages whose kind 5 or 8 array names the file at a script index with a size, or `named by no path array`. UK's size table has no entry in kinds 5 and 8, so no UK language is listed |
 
 ### Language trees
 
@@ -180,24 +180,24 @@ word. `0x0032FCA0`:
 
 1. tears down the manager's previous script (`0x0032ED80`, below) and records the id at `0x022C6D28`
    and `0x022C6D40`;
-2. picks the namespace and index from the table above;
+2. picks the kind and index from the table above;
 3. for managers 0 to 3, requests the companion files: index + 1 into the `0x88`-byte buffer
    `0x022C6E70` (pending bit `0x2000`), and, for managers 1 to 3, index + 2 into `0x022C6E98` (bit `0x1000`);
-4. for managers 1 to 3, requests index + 3 of namespace 8 into the `0x208`-byte buffer `0x022C6EE8`
-   (bit `0x8000`) and the same index of namespace 37 into `0x022C6EC0` (bit `0x4000`); each request is made only
+4. for managers 1 to 3, requests index + 3 of kind 8 into the `0x208`-byte buffer `0x022C6EE8`
+   (bit `0x8000`) and the same index of kind 37 into `0x022C6EC0` (bit `0x4000`); each request is made only
    when `0x0032E400` reports a size;
 5. pushes the arena the image will live in: 5 for manager 0, `0xD` for managers 1 and 2 and `0xE`
    for manager 3 when that arena is enabled (`0x0036B200`), otherwise 5;
 6. calls `0x00330310` to read the script itself.
 
-Namespace 37's table is the `in` tree's (`0x01ECBCF0`; the `ch` tree's `0x01EA4D00` for language codes
+Kind 37's table is the `in` tree's (`0x01ECBCF0`; the `ch` tree's `0x01EA4D00` for language codes
 7, 8 and 11), so its index + 3 names a `.vpcjp` file such as
-`in\event\nal_a\nal_a0100\nal_a0100.vpcjp` where namespace 8 names the `.vpc`. The four companion buffers are allocated once,
+`in\event\nal_a\nal_a0100\nal_a0100.vpcjp` where kind 8 names the `.vpc`. The four companion buffers are allocated once,
 for all five managers, by `0x0032F430`.
 
 ### Reading it whole
 
-`0x00330310(manager, id, namespace, index)`:
+`0x00330310(manager, id, kind, index)`:
 
 1. takes the size from `0x0032E400`, which rounds the size table's figure up to a multiple of 64;
 2. sets pending bit `0x20000`;
@@ -205,13 +205,13 @@ for all five managers, by `0x0032F430`.
    `0x0036C660` (source name `atelload.c`, tag `0x95C`);
 4. stores the buffer at `0x022C6C00[manager]`, sets the manager record's `+0x11` bit `0x8`, and forms the
    packed value `buffer | manager`;
-5. calls `0x00332250`, which for namespaces 5, 8 and 37 cuts a folder name out of the path (such as
+5. calls `0x00332250`, which for kinds 5, 8 and 37 cuts a folder name out of the path (such as
    `event\nal_a\nal_a0100`) and hands it to the text layer under the packed value (`0x0017FA90`);
 6. files an asynchronous whole-file read (`0x0032E620`) whose completion is `0x003304A0(packed)`;
 7. for manager 0, files a `0x800`-byte pre-read of the zone's index + 2, its `.fpk` (`0x0032EB40`), which no
    zone ships, so it reads nothing.
 
-Script id `0xD4` (namespace 8 index `0x350`, `event/pre_z/pre_z0000` in the `us` tables) is
+Script id `0xD4` (kind 8 index `0x350`, `event/pre_z/pre_z0000` in the `us` tables) is
 preloaded once by `0x0032F430` into `0x022C6F10`; a request for it copies that image into the new
 buffer and walks it at once instead of reading the file.
 

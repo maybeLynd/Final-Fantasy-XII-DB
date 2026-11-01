@@ -24,7 +24,7 @@ enemies of the same kind are told apart by a letter after the name.
    actor's `+0xF8` and the ordinal at `+0x100`
    ([battle unit construction](../Characters-And-Objects/battle-unit-construction.md)).
 4. **The display name.** `0x00263990` returns the text at `+0xF8` while the actor's name id `+0x102` is negative; with
-   a name id of 0 or more it returns one of the id's two `npcdic.bin` names, chosen by the id's persistent flag
+   a name id of 0 or more it returns one of the id's two `npcdic.bin` names, chosen by the id's story flag in Bank2048
    ([NPC names](../Characters-And-Objects/npc-names.md#which-name-is-shown),
    [NPC names](../Characters-And-Objects/npc-names.md#who-sets-the-id)).
 5. **The overhead name box.** The HUD gives the unit's entry a name box (`0x002C8A60`), and `0x002C8BC0` fills it from

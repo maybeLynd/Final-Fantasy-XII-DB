@@ -327,7 +327,7 @@ Globals:
 | `0x0208936C` | `i32` | return window, seconds (300) |  |
 | `0x0208D454` | `u8` | bank parity |  |
 | `0x0208D354` | `u16[2][64]` | spawn-history counters |  |
-| `0x02EBF190` | `void*` | battle-state block; dword +0 stamp 0x05071901 |  |
+| `0x02EBF190` | `void*` | party block; dword +0 stamp 0x05071901 |  |
 | `0x02089340` | `u32` | battle flags: bit 0x2 nothing pending, bit 0x20 and 0x80 the lock, bits 0xF00 close the gate |  |
 | `0x02098E68` | `void*` | the 64-word field table; word 3 receives the completed group |  |
 

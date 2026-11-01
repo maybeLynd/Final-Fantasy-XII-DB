@@ -74,7 +74,7 @@ mask}` records at `0x02EC3EA0`. `0x002FB3B0(ring, field, mask)` stores a mask: w
 present the mask is replaced and 1 is returned; otherwise the record is written at the write index
 `+0x24` (`0x02EC3EC4`), the count `+0x28` (`0x02EC3EC8`) is incremented and capped at 3, and the index
 advances modulo 3. `0x002FA230` zeroes the whole ring; it runs from the battle runtime reset
-`0x00237DF0` and from the battle-state block bind `0x00233C10` (`0x00233CC0`).
+`0x00237DF0` and from the party block bind `0x00233C10` (`0x00233CC0`).
 
 The clear writes 8-byte stores at `0x02EC3EA0`, `0x02EC3EA8`, `0x02EC3EB0`, `0x02EC3EB8` and `0x02EC3EC0` and a 4-byte
 store at `0x02EC3EC8` (`0x002FA232`-`0x002FA255`).
@@ -128,8 +128,8 @@ On a hit, in order:
 
 1. `0x00379CD0()`, the Mersenne Twister draw, is reduced modulo 100; below 75 (`0x002F8231 cmp r8d,
    0x4B`) the action is the record's `+0x06`, otherwise its `+0x08`;
-2. when the flag id `+0x04` is not `0xFF`, `0x0032AD70(id, 1)` sets that persistent flag
-   ([persistent flag banks](../Story-Events-And-Hunts/story-flags.md));
+2. when the flag id `+0x04` is not `0xFF`, `0x0032AD70(id, 1)` sets that story flag, in the first half of Bank512
+   ([Story flags](../Story-Events-And-Hunts/story-flags.md));
 3. `0x002FB8C0(record, unit, out)` gathers the units the trap reaches: with radius `+0x0A` = 0 only
    the triggering unit; otherwise each of the four party members (`0x0031B810(0..3)`) whose stats
    pass the same three refusals plus the out-of-play mask `0x80000003`, and whose position
@@ -199,7 +199,7 @@ Struct TrapRecord base=trapTable+offset[i] size=`0x0C`:
 |---|---|---|---|
 | `+0x00` | `i16` | x | tenths of a world unit (`0x002F81BE`, `0x002FA82C`) |
 | `+0x02` | `i16` | z | tenths of a world unit |
-| `+0x04` | `u8` | flagId | persistent flag set on firing and tested at arming; `0xFF` = none (`0x002F8243`, `0x002FA7E8`) |
+| `+0x04` | `u8` | flagId | story flag (Bank512, first half) set on firing and tested at arming; `0xFF` = none (`0x002F8243`, `0x002FA7E8`) |
 | `+0x05` | `u8` | armChance | percent; roll % 100 below it arms the trap (`0x002FA7FC`) |
 | `+0x06` | `u16` | action75 | the action row chosen below 75 (`0x002F8237`) |
 | `+0x08` | `u16` | action25 | the action row chosen at 75 and above (`0x002F823E`) |
@@ -283,9 +283,9 @@ Over the 1,114 `us` zone and event scripts (one file is not an `EBP2` container)
 | real traps | 489 |
 
 Every table reference is tag 3. Tables hold 1 to 16 records; 285 hold one. All 489 real traps
-have flag id `0xFF`, so no shipped trap ever sets a persistent flag and none is ever skipped at
+have flag id `0xFF`, so no shipped trap ever sets a story flag and none is ever skipped at
 arming: a field's traps are rolled afresh every time its `settrapresource` runs (an unconditional call in the
-`init` of its `btl_trap_ctrl` actor), and the persistent-flag path exists only
+`init` of its `btl_trap_ctrl` actor), and the story-flag path exists only
 for authored data that does not ship. The arm chance is 100 in 487 traps and 60 in the two traps
 of `rbl_n02` (rows 260 and 261 twice over). Byte `+0x0B` is 0 everywhere.
 
@@ -338,8 +338,8 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 - The two outcomes of a trap are authored; the 75/25 split and the 1.3 radius are constants in
   the code, and the arm chance and gather radius are per record.
 - `0x002F8060` is one of two functions in the image that both draw the generator and call a
-  persistent-flag setter (the other is the treasure chest resolver `0x002FAFD0`,
-  [persistent flag banks](../Story-Events-And-Hunts/story-flags.md)); with every
+  story-flag setter (the other is the treasure chest resolver `0x002FAFD0`,
+  [Story flags](../Story-Events-And-Hunts/story-flags.md)); with every
   shipped flag id `0xFF`, the trap's setter never runs in shipped play.
 
 - The two access tables beside this page, [`traps-live-entry-accesses.tsv`](traps-live-entry-accesses.tsv) and
@@ -370,7 +370,7 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 
 ## Related
 
-- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the flag the firing sets and the arming tests.
+- [Story flags](../Story-Events-And-Hunts/story-flags.md): the Bank512 flag the firing sets and the arming tests.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md): Libra (bit `0x40000000`) and the statuses the trap rows inflict.
 - [What the periodic tick does](../Status-Effects-And-KO/status-timers.md): the caller of the trigger walk.
 - [Battle log](../Battle-Actions/battle-log.md): the four trap messages.

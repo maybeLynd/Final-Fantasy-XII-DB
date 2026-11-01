@@ -23,7 +23,7 @@ level, experience, LP, licence count and equipment. Four wrappers resolve the me
 
 | Wrapper | Member argument | `full` | How the stats record is found |
 |---|---|---|---|
-| `0x0031FE70(table, index, out)` | an index 0-8 into one of the five slot tables (`0x0031B9F0`: table 0 is the nine words at block `+0x5A48`, 1 `+0x5A5A`, 2 `+0x5A6C`, 3 `+0x5A7E`, 4 `+0x5A90`; `0x00322C50(0x17, index)` admits the index) | 0 | the chosen word is the slot; a slot above `0x27`, or a rejected index, gives a null record and the builder fills only the header |
+| `0x0031FE70(table, index, out)` | an index 0-8 into one of the five slot maps (`0x0031B9F0`: map 0 is the nine words at block `+0x5A48`, 1 `+0x5A5A`, 2 `+0x5A6C`, 3 `+0x5A7E`, 4 `+0x5A90`; `0x00322C50(0x17, index)` admits the index) | 0 | the chosen word is the slot; a slot above `0x27`, or a rejected index, gives a null record and the builder fills only the header |
 | `0x00320040(table, index, out)` | the same | 1 | the same; the record is `[0x02EBF190] + 8 + slot * 0x1C8` |
 | `0x0031FEC0` | an actor | 1 | the actor's unit (`0x00263E30`), its stats `+0x698`; the member slot is the position of stats byte `+4` among the four party slot words at block `+0x5A5A`, or -1 |
 | `0x0031FF70` | a packed actor handle | 1 | the same through `0x003588B0`, gated on `0x02089340` bit `0x10` |
@@ -83,7 +83,7 @@ The callers of the wrappers:
 | 16 | `0x003879C0(stats)`: for a kind-1 owner, bit `0x80` of byte `+0x12` of the class row `[unit + 0xE68]` |
 | 17 | `0x0030C2C0(unit)`: unit flag bit `0x10000000000000` (dword `+4` bit `0x100000`), after `0x002FEAD0` when `0x003278C0()` is 0 |
 
-Block offsets are offsets into the battle-state block `[0x02EBF190]`
+Block offsets are offsets into the party block `[0x02EBF190]`
 ([its field map](../Party/party-data.md)); `+0x5AA4` is
 the party leader byte and `+0x5AD5` the special-presentation actor there.
 
@@ -202,6 +202,6 @@ Which screen reads which field of its copy:
 
 - [The battle stats record field map](../Damage-And-Battle-Formulas/unit-stats-fields.md): the source record.
 - [The battle unit field map](battle-unit-fields.md): the unit fields read.
-- [The battle-state block field map](../Party/party-data.md): the slot words and the leader byte.
+- [The party block field map](../Party/party-data.md): the slot words and the leader byte.
 - [Area flags and navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md): the town flag.
 - [EXP, LP and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md): the experience curve.

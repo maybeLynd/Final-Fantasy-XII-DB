@@ -103,10 +103,10 @@ Without a render manager (`0x00189120` returns 0) it files the command through t
 and by `0x00188DA0`, builds a `GiSetRtForRtSampling` command of 0x18 bytes (`a` at `+0x08`, `b` at
 `+0x10`) and runs it this way.
 
-### The display list
+### The draw list
 
-Per-draw producers file records instead. The list is created by `0x003A3670`: `0x190000` bytes
-(40,960 records of 0x28) at `0x02F8F2F8`, a `0xC8028`-byte sort area at `0x02F8F300`, and a data
+Per-draw producers file records instead, in the [draw list](effect-drawing.md#the-draw-list). The list is created by `0x003A3670`: `0x190000` bytes
+(40,960 records of 0x28) at `0x02F8F2F8`, a `0xC8028`-byte sort area at `0x02F8F300`, and a packet
 arena whose base is `0x02F8F308` (`0x003A36BD`); the count is the `u16` at `0x02F8F2C6`.
 
 `0x0024D540`, called by the draw `0x0022B0B0` at `0x0022B191`, runs the drain `0x003A3740` and then the
@@ -120,7 +120,7 @@ with the merge sort `0x003A3A50` on the `u32` at `+0x08` (`0x003A3B53`, `0x003A3
 4. otherwise, when `+0x00` is null: flag bit `0x4` clear files the node `+0x18` with `0x0020E630(node, 2)`
    (`0x003A38DE`); flag bit `0x4` set appends the node to the array `0x02AEF420` (count `0x02AEF414`).
 
-`0x003A3A00` sets the count to 0, rewinds the data arena `0x02F8F2D0` to `0x02F8F308` and clears bit `0x1`
+`0x003A3A00` sets the count to 0, rewinds the packet arena `0x02F8F2D0` to `0x02F8F308` and clears bit `0x1`
 of `0x02F8F310`.
 
 ### From the ordered list to the render thread
@@ -412,7 +412,7 @@ Tables beside this page:
 |---|---|
 | `0x01F7F4C0` | the command arena |
 | `0x01F7F4D0` | the filing handler (`GeometryRenderTargetImmediate`) |
-| `0x02F8F2F8`, `0x02F8F2C6` | the display list and its count |
+| `0x02F8F2F8`, `0x02F8F2C6` | the draw list and its count |
 | `0x02CC0410` | the render context; the device at `0x02CC1CD0` |
 | `0x01F83580` | the texture table `GiSetTexture` fills |
 

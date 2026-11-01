@@ -48,6 +48,10 @@ No shipped script requests `men_z0002`:
 - `men_z0005`, loaded and played in field 13 (`ttl_b01`), is the staff roll ([Staff roll](../Menus-And-HUD/staff-roll.md)).
 - No scene gives an item, sets a flag, writes the story counter or changes the party.
 - The tutorial battle groups 1 to 4 ([Tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md)) reach a battle only through script verb `0x45C`, which no script of the nine language trees calls.
+- The scripts table [`tutorials-scripts.tsv`](tutorials-scripts.tsv), with the columns of the zone scripts
+  tables, has three rows: `gambit_tutorial.main` of `men_z0001` shows lines 0 to 10 (Balthier, and lines with no
+  name shown), `sample_tutorial.main` of `men_z0002` shows lines 1 to 13 (Tomaj, and lines with no name shown) and
+  `sample_tutorial.main` of `men_z0003` shows line 0, the map hint. The staff roll script `men_z0005` has no row.
 
 ### Every step
 
@@ -117,7 +121,7 @@ The steps table [`tutorials-script-steps.tsv`](tutorials-script-steps.tsv) has o
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
 | `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |
-| `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its control codes dropped; `-` for every other step |
+| `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its text codes dropped; `-` for every other step |
 | `timing` | the frames, fade lengths and speeds the step uses |
 | `sync` | what the step waits for, and for a request whether it waits until the function starts, until it ends or not at all |
 | `calls` | the functions a request starts, as `actor.function`; for a `goto` into another function, that function |

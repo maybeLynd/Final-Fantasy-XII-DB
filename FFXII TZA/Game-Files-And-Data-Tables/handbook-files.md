@@ -205,9 +205,10 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | [`handbook-files-page-map.tsv`](handbook-files-page-map.tsv) | 5,238 | page-map slot: the picture file and the picture in that file |
 | [`handbook-files-pictures.tsv`](handbook-files-pictures.tsv) | 6,693 | `himg` picture: offset, size, depth and byte count |
 | [`handbook-files-strings.tsv`](handbook-files-strings.tsv) | 12,168 | string entry: bundle, entry, record, slot and the decoded text |
-| [`handbook-files-glyphs.tsv`](handbook-files-glyphs.tsv) | 7,164 | sheet glyph of a `story`, `world`, `person` or `knowledge` bundle in each tree: its character where decoded, the two best match scores and one use |
-| [`handbook-files-strings-decoded.tsv`](handbook-files-strings-decoded.tsv) | 2,952 | the string entries of those four families, with each decoded sheet character in place |
+| [`handbook-files-glyphs.tsv`](handbook-files-glyphs.tsv) | 7,164 | sheet glyph of a `story`, `world`, `person` or `knowledge` bundle in each tree: its character, the two best match scores, one use and how the character was read |
+| [`handbook-files-strings-decoded.tsv`](handbook-files-strings-decoded.tsv) | 2,952 | the string entries of those four families, with each sheet character in place |
 | [`handbook-files-entry-names.tsv`](handbook-files-entry-names.tsv) | 49 | entry whose text gives its name: the name and the rule that gives it |
+| [`handbook-files-entry-name-ids.tsv`](handbook-files-entry-name-ids.tsv) | 300 | `story`, `world`, `person` or `knowledge` entry: its name text id, the string that id finds in each tree, the name its text gives and its first line |
 
 `handbook-files-files.tsv`:
 
@@ -400,29 +401,68 @@ The `story`, `world`, `person` and `knowledge` bundles are the same bytes in all
 sheet glyphs. Each glyph was matched against the JIS X 0208 characters drawn in seven faces of the Japanese system
 fonts MS Gothic, MS Mincho, Meiryo and Yu Gothic. A glyph
 counts as decoded when its best match leads the second by at least 0.011 and the word it makes reads in its
-sentence. That decodes 753 of the 796; the other 43 stay `{exp:0xN}`:
+sentence. That decodes 753 of the 796.
 
-| Family | Glyphs | Decoded | Left | Uses | Uses decoded |
-|---|---:|---:|---:|---:|---:|
-| `story` | 124 | 119 | 5 | 267 | 256 |
-| `world` | 207 | 196 | 11 | 569 | 538 |
-| `person` | 184 | 175 | 9 | 506 | 483 |
-| `knowledge` | 281 | 263 | 18 | 500 | 474 |
+The other 43 are 25 distinct cells: the same pixels stand in several bundles (由 five times). Each was read from its
+4-bit values. The five sheets are drawn in one face, so a part the character shares with a decoded glyph repeats in
+the same place: the left part of 嫡 is the 女 of 妙, one pixel apart by more than 2, against 32 pixels for the 扌 of 括.
+The part that tells a character from its look-alike was read stroke by stroke: 由 carries its middle upright above
+the box, and 田 does not.
 
-In each tree, 73 of the strings still hold an undecoded character
+Glyph `0xA5` of the `world` sheet has the same pixels as 搭, glyph `0xB4` of the first `knowledge` sheet, and its
+text writes 搭と周辺; the `world` sheet holds 塔 as `0x9E`. All 796 glyphs are decoded:
+
+| Family | Glyphs | By match | By cell | Uses |
+|---|---:|---:|---:|---:|
+| `story` | 124 | 119 | 5 | 267 |
+| `world` | 207 | 196 | 11 | 569 |
+| `person` | 184 | 175 | 9 | 506 |
+| `knowledge` | 281 | 263 | 18 | 500 |
+
+No string of the four families holds an undecoded character
 ([`handbook-files-strings-decoded.tsv`](handbook-files-strings-decoded.tsv)). 49 of the 300 entries give their
 name in their own text ([`handbook-files-entry-names.tsv`](handbook-files-entry-names.tsv)).
+
+The catalog record's name, `+0x00`, is a text id that `0x002F9920` finds in `penelosdiary.bin` (group 7), as the row
+whose own id it is. For 58 entries that row holds a name: 57 `world` entries and one `knowledge` entry. The ids of
+the other 242 entries, and the 25 section captions of the four families, find rows that point at one string, offset
+`0xAB0` of the text block, as 589 of the file's 682 rows do in every tree. That string is empty in `us` and `it`,
+`/Unused` in `de`, `DUMMY` in `es`, `NOT USED` in `fr`, and `／` in `in`, `kr`, `cn` and `ch`.
+
+Of those 242 entries, 48 give their name in their text. No field of the records of the other 194 holds a name
+([`handbook-files-entry-name-ids.tsv`](handbook-files-entry-name-ids.tsv)):
+
+- the catalog record: the name id above, the section, the bundle, the page of a picture, the flag (0 in all 194)
+  and a zero byte;
+- the unlock record: its tests and the marker byte;
+- the text-bundle record: the slot count, the serial byte, the entry number (equal to the entry in all 194), the
+  string offsets and the tail. Every byte of the five bundles is one of these fields, a string entry, its text, a
+  zero byte or the glyph sheet, except two bytes before the first record that no offset names
+  (`menuhandbook_world000.dat` `0xA6`-`0xA7`, `menuhandbook_person000.dat` `0x84`-`0x85`);
+- the text: the first line of slot 0 is a sentence ending in 。 in 192 of them, and `story` entry 24 and `knowledge`
+  entry 17 hold only 現在不使用.
 
 `handbook-files-glyphs.tsv`:
 
 | Column | Meaning |
 |---|---|
 | `language`, `family`, `bundle`, `N` | the tree, the family, the `hdat` number and the sheet record `N` of `{exp:0xN}` |
-| `character` | the decoded character, or `-` |
+| `character` | the decoded character |
 | `best_score`, `second_score`, `best`, `second` | the two best matching characters and their scores |
 | `context` | one use, with the glyph in brackets and six characters each side |
-| `candidates` | `jis` when the best match was taken over JIS X 0208; `game` when it was taken over the characters of the game's own `jp` fonts, after no JIS character led by 0.011 |
-| `decision` | `corpus:` words of the game's other Japanese text that hold the decoded word; `reading:` the word read in the sentence; `shape:` the margin that is too small; `reading, rejected:` the reading that refuses the best match |
+| `candidates` | `jis` when the best match was taken over JIS X 0208; `game` when it was taken over the characters of the game's own `jp` fonts, after no JIS character led by 0.011; `cell` when the character was read from the cell |
+| `decision` | `corpus:` words of the game's other Japanese text that hold the decoded word; `reading:` the word read in the sentence; `cell:` the parts of the cell, by row and column of its 4-bit values, the decoded glyphs whose parts they repeat with the count of pixels apart by more than 2, and the strokes that tell it from its look-alike |
+
+`handbook-files-entry-name-ids.tsv`:
+
+| Column | Meaning |
+|---|---|
+| `family`, `entry` | the entry |
+| `name_text_id` | the catalog record's `+0x00` |
+| `text_row` | the row of `penelosdiary.bin` whose own id it is (`0x002F9920`) |
+| `us` to `ch` | that row's string in each tree, as the [string tables](../Menus-And-HUD/text-string-tables.md) give it; `-` for an empty string |
+| `text_name`, `text_name_rule` | the name the entry's text gives and the rule, from `handbook-files-entry-names.tsv`; `-` when the text gives none |
+| `first_line` | the first line of slot 0, with each sheet character in place |
 
 ### Pictures
 

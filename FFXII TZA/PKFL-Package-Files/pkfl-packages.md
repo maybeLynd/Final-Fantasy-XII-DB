@@ -17,8 +17,8 @@ language and in Japanese.
 The packages sit beside each area's script in the archive, `<area>.mot`, `<area>.snd`, `<area>.vpc` and
 `<area>.vpcjp`. They are files of the per-area records in the resource kinds the area loader uses
 ([file size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)): kind 5 records are
-`{ebp, mot, fpk}` (three files per area, index `3a`), kind 8 records `{ebp, mot, snd, vpc}` and kind `0x25`
-records `{ebp, mot, snd, vpcjp}` (four per area, index `4a`). Paths come from `0x002DF980(kind, index)`.
+`{ebp, mot, fpk}` (three files per zone, index `3a` for field id `a`), kind 8 records `{ebp, mot, snd, vpc}` and kind `0x25`
+records `{ebp, mot, snd, vpcjp}` (four per event, index `4a` for event number `a`). Paths come from `0x002DF980(kind, index)`.
 
 ## Layouts
 
@@ -34,7 +34,7 @@ The directory ends at file offset `0x88` for 16 slots and `0x208` for 64. Every 
 boundary, the first at file offset `0x800`.
 
 No package is held in memory whole. `0x0032FCA0` reads only the directory, the first `0x88` or `0x208` bytes, into
-the table of that size `0x0032F430` allocated for the area slot, and the slot readers use it as read. Each payload
+the table of that size `0x0032F430` allocated for the manager slot, and the slot readers use it as read. Each payload
 is read on its own into its consumer's buffer ([reading a slot](#reading-a-slot)). The one check is byte 0: when
 it is 0, every slot reader refuses with −1. The readers return a slot's offset and size as stored.
 
@@ -115,14 +115,14 @@ kind `0x25` only for the `.vpcjp` (`0x0032FDD4`, `0x0032FFD6`), so the `.vpcjp` 
 
 ### The directory tables
 
-`0x0032F430`, at start-up, allocates four `0x88`- or `0x208`-byte tables per area slot: `.mot` at `0x022C6E70`,
-`.snd` at `0x022C6E98`, `.vpc` at `0x022C6EE8` and `.vpcjp` at `0x022C6EC0`. When an area slot
+`0x0032F430`, at start-up, allocates four `0x88`- or `0x208`-byte tables per manager slot: `.mot` at `0x022C6E70`,
+`.snd` at `0x022C6E98`, `.vpc` at `0x022C6EE8` and `.vpcjp` at `0x022C6EC0`. When a manager slot
 loads, `0x0032FCA0` (from `0x0032FC30`) reads into them:
 
-- for area slots 0 to 3, the first `0x88` bytes of the `.mot` (record index + 1);
-- for area slots 1 to 3 (kind 8), also the first `0x88` bytes of the `.snd` (+ 2) and `0x208` of the
+- for manager slots 0 to 3, the first `0x88` bytes of the `.mot` (record index + 1);
+- for manager slots 1 to 3 (kind 8), also the first `0x88` bytes of the `.snd` (+ 2) and `0x208` of the
   `.vpc` (kind 8, + 3) and `.vpcjp` (kind `0x25`, + 3);
-- for area slot 4, none of them.
+- for manager slot 4, none of them.
 
 A table it does not fill, or a file with no size, gets byte 0 cleared. Each request it files sets a pending
 bit in the slot's word `0x022C6E48[g]`: `0x2000` for the `.mot` (completion `0x003302B0`), `0x1000` for the
@@ -130,7 +130,7 @@ bit in the slot's word `0x022C6E48[g]`: `0x2000` for the `.mot` (completion `0x0
 
 ### The slot readers
 
-Each reader takes an area slot `g` and a slot `k`, and returns −1 when `g` is 4 or more (a signed test) or
+Each reader takes a manager slot `g` and a slot `k`, and returns −1 when `g` is 4 or more (a signed test) or
 byte 0 of the table is 0. None bounds `k` against the table.
 
 | Reader | Table | Returns | Caller |
@@ -156,7 +156,7 @@ loads nothing.
 
 ### The script steps that reach a slot
 
-The area slot is always the running script's, so a script reads only its own area's packages.
+The manager slot is always the running script's, so a script reads only its own packages.
 
 | Verb | Path to the reader | Calls per folder |
 |---|---|---:|
@@ -188,7 +188,7 @@ verbs with the same arguments. The four directory tables are reached only by the
   is 2 or 3 (`0x003499E5`).
 - `.mot`, `k` of 16 or more, record `16g + k` in use: `0x003DDA20` arms nothing (`0x003DDA40`, `0x003DDA69`), and
   `motionreadsync` follows the state of that record (`0x003DD770`).
-- Record `16g + k` is, for `k` from 16 to 79 - 16g, a slot of a later area slot; record 80 starts at the masks
+- Record `16g + k` is, for `k` from 16 to 79 - 16g, a slot of a later manager slot; record 80 starts at the masks
   `0x02B58A60`.
 - `.mot`, an empty slot: the sweep finds size 0 and sets state 0 (`0x003DD574`-`0x003DD578`), so `motionreadsync` goes
   on and the cues play nothing.

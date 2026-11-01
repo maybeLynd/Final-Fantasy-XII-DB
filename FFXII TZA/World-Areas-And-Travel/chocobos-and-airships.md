@@ -26,7 +26,7 @@ on the airship's deck. Now and then a monster attacks the airship in flight.
 
 ### The riding state
 
-Riding is held in the battle-state block at `[0x02EBF190]` ([the block's field map](../Party/party-data.md)):
+Riding is held in the party block at `[0x02EBF190]` ([the block's field map](../Party/party-data.md)):
 
 | Field | Meaning |
 |---|---|
@@ -74,7 +74,7 @@ the dismount task stops that track again.
 | `getchocobomode()` | `0x407` | `0x00355910` | ladder = 2 |
 | `enable_by_chocobo(v)` | `0x40A` | `0x0033F650` | bit `0x1` of byte `+0x0B` of the calling actor = `v != 0` |
 | `btlAtelSetChocoboTurboMode(v)` | `0x302F` | `0x0050F8A0` | `0x00303F00(v != 0)` |
-| `setmapjumpgroupflag(id)` / `releasemapjumpgroupflag(id)` | `0x430` / `0x431` | `0x0034EE20` / `0x0034DD90` | `0x0032AB60(id, 1)` / `(id, 0)`: a primary persistent flag ([persistent flag banks](../Story-Events-And-Hunts/story-flags.md)) |
+| `setmapjumpgroupflag(id)` / `releasemapjumpgroupflag(id)` | `0x430` / `0x431` | `0x0034EE20` / `0x0034DD90` | `0x0032AB60(id, 1)` / `(id, 0)`: a story flag of the primary bank ([Story flags](../Story-Events-And-Hunts/story-flags.md)) |
 | `setflystatus(v)` | `0x1E0` | `0x00342E50` → `0x0026A7F0` | bit `0x1` of the actor's secondary context `+0x151`, and `+0x152` 1 ↔ 2 with the mode word refreshed (`0x002681E0`, `0x0026A85A`) when it flips; then bits `0x1` and `0x2` of `+0x151` are copied to bits `0x1` and `0x2` of `+0x90` of the record at context `+0x138` (`0x002682D0`, `0x0026A862`) |
 
 Bit `0x1` of the actor byte `+0x0B` lets the rider interact with that actor: while `0x0037C860` answers non-zero, the talk,
@@ -93,7 +93,7 @@ The keeper scripts (`fon_a07` and the others) mount with `subitem(0x20D8, 1)` (G
 if (getchocobomodebit()) { setchocobomode(0); partyallread(); releasemapjumpgroupflag(115); }
 ```
 
-So persistent flag 115 means "the party is riding" to the scripts, and both the script dismount
+So story flag 115 of the primary bank means "the party is riding" to the scripts, and both the script dismount
 and the native one below clear it. The crystal and aerodrome scripts call it before a teleport or a
 flight ([save and teleport crystals](save-and-teleport-crystals.md)).
 
@@ -348,7 +348,7 @@ and no dismount task is running (`0x022CA468` = 0). The handler's open step sets
 | 13 / 14 | `0x00360C20(track)` = 5 restarts the field music (`0x002DEC00`, `0x002DECE0`); 14 retries `0x00361630(track)` | 2 |
 | 2 | `0x00282F80`, `0x00283270(1)`, `0x002839B0`: rebuild the party status records | 3 |
 | 3 | builds the slot list from the roster (`0x00282DF0`, the `0x0209AC30 + 0xB10` membership bytes) and applies it (`0x00283870`, `0x003273D0(unit, 1)`, `0x00283840(0)`) | 4 |
-| 4 | waits for `0x00283980()`, then `0x00283940`, **`0x0032AB60(0x73, 0)`** (persistent flag 115 cleared, `0x0035CE74` `xor edx, edx`), `0x0026C840(0)`, `0x003634B0(0xF)` | 7 |
+| 4 | waits for `0x00283980()`, then `0x00283940`, **`0x0032AB60(0x73, 0)`** (story flag 115 cleared, `0x0035CE74` `xor edx, edx`), `0x0026C840(0)`, `0x003634B0(0xF)` | 7 |
 | 7 | fade in, 30 frames (`0x002EFA70(0, 0x1E, 1)`) | 5 |
 | 5 | ends the task (`0x00244F00`) | |
 
@@ -577,8 +577,8 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 | `0x01DFE0B8` | f32 | the frame base the turbo length multiplies, image value 1.0 |
 | `[0x001D50D0()] + 0xE1D`, `+0xE1E` | u8 | debug-menu rows 229 and 230: endless ride, turbo charges refilled to 3 |
 | `0x02B47758` | ptr | the ride HUD manager `0x003CA860`; its `+0xA90` low two bits are the show (1) or hide (2) request |
-| persistent flag 115 | flag | riding, as the scripts see it |
-| persistent flag 94 | flag | set before the airship-deck and attack jumps (scripts) |
+| story flag 115 (primary bank) | flag | riding, as the scripts see it |
+| story flag 94 (primary bank) | flag | set before the airship-deck and attack jumps (scripts) |
 
 ## Modding notes
 
@@ -606,8 +606,8 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - [Zone changes and mapjump](zone-changes-and-mapjump.md): the jump the flights and the deck use.
 - [Save and teleport crystals](save-and-teleport-crystals.md): the crystal's dismount.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the transition record that carries `+0x5B04`.
-- [The battle-state block field map](../Party/party-data.md): the block the riding fields sit in.
-- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): flags 115 and 94.
+- [The party block field map](../Party/party-data.md): the block the riding fields sit in.
+- [Story flags](../Story-Events-And-Hunts/story-flags.md): flags 115 and 94 of the primary bank.
 - [Actor record](../Characters-And-Objects/actor-record.md): the roster entries and the actor byte `+0x0B`.
 - [The music control file and the BGM stream](../Sound-And-Music/music-table.md): tracks `0x5A` and `0x5B`.
 - [Area flags](area-flags-navimapdata.md): the town bit the ladder ranks above riding.

@@ -175,7 +175,7 @@ calls `0x00283270(1)`, sets `+0x1C3`/`+0x1C4` to `0xFFFF` and `+0x1C5` to `0xFF`
 ### The quest result window
 
 `questresultwindow(n)` (`0x037C`, begin `0x00344C60`) resolves the quest row (`0x00473C90`, falling
-back to row 0), takes capability row 3 (`0x002E1CD0(0, 3)`), opens the window through `0x00290130` and
+back to row 0), takes action availability row 3 (`0x002E1CD0(0, 3)`), opens the window through `0x00290130` and
 raises busy bit `0x2000` (`0x003601B0(0xD)`). `0x00290130` grants at once, when the window opens: it builds
 the reward bundle (`0x003F8C60`, `0x0029014D`) and grants it (`0x003F4AA0`, `0x0029015B`), adding gil
 straight through `0x00254EE0` (`gil + [bundle + 4]`) when flag bit `0x1` is set, and `(item, count)`

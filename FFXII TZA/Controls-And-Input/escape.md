@@ -11,7 +11,7 @@ addresses: "0x0017DE10, 0x00253C70, 0x00252B60, 0x00252C80, 0x00366870, 0x01E0C2
 - Escape Mode takes about a second to engage after the press, with a sound while it arms.
 - In towns it switches itself off as soon as R2 is released.
 - While it is on, the party runs instead of fighting: the commands offered, combos, engagement and battle movement all
-  change.
+  change. The fleeing state is the flag on [Force fight mode](../Engine-Core/force-fight-mode.md).
 
 ## How it works
 
@@ -44,11 +44,11 @@ does not flip the toggle.
 `0x00252B60(toggle, force)` decides what reaches the flag (`0x00252B60`-`0x00252C7F`):
 
 1. With input snapshot bit `0x2000000` set it does nothing (`0x00252B7A`-`0x00252B86`).
-2. When the aggregate action policy `0x002E0FA0` has bit `0x40`, bit `0x200` or bit `0x400` set, or `0x00237260` answers non-zero, the
+2. When the combined action availability mask `0x002E0FA0` has bit `0x40`, bit `0x200` or bit `0x400` set, or `0x00237260` answers non-zero, the
    toggle becomes 0 with `force` 1 (`0x00252B8C`-`0x00252BB3`). Bit `0x200` also sets the quiet bit through `0x00366950`.
 3. A `0x020927CC` of 1 does the same (`0x00252BB6`-`0x00252BC1`).
 4. The battle mode register `0x0035C6F0` can replace the toggle, in the next two steps.
-5. With bit `0x4` or `0x8` of the register set, the toggle becomes input snapshot bit `0x200`, or 0 when policy bit `0x400` is set
+5. With bit `0x4` or `0x8` of the register set, the toggle becomes input snapshot bit `0x200`, or 0 when availability bit `0x400` is set
    (`0x00252BCD`-`0x00252BEC`). It writes `0x0035C880(0xC, (register & 4) * 2)`, then `0x0035C880(0xC, 0)` when the toggle
    is 0, and sets the quiet bit (`0x00252BEF`-`0x00252C0C`).
 6. Otherwise, with bit `0x1` of the register set, the toggle becomes the register's bit `0x2` (`0x00252C13`-`0x00252C25`).
@@ -59,8 +59,8 @@ does not flip the toggle.
 
 ### The flag
 
-`0x00252C80(value, force)` writes the force-fight flag `0x01E0C2B8` (`0x00252C80`-`0x00252D05`). A value of 1 clears the
-flag, which is Escape Mode on. A value of 0 sets it back to 1, or to 0 when the area's force-fight feature is off
+`0x00252C80(value, force)` writes the force fight mode flag `0x01E0C2B8` (`0x00252C80`-`0x00252D05`). A value of 1 clears the
+flag (force fight mode off, the party fleeing), which is Escape Mode on. A value of 0 sets it back to 1, or to 0 when the area's force-fight feature is off
 (`0x003BA2E0`). Without `force` it writes only when the flag would change, and not at all while `0x003603B0` or
 `0x003603C0` answers non-zero.
 
@@ -99,7 +99,7 @@ when `scale` is not 0.
 
 ### What reads the flag
 
-`0x00253B90` answers true when the flag is 0, Escape Mode on. Its readers are command availability `0x002FFCF0`, the
+`0x00253B90` answers true when the flag is 0 (force fight mode off, the party fleeing), which is Escape Mode on. Its readers are command availability `0x002FFCF0`, the
 engagement flag `0x00307D10`, the party's stance `0x00308130`, the combat frame `0x00308610` (the combo roll), the AI
 distance threshold `0x00309A90`, `0x0030C010`, `0x00313A00`, and through its thunk `0x0030C0D0` the field frame `0x00234590`
 and the battle movement step `0x00336710`, `0x00339BF0`, `0x0033A720`, `0x0033C310` and `0x0033CEF0`. What each does with it
@@ -147,9 +147,10 @@ No other instruction reaches these four.
 
 ## Modding notes
 
-- The flag is the opposite of the toggle: Escape Mode on is the force-fight flag at 0.
+- The flag is the opposite of the toggle: Escape Mode on is the force fight mode flag at 0, the fleeing state of
+  [Force fight mode](../Engine-Core/force-fight-mode.md).
 - A script that forces a fight sets the flag through `setforcefightmode` (`0x00254EA0`); the next frame's applier
-  writes it again only when the toggle changes, or when a policy bit forces it.
+  writes it again only when the toggle changes, or when an availability bit forces it.
 - The one-second delay is `0x022CBE08`, set from the frame-time base when the sound object is built.
 
 ## Related

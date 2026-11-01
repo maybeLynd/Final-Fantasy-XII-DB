@@ -17,6 +17,35 @@ with a one-sentence summary of what you will find on each.
 Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 `73461D0896204B1C259C52F61AEF4EFBC95A2FFC388CADB36493D5D1D89721F8`), image base included.
 
+## Symbol index
+
+[symbol-index.tsv](FFXII%20TZA/symbol-index.tsv) gives each symbol the page that explains it: the structures, fields,
+script verbs and file families of the database, every function and written global the pages and tables cite, and
+every other address in the executable that a page cites. Its columns:
+
+- `kind`: structure, field, script verb, file family, function, global or data (a table, a vtable or other data).
+- `symbol`: the type name, `Type+0xOFFSET` for a field, the call id of a script verb, the path pattern of a file
+  family, or the address. An address inside a function is listed under the function's entry.
+- `names`: the names the tables give the address, or the name of the type, field or verb.
+- `home`: the page that explains it. For an address, the page that defines it (the address in a heading, in the first
+  cell of a table row, or in a sentence that says what it is or does), else the page that cites it most; an address
+  only tables cite has the table that cites it most.
+- `see_also`: the other pages that describe a structure.
+- `cited_in_files`: how many other pages and tables cite the address.
+
+## Phenomenon index
+
+[phenomenon-index.tsv](FFXII%20TZA/phenomenon-index.tsv) starts from what the player sees or hears and gives its cause and
+the page that explains it. Every row is copied from a page or table of the database. Its columns:
+
+- `kind`: setting or input (a Config row, a control, a settings file value, a launcher setting, a render setting, a
+  script verb or another input that shows something), or feature (what a page says the player sees).
+- `phenomenon`: what is seen or heard: the input's visible effect, or the opening of the page's "What the player
+  sees" section (one row per item when it opens with a list).
+- `cause`: the input that causes it, or the title of the page.
+- `source`: the table or page the row is copied from.
+- `page`: the page that explains it.
+
 ## Categories
 
 - [Engine core](FFXII%20TZA/Engine-Core/README.md) - The main loop and per-frame update, startup and the values fixed at boot, the developer tuning console, logging, the object model and the engine's shared state.

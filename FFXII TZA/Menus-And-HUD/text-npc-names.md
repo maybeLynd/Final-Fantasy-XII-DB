@@ -29,7 +29,7 @@ script verbs that give an actor its name id.
 | 33 | 16, second | `Sherral` | `Scharmal` | `シャルアール` |
 
 Pair 0 repeats one name, so its flag changes nothing on screen; pair 16 shows `Imperial` until its flag is set
-and `Sherral` after. The names hold no control codes.
+and `Sherral` after. The names hold no text codes.
 
 ## Columns
 

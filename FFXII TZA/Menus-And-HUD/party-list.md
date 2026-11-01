@@ -23,7 +23,7 @@ addresses: "0x0029BE50, 0x0029A0A0, 0x00299090, 0x002986E0, 0x00297C10, 0x002973
 `[0x0209BE80] + 0x10F78` ([HUD](hud.md)). `0x0028FD70` builds it, and the widget `0x0029BC80` at `+0x10FC8` beside it
 (`0x00296AA0`).
 
-On a chocobo ride (`0x00303EC0`) it closes both, and while action policy bit `0x400` is set it closes the list
+On a chocobo ride (`0x00303EC0`) it closes both, and while action availability bit `0x400` is set it closes the list
 and shows the widget `0x0029C530` at `[0x0209C300]` instead (`0x00297100`). `0x00290E10` closes the list and `0x00296A70` the widget beside it;
 `0x002970C0` closes `[0x0209C300]`. Each close first sets bit `0x10000` of the widget's `+0x40` when `0x002544B0` answers 1.
 

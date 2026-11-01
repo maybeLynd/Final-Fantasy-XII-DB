@@ -1,5 +1,5 @@
 ---
-title: "Text codes: every control code inside the game's strings, what it does and what follows it"
+title: "Text codes: every text code inside the game's strings, what it does and what follows it"
 kind: "reference"
 category: "Menus and HUD"
 addresses: "0x002AC5F0, 0x002AE334, 0x002AE3FC, 0x002AE370, 0x002AC2F0, 0x003FFDF0, 0x002AEB20, 0x002A8C50"
@@ -7,7 +7,7 @@ addresses: "0x002AC5F0, 0x002AE334, 0x002AE3FC, 0x002AE370, 0x002AC2F0, 0x003FFD
 
 ## What it lists
 
-`text-codes.tsv` has one row per control code: the 14 control bytes `0x01`-`0x0E` and the `0x0F` escapes by their
+`text-codes.tsv` has one row per text code: the 14 control bytes `0x01`-`0x0E` and the `0x0F` escapes by their
 selector character. Each row gives the arm that runs it, its length, what it does, and how many times it appears in
 the shipped text of all nine languages.
 
@@ -16,7 +16,7 @@ the shipped text of all nine languages.
 The text interpreter `0x002AC5F0` reads a string one unit at a time, until a `00` byte or the painter's terminator word
 (`0x002AC663`):
 
-1. A byte `0x01`-`0x0F` is a token. It indexes the 15-entry table at `0x002AE334` (`0x002AC682`-`0x002AC697`).
+1. A byte `0x01`-`0x0F` is a text code: `0x01`-`0x0E` a control byte, `0x0F` the lead of an escape. It indexes the 15-entry table at `0x002AE334` (`0x002AC682`-`0x002AC697`).
 2. A byte `0x10`-`0x1F` is the lead byte of a two-byte character, and any other byte is a one-byte character
    (`0x002AC2F0`).
 3. After a `0x0F`, the next byte is the selector. A selector from `0x20` to `0x70` picks one of 35 arms at `0x002AE370`
@@ -42,7 +42,7 @@ selector, is:
 | `0F )` | 3 + the larger of 1 and bits `0x7` of the first payload byte | `0x003FFBC0` |
 | `0F *` | 4 + bits 0-6 of the second payload byte | `0x003FFD70` |
 
-Token `0x08` is 3 bytes (`0x002AD011`), tokens `0x0B`-`0x0D` move nothing (`0x002AC6CA`), and every other token is 1
+Control byte `0x08` is 3 bytes (`0x002AD011`), control bytes `0x0B`-`0x0D` move nothing (`0x002AC6CA`), and every other control byte is 1
 byte.
 
 The parsers `0x003FFAB0`, `0x003FFB00` and `0x003FFBC0` look their argument up through `0x0039BA00(v)`, which returns the
@@ -56,7 +56,7 @@ stops at a zero byte and writes one. The battle log's
 
 ### Choice lists
 
-Token `0x0E` (`0x002AC825`, parser `0x003FFDF0`) is a choice list. Bits `0x7F` of its first byte give the option count;
+Control byte `0x0E` (`0x002AC825`, parser `0x003FFDF0`) is a choice list. Bits `0x7F` of its first byte give the option count;
 when bit `0x1` of the fourth byte is set, a field of one bit per option follows, one byte per seven options. Each option
 is a length byte (bits `0x7F`) and that many bytes of text, which may hold codes of its own. An option whose bit is set
 in the text context's mask `+0x84` is left out (`0x002AC957`). The list stops on its own `00`, so a list always ends
@@ -64,7 +64,7 @@ its string.
 
 ### Tokens
 
-| Token | Does |
+| Control byte | Does |
 |---|---|
 | `0x01` | a blank the width of `0x0017F920(0)` (`0x002ACC04`), the current font's `metricB`, font record `+0x20` (header `+0x24`), through `0x001E9840` and `0x001F49E0` ([Fonts](fonts.md)) |
 | `0x02` | a line break: the next line is measured, justified and indented by `+0xAA` (`0x002AC6D1`) |
@@ -78,7 +78,7 @@ its string.
 | `0x0B`-`0x0D` | no effect: the interpreter returns without moving |
 | `0x0E` | a choice list, above |
 
-The four blank tokens scale with the text size and letter spacing (`0x002ACC97`-`0x002ACCE3`).
+The four blank control bytes scale with the text size and letter spacing (`0x002ACC97`-`0x002ACCE3`).
 
 ### Layout and size escapes
 
@@ -155,12 +155,12 @@ Any other unit is copied. A result that does not fit ends `out` at `size - 1` an
 `0x002B58B0(row, k)` returns string `k` of a word row ([battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)).
 
 `0x002B4550(size, out, row)` builds a plural: string 1 of the row is the plural template and string 0 the base word.
-Token `0x08` with a two-byte count `& 0x7FFF` copies that many bytes of the base word, token `0x09` the whole word, and
+Control byte `0x08` with a two-byte count `& 0x7FFF` copies that many bytes of the base word, control byte `0x09` the whole word, and
 anything else is copied (`0x002B45E3`-`0x002B46A2`).
 
 `0x002B3770(size, out, &pos, value, digits, pad, fullwidth, space)` writes a number with `0x003EFD00` and turns each digit
 into the font's glyph code through the font sheet's first character map, or the second with `fullwidth`; a digit the
-map gives 0 becomes the blank token 7, or 1 with `fullwidth`, and `space` adds a final `0x04` ([Fonts](fonts.md)).
+map gives 0 becomes the blank control byte `0x07`, or `0x01` with `fullwidth`, and `space` adds a final `0x04` ([Fonts](fonts.md)).
 
 Three writers build codes for menu strings:
 
@@ -228,7 +228,7 @@ and 5 handlers use it.
 
 Over every string of the nine languages, these never appear:
 
-- the tokens `0x06`, `0x07`, `0x0B`, `0x0C` and `0x0D`;
+- the control bytes `0x06`, `0x07`, `0x0B`, `0x0C` and `0x0D`;
 - the escapes `"`, `#`, `0`, `6`, `:`, `V` and `_`;
 - the icon letters `\`, `]`, `b`, `d`, `f`, `h`, `i` and `j`.
 
@@ -262,7 +262,7 @@ reads past those options; their codes are counted separately.
 
 | Column | Meaning |
 |---|---|
-| `code` | the token byte, or `0F` and the selector byte |
+| `code` | the control byte, or `0F` and the selector byte |
 | `char` | the selector as a character; `space` and `quote` stand for `0x20` and `0x22` |
 | `arm` | the address the jump table sends the code to |
 | `parser` | the payload parser the arm calls, or `none` |

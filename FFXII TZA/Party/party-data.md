@@ -25,7 +25,7 @@ The block holds:
 - the forty member stats records from `+8` ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md));
 - the inventory: owned counts and learned bits per class, laid out by the descriptors at `0x01EEBCC0` and rebased by
   `0x0030B6A0` ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md));
-- the seats, leader and battle mode ([Party slots](party-slots.md),
+- the seats, the leader selector and battle mode ([Party slots](party-slots.md),
   [Battle mode](../Engine-Core/party-control-modes.md));
 - the mode flags `+0x5B04`, whose bits `0x1` and `0x2` the status view `0x00329220` tests for its flag bits `0x400` and `0x800`; the
   screens read members through that view, the battle menu's target window `0x002BFD20` among them
@@ -85,7 +85,8 @@ the roster array `0x022C1740`, the inventory descriptors `0x01EEBCC0` and the sa
 ## Related
 
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the forty member records.
-- [Party slots](party-slots.md) - the five slot maps and the leader.
+- [Party slots](party-slots.md) - the five slot maps and the leader selector.
+- [Party leader](party-leader.md) - the leader handle the selector becomes.
 - [Scenario presets](scenario-presets.md) - the sets that reset and refill the block.
 - [Gambits](../Enemy-AI-And-Gambits/gambits.md) - the gambit banks.
 - [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md) - the count words, bits and tallies.

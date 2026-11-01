@@ -33,14 +33,14 @@ slot file's read and write).
 | `+0x01064` | 256 | quest scenario flag, `u8` per quest id | `0x0046B490` (`setquestscenarioflag`) | `0x0046B180` (`getquestscenarioflag`) |
 | `+0x01164` | 512 | `u16` per quest id: the field id (`0x003148F0()`) when the quest was first ordered | `0x0046B3F0`, `0x0046B350` | `0x0046B0D0` |
 | `+0x01364` | 32 | quest ok bits | `0x0046B380` (`setquestok`) | `0x0046B1F0` (`isquestok`) |
-| `+0x01384` | 8 | flag bank of 64 bits ([persistent flag banks page](../Story-Events-And-Hunts/story-flags.md)) | `0x0032AC70` | `0x0032A9A0` |
-| `+0x0138C` | 8 | second flag bank of 64 bits | `0x0032ACF0` | `0x0032AA00` |
-| `+0x013B4` | 256 | flag bank of 2048 bits | `0x0032ABF0` | `0x0032A930` |
-| `+0x014B4` | 64 | flag bank of 512 bits: ids 0-255 in the first 32 bytes, ids 256-511 in the next | `0x0032AD70`, `0x0032ADF0` | `0x0032AA60`, `0x0032AAD0` |
-| `+0x014F4` | 64 | the primary flag bank, ids 2-511 | `0x0032AB60` | `0x0032A8A0` |
+| `+0x01384` | 8 | story flag bank Bank64A, 64 bits ([Story flags](../Story-Events-And-Hunts/story-flags.md)) | `0x0032AC70` | `0x0032A9A0` |
+| `+0x0138C` | 8 | story flag bank Bank64B, 64 bits | `0x0032ACF0` | `0x0032AA00` |
+| `+0x013B4` | 256 | story flag bank Bank2048, 2048 bits | `0x0032ABF0` | `0x0032A930` |
+| `+0x014B4` | 64 | story flag bank Bank512, 512 bits: ids 0-255 in the first 32 bytes, ids 256-511 in the next | `0x0032AD70`, `0x0032ADF0` | `0x0032AA60`, `0x0032AAD0` |
+| `+0x014F4` | 64 | the primary story flag bank, ids 2-511 | `0x0032AB60` | `0x0032A8A0` |
 | `+0x01534` | 1 | the music track override, used while `+0x1063` bit `0x40` is set | `0x0026A720`, `0x002628B0` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` |
 | `+0x01535` | 1 | a byte the options apply `0x002DDA30` writes as 1 and the verb handler `0x0050D180` writes from its operand, through `0x002EF370` | `0x002EF370` | |
-| `+0x02000` | 24576 | a copy of the battle-state block's first `0x6000` bytes | `0x00229B40`, `0x005844A0` | `0x00235AF0`; `0x002EF4A0` copies the span out to `0x021B290C` |
+| `+0x02000` | 24576 | a copy of the party block's first `0x6000` bytes | `0x00229B40`, `0x005844A0` | `0x00235AF0`; `0x002EF4A0` copies the span out to `0x021B290C` |
 | `+0x08000` | 18456 | the image-backed state block, `*(0x020927C0)` | see its table below | |
 | `+0x0E000` | 4 | the plain CRC of image `+0x8`-`+0xE1FF` (`0x003BB220`), whose complement the header carries at `+0x00`; computed over the active buffer `0x002EF640()` but stored into the buffer `0x00583D60`'s third argument selects (the staging buffer when it is not 0, as `0x003145E0` passes through `0x005844A0`) | `0x00583D60` | |
 | `+0x0E040` | 512 | group persistent bank A, a copy of `0x02099FF0` | `0x0025D8E0` from `0x00229B40` and `0x00584580` | `0x00269A20` from `0x005843E0` and `0x00584210`; `0x005844A0`; `0x002EF7C0` copies the bank out to `0x021C8B80` |
@@ -48,7 +48,7 @@ slot file's read and write).
 | `+0x2E250` | 512 | group persistent bank B | `0x0025D8E0` | `0x00269A20`, `0x00229B40`, `0x005843E0` |
 | `+0x2E450` | 131088 | spawn-keep image B | `0x00233440` | `0x00233550`, `0x00229B40`, `0x005843E0` |
 | `+0x4E460` | 44 | the save-transition metadata record | `0x002EF540`, `0x002EF3C0`, `0x002EF510`, `0x00584580`, `0x003145E0` | `0x002EF410`, `0x005843E0`, `0x00229B40`, `0x00584210` |
-| `+0x4E48C` | 29712 | the battle-state block, `*(0x02EBF190)` ([its field map](../Party/party-data.md)) | bound by `0x00238A80` and `0x00233C10`, cleared whole by `0x002370C0`; its accesses through `0x02EBF190` are on [Party data](../Party/party-data.md) | the same page |
+| `+0x4E48C` | 29712 | the party block, `*(0x02EBF190)` ([its field map](../Party/party-data.md)) | bound by `0x00238A80` and `0x00233C10`, cleared whole by `0x002370C0`; its accesses through `0x02EBF190` are on [Party data](../Party/party-data.md) | the same page |
 
 Each spawn-keep image is preceded by its group bank, so pair A and pair B are two `0x20210`-byte
 blocks at `+0xE040` and `+0x2E250`, and `0x005844A0` clears both pairs with one `memset` of `0x40420` bytes
@@ -69,7 +69,7 @@ The companion table has one row per access site:
 | `via` | empty when the function computes the address from the buffer getter `0x002EF640` or `0x002EF2B0` itself; `argN from F at S` when the pointer came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S, `argN+0xK` when it came in offset by K; `0x02EBF190` or `0x020927C0` when the function loads that block pointer; `0x02164280` for a direct reference to the buffer; `file kind 8` and `file kind 9` for the slot file's write and read |
 | `note` | what the access does, where the instruction alone does not show it (a bulk copy or clear and its size) |
 
-The battle-state block's accesses through `0x02EBF190` are not repeated here: the table carries one `range` row for the
+The party block's accesses through `0x02EBF190` are not repeated here: the table carries one `range` row for the
 block, and [the block's field map](../Party/party-data.md) lists them field by field; the copies and clears that reach
 it from the buffer are on that page too.
 
@@ -125,7 +125,7 @@ block in four steps:
 
 1. it zeroes all `0x4818` bytes;
 2. it writes six header dwords at `+0x58`-`+0x6C`: `0x20050223` from `0x002EF2A0`, `0x1538` from
-   `0x002EF290`, the battle-state block's magic `0x05071901` from `0x00235E90` and its size `0x7410` from
+   `0x002EF290`, the party block's magic `0x05071901` from `0x00235E90` and its size `0x7410` from
    `0x00235E80`, then the block magic `0x0131F3EA` and its size `0x4818`;
 3. it runs `0x00253240` for the twelve classes;
 4. it zeroes `+0x30` for 500 bytes, `+0x3244` for `0x80`, `+0x32C4` for 8 and `+0x224` for `0x3020`.
@@ -196,9 +196,9 @@ restores bank 2 and the two field ids only.
 
 Before it reaches the pair, `0x00229B40` copies the header and the payload up to the first group bank
 (`0xE240` bytes: `0x1C4` passes of `0x80` and a `0x40`-byte tail) and the first `0x8000` bytes of the
-battle-state block from the active buffer `0x002EF640()` to the staging buffer `0x002EF620()`.
+party block from the active buffer `0x002EF640()` to the staging buffer `0x002EF620()`.
 
-Which pair is used depends on bit `0x1000` of the battle-state block's flag dword (`0x00236760`, set and
+Which pair is used depends on bit `0x1000` of the party block's flag dword (`0x00236760`, set and
 cleared by `0x0023A390`); `0x00229B40` takes the bit as its argument from its only caller `0x003145E0`
 (`0x003147BB`):
 
@@ -218,20 +218,20 @@ Struct SaveTransitionRecord base=payload+`0x4E460` size=`0x2C`:
 |---|---|---|---|
 | `+0x00` | `i32` | mode | `0x0208D455` as a dword (`0x00584580`) |
 | `+0x04` | `u32` | stamp | `0x021B28E4` (`0x002EF3C0`); `0x003145E0` writes the destination field here (`0x00314731`) when bit `0x1000` is clear and the field is not 12, and `0x00584580`'s `0x002EF3C0` overwrites it unless `0x003145E0` returned early |
-| `+0x08` | `u8[16]` | blockA | battle-state block `+0x5AE0`-`+0x5AEF` (`0x002EF3C0`) |
-| `+0x18` | `u8[16]` | blockB | battle-state block `+0x5AD0`-`+0x5ADF` (`0x002EF3C0`, `0x002EF510`) |
-| `+0x28` | `u32` | flags | battle-state block `+0x5B04` (`0x002EF3C0`); `0x002EF510` sets bit `0x1` from bit `0x2` of `+0x18` |
+| `+0x08` | `u8[16]` | blockA | party block `+0x5AE0`-`+0x5AEF` (`0x002EF3C0`) |
+| `+0x18` | `u8[16]` | blockB | party block `+0x5AD0`-`+0x5ADF` (`0x002EF3C0`, `0x002EF510`) |
+| `+0x28` | `u32` | flags | party block `+0x5B04` (`0x002EF3C0`); `0x002EF510` sets bit `0x1` from bit `0x2` of `+0x18` |
 
 `0x002EF540` fills the whole record from the `0x2C` bytes at `0x021B28E0` during `0x00229B40`. The restore
 `0x002EF410` copies `+0x08` to block `+0x5AE0` and `+0x28` to `+0x5B04`; when bit `0x2` of `+0x18` is set it
 also restores `+0x5AD0` and calls `0x003139D0(+0x20)`; when bit `0x1` of `+0x08` is set it calls
 `0x00304790(+0x0C)` and `0x003047C0(+0x10)` and rewrites `+0x5B04` with bit `0x2` set and bit `0x1` clear.
 
-### The battle-state block
+### The party block
 
 `0x00238A80` and `0x00233C10` bind `0x02EBF190` to image `+0x4E68C`, payload `+0x4E48C`, and `0x00233C10`
 checks the magic `0x05071901` at `+0x00`. The block's interior is the
-[battle-state block field map](../Party/party-data.md); what
+[party block field map](../Party/party-data.md); what
 the save layer itself does to it:
 
 - `0x002370C0` resets the block: all `0x7410` bytes zeroed, the magic written, the words
@@ -259,6 +259,6 @@ the save layer itself does to it:
 - [Game settings](game-settings.md): the options record inside the image-backed block.
 - [Zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md): the transition record's users.
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn-keep entries.
-- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the flag accessors.
-- [The battle-state block field map](../Party/party-data.md).
+- [Story flags](../Story-Events-And-Hunts/story-flags.md): the flag banks and their accessors.
+- [The party block field map](../Party/party-data.md).
 - [Steam integration and achievement catalogue](../Steam-And-Achievements/achievements.md).

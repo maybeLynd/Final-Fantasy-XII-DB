@@ -40,7 +40,7 @@ otherwise an empty table at `0x02CA6050`, whose count it zeroes; render and effe
 `0x00358940(slot, ordinal)` returns `[block + 8 + ordinal * 8]` for an ordinal below the count. The
 descriptor table at `0x01E0C328` has eight entries of `{u8 class, u8 sub, u16 size}`:
 
-| Sequence | Class | Sub | Size | Movement context | Secondary context | Resource entries | Wait slots |
+| Sequence | Class | Sub | Size | Movement context | Secondary context | Request entries | Wait slots |
 |---|---|---|---|---|---|---|---|
 | 0 | 0 | 0 | `0x328` | none | none | `+288`, 10 | `+0x1E8`, 8 |
 | 1 | 1 | 0 | `0x3A8` | `+0x120` | none | `+416`, 10 | `+0x268`, 8 |
@@ -52,8 +52,8 @@ descriptor table at `0x01E0C328` has eight entries of `{u8 class, u8 sub, u16 si
 | 7 | 3 | 1 | `0x668` | `+0x120` | `+0x350` | `+1240`, 8 | `+0x578`, 6 |
 
 `0x00266AD0(record)` plants the pointers from the sequence in `+0x03 & 0x1F`: `+0xB8` = the movement
-context, `+0xC0` = the secondary context, `+0xA0` = the resource entry pool, `+0xA8` = `+0xA0` plus
-`0xC8`, or `0xA0` when the descriptor's `sub` is 1. The resource entries are 20 bytes each and the
+context, `+0xC0` = the secondary context, `+0xA0` = the request entry pool, `+0xA8` = `+0xA0` plus
+`0xC8`, or `0xA0` when the descriptor's `sub` is 1. The request entries are 20 bytes each and the
 wait slots 40, so the wait slots end exactly at the record's size on every row.
 
 ### The class byte
@@ -70,7 +70,7 @@ for 7, and sets `+0x14` bit `0x80` (battle-unit eligible) for sequences 5 and 7.
 `0x00266530(slot, block, i)` fills record `i` on a zeroed block:
 
 1. it clears `+0x14` bit `0x80`, zeroes `+0xEC` and sets `+0xF5` to `0xFF`, picks the counts (8 wait
-   slots and 10 resource entries, or 6 and 8 for a `sub` of 1), plants the pointers (`0x00266AD0`) and
+   slots and 10 request entries, or 6 and 8 for a `sub` of 1), plants the pointers (`0x00266AD0`) and
    seeds `+0x1C` and `+0x14` bit `0x80` (`0x00266BD0`);
 2. it writes `+0x00` = `i`, `+0x10` = 0, `+0x12` = `0xFF`, `+0x15` = the slot index, `+0x16` = 1,
    `+0x118` = `0x3C0000`, `+0x102` = `0xFFFF`, `+0x04` = `0xFF00`, `+0x20` = `0xFF`, and `+0xF8` =
@@ -93,7 +93,7 @@ for 7, and sets `+0x14` bit `0x80` (battle-unit eligible) for sequences 5 and 7.
    and tags 4 and above the sixteen pointers from `0x0209A210` that `0x0026CE60` clears on slot 0;
 7. the record that held a tag below 4 is evicted (`+0x12` = `0xFF`, `+0x0F` = 3), and the new
    record gets `+0x12` = the tag and `+0x0F` = 2 for tags 0-3, 3 above;
-8. it builds the resource entry free list (`0x003DB580`) and clears bytes `+0x00`-`+0x16` of the
+8. it builds the request entry free list (`0x003DB580`) and clears bytes `+0x00`-`+0x16` of the
    first `+0x88` (channel count) wait slots, which covers every slot only because the two counts
    are both 8 or both 6;
 9. it runs the movement defaults `0x00265FF0(record, [+0xB8])` and `0x00265B60`. `0x00265FF0` resets the
@@ -114,9 +114,9 @@ for 7, and sets `+0x14` bit `0x80` (battle-unit eligible) for sequences 5 and 7.
    from the `+0x16` id (`+0xDC`, else row `+0x16` when the count is over 10) with the same call, and
    setting bit `0x400` clears bit `0x4` again; else clears bit `0x400`. It ends with `0x003DB280(record)`.
 
-### The resource entry lists
+### The request entry lists
 
-The pool at `+0xA0` holds the record's 20-byte resource entries, linked by index: `0x003DB580` chains
+The pool at `+0xA0` holds the record's 20-byte [request entries](../Scripts-And-Script-Commands/script-requests.md#the-entry-pool), linked by index: `0x003DB580` chains
 them (`+0x00` next, `+0x01` previous, `+0x04` = `0x80000000`, `+0x10` = 0), sets the counts `+0x88`
 (channels) and `+0x89` (entries), the free-list head `+0x60` = 0 and the detached head `+0x61` =
 `0xFF`, the channel heads `+0x94` and tails `+0x8C` to `0xFF`, and clears the masks `+0x06` and

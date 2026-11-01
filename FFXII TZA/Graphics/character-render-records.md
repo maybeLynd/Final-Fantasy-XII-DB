@@ -29,12 +29,12 @@ initialises it. It forwards only three of its counts; the reference container al
 
 | Root field offset | Points at | What it holds | Initialiser |
 |---|---|---|---|
-| `+0xD90` | root `+0x000` | resource entries, `0x50` bytes, 10 chunks of 32 | `0x00409F10` → `0x0051F9F0(bank, 0x50, 5, 10, 0x02B62E40, 0x02B62F80)` |
+| `+0xD90` | root `+0x000` | render resource entries, `0x50` bytes, 10 chunks of 32 | `0x00409F10` → `0x0051F9F0(bank, 0x50, 5, 10, 0x02B62E40, 0x02B62F80)` |
 | `+0xD98` | root `+0x060` | skeleton entries, `0xC0` bytes, 5 chunks of 32 | `0x0046E250` → `0x0051F9F0(bank, 0xC0, 5, 5, 0x02CA61B0, 0x02CA6250)` |
 | `+0xDA0` | root `+0x0F0` | render model instances, `0x260` bytes, 5 chunks of 32 | `0x00477EE0` → `0x0051F9F0(bank, 0x260, 5, 5, 0x02CA74A0, 0x02CA7540)` |
 | `+0xDA8` | root `+0x160` | presentation-entry references, 64 nodes of `0x30` at root `+0x190` | `0x0051B9D0` → `0x0051F170(container, 0x40, root + 0x190)` |
 
-`0x0041E500(root)` refreshes all four after their storage moves: the resource-entry bank through
+`0x0041E500(root)` refreshes all four after their storage moves: the [render resource bank](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md#the-render-resource-bank) through
 `0x00409F70` (with the byte `0x02B62E10` held at 1), the skeleton bank through `0x0046E3E0`, the reference
 container through `0x0051B9F0` and the instance bank through `0x00478030`. `0x0041E340`, which `0x003323D0`
 runs after the record update, updates the reference container (`0x0051B970`) and then the skeleton
@@ -53,12 +53,12 @@ claims chunk 0 at once (`0x0051F6B0`).
   the high-water mark in the word `+0x26`.
 - `0x002ED570(bank, index)` returns the element: chunk `index >> shift`, offset `(index & mask) × size`,
   or null for a free slot. `0x0051FF30` and `0x00520010` walk the active list with a callback.
-- Each bank has its own acquire: `0x00409FE0` for resource entries (it returns an existing entry for the
+- Each bank has its own acquire: `0x00409FE0` for render resource entries (it returns an existing entry for the
   same resource, found by `0x0051FE30`, before taking a slot), `0x0046E4D0` for skeleton entries and
   `0x004780C0` for model instances.
 
 A record reaches the banks by index: `+0x18` selects its skeleton entry (`0x00427BD0`, `0x00421FF0`), `+0x64`
-its model instance (`0x003E55B0`), `+0x408` its `@FCP` section in the resource-entry bank, and `+0xC4` /
+its model instance (`0x003E55B0`), `+0x408` its `@FCP` section in the render resource bank, and `+0xC4` /
 `+0xC8` its presentation entries. Skeleton entry `+0x84` is the bone array, `0x290` bytes per bone with
 the bone matrix at `+0x80` (`0x00370F60`); entry `+0xA8` is the owning record's index.
 
@@ -81,7 +81,7 @@ calls `0x004279B0(key, name, …)` with the 32-byte name of the current model co
 
 The initialiser ORs `0x2010F9` into `+0x284`, copies the key to `+0x1C` and the model name to `+0x3C`,
 sets `+0x284` bit `0x4000` for a name starting `c`, `m`, `n` or `s`, stores the context at `+0x10`, finds the
-model's `@FCP` and `@FOR` sections through the resource-entry bank, and picks a per-model float at
+model's `@FCP` and `@FOR` sections through the render resource bank, and picks a per-model float at
 `+0x734` from the name (2.0 for `s0011`, for example; 1.0 for a name outside `s`, `m` and `n`).
 
 ### Promotion, retirement and clearing
@@ -318,7 +318,7 @@ an alternate whose presentation entry is `+0xC8`; the current entry is `+0xC4`. 
 kind in bits 12 to 15 and an index in bits 0 to 11.
 
 `0x00424D80(record, resource, source, event, …, selector)` starts an event. A kinded event must pass
-`0x004235C0(record, event, selector)`. The stream is the resource's own entry in the resource-entry bank
+`0x004235C0(record, event, selector)`. The stream is the resource's own entry in the render resource bank
 or, failing that, the model's `@FCM`, `@FRP` or `@FMN` section (`0x00409FA0`); the entry is admitted by
 `0x0051BA80`, its id stored in `+0xC4`, the event in `+0xCC` and the old event in `+0x60`.
 
@@ -352,7 +352,7 @@ The event's kind picks the source resource `+0x390`:
 
 | Kind | Source |
 |---:|---|
-| 0 | the registered script motion slot that bits 20–23 (area slot) and 16–19 (slot) name (`0x003DD740`, state 4 only); `0x00423230` then clears bit `0x1000` of the current entry's `+0x2C8` |
+| 0 | the registered script motion slot that bits 20–23 (manager slot) and 16–19 (slot) name (`0x003DD740`, state 4 only); `0x00423230` then clears bit `0x1000` of the current entry's `+0x2C8` |
 | 1, 2 | `+0x430`, or `+0x42C` by the low two bits of `+0x40B` |
 | 3, 4 | `+0x430` (kind 3; `0x302F` and `0x3009` as kinds 1 and 2) or `+0x42C` (kind 4) |
 | 5 | `+0x42C` while `0x00423170` holds; otherwise the skill-motion cache entry for the actor's model and the index (`0x003DC7D0`, `0x003DCA00`), or `+0x42C` with `+0x3B4` set to `0x203D` when there is none |
@@ -364,7 +364,7 @@ event index (index 0 for kind 5, `0x00408F80`) has bit `0x10000` or `0x20000` of
 
 `motionplay_bb(motion, frames)` (`0x00BB`, `0x003DD8D0`) and `puppetmotionplay_41f` (`0x041F`,
 `0x003DD980`, for a puppet) post a kind-0 event: a motion id whose top byte is `0x10` to `0x1F` names
-slot `top − 0x10` of the script's area slot. They act only when that slot is registered and pass the
+slot `top − 0x10` of the script's manager slot. They act only when that slot is registered and pass the
 event `(area << 4 | slot) << 16 | (motion & 0xFFFFFF)` with the frame count to `0x002EB080` or `0x002EB0D0`; the actor
 form also stores the slot at actor `+0xF5`.
 
@@ -456,8 +456,8 @@ The access tables beside this page list every instruction found touching each st
 
 - [the record](character-render-records-character-render-record-accesses.tsv);
 - [the root](character-render-records-render-resource-root-accesses.tsv);
-- [a resource entry](character-render-records-render-resource-entry-accesses.tsv) and
-  [the resource-entry bank](character-render-records-render-resource-entry-bank-accesses.tsv);
+- [a render resource entry](character-render-records-render-resource-entry-accesses.tsv) and
+  [the render resource bank](character-render-records-render-resource-entry-bank-accesses.tsv);
 - [the instance bank's chunk entries](character-render-records-chunked-slot-bank-entry-accesses.tsv) and
   [slot entries](character-render-records-chunked-slot-entry-accesses.tsv).
 

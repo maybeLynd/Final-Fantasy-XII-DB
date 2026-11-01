@@ -212,9 +212,10 @@ once: the airship route code (`global_flag[2]`), the Giza Plains season (`mp_sav
 (`mp_rbl_flg6`), the Firemane battle state (`g_btl_ブッシュファイア`), the Garamsythe sluice gates (1 closed, 0 open),
 the two Lhusu Mines switches and others.
 
-Any other variable is named by what its store lines put there, with the
-function and line: a question's answer with the answer's text, the number the script gives the field picked in the
-destination map menu, or the value set or computed at given lines with the tests under which each store runs.
+Any other variable is named by what it records in the game: a question's answer with the answer's text, the number
+the script gives the field picked in the destination map menu, or what the player did or saw when the script stored it
+(the Spire Ravel trip count, the Site 9 cart stop, a device inscription read, a hunt accepted), with the bit value for a
+flag bit; no zone row names a value only by the lines that store it.
 
 A store's own tests are not repeated when the row already states them. A cell longer than 600 characters names the
 stores' places only. When every value the script stores in a local or file variable fails a test, and a store without
@@ -304,9 +305,9 @@ table). `line` is the listing line of the write or call.
 | `condition` | The conditions of the call and of the stores that give its arguments, joined by `and` |
 | `condition_text` | The same conditions in game terms, one clause per test, joined by `;` (`-` on the developer rows) |
 | `tests` | What the condition tests: story counter, file variable, global flag, party state, arrival or map, item or flag, exit lock, choice or local value, value stored by another map, other |
-| `destination_field`, `destination_map` | The field id, or the expression the call passes, and the map or maps it reaches: for `lastmap()` the corridor that jumps into the room, for the World Map picker the 18 destinations with their entrances, for Trial Mode and `dgl_n01` the map the computed or stored value gives |
+| `destination_field`, `destination_map` | The field id, or the expression the call passes, and the map or maps it reaches: for `lastmap()` the corridor that jumps into the room, for the World Map picker the 18 destinations with their entrances, for Trial Mode and `dgl_n01` the map the computed or stored value gives; for the 191 developer debug-menu rows that name no field in the call, every field the menu's answer gives, or the current field (`nowmap()`) the menu reloads |
 | `entrance`, `mode` | The entrance and mode; `one of ...` when the stores do not pair them |
-| `resolved_from` | `literal`, or the store lines that give the field or entrance |
+| `resolved_from` | `literal`, or the store lines that give the field or entrance; on those 191 rows, the question whose answer leads to the jump (its line, choice count, answers and answer test line) and the tests that bound the field |
 | `reach` | `reached` or `unreachable` |
 
 ### [`script-census-ai-verbs.tsv`](script-census-ai-verbs.tsv)

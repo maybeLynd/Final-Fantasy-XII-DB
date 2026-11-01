@@ -93,7 +93,7 @@ byte `+0x04`, `+0x68` = float(byte `+0x23`), `+0x56` = byte `+0x05`, `+0x6C` = f
 ### The party path
 
 With kind 0 the index must pass `0x00322C50(2, index, 1)`, the party table's count. The installer
-takes row `index` of the party table `0x02EBF130`, points the stats at the battle-state block's
+takes row `index` of the party table `0x02EBF130`, points the stats at the party block's
 element `[0x02EBF190] + 8 + index * 0x1C8` with no spawn record, resolves the name from the row's
 word `+0x30` the same way, and stores `+0x6E0` = `0x02089378 + index * 0x170`, `+0x6F0` = `0x01E09350`,
 `+0xE60` = the row, `+0x64` = 2π, `+0x6C` = row byte `+0x2B` times 1.5, `+0x68` = float(row byte

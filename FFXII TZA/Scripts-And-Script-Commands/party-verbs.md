@@ -15,9 +15,9 @@ why a scene pauses for a moment after a character joins or leaves.
 
 ## How it works
 
-### The three party maps
+### The three slot maps
 
-The party block at `[0x02EBF190]` carries nine two-byte slots per map: map 0 at `+0x5A48` is the
+The party block at `[0x02EBF190]` carries nine two-byte seats per [slot map](../Party/party-slots.md#the-nine-seats): map 0 at `+0x5A48` is the
 master the mutators edit, map 3 at `+0x5A7E` the gameplay roster the party verbs read, map 1 at
 `+0x5A5A` the set combat is servicing, and `+0x5AA4` the leader's selector (`0x003271D0`).
 

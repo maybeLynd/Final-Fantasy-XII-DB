@@ -187,8 +187,9 @@ Banks:
 
 ### What each global variable is for
 
-[`script-variables-global-meanings.tsv`](script-variables-global-meanings.tsv) has one row for each of the 620
-save-payload offsets. It is counted over the 1,114 decompiled `us` scripts. A row gives the variable's role, one
+[`script-variables-global-meanings.tsv`](script-variables-global-meanings.tsv) has one row for each of the 624
+save-payload offsets. It is counted over the 1,114 decompiled `us` scripts and the three controller scripts
+`bin/evctrl`, `bin/mapctrl` and `bin/btlctrl`, which ship in the `in` and `ch` trees only. A row gives the variable's role, one
 sentence on what the scripts use it for, and its values: those the scripts write, test, switch on or mask. It also
 gives the kinds of steps its tests choose, and the scripts that use it.
 
@@ -200,14 +201,18 @@ gives the kinds of steps its tests choose, and the scripts that use it.
 | conversation counter | 17 | a talk function adds 1 to it and switches or tests on it |
 | battle word | 15 | a map's foe setup (`setup.map` or `setup.battle`) tests it |
 | control bit word | 57 | bit tests and bit writes make up at least half of its uses |
-| area state | 326 | its other uses lie in the maps of one area (one three-letter map prefix, such as `rbn`) |
-| game-wide state | 170 | its other uses lie in more than one area |
-| debug display | 13 | `sysDVAR`, the debug display, is the one statement that shows it |
-| declared | 16 | no statement of the shipped scripts reads or writes it; 15 of them appear in the developer test scripts |
+| area state | 328 | its other uses lie in the maps of one area (one three-letter map prefix, such as `rbn`) |
+| game-wide state | 172 | its other uses lie in more than one area |
+| debug display | 16 | the debug display (`sysDVAR`) or a developer menu of the controller scripts is all that uses it |
+| declared | 13 | no statement of the shipped scripts reads or writes it; 12 of them appear in the developer test scripts |
 
 The gates column counts the steps under each test of the variable by kind: map exits, floors and walls, items and gil,
 scenes, messages, requests, stores, map models, battles, music and sound, screen and camera, and actors. A step under
 several tests counts once for each variable it tests. Bits are written as values (`0x4` for `& 4`).
+
+Two developer menus can also fill every byte `0x000` to `0xFFF` of the global area with 255 or 0: the field debug
+menu's second convenience menu, answers 12 and 13 (`bin/mapctrl` lines 2792 to 2802), and the Battle Plan Menu's
+event control, answer 6 (`bin/btlctrl` lines 1494 to 1510).
 
 ## Operations
 

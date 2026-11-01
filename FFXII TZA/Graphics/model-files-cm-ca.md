@@ -28,8 +28,8 @@ A character render record is bound to its model by `0x0041FCF0`, which passes th
 (record `+0x408`) to `0x0041F340`. That routine:
 
 1. finds the `@FTR` entry by tag and the record's name (`0x00409660`), sizes the skeleton
-   (`0x003712E0`) and builds it in a new row of the table at root `+0xD98` (`0x0046E4D0` → `0x00372820`);
-2. makes a model row in the table at root `+0xDA0` with `0x004780C0`, which calls `0x00504F00`, and keeps
+   (`0x003712E0`) and builds it in a new [skeleton entry](skeleton-entries-and-bones.md) at root `+0xD98` (`0x0046E4D0` → `0x00372820`);
+2. makes a render model instance in the table at root `+0xDA0` with `0x004780C0`, which calls `0x00504F00`, and keeps
    the row's index in the record's word `+0x90`;
 3. when the model's bank entry has an effect ticket, makes the record's effect context from it
    (`0x003B3550`, kept at record `+0x288` and row `+0x240`).
@@ -64,7 +64,7 @@ Every entry starts with the same `0x30`-byte header the section search compares.
 
 ### The model row
 
-`0x00504F00` fills a `0x260`-byte row of the root's `+0xDA0` table. It copies the 32-byte model name to
+`0x00504F00` fills a `0x260`-byte render model instance of the root's `+0xDA0` table. It copies the 32-byte model name to
 `+0x0C`, binds the container section at `+0x1F0` and the `@FEF` section at `+0x228` (`0x00504E70`), and
 stores each entry's offset from the container, or −1 when the entry is absent (`0x00409A30`):
 
