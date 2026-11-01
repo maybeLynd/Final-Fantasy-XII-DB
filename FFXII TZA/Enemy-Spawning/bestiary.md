@@ -166,6 +166,12 @@ the word, its `fr` text, its model's folder and the zone-script functions that p
 The 31 `bts_` test-battle scripts under `plan_map` hold the other 517 placements of the shipped scripts. The US
 kind-5 array names none of them, so no area load runs them, and they are left out.
 
+### Columns of bestiary-no-primer-entry.tsv
+
+| Column | Holds |
+|---|---|
+| `same_name_entry` | for a definition whose name is also the name of a Bestiary entry, that entry and the note that its monsters list names other definitions: entry 376 for the three Bangaa of `rbn_a`, entry 372 for its five Seeq, entry 291 for the Omega Mark XII of `gil_i` row 9; `-` on the other 120 rows |
+
 ### The Clan Hall reward for a boss
 
 Montblanc's talk in the Clan Hall (`rbn_a14`) calls `funcActor.getClearBoss`, which walks 19 bosses in a fixed
@@ -185,6 +191,16 @@ name the fight.
 - the bit;
 - the shipped script steps that write the defeat, with their map and region;
 - the developer and preset scripts that also write it.
+
+### Columns of clan-hall-boss-rewards.tsv
+
+| Column | Holds |
+|---|---|
+| `montblanc_lines` | the two texts the talk shows for the boss, separated by ` / `: Montblanc's line naming the fight, then the dedication of the reward in double quotes; the two Society of Antiquaries rows hold the dedication alone |
+| `given_bit` | the boss's bit in `g_iw_報酬あげたボスフラグ`, the word that records a given reward: byte `order / 8`, bit value `1 << (order mod 8)`, from `byte 0 bit 0x1` for order 0 to `byte 2 bit 0x4` for order 18 |
+| `defeat_set_at` | the shipped steps that set the defeat variable to 2, as script, actor, function and step, with the map name and region in brackets |
+| `developer_or_preset_setters` | the developer test scripts (`evt_t0081` to `evt_t0505`) and the new-game set `pre_z0000` that also store the variable, as script, function and step; `-` on 10 bosses |
+| `cite` | the steps behind the row: the boss's step of `funcActor.getClearBoss` in `rbn_a14` and the case of Montblanc's talk that gives the package |
 
 ### The boss fights
 
@@ -214,6 +230,15 @@ The `story_counter_link` column says how the fight touches the story counter:
 Where a story-counter value's developer name names the battle, `link_reason` gives the value and its number of
 shipped writes. Eight fights store a value other than the one named for them, because the counter skips the named
 value; `link_reason` gives both.
+
+### Columns of story-bosses.tsv
+
+| Column | Holds |
+|---|---|
+| `story_point_before` | the story-counter (`シナリオフラグ`) tests that hold where the fight is placed, each with its steps and the developer name of the value it tests (for example `645: After the secret of the mines`); for a fight whose steps test no story-counter value, that the defeat variable is 1 there and, where `pre_z0000` sets it, the new-game step that sets it to 1 |
+| `other_writers_of_1` | the stores of the defeat variable besides the new-game set in `pre_z0000`: `only the new-game set (pre_z0000)` on 39 fights; otherwise each `set to 1 by` (and `set to 0 by`) step with its condition, or, on 6 fights, the steps that set it to 2 outside the fight |
+| `story_point_after` | the first story-counter value stored after the battle, in decimal and hex with its developer name, the step that stores it and the step that sets the defeat variable to 2 (34 fights); on the other 28, that the fight's function stores no story-counter value after the battle, with the defeat step |
+| `cite` | the steps behind the row: the store of 2 in the defeat variable, the tests of the variable for 1, and the step that opens the boss gauge |
 
 ### The placement verbs
 
@@ -413,15 +438,34 @@ No instruction in that set touches the bytes above, so the TSV gives them raw.
 | `base_row`, `growth_row` | definition `+0x22`, `+0x24` |
 | `hp` ... `magick_evade` | the stats `0x002FEF30` builds at a placement's base level without order adjustments: the base row plus the gear's bonus records, Attack and evades from the gear unless `+0x15` says otherwise, capped as on [Stats](../Damage-And-Battle-Formulas/stats.md) |
 | `*_per_level` | the growth row's value added per level above the base |
+| `hp_per_level` | growth row `+0x20` (`u32`), the max HP added per level: 0 to 20,000, 0 on 309 rows |
+| `mp_per_level` | growth row `+0x24` (`i16`), the max MP per level: 0 to 150 |
+| `strength_per_level`, `magick_power_per_level`, `vitality_per_level`, `speed_per_level` | growth row `+0x26` to `+0x29`, one byte each: Strength 0 to 4, Magick Power 0 to 3, Vitality 0 to 7, Speed 0 to 3 per level |
+| `attack_per_level` | growth row `+0x2D` when definition `+0x15` has bit `0x1`, so Attack comes from the rows; 0 otherwise, since Attack then comes from the gear (0 to 4) |
+| `defense_per_level`, `magick_resist_per_level`, `evade_per_level` | growth row `+0x2B`, `+0x2C` and `+0x2A`: 0 to 4, 0 to 4 and 0 to 3 per level |
 | `exp`, `lp`, `gil`, `clan_points` and their `_per_level` | the base and growth rows' rewards |
+| `exp_per_level`, `lp_per_level`, `gil_per_level`, `clan_points_per_level` | growth row `+0x34` (EXP, 0 to 666), `+0x2F` (LP, 0 on all 1,146 rows), `+0x30` (gil, 0 to 10) and `+0x00` (clan points, 0 to 520) per level |
 | `weak`, `absorb`, `halve`, `nullify`, `potency` | the class row's affinity bytes ORed with the gear's attribute records |
 | `immune`, `auto_status`, `auto_status_half` | the status codes 3, 2 and 1 of the placements' `btlAtelSetStatus` tables |
 | `augments` | the augments `btlAtelSetAbility` sets, each by its term on [Augment list](../Damage-And-Battle-Formulas/augment-list.md) with its id |
 | `steal_*`, `drop_1`-`drop_5`, `poach_*` | the items by name |
+| `steal_common`, `steal_uncommon`, `steal_rare` | definition `+0x32`, `+0x34` and `+0x36` by name; an id whose top four bits are `0xE` is gil and reads `N gil`, where N is the low twelve bits; empty for `0xFFFF` (215, 181 and 122 rows) |
+| `drop_2`, `drop_3`, `drop_4` | definition `+0x2A`, `+0x2C` and `+0x2E`, drop slots 2 to 4, by name; empty for `0xFFFF` (526, 488 and 554 rows) |
+| `poach_common`, `poach_rare` | definition `+0x44` (the 95 % item) and `+0x46` (the 5 % item) by name; empty on 530 rows each |
 | `monograph_1`, `monograph_2` | item, chance and the key item that must be held |
 | `weapon`, `weapon_element`, `weapon_status`, `off_hand` | the two equipment ids by name; the main-hand row's element and on-hit status |
 | `variant` | definition `+0x12` (the colour) then `+0x11` (the model variant), as "colour, variant" |
 | `start_hp` ... `class_bytes30` | the remaining fields as the layout tables above name them, raw; `push_weight` is class row `+0x10` divided by 10, and `class_bytes30` the sixteen bytes of `+0x30` |
+| `flags03` | definition `+0x03` in hex, the bits of the layout above: `0x3` the tracked-HP class, `0x10` the height and AI tests, `0x20` the shadow kind |
+| `flags15` | definition `+0x15` in hex: bit `0x1` Attack and weapon evade from the rows, `0x2` shield and magick evade from the rows, `0x4` the unit flag, `0x18` the target-information query |
+| `scale_x`, `scale_y`, `scale_z` | definition `+0x0A`, `+0x0C` and `+0x0E` (`i16`), the model scale in percent: 55 to 300, 100 on 942 rows; the three are equal on 1,145 of the 1,146 rows |
+| `anim_set` | definition `+0x13`, the animation set: 16 on 18 rows and 19 on 3; empty for `0xFF`, the weapon's set, on 1,125 |
+| `class_flags12` | class row `+0x12` in hex: mask `0x7` the effect column, bits `0x10`, `0x20`, `0x40` and `0x80` as the class row table says |
+| `class_kind18` | class row `+0x18` in hex: bits `0xE` the movement group, mask `0x70` the placement height |
+| `class_flags21` | class row `+0x21` in hex, `0x00` to `0x03`; bit `0x2` lets an enemy back off from its target |
+| `scale2` | class row `+0x27`, which `0x0023A570` copies to unit `+0x6C`: 20 to 45 |
+| `low_hp_radius` | class row `+0x26`, the radius `0x003247F0` uses for units below 40 % HP: 0 to 35 |
+| `class_flags28` | class row `+0x28` in hex, `0x00`, `0x02` or `0x03`: bit `0x1` the view query's height, bit `0x2` the kill chain skips the unit |
 | `explanation` | a one-line summary of the placements, HP, elements, rewards and steals; for a No name line also its name word, that word's `fr` text, its model's folder, the functions that place it and its Clan Primer entry |
 
 A value that differs between placements of one definition is listed once per variant, separated by ` / `.

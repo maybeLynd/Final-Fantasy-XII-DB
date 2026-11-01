@@ -552,6 +552,13 @@ Solver context (stack, `0x110` bytes):
 | `move_support` (`0x02EBF010`) | 120 rows; caps 1.5 (6 rows), 2.0 (102), 2.5 (12); one narrow row (map 311); map 290 listed twice, the first row (1.5) wins; every row is in [move-support.tsv](move-support.tsv) | the heading search field row |
 | `0x01EED4C0`, by byte `+0x175` | 0: above 120 degrees mode 3, below 90 (45 in the fast band) mode 2, else 1; 1: always 1; 2 and 4: always 2; 3: above 45 mode 3, else 2; 5: below 30 mode 1, else 2; 6: above 0.01 rad mode 3, else 2; 7: 2, or 1 in the slow band; the halves for flag bit `0x8` are identical | the steering mode table |
 
+### Columns of move-support.tsv
+
+| Column | Holds |
+|---|---|
+| `narrow_fan` | `yes` when bit `0x1` of the row's byte `+0x04` is set, so the heading search uses the narrow fan; only the row of map 311 has it, and the other 119 rows are empty |
+| `used` | `yes` when the row is the first with its map id, which is the row the heading search takes; `no: an earlier row has this map` on the one later row of map 290 |
+
 ## Operations
 
 Each navigation step: route, follow, refresh the three latch bits, solve. The solver builds its
@@ -652,8 +659,27 @@ passes their addresses to; no image-base-relative reference or disp32 displaceme
 - [Random number generators](../Random-Numbers/random-number-generators.md): the CRT stream.
 - [`navigation-mesh-corridor-agent-accesses.tsv`](navigation-mesh-corridor-agent-accesses.tsv): every censused
   access to the solver context, followed from its builder `0x00336710`, one row per instruction (67 rows).
+- [`battle-locomotion-angle-accesses.tsv`](battle-locomotion-angle-accesses.tsv): the censused accesses to the
+  locomotion block (unit `+0x80`) and the solver context in the navigation step, the builder and the solvers, one
+  row per instruction (484 rows).
 
-In this access table, `function`, `name` and `site` give the function, its name and the instruction's address,
+In the corridor table, `function`, `name` and `site` give the function, its name and the instruction's address,
 `disp` the offset the instruction reaches from the start of the solver context, `kind` a read (`r`), a write (`w`)
 or both (`rw`), `instruction` the instruction itself, and `route` `ctor-seeded 0x00336710`: the context as the builder
 receives it and passes it on to the functions it calls.
+
+In the locomotion table, the same columns hold the same, with `disp` an offset in the locomotion block or, written
+`ctx+`, in the solver context. `route` follows the pointer from where the function got it to the instruction, hop by
+hop:
+
+- `ctx-builder`, `solver`, `solve-entry` and `setter`: inside the builder `0x00336710`, the solvers `0x003394A0` and
+  `0x0033BED0`, the solvers `0x00336CE0` and `0x0033A240` (`arg1`: through the second argument) and `0x003DB130`, through
+  the pointers they receive;
+- `ctx-stack-K`: the context is the function's own local at `rsp + 0x20`, read through `rsp` (K is the frame size
+  the function's prologue subtracts from `rsp`, less 0x20); `ctx-stack@S`: the call at S passes that local;
+- `backtrace F->arg0 mov`: the register the function passes to F as its first argument, traced back to the `mov`
+  that set it; `<rdef`: the instruction uses that `mov`'s source register instead;
+- `argN@S`: passed on as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`) by the call at S; `st@S`: the block pointer
+  loaded from the context's `+0x100` or `+0x108` at S; `+slot`: kept in a stack slot;
+- `note`: the nine rows that reach neither, the stack slots and home-space saves and two pointers to other objects,
+  each with what it reaches instead.

@@ -127,6 +127,22 @@ The `0xB00` kinds, each built by the record store as `alloc(size)`, then `ctor`,
 The kind-`0x54` mesh record's layout is on [effect element types](effect-element-types.md). The
 case-by-case load and destroy arms are in [`effect-element-runtime-switch-family-record-store-5x.tsv`](effect-element-runtime-switch-family-record-store-5x.tsv).
 
+### Columns of effect-element-runtime-switch-family-record-store-5x.tsv
+
+One row per `0xB00` kind, 10 rows, `0x50` to `0x59`.
+
+| Column | Holds |
+|---|---|
+| `case_value` | the kind byte, `0x50` to `0x59` |
+| `selector_byte` | the record byte the three dispatchers switch on: `+0xE`, the kind byte, on all 10 rows |
+| `load_handler` | the loader for the kind, the arm `0x00500980` jumps to for case kind minus `0x50`; the same as the Loader column above |
+| `destroy_handler` | the function the destroy dispatcher `0x00500850` reaches for the kind; `(via thunk ...)` when its arm jumps to a one-jump thunk first (kinds `0x50` and `0x52` to `0x54`) |
+| `load_role` | what the loader reads from the stream and where it stores it in the node, with the functions it calls and their addresses |
+| `destroy_role` | what the destroy body frees or clears, and for kinds `0x50` and `0x52` to `0x54` that the loader runs it first as a reset; on kinds `0x56`, `0x57` and `0x59` only the body's calls were read, not the fields it clears |
+| `evidence` | the instruction addresses and ranges read for the load and destroy bodies, with a destroy body's size in bytes (`B`) |
+| `node_size` | the bytes the arm of `0x003A9EF0` allocates for a new node (`mov ecx, size` before `call 0x0036A100`), the Object column above |
+| `find_or_create_arm` | the address of that arm in `0x003A9EF0`'s jump table (kind minus `0x50`); each allocates `node_size` bytes, calls `ctor` and then the loader |
+
 ## Shipped data
 
 | Fact | Value |
@@ -178,7 +194,7 @@ The file table's columns:
 | `magic`, `version` | the magic and the version `0x003EDAD0` sets for it: 10 for `EFX0010`, 8 for `EFX0008` |
 | `float_0x08`, `stream_size` | the header's `+0x08` as an `f32`, and its `+0x0C` |
 | `walk_ends_at_stream_size`, `trailing_bytes` | `yes` when the chunk walk ends exactly at `+0x0C` (all 3,288), and the bytes after `+0x0C` (0 in all) |
-| `chunks`, `chunks_0x600` to `chunks_0xB00` | the chunk count, then the count of each of the seven types |
+| `chunks`, `chunks_0x600`, `chunks_0x610`, `chunks_0x620`, `chunks_0x700`, `chunks_0x800`, `chunks_0xA00`, `chunks_0xB00` | the chunk count, then the count of each of the seven chunk types, by the type word `+0x06` of each chunk in the walk |
 | `kinds_0xB00` | the `0xB00` records by kind byte `+0x0E` |
 | `embedded_streams` | the offset of each further `EFX` magic inside the file; 0 in all |
 | `named_by` | each resource kind and id whose path array, in any of the twelve languages, names the file, or `chara` and the lowest slot of the character table; `-` for the 43 files no entry names |
@@ -200,6 +216,19 @@ The chunk tables' columns (a column that does not apply to the chunk's type is e
 | `record_0x0A`, `record_0x16` | `0x600`: the eleven payload bytes at `+0x0A`, and payload byte `+0x16` as the file holds it (the loader recomputes its high nibble) |
 | `tex_format`, `tex_bit_0x40`, `tex_bit_0x80` | kind-`0x52` `0xB00`: the low six bits of payload byte `+0`, and 1 when its bit `0x40` or bit `0x80` is set |
 | `tex_palettes`, `tex_reference`, `tex_size` | kind-`0x52` `0xB00`: the palette count byte `+2`, the reference size words `+4` and `+6`, and the width and height words `+8` and `+0x0A` |
+
+### Columns of effect-banks-efb-files-rows.tsv and effect-banks-efb-rows.tsv
+
+Every value below was checked against the 410 shipped `.efb` files; each holds one blob.
+
+| Column | Holds |
+|---|---|
+| `sha256_16` | in the file table, the first 16 hex digits of the file's SHA-256 |
+| `stream_magic` | the first seven bytes of the blob's `EFX` stream: `EFX0010` in 408 files, `EFX0008` in 2 |
+| `stream_bytes` | the stream's size, its `+0x0C`, equal to the blob's size word in all 410 |
+| `rows_end_at_file_end` | `yes` when the rows, read from the end of the last blob at `0xA0` bytes per type-3 row and `0x60` per type-1 row, end exactly at the file's end; `yes` in all 410 |
+| `weather_1`, `weather_2`, `weather_3` | in the row table, the row's enable bytes for weather slots 1 to 3, row bytes `+0x08`, `+0x09` and `+0x0A`: 1 runs the row in that slot, 0 skips it (slot 1: 2,374 rows 1, 241 rows 0; slot 2: 2,268 and 347; slot 3: 2,171 and 444) |
+| `row_hex` | the row's `0xA0` (160) bytes in file order as 320 hex digits |
 
 ## Loader behaviour
 

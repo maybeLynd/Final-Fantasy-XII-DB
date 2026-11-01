@@ -314,6 +314,44 @@ The reasons:
 | `scripts` | the scripts that use it: their count and names, then, where developer test scripts also use it, "developer scripts" with their count and names |
 | `sites` | how many uses read it (copies, verb arguments and references passed to verbs), not counting stores and `sysDVAR` |
 
+### Columns of script-variables-by-script.tsv
+
+| column | what it holds |
+|---|---|
+| `class3` | the script's descriptors of class 3, the image's msp area: 0 on all 1,114 rows; with the other class columns it adds up to `descriptors` on every row |
+
+### Columns of script-variables-global-offsets.tsv
+
+One row per save-payload offset a script declares, 620 rows.
+
+| column | what it holds |
+|---|---|
+| `tool_type` | the C type declared with the offset's name: `u_char` (281 offsets), `char` (15), `int` (5), `float` (5), `short` (4) or `u_short` (2); empty on the 308 offsets that carry no name |
+| `scalar_declarations` | how many scalar declarations (not arrays) name the offset across the 1,114 scripts; 0 on the 33 offsets that are declared only as arrays |
+| `scalar_scripts` | how many scripts hold those declarations; equal to `scalar_declarations` on all 620 rows, so no script declares an offset twice |
+| `scalar_widths` | the widths of those declarations with the number of each, for example `u8=3` or `s16=513`; empty where `scalar_declarations` is 0 |
+
+### Columns of script-variables-global-by-script.tsv
+
+One row per offset with a scalar declaration, 587 rows.
+
+| column | what it holds |
+|---|---|
+| `scripts_declaring` | how many scripts declare a scalar at the offset with that `width`; the number of names in `scripts` on every row, and the same as `scalar_scripts` in script-variables-global-offsets.tsv |
+
+### Columns of script-variables-global-arrays.tsv
+
+| column | what it holds |
+|---|---|
+| `dims` | the number of elements the array is declared with, 1 to 256; `bytes` is `dims` times the element width on all 34 rows |
+| `scripts_declaring` | how many scripts declare the array, 1 to 193; the number of names in `scripts` on every row |
+
+### Columns of script-variables-global-meanings.tsv
+
+| column | what it holds |
+|---|---|
+| `meaning` | one or more sentences on what the scripts use the variable for, written from its uses: who writes it, what its tests choose, or that only the debug display or the developer test scripts name it |
+
 ## Operations
 
 Per variable opcode: resolve, then load and push or pop and store. Per field transition:

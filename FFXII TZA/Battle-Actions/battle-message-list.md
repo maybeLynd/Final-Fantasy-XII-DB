@@ -29,7 +29,7 @@ have 100. The event ids and texts below are the US table's.
 | Column | Meaning |
 |---|---|
 | `event_id` | the row index, as the posting code passes it |
-| `slot0`-`slot3` | the argument kind in row bytes `+0`, `+1`, `+2` and `+5`: user name (1), target name (2), status name (5), item or number (7), action name (8), or a context number (3, 4, 6, 9); blank when the slot is unused |
+| `slot0`, `slot1`, `slot2`, `slot3` | the argument kind in row bytes `+0`, `+1`, `+2` and `+5`, one column each: user name (1), target name (2), status name (5), item or number (7), action name (8), or a context number (3, 4, 6, 9); blank when the slot is unused (`slot1` on 57 rows, `slot2` on 80) |
 | `always_shown` | `yes` when bit `0x80` of row byte `+3` is set, so the 24-unit visibility rule does not apply (`0x00469570`) |
 | `category` | bits `0x7C` of row byte `+3`, passed with the line (`0x005369C0`) |
 | `rate_limited` | `yes` when bit `0x1` of row byte `+4` is set, so a repeat for the same unit is dropped for 450 clock ticks (`0x0046AB10`) |

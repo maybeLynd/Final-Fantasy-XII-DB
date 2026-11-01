@@ -352,6 +352,10 @@ Globals:
     is hidden, and the party moves to field 894, Terminus No. 7 Adjunct.
 - Of the 248, 241 remove every foe in a group, 147 set a game-wide word, 145 play a scene, 134 give items or a
   reward package, 127 move the party to another field, 42 set the story counter and 11 show a line.
+- In the table, `map_name` and `region` are the zone's map name and region as the location line shows them, the
+  `map_name` and `region` of the zone's row in
+  [`zone-asset-list.tsv`](../World-Areas-And-Travel/zone-asset-list.tsv) on all 248 rows; 100 rows are in the Trial
+  Mode region.
 
 ## Operations
 

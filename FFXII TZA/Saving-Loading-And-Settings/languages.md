@@ -139,6 +139,19 @@ Three of the 12 folders have one language folder only, `in`: `gamedata/titleimag
 Five of the folders have a `jp` folder: the font folder, `prefetchdata`, `effect_finish`, `movie_finish` and
 `sound/shout`.
 
+### Columns of languages-kinds.tsv, languages-content-files.tsv and languages-content.tsv
+
+| Column | Holds |
+|---|---|
+| `example_path` | in languages-kinds.tsv, the path of one entry of the kind, as an example of its folder and file type |
+| `same_size_in_all` | the kind's entries that have one size in all nine tables; with `size_differs` it adds up to `entries` on all 31 rows |
+| `groups_of_equal_size` | on the 8 kinds with entries whose size differs, up to three groupings of the nine tables by equal size, each with its count of entries, separated by `; `: tables of one size are separated by spaces and the groups by ` / `, and `IN (Japanese)` is the table Japanese loads; `-` on the other 23 kinds |
+| `root` | in languages-content-files.tsv and languages-content.tsv, the archive folder that holds the language folders, one of 12 (for example `ps2data/plan_master`); a file's path is `root`, the language folder, then `path` |
+| `groups_of_equal_content` | in languages-content-files.tsv, the languages whose file at that path has the same SHA-256: languages of one group separated by spaces, groups by ` / `; `one hash` on the 7,170 paths whose files are all alike, 4,987 of them shipped in one language only. In languages-content.tsv, the three groupings shown by the most paths of the row other than `one hash`, each with its count of paths, separated by `; `; `-` on the 21 rows where every path has one content |
+| `extension` | in languages-content.tsv, the part of the file name from its last dot (`.phyre` for `font00.dds.phyre`); with `root` it names the row, 40 rows |
+| `same_in_all` | the row's paths that are in every language folder of the root with one content |
+| `differs_in_all` | the row's paths that are in every language folder of the root with more than one content |
+
 ### Rules that depend on the language
 
 - The kill chain cap and display: `0x00317ED0` caps the length at 998 and posts it plus one whenever

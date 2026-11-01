@@ -229,7 +229,10 @@ Struct ActorManagerSlotEntry size=`0x18`:
 
 - Four access tables beside this page list every reach into a slot; every row's instruction was checked against
   the executable:
-  - [`actor-managers-accesses.tsv`](actor-managers-accesses.tsv): through the bound-slot pointer;
+  - [`actor-managers-accesses.tsv`](actor-managers-accesses.tsv): through the bound-slot pointer. A row whose
+    `route` is `seed` is in a function that took the slot itself, from `0x002640C0` or by reading `0x02099D70`, or in
+    the script interpreter `0x0025E4C0`, which receives the slot as its first argument; a row whose `route` is
+    `argN+0xK<F@S` is in a function the slot was passed to;
   - [`actor-managers-rip-accesses.tsv`](actor-managers-rip-accesses.tsv): through a literal slot address;
   - [`actor-managers-slot-accesses.tsv`](actor-managers-slot-accesses.tsv): through the array route;
   - [`actor-managers-entry-accesses.tsv`](actor-managers-entry-accesses.tsv): into the entry arrays.
@@ -252,3 +255,10 @@ Struct ActorManagerSlotEntry size=`0x18`:
 - [The actor record](actor-record.md): the pool's records.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the operand bank and the group persistent bank.
 - [Script variables and their storage classes](../Scripts-And-Script-Commands/script-variables.md): how the homes are addressed.
+- [`actor-definition-payload-accesses.tsv`](actor-definition-payload-accesses.tsv): the accesses of the bind
+  `0x0026C8C0` to the definition payload it receives in `rdx`, one row per instruction (7 rows).
+
+In this access table, `function`, `name` and `site` give the function, its name and the instruction's address,
+`disp` the offset in the payload, `kind` a read (`r`) or the address taken (`addr`), `instruction` the instruction
+itself, and `route` how the payload reached it: in `rdx` at the entry of `0x0026C8C0`, which keeps it in `r15`
+(`0x0026C8F7`) and stores it to the slot's `+0x00` (`0x0026C95A`).

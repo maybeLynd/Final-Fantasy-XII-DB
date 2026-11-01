@@ -97,7 +97,9 @@ multiple of 10 × frame base:
 ### Out-of-combat healing
 
 `0x00386860` heals an enemy-table unit of category 8 that perceives no foe (`0x00386860`-`0x00386A30`;
-[Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)):
+[Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)). Category 8 is the class `0x002F8E90` gives an enemy-table unit
+whose actor class nibble (`0x00263C20`) is 1, 2 or 7; any other class ends the step (`0x003868CE`-`0x003868D6`;
+[Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)):
 
 1. It needs a unit that is not asleep or diseased, below its maximum HP, with no foe in its perception list
    (`0x002F8E70`) and nobody committed against it (`+0xEA8`).

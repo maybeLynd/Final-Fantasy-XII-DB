@@ -266,6 +266,17 @@ rectangle table:  +0 / +2 destination x, y; +4 / +6 width, height; +0x0E + 4v / 
 The record's functions are listed in
 [model-oscillators-and-pose-sequencer-model-oscillator-subsystem.tsv](model-oscillators-and-pose-sequencer-model-oscillator-subsystem.tsv).
 
+### Columns of model-oscillators-and-pose-sequencer-model-oscillator-subsystem.tsv
+
+One row per function, 39 rows, in address order.
+
+| Column | Holds |
+|---|---|
+| `address` | the function's start address |
+| `size` | its length in bytes, as the disassembly's function list gives it (equal on all 39 rows) |
+| `role` | what the function does in the oscillator and sequencer code, with the callers, callees and record fields that show it |
+| `evidence` | how much of the function the role rests on: `full body` (the whole body read, 5 rows, two with the size in bytes); `head + call shape`, `head + store map` or `head + body sketch` (the opening read, then its calls, its stores or an outline of the rest, 7 rows); `call-signature` (its calls and the fields it touches, 19 rows); `body read` (the body, at its call sites or as a section of this page describes it, 4 rows); `family member` (a member of the family `0x0036DD80`, 2 rows); `named` (by its function name, `0x001EDE70`); `non-function` (`0x00861F56`, a data row inside a math family) |
+
 ## Shipped data
 
 | Fact | Value |

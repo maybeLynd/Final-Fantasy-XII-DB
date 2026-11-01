@@ -34,6 +34,19 @@ effect, what its arm changes, what the player sees and when it changes nothing.
   screen row maps to them. Two of those bytes are read by input code (`+0xC35`, id 187, and `+0xC3D`, id 293),
   and their only writes outside the console object's constructor are their own arms.
 
+### Columns of debug-menu-commands-inputs.tsv
+
+| Column | Holds |
+|---|---|
+| `input` | the command id, as `id` in debug-menu-commands.tsv |
+| `label` | the row text the console prints, as `label` in debug-menu-commands.tsv |
+| `domain` | the values the row can take, built from its kind, step and bound in debug-menu-commands.tsv: `on or off (0/1)` on the 55 toggles; kind, step and bound (for example `nudge, step ±0.01, -` or `cycle, step ±1, wraps 0..2`) on the 163 nudge, int-step and cycle rows; `a button row with no value` on the 40 no-action rows; `a read-out row` on the 16 read-outs; `a button row that runs its arm` on the 8 call rows |
+| `precedence` | which writer wins when another one sets the same field: `-` on the 266 ids that only the console reaches; on the 16 Config screen ids, the Config screen row kind that `0x0017DB90` maps to the id, its only caller |
+| `takes_effect` | when a change starts to act: `never` on 266 rows; on the 16 Config screen ids, when the player changes that Config row (`0x0023B330` or `0x0023B6F0`, then `0x0017DB90`, `0x001CD040` and the dispatcher `0x001D1660`) |
+| `consumers` | the arm the dispatch table selects for the id (the same address as `arm` in debug-menu-commands.tsv on all 282 rows), then the field it changes and the code that reads that field |
+| `visible_effect` | what the player sees: `the setting of that Config screen row` on the 16 Config screen ids; the other 266 rows record that nothing on screen changes |
+| `inert_when` | when a change does nothing: `always` with the reason on the 266 console-only ids (the menu that would reach the id never opens, and no Config screen row kind maps to it; ids 187 and 293 add the input code that reads their byte); `-` on the 16 Config screen ids |
+
 ## Columns
 
 | Column | Meaning |

@@ -264,8 +264,26 @@ the save layer itself does to it:
 - [Steam integration and achievement catalogue](../Steam-And-Achievements/achievements.md).
 - [`image-backed-state-block-accesses.tsv`](image-backed-state-block-accesses.tsv): every censused access to the
   image-backed state block through its pointer `[0x020927C0]`, one row per instruction (32 rows).
+- [`save-payload-accesses.tsv`](save-payload-accesses.tsv): every censused access to the payload, one row per
+  instruction, with the way the payload's address reached it (1,721 rows).
+- [`spawn-keep-image-accesses.tsv`](spawn-keep-image-accesses.tsv): every censused access to the spawn-keep image at
+  payload `+0xE240`, by its offset in the image (37 rows).
 
-In this access table, `function`, `name` and `site` give the function, its name and the instruction's address,
-`disp` the offset the instruction reaches from the start of the block, `kind` a read (`r`), a write (`w`), both
-(`rw`) or the address taken (`addr`), `instruction` the instruction itself, and `route` `gptr 0x020927C0`: the block
-reached through the pointer stored at `0x020927C0`.
+[`save-payload-accesses.tsv`](save-payload-accesses.tsv) and [`save-data-fields.tsv`](save-data-fields.tsv) overlap:
+409 rows of each are the same accesses (site, offset, kind and instruction). The access table's other 1,312 rows
+reach the party block (`+0x4E48C` to `+0x5589B`, 1,117 sites), which the companion table gives as one `range` row.
+The companion table's other 15 rows are ten block moves (six at the buffer `0x02164280`, four through the slot file)
+and five reads at `0x02164280`, which the access table does not follow.
+
+In these access tables, `function`, `name` and `site` give the function, its name and the instruction's address,
+`disp` the offset the instruction reaches from the start of the block, the payload or the spawn-keep image, `kind` a
+read (`r`), a write (`w`), both (`rw`) or the address taken (`addr`), and `instruction` the instruction itself.
+`route` says how the address reached the instruction:
+
+- `gptr 0x020927C0`: the block reached through the pointer stored at `0x020927C0`;
+- `seed`: the function reaches the payload itself, not through an argument; `argN+0xK<F@S`: the payload's address
+  plus K came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from F's call at S;
+- `embed SavePayload+0xE240`: the spawn-keep image at payload `+0xE240`.
+
+In the payload table, `note` is `idx` where the instruction adds an index register, so `disp` is the offset at index
+0.

@@ -268,3 +268,32 @@ Four more header fields are read as values, not as table offsets:
 - [`ebp-script-image-list-wait-census.tsv`](ebp-script-image-list-wait-census.tsv): every list request (`REQALL`,
   `REQIALL`, `REQWAITALL`) in the 6,077 images that carry actor lists: the list it names, the list's length and its
   first 12 actor:function pairs (60,362 rows).
+
+### Columns of ebp-script-image-list-wait-census.tsv
+
+One row per request opcode in a shipped script image, read by decoding each script of each image.
+
+| Column | Holds |
+|---|---|
+| `pc` | the opcode's offset in the script image (the block that starts at file `+0x80`), in hexadecimal without `0x` |
+| `opname` | the opcode: `REQALL` (`0x5F`, 47,812 rows), `REQWAITALL` (`0x61`, 8,851) or `REQIALL` (`0x63`, 3,699) |
+| `lists_in_script` | the count word of the image's list table, the table at the offset in header `+0x30`: how many actor lists the image carries, 1 to 81 on these rows |
+| `in_range` | 1 when the opcode's list index is below that count, 0 when the request names a null list; 1 on all 60,362 rows |
+| `list_len` | the number of `{actor, function}` pairs in the named list, 0 to 41 |
+| `pairs(ordinal:funcid, first 12)` | the list's first 12 pairs, each as the actor's ordinal and the function id, `ordinal:funcid`, separated by commas; empty when the list has no pair |
+- [`ebp-script-image-req-channel-census-1.tsv`](ebp-script-image-req-channel-census-1.tsv): every `REQ`, `REQSW`,
+  `REQEW`, `REQWAIT`, `REQALL`, `REQIALL`, `REQCHG` and `REQWAITALL` instruction in the shipped images, with the
+  pushes before it and, for `REQ`, `REQSW` and `REQEW`, the channel its first push gives: the first part, the images
+  up to `ps2data/plan_master/fr/event/vic_a/vic_a0300/vic_a0300.ebp` (265,073 rows).
+- [`ebp-script-image-req-channel-census-2.tsv`](ebp-script-image-req-channel-census-2.tsv): the second part, the
+  images from `ps2data/plan_master/fr/event/vic_a/vic_a0301/vic_a0301.ebp` on (264,955 rows).
+
+In the two parts:
+
+- `file` is the image, `script` the script's index in it, `pc` the instruction's offset in the script section
+  (hex), and `opcode` and `opname` the instruction.
+- `args_push_order` is the pushes that build its arguments, in order (`PUSHII:1` pushes 1). It is empty in the
+  8,851 `REQWAITALL` rows: no push builds that instruction's arguments.
+- `channel_class` is `const-int` where a pushed constant gives the channel of a `REQ`, `REQSW` or `REQEW`, and
+  `n/a` for the other five instructions, whose pushes `args_push_order` gives whole.
+- `channel_byte` is that constant's low byte, and `ge80` is 1 for a channel byte of `0x80` or more (0 in every row).

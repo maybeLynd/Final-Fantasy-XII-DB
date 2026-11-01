@@ -108,6 +108,12 @@ native command `(k << 12) + i`.
 | every name | one row each in [`atel-debug-companions-dbg-rows.tsv`](atel-debug-companions-dbg-rows.tsv), 19,364 rows: file, table (source file, declared or global variable, command class), index, the global's descriptor or the command id, and the name |
 | every source line | one row each in [`atel-debug-companions-sbn-rows.tsv`](atel-debug-companions-sbn-rows.tsv), 10,139 rows: file, block, line and its text (tabs written `\t`) |
 
+### Columns of atel-debug-companions-dbg-rows.tsv
+
+| Column | Holds |
+|---|---|
+| `descriptor_or_command` | on a `global_variable` row (11,661 rows), the variable's 32-bit descriptor from slot 2's table, as 8 hexadecimal digits, for example `0x30000000` for `global_flag[0]`; on a `command_class_` row (7,303 rows), the native command id the entry names, `(k << 12) + i` for entry `i` of command table `k`, as 4 hexadecimal digits (`0x2000` is entry 0 of class 2); empty on the 390 `declared_variable` and 10 `source_file` rows |
+
 ## Modding notes
 
 - The game reads none of these files; changing a control script means editing its `.ebp`, not its

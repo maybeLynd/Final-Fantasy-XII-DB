@@ -321,6 +321,17 @@ the first-start flag that the title screen script tests through `isFirstStartDon
 title screen of a launch comes without the SQUARE ENIX logo and the autosave notice. `debug` changes nothing in the
 shipped game, because the start-up field it clears is read only when `0x01E02804` is not negative, and it is -1.
 
+### Columns of startup-constants-inputs.tsv
+
+| Column | Holds |
+|---|---|
+| `label` | how the input is given: `command-line switch -nologo` or `second command-line argument debug` |
+| `domain` | which arguments count: `-nologo` in any argument as an exact eight-byte match with its terminator (`0x0022BE40`-`0x0022BE52`); `debug` as the exact second argument (compared at `0x00408DA1`-`0x00408DC2`) |
+| `precedence` | the other writers of the same state: for `-nologo`, verb `0x5A8` and the zone restore path `0x00314530`, which also store 1 in the first-start flag `0x022C2528`; for `debug`, that it overrides the FF12CONFIG start-up field copied to `0x02B62DB4` |
+| `consumers` | the code that reads the state: verb `0x5A7` `isFirstStartDone`, which the title screen script `ttl_a01` tests; the start-up field selection `0x003318C4`-`0x003318FE` |
+| `visible_effect` | what the player sees: for `-nologo`, the first title screen of a launch without the SQUARE ENIX logo and the autosave notice; for `debug`, that the shipped game shows no change |
+| `inert_when` | when the input does nothing: for `-nologo`, every later visit to the title screen in the same launch; for `debug`, always, because `0x02B62DAD` is 1 only when `0x01E02804` is not negative, and it is -1 in the image |
+
 ## Operations
 
 Once per launch, inside the init job, before the startup latch closes: the frame-rate selection,

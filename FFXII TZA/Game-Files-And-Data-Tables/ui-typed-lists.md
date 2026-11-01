@@ -438,3 +438,16 @@ slot's descriptor at `+0x30`; slot 63 is never visited, and clearing bit `0x80` 
   header's `+0x08`, the start of the atlas name records (116 rows).
 - [`ui-typed-lists-item-census-embedded.tsv`](ui-typed-lists-item-census-embedded.tsv): the same for the list units
   embedded in `packfiles/mrppack_ys.bin` of each language folder, one row per unit (228 rows).
+- [`ui-typed-lists-atlas-name-census.tsv`](ui-typed-lists-atlas-name-census.tsv): one row per type-2 or type-7 item
+  of the shipped `.mrp` files and `mrppack_ys.bin` units, with the atlas name record it selects (20,459 rows).
+- [`ui-typed-lists-atlas-name-records.tsv`](ui-typed-lists-atlas-name-records.tsv): one row per distinct name in the
+  shipped atlas name records, with how many files declare it and which items use it (49 rows).
+
+In the item table, `file` is the file (`#unitNN` for a unit of `mrppack_ys.bin`), `rec` and `item` the list record
+and the item's index in it, `type` the item type, `atlas_idx` the index at `+0x0C` and `name` the name of that
+record, and `idx2` and `name2` the same for a type-7 item's overlay index at `+0x40` (`-` for type 2).
+
+In the name table, `declared_files` is the number of files whose name records hold the name, `referenced` `yes` when
+an item selects it, `ref_files` the files of those items, and `class` `i` for the 25 names the executable itself
+carries (a literal or a registration-table entry), `iv` for the 3 it does not, and `-` for the 21 names no item
+selects.

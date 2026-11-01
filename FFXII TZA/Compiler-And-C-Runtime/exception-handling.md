@@ -78,6 +78,12 @@ itself, named directly as an action.
 `FuncInfo` unwind map, with the form, the object each points `rcx` at (a local `rdx+N` of the parent's
 frame, or a global) and the code it jumps to.
 
+### Columns of exception-handling-cleanup-funclets.tsv
+
+| Column | Holds |
+|---|---|
+| `operand` | the source operand of the funclet's first instruction, which sets `rcx`: `rdx+0x` and an offset for a local of the parent's frame (the unwinder passes that frame in `rdx`), or the address of a global. On the `lea-` and `global-add` forms that place is the object; on the `load-` forms it holds the object's address. On the `-add` forms ` + 0x` and the constant then added to `rcx` follows. Empty on 433 rows: the 346 `frame` bodies, the 86 `terminate` pads and one `import` body whose first instruction is the jump through its slot. The most common values are `rdx+0x60` (379 rows), `rdx+0x40` (112) and `rdx+0x28` (96) |
+
 3,092 of the 3,819 bodies in `.text$x` are 12 bytes or shorter, and the longest, `0x00896D60`, is 62
 bytes. The common tail-jump targets:
 

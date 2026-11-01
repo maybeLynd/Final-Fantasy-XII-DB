@@ -24,10 +24,6 @@ offset	region	function	site	kind	instruction	via	note
 0x1044	zone transition record	0x003145E0	0x0031466E	r	mov ecx, dword ptr [rbx + 0x1044]		
 0x1044	zone transition record	0x003145E0	0x00314685	w	mov dword ptr [rax + 0x1044], esi		
 0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]		
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg0 from 0x00377C20 at 0x00377C24	
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg1 from 0x00377C20 at 0x00377C24	
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg1 from 0x00377C20 at 0x00377C24	
-0x1044	zone transition record	0x003148F0	0x003148FB	r	mov eax, dword ptr [rax + 0x1044]	arg2 from 0x00377C20 at 0x00377C24	
 0x1044	zone transition record	0x00314970	0x0031498D	w	mov dword ptr [rax + 0x1044], 0xffffffff		
 0x1044	zone transition record	0x00314DC0	0x00314DCD	w	mov dword ptr [rax + 0x1044], ebx		
 0x1044	zone transition record	0x00584210	0x0058427B	r	mov eax, dword ptr [rbx + 0x1244]		

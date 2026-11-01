@@ -360,13 +360,13 @@ grm_f0101	scene, event 315	イベント特殊効果画面_EV	だいじなもの�
 grm_f0101	scene, event 315	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 grm_f0101	scene, event 315	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s5_1; receives the item held in file_var_s9_1	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m001	requested by Director.main	-	0	Wow, Vaan. You got 'em all yourself?	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m002	requested by Director.main	-	1	Guess I know who to call when something big comes along!	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m002	requested by Director.main	Kytes	1	Guess I know who to call when something big comes along!	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m003	requested by Director.main	-	2	Hey, it's good practice for the desert. I'm ready for anything now.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m004	requested by Director.main	-	3	That's enough for today.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m005	requested by Director.main	-	4	You should get back to Migelo's place, Kytes. Aren't you running errands for him?	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m006	requested by Director.main	-	5	Oops! Heh. Totally forgot.	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m007	requested by Director.main	-	6	You should come, Vaan.	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m008	requested by Director.main	-	7	He's busy today. Might have some work for you to do, too.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m006	requested by Director.main	Kytes	5	Oops! Heh. Totally forgot.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m007	requested by Director.main	Kytes	6	You should come, Vaan.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m008	requested by Director.main	Kytes	7	He's busy today. Might have some work for you to do, too.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m009	requested by Director.main	-	8	"I got other ""work"" to do."	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m010	requested by Director.main	-	9	Hey, lock this place up for me, will you?	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m011	requested by Director.main	-	10	If Migelo finds out we've been down here, he'll tan our hides.	-	-	-	-	-	-	-	-	-	-	1	-

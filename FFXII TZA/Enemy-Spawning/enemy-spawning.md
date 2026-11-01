@@ -397,6 +397,21 @@ The Larva Eater of `gil_i`, `gil_j` and `gil_k` (levels 61 to 62) is entered by 
 (`file +0x00C0`, `scratch2 +0x40`), with every step that writes them. For `scratch2`, the writers include the zone scripts
 of the same field group. 48 are death counters: a step adds 1 to them when `btlAtelGetRespawnCause()` returns 0.
 
+### Columns of enemy-placement-conditions.tsv
+
+| Column | Holds |
+|---|---|
+| `other_test` | the tests on the path that are not story, weather, count or random tests, written as conditions on script words (`file +0x00D0 == 1`), calls (`btlAtelGetActiveActorNow() < btlAtelGetActiveActorMax()`) and the loop register, separated by semicolons; `-` on the 13,070 rows with no such test |
+| `entry_struct` | the lane's storage, on all 23,242 rows: the bank slot the lane map in the `msp` area gives the lane, with the map's offset and the step that writes it, then the lane's respawn table row (its `msp` offset, the step that writes it and its eight operand bytes) decoded as death limit and cooldown, each as base and range, and the key |
+| `native_gate` | for a lane the automatic selector offers (9,289 rows), the gates of `btlAtelDecideEntryPointAuto` (`0x00235720`) with their instruction addresses and the values the script sets for them: the active cap, the lane's candidate ids, the attempts, the distance band and the arc, or the defaults; `-` on the other 13,953 |
+| `cite` | the steps the row comes from: the script, actor and `entryNN` function, then each `requestreentry` step that enters it, with its function, step and byte offset, and, in brackets, the selector step that chose the group where one did |
+
+### Columns of enemy-spawn-variables.tsv
+
+| Column | Holds |
+|---|---|
+| `story_counter_writers` | for a variable whose writers run under a story-counter test, directly or through another variable they copy, each such store with its value, step and the `シナリオフラグ` test that holds there (227 rows); `-` on the 1,215 variables no story-counter test reaches |
+
 ## Operations
 
 A zone's battle setup runs `btlAtelSetupActorStart`, then any overrides, then per entry

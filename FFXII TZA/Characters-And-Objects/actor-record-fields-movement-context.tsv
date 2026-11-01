@@ -189,7 +189,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0026AFE0	FUN_0026afe0	0x0026B06B	0x20	w	movss dword ptr [rax + 0x20], xmm8	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B06B	0x20	w	movss dword ptr [rax + 0x20], xmm8	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B13F	0x20	w	movss dword ptr [rax + 0x20], xmm8	actor +0xB8, the actor in rcx	
-0x0026B2E0	FUN_0026b2e0	0x0026B339	0x20	r	movss xmm7, dword ptr [rcx + 0x20]	[arg0+0xB8]	missed by seed census - ctx loaded from member pointer, not arg
+0x0026B2E0	FUN_0026b2e0	0x0026B339	0x20	r	movss xmm7, dword ptr [rcx + 0x20]	actor +0xB8, the actor in rcx	
 0x002EC2C0	FUN_002ec2c0	0x002EC2F0	0x20	r	movaps xmm0, xmmword ptr [rdx]	arg1+0x20 from 0x00263230 at 0x0026335C	
 0x002EC2C0	FUN_002ec2c0	0x002EC328	0x20	r	movss xmm3, dword ptr [rdi]	arg1+0x20 from 0x00263230 at 0x0026335C	
 0x003E36F0	FUN_003e36f0	0x003E3701	0x20	r	movaps xmm0, xmmword ptr [r8]	arg2+0x20 from 0x003E6CC0 at 0x003E6CC7	
@@ -215,7 +215,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0026AFE0	FUN_0026afe0	0x0026B076	0x28	w	movss dword ptr [rax + 0x28], xmm6	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B076	0x28	w	movss dword ptr [rax + 0x28], xmm6	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B14A	0x28	w	movss dword ptr [rax + 0x28], xmm6	actor +0xB8, the actor in rcx	
-0x0026B2E0	FUN_0026b2e0	0x0026B32D	0x28	r	movss xmm6, dword ptr [rcx + 0x28]	[arg0+0xB8]	missed by seed census - ctx loaded from member pointer, not arg
+0x0026B2E0	FUN_0026b2e0	0x0026B32D	0x28	r	movss xmm6, dword ptr [rcx + 0x28]	actor +0xB8, the actor in rcx	
 0x002EC2C0	FUN_002ec2c0	0x002EC32C	0x28	r	movss xmm2, dword ptr [rdi + 8]	arg1+0x20 from 0x00263230 at 0x0026335C	
 0x00265FF0	FUN_00265ff0	0x00266454	0x2c	w	mov dword ptr [rsi + 0x2c], 0x3f800000	actor +0xB8, the actor in rcx	
 0x0025C830	FUN_0025c830	0x0025CAB3	0x30	r	movss xmm0, dword ptr [rsi + 0x30]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
@@ -378,7 +378,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0025C830	FUN_0025c830	0x0025C8A3	0x6C	r	subss xmm12, dword ptr [rsi + 0x6c]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
 0x0025C830	FUN_0025c830	0x0025C8A3	0x6c	r	subss xmm12, dword ptr [rsi + 0x6c]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x00266475	0x6c	w	mov dword ptr [rsi + 0x6c], 0x3f000000	actor +0xB8, the actor in rcx	
-0x0026B2E0	FUN_0026b2e0	0x0026B426	0x6C	r	movss xmm2, dword ptr [rbx + 0x6c]	[arg0+0xB8]	kind 3 arm, gated on +0xDF; missed by seed census
+0x0026B2E0	FUN_0026b2e0	0x0026B426	0x6C	r	movss xmm2, dword ptr [rbx + 0x6c]	actor +0xB8, the actor in rcx	kind 3 arm, gated on +0xDF
 0x003DA5A0	FUN_003da5a0	0x003DA60F	0x6C	r	addss xmm6, dword ptr [rdi + 0xc]	arg3+0x60 from 0x0025C230 at 0x0025C44F	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
 0x003DA890	FUN_003da890	0x003DA897	0x6C	w	movss dword ptr [rcx + 0xc], xmm2	arg0+0x60 from 0x0026B2E0 at 0x0026B433	kind 3 arm gated on +0xDF; xmm2 = value read at +0x6C
 0x0025BAD0	FUN_0025bad0	0x0025BC5F	0x70	addr	lea r9, [rsi + 0x70]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025B990	
@@ -390,15 +390,15 @@ function	name	site	disp	kind	instruction	route	note
 0x00265FF0	FUN_00265ff0	0x00266280	0x70	a	lea rcx, [r14 + 0x70]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002662D5	0x70	a	lea rcx, [r14 + 0x70]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002663C6	0x70	w	mov dword ptr [rsi + 0x70], 0x3f800000	actor +0xB8, the actor in rcx	
-0x0026B2E0	FUN_0026b2e0	0x0026B3A8	0x70	w	movss dword ptr [rax + 0x70], xmm0	[arg0+0xB8]	kind 1 arm; missed by seed census
+0x0026B2E0	FUN_0026b2e0	0x0026B3A8	0x70	w	movss dword ptr [rax + 0x70], xmm0	actor +0xB8, the actor in rcx	kind 1 arm
 0x002E5E10	FUN_002e5e10	0x002E5ED1	0x70	addr	lea rcx, [rsi + 0x70]	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
 0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B111	0x74	w	mov dword ptr [rax + 0x74], edi	a context the function resolved itself	
 0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B1A6	0x74	w	mov dword ptr [rax + 0x74], edi	a context the function resolved itself	
 0x00265FF0	FUN_00265ff0	0x00266480	0x74	w	mov dword ptr [rsi + 0x74], r15d	actor +0xB8, the actor in rcx	
-0x0026B2E0	FUN_0026b2e0	0x0026B40B	0x7C	r	movss xmm2, dword ptr [rbx + 0x7c]	[arg0+0xB8]	kind 3 arm, gated on +0xDE; missed by seed census
+0x0026B2E0	FUN_0026b2e0	0x0026B40B	0x7C	r	movss xmm2, dword ptr [rbx + 0x7c]	actor +0xB8, the actor in rcx	kind 3 arm, gated on +0xDE
 0x00265FF0	FUN_00265ff0	0x0026629A	0x80	a	lea rdx, [r14 + 0x80]	actor +0xB8, the actor in rcx	
 0x00266AD0	FUN_00266ad0	0x00266B26	0x80	addr	lea r8, [rax + 0x80]	ctor	region planter; lea computes an address inside this embedded context
-0x0026B2E0	FUN_0026b2e0	0x0026B332	0x80	addr	lea rdx, [rcx + 0x80]	[arg0+0xB8]	missed by seed census - ctx loaded from member pointer, not arg
+0x0026B2E0	FUN_0026b2e0	0x0026B332	0x80	addr	lea rdx, [rcx + 0x80]	actor +0xB8, the actor in rcx	
 0x003DA860	FUN_003da860	0x003DA880	0x80	w	movss dword ptr [rdx], xmm2	arg1+0x80 from 0x0026B2E0 at 0x0026B34E	kind 3 arm; unscaled vec2 store to +0x80 - sixth 0x10 block
 0x003DA860	FUN_003da860	0x003DA884	0x84	w	movss dword ptr [rdx + 4], xmm3	arg1+0x80 from 0x0026B2E0 at 0x0026B34E	kind 3 arm; unscaled vec2 store to +0x84
 0x00265FF0	FUN_00265ff0	0x0026631F	0x98	w	mov dword ptr [r14 + 0x98], 0x3f000000	actor +0xB8, the actor in rcx	
@@ -510,8 +510,8 @@ function	name	site	disp	kind	instruction	route	note
 0x0025C230	FUN_0025c230	0x0025C31C	0xdd	r	movzx eax, byte ptr [rbp + 0xdd]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x00266274	0xdd	w	mov byte ptr [r14 + 0xdd], r15b	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002662BF	0xde	w	mov word ptr [r14 + 0xde], 0x101	actor +0xB8, the actor in rcx	
-0x0026B2E0	FUN_0026b2e0	0x0026B402	0xDE	r	cmp byte ptr [rbx + 0xde], 0	[arg0+0xB8]	kind 3 arm; missed by seed census
-0x0026B2E0	FUN_0026b2e0	0x0026B41D	0xDF	r	cmp byte ptr [rbx + 0xdf], 0	[arg0+0xB8]	kind 3 arm; missed by seed census
+0x0026B2E0	FUN_0026b2e0	0x0026B402	0xDE	r	cmp byte ptr [rbx + 0xde], 0	actor +0xB8, the actor in rcx	kind 3 arm
+0x0026B2E0	FUN_0026b2e0	0x0026B41D	0xDF	r	cmp byte ptr [rbx + 0xdf], 0	actor +0xB8, the actor in rcx	kind 3 arm
 0x002640E0	FUN_002640e0	0x002640F5	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	actor +0xB8, the actor as arg0 from 0x00358F90 at 0x00359021	
 0x002640E0	FUN_002640e0	0x002640F5	0xe0	r	movss xmm0, dword ptr [rax + 0xe0]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266335	0xe0	w	mov dword ptr [r14 + 0xe0], 0x3dcccccd	actor +0xB8, the actor in rcx	
@@ -658,7 +658,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002645D0	FUN_002645d0	0x002645F1	0xFC	r	movss xmm0, dword ptr [rax + 0xfc]	actor +0xB8, the actor as arg0 from 0x00272F30 at 0x00272F4E	
 0x002645D0	FUN_002645d0	0x002645F1	0xfc	r	movss xmm0, dword ptr [rax + 0xfc]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002660B7	0xfc	w	mov dword ptr [r14 + 0xfc], 0x3f800000	actor +0xB8, the actor in rcx	
-0x0026B2E0	FUN_0026b2e0	0x0026B397	0xFC	w	movss dword ptr [rax + 0xfc], xmm0	[arg0+0xB8]	kind 2 arm (byte[actor+3]>>5==2); missed by seed census
+0x0026B2E0	FUN_0026b2e0	0x0026B397	0xFC	w	movss dword ptr [rax + 0xfc], xmm0	actor +0xB8, the actor in rcx	kind 2 arm (byte[actor+3]>>5==2)
 0x0025C230	FUN_0025c230	0x0025C311	0x100	r	mov r12d, dword ptr [rbp + 0x100]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C311	0x100	r	mov r12d, dword ptr [rbp + 0x100]	actor +0xB8, the actor in rdx	
 0x0025C230	FUN_0025c230	0x0025C34C	0x100	w	mov dword ptr [rbp + 0x100], r15d	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	

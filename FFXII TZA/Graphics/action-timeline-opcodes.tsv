@@ -1,0 +1,129 @@
+opcode	case_index	case_address	callees
+1	0	0x003B879D	0x003A8290 FUN_003a8290
+2	1	0x003B87D1	0x003A8510 FUN_003a8510
+3	2	0x003B87E7	0x002EB740 ActorTimeline_DispatchEventToBattleUnit; 0x0024ED80 FUN_0024ed80; 0x00322850 FUN_00322850
+4	61	0x003B88F4	(no-op: falls to the loop)
+5	3	0x003B8A30	0x003B99D0 FUN_003b99d0
+6	4	0x003B8A5C	0x003326F0 FUN_003326f0
+7	5	0x003B8A77	0x003335A0 FUN_003335a0
+8	6	0x003B8A99	0x00333430 FUN_00333430; 0x003A7F60 FUN_003a7f60
+9	7	0x003B8AF5	0x00333620 FUN_00333620
+10	8	0x003B96A5	0x00379940 FUN_00379940; 0x003ABCA0 FUN_003abca0; 0x003ACA90 FUN_003aca90; 0x003ACA90 FUN_003aca90; 0x003ACA90 FUN_003aca90; 0x003AFD30 FUN_003afd30; 0x003B6930 FUN_003b6930
+11	9	0x003B9726	0x00379940 FUN_00379940; 0x003B81A0 FUN_003b81a0; 0x003ACA80 FUN_003aca80; 0x003AFD30 FUN_003afd30; 0x003B6930 FUN_003b6930
+12	10	0x003B8B17	0x003339C0 FUN_003339c0
+13	11	0x003B894E	0x002EB740 ActorTimeline_DispatchEventToBattleUnit
+14	12	0x003B8B55	0x002FCBF0 FUN_002fcbf0
+15	13	0x003B8B7D	0x002FCA00 FUN_002fca00
+16	14	0x003B8BF1	0x002FCA00 FUN_002fca00; 0x002FCCC0 FUN_002fccc0
+17	15	0x003B8C77	0x002FCA00 FUN_002fca00; 0x002FD0C0 FUN_002fd0c0
+18	16	0x003B8CC6	0x002FCA00 FUN_002fca00
+19	17	0x003B8BB3	0x002FC340 thunk_FUN_002fcb60
+20	18	0x003B8D04	0x001EDDA0 FUN_001edda0
+21	19	0x003B8D80	0x003A3FD0 FUN_003a3fd0; 0x003326C0 FUN_003326c0; 0x004231E0 FUN_004231e0
+22	20	0x003B8DCB	0x003A3FD0 FUN_003a3fd0; 0x003326C0 FUN_003326c0; 0x004231E0 FUN_004231e0; 0x00423190 FUN_00423190; 0x00424040 FUN_00424040
+23	61	0x003B88F4	(no-op: falls to the loop)
+24	21	0x003B8E31	indirect r8
+25	22	0x003B8E69	0x003B3EA0 FUN_003b3ea0
+26	23	0x003B89A9	0x002EB740 ActorTimeline_DispatchEventToBattleUnit
+27	24	0x003B8B36	0x00333A40 FUN_00333a40
+28	25	0x003B8EBD	0x003588B0 ActorHandle_ResolveRegistryEntryByPackedId; 0x00265020 Actor_GetWorldPosition; 0x00265200 FUN_00265200; 0x00263F70 FUN_00263f70; 0x00263E70 FUN_00263e70; 0x003B7E10 FUN_003b7e10; 0x0026A430 FUN_0026a430; 0x0026AF80 FUN_0026af80
+29	26	0x003B8FB2	0x003588B0 ActorHandle_ResolveRegistryEntryByPackedId; 0x00265020 Actor_GetWorldPosition; 0x00265200 FUN_00265200; 0x00263F70 FUN_00263f70; 0x00263E70 FUN_00263e70; 0x003B7E10 FUN_003b7e10; 0x0026B5A0 Actor_SetFacingHeading_Variant0
+30	27	0x003B9095	0x0024C6B0 FUN_0024c6b0
+31	28	0x003B90A9	0x003A6E60 FUN_003a6e60; 0x003AA280 FUN_003aa280; indirect qword ptr [rip + 0x509ed2]; 0x002DF660 FUN_002df660; 0x003A3FD0 FUN_003a3fd0; 0x003326C0 FUN_003326c0; 0x0046CC20 FUN_0046cc20
+32	29	0x003B9172	0x003A3FD0 FUN_003a3fd0; 0x003326C0 FUN_003326c0; 0x0046CC20 FUN_0046cc20
+33	30	0x003B8AD5	0x0024C3C0 FUN_0024c3c0
+34	31	0x003B91AE	0x002EB740 ActorTimeline_DispatchEventToBattleUnit
+35	32	0x003B921C	(inline, no call)
+36	33	0x003B9228	(inline, no call)
+37	34	0x003B9234	0x003333B0 FUN_003333b0
+38	35	0x003B9286	0x003333B0 FUN_003333b0
+39	3	0x003B8A30	0x003B99D0 FUN_003b99d0
+40	36	0x003B936B	0x003A3FD0 FUN_003a3fd0; 0x003326C0 FUN_003326c0; 0x003B3C00 FUN_003b3c00
+41	37	0x003B93B3	0x00333520 FUN_00333520
+42	38	0x003B87B3	0x003A8660 FUN_003a8660; 0x003A7F60 FUN_003a7f60
+43	39	0x003B94D4	0x003BA020 FUN_003ba020
+44	40	0x003B94EB	0x003B9FE0 FUN_003b9fe0
+45	41	0x003B9502	(inline, no call)
+46	42	0x003B9516	(inline, no call)
+47	43	0x003B92BD	0x003333B0 FUN_003333b0
+48	44	0x003B952E	0x003BA150 FUN_003ba150
+49	45	0x003B9691	0x003BA1F0 FUN_003ba1f0
+50	46	0x003B9556	0x003B8260 FUN_003b8260
+51	47	0x003B956D	0x003B8260 FUN_003b8260
+52	48	0x003B9583	0x003B5310 FUN_003b5310; 0x0024ED80 FUN_0024ed80; 0x003AF330 FUN_003af330
+53	49	0x003B95FA	0x003B5310 FUN_003b5310; 0x0024ED80 FUN_0024ed80; 0x003AF330 FUN_003af330
+54	50	0x003B9673	(inline, no call)
+55	51	0x003B9684	(inline, no call)
+56	52	0x003B93D9	0x00333640 FUN_00333640
+57	53	0x003B93FF	0x0024B6F0 FUN_0024b6f0; 0x0024F9B0 FUN_0024f9b0
+58	54	0x003B9466	0x0024B6F0 FUN_0024b6f0; 0x0024F9B0 FUN_0024f9b0
+59	55	0x003B94C0	0x0024C870 FUN_0024c870
+60	56	0x003B9772	(inline, no call)
+61	57	0x003B977B	(inline, no call)
+62	58	0x003B9797	(inline, no call)
+63	59	0x003B97B2	(inline, no call)
+64	61	0x003B88F4	(no-op: falls to the loop)
+65	61	0x003B88F4	(no-op: falls to the loop)
+66	61	0x003B88F4	(no-op: falls to the loop)
+67	61	0x003B88F4	(no-op: falls to the loop)
+68	61	0x003B88F4	(no-op: falls to the loop)
+69	61	0x003B88F4	(no-op: falls to the loop)
+70	61	0x003B88F4	(no-op: falls to the loop)
+71	61	0x003B88F4	(no-op: falls to the loop)
+72	61	0x003B88F4	(no-op: falls to the loop)
+73	61	0x003B88F4	(no-op: falls to the loop)
+74	61	0x003B88F4	(no-op: falls to the loop)
+75	61	0x003B88F4	(no-op: falls to the loop)
+76	61	0x003B88F4	(no-op: falls to the loop)
+77	61	0x003B88F4	(no-op: falls to the loop)
+78	61	0x003B88F4	(no-op: falls to the loop)
+79	61	0x003B88F4	(no-op: falls to the loop)
+80	61	0x003B88F4	(no-op: falls to the loop)
+81	61	0x003B88F4	(no-op: falls to the loop)
+82	61	0x003B88F4	(no-op: falls to the loop)
+83	61	0x003B88F4	(no-op: falls to the loop)
+84	61	0x003B88F4	(no-op: falls to the loop)
+85	61	0x003B88F4	(no-op: falls to the loop)
+86	61	0x003B88F4	(no-op: falls to the loop)
+87	61	0x003B88F4	(no-op: falls to the loop)
+88	61	0x003B88F4	(no-op: falls to the loop)
+89	61	0x003B88F4	(no-op: falls to the loop)
+90	61	0x003B88F4	(no-op: falls to the loop)
+91	61	0x003B88F4	(no-op: falls to the loop)
+92	61	0x003B88F4	(no-op: falls to the loop)
+93	61	0x003B88F4	(no-op: falls to the loop)
+94	61	0x003B88F4	(no-op: falls to the loop)
+95	61	0x003B88F4	(no-op: falls to the loop)
+96	61	0x003B88F4	(no-op: falls to the loop)
+97	61	0x003B88F4	(no-op: falls to the loop)
+98	61	0x003B88F4	(no-op: falls to the loop)
+99	61	0x003B88F4	(no-op: falls to the loop)
+100	61	0x003B88F4	(no-op: falls to the loop)
+101	61	0x003B88F4	(no-op: falls to the loop)
+102	61	0x003B88F4	(no-op: falls to the loop)
+103	61	0x003B88F4	(no-op: falls to the loop)
+104	61	0x003B88F4	(no-op: falls to the loop)
+105	61	0x003B88F4	(no-op: falls to the loop)
+106	61	0x003B88F4	(no-op: falls to the loop)
+107	61	0x003B88F4	(no-op: falls to the loop)
+108	61	0x003B88F4	(no-op: falls to the loop)
+109	61	0x003B88F4	(no-op: falls to the loop)
+110	61	0x003B88F4	(no-op: falls to the loop)
+111	61	0x003B88F4	(no-op: falls to the loop)
+112	61	0x003B88F4	(no-op: falls to the loop)
+113	61	0x003B88F4	(no-op: falls to the loop)
+114	61	0x003B88F4	(no-op: falls to the loop)
+115	61	0x003B88F4	(no-op: falls to the loop)
+116	61	0x003B88F4	(no-op: falls to the loop)
+117	61	0x003B88F4	(no-op: falls to the loop)
+118	61	0x003B88F4	(no-op: falls to the loop)
+119	61	0x003B88F4	(no-op: falls to the loop)
+120	61	0x003B88F4	(no-op: falls to the loop)
+121	61	0x003B88F4	(no-op: falls to the loop)
+122	61	0x003B88F4	(no-op: falls to the loop)
+123	61	0x003B88F4	(no-op: falls to the loop)
+124	61	0x003B88F4	(no-op: falls to the loop)
+125	61	0x003B88F4	(no-op: falls to the loop)
+126	61	0x003B88F4	(no-op: falls to the loop)
+127	61	0x003B88F4	(no-op: falls to the loop)
+128	60	0x003B92F3	(inline, no call)

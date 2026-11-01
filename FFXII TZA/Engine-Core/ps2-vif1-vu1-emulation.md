@@ -137,6 +137,50 @@ and holds, four times, a vertex block and an A+D GIF tag (NLOOP 5, NREG 1, REGS 
 CLAMP_1, TEX0_1, ALPHA_1 and TEST_1 to 0 and PRIM to `0x5D`; then the register pairs ST, CLAMP_1,
 RGBAQ, XYZF2 = 0, MSCALF 0 (`0x15000000` at `+0x440`) and FLUSHA (`0x13000000` at `+0x444`).
 
+### Columns of ps2-vif1-vu1-emulation-programs.tsv
+
+One row per installed program, 57 rows. The three counts add up to the 141 call sites.
+
+| Column | Holds |
+|---|---|
+| `template_sites` | how many boot templates install the program through `0x008631E0`: 0, 1 or 2 (37 sites in all) |
+| `sorted_registrar_sites` | how many `0x003A34D0` and `0x003A33B0` sites install it, the registrars that append to the sorted draw list and submit later: 0 to 2 (67 sites in all) |
+| `unsorted_registrar_sites` | how many `0x003A35E0` and `0x003A2F70` sites install it, the registrars that submit at once: 0 to 4 (37 sites in all) |
+
+### Columns of ps2-vif1-vu1-emulation-templates.tsv
+
+One row per boot template, 77 rows, decoded from the stores each builder makes.
+
+| Column | Holds |
+|---|---|
+| `family` | `startup/N` or `startup-ext/N`, where N is the builder's place in the boot calls: 0 to 27 in the calls of `0x0037DF90`, 28 to 76 in those of `0x0037E0F0`; `startup-ext` marks the nine builders that lie below `0x00480000` (rows 18, 32, 51 to 54, 64, 68 and 69) |
+| `memset_size` | the byte count the builder clears at the object's start with `memset` (thunk `0x00861EC0`), in decimal, for example 304 for `0x004B0B70` (`mov r8d, 0x130`); empty on the 58 builders that do not call it |
+| `obj_header` | the header at the object's start: `0x30` where `0x008631E0(object, program, 0)` stamps the kind with a record handle (37 rows), `0x10 w=N` where `0x008631D0(object, N)` stamps the plain kind with a word count N; empty when the builder writes no header |
+| `sub_headers` | each further `0x008631D0` header inside the object, as offset and word count in hex, for example `+10:w=11` for `0x008631D0(object + 0x10, 0x11)`; empty when there is no such header |
+| `mpg_program` | the program address `0x008631E0` is handed (its second argument); empty on the 40 rows without that header |
+| `mpg_addr` | the VU address `0x008631E0` is handed (its third argument): 0 on all 37 rows that have one |
+| `command_sequence` | every VIF command the builder stores, as object offset and decoded command (BASE, OFFSET, NOP, STCYCL, UNPACK with format, count and address, DIRECT, MSCALF, FLUSH, FLUSHA, SUBHDR for a sub-header), separated by ` ; ` |
+| `gif_writes` | the GS register writes of the A+D data in the packet a DIRECT command carries: `CLAMP_1=0x0` on the one row that has a DIRECT command (`startup/28`, `0x004C2040`); empty on the other 76 |
+| `tail_reg_pairs` | the register and value pairs the builder stores after its looped blocks, just before MSCALF: `ST`, `CLAMP_1`, `RGBAQ` and `XYZF2` set to 0 on `0x00476C80` (`+0x400` to `+0x43F`) and `0x0047BAF0`; empty on the other 75 |
+| `unattributed_stores` | the builder's stores that fall in no command and no payload: 0 on all 77 rows |
+| `payload_stores` | how many of the builder's stores put a non-zero value inside the UNPACK payloads (28 for `0x004B0B70`, whose other six payload stores write a zeroed register) |
+
+### Columns of ps2-vif1-vu1-emulation-gif-tags.tsv
+
+One row per GIF tag inside a template payload, 75 rows.
+
+| Column | Holds |
+|---|---|
+| `unpack_at` | the object offset of the UNPACK command whose payload holds the tag: `+0x1C` (64 rows) after a header, or `+0xC` (11 rows) in a template without one |
+| `prim_raw` | the tag's 11-bit PRIM field in hex, which `prim`, `iip`, `tme`, `fge` and `abe` decode; `0x000` with `prim` reading `(PRE=0, PRIM unwritten)` on the 39 tags whose PRE bit is 0 |
+| `ad_payload` | for the 38 A+D tags (`regs` reads `A+D`), each register the following data quadwords write and its value, as `NAME=value` separated by semicolons (an address in hex, such as `0x0E`, where the register has no name); empty on the other 37 |
+
+### Columns of ps2-vif1-vu1-emulation-subroutines.tsv
+
+| Column | Holds |
+|---|---|
+| `called_from` | the programs that call the subroutine, separated by commas; all 29 addresses that occur are programs of ps2-vif1-vu1-emulation-programs.tsv, and 20 subroutines are called from `0x004B1190` alone |
+
 ### The GiVmax render command
 
 `0x001DB840(node, word1, word2, program, payload, size, payload2, size2, flag, ctx)` allocates the
@@ -376,7 +420,7 @@ integer words in `.data` at `0x02CA7F40` to `0x02CA7F78` instead of in the index
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| each row of [ps2-vif1-vu1-emulation-state.tsv](ps2-vif1-vu1-emulation-state.tsv), one per address | the row's `type` | the row's `start` | the row's `meaning` | the row's `set_by` | the row's `read_by` |
+| each row of [ps2-vif1-vu1-emulation-state.tsv](ps2-vif1-vu1-emulation-state.tsv), one per address; its `place` names the register, field, cell or lane at that address, for example `PRIM ABE`, `TEX0_1`, `cell 0x02064B20 lane z`, `index word` (22 rows) or `lens-flare program word` (12 rows) | the row's `type` | the row's `start` | the row's `meaning` | the row's `set_by` | the row's `read_by` |
 
 ## Modding notes
 

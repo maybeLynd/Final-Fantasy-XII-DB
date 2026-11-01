@@ -188,6 +188,15 @@ scripts.
 - Seven `settalknpcname` calls take the id from a script array. The table lists such a script under every id the
   array is given, marked "(array)".
 
+### Columns of npc-name-pairs.tsv
+
+| Column | Holds |
+|---|---|
+| `pair_hex` | the pair number of `pair` in hex, four digits (`0x0000` to `0x0474`), the form the scripts' name ids take |
+| `set_by_scripts` | the scripts that call `settalknpcname` (`0x399`) with the pair's id, separated by semicolons; `x2` to `x5` after a script name gives its number of calls when it is more than one, and "(array)" marks a call that takes the id from a script array; `-` on the 1,068 pairs no script sets |
+| `released_by_scripts` | the scripts that call `releasetalknpcname` (`0x39A`) with the pair's id, in the same form; every one is `evt_t0090`, once to four times; `-` on 1,105 pairs |
+| `tested_by_scripts` | the scripts that call `istalknpcname` (`0x39B`) with the pair's id: `sav_b01` for one pair, `-` on the other 1,140 |
+
 ### Where each name is given
 
 [`npc-names-maps.tsv`](npc-names-maps.tsv) has one row per name pair and script, from every `setnpcname` step
@@ -219,6 +228,12 @@ What it shows:
   - In 30 Draklor Laboratory scripts no step stores the flag array that `begin` tests, so `begin` skips the verb.
   - In 5 Archades scripts (`alc_b03`, `alc_b04`, `alc_c01`, `alc_f01`, `alc_f02`) every placed person's flag has
     bit `0x2` set. `clip_show` disables talk and skips the verb when the flag ANDed with `0xA` is not 0.
+
+### Columns of npc-names-maps.tsv
+
+| Column | Holds |
+|---|---|
+| `name_pair_hex` | the pair number of `name_pair` in hex, four digits, as `pair_hex` in npc-name-pairs.tsv; it equals `name_pair` on all 1,575 rows |
 
 ## Modding notes
 

@@ -29,6 +29,18 @@ and `0x93`, are main-range types (47);
 sub-range tables (18); `0x6C`–`0x6F` have no arm in either range (`0x0043EBF0`, byte map `0x0043ECC4`). The
 full decode is in [`effect-element-types-effect-type-methods.tsv`](effect-element-types-effect-type-methods.tsv).
 
+### Columns of effect-element-types-effect-type-methods.tsv
+
+One row per type `0x00` to `0xD1`, 210 rows; each other column is one dispatcher, named by its role and address.
+The type is the element's byte `+0`, or the definition's byte `+0x44` where the name says `(+0x44)`; `walk` indexes
+its table with the type minus 1, the `sub-` dispatchers start at `0x42` and `seventh` at `0x40`.
+
+| Column | Holds |
+|---|---|
+| `step 0x002F3BC0`, `update 0x002F3910`, `walk 0x002F4020 (type - 1)`, `setup 0x005004C0 (+0x44)` | the main-range handlers: the function the type's arm reaches with its first direct call or jump to another function; `default` when the type takes the table's most common arm; `-` when the type is outside the table |
+| `sub-step 0x0043EBF0`, `sub-setup 0x00538910 (+0x44)`, `sub-update 0x0043EAB0`, `sub-walk 0x0043ED30` | the same for the sub-range dispatchers, whose tables start at type `0x42`; `-` on the 104 types below `0x42` or above the table |
+| `seventh 0x002F31C0`, `sub-seventh 0x0043E9C0` | the same for the seventh method and its sub-range twin |
+
 Every birth method except `0x70`'s calls the base birth `0x002F2D60`, and every update method except
 `0x70`'s calls the base update `0x002F2530`. Most updates add a type tail: type 1's `0x004424E0` is
 `0x002F2530` then `0x00442600`. Types `0x41` and `0xD0` share `0x00464F10`, a jump to the base alone. The
@@ -753,6 +765,23 @@ The tables beside this page:
   rows): the mesh records of the `.efx` files, one per row;
 - [`effect-element-types-effect-mesh-54-element05.tsv`](effect-element-types-effect-mesh-54-element05.tsv) (5,164
   rows): the type-`0x05` definitions of the `.efx` files, one per row.
+
+### Columns of the census and mesh tables
+
+Every row of the two mesh tables was checked against the shipped `.efx` file it names.
+
+| Column | Holds |
+|---|---|
+| `chunks_efx_efb`, `files_efx_efb` | in effect-element-types-type_census.tsv, the type's `0xA00` records in the streams of the 3,288 `.efx` and 410 `.efb` files, and how many of those files hold one |
+| `chunks_embedded`, `files_embedded` | the same for the 531 streams embedded in `.cm` models (144) and `.mpk` map packs (387); 0 for 14 types; `chunks` and `files` are the two sums on all 55 rows |
+| `distinct_assets` | how many different assets hold the type: an `.efx` counts once for all language folders (its sub-folder and name), any other file by its name |
+| `tri` | in effect-element-types-effect-mesh-54-records.tsv, payload `u16 +0x02`, the triangle count; 0 in 2,015 of the 2,252 records |
+| `c14`, `c16`, `c18`, `c1A`, `c1C`, `c1E` | the payload's six further `u16` counts, `+0x06` to `+0x10`, named by the object field they are copied to: positions (`+0x14`), vectors (`+0x16`), 4-byte entries (`+0x18`), 8-byte entries (`+0x1A`), id bytes (`+0x1C`, 0 to 2) and 20-byte records (`+0x1E`, 0 in all) |
+| `avail` | the payload's length, the chunk's length minus `0x10` |
+| `ok` | 1 when `avail` is `size` plus 0 to 15 bytes and a multiple of 16; 1 in all 2,252 |
+| `chunk_off` | in effect-element-types-effect-mesh-54-element05.tsv, the `0xA00` chunk's offset in the file, in hex |
+| `chunk_type` | the chunk's type word, `0xa00` in all 5,164 |
+| `mode_0x590` | the definition's byte `+0x590` (chunk `+0x10 + 0x590`), in hex; bit `0x10`, which must be clear for the mesh index to come from the track, is set only in `0x1f`, 2 rows; `0x0e` in 2,831 rows and `0x0d` in 1,724 |
 
 ## Operations
 

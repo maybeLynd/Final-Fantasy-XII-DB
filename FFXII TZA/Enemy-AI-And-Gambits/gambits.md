@@ -343,6 +343,13 @@ read from the shipped file. The twelve presets no party row names hold "Foe: nea
 Every Esper preset starts with condition `0x60FF`, which takes the foe with the highest max HP while the summon
 timer is below 20 ([Gambit conditions](gambit-conditions.md)).
 
+### Columns of gambit-preset-list.tsv
+
+| Column | Holds |
+|---|---|
+| `line_text` | the preset's lines, top first, as `N. condition: action` separated by semicolons: the condition's name from its id in `conditions` and the action's name from its row in `actions`; a preset holds up to twelve lines and ends at the first `0xFFFF` |
+| `used_by` | who loads the preset: each party table row that names it in word `+0x14`, as row number and name (`0 Vaan`, `14 Reddas, 16 Reddas`), and for `0x5015` to `0x501A` the scenario sets whose rows load it, with the characters (`scenario 8 Vaan, scenario 9 Ashe`); the six presets no row names (`0x5006`, `0x5010` to `0x5014`) say so |
+
 ## Modding notes
 
 - A character's starting gambits are the preset its party row names in `+0x14`; editing a preset row

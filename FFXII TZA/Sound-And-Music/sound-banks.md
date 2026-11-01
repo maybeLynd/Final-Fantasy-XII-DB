@@ -302,6 +302,20 @@ These 22 banks hold 28 materials that no version plays.
 version, the versions that play one sample data, the materials no version plays and the other banks that hold the
 same sample data.
 
+### Columns of music-versions.tsv
+
+One row per music bank, 116 rows, by `track`. A version is the section of the same number: Original is section 0,
+Reorchestrated section 1 and OST section 2.
+
+| Column | Holds |
+|---|---|
+| `section_0_original`, `section_1_reorchestrated`, `section_2_ost` | the name each section header gives (name offset `u16 +0x02`, length byte `+0x04`); the same as `section0` to `section2` of sound-music-bank-files.tsv on all 116 rows |
+| `material_per_version` | the material each version plays, the material `u16 +0x04` of its section's one layer, written `Original 0, Reorchestrated 1, OST 2`; that form on 94 rows, `Original 2, Reorchestrated 1, OST 2` on 15, `Original 2, Reorchestrated 2, OST 2` on 6 and `Original 0, Reorchestrated 2, OST 2` on 1 |
+| `seconds_per_version` | the playing time of each version's material in seconds, in the same form; on all 116 rows the three add up to `material_seconds` of the bank in sound-music-bank-files.tsv |
+| `versions_with_one_sample_data` | the versions that play the same material: `Original and OST` on 15 rows, `Original and Reorchestrated and OST` on 6, `Reorchestrated and OST` on 1; `-` on the 94 rows where the three versions play three materials |
+| `material_no_version_plays` | the material numbers that no version's layer names: `0` on 15 rows, `0, 1` on 6, `1` on 1, 28 materials in all; `-` on 94 rows |
+| `same_sample_data_in_other_banks` | for each version whose material holds the same sample data as a material of another bank, `Version (material m) = track T material n`, entries separated by `; `; filled on 20 rows, `-` on 96 |
+
 ### The block banks
 
 The 248 block banks hold 6,395 sound records. 4,410 have byte `+0x04` set and can play; 1,985 are empty. The
@@ -366,6 +380,27 @@ attack line, each later variant plays the line before its Japanese counterpart, 
 
 One record names a bank that does not ship: `600070`, in slot 7 of `sum_a0001.snd`. The scene's script reads slots
 0-6 only, in all nine languages, so the record is never opened.
+
+### Columns of the four bank tables
+
+The columns below are those of [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv),
+[`sound-se-bank-files.tsv`](sound-se-bank-files.tsv), [`sound-block-index-files.tsv`](sound-block-index-files.tsv) and
+[`sound-voice-bank-files.tsv`](sound-voice-bank-files.tsv); the others are the header fields and chunk counts in the
+tables of Layouts and Shipped data.
+
+| Column | Holds |
+|---|---|
+| `file_size_matches` | in all four tables, 1 when the header's `fileSize` equals the file's length; 1 on every row (116, 4,345, 248 and 264 rows) |
+| `music_name` | in sound-music-bank-files.tsv, the name at the header's `nameOffset`: `music` and the track in three digits (`music007`) on all 116 rows |
+| `section0`, `section1`, `section2` | in sound-music-bank-files.tsv, the names of sections 0, 1 and 2, the same as the three section columns of music-versions.tsv |
+| `sound_name` | in sound-se-bank-files.tsv, the name of the six-digit bank's one sound, the same as its file name without `.win.sab` (`se001001`) on all 4,097 six-digit banks; empty on the 248 block banks |
+| `material_seconds` | in the music, SE and voice tables, the playing time of the bank's HCA materials added together, in seconds to two decimals; one material's time is the frame count of its `fmt` chunk times 1,024, divided by its rate. Music banks 24.02 to 1,342.91, block banks 3.20 to 511.04, six-digit banks 0.11 to 153.81, `.win.sab` voice banks 4.31 to 7.94; empty on the 132 `.orb.sab` voice banks, whose materials use codec 4 |
+| `referenced_by` | in the music table, each source that names the track, separated by `; `: `music table N runs` and `music table N rungs` (the music table's runs and ladder rungs), `<verb> N calls in N scripts` for each loading verb (`musicread`, `musicplay`, `setnowmapmusicno`, `musicphraseplay`, `musicreplay`, `musicplaysync`, `musiccrossplay`, `musiccrossplay_22f`), `game-over task (0x003EF3D0, 0x003EF42C)` on track 7, `chocobo mode 0x5A` on track 90 and `summon mode 0x5B` on track 91 with the code that sets them, and `event <script> (local variable set to <track>)` on tracks 104, 109, 115 and 208; empty on tracks 24, 25, 43, 106 and 112 |
+| `referenced_by` | in the block table, `charseinfo blockN: N rows (...)`, the `charseinfo` field (`block0`, `block1` or `block2`) that names the block, with the first codes of those rows, on 217 rows; `start-up block N (...)` with the addresses of the code on `se000`, `se002` and `se007`; empty on the 28 blocks of Files nothing loads |
+| `referenced_by` | in the voice table, `charseinfo voiceBank: N rows (...)` with the first codes of those rows, or `bestiary voice_bank: N rows`, both on 4 rows, separated by `; `; empty on 80 rows |
+| `slot_flags` | in the block table, each present slot as `slot:flags`, separated by spaces: the slot number (0 to 126 in the shipped files) and the slot's flag byte `+0x04`, read when the sound starts (`0x00224570`); as many pairs as `slots_present` on all 248 rows |
+| `bank_sounds_without_slot` | `bank_sounds` less `slots_present`, 0 to 21. Where every slot names a sound of the bank it counts the bank's sounds that no slot names; on `se007`, `se228`, `se241` and `se353`, whose slots run past the bank, it does not (their unmatched sounds are in the table of The block banks) |
+| `slots_past_bank` | the slots whose number is the bank's sound count or above: 1 on `se007`, 12 on `se228` and `se241`, 2 on `se353`, 0 on the other 244 rows |
 
 ## Loader behaviour
 

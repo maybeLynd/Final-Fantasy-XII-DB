@@ -171,6 +171,17 @@ no script of any tree calls `setbehindcameratype` (`0x1CB`).
 | [`ebp-language-summary.tsv`](ebp-language-summary.tsv) | 60 | tree and kind: scripts and differences |
 | [`ebp-language-pictures.tsv`](ebp-language-pictures.tsv) | 10 | picture block: size, frames, scripts, and per tree whether it differs and the words it draws |
 
+### Columns of ebp-language-differences.tsv and ebp-language-pictures.tsv
+
+| Column | Holds |
+|---|---|
+| `tree_value` | in ebp-language-differences.tsv, the tree's side of the difference, in the same form as `us`: the tree's code line, value, size or byte count at that place; `-` where the tree lacks what `us` has or `us` lacks what the tree adds (for example `us` is `-` and `tree_value` is `setcharclipall(1);` on the 1,176 rows of that call) |
+| `cite` | where the difference was read: `us L` and `L` with the line numbers in the two listings; the tree's added lines and the `us` line they come before (`ch L54-54, before us L54`); `image` with an offset, a byte range or a header field (`image +0x3C`) of the script image; `section` with an offset in that container section and the file offset in brackets; or, for the one script with no `us` twin, its path |
+| `first_scripts` | in ebp-language-pictures.tsv, the scripts whose picture block holds the picture, every one of them (as many names as `scripts`) |
+| `us_words` | the words the `us` picture draws, separated by semicolons |
+| `ch_differs`, `cn_differs`, `de_differs`, `es_differs`, `fr_differs`, `in_differs`, `it_differs`, `kr_differs` | how many of the picture's scripts have a different picture block in that tree: on every row either all of them or 0 (picture `g07` in `de`, `es`, `fr` and `it`) |
+| `ch_words`, `cn_words`, `de_words`, `es_words`, `fr_words`, `in_words`, `it_words`, `kr_words` | the words the tree's picture draws where they differ from `us`, `same words` for the rest when they are the `us` words, and `as us` when the tree's picture block is the `us` one |
+
 ## Loader behaviour
 
 ### Requesting a script

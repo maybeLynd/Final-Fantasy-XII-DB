@@ -10,7 +10,8 @@ addresses: "0x01F81218, 0x001B7F20, 0x001B82F0, 0x001B7F30, 0x001B8400, 0x001B83
 The story's pre-rendered cutscenes play as WebM videos with the voice track in the language set in
 the options and the sound at the music volume. A movie asked to stop either ends at once or fades
 its sound out over half a second first. Beside the movie paths the game still carries the PS2
-seek indexes (`.mh`) of the old movie streams; nothing opens them.
+seek indexes (`.mh`) of the old movie streams; nothing opens them. What each of the 40 shipped movies
+shows, with its length and its first subtitle line, is in [`movies-contents.tsv`](movies-contents.tsv).
 
 ## Where it comes from
 
@@ -105,6 +106,29 @@ The movie player is the singleton `0x01F81218` (getter `0x001B7F20`), `0xBB8` by
 | subtitle tracks | the 40 shipped `.webm` files declare a VP8 video track each, 39 of them Vorbis sound, and none a subtitle track |
 | subtitles | the script that opens a movie prints its subtitles: while the movie plays, its functions wait for movie frames (`getmovieframe`, `0x0033F250`, at 29.97 frames a second) and print one line each with `amest`; where a `getff12lang` switch (the voice language, 0 for Japanese voices) picks a second set of functions timed to the Japanese voices, the table follows the English-voice set. 14 movies print 297 lines: `OPN` 31, `ALX` 4, `DRC` 2, `END` 96, `STR_STA` 18, `DIS` 6, `LRF` 16, `EST` 1, `ESC` 4, `EPL` 30, `MEM` 8, `VAD` 17, `VNP` 57 and `WAR` 7. The steps that open the other 29 movies start no function that prints a line against movie frames |
 | every subtitle line | one row per line in [`movies-subtitle-lines.tsv`](movies-subtitle-lines.tsv), 297 rows: the movie, the line's order, the frame and second it follows (lines a plain wait apart share the frame), the line and the function that prints it |
+
+### Columns of the movie tables
+
+Every value below was checked against the shipped `.mh` and `.webm` files; the `.webm` files are in
+`gamedata/d3d11/artdata/video/`.
+
+| Column | Holds |
+|---|---|
+| `sha256_16` | in movies-mh-rows.tsv, the first 16 hex digits of the `.mh` file's SHA-256 |
+| `stream_bytes`, `frame_count` | the header's `streamBytes` `+0x0C` and `frameCount` `+0x10` |
+| `flags_1`, `flags_2` | how many entries have flags 1 and flags 2; with `flags_0` they add up to `entries` |
+| `last_entry_frame` | the frame number of the last entry |
+| `md_path` | in movies-by-id.tsv, the kind-28 entry `2m` for movie id m, the PS2 `.md` path; `-` for the empty ids 38, 39, 40 and 46 |
+| `webm_ships` | `yes` when `webm` is in the video folder (40 ids), `no` when it is not (5), `-` for the four empty ids |
+| `webm_bytes`, `webm_sha256` | the shipped `.webm`'s size in bytes and its full SHA-256 in capitals; `-` when it does not ship |
+| `mh_path` | the kind-28 entry `2m + 1`, the `.mh` path; `-` for the empty ids |
+| `mh_file` | the shipped `.mh` file at that path, in lower case; `-` for the empty ids and for `us\DLB.mh` (id 37) and `in\ANX.mh` (id 48), which have no file |
+| `scene_event_id` | in movies-scenes.tsv, the event id of the scene script when the opening step is in one (28 rows); `-` for a step of a zone script (24 rows) |
+| `story_counter_set` | the story counter values the scene sets, each with its name, separated by `/` (16 rows); `-` on the other 36 rows |
+| `after_frame` | in movies-subtitle-lines.tsv, the movie frame the printing function waits for before it prints the line (`getmovieframe`) |
+| `after_seconds` | that frame divided by 29.97, to two decimal places |
+| `printed_by` | the zone script, the function that prints the line, and the step in that function |
+| what each movie shows | one row per shipped `.webm` in [`movies-contents.tsv`](movies-contents.tsv), 40 rows: the `movie_id`, the `movie` code, the `webm` file, its length in `seconds` (the duration the file states), what it `shows`, written from twelve frames spread evenly over the movie with the seconds of the frames each phrase rests on, and the `first_line` of its subtitles from [`movies-subtitle-lines.tsv`](movies-subtitle-lines.tsv) (`-` for the 26 movies whose opening script prints no line) |
 
 ## Loader behaviour
 

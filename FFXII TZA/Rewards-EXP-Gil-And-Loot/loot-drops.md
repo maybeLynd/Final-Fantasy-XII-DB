@@ -195,6 +195,18 @@ The shipped rows:
 Every byte of the four rows, with the quantity weights of all five slots and the chain-bonus copy (the seven
 percentages of the chain-level table above), is in [the drop table](loot-drops-drop-table.tsv).
 
+### Columns of loot-drops-drop-table.tsv
+
+One row per drop table row, 4 rows; `row` is the chance profile and the quantity profile that pick it.
+
+| Column | Holds |
+|---|---|
+| `chance_slot0`, `chance_slot1`, `chance_slot2`, `chance_slot3`, `chance_slot4` | row bytes `+0x00` to `+0x04`, signed: the percent chance that drop slot 0 to 4 drops (`0x003185D0`); slot 4 is 100 on every row, slot 0 runs from 40 to 55 |
+| `qty_weights_slot0`, `qty_weights_slot1`, `qty_weights_slot2`, `qty_weights_slot3`, `qty_weights_slot4` | row bytes `+0x06 + slot × 4`, four signed weights each, written `a / b / c / d`: the chances in percent of 1, 2, 3 and 4 items for that slot (`0x003186F0` returns the index whose running sum first exceeds the roll, and the quantity is that index plus 1); they add up to 100 in every row |
+| `chain_bonus_copy` | row bytes `+0x1A` to `+0x20`: the seven percentages of the chain-level row (nothing, HP 10 %, MP 10 %, Protect for the picker and the party, Shell for the picker and the party); the code reads the copy in the executable at `0x01EED3B8` instead |
+| `break_limit` | row byte `+0x21`, signed: the breaks-in-a-row limit `0x00318960` compares, 6, 12 and 20 in rows 0 to 2; -1 in row 3 ends the list |
+| `profile_weights` | row bytes `+0x22` to `+0x24`, written `a / b / c`: the weights of chance profiles 0, 1 and 2 that `0x00318820` draws from after a chain break |
+
 The enemy's drop record (`[unit+0xE60]`), the fields the drop roll reads:
 
 `EnemyDropFields` (offsets from the start of the record):

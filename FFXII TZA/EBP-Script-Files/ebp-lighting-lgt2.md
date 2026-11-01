@@ -156,6 +156,22 @@ has no type-0 range (Which records are lit, below), and 16 of the 20 have one, s
 [`mpk-map-pack-lgt2-lit-by-slot.tsv`](../World-Areas-And-Travel/mpk-map-pack-lgt2-lit-by-slot.tsv) gives the records group 0
 lists on entry for each map and weather slot.
 
+### Columns of the light set tables
+
+Offsets are from the start of the LGT2 section and written in hexadecimal.
+
+| Column | Holds |
+|---|---|
+| `sha256` | in ebp-lighting-lgt2-sets.tsv, the SHA-256 of the section's bytes, 64 hexadecimal digits; `gil_d0102` and `rbl_f0101` carry the same section, so 139 values occur on the 140 rows |
+| `section_bytes` | the section's length in bytes, 64 to 34,304 |
+| `list_offset` | the header's `listOffset` (`+0x04`), where the chunk chain starts; `0x10 + 0x70 × light_count` on every row |
+| `light_count` | the header's `lightCount` (`+0x0A`), 0 to 287; the 140 values add up to the 5,747 rows of the lights table |
+| `record_offset` | in ebp-lighting-lgt2-lights.tsv, where the record starts: `0x10 + 0x70 × record` |
+| `light_kind` | the request's `lightKind`, the byte at record `+0x20`: 1 (4,306 rows), 6 (919), 2 (514) or 4 (8) |
+| `f34` | the second of the four floats at record `+0x30`, the one at `+0x34`, as stored: -1.2468749284744263 to 8.4375 |
+| `record_hex` | the record's `0x70` bytes in file order, 224 hexadecimal digits |
+| `chunk_offset` | in ebp-lighting-lgt2-chunks.tsv, where the chunk starts: chunk 0 at the set's `list_offset`, each next chunk at the previous one's offset plus its `size` |
+
 ## Loader behaviour
 
 ### The bind

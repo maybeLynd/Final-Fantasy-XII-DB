@@ -285,8 +285,8 @@ not name is given by its offsets, as hex bytes.
 | `node`, `number`, `record` | ftr-nodes | the node's position, the node number of its `+0x40` table word, and its record offset in the entry |
 | `key`, `parent`, `byte_03`, `flags` | ftr-nodes | the key as `0x00409250` reads it, the parent (`-` for none), record byte `+0x03` and the flags `+0x04` |
 | `pool_indices`, `pool_index_list` | ftr-nodes | the record's u16 pool indices in stored order: one for each of flag bits `0x80000000`, `0x400000` and `0x20000000`, sixteen for `0x200000`, and one for each translation and angle bit; the list fills every record |
-| `record`, `key`, `selectors_0`–`selectors_2` | for-records | the record's position, its key, and the selector counts at `+0x05`, `+0x06` and `+0x07` |
-| `scale`, `part_0`–`part_2` | for-records | float `+0x18`, and each part's selector bytes at `+0x20`, `+0x40` and `+0x60` |
+| `record`, `key`, `selectors_0`, `selectors_1`, `selectors_2` | for-records | the record's position, its key, and the selector counts of parts 0, 1 and 2 at `+0x05`, `+0x06` and `+0x07` |
+| `scale`, `part_0`, `part_1`, `part_2` | for-records | float `+0x18`, and the selector bytes of parts 0, 1 and 2 at `+0x20`, `+0x40` and `+0x60`, as many as the part's selector count, separated by spaces; `-` when the count is 0 (815 rows for part 1) |
 | `bytes_01_04`, `bytes_08_17`, `bytes_1c_1f`, `bytes_80_df` | for-records | record bytes `+0x01`–`+0x04`, `+0x08`–`+0x17`, `+0x1C`–`+0x1F` and `+0x80`–`+0xDF` (`-` when all zero) |
 | `position`, `key` | fdm-keys | the key's position in the table and the key |
 | `vram_bytes`, `width`, `height`, `format` | fte-textures | record `+0x00`, `+0x04`, `+0x06` and `+0x08` |

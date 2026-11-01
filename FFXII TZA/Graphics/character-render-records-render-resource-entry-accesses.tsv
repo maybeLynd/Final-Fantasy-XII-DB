@@ -3,7 +3,6 @@ function	name	site	disp	kind	instruction	route	note
 0x00409600	ResourceEntry_GetResolvedBasePointer	0x00409616	0x4	r	mov ecx, dword ptr [rcx + 4]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
 0x00409710	FUN_00409710	0x00409718	0x4	w	mov dword ptr [rcx + 4], eax	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
 0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097D7	0x4	r	mov ecx, dword ptr [rbx + 4]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
-0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x004097D7	0x4	r	mov ecx, dword ptr [rbx + 4]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
 0x00409A60	FUN_00409a60	0x00409A96	0x4	w	mov dword ptr [r14 + 4], ebp	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
 0x00409600	ResourceEntry_GetResolvedBasePointer	0x00409648	0x10	addr	lea rcx, [rbx + 0x10]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	
 0x00409780	ResourceEntry_FindSectionIndexAndOffset	0x00409805	0x10	addr	lea rcx, [rbx + 0x10]	seeded on proven entry points: 0x00409710, 0x00409A60, 0x00409A30, 0x00409600	

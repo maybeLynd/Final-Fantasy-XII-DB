@@ -1,0 +1,65 @@
+function	name	site	disp	kind	instruction	route	note
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x00300704	0x0	addr	lea rcx, [rbp + 0x778]	embed BattleUnit+0x778	
+0x00304850	BattleUnit_AdvanceStandardActionState	0x00304ED5	0x0	addr	lea r9, [rsi + 0xc8]	embed BattleUnit+0x778	
+0x00304850	BattleUnit_AdvanceStandardActionState	0x00304F10	0x0	addr	lea r8, [rsi + 0xc8]	embed BattleUnit+0x778	
+0x0030F760	BattleUnit_CommitAction	0x0030F7A7	0x0	addr	lea rcx, [rbx + 0x778]	embed BattleUnit+0x778	
+0x0030F760	BattleUnit_CommitAction	0x0030F7C6	0x0	addr	lea rcx, [rbx + 0x778]	embed BattleUnit+0x778	
+0x003105D0	BattleUnit_CancelAndResetCurrentAction	0x003106AD	0x0	addr	lea rcx, [rbx + 0x778]	embed BattleUnit+0x778	
+0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	0x00316CFA	0x0	r	movzx ebx, byte ptr [rcx]	embed BattleUnit+0x778	
+0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	0x00316D10	0x0	rw	and byte ptr [rdi], 0xfe	embed BattleUnit+0x778	
+0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	0x00316D16	0x0	rw	or byte ptr [rdi], bl	embed BattleUnit+0x778	
+0x00319F50	BattleUnit_HandleActorTimelineEvent	0x00319FD8	0x0	addr	lea rcx, [rbx + 0x778]	embed BattleUnit+0x778	
+0x00319F50	BattleUnit_HandleActorTimelineEvent	0x0031A176	0x0	addr	lea rcx, [rbx + 0x778]	embed BattleUnit+0x778	
+0x00316CF0	BattleTargetBuffer_ResetPreservingFlag0	0x00316D1D	0x1	w	mov word ptr [rdi + 1], 0	embed BattleUnit+0x778	
+0x002FFB60	BattleAction_CheckCurrentActionInterruptReason	0x002FFC3E	0x4	r	cmp dword ptr [rbx + 0x77c], 0	embed BattleUnit+0x778	
+0x00304850	BattleUnit_AdvanceStandardActionState	0x00304899	0x4	r	cmp dword ptr [rsi + 0xcc], r14d	embed BattleUnit+0x778	
+0x00316CD0	BattleTargetBuffer_TryAppendActorWork	0x00316CD0	0x4	r	movsxd rax, dword ptr [rcx + 4]	embed BattleUnit+0x778	
+0x00316CD0	BattleTargetBuffer_TryAppendActorWork	0x00316CE1	0x4	rw	inc dword ptr [rcx + 4]	embed BattleUnit+0x778	
+0x00316CD0	BattleTargetBuffer_TryAppendActorWork	0x00316CE4	0x4	r	mov eax, dword ptr [rcx + 4]	embed BattleUnit+0x778	
+0x00316D70	BattleTargetBuffer_FindActorWorkIndex	0x00316D70	0x4	r	movsxd r10, dword ptr [rcx + 4]	embed BattleUnit+0x778	
+0x003191B0	Battle_ProcessActionTargetEntry	0x003192C9	0x4	r	movsxd rcx, dword ptr [rbx + 0x77c]	embed BattleUnit+0x778	
+0x00319E40	FUN_00319e40	0x00319E88	0x4	r	cmp dword ptr [r14 + 0x77c], ebx	embed BattleUnit+0x778	
+0x00319E40	FUN_00319e40	0x00319ED4	0x4	r	cmp ebx, dword ptr [r14 + 0x77c]	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B40A	0x4	r	movsxd rax, dword ptr [rax + 0x77c]	embed BattleUnit+0x778	
+0x00322760	FUN_00322760	0x003227B9	0x4	r	movsxd rcx, dword ptr [rbx + 0x77c]	embed BattleUnit+0x778	
+0x00325260	BattleUnit_HandleActionTimelineEvent	0x003254CC	0x4	r	cmp dword ptr [rbx + 0x77c], edi	embed BattleUnit+0x778	
+0x00325260	BattleUnit_HandleActionTimelineEvent	0x00325520	0x4	r	cmp edi, dword ptr [rbx + 0x77c]	embed BattleUnit+0x778	
+0x003257D0	FUN_003257d0	0x003259B5	0x4	r	cmp dword ptr [rsi + 0x77c], ebx	embed BattleUnit+0x778	
+0x003257D0	FUN_003257d0	0x003259DB	0x4	r	cmp ebx, dword ptr [rsi + 0x77c]	embed BattleUnit+0x778	
+0x0038ED40	FUN_0038ed40	0x0038EDB4	0x4	r	cmp dword ptr [rax + 0x77c], esi	embed BattleUnit+0x778	
+0x0038ED40	FUN_0038ed40	0x0038EDD0	0x4	r	mov esi, dword ptr [rax + 0x77c]	embed BattleUnit+0x778	
+0x00301AD0	AiOrder_EvaluateTargetSelector	0x003033A4	0x8	r	cmp qword ptr [rdi + 0x780], rax	embed BattleUnit+0x778	
+0x00308610	BattleUnit_UpdateCombatFrame	0x00308786	0x8	r	cmp qword ptr [rbx + 0x780], 0	embed BattleUnit+0x778	
+0x0030C010	FUN_0030c010	0x0030C03B	0x8	r	cmp qword ptr [rbx + 0x780], 0	embed BattleUnit+0x778	
+0x00316CD0	BattleTargetBuffer_TryAppendActorWork	0x00316CDC	0x8	w	mov qword ptr [rcx + rax*8 + 8], rdx	embed BattleUnit+0x778	
+0x00316D70	BattleTargetBuffer_FindActorWorkIndex	0x00316D7F	0x8	addr	lea rax, [rcx + 8]	embed BattleUnit+0x778	
+0x00316D70	BattleTargetBuffer_FindActorWorkIndex	0x00316D83	0x8	r	cmp qword ptr [rax], rdx	embed BattleUnit+0x778	
+0x003176E0	Battle_EmitReactionPresentationForSlot	0x00317727	0x8	r	mov rcx, qword ptr [rdi + rsi*8 + 0x780]	embed BattleUnit+0x778	
+0x003191B0	Battle_ProcessActionTargetEntry	0x003192E3	0x8	addr	lea rcx, [rbx + 0x780]	embed BattleUnit+0x778	
+0x003191B0	Battle_ProcessActionTargetEntry	0x003192F0	0x8	r	cmp qword ptr [rcx], r8	embed BattleUnit+0x778	
+0x00319E40	FUN_00319e40	0x00319EAA	0x8	addr	lea rdi, [r14 + 0x780]	embed BattleUnit+0x778	
+0x00319E40	FUN_00319e40	0x00319EB1	0x8	r	mov rcx, qword ptr [rdi]	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B41E	0x8	addr	lea rax, [r10 + 0x780]	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B428	0x8	r	cmp qword ptr [rax], r8	embed BattleUnit+0x778	
+0x00322760	FUN_00322760	0x003227D4	0x8	addr	lea rax, [rbx + 0x780]	embed BattleUnit+0x778	
+0x00322760	FUN_00322760	0x003227E0	0x8	r	cmp qword ptr [rax], r9	embed BattleUnit+0x778	
+0x00325260	BattleUnit_HandleActionTimelineEvent	0x003254DD	0x8	addr	lea rsi, [rbx + 0x780]	embed BattleUnit+0x778	
+0x00325260	BattleUnit_HandleActionTimelineEvent	0x003254E8	0x8	r	mov rcx, qword ptr [rsi]	embed BattleUnit+0x778	
+0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FFA14	0x10	rw	and dword ptr [r14 + 0x788], 0xfffffbff	embed BattleUnit+0x778	
+0x00300140	BattleUnit_ResetActionControlForStatusTransition	0x0030019B	0x10	rw	and dword ptr [rbx + 0x788], 0xfffffbff	embed BattleUnit+0x778	
+0x00300530	BattleStats_ModifyHPAndProcessLethalState	0x0030071A	0x10	r	mov r13d, dword ptr [rbp + rax*8 + 0x788]	embed BattleUnit+0x778	
+0x00300E40	BattleUnit_TeardownAndDespawn	0x00300EAD	0x10	rw	and dword ptr [rdi + 0x788], 0xfffffbff	embed BattleUnit+0x778	
+0x00301140	BattleUnit_RecoverFromTerminalStatusSetIfClear	0x003011E0	0x10	rw	and dword ptr [rbx + 0x788], 0xfffffbff	embed BattleUnit+0x778	
+0x00308610	BattleUnit_UpdateCombatFrame	0x00308790	0x10	r	test dword ptr [rbx + 0x788], 0x400	embed BattleUnit+0x778	
+0x0030AF30	BattleAction_CheckAndHandleExecutionTimeout	0x0030AFF8	0x10	rw	and dword ptr [rbx + 0x788], 0xfffffbff	embed BattleUnit+0x778	
+0x0030C010	FUN_0030c010	0x0030C045	0x10	r	test dword ptr [rbx + 0x788], 0x400	embed BattleUnit+0x778	
+0x003176E0	Battle_EmitReactionPresentationForSlot	0x00317783	0x10	r	movzx eax, byte ptr [rdi + rsi*8 + 0x788]	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B0E7	0x10	r	test dword ptr [rbx + 0x788], 0x100	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B0F1	0x10	r	movzx ecx, byte ptr [rbx + 0x788]	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B30B	0x10	r	movzx ecx, byte ptr [rbx + 0x788]	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B34E	0x10	r	test dword ptr [rbx + 0x788], 0x800	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B3BC	0x10	r	test dword ptr [rbx + 0x788], 0x800	embed BattleUnit+0x778	
+0x0031ADB0	FUN_0031adb0	0x0031B44F	0x10	r	cmp byte ptr [r10 + rax*8 + 0x788], 0xa	embed BattleUnit+0x778	
+0x00322760	FUN_00322760	0x00322810	0x10	r	cmp byte ptr [rbx + rcx*8 + 0x788], 8	embed BattleUnit+0x778	
+0x003257D0	FUN_003257d0	0x003259BD	0x10	addr	lea rdi, [rsi + 0x788]	embed BattleUnit+0x778	
+0x003257D0	FUN_003257d0	0x003259C4	0x10	r	movzx eax, byte ptr [rdi]	embed BattleUnit+0x778	

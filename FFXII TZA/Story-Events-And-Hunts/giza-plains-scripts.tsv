@@ -305,15 +305,15 @@ sav_g01	Tracks of the Beast (Giza Plains)	treasure_05	talk	talk	-	-	-	-	-	-	-	-	
 sav_g01	Tracks of the Beast (Giza Plains)	treasure_06	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000150	-	-	-	-	1	-
 sav_g01	Tracks of the Beast (Giza Plains)	コカトーク宝壺	talk	talk	-	-	-	Bank512, second half 0x0021: Set or tested in Tracks of the Beast (Giza Plains)	-	-	-	-	receives Feather of the Flock	-	-	-	-	2	-
 sav_b0100	scene, event 170	Director	main	main	system message; no name shown	system message 37; 0	[value] joins the party! (the game fills [value] with Penelo, party table row 5) / (empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-sav_b0100	scene, event 170	Mes	m001	requested by Director.main	-	1	Penelo? What are you doing here?	-	-	-	-	-	-	-	-	-	-	2	-
+sav_b0100	scene, event 170	Mes	m001	requested by Director.main	Vaan	1	Penelo? What are you doing here?	-	-	-	-	-	-	-	-	-	-	2	-
 sav_b0100	scene, event 170	Mes	m002	requested by Director.main	-	2	I could ask you the same!	-	-	-	-	-	-	-	-	-	-	2	-
 sav_b0100	scene, event 170	Mes	m003	requested by Director.main	-	3	Though the answer's pretty clear: no good.	-	-	-	-	-	-	-	-	-	-	2	-
-sav_b0100	scene, event 170	Mes	m004	requested by Director.main	-	4	What? I'm being good.	-	-	-	-	-	-	-	-	-	-	2	-
-sav_b0100	scene, event 170	Mes	m005	requested by Director.main	-	5	Hmm. Is that right?	-	-	-	-	-	-	-	-	-	-	2	-
+sav_b0100	scene, event 170	Mes	m004	requested by Director.main	Vaan	4	What? I'm being good.	-	-	-	-	-	-	-	-	-	-	2	-
+sav_b0100	scene, event 170	Mes	m005	requested by Director.main	Penelo	5	Hmm. Is that right?	-	-	-	-	-	-	-	-	-	-	2	-
 sav_b0100	scene, event 170	Mes	m006	requested by Director.main	Penelo	6	So then you wouldn't mind if I, say, tagged along, would you?	-	-	-	-	-	-	-	-	-	-	2	-
 sav_b0100	scene, event 170	Mes	m008	requested by Director.main	Penelo	7	Oh, don't worry.	-	-	-	-	-	-	-	-	-	-	2	-
-sav_b0100	scene, event 170	Mes	m009	requested by Director.main	-	8; 9	Migelo's busy with preparations for the fete up at the palace. / Why, I'm free for the whole day.	-	-	-	-	-	-	-	-	-	-	2	-
-sav_b0100	scene, event 170	Mes	m010	requested by Director.main	-	10	Well? Let's get going!	-	-	-	-	-	-	-	-	-	-	2	-
+sav_b0100	scene, event 170	Mes	m009	requested by Director.main	Penelo	8; 9	Migelo's busy with preparations for the fete up at the palace. / Why, I'm free for the whole day.	-	-	-	-	-	-	-	-	-	-	2	-
+sav_b0100	scene, event 170	Mes	m010	requested by Director.main	Penelo	10	Well? Let's get going!	-	-	-	-	-	-	-	-	-	-	2	-
 sav_b0100	scene, event 170	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
 sav_b0100	scene, event 170	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
 sav_b0100	scene, event 170	イベント特殊効果画面_EV	システムメッセージ表示	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-

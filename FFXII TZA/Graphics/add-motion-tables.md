@@ -101,6 +101,13 @@ the file ends with a -1 where a record would start
 | `skeletonmapping.bin` | 196 bytes, one record: `hc1006_03`, 39 values; bones 20–29 follow 27, 28, 29, 27, 28, 29, 30, 27, 28, 29; bones 31–38 follow 33; the rest −1 |
 | `highmodelreplace.bin` | 540 bytes, 22 records; one pair in 21, two in 1; b and c −1 in 18, 1 and 0 in 4; a lower-case `c`, `n` or `s` id maps to the upper-case letter's id; one replacement waits for progress 1570 |
 
+### Columns of add-motion-tables-rows.tsv
+
+| Column | Holds |
+|---|---|
+| `sha256_16` | the first 16 hex digits of the `.adm` file's SHA-256, on the row of the file's track 0 (39 rows, one per file); empty on the file's other tracks (107 rows) |
+| `group_keys_or_ids` | one entry per group of the track, separated by spaces, as many as `groups` on all 146 rows: for a kind 0 track the group's key, its three angles in degrees written `x/y/z` (for example `0/45/0`); for a kind 1 track the group's id (`0 1 2 3` on 29 tracks) |
+
 ## Loader behaviour
 
 ### add_motion_list.txt and .adm

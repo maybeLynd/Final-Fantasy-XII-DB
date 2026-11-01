@@ -307,6 +307,18 @@ In the decompiled `us` scripts (1,114 files), counting every call:
 | `efffadein` / `efffadeout` | 42 in 41 (`n` 5 or 10) / 28 in 28 (`n` 6) |
 | `fadetrans`, `efffadecancel` | no calls |
 
+### Columns of screen-fades-movie-fade-schedule-names.tsv
+
+One row per schedule row, 49 rows; `id` is the row's index, equal to its byte `+0`, and `movie` the name
+between the path's last `\` and its `.`.
+
+| Column | Holds |
+|---|---|
+| `path_kind_0x1C_entry` | the string of path kind `0x1C` entry `2 × id` in the array at `0x01ECB4D0`; `NULL` for ids 38, 39, 40 and 46, whose entry is 0 |
+| `webm_ships` | `yes` when `<movie>.webm` is in `gamedata/d3d11/artdata/video` (40 rows), `no` when it is not (9 rows: the four `NULL` ids and 37, 41, 44, 45, 47) |
+| `row_bytes` | the row's 8 bytes from the `us` `battle_pack.bin` section, in hex, in the order of the layout above |
+| `note` | `all-zero` when bytes `+1` to `+7` are all 0 (11 rows); empty otherwise |
+
 ## State
 
 The movie fade schedule is the object at `0x02ADECD0`, which `0x0037DDD0` passes to `0x0037DEA0` (`0x0037DDF4`). Besides the

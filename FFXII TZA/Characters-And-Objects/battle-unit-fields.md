@@ -68,12 +68,7 @@ seven test the pointer for null and the rest are in the table.
 | `+0x728` | 8 | fields the table shows 2 functions writing and 1 reading at `+0x728` | this page |
 | `+0x748-0x764` | 36 | fields the table shows 14 functions writing and 5 reading at 8 offsets; zeroed by the reuse reset; set to all ones by the reuse reset | this page |
 | `+0x774` | 4 | fields the table shows 3 functions writing and 2 reading at `+0x774` | this page |
-| `+0x988` | 8 | fields the table shows 1 function writing and 2 reading at `+0x988` | this page |
-| `+0xB30` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB30` | this page |
-| `+0xB40` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB40` | this page |
-| `+0xB50` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB50` | this page |
-| `+0xB60` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB60` | this page |
-| `+0xB70` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB70` | this page |
+| `+0x988-0xB87` | 512 | the bounce slots: 32 slots of `0x10` bytes, slot i beside the target buffer entry at `+0x780` + `0x10` x i (the buffer holds at most 32 entries, `0x00316CD4`); the table's rows at `+0x988` index a slot (`[unit + i x 16 + 0x988]`: 1 function writing, 2 reading), and its rows at `+0xB30` to `+0xB80` are the tail moves of the action-state copy (`0x0030EDA0`, `0x0030EFF0`) that cross the last slots | [target selection](../Battle-Actions/target-selection.md) |
 | `+0xB80` | 16 | fields the table shows 1 function writing and 1 reading at `+0xB80` | this page |
 | `+0xB88` | 8 | fields the table shows 1 function writing and 1 reading at `+0xB88` | this page |
 | `+0xB90` | 16 | fields the table shows 2 functions writing and 1 reading at `+0xB90`; zeroed by the reuse reset | this page |
@@ -99,7 +94,7 @@ seven test the pointer for null and the rest are in the table.
 | `disp` | the unit offset reached |
 | `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on, `set` a clear over the span the instruction cell gives |
 | `instruction` | the instruction text |
-| `route` | how the function reached the unit: `0x0208E688` when it indexes the pool itself (`0x0208E688 (the slot acquire)` for the free-slot walk), an accessor's address when it took that accessor's return, `actor +0x30, the actor as argN from F at S` when it loaded the unit from an actor it was handed, `argN from F at S` when the unit came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S, `argN+0xK` when it came in offset by K, and `sweep` for the two `+0x768`/`+0x76C` pairs found by an image-wide displacement sweep and verified at the site |
+| `route` | how the function reached the unit: `0x0208E688` when it indexes the pool itself (`0x0208E688 (the slot acquire)` for the free-slot walk), an accessor's address when it took that accessor's return, `actor +0x30, the actor as argN from F at S` when it loaded the unit from an actor it was handed, `argN from F at S` when the unit came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S, `argN+0xK` when it came in offset by K, `arg2 (the target unit, in rbx from the label 0x00307457)` in `0x00307300`, which copies its third argument, the target unit, to `rbx` at `0x0030733A`, uses `rbx` for another record in a loop, and holds the unit in `rbx` again from `0x00307457`, `actor +0x30` alone for four rows that are the load of the unit's address from an actor's `+0x30` (`disp` 0), whose note says what the function does with the unit, and `sweep` for the two `+0x768`/`+0x76C` pairs found by an image-wide displacement sweep and verified at the site |
 | `note` | `idx` when an index register takes part |
 
 ## Data
@@ -229,3 +224,15 @@ The next-action selector's
 - [Action commit](../Battle-Actions/action-commit.md), [action phases](../Battle-Actions/action-phases.md) and [target selection](../Battle-Actions/target-selection.md): the action block and the target buffer.
 - [Enmity](../Enemy-AI-And-Gambits/enmity.md): the perception cache.
 - [Party member status record](party-member-status-record.md): the fields the HUD reads.
+- [`battle-target-buffer-accesses.tsv`](battle-target-buffer-accesses.tsv): every censused access to the target
+  buffer at unit `+0x778`, by its offset in the buffer (64 rows).
+- [`battle-target-result-entry-accesses.tsv`](battle-target-result-entry-accesses.tsv): the accesses that reach the
+  entries at unit `+0x988`, by offset from `+0x988`: four in the code that uses the entries and twelve moves at the
+  end of a block copy of unit `+0x6B0` to `+0xB8F`, which their `note` names (16 rows).
+- [`navigation-path-state-accesses.tsv`](navigation-path-state-accesses.tsv): every censused access to the
+  navigation path state at unit `+0x200`, by its offset in the state (14 rows).
+
+In these access tables, `function`, `name` and `site` give the function, its name and the instruction's address,
+`disp` the offset the instruction reaches from the start of the embedded object, `kind` a read (`r`), a write (`w`),
+both (`rw`) or the address taken (`addr`), `instruction` the instruction itself, and `route` `embed BattleUnit+0xK`:
+the object at unit `+0xK`.

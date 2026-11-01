@@ -1,0 +1,20 @@
+cmd	label_tid	label	choices	setter	extra_call	stores	getter	reads	sel	set_arm	get_arm	row_style	pane_row	reachability
+4	0x042D	Battle Mode	Wait(0x0431) / Active(0x0432)	0x002DE060	-	opt+0 bit 0x8	0x002DDC30	opt+0 bit 0x8	v!=0	0x00240818	0x0024041E	2	desc0[4] desc1-- desc2[4]	in-game Config
+5	0x042E	Battle Speed		0x002DE0F0	-	opt+0 bits under mask 0xFF0 (s8)	0x002DDC90	opt+0 bits under mask 0xFF0 (s8)	v++ / v--	0x00240829	0x0024042B	3	desc0[5] desc1-- desc2[5]	in-game Config
+6	0x0447	Target Lines		0x002DE2D0	-	opt+4 bit 0x400000	0x002DDE00	opt+4 bit 0x400000	v==0 (invert)	0x0024083A	0x00240438	1	desc0[6] desc1-- desc2[6]	in-game Config
+8	0x0438	Cursor Position	Last Selection(0x043D) / Default(0x043E)	0x002DE1E0	0x002DE1C0	opt+0 bit 0x8000 + bit 0x10000	0x002DDD50	opt+0 bit 0x8000	v==0 (invert)	0x0024084B	0x00240445	2	desc0[7] desc1-- desc2[7]	in-game Config
+9	0x0433	Vibration Function		0x002DE080	0x0035FF30	opt+0 bit 0x2000 -> 0x0035FF30	0x002DDC40	opt+0 bit 0x2000	v==0 (invert)	0x00240863	0x00240452	1	desc0[9] desc1[8] desc2[9]	all Config variants
+10	0x0434	Screen Shake		0x002DE200	0x0037DDC0	opt+0 bit 0x4000 -> 0x0037DDC0	0x002DDD60	opt+0 bit 0x4000	v==0 (invert)	0x00240874	0x0024045F	1	desc0[10] desc1[9] desc2[10]	all Config variants
+11	0x0429	Subtitles		0x002DE230	-	opt+0 bit 0x1000 (set = !normalised)	0x002DDD70	u16[0x0215E6DC] bit 0x1 if non-zero, else NOT opt+0 bit 0x1000	v==0 (invert)	0x00240885	0x0024046C	1	desc0[11] desc1[10] desc2[11]	all Config variants
+12	0x04EB	Camera Y[A5]Axis	Normal(0x04EC) / Inverted(0x04ED)	0x002DE190	0x001E1020	opt+4 bit 0x100 -> 0x001E1020	0x002DDD20	opt+4 bit 0x100	v!=0	0x00240896	0x00240479	2	desc0[12] desc1[11] desc2[12]	all Config variants
+13	0x04EE	Camera X[A5]Axis	Normal(0x04F9) / Inverted(0x04FA)	0x002DE160	0x001E0FF0	opt+4 bit 0x200 -> 0x001E0FF0	0x002DDD00	opt+4 bit 0x200	v!=0	0x002408A7	0x00240486	2	desc0[13] desc1[12] desc2[13]	all Config variants
+14	0x04EF	Speed Mode Multiplier	x[87](0x04F0) / x[89](0x04F2)	0x002DE250	0x0023B2E0	opt+4 bits under mask 0x7800000 -> 0x0023B2E0	0x002DDDA0	opt+4 bits under mask 0x7800000	pass	0x002408B8	0x00240493	2	desc0[14] desc1[13] desc2[14]	all Config variants
+16	0x04F3	Language	Japanese(0x04F4) / English(0x04F5)	0x002DE2F0	-	opt+4 bit 0x400	0x002DDE20	opt+4 bit 0x400	v==0 (invert)	0x002408CE	0x002404A0	2	desc0[15] desc1[14] desc2[15]	all Config variants
+17	0x04F6	Music	Original(0x04F7) / Reorchestrated(0x04F8) / OST(0x0502)	0x002DE110	0x002DF530	opt+0xE u16 (OST-gated) -> 0x002DF530	0x002DDCA0	opt+0xE u16	pass	0x002408DF	0x002404AD	2	desc0[16] desc1[15] desc2[16]	all Config variants
+19	0x04FC	<0F>[6F][82][80][E4]Music		0x002DE0B0	0x002DF2B0	opt+8 u16 (<=100) -> 0x002DF2B0	0x002DDC70	opt+8 u16 (clamped)	pass	0x002408F1	0x002404BD	6	desc0[19] desc1[18] desc2[19]	all Config variants
+20	0x04FD	<0F>[6F][82][80][E4]Sound Effects		0x002DE290	0x002DF2B0	opt+0xA u16 (<=100) -> 0x002DF2B0	0x002DDDE0	opt+0xA u16 (clamped)	pass	0x00240902	0x002404CA	6	desc0[20] desc1[19] desc2[20]	all Config variants
+21	0x04FE	<0F>[6F][82][80][E4]Voice		0x002DE310	0x002DF2B0	opt+0xC u16 (<=100) -> 0x002DF2B0	0x002DDE40	opt+0xC u16 (clamped)	pass	0x00240913	0x002404D7	6	desc0[21] desc1[20] desc2[21]	all Config variants
+28	0x0564	Camera Auto[A5]Rotation	On(0x0421) / Off(0x0422)	0x0017E740	-	cfg setting[22] CameraRevise	0x0017E260	cfg+0x58	v==0 (invert)	0x00240924	0x002404E4	8	BSS-pane rec36 (kind4)	Controls screen
+29	0x0562	Mouse Sensitivity[AA] Left[A2]Right		0x0032E020	0x0017E760	cfg setting[24] MouseSensityY (1-6)	0x0017E420	cfg+0x60	v++ / v--	0x00240935	0x002404F1	7	BSS-pane rec34 (kind3)	Controls screen
+30	0x0563	Mouse Sensitivity[AA] Up[A2]Down		0x0032E030	0x0017E780	cfg setting[23] MouseSensityX (1-6)	0x0017E430	cfg+0x5C	v++ / v--	0x00240946	0x002404FE	7	BSS-pane rec35 (kind3)	Controls screen
+38	0x0565	Confirm Button	Type A [AE]<0F>E[C1][F8]<0F>y[82][AF](0x0566) / Type B [AE]<0F>E[C1][F8]<0F>z[82][AF](0x0567)	0x0017E6E0	0x00198960	cfg setting[25] DecideButton -> 0x00198960	0x0017E210	cfg+0x64	v!=1	0x00240957	0x0024050B	8	BSS-pane rec38 (kind4)	Controls screen

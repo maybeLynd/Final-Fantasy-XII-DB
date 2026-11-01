@@ -74,6 +74,14 @@ contain its name.
   `Font` raises an exception while the window loads. A `Key` the launcher does not use is ignored, and a font that
   Windows lacks is replaced by Microsoft Sans Serif.
 
+### Columns of settings-launcher-settingsloc-strings.tsv
+
+| Column | Holds |
+|---|---|
+| `selector` | the attribute of a `Text` element that says what it labels: `Control=` and a control name on 12 elements per language (108 rows), `Key=` and a box item key on 12 per language (108 rows); empty on the 8 other elements of each language (72 rows) |
+| `read_by` | the launcher method that reads the entry and how it uses it: `ConfigForm_Load (Controls[name].Text)` for control texts, `ConfigForm_Load (ComboboxItem.Value)` for item texts, `MsgForm.OnPaint` for the message boxes, both where one text serves both; `nothing` on the 9 `LanguageName` rows |
+| `what_it_sets` | what the text sets in the launcher: the window title, the font, a control's text, a box item's text with the item's design-time text, or a message box's title or text; on the `LanguageName` rows, that it has no effect |
+
 ### The display list
 
 `Program.GetDisplayAdapter` keeps every DXGI adapter that has at least one output (SharpDX `Factory1`). The
@@ -141,6 +149,25 @@ screen's size (`ConfigForm.UpdateResolutionComboBoxItems`).
 
 A full disk (HRESULT `0x80070027` or `0x80070070`) shows the `msg_ErrorDiskFull` text; any other write error
 shows the exception's message.
+
+### Columns of settings-launcher-instances-rows.tsv and settings-launcher-program-inputs.tsv
+
+Both tables have the same 103 rows in the same order (the `kind` column of the first): 2 shipped files, 16
+`GameSetting.ini` keys, 24 controls, 12 box items, 8 gamepad inputs, 7 files and mutexes, 12 `PathConfig` elements
+and 22 unused members.
+
+| Column | Holds |
+|---|---|
+| `detail` | in settings-launcher-instances-rows.tsv, by kind: the file's size; the default the launcher's code gives the key (`""`, `"us"` ...; `-` on `Mute` and `Volume`); the control's type; the item's built-in text; the gamepad mask bit; the .NET calls that open the file; the element's text; what the unused member is |
+| `value_or_text` | by kind: the file's SHA-256; the values the launcher writes to the key, or that it never writes it; the control's built-in text, `-` on the 11 controls without one; the setting the item writes (`ScreenMode=SM_WINDOW`); `-` for gamepad inputs and unused members; what is done with the file (`read`, `read and written`, `deleted`, `read, result discarded`, `named mutex`); `embedded resource PathConfig`, where the element comes from |
+| `read_or_created_by` | the methods that read the key, input, file or element, or the form that creates the control (`ConfigForm`, `MsgForm`, `ConfigWindow`); for an unused member, the source file and line of its declaration in the decompiled launcher (`Program` alone for the two static fields); `-` for the shipped files; on 10 `PathConfig` elements and `Mute` the cell says no code reads it |
+| `written_or_handled_by` | the methods that write the key, or the control's event and handler (`Click: button_OK_Click`); `ConfigForm.SaveConfiguration` for the items and `ConfigForm.timer1_Tick` for the gamepad inputs; `-` for the shipped files, files and `PathConfig` elements; on the 22 unused members, 15 controls and the keys `LastX`, `LastY` and `Volume` the cell says no code writes or handles it |
+| `string_in_binary` | `yes` on the 71 rows whose name's text is in the launcher's binary, with the text in parentheses where the row names a variable (`Program.ConfigPath`, `Program.ResetFilePath`, the mutex name); `-` on the 2 shipped files, 8 gamepad inputs and 22 unused members |
+| `domain` | in settings-launcher-program-inputs.tsv, by kind: the file's size and SHA-256; the key's values (the text of `value_or_text`); the control's type, the file's .NET calls and what the member is (the text of `detail`); `the item text` and the item's built-in text; `pressed or not` with the mask bit; `text; shipped` and the element's text |
+| `precedence` | what wins when two sources set the input: for 11 keys the launcher's box at OK or Apply; for `LastX`, `LastY` and `Volume` the file's value, which the launcher never writes; for `MasterVolume` the file's value, written back; for `Mute` the `Off` the launcher writes at every save; for the 12 items a `SettingsLoc.xml` `Text[@Key]` over the built-in text; for the 8 gamepad inputs the OR of every attached controller; `-` on the other 67 rows |
+| `consumers` | what reads the input: for the 16 keys, `the launcher:` and its methods, then `the game:` and the game's setting or the note that the game's 31-key table lacks the key; for the shipped files, the launcher or the player; for controls, their event handler or the message box; for items, `ConfigForm.ConfigForm_Load` and `ConfigForm.SaveConfiguration`; for gamepad inputs, `Joy.handleInput` and `ConfigForm.timer1_Tick`; for files, the .NET calls; on the 22 unused members, 11 controls and 10 `PathConfig` elements the cell says nothing reads it |
+| `visible_effect` | what the player sees in the launcher or the game, with the fallback for a value the launcher cannot use; `read by nothing` on the 10 `PathConfig` elements whose text is `Hello.exe` or empty, and nothing on the 22 unused members |
+| `inert_when` | when the input changes nothing: `always` and the reason on 48 rows (20 members declared and never used, 2 fields never assigned, 10 labels and a panel, 10 `PathConfig` elements read by nothing, 3 gamepad bits nothing reads, `Mute` and `Volume`); `MasterVolume` in the game only; `code_steam.txt` and `data.txt` while the file is absent; the `VQ_CUSTOM` item, listed only when `GameSetting.ini` says `VQ_CUSTOM` or another `Quality` value; `-` on the other 51 rows |
 
 ### Reset, OK, Apply and Cancel
 
@@ -248,6 +275,23 @@ and `BlendAmount` 0.5 in all five.
 [The settings inputs](settings-launcher-inputs.tsv) table gives every key line of the two `ConfigData` files as a
 setting: 33 in `keymap.ini` and 36 in `GaussianFilterSetting.ini`. Each one's values, when it takes effect, what reads
 it and what the player sees are given there, and none takes effect, because no shipped program opens either file.
+
+### Columns of the keymap, Gaussian filter and settings inputs tables
+
+| Column | Holds |
+|---|---|
+| `value_in_game_code_numbering` | in settings-launcher-keymap-rows.tsv, the line's value read as the game's control code, with its name and device ([Control names](../Controls-And-Input/control-names.md)), for example `40, Key_M (keyboard)`, on the 30 key lines; on the 3 `[Setting]` lines the count and the section it counts; `section header` on the 5 header lines |
+| `game_profile1_counterpart` | the slot of the game's built-in profile 1 the line stands for, as `slot N name (group g entry e)`, on the 27 lines of `[Button]`, `[Analog]` and `[KeyFunction]`; `no counterpart` and the reason on the 3 `[Mouse]` lines; empty on the 5 headers and the 3 `[Setting]` lines |
+| `comparison` | the value against the game's default for that slot: `same as the game default` on 26 lines and `differs: the game default is 117 Left Control` on `[Button]` key10; on the `[Setting]` lines, that the count matches its section; empty on the 5 headers and the 3 `[Mouse]` lines |
+| `read_by` | the same on all 38 lines: neither the game nor the launcher opens the file |
+| `offset` | in settings-launcher-gaussianfiltersetting-rows.tsv, where the line starts in the file, in hex bytes (`0x000` to `0x25A`): each line starts at the previous one plus its length and CR LF, and the last ends at byte 619, the file's size; `-` on the `file` row |
+| `game_side` | on the 15 `BigKernel`, `Factor` and `BlendAmount` lines, the render parameter the game uses for that key and its value in play; `-` on the other 28 rows |
+| `text_in_x64_programs` | which `.exe` or `.dll` in `x64` holds the key's text: on all 42 lines the cell says that no program does, and on the `file` row it says the same for the file name and for `ConfigData` |
+| `domain` | in settings-launcher-inputs.tsv, `any text; shipped` and the shipped value, on all 69 rows |
+| `precedence` | `-` on all 69 rows |
+| `consumers` | what reads the line: on the 33 `keymap.ini` lines, the note that neither `FFXII_TZA.exe` nor `FFXII_TZA_GameSetting.exe` opens the file; on the 36 Gaussian filter lines, the note that no `.exe` or `.dll` in `x64` holds the text `GaussianFilterSetting` or `ConfigData` |
+| `visible_effect` | what the player sees, nothing on all 69 rows: on the 33 `keymap.ini` lines the cell names the Documents folder's `keymap.ini` as the file the game uses, and on the 15 `BigKernel`, `Factor` and `BlendAmount` lines it gives the value the game uses instead |
+| `inert_when` | `always` on all 69 rows, with the file that no shipped program opens |
 
 ## Modding notes
 

@@ -699,6 +699,23 @@ EndDay = 0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...
 | licence dates | all six 0 |
 | calls into the span from outside | the integration functions at `0x006CBD20` to `0x006CC2F0`, static initialisers, exit and unwind code, and seven PhyreEngine calls to `0x0071F970`, a formatted-scan body (`__stdio_common_vsscanf`) the linker placed inside the span |
 
+### Columns of yebis-ppfx-post-effects-unlisted-bodies.tsv
+
+One row per body, 732 rows, each inside the span between two functions of
+[`yebis-ppfx-post-effects-members.tsv`](yebis-ppfx-post-effects-members.tsv).
+
+| Column | Holds |
+|---|---|
+| `member_below` | the nearest function of the member list below the body (183 distinct values) |
+| `member_above` | the nearest function of the member list above the body (183 distinct values) |
+| `refs` | how many places in the image name the body's start address: a call, jump or RIP-relative operand, a call or jump found by scanning the code bytes, an 8-byte relocated pointer, or a 4-byte image offset in a data section (the unwind table `.pdata` is not counted); 0 on 618 rows, 1 on 112, 2 on 2 |
+
+### Columns of yebis-ppfx-post-effects-diagnostic-strings.tsv
+
+| Column | Holds |
+|---|---|
+| `owner_functions` | the start addresses of the functions that hold the string's call sites, in address order and separated by spaces; one function on 347 of the 385 rows, up to 12 on six rows. 160 functions occur, all inside the span; `0x006FF900` is the one owner of 44 strings |
+
 ## Operations
 
 | Address | Entry point | Name from its own diagnostics |
@@ -819,6 +836,12 @@ The loops that write the buffers through a pointer:
 | B | `0x00735E40` | copies up to 8 vectors and zeroes the rest (`0x00735FE8`, `0x00736017`), then the second set (`0x007360CE`-`0x007362E7`) |
 | B | `0x00734EB0` | `0x00734F39`-`0x0073509F` |
 | B | `0x00774260`, `0x00777590`, `0x007788A0` | through `0x0072F910`, which returns `0x02EA1C50` (`0x00774AD6`-`0x00774B5E`; `0x00777AE4`-`0x00777CFD`; `0x00778D31`-`0x00778D40`) |
+
+### Columns of yebis-ppfx-post-effects-constant-uploads.tsv
+
+| Column | Holds |
+|---|---|
+| `count_set_at` | the address of the instruction that writes the vector count into `r9d`, the setter's fourth argument, before the call at `site`: a `mov` on 57 of the 65 rows, `lea` on 5, and `add`, `cmovl` and `sar` on one each. It lies in the same function, 4 to 336 bytes before the call |
 
 ### Lookup tables built on first call
 

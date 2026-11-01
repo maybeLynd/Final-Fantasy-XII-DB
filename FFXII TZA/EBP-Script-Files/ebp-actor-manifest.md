@@ -63,6 +63,12 @@ Measured over all 10,036 EBP2 containers in the nine language trees.
 The per-number census is [`ebp-actor-manifest-ids.tsv`](ebp-actor-manifest-ids.tsv) beside this page: letter, number, the model
 stem by the rules above, whether that stem ships, and how many `us` containers use the pair.
 
+### Columns of ebp-actor-manifest-ids.tsv
+
+| Column | Holds |
+|---|---|
+| `resolves` | `yes` when a model file with the stem in `model_stem` ships, `no` when it does not: `yes` on 250 of the 482 rows, the per-letter counts in the two stem rows of the table above; `no` on all rows of the letters `C`, `N` and `S` |
+
 ## Loader behaviour
 
 ### Binding

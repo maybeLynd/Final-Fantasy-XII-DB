@@ -36,7 +36,7 @@ and `Sherral` after. The names hold no text codes.
 | Column | Meaning |
 |---|---|
 | `index` | the entry: pair `index / 2`, its first name when `index` is even and its second when odd |
-| `us` to `ch` | the name in that language tree, decoded with the tree's font |
+| `us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch` | the name in that language tree (English, German, Spanish, French, Italian, Japanese, Korean, Simplified Chinese, Traditional Chinese), decoded with the tree's font |
 | `missing` | the languages whose dictionary has no entry `index`; empty in every row |
 | `same_bytes` | the groups of languages whose name bytes are identical, each group's languages joined by `=` and the groups by `;`; only groups of two or more |
 

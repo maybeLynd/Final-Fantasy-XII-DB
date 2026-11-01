@@ -64,6 +64,20 @@ failure it first destroys the node's value at `+0x20` (`0x0071E528`, `call 0x007
 
 The full list of these routines is in [`msvc-containers-ordered-container-runtime.tsv`](msvc-containers-ordered-container-runtime.tsv).
 
+### Columns of msvc-containers-ordered-container-runtime.tsv
+
+One row per routine, 22 rows.
+
+| Column | Holds |
+|---|---|
+| `address` | the routine's entry address |
+| `instructions` | the number of instructions in its body of `bytes` bytes |
+| `role` | what it does to the tree: `insert+rebalance` (2 rows), `erase node+rebalance` (3), `erase range` (5), `tidy`, the clear that empties the tree and resets the head (5), `destroy subtree` (3), `rotation` (3) and `payload destructor` (1) |
+| `callers` | how many other functions call or jump to it directly; a destroy-subtree routine's calls to itself are not counted |
+| `callees` | the functions it calls or jumps to directly, outside its own body, separated by commas; empty for the three rotations |
+| `write_profile` | its `mov` stores to the node fields: for each offset `+00`, `+08`, `+10` and `+18` (the colour byte) through a register other than `rsp`, `rbp` and `rip`, the offset and the number of such stores; empty for the three destroy-subtree routines, which store no field |
+| `note` | for the routines read whole, what the reading added: the node size of each insert, the rotation pair an erase calls (`pair A`, `pair C`) and which rotation of the pair is the mirror; empty on 13 rows |
+
 ### Three instantiations
 
 | Tree | Node | Built by | Holds |
@@ -130,6 +144,12 @@ are called only from `0x0020A800` and the routines of the first list. The node d
 `0x00905A28` and `0x00905930`; `0x00206CD0` and `0x00204590` are reached from the catch funclet `0x008996A0`
 of `0x00206AD0` and the unwind funclet `0x008999D0` of `0x0020A800`.
 
+### Columns of msvc-containers-stl-regex-char-members.tsv
+
+| Column | Holds |
+|---|---|
+| `entry` | the body's entry address, 92 rows from `0x002031A0` up |
+
 Two examples. `0x00209530` is the parser's lexer step: it looks the next character up in the
 metacharacters `()$^.*+?[]|\-{},:=!` plus newline, carriage return and backspace (`0x009059B8`,
 through `strchr`) and turns it into a token according to the syntax flags. `0x00205890` parses one
@@ -185,6 +205,13 @@ that identifies it:
 - The inserters `0x00194CD0` (wide string) and `0x001DDE10` (narrow), `std::endl` `0x00194EB0`, the
   `std::exception` and `std::bad_cast` copy constructors, and two vector members (`0x001A4D20`,
   `0x0020E420`), and `0x001A1EA0`, the header's `sprintf_s` into a 32-byte buffer.
+
+### Columns of msvc-containers-library-members.tsv
+
+| Column | Holds |
+|---|---|
+| `entry` | the body's entry address, one row per body, 50 rows |
+| `evidence` | what identifies the body as that library member: the imports and runtime functions it calls (such as `sputc`, `fclose`, `memmove` or `_Xbad_alloc`), the vtable it uses, the failure string it passes (`"invalid string position"`, `"string too long"`), and where those do not settle it, the behaviour that does (a growth rule, the capacities it frees, a field it uses), the bodies it calls or the function that calls it, or its catch funclet |
 
 ### The library calls behind the containers
 

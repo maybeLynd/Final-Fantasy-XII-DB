@@ -159,7 +159,7 @@ The orders that write a register (`0x002FE660`) take it from the order's own tes
 | `value` | the word at `+0x02`, read for the action (next list) |
 | `flags` | the word at `+0x04` in hex, then a token per bit (next table) |
 | `gambit_condition` | the gambit condition whose row gives exactly these three tests and these flags, when there is one ([Gambit conditions](gambit-conditions.md)) |
-| `test1`-`test3` | each test in words: the relation (`Foe`, `Ally`, `Self`, `Any`, `Linked unit` for mode 3, `Same team`, `Other team`, `Own target`, `Issued target`), then the check; empty when the relation word is 0, which skips the test (`0x00301685`) |
+| `test1`, `test2`, `test3` | the three tests of the order, one column each, in words: the relation (`Foe`, `Ally`, `Self`, `Any`, `Linked unit` for mode 3, `Same team`, `Other team`, `Own target`, `Issued target`), then the check; empty when the relation word is 0, which skips the test (`0x00301685`) |
 
 The `value` column reads the word `+0x02` by action:
 

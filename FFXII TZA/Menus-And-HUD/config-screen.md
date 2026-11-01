@@ -261,6 +261,19 @@ it while a row's `+0xC8` differs from its `+0xC4` (`0x0023C25F`-`0x0023C26B`).
 
 Every Config and Graphics Settings input, with the values it takes, the other writers of the same setting and which one wins, when a change takes effect, every reader and when the input changes nothing, is in [config-screen-inputs.tsv](config-screen-inputs.tsv).
 
+### Columns of config-screen-inputs.tsv
+
+One row per row of the two screens, 39 rows: `input` is the Config row id (`0x04` to `0x25`) or `g` and the
+Graphics Settings row number (`g1` to `g23`).
+
+| Column | Holds |
+|---|---|
+| `domain` | the values the row offers and how they are stored: the option names (`Wait or Active`, `On or Off`, `6 steps` ...), the setter that stores them, and the bit or field of the options record or settings object that holds them |
+| `precedence` | every writer of the same setting and which one lands last: the row itself, the defaults installer or the start-up defaults, a loaded save, `GameSetting.ini` at start-up, and for some rows a script verb, the speed keys or FF12CONFIG; for the three action rows that store no setting (`Max. LP`, `Max. Gil` and `Start a new game`), what the row writes instead |
+| `consumers` | every reader of the stored value: the getter and the code that calls it, with addresses, and the Config painter that draws the row |
+| `visible_effect` | what the player sees change, with the page that describes it |
+| `inert_when` | when a change does nothing: a value equal to the one already set, a list mode that does not hold the row, No to a restart notice or dialog, a row locked by its flag in the byte array at `[0x020927C0] + 0x32C4`, or a condition of the effect itself (the speed mode off, a post-process switch clear, a display mode the adapter lacks, the mouse for an invert row) |
+
 ## Layouts
 
 ### Graphics Settings row slots

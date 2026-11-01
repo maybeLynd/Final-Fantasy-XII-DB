@@ -92,6 +92,7 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 | `part_from` | for each part, the lowest progress byte at which it shows | `0x0037EF70`, `0x00578450` |
 | `done_from` | the lowest progress byte at which the row is marked done | `0x0037EE10`, `0x00577C30` |
 | `part_1`-`part_5` | the text of each part; `0x02` line breaks become spaces | `0x0037E8D0`, `0x00578450` |
+| `part_2`, `part_3`, `part_4` | parts 2 to 4, which all 45 hunts have: part 2 opens with `Hunt accepted.` on 42 hunts and tells where the mark is; part 3 tells of the mark's defeat and where to report or take the reward on 42 hunts, all but Paradise Risen (the gil snapper sealed in the urn), Battle on the Big Bridge and A Dark Rumor; part 4 is the report, opening with `Hunt reported` on 40 hunts and `Reward received` on 3 | `0x0037E8D0`, `0x00578450` |
 | `explanation` | a one-line summary: the name, the petitioner, the progress of each part and of the done mark | |
 | `mark` | the mark: its bestiary rows with the Clan Primer entry, the maps whose scripts place it with the level, the Trial Mode rows, and the map zone the hunt map marks with its location word and field id, or, for a hunt with no step labelled with the mark, the zone its one step marks or that no step marks one ("The mark" above) | `0x0037EB90`, `0x003BC160` |
 | `reward` | the reward package with what it gives, its selector, and the maps whose scripts grant it ("The reward" above) | `0x00344C60`, `0x00290130` |

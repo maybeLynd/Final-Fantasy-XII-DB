@@ -1,0 +1,9 @@
+function	name	site	disp	kind	instruction	route	note
+0x0035AE30	FUN_0035ae30	0x0035AEB4	0x0	r	mov ecx, dword ptr [rbx]	route-seeded STATIC 0x022C8030 base+0x0	
+0x0035AE30	FUN_0035ae30	0x0035AEE2	0x0	w	mov dword ptr [rbx], 0	route-seeded STATIC 0x022C8030 base+0x0	
+0x0035B380	FUN_0035b380	0x0035B3A0	0x0	r	mov edx, dword ptr [rax]	route-seeded STATIC 0x022C8030 base+0x0	
+0x0035B460	FUN_0035b460	0x0035B480	0x0	r	mov ecx, dword ptr [rbx]	route-seeded STATIC 0x022C8030 base+0x0	
+0x0035B460	FUN_0035b460	0x0035B48B	0x0	w	mov dword ptr [rbx], esi	route-seeded STATIC 0x022C8030 base+0x0	
+0x0035B5D0	FUN_0035b5d0	0x0035B5F0	0x0	r	mov ecx, dword ptr [rbx]	route-seeded STATIC 0x022C8030 base+0x0	
+0x0035B5D0	FUN_0035b5d0	0x0035B5FB	0x0	w	mov dword ptr [rbx], esi	route-seeded STATIC 0x022C8030 base+0x0	
+0x0035B650	FUN_0035b650	0x0035B692	0x0	r	cmp dword ptr [rax], 0	route-seeded STATIC 0x022C8030 base+0x0	

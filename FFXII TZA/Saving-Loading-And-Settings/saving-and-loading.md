@@ -614,6 +614,13 @@ and the boss whose fight it tracks, and the rule in words. What the rows show:
 - Field 769 (`vic_a04`) is listed, but the US script table holds no script for that field, so no area change
   reaches it and its row never matches; `vic_a04.ebp` still ships in the archive.
 
+### Columns of saving-and-loading-disable-autosave-rows.tsv
+
+| Column | Holds |
+|---|---|
+| `variable_name` | the name of the script global the row's `variable` names, the global at payload offset `0xA00` plus `variable` ([Script variables](../Scripts-And-Script-Commands/script-variables.md)): `g_btl_` and the boss's name in Japanese, on the 13 rows with a variable; empty on the other 60, whose `variable` is 0 |
+| `entered` | `yes` on 72 rows, where the `us` script array names a script for the field, so an area change can reach it; `no: the us script array names no script for it` on line 18, field 769 (`vic_a04`) |
+
 ## Operations
 
 | Function | Role |

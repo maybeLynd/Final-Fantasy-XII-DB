@@ -372,6 +372,11 @@ The arena record's fields are listed access by access in
 [`resource-arena-record-accesses.tsv`](resource-arena-record-accesses.tsv) and
 [`resource-arena-record-accesses-flow-sensitive.tsv`](resource-arena-record-accesses-flow-sensitive.tsv).
 
+The second table comes from a search that follows the record through each function's branches. It starts at the
+19 instructions that form the array's address `0x022D7FD0` relative to `rip`, each a `lea`, which are all the
+instructions that refer to the array that way. Where two paths join, the search keeps every record address either
+path held, so it errs towards listing an access rather than missing one.
+
 ## Operations
 
 Per allocation: one free-list walk and up to two header writes. Per compaction pass: one tree search and

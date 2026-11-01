@@ -86,47 +86,47 @@ vic_a03	Road of Verdant Praise (Eruyt Village)	０２ルルチェ	talk_COCKATRIC
 vic_a04	vic_a04	__MJ_CTRL000	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Spiritwood (Eruyt Village), field 767, entrance 3	-	-	-	1	-
 vic_a04	vic_a04	__MJ_CTRL001	mapjump	mapjump	-	-	-	-	-	-	-	-	-	The Spiritwood (Eruyt Village), field 767, entrance 4	-	-	-	1	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_VAN_1	requested by DIRECTOR.EV_e0100	Vaan	0	Hey, Mjrn lives here, doesn't she? We're here to see her.	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_2	requested by DIRECTOR.EV_e0100	-	1	You will leave at once.	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_3	requested by DIRECTOR.EV_e0100	-	2	It is not allowed for humes to walk on these grounds.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_2	requested by DIRECTOR.EV_e0100	Jote	1	You will leave at once.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_3	requested by DIRECTOR.EV_e0100	Jote	2	It is not allowed for humes to walk on these grounds.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_VAN_4	requested by DIRECTOR.EV_e0100	Vaan	3	We'll go as soon as we've seen Mjrn.	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_5	requested by DIRECTOR.EV_e0100	-	4	If you can find her.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_5	requested by DIRECTOR.EV_e0100	Jote	4	If you can find her.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_VAN_6	requested by DIRECTOR.EV_e0100	Vaan	5	We're not leaving until you let us see her.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_VAN_7	requested by DIRECTOR.EV_e0100	Vaan	6	Fine then. We'll look for her ourselves.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_FRAN_9	requested by DIRECTOR.EV_e0100	Fran	7	I've heard the voice of the Wood. She says Mjrn is not in the village.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_FRAN_10	requested by DIRECTOR.EV_e0100	Fran	8	Jote. Where has she gone?	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_11	requested by DIRECTOR.EV_e0100	-	9	Why do you ask?	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_12	requested by DIRECTOR.EV_e0100	-	10	The Wood tells us where she has gone. Or...can you not hear Her?	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_13	requested by DIRECTOR.EV_e0100	-	11; 12	You cannot. / Your ears are dull from hearing their harsh speech, I think.	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_14	requested by DIRECTOR.EV_e0100	-	13; 14	Viera who have abandoned the Wood are viera no longer. / Mjrn, too, has left Her embrace.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_13	requested by DIRECTOR.EV_e0100	Jote	11; 12	You cannot. / Your ears are dull from hearing their harsh speech, I think.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_14	requested by DIRECTOR.EV_e0100	Jote	13; 14	Viera who have abandoned the Wood are viera no longer. / Mjrn, too, has left Her embrace.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_BALFLAIR_15	requested by DIRECTOR.EV_e0100	Balthier	15	And you forsake them in turn?	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_16	requested by DIRECTOR.EV_e0100	-	16; 17	It is the will of the village. / Viera must live always with the Wood.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_16	requested by DIRECTOR.EV_e0100	Jote	16; 17	It is the will of the village. / Viera must live always with the Wood.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_17	requested by DIRECTOR.EV_e0100	-	18	So is the Green Word, and so is our law.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_VAN_18	requested by DIRECTOR.EV_e0100	Vaan	19	We'll let you worry about keeping your laws.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_VAN_19	requested by DIRECTOR.EV_e0100	Vaan	20	Just do us a favor and stay out of our way. We'll find her ourselves.	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_20	requested by DIRECTOR.EV_e0100	-	21	Our sister has left the Wood and gone west.	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_21	requested by DIRECTOR.EV_e0100	-	22	She wanders warrens among men who hide themselves in clothes of cold iron.	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_22	requested by DIRECTOR.EV_e0100	-	23	Thus to me has the Wood spoken.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_20	requested by DIRECTOR.EV_e0100	Jote	21	Our sister has left the Wood and gone west.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_21	requested by DIRECTOR.EV_e0100	Jote	22	She wanders warrens among men who hide themselves in clothes of cold iron.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_22	requested by DIRECTOR.EV_e0100	Jote	23	Thus to me has the Wood spoken.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0100	scene, event 253	MESSAGE	TAGmes_FRAN_23	requested by DIRECTOR.EV_e0100	Fran	24	The viera may begin as part of the Wood, but the Wood is not the only end we may choose.	-	-	-	-	-	-	-	-	-	-	2	-
-vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_24	requested by DIRECTOR.EV_e0100	-	25	The same words I heard 50 years ago.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0100	scene, event 253	MESSAGE	TAGmes_YOTE_24	requested by DIRECTOR.EV_e0100	Jote	25	The same words I heard 50 years ago.	-	-	-	-	-	-	-	-	-	-	2	-
 vic_a0300	scene, event 255	姉と妹	main	main	-	-	-	-	-	-	-	-	receives Lente's Tear	-	-	-	-	1	-
 vic_a0300	scene, event 255	字幕	カット５	requested by カット.カット５	Jote	1	I heard the Wood's whispers.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0300	scene, event 255	字幕	カット６	requested by カット.カット６	-	2	Take it.	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット７	requested by カット.カット７	-	3; 4; 5	Lente's Tear is a permission. / Pass through the Wood and leave. To other places go. / That cannot be all!	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット８	requested by カット.カット８	-	6; 7	I saw it when I left the village! Ivalice is changing! / How can the viera stand and do nothing at all?	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット９	requested by カット.カット９	-	8; 9	Ivalice is for the humes. / The Wood alone is for us.	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット７	requested by カット.カット７	Jote; Mjrn	3; 4; 5	Lente's Tear is a permission. / Pass through the Wood and leave. To other places go. / That cannot be all!	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット８	requested by カット.カット８	Mjrn	6; 7	I saw it when I left the village! Ivalice is changing! / How can the viera stand and do nothing at all?	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット９	requested by カット.カット９	Jote	8; 9	Ivalice is for the humes. / The Wood alone is for us.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0300	scene, event 255	字幕	カット１０	requested by カット.カット１０	-	10; 11; 12	But that is wrong! / How can we just hide here in the trees when all the world outside is on the move! / I, too, wish to live freely— to leave this Wood!	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット１１	requested by カット.カット１１	-	13; 14; 15; 16	Do not do this. / You must remain away from the humes. / Stay with the Wood. Live together with the Wood. / This is your way.	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット１１	requested by カット.カット１１	Fran	13; 14; 15; 16	Do not do this. / You must remain away from the humes. / Stay with the Wood. Live together with the Wood. / This is your way.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0300	scene, event 255	字幕	カット１２	requested by カット.カット１２	-	17; 18	But Fran—my sister! / I am no longer of you.	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット１３	requested by カット.カット１３	-	19; 20	I have discarded Wood and village. / I won my freedom. Yet my past has been cut away forever.	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット１１３	requested by カット.カット１１３	-	21	No longer can my ears hear the Green Word.	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット１４	requested by カット.カット１４	-	22; 23	This...solitude, you want, Mjrn? / Sister—	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット１５	requested by カット.カット１５	-	24; 25	No, Mjrn. Only one sister remains to you now. / You must forget my existence.	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット１７	requested by カット.カット１７	-	26; 27; 28; 29	I am sorry to make you do this. / She goes against the laws of the Wood. / I threw down these laws. It is better that I do this. / Better I than one who must uphold these laws herself.	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット１３	requested by カット.カット１３	Fran	19; 20	I have discarded Wood and village. / I won my freedom. Yet my past has been cut away forever.	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット１１３	requested by カット.カット１１３	Fran	21	No longer can my ears hear the Green Word.	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット１４	requested by カット.カット１４	Fran; Mjrn	22; 23	This...solitude, you want, Mjrn? / Sister—	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット１５	requested by カット.カット１５	Fran	24; 25	No, Mjrn. Only one sister remains to you now. / You must forget my existence.	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット１７	requested by カット.カット１７	Jote; Fran	26; 27; 28; 29	I am sorry to make you do this. / She goes against the laws of the Wood. / I threw down these laws. It is better that I do this. / Better I than one who must uphold these laws herself.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0300	scene, event 255	字幕	カット１９	requested by カット.カット１９	Fran	30	I have a request:	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット２０	requested by カット.カット２０	-	31; 32	Listen to the Wood's voice for me. / I fear— I fear She hates.	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット２０	requested by カット.カット２０	Fran	31; 32	Listen to the Wood's voice for me. / I fear— I fear She hates.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0300	scene, event 255	字幕	カット２２	requested by カット.カット２２	Jote	33	The Wood longs for you. For the child gone from under Her boughs.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0300	scene, event 255	字幕	カット２３	requested by カット.カット２３	Fran	34	A pleasant lie, that.	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0300	scene, event 255	字幕	カット２４	requested by カット.カット２４	-	35; 36; 37; 38	Be cautious. / The Wood is jealous of the humes who have taken you. / I am as them, now. / Am I not?	-	-	-	-	-	-	-	-	-	-	1	-
+vic_a0300	scene, event 255	字幕	カット２４	requested by カット.カット２４	Jote; Fran	35; 36; 37; 38	Be cautious. / The Wood is jealous of the humes who have taken you. / I am as them, now. / Am I not?	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0300	scene, event 255	字幕	カット２５	requested by カット.カット２５	Fran	39	Good-bye, sister.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0300	scene, event 255	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
 vic_a0300	scene, event 255	イベント特殊効果画面_EV	だいじなものゲット_FADE付	requested by 姉と妹.main	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
@@ -153,4 +153,4 @@ vic_a0301	scene, event 256	MESSAGE	TAGmes_VAN_9	requested by DIRECTOR.EV_e0100	V
 vic_a0301	scene, event 256	MESSAGE	cut_9	requested by DIRECTOR.EV_e0100	-	15	Nice, Vaan.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0301	scene, event 256	MESSAGE	TAGmes_LARSAR_11	requested by DIRECTOR.EV_e0100	-	16	Surprisingly rude.	-	-	-	-	-	-	-	-	-	-	1	-
 vic_a0301	scene, event 256	MESSAGE	TAGmes_PANNERO_12	requested by DIRECTOR.EV_e0100	Penelo	17	Try to grow up, please.	-	-	-	-	-	-	-	-	-	-	1	-
-vic_a0380	scene, event 734	字幕	カット０２ａ	requested by ＡＤ.Ｃ０２_ミュリン探して	-	1; 2; 3	In the village ahead you will find her: Mjrn. / Bring her to me. / She will know why you call her.	-	-	-	-	-	-	-	-	-	-	2	-
+vic_a0380	scene, event 734	字幕	カット０２ａ	requested by ＡＤ.Ｃ０２_ミュリン探して	Fran	1; 2; 3	In the village ahead you will find her: Mjrn. / Bring her to me. / She will know why you call her.	-	-	-	-	-	-	-	-	-	-	2	-

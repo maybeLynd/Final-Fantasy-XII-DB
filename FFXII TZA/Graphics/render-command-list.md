@@ -435,6 +435,28 @@ Per-slot tables and instruction-level access lists beside this page:
 | the render-parameter block | [`render-command-list-postprocess-context-accesses.tsv`](render-command-list-postprocess-context-accesses.tsv) |
 | the character render-object manager | [`render-command-list-pending-completion-queue-01f81248-accesses.tsv`](render-command-list-pending-completion-queue-01f81248-accesses.tsv) |
 
+### Columns of render-command-list-ordered-object-vtable-slots.tsv
+
+One row per vtable slot of an ordered-object class, 132 rows; slot 0 is the destructor, slot 1 the execute
+method, slot 2 the order key and slot 3 the setter of the `FontBorder` classes. Its `body` is the pointer at
+`vtable + 8 × slot` on all 132 rows.
+
+| Column | Holds |
+|---|---|
+| `role` | what the body does, as one or more of the labels below separated by semicolons, then after `->` the body's other direct callees, the lowest four by address; the table's comment calls this the complete set, but 16 of the 35 bodies with a list have more |
+| `cite` | one instruction of the body that shows the role: a call or jump where the body has one (84 rows), else its `ret` (45 rows), its first instruction (2 rows) or, once, a `jne` |
+
+| Label in `role` | Meaning |
+|---|---|
+| `scalar-deleting dtor: member-dtor X + 0x00809950 free on flag` | a slot-0 body that calls the destructor X and `0x00809950` (41 rows) |
+| `order key =` | the constant or field the slot-2 body returns (`mov eax, ...; ret`) |
+| `setter: this[+18] = arg` | a store of the argument at `+0x18` (3 rows) |
+| `PURE VIRTUAL` | a jump to the `_purecall` thunk (2 rows) |
+| `profile-slot open` | the body reaches `0x00600A60`, the producer of block opcode `0x18` (19 rows) |
+| `scene-begin submit` | the body reaches `0x005FEFD0`, the producer of block opcode `0x16` (19 rows) |
+| `scene-cmd submit` | the body reaches `0x005FEA50`, the producer of block opcode `0x2F` (3 rows) |
+| `master-enable gate` | the body calls `0x00193D50` and uses the byte `0x01DFE0C4` (5 rows) |
+
 ## State
 
 | Address | What |

@@ -269,6 +269,10 @@ reads past those options; their codes are counted separately.
 | `bytes` | the whole code's length, `0x0F` and selector included |
 | `does` | what the arm does, with its addresses |
 | `st2e` to `npcdic` | the count in each text source, as in the table above |
+| `st2e-in-ard` | the count in the `st2e` tables inside `.ard` files: 0 for all 54 codes |
+| `bank` | the count in `word.bin`, the word banks: 0 for 48 codes |
+| `ebp-002` | the count in the event script text of section 2 |
+| `ebp-003` | the count in the event script text of section 3: 0 for 51 codes |
 | `total` | the count over all sources and languages |
 | `of_which_nested` | how many of those sit inside ruby text or a choice-list option |
 | `in_malformed_lists` | codes inside the 16 strings with malformed choice lists, not in `total` |

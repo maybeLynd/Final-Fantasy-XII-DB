@@ -211,6 +211,12 @@ other loops fill arrays of 8 and 4. The last slot is at `+0x221D8`. The placed s
 [the handle layout](post-processing-ppfx-handle-layout.tsv): 352 handle stores, fewer than the names, because a
 family row fetches several names under one count and suffix table.
 
+### Columns of post-processing-ppfx-handle-layout.tsv
+
+| Column | Holds |
+|---|---|
+| `this_offset` | where the handle lands, as an offset from the start of the object: the store's displacement plus its base (`r14` = `this + 8`, `rsi` = `this + 0x1AA10`, `rdi` = `this + 0x220E4`); `+ 4*i (i 0-n)` marks an array a loop fills. All 352 offsets are distinct, from `0x8` to `0x221D8`; the 257 inline rows match the `mov` after the call at `site`, and 93 of the 95 family rows match the `lea rdx` before it |
+
 ### The render-pass registries
 
 Two sets of named pass records exist side by side:
@@ -234,6 +240,15 @@ Two sets of named pass records exist side by side:
   registered with `0x005FDCB0`.
 - It copies the name with its terminator (`0x005F06E3`) and takes the name's whole length, so a name of 64 bytes or
   more runs past its 64-byte buffer.
+
+### Columns of the two registry tables
+
+| Column | Holds |
+|---|---|
+| `band` | in post-processing-runtime-render-pass-registry.tsv, the address range the record lies in: `game` for the 10 records from `0x01F81220` to `0x01F83040`, `phyre-post-effect` for the 43 from `0x02D36DA0` to `0x02D38000`, `text` for the 7 `RenderText_*` records from `0x02E5BEA8` to `0x02E5BF68` |
+| `node` | in post-processing-render-pass-registry-60.tsv, the record the row's `teardown` unlinks: its first instruction is `lea rcx, [node]` and its second `jmp 0x005DDD60`, on all 60 rows |
+| `registration_site` | the static initialiser that registers the record: `xor r8d, r8d`, `lea rdx, [name]`, `lea rcx, [node]`, `call 0x005DC6F0`, then `lea rcx, [teardown]` and a tail jump to the exit registrar `0x00808B90`, on all 60 rows |
+| `flag_at_plus10` | the flag the initialiser passes in `r8d`, which `0x005DC6F0` stores at record `+0x10`: 0 on all 60 rows |
 
 ### The frame-marker table
 

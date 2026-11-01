@@ -41,6 +41,22 @@ areas, and `loaded_by` names each.
   is the scene's one row in [strahl-scripts.tsv](strahl-scripts.tsv), whose columns are those of the zone
   scripts tables. No function of the scene gives an item, writes a flag or the story counter, or jumps.
 
+### Columns of strahl-scripts.tsv
+
+The columns are those of the zone scripts tables (defined on
+[Archades scripts](archades-scripts.md)); the one row fills them as follows.
+
+| Column | Holds |
+|---|---|
+| `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions that request it; `-` when neither applies: `main` here |
+| `speaker` | who speaks each line, in line order: a name, `???`, `no name shown` or `system message`; for an actor with a `setnpcname` call, the second names of its pairs: `no name shown` here |
+| `line_text` | the `us` text of the entries in `lines`, in the same order, separated by ` / `; a choice list is written `(choices: ...)`: here `(choices: 0 / 1 / 2 / 3) / (choices: 0 / 1)` |
+| `flags_released` | the story flag ids the function releases, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md); `-` here |
+| `flags_tested` | the story flag ids the function tests, in the same form; `-` here |
+| `counter_tested` | each comparison of the story counter, as the relation and the decimal value; `-` here |
+| `battles` | `boss gauge shown`, `every foe in a group removed` or `every foe in group 0 removed`; `-` here |
+| `other_functions` | how many functions of the actor have no row: 1 here |
+
 ### Every step
 
 The steps table [`strahl-script-steps.tsv`](strahl-script-steps.tsv) has one row for each step of every function of

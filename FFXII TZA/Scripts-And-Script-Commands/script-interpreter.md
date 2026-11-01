@@ -150,6 +150,13 @@ opcode its mnemonic, length, handler and effect. By family:
 | `0x5F`, `0x61`, `0x63`, `0x62` | lists | request or wait on a whole actor list; `INCINITTAG` marks a channel requested without filing; while the skip mask is non-zero, `0x5F` and `0x63` first wait as wait kind 7 until no listed actor has the channel's bit set ([field runtime](../Characters-And-Objects/field-runtime.md); `0x00261B15`, `0x00261C12`, `0x00261B97`), then make the request |
 | `0x01`, `0x02`, `0x19`, `0x1A`, `0x31`, `0x47` | | no handler: the stop arm; no shipped script uses them |
 
+### Columns of script-interpreter-opcodes.tsv
+
+| Column | Holds |
+|---|---|
+| `field16` | the dword at `+0x10` of the opcode's 24-byte record at `0x01EFEA60 + opcode × 24`, as read from the image: 0 on 80 records, 1 on 9 and 2 on 11; no engine code reads it |
+| `field20` | the dword at `+0x14` of the same record: 0 on 80 records, 1 on 15 and 2 on 5; no engine code reads it |
+
 ### A native call, and how the script waits
 
 `CALL operand` stores the actor's own index in `X`, then runs `0x002621D0(slot, actor, stack,
@@ -229,3 +236,11 @@ from.
 - [`script-interpreter-registers-by-script.tsv`](script-interpreter-registers-by-script.tsv): one row per script:
   its functions, how many of them use the eight persistent registers `I0` to `F3`, how many register opcodes it
   holds, the registers some function reads before writing them, and the count of each register opcode (1,114 rows).
+
+### Columns of script-interpreter-registers-by-script.tsv
+
+| Column | Holds |
+|---|---|
+| `functions_using_registers` | how many of the script's functions hold at least one of the sixteen register opcodes `0x36` to `0x45`: 0 to 92; 0 on 326 scripts |
+| `read_before_write_in_some_function` | the registers that at least one function reads (`PUSH`) before it writes them (`POP`), separated by semicolons: `I1` on 93 scripts, `F0;F1;F2;F3` on 2, `F0` on 1, empty on the other 1,018 |
+| `per_opcode` | the count of each register opcode in the script, as `MNEMONIC=count` separated by spaces (for example `POPI0=15 PUSHI0=23`); the counts add up to `register_opcodes` on every row, and the cell is empty on the 326 scripts that hold no register opcode |

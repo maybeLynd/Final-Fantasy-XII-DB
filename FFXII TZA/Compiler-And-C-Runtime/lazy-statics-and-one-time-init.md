@@ -170,7 +170,7 @@ The member lists beside this page, each named `lazy-statics-and-one-time-init-<l
 | `descriptor-pair-accessors` | 61 accessors with their static, guard and descriptor |
 | `magic-static-pair-initialisers` | 57 pair builders that call a descriptor function |
 | `magic-static-singleton-guards` | 17 holders whose only calls are header, footer and `atexit` |
-| `bj5-residue` | 30 further holders that register no teardown |
+| `holders-without-teardown` | 30 further holders that register no teardown |
 
 ## State
 
@@ -323,10 +323,26 @@ the three channels (`0x00712748`-`0x00712760`). Every call multiplies the reques
   statics hold.
 - [`exception-handling.md`](exception-handling.md): the unwind maps that hold the guard-release funclets.
 - [Class hierarchy](../Engine-Core/class-hierarchy.md): the Phyre descriptor classes by RTTI.
+- [`lazy-statics-and-one-time-init-holders-without-teardown.tsv`](lazy-statics-and-one-time-init-holders-without-teardown.tsv):
+  the further holders that register no teardown, each with its size, its class, the number of `.data` globals it
+  writes and the functions it calls (30 rows).
 - [`lazy-statics-and-one-time-init-magic-static-pair-initialisers.tsv`](lazy-statics-and-one-time-init-magic-static-pair-initialisers.tsv):
   thread-safe local-static accessors that install a tagged pair of descriptor pointers and return the static: the
   133-byte ones only store, the 134- and 138-byte ones also call one initialiser of their own; with each one's size
   and the functions it calls (57 rows).
+- [`lazy-statics-and-one-time-init-magic-static-singleton-guards.tsv`](lazy-statics-and-one-time-init-magic-static-singleton-guards.tsv):
+  the holders whose only calls are `_Init_thread_header` (`0x008092FC`), `_Init_thread_footer` (`0x0080929C`) and the
+  `atexit` wrapper (`0x00808B90`), with each one's size (17 rows).
 
-The table has one row per accessor: `address` is where it starts, `size` its length in bytes and `targets` the
-functions it calls directly.
+The tables have one row per function. In the pair-initialiser table `address` is where it starts, `size` its length
+in bytes and `targets` the functions it calls directly; the singleton-guard table has `address` and `size`. In the
+holders table `entry` is where it starts, `bytes` its length, `data_globals_written` the number of `.data` globals
+it writes, `external_callees` every function outside it that it calls or jumps to, other than the guard's header and
+footer, by name, and `class` what it initialises:
+
+- `PAIR` (14): two `.data` globals 8 bytes apart;
+- `TABLE` (7): a constant table, computed through a maths routine such as `cosf`, `sinf` or `powf`;
+- `CACHED_PTR` (5): a pointer another function returns, the singleton `0x005CDA30` returns or `0x0018A620() + 8`;
+- `NAMED_RECORD` (2): a `{name, 0, 0, 0}` record built by `0x006CCD80` (`PCollisionGroup`, `PRigidBodyType`);
+- `COMPUTED_CONST` (1): one float, computed in the holder;
+- `EMPTY_GUARD` (1): nothing between the guard's header and footer.

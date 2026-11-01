@@ -319,13 +319,13 @@ function	name	site	disp	kind	instruction	route	note
 0x0026C8C0	ActorManager_BindLoadedDefinitionPayload	0x0026C942	0x274	w	mov qword ptr [rdi + 0x274], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
 0x0026C8C0	ActorManager_BindLoadedDefinitionPayload	0x0026C949	0x27C	w	mov qword ptr [rdi + 0x27c], rbx	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0 zeroclear	
 0x002628B0	FUN_002628b0	0x00262E45	0x284	w	mov dword ptr [rbx + 0x284], ebp	route-seeded ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x0	
-0x00266D10	FUN_00266d10	0x00266EF0	0x0	addr	lea rcx, [rbx - 0x10]	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F18	0x8	w	mov qword ptr [rbx - 8], rsi	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F01	0x10	rw	and byte ptr [rbx], 0xfe	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F04	0x11	rw	and byte ptr [rbx + 1], 0xf7	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F1C	0x13	w	mov byte ptr [rbx + 3], sil	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F08	0x17	rw	and byte ptr [rbx + 7], 0xa7	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F13	0x28	w	mov dword ptr [rbx + 0x18], edi	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F0C	0x200	rw	and byte ptr [rbx + 0x1f0], 0xfb	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F20	0x202	w	mov word ptr [rbx + 0x1f2], si	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F27	0x284	w	mov dword ptr [rbx + 0x274], esi	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
+0x00266D10	FUN_00266d10	0x00266EF0	0x0	addr	lea rcx, [rbx - 0x10]	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F18	0x8	w	mov qword ptr [rbx - 8], rsi	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F01	0x10	rw	and byte ptr [rbx], 0xfe	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F04	0x11	rw	and byte ptr [rbx + 1], 0xf7	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F1C	0x13	w	mov byte ptr [rbx + 3], sil	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F08	0x17	rw	and byte ptr [rbx + 7], 0xa7	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F13	0x28	w	mov dword ptr [rbx + 0x18], edi	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F0C	0x200	rw	and byte ptr [rbx + 0x1f0], 0xfb	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F20	0x202	w	mov word ptr [rbx + 0x1f2], si	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288
+0x00266D10	FUN_00266d10	0x00266F27	0x284	w	mov dword ptr [rbx + 0x274], esi	ARRAY 0x02098E10 stride=0x288 count=5 index=slot base+0x10	the start-up loop of 0x00266D10 over the five slots: rbx starts at 0x02098E20, slot 0 +0x10, and steps 0x288

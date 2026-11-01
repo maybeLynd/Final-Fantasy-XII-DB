@@ -286,6 +286,18 @@ that root's model transform (`0x00420A40`). `0x00426090` calls `0x00427DE0(0)` i
 and setters are in
 [the dirty-bit table](character-render-records-dirty-bits.tsv).
 
+### Columns of character-render-records-dirty-bits.tsv
+
+One row per bit test in `0x00427DE0`, 57 rows; `pass` is the walk (1 to 5) and `bit` the bit's position in the
+dword (0 to 31), so position 29 is the value `0x20000000`.
+
+| Column | Holds |
+|---|---|
+| `clear_kind` | who clears the bit: `processor` when `0x00427DE0` clears it itself after the handler returns (40 rows); `handler` when the handler clears it in its own body (11 rows); `inline` when `0x00427DE0` does the work in its own body with no handler call (2 rows); `consume` when there is no handler and `0x00427DE0` only clears the bit with `btr` (2 rows); on the pass-5 row for bit position 20 the handler `0x0042F4C0` runs again and leaves the bit set; `n/a` on the last row, bit position 25 of `+0x294`, which `0x00427DE0` sets rather than tests |
+| `clear_site` | the address of the instruction that clears the bit: an `and` of the word with the bit's inverse mask, inside `0x00427DE0` for `processor` and `inline` rows and inside the handler for `handler` rows; for `consume` rows the store of the `btr` result, with the `btr` address in brackets when it differs; `self` when the handler clears it at more than one place; `consumed by 0x00427BD0` on the last row |
+| `set_by` | the functions that set the bit, each followed by the instruction that does it (`or` with the bit's value, or `bts` and a store) and, after `<-`, the functions that call that setter; a group writer clears other bits of the same word in the same instruction, listed in brackets; 17 rows open with the statement that no setter was found, some with the code that clears the bit instead |
+| `rebuilds` | what the handler or inline block does to the record: the functions it calls, the fields it copies or writes, and the bits it re-arms, with the instruction addresses |
+
 ### The system tail
 
 The `0x130` bytes after the records, at `0x022C6F28 + 0x48800`:
@@ -452,7 +464,9 @@ are the ones the functions on this page use:
 | `+0x6B0` | `i32` |  | render-object key |
 | `+0x6B8` | `void*` | CharacterRenderObject | (character-render-object.md) |
 
-The access tables beside this page list every instruction found touching each structure:
+The access tables beside this page list every instruction found touching each structure. In the record table and
+the tail table, a row whose `route` is `seed` is in a function that loaded the record array's pointer at
+`0x022C6F28` itself, and a row whose `route` is `argN+0xK<F@S` is in a function a record was passed to:
 
 - [the record](character-render-records-character-render-record-accesses.tsv);
 - [the root](character-render-records-render-resource-root-accesses.tsv);

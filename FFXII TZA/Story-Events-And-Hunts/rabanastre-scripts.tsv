@@ -422,21 +422,21 @@ rbn_a1701	scene, event 118	Mes	m012	requested by Director.main	Vaan	11	That does
 rbn_a1701	scene, event 118	Mes	m013	requested by Director.main	-	12	Ho ho! A fine, fine chocobo you have there.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m014	requested by Director.main	-	13	Yes! Tchita Downs stock, if I'm not mistaken.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m015	requested by Director.main	-	14	Change the soil, change the chocobo. Am I right?	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m016	requested by Director.main	-	15	Yes, yes.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m017	requested by Director.main	-	16	Different soil means different bouquet, too.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m018	requested by Director.main	-	17	Take a Dalmascan Barose wine, eh?	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m019	requested by Director.main	-	18	It may lack the flavor and depth of some of your Archadian wines...	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m020	requested by Director.main	-	19	but it has a certain strength of character.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m021	requested by Director.main	-	20	It's not bad, really, once you get used to it.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m022	requested by Director.main	-	21	Care for some, sirs?	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m023	requested by Director.main	-	22	There's more than enough for all to cool their throats, of course.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m016	requested by Director.main	Migelo	15	Yes, yes.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m017	requested by Director.main	Migelo	16	Different soil means different bouquet, too.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m018	requested by Director.main	Migelo	17	Take a Dalmascan Barose wine, eh?	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m019	requested by Director.main	Migelo	18	It may lack the flavor and depth of some of your Archadian wines...	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m020	requested by Director.main	Migelo	19	but it has a certain strength of character.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m021	requested by Director.main	Migelo	20	It's not bad, really, once you get used to it.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m022	requested by Director.main	Migelo	21	Care for some, sirs?	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m023	requested by Director.main	Migelo	22	There's more than enough for all to cool their throats, of course.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m024	requested by Director.main	-	23	You, let these carts through then we close this gate as ordered.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m025	requested by Director.main	-	24	My mail's choked with this sand.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m026	requested by Director.main	-	25	Don't give me a scare like that.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m027	requested by Director.main	Migelo	26	You're lucky that ended where it did.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m028	requested by Director.main	Penelo	27	Right. Now's our chance to go through.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m029	requested by Director.main	-	28	Ah, the ceremony'll be starting soon.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_a1701	scene, event 118	Mes	m030	requested by Director.main	-	29	I'd best be hurrying.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m029	requested by Director.main	Migelo	28	Ah, the ceremony'll be starting soon.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_a1701	scene, event 118	Mes	m030	requested by Director.main	Migelo	29	I'd best be hurrying.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m031	requested by Director.main	Penelo	30	Okay, well—	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m032	requested by Director.main	-	31	Vaan! Wait!	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m033	requested by Director.main	Penelo	32	What is it? Vaan?	-	-	-	-	-	-	-	-	-	-	1	-
@@ -446,13 +446,13 @@ rbn_a1701	scene, event 118	Mes	m036	requested by Director.main	Vaan	35	Now what?
 rbn_a1701	scene, event 118	Mes	m037	requested by Director.main	-	36	Open the gate!	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_a1701	scene, event 118	Mes	m038	requested by Director.main	-	37	All right, out of the way!	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_x0100	scene, event 106	VOICE_VAYNE	カット８	requested by AD.カット８_ad	-	0	Now, I'm expecting Doctor Cid. You may leave.	-	-	-	-	-	-	-	-	-	-	5	-
-rbn_x0100	scene, event 106	MESSAGE	カット２	requested by AD.カット２_ad	-	1; 2	Those decrepit, basking fools in Archades tie my hands, and look what happens! / I tell you, this country's obstinancy knows no bounds.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_x0100	scene, event 106	MESSAGE	カット２	requested by AD.カット２_ad	Vayne	1; 2	Those decrepit, basking fools in Archades tie my hands, and look what happens! / I tell you, this country's obstinancy knows no bounds.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_x0100	scene, event 106	MESSAGE	カット３	requested by AD.カット３_ad	-	3; 4; 5; 6; 7	The insurgents in Rabanastre operate alone at present. / However, should they garner external support, the situation could worsen. / We have found the counter-Imperial elements in Bhujerba to be conspicuously well funded. / No doubt Marquis Ondore is behind this. / Ondore must be reined in.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_x0100	scene, event 106	MESSAGE	カット６	requested by AD.カット６_ad	-	8; 9	By the way, the Marquis has written us a letter. / He claims that he's recaptured our runaway. He's given him to Ghis.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_x0100	scene, event 106	MESSAGE	カット７	requested by AD.カット７_ad	-	10	He will die by my hand.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_x0100	scene, event 106	MESSAGE	カット８	requested by AD.カット８_ad	-	11; 12; 13	Your fraternity is moving. / Ah, Ghis returns with Larsa. Tomorrow morning they will leave Bhujerba. / See him home safely, Gabranth.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_x0100	scene, event 106	MESSAGE	カット６	requested by AD.カット６_ad	Vayne	8; 9	By the way, the Marquis has written us a letter. / He claims that he's recaptured our runaway. He's given him to Ghis.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_x0100	scene, event 106	MESSAGE	カット７	requested by AD.カット７_ad	Gabranth	10	He will die by my hand.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_x0100	scene, event 106	MESSAGE	カット８	requested by AD.カット８_ad	Vayne	11; 12; 13	Your fraternity is moving. / Ah, Ghis returns with Larsa. Tomorrow morning they will leave Bhujerba. / See him home safely, Gabranth.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_x0100	scene, event 106	MESSAGE	カット９	requested by AD.カット９_ad	-	14; 15; 16; 17; 18; 19	We must see the real thing to be sure. Nabudis taught us much! / Yes, it's well hidden. They'll be off chasing after shadows, the fools. / Ah, yes! The reins of History back in the hands of Man. / Hah, Vayne! You seem to be enjoying your job as consul. / I was kept waiting fully 2 years. What news of Archades? Our honored members of the Senate? / Hard at work as always, trying to find a dagger for your back.	-	-	-	-	-	-	-	-	-	-	1	-
-rbn_x0100	scene, event 106	MESSAGE	カット１４	requested by AD.カット１４_ad	-	20	They are welcome to try.	-	-	-	-	-	-	-	-	-	-	1	-
+rbn_x0100	scene, event 106	MESSAGE	カット１４	requested by AD.カット１４_ad	Vayne	20	They are welcome to try.	-	-	-	-	-	-	-	-	-	-	1	-
 rbn_y0100	scene, event 104	セリフ	cut_01	requested by 監督.main	-	2; 3; 4; 5; 6; 7	Is Rabanastre to your liking, my lord? / It is magnificent! / Take this cathedral, for instance. / Elegant, yet whimsical in its execution. / A stunning example of Galtean architecture. / I hope Lord Gramis might one day look upon it himself.	-	-	-	-	-	-	-	-	-	-	7	-
 rbn_y0100	scene, event 104	セリフ	cut_04	requested by 監督.main	-	8	The patron of this evening's banquet, may it please Your Excellency.	-	-	-	-	-	-	-	-	-	-	7	-
 rbn_y0100	scene, event 104	セリフ	cut_05	requested by 監督.main	-	9; 10; 11	I am Migelo, Your Highness. / It is truly a profound honor to make the acquaintance... / of our future emperor, Highness.	-	-	-	-	-	-	-	-	-	-	7	-

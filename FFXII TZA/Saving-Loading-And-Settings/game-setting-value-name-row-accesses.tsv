@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+0x001DEE90	GameSettingConfig_SerializeText	0x001DEF67	0x0	r	cmp qword ptr [rax], 0	route-seeded ARRAY 0x01DFD150 stride=0x48 count=31 base+0x0	

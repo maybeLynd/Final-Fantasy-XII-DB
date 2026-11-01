@@ -70,6 +70,17 @@ first use it seeds itself with 5489 (`0x1571`, `0x00866D60`).
 All 99 rows, with the smallest and largest gain each formula allows, are in [hp-mp-growth.tsv](hp-mp-growth.tsv),
 read from the shipped file.
 
+### Columns of hp-mp-growth.tsv
+
+| Column | Holds |
+|---|---|
+| `hp_base` | byte 0 of the row, the base HP gain `b` for the level-up from `level` |
+| `hp_gain_min` | the smallest HP gain, `b` itself (bonus 0); equal to `hp_base` on all 99 rows |
+| `hp_gain_max` | the largest HP gain, `b + (int(b / 5 × 100) - 1) / 100` rounded down, or `b` when `b / 5` is below 0.01 |
+| `mp_base` | byte 1 of the row, the base MP gain `b`: 1 to 5 |
+| `mp_gain_min` | the smallest MP gain, `b`; equal to `mp_base` on all 99 rows |
+| `mp_gain_max` | the largest MP gain, `b + (int(b × 100) - 1) / 100` rounded down, which is `2b - 1` |
+
 ### Strength, Magick Power, Vitality and Speed
 
 The four stats grow by `0x002F9BD0`: `value + byte / 128`, and a result above 100.0 becomes

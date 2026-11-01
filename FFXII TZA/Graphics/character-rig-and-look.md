@@ -290,6 +290,17 @@ forwarders, each `add rcx, 0x580` then a jump, lead to eighteen builders that se
 clear its value bit, clear the bits of the same group and store a payload
 ([character-rig-and-look-look-command-census.tsv](character-rig-and-look-look-command-census.tsv)).
 
+### Columns of character-rig-and-look-look-command-census.tsv
+
+One row per forwarder, 18 rows. The forwarders are found by searching every function for `add rcx, 0x580`
+followed by a `jmp` as its first two instructions.
+
+| Column | Holds |
+|---|---|
+| `forwarder` | the start address of the forwarder, whose `jmp` leads to the row's `builder` |
+| `builder_stores` | the builder's flag and payload instructions in order, separated by semicolons: every `or`, `and`, `bts`, `btr` and `xor`, and every `mov` or `movss` that stores into the command (`[rcx]` the flag dword, `[rcx + n]` the payload) |
+| `service_callers` | the functions that call or jump to the forwarder directly, separated by spaces; `verbs` then names the script verbs that reach those functions |
+
 `0x00429920` applies it: for the record, its first child and the child's two subtrees (callback `0x0042D970`), it skips
 records `0x00426220` rejects, takes the rig from `0x003E6DA0` and calls `0x003E37F0(rig, command)`. Then `0x003E37E0` zeroes the
 command, so a request lasts one pass and an attached piece looks where its owner looks.

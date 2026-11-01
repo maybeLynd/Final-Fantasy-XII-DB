@@ -130,6 +130,25 @@ These member files beside the page are not single-form families:
   The 15 rows for families on this page each name a function every member of that family calls;
   the other 8 rows are for the Lua and PhyreEngine reflection families on other pages.
 
+### Columns of the lists beside the families
+
+The letters in `callee-disposition` say how a function is explained in this database: `A`, a page says
+what this function does and cites an address inside its body; `B`, one page explains a body shape that a
+family of functions shares and lists the family by a stated method; `C`, the function is named as library,
+middleware or compiler code and the boundary of that code is stated.
+
+| Column | Holds |
+|---|---|
+| `section` | in generated-function-families-trivial-global-accessors.tsv, the image section of the global: `.data` on 470 rows, `.rdata` on 12 |
+| `mnemonic` | in the same list, the body's one instruction before `ret`: `mov` 290, `lea` 91, `movzx` 49, `movsx` 26, `movss` 25, `movsd` 1 |
+| `owning-page` | in generated-function-families-documented-global-leaf-accessors.tsv, the pages that cited the global by its address when the list was last recomputed, as paths below the database root separated by a vertical bar; `-` on 13 rows. In generated-function-families-explained-callee-adapters.tsv, the same for the callee: for an `A` callee the pages that cite an address inside its body, for a `B` or `C` callee the page that lists its family; `-` on 43 rows |
+| `callee-disposition` | in generated-function-families-explained-callee-adapters.tsv, how the one function the adapter calls or jumps to is explained: `A` on 261 rows, `C` on 171, `B` on 51 |
+| `transform` | in the same list, what the instructions before that call do to the four argument registers. `this-adjusted` (67 rows): `rcx` is moved by a constant or loaded through itself; `shifted` (227): a register takes another argument's value, or an argument other than `rcx` is loaded through itself; `flag-normalised` (5): a register is turned into 0 or 1; `constant-inserted` (56): a register takes a constant or a value loaded from a fixed address. On the other 128 rows the value says that no argument register changes. When several apply, the first in that order is written |
+| `family_file` | in generated-function-families-generated-families-installed-classes.tsv and generated-function-families-generated-families-shared-implementations.tsv, the member list of the family the row is about |
+| `role` | in the installed-classes list, what the family's instruction form does with the vtable, read from one member per family (7 values, one per family); in the shared-implementations list, what the shared function is, taken from the pages that cite its address (`CRT` on 11 rows) |
+| `ledger_name` | in the shared-implementations list, the shared function's name in the function list: a runtime name such as `atexit` (5 rows), `_guard_check_icall` (3) or `memset`, or `FUN_` and its address where the function has no name |
+| `owner` | in the shared-implementations list, the category the function list gives as the function's owner; `-` on all 23 rows, where it gives no owner |
+
 ## Columns
 
 | Column | Meaning |

@@ -253,6 +253,31 @@ The two use generic matrix helpers: `0x001854C0` (the product of two affine 4 ×
 and `+0x2C` set to 0 and `+0x3C` to 1, used by `0x00604750`) and `0x00187460` (the same inverse, copied
 out).
 
+### Columns of graphics-settings.tsv
+
+One row per 4-byte field of the render settings block that feeds a shader constant, 276 rows.
+
+| Column | Holds |
+|---|---|
+| `block_off` | the field's offset in the render settings block, `+0x000` to `+0x468`; `address` is `0x02CB7FD0` plus this offset on all 276 rows |
+| `cbuffer_off` | the byte offset, `0x184` to `0x5E0`, of the variable in `SceneWideParameterConstantBuffer` that `0x00604750` writes from this field (`shader_constant` names it) |
+| `default` | the value a constructor stores, as a decimal: `0x005DC580` for `+0x000` to `+0x0C4`, `0x005DC430` for `+0x0D0` to `+0x180`, `0x005DC720` for `+0x42C` to `+0x468`; 105 rows have one, and `-` marks the 171 fields no constructor stores |
+| `menu_ids` | the developer-console command ids whose arm writes the field, separated by commas (91 ids on 86 rows, ids 28 to 168; see [debug menu commands](debug-menu-commands.md)); `-` on the 190 fields no console row reaches |
+| `menu_labels` | the console labels of those ids, separated by semicolons; id 28, `Use PS2 lighting`, writes several fields, and on some of its rows its label is not the first |
+
+### Columns of graphics-settings-inputs.tsv
+
+One row per field of graphics-settings.tsv, 276 rows.
+
+| Column | Holds |
+|---|---|
+| `input` | the field's offset in the render settings block, as `block_off` in graphics-settings.tsv |
+| `domain` | the field's type (`f32` on 256 rows, `i32` on 14, `u8` on 6) and its values: the constructor default with the constructor's address, and, for a field the scene-config loaders set, the values in init.json and the area files |
+| `precedence` | which store lands last: on 161 fields `0x001F0AD0` rewrites it every frame from the shadow object `[0x01F82EA8]`; on the others the scene-config loaders, another named writer, or the constructors with the developer menu as the only other store |
+| `consumers` | the `SceneWideParameterConstantBuffer` variable the field feeds, with its offset and size, and how many of the shipped program codes that declare the variable mark it as used |
+| `visible_effect` | the shader files whose programs read the variable and how many programs and variant files that is (271 rows); `switches subsurface scattering` for `+0x464`; `-` on the four fields no program reads |
+| `inert_when` | when a change has no effect: `-` on 271 fields; `always: no shipped program reads the variable` on `+0x41C`, `+0x424`, `+0x42D` and `+0x460`; on one field, that every instruction that stores it writes 0 (`0x001A2130`, `0x001A5B00`) |
+
 ### The tonemap byte
 
 `0x001C7940` reads `mUseLinearTonemap` as an integer and stores `value == 1` at `+0x4A2` of the

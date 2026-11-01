@@ -80,6 +80,19 @@ others. [The channel census](character-fades-fade-channel-census.tsv) holds the 
 `0x003E5D60`; channels 2 and 5 reach them through the dispatcher `0x00428940` (`0x003E5D00` for `r9` of 1 or less,
 `0x003E5D60` for a non-null `rcx`), so their writers are the ones in the table above, not census rows.
 
+### Columns of character-fades-fade-channel-census.tsv
+
+One row per direct call or tail jump to one of the three channel functions, 22 rows. The channel is read from
+`edx` by walking the 16 instructions before the call forward, without following branches.
+
+| Column | Holds |
+|---|---|
+| `operation` | the function called: `start_ramp` for `0x003E5D60` (11 rows), `set_immediate` for `0x003E5D00` (3 rows) or `evaluate` for the reader `0x003E48E0` (8 rows) |
+| `channel_or_selector` | the value of `edx` at the call: the channel 0 to 9 for `start_ramp` and `set_immediate`, the selector for `evaluate` (`11`, `13` and `14` are the products `0x0B`, `0x0D` and `0x0E` above); a register name when `edx` holds no constant, `edi` once, in the record clear `0x0041F730` |
+| `caller` | the start address of the function that makes the call |
+| `caller_name` | that function's name in the disassembly's function list; `FUN_` and the address when it carries no name |
+| `site` | the address of the `call` or `jmp` instruction |
+
 ### Attached pieces (channel 1)
 
 A piece is a record whose kind byte `+0x6A0` (from the model's `@FCP` data) is `0x1C` or above. When a

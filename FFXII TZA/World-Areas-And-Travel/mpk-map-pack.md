@@ -1083,3 +1083,54 @@ otherwise.
 - [MRP menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md)
 - [`shadow-settings-01f82ea8-accesses.tsv`](shadow-settings-01f82ea8-accesses.tsv): every censused access to the
   shadow object through its pointer `[0x01F82EA8]`, all in the direction setter `0x001F08A0` (18 rows).
+- [`mpk-map-pack-actl-census.tsv`](mpk-map-pack-actl-census.tsv): one row per `ACTL` section: its header, the shape
+  of its id index, its record count and its tombstones (270 rows).
+- [`mpk-map-pack-map-ref-field-packs.tsv`](mpk-map-pack-map-ref-field-packs.tsv): `map_ref.bin` row by row, one per
+  field: the field's own pack and its block's pack, each by index, name and non-empty slots (1,315 rows).
+- [`mpk-map-pack-mrp-census.tsv`](mpk-map-pack-mrp-census.tsv): the `MRP` sections of `rwg0201` and `rwg0202`, which
+  hold the same bytes (2 rows).
+- [`mpk-map-pack-sp1-census.tsv`](mpk-map-pack-sp1-census.tsv): one row per `SP1` section: its header offsets, the
+  extent of its emitter index and four layout checks (456 rows).
+- [`mpk-map-pack-wd-census.tsv`](mpk-map-pack-wd-census.tsv): one row per `WD` section: its header fields and each
+  record's two words and hash (46 rows).
+- [`mpk-map-pack-ym00-census.tsv`](mpk-map-pack-ym00-census.tsv): one row per `YM00` index entry, with the extent of
+  its chunk (8,298 rows).
+- [`mpk-map-pack-ym00-tag2226-census.tsv`](mpk-map-pack-ym00-tag2226-census.tsv): one row per tag-22 and tag-26
+  chunk of each `YM00`: its nested index and its records (920 rows).
+
+The columns of these tables, after `pack` and the section's size:
+
+- `actl-census`: `ver`, `stride`, `idbound` and `buckets` from the header and the index, `records`, the index and
+  aux offsets `idxoff` and `auxoff` and the aux length `auxlen`, `recfit` and `idxfit` (`OK` in all 270: the records
+  end at the aux table, and the index ends where the first record begins), and `tombstones`, 101 in all, as in
+  [`mpk-map-pack-actl-rows.tsv`](mpk-map-pack-actl-rows.tsv), which has the records themselves;
+- `map-ref-field-packs` (no `pack` column): `field`, the own pack's index, name and non-empty slots (`own_idx`,
+  `own_pack`, `own_sections`), `block` and its pack's `block_idx`, `block_pack` and `block_sections`, and the row's
+  words `w2` and `w3`;
+- in `map-ref-field-packs` a pack's name comes from matching its size in `FileSizeTable_US.fst`: `ambiguous:` lists
+  the packs of one size (286 cells, where [`mpk-map-pack-field-layers.tsv`](mpk-map-pack-field-layers.tsv) names one
+  of them), and `-` marks a field without that pack;
+- `mrp-census`: `sha16` the first 16 hex digits of the section's SHA-256, `magic`, the counts and offsets of the
+  name tail (`tail`), the five rectangle descriptors (`desc`) and table B (`tblB`), `tblBSpans` table B's two spans
+  (a 16-byte name and a TIM2 picture each) and `descs` the descriptor rows;
+- `sp1-census`: `dword04` (`+0x04`), `offB`, `offC` and `offD` (the areas, index and emitters offsets of
+  [`mpk-map-pack-sp1-rows.tsv`](mpk-map-pack-sp1-rows.tsv)), `offW` (`+0x1A`) and `w_count` (-1 when `+0x1A` is 0),
+  the index's bound and its non-zero entries with their lowest and highest values (`c_bound`, `c_offn`, `c_min`,
+  `c_max`), and `d_term`, where the `u16` list at `offD` ends (-1 when `offD` is 0);
+- `flags` in `sp1-census`, one letter per check: `T` the table of `+0x04` dwords at `+0x20` fits the section, `C`
+  every non-zero index entry lies inside it, `D` the list at `offD` ends inside it (`-` when `offD` is 0), and `0`
+  for `+0x1A` = 0: `TCD0` in 454 sections and `TC-0` in 2;
+- `wd-census`: `field02` the bank id, `dataSize` the trailing data's size and `dataStart` its start, `count`,
+  `flags14` (`+0x14`), `firstOff` the first offset-table entry, `tableSpill` 1 where the record table runs past
+  `dataStart`, `records` each record's table entry with its X, Y and hash words, and three checks: X never falls
+  (`Xmonotonic`), X and Y lie below `dataSize` (`XYunderDsz`), and the records with X equal to Y (`XeqY`);
+- `ym00-census`: `inner_name` the name at `+0x08`, `idx_count`, then `entry`, `tag`, `chunk_off` and `chunk_bytes`,
+  `order` (`OK` in all: the offsets never fall), `last_end` where the closing entry points and `tail_pad` the bytes
+  after it;
+- the entries of `ym00-census` are those of [`mpk-map-pack-ym00-chunks.tsv`](mpk-map-pack-ym00-chunks.tsv); here
+  `chunk_bytes` runs to the next entry, so it is 0 for the closing entries and for the 851 entries that share their
+  offset with the next;
+- `ym00-tag2226-census`: `tag` 22 (461 chunks) or 26 (459), `chunkSize`, `count`, `sentinelOK` (the closing entry
+  lands at the chunk's end) and `ascending` (the offsets never fall), 1 in all 920, `tagsSeen` the tags of its
+  entries, `records` how many records parse (for tag 22 with a count per `+0x30` mode), `picTotal` the pictures of a
+  tag-26 chunk and `sampleNames` its first two record names.

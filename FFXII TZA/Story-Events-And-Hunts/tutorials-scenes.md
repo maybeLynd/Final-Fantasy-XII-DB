@@ -53,6 +53,22 @@ No shipped script requests `men_z0002`:
   name shown), `sample_tutorial.main` of `men_z0002` shows lines 1 to 13 (Tomaj, and lines with no name shown) and
   `sample_tutorial.main` of `men_z0003` shows line 0, the map hint. The staff roll script `men_z0005` has no row.
 
+### Columns of tutorials-scripts.tsv
+
+The columns are those of the zone scripts tables (defined on
+[Archades scripts](archades-scripts.md)); the three rows fill them as follows.
+
+| Column | Holds |
+|---|---|
+| `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions that request it; `-` when neither applies: `main` on all three rows |
+| `line_text` | the `us` text of the entries in `lines`, in the same order, separated by ` / `; a choice list is written `(choices: ...)` |
+| `flags_released` | the story flag ids the function releases, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md); `-` on all three rows |
+| `flags_tested` | the story flag ids the function tests, in the same form; `-` on all three rows |
+| `counter_tested` | each comparison of the story counter, as the relation and the decimal value; `-` on all three rows |
+| `jumps` | each `mapjump`: the target map (region), its field id and the entrance; `-` on all three rows |
+| `battles` | `boss gauge shown`, `every foe in a group removed` or `every foe in group 0 removed`; `-` on all three rows |
+| `other_functions` | how many functions of the actor have no row: 1 on all three rows |
+
 ### Every step
 
 The steps table [`tutorials-script-steps.tsv`](tutorials-script-steps.tsv) has one row for each step of every function

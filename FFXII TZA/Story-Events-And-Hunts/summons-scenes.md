@@ -70,6 +70,22 @@ gives each.
 - The scripts table [`summons-scripts.tsv`](summons-scripts.tsv), with the columns of the zone scripts tables,
   has no row: no function of the thirty-nine scripts shows a line, and no step asks the replay questions above.
 
+### Columns of summons-scripts.tsv
+
+The table holds the header alone. Its columns are those of the zone scripts tables (defined on
+[Archades scripts](archades-scripts.md)):
+
+| Column | Holds |
+|---|---|
+| `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions that request it; `-` when neither applies |
+| `line_text` | the `us` text of the entries in `lines`, in the same order, separated by ` / `; a choice list is written `(choices: ...)` |
+| `flags_released` | the story flag ids the function releases, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md) |
+| `flags_tested` | the story flag ids the function tests, in the same form |
+| `counter_tested` | each comparison of the story counter, as the relation and the decimal value |
+| `jumps` | each `mapjump`: the target map (region), its field id and the entrance |
+| `battles` | `boss gauge shown`, `every foe in a group removed` or `every foe in group 0 removed` |
+| `other_functions` | how many functions of the actor have no row |
+
 ### Every step
 
 The steps table [`summons-script-steps.tsv`](summons-script-steps.tsv) has one row for each step of every function of

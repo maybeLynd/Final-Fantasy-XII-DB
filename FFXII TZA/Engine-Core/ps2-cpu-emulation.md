@@ -289,7 +289,7 @@ The table also has a row for each of these addresses:
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| each row of [ps2-cpu-emulation-state.tsv](ps2-cpu-emulation-state.tsv), one per address | the row's `type` | the row's `start`: 0 from the zero-filled tail of `.data`, or 0 in the image for `vf00`'s lanes y and z | the row's `meaning` | the row's `set_by` | the row's `read_by` |
+| each row of [ps2-cpu-emulation-state.tsv](ps2-cpu-emulation-state.tsv), one per address; its `place` names the register and the byte offset inside it, for example `t0 +1`, `v0 +8`, `vf00 lane y`, `SA` or `scratch` (9 rows) | the row's `type` | the row's `start`: 0 from the zero-filled tail of `.data`, or 0 in the image for `vf00`'s lanes y and z | the row's `meaning` | the row's `set_by` | the row's `read_by` |
 
 Translated bodies also store the byte lanes of `v0` and the halfword lanes of `v1` one by one. The byte packs of
 `0x0026EE00`, `0x003AFDD0`, `0x0042FDB0`, `0x00431D30` and `0x00462260`, and `0x003CCA70` through the `v0` address `0x0042D050`

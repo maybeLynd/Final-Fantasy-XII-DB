@@ -369,3 +369,12 @@ Struct ActorResourceEntry size=`0x14`:
 - [Field runtime](field-runtime.md): the wait slots and the drive loops.
 - [Battle units](battle-units.md): the unit bound at `+0x30` and the handle.
 - [NPC names](npc-names.md): `+0xF8` and `+0x102`.
+- [`actor-sequence-descriptor-accesses.tsv`](actor-sequence-descriptor-accesses.tsv): the reads of the descriptor
+  table at `0x01E0C328`, all in `0x002679F0`, each by its offset in the four-byte entry the sequence selects (3 rows).
+- [`actor-storage-record-flags1c-initial-values.tsv`](actor-storage-record-flags1c-initial-values.tsv): the value
+  `0x00266BD0` gives the flag dword `+0x1C` for each sequence: `dispatch` the arm its jump table selects, `flags1c`
+  the value, `bits_set` its bits as values, and `side_effects` what else the arm does (8 rows).
+
+In the descriptor table's rows, `function`, `name` and `site` give the function, its name and the instruction's
+address, `disp` the offset in the entry, `kind` `r` (a read), `instruction` the instruction itself, and `route`
+`array 0x01E0C328 reg`: an entry of the table at `0x01E0C328` that a register selects.

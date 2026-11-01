@@ -166,16 +166,16 @@ function	name	site	disp	kind	instruction	route	note
 0x0026C3E0	FUN_0026c3e0	0x0026C410	0x14	w	mov byte ptr [rbx + 0x14], 0	arg0+0x0<0x0026C3B0@0x0026C3B5	
 0x002652D0	FUN_002652d0	0x002652F3	0x0	r	mov rax, qword ptr [rcx]	arg0+0x0<0x00265380@0x00265389	
 0x002652D0	FUN_002652d0	0x00265322	0x0	r	mov rbx, qword ptr [rcx]	arg0+0x0<0x00265380@0x00265389	
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x0025E5C5	0x201	r	movzx edx, byte ptr [r13 + 0x201]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x0026174A	0x28	r	mov ecx, dword ptr [r13 + 0x28]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x002617C9	0x80	r	mov rax, qword ptr [r13 + 0x80]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x002617E5	0x0	r	add rdx, qword ptr [r13]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261806	0x80	r	mov r8, qword ptr [r13 + 0x80]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261855	0x68	r	mov rax, qword ptr [r13 + 0x68]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x0026187D	0x70	r	mov rax, qword ptr [r13 + 0x70]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261B27	0x0	r	mov r13, qword ptr [r13]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261C24	0x0	r	mov r13, qword ptr [r13]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261CCD	0x0	r	mov r13, qword ptr [r13]	seed	argseed 0x0025E4C0:0 - the interpreter's first argument
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x0025E5C5	0x201	r	movzx edx, byte ptr [r13 + 0x201]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x0026174A	0x28	r	mov ecx, dword ptr [r13 + 0x28]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x002617C9	0x80	r	mov rax, qword ptr [r13 + 0x80]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x002617E5	0x0	r	add rdx, qword ptr [r13]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261806	0x80	r	mov r8, qword ptr [r13 + 0x80]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261855	0x68	r	mov rax, qword ptr [r13 + 0x68]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x0026187D	0x70	r	mov rax, qword ptr [r13 + 0x70]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261B27	0x0	r	mov r13, qword ptr [r13]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261C24	0x0	r	mov r13, qword ptr [r13]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
+0x0025E4C0	WorldActorScriptVM_InterpretBytecode	0x00261CCD	0x0	r	mov r13, qword ptr [r13]	seed	the slot is the first argument of the script interpreter 0x0025E4C0 (slot, record, wait slot)
 0x00268850	ScriptVM_SubmitActorRuntimeRequest	0x002689D5	0x28	r	mov ecx, dword ptr [r13 + 0x28]	arg0+0x0<0x0025E4C0@0x0025F7D0	argseed 0x0025E4C0:0 - the interpreter's first argument
 0x00268850	ScriptVM_SubmitActorRuntimeRequest	0x002689D9	0x28	r	mov eax, dword ptr [r13 + 0x28]	arg0+0x0<0x0025E4C0@0x0025F7D0	argseed 0x0025E4C0:0 - the interpreter's first argument
 0x00267E60	FUN_00267e60	0x00267F1E	0x28	r	mov ecx, dword ptr [rdi + 0x28]	arg0+0x0<0x0025E4C0@0x00261785	argseed 0x0025E4C0:0 - the interpreter's first argument
@@ -193,13 +193,3 @@ function	name	site	disp	kind	instruction	route	note
 0x00262440	FUN_00262440	0x00262627	0x58	r	mov rbx, qword ptr [rdi + 0x58]	arg0+0x0<0x00267FC0@0x00267FD9	argseed 0x0025E4C0:0 - the interpreter's first argument
 0x00262440	FUN_00262440	0x0026262D	0x60	r	mov rbx, qword ptr [rdi + 0x60]	arg0+0x0<0x00267FC0@0x00267FD9	argseed 0x0025E4C0:0 - the interpreter's first argument
 0x00268B10	FUN_00268b10	0x00268B24	0x0	r	mov rbx, qword ptr [rcx]	arg0+0x0<0x00268A80@0x00268AE6	argseed 0x0025E4C0:0 - the interpreter's first argument
-0x00266D10	FUN_00266d10	0x00266EF0	0x0	addr	lea rcx, [rbx - 0x10]	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F18	0x8	w	mov qword ptr [rbx - 8], rsi	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F01	0x10	rw	and byte ptr [rbx], 0xfe	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F04	0x11	rw	and byte ptr [rbx + 1], 0xf7	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F1C	0x13	w	mov byte ptr [rbx + 3], sil	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F08	0x17	rw	and byte ptr [rbx + 7], 0xa7	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F13	0x28	w	mov dword ptr [rbx + 0x18], edi	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F0C	0x200	rw	and byte ptr [rbx + 0x1f0], 0xfb	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F20	0x202	w	mov word ptr [rbx + 0x1f2], si	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288
-0x00266D10	FUN_00266d10	0x00266F27	0x284	w	mov dword ptr [rbx + 0x274], esi	ctor	five-slot init loop; rbx walks 0x02098E20 = slot+0x10, stride 0x288

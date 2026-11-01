@@ -63,6 +63,59 @@ slots, the folders with the same bytes, the size-table kind and id that name it,
 and the used slots it never loads. A slot row adds the offset and size, the decoded payload, the script steps that
 load the slot (`script@pc`) and the number of steps that play from it.
 
+### Columns of the package and slot tables
+
+Lists of slot numbers, entries and ids are in ascending order and separated by spaces. Where such a column has
+nothing to list, the cell holds a placeholder word instead.
+
+| Column | Holds |
+|---|---|
+| `family` | in pkfl-packages-rows.tsv and pkfl-voice-slots-rows.tsv, the package's extension: `mot`, `snd`, `vpc` or `vpcjp` |
+| `sha256` | the SHA-256 of the package file, 64 hexadecimal digits |
+| `slots_used` | the slots whose directory pair is not `{0, 0}`; the placeholder on the 27 empty packages |
+| `same_bytes_in` | the language folders whose file at the same path has the same bytes, its own folder included: all nine on 10,296 rows, `de es fr it us` on 10 and `ch cn in kr` on 8 |
+| `fst_kind_id` | each file size table entry that names the package: the kind (5, 8 or 37, which is `0x25`) and the id, then the builds whose table holds it (such as `CH` or `KR+CH+CN`), entries separated by semicolons; the placeholder on the 1,436 packages no table names |
+| `fst_size_match` | `yes` when the size those entries record equals the package's `bytes`, on all 8,878 named packages; `-` on the 1,436 others |
+| `slots_loaded` | the slots that the steps of the package's script load (the placeholder on 198 rows) |
+| `slots_never_loaded` | the used slots the script never loads: `slots_used` less `slots_loaded` |
+| `loads_of_empty_slots` | the slots the script loads that are empty: `slots_loaded` less `slots_used`; it occurs in `.mot`, `.vpc` and `.vpcjp` packages only |
+| `list_slots` | in a `.snd` package, the slots 0 to 7 whose first part is an `SPP1` list; empty on the 8,010 other packages |
+| `list_slots_never_loaded` | of those, the slots the script never loads; empty on the other packages |
+| `size_field` | in pkfl-mot-slots-rows.tsv, the `@FRP` size at `+0x08`, at most the slot size |
+| `size_field_equals_slot` | `yes` when `size_field` equals the slot's `size` (9,729 rows), `no` when it is smaller (180) |
+| `name_matches` | `yes` when `name` is `<area>.mNN` with `NN` the slot number; `yes` on all 9,909 rows |
+| `member_count` | the number of members in the `@FRP` container, the sum of the counts in `member_tags` |
+| `member_tags` | each member tag with its count, such as `@FMC x5 @FMN x5 @FMW x5 @FRM x1` |
+| `fmc_count` | the number of `@FMC` members, which bounds the entry a motion cue may name |
+| `cue_entries_not_below_fmc` | the cue entries at or above `fmc_count`; the placeholder on all 9,909 rows, since every entry is below the count |
+| `members_inside` | `yes` when every member lies inside the slot; `yes` on all 9,909 rows |
+| `loaded_by` | in the three slot tables, the script steps that load the slot, each as the script and the step's offset (`alc_a0100.ebp@0x00BE8`); the placeholder when no step loads it |
+| `load_sites` | the number of steps in `loaded_by` |
+| `cue_sites` | the number of steps that play from the slot |
+| `cue_entries` | the distinct entries those cue words name; the placeholder where `cue_sites` is 0 |
+| `format_page` | the page that describes the payload's format |
+| `split_count` | in pkfl-snd-slots-rows.tsv, the part count of the two-part container in slots 0 to 7: 2 on all 18,432 such rows; empty on the 2,682 `WD` rows |
+| `split_end_equals_size` | `yes` when the second part ends at the slot's size (18,423 rows); `no 0x100` on the 9 rows of slot 6 of `bhm_c0102`, the list with no records part |
+| `spp1_magic` | `SPP1` when the first part is a sound list (4,095 rows), empty otherwise |
+| `spp1_count` | the list's id count (`+0x04`); 0 when the slot holds no list, empty on `WD` rows |
+| `spp1_ids` | the list's ids |
+| `bank_length` | the list's `bankLength` (`+0x08`), the bytes of `SeSep` records to open |
+| `has_map_no` | the list's `hasMapNo` (`+0x10`): 1 on 2,871 rows, 0 on 1,224 |
+| `map_no` | the list's `mapNo` (`+0x12`): a map number, or 65535 (`0xFFFF`) on 1,215 rows |
+| `wd_slot_asked` | when `has_map_no` is 1, the slot `8 + map_no % 10` whose size is asked for; the placeholder when it is 0 |
+| `sesep_source` | where the `SeSep` records were read: `part 1`, the second part, on 4,086 rows; the placeholder on the 9 rows of slot 6 of `bhm_c0102` |
+| `sesep_ids` | the ids of those records, in order |
+| `sesep_matches_list` | `yes` when `sesep_ids` equals `spp1_ids` (4,086 rows), `no` on the 9 rows of slot 6 of `bhm_c0102` |
+| `wd_bank_id` | on a `WD` row, the bank id (`u16 +2`); the slot is `8 + wd_bank_id % 10` on all 2,682 rows |
+| `wd_data_size` | the trailing data size (`u32 +4`) |
+| `wd_count8`, `wd_countC` | the two record counts at `+0x08` and `+0x0C`, equal on every row |
+| `wd_flags14` | the flags at `+0x14`: `0x8000` (1,116 rows), `0x0` (918) or `0x10000` (648) |
+| `cues_without_bank` | in pkfl-voice-slots-rows.tsv, the cues that have no `sabf` bank: 0, or 1 or 2 on 36 rows |
+| `cues_outside` | the cues that lie outside the slot; 0 on all 9,180 rows |
+| `sabf_banks` | the cues that have a `sabf` bank; with `cues_without_bank` it makes `cue_count` |
+| `bank_names` | the bank name of each cue in cue order, `-` for a cue without a bank |
+| `cue_entries_over_count` | the cue entries at or above `cue_count`; the placeholder on all 9,180 rows |
+
 ### What the slots hold
 
 - `.mot`: all 1,101 slots of a folder are `@FRP` version 0 named `<area>.mNN`, `NN` the slot number

@@ -121,6 +121,12 @@ size of each; the other 76 are on
 The string bodies follow the rules under Strings: `0x001B38B0` and `0x001A4BF0` take the shared byte
 `0x02EBA2E0` when the length plus one is below 2.
 
+### Columns of eastl-strings-and-containers-template-instances.tsv
+
+| Column | Holds |
+|---|---|
+| `evidence` | the instructions that show the body is the operation in `operation`: calls through the container allocator's vtable (slot `+0x10` allocates, slot `+0x18` frees), construction of the named allocator through `0x001EDF00`, the shared empty byte `0x02EBA2E0`, the growth rule of a string or vector, or the other container bodies it calls, with their addresses |
+
 ### JsonBox values
 
 JsonBox stores parsed JSON in EASTL containers. Its reader `0x00200E60` constructs allocators named
@@ -300,3 +306,9 @@ with a string key at `+0x20` and a value at `+0x40` that it passes to `0x002001F
   type.
 - [Object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md):
   the other per-type container bodies and the record-pool template they build.
+
+### Columns of eastl-strings-and-containers-ordered-container-runtime-callers.tsv
+
+| Column | Holds |
+|---|---|
+| `member_signature` | which of the six tree functions the caller calls directly, joined by `+`: `inc` the next-node step `0x0016D6D0`, `dec` the previous-node step `0x0016D720`, `rotL` and `rotR` the rotations `0x0016D780` and `0x0016D7E0`, `ins` the insert `0x0016D840`, `era` the erase `0x0016DA60`. Six signatures occur across the 99 rows: `inc+era` 30, `dec+ins` 24, `inc+ins` 16, `ins` 16, `inc` 12 and `rotL+rotR` 1, the erase `0x0016DA60` itself; no caller uses more than two of the six |

@@ -37,6 +37,13 @@ from the steps of the function that asks for the price, and where the seller sta
   of Rabanastre.
 - 62 are the trophy trade: 31 package prices and 31 sale limits.
 
+### Columns of price-list-buys.tsv
+
+| Column | Holds |
+|---|---|
+| `detail` | what the price buys, by the kind in `buys`: a map's key item id and name (`0x8002 Bhujerba`); an airship route with its destination and route code (`to Archades (route 1)`); a trophy trade package id and its contents, or for a sale limit `how many times package 0x90FF sells`; for the other kinds, the purchase in words with the line that asks for the price in single quotes, `[value]` standing for the price |
+| `map_name`, `region` | where the seller stands: the map name and region of the script's zone in [`zone-asset-list.tsv`](../World-Areas-And-Travel/zone-asset-list.tsv), as the location line shows them (117 rows); the two scene scripts `ald_a0180` and `alc_a0280`, which have no row there, read Alley of Muted Sighs (Old Archades) and Nilbasse (Archades) |
+
 ### Where the values come from
 
 The price table is the `st2e` table at entry `+0x74` (128 rows of 4 bytes from the section's `+0x20`). The script

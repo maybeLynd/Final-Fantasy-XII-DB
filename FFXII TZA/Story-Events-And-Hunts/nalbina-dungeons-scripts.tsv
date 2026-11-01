@@ -100,7 +100,7 @@ nal_b0101	scene, event 33	KOE	cut33	requested by AD.main	-	18	That's enough, Ba'
 nal_b0101	scene, event 33	KOE	cut35	requested by AD.main	Fran	19	A Judge.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut36	requested by AD.main	Vaan	20	Judge?	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut37	requested by AD.main	-	21; 22; 23; 24; 25; 26	Hmph. / The self-proclaimed guardians of law and order in Archadia. / They're the elite guard of House Solidor. / Which effectively makes them the commanders of the Imperial army. / If you ask me, they're more executioners than judges. / Not a friendly lot, at any rate. What are they doing here?	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut41	requested by AD.main	-	27; 28	The Emperor is willing to overlook race for his more talented servants. / However, those that do not show respect will receive none in kind.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut41	requested by AD.main	Gabranth	27; 28	The Emperor is willing to overlook race for his more talented servants. / However, those that do not show respect will receive none in kind.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut43	requested by AD.main	-	29; 30	You travel freely through our lands because the Emperor wills it. / Am I correct?	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut47	requested by AD.main	-	31; 32; 33	Where is the Captain? / We have him in solitary, Your Honor. / We're ready to begin our interrogation.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut48	requested by AD.main	-	34; 35; 36	This does not concern you, bounty hunter. / He's in here somewhere! Find him! / - Bwagi, that way! - I was going this way!	-	-	-	-	-	-	-	-	-	-	8	-

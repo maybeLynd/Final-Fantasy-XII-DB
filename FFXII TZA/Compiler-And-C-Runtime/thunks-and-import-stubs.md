@@ -106,6 +106,16 @@ appears in a qword or a `lea`, with the section of each reference. 141 more one-
 taken and are not in it: 139 forwarders that are script verb handlers, named by the verb table in `.data`;
 `0x0051BC00`, taken by the `lea` at `0x0051BA01`; and the import stub `0x00896270`, named by a qword in `.rdata`.
 
+### Columns of thunks-and-import-stubs-thunk-address-taken.tsv
+
+One row per one-jump function, 296 rows.
+
+| Column | Holds |
+|---|---|
+| `family` | the kind of one-jump function: `InternalForwarder`, a `jmp` to another function of the image (269 rows), or `ExternalImport`, a jump through an import slot (27 rows) |
+| `qword_hits_by_section` | where the function's address occurs as an 8-byte little-endian value anywhere in the file, as the section name and the number of occurrences in braces, for example `{'.rdata': 2}`: `.rdata` on 265 rows and `.data` on 11; `{}` on the 25 rows taken only by a `lea` |
+| `rip_relative_lea_sites` | the address of each RIP-relative `lea` in `.text` whose target is the function, in brackets; 37 sites on 28 rows, at most 3 on a row; `[]` on the other 268 |
+
 ### Why caller counts disagree
 
 A forwarder and its target are two names for one body, so a caller count depends on which name it

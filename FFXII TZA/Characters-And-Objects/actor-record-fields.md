@@ -8,7 +8,7 @@ addresses: "0x00266530, 0x00266AD0, 0x003DB580, 0x00265020, 0x0026AE90, 0x002E4A
 ## What it lists
 
 The [actor record](actor-record.md) page lays the record out and names its fields. This page carries
-the measurements behind it: [`actor-record-fields.tsv`](actor-record-fields.tsv) lists the accesses to a record found from every holder the census followed, and four
+the measurements behind it: [`actor-record-fields.tsv`](actor-record-fields.tsv) lists the accesses to a record found from every holder the census followed, and five
 further tables list the accesses to the record's interiors, which code reaches through the pointers at `+0xA0`, `+0xA8`, `+0xB8`
 and `+0xC0` of a record it holds:
 
@@ -17,6 +17,7 @@ and `+0xC0` of a record it holds:
 | [`actor-record-fields.tsv`](actor-record-fields.tsv) | the record itself | 1,223 |
 | [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 759 |
 | [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 392 |
+| [`secondary-context-element-accesses.tsv`](secondary-context-element-accesses.tsv) | the `0x30`-byte elements at the start of the secondary context, each access by its offset in the element; every site is also a row of the secondary-context table | 176 |
 | [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 26 |
 | [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the request entries behind `+0xA0` | 88 |
 
@@ -56,10 +57,10 @@ Each table has one row per access site:
 | `function` | the function containing the instruction |
 | `name` | the name the scan carried for the function, `FUN_` when none |
 | `site` | the instruction's address |
-| `disp` | the offset reached, relative to the record or to the context |
+| `disp` | the offset reached, relative to the record, to the context or, in the element table, to the element |
 | `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on |
 | `instruction` | the instruction text |
-| `route` | how the function reached the object: `the record pool or a static record` when it resolved the record itself, `argN from F at S` when the object came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S (`argN+0xK` when offset by K), `actor +0xP, the actor as argN from F at S` or `actor +0xP, the actor in R` when the function loaded the interior from a record it held in that argument or register, `chain from the record: ...` for the slot and entry arrays walked from the record's counts, and `ctor` for the record constructor |
+| `route` | how the function reached the object: `the record pool or a static record` when it resolved the record itself, `argN from F at S` when the object came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S (`argN+0xK` when offset by K), `actor +0xP, the actor as argN from F at S` or `actor +0xP, the actor in R` when the function loaded the interior from a record it held in that argument or register, `chain from the record: ...` for the slot and entry arrays walked from the record's counts, `a context the function resolved itself`, `a slot the function resolved itself` and `an entry the function resolved itself` in the context, wait-slot and entry tables when the function found the record itself, as for `the record pool or a static record`, and took the object from it, `ctor` for the record constructor, and `embed SecondaryContext+0x0` in the element table: the elements at the start of the secondary context |
 | `note` | `idx` when an index register takes part |
 
 ## Data

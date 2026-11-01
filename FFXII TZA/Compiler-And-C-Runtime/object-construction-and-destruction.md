@@ -130,6 +130,12 @@ which closes the event at lock `+0x08`, when the byte at `+0xB8` is set. It then
 `+0x58` and `+0x20` (`0x28`-byte nodes; `0x001E7560` for `0x001E74F0`) and frees the vector at `+0x00`,
 whose elements are `0x10`, `0x18`, `0x118`, `0x20` and `0x10` bytes.
 
+### Columns of object-construction-and-destruction-eastl-container-instances.tsv
+
+| Column | Holds |
+|---|---|
+| `evidence` | what in the body shows it is EASTL container code, in a fixed order separated by semicolons: `allocator allocate slot` and `allocator free slot +0x18` for calls through the container allocator's vtable (slot `+0x10` allocates, `+0x18` frees), `0x001EDF00` with the allocator name it passes or `(copied allocator)` when it copies the source's allocator, and `calls` with the other container bodies it calls. A body with no such call is identified by the bodies it calls, the function that calls it (`called by`), or what its loop does. The most common value is `allocator free slot +0x18` alone (24 of the 76 rows) |
+
 The template is the record pool that [game application](../Engine-Core/game-application.md)
 describes: its constructor `0x001997F0` builds the lock at `+0x90` with `0x005CC8A0` and stores the
 flag at `+0xB8`, and `0x00199A80` is the destructor that the unwind funclet `0x00896C60` of

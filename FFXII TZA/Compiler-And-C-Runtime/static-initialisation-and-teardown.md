@@ -299,6 +299,12 @@ one.
 |---|---|---|---|---|---|
 | each row of [static-initialisation-and-teardown-state.tsv](static-initialisation-and-teardown-state.tsv): `0x02EA0B50`-`0x02EA40D4` | `u16` | 0 (zero-filled tail of `.data`) | one of the three constants above (`value_bits`, `value`), with its source float, its initialiser and the table slot that holds it | the initialiser, once, before `WinMain` (`set_by`) | none (`read_by` `-`) |
 
+### Columns of static-initialisation-and-teardown-state.tsv
+
+| Column | Holds |
+|---|---|
+| `source_bits` | the 32-bit pattern of the float at `source_float`, as read from the image: `0x477FE000` (converts to `0x7BFF`), `0x3A7FFFD5` (to `0x1400`) or `0x33800000` (to `0x0001`), each on 23 of the 69 rows |
+
 ### Statics only their teardown names
 
 Two C++ initialisers do nothing but register a teardown: `0x00167310` (slot `0x008C43E0`) registers `0x008B5C40`, and
@@ -395,6 +401,12 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
   49-byte C++ initialisers that call `0x0060DF70` and end with a jump to `atexit` (2 rows).
 - [`static-initialisation-and-teardown-ctor-00808fe4-initialisers.tsv`](static-initialisation-and-teardown-ctor-00808fe4-initialisers.tsv):
   60-byte C++ initialisers that call `0x00808FE4` and end with a jump to `atexit` (5 rows).
+- [`static-initialisation-and-teardown-empty-dtor-teardown-wrappers.tsv`](static-initialisation-and-teardown-empty-dtor-teardown-wrappers.tsv):
+  12-byte teardowns that load a static's address and jump to the shared `ret 0` body `0x0016D6A0`, each with the
+  static and the C++ initialiser that registers it with `atexit` (145 rows).
+- [`static-initialisation-and-teardown-float32-to-float16-static-initialisers.tsv`](static-initialisation-and-teardown-float32-to-float16-static-initialisers.tsv):
+  29-byte C++ initialisers that convert one float constant through `0x006E0220` and store the result in a global of
+  their own (69 rows).
 - [`static-initialisation-and-teardown-grow-helper-initialisers.tsv`](static-initialisation-and-teardown-grow-helper-initialisers.tsv):
   86-byte C++ initialisers that call `0x006BFC60` or `0x006C2380` and end with a jump to `atexit` (6 rows).
 - [`static-initialisation-and-teardown-intrusive-list-node-teardowns-115b.tsv`](static-initialisation-and-teardown-intrusive-list-node-teardowns-115b.tsv):
@@ -425,6 +437,9 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
 - [`static-initialisation-and-teardown-static-intrusive-list-teardown-owners.tsv`](static-initialisation-and-teardown-static-intrusive-list-teardown-owners.tsv):
   for each list-unlink teardown, the node it unlinks, the class-registration function that builds the node and
   registers the teardown, the node's kind, its owner and the owner's class, and the node's name (224 rows).
+- [`static-initialisation-and-teardown-static-intrusive-list-teardowns.tsv`](static-initialisation-and-teardown-static-intrusive-list-teardowns.tsv):
+  82-byte teardowns that unlink a node from its intrusive list, point the list head back at itself, and free the
+  node through `0x00584730` when a flag byte is set (224 rows).
 - [`static-initialisation-and-teardown-two-deallocator-deleting-destructors.tsv`](static-initialisation-and-teardown-two-deallocator-deleting-destructors.tsv):
   66-byte scalar deleting destructors in which bit `0x4` of the flag picks the sized delete `0x0016D6A0` over
   `0x00584730` (12 rows).
@@ -447,6 +462,10 @@ Each of these function tables has one row per function:
 - registered-teardown tables: the same, with `registering_init`, the initialiser that registers the teardown, and in
   the library table `group`;
 - registry unlinks: `entry`, `size` and `initialiser`, the initialiser that registers it;
+- the empty-destructor teardowns: `member` the teardown, `static` the object whose address it loads, `registrar` the
+  C++ initialiser that registers it, and `spelling` how that initialiser reaches `atexit` (`call`, or `jmp` after
+  `add rsp`);
+- the float-to-half initialisers and the list unlinks: `entry` and `teardown`, where each function starts;
 - the 32-byte stubs: `object`, `callee` and `dtor`, the static built, its constructor and its teardown;
 - destructor and teardown-loop tables: `address` is where the function starts and `targets` the functions it calls
   or jumps to directly;

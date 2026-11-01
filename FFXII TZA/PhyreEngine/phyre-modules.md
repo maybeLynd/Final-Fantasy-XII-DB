@@ -182,7 +182,19 @@ data table does not count as a use.
 
 [phyre-modules-phyre-function-class-map.tsv](phyre-modules-phyre-function-class-map.tsv) maps every
 function filed as PhyreEngine code to the class it belongs to, by the vtable slot it sits in or the
-vtable it installs. [phyre-modules-phyre-module-utility-registrars.tsv](phyre-modules-phyre-module-utility-registrars.tsv)
+vtable it installs. Its `route` column says which of the two ties the function to a class:
+
+- `slot1`: the function sits in the vtable of one class, which `slot_classes` names.
+- `slotN`: it sits in the vtables of several classes, which `slot_classes` lists, separated by `;`: one body
+  serving several classes.
+- `installs`: its body stores the vtable of a class whose name begins with `Phyre::` into an object, as a
+  constructor, a destructor or a factory does; `installed_classes` names the class, or the classes separated by
+  `;`.
+- `slot1+installs` and `slotN+installs`: both.
+- `neither`: the function sits in no vtable and installs no `Phyre::` class's vtable, and both class columns are
+  empty.
+
+[phyre-modules-phyre-module-utility-registrars.tsv](phyre-modules-phyre-module-utility-registrars.tsv)
 lists the thirteen registrars whose bodies are the same 86 bytes ending in a jump to `0x00808B90`; the other two,
 `PScripting`'s `0x00166210` and `PText`'s `0x00167B90`, have bodies of their own.
 

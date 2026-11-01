@@ -807,3 +807,10 @@ The kind lists `0x020910F0[kind]` are eight-byte heads, cleared with the rest of
 - [Frame update order](../Engine-Core/frame-update-order.md): where the update pass runs.
 - [Global state accessors](../Engine-Core/global-state-accessors.md): the cadence test
   `0x001EDDA0`.
+- [`action-timeline-opcodes.tsv`](action-timeline-opcodes.tsv): the opcodes of the battle effect program `0x003B8670`,
+  each with the case its switch selects and the functions that case calls (128 rows).
+
+`opcode` is the opcode in decimal (28 is `0x1C`), `case_index` the byte the switch reads for it from the table at
+`0x003B994C`, and `case_address` the case it jumps to through the table at `0x003B9854`; 66 opcodes select `0x003B88F4`,
+which does nothing and goes back to the loop. `callees` lists the calls of the case, each as address and name, or
+`indirect` with the operand of a call through memory.

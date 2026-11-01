@@ -76,6 +76,19 @@ the copy skips (0 in all 16), and the seven heights at `+0x08` and seven distanc
 use three more profiles, with raises 2.0 (types 1, 2, 4, 5 and 7 to 9), 3.5 (3, 6 and 10 to 12) and 2.2 (14
 and 15).
 
+### Columns of behindcamera-types-rows.tsv
+
+One row per entry of `common/behindcamera.bin`, 16 rows, `type` 0 to 15; the entry of type t starts at file
+`+0x10 + 64 × t`. All 224 height and distance cells equal the file's float rounded to one decimal place.
+
+| Column | Holds |
+|---|---|
+| `below_count` | `yes` when the type is below the table's count `+0x04` (16), so `0x0025A160` accepts it; `yes` on all 16 rows |
+| `word_00` | the entry's `+0x00` as the integer of its bits: the float raise of the look point, 1.3 (`1067869798`, types 0 and 13), 2.0 (`1073741824`), 2.2 (`1074580685`) or 3.5 (`1080033280`) |
+| `word_04_not_copied` | the 32-bit word at entry `+0x04` in hex, which `0x00259FE0` does not copy; `0x00000000` on all 16 rows |
+| `a0`, `a1`, `a2`, `a3`, `a4`, `a5`, `a6` | the seven heights, the floats at entry `+0x08 + 4k` for `ak`, copied to controller `+0x10 + 12k`; they rise from `a0` to `a6` on all 16 rows, from −1.9 (`a0`, lowest) to 7.6 (`a6`, highest) |
+| `b0`, `b1`, `b2`, `b3`, `b4`, `b5`, `b6` | the seven distances, the floats at entry `+0x24 + 4k` for `bk`, copied to controller `+0x14 + 12k`; they rise from `b0` to `b6` on all 16 rows, from 2.8 to 8.8, and `b6` is 8.8 on all 16 |
+
 `setbehindcameratype` (`0x01CB`, `0x00356CB0`), `0x00304060` and `0x00304140` call `0x0025A160(type)`: for a type below the table's count `+0x04` it sets
 `0x02098DF8` and `0x00259FE0` copies the type's 64-byte entry (from table `+0x10`) into both controllers:
 its first word to `+0x64` and seven pairs of floats to `+0x10 + 12k` and `+0x14 + 12k`. `0x003D9C40`

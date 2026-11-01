@@ -255,6 +255,14 @@ fence tests above. The other two wait for a latch that is loaded once outside th
 in `0x00560910` on `0x02CA8F94` and `0x00566163` in `0x00565E00` on `0x02CA96D4`. Each latch is set to 1 only
 by an 11-byte callback (`0x00556560`, `0x00563550`), so each loop either falls through or never ends.
 
+### Columns of graphics-thread-handshake-inert-spin-census.tsv
+
+One row per inert loop, 19 rows.
+
+| Column | Holds |
+|---|---|
+| `jump` | the address of the backward conditional jump that closes the loop; `target` is where it jumps back to, and `body` the loop's instructions from `target` to the jump, every one a `test`, `cmp`, `nop` or `pause` on registers or constants |
+
 ## State
 
 | Address | What |

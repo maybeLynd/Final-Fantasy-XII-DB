@@ -1,0 +1,15 @@
+function	name	site	disp	kind	instruction	route	note
+0x00236A60	BattleUnit_ResetStateForReuse	0x00236BF5	0x0	addr	lea rcx, [rdi + 0x200]	embed BattleUnit+0x200	
+0x00236A60	BattleUnit_ResetStateForReuse	0x00236C01	0x0	addr	lea rcx, [rdi + 0x200]	embed BattleUnit+0x200	
+0x00325BB0	BattleUnit_UpdateCombatNavigationStep	0x00325C0E	0x0	addr	lea r8, [rbx + 0x180]	embed BattleUnit+0x200	
+0x00325BB0	BattleUnit_UpdateCombatNavigationStep	0x00325C59	0x0	addr	lea r9, [rbx + 0x180]	embed BattleUnit+0x200	
+0x003278D0	FUN_003278d0	0x003278F7	0x0	addr	lea rdi, [rax + 0x200]	embed BattleUnit+0x200	
+0x00383670	Navigation_SelectNextWaypointXZ	0x00383699	0x0	r	movsxd rsi, dword ptr [r9]	embed BattleUnit+0x200	
+0x00383670	Navigation_SelectNextWaypointXZ	0x00383700	0x0	w	mov dword ptr [rdi], esi	embed BattleUnit+0x200	
+0x003839C0	FUN_003839c0	0x003839C2	0xC	addr	lea rax, [rcx + 0xc]	embed BattleUnit+0x200	
+0x003839C0	FUN_003839c0	0x003839D2	0xC	w	mov word ptr [rax], 0xffff	embed BattleUnit+0x200	
+0x003839C0	FUN_003839c0	0x003839D7	0xE	addr	lea rax, [rax + 2]	embed BattleUnit+0x200	
+0x003839F0	Navigation_ResetPathPredecessors	0x003839F2	0x10	addr	lea rax, [rcx + 0x10]	embed BattleUnit+0x200	
+0x003839F0	Navigation_ResetPathPredecessors	0x00383A02	0x10	w	mov byte ptr [rax], 0xff	embed BattleUnit+0x200	
+0x003839F0	Navigation_ResetPathPredecessors	0x00383A05	0x11	addr	lea rax, [rax + 1]	embed BattleUnit+0x200	
+0x00383670	Navigation_SelectNextWaypointXZ	0x003836F8	0x90	r	mov rdx, qword ptr [rdi + rcx*8 + 0x90]	embed BattleUnit+0x200	

@@ -217,6 +217,29 @@ The member lists beside this page:
 - [`image-hardening-scalar-conversion-registrars.tsv`](image-hardening-scalar-conversion-registrars.tsv): the scalar-conversion registrars.
 - [`image-hardening-guard-cf-dispatch-target.tsv`](image-hardening-guard-cf-dispatch-target.tsv): the dispatch target `0x00896270`.
 
+### Columns of image-hardening-guard-adapter-registrars.tsv
+
+One row per empty teardown, 145 rows. The registrar is the function holding the RIP-relative `lea` or `mov`
+of the teardown's address.
+
+| Column | Holds |
+|---|---|
+| `registrar_bytes` | the registrar's body size in bytes: 383 on the 144 scalar-conversion registrars, 32 on `0x00165F80` |
+| `registration` | the call that follows that reference and registers the teardown: `atexit` (`0x00808B90`) on all 145 rows |
+| `first_descriptor` | the type named by the first of the two descriptor accessors the registrar calls after `_Init_thread_header` (`0x008092FC`), by the name string the descriptor's initialiser stores at record `+0x30`. The registrar stores that accessor's result at node `+0x20`, so this is the conversion's destination type; `-` on the row of `0x00165F80` |
+| `second_descriptor` | the type named by the second accessor, stored at node `+0x18`: the conversion's source type; `-` on the row of `0x00165F80` |
+| `stored_code_pointer` | the code address the registrar stores at node `+0x28`, the conversion routine (68 distinct); `-` on the row of `0x00165F80` |
+
+### Columns of image-hardening-scalar-conversion-registrars.tsv
+
+One row per registrar, 144 rows.
+
+| Column | Holds |
+|---|---|
+| `source_type` | the type descriptor the registrar stores at node `+0x18`, the type converted from |
+| `dest_type` | the type descriptor it stores at node `+0x20`, the type converted to |
+| `stored_routine` | the conversion routine it stores at node `+0x28` (68 distinct) |
+
 ## State
 
 ### The scalar-conversion tree
@@ -279,6 +302,13 @@ conversion pair, its value once the 144 inserts are done, and its own writers an
 | `+0x18` of each node (144 rows) | `void*` | 0 (zero-filled tail of `.data`) | source: type descriptor (lookup key, first), one of the twelve | the node's registrar (step 1, the 16-byte store) | the node's registrar (step 3, except the first, `0x00592770`, which finds the tree empty); the walks of the registrars that run after it; `0x0059A030` (`0x0059A340`) |
 | `+0x20` of each node (144 rows) | `void*` | 0 (zero-filled tail of `.data`) | destination: type descriptor (lookup key, second), one of the twelve | the node's registrar (step 1, the 16-byte store) | the node's registrar (step 3, except `0x00592770`); the walks of the registrars that run after it when the sources are equal; `0x0059A030` (`0x0059A34E`) |
 | `+0x28` of each node (144 rows) | `void*` | 0 (zero-filled tail of `.data`) | routine: the conversion routine, one of the 68 | the node's registrar (step 1) | `0x0059A030` (`0x0059A388`) only |
+
+### Columns of image-hardening-state.tsv
+
+| Column | Holds |
+|---|---|
+| `offset` | the field's offset in the node, `+0x0` to `+0x28` in steps of 8; each occurs on 144 rows |
+| `value_after_build` | the field's value once the first call of `0x0059A030` has run the 144 registrars. On `+0x0` and `+0x8`, a child node's address, or `0x01F2CDA0 (the sentinel: no child)` (73 and 72 rows). On `+0x10`, the stored value, then the parent it names and the colour its bit `0x1` gives: `red` on 8 rows, `black` on 136, one of which is the root, whose parent is the slot `0x01F2CDB8`. On `+0x18` and `+0x20`, the descriptor's address with its type in parentheses; on `+0x28`, the routine's address |
 
 ### The failure record
 

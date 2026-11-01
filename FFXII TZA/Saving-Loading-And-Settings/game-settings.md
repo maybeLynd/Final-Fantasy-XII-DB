@@ -349,6 +349,21 @@ The block's other bytes are not taken from the file:
 - `0x02B62DBA` is reset to 0 and never read. `0x02B62DC0`, a u16, is written only in the old-save branch (`0x00408E87`)
   and read by `0x00408B20` at `0x003318EA` and `0x00331953`.
 
+### Columns of game-settings-ff12config-values.tsv and game-settings-inputs.tsv
+
+Both tables have one row per entry of the FF12CONFIG layout, 22 rows in the same order, from `+0x00` to the run
+`+0x17-+0x7FF`.
+
+| Column | Holds |
+|---|---|
+| `shipped_effect` | in game-settings-ff12config-values.tsv, what the shipped byte does: on all 22 rows it changes nothing the player sees; on 6 rows the cell gives the reason after a colon (a value never tested on `+0x02`, the empty function `0x0016D6A0` on `+0x04`, the option's default kept on `+0x06` and `+0x10`, the start field on `+0x0A`, no script asking on `+0x0D`) |
+| `other_values` | in game-settings-ff12config-values.tsv, what any other value would do: on `+0x06` and `+0x10` the options bit that 1 sets and 2 clears; on `+0x0D` what `getusehdd` would answer; on `+0x02`, `+0x04` and `+0x0A` why no value changes anything; on the other 16 rows no value changes anything |
+| `label` | in game-settings-inputs.tsv, `FF12CONFIG`, the entry's offset and its `name` in game-settings-ff12config-values.tsv, on all 22 rows |
+| `domain` | the values the entry takes: `any value of its u8` on 14 rows, of its `u8[2]` on `+0x13` and of its `u8[2025]` on the run; `a u16 field id` on `+0x0A`; on `+0x02`, `+0x04`, `+0x06`, `+0x0D` and `+0x10`, which values are tested and what each does |
+| `precedence` | what else sets the same state and which wins: `the file is its only source` on 11 rows; `-` on the 6 entries the loader does not copy; on `+0x02`, `+0x06`, `+0x0A`, `+0x0D` and `+0x10`, the other writer or gate and when the file's value applies |
+| `visible_effect` | what the player sees: on `+0x06` and `+0x10`, the Vibration Function or Screen Shake option starting on or off for 1 or 2; on the other 20 rows nothing, with the reason on `+0x0A` and `+0x0D` |
+| `inert_when` | when the entry changes nothing, with the reason: `always` on 19 rows (6 entries not copied, 10 copied but never read, `+0x02` whose test no site reaches, `+0x04` whose function is a bare `ret`, and `+0x0A` in the shipped game); on `+0x0D`, in every US script; on `+0x06` and `+0x10`, for any value other than 1 and 2 and while a loaded save's options are in force |
+
 ## Layouts
 
 `GameSettingObject` (`0x65C` bytes, offsets from the start of the record):
@@ -448,3 +463,33 @@ the record:
 - [Saving and loading: the save slots and their files, the save screen's states, the six-step save transaction, the storage queue, the file layer's read and write rules, the area-change autosave and what a load runs](saving-and-loading.md)
 - [Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps](save-file-format.md)
 - [Loot pickups: the ten-slot pool, creation and eviction, the one-minute lifetime and blink, collection on contact, and the pickup object](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)
+- [`game-setting-config-accesses.tsv`](game-setting-config-accesses.tsv): every censused access to the settings
+  object at `[0x01F82D20]`, by its offset in the object (163 rows).
+- [`game-setting-key-name-accesses.tsv`](game-setting-key-name-accesses.tsv): the reads of the key table at
+  `0x01DFD050` (31 entries of 8 bytes), all in the serialiser `0x001DEE90` (3 rows).
+- [`game-setting-value-name-row-accesses.tsv`](game-setting-value-name-row-accesses.tsv): the read of the value-name
+  rows at `0x01DFD150` (31 rows of `0x48` bytes) in `0x001DEE90` (1 row).
+- [`game-settings-command-table.tsv`](game-settings-command-table.tsv): the Config commands that have a handler, one
+  row per command id; the other 16 ids from 4 to 38 fall to the default arms `0x0024095E` and `0x00240512` (19 rows).
+
+In the access tables, `function`, `name` and `site` give the function, its name and the instruction's address,
+`disp` the offset in the object or the entry, `kind` a read (`r`), a write (`w`) or the address taken (`addr`),
+`instruction` the instruction itself, and `route` how the object reached it:
+
+- `ptr load S`: the pointer at `0x01F82D20`, loaded at S; `ctor`: inside `0x001DE050`, which receives the object in
+  `rcx` and keeps it in `rsi`, as the `note` says;
+- `route-seeded ARRAY` with the table's address, stride and count: an entry of the key table or of the value-name
+  rows.
+
+The command table's columns:
+
+- `cmd` the command id; `label_tid` and `label` the text id and text of the row's label, and `choices` the choice
+  texts with their text ids;
+- `setter` the function the set arm calls, `extra_call` a further function the arm calls (`-` when it calls no
+  other) and `stores` the option bits it writes; `getter` and `reads` the same for the get arm (`opt+0`: the options
+  record at offset 0);
+- `sel` the normalisation the two wrappers apply (the selector table above); `set_arm` and `get_arm` the command's
+  arms in the two dispatchers;
+- `row_style` the style byte of the command's entry in the descriptor table at `0x01E0BF60`; `pane_row` the row's item
+  index in descriptors 0, 1 and 2 of that table (`desc1--` where descriptor 1 leaves it out) or, for a Controls
+  screen row, its pane record; `reachability` the screens that show it.

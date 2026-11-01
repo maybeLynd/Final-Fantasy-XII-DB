@@ -296,6 +296,16 @@ The PhyreEngine lock, `0x28` bytes (constructor `0x005CC8A0`; plain lock `0x005C
 | fatal-error string `0x7837` | languages `0x0407`, `0x0409`, `0x040A`, `0x040C`, `0x0410`, `0x0411`, `0x0412`, `0x0804`, `0x7C04`; English "Fatal error encountered." |
 | dump file names | `<module path>.YYYYMMDD_HHMMSS.dmp` (local time) and `Dump_Y_M_D_H_M_S.dmp` (UTC hour + 8, with no wrap or date carry, so the hour runs from 8 to 31) |
 
+### Columns of runtime-services-iat-any-reference.tsv
+
+One row per import slot, 538 rows. The references are found by scanning `.text` for every 4-byte displacement
+that lands on the slot and decoding the instruction that holds it.
+
+| Column | Holds |
+|---|---|
+| `code_refs` | how many instructions in `.text` name the slot through a RIP-relative memory operand, of any kind: 1 to 434 (`_invalid_parameter_noinfo_noreturn`); every slot has at least one |
+| `by_mnemonic` | the same instructions counted by mnemonic, as `mnemonic:count` pairs in alphabetical order separated by commas, for example `call:310,jmp:11` for `LeaveCriticalSection`. Four mnemonics occur: `call` on 417 rows, `jmp` on 163, `mov` on 11 and `bnd call` on 2 |
+
 ## Operations
 
 - Every boot: the C runtime entry, `WinMain`, the main body; the unhandled-exception filter is

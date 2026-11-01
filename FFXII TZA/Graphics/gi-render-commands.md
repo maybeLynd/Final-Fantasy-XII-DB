@@ -406,6 +406,26 @@ Tables beside this page:
 | the context's pass-state block `+0x0B50` | [`gi-render-commands-render-context-pass-state-block-accesses.tsv`](gi-render-commands-render-context-pass-state-block-accesses.tsv) |
 | the context's primitive-pass block `+0x07D8` | [`gi-render-commands-render-primitive-pass-1e8-accesses.tsv`](gi-render-commands-render-primitive-pass-1e8-accesses.tsv) |
 
+### Columns of the slot tables and the opcode table
+
+In gi-render-commands-geometry-instance-vtable-slots.tsv (144 rows) and
+gi-render-commands-render-object-vtable-slots.tsv (29 rows) each row is one vtable slot; its `body` is the
+pointer at `vtable + 8 × slot` on all 173 rows.
+
+| Column | Holds |
+|---|---|
+| `role` | what the body does: `calls A,B,C +N` names its first three distinct direct callees in call order, and `+N` how many more it has (72 rows); `leaf` and the body's first instruction for a body with no call (61 rows); `no-op ret stub (folded)` for the shared body `0x0016D6A0`, a lone `ret` (20 rows); `dtor + free` for a destructor that frees through `0x00809950` (7 rows); `scalar-deleting dtor via` and the destructor it calls (2 rows); `setter this[+0xN] = arg` for a body that stores its argument at that offset (11 rows) |
+| `cite` | one instruction of the body that shows the role: a call or tail jump on the `calls` rows (the first one in 69 of 72), the body's start on the `leaf` rows |
+
+In gi-render-commands-render-block-opcode-isa.tsv each row is one block opcode, 47 rows: `level` 1 for the seven
+that `0x0060A410` handles, 2 for the 40 it passes to `0x00607410`.
+
+| Column | Holds |
+|---|---|
+| `handler_note` | the whole body of a handler that does nothing: `mov eax,0x17; ret` for `0x0060D760` (8 rows), `xor eax,eax; ret` for `0x005C5230` (`0x2E`), and for `0x12` that its arm is the dispatcher's shared exit; empty on the other 37 |
+| `payload_read` | the block offsets the level-2 arm reads, in the order it reads them, with the payload from `+0x8`; empty on the 7 level-1 rows and on `0x12`, `0x19`, `0x1A` and `0x2E` |
+| `render_emitters` | the functions that write the opcode into a block they take straight from the device ring (ring at context `+0x50` to `+0x58`, cursor `+0x60`), separated by commas; empty on 30 rows, where that search found no such function |
+
 ## State
 
 | Address | What |

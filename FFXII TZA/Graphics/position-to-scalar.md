@@ -109,6 +109,18 @@ multiply `0x0026EE00`. The smallest, `0x00442550`, calls the node with the eleme
 multiplies the result by the element's colour `+0x240`, and draws the point in that colour
 (`0x0039C550`).
 
+### Columns of position-to-scalar-fade-node-consumers.tsv
+
+One row per `call 0x002F1F40` in the code section, 76 rows. From each call the census decodes up to 24 further
+instructions, stopping at a `ret` or `int3`, and records the first direct call it meets.
+
+| Column | Holds |
+|---|---|
+| `caller` | the start address of the function that holds the call, from the disassembly's function list (75 functions; `0x004427D0` holds two calls) |
+| `site` | the address of the `call 0x002F1F40` |
+| `first_call_after` | the target of the first direct call after it: `0x0026EE00`, the colour multiply, at 67 sites; `0x003A2B20` at 3, `0x0042FDB0` at 2, and `0x002F1F40`, `0x003D8E20` and `0x00808C40` once each; `-` at `0x00464CF7`, where no call comes within 24 instructions |
+| `instructions_between` | how many instructions that walk decoded, counting the call it found: 4 to 12 (4 at 45 sites, 6 at 20); 25 on the `-` row, where the walk ran out |
+
 ## Layouts
 
 The distance-fade record (in the container at `+0x2F0`, or in the element definition at `+0x50`):

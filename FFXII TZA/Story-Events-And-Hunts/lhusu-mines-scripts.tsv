@@ -231,9 +231,9 @@ lus_g04	Oltam Span (Lhusu Mines)	__MJ_CTRL003	mapjump	mapjump	-	-	-	-	-	-	-	belo
 lus_g04	Oltam Span (Lhusu Mines)	常駐監督	init	init	-	-	-	-	-	-	-	at least 645; below 660; below 670	-	-	-	lus_g0101, event 299	-	0	-
 lus_g04	Oltam Span (Lhusu Mines)	常駐監督	main	main	no name shown	0	ボスイベントチェックモード (choices: 死イベント再生 / チェックモード終了)	-	-	-	660: After the Ba'Gamnan battle	at least 645; below 670; below 660	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	lus_g0101, event 299	-	0	-
 lus_g04	Oltam Span (Lhusu Mines)	イベント管理	逃げるラーサー_再生	requested by 常駐監督.init	-	-	-	-	-	-	660: After the Ba'Gamnan battle	at least 645; below 660	-	-	boss gauge shown; every foe in a group removed; every foe in group 0 removed	lus_g0280, event 701	-	1	-
-lus_a0100	scene, event 296	MESSAGE	カット５	requested by AD.カット５_ad, AD.カット７_ad	-	0; 1	You will forgive me for asking, but you are diverting the purest of the magicite— / I can assure you it reaches Lord Vayne most discretely.	-	-	-	-	-	-	-	-	-	-	1	-
+lus_a0100	scene, event 296	MESSAGE	カット５	requested by AD.カット５_ad, AD.カット７_ad	Judge Ghis; Ondore	0; 1	You will forgive me for asking, but you are diverting the purest of the magicite— / I can assure you it reaches Lord Vayne most discretely.	-	-	-	-	-	-	-	-	-	-	1	-
 lus_a0100	scene, event 296	MESSAGE	カット７_２	requested by AD.カット７_ad	-	2	You wear your saddle well.	-	-	-	-	-	-	-	-	-	-	1	-
-lus_a0100	scene, event 296	MESSAGE	カット８	requested by AD.カット８_ad	-	3	Be that as it may, I have no intention of being bridled, Your Honor.	-	-	-	-	-	-	-	-	-	-	1	-
+lus_a0100	scene, event 296	MESSAGE	カット８	requested by AD.カット８_ad	Ondore	3	Be that as it may, I have no intention of being bridled, Your Honor.	-	-	-	-	-	-	-	-	-	-	1	-
 lus_a0100	scene, event 296	MESSAGE	カット９	requested by AD.カット９_ad	-	4; 5	Then you prefer the whip? / Stubbornness will see not only you broken, Excellency, but Bhujerba as well.	-	-	-	-	-	-	-	-	-	-	1	-
 lus_a0100	scene, event 296	MESSAGE	カット１１	requested by AD.カット１１_ad	-	6	Halim Ondore IV, the Marquis of Bhujerba.	-	-	-	-	-	-	-	-	-	-	1	-
 lus_a0100	scene, event 296	MESSAGE	カット１２	requested by AD.カット１２_ad	-	7; 8; 9; 10	The Marquis served as mediator at the negotiations of Dalmasca's surrender. / It would appear that he is somewhat less neutral now. / They say he's been helping the Resistance. / They say many things.	-	-	-	-	-	-	-	-	-	-	1	-

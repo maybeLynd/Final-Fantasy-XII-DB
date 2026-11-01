@@ -24,6 +24,35 @@ Their arms are in
 decodes `0x00442170` and `0x00442460` (the emitter-record subtype switches) and the record-store
 fronts `0x00500980` / `0x00500850`, together with dispatchers outside the effect code.
 
+### Columns of effect-element-runtime-switch-family-3a42-3a56.tsv
+
+One row per value of the byte `+0x48`, 1 to 14, between a first row for the switch head and two last rows for the
+switches inside the kind-6 arm, 17 rows. The arms were checked against the tables at `0x003A5540` (`0x003A4290`) and
+`0x003A68E4` (`0x003A56F0`): all 28 match.
+
+| Column | Holds |
+|---|---|
+| `selector` | the value of byte `+0x48` the row describes (the switch takes it minus 1); `kind_byte` for the switch head; `inner_10case` and `inner_40case` for the two switches inside the kind-6 arm |
+| `front_3A4290_arm`, `front_3A56F0_arm` | the arm address in each function's table; on the head row the switch expression, and on the inner rows the jump site and the table it reads |
+| `arm_size_4290`, `arm_size_56F0` | the arm's length in bytes, from its start to the next arm's start in address order; `(shared with n)` when value n uses the same arm; the last arm of each table in address order has no next arm, so its value is not a distance between arms (`~93` on value 12 of `0x003A4290`, whose arm runs 97 bytes to the `ret` at `0x003A553D`; 80 on value 14 of `0x003A56F0`); on the inner rows the case count and the count of distinct targets; `-` on the head row |
+| `calls_4290`, `calls_56F0` | the functions the arm calls in its first stretch, joined by `+`, with `x2` or `xN` for a repeated call; `same as kind n` for a shared arm; on the head row the work done before the switch, and on the inner rows the arm addresses |
+| `evidence` | the instruction addresses and ranges read for the row in each function, separated by a semicolon |
+
+### Columns of effect-element-runtime-switch-family-frontier-decode.tsv
+
+One row per case of a decoded jump table, 450 rows from 12 tables in 10 dispatchers. Every `arm` equals the
+table's entry for the row: the table's dword at `case` (132 rows) or, when a byte map comes first, at the byte map's
+entry for `case` (318 rows), plus the image base.
+
+| Column | Holds |
+|---|---|
+| `dispatcher` | the start address of the function holding the switch |
+| `disp_name` | that function's name in the disassembly's function list; `FUN_` and the address when it carries no name |
+| `selector` | the operand the switch reads its case from; a `byte ptr` with a displacement above `0x100000` is a byte map at image base plus that displacement; on the 7 rows of table `0x00282574` it holds the operands of the spill `mov qword ptr [rsp + 0x50], rdi` that sits before the lookup, and that switch reads `dword ptr [rcx + 0xc0]` minus 1 (`0x00281ED7`-`0x00281EE7`) |
+| `arm` | the address the case jumps to |
+| `handler` | the function the arm calls or jumps to first, a function start in the function list (165 rows); `-` on the other 285: 276 arms make no direct call or jump in their first 11 instructions, 7 jump only within the dispatcher, and 2 (`0x002F6CFE`, `0x00280FD4`) reach a function only after a conditional branch |
+| `handler_name` | the handler's name in the function list, empty when `handler` is `-` |
+
 ### The anchor query
 
 `0x003A4290(anchor, element, work, out)` places an element. It samples the element's offset track at its frame

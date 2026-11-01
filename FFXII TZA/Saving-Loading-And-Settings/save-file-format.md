@@ -248,6 +248,13 @@ bytes, kind B (04 to 06 and 15) at `0x2200` with `0x190`, kind C (07 to 14) at `
 identifies 29.37% of kind A's bytes, 17.22% of B's and 32.11% of C's; 70.08%, 77.31% and 50.74% are zero in every
 file of the kind.
 
+### Columns of slot-image-regions.tsv
+
+| Column | Holds |
+|---|---|
+| `nonzero_bytes` | the number of the region's bytes that are not zero in that file, from 0 to `size` (3,814 at most); 0 on 7,181 of the 12,320 rows |
+| `evidence` | how the region is identified: `zero in every file of the kind` on the 5,432 rows of regions that are zero in all files of their kind; otherwise the instructions that write or read the field and the checks its value passes in the shipped files, marked `(holds in this record)` where the check is made for that record |
+
 ## Modding notes
 
 - A save editor must decrypt and inflate the body before any offset applies; file offset `0x1244`

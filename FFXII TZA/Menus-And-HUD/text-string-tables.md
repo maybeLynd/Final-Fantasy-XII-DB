@@ -142,7 +142,7 @@ its text block.
 | `kind` | `area` for entries 0-1,311, `region` for 1,312-1,370 |
 | `id` | the area entry's field id, or the region number (the entry less 1,312) |
 | `zone` | the zone with this field id in the Zone asset list; `-` for a region or a field id with no zone |
-| `name_us` to `name_ch` | the entry's string in that language tree, decoded with the tree's font; `-` where the entry's offset is 0 |
+| `name_us`, `name_de`, `name_es`, `name_fr`, `name_it`, `name_in`, `name_kr`, `name_cn`, `name_ch` | the entry's string in that language tree (English, German, Spanish, French, Italian, Japanese, Korean, Simplified Chinese, Traditional Chinese), decoded with the tree's font; `-` where the entry's offset is 0 |
 
 ## Data
 

@@ -81,6 +81,16 @@ It then writes defaults into the parameter block: `sunIndex` -1, `fresnelRefEnab
 `+0x10` is the byte offset into the block and `+0x12 & 0x1FFF` its size; every write checks it fits.
 The offset of each name is in [the shader binding record's table](character-render-object-shader-binding-record-0x318-slots.tsv).
 
+### Columns of character-render-object-shader-binding-record-0x318-slots.tsv
+
+One row per name lookup in `0x001F7790`, 98 rows: 92 stored, then the six `...SamplerSampler` names, which are
+bound as samplers and given no slot (`offset` `(unstored)`, `index` and `store_site` empty).
+
+| Column | Holds |
+|---|---|
+| `lookup_site` | the address of the `call 0x0018D240` that looks the name up; a call to `0x0018D240` on all 98 rows |
+| `store_site` | the address of the `mov` that stores the lookup's result (`rax`) at the row's `offset` in the record; on all 92 stored rows that instruction names the offset |
+
 ### The z-bias and matrix publish
 
 Slot 13, `0x001FB120(object, part, flag, a, b, m1, m2, m3)`, is called by slot 16 for every part with

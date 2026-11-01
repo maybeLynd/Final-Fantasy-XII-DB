@@ -259,83 +259,83 @@ alc_c0180	scene, event 732	メッセージ	mes_11	requested by 監督.ジュー�
 alc_c0180	scene, event 732	メッセージ	mes_12	requested by 監督.ジュールとの取引	Jules	14	"Jules Good to be back, eh? My regards to your lord father, Master Ffamran...er, rather, Master ""Balthier."" Anon, anon."	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m001	requested by Director.main	-	0	Doctor Cid does this at Draklor?	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m0015	requested by Director.main	-	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m002	requested by Director.main	-	2	I have confirmed he receives funds from Lord Vayne.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m003	requested by Director.main	-	3	His agency in the fall of Nabudis is also certain...	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m0035	requested by Director.main	-	4	yet with Judge Zecht, who led the assault, missing...	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m004	requested by Director.main	-	5	the truth remains difficult to ascertain.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m002	requested by Director.main	Gabranth	2	I have confirmed he receives funds from Lord Vayne.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m003	requested by Director.main	Gabranth	3	His agency in the fall of Nabudis is also certain...	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m0035	requested by Director.main	Gabranth	4	yet with Judge Zecht, who led the assault, missing...	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m004	requested by Director.main	Gabranth	5	the truth remains difficult to ascertain.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m005	requested by Director.main	-	6	The long, cold years have clouded my eyes.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m0055	requested by Director.main	-	7	I cannot see my own son's heart.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m0061	requested by Director.main	-	8	My lord.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m0061	requested by Director.main	Gabranth	8	My lord.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m006	requested by Director.main	-	9	This illness...will claim me.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m007	requested by Director.main	-	10	So then, who is to be my successor?	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m008	requested by Director.main	-	11	The Senate fears the capable peregrine Vayne. They prefer a young, fledgling emperor.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m009	requested by Director.main	-	12	Gabranth.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m0095	requested by Director.main	-	13	Once in the past, I laid siege to your homeland.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m010	requested by Director.main	-	14	The Republic of Landis is long since gone.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m011	requested by Director.main	-	15	My allegiance lies wholly with the Empire.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m010	requested by Director.main	Gabranth	14	The Republic of Landis is long since gone.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m011	requested by Director.main	Gabranth	15	My allegiance lies wholly with the Empire.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m012	requested by Director.main	-	16	Perhaps, but what of your brother?	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m013	requested by Director.main	-	17	He did not accept us as you did. He fled to Dalmasca.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m014	requested by Director.main	-	18	Did you never think to follow him?	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m015	requested by Director.main	-	19	I follow his every move.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m016	requested by Director.main	-	20	He is an enemy of the Empire. He will be cut down.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m015	requested by Director.main	Gabranth	19	I follow his every move.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m016	requested by Director.main	Gabranth	20	He is an enemy of the Empire. He will be cut down.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m017	requested by Director.main	-	21	So you would kill even your own brother for the Empire.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m018	requested by Director.main	-	22	Be that as it may, Gabranth.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m019	requested by Director.main	-	23	Your ruthlessness is not without merit.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m020	requested by Director.main	-	24	But it must not become this way with Larsa.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m021	requested by Director.main	-	25	You must ensure that it does not.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m022	requested by Director.main	-	26	So then, you ask me to be his sword, to strike where he might not?	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m022	requested by Director.main	Gabranth	26	So then, you ask me to be his sword, to strike where he might not?	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m023	requested by Director.main	-	27	Rather be his shield.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m024	requested by Director.main	-	28	Gabranth, keep your close watch on Vayne.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m025	requested by Director.main	-	29	His is the keenest blade of all.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0100	scene, event 300	Mes	m026	requested by Director.main	-	30	My lord.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0100	scene, event 300	Mes	m026	requested by Director.main	Gabranth	30	My lord.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m027	requested by Director.main	-	31	Do this for me, Gabranth.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m028	requested by Director.main	-	32; 33	I could not— I could not bear... / to see my sons war with each other again.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	Mes	m029	-	-	33	to see my sons war with each other again.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0100	scene, event 300	movieSkip監督	Skip監視	requested by Movie.play_movie	no name shown	35	Skip	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m001	requested by Director.main	-	1	The Senate may play at intrigue, but Lord Vayne is not one to be brought down easily.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m002	requested by Director.main	-	2	The entire military waits upon his orders, from the War Council down to the rank and file.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m003	requested by Director.main	-	3	What better blade than he to strike down the enemies of the Empire?	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m004	requested by Director.main	-	4	Your Honor reminds me of Zecht two years since.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m005	requested by Director.main	-	5	He, too, put his trust in Lord Vayne's strength, and what became of him?	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m006	requested by Director.main	-	6	Gone without a trace since Nabudis!	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m007	requested by Director.main	-	7	I will not hear you malign Judge Zecht!	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m008	requested by Director.main	-	8	He was a noble warrior.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m009	requested by Director.main	-	9	Or...do you think his trust in Lord Vayne ill-placed?	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m010	requested by Director.main	-	10	Vayne took two of his own brothers' lives.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m011	requested by Director.main	-	11	He is ruthless beyond contempt.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m012	requested by Director.main	-	12	Ruthless, you say? Would he were more so!	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m013	requested by Director.main	-	13	He gives traitors no quarter, be they of his own blood!	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m014	requested by Director.main	-	14	How fitting for one who would bear the burden of Empire.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m015	requested by Director.main	-	15	But could we bear him?	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m016	requested by Director.main	-	16	Zargabaath, what of you?	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m001	requested by Director.main	Judge Bergan	1	The Senate may play at intrigue, but Lord Vayne is not one to be brought down easily.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m002	requested by Director.main	Judge Bergan	2	The entire military waits upon his orders, from the War Council down to the rank and file.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m003	requested by Director.main	Judge Bergan	3	What better blade than he to strike down the enemies of the Empire?	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m004	requested by Director.main	Judge Drace	4	Your Honor reminds me of Zecht two years since.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m005	requested by Director.main	Judge Drace	5	He, too, put his trust in Lord Vayne's strength, and what became of him?	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m006	requested by Director.main	Judge Drace	6	Gone without a trace since Nabudis!	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m007	requested by Director.main	Judge Bergan	7	I will not hear you malign Judge Zecht!	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m008	requested by Director.main	Judge Bergan	8	He was a noble warrior.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m009	requested by Director.main	Judge Bergan	9	Or...do you think his trust in Lord Vayne ill-placed?	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m010	requested by Director.main	Judge Drace	10	Vayne took two of his own brothers' lives.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m011	requested by Director.main	Judge Drace	11	He is ruthless beyond contempt.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m012	requested by Director.main	Judge Bergan	12	Ruthless, you say? Would he were more so!	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m013	requested by Director.main	Judge Bergan	13	He gives traitors no quarter, be they of his own blood!	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m014	requested by Director.main	Judge Bergan	14	How fitting for one who would bear the burden of Empire.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m015	requested by Director.main	Judge Drace	15	But could we bear him?	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m016	requested by Director.main	Judge Drace	16	Zargabaath, what of you?	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0101	scene, event 301	Mes	m017	requested by Director.main	-	17; 18	Surely you do not believe... / his brothers were traitors.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0101	scene, event 301	Mes	m018	-	-	18	his brothers were traitors.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m019	requested by Director.main	-	19	So found His Excellency, Lord Gramis.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m019	requested by Director.main	Judge Zargabaath	19	So found His Excellency, Lord Gramis.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0101	scene, event 301	Mes	m020	requested by Director.main	-	20; 21	You would do well to mind your tongue, Drace. / That matter is long past.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0101	scene, event 301	Mes	m021	-	-	21	That matter is long past.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m022	requested by Director.main	-	22	Your Honors, a summons!	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m023	requested by Director.main	-	23	Lord Vayne has arrived at the palace.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m024	requested by Director.main	-	24	We come at once.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m025	requested by Director.main	-	25	Lord Larsa has left for Bur-Omisace.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m026	requested by Director.main	-	26	He hopes to enlist the aid of the Gran Kiltias in stopping the insurgents.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m027	requested by Director.main	-	27	I doubt this will be enough to deter Ondore...	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m028	requested by Director.main	-	28	but even a slight hinderance to his operations would be welcome.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m029	requested by Director.main	-	29	This will delay the Rozarrian invasion...	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m030	requested by Director.main	-	30	and we will have bought much-needed time to shore up our defenses.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m031	requested by Director.main	-	31	Just as His Excellency had hoped.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m032	requested by Director.main	-	32	No matter the result, I am pleased with the young Lord's progress.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m033	requested by Director.main	-	33	I can already see the stunned faces of those mud-witted senators.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m022	requested by Director.main	Gabranth	22	Your Honors, a summons!	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m023	requested by Director.main	Gabranth	23	Lord Vayne has arrived at the palace.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m024	requested by Director.main	Judge Zargabaath	24	We come at once.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m025	requested by Director.main	Judge Drace	25	Lord Larsa has left for Bur-Omisace.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m026	requested by Director.main	Judge Drace	26	He hopes to enlist the aid of the Gran Kiltias in stopping the insurgents.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m027	requested by Director.main	Judge Drace	27	I doubt this will be enough to deter Ondore...	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m028	requested by Director.main	Judge Drace	28	but even a slight hinderance to his operations would be welcome.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m029	requested by Director.main	Judge Drace	29	This will delay the Rozarrian invasion...	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m030	requested by Director.main	Judge Drace	30	and we will have bought much-needed time to shore up our defenses.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m031	requested by Director.main	Gabranth	31	Just as His Excellency had hoped.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m032	requested by Director.main	Judge Drace	32	No matter the result, I am pleased with the young Lord's progress.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m033	requested by Director.main	Judge Drace	33	I can already see the stunned faces of those mud-witted senators.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0101	scene, event 301	Mes	m034	requested by Director.main	-	34; 35	(empty string) / The fools think a child emperor's strings easy to pull from the shadows...	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0101	scene, event 301	Mes	m035	requested by Director.main	-	35	The fools think a child emperor's strings easy to pull from the shadows...	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0101	scene, event 301	Mes	m036	requested by Director.main	-	36	but they will find that Lord Larsa is no puppet.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m037	requested by Director.main	-	37	Yes. The senators would be most pleased with a puppet for an emperor.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m038	requested by Director.main	-	38	Recall, Drace, how the Senate fears and despises Lord Vayne's ability?	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m039	requested by Director.main	-	39	When they realize the truth, that Lord Larsa is no docile lamb to be shepherded...	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m040	requested by Director.main	-	40	they will bare their teeth and devour him.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m041	requested by Director.main	-	41	You're right.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m042	requested by Director.main	-	42	I shall speak on this matter with His Excellency at once.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m043	requested by Director.main	-	43	Gabranth.	-	-	-	-	-	-	-	-	-	-	1	-
-alc_z0101	scene, event 301	Mes	m044	requested by Director.main	-	44	It falls to us to protect Lord Larsa.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m037	requested by Director.main	Gabranth	37	Yes. The senators would be most pleased with a puppet for an emperor.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m038	requested by Director.main	Gabranth	38	Recall, Drace, how the Senate fears and despises Lord Vayne's ability?	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m039	requested by Director.main	Gabranth	39	When they realize the truth, that Lord Larsa is no docile lamb to be shepherded...	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m040	requested by Director.main	Gabranth	40	they will bare their teeth and devour him.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m041	requested by Director.main	Judge Drace	41	You're right.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m042	requested by Director.main	Judge Drace	42	I shall speak on this matter with His Excellency at once.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m043	requested by Director.main	Judge Drace	43	Gabranth.	-	-	-	-	-	-	-	-	-	-	1	-
+alc_z0101	scene, event 301	Mes	m044	requested by Director.main	Judge Drace	44	It falls to us to protect Lord Larsa.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0101	scene, event 301	Mes	m045	requested by Director.main	-	45	- Are we agreed? - Aye.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0102	scene, event 303	字幕	字幕１	requested by カット.カット１	-	1; 2; 3; 4; 5; 6	This crisis would not end were I gone. / The Senate hates the very fact that House Solidor exists. / By necessity, we must find reason to silence them. / Necessity? Ah yes, necessity. / Does that word free you, I wonder? / You show no hesitation to solve matters with blood.	-	-	-	-	-	-	-	-	-	-	1	-
 alc_z0102	scene, event 303	字幕	字幕２	requested by カット.カット２	Vayne	7; 8	The sword of House Solidor cannot be left to rust in doubt. / It was you, Excellency, who tempered that sword.	-	-	-	-	-	-	-	-	-	-	1	-

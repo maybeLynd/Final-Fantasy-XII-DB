@@ -1,0 +1,485 @@
+function	name	site	disp	kind	instruction	route	note
+0x00202B10	FUN_00202b10	0x00202B18	ctx+0x0	r	addss xmm0, dword ptr [r8]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg2@0x00335C88	
+0x00202B10	FUN_00202b10	0x00202B22	ctx+0x4	r	addss xmm1, dword ptr [r8 + 4]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg2@0x00335C88	
+0x00202B10	FUN_00202b10	0x00202B32	ctx+0x8	r	addss xmm0, dword ptr [r8 + 8]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg2@0x00335C88	
+0x00202B10	FUN_00202b10	0x00202B43	ctx+0xC	r	addss xmm1, dword ptr [r8 + 0xc]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg2@0x00335C88	
+0x00203080	FUN_00203080	0x00203084	ctx+0x0	r	movss xmm0, dword ptr [rdx]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1->arg1@0x0033570F	
+0x00203080	FUN_00203080	0x00203088	ctx+0x0	r	subss xmm0, dword ptr [r8]	solver->arg2@0x0033956E	
+0x00203080	FUN_00203080	0x0020308D	ctx+0x4	r	movss xmm1, dword ptr [rdx + 4]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1->arg1@0x0033570F	
+0x00203080	FUN_00203080	0x00203092	ctx+0x4	r	subss xmm1, dword ptr [r8 + 4]	solver->arg2@0x0033956E	
+0x00203080	FUN_00203080	0x0020309D	ctx+0x8	r	movss xmm0, dword ptr [rdx + 8]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1->arg1@0x0033570F	
+0x00203080	FUN_00203080	0x002030A2	ctx+0x8	r	subss xmm0, dword ptr [r8 + 8]	solver->arg2@0x0033956E	
+0x00203080	FUN_00203080	0x002030AE	ctx+0xC	r	movss xmm1, dword ptr [rdx + 0xc]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1->arg1@0x0033570F	
+0x00203080	FUN_00203080	0x002030B3	ctx+0xC	r	subss xmm1, dword ptr [r8 + 0xc]	solver->arg2@0x0033956E	
+0x002315E0	FUN_002315e0	0x0023160B	ctx+0x0	r	movups xmm0, xmmword ptr [rdx]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D61->arg1@0x00318CB9	
+0x00304850	BattleUnit_AdvanceStandardActionState	0x00304850	0x18	w	mov qword ptr [rsp + 0x18], rbx	backtrace 0x0033A1E0->arg0 mov+slot	not a field access: the entry of 0x00304850 saving rbx to its home space [rsp + 0x18]
+0x003341A0	FUN_003341a0	0x003341A6	ctx+0x100	r	mov rax, qword ptr [rcx + 0x100]	backtrace 0x003364D0->arg0 mov->arg0@0x00338292	
+0x003341A0	FUN_003341a0	0x003341B0	0x38	r	test byte ptr [rax + 0x38], 1	backtrace 0x003364D0->arg0 mov->arg0@0x00338292->st@0x003341A6	
+0x003341A0	FUN_003341a0	0x003341C2	ctx+0xF8	r	mov rdx, qword ptr [rbx + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x00338292	
+0x003341A0	FUN_003341a0	0x003341DF	ctx+0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x00338292	
+0x00334220	FUN_00334220	0x00334246	ctx+0x108	r	mov rax, qword ptr [rcx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A	
+0x00334220	FUN_00334220	0x0033425C	0xE8	r	divss xmm8, dword ptr [rax + 0xe8]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A->st@0x00334246	
+0x00334220	FUN_00334220	0x00334265	0xE4	r	divss xmm0, dword ptr [rax + 0xe4]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A->st@0x00334246	
+0x00334220	FUN_00334220	0x0033426D	0xF8	r	mulss xmm8, dword ptr [rax + 0xf8]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A->st@0x00334246	
+0x00334220	FUN_00334220	0x00334276	0xFC	r	mulss xmm0, dword ptr [rax + 0xfc]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A->st@0x00334246	
+0x00334220	FUN_00334220	0x00334283	ctx+0xBC	r	movss xmm0, dword ptr [rcx + 0xbc]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A	
+0x00334220	FUN_00334220	0x00334304	ctx+0xBC	r	movss xmm0, dword ptr [rbx + 0xbc]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A	
+0x00334220	FUN_00334220	0x00334378	ctx+0x10	addr	lea rcx, [rbx + 0x10]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A	
+0x00334220	FUN_00334220	0x00334393	ctx+0x10	addr	lea rcx, [rbx + 0x10]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->arg0@0x0033D28A	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003343E8	ctx+0x108	r	mov rax, qword ptr [rcx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003343F2	ctx+0x100	r	mov rdi, qword ptr [rcx + 0x100]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003343F9	0x150	r	mov ecx, dword ptr [rax + 0x150]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343E8	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334404	ctx+0xF8	r	mov rcx, qword ptr [rbx + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033440E	ctx+0xF0	r	cmp qword ptr [rbx + 0xf0], rcx	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033441E	ctx+0x40	addr	lea rdx, [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334432	ctx+0xA0	r	movss xmm1, dword ptr [rbx + 0xa0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033443F	0x0	r	mov eax, dword ptr [rdi]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334448	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033444F	0x130	r	cmp dword ptr [rax + 0x130], -1	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x00334448	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334458	ctx+0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334468	ctx+0xF0	r	mov rax, qword ptr [rbx + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334484	ctx+0xE0	r	mov rax, qword ptr [rbx + 0xe0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033448B	ctx+0x40	addr	lea rdx, [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033448F	ctx+0xF0	r	mov r9, qword ptr [rbx + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334499	ctx+0xA0	r	movss xmm2, dword ptr [rbx + 0xa0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003344BD	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003344C4	0x130	r	mov esi, dword ptr [rax + 0x130]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003344BD	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003344F3	ctx+0x40	addr	lea r8, [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334540	ctx+0x40	addr	lea rdx, [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334558	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033455F	0xE0	r	subss xmm0, dword ptr [rax + 0xe0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x00334558	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334587	0x38	r	test byte ptr [rdi + 0x38], 8	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033459C	0x0	rw	and dword ptr [rdi], 0xffff7fff	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003345B9	0x0	rw	or dword ptr [rdi], eax	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003345F1	0x0	r	mov eax, dword ptr [rdi]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334607	0x0	w	mov dword ptr [rdi], ecx	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334679	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334680	0x12C	r	movss xmm0, dword ptr [rax + 0x12c]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x00334679	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334693	0x0	r	xor eax, dword ptr [rdi]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033469A	0x0	rw	xor dword ptr [rdi], eax	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x0033469C	ctx+0xF0	r	mov rax, qword ptr [rbx + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003346B8	0x0	r	mov eax, dword ptr [rdi]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003346CB	0x0	w	mov dword ptr [rdi], ecx	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003346CD	0x0	rw	and dword ptr [rdi], 0xffffffe6	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003346D0	ctx+0x40	addr	lea rdx, [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003346D4	0x0	rw	or dword ptr [rdi], 6	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003346DF	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x003346E9	0x124	r	movss xmm1, dword ptr [rax + 0x124]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003346DF	
+0x003343D0	BattleLocomotion_TryStartRandomizedAvoidanceManeuver	0x00334733	0x4	w	movss dword ptr [rdi + 4], xmm0	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->st@0x003343F2	
+0x00334AB0	FUN_00334ab0	0x00334ADC	ctx+0x100	r	mov rdi, qword ptr [rcx + 0x100]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x003345BB	
+0x00334AB0	FUN_00334ab0	0x00334AFD	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x003345BB	
+0x00334AB0	FUN_00334ab0	0x00334B0C	0xF8	r	movss xmm6, dword ptr [rax + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x003345BB->st@0x00334AFD	
+0x00334AB0	FUN_00334ab0	0x00334B34	0x0	r	test dword ptr [rdi], 0x8000	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x003345BB->st@0x00334ADC	
+0x00334AB0	FUN_00334ab0	0x00334B44	ctx+0x40	addr	lea r8, [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x003345BB	
+0x00334AB0	FUN_00334ab0	0x00334B95	ctx+0x40	addr	lea rdx, [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x003345BB	
+0x00334AB0	FUN_00334ab0	0x00334BA1	0x0	r	mov eax, dword ptr [rdi]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x003345BB->st@0x00334ADC	
+0x00334AB0	FUN_00334ab0	0x00334BAA	0x4	r	movss xmm1, dword ptr [rdi + 4]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x003345BB->st@0x00334ADC	
+0x00334C30	FUN_00334c30	0x00334C45	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x00334638	
+0x00334C30	FUN_00334c30	0x00334C57	0xF8	r	movss xmm0, dword ptr [rax + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x003383C5->arg0@0x00334638->st@0x00334C45	
+0x00334C90	FUN_00334c90	0x00334C9F	ctx+0x4	r	movss xmm7, dword ptr [rcx + 4]	ctx-stack@0x0033A214->arg0@0x0033A221->arg0@0x0033D7D1	
+0x00334C90	FUN_00334c90	0x00334CC5	ctx+0x4	r	movss xmm6, dword ptr [rsi + 4]	ctx-stack@0x0033A214->arg0@0x0033A221->arg0@0x0033D7D1	
+0x00334C90	FUN_00334c90	0x00334CDE	ctx+0x10	r	mov rcx, qword ptr [rdi + 0x10]	ctx-stack@0x0033A214->arg0@0x0033A221->arg0@0x0033D7D1<rdef	not the solver context: the base rdi is the second argument of 0x00334C90 (0x00334CB9), which 0x0033D660 passes on from its own second argument (0x0033D7CB), the pointer 0x0033A1E0 loads from the context's +0xF0 (0x0033A219)
+0x00334C90	FUN_00334c90	0x00334CF4	ctx+0x4	r	addss xmm6, dword ptr [rsi + 4]	ctx-stack@0x0033A214->arg0@0x0033A221->arg0@0x0033D7D1	
+0x00335640	FUN_00335640	0x00335655	ctx+0x108	r	mov rdx, qword ptr [rcx + 0x108]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1	
+0x00335640	FUN_00335640	0x0033565F	0x160	r	mov ecx, dword ptr [rdx + 0x160]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1->st@0x00335655	
+0x00335640	FUN_00335640	0x00335678	ctx+0x40	addr	lea r8, [rbx + 0x40]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1	
+0x00335640	FUN_00335640	0x0033571E	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1	
+0x00335640	FUN_00335640	0x00335728	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	ctx-stack@0x0033A1AC->arg0@0x0033A1B1->st@0x0033571E	
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x003357E3	ctx+0x58	w	mov qword ptr [rsp + 0x58], rcx	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37+slot	not a field access: the pointer stored to the stack slot [rsp + 0x58]
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x00335828	ctx+0x0	r	movss xmm0, dword ptr [rdi]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37	
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x0033585D	ctx+0x4	r	movss xmm0, dword ptr [rdi + 4]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37	
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x0033586A	ctx+0x8	r	movss xmm0, dword ptr [rdi + 8]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37	
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x00335877	ctx+0x0	r	movaps xmm0, xmmword ptr [rdi]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37	
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x00335899	ctx+0x0	r	movaps xmm0, xmmword ptr [rdi]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37	
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x00335977	ctx+0x10	r	mov rcx, qword ptr [rdi + 0x10]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37	
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x00335A32	ctx+0x10	r	mov rcx, qword ptr [rdi + 0x10]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37	
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x00335AC7	ctx+0x58	r	mov rax, qword ptr [rsp + 0x58]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37+slot	not a field access: the pointer reloaded from the stack slot [rsp + 0x58]
+0x003357B0	BattleLocomotion_QueryDynamicActorObstruction	0x00335AD2	ctx+0x4	r	movss xmm1, dword ptr [rax + 4]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335D37	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335C5A	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335C6E	0x110	r	addss xmm2, dword ptr [rax + 0x110]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->st@0x00335C5A	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335CB9	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335CD2	0x110	r	movss xmm2, dword ptr [rax + 0x110]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->st@0x00335CB9	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335D0F	ctx+0xF0	r	mov r9, qword ptr [rbx + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335D24	ctx+0xE0	r	mov rax, qword ptr [rbx + 0xe0]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335D43	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335D4A	0x174	r	cmp byte ptr [rax + 0x174], 3	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->st@0x00335D43	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335D73	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335D7F	0x174	r	movzx r8d, byte ptr [rax + 0x174]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->st@0x00335D73	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335DB9	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335DC8	0x110	r	mulss xmm8, dword ptr [rax + 0x110]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->st@0x00335DB9	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335DDE	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382	
+0x00335B60	BattleLocomotion_TestForwardStepClearance	0x00335DEF	0x174	r	movzx edx, byte ptr [rax + 0x174]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->st@0x00335DDE	
+0x00336040	FUN_00336040	0x00336059	ctx+0x108	r	mov rdi, qword ptr [rcx + 0x108]	solver->arg0@0x0033BEE4	
+0x00336040	FUN_00336040	0x00336063	0x174	r	cmp byte ptr [rdi + 0x174], 1	solver->arg0@0x0033BEE4->st@0x00336059	
+0x00336040	FUN_00336040	0x00336070	ctx+0xF0	r	mov rdx, qword ptr [rcx + 0xf0]	solver->arg0@0x0033BEE4	
+0x00336040	FUN_00336040	0x0033609F	ctx+0xF8	r	cmp rdx, qword ptr [rbp + 0xf8]	solver->arg0@0x0033BEE4	
+0x00336040	FUN_00336040	0x0033611D	0x184	r	mov ebx, dword ptr [rdi + 0x184]	solver->arg0@0x0033BEE4->st@0x00336059	
+0x00336040	FUN_00336040	0x00336176	ctx+0xF0	r	cmp qword ptr [rbp + 0xf0], r15	solver->arg0@0x0033BEE4	
+0x00336040	FUN_00336040	0x0033617F	ctx+0x40	addr	lea rdx, [rbp + 0x40]	solver->arg0@0x0033BEE4	
+0x00336040	FUN_00336040	0x0033619A	0x188	r	cmp ebx, dword ptr [rdi + 0x188]	solver->arg0@0x0033BEE4->st@0x00336059	
+0x003364D0	BattleLocomotion_ApplyHeadingTurnLimiter	0x003364D4	ctx+0x108	r	mov rax, qword ptr [rcx + 0x108]	solver->arg0@0x0033960A	
+0x003364D0	BattleLocomotion_ApplyHeadingTurnLimiter	0x003364DE	ctx+0x100	r	mov rdx, qword ptr [rcx + 0x100]	solver->arg0@0x0033960A	
+0x003364D0	BattleLocomotion_ApplyHeadingTurnLimiter	0x003364F2	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	solver->arg0@0x0033960A->st@0x003364D4	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336733	0x60	r	mov eax, dword ptr [rdx + 0x60]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033673E	0x64	r	mov eax, dword ptr [rdx + 0x64]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033674A	0x68	r	mov eax, dword ptr [rdx + 0x68]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336757	0x70	r	mov eax, dword ptr [rdx + 0x70]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033675D	0x74	r	mov eax, dword ptr [rdx + 0x74]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336763	0x78	r	mov eax, dword ptr [rdx + 0x78]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336770	0x80	r	mov eax, dword ptr [rdx + 0x80]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336779	0x84	r	mov eax, dword ptr [rdx + 0x84]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336782	0x88	r	mov eax, dword ptr [rdx + 0x88]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336792	0x90	r	mov eax, dword ptr [rdx + 0x90]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033679B	0x94	r	mov eax, dword ptr [rdx + 0x94]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367A4	0x98	r	mov eax, dword ptr [rdx + 0x98]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367C2	0x10C	r	movss xmm0, dword ptr [rdx + 0x10c]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367CA	0x110	r	maxss xmm0, dword ptr [rdx + 0x110]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367E1	0xDC	r	mov eax, dword ptr [rdx + 0xdc]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367ED	0xF4	r	mov eax, dword ptr [rdx + 0xf4]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367F9	0xE0	r	mov eax, dword ptr [rdx + 0xe0]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336805	0x177	r	movzx ecx, byte ptr [rdx + 0x177]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336827	0x170	r	mov eax, dword ptr [rsi + 0x170]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003369B3	0x150	r	mov ecx, dword ptr [rsi + 0x150]	ctx-builder	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003369C5	0x150	r	mov ecx, dword ptr [rsi + 0x150]	ctx-builder	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336D11	ctx+0xF0	r	mov rcx, qword ptr [rsp + 0x110]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336D66	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336D72	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336D7C	ctx+0xB0	r	movss xmm0, dword ptr [rsp + 0xd0]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336D85	ctx+0xB4	r	movss xmm1, dword ptr [rsp + 0xd4]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336D8E	ctx+0xCC	r	mov eax, dword ptr [rsp + 0xec]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336D95	0xD8	w	movss dword ptr [rbx + 0xd8], xmm0	solve-entry arg1	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336D9D	ctx+0xB8	r	movss xmm0, dword ptr [rsp + 0xd8]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DA6	0xDC	w	movss dword ptr [rbx + 0xdc], xmm1	solve-entry arg1	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DAE	ctx+0xBC	r	movss xmm1, dword ptr [rsp + 0xdc]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DB7	0xF4	w	movss dword ptr [rbx + 0xf4], xmm0	solve-entry arg1	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DBF	ctx+0x50	r	movss xmm0, dword ptr [rsp + 0x70]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DC5	0xE0	w	movss dword ptr [rbx + 0xe0], xmm1	solve-entry arg1	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DCD	ctx+0x54	r	movss xmm1, dword ptr [rsp + 0x74]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DD3	0x170	w	mov dword ptr [rbx + 0x170], eax	solve-entry arg1	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DD9	ctx+0x100	r	mov rax, qword ptr [rsp + 0x120]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DE1	0xC0	w	movss dword ptr [rbx + 0xc0], xmm0	solve-entry arg1	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DE9	ctx+0x58	r	movss xmm0, dword ptr [rsp + 0x78]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DEF	0xC4	w	movss dword ptr [rbx + 0xc4], xmm1	solve-entry arg1	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DF7	ctx+0x0	r	movss xmm1, dword ptr [rsp + 0x20]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336DFD	0xC8	w	movss dword ptr [rbx + 0xc8], xmm0	solve-entry arg1	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336E05	0x18	w	movss dword ptr [rax + 0x18], xmm1	ctx-stack->st@0x00336DD9	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336E0A	ctx+0x100	r	mov rax, qword ptr [rsp + 0x120]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336E12	ctx+0x8	r	movss xmm0, dword ptr [rsp + 0x28]	ctx-stack-0x120	
+0x00336CE0	BattleLocomotion_SolveAndPublishNextStep	0x00336E18	0x1C	w	movss dword ptr [rax + 0x1c], xmm0	ctx-stack->st@0x00336E0A	
+0x00337A50	FUN_00337a50	0x00337A5A	ctx+0x100	r	mov rax, qword ptr [rcx + 0x100]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337A74	0x3C	r	test dword ptr [rax + 0x3c], 0x100	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F->st@0x00337A5A	
+0x00337A50	FUN_00337a50	0x00337A96	ctx+0xF8	r	mov rax, qword ptr [rbx + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337AB9	ctx+0xB0	r	movss xmm0, dword ptr [rbx + 0xb0]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337AD1	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337AD8	ctx+0x40	addr	lea rcx, [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337ADF	0x124	r	movss xmm0, dword ptr [rax + 0x124]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F->st@0x00337AD1	
+0x00337A50	FUN_00337a50	0x00337AE7	0x128	r	movss xmm6, dword ptr [rax + 0x128]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F->st@0x00337AD1	
+0x00337A50	FUN_00337a50	0x00337B15	ctx+0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337B1F	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337B32	0xFC	r	divss xmm6, dword ptr [rax + 0xfc]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F->st@0x00337B1F	
+0x00337A50	FUN_00337a50	0x00337B5B	ctx+0xF0	r	mov rdi, qword ptr [rbx + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337B80	ctx+0x108	r	mov rdx, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337B8A	0xF8	r	divss xmm7, dword ptr [rdx + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F->st@0x00337B80	
+0x00337A50	FUN_00337a50	0x00337BB4	ctx+0xB0	w	mov dword ptr [rbx + 0xb0], 0	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337BC0	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337BCC	0xF8	r	mov ecx, dword ptr [rax + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F->st@0x00337BC0	
+0x00337A50	FUN_00337a50	0x00337BD7	ctx+0xB0	w	mov dword ptr [rbx + 0xb0], ecx	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337BDF	ctx+0x100	r	mov rax, qword ptr [rbx + 0x100]	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F	
+0x00337A50	FUN_00337a50	0x00337BE6	0x3C	rw	and dword ptr [rax + 0x3c], 0xfffffeff	backtrace 0x003364D0->arg0 mov->arg0@0x0033830F->st@0x00337BDF	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338171	ctx+0x100	r	mov rsi, qword ptr [rcx + 0x100]	backtrace 0x003364D0->arg0 mov<rdef	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338184	ctx+0x108	r	mov rcx, qword ptr [rdi + 0x108]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033818E	0x150	r	cmp dword ptr [rcx + 0x150], eax	backtrace 0x003364D0->arg0 mov->st@0x00338184	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033819D	ctx+0x40	addr	lea rcx, [rdi + 0x40]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003381C1	ctx+0x40	addr	lea rdx, [rdi + 0x40]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003381F0	ctx+0xF8	r	mov rax, qword ptr [rdi + 0xf8]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338206	ctx+0xF0	r	cmp qword ptr [rdi + 0xf0], rax	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033820F	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338216	ctx+0xF8	r	mov rcx, qword ptr [rdi + 0xf8]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033821D	0x124	r	movss xmm1, dword ptr [rax + 0x124]	backtrace 0x003364D0->arg0 mov->st@0x0033820F	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338238	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033823F	0x120	r	movss xmm7, dword ptr [rax + 0x120]	backtrace 0x003364D0->arg0 mov->st@0x00338238	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338247	0x124	r	movss xmm6, dword ptr [rax + 0x124]	backtrace 0x003364D0->arg0 mov->st@0x00338238	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033824F	ctx+0x30	addr	lea rdx, [rdi + 0x30]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338266	0x128	r	minss xmm6, dword ptr [rax + 0x128]	backtrace 0x003364D0->arg0 mov->st@0x00338238	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033827D	0x38	rw	or dword ptr [rsi + 0x38], 2	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033829B	0x38	rw	or dword ptr [rsi + 0x38], 4	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033829F	0x38	r	mov ecx, dword ptr [rsi + 0x38]	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382A7	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382AE	0xD0	r	movss xmm0, dword ptr [rax + 0xd0]	backtrace 0x003364D0->arg0 mov->st@0x003382A7	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382BF	0x38	w	mov dword ptr [rsi + 0x38], ecx	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382C2	0x38	r	mov ecx, dword ptr [rsi + 0x38]	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382CA	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382D1	0xD0	r	comiss xmm8, dword ptr [rax + 0xd0]	backtrace 0x003364D0->arg0 mov->st@0x003382CA	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382DE	0x38	w	mov dword ptr [rsi + 0x38], ecx	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382E1	ctx+0xF8	r	mov r8, qword ptr [rdi + 0xf8]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003382EB	ctx+0xF0	r	mov rdx, qword ptr [rdi + 0xf0]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338301	0x38	rw	or dword ptr [rsi + 0x38], 2	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338305	0x38	r	mov eax, dword ptr [rsi + 0x38]	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338326	0x0	rw	and dword ptr [rsi], 0xffff801f	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338339	ctx+0x40	addr	lea r8, [rdi + 0x40]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033838B	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338396	0xF8	r	mov ecx, dword ptr [rax + 0xf8]	backtrace 0x003364D0->arg0 mov->st@0x0033838B	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033839C	ctx+0xB0	w	mov dword ptr [rdi + 0xb0], ecx	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003383A5	ctx+0xB4	w	movss dword ptr [rdi + 0xb4], xmm6	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003383B2	ctx+0xBC	w	movss dword ptr [rdi + 0xbc], xmm0	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003383BC	0x38	rw	and dword ptr [rsi + 0x38], 0xfffffffb	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003383D6	0x38	r	test byte ptr [rsi + 0x38], 6	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003383E4	0x0	r	test dword ptr [rsi], 0x7fe0	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x003383F0	ctx+0xB0	w	mov dword ptr [rdi + 0xb0], 0	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338402	ctx+0x0	r	movss xmm1, dword ptr [rdi]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x0033841C	ctx+0xBC	w	movss dword ptr [rdi + 0xbc], xmm0	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338424	ctx+0x8	r	movss xmm0, dword ptr [rdi + 8]	backtrace 0x003364D0->arg0 mov	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338442	0x0	rw	and dword ptr [rsi], 0xffff801f	backtrace 0x003364D0->arg0 mov<rdef->st@0x00338171	
+0x00338140	BattleLocomotion_ResolveTargetSpacingAndAvoidance	0x00338475	ctx+0xB0	w	mov dword ptr [rdi + 0xb0], 0	backtrace 0x003364D0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x003394B5	ctx+0x108	r	mov rax, qword ptr [rcx + 0x108]	solver	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x003394BF	0x40	r	cmp dword ptr [rax + 0x40], 0	solver->st@0x003394B5	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x003394D3	ctx+0xB0	w	movss dword ptr [rbx + 0xb0], xmm0	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x00339535	ctx+0x4	r	comiss xmm0, dword ptr [rbx + 4]	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x0033953B	ctx+0xB4	w	mov dword ptr [rbx + 0xb4], 0	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x00339545	ctx+0xB8	w	mov dword ptr [rbx + 0xb8], 0x3fc90fdb	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x00339562	ctx+0x20	addr	lea rdx, [rbx + 0x20]	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x00339588	ctx+0xC0	r	movss xmm1, dword ptr [rbx + 0xc0]	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x0033959D	ctx+0x10	r	movaps xmm0, xmmword ptr [rbx + 0x10]	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x003395C4	ctx+0xB8	w	movss dword ptr [rbx + 0xb8], xmm0	backtrace 0x0033CEF0->arg0 mov	
+0x003394A0	BattleLocomotion_SolveClassMode2Step	0x0033960F	ctx+0xBC	w	movss dword ptr [rbx + 0xbc], xmm0	backtrace 0x0033CEF0->arg0 mov	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339BF6	ctx+0x30	addr	lea rdx, [rcx + 0x30]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C08	ctx+0xF0	r	mov rax, qword ptr [rbx + 0xf0]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C35	ctx+0xF0	r	mov rax, qword ptr [rbx + 0xf0]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C4A	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C51	0xFC	r	movss xmm0, dword ptr [rax + 0xfc]	solver->arg0@0x003394C9->st@0x00339C4A	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C65	ctx+0x108	r	mov rdx, qword ptr [rbx + 0x108]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C6C	0x170	r	mov eax, dword ptr [rdx + 0x170]	solver->arg0@0x003394C9->st@0x00339C65	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C76	0xF8	r	movss xmm0, dword ptr [rdx + 0xf8]	solver->arg0@0x003394C9->st@0x00339C65	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339C9E	ctx+0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339CE6	ctx+0xE0	r	mov rcx, qword ptr [rbx + 0xe0]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339D14	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339D27	0x174	r	cmp byte ptr [rax + 0x174], 2	solver->arg0@0x003394C9->st@0x00339D14	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339D3A	ctx+0xD0	r	test byte ptr [rbx + 0xd0], 1	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339D43	ctx+0x60	addr	lea rcx, [rbx + 0x60]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339D59	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	solver->arg0@0x003394C9	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339D60	0xFC	r	movss xmm1, dword ptr [rax + 0xfc]	solver->arg0@0x003394C9->st@0x00339D59	
+0x00339BF0	BattleLocomotion_ComputeStepDistance	0x00339D85	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	solver->arg0@0x003394C9	
+0x00339F00	FUN_00339f00	0x00339F00	ctx+0x10	w	mov qword ptr [rsp + 0x10], rbx	backtrace 0x0033CEF0->arg0 mov+slot	not a field access: the entry of 0x00339F00 saving rbx to its home space [rsp + 0x10]
+0x00339F00	FUN_00339f00	0x00339F31	ctx+0xB8	r	movss xmm6, dword ptr [rcx + 0xb8]	backtrace 0x0033CEF0->arg0 mov<rdef	
+0x00339F00	FUN_00339f00	0x00339F72	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x0033CEF0->arg0 mov	
+0x00339F00	FUN_00339f00	0x00339F83	0x110	r	movss xmm2, dword ptr [rax + 0x110]	backtrace 0x0033CEF0->arg0 mov->st@0x00339F72	
+0x00339F00	FUN_00339f00	0x00339F8B	ctx+0xA4	r	addss xmm2, dword ptr [rbx + 0xa4]	backtrace 0x0033CEF0->arg0 mov	
+0x00339F00	FUN_00339f00	0x00339FA0	ctx+0x40	addr	lea r8, [rbx + 0x40]	backtrace 0x0033CEF0->arg0 mov	
+0x00339F00	FUN_00339f00	0x00339FFE	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x0033CEF0->arg0 mov	
+0x00339F00	FUN_00339f00	0x0033A00D	ctx+0x10	w	movdqa xmmword ptr [rbx + 0x10], xmm1	backtrace 0x0033CEF0->arg0 mov	
+0x00339F00	FUN_00339f00	0x0033A012	0x174	r	cmp byte ptr [rax + 0x174], 3	backtrace 0x0033CEF0->arg0 mov->st@0x00339FFE	
+0x00339F00	FUN_00339f00	0x0033A01B	ctx+0xB8	w	mov dword ptr [rbx + 0xb8], 0	backtrace 0x0033CEF0->arg0 mov	
+0x00339F00	FUN_00339f00	0x0033A031	ctx+0xB8	w	movss dword ptr [rbx + 0xb8], xmm0	backtrace 0x0033CEF0->arg0 mov	
+0x00339F00	FUN_00339f00	0x0033A0B8	ctx+0xB0	r	movss xmm1, dword ptr [rbx + 0xb0]	backtrace 0x0033CEF0->arg0 mov	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A151	ctx+0x108	r	mov rax, qword ptr [rsp + 0x128]	ctx-stack-0x120	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A159	0x40	r	test dword ptr [rax + 0x40], 0xfffffffd	ctx-stack->st@0x0033A151	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A162	ctx+0x30	addr	lea rdx, [rsp + 0x50]	ctx-stack-0x120	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A167	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x120	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A171	ctx+0xAC	r	comiss xmm0, dword ptr [rsp + 0xcc]	ctx-stack-0x120	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A185	ctx+0x108	r	mov rax, qword ptr [rsp + 0x128]	ctx-stack-0x120	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A18D	ctx+0x20	addr	lea rdx, [rsp + 0x40]	ctx-stack-0x120	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A192	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x120	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A197	0x174	r	movzx r8d, byte ptr [rax + 0x174]	ctx-stack->st@0x0033A185	
+0x0033A120	BattleLocomotion_IsApproachConstraintActive	0x0033A1AC	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x120	
+0x0033A1E0	FUN_0033a1e0	0x0033A20C	ctx+0xF8	r	mov r8, qword ptr [rsp + 0x118]	ctx-stack-0x128	
+0x0033A1E0	FUN_0033a1e0	0x0033A214	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x128	
+0x0033A1E0	FUN_0033a1e0	0x0033A219	ctx+0xF0	r	mov rdx, qword ptr [rsp + 0x110]	ctx-stack-0x128	
+0x0033A240	FUN_0033a240	0x0033A26E	ctx+0xF0	r	mov rdx, qword ptr [rsp + 0x110]	ctx-stack-0x120	
+0x0033A240	FUN_0033a240	0x0033A300	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x120	
+0x0033A240	FUN_0033a240	0x0033A30C	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x120	
+0x0033A240	FUN_0033a240	0x0033A318	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x120	
+0x0033A240	FUN_0033a240	0x0033A322	ctx+0xB0	r	movss xmm0, dword ptr [rsp + 0xd0]	ctx-stack-0x120	
+0x0033A240	FUN_0033a240	0x0033A32B	ctx+0xB4	r	movss xmm1, dword ptr [rsp + 0xd4]	ctx-stack-0x120	
+0x0033A240	FUN_0033a240	0x0033A334	0xD8	w	movss dword ptr [rbx + 0xd8], xmm0	solve-entry	
+0x0033A240	FUN_0033a240	0x0033A33C	ctx+0xB8	r	movss xmm0, dword ptr [rsp + 0xd8]	ctx-stack-0x120	
+0x0033A240	FUN_0033a240	0x0033A345	0xDC	w	movss dword ptr [rbx + 0xdc], xmm1	solve-entry	
+0x0033A240	FUN_0033a240	0x0033A34D	ctx+0xBC	r	movss xmm1, dword ptr [rsp + 0xdc]	ctx-stack-0x120	
+0x0033A240	FUN_0033a240	0x0033A356	0xF4	w	movss dword ptr [rbx + 0xf4], xmm0	solve-entry	
+0x0033A240	FUN_0033a240	0x0033A35E	0xE0	w	movss dword ptr [rbx + 0xe0], xmm1	solve-entry	
+0x0033A720	FUN_0033a720	0x0033A791	ctx+0x100	r	mov rsi, qword ptr [rcx + 0x100]	backtrace 0x003364D0->arg0 mov->arg0@0x00338319	
+0x0033A720	FUN_0033a720	0x0033A89E	0x60	w	mov qword ptr [rsp + 0x60], rsi	backtrace 0x003364D0->arg0 mov->arg0@0x00338319->st@0x0033A791+slot	not a field access: the pointer stored to the stack slot [rsp + 0x60]
+0x0033BAA0	FUN_0033baa0	0x0033BAC9	ctx+0x100	r	mov rbx, qword ptr [rcx + 0x100]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BB0E	ctx+0xF8	r	mov r8, qword ptr [rdi + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BB18	ctx+0xF0	r	mov rdx, qword ptr [rdi + 0xf0]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BB28	0x0	rw	and dword ptr [rbx], 0xffff801f	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1->st@0x0033BAC9	
+0x0033BAA0	FUN_0033baa0	0x0033BB2E	ctx+0xB0	w	mov dword ptr [rdi + 0xb0], eax	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BB39	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BB40	ctx+0xB4	w	movss dword ptr [rdi + 0xb4], xmm7	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BB48	ctx+0xB8	w	mov dword ptr [rdi + 0xb8], 0	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BB52	0xF8	r	mov ecx, dword ptr [rax + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1->st@0x0033BB39	
+0x0033BAA0	FUN_0033baa0	0x0033BB58	ctx+0xB0	w	mov dword ptr [rdi + 0xb0], ecx	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BBD1	ctx+0x40	addr	lea rdx, [rdi + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BBE2	ctx+0x40	addr	lea rcx, [rdi + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BBF3	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BC02	0xF8	r	movss xmm1, dword ptr [rax + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1->st@0x0033BBF3	
+0x0033BAA0	FUN_0033baa0	0x0033BC26	ctx+0xA8	r	movss xmm1, dword ptr [rdi + 0xa8]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BC2E	ctx+0xBC	r	movss xmm0, dword ptr [rdi + 0xbc]	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BAA0	FUN_0033baa0	0x0033BC3E	ctx+0xBC	w	movss dword ptr [rdi + 0xbc], xmm0	backtrace 0x003364D0->arg0 mov->arg0@0x003383D1	
+0x0033BC80	FUN_0033bc80	0x0033BC95	ctx+0x108	r	mov rax, qword ptr [rcx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BC9F	0x174	r	cmp byte ptr [rax + 0x174], 3	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D->st@0x0033BC95	
+0x0033BC80	FUN_0033bc80	0x0033BCAC	ctx+0xF8	r	mov rax, qword ptr [rcx + 0xf8]	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BCD9	ctx+0x44	r	movss xmm0, dword ptr [rbx + 0x44]	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BCE9	ctx+0x40	r	movaps xmm0, xmmword ptr [rbx + 0x40]	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BCF9	ctx+0xC0	r	addss xmm1, dword ptr [rbx + 0xc0]	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BD01	ctx+0x4	r	subss xmm1, dword ptr [rbx + 4]	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BD25	ctx+0xB8	w	mov dword ptr [rbx + 0xb8], 0x3fc90fdb	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BD31	ctx+0xB8	w	mov dword ptr [rbx + 0xb8], 0xbfc90fdb	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BD3B	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BC80	FUN_0033bc80	0x0033BD42	0xE8	r	mov ecx, dword ptr [rax + 0xe8]	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D->st@0x0033BD3B	
+0x0033BC80	FUN_0033bc80	0x0033BD48	ctx+0xB0	w	mov dword ptr [rbx + 0xb0], ecx	backtrace 0x003364D0->arg0 mov->arg0@0x0033843D	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BEDA	ctx+0x100	r	mov rdi, qword ptr [rcx + 0x100]	solver	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BEED	ctx+0xF8	r	mov rdx, qword ptr [rbx + 0xf8]	solver	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BEF4	ctx+0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	solver	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BF00	ctx+0xB0	w	mov dword ptr [rbx + 0xb0], 0	solver	
+0x0033BED0	BattleLocomotion_SolveDefaultStep	0x0033BF47	0x0	r	test dword ptr [rdi], 0x7fe0	solver->st@0x0033BEDA	
+0x0033C9B0	FUN_0033c9b0	0x0033C9D9	ctx+0x0	addr	lea rcx, [rsp + 0x20]	ctx-stack-0x128	
+0x0033CDE0	BattleLocomotion_ApplySimpleHeadingLimit	0x0033CDE6	ctx+0xB0	r	movss xmm2, dword ptr [rcx + 0xb0]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A0A6	
+0x0033CDE0	BattleLocomotion_ApplySimpleHeadingLimit	0x0033CE01	ctx+0x108	r	mov rdx, qword ptr [rcx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A0A6	
+0x0033CDE0	BattleLocomotion_ApplySimpleHeadingLimit	0x0033CE0A	0x104	r	comiss xmm2, dword ptr [rdx + 0x104]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A0A6->st@0x0033CE01	
+0x0033CDE0	BattleLocomotion_ApplySimpleHeadingLimit	0x0033CE1B	0xE4	r	movss xmm2, dword ptr [rdx + 0xe4]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A0A6->st@0x0033CE01	
+0x0033CDE0	BattleLocomotion_ApplySimpleHeadingLimit	0x0033CE41	ctx+0xB4	w	movss dword ptr [rbx + 0xb4], xmm6	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A0A6	
+0x0033CDE0	BattleLocomotion_ApplySimpleHeadingLimit	0x0033CE4E	ctx+0xBC	w	movss dword ptr [rbx + 0xbc], xmm0	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A0A6	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CE6A	ctx+0x108	r	mov rax, qword ptr [rcx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CE74	ctx+0x100	r	mov rbx, qword ptr [rcx + 0x100]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CE7B	ctx+0xB0	w	mov dword ptr [rcx + 0xb0], 0	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CE8D	0xEC	r	movss xmm2, dword ptr [rax + 0xec]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E->st@0x0033CE6A	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CE95	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E->st@0x0033CE6A	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CEA2	ctx+0xB4	w	movss dword ptr [rdi + 0xb4], xmm0	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CEAA	ctx+0xBC	w	movss dword ptr [rdi + 0xbc], xmm0	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CEB2	0x0	r	mov eax, dword ptr [rbx]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E->st@0x0033CE74	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CEC5	0x0	w	mov dword ptr [rbx], eax	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E->st@0x0033CE74	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CEC7	ctx+0xB4	r	ucomiss xmm6, dword ptr [rdi + 0xb4]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E	
+0x0033CE60	BattleLocomotion_ApplyStopAndTurn	0x0033CED2	0x0	rw	and dword ptr [rbx], 0xffff801f	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A06E->st@0x0033CE74	
+0x0033CEF0	FUN_0033cef0	0x0033CEFF	ctx+0x100	r	mov rsi, qword ptr [rcx + 0x100]	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033CF3C	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033CF47	0x177	r	movzx ecx, byte ptr [rax + 0x177]	solver->arg0@0x00339583->st@0x0033CF3C	
+0x0033CEF0	FUN_0033cef0	0x0033CF53	ctx+0xB0	r	movss xmm1, dword ptr [rbx + 0xb0]	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033CF68	ctx+0x108	r	mov rdi, qword ptr [rbx + 0x108]	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033CF71	0x104	r	comiss xmm1, dword ptr [rdi + 0x104]	solver->arg0@0x00339583->st@0x0033CF68	
+0x0033CEF0	FUN_0033cef0	0x0033CF82	0xE4	r	movss xmm7, dword ptr [rdi + 0xe4]	solver->arg0@0x00339583->st@0x0033CF68	
+0x0033CEF0	FUN_0033cef0	0x0033CF8C	ctx+0x108	r	mov rdi, qword ptr [rbx + 0x108]	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033CF93	0xE8	r	movss xmm7, dword ptr [rdi + 0xe8]	solver->arg0@0x00339583->st@0x0033CF8C	
+0x0033CEF0	FUN_0033cef0	0x0033CF9B	ctx+0xBC	r	movss xmm0, dword ptr [rbx + 0xbc]	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033CFB8	0xE8	r	movss xmm1, dword ptr [rdi + 0xe8]	solver->arg0@0x00339583->st@0x0033CF8C	
+0x0033CEF0	FUN_0033cef0	0x0033D030	0xF8	r	mulss xmm8, dword ptr [rdi + 0xf8]	solver->arg0@0x00339583->st@0x0033CF8C	
+0x0033CEF0	FUN_0033cef0	0x0033D049	0xE0	r	movss xmm4, dword ptr [rdi + 0xe0]	solver->arg0@0x00339583->st@0x0033CF8C	
+0x0033CEF0	FUN_0033cef0	0x0033D09F	ctx+0xBC	w	movss dword ptr [rbx + 0xbc], xmm4	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033D0A7	0x118	r	movss xmm5, dword ptr [rdi + 0x118]	solver->arg0@0x00339583->st@0x0033CF8C	
+0x0033CEF0	FUN_0033cef0	0x0033D0EA	ctx+0xB4	w	movss dword ptr [rbx + 0xb4], xmm4	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033D0F4	0xFC	r	movss xmm0, dword ptr [rdi + 0xfc]	solver->arg0@0x00339583->st@0x0033CF8C	
+0x0033CEF0	FUN_0033cef0	0x0033D102	0xE0	r	mov eax, dword ptr [rdi + 0xe0]	solver->arg0@0x00339583->st@0x0033CF8C	
+0x0033CEF0	FUN_0033cef0	0x0033D108	ctx+0xBC	w	mov dword ptr [rbx + 0xbc], eax	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033D110	0xE0	r	movss xmm4, dword ptr [rdi + 0xe0]	solver->arg0@0x00339583->st@0x0033CF8C	
+0x0033CEF0	FUN_0033cef0	0x0033D15D	ctx+0xBC	w	movss dword ptr [rbx + 0xbc], xmm0	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033D165	ctx+0xB4	w	movss dword ptr [rbx + 0xb4], xmm6	solver->arg0@0x00339583	
+0x0033CEF0	FUN_0033cef0	0x0033D16D	0x0	r	test dword ptr [rsi], 0x7fe0	solver->arg0@0x00339583->st@0x0033CEFF	
+0x0033CEF0	FUN_0033cef0	0x0033D1DB	0x0	rw	and dword ptr [rsi], 0xffff801f	solver->arg0@0x00339583->st@0x0033CEFF	
+0x0033CEF0	FUN_0033cef0	0x0033D1E1	0x0	rw	or dword ptr [rsi], eax	solver->arg0@0x00339583->st@0x0033CEFF	
+0x0033D200	FUN_0033d200	0x0033D20A	ctx+0x108	r	mov rax, qword ptr [rcx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D214	ctx+0x100	r	mov rdi, qword ptr [rcx + 0x100]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D228	0x177	r	movzx ecx, byte ptr [rax + 0x177]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D20A	
+0x0033D200	FUN_0033d200	0x0033D23A	ctx+0xB0	r	movss xmm0, dword ptr [rbx + 0xb0]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D24C	ctx+0x108	r	mov rcx, qword ptr [rbx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D255	0x104	r	comiss xmm0, dword ptr [rcx + 0x104]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D24C	
+0x0033D200	FUN_0033d200	0x0033D266	0xE4	r	movss xmm7, dword ptr [rcx + 0xe4]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D24C	
+0x0033D200	FUN_0033d200	0x0033D270	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D277	0xE8	r	movss xmm7, dword ptr [rax + 0xe8]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D270	
+0x0033D200	FUN_0033d200	0x0033D27F	0x0	r	test dword ptr [rdi], 0x7fe0	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D214	
+0x0033D200	FUN_0033d200	0x0033D293	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D2A0	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D293	
+0x0033D200	FUN_0033d200	0x0033D2AD	ctx+0xBC	w	movss dword ptr [rbx + 0xbc], xmm0	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D2BA	ctx+0xB4	w	movss dword ptr [rbx + 0xb4], xmm6	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D2C7	ctx+0xBC	r	movss xmm0, dword ptr [rbx + 0xbc]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D31A	ctx+0x10	addr	lea rcx, [rbx + 0x10]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D326	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D32D	0xF8	r	movss xmm1, dword ptr [rax + 0xf8]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D326	
+0x0033D200	FUN_0033d200	0x0033D342	0xE0	r	movss xmm4, dword ptr [rax + 0xe0]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D326	
+0x0033D200	FUN_0033d200	0x0033D388	ctx+0xBC	w	movss dword ptr [rbx + 0xbc], xmm6	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D398	ctx+0xBC	w	mov dword ptr [rbx + 0xbc], eax	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D39E	ctx+0xB4	w	movss dword ptr [rbx + 0xb4], xmm6	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A	
+0x0033D200	FUN_0033d200	0x0033D3A6	0x0	r	mov eax, dword ptr [rdi]	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D214	
+0x0033D200	FUN_0033d200	0x0033D3B9	0x0	w	mov dword ptr [rdi], eax	backtrace 0x0033CEF0->arg0 mov->arg0@0x0033A05A->st@0x0033D214	
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D3FE	ctx+0x0	r	movss xmm0, dword ptr [rcx]	ctx-stack@0x0033A192->arg0@0x0033A19F	
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D405	ctx+0x8	r	movss xmm1, dword ptr [rcx + 8]	ctx-stack@0x0033A192->arg0@0x0033A19F	
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D40D	ctx+0x30	w	mov qword ptr [rsp + 0x30], rcx	ctx-stack@0x0033A192->arg0@0x0033A19F+slot	not a field access: the pointer stored to the stack slot [rsp + 0x30]
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D5B4	ctx+0x30	r	mov rcx, qword ptr [rsp + 0x30]	ctx-stack@0x0033A192->arg0@0x0033A19F+slot	not a field access: the pointer reloaded from the stack slot [rsp + 0x30]
+0x0033D660	BattleLocomotion_CheckActorPairClearance	0x0033D7E3	ctx+0x0	r	movaps xmm0, xmmword ptr [rsi]	ctx-stack@0x0033A214->arg0@0x0033A221	
+0x0033D890	FUN_0033d890	0x0033D8A8	ctx+0xF0	r	mov rax, qword ptr [rcx + 0xf0]	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033D8D0	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033D8D7	0xF8	r	mov ecx, dword ptr [rax + 0xf8]	ctx-stack@0x0033A30C->arg0@0x0033A311->st@0x0033D8D0	
+0x0033D890	FUN_0033d890	0x0033D8DD	ctx+0xBC	r	mov eax, dword ptr [rdi + 0xbc]	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033D8E3	ctx+0xB4	w	mov dword ptr [rdi + 0xb4], eax	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033D8E9	ctx+0xB0	w	mov dword ptr [rdi + 0xb0], ecx	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033D8EF	ctx+0xB8	w	mov dword ptr [rdi + 0xb8], 0	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033D97B	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033D982	0x108	w	mov dword ptr [rax + 0x108], 0x3fc00000	ctx-stack@0x0033A30C->arg0@0x0033A311->st@0x0033D97B	
+0x0033D890	FUN_0033d890	0x0033DA31	ctx+0x20	addr	lea rcx, [rdi + 0x20]	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DA3A	ctx+0xC0	r	movss xmm0, dword ptr [rdi + 0xc0]	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DA42	ctx+0x20	addr	lea rdx, [rdi + 0x20]	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DA51	ctx+0x24	w	movss dword ptr [rdi + 0x24], xmm0	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DA99	ctx+0xB0	w	movss dword ptr [rdi + 0xb0], xmm0	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DAC3	ctx+0xB0	w	movss dword ptr [rdi + 0xb0], xmm2	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DACE	ctx+0x20	addr	lea rdx, [rdi + 0x20]	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DAEB	ctx+0xB4	w	movss dword ptr [rdi + 0xb4], xmm0	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DAFB	ctx+0xB8	w	movss dword ptr [rdi + 0xb8], xmm0	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033D890	FUN_0033d890	0x0033DB26	ctx+0xBC	w	movss dword ptr [rdi + 0xbc], xmm0	ctx-stack@0x0033A30C->arg0@0x0033A311	
+0x0033DB60	FUN_0033db60	0x0033DC70	ctx+0xB4	w	movss dword ptr [rbx + 0xb4], xmm0	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DC7A	ctx+0xB8	w	mov dword ptr [rbx + 0xb8], edi	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DD45	ctx+0x108	r	mov rcx, qword ptr [rbx + 0x108]	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DD56	0xF8	r	mulss xmm0, dword ptr [rcx + 0xf8]	ctx-stack@0x0033A300->arg0@0x0033A305->st@0x0033DD45	
+0x0033DB60	FUN_0033db60	0x0033DD66	ctx+0xB0	w	movss dword ptr [rbx + 0xb0], xmm0	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DD8E	ctx+0x108	r	mov rcx, qword ptr [rbx + 0x108]	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DD9F	0xF8	r	mulss xmm0, dword ptr [rcx + 0xf8]	ctx-stack@0x0033A300->arg0@0x0033A305->st@0x0033DD8E	
+0x0033DB60	FUN_0033db60	0x0033DDAF	ctx+0xB0	w	movss dword ptr [rbx + 0xb0], xmm0	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DDDE	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DDE9	0xF8	r	mov ecx, dword ptr [rax + 0xf8]	ctx-stack@0x0033A300->arg0@0x0033A305->st@0x0033DDDE	
+0x0033DB60	FUN_0033db60	0x0033DDEF	ctx+0xB0	w	mov dword ptr [rbx + 0xb0], ecx	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DDFD	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DE09	0xF8	r	movss xmm1, dword ptr [rax + 0xf8]	ctx-stack@0x0033A300->arg0@0x0033A305->st@0x0033DDFD	
+0x0033DB60	FUN_0033db60	0x0033DE34	ctx+0xF0	r	mov rdx, qword ptr [rbx + 0xf0]	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DE8E	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DE9C	0xF8	r	mulss xmm0, dword ptr [rax + 0xf8]	ctx-stack@0x0033A300->arg0@0x0033A305->st@0x0033DE8E	
+0x0033DB60	FUN_0033db60	0x0033DEAC	ctx+0xB0	w	movss dword ptr [rbx + 0xb0], xmm0	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DECD	ctx+0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DED9	ctx+0xB0	w	mov dword ptr [rbx + 0xb0], edi	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DB60	FUN_0033db60	0x0033DF93	ctx+0xBC	w	movss dword ptr [rbx + 0xbc], xmm0	ctx-stack@0x0033A300->arg0@0x0033A305	
+0x0033DFD0	FUN_0033dfd0	0x0033E0DE	ctx+0x20	addr	lea rcx, [rdi + 0x20]	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E0E7	ctx+0x20	r	movaps xmm0, xmmword ptr [rdi + 0x20]	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E0EE	ctx+0x30	w	movdqa xmmword ptr [rdi + 0x30], xmm0	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E0FB	ctx+0x20	addr	lea rcx, [rdi + 0x20]	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E10E	ctx+0x20	addr	lea rdx, [rdi + 0x20]	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E117	ctx+0xB0	w	movss dword ptr [rdi + 0xb0], xmm6	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E135	ctx+0xB4	w	movss dword ptr [rdi + 0xb4], xmm0	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E17D	ctx+0xBC	r	addss xmm0, dword ptr [rdi + 0xbc]	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E18C	ctx+0x108	r	mov rbx, qword ptr [rdi + 0x108]	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E19D	ctx+0x108	r	mov rax, qword ptr [rdi + 0x108]	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033DFD0	FUN_0033dfd0	0x0033E1A7	0xE8	r	movss xmm2, dword ptr [rbx + 0xe8]	ctx-stack@0x0033A318->arg0@0x0033A31D->st@0x0033E18C	
+0x0033DFD0	FUN_0033dfd0	0x0033E1AF	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	ctx-stack@0x0033A318->arg0@0x0033A31D->st@0x0033E19D	
+0x0033DFD0	FUN_0033dfd0	0x0033E1BC	ctx+0xBC	w	movss dword ptr [rdi + 0xbc], xmm0	ctx-stack@0x0033A318->arg0@0x0033A31D	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E1FA	ctx+0xF0	r	mov rax, qword ptr [rcx + 0xf0]	ctx-stack@0x0033C9D9->arg0@0x0033C9DE	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E204	ctx+0x100	r	mov rdi, qword ptr [rcx + 0x100]	ctx-stack@0x0033C9D9->arg0@0x0033C9DE	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E23B	ctx+0x108	r	mov rax, qword ptr [rbx + 0x108]	ctx-stack@0x0033C9D9->arg0@0x0033C9DE	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E26A	0x108	w	movss dword ptr [rax + 0x108], xmm0	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E23B	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E272	0x0	rw	and dword ptr [rdi], 0xffff8000	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E278	0x21	rw	and byte ptr [rdi + 0x21], 0xfe	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E27C	0x10	w	mov dword ptr [rdi + 0x10], 0x43800000	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E283	0x14	w	mov byte ptr [rdi + 0x14], 0	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E287	0x20	w	mov byte ptr [rdi + 0x20], 0	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E28B	0x34	w	mov byte ptr [rdi + 0x34], 0	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E295	0x3C	rw	and dword ptr [rdi + 0x3c], 0xfffffff8	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E2A4	0x38	r	mov eax, dword ptr [rdi + 0x38]	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E2B9	0x38	w	mov dword ptr [rdi + 0x38], edx	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E2C2	0x3C	rw	and dword ptr [rdi + 0x3c], 0xfffffff7	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E2F3	0x3C	rw	or dword ptr [rdi + 0x3c], eax	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E2F8	0x24	w	mov qword ptr [rdi + 0x24], rax	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x0033E1F0	BattleLocomotion_ResetAvoidanceStateRandomized	0x0033E2FC	0x2C	w	mov qword ptr [rdi + 0x2c], rax	ctx-stack@0x0033C9D9->arg0@0x0033C9DE->st@0x0033E204	
+0x00391410	Navigation_TestSegmentAgainstAuxObstaclesXZ	0x0039145C	ctx+0x8	r	movss xmm5, dword ptr [rbx + 8]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335DD5	
+0x00391410	Navigation_TestSegmentAgainstAuxObstaclesXZ	0x003914AD	ctx+0x0	r	movss xmm7, dword ptr [rbx]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335DD5	
+0x00391410	Navigation_TestSegmentAgainstAuxObstaclesXZ	0x0039155B	ctx+0x10	addr	lea r14d, [rbx + 0x10]	backtrace 0x003364D0->arg0 mov->arg0@0x00338382->arg0@0x00335DD5	
+0x003DB130	FUN_003db130	0x003DB130	0xE0	w	movss dword ptr [rcx + 0xe0], xmm1	setter	not the locomotion block: the one direct caller 0x00268380 passes the pointer it loads from [[rbx + 0xC0] + 0x138] (0x002684BB, 0x002684C5)
+0x004686D0	Vector3_ComputeXZDistance	0x004686D0	ctx+0x0	r	movss xmm1, dword ptr [rcx]	solver->arg0@0x00339583->arg0@0x0033CF37	
+0x004686D0	Vector3_ComputeXZDistance	0x004686D4	ctx+0x8	r	movss xmm0, dword ptr [rcx + 8]	solver->arg0@0x00339583->arg0@0x0033CF37	
+0x004686D0	Vector3_ComputeXZDistance	0x004686D9	ctx+0x8	r	subss xmm0, dword ptr [rdx + 8]	solver->arg0@0x00339583->arg1@0x0033CF37	
+0x004686D0	Vector3_ComputeXZDistance	0x004686DE	ctx+0x0	r	subss xmm1, dword ptr [rdx]	solver->arg0@0x00339583->arg1@0x0033CF37	
+0x00468880	FUN_00468880	0x004688A4	ctx+0x0	r	movss xmm0, dword ptr [rcx]	ctx-stack@0x0033A192->arg0@0x0033A19F->arg0@0x0033D5D2	
+0x00468880	FUN_00468880	0x004688B4	ctx+0x8	r	movss xmm0, dword ptr [rcx + 8]	ctx-stack@0x0033A192->arg0@0x0033A19F->arg0@0x0033D5D2	

@@ -390,6 +390,17 @@ One of the player's three frame queues, as the queue functions use it:
 | VP8 decoder fields | the decoder instance and macroblock-decoder field accesses in [`media-decoder-libraries-vp8-decoder-instance-accesses.tsv`](media-decoder-libraries-vp8-decoder-instance-accesses.tsv) and [`media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv`](media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv) |
 | encoder text | `mkvmuxer`, "VP8 Encoder" and "VP9" occur zero times |
 
+### Columns of media-decoder-libraries-libvpx-vp8-control-handlers.tsv
+
+One row per control handler, 4 rows, each inside the decoder's span `0x0016DDD0` to `0x0017C88F` between two
+functions of the decoder list.
+
+| Column | Holds |
+|---|---|
+| `member_below` | the nearest function of [`media-decoder-libraries-libvpx-vp8-decoder.tsv`](media-decoder-libraries-libvpx-vp8-decoder.tsv) below the body: `0x0016ECE0` on all 4 rows |
+| `member_above` | the nearest function of that list above the body: `0x0016F070` on all 4 rows |
+| `refs` | how many places in the image name the body's start address: a call, jump or RIP-relative operand, a call or jump found by scanning the code bytes, an 8-byte relocated pointer, or a 4-byte image offset in a data section (the unwind table `.pdata` is not counted); 1 on all 4 rows |
+
 ## State
 
 ### The movie open time

@@ -156,6 +156,13 @@ Measured over the archive. [`map-cubemaps-rows.tsv`](map-cubemaps-rows.tsv) has 
 | weather slots | 1 to 3 |
 | maps with `_e1` variants | `bhm0201`, `glf0104`, `rbn0108` |
 
+### Columns of map-cubemaps-rows.tsv
+
+| Column | Holds |
+|---|---|
+| `e1_slots` | the weather slots, separated by spaces, for which the map's `tex` folder holds both `cubemap_<p>_<w>_e1` and `cubemap_irr_<p>_<w>_e1` for the row's probe `p`; `1 2 3` on probe 0 of `bhm0201`, `glf0104` and `rbn0108`, `-` on the other 767 rows |
+| `file_sha256_16` | the first 16 hex digits of the SHA-256 of the map folder's `cubeMapConfigs.txt`, on the map's probe-0 row (451 rows); empty on the other 319 |
+
 ## Modding notes
 
 - A map's `cubeMapConfigs.txt` must not list more probes than the map has `cubemap_` textures for, or the

@@ -59,6 +59,16 @@ or `0xD0` are drawn (`0x0044198E`–`0x004419CE`; the table is
 [`effect-element-runtime-effect-kind-441970.tsv`](effect-element-runtime-effect-kind-441970.tsv)). It sets the pass nibble `0x02AEE910`: definition
 byte `+0x4C` when `+0x4A` is `0x40` or more, else 8 (`0x004419F5`–`0x00441A0E`).
 
+### Columns of effect-element-runtime-effect-kind-441970.tsv
+
+One row per definition type `kind` from `0x40` to `0xD0`, 145 rows, read from the switch's byte map at `0x00441A98`
+and its two-entry offset table at `0x00441A90` (image base plus each offset).
+
+| Column | Holds |
+|---|---|
+| `slot` | the kind's byte in the byte map, the entry of the offset table it uses: 0 for the six drawn kinds, 1 for the other 139 |
+| `action` | what the arm at `target` does: for slot 0 (`0x004419D0`), set the pass nibble `0x02AEE910` from definition `+0x4A` and `+0x4C`, then walk the element chains; for slot 1 (`0x00441A89`, the function's tail), return without walking them |
+
 That rule has one exception. While bit `0x400` of `0x020926E4` is set and the current instance is of kind 3, the
 nibble is `0x020926F8` + 8 (`0x004419D0`-`0x004419F3`). Opcode `0x3E` of the battle effect program `0x003B8670` sets the bit
 and stores its operand byte `+4` in `0x020926F8` (`0x003B9797`-`0x003B97A7`). Opcode `0x3F` clears the bit

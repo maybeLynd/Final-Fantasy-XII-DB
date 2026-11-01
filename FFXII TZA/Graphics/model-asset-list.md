@@ -114,6 +114,14 @@ the tables, areas, script containers, motions, weapon classes and models that na
 | not shipped, named by a table | 47; every size table gives them −1, and the cache refuses a failed size (`0x003DCD00` returns `0x80000001`) |
 | not shipped and named by no table | 308 |
 
+### Columns of model-asset-list-action-motions.tsv
+
+| Column | Holds |
+|---|---|
+| `global_records` | how many records of `pc_skillmotion.bin` name the id: 1 for 33 ids, 0 for the rest; the column sums to the table's 33 records |
+| `area_records` | how many records of the areas' `.ard` slot 7 name the id, 0 to 9; the areas are listed in `areas`, and the column sums to 1,773 |
+| `script_records` | how many records of the script containers' section 19, slot 7, name the id, 0 to 7; the containers are listed in `scripts`, and the column sums to 2,116 |
+
 One script container's section 19 is not an area block: `evt_t0020.ebp` holds 8 zero bytes and then `03 21 21 21`
 where the `FF12AR03` tag would be.
 

@@ -164,6 +164,18 @@ direction pad, Space confirms, C cancels, and F1-F3 set the game speed.
 
 Every one of the 28 slots, with its Controls row, the codes it takes, what else sets it and which one wins, when a change takes effect, every reader, what the player sees and when the binding changes nothing, is in [keymap-file-inputs.tsv](keymap-file-inputs.tsv).
 
+### Columns of keymap-file.tsv and keymap-file-inputs.tsv
+
+| Column | Holds |
+|---|---|
+| `keyboard2` | in keymap-file.tsv, the default code of the slot in profile 2 with the key's name, for example `114 Numpad Plus`; `0` on the 20 slots profile 2 leaves unbound |
+| `label` | in keymap-file-inputs.tsv, the action the slot drives, then its Controls row, its keymap.ini key, its group and slot, and its offset in a profile (`profile +0x00` to `+0x6C`) |
+| `domain` | the codes the slot takes: a control code in each of profiles 1 to 3, and whether the Controls row edits profile 1 only (20 slots) or all three (8 slots); the capture range (mouse button 1 or 3, key codes 28 to 152), the 35 reserved codes the assigner `0x00198A00` refuses, and the start-up range check of profile 1 |
+| `precedence` | which source sets the slot last: keymap.ini at start-up over the default table (`0x01DF09C0` for 16 slots, the stick records at `0x01DF0A80` for 8, `0x01DF1470` for 4), all defaults when the file fails, then in play the Config row, a swap and the Default row |
+| `consumers` | every reader of the code: on 22 slots the copy `0x00195DF0` into records 2 to 4 and their master copies, the translator `0x00197160` and the bit of the button mask it clears, and the code that acts on that bit; on `L2`, `R2`, `Speed1` to `Speed3` and `WalkMode`, the function that asks `0x00197710` for the slot and tests the key on the keyboard (`0x0079E6A0`), with what a press does |
+| `visible_effect` | what the player sees the control do, with the address of the code that does it |
+| `inert_when` | when the binding does nothing: a code outside the polled bands, the keys a dialog keeps or clears, the menus that clear the stick entries, and the field frames that skip the arbiter |
+
 ## Loader behaviour
 
 `0x00198B60` copies each profile's defaults into the profiles at `0x01F80F90`, builds the published records at

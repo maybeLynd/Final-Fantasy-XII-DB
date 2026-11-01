@@ -141,6 +141,13 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   name, the `c` entries of the script's [actor manifest](../EBP-Script-Files/ebp-actor-manifest.md) read
   against the `model` column of the [party table](../Party/party-table.md), a main member before a guest; else
   the NPC name or string table row whose `in` cell is the actor's name.
+- An actor these steps leave unnamed whose bind verbs name one `n` entry of the manifest takes the name the game
+  gives the other actors bound to that `n` model, by these steps or as a voice cue's speaker
+  ([Voices](../Sound-And-Music/voices.md)), when they all give one name and two or more actors give it or the bestiary
+  gives the same.
+- Failing that, it takes the [bestiary](../Enemy-Spawning/bestiary.md) name of that model id (its
+  `model_id` cell), when the bestiary gives it one name. A `c` model is left out of these two steps, since the
+  bestiary can name a battle alias there: Amalia for Ashe's `c11`.
 - Any other line without a name reads `no name shown`, apart from a scene subtitle, which keeps its row's cell `-`. A
   line whose name is `???` reads `???`: the game prints `???` as that speaker's name at that line. A row lists its
   speakers in line order, each once.
