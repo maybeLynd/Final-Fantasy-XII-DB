@@ -1,0 +1,529 @@
+pack	zones	map_name	region	slots	kind	scene_group	records	textures
+alc5001	866	alc_z01 (alc_z01)	Archades	1	map model	no mesh instance	10	-
+alc5001	866	alc_z01 (alc_z01)	Archades	1	map model	shadow1	26	FF12_PS4_DefaultTex.dds
+alc5001	866	alc_z01 (alc_z01)	Archades	1	map model	sun1	1	alc5000_sky.dds
+alc5001	866	alc_z01 (alc_z01)	Archades	1	sky piece	sky1	3	alc5000_sky.dds
+alc5001	866	alc_z01 (alc_z01)	Archades	2	map model	no mesh instance	10	-
+alc5001	866	alc_z01 (alc_z01)	Archades	2	map model	shadow2	25	FF12_PS4_DefaultTex.dds
+alc5001	866	alc_z01 (alc_z01)	Archades	2	map model	sun2	1	alc5000_sky.dds
+alc5001	866	alc_z01 (alc_z01)	Archades	2	sky piece	sky2	3	alc5000_sky2.dds
+alc5003	868	alc_z03 (alc_z03)	Archades	1	map model	shadow	26	FF12_PS4_DefaultTex.dds
+alc5003	868	alc_z03 (alc_z03)	Archades	1	sky piece	sky	3	alc5000_sky3.dds
+bhm5001	924	bhm_z01 (bhm_z01)	Sky Fortress Bahamut	1	sky piece	sky01	1	bhm5001_sky01.dds
+bog0103	169	Vale of Lingering Sorrow (bog_a03)	Nabreus Deadlands	1 and 2	map model	no mesh instance	32	-
+bog0103	169	Vale of Lingering Sorrow (bog_a03)	Nabreus Deadlands	1 and 2	map model	mizuzoko	3	FF12_PS4_DefaultTex.dds, bog_mizuzoko.dds
+bog0105	171	Echoes of the Past (bog_a05)	Nabreus Deadlands	1 and 2	map model	no mesh instance	32	-
+bog0105	171	Echoes of the Past (bog_a05)	Nabreus Deadlands	1 and 2	map model	mizuzoko	3	FF12_PS4_DefaultTex.dds, bog_mizuzoko.dds
+bog0106	175	The Slumbermead (bog_b01)	Nabreus Deadlands	1 and 2	map model	no mesh instance	32	-
+bog0106	175	The Slumbermead (bog_b01)	Nabreus Deadlands	1 and 2	map model	mizuzoko	3	FF12_PS4_DefaultTex.dds, bog_mizuzoko.dds
+bog0107	176	Succor Midst Sorrow (bog_b02)	Nabreus Deadlands	1 and 2	map model	no mesh instance	32	-
+bog0107	176	Succor Midst Sorrow (bog_b02)	Nabreus Deadlands	1 and 2	map model	mizuzoko	3	FF12_PS4_DefaultTex.dds, bog_mizuzoko.dds
+bog0108	177	The Fog Mutters (bog_b03)	Nabreus Deadlands	1 and 2	map model	no mesh instance	32	-
+bog0108	177	The Fog Mutters (bog_b03)	Nabreus Deadlands	1 and 2	map model	mizuzoko	3	FF12_PS4_DefaultTex.dds, bog_mizuzoko.dds
+bog0110	179	Lifeless Strand (bog_b05)	Nabreus Deadlands	1 and 2	map model	no mesh instance	31	-
+bog0110	179	Lifeless Strand (bog_b05)	Nabreus Deadlands	1 and 2	map model	mizuzoko	3	FF12_PS4_DefaultTex.dds, bog_mizuzoko.dds
+bog0111	180	Field of the Fallen Lord (bog_b06)	Nabreus Deadlands	1 and 2	map model	no mesh instance	32	-
+bog0111	180	Field of the Fallen Lord (bog_b06)	Nabreus Deadlands	1 and 2	map model	mizuzoko	3	FF12_PS4_DefaultTex.dds, bog_mizuzoko.dds
+bul0102	737	Hall of the Light (bul_a02)	Mt Bur-Omisace	1	sky piece	sky	1	bul0101_sky01.dds
+bul0102	737	Hall of the Light (bul_a02)	Mt Bur-Omisace	2 and 3	sky piece	sky2	5	bul0201_sky02.dds
+bul0201	741	Temple Approach (bul_b01)	Mt Bur-Omisace	1	map model	enkeimon	5	bul0201_kabe04.dds, bul0201_kabe05.dds, bul0201_mon.dds, bul0201_monkabe.dds
+bul0201	741	Temple Approach (bul_b01)	Mt Bur-Omisace	1	map model	sky4	1	bul0201_sky03.dds
+bul0201	741	Temple Approach (bul_b01)	Mt Bur-Omisace	1	sky piece	sky3	3	bul0103_sky.dds, bul0201_sky02.dds, bul0201_sky03.dds
+bul0201	741	Temple Approach (bul_b01)	Mt Bur-Omisace	2 and 3	map model	sky	2	bul0201_sky01.dds, bul0201_sky03.dds
+bul0201	741	Temple Approach (bul_b01)	Mt Bur-Omisace	2 and 3	map model	sky2	3	bul0201_sky02.dds, bul0201_sky03.dds
+bul0202	742	Sand-strewn Pass (bul_b02)	Mt Bur-Omisace	1	sky piece	sky3	2	bul0103_sky.dds, bul0201_sky03.dds
+bul0202	742	Sand-strewn Pass (bul_b02)	Mt Bur-Omisace	2 and 3	map model	sky	2	bul0201_sky01.dds, bul0201_sky03.dds
+bul0202	742	Sand-strewn Pass (bul_b02)	Mt Bur-Omisace	2 and 3	map model	sky2	2	bul0201_sky02.dds
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	1	map model	no mesh instance	37	-
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	1	map model	cloud	21	bul0103_cloud02.dds, bul0103_enkei01.dds
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	1	map model	kaidan	4	FF12_PS4_DefaultTex.dds, bul0103_kabe01_Mipmap.dds, bul0103_kaidan01.dds, bul0103_kaidan03.dds
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	1	map model	sky	1	FF12_PS4_DefaultTex.dds
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	1	map model	sky2	5	bul0103_sky.dds
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	2 and 3	map model	no mesh instance	18	-
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	2 and 3	map model	cloud3	8	bul0201_sky03.dds
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	2 and 3	map model	kaidan2	4	FF12_PS4_DefaultTex.dds, bul0103_kabe01_Mipmap.dds, bul0103_kaidan01.dds, bul0103_kaidan03.dds
+bul0301	738	Temple Grounds (bul_a03)	Mt Bur-Omisace	2 and 3	sky piece	sky3	4	bul0201_sky01.dds, bul0201_sky02.dds, bul0201_sky03.dds
+dor0201	286	Energy Transitarium (dor_b01)	Draklor Laboratory	1	sky piece	sky2	2	dor0200_sky00.dds
+dst0101	227	The Stepping (dst_a01)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0101	227	The Stepping (dst_a01)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0102	228	Yardang Labyrinth (dst_a02)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0102	228	Yardang Labyrinth (dst_a02)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0103	229	Sand-swept Naze (dst_a03)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0103	229	Sand-swept Naze (dst_a03)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0104	230, 232	Banks of the Nebra (dst_a04); Murmuring Defile (dst_a06)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0104	230, 232	Banks of the Nebra (dst_a04); Murmuring Defile (dst_a06)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0105	129	South Bank Village (dst_b01)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0105	129	South Bank Village (dst_b01)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0106	132	The Yoma (dst_c01)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0106	132	The Yoma (dst_c01)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0107	133	Broken Sands (dst_c02)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0107	133	Broken Sands (dst_c02)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0108	233	Outpost (dst_a07)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0108	233	Outpost (dst_a07)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0109	231	Passage Entrance (dst_a05)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0109	231	Passage Entrance (dst_a05)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+dst0110	130	North Bank Village (dst_b02)	Dalmasca Estersand	1 and 2	sky piece	sky01	1	dst0100_sky01.dds
+dst0110	130	North Bank Village (dst_b02)	Dalmasca Estersand	3	sky piece	sky02	1	dst0100_sky02.dds
+ene0101	379	Platform 1 - East Tanks (ene_a01)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_128_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0101	379	Platform 1 - East Tanks (ene_a01)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_129_0_1_0-VertexColor	1	dst0100_sky02.dds
+ene0102	380	Platform 1 - Refinery (ene_a02)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_166_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0102	380	Platform 1 - Refinery (ene_a02)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_167_0_1_0-VertexColor	1	dst0100_sky02.dds
+ene0103	381	East Junction (ene_a03)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_128_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0103	381	East Junction (ene_a03)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_129_0_1_0-VertexColor	1	dst0100_sky02.dds
+ene0104	382	Primary Tank Complex (ene_a04)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_116_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0104	382	Primary Tank Complex (ene_a04)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_117_0_1_0-VertexColor	1	dst0100_sky02.dds
+ene0105	383	Central Junction (ene_a05)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_137_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0105	383	Central Junction (ene_a05)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_138_0_1_0-VertexColor	1	dst0100_sky02.dds
+ene0106	384	Platform 1 - South Tanks (ene_a06)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_122_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0106	384	Platform 1 - South Tanks (ene_a06)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_123_0_1_0-VertexColor	1	dst0100_sky02.dds
+ene0107	385	Platform 2 - Refinery (ene_a07)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_174_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0107	385	Platform 2 - Refinery (ene_a07)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_175_0_1_0-VertexColor	1	dst0100_sky02.dds
+ene0108	386	Yensa Border Tunnel (ene_a08)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_17_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0108	386	Yensa Border Tunnel (ene_a08)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_18_0_1_0-VertexColor	1	dst0100_sky02.dds
+ene0109	387	South Tank Approach (ene_a09)	Ogir-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_87_0_1_0-VertexColor	1	dst0100_sky01.dds
+ene0109	387	South Tank Approach (ene_a09)	Ogir-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_88_0_1_0-VertexColor	1	dst0100_sky02.dds
+enw0101	390	The Urutan-Yensa Sea (enw_a01)	Nam-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_83_0_1_0-VertexColor	1	dst0100_sky01.dds
+enw0101	390	The Urutan-Yensa Sea (enw_a01)	Nam-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_84_0_1_0-VertexColor	1	dst0100_sky02.dds
+enw0102	391, 1153, 1165, 1246, 1247	Stage 59 (tri_l04); Stage 60 (tri_l05); Stage 8 (tri_b03); Withering Shores (enw_a02); Withering Shores (enw_c01)	Nam-Yensa Sandsea; Trial Mode	1 and 2	sky piece	_collada_sky01__a_lambert211_0_151_0_1_0-VertexColor	1	dst0100_sky01.dds
+enw0102	391, 1153, 1165, 1246, 1247	Stage 59 (tri_l04); Stage 60 (tri_l05); Stage 8 (tri_b03); Withering Shores (enw_a02); Withering Shores (enw_c01)	Nam-Yensa Sandsea; Trial Mode	3	sky piece	_collada_sky02__lambert235_0_152_0_1_0-VertexColor	1	dst0100_sky02.dds
+enw0103	392	Augur Hill (enw_a03)	Nam-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_107_0_1_1-VertexColor	1	dst0100_sky01.dds
+enw0103	392	Augur Hill (enw_a03)	Nam-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_108_0_1_1-VertexColor	1	dst0100_sky02.dds
+enw0104	393	Yellow Sands (enw_a04)	Nam-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_132_0_1_0-VertexColor	1	dst0100_sky01.dds
+enw0104	393	Yellow Sands (enw_a04)	Nam-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_133_0_1_0-VertexColor	1	dst0100_sky02.dds
+enw0105	398	Demesne of the Sandqueen (enw_b01)	Nam-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_157_0_1_0-VertexColor	1	dst0100_sky01.dds
+enw0105	398	Demesne of the Sandqueen (enw_b01)	Nam-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_158_0_1_0-VertexColor	1	dst0100_sky02.dds
+enw0106	399	Trail of Fading Warmth (enw_b02)	Nam-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_92_0_1_0-VertexColor	1	dst0100_sky01.dds
+enw0106	399	Trail of Fading Warmth (enw_b02)	Nam-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_93_0_1_0-VertexColor	1	dst0100_sky02.dds
+enw0107	400	Simoon Bluff (enw_b03)	Nam-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_117_0_1_0-VertexColor	1	dst0100_sky01.dds
+enw0107	400	Simoon Bluff (enw_b03)	Nam-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_118_0_1_0-VertexColor	1	dst0100_sky02.dds
+enw0108	394	The Sandscale Bank (enw_a05)	Nam-Yensa Sandsea	1 and 2	sky piece	_collada_sky01__a_lambert211_0_21_0_1_0-VertexColor	1	dst0100_sky01.dds
+enw0108	394	The Sandscale Bank (enw_a05)	Nam-Yensa Sandsea	3	sky piece	_collada_sky02__lambert235_0_22_0_1_0-VertexColor	1	dst0100_sky02.dds
+fon0101	478	The Reseta Strand (fon_a01)	Phon Coast	1	map model	no mesh instance	19	-
+fon0101	478	The Reseta Strand (fon_a01)	Phon Coast	1	map model	kage_slot1	5	fon0100_iwakage.dds
+fon0101	478	The Reseta Strand (fon_a01)	Phon Coast	1	sky piece	sky	2	fon0100_sky.dds
+fon0101	478	The Reseta Strand (fon_a01)	Phon Coast	2 and 3	map model	no mesh instance	19	-
+fon0101	478	The Reseta Strand (fon_a01)	Phon Coast	2 and 3	map model	kage_slot2	5	fon0100_iwakage.dds
+fon0101	478	The Reseta Strand (fon_a01)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0102	479	Pora-Pora Sands (fon_a02)	Phon Coast	1	map model	iseki_kage001	3	fon0100_iseki_kage.dds
+fon0102	479	Pora-Pora Sands (fon_a02)	Phon Coast	2 and 3	map model	iseki_kage002	3	fon0100_iseki_kage.dds
+fon0102	479	Pora-Pora Sands (fon_a02)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0103	480	The Mauleia Strand (fon_a03)	Phon Coast	1	map model	no mesh instance	17	-
+fon0103	480	The Mauleia Strand (fon_a03)	Phon Coast	1	map model	kage_slot1	9	fon0100_iwakage.dds
+fon0103	480	The Mauleia Strand (fon_a03)	Phon Coast	2 and 3	map model	no mesh instance	18	-
+fon0103	480	The Mauleia Strand (fon_a03)	Phon Coast	2 and 3	map model	kage_slot2	9	fon0100_iwakage.dds
+fon0103	480	The Mauleia Strand (fon_a03)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0104	481	Cape Uahuk (fon_a04)	Phon Coast	1	map model	kage_slot1	47	fon0100_iwakage.dds, fon0100_yasikage.dds, fon0104_iseki_kage.dds
+fon0104	481	Cape Uahuk (fon_a04)	Phon Coast	1	sky piece	sky	2	fon0100_sky.dds
+fon0104	481	Cape Uahuk (fon_a04)	Phon Coast	2 and 3	map model	kage_slot2	47	fon0100_iwakage.dds, fon0100_yasikage.dds, fon0104_iseki_kage.dds
+fon0104	481	Cape Uahuk (fon_a04)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0105	482	Cape Tialan (fon_a05)	Phon Coast	1	map model	no mesh instance	20	-
+fon0105	482	Cape Tialan (fon_a05)	Phon Coast	1	map model	kage_slot1	18	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0105	482	Cape Tialan (fon_a05)	Phon Coast	1	sky piece	sky	2	fon0100_sky.dds
+fon0105	482	Cape Tialan (fon_a05)	Phon Coast	2 and 3	map model	no mesh instance	20	-
+fon0105	482	Cape Tialan (fon_a05)	Phon Coast	2 and 3	map model	kage_slot2	18	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0105	482	Cape Tialan (fon_a05)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0106	483	Kaukula Pass (fon_a06)	Phon Coast	1	map model	kage_slot1	24	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0106	483	Kaukula Pass (fon_a06)	Phon Coast	1	sky piece	sky	1	fon0100_sky.dds
+fon0106	483	Kaukula Pass (fon_a06)	Phon Coast	2 and 3	map model	kage_slot2	24	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0106	483	Kaukula Pass (fon_a06)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0107	484	The Hakawea Shore (fon_a07)	Phon Coast	1	map model	no mesh instance	14	-
+fon0107	484	The Hakawea Shore (fon_a07)	Phon Coast	1	map model	kage_slot1	17	fon0100_iwakage.dds, fon0104_iseki_kage.dds
+fon0107	484	The Hakawea Shore (fon_a07)	Phon Coast	1	sky piece	sky	2	fon0100_sky.dds
+fon0107	484	The Hakawea Shore (fon_a07)	Phon Coast	2 and 3	map model	no mesh instance	14	-
+fon0107	484	The Hakawea Shore (fon_a07)	Phon Coast	2 and 3	map model	kage_slot2	17	fon0100_iwakage.dds, fon0104_iseki_kage.dds
+fon0107	484	The Hakawea Shore (fon_a07)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0108	488	Hunters' Camp (fon_b01)	Phon Coast	1	map model	no mesh instance	18	-
+fon0108	488	Hunters' Camp (fon_b01)	Phon Coast	1	map model	kage_slot1	26	fon0100_iwakage.dds, fon0100_saku_kage.dds, fon0100_window_kage.dds, fon0100_yasikage.dds
+fon0108	488	Hunters' Camp (fon_b01)	Phon Coast	1	sky piece	sky	3	fon0100_sky.dds
+fon0108	488	Hunters' Camp (fon_b01)	Phon Coast	2 and 3	map model	no mesh instance	18	-
+fon0108	488	Hunters' Camp (fon_b01)	Phon Coast	2 and 3	map model	kage_slot2	26	fon0100_iwakage.dds, fon0100_saku_kage.dds, fon0100_window_kage.dds, fon0100_yasikage.dds
+fon0108	488	Hunters' Camp (fon_b01)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0109	491	Caima Hills (fon_c01)	Phon Coast	1	map model	kage_slot1	14	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0109	491	Caima Hills (fon_c01)	Phon Coast	1	sky piece	sky	2	fon0100_sky.dds
+fon0109	491	Caima Hills (fon_c01)	Phon Coast	2 and 3	map model	kage_slot2	14	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0109	491	Caima Hills (fon_c01)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0110	492	The Vaddu Strand (fon_c02)	Phon Coast	1	map model	no mesh instance	14	-
+fon0110	492	The Vaddu Strand (fon_c02)	Phon Coast	1	map model	kage_slot1	9	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0110	492	The Vaddu Strand (fon_c02)	Phon Coast	1	sky piece	sky	2	fon0100_sky.dds
+fon0110	492	The Vaddu Strand (fon_c02)	Phon Coast	2 and 3	map model	no mesh instance	14	-
+fon0110	492	The Vaddu Strand (fon_c02)	Phon Coast	2 and 3	map model	kage_slot2	9	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0110	492	The Vaddu Strand (fon_c02)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0111	493	Limatra Hills (fon_c03)	Phon Coast	1	map model	kage_slot1	13	fon0100_iwakage.dds
+fon0111	493	Limatra Hills (fon_c03)	Phon Coast	1	sky piece	sky	2	fon0100_sky.dds
+fon0111	493	Limatra Hills (fon_c03)	Phon Coast	2 and 3	map model	kage_slot2	13	fon0100_iwakage.dds
+fon0111	493	Limatra Hills (fon_c03)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0112	494	Rava's Pass (fon_c04)	Phon Coast	1	map model	kage_slot1	13	fon0100_iwakage.dds
+fon0112	494	Rava's Pass (fon_c04)	Phon Coast	1	sky piece	sky	2	fon0100_sky.dds
+fon0112	494	Rava's Pass (fon_c04)	Phon Coast	2 and 3	map model	kage_slot2	13	fon0100_iwakage.dds
+fon0112	494	Rava's Pass (fon_c04)	Phon Coast	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+fon0113	-	field 109, which no zone of the zone asset list loads (map_ref.bin)	-	1	map model	no mesh instance	14	-
+fon0113	-	field 109, which no zone of the zone asset list loads (map_ref.bin)	-	1	map model	kage_slot1	9	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0113	-	field 109, which no zone of the zone asset list loads (map_ref.bin)	-	1	sky piece	sky	2	fon0100_sky.dds
+fon0113	-	field 109, which no zone of the zone asset list loads (map_ref.bin)	-	2 and 3	map model	no mesh instance	14	-
+fon0113	-	field 109, which no zone of the zone asset list loads (map_ref.bin)	-	2 and 3	map model	kage_slot2	9	fon0100_iwakage.dds, fon0100_yasikage.dds
+fon0113	-	field 109, which no zone of the zone asset list loads (map_ref.bin)	-	2 and 3	sky piece	sky02	1	fon0100_sky02.dds
+frs0111	908	Living Chasm (frs_d01)	The Salikawood	1	sky piece	no mesh instance	1	-
+frs0111	908	Living Chasm (frs_d01)	The Salikawood	1	sky piece	sky	1	fon0100_sky.dds
+glf0101	751	Banks of the Sogoht (glf_a01)	Jahara	1	sky piece	sky01	1	glf0100_sky01new.dds
+glf0102	752	Lull of the Land (glf_a02)	Jahara	1	sky piece	sky01	1	glf0100_sky01new.dds
+glf0103	753	The Elderknoll (glf_a03)	Jahara	1	sky piece	sky01	1	glf0100_sky01new.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0100_enn01.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	2 and 3	sky piece	sky_enn2_kmam	1	mnt0100_enn01.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0101	209	Southern Skirts (mnt_a01)	Mosphoran Highwaste	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0100_enn01.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	2 and 3	sky piece	sky_enn2_kmam	1	mnt0100_enn01.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0102	210	Summit Path (mnt_a02)	Mosphoran Highwaste	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mnt0103	1151	Babbling Vale (mnt_d01)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0100_enn01.dds
+mnt0103	1151	Babbling Vale (mnt_d01)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0103	1151	Babbling Vale (mnt_d01)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0103	1151	Babbling Vale (mnt_d01)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0103	1151	Babbling Vale (mnt_d01)	Mosphoran Highwaste	2	sky piece	sky_enn2_kmam	1	mnt0100_enn01.dds
+mnt0103	1151	Babbling Vale (mnt_d01)	Mosphoran Highwaste	2	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0103	1151	Babbling Vale (mnt_d01)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0100_enn01.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	2 and 3	sky piece	sky_enn2_kmam	1	mnt0100_enn01.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0104	215	Rays of Ashen Light (mnt_b01)	Mosphoran Highwaste	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0100_enn01.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	2 and 3	sky piece	sky_enn2_kmam	1	mnt0100_enn01.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0105	216	Empyrean Way (mnt_b02)	Mosphoran Highwaste	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0100_enn01.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	2 and 3	sky piece	sky_enn2_kmam	1	mnt0100_enn01.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0106	217	Skyreach Ridge (mnt_b03)	Mosphoran Highwaste	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0100_enn01.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	2 and 3	sky piece	sky_enn2_kmam	1	mnt0100_enn01.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0107	218	Trail of Sky-flung Stone (mnt_b04)	Mosphoran Highwaste	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0101_enki02.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	2 and 3	sky piece	sky_enn2_kmam	1	mnt0101_enki02.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0108	219	Northern Skirts (mnt_b05)	Mosphoran Highwaste	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	1	sky piece	sky_enn1_hr	1	mnt0100_enn01.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	2 and 3	sky piece	sky_enn2_kmam	1	mnt0100_enn01.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0109	223, 1183, 1255, 1259, 1260, 1261	Empyrean Seat (mnt_c01); Stage 20 (tri_d05); Stage 65 (tri_m05); Stage 66 (tri_n01); Stage 67 (tri_n02); Stage 68 (tri_n03)	Mosphoran Highwaste; Trial Mode	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	1	sky piece	sky_enn1_hr	1	mnt0101_enki02.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	1	sky piece	sky_oku1_hr	1	mnt0100_enn01.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	1	sky piece	sky_out1_hr	1	mnt0100_km_sm.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	1 and 2	sky piece	sky_in1_hrkm	1	mnt0100_km_sm.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	2	sky piece	sky_out2_km	1	mnt0100_km_lg.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	2 and 3	sky piece	sky_enn2_kmam	1	mnt0101_enki02.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	2 and 3	sky piece	sky_oku2_kmam	1	mnt0100_enn01.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	3	sky piece	sky_in2_am	1	mnt0100_km_sm.dds
+mnt0110	220	Halny Crossing (mnt_b06)	Mosphoran Highwaste	3	sky piece	sky_out3_am	1	mnt0100_km_lg.dds
+mrm0101	593	Walk of Sky (mrm_a01)	Stilshrine of Miriam	1	sky piece	sky	1	mrm0100_sky2.dds
+mrm0102	594	Walk of Mind (mrm_a02)	Stilshrine of Miriam	1	sky piece	sky	1	mrm0100_sky2.dds
+nal0101	48	Stockade (nal_a01)	Nalbina Dungeons	1	sky piece	sky	1	sky.dds
+ozm0101	525	Field of Fallen Wings (ozm_a01)	Ozmone Plain	1	sky piece	_collada_sky01__ozm0100_sky01_m_0_106_0_1_0-VertexColor	1	ozm0100_sky01.dds
+ozm0101	525	Field of Fallen Wings (ozm_a01)	Ozmone Plain	1	sky piece	jimen	1	ozm0100_sky01.dds
+ozm0101	525	Field of Fallen Wings (ozm_a01)	Ozmone Plain	2	sky piece	_collada_sky02__ozm0100_sky02_m_0_108_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0101	525	Field of Fallen Wings (ozm_a01)	Ozmone Plain	2 and 3	sky piece	jimen	1	ozm0100_sky02.dds
+ozm0101	525	Field of Fallen Wings (ozm_a01)	Ozmone Plain	3	sky piece	_collada_sky03__ozm0100_sky02_m_0_110_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0102	530	Dagan Flats (ozm_b01)	Ozmone Plain	1	sky piece	_collada_sky01__ozm0100_sky01_m_0_114_0_1_0-VertexColor	1	ozm0100_sky01.dds
+ozm0102	530	Dagan Flats (ozm_b01)	Ozmone Plain	1	sky piece	jimen	1	ozm0100_sky01.dds
+ozm0102	530	Dagan Flats (ozm_b01)	Ozmone Plain	2	sky piece	_collada_sky02__ozm0100_sky02_m_0_116_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0102	530	Dagan Flats (ozm_b01)	Ozmone Plain	2 and 3	sky piece	jimen	1	ozm0100_sky02.dds
+ozm0102	530	Dagan Flats (ozm_b01)	Ozmone Plain	3	sky piece	_collada_sky03__ozm0100_sky02_m_0_118_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0103	531	Field of Light Winds (ozm_b02)	Ozmone Plain	1	sky piece	_collada_sky01__ozm0100_sky01_m_0_105_0_1_0-VertexColor	1	ozm0100_sky01.dds
+ozm0103	531	Field of Light Winds (ozm_b02)	Ozmone Plain	1	sky piece	jimen	1	ozm0100_sky01.dds
+ozm0103	531	Field of Light Winds (ozm_b02)	Ozmone Plain	2	sky piece	_collada_sky02__ozm0100_sky02_m_0_107_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0103	531	Field of Light Winds (ozm_b02)	Ozmone Plain	2 and 3	sky piece	jimen	1	ozm0100_sky02.dds
+ozm0103	531	Field of Light Winds (ozm_b02)	Ozmone Plain	3	sky piece	_collada_sky03__ozm0100_sky02_m_0_109_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0104	532	The Greensnake (ozm_b03)	Ozmone Plain	1	sky piece	_collada_sky01__ozm0100_sky01_m_0_108_0_1_0-VertexColor	1	ozm0100_sky01.dds
+ozm0104	532	The Greensnake (ozm_b03)	Ozmone Plain	1	sky piece	jimen	1	ozm0100_sky01.dds
+ozm0104	532	The Greensnake (ozm_b03)	Ozmone Plain	2	sky piece	_collada_sky02__ozm0100_sky02_m_0_110_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0104	532	The Greensnake (ozm_b03)	Ozmone Plain	2 and 3	sky piece	jimen	1	ozm0100_sky02.dds
+ozm0104	532	The Greensnake (ozm_b03)	Ozmone Plain	3	sky piece	_collada_sky03__ozm0100_sky02_m_0_112_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0105	526	The Switchback (ozm_a02)	Ozmone Plain	1	sky piece	_collada_sky01__ozm0100_sky01_m_0_133_0_1_0-VertexColor	1	ozm0100_sky01.dds
+ozm0105	526	The Switchback (ozm_a02)	Ozmone Plain	1	sky piece	jimen	1	ozm0100_sky01.dds
+ozm0105	526	The Switchback (ozm_a02)	Ozmone Plain	2	sky piece	_collada_sky02__ozm0100_sky02_m_0_135_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0105	526	The Switchback (ozm_a02)	Ozmone Plain	2 and 3	sky piece	jimen	1	ozm0100_sky02.dds
+ozm0105	526	The Switchback (ozm_a02)	Ozmone Plain	3	sky piece	_collada_sky03__ozm0100_sky02_m_0_137_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0106	527	Haulo Green (ozm_a03)	Ozmone Plain	1	sky piece	_collada_sky01__ozm0100_sky01_m_0_68_0_1_0-VertexColor	1	ozm0100_sky01.dds
+ozm0106	527	Haulo Green (ozm_a03)	Ozmone Plain	1	sky piece	jimen	1	ozm0100_sky01.dds
+ozm0106	527	Haulo Green (ozm_a03)	Ozmone Plain	2	sky piece	_collada_sky02__ozm0100_sky02_m_0_70_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0106	527	Haulo Green (ozm_a03)	Ozmone Plain	2 and 3	sky piece	jimen	1	ozm0100_sky02.dds
+ozm0106	527	Haulo Green (ozm_a03)	Ozmone Plain	3	sky piece	_collada_sky03__ozm0100_sky02_m_0_72_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0107	536	The Shred (ozm_c01)	Ozmone Plain	1	sky piece	_collada_sky01__ozm0100_sky01_m_0_51_0_1_0-VertexColor	1	ozm0100_sky01.dds
+ozm0107	536	The Shred (ozm_c01)	Ozmone Plain	1	sky piece	jimen	1	ozm0100_sky01.dds
+ozm0107	536	The Shred (ozm_c01)	Ozmone Plain	2	sky piece	_collada_sky02__ozm0100_sky02_m_0_53_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0107	536	The Shred (ozm_c01)	Ozmone Plain	2 and 3	sky piece	jimen	1	ozm0100_sky02.dds
+ozm0107	536	The Shred (ozm_c01)	Ozmone Plain	3	sky piece	_collada_sky03__ozm0100_sky02_m_0_55_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0108	533	Sunlit Path (ozm_b04)	Ozmone Plain	1	sky piece	_collada_sky01__ozm0100_sky01_m_0_107_0_1_0-VertexColor	1	ozm0100_sky01.dds
+ozm0108	533	Sunlit Path (ozm_b04)	Ozmone Plain	1	sky piece	jimen	1	ozm0100_sky01.dds
+ozm0108	533	Sunlit Path (ozm_b04)	Ozmone Plain	2	sky piece	_collada_sky02__ozm0100_sky02_m_0_109_0_1_0-VertexColor	1	ozm0100_sky02.dds
+ozm0108	533	Sunlit Path (ozm_b04)	Ozmone Plain	2 and 3	sky piece	jimen	1	ozm0100_sky02.dds
+ozm0108	533	Sunlit Path (ozm_b04)	Ozmone Plain	3	sky piece	_collada_sky03__ozm0100_sky02_m_0_111_0_1_0-VertexColor	1	ozm0100_sky02.dds
+pbc0101	463	Fading Vale (pbc_a01)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0101	463	Fading Vale (pbc_a01)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0101	463	Fading Vale (pbc_a01)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0101	463	Fading Vale (pbc_a01)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0101	463	Fading Vale (pbc_a01)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pbc0102	464	Head of the Silverflow (pbc_a02)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0102	464	Head of the Silverflow (pbc_a02)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0102	464	Head of the Silverflow (pbc_a02)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0102	464	Head of the Silverflow (pbc_a02)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0102	464	Head of the Silverflow (pbc_a02)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pbc0103	465	Freezing Gorge (pbc_a03)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0103	465	Freezing Gorge (pbc_a03)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0103	465	Freezing Gorge (pbc_a03)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0103	465	Freezing Gorge (pbc_a03)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0103	465	Freezing Gorge (pbc_a03)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pbc0104	468	Frozen Brook (pbc_b01)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0104	468	Frozen Brook (pbc_b01)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0104	468	Frozen Brook (pbc_b01)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0104	468	Frozen Brook (pbc_b01)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0104	468	Frozen Brook (pbc_b01)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pbc0105	469	Icebound Flow (pbc_b02)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0105	469	Icebound Flow (pbc_b02)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0105	469	Icebound Flow (pbc_b02)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0105	469	Icebound Flow (pbc_b02)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0105	469	Icebound Flow (pbc_b02)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pbc0106	470	Karydine Glacier (pbc_b03)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0106	470	Karydine Glacier (pbc_b03)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0106	470	Karydine Glacier (pbc_b03)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0106	470	Karydine Glacier (pbc_b03)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0106	470	Karydine Glacier (pbc_b03)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pbc0107	473	Path of the Firstfall (pbc_c01)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0107	473	Path of the Firstfall (pbc_c01)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0107	473	Path of the Firstfall (pbc_c01)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0107	473	Path of the Firstfall (pbc_c01)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0107	473	Path of the Firstfall (pbc_c01)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pbc0108	474	Spine of the Icewyrm (pbc_c02)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0108	474	Spine of the Icewyrm (pbc_c02)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0108	474	Spine of the Icewyrm (pbc_c02)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0108	474	Spine of the Icewyrm (pbc_c02)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0108	474	Spine of the Icewyrm (pbc_c02)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pbc0109	475	Silverflow's End (pbc_c03)	Paramina Rift	1	sky piece	sky_oku01	1	pbc0100_sn_kumo02.dds
+pbc0109	475	Silverflow's End (pbc_c03)	Paramina Rift	1 and 2	sky piece	sky_in01	1	pbc0100_sn_kumo01.dds
+pbc0109	475	Silverflow's End (pbc_c03)	Paramina Rift	1 and 2	sky piece	sky_out01	1	pbc0100_sn_kumo01.dds
+pbc0109	475	Silverflow's End (pbc_c03)	Paramina Rift	2	sky piece	sky_oku02	1	pbc0100_sn_kumo02.dds
+pbc0109	475	Silverflow's End (pbc_c03)	Paramina Rift	3	sky piece	sky_oku03	1	pbc0100_sn_kumo02.dds
+pla0101	137	Uazcuff Hills (pla_a01)	Tchita Uplands	1	map model	plants_s	7	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0101	137	Uazcuff Hills (pla_a01)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0101	137	Uazcuff Hills (pla_a01)	Tchita Uplands	2 and 3	map model	plants_s2	7	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0101	137	Uazcuff Hills (pla_a01)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0102	138	Sundered Earth (pla_a02)	Tchita Uplands	1	map model	no mesh instance	7	-
+pla0102	138	Sundered Earth (pla_a02)	Tchita Uplands	1	map model	plants_s	12	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0102	138	Sundered Earth (pla_a02)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0102	138	Sundered Earth (pla_a02)	Tchita Uplands	2 and 3	map model	no mesh instance	7	-
+pla0102	138	Sundered Earth (pla_a02)	Tchita Uplands	2 and 3	map model	plants_s2	12	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0102	138	Sundered Earth (pla_a02)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0103	139	The Highlands (pla_a03)	Tchita Uplands	1	map model	no mesh instance	16	-
+pla0103	139	The Highlands (pla_a03)	Tchita Uplands	1	map model	shadow	43	pla0100_hasirakage.dds, pla0100_olive03.dds, pla0100_yashi05.dds
+pla0103	139	The Highlands (pla_a03)	Tchita Uplands	1	sky piece	sky1	2	pla0100_sky.dds
+pla0103	139	The Highlands (pla_a03)	Tchita Uplands	2 and 3	map model	no mesh instance	16	-
+pla0103	139	The Highlands (pla_a03)	Tchita Uplands	2 and 3	map model	shadow2	43	pla0100_hasirakage.dds, pla0100_olive03.dds, pla0100_yashi05.dds
+pla0103	139	The Highlands (pla_a03)	Tchita Uplands	2 and 3	sky piece	sky2	2	pla0100_sky2.dds
+pla0104	140	Fields of Eternity (pla_a04)	Tchita Uplands	1	map model	no mesh instance	11	-
+pla0104	140	Fields of Eternity (pla_a04)	Tchita Uplands	1	map model	shadow	3	pla0100_hasirakage.dds, pla0100_olive03.dds, pla0100_yashi05.dds
+pla0104	140	Fields of Eternity (pla_a04)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0104	140	Fields of Eternity (pla_a04)	Tchita Uplands	2 and 3	map model	no mesh instance	11	-
+pla0104	140	Fields of Eternity (pla_a04)	Tchita Uplands	2 and 3	map model	shadow2	3	pla0100_hasirakage.dds, pla0100_olive03.dds, pla0100_yashi05.dds
+pla0104	140	Fields of Eternity (pla_a04)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0105	144	The Skytrail (pla_b01)	Tchita Uplands	1	map model	plants_s	19	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0105	144	The Skytrail (pla_b01)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0105	144	The Skytrail (pla_b01)	Tchita Uplands	2 and 3	map model	plants_s2	19	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0105	144	The Skytrail (pla_b01)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0106	145	Realm of the Elder Dream (pla_b02)	Tchita Uplands	1	map model	no mesh instance	8	-
+pla0106	145	Realm of the Elder Dream (pla_b02)	Tchita Uplands	1	map model	shadow	11	pla0100_hasirakage.dds, pla0100_olive03.dds, pla0100_yashi05.dds
+pla0106	145	Realm of the Elder Dream (pla_b02)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0106	145	Realm of the Elder Dream (pla_b02)	Tchita Uplands	2 and 3	map model	no mesh instance	8	-
+pla0106	145	Realm of the Elder Dream (pla_b02)	Tchita Uplands	2 and 3	map model	shadow2	11	pla0100_hasirakage.dds, pla0100_olive03.dds, pla0100_yashi05.dds
+pla0106	145	Realm of the Elder Dream (pla_b02)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0107	146	The Lost Way (pla_b03)	Tchita Uplands	1	map model	plants_s	6	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0107	146	The Lost Way (pla_b03)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0107	146	The Lost Way (pla_b03)	Tchita Uplands	2 and 3	map model	plants_s2	6	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0107	146	The Lost Way (pla_b03)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0108	147	Garden of Life's Circle (pla_b04)	Tchita Uplands	1	map model	no mesh instance	8	-
+pla0108	147	Garden of Life's Circle (pla_b04)	Tchita Uplands	1	map model	plants_s	5	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0108	147	Garden of Life's Circle (pla_b04)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0108	147	Garden of Life's Circle (pla_b04)	Tchita Uplands	2 and 3	map model	no mesh instance	8	-
+pla0108	147	Garden of Life's Circle (pla_b04)	Tchita Uplands	2 and 3	map model	plants_s2	5	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0108	147	Garden of Life's Circle (pla_b04)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0108	147	Garden of Life's Circle (pla_b04)	Tchita Uplands	3	map model	hamon	38	pla0108_hamon.dds
+pla0109	148	Oliphzak Rise (pla_b05)	Tchita Uplands	1	map model	no mesh instance	6	-
+pla0109	148	Oliphzak Rise (pla_b05)	Tchita Uplands	1	map model	shadow	20	pla0100_hasirakage.dds, pla0100_olive03.dds, pla0100_yashi05.dds
+pla0109	148	Oliphzak Rise (pla_b05)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0109	148	Oliphzak Rise (pla_b05)	Tchita Uplands	2 and 3	map model	no mesh instance	6	-
+pla0109	148	Oliphzak Rise (pla_b05)	Tchita Uplands	2 and 3	map model	shadow2	20	pla0100_hasirakage.dds, pla0100_olive03.dds, pla0100_yashi05.dds
+pla0109	148	Oliphzak Rise (pla_b05)	Tchita Uplands	2 and 3	sky piece	sky2	4	pla0100_sky2.dds
+pla0109	148	Oliphzak Rise (pla_b05)	Tchita Uplands	3	map model	hamon	60	pla0109_hamon.dds
+pla0110	141	The Shaded Path (pla_a05)	Tchita Uplands	1	map model	plants_s	5	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0110	141	The Shaded Path (pla_a05)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0110	141	The Shaded Path (pla_a05)	Tchita Uplands	2 and 3	map model	plants_s2	5	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0110	141	The Shaded Path (pla_a05)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0111	142	The Chosen Path (pla_a06)	Tchita Uplands	1	map model	plants_s	4	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0111	142	The Chosen Path (pla_a06)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0111	142	The Chosen Path (pla_a06)	Tchita Uplands	2 and 3	map model	plants_s2	4	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0111	142	The Chosen Path (pla_a06)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0112	149	The Nameless Spring (pla_b06)	Tchita Uplands	1	map model	plants_s	7	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0112	149	The Nameless Spring (pla_b06)	Tchita Uplands	1	sky piece	sky1	3	pla0100_sky.dds
+pla0112	149	The Nameless Spring (pla_b06)	Tchita Uplands	2 and 3	map model	plants_s2	7	pla0100_olive03.dds, pla0100_yashi05.dds
+pla0112	149	The Nameless Spring (pla_b06)	Tchita Uplands	2 and 3	sky piece	sky2	3	pla0100_sky2.dds
+pla0112	149	The Nameless Spring (pla_b06)	Tchita Uplands	3	map model	no mesh instance	5	-
+pla0112	149	The Nameless Spring (pla_b06)	Tchita Uplands	3	map model	hamon	38	pla0112_hamon.dds
+rbl0201	666	Womb of the Sun-cryst (dgl_f01)	Pharos - Third Ascent	1	sky piece	sky	5	rbl0200_mizu.dds, rbl0200_sky1.dds
+rbl0202	668, 1231	Stage 50 (tri_j05); Womb of the Sun-cryst (dgl_g01)	Pharos - Third Ascent; Trial Mode	1 and 2	sky piece	sky2	2	rbl0200_sky2.dds
+rbl0301	1113	Dunes of Profaning Wind (rbl_c01)	Pharos - First Ascent	1	sky piece	_collada_rbl03sky__a_lambert211_0_66_0_1_0-VertexColor	1	srb0100_sky1.dds
+rbl0301	1113	Dunes of Profaning Wind (rbl_c01)	Pharos - First Ascent	1	sky piece	_collada_rbl03sky__lambert203_0_68_0_1_0-VertexColor	2	srb0100_cloud.dds
+rwf0101	509	Footfalls of the Past (rwf_a01)	Ridorana Cataract	1	map model	kumo	1	rwf0101_kumo.dds
+rwf0101	509	Footfalls of the Past (rwf_a01)	Ridorana Cataract	1	sky piece	sky	5	rwf0100_sky_01.dds, rwf0100_sky_02.dds, rwf0101_umi01.dds
+rwf0103	511	Echoes from Time's Garden (rwf_a03)	Ridorana Cataract	1	map model	kumo	1	rwf0103_kumo.dds
+rwf0103	511	Echoes from Time's Garden (rwf_a03)	Ridorana Cataract	1	sky piece	sky	2	rwf0100_sky_01.dds, rwf0100_sky_02.dds
+rwf0105	898, 1309	Colosseum (rwf_d01); Stage 98 (tri_t03)	Ridorana Cataract; Trial Mode	1	map model	kumo	1	rwf0100_kumo.dds
+rwf0105	898, 1309	Colosseum (rwf_d01); Stage 98 (tri_t03)	Ridorana Cataract; Trial Mode	1	sky piece	sky	2	rwf0100_sky_01.dds, rwf0100_sky_02.dds
+rwf0106	517	City of Other Days (rwf_b01)	Ridorana Cataract	1	map model	kumo	1	rwf0106_kumo.dds
+rwf0106	517	City of Other Days (rwf_b01)	Ridorana Cataract	1	sky piece	sky	2	rwf0100_sky_01.dds, rwf0100_sky_02.dds
+rwf0107	518	Path of Hidden Blessing (rwf_b02)	Ridorana Cataract	1	map model	kumo	1	rwf0100_kumo.dds
+rwf0107	518	Path of Hidden Blessing (rwf_b02)	Ridorana Cataract	1	sky piece	sky	5	FF12_PS4_DefaultTex.dds, rwf0100_sky_01.dds, rwf0100_sky_02.dds, rwf0100_umi01.dds
+rwf0109	522, 1221, 1287, 1291	Stage 43 (tri_i03); Stage 85 (tri_q05); Stage 86 (tri_r01); They Who Thirst Not (rwf_c01)	Pharos - First Ascent; Trial Mode	1	sky piece	sky	1	rwf0100_sky_01.dds
+sav0101	236	Throne Road (sav_a01)	Giza Plains	1 and 2	sky piece	sky01_hare	1	sav0100_kanki_sky.dds
+sav0101	236	Throne Road (sav_a01)	Giza Plains	1 and 2	sky piece	sky02_hare	2	sav0100_kanki_sky.dds
+sav0101	236	Throne Road (sav_a01)	Giza Plains	3	sky piece	sky01_kumo	1	sav0100_uki_sky.dds
+sav0101	236	Throne Road (sav_a01)	Giza Plains	3	sky piece	sky02_kumo	2	sav0100_uki_sky.dds
+sav0102	237	Warrior's Wash (sav_a02)	Giza Plains	1 and 2	sky piece	sky01_hare	1	sav0100_kanki_sky.dds
+sav0102	237	Warrior's Wash (sav_a02)	Giza Plains	1 and 2	sky piece	sky02_hare	2	sav0100_kanki_sky.dds
+sav0102	237	Warrior's Wash (sav_a02)	Giza Plains	3	sky piece	sky01_kumo	1	sav0100_uki_sky.dds
+sav0102	237	Warrior's Wash (sav_a02)	Giza Plains	3	sky piece	sky02_kumo	2	sav0100_uki_sky.dds
+sav0103	243	Nomad Village (sav_b01)	Giza Plains	1 and 2	sky piece	sky01_hare	1	sav0100_kanki_sky.dds
+sav0103	243	Nomad Village (sav_b01)	Giza Plains	1 and 2	sky piece	sky02_hare	2	sav0100_kanki_sky.dds
+sav0103	243	Nomad Village (sav_b01)	Giza Plains	3	sky piece	sky01_kumo	1	sav0100_uki_sky.dds
+sav0103	243	Nomad Village (sav_b01)	Giza Plains	3	sky piece	sky02_kumo	2	sav0100_uki_sky.dds
+sav0104	238	Gizas North Bank (sav_a03)	Giza Plains	1 and 2	sky piece	sky01_hare	1	sav0100_kanki_sky.dds
+sav0104	238	Gizas North Bank (sav_a03)	Giza Plains	1 and 2	sky piece	sky02_hare	2	sav0100_kanki_sky.dds
+sav0104	238	Gizas North Bank (sav_a03)	Giza Plains	3	sky piece	sky01_kumo	1	sav0100_uki_sky.dds
+sav0104	238	Gizas North Bank (sav_a03)	Giza Plains	3	sky piece	sky02_kumo	2	sav0100_uki_sky.dds
+sav0105	239	Toam Hills (sav_a04)	Giza Plains	1 and 2	sky piece	sky01_hare	1	sav0100_kanki_sky.dds
+sav0105	239	Toam Hills (sav_a04)	Giza Plains	1 and 2	sky piece	sky02_hare	2	sav0100_kanki_sky.dds
+sav0105	239	Toam Hills (sav_a04)	Giza Plains	3	sky piece	sky01_kumo	1	sav0100_uki_sky.dds
+sav0105	239	Toam Hills (sav_a04)	Giza Plains	3	sky piece	sky02_kumo	2	sav0100_uki_sky.dds
+sav0106	247, 1159, 1163	Stage 5 (tri_a05); Stage 6 (tri_b01); Starfall Field (sav_c01)	Giza Plains; Trial Mode	1 and 2	sky piece	sky01_hare	1	sav0100_kanki_sky.dds
+sav0106	247, 1159, 1163	Stage 5 (tri_a05); Stage 6 (tri_b01); Starfall Field (sav_c01)	Giza Plains; Trial Mode	1 and 2	sky piece	sky02_hare	2	sav0100_kanki_sky.dds
+sav0106	247, 1159, 1163	Stage 5 (tri_a05); Stage 6 (tri_b01); Starfall Field (sav_c01)	Giza Plains; Trial Mode	3	sky piece	sky01_kumo	1	sav0100_uki_sky.dds
+sav0106	247, 1159, 1163	Stage 5 (tri_a05); Stage 6 (tri_b01); Starfall Field (sav_c01)	Giza Plains; Trial Mode	3	sky piece	sky02_kumo	2	sav0100_uki_sky.dds
+sav0107	248	Crystal Glade (sav_c02)	Giza Plains	1 and 2	sky piece	sky01_hare	1	sav0100_kanki_sky.dds
+sav0107	248	Crystal Glade (sav_c02)	Giza Plains	1 and 2	sky piece	sky02_hare	2	sav0100_kanki_sky.dds
+sav0107	248	Crystal Glade (sav_c02)	Giza Plains	3	sky piece	sky01_kumo	1	sav0100_uki_sky.dds
+sav0107	248	Crystal Glade (sav_c02)	Giza Plains	3	sky piece	sky02_kumo	2	sav0100_uki_sky.dds
+sav0108	249	Gizas South Bank (sav_c03)	Giza Plains	1 and 2	sky piece	sky01_hare	1	sav0100_kanki_sky.dds
+sav0108	249	Gizas South Bank (sav_c03)	Giza Plains	1 and 2	sky piece	sky02_hare	2	sav0100_kanki_sky.dds
+sav0108	249	Gizas South Bank (sav_c03)	Giza Plains	3	sky piece	sky01_kumo	1	sav0100_uki_sky.dds
+sav0108	249	Gizas South Bank (sav_c03)	Giza Plains	3	sky piece	sky02_kumo	2	sav0100_uki_sky.dds
+srb0101	497	Old Elanise Road (srb_a01)	Cerobi Steppe	1	map model	sea1	1	srb0100_sea.dds
+srb0101	497	Old Elanise Road (srb_a01)	Cerobi Steppe	1	map model	tree_shadow	13	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds
+srb0101	497	Old Elanise Road (srb_a01)	Cerobi Steppe	1	sky piece	sky1	4	srb0100_sky1.dds
+srb0101	497	Old Elanise Road (srb_a01)	Cerobi Steppe	2 and 3	map model	sea2	1	srb0100_sea.dds
+srb0101	497	Old Elanise Road (srb_a01)	Cerobi Steppe	2 and 3	map model	tree_shadow2	13	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds
+srb0101	497	Old Elanise Road (srb_a01)	Cerobi Steppe	2 and 3	sky piece	sky2	5	srb0100_sky2.dds
+srb0102	498	Crossfield (srb_a02)	Cerobi Steppe	1	map model	sea1	1	srb0100_sea.dds
+srb0102	498	Crossfield (srb_a02)	Cerobi Steppe	1	map model	tree_shadow	25	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds, srb0102_huusyashadow.dds
+srb0102	498	Crossfield (srb_a02)	Cerobi Steppe	1	sky piece	sky1	1	srb0100_sky1.dds
+srb0102	498	Crossfield (srb_a02)	Cerobi Steppe	2 and 3	map model	sea2	1	srb0100_sea.dds
+srb0102	498	Crossfield (srb_a02)	Cerobi Steppe	2 and 3	map model	tree_shadow2	25	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds, srb0102_huusyashadow.dds
+srb0102	498	Crossfield (srb_a02)	Cerobi Steppe	2 and 3	sky piece	sky2	1	srb0100_sky2.dds
+srb0103	499	The Terraced Bank (srb_a03)	Cerobi Steppe	1	map model	sea1	1	srb0100_sea.dds
+srb0103	499	The Terraced Bank (srb_a03)	Cerobi Steppe	1	map model	tree_shadow	17	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0103_huusyashadow.dds
+srb0103	499	The Terraced Bank (srb_a03)	Cerobi Steppe	1	sky piece	sky1	1	srb0100_sky1.dds
+srb0103	499	The Terraced Bank (srb_a03)	Cerobi Steppe	2 and 3	map model	sea2	1	srb0100_sea.dds
+srb0103	499	The Terraced Bank (srb_a03)	Cerobi Steppe	2 and 3	map model	tree_shadow2	15	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0103_huusyashadow.dds
+srb0103	499	The Terraced Bank (srb_a03)	Cerobi Steppe	2 and 3	sky piece	sky2	1	srb0100_sky2.dds
+srb0104	503	North Liavell Hills (srb_b01)	Cerobi Steppe	1	map model	hamon	1	hamon.dds
+srb0104	503	North Liavell Hills (srb_b01)	Cerobi Steppe	1	map model	sea1	1	srb0100_sea.dds
+srb0104	503	North Liavell Hills (srb_b01)	Cerobi Steppe	1	map model	tree_shadow	29	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds, srb0104_huusyashadow.dds
+srb0104	503	North Liavell Hills (srb_b01)	Cerobi Steppe	1	sky piece	sky1	1	srb0100_sky1.dds
+srb0104	503	North Liavell Hills (srb_b01)	Cerobi Steppe	2 and 3	map model	sea2	1	srb0100_sea.dds
+srb0104	503	North Liavell Hills (srb_b01)	Cerobi Steppe	2 and 3	map model	tree_shadow2	29	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds, srb0104_huusyashadow.dds
+srb0104	503	North Liavell Hills (srb_b01)	Cerobi Steppe	2 and 3	sky piece	sky2	1	srb0100_sky2.dds
+srb0105	504	South Liavell Hills (srb_b02)	Cerobi Steppe	1	map model	sea1	1	srb0100_sea.dds
+srb0105	504	South Liavell Hills (srb_b02)	Cerobi Steppe	1	map model	tree_shadow	57	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds
+srb0105	504	South Liavell Hills (srb_b02)	Cerobi Steppe	1	sky piece	sky1	1	srb0100_sky1.dds
+srb0105	504	South Liavell Hills (srb_b02)	Cerobi Steppe	2 and 3	map model	no mesh instance	1	-
+srb0105	504	South Liavell Hills (srb_b02)	Cerobi Steppe	2 and 3	map model	sea2	1	srb0100_sea.dds
+srb0105	504	South Liavell Hills (srb_b02)	Cerobi Steppe	2 and 3	map model	tree_shadow2	56	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds
+srb0105	504	South Liavell Hills (srb_b02)	Cerobi Steppe	2 and 3	sky piece	sky2	5	srb0100_sky2.dds
+srb0106	505	Feddik River (srb_b03)	Cerobi Steppe	1	map model	no mesh instance	11	-
+srb0106	505	Feddik River (srb_b03)	Cerobi Steppe	1	map model	sea1	1	srb0100_sea.dds
+srb0106	505	Feddik River (srb_b03)	Cerobi Steppe	1	map model	tree_shadow	29	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds, srb0104_huusyashadow.dds
+srb0106	505	Feddik River (srb_b03)	Cerobi Steppe	1	sky piece	sky1	1	srb0100_sky1.dds
+srb0106	505	Feddik River (srb_b03)	Cerobi Steppe	2 and 3	map model	no mesh instance	11	-
+srb0106	505	Feddik River (srb_b03)	Cerobi Steppe	2 and 3	map model	sea2	1	srb0100_sea.dds
+srb0106	505	Feddik River (srb_b03)	Cerobi Steppe	2 and 3	map model	tree_shadow2	29	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds, srb0104_huusyashadow.dds
+srb0106	505	Feddik River (srb_b03)	Cerobi Steppe	2 and 3	sky piece	sky2	5	srb0100_sky2.dds
+srb0107	506	The Northsward (srb_b04)	Cerobi Steppe	1	map model	sea1	1	srb0100_sea.dds
+srb0107	506	The Northsward (srb_b04)	Cerobi Steppe	1	map model	tree_shadow	4	srb0100_huusya_shadow.dds, srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds
+srb0107	506	The Northsward (srb_b04)	Cerobi Steppe	1	sky piece	sky1	1	srb0100_sky1.dds
+srb0107	506	The Northsward (srb_b04)	Cerobi Steppe	2 and 3	map model	sea2	1	srb0100_sea.dds
+srb0107	506	The Northsward (srb_b04)	Cerobi Steppe	2 and 3	map model	tree_shadow2	4	srb0100_huusya_shadow.dds, srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds, srb0100_talltree_shadow2.dds
+srb0107	506	The Northsward (srb_b04)	Cerobi Steppe	2 and 3	sky piece	sky2	3	srb0100_sky2.dds
+srb0108	500	Journey's Rest (srb_a04)	Cerobi Steppe	1	map model	sea1	1	srb0100_sea.dds
+srb0108	500	Journey's Rest (srb_a04)	Cerobi Steppe	1	map model	tree_shadow	4	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds
+srb0108	500	Journey's Rest (srb_a04)	Cerobi Steppe	1	sky piece	sky1	1	srb0100_sky1.dds
+srb0108	500	Journey's Rest (srb_a04)	Cerobi Steppe	2 and 3	map model	sea2	1	srb0100_sea.dds
+srb0108	500	Journey's Rest (srb_a04)	Cerobi Steppe	2 and 3	map model	tree_shadow2	4	srb0100_smalltree_shadow.dds, srb0100_talltree_shadow1.dds
+srb0108	500	Journey's Rest (srb_a04)	Cerobi Steppe	2 and 3	sky piece	sky2	5	srb0100_sky2.dds
+wdl0101	345	Galtea Downs (wdl_a01)	Dalmasca Westersand	1	sky piece	sky01	1	wdl0100_sky01.dds
+wdl0101	345	Galtea Downs (wdl_a01)	Dalmasca Westersand	2	sky piece	sky02	1	wdl0100_sky02.dds
+wdl0101	345	Galtea Downs (wdl_a01)	Dalmasca Westersand	3	sky piece	sky03	1	wdl0100_sky02.dds
+wdl0102	346	Corridor of Sand (wdl_a02)	Dalmasca Westersand	1	sky piece	sky01	1	wdl0100_sky01.dds
+wdl0102	346	Corridor of Sand (wdl_a02)	Dalmasca Westersand	2	sky piece	sky02	1	wdl0100_sky02.dds
+wdl0102	346	Corridor of Sand (wdl_a02)	Dalmasca Westersand	3	sky piece	sky03	1	wdl0100_sky02.dds
+wdl0103	347	Shimmering Horizons (wdl_a03)	Dalmasca Westersand	1	sky piece	sky01	1	wdl0100_sky01.dds
+wdl0103	347	Shimmering Horizons (wdl_a03)	Dalmasca Westersand	2	sky piece	sky02	1	wdl0100_sky02.dds
+wdl0103	347	Shimmering Horizons (wdl_a03)	Dalmasca Westersand	3	sky piece	sky03	1	wdl0100_sky02.dds
+wdl0104	348	The Midfault (wdl_a04)	Dalmasca Westersand	1	sky piece	sky01	1	wdl0100_sky01.dds
+wdl0104	348	The Midfault (wdl_a04)	Dalmasca Westersand	2	sky piece	sky02	1	wdl0100_sky02.dds
+wdl0104	348	The Midfault (wdl_a04)	Dalmasca Westersand	3	sky piece	sky03	1	wdl0100_sky02.dds
+wdl0105	349, 1156, 1157	Stage 2 (tri_a02); Stage 3 (tri_a03); Windtrace Dunes (wdl_a05)	Dalmasca Westersand; Trial Mode	1	sky piece	sky01	1	wdl0100_sky01.dds
+wdl0105	349, 1156, 1157	Stage 2 (tri_a02); Stage 3 (tri_a03); Windtrace Dunes (wdl_a05)	Dalmasca Westersand; Trial Mode	2	sky piece	sky02	1	wdl0100_sky02.dds
+wdl0105	349, 1156, 1157	Stage 2 (tri_a02); Stage 3 (tri_a03); Windtrace Dunes (wdl_a05)	Dalmasca Westersand; Trial Mode	3	sky piece	sky03	1	wdl0100_sky02.dds
+wdl0106	350	The Western Divide (wdl_a06)	Dalmasca Westersand	1	sky piece	sky01	1	wdl0100_sky01.dds
+wdl0106	350	The Western Divide (wdl_a06)	Dalmasca Westersand	2	sky piece	sky02	1	wdl0100_sky02.dds
+wdl0106	350	The Western Divide (wdl_a06)	Dalmasca Westersand	3	sky piece	sky03	1	wdl0100_sky02.dds
+wdl0107	354, 1181, 1182	Stage 18 (tri_d03); Stage 19 (tri_d04); Wyrm's Nest (wdl_b01)	Dalmasca Westersand; Trial Mode	1	sky piece	sky01	1	wdl0100_sky01.dds
+wdl0107	354, 1181, 1182	Stage 18 (tri_d03); Stage 19 (tri_d04); Wyrm's Nest (wdl_b01)	Dalmasca Westersand; Trial Mode	2	sky piece	sky02	1	wdl0100_sky02.dds
+wdl0107	354, 1181, 1182	Stage 18 (tri_d03); Stage 19 (tri_d04); Wyrm's Nest (wdl_b01)	Dalmasca Westersand; Trial Mode	3	sky piece	sky03	1	wdl0100_sky02.dds

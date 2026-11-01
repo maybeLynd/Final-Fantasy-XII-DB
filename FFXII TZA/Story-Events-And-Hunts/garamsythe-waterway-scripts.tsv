@@ -305,9 +305,9 @@ grm_b0200	scene, event 319	メッセージ	メッセージ04	requested by 監督
 grm_b0200	scene, event 319	メッセージ	メッセージ06	requested by 監督.アルマ登場	-	4	She's not alone!	-	-	-	-	-	-	-	-	-	-	3	-
 grm_b0200	scene, event 319	メッセージ	メッセージ07	requested by 監督.アルマ登場	Fran	5	Our ranks grow by the hour.	-	-	-	-	-	-	-	-	-	-	3	-
 grm_b0200	scene, event 319	メッセージ	メッセージ08	requested by 監督.アルマ登場	Balthier	6	And our troubles with them.	-	-	-	-	-	-	-	-	-	-	3	-
-grm_b0202	scene, event 238	メッセージ	メッセージ01	requested by 監督.アルマとアーシェ	-	0; 1; 2; 3; 4	You all right? / Thank you. / I'm Vaan. / And this is Balthier and— / Hey!	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ01	requested by 監督.アルマとアーシェ	Vaan; Ashe	0; 1; 2; 3; 4	You all right? / Thank you. / I'm Vaan. / And this is Balthier and— / Hey!	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ04	requested by 監督.アルマとアーシェ	Vaan	5	What's your name?	-	-	-	-	-	-	-	-	-	-	2	-
-grm_b0202	scene, event 238	メッセージ	メッセージ05	requested by 監督.アルマとアーシェ	-	6; 7	Amalia. / Amalia, huh? Nice to meet you.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ05	requested by 監督.アルマとアーシェ	Ashe; Vaan	6; 7	Amalia. / Amalia, huh? Nice to meet you.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ07	requested by 監督.アルマとアーシェ	-	8; 9	There were others with me... / I'm sorry.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ08	requested by 監督.アルマとアーシェ	Ashe	10	No...	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ09	requested by 監督.アルマとアーシェ	Vaan	11	Huh?	-	-	-	-	-	-	-	-	-	-	2	-
@@ -315,12 +315,12 @@ grm_b0202	scene, event 238	メッセージ	メッセージ10	requested by 監督
 grm_b0202	scene, event 238	メッセージ	メッセージ11	requested by 監督.アルマとアーシェ	Vaan	13	Don't get any ideas. I said it's mine.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ12	requested by 監督.アルマとアーシェ	Balthier	14	I'm afraid the jury's still out on that one.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ13	requested by 監督.アルマとアーシェ	-	15; 16	You stole that? / Yeah!	-	-	-	-	-	-	-	-	-	-	2	-
-grm_b0202	scene, event 238	メッセージ	メッセージ15	requested by 監督.アルマとアーシェ	-	17; 18	Have you finished? / When the guards don't report in, they'll come looking for us.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ15	requested by 監督.アルマとアーシェ	Fran	17; 18	Have you finished? / When the guards don't report in, they'll come looking for us.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ16	requested by 監督.アルマとアーシェ	Balthier	19	If they aren't already.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ17	requested by 監督.アルマとアーシェ	Vaan	20	You should come with us. Better than being by yourself.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ18	requested by 監督.アルマとアーシェ	Ashe	21	Very well.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ19	requested by 監督.アルマとアーシェ	Vaan	22	What's wrong with her?	-	-	-	-	-	-	-	-	-	-	2	-
-grm_b0202	scene, event 238	メッセージ	メッセージ20	requested by 監督.アルマとアーシェ	-	23	You have a lot to learn before we even get started on your thievery.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ20	requested by 監督.アルマとアーシェ	Balthier	23	You have a lot to learn before we even get started on your thievery.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ21	requested by 監督.アルマとアーシェ	Vaan	24	What's that mean?	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0280	scene, event 716	監督	main	main	no name shown	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 grm_b0280	scene, event 716	ＡＤ	Ｃ０２_すかしやがって	requested by 監督.main	system message	system message 48	[value] joins the party as a guest! (the game fills [value] with Amalia, party table row 7)	-	-	-	-	-	-	-	-	-	-	5	-
@@ -336,14 +336,14 @@ grm_b0280	scene, event 716	イベント特殊効果画面_EV	システムメッ�
 grm_b0280	scene, event 716	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
 grm_b0280	scene, event 716	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 grm_b0280	scene, event 716	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_1; receives the item held in file_var_s4_1	-	-	-	-	1	-
-grm_b0280	scene, event 716	字幕	カット０１ｂ	requested by ＡＤ.Ｃ０１_ゲストとして	-	2; 3	The situation requires I accept such help as I find. / Though it be from thieves.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０１ｂ	requested by ＡＤ.Ｃ０１_ゲストとして	Ashe	2; 3	The situation requires I accept such help as I find. / Though it be from thieves.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0280	scene, event 716	字幕	カット０１ｃ	requested by ＡＤ.Ｃ０１_ゲストとして	-	4; 5	I shall accompany you until we find my companions. / No longer.	-	-	-	-	-	-	-	-	-	-	2	-
-grm_b0280	scene, event 716	字幕	カット０１ｅ	requested by ＡＤ.Ｃ０１_ゲストとして	-	6; 7; 8	"Let's think of her as a ""guest,"" then. / Unlike Fran or myself, our ""guest"" probably won't be taking orders from anyone anytime soon. / And she'll leave when she pleases."	-	-	-	-	-	-	-	-	-	-	2	-
-grm_b0280	scene, event 716	字幕	カット０２ａ	requested by ＡＤ.Ｃ０２_すかしやがって	-	9; 10; 11	So, we keep to our affairs, and she to hers. / I doubt we'll find her wanting in valor... / being such an upstanding member of the insurgence.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０１ｅ	requested by ＡＤ.Ｃ０１_ゲストとして	Balthier	6; 7; 8	"Let's think of her as a ""guest,"" then. / Unlike Fran or myself, our ""guest"" probably won't be taking orders from anyone anytime soon. / And she'll leave when she pleases."	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０２ａ	requested by ＡＤ.Ｃ０２_すかしやがって	Balthier	9; 10; 11	So, we keep to our affairs, and she to hers. / I doubt we'll find her wanting in valor... / being such an upstanding member of the insurgence.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0280	scene, event 716	字幕	カット０２ｂ	requested by ＡＤ.Ｃ０２_すかしやがって	Ashe	12	Resistance.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0280	scene, event 716	字幕	カット０２ｄ	requested by ＡＤ.Ｃ０２_すかしやがって	Ashe	13	Well, what are we waiting for?	-	-	-	-	-	-	-	-	-	-	2	-
 grm_d0102	scene, event 236	セリフ	cut_01	requested by 監督.main	-	1	Stand where you are!	-	-	-	-	-	-	-	-	-	-	3	-
-grm_d0102	scene, event 236	セリフ	cut_04	requested by 監督.main	-	2	Now is not the time.	-	-	-	-	-	-	-	-	-	-	3	-
+grm_d0102	scene, event 236	セリフ	cut_04	requested by 監督.main	Balthier	2	Now is not the time.	-	-	-	-	-	-	-	-	-	-	3	-
 grm_f0101	scene, event 315	プロデューサー	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	1	-
 grm_f0101	scene, event 315	監督	死亡演出	requested by プロデューサー.main	-	-	-	-	-	-	-	-	-	-	every foe in group 0 removed	-	-	1	-
 grm_f0101	scene, event 315	システムメッセージ	召喚獣手に入れた！	-	system message	system message 5	NOT USED (message kind 1: the game names id 0xC016, Cúchulainn, and gives it)	-	-	-	-	-	receives Cúchulainn (system message 5, kind 1)	-	-	-	-	1	-

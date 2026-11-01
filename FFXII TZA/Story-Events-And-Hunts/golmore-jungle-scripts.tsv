@@ -80,11 +80,11 @@ gol_d02	The Greenswathe (Golmore Jungle)	treasure_01	talk	talk	-	-	-	-	-	-	-	-	t
 gol_d02	The Greenswathe (Golmore Jungle)	treasure_02	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x030001b0	-	-	-	-	1	-
 gol_a0200	scene, event 262	MesDir	cut01a	requested by Director.main	Vaan	0	What is it?	-	-	-	-	-	-	-	-	-	-	1	-
 gol_a0200	scene, event 262	MesDir	cut02a	requested by Director.main	Fran; Ashe	1; 2; 3	The jungle denies us our passage. / What have we done? / We? No. I.	-	-	-	-	-	-	-	-	-	-	1	-
-gol_a0200	scene, event 262	MesDir	cut03a	requested by Director.main	-	4; 5	What's that mean? / How're we supposed to get through that?	-	-	-	-	-	-	-	-	-	-	1	-
-gol_a0200	scene, event 262	MesDir	cut03b	requested by Director.main	-	6; 7; 8	Making an appearance? / I am. / I thought you'd left for good.	-	-	-	-	-	-	-	-	-	-	1	-
+gol_a0200	scene, event 262	MesDir	cut03a	requested by Director.main	Vaan	4; 5	What's that mean? / How're we supposed to get through that?	-	-	-	-	-	-	-	-	-	-	1	-
+gol_a0200	scene, event 262	MesDir	cut03b	requested by Director.main	Balthier; Fran	6; 7; 8	Making an appearance? / I am. / I thought you'd left for good.	-	-	-	-	-	-	-	-	-	-	1	-
 gol_a0200	scene, event 262	MesDir	cut04a	requested by Director.main	Fran	9	Our choices are few.	-	-	-	-	-	-	-	-	-	-	1	-
-gol_a0200	scene, event 262	MesDir	cut05a	requested by Director.main	-	10	This is as much for you as it is me.	-	-	-	-	-	-	-	-	-	-	1	-
-gol_a0200	scene, event 262	MesDir	cut06a	requested by Director.main	-	11; 12	You are ill at ease. / The nethicite troubles you?	-	-	-	-	-	-	-	-	-	-	1	-
+gol_a0200	scene, event 262	MesDir	cut05a	requested by Director.main	Fran	10	This is as much for you as it is me.	-	-	-	-	-	-	-	-	-	-	1	-
+gol_a0200	scene, event 262	MesDir	cut06a	requested by Director.main	Fran	11; 12	You are ill at ease. / The nethicite troubles you?	-	-	-	-	-	-	-	-	-	-	1	-
 gol_a0200	scene, event 262	MesDir	cut08a	requested by Director.main	Fran	13	You've let your eyes betray your heart.	-	-	-	-	-	-	-	-	-	-	1	-
 gol_a0200	scene, event 262	MesDir	cut09	requested by Director.main	-	14	Right.	-	-	-	-	-	-	-	-	-	-	1	-
 gol_a0200	scene, event 262	MesDir	cut10a	requested by Director.main	Vaan	15	What are you doing?	-	-	-	-	-	-	-	-	-	-	1	-

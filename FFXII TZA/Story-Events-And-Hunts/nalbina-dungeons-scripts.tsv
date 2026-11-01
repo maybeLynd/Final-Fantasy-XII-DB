@@ -84,8 +84,8 @@ nal_a0100	scene, event 30	石ころ監督	石ころ	-	-	11	It was good to see yo
 nal_b0100	scene, event 31	AD	main	main	-	-	-	-	-	-	-	-	-	-	-	-	Balthier joins; fighting party set: Vaan, Balthier	1	-
 nal_b0100	scene, event 31	KOE	cut18	requested by AD.main	-	0	No, don't!	-	-	-	-	-	-	-	-	-	-	22	-
 nal_b0100	scene, event 31	KOE	cut26	requested by AD.main	-	1	He was defenseless...	-	-	-	-	-	-	-	-	-	-	22	-
-nal_b0100	scene, event 31	KOE	cut41	requested by AD.main	-	2; 3	Something stinks in here all right. / I've changed my mind. This is no dungeon, it's a sty.	-	-	-	-	-	-	-	-	-	-	22	-
-nal_b0100	scene, event 31	KOE	cut43	requested by AD.main	-	4	I said you're the one that stinks, hamshanks. Hear me now?	-	-	-	-	-	-	-	-	-	-	22	-
+nal_b0100	scene, event 31	KOE	cut41	requested by AD.main	Balthier	2; 3	Something stinks in here all right. / I've changed my mind. This is no dungeon, it's a sty.	-	-	-	-	-	-	-	-	-	-	22	-
+nal_b0100	scene, event 31	KOE	cut43	requested by AD.main	Balthier	4	I said you're the one that stinks, hamshanks. Hear me now?	-	-	-	-	-	-	-	-	-	-	22	-
 nal_b0100	scene, event 31	KOE	cut44	requested by AD.main	Balthier	5	You all right, Vaan?	-	-	-	-	-	-	-	-	-	-	22	-
 nal_b0101	scene, event 33	AD	main	main	-	-	-	-	-	-	-	-	-	-	-	-	Fran joins; fighting party set: Vaan, Balthier, Fran	1	-
 nal_b0101	scene, event 33	KOE	cut16	requested by AD.main	Balthier	0	Great. They just don't give up, do they?	-	-	-	-	-	-	-	-	-	-	8	-
@@ -105,9 +105,9 @@ nal_b0101	scene, event 33	KOE	cut43	requested by AD.main	-	29; 30	You travel fre
 nal_b0101	scene, event 33	KOE	cut47	requested by AD.main	-	31; 32; 33	Where is the Captain? / We have him in solitary, Your Honor. / We're ready to begin our interrogation.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut48	requested by AD.main	-	34; 35; 36	This does not concern you, bounty hunter. / He's in here somewhere! Find him! / - Bwagi, that way! - I was going this way!	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut51	requested by AD.main	Balthier	37	Time for the hare to follow the fox.	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut52	requested by AD.main	-	38; 39	The magicks binding the door to the oubliette are quite strong. / Too strong even for my talents.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut52	requested by AD.main	Fran	38; 39	The magicks binding the door to the oubliette are quite strong. / Too strong even for my talents.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_b0101	scene, event 33	KOE	cut54	requested by AD.main	Balthier	40	That's why we'll get them to open it for us.	-	-	-	-	-	-	-	-	-	-	8	-
-nal_b0101	scene, event 33	KOE	cut55	requested by AD.main	-	41; 42; 43; 44	How is going deeper into this place— / What's wrong? You don't trust her? / Viera's noses are sharp. / If she says there's a way out, there's a way out.	-	-	-	-	-	-	-	-	-	-	8	-
+nal_b0101	scene, event 33	KOE	cut55	requested by AD.main	Vaan; Balthier	41; 42; 43; 44	How is going deeper into this place— / What's wrong? You don't trust her? / Viera's noses are sharp. / If she says there's a way out, there's a way out.	-	-	-	-	-	-	-	-	-	-	8	-
 nal_c0101	scene, event 34	セリフ	BALFLAIR_ずいぶんとまぁ	requested by ディレクター.CUT10	-	0	There are more turnkeys than cutpurses down here.	-	-	-	-	-	-	-	-	-	-	2	-
 nal_c0101	scene, event 34	セリフ	BALFLAIR_こりゃ	requested by ディレクター.CUT10	-	1	I've had my fill of chains.	-	-	-	-	-	-	-	-	-	-	2	-
 nal_c0101	scene, event 34	セリフ	BALFLAIR_できるだけ	requested by ディレクター.CUT10	-	2	Let's tread lightly, shall we?	-	-	-	-	-	-	-	-	-	-	2	-

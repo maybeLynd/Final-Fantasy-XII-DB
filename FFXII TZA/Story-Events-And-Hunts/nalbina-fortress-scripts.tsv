@@ -69,7 +69,7 @@ naf_a0201	scene, event 247	MesDir	message01	requested by Director.director_break
 naf_a0201	scene, event 247	MesDir	message03	requested by Director.director_breakarts	-	3; 4	We receive you, Tonberry. / You've leave to retire. Well fought.	-	-	-	-	-	-	-	-	-	-	1	-
 naf_a0201	scene, event 247	MesDir	message04	requested by Director.director_breakarts	-	5	My thanks, Antlion! Tonberry disengaging!	-	-	-	-	-	-	-	-	-	-	1	-
 naf_b0100	scene, event 242	MESSAGE	カット１	requested by AD.カット１_ad	-	0; 1	Vossler. Where are you? / What if Captain Azelas has fallen?	-	-	-	-	-	-	-	-	-	-	1	-
-naf_b0100	scene, event 242	MESSAGE	カット３	requested by AD.カット３_ad	-	2; 3; 4	Don't talk such nonsense! / Vossler's laughed in the face of Death far too many times for him to stop now. / Men like him don't die in places like this.	-	-	-	-	-	-	-	-	-	-	1	-
+naf_b0100	scene, event 242	MESSAGE	カット３	requested by AD.カット３_ad	Basch	2; 3; 4	Don't talk such nonsense! / Vossler's laughed in the face of Death far too many times for him to stop now. / Men like him don't die in places like this.	-	-	-	-	-	-	-	-	-	-	1	-
 naf_b0100	scene, event 242	MESSAGE	カット５	requested by AD.カット５_ad	-	5; 6	We must make haste to reach the King. We will take him to safety. / Is His Majesty unharmed?	-	-	-	-	-	-	-	-	-	-	1	-
 naf_b0100	scene, event 242	MESSAGE	カット６	requested by AD.カット６_ad	-	7; 8; 9; 10	He'll agree to an unconditional surrender. / They would not dare touch him until the wax on his seal is dry. / But if we arrive after he's signed the treaty— / Wait.	-	-	-	-	-	-	-	-	-	-	1	-
 naf_b0100	scene, event 242	MESSAGE	カット９	requested by AD.カット９_ad	Basch	11	Quickly, Reks!	-	-	-	-	-	-	-	-	-	-	1	-

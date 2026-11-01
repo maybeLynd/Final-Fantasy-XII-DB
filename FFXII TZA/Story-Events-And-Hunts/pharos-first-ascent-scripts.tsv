@@ -443,17 +443,17 @@ rbl_q01	Empyrean Ravel (Pharos - Third Ascent)	treasure_02	talk	talk	-	-	-	-	-	-
 rbl_q01	Empyrean Ravel (Pharos - Third Ascent)	treasure_03	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000070	-	-	-	-	1	-
 rbl_q01	Empyrean Ravel (Pharos - Third Ascent)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000088	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m001	requested by Director.main	Fran	0	The din of the Mist grows greater.	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m002	requested by Director.main	-	1	The Sun-cryst must be near.	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m002	requested by Director.main	Basch	1	The Sun-cryst must be near.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m003	requested by Director.main	-	2	I wonder if she'll really do it.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m004	requested by Director.main	Penelo	3	Take revenge against the Empire.	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m005	requested by Director.main	-	4	I mean, I know how she must feel.	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m005	requested by Director.main	Penelo	4	I mean, I know how she must feel.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m006	requested by Director.main	Vaan	5	It's hard losing someone you care about.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m007	requested by Director.main	Penelo	6	Something we all got in common.	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m008	requested by Director.main	-	7	But, you know, no matter how hard we try, we can't change the past.	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m009	requested by Director.main	-	8	There's nothing that can bring them back.	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m008	requested by Director.main	Penelo	7	But, you know, no matter how hard we try, we can't change the past.	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m009	requested by Director.main	Penelo	8	There's nothing that can bring them back.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m010	requested by Director.main	Penelo	9	Still, sometimes, when I close my eyes...	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m011	requested by Director.main	-	10	I can see them so clearly.	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m011	requested by Director.main	Penelo	10	I can see them so clearly.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m012	requested by Director.main	Reddas	11	Illusions of the past.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m013	requested by Director.main	Reddas	12	You think to have cast them off, only to find them years later, unwearying, unrelenting.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m014	requested by Director.main	Reddas	13	The past can bind a man as surely as irons.	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m015	requested by Director.main	-	14	Cut the true path. But will she?	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m015	requested by Director.main	Reddas	14	Cut the true path. But will she?	-	-	-	-	-	-	-	-	-	-	1	-

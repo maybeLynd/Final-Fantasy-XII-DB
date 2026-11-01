@@ -126,12 +126,12 @@ mrm_e0101	scene, event 363	イベント特殊効果画面_EV	GET_GET_SYSMES表�
 mrm_f0100	scene, event 366	セリフ	cut_08	requested by 監督.main	Vaan; Ashe; Balthier	2; 3; 4	You should try it on the Dawn Shard. See if it can destroy nethicite or not. / What? / He just may be onto something.	-	-	-	-	-	-	-	-	-	-	2	-
 mrm_f0100	scene, event 366	セリフ	cut_09	requested by 監督.main	-	5	The Dawn Shard's no use to us, after all.	-	-	-	-	-	-	-	-	-	-	2	-
 mrm_f0100	scene, event 366	セリフ	cut_10	requested by 監督.main	Ashe	6	The Stone bleeds Mist.	-	-	-	-	-	-	-	-	-	-	2	-
-mrm_f0100	scene, event 366	セリフ	cut_11	requested by 監督.main	-	7; 8	It has been roused. / It fears the sword.	-	-	-	-	-	-	-	-	-	-	2	-
+mrm_f0100	scene, event 366	セリフ	cut_11	requested by 監督.main	Fran	7; 8	It has been roused. / It fears the sword.	-	-	-	-	-	-	-	-	-	-	2	-
 mrm_f0100	scene, event 366	セリフ	cut_19	requested by 監督.main	Fran	9	The Stone is quiet.	-	-	-	-	-	-	-	-	-	-	2	-
-mrm_f0100	scene, event 366	セリフ	cut_20	requested by 監督.main	-	10; 11	This is the sword. The nethicite destroyer. / Should it find its mark.	-	-	-	-	-	-	-	-	-	-	2	-
+mrm_f0100	scene, event 366	セリフ	cut_20	requested by 監督.main	Ashe; Balthier	10; 11	This is the sword. The nethicite destroyer. / Should it find its mark.	-	-	-	-	-	-	-	-	-	-	2	-
 mrm_f0100	scene, event 366	セリフ	cut_21	requested by 監督.main	Ashe	12	Vaan.	-	-	-	-	-	-	-	-	-	-	2	-
 mrm_f0100	scene, event 366	セリフ	cut_22	requested by 監督.main	-	13; 14	Tell me. Did you see him again? / I didn't.	-	-	-	-	-	-	-	-	-	-	2	-
-mrm_f0100	scene, event 366	セリフ	cut_23	requested by 監督.main	-	15; 16; 17	Not a thing. / Not even my brother. / Not...not anything.	-	-	-	-	-	-	-	-	-	-	2	-
+mrm_f0100	scene, event 366	セリフ	cut_23	requested by 監督.main	Vaan	15; 16; 17	Not a thing. / Not even my brother. / Not...not anything.	-	-	-	-	-	-	-	-	-	-	2	-
 mrm_f0100	scene, event 366	扉１	talk	talk	-	-	-	-	-	-	-	-	-	Hall of Worth (Stilshrine of Miriam), field 612, entrance 2	-	-	-	5	-
 mrm_g0101	scene, event 365	監督	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	every foe in group 0 removed	-	-	1	-
 mrm_g0101	scene, event 365	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s7_1	-	-	-	-	1	-

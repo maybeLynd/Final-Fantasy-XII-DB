@@ -102,15 +102,15 @@ rsn_a0101	scene, event 288	MESSAGE	カット８	requested by AD.カット８_ad	
 rsn_a0101	scene, event 288	MESSAGE	カット９	requested by AD.カット９_ad	Balthier	7	The nethicite.	-	-	-	-	-	-	-	-	-	-	4	-
 rsn_a0101	scene, event 288	MESSAGE	カット１０	requested by AD.カット１０_ad	-	8; 9; 10	Your Majesty does not disappoint! / Ever quick to spurn an honorable surrender, as was your father. / You know nothing of my father!	-	-	-	-	-	-	-	-	-	-	4	-
 rsn_a0102	scene, event 285	MesDir	cut04a	requested by Master.main	-	0	We've secured an Atomos. Come!	-	-	-	-	-	-	-	-	-	-	1	-
-rsn_a0102	scene, event 285	MesDir	cut05a	requested by Master.main	-	1; 2; 3; 4	An Atomos? All skiff, no ship. / Hardly fit for a leading man. / So I can fly it then? / Are you mad?	-	-	-	-	-	-	-	-	-	-	1	-
+rsn_a0102	scene, event 285	MesDir	cut05a	requested by Master.main	Balthier; Vaan; Fran	1; 2; 3; 4	An Atomos? All skiff, no ship. / Hardly fit for a leading man. / So I can fly it then? / Are you mad?	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_a0102	scene, event 285	MesDir	movie01	requested by MovieFrameCtrl.movie_play	-	5	Can't we go faster?	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_a0102	scene, event 285	MesDir	movie02	requested by MovieFrameCtrl.movie_play	-	6	Not yet.	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_a0102	scene, event 285	MesDir	movie03	requested by MovieFrameCtrl.movie_play	-	7	They passed.	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_a0102	scene, event 285	MesDir	movie04	requested by MovieFrameCtrl.movie_play	-	8	Had we gone too fast, they'd have noticed.	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_a0102	scene, event 285	movieSkip監督	Skip監視	requested by MovieCtrl.movie_play	no name shown	10	Skip	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_b0100	scene, event 287	Director	main	main	system message; no name shown	system message 70; 0	[value] leaves the party. [value] joins the party! (the game fills the two [value] with Vossler, party table row 11, and Penelo, party table row 5) / (empty string)	-	-	-	-	-	receives Manufacted Nethicite	-	-	-	-	1	-
-rsn_b0100	scene, event 287	Mes	m001	requested by Director.main	-	1	Vaan!	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_b0100	scene, event 287	Mes	m002	requested by Director.main	-	2	It's okay. We're okay.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_b0100	scene, event 287	Mes	m001	requested by Director.main	Penelo	1	Vaan!	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_b0100	scene, event 287	Mes	m002	requested by Director.main	Vaan	2	It's okay. We're okay.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_b0100	scene, event 287	Mes	m003	requested by Director.main	-	3	Ghis knows you've escaped. You must hurry.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_b0100	scene, event 287	Mes	m004	requested by Director.main	-	4	You are Captain Azelas. You will follow me.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_b0100	scene, event 287	Mes	m004_2	requested by Director.main	-	5	We must reach the airships before they do.	-	-	-	-	-	-	-	-	-	-	2	-
@@ -151,18 +151,18 @@ rsn_d0100	scene, event 280	バトルヒント	バトルヒントカット１	req
 rsn_d0180	scene, event 704	Mes	m001	requested by Director.main	-	0	Majesty. We will cut you a path.	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_d0180	scene, event 704	Mes	m002	requested by Director.main	-	1	I will not place my trust in the sword of a traitor!	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_d0180	scene, event 704	Mes	m003	requested by Director.main	Vossler	2	Yet trust his sword we must, traitor or no. I see no other way.	-	-	-	-	-	-	-	-	-	-	1	-
-rsn_d0180	scene, event 704	Mes	m004	requested by Director.main	-	3	We track back, commandeer a ship, and make our escape.	-	-	-	-	-	-	-	-	-	-	1	-
+rsn_d0180	scene, event 704	Mes	m004	requested by Director.main	Vossler	3	We track back, commandeer a ship, and make our escape.	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_d0180	scene, event 704	Mes	m005	requested by Director.main	-	4	Her Majesty cannot abide weakness, least of all in herself.	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_d0180	scene, event 704	Mes	m006	requested by Director.main	-	5	We must make her confront the reality of our plight.	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_y0100	scene, event 284	Director	main	main	system message; no name shown	system message 36; 0	[value] joins the party! (the game fills [value] with Ashe, party table row 1) / (empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-rsn_y0100	scene, event 284	Mes	m001	requested by Director.main	-	1	You are unharmed.	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_y0100	scene, event 284	Mes	m002	requested by Director.main	-	2	Vossler! I—	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_y0100	scene, event 284	Mes	m003	requested by Director.main	-	3	Majesty!	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_y0100	scene, event 284	Mes	m001	requested by Director.main	Vossler	1	You are unharmed.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_y0100	scene, event 284	Mes	m002	requested by Director.main	Ashe	2	Vossler! I—	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_y0100	scene, event 284	Mes	m003	requested by Director.main	Vossler	3	Majesty!	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_y0100	scene, event 284	Mes	m004	requested by Director.main	Ashe	4	It's nothing. I'll be fine.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_y0100	scene, event 284	Mes	m005	requested by Director.main	-	5	Come on, come on! Let's go! What are you waiting for?	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_y0100	scene, event 284	Mes	m006	requested by Director.main	-	6	Penelo's still out there!	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_y0100	scene, event 284	Mes	m007	requested by Director.main	-	7	We should hurry. They won't be long.	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_y0100	scene, event 284	Mes	m008	requested by Director.main	-	8	We will talk later.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_y0100	scene, event 284	Mes	m007	requested by Director.main	Balthier	7	We should hurry. They won't be long.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_y0100	scene, event 284	Mes	m008	requested by Director.main	Vossler	8	We will talk later.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_y0100	scene, event 284	Mes	m009	requested by Director.main	-	9	You.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_y0100	scene, event 284	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
 rsn_y0100	scene, event 284	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
@@ -178,15 +178,15 @@ rsn_y0100	scene, event 284	イベント特殊効果画面_EV	システムメッ�
 rsn_y0100	scene, event 284	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s0_2; receives the item held in file_var_s4_1	-	-	-	-	1	-
 rsn_z0100	scene, event 282	メッセージ	メッセージ01	requested by 監督.リヴァイアサン艦橋にて	-	2	The prisoners, my lord.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0100	scene, event 282	メッセージ	メッセージ02	requested by 監督.リヴァイアサン艦橋にて	Basch	3	Majesty—	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_z0100	scene, event 282	メッセージ	メッセージ03	requested by 監督.リヴァイアサン艦橋にて	-	4; 5	After what you've done! How dare you! / You're supposed to be dead!	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_z0100	scene, event 282	メッセージ	メッセージ05	requested by 監督.リヴァイアサン艦橋にて	-	6; 7; 8	Come now, come now. Have you forgotten your manners? / This is hardly the courtesy due... / the late Princess Ashelia B'nargin Dalmasca.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_z0100	scene, event 282	メッセージ	メッセージ03	requested by 監督.リヴァイアサン艦橋にて	Ashe	4; 5	After what you've done! How dare you! / You're supposed to be dead!	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_z0100	scene, event 282	メッセージ	メッセージ05	requested by 監督.リヴァイアサン艦橋にて	Judge Ghis	6; 7; 8	Come now, come now. Have you forgotten your manners? / This is hardly the courtesy due... / the late Princess Ashelia B'nargin Dalmasca.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0100	scene, event 282	メッセージ	メッセージ07	requested by 監督.リヴァイアサン艦橋にて	Vaan	9	Princess?	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0100	scene, event 282	メッセージ	メッセージ08	requested by 監督.リヴァイアサン艦橋にて	-	10; 11; 12; 13; 14; 15	To be sure, she bears no proof of her former station. / No different than any mean member of the insurgence. / The Resistance. / His Excellency the Consul asks the ministry of the disthroned royal family in restoring peace to Dalmasca. / Those who foster instability and unrest, who claim royal blood without proof... / they shall meet their fate at the gallows. There are no exceptions.	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_z0100	scene, event 282	メッセージ	メッセージ12	requested by 監督.リヴァイアサン艦橋にて	-	16	I will not play puppet to Vayne.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_z0100	scene, event 282	メッセージ	メッセージ12	requested by 監督.リヴァイアサン艦橋にて	Ashe	16	I will not play puppet to Vayne.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0100	scene, event 282	メッセージ	メッセージ13	requested by 監督.リヴァイアサン艦橋にて	-	17; 18; 19; 20	King Raminas entrusted me with a task. / Should the time come, he bade me give you something of great importance. / It is your birthright: the Dusk Shard. / It will warrant the quality of her blood. Only I know where to find it.	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_z0100	scene, event 282	メッセージ	メッセージ16	requested by 監督.リヴァイアサン艦橋にて	-	21; 22; 23	Wait. / You took my father's life! Why spare mine now? You would have me live in shame! / If that is your duty: yes.	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_z0100	scene, event 282	メッセージ	メッセージ19	requested by 監督.リヴァイアサン艦橋にて	-	24; 25	Stop being so stubborn! / Keep on like this and you're gonna get us all killed.	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_z0100	scene, event 282	メッセージ	メッセージ20	requested by 監督.リヴァイアサン艦橋にて	-	26	Don't interrupt!	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_z0100	scene, event 282	メッセージ	メッセージ16	requested by 監督.リヴァイアサン艦橋にて	Ashe; Basch	21; 22; 23	Wait. / You took my father's life! Why spare mine now? You would have me live in shame! / If that is your duty: yes.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_z0100	scene, event 282	メッセージ	メッセージ19	requested by 監督.リヴァイアサン艦橋にて	Vaan	24; 25	Stop being so stubborn! / Keep on like this and you're gonna get us all killed.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_z0100	scene, event 282	メッセージ	メッセージ20	requested by 監督.リヴァイアサン艦橋にて	Ashe	26	Don't interrupt!	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0100	scene, event 282	メッセージ	メッセージ21	requested by 監督.リヴァイアサン艦橋にて	Basch	27	Vaan. That stone.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0100	scene, event 282	メッセージ	メッセージ22	requested by 監督.リヴァイアサン艦橋にて	Vaan; Balthier	28; 29	It was in the palace treasure. / Well, well.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0100	scene, event 282	メッセージ	メッセージ25	requested by 監督.リヴァイアサン艦橋にて	-	30; 31	Splendid! You've brought the Stone with you! This spares us a great deal of trouble. / Don't give it to him!	-	-	-	-	-	-	-	-	-	-	2	-
@@ -194,11 +194,11 @@ rsn_z0100	scene, event 282	メッセージ	メッセージ27	requested by 監督
 rsn_z0100	scene, event 282	メッセージ	メッセージ30	requested by 監督.リヴァイアサン艦橋にて	Judge Ghis	35	Vayne Solidor. What fascination does this hold for you?	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0100	scene, event 282	movieSkip監督	Skip監視	requested by 監督.リヴァイアサン艦橋にて	no name shown	36	Skip	-	-	-	-	-	-	-	-	-	-	1	-
 rsn_z0101	scene, event 289	メッセージ	表示	requested by 監督.main	-	0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20; 21; 22; 23; 24; 25; 26; 27; 28; 29; 30; 31; 32; 33	Such a tremendous honor to again be graced with your presence, Majesty. / You left us with such great dispatch upon our last encounter that I must confess... / I had begun to worry that we may have given Your Majesty some cause for offense. / Such a heartfelt display of remorse. Now what is it you want? / I want you to give me the nethicite. / The nethicite? / That is a base imitation! / We seek Raithwall's legacy... / the ancient relics of the Dynast-King: deifacted nethicite. / Did you not tell them, Captain Azelas? / (empty string) / Majesty, he speaks of the Dawn Shard. That is the nethicite. / Are you mad, Vossler? / If we are to save Dalmasca, we must accept the truth. / I will fight this profitless battle no more! / Captain Azelas has struck a wise bargain. / In return for the Dawn Shard the Empire will... / permit Lady Ashe to reclaim her throne, and the Kingdom of Dalmasca will be restored. / Think on it. / An entire kingdom for a stone. You must admit, 'tis more than a fair exchange. / And when all is said and done, your master will have another pet. / Lady Ashe, let us take him for the people of Dalmasca. / Your Majesty wallows in indecision on peril of their heads! / And his shall be the first to fall. / Well at least your sword is to the point. / Ashe, no. / To think the relics of the Dynast-King were deifacted nethicite. / Doctor Cid will be beside himself. / What did you say? / Captain Azelas, take them to Shiva. / They should have leave to return to Rabanastre soon. / I want you to assess its power. / Did our orders not specify that we return the Stone for testing? / I will not chance returning with a Stone that is yet unproven.	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_z0200	scene, event 279	メッセージ	メッセージ01	requested by 監督.砂漠の牙	-	1; 2; 3; 4; 5; 6	When we return to Dalmasca, we can announce that you are alive and well. / I will then continue our negotiations with the Empire. / I believe Larsa is the key. / He'll listen to us. We should trust him. / Who are you, Vossler, to talk of trust? / A son of Dalmasca.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_z0200	scene, event 279	メッセージ	メッセージ01	requested by 監督.砂漠の牙	Vossler; Ashe	1; 2; 3; 4; 5; 6	When we return to Dalmasca, we can announce that you are alive and well. / I will then continue our negotiations with the Empire. / I believe Larsa is the key. / He'll listen to us. We should trust him. / Who are you, Vossler, to talk of trust? / A son of Dalmasca.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0200	scene, event 279	メッセージ	メッセージ06	requested by 監督.砂漠の牙	-	7; 8	Our equipment here is limited, so we'll be using the ship's drive to make our assessment. / Once we've connected the Stone, the reaction should be easily measured—	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0200	scene, event 279	メッセージ	メッセージ07	requested by 監督.砂漠の牙	Judge Ghis	9	Methods do not interest me. Only results.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0200	scene, event 279	メッセージ	メッセージ09	requested by 監督.砂漠の牙	-	10; 11	Fran? / Such heat. The Mist—it's burning!	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_z0200	scene, event 279	メッセージ	メッセージ11	requested by 監督.砂漠の牙	-	12; 13; 14; 15; 16; 17	Sixty-eight hundred, sixty-nine hundred, seven thousand! / This must be deifacted nethicite! The count still climbs! / We've found it at last: true deifacted nethicite. The power of the Dynast-King in my hands. / Blood alone does not an emperor make, Vayne. / What is this? Something's wrong! / What is it?	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_z0200	scene, event 279	メッセージ	メッセージ11	requested by 監督.砂漠の牙	Researcher; Judge Ghis	12; 13; 14; 15; 16; 17	Sixty-eight hundred, sixty-nine hundred, seven thousand! / This must be deifacted nethicite! The count still climbs! / We've found it at last: true deifacted nethicite. The power of the Dynast-King in my hands. / Blood alone does not an emperor make, Vayne. / What is this? Something's wrong! / What is it?	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0200	scene, event 279	メッセージ	メッセージ17	requested by 監督.砂漠の牙	Vossler	18	Hold her down!	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0200	scene, event 279	メッセージ	メッセージ18	requested by 監督.砂漠の牙	Penelo; Balthier; Ashe	19; 20; 21; 22; 23	What's wrong with her? / I always knew Fran didn't take well to being tied up. / I just never knew how much. / How about you? / I like Fran's idea. Let's get out of here!	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_z0200	scene, event 279	メッセージ	メッセージ22	requested by 監督.砂漠の牙	Vossler	24; 25; 26	No farther! / Sky pirates! The future of Dalmasca will not be stolen! / Why do this, Basch? This struggle is futile. You must know where it leads!	-	-	-	-	-	-	-	-	-	-	2	-

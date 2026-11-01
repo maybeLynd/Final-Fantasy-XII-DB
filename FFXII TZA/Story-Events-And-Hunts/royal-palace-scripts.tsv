@@ -88,7 +88,7 @@ rrp_a06	The Garden Stairs (Royal Palace)	ムービー開始位置	touchon	toucho
 rrp_a06	The Garden Stairs (Royal Palace)	door1	talk	talk	Vaan	18	Vaan Between the guards and whoever those two were, it's not safe that way. No turning back now.	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a0500	scene, event 266	MESSAGE	カット４	requested by AD.カット４_ad	Balthier; Vaan	0; 1	Quite a performance. / Who are you?	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a0500	scene, event 266	MESSAGE	カット６	requested by AD.カット６_ad	Balthier	2	I play the leading man, who else?	-	-	-	-	-	-	-	-	-	-	1	-
-rrp_a0500	scene, event 266	MESSAGE	カット７	requested by AD.カット７_ad	-	3; 4	Fran, the magicite. / Now then. I'll take that.	-	-	-	-	-	-	-	-	-	-	1	-
+rrp_a0500	scene, event 266	MESSAGE	カット７	requested by AD.カット７_ad	Balthier; Fran	3; 4	Fran, the magicite. / Now then. I'll take that.	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a0500	scene, event 266	MESSAGE	カット８	requested by AD.カット８_ad	Vaan	5	No you won't. I found it. It's mine.	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a0500	scene, event 266	MESSAGE	カット９	requested by AD.カット９_ad	Balthier	6	And then when I take it from you, it'll be mine.	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a0500	scene, event 266	MESSAGE	カット１３	requested by AD.カット１３_ad	Balthier	7	Exit stage right.	-	-	-	-	-	-	-	-	-	-	1	-

@@ -924,7 +924,7 @@ gil_l04	Sthaana Aquarius (The Great Crystal)	gil_magicwall_2nd	talk	talk	no name
 gil_z01	Siti Bhrusuna (Giruvegan)	常駐監督	main	main	-	-	-	-	-	-	5000: After King Gerun	-	-	alc_z03 (Archades), field 868, entrance 0	-	gil_z0100, event 206	-	1	-
 gil_z01	Siti Bhrusuna (Giruvegan)	choco_sum_ctrl	sumcho_byebye	requested by 常駐監督.main	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 gil_z01	Siti Bhrusuna (Giruvegan)	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
-gil_a0100	scene, event 207	字幕	カット２	requested by カット.カット２	-	1; 2; 3; 4; 5; 6	On the farthest shores of the river of time, shrouded deep in the roiling Mist. / What is it, Fran? / The Mist runs thick here. / Like on the Leviathan? / Do not worry. I will behave myself. / The Mist here is cooled.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_a0100	scene, event 207	字幕	カット２	requested by カット.カット２	Ashe; Penelo; Fran; Vaan	1; 2; 3; 4; 5; 6	On the farthest shores of the river of time, shrouded deep in the roiling Mist. / What is it, Fran? / The Mist runs thick here. / Like on the Leviathan? / Do not worry. I will behave myself. / The Mist here is cooled.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_a0100	scene, event 207	字幕	カット３	requested by カット.カット３	-	7	I sense something like the shadow here.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_a0100	scene, event 207	字幕	カット４	requested by カット.カット４	-	8	Venat.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_a0100	scene, event 207	字幕	カット５	requested by カット.カット５	-	9; 10; 11	It appears Cid has yet to arrive. We'll lie in wait for him here. / So we're not going inside? / Not unless you want to end up twisted.	-	-	-	-	-	-	-	-	-	-	1	-
@@ -933,9 +933,9 @@ gil_a0100	scene, event 207	字幕	カット８	requested by カット.カット�
 gil_c0100	scene, event 208	MesDir	cut02a	requested by Director.main	Penelo	0	I can't shake the feeling we're somewhere we're not meant to be.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_c0100	scene, event 208	MesDir	cut02b	requested by Director.main	Vaan	1	Yeah, it's exciting.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_c0100	scene, event 208	MesDir	cut03a	requested by Director.main	Penelo	2	Exciting?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_c0100	scene, event 208	MesDir	cut04a	requested by Director.main	-	3; 4	You are not troubled by the unknown? / Who can say what lies ahead? We may encounter the very creators of nethicite.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_c0100	scene, event 208	MesDir	cut05a	requested by Director.main	-	5; 6	Yeah, I don't know what we'll find. / I like it better that way.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_c0100	scene, event 208	MesDir	cut07a	requested by Director.main	-	7	You're sounding more the sky pirate every day.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_c0100	scene, event 208	MesDir	cut04a	requested by Director.main	Basch	3; 4	You are not troubled by the unknown? / Who can say what lies ahead? We may encounter the very creators of nethicite.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_c0100	scene, event 208	MesDir	cut05a	requested by Director.main	Vaan	5; 6	Yeah, I don't know what we'll find. / I like it better that way.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_c0100	scene, event 208	MesDir	cut07a	requested by Director.main	Basch	7	You're sounding more the sky pirate every day.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_d0101	scene, event 148	監督	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	1	-
 gil_d0101	scene, event 148	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s9_1	-	-	-	-	1	-
 gil_d0101	scene, event 148	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s9_1	-	-	-	-	1	-
@@ -949,17 +949,17 @@ gil_d0101	scene, event 148	イベント特殊効果画面_EV	システムメッ�
 gil_d0101	scene, event 148	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s9_1	-	-	-	-	1	-
 gil_d0101	scene, event 148	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 gil_d0101	scene, event 148	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s9_1; receives the item held in file_var_s9_2	-	-	-	-	1	-
-gil_d0102	scene, event 229	MesDir	cut02a	requested by Director.main	-	0; 1	In tower on distant shore dreams the Sun-cryst. / Do these words mean aught to you?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_d0102	scene, event 229	MesDir	cut03a	requested by Director.main	-	2; 3	"Didn't Reddas say he was going to follow some ""other course""? / Maybe he found out something that can help."	-	-	-	-	-	-	-	-	-	-	1	-
+gil_d0102	scene, event 229	MesDir	cut02a	requested by Director.main	Basch	0; 1	In tower on distant shore dreams the Sun-cryst. / Do these words mean aught to you?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_d0102	scene, event 229	MesDir	cut03a	requested by Director.main	Vaan	2; 3	"Didn't Reddas say he was going to follow some ""other course""? / Maybe he found out something that can help."	-	-	-	-	-	-	-	-	-	-	1	-
 gil_d0102	scene, event 229	MesDir	cut04a	requested by Director.main	Balthier	4	I'd rather stay out of that sky pirate's debt, thank you.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_d0102	scene, event 229	MesDir	cut05a	requested by Director.main	-	5; 6	What's wrong with Reddas? / If you can't trust your own kind, who can you trust?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_d0102	scene, event 229	MesDir	cut05a	requested by Director.main	Vaan	5; 6	What's wrong with Reddas? / If you can't trust your own kind, who can you trust?	-	-	-	-	-	-	-	-	-	-	1	-
 gil_d0102	scene, event 229	MesDir	cut06a	requested by Director.main	Balthier	7	You're an expert on pirating now, are you?	-	-	-	-	-	-	-	-	-	-	1	-
 gil_g1000	scene, event 209	MesDir	cut03a	requested by Director.main	Penelo	0	I've never seen this much Mist. Are you all right?	-	-	-	-	-	-	-	-	-	-	1	-
 gil_g1000	scene, event 209	MesDir	cut03b	requested by Director.main	Fran	1	I am fine. Thank you.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_g1000	scene, event 209	MesDir	cut04a	requested by Director.main	Ashe	2	Is that nethicite?	-	-	-	-	-	-	-	-	-	-	1	-
 gil_g1000	scene, event 209	MesDir	cut05a	requested by Director.main	Fran	3	I wonder.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_g1000	scene, event 209	MesDir	cut06	requested by Director.main	Ashe	4	With that much nethicite in one's grasp—	-	-	-	-	-	-	-	-	-	-	1	-
-gil_g1000	scene, event 209	MesDir	cut07a	requested by Director.main	-	5; 6	You could destroy all of Ivalice. / If you wished it.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_g1000	scene, event 209	MesDir	cut07a	requested by Director.main	Fran	5; 6	You could destroy all of Ivalice. / If you wished it.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_h0101	scene, event 205	DIRECTOR	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	1	-
 gil_h0101	scene, event 205	AD	カット０_ad	requested by DIRECTOR.main	-	-	-	-	-	-	-	-	-	-	every foe in group 0 removed	-	-	10	-
 gil_h0101	scene, event 205	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s10_1	-	-	-	-	1	-
@@ -994,16 +994,16 @@ gil_z0100	scene, event 206	MesDir	cut29b	requested by Director.main	-	35; 36; 37
 gil_z0100	scene, event 206	MesDir	cut30a	requested by Director.main	-	38	Take revenge against those who stole your kingdom. Fulfil your role as savior.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut31a	requested by Director.main	-	39	Attain to your birthright!	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut32a	requested by Director.main	Vaan	40	Ashe!	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut34a	requested by Director.main	-	41; 42	What's with these Occuria? What gives them the right to tell you what to do? / Will you take revenge, as they ask?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut35a	requested by Director.main	-	43; 44; 45; 46	We could not see them, but we heard the Occuria speak. / They may be gods, but we are the arbiters of our destiny. / Your Highness, I am against this. / The Empire must pay, but destruction?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut36a	requested by Director.main	-	47; 48; 49	Um... / Does anyone know what happened to Doctor Cid? / Wasn't he saying he'd be here?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut34a	requested by Director.main	Vaan; Fran	41; 42	What's with these Occuria? What gives them the right to tell you what to do? / Will you take revenge, as they ask?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut35a	requested by Director.main	Basch	43; 44; 45; 46	We could not see them, but we heard the Occuria speak. / They may be gods, but we are the arbiters of our destiny. / Your Highness, I am against this. / The Empire must pay, but destruction?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut36a	requested by Director.main	Penelo	47; 48; 49	Um... / Does anyone know what happened to Doctor Cid? / Wasn't he saying he'd be here?	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut37a	requested by Director.main	Basch; Balthier	50; 51	He should've arrived by now. / And I should've realized by now.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut38a	requested by Director.main	-	52; 53	He's not coming. / He laid out the bait, and we bit.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut39a	requested by Director.main	-	54; 55; 56; 57; 58	Remember what he said? / He wanted Ashe to get the stone. / He wanted that all along. / That's why he flaunted his nethicite, and reeled us in with his stories about Giruvegan. / All to bring Ashe to the Occuria.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut40a	requested by Director.main	-	59; 60; 61	But wait—if we got a hold of the nethicite, wouldn't that be bad for the Empire? / Maybe he wants to see what happens when foes with nethicite collide? / That'd be just like Doctor Cid.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut38a	requested by Director.main	Balthier	52; 53	He's not coming. / He laid out the bait, and we bit.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut39a	requested by Director.main	Balthier	54; 55; 56; 57; 58	Remember what he said? / He wanted Ashe to get the stone. / He wanted that all along. / That's why he flaunted his nethicite, and reeled us in with his stories about Giruvegan. / All to bring Ashe to the Occuria.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut40a	requested by Director.main	Penelo; Balthier	59; 60; 61	But wait—if we got a hold of the nethicite, wouldn't that be bad for the Empire? / Maybe he wants to see what happens when foes with nethicite collide? / That'd be just like Doctor Cid.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut41a	requested by Director.main	-	62	I will search out the Sun-cryst.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut42a	requested by Director.main	-	63; 64	"""History is built by our hands."" That's his favorite line. / He'd never stand by and watch the Occuria's Stones shape things."	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut43a	requested by Director.main	-	65; 66; 67	So... / he was talking to Venat all along. / He wasn't mad at all then, was he.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut42a	requested by Director.main	Balthier	63; 64	"""History is built by our hands."" That's his favorite line. / He'd never stand by and watch the Occuria's Stones shape things."	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut43a	requested by Director.main	Balthier	65; 66; 67	So... / he was talking to Venat all along. / He wasn't mad at all then, was he.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	movieSkip監督	Skip監視	requested by Director.main	no name shown	68	Skip	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	choco_sum_ctrl	sumcho_byebye	requested by Director.main	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 gil_z0100	scene, event 206	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-

@@ -158,26 +158,26 @@ hne_e01	Special Charter Dig (Henne Mines)	ギミック	扉開く	requested by �
 hne_e01	Special Charter Dig (Henne Mines)	ギミック	扉開くＥＶ	-	-	-	-	0x015C: Draws the location map's link between Crossover C (Henne Mines) and Special Charter Dig (Henne Mines)	-	Primary (0x015c && (g_com_マップ通行制限フラグ[1] & 1)) (computed)	-	-	-	-	-	-	-	4	-
 hne_e01	Special Charter Dig (Henne Mines)	ギミック	扉アニメ開く	-	-	-	-	0x015C: Draws the location map's link between Crossover C (Henne Mines) and Special Charter Dig (Henne Mines)	-	0x015C: Draws the location map's link between Crossover C (Henne Mines) and Special Charter Dig (Henne Mines)	-	-	-	-	-	-	-	4	-
 hne_e01	Special Charter Dig (Henne Mines)	ショートカット	talk	talk	-	-	-	-	-	-	-	-	-	Crossover C (Henne Mines), field 726, entrance 4	-	-	-	5	-
-hne_a0700	scene, event 344	日本語字幕	cut2	requested by ＡＤ.s02	-	0; 1	Look at the magicite. These mines much resemble the ones at Lhusu. / Of course. Draklor must be searching for new sources of ore.	-	-	-	-	-	-	-	-	-	-	1	-
-hne_a0700	scene, event 344	日本語字幕	cut2_2	requested by ＡＤ.s02, ＡＤ.s03	-	2	Should the Resistance forces move, the rich veins of magicite in Bhujerba will be forever beyond their grasp.	-	-	-	-	-	-	-	-	-	-	1	-
-hne_a0700	scene, event 344	日本語字幕	cut4	requested by ＡＤ.s04	-	3	Is it her? What is this Mist?	-	-	-	-	-	-	-	-	-	-	1	-
+hne_a0700	scene, event 344	日本語字幕	cut2	requested by ＡＤ.s02	Larsa	0; 1	Look at the magicite. These mines much resemble the ones at Lhusu. / Of course. Draklor must be searching for new sources of ore.	-	-	-	-	-	-	-	-	-	-	1	-
+hne_a0700	scene, event 344	日本語字幕	cut2_2	requested by ＡＤ.s02, ＡＤ.s03	Larsa	2	Should the Resistance forces move, the rich veins of magicite in Bhujerba will be forever beyond their grasp.	-	-	-	-	-	-	-	-	-	-	1	-
+hne_a0700	scene, event 344	日本語字幕	cut4	requested by ＡＤ.s04	Fran	3	Is it her? What is this Mist?	-	-	-	-	-	-	-	-	-	-	1	-
 hne_a0700	scene, event 344	日本語字幕	cut5	requested by ＡＤ.s05	Fran	4	Mjrn!	-	-	-	-	-	-	-	-	-	-	1	-
 hne_a0700	scene, event 344	日本語字幕	cut6	requested by ＡＤ.s06	Mjrn	5	The stench of humes. The stench of power.	-	-	-	-	-	-	-	-	-	-	1	-
-hne_a0700	scene, event 344	日本語字幕	cut7	requested by ＡＤ.s07	-	6	What's wrong with her?	-	-	-	-	-	-	-	-	-	-	1	-
+hne_a0700	scene, event 344	日本語字幕	cut7	requested by ＡＤ.s07	Ashe	6	What's wrong with her?	-	-	-	-	-	-	-	-	-	-	1	-
 hne_a0700	scene, event 344	日本語字幕	cut8	requested by ＡＤ.s08	-	7; 8	Stay away! / Power-needy hume!	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0101	scene, event 341	choco_sum_ctrl	sumcho_byebye	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 hne_b0101	scene, event 341	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 hne_b0102	scene, event 345	日本語字幕	cut10	requested by ＡＤ.s10	Vaan	0	That thing inside her. What was it?	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut11	requested by ＡＤ.s11	Mjrn	1	Is it you?	-	-	-	-	-	-	-	-	-	-	1	-
-hne_b0102	scene, event 345	日本語字幕	cut12	requested by ＡＤ.s12	-	2; 3	When the hume soldiers came to the Wood, the village took small heed of them. / So long as the Wood Herself is safe from harm, the viera give little care to goings-on beyond Her.	-	-	-	-	-	-	-	-	-	-	1	-
+hne_b0102	scene, event 345	日本語字幕	cut12	requested by ＡＤ.s12	Mjrn	2; 3	When the hume soldiers came to the Wood, the village took small heed of them. / So long as the Wood Herself is safe from harm, the viera give little care to goings-on beyond Her.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut13	requested by ＡＤ.s13	Mjrn	4	But in me an uneasiness stirred. I had to discover why they had come.	-	-	-	-	-	-	-	-	-	-	1	-
-hne_b0102	scene, event 345	日本語字幕	cut14	requested by ＡＤ.s14	-	5; 6	So you came here hoping to find something out, and got yourself caught. / You're as foolhardy as your sister.	-	-	-	-	-	-	-	-	-	-	1	-
+hne_b0102	scene, event 345	日本語字幕	cut14	requested by ＡＤ.s14	Balthier	5; 6	So you came here hoping to find something out, and got yourself caught. / You're as foolhardy as your sister.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut15	requested by ＡＤ.s15	-	7; 8; 9; 10	They took me then, and set close beside me a stone. / They said its Mist would be drawn into me, that the viera well suited this end. / I saw the light coming from the stone, and then— / We have seen this.	-	-	-	-	-	-	-	-	-	-	1	-
-hne_b0102	scene, event 345	日本語字幕	cut16	requested by ＡＤ.s16	-	11; 12	On Leviathan, the Mist from the Dawn Shard drove me, too, into such a rage. / She was taken not by the Dawn Shard.	-	-	-	-	-	-	-	-	-	-	1	-
+hne_b0102	scene, event 345	日本語字幕	cut16	requested by ＡＤ.s16	Fran	11; 12	On Leviathan, the Mist from the Dawn Shard drove me, too, into such a rage. / She was taken not by the Dawn Shard.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut17	requested by ＡＤ.s17	Larsa	13	Manufacted nethicite.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut19	requested by ＡＤ.s19	Larsa	14	Then that means—Penelo, the stone I gave you, do you still carry it with you?	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut19_2	requested by ＡＤ.s19	Penelo	15	Sure, it's right here.	-	-	-	-	-	-	-	-	-	-	1	-
-hne_b0102	scene, event 345	日本語字幕	cut20	requested by ＡＤ.s20	-	16; 17; 18; 19	This is a thing more dangerous again than I had imagined. I should never have given it to you. / Forgive me, I did not know. / I'd always thought of it as sort of a good luck charm. / And even if it is dangerous, on Leviathan it kept us safe.	-	-	-	-	-	-	-	-	-	-	1	-
+hne_b0102	scene, event 345	日本語字幕	cut20	requested by ＡＤ.s20	Larsa; Penelo	16; 17; 18; 19	This is a thing more dangerous again than I had imagined. I should never have given it to you. / Forgive me, I did not know. / I'd always thought of it as sort of a good luck charm. / And even if it is dangerous, on Leviathan it kept us safe.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut21	requested by ＡＤ.s21	Ashe; Vaan	20; 21	There is a place for all things, even danger such as this. / I hope you're right about that.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_e0101	scene, event 343	プロデューサー	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	1	-
 hne_e0101	scene, event 343	監督	死亡演出	requested by プロデューサー.main	-	-	-	-	-	-	-	-	-	-	every foe in group 0 removed	-	-	1	-

@@ -377,9 +377,24 @@ over all slots and over the slots a map can select:
 None of the 410 shipped banks names 90 of the 708 fields in `fields_own` or `fields_block`, so those fields' slots
 make no zone-start element.
 
-The models a slot draws are a separate test (`0x002F5616`, above). It was read on two maps only. Fading Vale (field
-463, pack `pbc0101`) has 772 model records, and Field of Fallen Wings (field 525, `ozm0101`) has 1,976. All but 5 on
-each are drawn in all three slots, and those 5 are sky instances (flag `0x10000000`).
+The models a slot draws are a separate test (`0x002F5616`, above), read on every map pack:
+[weather-slot-models.tsv](weather-slot-models.tsv) gives each pack's models that are drawn in some slots only, one
+row per slot pattern and scene group, with the zones that load the pack, the record count and the textures.
+
+- 461 of the 550 packs hold model records (764,018); the other 89 have none. 761,479 records are drawn in all three
+  slots.
+- 501 sky pieces (flag `0x10000000`) in 126 packs are drawn in some slots only, so those maps change their sky with
+  the slot.
+- 2,038 other models in 50 packs are as well, in Archades, the Cerobi Steppe, Mt Bur-Omisace, the Nabreus Deadlands,
+  the Phon Coast, the Ridorana Cataract and the Tchita Uplands. 671 of the 2,038 records have no mesh instance of
+  their record number in the remaster scene.
+- Most of their scene groups come in pairs, a set for slot 1 and a set for slots 2 and 3: shadows (`kage_slot1` and
+  `kage_slot2`, `tree_shadow` and `tree_shadow2`, `shadow` and `shadow2`), plants (`plants_s` and `plants_s2`), the
+  sea (`sea1` and `sea2`) and stairs (`kaidan` and `kaidan2`).
+- In Archades (`alc5001`) `shadow1` is drawn in slot 1 and its `shadow2` in slot 2 only. `hamon` is drawn in slot 3
+  (136 records; 1 more, in `srb0104`, in slot 1) and `mizuzoko` (21) in slots 1 and 2.
+- Some groups named for the sky (`sky`, `sky2`, `cloud`, `kumo`) carry no sky flag and are counted with these.
+- `pbc0101` (772 records) and `ozm0101` (1,976), read first, have 5 slot-limited records each, all sky pieces.
 
 ### The verbs
 

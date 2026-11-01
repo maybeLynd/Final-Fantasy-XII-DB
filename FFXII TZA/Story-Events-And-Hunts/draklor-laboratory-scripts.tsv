@@ -569,40 +569,40 @@ dor_f13	Rm 6901 East (Draklor Laboratory)	NPC_LABO_0	talk_F2	-	Junior Researcher
 dor_f13	Rm 6901 East (Draklor Laboratory)	NPC_LABO_0	talk_F3	-	Junior Researcher; Senior Researcher; Nethicite Researcher	0; 1; 2	Just a moment ago in the corridor, I was told by the guards to wait inside the laboratory. Is something amiss? Oh dear! I do hope it's not that monster they were examining in the north lab... / What's going on? There were soldiers in the laboratory... Has there been an intruder? The bulkheads are functioning...we're safe. The bulkheads, red and blue, are activated alternately. When one opens, the other locks. No one who wasn't intimately familiar with the workings of the laboratory could get through. The guards will find them soon enough. So then, who might you be? / Quite a commotion outside... It's hard to concentrate with such a racket. I've all the latest manufacted nethicite data, yet Doctor Cid is unreachable. Perhaps he's pondering the mysteries of the universe on 70...	-	-	-	-	-	-	-	-	-	-	6	-
 dor_z01	dor_z01 (Draklor Laboratory)	常駐監督	main	main	-	-	-	-	-	-	3400: After the forcible approach	-	-	67th Floor (Draklor Laboratory), field 1054, entrance 2	-	dor_z0100, event 178	-	1	-
 dor_a0100	scene, event 179	セリフ	cut_01_ex01	requested by 監督.main	Basch	2	It's too quiet.	-	-	-	-	-	-	-	-	-	-	4	-
-dor_a0100	scene, event 179	セリフ	cut_01_ex02	requested by 監督.main	-	3; 4	Passing strange. / There are supposed to be guards here.	-	-	-	-	-	-	-	-	-	-	4	-
-dor_a0100	scene, event 179	セリフ	cut_02	requested by 監督.main	-	5; 6	Maybe we're just lucky? / Maybe you're just optimistic.	-	-	-	-	-	-	-	-	-	-	4	-
+dor_a0100	scene, event 179	セリフ	cut_01_ex02	requested by 監督.main	Balthier	3; 4	Passing strange. / There are supposed to be guards here.	-	-	-	-	-	-	-	-	-	-	4	-
+dor_a0100	scene, event 179	セリフ	cut_02	requested by 監督.main	Vaan; Balthier	5; 6	Maybe we're just lucky? / Maybe you're just optimistic.	-	-	-	-	-	-	-	-	-	-	4	-
 dor_a0100	scene, event 179	セリフ	cut_03	requested by 監督.main	-	7; 8; 9; 10	Something may be afoot. / We proceed with caution. / No time for caution. / Step to it! Cid's chambers are on the top level.	-	-	-	-	-	-	-	-	-	-	4	-
 dor_a0100	scene, event 179	ムービー用セリフ	テキスト表示	requested by 監督.main	-	11; 12	Where to? / Come. This way.	-	-	-	-	-	-	-	-	-	-	2	-
 dor_a0100	scene, event 179	movieSkip監督	Skip監視	requested by 監督.main	no name shown	13	Skip	-	-	-	-	-	-	-	-	-	-	1	-
-dor_b0100	scene, event 176	メッセージ	メッセージ01	requested by 監督.シドと空賊レダス	-	1; 2; 3	Cid! / You know deifacted nethicite brought down the Leviathan! / How can you persist in this folly?	-	-	-	-	-	-	-	-	-	-	3	-
-dor_b0100	scene, event 176	メッセージ	メッセージ02	requested by 監督.シドと空賊レダス	-	4; 5	And you've come here to stop me? I'd fain see you try. / Consider your bones, old man. You're outmatched.	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0100	scene, event 176	メッセージ	メッセージ01	requested by 監督.シドと空賊レダス	Reddas	1; 2; 3	Cid! / You know deifacted nethicite brought down the Leviathan! / How can you persist in this folly?	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0100	scene, event 176	メッセージ	メッセージ02	requested by 監督.シドと空賊レダス	Doctor Cid; Balthier	4; 5	And you've come here to stop me? I'd fain see you try. / Consider your bones, old man. You're outmatched.	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0100	scene, event 176	メッセージ	メッセージ03	requested by 監督.シドと空賊レダス	Doctor Cid	6	Pirate scum of the skies. What brings you here?	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0100	scene, event 176	メッセージ	メッセージ04	requested by 監督.シドと空賊レダス	-	7	Treasure. What else would a pirate want? We'll take the Dusk Shard.	-	-	-	-	-	-	-	-	-	-	3	-
-dor_b0100	scene, event 176	メッセージ	メッセージ05	requested by 監督.シドと空賊レダス	-	8; 9	You've come all this way for that trinket? I thought you above this. / Hm? What's that?	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0100	scene, event 176	メッセージ	メッセージ05	requested by 監督.シドと空賊レダス	Doctor Cid	8; 9	You've come all this way for that trinket? I thought you above this. / Hm? What's that?	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0100	scene, event 176	メッセージ	メッセージ06	requested by 監督.シドと空賊レダス	Doctor Cid	10	The Princess of Dalmasca come to visit?	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0100	scene, event 176	メッセージ	メッセージ07	requested by 監督.シドと空賊レダス	Doctor Cid	11	She's not entirely without merit.	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0100	scene, event 176	メッセージ	メッセージ07_02	requested by 監督.シドと空賊レダス	Doctor Cid	12	A test of sorts for our princess?	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0100	scene, event 176	メッセージ	メッセージ08	requested by 監督.シドと空賊レダス	Ashe	13	You're a babbling fool.	-	-	-	-	-	-	-	-	-	-	3	-
-dor_b0100	scene, event 176	メッセージ	メッセージ09	requested by 監督.シドと空賊レダス	-	14; 15	A trial for Ashelia B'nargin Dalmasca! / You lust for the Stone's power, do you not?	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0100	scene, event 176	メッセージ	メッセージ09	requested by 監督.シドと空賊レダス	Doctor Cid	14; 15	A trial for Ashelia B'nargin Dalmasca! / You lust for the Stone's power, do you not?	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0100	scene, event 176	メッセージ	メッセージ10	requested by 監督.シドと空賊レダス	Reddas	16	Lend him not your ears, m'lady. He means to use you.	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0100	scene, event 176	メッセージ	メッセージ12	requested by 監督.シドと空賊レダス	Fran; Balthier	17; 18	Manufacted nethicite! Like Bergan. / How could you do this? How could you fall this far?	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0101	scene, event 177	セリフ	cut_10	requested by 監督.main	Doctor Cid	3	Venat, you shouldn't have.	-	-	-	-	-	-	-	-	-	-	3	-
-dor_b0101	scene, event 177	セリフ	cut_11	requested by 監督.main	-	4	This creature... So this is your Venat?	-	-	-	-	-	-	-	-	-	-	3	-
-dor_b0101	scene, event 177	セリフ	cut_13	requested by 監督.main	-	5; 6; 7	Ashelia B'nargin Dalmasca! / Just how far will you go for power? / Does your lust for nethicite consume you?	-	-	-	-	-	-	-	-	-	-	3	-
-dor_b0101	scene, event 177	セリフ	cut_15	requested by 監督.main	-	8; 9; 10; 11	Am I right? I am, aren't I. / A worthy daughter of the Dynast-King! / You would do well to go to Giruvegan. / Who knows? You may receive a new Stone for your trouble.	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0101	scene, event 177	セリフ	cut_11	requested by 監督.main	Balthier	4	This creature... So this is your Venat?	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0101	scene, event 177	セリフ	cut_13	requested by 監督.main	Doctor Cid	5; 6; 7	Ashelia B'nargin Dalmasca! / Just how far will you go for power? / Does your lust for nethicite consume you?	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0101	scene, event 177	セリフ	cut_15	requested by 監督.main	Doctor Cid	8; 9; 10; 11	Am I right? I am, aren't I. / A worthy daughter of the Dynast-King! / You would do well to go to Giruvegan. / Who knows? You may receive a new Stone for your trouble.	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0101	scene, event 177	セリフ	cut_17	requested by 監督.main	Ashe	12	Your words mean nothing to me!	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0101	scene, event 177	セリフ	cut_18	requested by 監督.main	Doctor Cid	13	The reins of History back in the hands of Man.	-	-	-	-	-	-	-	-	-	-	3	-
-dor_b0101	scene, event 177	セリフ	cut_20	requested by 監督.main	-	14; 15	I too make for Giruvegan. / Give chase, if you dare it!	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0101	scene, event 177	セリフ	cut_20	requested by 監督.main	Doctor Cid	14; 15	I too make for Giruvegan. / Give chase, if you dare it!	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0101	scene, event 177	セリフ	cut_23	requested by 監督.main	-	16; 17; 18	I hate it when he does that. / Mayhaps you think me remiss! / The Lady Ashe of Dalmasca?	-	-	-	-	-	-	-	-	-	-	3	-
-dor_b0101	scene, event 177	セリフ	cut_25	requested by 監督.main	-	19	The sky pirate Reddas, at your employ.	-	-	-	-	-	-	-	-	-	-	3	-
+dor_b0101	scene, event 177	セリフ	cut_25	requested by 監督.main	Reddas	19	The sky pirate Reddas, at your employ.	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0101	scene, event 177	セリフ	btl_cut_02	requested by 監督.main	Doctor Cid	20	Always hiding behind your toys. Pity if anything were to happen to them.	-	-	-	-	-	-	-	-	-	-	3	-
 dor_b0101	scene, event 177	choco_sum_ctrl	sumcho_byebye	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 dor_b0101	scene, event 177	choco_sum_ctrl	sumcho_byebye_fadeout	requested by 監督.main	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 dor_c1200	scene, event 175	メッセージ	メッセージ01	requested by 監督.シドと空賊レダス	-	1; 2; 3	Ah. My apologies. You bear not the stench of Cid's lackies. / And you are... our earlier visitor. / Yes, a valuable man, one I'd sooner not lose. Yet he knows too much.	-	-	-	-	-	-	-	-	-	-	2	-
 dor_z0100	scene, event 178	強硬手段	main	main	system message; no name shown	system message 137; 0	Your location map for this area is complete! / (empty string)	-	-	-	-	-	receives Lab Access Card; receives Draklor Laboratories	-	-	-	-	1	-
-dor_z0100	scene, event 178	台詞	カット２	requested by カット.カット２	-	2; 3	He's had visitors. Ones lacking manners, by the look of it. / Someone after the nethicite?	-	-	-	-	-	-	-	-	-	-	1	-
+dor_z0100	scene, event 178	台詞	カット２	requested by カット.カット２	Fran; Vaan	2; 3	He's had visitors. Ones lacking manners, by the look of it. / Someone after the nethicite?	-	-	-	-	-	-	-	-	-	-	1	-
 dor_z0100	scene, event 178	台詞	カット３	requested by カット.カット３	Balthier	4	The Jagd Difohr was it?	-	-	-	-	-	-	-	-	-	-	1	-
-dor_z0100	scene, event 178	台詞	カット１０３	requested by カット.カット１０３	-	5; 6	Six years, and ever since you got back, this... / What madness found you there?	-	-	-	-	-	-	-	-	-	-	1	-
+dor_z0100	scene, event 178	台詞	カット１０３	requested by カット.カット１０３	Balthier	5; 6	Six years, and ever since you got back, this... / What madness found you there?	-	-	-	-	-	-	-	-	-	-	1	-
 dor_z0100	scene, event 178	台詞	カット４	requested by カット.カット４	-	7	Up! Above us!	-	-	-	-	-	-	-	-	-	-	1	-
 dor_z0100	scene, event 178	台詞	カット５	requested by カット.カット５, カット.カット１０５	-	8; 9; 10; 11	Drop bulkheads five and eight! Be to it! / They found us! / His earlier visitors, more like. We should lie low for now. / No, we'll use their confusion.	-	-	-	-	-	-	-	-	-	-	1	-
 dor_z0100	scene, event 178	台詞	カット６	requested by カット.カット６	-	12	We need to find Cid. Now.	-	-	-	-	-	-	-	-	-	-	1	-
