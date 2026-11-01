@@ -186,9 +186,9 @@ Event record `0x02D3E880`, `0x28` bytes:
 | `+0x00` | `u8` | created |  |
 | `+0x08` | `u64` | handle | CreateEventA result |
 | `+0x10` | `u8` | flag | set by `0x005CD0A0`, cleared by `0x005CD6D0` |
-| `+0x18` | `u32` | (zeroed by 0x005CC8A0) |  |
-| `+0x20` | `u32` | (zeroed by 0x005CC8A0) |  |
-| `+0x24` | `u32` | (zeroed by 0x005CC8A0) |  |
+| `+0x18` | `u32` |  | (zeroed by `0x005CC8A0`) |
+| `+0x20` | `u32` |  | (zeroed by `0x005CC8A0`) |
+| `+0x24` | `u32` |  | (zeroed by `0x005CC8A0`) |
 
 ## Shipped data
 
@@ -351,5 +351,5 @@ from `0x00808C90` (`0x00808D3A`, `0x00808D45`), `0x00808D78` (`0x00808D95`, `0x0
   scalar-conversion registrars use.
 - [Object construction and destruction](object-construction-and-destruction.md): the deleting
   destructors whose sized-delete branch ends in `0x0016D6A0`.
-- `runtime-services.md`: the imported Windows and runtime functions.
+- [`runtime-services.md`](runtime-services.md): the imported Windows and runtime functions.
 - [Class hierarchy](../Engine-Core/class-hierarchy.md): the RTTI that names the classes.

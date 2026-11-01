@@ -27,22 +27,22 @@ The motion entries are read when a presentation entry is set up to play a motion
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `...` | '@FEF', u32 kind 0, u32 length, u32 1 |  |
-| `+0x10` | `char[32]` | the container's name |  |
-| `+0x30` | `...` | a complete EFX0010 effect file: u32 +0x08 = 1.0f, u32 +0x0C = entry length - 0x30 |  |
+| `+0x00` | `...` |  | '@FEF', u32 kind 0, u32 length, u32 1 |
+| `+0x10` | `char[32]` |  | the container's name |
+| `+0x30` | `...` |  | a complete EFX0010 effect file: u32 `+0x08` = 1.0f, u32 `+0x0C` = entry length - `0x30` |
 
 ### @FMC, the command block
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x04` | `u32` | 1 (0x10001 in 405 of the 32,151 entries) |  |
-| `+0x0C` | `u32` | record count |  |
-| `+0x10` | `char[32]` | the command block's name (weapon_ready, treasure_open, ...) |  |
-| `+0x30` | `...` | records, each: |  |
-| `+0x00` | `u8` | 1 for the block's main record |  |
-| `+0x03` | `u8` | sub-record count |  |
-| `+0x04` | `u16` | record length |  |
-| `+0x06` | `...` | sub-records: u16 key, u16 (length << 6 \| command count), then the commands |  |
+| `+0x04` | `u32` |  | 1 (`0x10001` in 405 of the 32,151 entries) |
+| `+0x0C` | `u32` |  | record count |
+| `+0x10` | `char[32]` |  | the command block's name (weapon_ready, treasure_open, ...) |
+| `+0x30` | `...` |  | records, each: |
+| `+0x00` | `u8` |  | 1 for the block's main record |
+| `+0x03` | `u8` |  | sub-record count |
+| `+0x04` | `u16` |  | record length |
+| `+0x06` | `...` |  | sub-records: u16 key, u16 (length << 6 \| command count), then the commands |
 
 A key of `0xFFFF` marks the block of commands that `0x0041CD30` runs before the keyed ones; the other
 keys are motion frames. The commands themselves are the authored presentation commands
@@ -52,23 +52,23 @@ keys are motion frames. The commands themselves are the authored presentation co
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x04` | `u32` | kind: 0x02001111 or 0x02001011 |  |
-| `+0x0C` | `u32` | record count |  |
-| `+0x10` | `char[32]` | the motion's name |  |
-| `+0x50` | `u16` | duration in frames |  |
-| `+0xF0` | `...` | records (the start 0x00409190 picks for both kinds), 22 bytes each: |  |
-| `+0x00` | `u16` | node key |  |
-| `+0x02` | `u16` | bits 0-8 channel mask, bits 9-14 record length (22) |  |
-| `+0x04` | `u16[9]` | channel numbers in the paired @FMW; 0x8000 \| n where the mask bit is clear |  |
+| `+0x04` | `u32` |  | kind: `0x02001111` or `0x02001011` |
+| `+0x0C` | `u32` |  | record count |
+| `+0x10` | `char[32]` |  | the motion's name |
+| `+0x50` | `u16` |  | duration in frames |
+| `+0xF0` | `...` |  | records (the start `0x00409190` picks for both kinds), 22 bytes each: |
+| `+0x00` | `u16` |  | node key |
+| `+0x02` | `u16` |  | mask `0x1FF` channel mask, mask `0x7E00` record length (22) |
+| `+0x04` | `u16[9]` |  | channel numbers in the paired @FMW; `0x8000` \| n where the mask bit is clear |
 
 ### @FMW, the channel data
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0C` | `u32` | channel count |  |
-| `+0x30` | `u32` | offset of the value streams, from the entry |  |
-| `+0x34` | `u32` | 1 = packed form (u16 channel table, 0x00409170); otherwise the u32 table form (0x00409150) |  |
-| `+0x40` | `u16[count] or u32[count]` | channel descriptor offsets, from the entry |  |
+| `+0x0C` | `u32` |  | channel count |
+| `+0x30` | `u32` |  | offset of the value streams, from the entry |
+| `+0x34` | `u32` |  | 1 = packed form (u16 channel table, `0x00409170`); otherwise the u32 table form (`0x00409150`) |
+| `+0x40` | `...` |  | channel descriptor offsets, from the entry: u16[count] in the packed form, u32[count] otherwise |
 
 ```
 packed descriptor:  +0x00 u8 frame count, +0x01 u8 n, +0x04 u32[n] frame-stream offsets,
@@ -84,9 +84,9 @@ literals add to the previous key's frame.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0C` | `u32` | 1 |  |
-| `+0x10` | `char[32]` | the .ca file's name |  |
-| `+0x30` | `...` | payload: byte +0x01 to 0x003E18D0, byte +0x02 low six bits to skeleton +0xA4, | u32 `+0x08` offset of a second region, from the payload (0 = none) |
+| `+0x0C` | `u32` |  | value 1 |
+| `+0x10` | `char[32]` |  | the .ca file's name |
+| `+0x30` | `...` |  | payload: byte `+0x01` to `0x003E18D0`, byte `+0x02` low six bits to skeleton `+0xA4`, u32 `+0x08` offset of a second region, from the payload (0 = none) |
 
 ### The version-1 .ca slot table
 
@@ -133,9 +133,9 @@ helper below first checks that the slot's id equals the handle and does nothing 
 `+0x10` is the effect instance and its byte `+0x30` holds three flags.
 
 - `0x003B3400`, from `0x003B3550`, takes the head of the free list `0x02EBDBA0`, appends the slot to the
-  used list (`0x02EBDB98` / `0x02EBDBA8`) and writes a new serial (`0x02EBDBB4`) into bits 6–27 of the id.
+  used list (`0x02EBDB98` / `0x02EBDBA8`) and writes a new serial (`0x02EBDBB4`) into the bits under mask `0xFFFFFC0` of the id.
 - `0x003B3300(handle)`, from `0x0041E860`, ends the instance (`0x0024EE60`), moves the slot back to the
-  free list, keeps only bits 0–5 and 28–31 of the id and clears `+0x10`.
+  free list, keeps only bits under mask `0xF000003F` of the id and clears `+0x10`.
 - `0x003B3080(handle)` sets bit `0x1` of `+0x30`. The update pass `0x0024B9B0` holds a kind-3 instance on any
   step the bit is clear in the slot its dword `+4` names, and clears the bit when it is set; `0x0042D830` sets it each time
   it processes the record, so a model's effect advances only while its character does.

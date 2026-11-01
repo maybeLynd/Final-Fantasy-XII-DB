@@ -377,7 +377,7 @@ Display-list record (`0x02F8F2F8` + `0x28` * i):
 |---|---|---|---|
 | `+0x00` | `void*` | argument | passed to `+0x10` |
 | `+0x08` | `u32` | sort key | `0x003A3A50` compares this dword |
-| `+0x0C` | `u32` | appender count |  |
+| `+0x0C` | `u32` |  | appender count |
 | `+0x10` | `void*` | function | called with `+0x00` when non-null |
 | `+0x18` | `void*` | node | filed through `0x0020E630` when `+0x10` and `+0x00` are null |
 | `+0x20` | `u8` | flags | bit `0x1`: `0x003A2BD0` first; bit `0x2`: post-processing point; bit `0x4`: defer to `0x02AEF420` |
@@ -400,7 +400,7 @@ Tables beside this page:
 |---|---|
 | every `GeometryInstance` class's slots, with the `DynGeo*` classes | [`gi-render-commands-geometry-instance-vtable-slots.tsv`](gi-render-commands-geometry-instance-vtable-slots.tsv) |
 | `RenderObject`, `MapRenderObject`, `CharacterRenderObject` slots | [`gi-render-commands-render-object-vtable-slots.tsv`](gi-render-commands-render-object-vtable-slots.tsv) |
-| the render-block opcodes, both levels | `gi-render-commands-render-block-opcode-isa.tsv` |
+| the render-block opcodes, both levels | [`gi-render-commands-render-block-opcode-isa.tsv`](gi-render-commands-render-block-opcode-isa.tsv) |
 | the device's fields | [`gi-render-commands-primitive-renderer-d3d11-accesses.tsv`](gi-render-commands-primitive-renderer-d3d11-accesses.tsv) |
 | the render context | [`gi-render-commands-render-context-02cc0410-accesses.tsv`](gi-render-commands-render-context-02cc0410-accesses.tsv) |
 | the context's pass-state block `+0x0B50` | [`gi-render-commands-render-context-pass-state-block-accesses.tsv`](gi-render-commands-render-context-pass-state-block-accesses.tsv) |

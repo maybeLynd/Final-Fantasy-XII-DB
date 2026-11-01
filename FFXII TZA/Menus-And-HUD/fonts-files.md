@@ -7,7 +7,7 @@ addresses: "0x001B44A0, 0x001B4930, 0x001B4D70, 0x001B4E19, 0x001B5230, 0x001B4C
 
 ## What it lists
 
-`fonts-files.tsv` holds one line for each data file in the five font folders `ch`, `cn`, `jp`, `kr` and `us` of
+[`fonts-files.tsv`](fonts-files.tsv) holds one line for each data file in the five font folders `ch`, `cn`, `jp`, `kr` and `us` of
 `GameData/D3D11/ArtData/font/`: 5 `fontlist.ah`, 63 `.dat`, 34 `.ker` and 14 `.fex`, 116 files. For a `.dat` the
 line also carries the file's header. [Fonts](fonts.md) gives the formats and how `0x001B44A0` picks a folder and loads
 its list. The 62 `<name>.dds.phyre` atlases and the two `.fgen.phyre` bitmap fonts are in
@@ -29,9 +29,9 @@ Every byte of the 116 files is in the four tables, and each file is exactly thes
 | File | Made of |
 |---|---|
 | `fontlist.ah` | the names of the folder's `.dat` lines that have a `list_position`, in that order, each followed by CR LF |
-| `.dat` | this line's header fields, then the file's lines of `fonts-glyphs.tsv` in `record` order |
-| `.ker` | the file's lines of `fonts-kerning.tsv` in `pair` order |
-| `.fex` | the file's lines of `fonts-expansion-lists.tsv`, as lists or as triples by `form` |
+| `.dat` | this line's header fields, then the file's lines of [`fonts-glyphs.tsv`](fonts-glyphs.tsv) in `record` order |
+| `.ker` | the file's lines of [`fonts-kerning.tsv`](fonts-kerning.tsv) in `pair` order |
+| `.fex` | the file's lines of [`fonts-expansion-lists.tsv`](fonts-expansion-lists.tsv), as lists or as triples by `form` |
 
 ### The two header sizes
 
@@ -107,7 +107,7 @@ set it above 1:
   with the square's `lpCost` (`0x00365B30`, `0x0055BEDE`) and draws it with `0x002D8910` (`0x0055BF18`). The LP cost on a
   square is face 2, `font_bookman`, whose glyphs are the digits 0 to 9.
 - The menu layouts: a type-5 item's `u16` `+0x12` ([UI typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md))
-  becomes bits 6-15 of its node (`0x0029FEB0`). The type-5 drawer `0x0029FBD0` (`0x0029FC01`-`0x0029FC11`) and the
+  becomes the bits under mask `0xFFC0` of its node (`0x0029FEB0`). The type-5 drawer `0x0029FBD0` (`0x0029FC01`-`0x0029FC11`) and the
   Licenses list pane `0x005599D0` (`0x00559CBA`-`0x00559CCA`) copy them into `+0x64` and draw the node's text with
   `0x002D8910` (`0x0029FDFD`, `0x00559D18`). An item with `+0x12` = n draws in face n - 1.
 
@@ -143,7 +143,7 @@ callers and `0x0017FB90` one, each with its own id:
 
 - font00 (1): the font pack binder `0x0039C150` files it (`0x0039C27C`) in the first empty slot, slot 0 while no other
   font holds one: index 0, that of every text without a sheet of its own.
-- fontex_subtitle (3): the same binder files it in slot 7 when the language test `0x00254A10` is 0, language ids 1 to
+- fontex_subtitle (3): the same binder files it in slot 7 when the language test `0x00254A10` is 0, locale ids 1 to
   6 and 9 (`0x0039C290`).
 - fontguide (4): `0x003BC4E0`, the map screen's map-data widget, registers the guide picture of `menumap_guide<n>.bin`
   as a sheet and then the font (`0x003BC7C3`, `0x003BC7CD`), and releases both together (`0x0039BB60`, `0x0017FA70(4)`).
@@ -275,7 +275,7 @@ loads it.
 | `header_bytes` | the bytes before the pixel data |
 | `pixel_bytes_match` | 1 when `pixel_bytes` is width x height x `bytes_per_pixel` |
 | `same_pixels_as` | the other files with byte-identical pixel data |
-| `fontId`, `list_position` | for an atlas, from its `.dat` line in `fonts-files.tsv` |
+| `fontId`, `list_position` | for an atlas, from its `.dat` line in [`fonts-files.tsv`](fonts-files.tsv) |
 | `dat_size_match` | 1 when `width` and `height` equal the `.dat` header's `atlasW` and `atlasH` |
 | `isSDF`, `fontSize`, `lineSpacing`, `baselineOffset`, `characters` | for a bitmap font, the `PBitmapFont` members and its character count |
 | `loader` | the function that requests the file |

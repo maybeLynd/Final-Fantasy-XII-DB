@@ -10,7 +10,7 @@ naf_a01	setup	event	4	0x060E1	48	-	if	EV_ナルビナ上層マップ進行 < 10	
 naf_a01	setup	event	5	0x060E4	50	EV_ナルビナ上層マップ進行 < 10	stopenvsoundall	-	the map's ambient sounds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	setup	event	6	0x060EA	54	not (EV_ナルビナ上層マップ進行 < 10)	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	setup	event	7	0x060ED	56	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	__MJ_CTRL000	init	1	0x060F1	65	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	__MJ_CTRL000	init	1	0x060F1	65	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	__MJ_CTRL000	init	2	0x060F7	66	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	__MJ_CTRL000	init	3	0x060FA	67	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	__MJ_CTRL000	mapjump	1	0x060FE	77	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1294,7 +1294,7 @@ naf_a01	BASH_RECT	RECT_D	2	0x08868	1995	-	return	-	-	-	-	-	-	resolved	01 ../Scri
 naf_a01	BASH_RECT	RECT_E	1	0x08869	2000	-	rectenable	-	-	-	-	-	-		01 verb-table.tsv
 naf_a01	BASH_RECT	RECT_E	2	0x0886C	2001	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	鉄柵	init	1	0x0886D	2010	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	鉄柵	main	1	0x08871	2015	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	main	1	0x08871	2015	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	鉄柵	main	2	0x08874	2016	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	鉄柵	talk	1	0x08879	2021	-	switch	file_var_s2_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	鉄柵	talk	2	0x0887C	2023	-	case	between(4, 6)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1320,9 +1320,9 @@ naf_a01	鉄柵	talk	21	0x0892C	2042	file_var_s2_2 = between(4, 6)	setunazukistat
 naf_a01	鉄柵	talk	22	0x08938	2043	file_var_s2_2 = between(4, 6)	sysReqew	1, 元読み込み監督::SE	actor `元読み込み監督`	-	-	files 元読み込み監督::SE on channel 1; waits until it ends	元読み込み監督.SE	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	鉄柵	talk	23	0x0893C	2044	file_var_s2_2 = between(4, 6)	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_a01	鉄柵	talk	24	0x08942	2045	file_var_s2_2 = between(4, 6)	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-naf_a01	鉄柵	talk	25	0x08948	2046	file_var_s2_2 = between(4, 6)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	鉄柵	talk	26	0x0894E	2047	file_var_s2_2 = between(4, 6)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	鉄柵	talk	27	0x08954	2048	file_var_s2_2 = between(4, 6)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	talk	25	0x08948	2046	file_var_s2_2 = between(4, 6)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	talk	26	0x0894E	2047	file_var_s2_2 = between(4, 6)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	talk	27	0x08954	2048	file_var_s2_2 = between(4, 6)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	鉄柵	talk	28	0x0895A	2049	file_var_s2_2 = between(4, 6)	wait	25	-	-	25 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a01	鉄柵	talk	29	0x08966	2050	file_var_s2_2 = between(4, 6)	sysReqew	1, チュートリアル::終了	actor `チュートリアル`	-	-	files チュートリアル::終了 on channel 1; waits until it ends	チュートリアル.終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	鉄柵	talk	30	0x0896A	2051	file_var_s2_2 = between(4, 6)	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -1338,14 +1338,14 @@ naf_a01	鉄柵	talk	39	0x089A0	2061	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-
 naf_a01	鉄柵	フィールドサインアクティブ	1	0x089A4	2066	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
 naf_a01	鉄柵	フィールドサインアクティブ	2	0x089AD	2067	-	settouchwh	2, 3	-	-	-	-	-		01 verb-table.tsv
 naf_a01	鉄柵	フィールドサインアクティブ	3	0x089B3	2068	-	fieldsignmes	0x01000004	argument 1: the text id of a line in the calling script's section 2 (masked to 24 bits, 0x00264D60 on the running manager 0x002640C0) that becomes the calling actor's literal name	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	鉄柵	フィールドサインアクティブ	4	0x089B9	2069	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	鉄柵	フィールドサインアクティブ	5	0x089BF	2070	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	鉄柵	フィールドサインアクティブ	6	0x089C5	2071	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	鉄柵	フィールドサインアクティブ	7	0x089CB	2072	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	フィールドサインアクティブ	4	0x089B9	2069	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	フィールドサインアクティブ	5	0x089BF	2070	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	フィールドサインアクティブ	6	0x089C5	2071	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	フィールドサインアクティブ	7	0x089CB	2072	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	鉄柵	フィールドサインアクティブ	8	0x089CE	2073	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	鉄柵	フィールドサイン非アクティブ	1	0x089D2	2078	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	鉄柵	フィールドサイン非アクティブ	2	0x089D8	2079	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	鉄柵	フィールドサイン非アクティブ	3	0x089DE	2080	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	フィールドサイン非アクティブ	1	0x089D2	2078	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	フィールドサイン非アクティブ	2	0x089D8	2079	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	鉄柵	フィールドサイン非アクティブ	3	0x089DE	2080	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	鉄柵	フィールドサイン非アクティブ	4	0x089E1	2081	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	GATE_RECT	init	1	0x089F1	2090	-	setrect	97.0299988, 5, 158.919998, 1.5, 2	-	-	-	-	-		01 verb-table.tsv
 naf_a01	GATE_RECT	init	2	0x089F4	2091	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1453,13 +1453,13 @@ naf_a01	BASH	init	2	0x08C4F	2396	-	btlAtelSetTotalEntryNumber	0x03000020	argumen
 naf_a01	BASH	init	3	0x08C55	2397	-	btlAtelSetPoint2	0x03000010	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	init	4	0x08C58	2398	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	init	5	0x08C5B	2399	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	BASH	main	1	0x08D8A	2404	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a01	BASH	main	1	0x08D8A	2404	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a01	BASH	main	2	0x08D90	2405	-	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	main	3	0x08D93	2406	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	initevent	1	0x08D97	2411	-	setnpcname	0x012f	name pair 0x012f: Basch	-	-	-	-	resolved	this page's How a call is read
 naf_a01	BASH	initevent	2	0x08D9A	2412	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	重さ制御	1	0x08D9E	2417	-	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	重さ制御	2	0x08DA4	2418	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a01	BASH	重さ制御	2	0x08DA4	2418	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a01	BASH	重さ制御	3	0x08DAA	2419	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	重さ制御	4	0x08DAD	2420	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	talk	1	0x08DB2	2425	-	switch	file_var_s2_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1475,7 +1475,7 @@ naf_a01	BASH	talk	10	0x08DE5	2435	file_var_s2_2 = 2	sethpmenufast	0	argument 1: 
 naf_a01	BASH	talk	11	0x08DEB	2436	file_var_s2_2 = 2	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	BASH	talk	12	0x08DF1	2437	file_var_s2_2 = 2	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	BASH	talk	13	0x08DF4	2438	file_var_s2_2 = 2	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	talk	14	0x08DFA	2439	file_var_s2_2 = 2	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	BASH	talk	14	0x08DFA	2439	file_var_s2_2 = 2	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	talk	15	0x08E00	2440	file_var_s2_2 = 2	store	file_var_s3_1 = 0	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a01	BASH	talk	16	0x08E06	2441	file_var_s2_2 = 2	store	file_var_s3_4 = 1	variable file_var_s3_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a01	BASH	talk	17	0x08E12	2442	file_var_s2_2 = 2	sysReqew	4, チュートリアル::リクエストキャンセル	actor `チュートリアル`	-	-	files チュートリアル::リクエストキャンセル on channel 4; waits until it ends	チュートリアル.リクエストキャンセル	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1507,7 +1507,7 @@ naf_a01	BASH	talk	42	0x08EB1	2467	file_var_s2_2 = 2	resetbehindcamera	2.29369903
 naf_a01	BASH	talk	43	0x08EBD	2468	file_var_s2_2 = 2	sysReqew	1, カメラ::カメラクリア	actor `カメラ`	-	-	files カメラ::カメラクリア on channel 1; waits until it ends	カメラ.カメラクリア	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	talk	44	0x08EC7	2469	file_var_s2_2 = 2	sysReqew	1, TANBA_shape::フィールドサイン閉じる	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン閉じる on channel 1; waits until it ends	TANBA_shape.フィールドサイン閉じる	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	talk	45	0x08ED1	2470	file_var_s2_2 = 2	sysReqew	1, DAL_SOLDIER_A::talk有効	actor `DAL_SOLDIER_A`	-	-	files DAL_SOLDIER_A::talk有効 on channel 1; waits until it ends	DAL_SOLDIER_A.talk有効	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	BASH	talk	46	0x08ED5	2471	file_var_s2_2 = 2	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	BASH	talk	46	0x08ED5	2471	file_var_s2_2 = 2	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	talk	47	0x08EDB	2472	file_var_s2_2 = 2	fadein	5	the screen fade, in	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	BASH	talk	48	0x08EE7	2473	file_var_s2_2 = 2	sysReqew	1, キー制限::トーク可能キー制限	actor `キー制限`	-	-	files キー制限::トーク可能キー制限 on channel 1; waits until it ends	キー制限.トーク可能キー制限	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	talk	49	0x08EEB	2474	file_var_s2_2 = 2	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -1623,7 +1623,7 @@ naf_a01	BASH	バッシュ□会話	3	0x091BE	2592	-	sethpmenufast	0	argument 1: 
 naf_a01	BASH	バッシュ□会話	4	0x091C4	2593	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	BASH	バッシュ□会話	5	0x091CA	2594	-	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	BASH	バッシュ□会話	6	0x091CD	2595	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	BASH	バッシュ□会話	7	0x091D3	2596	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	BASH	バッシュ□会話	7	0x091D3	2596	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話	8	0x091D9	2597	-	store	file_var_s3_1 = 0	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a01	BASH	バッシュ□会話	9	0x091DF	2598	-	store	file_var_s3_4 = 1	variable file_var_s3_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a01	BASH	バッシュ□会話	10	0x091EB	2599	-	sysReqew	4, チュートリアル::リクエストキャンセル	actor `チュートリアル`	-	-	files チュートリアル::リクエストキャンセル on channel 4; waits until it ends	チュートリアル.リクエストキャンセル	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1655,13 +1655,13 @@ naf_a01	BASH	バッシュ□会話	35	0x0928A	2624	-	resetbehindcamera	2.2936990
 naf_a01	BASH	バッシュ□会話	36	0x09296	2625	-	sysReqew	1, カメラ::カメラクリア	actor `カメラ`	-	-	files カメラ::カメラクリア on channel 1; waits until it ends	カメラ.カメラクリア	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話	37	0x092A0	2626	-	sysReqew	1, TANBA_shape::フィールドサイン閉じる	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン閉じる on channel 1; waits until it ends	TANBA_shape.フィールドサイン閉じる	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話	38	0x092AA	2627	-	sysReqew	1, DAL_SOLDIER_A::talk有効	actor `DAL_SOLDIER_A`	-	-	files DAL_SOLDIER_A::talk有効 on channel 1; waits until it ends	DAL_SOLDIER_A.talk有効	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	BASH	バッシュ□会話	39	0x092AE	2628	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	BASH	バッシュ□会話	39	0x092AE	2628	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話	40	0x092B4	2629	-	fadein	5	the screen fade, in	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	BASH	バッシュ□会話	41	0x092C0	2630	-	sysReqew	1, キー制限::トーク可能キー制限	actor `キー制限`	-	-	files キー制限::トーク可能キー制限 on channel 1; waits until it ends	キー制限.トーク可能キー制限	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話	42	0x092C4	2631	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	BASH	バッシュ□会話	43	0x092D0	2632	-	sysReq	1, ヘルプメッセージ::ヘルプメッセージ03	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ03 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ03	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話	44	0x092D1	2633	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	BASH	バッシュ□会話2	1	0x092D5	2638	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	BASH	バッシュ□会話2	1	0x092D5	2638	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	2	0x092E1	2639	-	sysReqew	1, カメラ::BASH_TALK_CAMERA_02	actor `カメラ`	-	-	files カメラ::BASH_TALK_CAMERA_02 on channel 1; waits until it ends	カメラ.BASH_TALK_CAMERA_02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	3	0x092EB	2640	-	sysReqew	2, TANBA_shape::フィールドサイン表示03	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン表示03 on channel 2; waits until it ends	TANBA_shape.フィールドサイン表示03	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	4	0x092F5	2641	-	sysReqew	1, PC00::ショウオフ	actor `PC00`	-	-	files PC00::ショウオフ on channel 1; waits until it ends	PC00.ショウオフ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -1678,15 +1678,15 @@ naf_a01	BASH	バッシュ□会話2	14	0x0932F	2651	-	stdmotionplay	0x01000001	t
 naf_a01	BASH	バッシュ□会話2	15	0x0933B	2652	-	sysReqew	1, PC00::ショウオン	actor `PC00`	-	-	files PC00::ショウオン on channel 1; waits until it ends	PC00.ショウオン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	16	0x09345	2653	-	sysReqew	1, TANBA_shape::フィールドサイン閉じる	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン閉じる on channel 1; waits until it ends	TANBA_shape.フィールドサイン閉じる	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	17	0x0934F	2654	-	sysReqew	1, DAL_SOLDIER_A::talk有効	actor `DAL_SOLDIER_A`	-	-	files DAL_SOLDIER_A::talk有効 on channel 1; waits until it ends	DAL_SOLDIER_A.talk有効	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	BASH	バッシュ□会話2	18	0x09353	2655	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	BASH	バッシュ□会話2	18	0x09353	2655	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	19	0x09359	2656	-	fadein	5	the screen fade, in	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	BASH	バッシュ□会話2	20	0x09365	2657	-	sysReqew	1, キー制限::トーク可能キー制限	actor `キー制限`	-	-	files キー制限::トーク可能キー制限 on channel 1; waits until it ends	キー制限.トーク可能キー制限	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	21	0x09369	2658	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	BASH	バッシュ□会話2	22	0x09375	2659	-	sysReq	1, ヘルプメッセージ::ヘルプメッセージ03	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ03 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ03	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	バッシュ□会話2	23	0x09376	2660	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	BASH	TALK_D	1	0x0937A	2665	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	BASH	TALK_D	1	0x0937A	2665	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	TALK_D	2	0x0937D	2666	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	BASH	TALK_E	1	0x09381	2671	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	BASH	TALK_E	1	0x09381	2671	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	BASH	TALK_E	2	0x09384	2672	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	視点変更チュートリアル	1	0x09388	2677	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	BASH	視点変更チュートリアル	2	0x0938E	2678	-	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
@@ -1871,7 +1871,7 @@ naf_a01	DAL_SOLDIER_A	main	2	0x098BF	3009	-	return	-	-	-	-	-	-	resolved	01 ../Sc
 naf_a01	DAL_SOLDIER_A	initevent	1	0x098C3	3014	-	setnpcname	0x0130	name pair 0x0130: Dalmascan	-	-	-	-	resolved	this page's How a call is read
 naf_a01	DAL_SOLDIER_A	initevent	2	0x098C6	3015	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	DAL_SOLDIER_A	重さ制御	1	0x098CA	3020	-	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	DAL_SOLDIER_A	重さ制御	2	0x098D0	3021	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a01	DAL_SOLDIER_A	重さ制御	2	0x098D0	3021	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a01	DAL_SOLDIER_A	重さ制御	3	0x098D6	3022	-	dir	-0.680000007	this actor, turned to facing -0.680000007	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a01	DAL_SOLDIER_A	重さ制御	4	0x098DC	3023	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	DAL_SOLDIER_A	重さ制御	5	0x098DF	3024	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1880,7 +1880,7 @@ naf_a01	DAL_SOLDIER_A	talk	2	0x098E7	3031	-	case	2	-	-	-	-	-	resolved	01 ../Scri
 naf_a01	DAL_SOLDIER_A	talk	3	0x098F0	3032	file_var_s2_2 = 2	sysReq	1, ヘルプメッセージ::メスクローズ	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::メスクローズ on channel 1; does not wait	ヘルプメッセージ.メスクローズ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	4	0x098F4	3033	file_var_s2_2 = 2	store	file_var_s3_4 = 1	variable file_var_s3_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a01	DAL_SOLDIER_A	talk	5	0x09900	3034	file_var_s2_2 = 2	sysReqew	4, チュートリアル::リクエストキャンセル	actor `チュートリアル`	-	-	files チュートリアル::リクエストキャンセル on channel 4; waits until it ends	チュートリアル.リクエストキャンセル	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	DAL_SOLDIER_A	talk	6	0x09904	3035	file_var_s2_2 = 2	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	DAL_SOLDIER_A	talk	6	0x09904	3035	file_var_s2_2 = 2	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	7	0x0990A	3036	file_var_s2_2 = 2	fadeout	5	the screen fade, out	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	DAL_SOLDIER_A	talk	8	0x09910	3037	file_var_s2_2 = 2	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_a01	DAL_SOLDIER_A	talk	9	0x09913	3038	file_var_s2_2 = 2	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -1920,7 +1920,7 @@ naf_a01	DAL_SOLDIER_A	talk	42	0x09A0B	3071	file_var_s2_2 = 2	store	file_var_s2_2
 naf_a01	DAL_SOLDIER_A	talk	43	0x09A17	3072	file_var_s2_2 = 2	sysReqew	3, 鉄柵::フィールドサインアクティブ	actor `鉄柵`	-	-	files 鉄柵::フィールドサインアクティブ on channel 3; waits until it ends	鉄柵.フィールドサインアクティブ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	44	0x09A21	3073	file_var_s2_2 = 2	sysReqew	1, GATE_RECT::有効	actor `GATE_RECT`	-	-	files GATE_RECT::有効 on channel 1; waits until it ends	GATE_RECT.有効	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	45	0x09A25	3074	file_var_s2_2 = 2	dir	-2.08699989	this actor, turned to facing -2.08699989	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-naf_a01	DAL_SOLDIER_A	talk	46	0x09A2B	3075	file_var_s2_2 = 2	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	DAL_SOLDIER_A	talk	46	0x09A2B	3075	file_var_s2_2 = 2	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	47	0x09A31	3076	file_var_s2_2 = 2	fadein	fadesystemtime()	the screen fade, in	-	frames held in fadesystemtime()	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	DAL_SOLDIER_A	talk	48	0x09A3D	3077	file_var_s2_2 = 2	sysReqew	1, キー制限::フィールドサイン可能キー制限	actor `キー制限`	-	-	files キー制限::フィールドサイン可能キー制限 on channel 1; waits until it ends	キー制限.フィールドサイン可能キー制限	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	49	0x09A41	3078	file_var_s2_2 = 2	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1969,17 +1969,17 @@ naf_a01	DAL_SOLDIER_A	talk	91	0x09B5F	3120	file_var_s2_2 = gt(5)	stdmotionplay	0
 naf_a01	DAL_SOLDIER_A	talk	92	0x09B6B	3121	file_var_s2_2 = gt(5)	sysReq	1, ヘルプメッセージ::ヘルプメッセージ07	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ07 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ07	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk	93	0x09B6C	3122	file_var_s2_2 = gt(5)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	DAL_SOLDIER_A	talk	94	0x09B84	3124	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	DAL_SOLDIER_A	talk有効	1	0x09B88	3129	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	DAL_SOLDIER_A	talk有効	1	0x09B88	3129	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk有効	2	0x09B8B	3130	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	DAL_SOLDIER_A	talk無効	1	0x09B8F	3135	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	DAL_SOLDIER_A	talk無効	1	0x09B8F	3135	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	talk無効	2	0x09B92	3136	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	DAL_SOLDIER_A	事前消し	1	0x09B96	3141	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	DAL_SOLDIER_A	事前消し	2	0x09B9C	3142	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	DAL_SOLDIER_A	事前復帰	1	0x09BA0	3147	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	DAL_SOLDIER_A	事前復帰	2	0x09BA6	3148	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	DAL_SOLDIER_A	TALK_D	1	0x09BAA	3153	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	DAL_SOLDIER_A	TALK_D	1	0x09BAA	3153	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	TALK_D	2	0x09BAD	3154	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	DAL_SOLDIER_A	TALK_E	1	0x09BB1	3159	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	DAL_SOLDIER_A	TALK_E	1	0x09BB1	3159	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	DAL_SOLDIER_A	TALK_E	2	0x09BB4	3160	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	setup	init	1	0x02140	47	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	setup	battle	1	0x02141	52	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
@@ -1988,7 +1988,7 @@ naf_a02	setup	battle	3	0x0214D	54	-	btlAtelSetEntryStruct	0x030000d0	-	-	-	-	-		
 naf_a02	setup	battle	4	0x02150	55	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	setup	event	1	0x02151	60	-	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
 naf_a02	setup	event	2	0x02154	61	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	__MJ_CTRL000	init	1	0x02158	70	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	__MJ_CTRL000	init	1	0x02158	70	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	__MJ_CTRL000	init	2	0x0215E	71	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	__MJ_CTRL000	init	3	0x02161	72	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	__MJ_CTRL000	mapjump	1	0x02165	82	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2019,7 +2019,7 @@ naf_a02	__MJ_CTRL000	mapjump	25	0x02264	121	local_var_s1f1_1; not (regI3)	fadesy
 naf_a02	__MJ_CTRL000	mapjump	26	0x0226A	122	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a02	__MJ_CTRL000	mapjump	27	0x02276	123	local_var_s1f1_1; not (regI3)	mapjump	0x0112, 1, 0	jumps: Aerial Gardens (Nalbina Fortress), field 274, entrance 1	-	-	-	-	resolved	this page's How a call is read
 naf_a02	__MJ_CTRL000	mapjump	28	0x02279	126	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	__MJ_CTRL001	init	1	0x0227D	135	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	__MJ_CTRL001	init	1	0x0227D	135	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	__MJ_CTRL001	init	2	0x02283	136	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	__MJ_CTRL001	init	3	0x02286	137	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	__MJ_CTRL001	mapjump	1	0x0228A	147	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2547,8 +2547,8 @@ naf_a02	レモラレクト	main	15	0x03075	1016	g_btl_ナルビナレモラ == 1
 naf_a02	レモラレクト	main	16	0x0307B	1018	g_btl_ナルビナレモラ == 1; local_var_s16f1_1 & 0x100000	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	レモラレクト	main	17	0x03084	1022	g_btl_ナルビナレモラ == 1; not (local_var_s16f1_1 & 0x100000)	settouchuconly	0	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	レモラレクト	main	18	0x0308E	1024	g_btl_ナルビナレモラ == 1	store	local_var_s16f1_1 = local_var_s16f1_1 & 0xffff	variable local_var_s16f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a02	レモラレクト	main	19	0x03094	1025	g_btl_ナルビナレモラ == 1	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a02	レモラレクト	main	20	0x0309A	1026	g_btl_ナルビナレモラ == 1	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	レモラレクト	main	19	0x03094	1025	g_btl_ナルビナレモラ == 1	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	レモラレクト	main	20	0x0309A	1026	g_btl_ナルビナレモラ == 1	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	レモラレクト	main	21	0x030A3	1027	g_btl_ナルビナレモラ == 1	store	Boss_Enter_End[0] = 1	variable Boss_Enter_End[0] (global u_char[8]@0x0ce6)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a02	レモラレクト	main	22	0x030A6	1029	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	レモラレクト	touchon	1	0x030AE	1034	-	if	g_btl_ナルビナレモラ == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2701,8 +2701,8 @@ naf_a02	レモラ通行制限レクト	touchon	25	0x034B3	1245	(local_var_s17f1_
 naf_a02	レモラ通行制限レクト	touchon	26	0x034B6	1247	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	レモラ通行制限レクト	touchoff	1	0x034B7	1252	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	レモラ通行制限レクト	レモラ登場	1	0x034B8	1257	-	rectenable	-	-	-	-	-	-		01 verb-table.tsv
-naf_a02	レモラ通行制限レクト	レモラ登場	2	0x034BE	1258	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a02	レモラ通行制限レクト	レモラ登場	3	0x034C4	1259	-	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	レモラ通行制限レクト	レモラ登場	2	0x034BE	1258	-	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	レモラ通行制限レクト	レモラ登場	3	0x034C4	1259	-	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	レモラ通行制限レクト	レモラ登場	4	0x034CA	1260	-	releasemapjumpgroupflag	252	flags released: 0x00FC: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
 naf_a02	レモラ通行制限レクト	レモラ登場	5	0x034D6	1261	-	sysReqew	2, 上層への扉::階段移動不可	actor `上層への扉`	-	-	files 上層への扉::階段移動不可 on channel 2; waits until it ends	上層への扉.階段移動不可	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	レモラ通行制限レクト	レモラ登場	6	0x034DA	1262	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2731,8 +2731,8 @@ naf_a02	マップ表示説明レクト	main	17	0x0357D	1327	-	store	local_var_s1
 naf_a02	マップ表示説明レクト	main	18	0x03584	1328	-	switch	EV_ナルビナ上層マップ進行	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	main	19	0x03587	1330	-	case	27	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	main	20	0x03587	1331	EV_ナルビナ上層マップ進行 = 27	rectenable	-	-	-	-	-	-		01 verb-table.tsv
-naf_a02	マップ表示説明レクト	main	21	0x0358D	1332	EV_ナルビナ上層マップ進行 = 27	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a02	マップ表示説明レクト	main	22	0x03593	1333	EV_ナルビナ上層マップ進行 = 27	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	マップ表示説明レクト	main	21	0x0358D	1332	EV_ナルビナ上層マップ進行 = 27	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	マップ表示説明レクト	main	22	0x03593	1333	EV_ナルビナ上層マップ進行 = 27	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	マップ表示説明レクト	main	23	0x03596	1334	EV_ナルビナ上層マップ進行 = 27	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	main	24	0x03599	1335	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	main	25	0x03599	1336	EV_ナルビナ上層マップ進行 is none of 27	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2785,8 +2785,8 @@ naf_a02	マップ表示説明レクト	touchon	44	0x036D1	1405	EV_ナルビナ�
 naf_a02	マップ表示説明レクト	touchon	45	0x036DD	1407	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	touchoff	1	0x036DE	1412	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	レクト起動	1	0x036DF	1417	-	rectenable	-	-	-	-	-	-		01 verb-table.tsv
-naf_a02	マップ表示説明レクト	レクト起動	2	0x036E5	1418	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a02	マップ表示説明レクト	レクト起動	3	0x036EB	1419	-	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	マップ表示説明レクト	レクト起動	2	0x036E5	1418	-	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a02	マップ表示説明レクト	レクト起動	3	0x036EB	1419	-	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	マップ表示説明レクト	レクト起動	4	0x036EE	1420	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	PC00	init	1	0x036F2	1429	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	PC00	init	2	0x036F5	1430	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3132,7 +3132,7 @@ naf_b01	setup	battle	4	0x01A33	50	-	btlAtelSetEntryStruct	0x030000b0	-	-	-	-	-		
 naf_b01	setup	battle	5	0x01A36	51	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	setup	event	1	0x01A37	56	-	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
 naf_b01	setup	event	2	0x01A3A	57	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	__MJ_CTRL000	init	1	0x01A3E	66	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b01	__MJ_CTRL000	init	1	0x01A3E	66	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b01	__MJ_CTRL000	init	2	0x01A44	67	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	__MJ_CTRL000	init	3	0x01A47	68	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	__MJ_CTRL000	mapjump	1	0x01A4B	78	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3163,7 +3163,7 @@ naf_b01	__MJ_CTRL000	mapjump	25	0x01B4A	117	local_var_s1f1_1; not (regI3)	fadesy
 naf_b01	__MJ_CTRL000	mapjump	26	0x01B50	118	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b01	__MJ_CTRL000	mapjump	27	0x01B5C	119	local_var_s1f1_1; not (regI3)	mapjump	0x0113, 2, 0	jumps: Inner Ward (Nalbina Fortress), field 275, entrance 2	-	-	-	-	resolved	this page's How a call is read
 naf_b01	__MJ_CTRL000	mapjump	28	0x01B5F	122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	__MJ_CTRL001	init	1	0x01B63	131	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b01	__MJ_CTRL001	init	1	0x01B63	131	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b01	__MJ_CTRL001	init	2	0x01B69	132	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	__MJ_CTRL001	init	3	0x01B6C	133	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	__MJ_CTRL001	mapjump	1	0x01B70	143	-	store	local_var_s2f1_1 = 0	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3365,8 +3365,8 @@ naf_b01	エスケープ説明レクト	main	17	0x020DC	499	-	store	local_var_s8f
 naf_b01	エスケープ説明レクト	main	18	0x020E3	500	-	switch	EV_ナルビナ上層マップ進行	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	main	19	0x020E6	502	-	case	30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	main	20	0x020E6	503	EV_ナルビナ上層マップ進行 = 30	rectenable	-	-	-	-	-	-		01 verb-table.tsv
-naf_b01	エスケープ説明レクト	main	21	0x020EC	504	EV_ナルビナ上層マップ進行 = 30	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b01	エスケープ説明レクト	main	22	0x020F2	505	EV_ナルビナ上層マップ進行 = 30	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b01	エスケープ説明レクト	main	21	0x020EC	504	EV_ナルビナ上層マップ進行 = 30	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b01	エスケープ説明レクト	main	22	0x020F2	505	EV_ナルビナ上層マップ進行 = 30	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b01	エスケープ説明レクト	main	23	0x020F5	506	EV_ナルビナ上層マップ進行 = 30	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	main	24	0x020F8	507	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	main	25	0x020F8	508	EV_ナルビナ上層マップ進行 is none of 30	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3420,8 +3420,8 @@ naf_b01	エスケープ説明レクト	touchon	45	0x02236	578	EV_ナルビナ上
 naf_b01	エスケープ説明レクト	touchon	46	0x02242	580	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	touchoff	1	0x02243	585	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	エスケープ説明レクト	レクト起動	1	0x02244	590	-	rectenable	-	-	-	-	-	-		01 verb-table.tsv
-naf_b01	エスケープ説明レクト	レクト起動	2	0x0224A	591	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b01	エスケープ説明レクト	レクト起動	3	0x02250	592	-	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b01	エスケープ説明レクト	レクト起動	2	0x0224A	591	-	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b01	エスケープ説明レクト	レクト起動	3	0x02250	592	-	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b01	エスケープ説明レクト	レクト起動	4	0x02253	593	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	PC00	init	1	0x02257	602	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	PC00	init	2	0x0225A	603	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3697,7 +3697,7 @@ naf_b02	saveactor	main	1	0x02581	-	-	shared template	cecbbef6fb	-	-	-	-	saveacto
 naf_b02	saveactor	save_load	1	0x02582	-	-	shared template	d3f827524e	-	-	-	-	saveactor.save_load, template d3f827524e	resolved	shared-zone-script-steps.tsv
 naf_b02	saveactor	save	1	0x02646	-	-	shared template	83b2548303	-	-	-	-	saveactor.save, template 83b2548303	resolved	shared-zone-script-steps.tsv
 naf_b02	saveactor	load	1	0x02730	-	-	shared template	7aaf6e0eb2	-	-	-	-	saveactor.load, template 7aaf6e0eb2	resolved	shared-zone-script-steps.tsv
-naf_b02	__MJ_CTRL000	init	1	0x027CB	649	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b02	__MJ_CTRL000	init	1	0x027CB	649	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b02	__MJ_CTRL000	init	2	0x027D1	650	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	__MJ_CTRL000	init	3	0x027D4	651	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	__MJ_CTRL000	mapjump	1	0x027D8	661	-	store	local_var_s6f1_1 = 0	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3759,7 +3759,7 @@ naf_b02	__MJ_CTRL000	mapjump	56	0x02A00	746	local_var_s6f1_1; not (regI3)	fadesy
 naf_b02	__MJ_CTRL000	mapjump	57	0x02A06	747	local_var_s6f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b02	__MJ_CTRL000	mapjump	58	0x02A12	748	local_var_s6f1_1; not (regI3)	mapjump	0x0117, 2, 0	jumps: Lower Apartments (Nalbina Fortress), field 279, entrance 2	-	-	-	-	resolved	this page's How a call is read
 naf_b02	__MJ_CTRL000	mapjump	59	0x02A15	751	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	__MJ_CTRL001	init	1	0x02A19	760	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b02	__MJ_CTRL001	init	1	0x02A19	760	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b02	__MJ_CTRL001	init	2	0x02A1F	761	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	__MJ_CTRL001	init	3	0x02A22	762	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	__MJ_CTRL001	mapjump	1	0x02A26	772	-	store	local_var_s7f1_1 = 0	variable local_var_s7f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4007,7 +4007,7 @@ naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	6	0x04997	2666	not (fil
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	7	0x0499D	2667	not (file_var_s16_2 == 1)	set_ignore_hitgroup	255	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	8	0x049A6	2668	not (file_var_s16_2 == 1)	setradius_221	1, 1	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	9	0x049AC	2669	not (file_var_s16_2 == 1)	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	10	0x049B2	2670	not (file_var_s16_2 == 1)	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	10	0x049B2	2670	not (file_var_s16_2 == 1)	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	11	0x049B8	2671	not (file_var_s16_2 == 1)	store	local_var_s19f1_1 = 1	variable local_var_s19f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	12	0x049BB	2673	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj	1	0x049BF	2678	-	store	local_var_s19f1_1 = 0	variable local_var_s19f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4022,7 +4022,7 @@ naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	6	0x049F5
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	7	0x049FB	2693	local_var_s19f1_1 != 0; file_var_s16_2 != 1	set_ignore_hitgroup	255	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	8	0x04A04	2694	local_var_s19f1_1 != 0; file_var_s16_2 != 1	setradius_221	1, 1	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	9	0x04A0A	2695	local_var_s19f1_1 != 0; file_var_s16_2 != 1	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	10	0x04A10	2696	local_var_s19f1_1 != 0; file_var_s16_2 != 1	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	10	0x04A10	2696	local_var_s19f1_1 != 0; file_var_s16_2 != 1	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	11	0x04A13	2699	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj_DynamicChange	1	0x04A14	2704	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj_DynamicChange	2	0x04A17	2705	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4052,7 +4052,7 @@ naf_b04	setup	battle	2	0x010C7	40	-	btlAtelSetEntryStruct	0x03000028	-	-	-	-	-		
 naf_b04	setup	battle	3	0x010CA	41	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	setup	event	1	0x010CB	46	-	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
 naf_b04	setup	event	2	0x010CE	47	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	__MJ_CTRL000	init	1	0x010D2	56	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	__MJ_CTRL000	init	1	0x010D2	56	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	__MJ_CTRL000	init	2	0x010D8	57	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	__MJ_CTRL000	init	3	0x010DB	58	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	__MJ_CTRL000	mapjump	1	0x010DF	68	-	store	local_var_s1f1_1 = 0	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4400,9 +4400,9 @@ naf_b04	手前のドア	talk	2	0x01C92	674	-	ucoff	-	user control, off	-	-	-	-	r
 naf_b04	手前のドア	talk	3	0x01C98	675	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 naf_b04	手前のドア	talk	4	0x01CA4	676	-	sysReqew	1, map_ダミーＰＣ::押す	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::押す on channel 1; waits until it ends	map_ダミーＰＣ.押す	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	手前のドア	talk	5	0x01CA8	677	-	store	file_var_s9_1 = 1	variable file_var_s9_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b04	手前のドア	talk	6	0x01CAE	678	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	手前のドア	talk	7	0x01CB4	679	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	手前のドア	talk	8	0x01CBA	680	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	talk	6	0x01CAE	678	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	talk	7	0x01CB4	679	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	talk	8	0x01CBA	680	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	手前のドア	talk	9	0x01CBD	681	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_b04	手前のドア	talk	10	0x01CC3	682	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_b04	手前のドア	talk	11	0x01CC6	683	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4411,14 +4411,14 @@ naf_b04	手前のドア	talk	13	0x01CD2	685	-	setmapmodelstatus	1	argument 1: wh
 naf_b04	手前のドア	talk	14	0x01CD8	686	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	手前のドア	talk	15	0x01CDE	687	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 naf_b04	手前のドア	talk	16	0x01CE1	688	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	手前のドア	初回来訪時	1	0x01CE5	693	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	手前のドア	初回来訪時	2	0x01CEB	694	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	手前のドア	初回来訪時	3	0x01CF1	695	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	初回来訪時	1	0x01CE5	693	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	初回来訪時	2	0x01CEB	694	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	初回来訪時	3	0x01CF1	695	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	手前のドア	初回来訪時	4	0x01CF4	696	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	手前のドア	２回目以降	1	0x01CF8	701	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	手前のドア	２回目以降	2	0x01CFE	702	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	手前のドア	２回目以降	3	0x01D04	703	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	手前のドア	２回目以降	4	0x01D0A	704	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	２回目以降	1	0x01CF8	701	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	２回目以降	2	0x01CFE	702	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	２回目以降	3	0x01D04	703	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	手前のドア	２回目以降	4	0x01D0A	704	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	手前のドア	２回目以降	5	0x01D0D	705	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	奥のドア	init	1	0x01D11	714	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
 naf_b04	奥のドア	init	2	0x01D14	715	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4428,9 +4428,9 @@ naf_b04	奥のドア	talk	2	0x01D1C	726	-	ucoff	-	user control, off	-	-	-	-	reso
 naf_b04	奥のドア	talk	3	0x01D22	727	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 naf_b04	奥のドア	talk	4	0x01D2E	728	-	sysReqew	1, map_ダミーＰＣ::押す	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::押す on channel 1; waits until it ends	map_ダミーＰＣ.押す	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	奥のドア	talk	5	0x01D32	729	-	store	file_var_s9_1 = 2	variable file_var_s9_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b04	奥のドア	talk	6	0x01D38	730	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	奥のドア	talk	7	0x01D3E	731	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	奥のドア	talk	8	0x01D44	732	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	talk	6	0x01D38	730	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	talk	7	0x01D3E	731	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	talk	8	0x01D44	732	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	奥のドア	talk	9	0x01D47	733	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_b04	奥のドア	talk	10	0x01D4D	734	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_b04	奥のドア	talk	11	0x01D50	735	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4440,24 +4440,24 @@ naf_b04	奥のドア	talk	14	0x01D62	738	-	setstatuserrordispdenystatus	0	argume
 naf_b04	奥のドア	talk	15	0x01D68	739	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 naf_b04	奥のドア	talk	16	0x01D6B	740	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	奥のドア	初回来訪時	1	0x01D6F	745	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-naf_b04	奥のドア	初回来訪時	2	0x01D75	746	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	奥のドア	初回来訪時	3	0x01D7B	747	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	奥のドア	初回来訪時	4	0x01D81	748	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	初回来訪時	2	0x01D75	746	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	初回来訪時	3	0x01D7B	747	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	初回来訪時	4	0x01D81	748	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	奥のドア	初回来訪時	5	0x01D84	749	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	奥のドア	２回目以降	1	0x01D88	754	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-naf_b04	奥のドア	２回目以降	2	0x01D8E	755	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	奥のドア	２回目以降	3	0x01D94	756	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	奥のドア	２回目以降	4	0x01D9A	757	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	奥のドア	２回目以降	5	0x01DA0	758	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	２回目以降	2	0x01D8E	755	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	２回目以降	3	0x01D94	756	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	２回目以降	4	0x01D9A	757	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	奥のドア	２回目以降	5	0x01DA0	758	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	奥のドア	２回目以降	6	0x01DA3	759	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	奥のドア	レクト禁止	1	0x01DA4	764	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	奥のドア	レクト禁止	2	0x01DA7	765	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	gim_door02	init	1	0x01DB7	774	-	setrect	36, 0, 46.4000015, 2.5, 3	-	-	-	-	-		01 verb-table.tsv
 naf_b04	gim_door02	init	2	0x01DC6	775	-	setwh	2.5, 3, 2.5, 1.5	argument 1: the touch area's radius along x, as an absolute value / argument 2: the touch area's radius along z / argument 3: the talk area's radius along x, as an absolute value / argument 4: the talk area's radius along z	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	gim_door02	init	3	0x01DCC	776	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	init	4	0x01DD2	777	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	init	5	0x01DD8	778	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	init	6	0x01DDE	779	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	init	3	0x01DCC	776	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	init	4	0x01DD2	777	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	init	5	0x01DD8	778	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	init	6	0x01DDE	779	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	gim_door02	init	7	0x01DE4	780	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	gim_door02	init	8	0x01DEA	781	-	fieldsignmes	0x01000001	argument 1: the text id of a line in the calling script's section 2 (masked to 24 bits, 0x00264D60 on the running manager 0x002640C0) that becomes the calling actor's literal name	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	gim_door02	init	9	0x01DF6	782	-	bganimeplay_9e	2, 0, 0	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4499,17 +4499,17 @@ naf_b04	gim_door02	main	7	0x01F65	830	シナリオフラグ < 23; loop while tru
 naf_b04	gim_door02	main	8	0x01F65	831	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = lte(19)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	gim_door02	main	9	0x01F68	832	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ	case	22	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	gim_door02	main	10	0x01F6B	833	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	gim_door02	main	11	0x01F71	834	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	main	12	0x01F77	835	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	main	13	0x01F7D	836	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	main	11	0x01F71	834	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	main	12	0x01F77	835	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	main	13	0x01F7D	836	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	gim_door02	main	14	0x01F89	837	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	setmapidmj	1, 0, 0	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	gim_door02	main	15	0x01F8C	838	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = 22	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	gim_door02	main	16	0x01F8F	839	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ	case	gte(23)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	gim_door02	main	17	0x01F92	840	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	gim_door02	main	18	0x01F98	841	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	main	19	0x01F9E	842	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	main	20	0x01FA4	843	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	main	21	0x01FAA	844	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	main	18	0x01F98	841	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	main	19	0x01F9E	842	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	main	20	0x01FA4	843	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	main	21	0x01FAA	844	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	gim_door02	main	22	0x01FB6	845	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	setmapidmj	1, 0, 1	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	gim_door02	main	23	0x01FB9	846	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	gim_door02	main	24	0x01FD4	851	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4572,9 +4572,9 @@ naf_b04	gim_door02	talk	56	0x0223F	921	-	setmapidfloor	10, 4, 1	argument 1: the 
 naf_b04	gim_door02	talk	57	0x0224B	922	-	setmapidfloor	10, 9, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	gim_door02	talk	58	0x02257	923	-	setmapidwall	10, 5, 1	-	-	-	-	-		01 verb-table.tsv
 naf_b04	gim_door02	talk	59	0x02263	924	-	setmapidwall	10, 6, 1	-	-	-	-	-		01 verb-table.tsv
-naf_b04	gim_door02	talk	60	0x02269	925	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	talk	61	0x0226F	926	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_b04	gim_door02	talk	62	0x02275	927	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	talk	60	0x02269	925	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	talk	61	0x0226F	926	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_b04	gim_door02	talk	62	0x02275	927	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	gim_door02	talk	63	0x02278	928	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_b04	gim_door02	talk	64	0x0227E	929	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_b04	gim_door02	talk	65	0x02281	930	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7070,12 +7070,12 @@ naf_a0100	SOLDIER_A	cut23	5	0x05218	3310	-	dir	-1.31346595	this actor, turned to
 naf_a0100	SOLDIER_A	cut23	6	0x0521E	3311	-	bindcoff	0	-	-	-	-	-		01 verb-table.tsv
 naf_a0100	SOLDIER_A	cut23	7	0x05224	3312	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_A	cut23	8	0x0522D	3313	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_A	cut23	9	0x05233	3314	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_A	cut23	9	0x05233	3314	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_A	cut23	10	0x05239	3315	-	usecamerahit	0	-	-	-	-	-		01 verb-table.tsv
 naf_a0100	SOLDIER_A	cut23	11	0x05242	3316	-	motionplay_bb	0x12000017, 0	animation 23 of motion 2 of `naf_a0100.mot` (bytes 0x67000, length 0xE9C50)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 naf_a0100	SOLDIER_A	cut23	12	0x05245	3317	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	SOLDIER_A	cut23EX	1	0x0524C	3322	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_A	cut23EX	2	0x05252	3323	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_A	cut23EX	2	0x05252	3323	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_A	cut23EX	3	0x05258	3324	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_A	cut23EX	4	0x05261	3325	-	motionplay_bb	0x12000017, 0	animation 23 of motion 2 of `naf_a0100.mot` (bytes 0x67000, length 0xE9C50)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 naf_a0100	SOLDIER_A	cut23EX	5	0x05264	3326	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7166,11 +7166,11 @@ naf_a0100	SOLDIER_B	cut23	8	0x0542A	3478	-	show	-	this actor's body, shown	-	-	-
 naf_a0100	SOLDIER_B	cut23	9	0x0542D	3479	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_B	cut23	10	0x05433	3480	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_B	cut23	11	0x0543C	3481	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_B	cut23	12	0x05442	3482	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_B	cut23	12	0x05442	3482	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_B	cut23	13	0x05448	3483	-	usecamerahit	0	-	-	-	-	-		01 verb-table.tsv
 naf_a0100	SOLDIER_B	cut23	14	0x0544B	3484	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	SOLDIER_B	cut23EX	1	0x05452	3489	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_B	cut23EX	2	0x05458	3490	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_B	cut23EX	2	0x05458	3490	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_B	cut23EX	3	0x0545E	3491	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_B	cut23EX	4	0x05467	3492	-	motionplay_bb	0x12000019, 0	animation 25 of motion 2 of `naf_a0100.mot` (bytes 0x67000, length 0xE9C50)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 naf_a0100	SOLDIER_B	cut23EX	5	0x0546A	3493	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7268,11 +7268,11 @@ naf_a0100	SOLDIER_C	cut23	9	0x0565F	3648	-	showshadow	-	the calling actor's grou
 naf_a0100	SOLDIER_C	cut23	10	0x05668	3649	-	motionplay_bb	0x12000018, 0	animation 24 of motion 2 of `naf_a0100.mot` (bytes 0x67000, length 0xE9C50)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 naf_a0100	SOLDIER_C	cut23	11	0x0566E	3650	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_C	cut23	12	0x05677	3651	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_C	cut23	13	0x0567D	3652	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_C	cut23	13	0x0567D	3652	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_C	cut23	14	0x05683	3653	-	usecamerahit	0	-	-	-	-	-		01 verb-table.tsv
 naf_a0100	SOLDIER_C	cut23	15	0x05686	3654	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	SOLDIER_C	cut23EX	1	0x0568D	3659	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_C	cut23EX	2	0x05693	3660	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_C	cut23EX	2	0x05693	3660	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_C	cut23EX	3	0x05699	3661	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_C	cut23EX	4	0x056A2	3662	-	motionplay_bb	0x12000018, 0	animation 24 of motion 2 of `naf_a0100.mot` (bytes 0x67000, length 0xE9C50)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 naf_a0100	SOLDIER_C	cut23EX	5	0x056A5	3663	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7365,11 +7365,11 @@ naf_a0100	SOLDIER_D	cut23	9	0x05870	3813	-	showshadow	-	the calling actor's grou
 naf_a0100	SOLDIER_D	cut23	10	0x05876	3814	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_D	cut23	11	0x0587C	3815	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_D	cut23	12	0x05885	3816	-	setradius_221	0.400000006, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_D	cut23	13	0x0588B	3817	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_D	cut23	13	0x0588B	3817	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_D	cut23	14	0x05891	3818	-	usecamerahit	0	-	-	-	-	-		01 verb-table.tsv
 naf_a0100	SOLDIER_D	cut23	15	0x05894	3819	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	SOLDIER_D	cut23EX	1	0x0589B	3824	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_D	cut23EX	2	0x058A1	3825	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_D	cut23EX	2	0x058A1	3825	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_D	cut23EX	3	0x058A7	3826	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_D	cut23EX	4	0x058B0	3827	-	motionplay_bb	0x12000016, 0	animation 22 of motion 2 of `naf_a0100.mot` (bytes 0x67000, length 0xE9C50)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 naf_a0100	SOLDIER_D	cut23EX	5	0x058B3	3828	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7450,11 +7450,11 @@ naf_a0100	SOLDIER_E	cut23	8	0x05A49	3958	-	show	-	this actor's body, shown	-	-	-
 naf_a0100	SOLDIER_E	cut23	9	0x05A4C	3959	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_E	cut23	10	0x05A52	3960	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_E	cut23	11	0x05A5B	3961	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_E	cut23	12	0x05A61	3962	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_E	cut23	12	0x05A61	3962	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_E	cut23	13	0x05A67	3963	-	usecamerahit	0	-	-	-	-	-		01 verb-table.tsv
 naf_a0100	SOLDIER_E	cut23	14	0x05A6A	3964	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	SOLDIER_E	cut23EX	1	0x05A71	3969	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_E	cut23EX	2	0x05A77	3970	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_E	cut23EX	2	0x05A77	3970	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_E	cut23EX	3	0x05A7D	3971	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_E	cut23EX	4	0x05A86	3972	-	motionplay_bb	0x12000015, 0	animation 21 of motion 2 of `naf_a0100.mot` (bytes 0x67000, length 0xE9C50)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 naf_a0100	SOLDIER_E	cut23EX	5	0x05A89	3973	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7532,11 +7532,11 @@ naf_a0100	SOLDIER_F	cut23	7	0x05C04	4100	-	show	-	this actor's body, shown	-	-	-
 naf_a0100	SOLDIER_F	cut23	8	0x05C07	4101	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_F	cut23	9	0x05C0D	4102	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_F	cut23	10	0x05C16	4103	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_F	cut23	11	0x05C1C	4104	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_F	cut23	11	0x05C1C	4104	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_F	cut23	12	0x05C22	4105	-	usecamerahit	0	-	-	-	-	-		01 verb-table.tsv
 naf_a0100	SOLDIER_F	cut23	13	0x05C25	4106	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	SOLDIER_F	cut23EX	1	0x05C2C	4111	-	setradius_221	0.300000012, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_F	cut23EX	2	0x05C32	4112	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_F	cut23EX	2	0x05C32	4112	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_F	cut23EX	3	0x05C38	4113	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_F	cut23EX	4	0x05C41	4114	-	motionplay_bb	0x12000018, 0	animation 24 of motion 2 of `naf_a0100.mot` (bytes 0x67000, length 0xE9C50)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 naf_a0100	SOLDIER_F	cut23EX	5	0x05C44	4115	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7551,7 +7551,7 @@ naf_a0100	SOLDIER_EX	setHitObj	4	0x05C6B	4139	-	bindhitobj	-	the calling actor's
 naf_a0100	SOLDIER_EX	setHitObj	5	0x05C71	4140	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_EX	setHitObj	6	0x05C7A	4141	-	setradius_221	0.5, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_EX	setHitObj	7	0x05C80	4142	-	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_EX	setHitObj	8	0x05C86	4143	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_EX	setHitObj	8	0x05C86	4143	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_EX	setHitObj	9	0x05C89	4144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	SOLDIER_EX	setHitObj_omoi	1	0x05C8D	4149	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_EX	setHitObj_omoi	2	0x05C99	4150	-	setpos	88.1999969, 2.99996901, 180.699997	this actor, placed at (88.1999969, 2.99996901, 180.699997)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -7560,7 +7560,7 @@ naf_a0100	SOLDIER_EX	setHitObj_omoi	4	0x05CA2	4152	-	bindhitobj	-	the calling ac
 naf_a0100	SOLDIER_EX	setHitObj_omoi	5	0x05CA8	4153	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_EX	setHitObj_omoi	6	0x05CB1	4154	-	setradius_221	0.5, 0.899999976	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	SOLDIER_EX	setHitObj_omoi	7	0x05CB7	4155	-	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	SOLDIER_EX	setHitObj_omoi	8	0x05CBD	4156	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+naf_a0100	SOLDIER_EX	setHitObj_omoi	8	0x05CBD	4156	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 naf_a0100	SOLDIER_EX	setHitObj_omoi	9	0x05CC0	4157	-	weight_upper_pc	-	-	-	-	-	-		01 verb-table.tsv
 naf_a0100	SOLDIER_EX	setHitObj_omoi	10	0x05CC3	4158	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	SOLDIER_EX	clearHitObj	1	0x05CC4	4163	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

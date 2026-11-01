@@ -221,7 +221,7 @@ their sentry destructors appear.
 | `+0x10` | `u64` | right | larger child; in the head, the largest node |
 | `+0x18` | `u8` | color | 0 red, 1 black |
 | `+0x19` | `u8` | isNil | 1 in the head node only |
-| `+0x20` | `...` | the element, key first: 0x10 bytes in tree A, 0x40 in tree B, 8 in tree C |  |
+| `+0x20` | `...` |  | the element, key first: `0x10` bytes in tree A, `0x40` in tree B, 8 in tree C |
 
 `MsvcString` (`0x20` bytes, offsets from the start of the record):
 

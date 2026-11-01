@@ -108,7 +108,7 @@ unit owns the record the name pointer is replaced by the empty string at `0x01CE
 ### Experience, LP and equipment
 
 With `full` set: `+0xBA` is the level (`+0x1C2`), `+0x90` the experience (`+0x18C`), `+0xB0` the LP
-(`+0x190`), `+0xBB` the number of licence bits set among bits 0-17 of the licence bytes at `+0x194`
+(`+0x190`), `+0xBB` the number of licence bits set among the bits under mask `0x3FFFF` of the licence bytes at `+0x194`
 (`0x00324020`), and `+0x98`-`+0xAC` the six words `+0x50`-`+0x5A` each shifted left by 16. `+0x94` is
 the points to the next level:
 
@@ -147,7 +147,7 @@ Struct PartyMemberStatusRecord size=`0xC0`:
 | `+0x28` | `i32` | hpCap | hpMaxEffective doubled under status bit `0x10000000` |
 | `+0x2C` | `i32` | mp | stats `+0x4C` |
 | `+0x30` | `i32` | mpCapacity | stats `+0x28` |
-| `+0x34` | `i32` | mpCapacityShown mpCapacity, or 0 when layer bytes +0x6C or +0x7C carry bit 0x80 |  |
+| `+0x34` | `i32` | mpCapacityShown | mpCapacity, or 0 when layer bytes `+0x6C` or `+0x7C` carry bit `0x80` |
 | `+0x38` | `i32` | secondary | stats `+0x06` |
 | `+0x3C` | `u32` | actionField768 | unit `+0x768` while acting |
 | `+0x40` | `u32` | actionField76C | unit `+0x76C` while acting |
@@ -170,7 +170,7 @@ Struct PartyMemberStatusRecord size=`0xC0`:
 | `+0xB0` | `i32` | lp | stats `+0x190` (full) |
 | `+0xB4` | `u16[3]` | partyRowBytes | party row +4 .. +6 |
 | `+0xBA` | `u8` | level | stats `+0x1C2` (full) |
-| `+0xBB` | `u8` | licenceCount | set bits among licence bits 0-17 (full) |
+| `+0xBB` | `u8` | licenceCount | set bits among licence bits under mask `0x3FFFF` (full) |
 
 The sixth equipment word at `+0xAC` is the stats record's `+0x5A`, not a sixth slot: see the
 [equipment slots page](../Items-Equipment-Shops-And-Licenses/equipment.md).

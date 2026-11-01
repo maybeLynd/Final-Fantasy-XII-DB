@@ -93,14 +93,14 @@ to the shared procedure `0x005651E0`. The pane of a category lives at `[0x0209AC
 `0x00564780(pane, kind, ...)` fills a pane's tab slots:
 
 - it stores the kind at `+0x17E` and `+0x17F`, keeps the kind's tab list from `0x01F2CB90` at `+0xE8`, sets `+0x17C`
-  to -1 and clears the tab count, bits 16-20 of `+0x180` (`0x005647AD`-`0x005647F4`);
+  to -1 and clears the tab count, mask `0x1F0000` of `+0x180` (`0x005647AD`-`0x005647F4`);
 - for each tab in the list that passes its check (`0x00252D10` for kinds 0 to 7, then `0x0057D610`), it fills the slot at
   `+0xF0` + 8 x count and adds 1 to the count (`0x0056486D`-`0x00564898`, `0x0056493F`-`0x00564966`);
 - a slot holds at `+0` the value `0x002526F0(8, ...)` keeps for the tab, or `0xFFFF` when that is 0, for kinds 0 to 7
   (`0x005648D9`-`0x005648E9`), and `0xFFFF` for the others (`0x00564992`); `0xFFFF` at `+2` and `+4`; the tab's place in the
   list at `+6`; and the tab's id at `+7` (`0x005648B8`-`0x005648D1`, `0x00564971`-`0x00564989`);
 - after the last tab it writes `0xFF` to the next slot's `+6` as the end mark (`0x005649D4`), clears the selected tab,
-  bits 21-25 of `+0x180`, and for kinds 0 to 7 selects the tab whose id is the one `0x002526F0(8, kind + 0x40)` keeps
+  mask `0x3E00000` of `+0x180`, and for kinds 0 to 7 selects the tab whose id is the one `0x002526F0(8, kind + 0x40)` keeps
   (`0x005649DC`-`0x00564A4C`).
 
 The count and the selection are read as signed 5-bit numbers (`0x00564875`-`0x00564882`, `0x005649CA`-`0x005649D0`), so a slot
@@ -232,7 +232,7 @@ skips the update (`0x0029269D`), so the remainders below are taken of a non-nega
 - A category appears only once its save-wide flag is set; clearing the flag hides the row.
 - Moving an item writes the stored order (`0x002530E0`), so the new order survives saving.
 - The shop keys `0x597`-`0x5AF` share the slot table `0x00D233A0` (slots 8 to 32).
-- A pane's tab strip holds 15 tabs: the count at bits 16-20 of `+0x180` is a signed 5-bit number, and a sixteenth
+- A pane's tab strip holds 15 tabs: the count at the bits under mask `0x1F0000` of `+0x180` is a signed 5-bit number, and a sixteenth
   tab would put the end mark below `+0xF0` (A pane's tabs, above).
 
 ## Related

@@ -73,7 +73,7 @@ address	form	role	element
 0x006AE270	PArray	allocate, copy, default the rest to {0, 0x02CF8270}	PTypedObject (16)
 0x006AF6B0	PArray	resize	PTypedObject (16)
 0x006AF760	PArray	set external: member-record +0x70 hook	-
-0x006BA4D0	PArray	truncate to at most n, keeping bit 31; when owned, clear each dropped element's own array and free the storage at 0	nested array (16)
+0x006BA4D0	PArray	truncate to at most n, keeping bit 0x80000000; when owned, clear each dropped element's own array and free the storage at 0	nested array (16)
 0x006C0BA0	-	copy n elements	PShadowSplit (0xE8)
 0x006C1540	PArray	allocate, copy (0x006C0BA0), default (0x006C2320)	PShadowSplit (0xE8)
 0x006C2320	-	default the last 0x28 bytes of n elements: 0, with +0xC8 and +0xD0 = 10.0	PShadowSplit (0xE8)

@@ -9,7 +9,7 @@ addresses: "0x00234480, 0x00236A60, 0x00316CD0, 0x00316CF0, 0x003839F0, 0x003839
 
 A battle unit is the `0xF50`-byte combat record every fighting actor holds in the pool of 32
 ([battle units](battle-units.md)). This page lays the record out by region and names the fields
-that a final page has established; the companion table `battle-unit-fields.tsv` lists every access to a unit:
+that a final page has established; the companion table [`battle-unit-fields.tsv`](battle-unit-fields.tsv) lists every access to a unit:
 through the pool `0x0208E688`, the accessors `0x00236820`, `0x00263E30`, `0x0031B7E0`, `0x0031B760`, `0x0031B860`, `0x0031B770` and
 `0x002367A0`, the actor's `+0x30` pointer, and the pointers passed on from them, with the clears as `set` rows.
 
@@ -89,7 +89,7 @@ seven test the pointer for null and the rest are in the table.
 
 ## Columns
 
-`battle-unit-fields.tsv`, one row per access site:
+[`battle-unit-fields.tsv`](battle-unit-fields.tsv), one row per access site:
 
 | Column | Meaning |
 |---|---|
@@ -151,7 +151,7 @@ Struct BattleTargetBuffer base=unit+`0x778` size=`0x208`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | header | bit `0x1` survives the reset `0x00316CF0` |
-| `+0x01` | `u8[2]` | cleared by the reset |  |
+| `+0x01` | `u8[2]` |  | cleared by the reset |
 | `+0x04` | `i32` | count | at most 32; `0x00316CD0` appends at count and increments |
 | `+0x08` | `u8[512]` | entries | 32 entries of 16 bytes: the actor at +0, the outcome word at +8 (target selection page) |
 

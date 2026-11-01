@@ -15,7 +15,7 @@ A row's key is the script, the section and the text id, the entry number in that
 
 - `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
 - `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
-- The `lines` column of `trial-mode-scripts.tsv`, the table of [Trial Mode scripts](../Story-Events-And-Hunts/trial-mode-scripts.md), names section 2 rows by the same key: 100 of its rows name 200 of the 200 section 2 rows here. The `quoted_lines` column of its steps table quotes 200 of them, in 1,800 steps.
+- The `lines` column of [`trial-mode-scripts.tsv`](../Story-Events-And-Hunts/trial-mode-scripts.tsv), the table of [Trial Mode scripts](../Story-Events-And-Hunts/trial-mode-scripts.md), names section 2 rows by the same key: 100 of its rows name 200 of the 200 section 2 rows here. The `quoted_lines` column of its steps table quotes 200 of them, in 1,800 steps.
 
 ### The scripts
 

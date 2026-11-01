@@ -130,6 +130,7 @@ accessor	global	width	kind	instruction	follow_up	callers	address_refs
 0x0029CB60	0x0209AC30	8	read	mov rax, qword ptr [rip + 0x1dfe0c9]	mov rax, qword ptr [rax + 0xb0]	1	0
 0x0029CB70	0x0209AC30	8	read	mov rax, qword ptr [rip + 0x1dfe0b9]	mov rax, qword ptr [rax + 0x88]	1	0
 0x0029E0B0	0x0209C498	8	read	mov rax, qword ptr [rip + 0x1dfe3e1]		1	0
+0x002AB860	0x0209CC40	8	read	mov rax, qword ptr [rip + 0x1df13d9]	add rax, 0x1098	21	0
 0x002AC280	0x0091654C	0	address	lea rax, [rip + 0x66a2c5]		2	0
 0x002AC290	0x00916558	0	address	lea rax, [rip + 0x66a2c1]		5	0
 0x002AC2A0	0x00916544	0	address	lea rax, [rip + 0x66a29d]		2	0
@@ -260,6 +261,7 @@ accessor	global	width	kind	instruction	follow_up	callers	address_refs
 0x0039D1D0	0x02AEEB20	0	address	lea rax, [rip + 0x2751949]		1	0
 0x0039D1E0	0x02AEEBA4	4	read	movss xmm0, dword ptr [rip + 0x27519bc]		3	0
 0x0039D1F0	0x02AEEBA0	4	read	movss xmm0, dword ptr [rip + 0x27519a8]		3	0
+0x003A2C70	0x02AEF41C	4	read	mov eax, dword ptr [rip + 0x274c7a6]	lea eax, [rax*4]	16	0
 0x003A3D20	0x02AEF418	4	read	mov eax, dword ptr [rip + 0x274b6f2]		16	0
 0x003B7720	0x02EBCC70	4	read	mov eax, dword ptr [rip + 0x2b0554a]		1	0
 0x003B7750	0x02EBCBE0	0	address	lea rax, [rip + 0x2b05489]		1	0
@@ -315,6 +317,11 @@ accessor	global	width	kind	instruction	follow_up	callers	address_refs
 0x005C51B0	0x005BFC40	0	address	lea rax, [rip - 0x5577]		0	1
 0x005C51C0	0x005BFE70	0	address	lea rax, [rip - 0x5357]		0	1
 0x005C51D0	0x005BFEA0	0	address	lea rax, [rip - 0x5337]		0	1
+0x005C51E0	0x02CAE660	0	address	lea rax, [rip + 0x26e9479]	or rax, 1	0	1
+0x005C5200	0x02CF8470	0	address	lea rax, [rip + 0x2733269]	or rax, 1	0	7
+0x005C5210	0x02CAD440	0	address	lea rax, [rip + 0x26e8229]	or rax, 1	0	1
+0x005C5220	0x02CADC50	0	address	lea rax, [rip + 0x26e8a29]	or rax, 1	0	1
+0x005C5240	0x02CAD840	0	address	lea rax, [rip + 0x26e85f9]	or rax, 1	0	2
 0x00604440	0x02CB6780	0	address	lea rax, [rip + 0x26b2339]		0	1
 0x00604460	0x02E5A6C0	0	address	lea rax, [rip + 0x2856259]		0	1
 0x00604470	0x02CB79A0	0	address	lea rax, [rip + 0x26b3529]		0	2
@@ -332,9 +339,13 @@ accessor	global	width	kind	instruction	follow_up	callers	address_refs
 0x00604550	0x02CBAE00	0	address	lea rax, [rip + 0x26b68a9]		0	1
 0x00604560	0x02E4D630	0	address	lea rax, [rip + 0x28490c9]		0	2
 0x00604570	0x02CB6C80	0	address	lea rax, [rip + 0x26b2709]		0	1
+0x006069C0	0x02D3A440	0	address	lea rax, [rip + 0x2733a79]	or rax, 1	0	1
+0x006069D0	0x02D3A640	0	address	lea rax, [rip + 0x2733c69]	or rax, 1	0	1
+0x006069E0	0x02CB7080	0	address	lea rax, [rip + 0x26b0699]	or rax, 1	0	1
 0x00623D60	0x02CF1640	0	address	lea rax, [rip + 0x26cd8d9]		0	1
 0x006372A0	0x02CF8270	0	address	lea rax, [rip + 0x26c0fc9]		248	0
 0x0063B5D0	0x02CF97E8	0	address	lea rax, [rip + 0x26be211]		0	1
+0x0063C090	0x02CF8980	0	address	lea rax, [rip + 0x26bc8e9]	or rax, 1	0	1
 0x00653B00	0x02D34740	0	address	lea rax, [rip + 0x26e0c39]		0	1
 0x00670CF0	0x02D39C40	0	address	lea rax, [rip + 0x26c8f49]		0	1
 0x00670D00	0x02D3A040	0	address	lea rax, [rip + 0x26c9339]		0	1
@@ -345,14 +356,25 @@ accessor	global	width	kind	instruction	follow_up	callers	address_refs
 0x00670D50	0x02CB6B80	0	address	lea rax, [rip + 0x2645e29]		0	1
 0x00670D60	0x02D39B40	0	address	lea rax, [rip + 0x26c8dd9]		0	1
 0x00670D70	0x02D39940	0	address	lea rax, [rip + 0x26c8bc9]		0	1
+0x006711E0	0x02CB6B80	0	address	lea rax, [rip + 0x2645999]	or rax, 1	0	1
+0x00677AB0	0x02D3E680	0	address	lea rax, [rip + 0x26c6bc9]	or rax, 1	0	2
+0x00677AC0	0x02E4D630	0	address	lea rax, [rip + 0x27d5b69]	or rax, 1	0	3
 0x0067E130	0x02E3F960	0	address	lea rax, [rip + 0x27c1829]		0	1
+0x00683AE0	0x02E41050	8	read	mov rax, qword ptr [rip + 0x27bd569]		0	1
 0x00685770	0x02E42A30	0	address	lea rax, [rip + 0x27bd2b9]		0	1
 0x00685780	0x02E42A38	0	address	lea rax, [rip + 0x27bd2b1]		0	1
+0x006859E0	0x02E41370	0	address	lea rax, [rip + 0x27bb989]	or rax, 1	0	1
+0x006859F0	0x02E41470	0	address	lea rax, [rip + 0x27bba79]	or rax, 1	0	1
 0x006A3760	0x02E48DD0	0	address	lea rax, [rip + 0x27a5669]		0	1
 0x006A3B10	0x00D7A918	0	address	lea rax, [rip + 0x6d6e01]		0	1
 0x006A3B20	0x00D7AAB8	0	address	lea rax, [rip + 0x6d6f91]		0	1
 0x006A9140	0x02E5C710	0	address	lea rax, [rip + 0x27b35c9]		0	1
 0x006AA340	0x01F2EB30	4	read	mov eax, dword ptr [rip + 0x18847ea]		1	0
+0x006ACA50	0x02E4EAF0	0	address	lea rax, [rip + 0x27a2099]	or rax, 1	0	3
+0x006ACA60	0x02E404B0	0	address	lea rax, [rip + 0x2793a49]	or rax, 1	0	9
+0x006AF5B0	0x02E4E430	0	address	lea rax, [rip + 0x279ee79]	or rax, 1	0	1
+0x006B0190	0x02E4FF60	0	address	lea rax, [rip + 0x279fdc9]	or rax, 1	0	1
+0x006B5CA0	0x02E518D0	0	address	lea rax, [rip + 0x279bc29]	or rax, 1	0	3
 0x006BE220	0x02E57F60	0	address	lea rax, [rip + 0x2799d39]		0	1
 0x006BE230	0x02E5DE30	0	address	lea rax, [rip + 0x279fbf9]		0	1
 0x006C25A0	0x02E59CC0	0	address	lea rax, [rip + 0x2797719]		0	1
@@ -361,16 +383,47 @@ accessor	global	width	kind	instruction	follow_up	callers	address_refs
 0x006D4E90	0x02E5E030	0	address	lea rax, [rip + 0x2789199]		0	1
 0x006D4EA0	0x02E5DF30	0	address	lea rax, [rip + 0x2789089]		0	1
 0x006D4EB0	0x02E5DD30	0	address	lea rax, [rip + 0x2788e79]		0	1
+0x006DB300	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c5869]	movzx eax, byte ptr [rax + 0x440]	0	0
+0x006DB3A0	0x02EA0B78	8	read	mov rax, qword ptr [rip + 0x27c57d1]		0	0
+0x006DB3F0	0x02EA0B80	8	read	mov rax, qword ptr [rip + 0x27c5789]		0	0
+0x006DB420	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c5749]	mov eax, dword ptr [rax + 0x1f0]	0	0
+0x006DB440	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c5729]	mov eax, dword ptr [rax + 0x328]	0	0
+0x006DBA40	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c5129]	mov eax, dword ptr [rax + 0x3a0]	0	0
+0x006DBA80	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c50e9]	mov eax, dword ptr [rax + 0x6f8]	0	0
+0x006DC960	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c4209]	movzx eax, byte ptr [rax + 0xf8]	0	0
+0x006DC9E0	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c4189]	movzx eax, byte ptr [rax + 0x78]	0	0
+0x006DCCB0	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3eb9]	movzx eax, byte ptr [rax + 0x9d4]	0	0
+0x006DCD40	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3e29]	movzx eax, byte ptr [rax + 0xa16]	0	0
+0x006DCDA0	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3dc9]	movzx eax, byte ptr [rax + 0xc54]	0	0
+0x006DCE00	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3d69]	movzx eax, byte ptr [rax + 0xa1e]	0	0
+0x006DCE80	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3ce9]	movzx eax, byte ptr [rax + 0xa39]	0	0
+0x006DCEC0	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3ca9]	mov eax, dword ptr [rax + 0xa3c]	0	0
+0x006DCF00	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3c69]	movzx eax, byte ptr [rax + 0xa40]	0	0
+0x006DD030	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3b39]	movzx eax, byte ptr [rax + 0xbe8]	0	0
+0x006DD190	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c39d9]	movzx eax, byte ptr [rax + 0xc24]	0	0
+0x006DD250	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c3919]	movzx eax, byte ptr [rax + 0xab0]	0	0
+0x006DF3B0	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c17b9]	mov rax, qword ptr [rax + 0x20]	0	0
 0x006DF410	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1759]		1	0
 0x006DF420	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1749]	mov rax, qword ptr [rax + 0x108]	1	0
 0x006DF440	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1729]	mov rax, qword ptr [rax + 0x110]	1	0
+0x006DF460	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1709]	mov rax, qword ptr [rax + 0x118]	0	0
+0x006DF510	0x02EA0B70	8	read	mov rax, qword ptr [rip + 0x27c1659]		0	0
 0x00727390	0x02EA19A0	4	read	mov eax, dword ptr [rip + 0x277a60a]		1	0
 0x007273A0	0x02EA19A0	4	read	mov eax, dword ptr [rip + 0x277a5fa]		1	0
 0x0072F910	0x02EA1C50	0	address	lea rax, [rip + 0x2772339]		5	0
 0x0072F920	0x02EA1A50	0	address	lea rax, [rip + 0x2772129]		1	0
+0x00769360	0x00916318	4	read	movss xmm0, dword ptr [rip + 0x1acfb0]		0	0
+0x00769370	0x00916318	4	read	movss xmm0, dword ptr [rip + 0x1acfa0]		0	0
+0x00769380	0x00900384	4	read	movss xmm0, dword ptr [rip + 0x196ffc]		0	0
+0x00769390	0x008F3A2C	4	read	movss xmm0, dword ptr [rip + 0x18a694]		0	0
+0x007693A0	0x00916318	4	read	movss xmm0, dword ptr [rip + 0x1acf70]		0	0
 0x00796E20	0x02EA5368	8	read	mov rax, qword ptr [rip + 0x270e541]		55	0
 0x0079C730	0x02EACE58	0	address	lea rax, [rip + 0x2710721]		0	1
 0x0079D8A0	0x02E4E430	0	address	lea rax, [rip + 0x26b0b89]		0	13
+0x0079D8B0	0x02EA5560	0	address	lea rax, [rip + 0x2707ca9]	or rax, 1	0	1
+0x0079D8F0	0x02EA5380	0	address	lea rax, [rip + 0x2707a89]	or rax, 1	0	1
+0x0079D900	0x02EA9400	0	address	lea rax, [rip + 0x270baf9]	or rax, 1	0	1
+0x0079D910	0x02CF8A80	0	address	lea rax, [rip + 0x255b169]	or rax, 1	0	1
 0x007A52B0	0x02EACF8D	1	read	movzx eax, byte ptr [rip + 0x2707cd6]		1	0
 0x007A5AF0	0x02EACFF8	4	read	mov eax, dword ptr [rip + 0x2707502]		3	0
 0x007AD670	0x02EAD0C0	8	read	mov rax, qword ptr [rip + 0x26ffa49]		2	0

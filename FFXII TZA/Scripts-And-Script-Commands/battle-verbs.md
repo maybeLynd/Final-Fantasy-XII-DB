@@ -181,7 +181,7 @@ toggle ([force fight mode](../Engine-Core/force-fight-mode.md)).
 
 `btlAtelSetAbility(a, b)` (`0x3000`, `0x00510440` → `0x002390B0`) rebuilds the unit's script-granted
 ability set at `+0xE80`: `+0xE80..+0xE8F` are zeroed, then bit `31 − k` is set for each set bit `k`
-of `a` and bit `63 − k` for each set bit of `b` (`0x04000000` in `b` sets bit `0x2000000000`). Bits 64-127 stay
+of `a` and bit `63 − k` for each set bit of `b` (`0x04000000` in `b` sets bit `0x2000000000`). The set's upper 64 bits (`+0xE88` to `+0xE8F`) stay
 zero.
 
 `btlAtelSetStatus(ref)` (`0x3002`, `0x005103B0` → `0x002394C0`) reads a table of 32 two-bit values
@@ -219,29 +219,29 @@ Battle unit:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u32` | unitFlags | low dword of the u64: bit `0x4000` issued command, bit `0x400000` no attacker registration, bit `0x800000` stance |
-| `+0x004` | `u32` | unitFlags high dword | bits 9-10 emergency (bits 41-42 of the u64), bit `0x10000` engaged |
+| `+0x004` | `u32` | unitFlags high dword | mask `0x600` emergency (mask `0x60000000000` of the u64), bit `0x10000` engaged |
 | `+0x6B0` | `...` | commandStanceFlags | bit `0x2` issued without target |
 | `+0x6E0` | `...` | order set | one of the four order sets |
 | `+0x6E8` | `...` | order set | one of the four order sets |
 | `+0x6F0` | `...` | order set | one of the four order sets |
 | `+0x6F8` | `...` | order set | one of the four order sets |
 | `+0x700-0x717` | `...` | action block | holds the next three rows |
-| `+0x708` | `...` | action context |  |
-| `+0x710` | `...` | target focus |  |
-| `+0x714` | `u16` | action id |  |
+| `+0x708` | `...` |  | action context |
+| `+0x710` | `...` |  | target focus |
+| `+0x714` | `u16` |  | action id |
 | `+0x718-0x72F` | `...` | block copy | copy of the block |
-| `+0x748` | `...` | transient-set target |  |
-| `+0x750` | `...` | shared target |  |
-| `+0x754` | `...` | shared target |  |
-| `+0xBA0` | `u16` | issued command id |  |
+| `+0x748` | `...` |  | transient-set target |
+| `+0x750` | `...` |  | shared target |
+| `+0x754` | `...` |  | shared target |
+| `+0xBA0` | `u16` |  | issued command id |
 | `+0xBA4` | `u16` | issued order flags | the flags word of the issued order at `+0xBA0`: bit `0x8000` set on issue (`0x00311DBB`) |
-| `+0xBB8` | `...` | issued target |  |
+| `+0xBB8` | `...` |  | issued target |
 | `+0xDCC` | `u32` | stanceRecheckDeadlineTick |  |
-| `+0xE80` | `u64[2]` | script abilities |  |
-| `+0xE90` | `u32` | script statuses |  |
-| `+0xEA4` | `...` | attackers mask |  |
-| `+0xEA8` | `u8` | attacker count |  |
-| `+0xEA9` | `u8` | unit index |  |
+| `+0xE80` | `u64[2]` |  | script abilities |
+| `+0xE90` | `u32` |  | script statuses |
+| `+0xEA4` | `...` |  | attackers mask |
+| `+0xEA8` | `u8` |  | attacker count |
+| `+0xEA9` | `u8` |  | unit index |
 
 Order sets:
 
@@ -264,8 +264,8 @@ Render record [`0x022C6F28`] + idx × `0x740`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x284` | `...` | objectFlags | bit `0x80000` set by draw and sheathe |
-| `+0x294` | `...` | motion flags |  |
-| `+0x40B` | `...` | flagByte40B | bits 0-1 drawn state |
+| `+0x294` | `...` |  | motion flags |
+| `+0x40B` | `...` | flagByte40B | mask `0x3` drawn state |
 
 ## Shipped data
 

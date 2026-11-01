@@ -10,7 +10,7 @@ addresses: "0x01CBA5D0, 0x01CDB290, 0x0016F080, 0x01CEB590, 0x01F48940, 0x00D86C
 One row per third-party library compiled into `FFXII_TZA.exe`, in address order: its name, the
 version where the binary states one, the text or table that identifies it and where that sits, its
 address span, how many functions its member list holds, and what the game uses it for. The data is
-`third-party-libraries.tsv` beside this page.
+[`third-party-libraries.tsv`](third-party-libraries.tsv) beside this page.
 
 Every row is identified by something the library itself put in the image: a version banner, the
 library's own C++ namespace in RTTI type names, its default file names or allocator names, or a
@@ -119,18 +119,18 @@ default settings.
 |---|---|---|---|
 | `+0x000` | `f32[2]` | -1.0, -1.0 | display size, unset |
 | `+0x008` | `f32` | 1/60 (0x3C888889) | frame time |
-| `+0x00C` | `f32` | 5.0 | ini saving interval |
-| `+0x010` | `char*` | "imgui.ini" | `0x01CB3990` |
-| `+0x018` | `char*` | "imgui_log.txt" | `0x01CB39A0` |
-| `+0x020` | `f32` | 0.3 | double-click time |
-| `+0x024` | `f32` | 6.0 | double-click distance |
+| `+0x00C` | `f32` |  | value 5.0: ini saving interval |
+| `+0x010` | `char*` |  | value "imgui.ini": `0x01CB3990` |
+| `+0x018` | `char*` |  | value "imgui_log.txt": `0x01CB39A0` |
+| `+0x020` | `f32` |  | value 0.3: double-click time |
+| `+0x024` | `f32` |  | value 6.0: double-click distance |
 | `+0x078` | `void*` | 0x02EA54F0 | the default font atlas |
-| `+0x080` | `f32` | 1.0 | font scale |
+| `+0x080` | `f32` |  | value 1.0: font scale |
 | `+0x0A0` | `fn*` | 0x00796E70 | default platform callback |
 | `+0x0A8` | `fn*` | 0x00798D70 | default platform callback |
 | `+0x0B0` | `fn*` | malloc |  |
 | `+0x0B8` | `fn*` | free |  |
-| `+0x0C0` | `fn*` | 0x00797360 | default platform callback |
+| `+0x0C0` | `fn*` |  | value `0x00797360`: default platform callback |
 | `+0x0D0` | `f32[2]` | -1.0, -1.0 | mouse position, unset (`0x00791E0D`) |
 | `+0x310` | `f32[2]` | -1.0, -1.0 | previous mouse position, unset (`0x00791E4B`) |
 

@@ -8,10 +8,12 @@ addresses: "0x02EB8260, 0x02EB82D8, 0x02EB8348, 0x02EB8270, 0x02EB82E0, 0x02EB83
 ## What it lists
 
 PhyreEngine's input module describes an input as a list of sources, and each source names what it reads through
-semantics: static named objects in three registries. The type semantics say which device a source reads (`Key`,
-`JoypadButton`, `MouseDeltaX` and 22 more), the axis semantics name a stick axis, and the pad-button semantics name a
+semantics: static named objects in three registries. The type semantics say which device a source reads (the 25 listed in the next paragraph),
+the axis semantics name a stick axis, and the pad-button semantics name a
 pad button. This page lists every one of those objects in
 [`phyre-input-semantics.tsv`](phyre-input-semantics.tsv).
+
+The 25 type semantics, in table order: `Key`, `JoypadButton`, `JoypadAxis`, `MouseButton`, `MouseDeltaX`, `MouseDeltaY`, `TouchDragX`, `TouchDragY`, `TouchTwoFingerDragX`, `TouchTwoFingerDragY`, `TouchPinch`, `TouchRotate`, `MotionQuatX`, `MotionQuatY`, `MotionQuatZ`, `MotionQuatW`, `MotionAngularVelocityX`, `MotionAngularVelocityY`, `MotionAngularVelocityZ`, `MotionLinearAccelerationX`, `MotionLinearAccelerationY`, `MotionLinearAccelerationZ`, `VisionTrackerX`, `VisionTrackerY`, `VisionTrackerZ`.
 
 ### What the player sees
 
@@ -211,7 +213,7 @@ codes 1-3.
 
 ## Columns
 
-`phyre-input-semantics.tsv`, one row per object, sorted by address:
+[`phyre-input-semantics.tsv`](phyre-input-semantics.tsv), one row per object, sorted by address:
 
 | Column | Meaning |
 |---|---|

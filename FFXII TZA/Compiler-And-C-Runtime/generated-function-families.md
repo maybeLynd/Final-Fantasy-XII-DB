@@ -54,18 +54,15 @@ Many families call the same few runtime functions:
 
 The return-value adapters are 26 bytes each. `0x005A2B80` is typical:
 
-| Address | Type | Name | Meaning |
-|---|---|---|---|
-| `0x005A2B80` | `...` | push rbx |  |
-| `0x005A2B82` | `sub` | rsp, 0x20 |  |
-| `0x005A2B86` | `mov` | rcx, rdx | ; the second argument becomes the first |
-| `0x005A2B89` | `mov` | rbx, r8 | ; the third is an out pointer |
-| `0x005A2B8C` | `call 0x005BEC00` | ; the only part that differs between members |  |
-| `0x005A2B91` | `mov` | [rbx], rax | ; store the returned pointer |
-| `0x005A2B94` | `add` | rsp, 0x20 |  |
-| `0x005A2B98` | `pop` | rbx |  |
-
-```
+```asm
+0x005A2B80  push rbx
+0x005A2B82  sub  rsp, 0x20
+0x005A2B86  mov  rcx, rdx          ; the second argument becomes the first
+0x005A2B89  mov  rbx, r8           ; the third is an out pointer
+0x005A2B8C  call 0x005BEC00          ; the only part that differs between members
+0x005A2B91  mov  [rbx], rax        ; store the returned pointer
+0x005A2B94  add  rsp, 0x20
+0x005A2B98  pop  rbx
 0x005A2B99  ret
 ```
 

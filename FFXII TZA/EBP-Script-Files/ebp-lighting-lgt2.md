@@ -28,11 +28,11 @@ All multi-byte fields are little-endian.
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "LGT2", compared as the dword `0x3254474C` |
 | `+0x04` | `u16` | listOffset | start of the chunk chain, from the section start |
-| `+0x06` | `u16` | 0 |  |
-| `+0x08` | `u16` | 1 or 2, not read |  |
+| `+0x06` | `u16` |  | value 0 |
+| `+0x08` | `u16` |  | 1 or 2, not read |
 | `+0x0A` | `u16` | lightCount | light records |
-| `+0x0C` | `u32` | 0 |  |
-| `+0x10` | `record[lightCount]` | 0x70 bytes each |  |
+| `+0x0C` | `u32` |  | value 0 |
+| `+0x10` | `record[lightCount]` |  | `0x70` bytes each |
 
 ```
 [listOffset] chunk chain, each chunk {u16 size; u16 type; ...}; size 0 ends the chain
@@ -44,19 +44,19 @@ Light record, as its readers use it:
 |---|---|---|---|
 | `+0x02` | `u8` | kind | 1 interpolate, 2 curves, other values static |
 | `+0x03` | `u8` | state | bit `0x1` off, bit `0x2` animated, bit `0x4` loop the clock |
-| `+0x04` | `i16[4]` | kind 1: three start values; kind 2: four curve indices into the type-5 table |  |
-| `+0x18` | `i16[3] / f32` | kind 1: three end values; kind 2: f32 duration at +0x18 |  |
-| `+0x1C` | `f32` | kind 2: the clock |  |
-| `+0x20` | `request` | the 0x50 bytes handed to the renderer |  |
-| `+0x20` | `u8` | lightKind 6 is folded into the object's colour; any other kind is passed on in the light list |  |
+| `+0x04` | `i16[4]` |  | kind 1: three start values; kind 2: four curve indices into the type-5 table |
+| `+0x18` | `...` |  | kind 1: s16[3], the three end values; kind 2: f32, the duration |
+| `+0x1C` | `f32` |  | kind 2: the clock |
+| `+0x20` | `request` |  | the `0x50` bytes handed to the renderer |
+| `+0x20` | `u8` | lightKind | 6 is folded into the object's colour; any other kind is passed on in the light list |
 | `+0x21` | `u8` | priority | 0 to 5 remapped at bind; the highest kind-6 light becomes the object's key light |
-| `+0x22` | `u8` | 5 on a kind-6 light makes +0x30..+0x38 multipliers |  |
+| `+0x22` | `u8` |  | 5 on a kind-6 light makes `+0x30`..+`0x38` multipliers |
 | `+0x23` | `u8` | filter | 1 with `+0x24` = 2: `+0x28` must equal the object's id; 3: `+0x28` is a mask (`+0x24` 7 include, 6 exclude) |
 | `+0x24` | `u8` | test |  |
-| `+0x25` | `u8` | bit 0x10 exempts the light from the object's blend |  |
-| `+0x27` | `u8` | flags | bit `0x1` not added to the summed colour; bits 2 to 7 an exclusion mask (bit `0x20` set on group 0) |
+| `+0x25` | `u8` |  | bit `0x10` exempts the light from the object's blend |
+| `+0x27` | `u8` | flags | bit `0x1` not added to the summed colour; mask `0xFC` an exclusion mask (bit `0x20` set on group 0) |
 | `+0x28` | `u32` | id | the value the filter tests |
-| `+0x30` | `f32[4]` | values written by kind 1 and kind 2 animation |  |
+| `+0x30` | `f32[4]` |  | values written by kind 1 and kind 2 animation |
 
 Chunks, by type:
 

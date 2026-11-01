@@ -452,9 +452,9 @@ the map-side globals, and `0x002628B0` (`0x00262B53`) sets `0x0209A6FC` to 1 at 
 | `+0x04` | `i32` | rowsOff | image-relative offset of the field rows, 8 bytes each (`0x0026D910`, `0x00264F10`) |
 | `+0x08` | `i32` | blocksOff | offset of the 16-byte weather blocks (`0x0026D910`) |
 | `+0x0C` | `u8[4]` | unused | zero in the shipped file; read and written by no function: the image pointer `0x02099D88` is loaded by `0x00264ED0`, `0x00264F10`, `0x00264F40`, `0x00264F90`, `0x00264FD0`, `0x002678A0`, `0x00268750`, `0x0026D910` and `0x0026DB30`, and no instruction of the nine reads or writes it; nothing fixes its width |
-| `+0x10` | `i32` | table10Off count dword then u32[count]: the environment class per environment index (0x0026DA10-0x0026DA26) |  |
-| `+0x14` | `i32` | table14Off offset of a count dword then u32[count], the terrain class per field group: the load completion 0x002678A0 adds it to the base (0x002678A7) and keeps the sum at 0x02099D90, which 0x00263DD0 indexes by the unit's group word without a bound check (0x00263E00) |  |
-| `+0x18` | `i32` | table18Off count dword then u8[count]: the terrain boolean per environment index (0x0026DA66-0x0026DA7D) |  |
+| `+0x10` | `i32` | table10Off | count dword then u32[count]: the environment class per environment index (`0x0026DA10`-`0x0026DA26`) |
+| `+0x14` | `i32` | table14Off | offset of a count dword then u32[count], the terrain class per field group: the load completion `0x002678A0` adds it to the base (`0x002678A7`) and keeps the sum at `0x02099D90`, which `0x00263DD0` indexes by the unit's group word without a bound check (`0x00263E00`) |
+| `+0x18` | `i32` | table18Off | count dword then u8[count]: the terrain boolean per environment index (`0x0026DA66`-`0x0026DA7D`) |
 | `+0x1C` | `u8[20]` | unused2 | zero in the shipped file; read and written by no function: no instruction of the nine functions that load the image pointer `0x02099D88` (`0x00264ED0`, `0x00264F10`, `0x00264F40`, `0x00264F90`, `0x00264FD0`, `0x002678A0`, `0x00268750`, `0x0026D910`, `0x0026DB30`) reads or writes `+0x1C` to `+0x2F`; nothing fixes its width |
 
 `MapRefFieldRow` (`0x8` bytes, offsets from the start of the row):
@@ -530,7 +530,7 @@ The three files row by row, decoded with the layouts above:
 | [`weather-terrain-groups.tsv`](weather-terrain-groups.tsv) | 32 | the `+0x14` table, the terrain class per field group: 0 for 17 groups, 1 for one, 2 for two, 3 for three and 4 for nine |
 | [`weather-sky-instances.tsv`](weather-sky-instances.tsv) | 999 | one sky instance (flag `0x10000000`) of a map pack, over 195 packs: the scene drawn (five packs use another map's scene through `0x01EF9490`), the instance number, flag word and weather slots, the mesh instance and mesh, segments, indices and indexed vertices, `m_extraFlag`, material, effect variant, `TextureSampler` texture and the file it loads; 11 instances have no mesh instance in the scene |
 | [`weather-sky-textures.tsv`](weather-sky-textures.tsv) | 1,052 | one texture binding of a material that a sky instance draws or that binds a texture named `sky`: the scene, material, effect variant, parameter, texture, the file it loads, and how many sky and other instances draw the material |
-| [`weather-slot-effects.tsv`](weather-slot-effects.tsv) | 2,124 | one map of `weather-maps.tsv` and slot: the slot's chance, its environment index, combat and wind class, the effect banks the field loads, the rows of channels 0 and 31 the slot makes and how many other slots do not make, the element types they play with a count (and, for types without a picture, how they draw), the pictures drawn with a count, and the screen surfaces sampled |
+| [`weather-slot-effects.tsv`](weather-slot-effects.tsv) | 2,124 | one map of [`weather-maps.tsv`](weather-maps.tsv) and slot: the slot's chance, its environment index, combat and wind class, the effect banks the field loads, the rows of channels 0 and 31 the slot makes and how many other slots do not make, the element types they play with a count (and, for types without a picture, how they draw), the pictures drawn with a count, and the screen surfaces sampled |
 | [`weather-class-effects.tsv`](weather-class-effects.tsv) | 8 | one combat class (0 to 4) or wind class (0 to 2): its combat rule, its slots, how many make a zone-start element and a slot-limited one, and per element type and picture the number of slots whose slot-limited rows play or draw it; then for the slots a map can select (chance above 0), their count, how many make a zone-start element and a slot-limited one, and the element types of those |
 
 The zone scripts (`ps2data/plan_master/us/plan_map/<area>/<zone>/global/<zone>.ebp`, 769 files,
@@ -661,3 +661,14 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
 - [Script verb dispatch and parameter encoding](../Scripts-And-Script-Commands/verb-dispatch.md)
 - [The world tick and the field frame](../Engine-Core/frame-update-order.md)
 - [Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps](../Saving-Loading-And-Settings/save-file-format.md)
+- [`map-ref-image-header-accesses.tsv`](map-ref-image-header-accesses.tsv): every censused access to the
+  `map_ref.bin` header (`MapRefHeader`) through the image pointer `[0x02099D88]` (15 rows).
+- [`map-ref-field-row-accesses.tsv`](map-ref-field-row-accesses.tsv): every censused access to its field rows
+  (`MapRefFieldRow`), found from the header's `+0x04` (18 rows).
+- [`map-ref-weather-block-accesses.tsv`](map-ref-weather-block-accesses.tsv): every censused access to its weather
+  blocks (`MapRefWeatherBlock`), found from `+0x08` (4 rows).
+- [`map-ref-weather-lane-accesses.tsv`](map-ref-weather-lane-accesses.tsv): every censused access to the four lanes
+  of a weather block (4 rows).
+
+In the `route` cells of these tables, `MapRefImageHeader` names the `map_ref.bin` header and `MapRefWeatherBlock` a
+weather block.

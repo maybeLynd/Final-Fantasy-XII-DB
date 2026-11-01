@@ -33,7 +33,7 @@ cases are VIF1 commands with VIF1's field layout:
 | `0x14`, `0x15` | MSCAL, MSCALF | runs `0x0022C8D0`, then the program installed at the largest address not above the requested one |
 | `0x4A` | MPG | the next 8 bytes are an x64 function pointer, stored at `0x02068E30 + imm16 × 8`; the address is appended to the list `0x02088E50` (count `0x02088E44`) |
 | `0x50`, `0x51` | DIRECT, DIRECTHL | calls the callback with the data pointer, the context and the flag, then skips `count × 16` bytes |
-| `0x60` to `0x7F` | UNPACK | `0x0022BFF0` with the format from bits 24 to 27, the unsigned flag bit `0x4000`, the add-TOPS flag bit `0x8000`, NUM from bits 16 to 23 and the address from the low ten bits; the mask flag bit `0x10000000` has no effect |
+| `0x60` to `0x7F` | UNPACK | `0x0022BFF0` with the format from the bits under mask `0xF000000`, the unsigned flag bit `0x4000`, the add-TOPS flag bit `0x8000`, NUM from the bits under mask `0xFF0000` and the address from the low ten bits; the mask flag bit `0x10000000` has no effect |
 | anything else | NOP, FLUSH, FLUSHE, FLUSHA, STMASK, STROW … | advances four bytes |
 
 On the console MPG uploads microcode. Here it uploads a pointer to a function that already is
@@ -166,13 +166,13 @@ collected copy, then `0x002104E0`, `0x002105B0(0)` and the device slot `+0x58` a
 ### GIF packets and the GS replay
 
 `0x0020F310` sizes a GIF packet by walking its tags: NLOOP is bits `0x7FFF`, EOP bit `0x8000` ends the
-walk, FLG bits 58 to 59 and NREG bits 60 to 63 (0 means 16). PACKED tags are
+walk, FLG bits under mask `0xC00000000000000` and NREG bits under mask `0xF000000000000000` (0 means 16). PACKED tags are
 `(NREG × NLOOP + 1) × 16` bytes, REGLIST `NREG × NLOOP` rounded up to even, times 8, plus 16, and
 IMAGE `(NLOOP + 1) × 16`. The gate byte `0x01E027C0` is 1 in the image and has no writer, so the
 sizing and the replay always run.
 
 `0x00210320` walks the same tags for the replay. It stores the device at `0x01FC35F8` and the flag at
-`0x01FD3611`, and for each tag with NLOOP above 0 reads PRE (bit `0x400000000000`), PRIM (bits 47 to 57), FLG and
+`0x01FD3611`, and for each tag with NLOOP above 0 reads PRE (bit `0x400000000000`), PRIM (mask `0x3FF800000000000`), FLG and
 NREG, and resets Q (`0x01E027B0`) to 1.0. A PACKED tag flushes the batch and applies PRIM through `0x0020FE70` when PRE is set, then
 runs `0x0020F3E0`. A REGLIST tag with NLOOP above 0 ends the walk through the flush. An IMAGE tag
 skips `NLOOP × 16` bytes. EOP ends the walk, and a final `0x0020EC80` flushes.
@@ -234,7 +234,7 @@ past 682 it moves the primitive's unfinished trailing vertices to the front (for
 vertex 0).
 
 Among the state `0x0020ED30` selects, `0x0020FF10` decodes the GS TEST register of the current context
-(`0x01FC35C8`, or `0x01FC35D0` while `0x01FC3601` is set): ATE bit `0x1`, ATST bits 1 to 3, AREF bits 4 to 11,
+(`0x01FC35C8`, or `0x01FC35D0` while `0x01FC3601` is set): ATE bit `0x1`, ATST bits under mask `0xE`, AREF bits under mask `0xFF0`,
 AFAIL bits `0x1000` and `0x2000`, DATE bit `0x4000`, DATM bit `0x8000`, ZTE bit `0x10000`, ZTST bits `0x20000` and `0x40000`, into `0x01FD3668` to
 `0x01FD3684`. It hands the device (its vtable `+0x88`) the alpha test with AREF / 255 and the method
 `0x0020F2A0(ATST)`, which maps 1 to 7 onto 7, 4, 6, 3, 2, 1, 5 and anything else onto 0.

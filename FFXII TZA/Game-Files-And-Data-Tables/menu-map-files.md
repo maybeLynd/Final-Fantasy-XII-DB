@@ -109,7 +109,7 @@ Header:
 | `+0x00` | `char[4]` | magic | "sloc" |
 | `+0x04` | `u32` | - | 100 |
 | `+0x08` | `u16` | recordsOff | record directory, from the file start (`0x10` in every file) |
-| `+0x0A` | `u16` | picturesOff picture table, from the file start |  |
+| `+0x0A` | `u16` | picturesOff | picture table, from the file start |
 | `+0x0C` | `u32` | - | 0 |
 
 Record directory (at recordsOff):
@@ -133,8 +133,7 @@ Picture table (at picturesOff):
 |---|---|---|---|
 | `+0x00` | `u16` | count | pictures; `0x003C26C0` reads only the low byte |
 | `+0x02` | `u16` | keysOff | key array, from the table start |
-| `+0x04` | `i32[count]` | picture | TIM2 picture, from the table start; -1 = none |
-| `+0x04` | `+ 4*count` | s32[count] placement | NPS2 record, from the table start |
+| `+0x04` | `i32[2][count]` | pictures | two arrays of count entries: each entry's TIM2 picture, from the table start (-1 when the entry has no picture), then from `+0x04` + 4 × count each entry's NPS2 placement record, from the table start |
 
 ```
 keysOff: {u16 fieldId, u8 variant, u8 0}[count]
@@ -154,8 +153,7 @@ NAVIICN2 block:
 |---|---|---|---|
 | `+0x00` | `char[8]` | magic | "NAVIICN2"; byte +7 must be above '1' |
 | `+0x08` | `u16` | kinds | icon kinds present (10 in every block) |
-| `+0x0A` | `+ 4k` | u16 | offset     kind k's entries, from the block start (k = 1 to 9) |
-| `+0x0C` | `+ 4k` | u16 | count      kind k's entry count |
+| `+0x0E` | `u16[9][2]` | kindTable | per kind k, 1 to 9, the pair at `+0x0A` + 4k: the offset of the kind's entries from the block start, then their count |
 
 Icon entry (16 bytes):
 
@@ -189,7 +187,7 @@ Record, one per sub-location:
 | `+0x01` | `u8` | markers | B entries |
 | `+0x02` | `u8` | links | C entries |
 | `+0x03` | `u8` | members | D entries |
-| `+0x04` | `A[zones], B[markers]` | 24 bytes each | C[links]              20 bytes each zoom                  8 bytes D[members]            4 bytes each |
+| `+0x04` | `...` | entries | in order: A[zones] and B[markers], 24 bytes each; C[links], 20 bytes each; an 8-byte zoom record; D[members], 4 bytes each |
 
 A zone and B marker (one point space: A first, then B):
 
@@ -200,7 +198,7 @@ A zone and B marker (one point space: A first, then B):
 | `+0x08` | `u16[2]` | - | copied to the draw row |
 | `+0x0C` | `u16` | fieldId | A: the zone's field id s32      label       B: destination label text id; -1 = destination's name |
 | `+0x0E` | `u16` | gate | A: `0xFFFF` = none; a key item when flags `+0x10` have a bit of `0xFC0` (`0x00309EC0`), otherwise a story flag (`0x0032A8A0`); decoded by `0x003C18A0` |
-| `+0x10` | `u32` | flags | A: bits 0-1 picture variant, bits 2-5 zone group |
+| `+0x10` | `u32` | flags | A: mask `0x3` picture variant, mask `0x3C` zone group |
 | `+0x10` | `u8` | - | B: copied to the draw row |
 | `+0x11` | `u8` | dest | B: destination sub-location |
 | `+0x12` | `i16` | gate | B: unlock gate; -1 = always |
@@ -247,7 +245,7 @@ Directory (at dirOff), one entry per sub-location:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | count | 48 |
-| `+0x04` | `...` | entry[count], 8 bytes: |  |
+| `+0x04` | `...` |  | entry[count], 8 bytes: |
 | `+0x00` | `u8` | group | persistence group |
 | `+0x01` | `u8` | palette | 0 = none, else kind 7 id `0xE1` + palette |
 | `+0x02` | `i16` | gate | story gate; -1 = none (`0x003C12B0`) |
@@ -265,7 +263,7 @@ Guide schedule (at mapsOff + 2 + 2*count, rounded up to 4):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | count | 77 |
-| `+0x04` | `...` | entry[count], 8 bytes: |  |
+| `+0x04` | `...` |  | entry[count], 8 bytes: |
 | `+0x00` | `u16` | counter | story counter at which it applies |
 | `+0x02` | `u16` | gate | story gate; `0xFFFF` = none |
 | `+0x04` | `u8` | file | guide file number |
@@ -282,7 +280,7 @@ Guide schedule (at mapsOff + 2 + 2*count, rounded up to 4):
 | `+0x0A` | `u16` | tim2Off | TIM2 picture, from the file start; `0xFFFF` = none |
 | `+0x0C` | `u16` | - | 0 |
 | `+0x0E` | `u16` | count | lines |
-| `+0x10` | `...` | entry[count], 8 bytes: |  |
+| `+0x10` | `...` |  | entry[count], 8 bytes: |
 | `+0x00` | `u16` | counter | copy of the schedule entry's counter |
 | `+0x02` | `u16` | gate | copy of the schedule entry's gate |
 | `+0x04` | `u16` | text | string offset from textOff; `0xFFFF` = none |
@@ -669,7 +667,7 @@ While the widget's `+0xD0` has bits `0x100` and `0x200`, the maps read the selec
 - Edit the folder each language loads; `in` serves every language without its own folder.
 - A sloc file may hold at most 18 pictures; the slot has room for 18 handles. Keep the picture table's byte
   `+1` at 0, since one reader reads the count as a byte and two as a `u16`.
-- Each sloc picture's key must equal an lmap zone's field id and its flag bits 0-1, or the zone has no
+- Each sloc picture's key must equal an lmap zone's field id and its flag bits under mask `0x3`, or the zone has no
   picture. NPS2 `+0x18` and `+0x1C` set the size the zone takes on the page.
 - A NAVIICN2 block needs byte `+7` above `'1'` and a `kinds` value above the highest kind used; the location
   map's draw paths draw kinds 3 to 9.

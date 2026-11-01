@@ -178,8 +178,8 @@ row index, and for kind 0 it is the type the code partitions:
 
 ```python
 definition id (u16)
-bits 8-15  kind       0 party table 0x02EBF130, 1 enemy table 0x02EBF120, other: nothing installed
-bits 0-7   index      the row; for kind 0 also the type byte at stats +0x04
+mask 0xFF00  kind       0 party table 0x02EBF130, 1 enemy table 0x02EBF120, other: nothing installed
+mask 0xFF   index      the row; for kind 0 also the type byte at stats +0x04
 ```
 
 Struct EnemyRow table=`0x02EBF120` (stride at table `+0x08`):
@@ -188,12 +188,12 @@ Struct EnemyRow table=`0x02EBF120` (stride at table `+0x08`):
 |---|---|---|---|
 | `+0x00` | `u16` | classRow | row of `0x02EBF150` (the class row at unit `+0xE68`) |
 | `+0x02` | `u8` | counterSlot | spawn counter index, `0xFF` for none |
-| `+0x03` | `u8` | flags | bits 0-1 the tracked-HP class (`0x00328FF0`, flag bit `0x80000000000`); bit `0x10`: unit `+0x58` = 7 (`0x00238BF0`), the motion height without its random part (`0x002362A4`), a test of the gambit selector (`0x0030268D`); bit `0x20`: the shadow kind, through `0x002E8A10` |
+| `+0x03` | `u8` | flags | mask `0x3` the tracked-HP class (`0x00328FF0`, flag bit `0x80000000000`); bit `0x10`: unit `+0x58` = 7 (`0x00238BF0`), the motion height without its random part (`0x002362A4`), a test of the gambit selector (`0x0030268D`); bit `0x20`: the shadow kind, through `0x002E8A10` |
 | `+0x08` | `u16` | nameRef | bank << 11 \| entry into `0x02EBF170` |
 | `+0x0A` | `i16[3]` | scalePercent | 0 means 100; divided by 100 and handed to `0x002E5FD0` (`0x00238D1B`-`0x00238D68`) |
 | `+0x11` | `u8[2]` | variant | `+0x12` then `+0x11`, the model's variant bytes (`0x0031C5AB`, `0x0031C5B1`) |
 | `+0x13` | `u8` | animSet | `0xFF` for the weapon's (`0x003202F0`) |
-| `+0x15` | `u8` | flags2 | bit `0x1` Attack and weapon evade, bit `0x2` shield and magick evade from the stat rows (`0x002FEF30`); bit `0x4` also sets flag bit `0x80000000000`; bit `0x8` (`0x0031AACF`) and bits 3-4 (`0x0031AB39`) in the target-information query `0x0031AA30` |
+| `+0x15` | `u8` | flags2 | bit `0x1` Attack and weapon evade, bit `0x2` shield and magick evade from the stat rows (`0x002FEF30`); bit `0x4` also sets flag bit `0x80000000000`; bit `0x8` (`0x0031AACF`) and the bits under mask `0x18` (`0x0031AB39`) in the target-information query `0x0031AA30` |
 | `+0x16` | `u16` | equipment0 |  |
 | `+0x18` | `u32` | startHp | 0 for none (`0x0023A410`) |
 | `+0x1C` | `u16` | equipment1 |  |
@@ -232,13 +232,13 @@ Class row (`0x02EBF150`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | model | a bound id, letter class in bits 16-23 (`0x0031C2F0`) |
+| `+0x00` | `u32` | model | a bound id, letter class in the bits under mask `0xFF0000` (`0x0031C2F0`) |
 | `+0x04` | `u8` | type | unit `+0x55` |
 | `+0x05` | `u8` | kind | unit `+0x56` |
 | `+0x06` | `u16` | clanEntry | unit `+0x52` |
 | `+0x10` | `i16` | separation | tenths; a positive value / 10 to `0x0026DAC0` (`0x00238CEB`) |
 | `+0x12` | `u8` | flags | bits `0x7` the effect column (`0x00329FB3`); bit `0x10` actor `+0x09` bit `0x40` (`0x0026A3A0`); bit `0x20` the view query's kind (`0x0031B394`); bit `0x40` actor `+0x08` bit `0x8` and `+0x09` bit `0x40` (`0x0026A430`); bit `0x80` `0x003879C0`, `0x00390AB0`, `0x0033D660` |
-| `+0x18` | `u8` | group | bits `0xE` a movement group, 4 noticing every unit (`0x003248F8`); bits 4-6 the placement height (`0x00239E10`) |
+| `+0x18` | `u8` | group | bits `0xE` a movement group, 4 noticing every unit (`0x003248F8`); mask `0x70` the placement height (`0x00239E10`) |
 | `+0x20` | `u8` | comboCap | hits at most this - 1 (`0x00388845`) |
 | `+0x21` | `u8` | flags21 | bit `0x2` an enemy may back off (`0x00334204`) |
 | `+0x22` | `u8` | facing | unit `+0x64` = value * 2π / 360 |

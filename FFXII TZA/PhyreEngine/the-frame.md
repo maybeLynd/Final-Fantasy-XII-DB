@@ -73,7 +73,7 @@ set of flags. Bytes follow at `0x022C7F98` (`+8`), `0x022C7F99` (`+9`) and `0x02
 permit byte of [frame update order](../Engine-Core/frame-update-order.md)).
 
 `0x00358450(draw, on)`
-sets bits 0–7 of that draw's pass bits to `on`, clears bit `0x100` and sets bits `0xF` of its upper word. The
+sets the bits under mask `0xFF` of that draw's pass bits to `on`, clears bit `0x100` and sets bits `0xF` of its upper word. The
 reset `0x00358510` (called from `0x0022A0B0`) runs it with on for draw 0 and off for draw 1, then stores
 0, 0 and 1 at `+8`, `+9` and `+0xA`. The other writers, their 105 call sites and the values they store
 are listed in [the-frame-drawmask-callers.tsv](the-frame-drawmask-callers.tsv).
@@ -162,13 +162,13 @@ Pass mask (`0x022C7F90`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | draw 0 pass bits |  |
-| `+0x02` | `u16` | draw 0 upper flags |  |
-| `+0x04` | `u16` | draw 1 pass bits |  |
-| `+0x06` | `u16` | draw 1 upper flags |  |
-| `+0x08` | `u8` | current draw byte (0x00358640) |  |
-| `+0x09` | `u8` | capture byte |  |
-| `+0x0A` | `u8` | speed permit byte |  |
+| `+0x00` | `u16` |  | draw 0 pass bits |
+| `+0x02` | `u16` |  | draw 0 upper flags |
+| `+0x04` | `u16` |  | draw 1 pass bits |
+| `+0x06` | `u16` |  | draw 1 upper flags |
+| `+0x08` | `u8` |  | current draw byte (`0x00358640`) |
+| `+0x09` | `u8` |  | capture byte |
+| `+0x0A` | `u8` |  | speed permit byte |
 
 GiBeginEff render command, `0x90` bytes:
 

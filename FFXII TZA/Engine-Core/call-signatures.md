@@ -45,13 +45,13 @@ function's incoming value on every path to the site, so the callee receives that
 
 ## Columns
 
-`call-signatures.tsv`, one row per function:
+[`call-signatures.tsv`](call-signatures.tsv), one row per function:
 
 | Column | Meaning |
 |---|---|
 | `addr` | the function's entry address |
 | `arity` | the highest argument position read before written, 0 to 4; register slots only |
-| `int_regs` | the integer argument registers read before written, `-` for none |
+| `int_regs` | the integer argument registers read before written, `-` when the body reads no integer argument register |
 | `flt_regs` | the float argument registers `xmm0` to `xmm3` read before written |
 | `home_spill` | integer argument registers stored unchanged into their own home slot (`[entry rsp + 8]` for `rcx` up to `+0x20` for `r9`) |
 | `call_passthrough` | argument registers the body neither reads nor writes before some call or tail call, which that callee receives unchanged |
@@ -90,7 +90,7 @@ so that its first argument is that class's `this`:
 | Column | Meaning |
 |---|---|
 | `addr` | the function's entry address |
-| `name` | its working name, `FUN_` and the address when it has none |
+| `name` | its working name, `FUN_` and the address when it has no name |
 | `derived_arity` | `arity` from the main table |
 | `int_regs` | `int_regs` from the main table |
 | `classes` | how many virtual tables hold it |

@@ -20,8 +20,9 @@ addresses: "0x003E7650, 0x02B59D80, 0x00320BB0, 0x0046FD00, 0x0046FFA0, 0x004700
 - Sleep, Confuse, Immobilize and Float also move the body ([Character rig and look](character-rig-and-look.md)).
 - Reverse, Lure, Protect, Shell, Haste, Bravery, Faith, Reflect, Regen and Libra change nothing on the body through this
   mechanism; KO, Bubble and X-Zone only set a flag.
-- During status-display denial, and in towns, the colour looks and the Invisible fade are hidden; during status-control
-  denial the looks hold still.
+- While a script or a menu turns the status display off (`setstatuserrordispdenystatus` and its `_by_menu` form), and
+  in towns, the colour looks and the Invisible fade are hidden; while one turns on `setstatuserrorctrldenystatus`, the
+  looks hold still.
 
 ## How it works
 
@@ -63,7 +64,7 @@ the record's flag dword `+0xC0 + 4 × bit`. Then, changed or not, it runs the tw
 | Sleep (4), Confuse (5) | rig controller 3 and the look controller's byte `+0x1C` bits `0x2` and `0x4` |
 | Float (26) | rig controller 6 on or off |
 | KO (0), Bubble (28), X-Zone (31) | nothing |
-| bits 12, 17-23, 25, 30 | no arm |
+| mask `0x42FE1000` | no arm |
 
 The arms are `0x0051E580`-`0x0051ECF0`, one pair per bit. The rig switches are on
 [Character rig and look](character-rig-and-look.md).
@@ -214,7 +215,7 @@ These steps use a phase stepping by `0.033 × [0x01DFE0BC]` and an envelope movi
 
 - Invisible, `0x0051DC90`: fade channel 5 = `1 - (0.6 + 0.2p) × envelope`, or `1 - (0.88 + 0.08p) × envelope` when the
   block's `+0x14` (the record's enemy flag) is set; `0x00428AF0(record, 1, 1, 0x60)` sets `+0x304` bits `0x20000`, `0x40000` and the
-  byte at bits 19-26. Leaving restores 1.0 and clears them ([Character fades](character-fades.md)).
+  byte at the bits under mask `0x7F80000`. Leaving restores 1.0 and clears them ([Character fades](character-fades.md)).
 - Index 2, `0x0051E0A0`: fade channel 5 = `1 - envelope`. No status selects it.
 - Slow, `0x0051E170`, while render record `+0x114` holds a shadow: with `s = (0.5 + 0.3p) × envelope`, the shadow's
   colour = `(128s, 32s, 8s)` as integers, and the vector `(1 + 0.1p, 1 - 0.1p, 1 - 0.1p, 1)` goes to `0x001F1600`, which
@@ -298,11 +299,11 @@ Colour-look block (record `+0x20`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | mask | bits 0-13 |
+| `+0x00` | `u32` | mask | mask `0x3FFF` |
 | `+0x04` | `u8` | shown |  |
 | `+0x05` | `u8` | wanted | lowest set bit, `0xFF` = none |
 | `+0x06` | `u8` | frame | flash and cycle counter |
-| `+0x07` | `u8` | flags | bit `0x1` changing, bits 1-7 entry count |
+| `+0x07` | `u8` | flags | bit `0x1` changing, mask `0xFE` entry count |
 | `+0x08` | `u32` | light0 | handle |
 | `+0x0C` | `u32` | light1 | handle |
 | `+0x10` | `u32` | target | the render-record index the lights belong to |

@@ -59,15 +59,15 @@ With flags bit `0x1` clear, two gates run on the target and source units (`0x003
 
 | Mask bit | Set when | Site |
 |---|---|---|
-| battle 0 | the battle flags `0x02089340` have a bit of `0x3080` | `0x0030B77F`-`0x0030B799` |
-| battle 1 | byte `0x022C2158` bit `0x1` | `0x0030B7A3`-`0x0030B7B0` |
-| battle 2, 3, 4 | battle flags bit `0x400`, `0x200` or `0x800`, the defeat latches ([KO and Game Over](ko-and-game-over.md)) | `0x0030B7B4`-`0x0030B7DA` |
-| unit 3 | the unit's `+4` bit `0x20`, unless `0x022C2160` is 5 or 6 | `0x0030B817`-`0x0030B830` |
-| unit 0 | unit flag bit `0x100` | `0x0030B83C`-`0x0030B847` |
-| unit 1 | unit flag bit `0x40000000`, for a source on the other side | `0x0030B84C`-`0x0030B85B` |
-| unit 4 | the target is party row 26 | `0x0030B860`-`0x0030B87E` |
-| unit high 0 | the developer setting `+0xC20` is 1, for a party record | `0x0030B883`-`0x0030B8AA` |
-| unit high 1 | the developer setting `+0xC20` is 2 | `0x0030B8B6`-`0x0030B8C3` |
+| battle `0x1` | the battle flags `0x02089340` have a bit of `0x3080` | `0x0030B77F`-`0x0030B799` |
+| battle `0x2` | byte `0x022C2158` bit `0x1` | `0x0030B7A3`-`0x0030B7B0` |
+| battle `0x4`, `0x8`, `0x10` | battle flags bit `0x400`, `0x200` or `0x800`, the defeat latches ([KO and Game Over](ko-and-game-over.md)) | `0x0030B7B4`-`0x0030B7DA` |
+| unit `0x8` | the unit's `+4` bit `0x20`, unless `0x022C2160` is 5 or 6 | `0x0030B817`-`0x0030B830` |
+| unit `0x1` | unit flag bit `0x100` | `0x0030B83C`-`0x0030B847` |
+| unit `0x2` | unit flag bit `0x40000000`, for a source on the other side | `0x0030B84C`-`0x0030B85B` |
+| unit `0x10` | the target is party row 26 | `0x0030B860`-`0x0030B87E` |
+| unit `0x10000` | the developer setting `+0xC20` is 1, for a party record | `0x0030B883`-`0x0030B8AA` |
+| unit `0x20000` | the developer setting `+0xC20` is 2 | `0x0030B8B6`-`0x0030B8C3` |
 
 A unit counts only while its flag bit `0x10` is set (`0x0030B80D`). The setting `+0xC20` is the console's
 "Invincible" entry ([Debug menu commands](../Engine-Core/debug-menu-commands.md)),

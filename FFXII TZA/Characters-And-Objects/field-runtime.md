@@ -59,7 +59,7 @@ The pass returns 1 without driving anything when:
 1. the save-write busy flag `0x02CA99E8` (`0x00583920`) is non-zero;
 2. after copying flags bit `0x80` into flags2 bit `0x1`: `+0x13` is non-zero or flags bit `0x1` is set, flags2
    bit `0x8` is clear, and the byte `0x022C6D20[slot]` (`0x0032F6E0`) is non-zero, in which case it first
-   runs `0x0026A5F0(slot)`, which sets bit `slot` of `0x02099ABC` (and bits 1-3 for slot 0) and calls
+   runs `0x0026A5F0(slot)`, which sets bit `slot` of `0x02099ABC` (and the bits under mask `0xE` for slot 0) and calls
    `0x002E15D0` and `0x002E1690`;
 3. flags bit `0x1` is clear;
 4. the byte `0x022CB726` (`0x003603C0`) is non-zero;
@@ -72,7 +72,7 @@ The pass returns 1 without driving anything when:
 ### The two globals
 
 Before any record is driven the pass publishes `0x02099D70` = the slot block and `0x02099D78` = the party
-focus actor's record: `0x003590D0()` reads the packed handle at `0x022C7FE0`, `0x003588B0` resolves it, and
+leader's record ([Party leader](../Party/party-leader.md)): `0x003590D0()` reads the packed handle at `0x022C7FE0`, `0x003588B0` resolves it, and
 the result is null when there is no focus or the handle does not resolve.
 
 ### The pass body
@@ -234,7 +234,7 @@ finds a record with that channel bit set, write `waitKind` and `commandPhase` as
 
 ```python
 return value = AND over the driven records of (record +0x14 bit 0x40)   (forced to 0 by branches 3 and the roster loop)
-record +0x14: bit 0x10 drive the bound battle unit through +0x38 (0x0025DF00), bit 0x40 settled (both functions), bits 0-3 the repeat gate of branch 3
+record +0x14: bit 0x10 drive the bound battle unit through +0x38 (0x0025DF00), bit 0x40 settled (both functions), mask 0xF the repeat gate of branch 3
 ```
 
 ## Operations

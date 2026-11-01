@@ -43,19 +43,16 @@ CML1 (section 8):
 | `+0x00` | `char[4]` | magic | "CML1"; never compared |
 | `+0x04` | `u32` | count | rows |
 | `+0x08` | `u32[2]` | - | 0; not read |
+| `+0x10` | `u8[count][16]` | rows | one 16-byte row per entry, as below; then the names, NUL-terminated, and zero fill to `0x40` |
 
-`+0x10`  row[count]:
+Row (16 bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | nameOffset | name, from the section start |
-| `+0x04` | `i32` | camera | CAM7 record number; -1 = none |
+| `+0x04` | `i32` | camera | CAM7 record number; -1 when the row names no camera |
 | `+0x08` | `u32` | - | zeroed at load |
 | `+0x0C` | `u32` | - | low byte zeroed at load |
-
-```
-then the names, NUL-terminated; zero fill to 0x40
-```
 
 CAM7 (section 9):
 
@@ -81,14 +78,14 @@ Shot record:
 | `+0x08` | `char[24]` | name | copied with strncpy(…, 24) |
 | `+0x20` | `u32` | attach | attachment word (`0x002572E0`) |
 | `+0x24` | `u16` | eyeJoint | joint for eye attach modes 1 and 2 |
-| `+0x26` | `u16` | targetJoint joint for target attach modes 1 and 2 |  |
-| `+0x28` | `commands` | keys and segments, then 0xFF and three pad bytes |  |
+| `+0x26` | `u16` | targetJoint | joint for target attach modes 1 and 2 |
+| `+0x28` | `commands` |  | keys and segments, then `0xFF` and three pad bytes |
 
 Key (type 1, `0x40` bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | 1 |  |
+| `+0x00` | `u8` |  | value 1 |
 | `+0x04` | `f32[3]` | eye |  |
 | `+0x14` | `f32[3]` | target |  |
 | `+0x24` | `f32` | angle | to the view's `+0x20` |
@@ -104,9 +101,9 @@ Segment (type 2, `0x2C` bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | 2 |  |
-| `+0x04` | `u16[13]` | timing | bit `0x8000` set: ease curve (bits 0-14); else frames |
-| `+0x1E` | `u16` | eyePath | bit `0x8000` set: path (bits 0-13); bit `0x4000`: progress is a distance |
+| `+0x00` | `u8` |  | value 2 |
+| `+0x04` | `u16[13]` | timing | bit `0x8000` set: ease curve (mask `0x7FFF`); else frames |
+| `+0x1E` | `u16` | eyePath | bit `0x8000` set: path (mask `0x3FFF`); bit `0x4000`: progress is a distance |
 | `+0x20` | `u16` | targetPath | as eyePath |
 | `+0x22` | `u16` | duration | frames |
 | `+0x24` | `u8` | kind | 0-6; see Playing a shot |
@@ -122,7 +119,7 @@ Ease curve (array B):
 | `+0x0C` | `f32` | startValue |  |
 | `+0x10` | `f32` | end | time; the normaliser |
 | `+0x14` | `f32` | endValue | at or after end, and with no keys |
-| `+0x18` | `...` | key[keys], 0x24 bytes: +0x10 a, +0x14 b, +0x18 c, +0x1C d, +0x20 span |  |
+| `+0x18` | `...` |  | key[keys], `0x24` bytes: `+0x10` a, `+0x14` b, `+0x18` c, `+0x1C` d, `+0x20` span |
 
 Path (array C):
 
@@ -133,7 +130,7 @@ Path (array C):
 | `+0x06` | `u16` | arcs |  |
 | `+0x08` | `f32[3]` | start | at parameter 0 or below |
 | `+0x14` | `f32[3]` | end | at parameter 1 or above |
-| `+0x20` | `...` | segment[segments], 0x38 bytes: x a b c d, y a b c d, z a b c d, +0x30 span |  |
+| `+0x20` | `...` |  | segment[segments], `0x38` bytes: x a b c d, y a b c d, z a b c d, `+0x30` span |
 
 ```
 then arc[arcs]: f32 distance, f32 parameter
@@ -163,7 +160,7 @@ Every count is per language tree; the CAM7 sections are byte-identical in all ni
 | eye attached | 180 shots: mode 0 83, mode 1 31, mode 2 66; turn 152, hold height 7, hold ground 5, bit `0x200` 34, bit `0x400` 34 |
 | target attached | 181 shots: mode 0 83, mode 1 32, mode 2 66; turn 153, hold height 7, hold ground 1 |
 | attach mode 3 | unused |
-| eye bits 9-14 set with eye actor 0 | 11 shots; never read |
+| eye bits under mask `0x7E00` set with eye actor 0 | 11 shots; never read |
 | ease curves, paths | 15,350 and 1,682; each used by exactly one segment word; every curve's spans sum to 1.0 |
 | layout checks | every stream ends at its record length, the three arrays end on zero padding, and `first` is `0x20` |
 

@@ -53,7 +53,7 @@ Picture header (`0x30` bytes, then the game block or eXt area up to header size)
 | `+0x13` | `u8` | imageType | passed to the CLUT builders |
 | `+0x14` | `u16` | width |  |
 | `+0x16` | `u16` | height |  |
-| `+0x18` | `u64` | gsTex0 | bits 20-25 pick the binder's path; bits 51-54 kept in the entry |
+| `+0x18` | `u64` | gsTex0 | the bits under mask `0x3F00000` pick the binder's path; mask `0x78000000000000` kept in the entry |
 | `+0x20` | `u64` | gsTex1 |  |
 | `+0x28` | `u32` | gsRegs |  |
 | `+0x2C` | `u32` | gsTexClut |  |
@@ -159,8 +159,8 @@ it at `+0xC8` (`0x0057800F`), and `0x005780D0` hands it to `0x00577C30` as the s
 `0x0024A1D0(entry, file)` reads only the first picture and never checks the magic, version, format byte or
 picture count:
 
-- It stores the file at entry `+0x18` and picture `+0x10` at `+0x20`, copies TEX0 bits 20-25 (the PSM)
-  into entry `+0x38` bits `0x3F00` and bits 51-54 into bits 14-17, and names the texture from the entry's
+- It stores the file at entry `+0x18` and picture `+0x10` at `+0x20`, copies TEX0 bits under mask `0x3F00000` (the PSM)
+  into entry `+0x38` bits `0x3F00` and the bits under mask `0x78000000000000` into the bits under mask `0x3C000`, and names the texture from the entry's
   name, or the name plus `%03d` of entry `+0x40`.
 - PSM `0x13`: the pixels (`0x00181250`) and the CLUT (`0x00181000`) are registered; PSM `0x14`: `0x00181190` and
   `0x00180E70`. Any other PSM registers nothing, and the entry is still marked bound (`+0x38` bit `0x40`).
@@ -172,7 +172,7 @@ picture count:
 - The reorder swaps bits `0x8` and `0x10` of each colour index within a 256-colour palette. In a 16-colour palette
   it moves colours 8 to 15 outside the palette and leaves those entries unfilled.
 - For PSM `0x14` the binder also keeps a copy of the CLUT at entry `+0x10` with the same bit `0x8` and `0x10`
-  swap; for `0x13` the entry points at the file's CLUT. A CLUT given to `0x0024A480` (entry `+0x28`, count in `+0x38` bits 18 up)
+  swap; for `0x13` the entry points at the file's CLUT. A CLUT given to `0x0024A480` (entry `+0x28`, count in `+0x38` the bits from `0x40000` up)
   replaces the file's.
 
 ### The registry gate
@@ -273,7 +273,7 @@ TIM2 file at `0x02AEE850` (`0x0039C1D0`), and `0x02AEE860` at its pixels, the he
 
 - Keep a replacement `.tm2` a single 16-byte-aligned picture at `+0x10`: the binder reads no picture count
   and no format byte, and only the first picture.
-- The PSM in TEX0 (`+0x28` of the file, bits 20-25) must be `0x13` (8-bit) or `0x14` (4-bit); any other
+- The PSM in TEX0 (`+0x28` of the file, mask `0x3F00000`) must be `0x13` (8-bit) or `0x14` (4-bit); any other
   value leaves the texture unregistered. The image type and CLUT type decide whether the CLUT is reordered;
   a 4-bit picture should keep CLUT type 3 as shipped, since `0x41` to `0x43` break its 16-colour palettes.
 - An 8-bit picture gets one palette per 256 CLUT colours and a 4-bit one per 16; `clutColors` must match

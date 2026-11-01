@@ -7,11 +7,13 @@ addresses: "0x0022A0B0, 0x0022BDF0, 0x001EDDC0, 0x0017D8F0, 0x00229F10, 0x0022A4
 
 ## What the player sees
 
-Two launches of the game roll the same numbers until a save is loaded, after which they never
-agree again. A player who sets the frame limit to 60 sees every authored duration keep its
-wall-clock length. Whether Circle or Cross confirms is settled once, at start, into two masks every
-menu reads. The game's whole working memory, a quarter of a gigabyte in eleven blocks, is claimed
-before the first screen appears. None of it is revisited until the next launch.
+Two launches of the game roll the same numbers until a save is loaded; loading a save reseeds the
+generator from the system clock, so from then on the two launches roll differently. A player who
+sets the frame limit to 60 sees every authored duration keep its wall-clock length. Whether Circle
+or Cross confirms is settled once, at start, into two masks every menu reads. The game's whole
+working memory, a quarter of a gigabyte in eleven blocks, is claimed before the first screen
+appears. The frame-rate constant, the two button masks and the memory blocks stay as set until the
+next launch.
 
 ## How it works
 
@@ -99,8 +101,10 @@ the clearing paths and at boot) to `0x00798E90` and, with a render manager, to `
 ### The confirm button and the language
 
 `0x0022A4F0` is the only other writer of the two masks and `0x01FD4A64`; it is the Config screen's path
-(`0x0017E6E0` and `0x0023E194`). The masks have about 90 read sites across the menus; the engine never
-asks the setting again. `0x0017E270` turns the language string the settings object names
+(`0x0017E6E0` and `0x0023E194`). The masks are read at 86 places, 47 for the confirm mask and 39 for the cancel mask;
+the engine never asks the setting again.
+
+`0x0017E270` turns the language string the settings object names
 (`[0x01DF0030 + 8 * [0x01F82D20][0]]`) into an index: `jp` 10, `en` 1, `fr` 2, `de` 3, `it` 4, `es` 5,
 `kr` 7, `ch` 8, `cn` 11, anything else 10; it is stored at `0x01E02814` and read by `0x00229E40`,
 `0x00229E50` and twice more inside the boot fixer ([languages](../Saving-Loading-And-Settings/languages.md)).
@@ -265,39 +269,39 @@ Globals written by the boot fixer:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02EB4234` | `u8` | generator first-use latch |  |
+| `0x02EB4234` | `u8` |  | generator first-use latch |
 | `0x02EB3870` | `u32[624]` | Mersenne Twister state |  |
-| `0x01DFE0B4` | `u32` | frame base 1 or 2 |  |
-| `0x01DFE0B8` | `f32` | time base 1.0 / 2.0 |  |
-| `0x01DFE0BC` | `f32` | time base 1.0 / 0.5 |  |
-| `0x01F82E38` | `u32` | 60 fps mode flag |  |
-| `0x01DFE0C0` | `u32` | the mode suppressor |  |
-| `0x01F82E3C` | `u8` | timer period begun |  |
-| `0x01F82E40` | `u32` | the period |  |
-| `0x02064ACC` | `u32` | pacer ticks per frame: 2 / [0x01DFE0B4] |  |
-| `0x01E0C2A0` | `u32` | confirm mask |  |
-| `0x01E0C2A4` | `u32` | cancel mask |  |
+| `0x01DFE0B4` | `u32` |  | frame base 1 or 2 |
+| `0x01DFE0B8` | `f32` |  | time base 1.0 / 2.0 |
+| `0x01DFE0BC` | `f32` |  | time base 1.0 / 0.5 |
+| `0x01F82E38` | `u32` |  | 60 fps mode flag |
+| `0x01DFE0C0` | `u32` |  | the mode suppressor |
+| `0x01F82E3C` | `u8` |  | timer period begun |
+| `0x01F82E40` | `u32` |  | the period |
+| `0x02064ACC` | `u32` |  | pacer ticks per frame: 2 / [`0x01DFE0B4`] |
+| `0x01E0C2A0` | `u32` |  | confirm mask |
+| `0x01E0C2A4` | `u32` |  | cancel mask |
 | `0x01FD4A64` | `u32` | DecideButton non-zero |  |
-| `0x01E02814` | `u32` | language index |  |
+| `0x01E02814` | `u32` |  | language index |
 | `0x01E0281C` | `u32` | 10 |  |
-| `0x01F7F490` | `...` | the code_steam.txt id |  |
-| `0x01F7F4A0` | `...` | the data.txt id |  |
-| `0x01FD49F0` | `void*` | block of arena 5 |  |
-| `0x01FD49F8` | `void*` | block of arena 2 |  |
-| `0x01FD4A00` | `void*` | block of arena 3 |  |
-| `0x01FD4A08` | `void*` | block of arena 4 |  |
-| `0x01FD4A10` | `void*` | block of arena 6 |  |
-| `0x01FD4A18` | `void*` | block of arena 11 |  |
-| `0x01FD4A20` | `void*` | the unregistered 0x80000 block |  |
-| `0x01FD4A30` | `void*` | block of arena 7 |  |
-| `0x01FD4A38` | `void*` | block of arena 8 |  |
-| `0x01FD4A40` | `void*` | block of arena 9 |  |
-| `0x01FD4A90` | `void*` | the unregistered 1 MiB block, the per-model oscillator table |  |
-| `0x02064AA4` | `u32` | the main state machine's cell |  |
-| `0x02064AC0` | `...` | the main state machine's cells 0x02064AC0 to 0x02064AD4 |  |
-| `0x01FD4A78` | `void*` | 0x01FE0000 (0x01FE4A9F rounded down to 64 KiB, 0x0022A13F-0x0022A152) |  |
-| `0x022C2528` | `u32` | the -nologo flag |  |
-| `0x022D7FD0` | `...` | arena table, 0xA8 per id, 15 ids |  |
+| `0x01F7F490` | `...` |  | the code_steam.txt id |
+| `0x01F7F4A0` | `...` |  | the data.txt id |
+| `0x01FD49F0` | `void*` |  | block of arena 5 |
+| `0x01FD49F8` | `void*` |  | block of arena 2 |
+| `0x01FD4A00` | `void*` |  | block of arena 3 |
+| `0x01FD4A08` | `void*` |  | block of arena 4 |
+| `0x01FD4A10` | `void*` |  | block of arena 6 |
+| `0x01FD4A18` | `void*` |  | block of arena 11 |
+| `0x01FD4A20` | `void*` |  | the unregistered `0x80000` block |
+| `0x01FD4A30` | `void*` |  | block of arena 7 |
+| `0x01FD4A38` | `void*` |  | block of arena 8 |
+| `0x01FD4A40` | `void*` |  | block of arena 9 |
+| `0x01FD4A90` | `void*` |  | the unregistered 1 MiB block, the per-model oscillator table |
+| `0x02064AA4` | `u32` |  | the main state machine's cell |
+| `0x02064AC0` | `...` |  | the main state machine's cells `0x02064AC0` to `0x02064AD4` |
+| `0x01FD4A78` | `void*` |  | `0x01FE0000` (`0x01FE4A9F` rounded down to 64 KiB, `0x0022A13F`-`0x0022A152`) |
+| `0x022C2528` | `u32` |  | the -nologo flag |
+| `0x022D7FD0` | `...` |  | arena table, `0xA8` per id, 15 ids |
 
 ## Shipped data
 

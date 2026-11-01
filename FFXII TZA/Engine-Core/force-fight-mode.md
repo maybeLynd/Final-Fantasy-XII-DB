@@ -86,7 +86,7 @@ The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 fun
 | `0x002FFCF0` | refuses every command with reason `0x24` for a party-side unit without Confuse or Berserk (status `0x08000020`), except Dismiss (`0x113`) and Dismount (`0x95`) ([command availability](../Battle-Actions/command-availability.md)) |
 | `0x00308610`, `0x0030C010` | the combat frame skips the combo continuation `0x0030FA00` for a unit without Confuse or Berserk, and `0x0030C010` answers "no" to the same question ([combos](../Battle-Actions/combos.md)) |
 | `0x00307D10` | the engagement update: for a unit that is not the chocobo (`0x1A`) and not in a town, with the two statuses clear, it clears `0x022C1F48` bits `0x2` and `0x4`, zeroes `0x022C1F40` and the unit's `+0xDCC`, and clears unit `+4` bits `0x200`, `0x400` and `0x10000` (bit `0x10000` = engaged); the other arm (fighting, or the chocobo, a town or a status set) runs the bit `0x200` path through `0x00307CE0`, `0x0030BF20` and `0x0030B050`; it runs when a status is added or removed (`0x0030E360`, at `0x0030E7AC`, [status changes](../Status-Effects-And-KO/status-changes.md)) and when the stats block is recomputed (`0x002FEF30`, [stats](../Damage-And-Battle-Formulas/stats.md)) |
-| `0x00307FF0` | the two global writes alone (`0x022C1F48 &= 0xF9`, `0x022C1F40` = 0), run by the area initialisation `0x002342F0` and by `0x002348E0`, which first tears down every enemy unit (`0x00300E40`) |
+| `0x00307FF0` | does not read the predicate itself: it makes the fleeing arm's two global writes alone (`0x022C1F48 &= 0xF9`, `0x022C1F40` = 0), run by the area initialisation `0x002342F0` and by `0x002348E0`, which first tears down every enemy unit (`0x00300E40`) |
 | `0x00308130` | "may the unit engage", after running `0x00307D10`, answers false for a unit with the two statuses clear; otherwise true for unit `+4` bit `0x10000`, and false when `0x022C1F48` bit `0x1` is clear. With bit `0x1` set it first arms the clock through `0x003081E0` (`0x00308192`): when unit `+0` bit `0x800000` is clear and `+0xDCC` is 0, `+0xDCC = trunc(0x0032A150() + trunc([0x01DFE0B8] * 30) * ((0x00328370() & 3) * 0.25 + 0.5))`, the sum stored as an integer. It then answers true when unit `+0x698` is null or that block's byte `+5` is non-zero (`0x003081A1`, `0x003081A9`), and otherwise when the clock `0x0032A150()` is at or past `+0xDCC` (`0x003081B2`) |
 | `0x00309A90` | the approach distance is 3.8 at party-control level 1 or 2.2 otherwise, instead of the fighting value 24.0 ([party control modes](party-control-modes.md)) |
 | `0x00313A00` | the action availability row writes: the second of its fourteen bits is set (`0x002E1C20`) instead of cleared (`0x002E1CA0`) while a unit's action is being shown (`0x02089350`, [Action phases](../Battle-Actions/action-phases.md)) or the party is fleeing |
@@ -97,16 +97,16 @@ The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 fun
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01E0C2B8` | `u32` | force fight mode: 1 fighting (image value), 0 fleeing |  |
-| `0x02B4053C` | `u8` | enable byte 1: 0 in the image; 1 from the boot, the manager-0 unload and debug_setfightstatusbyevent |  |
-| `0x02B4053D` | `u8` | enable byte 2: 0 in the image; 1 from the boot |  |
-| `0x020927E0` | `u32` | the R2 toggle state (1 = fleeing requested) |  |
-| `0x020927E4` | `u8` | its press edge |  |
-| `0x01E0C2B4` | `u32` | the device-poll override |  |
-| `0x020927CC` | `u32` | forces the state to 0 when 1 |  |
-| `0x022C83EC` | `u32` | the mode register (0x0035C6F0 / 0x0035C880) |  |
-| `0x022CB726` | `...` | the two skip predicates that refuse an unforced write | with `0x022CB728` |
-| `0x022CB728` | `...` | the two skip predicates that refuse an unforced write | with `0x022CB726` |
+| `0x01E0C2B8` | `u32` |  | force fight mode: 1 fighting (image value), 0 fleeing |
+| `0x02B4053C` | `u8` |  | enable byte 1: 0 in the image; 1 from the boot, the manager-0 unload and debug_setfightstatusbyevent |
+| `0x02B4053D` | `u8` |  | enable byte 2: 0 in the image; 1 from the boot |
+| `0x020927E0` | `u32` |  | the R2 toggle state (1 = fleeing requested) |
+| `0x020927E4` | `u8` |  | its press edge |
+| `0x01E0C2B4` | `u32` |  | the device-poll override |
+| `0x020927CC` | `u32` |  | forces the state to 0 when 1 |
+| `0x022C83EC` | `u32` |  | the mode register (`0x0035C6F0` / `0x0035C880`) |
+| `0x022CB726` | `...` |  | the two skip predicates that refuse an unforced write; with `0x022CB728` |
+| `0x022CB728` | `...` |  | the two skip predicates that refuse an unforced write; with `0x022CB726` |
 
 ## Shipped data
 

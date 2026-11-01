@@ -7,7 +7,8 @@ addresses: "0x0017CEB0, 0x0019B070, 0x001F4340, 0x001F4120, 0x001F4720, 0x001F3F
 
 ## What the player sees
 
-The game's data lives in one 31 GB file, `FFXII_TZA.vbf`, beside the game folder. It opens at once
+The game's data lives in one 31 GB file, `FFXII_TZA.vbf`, in the game folder beside the `x64` folder that
+holds the program. It opens at once
 at start-up, because only its index is read and checked; the data itself is read a piece at a time
 as the game needs it. An edited index the game does not accept leaves the archive unmounted, and every
 file the game then asks for fails to open. A compressed block that fails to inflate shows a Windows

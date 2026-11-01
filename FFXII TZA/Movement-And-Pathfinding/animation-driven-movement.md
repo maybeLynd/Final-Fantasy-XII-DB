@@ -31,7 +31,7 @@ Otherwise it asks the unit for a view: `0x0041F2F0(record,
 `+0x110` (both overwritten: the builder zeroes the view again), and hands the view to the battle
 unit's view builder (`0x002ED500` → `0x0031ADB0`) with selector bits `0x4` and `0x8`.
 
-Bit 2 writes the world position of the actor behind the unit's target handle `+0x2C` (`0x00265020`)
+Bit `0x4` writes the world position of the actor behind the unit's target handle `+0x2C` (`0x00265020`)
 into the view's `+0x10`-`+0x18` while the battle-state word `0x02089340` has bit `0x10`.
 
 Bit `0x8` writes the
@@ -62,11 +62,11 @@ Struct MoveTurnRequest  (`0x20` bytes, on the builder's stack):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | 0 |  |
-| `+0x02` | `u16` | mode (the command's word +2) |  |
+| `+0x00` | `u16` |  | value 0 |
+| `+0x02` | `u16` |  | mode (the command's word +2) |
 | `+0x04` | `f32` | distance |  |
-| `+0x08` | `f32` | 0 (left as it was for mode 0x10) |  |
-| `+0x0C` | `f32` | relative heading |  |
+| `+0x08` | `f32` |  | 0 (left as it was for mode `0x10`) |
+| `+0x0C` | `f32` |  | relative heading |
 | `+0x10` | `f32[3]` | unit direction |  |
 | `+0x1C` | `f32` | 1.0 |  |
 
@@ -151,8 +151,8 @@ while the second switch `0x02B3F540` is set or the list's `+0x00` is zero, and f
 1. its profile is the table's entry for the mode (`table + table[mode]`), or for mode `0x16` the
    list's own profile `+0x10`; mode `0x16` with no own profile unlinks and frees the entry;
 2. the counter `+4` goes up; at `duration * [0x01DFE0B4]` the entry is unlinked and freed;
-3. while the counter is below `moveFrames * [0x01DFE0B4]` and the move byte is set, `move += direction
-   * speed[counter / [0x01DFE0B4]] * distance * scale * [0x01DFE0BC]` and `move.w` = the request's
+3. while the counter is below `moveFrames * [0x01DFE0B4]` and the move byte is set, `move += direction *
+   speed[counter / [0x01DFE0B4]] * distance * scale * [0x01DFE0BC]` and `move.w` = the request's
    `+0x1C`; at `moveFrames` the move byte clears;
 4. while the counter is below `turnFrames * [0x01DFE0B4]` and the turn byte is set, with `f = counter /
    [0x01DFE0B4]`: when the request's word `+0` is non-zero, `inc = min((|+0x28| - +0x18) * [0x01DFE0BC],
@@ -183,8 +183,8 @@ byte `+0x10` bit `0x4` takes the move bit: it is cleared (`0x0025E277`, `0x0025E
 Then `0x002E5030(actor, moveBit, &move)` runs the movement step with the summed move as the
 pass-through vector when the bit is set ([movement step](heading-speed-to-position-delta.md)), and
 `0x002E5750(actor, turnBit, &turn)` runs the integrator: with the bit set it adds `turn.y` to the
-facing (`0x00265200` + `turn.y` → `0x0026B6A0(actor, angle, 0)`) and `turn.x` to the pitch (`0x002651C0`
-+ `turn.x` → `0x0026B520`), instead of the steering modes ([facing and
+facing (`0x00265200` + `turn.y` → `0x0026B6A0(actor, angle, 0)`) and `turn.x` to the pitch (`0x002651C0` +
+`turn.x` → `0x0026B520`), instead of the steering modes ([facing and
 steering](facing-and-steering.md)).
 
 The second output float is the heading and the first the
@@ -202,18 +202,18 @@ Pool entry (`0x60` bytes, 128 at [`0x02B3F530`]):
 | `+0x01` | `u8` | turn armed |  |
 | `+0x02` | `u8` | move armed |  |
 | `+0x04` | `i32` | counter (-1 at take) |  |
-| `+0x08` | `f32` | sign of request +8 |  |
+| `+0x08` | `f32` |  | sign of request +8 |
 | `+0x0C` | `f32` | sign of request +0xC |  |
-| `+0x10` | `f32` | \|angle0\| * 2/pi or 1.0 |  |
+| `+0x10` | `f32` |  | \|angle0\| * 2/pi or 1.0 |
 | `+0x14` | `f32` | the same for angle1 |  |
-| `+0x18` | `f32` | accumulator axis 0 |  |
+| `+0x18` | `f32` |  | accumulator axis 0 |
 | `+0x1C` | `f32` | accumulator axis 1 |  |
-| `+0x20` | `MoveTurnRequest` | request (0x20 bytes, fields below) |  |
-| `+0x20` | `u16` | 0 |  |
+| `+0x20` | `MoveTurnRequest` |  | request (`0x20` bytes, fields below) |
+| `+0x20` | `u16` |  | value 0 |
 | `+0x22` | `u16` | mode |  |
 | `+0x24` | `f32` | distance |  |
 | `+0x28` | `f32` | angle0 |  |
-| `+0x2C` | `f32` | relative heading |  |
+| `+0x2C` | `f32` |  | relative heading |
 | `+0x30` | `f32[3]` | direction |  |
 | `+0x3C` | `f32` | w |  |
 | `+0x40` | `void*` | previous |  |

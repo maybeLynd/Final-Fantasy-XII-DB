@@ -280,10 +280,10 @@ The `ashd` scheme of `katano/event.bin`, decoded by the measurement script:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[4]` | "ashd" |  |
-| `+0x04` | `u32` | 0x2509 | unused by the decoding |
-| `+0x08` | `u32` | decoded size |  |
-| `+0x0C` | `tokens` | even byte t: | copy the next t / 2 bytes odd byte t:   u16 w = t \| next << 8; copy (w >> 12) + 3 bytes from ((w >> 1) & `0x7FF`) + 1 bytes back |
+| `+0x00` | `char[4]` |  | the magic "ashd" |
+| `+0x04` | `u32` |  | the value `0x2509`, which the decoding does not use |
+| `+0x08` | `u32` |  | decoded size |
+| `+0x0C` | `tokens` |  | the compressed stream, read one token byte t at a time: an even t copies the next t / 2 bytes; an odd t forms u16 w = t + (next << 8) and copies (w >> 12) + 3 bytes from ((w >> 1) & `0x7FF`) + 1 bytes back |
 
 The file decodes to exactly `0xB10` bytes, which are another `ashd` stream; that decodes to exactly
 `0x23E0` bytes, a script section tagged `0x80000002` with the time stamp `09/18 20:20:10` and the source name

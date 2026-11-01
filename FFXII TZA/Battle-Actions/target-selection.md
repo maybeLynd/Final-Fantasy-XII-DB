@@ -38,7 +38,7 @@ record or is KO, Stone or X-Zone (status bits `0x1`, `0x2`, `0x80000000`, unless
 |---|---|---|
 | `0xC`, `0xD`, `0xE`, `0x10` | every battle unit slot whose unit has bit `0x10` of its first byte | `0x00322A80` |
 | `0xF` | member-map positions 4-8 (`0x00322C50(0x17, i)`), stats record `[0x02EBF190] + 8 + b * 0x1C8` for the byte `b` at `[0x02EBF190] + 0x5A7E + i*2` when `b < 0x28` | `0x00322A80` |
-| `0x1A` | the list `0x0046B4C0` builds for actor managers 0-2 | none further |
+| `0x1A` | the list `0x0046B4C0` builds for actor managers 0-2 | - (the list is used as built) |
 | `0x1B` | the list `0x0046B870` builds for actor managers 0-2 | `0x003230E0(user, stats, action, 1, 1)` |
 | `0x1C` | the list `0x0046B690` builds for actor managers 0-2 | `0x003230E0(user, stats, action, 1, 1)` |
 | `0x12`-`0x15` | living units (no status bit `0x1`, `0x2` or `0x80000000` unless `0x00377C20()`) with stats byte `+0x05` = 0 for `0x14`/`0x15`, non-zero for `0x12`/`0x13`; `0x13` and `0x15` also need `0x00322360(unit)` | - |
@@ -85,7 +85,7 @@ which side counts as its own.
 ### The 24-unit test
 
 `0x00322490(actorObject)` (203 bytes) returns 1 only when bit `0x10` of `0x02089340` is
-set, the controlled member's handle (`0x003590D0`) resolves (`0x003588B0`), the candidate's battle unit
+set, the leader handle (`0x003590D0`, [Party leader](../Party/party-leader.md)) resolves (`0x003588B0`), the candidate's battle unit
 (`0x00263E30`), if it has one with bit `0x10` of its first byte, passes `0x002FFED0(unit, 0, 3)` (an empty
 `0x002FFF50` mask in mode 3 - which includes the Invisible bit for enemy-side units), and the squared
 XZ distance between the two actors' world positions (`0x00265020`) is at most 576.0 (`0x00D1081C`, 24

@@ -226,3 +226,6 @@ from.
 - [Native commands](native-commands.md): the family tables and the begin, poll and result callbacks.
 - [Verb dispatch](verb-dispatch.md): the argument convention a verb sees on the stack.
 - [Script variables](script-variables.md): the storage classes behind `PUSHV` and `POPV`.
+- [`script-interpreter-registers-by-script.tsv`](script-interpreter-registers-by-script.tsv): one row per script:
+  its functions, how many of them use the eight persistent registers `I0` to `F3`, how many register opcodes it
+  holds, the registers some function reads before writing them, and the count of each register opcode (1,114 rows).

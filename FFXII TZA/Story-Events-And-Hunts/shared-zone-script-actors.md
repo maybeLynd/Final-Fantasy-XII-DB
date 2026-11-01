@@ -206,10 +206,10 @@ List = count:u32, then 8-byte entries from +4 entry n-1 for message number n:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | text id, group * 1000 + row (0x002F9860) |  |
-| `+0x02` | `u16` | first id |  |
-| `+0x04` | `u16` | second id |  |
-| `+0x07` | `u8` | kind: 0 text only; 1 to 5 name the ids through 0x0035D330; 1 also gives the first id (0x00300B80, 0x002A541B) |  |
+| `+0x00` | `u16` |  | text id, group * 1000 + row (`0x002F9860`) |
+| `+0x02` | `u16` |  | first id |
+| `+0x04` | `u16` |  | second id |
+| `+0x07` | `u8` |  | kind: 0 text only; 1 to 5 name the ids through `0x0035D330`; 1 also gives the first id (`0x00300B80`, `0x002A541B`) |
 
 The `us` list holds 145 entries. The messages callers pass are of kind 0 or 5, so none gives an item:
 

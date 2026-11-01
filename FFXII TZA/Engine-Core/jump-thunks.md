@@ -25,8 +25,8 @@ a tail jump (`0x0037D110` is reached only by the jump at `0x00351E62`) and a cal
 exception-cleanup funclet (`0x0083AB80` from three unwind funclets) both leave a count at 0.
 
 The 86 terminate pads jump to the import stub `0x00861EAE`, which is `jmp [0x008C2A78]`, the
-`__std_terminate` import from `VCRUNTIME140.dll`. 85 are packed back to back from `0x008A26E4` to
-`0x008A508D`. The 86th, `0x008A5B1F`, stands alone after the `ret` of a funclet that ends at
+`__std_terminate` import from `VCRUNTIME140.dll`. 85 lie in one run from `0x008A26E4` to
+`0x008A508D`, with other code between 33 of them. The 86th, `0x008A5B1F`, stands alone after the `ret` of a funclet that ends at
 `0x008A5B1E`. None is called and none is held in a table; they are the landing pads the exception
 records name for functions that must not throw.
 
@@ -45,7 +45,8 @@ twelve that nothing reaches are `0x006DAA00`, `0x006DAA10`, `0x006DAA20`, `0x006
 `0x006DF270`, `0x006DF280`, `0x007122F0`, `0x00719360`, `0x00719370`, `0x00809930` and `0x00809940`.
 
 So 751 forwarders are reached by something. `0x0017CDE0` is one of them: it is the qword at `0x008C5788`,
-slot 5 of the `GameApplication` vtable `0x008C5760`, and the `lea` at `0x00298290` takes it.
+slot 5 of the `GameApplication` vtable `0x008C5760` ([game application](game-application.md)), and the `lea` at
+`0x00298290` takes it.
 
 For 384 forwarders a stored pointer names the thunk rather than the body: a hook on the body misses
 every dispatch through such a pointer. Among the table's rows, for 132 bodies the thunk is the only

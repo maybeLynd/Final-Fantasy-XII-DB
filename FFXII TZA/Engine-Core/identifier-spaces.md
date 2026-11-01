@@ -7,7 +7,7 @@ addresses: "0x003589B0, 0x003588B0, 0x0031B7E0, 0x002E9810, 0x002E97C0, 0x002DF9
 
 ## What it lists
 
-`identifier-spaces.tsv` holds 146 kinds of identifier, the handles, ids and indexes that cross subsystems. Each row
+[`identifier-spaces.tsv`](identifier-spaces.tsv) holds 146 kinds of identifier, the handles, ids and indexes that cross subsystems. Each row
 gives the identifier's form (its bit fields), its range, the values that name nothing, the function that makes it,
 the function that turns it back into the thing it names, and what happens to an old value when its slot is used again.
 

@@ -1,0 +1,31 @@
+function	name	site	disp	kind	instruction	route	note
+0x00202B10	FUN_00202b10	0x00202B14	0x0	r	movss xmm0, dword ptr [rdx]	embed ManagerSub0209BE80_57E0+0x270 exposed	
+0x00202C90	FUN_00202c90	0x00202C93	0x0	w	movups xmmword ptr [rcx], xmm0	embed ManagerSub0209BE80_57E0+0x270 exposed	
+0x00275550	FUN_00275550	0x00275564	0x0	w	rep stosd dword ptr [rdi], eax	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA39E	0x0	addr	lea rbx, [rsi + 0x270]	embed ManagerSub0209BE80_57E0+0x270	
+0x00202B10	FUN_00202b10	0x00202B1D	0x4	r	movss xmm1, dword ptr [rdx + 4]	embed ManagerSub0209BE80_57E0+0x270 exposed	
+0x003FA160	FUN_003fa160	0x003FA43A	0x4	r	movss xmm0, dword ptr [rbx + 4]	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA44E	0x4	w	movss dword ptr [rbx + 4], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x00202B10	FUN_00202b10	0x00202B2D	0x8	r	movss xmm0, dword ptr [rdx + 8]	embed ManagerSub0209BE80_57E0+0x270 exposed	
+0x00202B10	FUN_00202b10	0x00202B3E	0xC	r	movss xmm1, dword ptr [rdx + 0xc]	embed ManagerSub0209BE80_57E0+0x270 exposed	
+0x00202C90	FUN_00202c90	0x00202C93	0x10	w	movups xmmword ptr [rcx], xmm0	embed ManagerSub0209BE80_57E0+0x270 exposed	
+0x003FA160	FUN_003fa160	0x003FA3FB	0x10	addr	lea rcx, [rbx + 0x10]	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA453	0x14	r	movss xmm0, dword ptr [rbx + 0x14]	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA460	0x14	w	movss dword ptr [rbx + 0x14], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x00202B10	FUN_00202b10	0x00202B59	0x20	w	movups xmmword ptr [rcx], xmm0	embed ManagerSub0209BE80_57E0+0x270 exposed	
+0x003FA160	FUN_003fa160	0x003FA43F	0x20	addr	lea rcx, [rbx + 0x20]	embed ManagerSub0209BE80_57E0+0x270	
+0x003FBE90	FUN_003fbe90	0x003FC019	0x20	addr	lea rcx, [rbx - 0x10]	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270BA9	0x30	w	movss dword ptr [rdi], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x003FBE90	FUN_003fbe90	0x003FBED8	0x30	addr	lea rbx, [rcx + 0x10]	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270BBB	0x34	w	movss dword ptr [rdi + 4], xmm1	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270BCE	0x38	w	movss dword ptr [rdi + 8], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270B96	0x3C	w	movss dword ptr [rdi + 0xc], xmm1	embed ManagerSub0209BE80_57E0+0x270	
+0x00270B40	FUN_00270b40	0x00270CD9	0x3C	w	movss dword ptr [rdi + 0xc], xmm0	embed ManagerSub0209BE80_57E0+0x270	
+0x003FBE90	FUN_003fbe90	0x003FBEF0	0xA0	w	mov dword ptr [rbx + 0x70], r14d	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA40C	0x260	w	mov dword ptr [rbx + 0x260], r15d	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA413	0x264	w	mov dword ptr [rbx + 0x264], 0xbe800000	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA41D	0x268	w	mov dword ptr [rbx + 0x268], r14d	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA424	0x26C	w	mov dword ptr [rbx + 0x26c], ebp	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA3A5	0x272	r	test byte ptr [rbx + 0x272], 1	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA3FF	0x272	w	mov word ptr [rbx + 0x272], r15w	embed ManagerSub0209BE80_57E0+0x270	
+0x003FA160	FUN_003fa160	0x003FA4A6	0x280	w	mov qword ptr [rbx + 0x280], rcx	embed ManagerSub0209BE80_57E0+0x270	

@@ -47,9 +47,9 @@ Offsets are from the start of the file. Every offset field is relative to the fi
 | `+0x0C` | `u16` | pageMapAt | offset of the page map, u16[pageCount] |
 | `+0x0E` | `u16` | entryCount | entries; bounds every record index |
 | `+0x10` | `u16` | pageCount | pages; bounds every page number (`0x00575DD0`) |
-| `+0x12` | `u16` | sectionCount sections; bounds every caption index (0x00576A50) |  |
+| `+0x12` | `u16` | sectionCount | sections; bounds every caption index (`0x00576A50`) |
 | `+0x14` | `u16` | textBundles | number of hdat files; the first picture file follows them (`0x005773D2`) |
-| `+0x16` | `u8[2]` | pictureFiles number of picture files the page map names; read by no function: the catalog readers 0x005778F0, 0x00575D10, 0x00575DD0, 0x00576030, 0x005760A0, 0x005766E0, 0x00576740 and 0x00576A50 (the functions that load [slot 0 +0xF0]) read nothing at +0x16; nothing fixes its width |  |
+| `+0x16` | `u8[2]` | pictureFiles | number of picture files the page map names; read by no function: the catalog readers `0x005778F0`, `0x00575D10`, `0x00575DD0`, `0x00576030`, `0x005760A0`, `0x005766E0`, `0x00576740` and `0x00576A50` (the functions that load [slot 0 `+0xF0`]) read nothing at `+0x16`; nothing fixes its width |
 | `+0x18` | `i32` | caption[sectionCount] | text id of each section caption; -1 = none |
 
 ```
@@ -94,7 +94,7 @@ page `p` is in file `textBundles + pageMap[p]`.
 | `+0x04` | `u32` | version | 103; not read |
 | `+0x08` | `u16` | count | records; `0x00577550` walks this many |
 | `+0x0A` | `u8[2]` | unused | 18 or 0; read by no function: the six tables, manager `+0xC8` to `+0xF0`, are read only by `0x00577550` (`0x005775C1`, `0x00577660`), which walks the records with `0x00575E80`, and neither reads `+0x0A`; nothing fixes its width |
-| `+0x0C` | `rec[count]` | 8 bytes each, 16 for the Bestiary |  |
+| `+0x0C` | `rec[count]` |  | 8 bytes each, 16 for the Bestiary |
 
 Families 0-4, 8 bytes per entry, evaluated by `0x00575E80`. A field holding all ones (`0xFF`, `0xFFFF`) is
 skipped; every other field must hold:
@@ -147,7 +147,7 @@ A string entry:
 | `+0x00` | `u16` | textAt | offset of the text from the entry itself; `0xFFFF` = none (an empty line) |
 | `+0x02` | `u8` | opCount | line-program operations (`0x00577A40`) |
 | `+0x03` | `u8` | pad |  |
-| `+0x04` | `...` | {u8 op, u8 index, u8 value, u8 pad}[opCount] |  |
+| `+0x04` | `...` |  | {u8 op, u8 index, u8 value, u8 pad}[opCount] |
 
 ```
 ...    text in the game's encoded text, zero-terminated
@@ -210,7 +210,7 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | [`handbook-files-entry-names.tsv`](handbook-files-entry-names.tsv) | 49 | entry whose text gives its name: the name and the rule that gives it |
 | [`handbook-files-entry-name-ids.tsv`](handbook-files-entry-name-ids.tsv) | 300 | `story`, `world`, `person` or `knowledge` entry: its name text id, the string that id finds in each tree, the name its text gives and its first line |
 
-`handbook-files-files.tsv`:
+[`handbook-files-files.tsv`](handbook-files-files.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -224,7 +224,7 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | `version` | `+0x04` |
 | `window_first`, `window_count` | `hdat`: `first` and `count`, the entries it holds; `himg`: `first` and `count`, the pages it holds; empty for `hctg` and `hchk` |
 
-`handbook-files-entries.tsv`:
+[`handbook-files-entries.tsv`](handbook-files-entries.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -246,7 +246,7 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | `slot_thresholds` | Bestiary: the seven slot words in order, `empty` for `0xFF` in mode 0 and `0xFFFF` in modes 1 and 2 |
 | `unlock_test` | the record's tests in words: for families 0-4 each field that is not all ones, or `none`; for the Bestiary what the slot thresholds count |
 
-`handbook-files-sections.tsv`:
+[`handbook-files-sections.tsv`](handbook-files-sections.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -258,7 +258,7 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | `conditions`, `condition_ids` | the gate's condition count C and its ids |
 | `maps`, `map_numbers` | the gate's map count M and its map numbers |
 
-`handbook-files-page-map.tsv`:
+[`handbook-files-page-map.tsv`](handbook-files-page-map.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -267,7 +267,7 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | `picture_file`, `picture_file_name` | `textBundles + pageMap[page]` and that file |
 | `picture_in_file` | `page - first` of that file |
 
-`handbook-files-pictures.tsv`:
+[`handbook-files-pictures.tsv`](handbook-files-pictures.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -281,7 +281,7 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | `clut_colours` | the picture header's `clutColors` |
 | `bytes` | `0x10` plus the picture's `totalSize`, its length in the file |
 
-`handbook-files-strings.tsv`:
+[`handbook-files-strings.tsv`](handbook-files-strings.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -291,7 +291,7 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | `slot` | the text slot, from 0 |
 | `string_entry_at` | `stringsAt + string[slot]`, the string entry's offset in the file |
 | `text_at`, `line_operations` | the string entry's `textAt` and `opCount` |
-| `text` | the string, written as the [Clan Primer text](../Menus-And-HUD/text-handbook.md) table writes it: control codes as the placeholders of [Text codes](../Menus-And-HUD/text-codes.md), a Bestiary bundle's characters through its own expansion list, Traveler's Tips expansion characters as `{exp:0xN}`; the `story`, `world`, `person` and `knowledge` text is decoded with the Japanese font in every tree, as in [Unrequested handbook text](../Menus-And-HUD/text-handbook-unrequested.md) |
+| `text` | the string, written as the [Clan Primer text](../Menus-And-HUD/text-handbook.md) table writes it: text codes as the placeholders of [Text codes](../Menus-And-HUD/text-codes.md), a Bestiary bundle's characters through its own expansion list, Traveler's Tips expansion characters as `{exp:0xN}`; the `story`, `world`, `person` and `knowledge` text is decoded with the Japanese font in every tree, as in [Unrequested handbook text](../Menus-And-HUD/text-handbook-unrequested.md) |
 
 ## Loader behaviour
 
@@ -394,7 +394,7 @@ A text writes a sheet character as two bytes, shown as `{exp:0xN}` in the tables
   to `0x1C` for the locales its test picks (`0x002AB7D9`-`0x002AB7E9`).
 - **Record.** The sheet block is the renderer's `+0x68`, or `0x0039BA30` of its font slot `+0xA6`
   (`0x002AC417`-`0x002AC440`), and the record is `0x0020E600([block + 0x0C]) + 8 × code` (`0x002AC498`-`0x002AC4A7`).
-- **Cell.** Bits 0-9 of the record are x, 10-19 y, 20-24 width and 25-29 height, as `0x002B0280` reads them
+- **Cell.** The bits under mask `0x3FF` of the record are x, `0xFFC00` y, `0x1F00000` width and `0x3E000000` height, as `0x002B0280` reads them
   (`0x002B08BC`-`0x002B0918`).
 
 The `story`, `world`, `person` and `knowledge` bundles are the same bytes in all nine trees, and so are their 796
@@ -442,7 +442,7 @@ Of those 242 entries, 48 give their name in their text. No field of the records 
 - the text: the first line of slot 0 is a sentence ending in 。 in 192 of them, and `story` entry 24 and `knowledge`
   entry 17 hold only 現在不使用.
 
-`handbook-files-glyphs.tsv`:
+[`handbook-files-glyphs.tsv`](handbook-files-glyphs.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -453,7 +453,7 @@ Of those 242 entries, 48 give their name in their text. No field of the records 
 | `candidates` | `jis` when the best match was taken over JIS X 0208; `game` when it was taken over the characters of the game's own `jp` fonts, after no JIS character led by 0.011; `cell` when the character was read from the cell |
 | `decision` | `corpus:` words of the game's other Japanese text that hold the decoded word; `reading:` the word read in the sentence; `cell:` the parts of the cell, by row and column of its 4-bit values, the decoded glyphs whose parts they repeat with the count of pixels apart by more than 2, and the strokes that tell it from its look-alike |
 
-`handbook-files-entry-name-ids.tsv`:
+[`handbook-files-entry-name-ids.tsv`](handbook-files-entry-name-ids.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -461,7 +461,7 @@ Of those 242 entries, 48 give their name in their text. No field of the records 
 | `name_text_id` | the catalog record's `+0x00` |
 | `text_row` | the row of `penelosdiary.bin` whose own id it is (`0x002F9920`) |
 | `us` to `ch` | that row's string in each tree, as the [string tables](../Menus-And-HUD/text-string-tables.md) give it; `-` for an empty string |
-| `text_name`, `text_name_rule` | the name the entry's text gives and the rule, from `handbook-files-entry-names.tsv`; `-` when the text gives none |
+| `text_name`, `text_name_rule` | the name the entry's text gives and the rule, from [`handbook-files-entry-names.tsv`](handbook-files-entry-names.tsv); `-` when the text gives none |
 | `first_line` | the first line of slot 0, with each sheet character in place |
 
 ### Pictures

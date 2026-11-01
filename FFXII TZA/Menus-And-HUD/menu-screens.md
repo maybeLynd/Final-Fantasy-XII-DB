@@ -7,7 +7,7 @@ addresses: "0x00280DE0, 0x00281ED0, 0x0027FB70, 0x0027F5D0, 0x00254B50, 0x002809
 
 ## What it lists
 
-`menu-screens.tsv` has one row per widget procedure, 267 in all. They are every procedure the image passes to the
+[`menu-screens.tsv`](menu-screens.tsv) has one row per widget procedure, 267 in all. They are every procedure the image passes to the
 widget constructors `0x00244F50`, `0x00245000` and `0x002465F0` ([Widgets](widgets.md)): 299 construction sites, of which
 296 load the procedure with a `lea` and three are the constructors' own calls and the forwarder `0x00564AC0`. Six of
 the 296 calls are reached from two or four `lea` sites, so the `install site` column lists 306 `lea` sites. Each

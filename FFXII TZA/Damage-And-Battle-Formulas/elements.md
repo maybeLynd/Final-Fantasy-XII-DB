@@ -26,19 +26,19 @@ amount, because both multipliers apply.
 
 ### The element bits
 
-An element is one bit of a byte, in the order of the element icons in `help_action.bin` (icon `0x8A` +
-bit, for example "fire damage" with icon `0x8A` and "dark damage" with `0x91`):
+An element is one bit of a byte, in the order of the element icons in `help_action.bin` (icons `0x8A`
+to `0x91` in the table's order, for example "fire damage" with icon `0x8A` and "dark damage" with `0x91`):
 
 | Bit | Element | Spells | Weapons and ammunition |
 |---:|---|---|---|
-| `0` | fire | Fire, Fira | Flametongue, Fiery Arrows |
-| `1` | lightning | Thunder, Thundara | Storm Spear, Lightning Arrows |
-| `2` | ice | Blizzard, Blizzara | Icebrand, Trident |
-| `3` | earth | Quakeja, Tremor | Koga Blade, Mud Shot |
-| `4` | water | Aqua, Aquara | Murasame, Aqua Shot |
-| `5` | wind | Aero, Aeroga | Zephyr Pole, Windslicer Shot |
-| `6` | holy | Holy, Holyja | Excalibur, Holy Lance |
-| `7` | dark | Dark, Darkra | Yagyu Darkblade, Dark Shot |
+| `0x1` | fire | Fire, Fira | Flametongue, Fiery Arrows |
+| `0x2` | lightning | Thunder, Thundara | Storm Spear, Lightning Arrows |
+| `0x4` | ice | Blizzard, Blizzara | Icebrand, Trident |
+| `0x8` | earth | Quakeja, Tremor | Koga Blade, Mud Shot |
+| `0x10` | water | Aqua, Aquara | Murasame, Aqua Shot |
+| `0x20` | wind | Aero, Aeroga | Zephyr Pole, Windslicer Shot |
+| `0x40` | holy | Holy, Holyja | Excalibur, Holy Lance |
+| `0x80` | dark | Dark, Darkra | Yagyu Darkblade, Dark Shot |
 
 A magick's element is byte `+0x13` of its action row
 ([Action definition row](../Battle-Actions/action-definition-row.md)). A weapon's is byte `+0x1E` of
@@ -103,7 +103,7 @@ The finishing slot `0x0038D280` (slots 113 and 125) turns the scale and the two 
 (`0x0038D280`-`0x0038D333`):
 
 1. Attack minus defence below 0 gives a loss of 0.
-2. Immune: it sets `0x02AEDFC0` = 1, the HP loss `0x02AEE004` = -1 (none), and bit `0x1` of result `+0x140`. The
+2. Immune: it sets `0x02AEDFC0` = 1, the HP loss `0x02AEE004` = -1 (no loss), and bit `0x1` of result `+0x140`. The
    resolver turns `0x02AEDFC0` into result kind 10 (`0x003866CE`-`0x003866D7`).
 3. Otherwise the value is `(attack - defence) * scale`. Without absorb it is an HP loss (`0x02AEE004`).
    With absorb it is an HP gain (`0x02AEE008`).
@@ -165,7 +165,7 @@ The environment and wind classes belong to the area, and the terrain class to th
 - **Environment class** `0x02099DA8` (read through `0x00321490`): `0x0026D910` looks up the active weather
   lane's index byte in the 16-entry table at `map_ref.bin` header `+0x10` (`0x0026DA10`-`0x0026DA26`).
 - **Wind class** `0x02099DAC` (read through `0x003214A0`): `0x0026D910` takes the lane's wind preset, bits
-  0-2 of its MWeather entry, from `0x00377850`, giving 0 for preset 0, 1 for presets 1-3 and 2 for the
+  `0x7` of its MWeather entry, from `0x00377850`, giving 0 for preset 0, 1 for presets 1-3 and 2 for the
   strong-wind presets 4 and above ([Weather](../World-Areas-And-Travel/weather.md))
   (`0x0026DA31`-`0x0026DA4E`).
 - **Terrain class** (`0x003210E0`, then `0x00263DD0`): the target actor's ground index, the `i16` at `+0x8A`

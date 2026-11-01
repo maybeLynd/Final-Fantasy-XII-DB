@@ -83,9 +83,9 @@ All multi-byte fields are little-endian.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[8]` | "FOOT01\0\0" | tag, compared by no reader |
-| `+0x08` | `u16` | 32 | count: the offset of set B within the byte table |
-| `+0x0C` | `u32` | 0 |  |
+| `+0x00` | `char[8]` |  | value "FOOT01\0\0": tag, compared by no reader |
+| `+0x08` | `u16` |  | value 32: count: the offset of set B within the byte table |
+| `+0x0C` | `u32` |  | value 0 |
 | `+0x10` | `i8[32]` | set A | sound for surface 0..31 |
 | `+0x30` | `i8[32]` | set B | sound for surface 0..31 with the weather variant flag set |
 
@@ -93,17 +93,17 @@ All multi-byte fields are little-endian.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[4]` | "VIB0" | tag, compared by no reader |
+| `+0x00` | `char[4]` |  | value "VIB0": tag, compared by no reader |
 | `+0x04` | `u32` | count | patterns |
-| `+0x08` | `u32[count]` | offset of each pattern from the file start; rewritten to addresses at load |  |
+| `+0x08` | `u32[count]` |  | offset of each pattern from the file start; rewritten to addresses at load |
 
 Pattern:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | track 2 start | pair index where the second track begins |
-| `+0x02` | `u16` | not read |  |
-| `+0x04` | `{u8 duration, u8 level}[]` | track 1 begins at pair 0; a duration of 0 ends a track |  |
+| `+0x02` | `u16` |  | not read |
+| `+0x04` | `{u8 duration, u8 level}[]` |  | track 1 begins at pair 0; a duration of 0 ends a track |
 
 A pair's level ramps to the next pair's level over its duration, so the level byte at `+5 + 2k` is the
 start of pair k and the byte at `+7 + 2k` its end.
@@ -112,23 +112,23 @@ start of pair k and the byte at `+7 + 2k` its end.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[8]` | "bwind\0\0\0" | tag, compared by no reader |
+| `+0x00` | `char[8]` |  | value "bwind\0\0\0": tag, compared by no reader |
 | `+0x08` | `u32` | count | 15 |
-| `+0x0C` | `...` | {u16 width, u16 rows}[count] |  |
+| `+0x0C` | `...` |  | {u16 width, u16 rows}[count] |
 
 ### signe: key_signal_data.bin
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[8]` | "signe\0\0\0" | tag, compared by no reader |
-| `+0x08` | `u16` | offset of section 0 (buttons) |  |
-| `+0x0A` | `u16` | offset of section 1 (signals) |  |
-| `+0x0C` | `u16` | offset of section 2 (scenes) |  |
-| `+0x0E` | `u16` | not read |  |
+| `+0x00` | `char[8]` |  | value "signe\0\0\0": tag, compared by no reader |
+| `+0x08` | `u16` |  | offset of section 0 (buttons) |
+| `+0x0A` | `u16` |  | offset of section 1 (signals) |
+| `+0x0C` | `u16` |  | offset of section 2 (scenes) |
+| `+0x0E` | `u16` |  | not read |
 
 ```
 section 0      u32 count, then {u32 name text id, u32 button mask}[count]
-section 1      u32 count, then u32[count]: bits 0-23 label text id, bits 24-31 button (section 0 index)
+section 1      u32 count, then u32[count]: mask 0xFFFFFF label text id, mask 0xFF000000 button (section 0 index)
 section 2      u32 count, then u16 offset[count] from the section start to each scene
 scene          u8 scene id, u8 a, u8 b, u8 n, then {u8 signal (section 1 index), u8 flag}[n]
 ```
@@ -137,24 +137,24 @@ scene          u8 scene id, u8 a, u8 b, u8 n, then {u8 signal (section 1 index),
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[4]` | "QST1" | tag, compared by no reader |
+| `+0x00` | `char[4]` |  | value "QST1": tag, compared by no reader |
 | `+0x04` | `i32` | count |  |
-| `+0x08` | `u32[count]` | bits 0-12 value A, bits 13-25 text index, bit 0x4000000 flag, bits 27-31 zero |  |
+| `+0x08` | `u32[count]` |  | mask `0x1FFF` value A, mask `0x3FFE000` text index, bit `0x4000000` flag, mask `0xF8000000` zero |
 
 ### summoneffectdata.bin
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `record[64]` | 10 bytes each, indexed by the active summon effect minus 1 |  |
-| `+0x000` | `u8[3]` | scale A, red, green, blue, in hundredths |  |
-| `+0x003` | `u8[3]` | scale B, in hundredths |  |
-| `+0x006` | `u8[4]` | colour of the full-screen tint |  |
-| `+0x280` | `f32` | copied to 0x02AE9660 |  |
-| `+0x284` | `f32` | copied to 0x02AE9664 |  |
-| `+0x288` | `f32` | tint size factor (0x02AE9650 and scaled copies) |  |
-| `+0x28C` | `f32` | copied to 0x02AE9668 |  |
-| `+0x290` | `u32` | two words whose difference is split in thirds for the tint's layers | with `+0x294` |
-| `+0x294` | `u32` | two words whose difference is split in thirds for the tint's layers | with `+0x290` |
+| `+0x000` | `record[64]` |  | 10 bytes each, indexed by the active summon effect minus 1 |
+| `+0x000` | `u8[3]` |  | scale A, red, green, blue, in hundredths |
+| `+0x003` | `u8[3]` |  | scale B, in hundredths |
+| `+0x006` | `u8[4]` |  | colour of the full-screen tint |
+| `+0x280` | `f32` |  | copied to `0x02AE9660` |
+| `+0x284` | `f32` |  | copied to `0x02AE9664` |
+| `+0x288` | `f32` |  | tint size factor (`0x02AE9650` and scaled copies) |
+| `+0x28C` | `f32` |  | copied to `0x02AE9668` |
+| `+0x290` | `u32` |  | two words whose difference is split in thirds for the tint's layers; with `+0x294` |
+| `+0x294` | `u32` |  | two words whose difference is split in thirds for the tint's layers; with `+0x290` |
 | `+0x298` | `u8[8]` | zero |  |
 
 The file has no tag: its first four bytes `64 50 3C 64` are record 0's scale bytes.

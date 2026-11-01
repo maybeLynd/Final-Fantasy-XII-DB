@@ -29,7 +29,7 @@ In the shipped executable:
 
 ## Columns
 
-`formula-slots.tsv`, one row per slot:
+[`formula-slots.tsv`](formula-slots.tsv), one row per slot:
 
 | Column | Meaning |
 |---|---|

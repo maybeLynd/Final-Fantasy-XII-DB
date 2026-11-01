@@ -7,11 +7,11 @@ addresses: "0x002FEF30, 0x0030FED0, 0x0030E360, 0x00300530, 0x0030C470"
 
 ## What it lists
 
-Every battle unit has a combat stats record at unit `+0x698`. Party records sit in the party block
+Every battle unit has a combat stats record at unit `+0x698`. The party's records, the forty member stats records, sit in the party block
 at `[0x02EBF190] + 8 + k * 0x1C8`; an enemy's record is the stats page of its spawn record. Byte `+0x05` says
 which kind a record is, and several fields mean different things for the two kinds:
 
-- for a party record (kind 0), `+0x08`-`+0x20` hold the base values the stats are grown from;
+- for a member stats record (kind 0), `+0x08`-`+0x20` hold the base values the stats are grown from;
 - for an enemy record (kind 1), the same bytes hold signed adjustments added to the enemy's area table
   values ([Stats](stats.md)).
 
@@ -23,7 +23,7 @@ grower `0x0030C470` (`0x0030C496`) and raised by the level change `0x0030C650`
 
 ## Columns
 
-`unit-stats-fields.tsv`, one row per field and owner. A field that means the same for both kinds has one row; a
+[`unit-stats-fields.tsv`](unit-stats-fields.tsv), one row per field and owner. A field that means the same for both kinds has one row; a
 field that means different things has a party row and an enemy row at the same offset:
 
 | Column | Meaning |
@@ -42,7 +42,7 @@ Rows named `pad` are bytes no field uses.
 - A store or a read counts for every field its bytes cover, so the word store at `0x0023AD8E` writes both `+0x04`
   and `+0x05`. A clear or copy of a whole record or of the party block counts for every field.
 - A function that only takes a field's address is listed as a reader.
-- The block's member records are always kind 0: the initialiser `0x0023AC80` takes the kind from `edx >> 8`
+- The block's member stats records are always kind 0: the initialiser `0x0023AC80` takes the kind from `edx >> 8`
   (`0x0023ACA1`), the block resets pass the member index, below `0x28` (`0x00237E26`, `0x00239AC4`), and no other
   instruction writes `+0x05` (the `kind` row).
 - A party row lists the functions that reach a record through the block's member array

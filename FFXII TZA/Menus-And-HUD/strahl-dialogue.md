@@ -15,7 +15,7 @@ A row's key is the script, the section and the text id, the entry number in that
 
 - `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
 - `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
-- The `lines` column of `strahl-scripts.tsv`, the table of [Strahl scenes](../Story-Events-And-Hunts/strahl-scenes.md), names section 2 rows by the same key: 1 of its rows names 2 of the 2 section 2 rows here.
+- The `lines` column of [`strahl-scripts.tsv`](../Story-Events-And-Hunts/strahl-scripts.tsv), the table of [Strahl scenes](../Story-Events-And-Hunts/strahl-scenes.md), names section 2 rows by the same key: 1 of its rows names 2 of the 2 section 2 rows here.
 
 ### The scripts
 
@@ -76,7 +76,7 @@ An empty cell under a language not in `missing` is an empty string.
 
 ## Related
 
-- [Strahl scenes](../Story-Events-And-Hunts/strahl-scenes.md) - the scene, its text and the scripts that load it; `strahl-scripts.tsv` holds the scene's functions with the text ids of their lines.
+- [Strahl scenes](../Story-Events-And-Hunts/strahl-scenes.md) - the scene, its text and the scripts that load it; [`strahl-scripts.tsv`](../Story-Events-And-Hunts/strahl-scripts.tsv) holds the scene's functions with the text ids of their lines.
 - [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - the layout of sections 2 and 3, the lookups and the verbs that read them.
 - [Text codes](text-codes.md) - every text code and the choice list.
 - [Fonts](fonts.md) - how a character code becomes a glyph, and the expansion lists.

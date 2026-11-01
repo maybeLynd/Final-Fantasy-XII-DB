@@ -43,7 +43,7 @@ bds_a01	setup	event	35	0x02CD9	101	((シナリオフラグ < 0x0bea and global_v
 bds_a01	setup	event	36	0x02CE2	102	((シナリオフラグ < 0x0bea and global_var_1 == 1) or (シナリオフラグ < 0x0c8a and global_var_1 == 2)) or (シナリオフラグ >= 0x0c8a and global_var_1 >= 1); g_com_mnp_ナブディス王宮ロケタイ == 0 and lastmap() == 162; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicfadeout	getnowmapmusicno(), 90	-	-	-	-	-		01 verb-table.tsv
 bds_a01	setup	event	37	0x02CEE	103	((シナリオフラグ < 0x0bea and global_var_1 == 1) or (シナリオフラグ < 0x0c8a and global_var_1 == 2)) or (シナリオフラグ >= 0x0c8a and global_var_1 >= 1); g_com_mnp_ナブディス王宮ロケタイ == 0 and lastmap() == 162; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicfadeout_231	getnowmusicno(), 90, 0	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a01	setup	event	38	0x02CF1	107	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_a01	__MJ_CTRL000	init	1	0x02CF5	116	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a01	__MJ_CTRL000	init	1	0x02CF5	116	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a01	__MJ_CTRL000	init	2	0x02CFB	117	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a01	__MJ_CTRL000	init	3	0x02CFE	118	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a01	__MJ_CTRL000	mapjump	1	0x02D02	128	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -74,7 +74,7 @@ bds_a01	__MJ_CTRL000	mapjump	25	0x02E01	167	local_var_s1f1_1; not (regI3)	fadesy
 bds_a01	__MJ_CTRL000	mapjump	26	0x02E07	168	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_a01	__MJ_CTRL000	mapjump	27	0x02E13	169	local_var_s1f1_1; not (regI3)	mapjump	162, 3, 0	jumps: Corridor of Ages (The Salikawood), field 162, entrance 3	-	-	-	-	resolved	this page's How a call is read
 bds_a01	__MJ_CTRL000	mapjump	28	0x02E16	172	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_a01	__MJ_CTRL001	init	1	0x02E1A	181	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a01	__MJ_CTRL001	init	1	0x02E1A	181	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a01	__MJ_CTRL001	init	2	0x02E20	182	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a01	__MJ_CTRL001	init	3	0x02E23	183	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a01	__MJ_CTRL001	mapjump	1	0x02E27	193	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -500,7 +500,7 @@ bds_a02	setup	battle	3	0x0360D	54	-	btlAtelSetActiveActorMax	5	-	-	-	-	-		01 ver
 bds_a02	setup	battle	4	0x03613	55	-	store	file_var_s0_1 = 20	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bds_a02	setup	battle	5	0x03619	56	-	btlAtelSetEntryStruct	0x03000104	-	-	-	-	-		01 verb-table.tsv
 bds_a02	setup	battle	6	0x0361C	57	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_a02	__MJ_CTRL000	init	1	0x03620	66	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	__MJ_CTRL000	init	1	0x03620	66	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a02	__MJ_CTRL000	init	2	0x03626	67	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a02	__MJ_CTRL000	init	3	0x03629	68	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a02	__MJ_CTRL000	mapjump	1	0x0362D	78	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -531,7 +531,7 @@ bds_a02	__MJ_CTRL000	mapjump	25	0x0372C	117	local_var_s1f1_1; not (regI3)	fadesy
 bds_a02	__MJ_CTRL000	mapjump	26	0x03732	118	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_a02	__MJ_CTRL000	mapjump	27	0x0373E	119	local_var_s1f1_1; not (regI3)	mapjump	0x01a5, 2, 0	jumps: Hall of Effulgent Light (Necrohol of Nabudis), field 421, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_a02	__MJ_CTRL000	mapjump	28	0x03741	122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_a02	__MJ_CTRL001	init	1	0x03745	131	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	__MJ_CTRL001	init	1	0x03745	131	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a02	__MJ_CTRL001	init	2	0x0374B	132	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a02	__MJ_CTRL001	init	3	0x0374E	133	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a02	__MJ_CTRL001	mapjump	1	0x03752	143	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -562,7 +562,7 @@ bds_a02	__MJ_CTRL001	mapjump	25	0x03851	182	local_var_s2f1_1; not (regI3)	fadesy
 bds_a02	__MJ_CTRL001	mapjump	26	0x03857	183	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_a02	__MJ_CTRL001	mapjump	27	0x03863	184	local_var_s2f1_1; not (regI3)	mapjump	0x01b2, 2, 0	jumps: bds_d02 (Pharos at Ridorana), field 434, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_a02	__MJ_CTRL001	mapjump	28	0x03866	187	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_a02	__MJ_CTRL002	init	1	0x0386A	196	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	__MJ_CTRL002	init	1	0x0386A	196	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a02	__MJ_CTRL002	init	2	0x03870	197	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a02	__MJ_CTRL002	init	3	0x03873	198	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a02	__MJ_CTRL002	mapjump	1	0x03877	208	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1149,16 +1149,16 @@ bds_a02	メダル扉	talk	482	0x04892	982	-	setstatuserrordispdenystatus	0	argum
 bds_a02	メダル扉	talk	483	0x04898	983	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bds_a02	メダル扉	talk	484	0x0489B	984	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a02	メダル扉	ＦＳ_メダルなし	1	0x0489F	989	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_a02	メダル扉	ＦＳ_メダルなし	2	0x048A5	990	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_a02	メダル扉	ＦＳ_メダルなし	3	0x048AB	991	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	メダル扉	ＦＳ_メダルなし	2	0x048A5	990	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	メダル扉	ＦＳ_メダルなし	3	0x048AB	991	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a02	メダル扉	ＦＳ_メダルなし	4	0x048AE	992	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a02	メダル扉	ＦＳ_メダルあり	1	0x048B2	997	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-bds_a02	メダル扉	ＦＳ_メダルあり	2	0x048B8	998	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_a02	メダル扉	ＦＳ_メダルあり	3	0x048BE	999	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	メダル扉	ＦＳ_メダルあり	2	0x048B8	998	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	メダル扉	ＦＳ_メダルあり	3	0x048BE	999	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a02	メダル扉	ＦＳ_メダルあり	4	0x048C1	1000	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a02	メダル扉	ＦＳ_初回以降	1	0x048C5	1005	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-bds_a02	メダル扉	ＦＳ_初回以降	2	0x048CB	1006	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_a02	メダル扉	ＦＳ_初回以降	3	0x048D1	1007	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	メダル扉	ＦＳ_初回以降	2	0x048CB	1006	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a02	メダル扉	ＦＳ_初回以降	3	0x048D1	1007	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a02	メダル扉	ＦＳ_初回以降	4	0x048D4	1008	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a02	PC00	init	1	0x048D8	1017	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a02	PC00	init	2	0x048DB	1018	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1647,7 +1647,7 @@ bds_a02	monster_04	init	2	0x07B8F	4983	-	btlAtelSetTotalEntryNumber	0x030000fd	a
 bds_a02	monster_04	init	3	0x07B95	4984	-	btlAtelSetPoint2	0x030000cc	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a02	monster_04	init	4	0x07B98	4985	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a02	monster_04	init	5	0x07B9B	4986	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_a03	__MJ_CTRL000	init	1	0x004A3	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a03	__MJ_CTRL000	init	1	0x004A3	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a03	__MJ_CTRL000	init	2	0x004A9	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a03	__MJ_CTRL000	init	3	0x004AC	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a03	__MJ_CTRL000	mapjump	1	0x004B0	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1678,7 +1678,7 @@ bds_a03	__MJ_CTRL000	mapjump	25	0x005AF	74	local_var_s0f1_1; not (regI3)	fadesyn
 bds_a03	__MJ_CTRL000	mapjump	26	0x005B5	75	local_var_s0f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_a03	__MJ_CTRL000	mapjump	27	0x005C1	76	local_var_s0f1_1; not (regI3)	mapjump	0x01b2, 1, 0	jumps: bds_d02 (Pharos at Ridorana), field 434, entrance 1	-	-	-	-	resolved	this page's How a call is read
 bds_a03	__MJ_CTRL000	mapjump	28	0x005C4	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_a03	__MJ_CTRL001	init	1	0x005C8	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_a03	__MJ_CTRL001	init	1	0x005C8	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_a03	__MJ_CTRL001	init	2	0x005CE	89	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_a03	__MJ_CTRL001	init	3	0x005D1	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_a03	__MJ_CTRL001	mapjump	1	0x005D5	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1717,7 +1717,7 @@ bds_b01	setup	battle	3	0x04A9D	60	-	btlAtelSetActiveActorMax	6	-	-	-	-	-		01 ver
 bds_b01	setup	battle	4	0x04AA3	61	-	store	file_var_s0_1 = g_btl_nm_デスサイズ	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bds_b01	setup	battle	5	0x04AA9	62	-	btlAtelSetEntryStruct	0x0300015c	-	-	-	-	-		01 verb-table.tsv
 bds_b01	setup	battle	6	0x04AAC	63	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_b01	__MJ_CTRL000	init	1	0x04AB0	72	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	__MJ_CTRL000	init	1	0x04AB0	72	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b01	__MJ_CTRL000	init	2	0x04AB6	73	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	__MJ_CTRL000	init	3	0x04AB9	74	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	__MJ_CTRL000	mapjump	1	0x04ABD	84	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1748,7 +1748,7 @@ bds_b01	__MJ_CTRL000	mapjump	25	0x04BBC	123	local_var_s1f1_1; not (regI3)	fadesy
 bds_b01	__MJ_CTRL000	mapjump	26	0x04BC2	124	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_b01	__MJ_CTRL000	mapjump	27	0x04BCE	125	local_var_s1f1_1; not (regI3)	mapjump	0x01a6, 3, 0	jumps: Cloister of Distant Song (Necrohol of Nabudis), field 422, entrance 3	-	-	-	-	resolved	this page's How a call is read
 bds_b01	__MJ_CTRL000	mapjump	28	0x04BD1	128	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_b01	__MJ_CTRL001	init	1	0x04BD5	137	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	__MJ_CTRL001	init	1	0x04BD5	137	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b01	__MJ_CTRL001	init	2	0x04BDB	138	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	__MJ_CTRL001	init	3	0x04BDE	139	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	__MJ_CTRL001	mapjump	1	0x04BE2	149	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1846,11 +1846,11 @@ bds_b01	Map_Director	main	4	0x04E29	318	nowjumpindex() = 3	break	-	-	-	-	-	-	res
 bds_b01	Map_Director	main	5	0x04E35	320	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	ショップレクト	init	1	0x04E48	329	-	setrect_25	64.5636063, 0.075000003, -8.55348969, 1, 1, 0	argument 1: the x of the calling actor's position / argument 2: the y of the calling actor's position (0x0026B0C0) / argument 3: the z of the calling actor's position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4) / argument 6: the heading in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	ショップレクト	init	2	0x04E57	330	-	setwh	0.600000024, 0.600000024, 0.300000012, 0.300000012	argument 1: the touch area's radius along x, as an absolute value / argument 2: the touch area's radius along z / argument 3: the talk area's radius along x, as an absolute value / argument 4: the talk area's radius along z	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bds_b01	ショップレクト	init	3	0x04E5D	331	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	ショップレクト	init	3	0x04E5D	331	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b01	ショップレクト	init	4	0x04E60	332	-	recttocircle	-	makes the calling trigger's area an ellipse	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bds_b01	ショップレクト	init	5	0x04E66	333	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_b01	ショップレクト	init	6	0x04E6C	334	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_b01	ショップレクト	init	7	0x04E72	335	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	ショップレクト	init	5	0x04E66	333	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	ショップレクト	init	6	0x04E6C	334	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	ショップレクト	init	7	0x04E72	335	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b01	ショップレクト	init	8	0x04E78	336	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	ショップレクト	init	9	0x04E7E	337	-	fieldsignmes	0x01000000	argument 1: the text id of a line in the calling script's section 2 (masked to 24 bits, 0x00264D60 on the running manager 0x002640C0) that becomes the calling actor's literal name	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	ショップレクト	init	10	0x04E81	338	-	showfieldsign	-	the field-sign caption	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2514,16 +2514,16 @@ bds_b01	メダル扉	talk	482	0x0608B	1172	-	setstatuserrordispdenystatus	0	argu
 bds_b01	メダル扉	talk	483	0x06091	1173	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bds_b01	メダル扉	talk	484	0x06094	1174	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	メダル扉	ＦＳ_メダルなし	1	0x06098	1179	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_b01	メダル扉	ＦＳ_メダルなし	2	0x0609E	1180	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_b01	メダル扉	ＦＳ_メダルなし	3	0x060A4	1181	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	メダル扉	ＦＳ_メダルなし	2	0x0609E	1180	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	メダル扉	ＦＳ_メダルなし	3	0x060A4	1181	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b01	メダル扉	ＦＳ_メダルなし	4	0x060A7	1182	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	メダル扉	ＦＳ_メダルあり	1	0x060AB	1187	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-bds_b01	メダル扉	ＦＳ_メダルあり	2	0x060B1	1188	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_b01	メダル扉	ＦＳ_メダルあり	3	0x060B7	1189	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	メダル扉	ＦＳ_メダルあり	2	0x060B1	1188	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	メダル扉	ＦＳ_メダルあり	3	0x060B7	1189	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b01	メダル扉	ＦＳ_メダルあり	4	0x060BA	1190	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	メダル扉	ＦＳ_初回以降	1	0x060BE	1195	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-bds_b01	メダル扉	ＦＳ_初回以降	2	0x060C4	1196	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_b01	メダル扉	ＦＳ_初回以降	3	0x060CA	1197	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	メダル扉	ＦＳ_初回以降	2	0x060C4	1196	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	メダル扉	ＦＳ_初回以降	3	0x060CA	1197	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b01	メダル扉	ＦＳ_初回以降	4	0x060CD	1198	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	PC00	init	1	0x060D1	1207	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	PC00	init	2	0x060D4	1208	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2787,7 +2787,7 @@ bds_b01	treasure_10	talk	16	0x065FD	1621	-	setstatuserrordispdenystatus	0	argume
 bds_b01	treasure_10	talk	17	0x06603	1622	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bds_b01	treasure_10	talk	18	0x06606	1623	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	バグナムス商人	init	1	0x0660A	1632	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bds_b01	バグナムス商人	init	2	0x06610	1633	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bds_b01	バグナムス商人	init	2	0x06610	1633	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bds_b01	バグナムス商人	init	3	0x06616	1634	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	バグナムス商人	init	4	0x06622	1635	-	setpos	64.75, 0, -9.32326508	this actor, placed at (64.75, 0, -9.32326508)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bds_b01	バグナムス商人	init	5	0x06628	1636	-	dir	-1.51798999	this actor, turned to facing -1.51798999	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -2795,7 +2795,7 @@ bds_b01	バグナムス商人	init	6	0x06634	1637	-	bindp2_d4	0x03000002, 1, 0	a
 bds_b01	バグナムス商人	init	7	0x0663A	1638	-	stdmotionread	1	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	バグナムス商人	init	8	0x0663D	1639	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	バグナムス商人	init	9	0x06643	1640	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-bds_b01	バグナムス商人	init	10	0x06649	1641	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b01	バグナムス商人	init	10	0x06649	1641	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b01	バグナムス商人	init	11	0x0664C	1642	-	hidecomplete	-	the calling actor's model (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	バグナムス商人	init	12	0x0664F	1643	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b01	バグナムス商人	main	1	0x06650	1648	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3117,7 +3117,7 @@ bds_b01	monster_05	init	2	0x0BB02	7982	-	btlAtelSetTotalEntryNumber	0x03000155	a
 bds_b01	monster_05	init	3	0x0BB08	7983	-	btlAtelSetPoint2	0x0300010a	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	monster_05	init	4	0x0BB0B	7984	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b01	monster_05	init	5	0x0BB0E	7985	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_b02	__MJ_CTRL000	init	1	0x004C3	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b02	__MJ_CTRL000	init	1	0x004C3	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b02	__MJ_CTRL000	init	2	0x004C9	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b02	__MJ_CTRL000	init	3	0x004CC	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b02	__MJ_CTRL000	mapjump	1	0x004D0	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3148,7 +3148,7 @@ bds_b02	__MJ_CTRL000	mapjump	25	0x005CF	74	local_var_s0f1_1; not (regI3)	fadesyn
 bds_b02	__MJ_CTRL000	mapjump	26	0x005D5	75	local_var_s0f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_b02	__MJ_CTRL000	mapjump	27	0x005E1	76	local_var_s0f1_1; not (regI3)	mapjump	180, 2, 0	jumps: Field of the Fallen Lord (Nabreus Deadlands), field 180, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_b02	__MJ_CTRL000	mapjump	28	0x005E4	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_b02	__MJ_CTRL001	init	1	0x005E8	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_b02	__MJ_CTRL001	init	1	0x005E8	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_b02	__MJ_CTRL001	init	2	0x005EE	89	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_b02	__MJ_CTRL001	init	3	0x005F1	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_b02	__MJ_CTRL001	mapjump	1	0x005F5	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3187,7 +3187,7 @@ bds_c01	setup	battle	3	0x029ED	59	-	btlAtelSetActiveActorMax	5	-	-	-	-	-		01 ver
 bds_c01	setup	battle	4	0x029F3	60	-	store	file_var_s0_1 = 20	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bds_c01	setup	battle	5	0x029F9	61	-	btlAtelSetEntryStruct	0x030000f0	-	-	-	-	-		01 verb-table.tsv
 bds_c01	setup	battle	6	0x029FC	62	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_c01	__MJ_CTRL000	init	1	0x02A00	71	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	__MJ_CTRL000	init	1	0x02A00	71	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_c01	__MJ_CTRL000	init	2	0x02A06	72	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c01	__MJ_CTRL000	init	3	0x02A09	73	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c01	__MJ_CTRL000	mapjump	1	0x02A0D	83	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3218,7 +3218,7 @@ bds_c01	__MJ_CTRL000	mapjump	25	0x02B0C	122	local_var_s1f1_1; not (regI3)	fadesy
 bds_c01	__MJ_CTRL000	mapjump	26	0x02B12	123	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_c01	__MJ_CTRL000	mapjump	27	0x02B1E	124	local_var_s1f1_1; not (regI3)	mapjump	0x01af, 2, 0	jumps: Hall of Slumbering Might (Necrohol of Nabudis), field 431, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_c01	__MJ_CTRL000	mapjump	28	0x02B21	127	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_c01	__MJ_CTRL001	init	1	0x02B25	136	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	__MJ_CTRL001	init	1	0x02B25	136	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_c01	__MJ_CTRL001	init	2	0x02B2B	137	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c01	__MJ_CTRL001	init	3	0x02B2E	138	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c01	__MJ_CTRL001	mapjump	1	0x02B32	148	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3249,7 +3249,7 @@ bds_c01	__MJ_CTRL001	mapjump	25	0x02C31	187	local_var_s2f1_1; not (regI3)	fadesy
 bds_c01	__MJ_CTRL001	mapjump	26	0x02C37	188	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_c01	__MJ_CTRL001	mapjump	27	0x02C43	189	local_var_s2f1_1; not (regI3)	mapjump	0x01aa, 3, 0	jumps: Cloister of the Highborn (Necrohol of Nabudis), field 426, entrance 3	-	-	-	-	resolved	this page's How a call is read
 bds_c01	__MJ_CTRL001	mapjump	28	0x02C46	192	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_c01	__MJ_CTRL002	init	1	0x02C4A	201	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	__MJ_CTRL002	init	1	0x02C4A	201	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_c01	__MJ_CTRL002	init	2	0x02C50	202	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c01	__MJ_CTRL002	init	3	0x02C53	203	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c01	__MJ_CTRL002	mapjump	1	0x02C57	213	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3865,16 +3865,16 @@ bds_c01	メダル扉	talk	482	0x03D0F	1014	-	setstatuserrordispdenystatus	0	argu
 bds_c01	メダル扉	talk	483	0x03D15	1015	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bds_c01	メダル扉	talk	484	0x03D18	1016	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c01	メダル扉	ＦＳ_メダルなし	1	0x03D1C	1021	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_c01	メダル扉	ＦＳ_メダルなし	2	0x03D22	1022	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_c01	メダル扉	ＦＳ_メダルなし	3	0x03D28	1023	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	メダル扉	ＦＳ_メダルなし	2	0x03D22	1022	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	メダル扉	ＦＳ_メダルなし	3	0x03D28	1023	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_c01	メダル扉	ＦＳ_メダルなし	4	0x03D2B	1024	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c01	メダル扉	ＦＳ_メダルあり	1	0x03D2F	1029	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-bds_c01	メダル扉	ＦＳ_メダルあり	2	0x03D35	1030	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_c01	メダル扉	ＦＳ_メダルあり	3	0x03D3B	1031	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	メダル扉	ＦＳ_メダルあり	2	0x03D35	1030	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	メダル扉	ＦＳ_メダルあり	3	0x03D3B	1031	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_c01	メダル扉	ＦＳ_メダルあり	4	0x03D3E	1032	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c01	メダル扉	ＦＳ_初回以降	1	0x03D42	1037	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-bds_c01	メダル扉	ＦＳ_初回以降	2	0x03D48	1038	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_c01	メダル扉	ＦＳ_初回以降	3	0x03D4E	1039	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	メダル扉	ＦＳ_初回以降	2	0x03D48	1038	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c01	メダル扉	ＦＳ_初回以降	3	0x03D4E	1039	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_c01	メダル扉	ＦＳ_初回以降	4	0x03D51	1040	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c01	PC00	init	1	0x03D55	1049	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c01	PC00	init	2	0x03D58	1050	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4365,7 +4365,7 @@ bds_c02	setup	event	10	0x02688	73	g_com_mnp_ナブディス王宮ロケタイ ==
 bds_c02	setup	event	11	0x02691	74	g_com_mnp_ナブディス王宮ロケタイ == 0 and nowjumpindex() == 1; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicread	scratch1_var_2	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c02	setup	event	12	0x02697	75	g_com_mnp_ナブディス王宮ロケタイ == 0 and nowjumpindex() == 1; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicreadsync	scratch1_var_2	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c02	setup	event	13	0x0269A	78	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_c02	__MJ_CTRL000	init	1	0x0269E	87	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c02	__MJ_CTRL000	init	1	0x0269E	87	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_c02	__MJ_CTRL000	init	2	0x026A4	88	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c02	__MJ_CTRL000	init	3	0x026A7	89	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c02	__MJ_CTRL000	mapjump	1	0x026AB	99	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4396,7 +4396,7 @@ bds_c02	__MJ_CTRL000	mapjump	25	0x027AA	138	local_var_s1f1_1; not (regI3)	fadesy
 bds_c02	__MJ_CTRL000	mapjump	26	0x027B0	139	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_c02	__MJ_CTRL000	mapjump	27	0x027BC	140	local_var_s1f1_1; not (regI3)	mapjump	180, 2, 0	jumps: Field of the Fallen Lord (Nabreus Deadlands), field 180, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_c02	__MJ_CTRL000	mapjump	28	0x027BF	143	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_c02	__MJ_CTRL001	init	1	0x027C3	152	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_c02	__MJ_CTRL001	init	1	0x027C3	152	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_c02	__MJ_CTRL001	init	2	0x027C9	153	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c02	__MJ_CTRL001	init	3	0x027CC	154	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_c02	__MJ_CTRL001	mapjump	1	0x027D0	164	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4696,7 +4696,7 @@ bds_c02	monster_04	init	2	0x05FBD	4380	-	btlAtelSetTotalEntryNumber	0x030000ff	a
 bds_c02	monster_04	init	3	0x05FC3	4381	-	btlAtelSetPoint2	0x030000c8	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c02	monster_04	init	4	0x05FC6	4382	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_c02	monster_04	init	5	0x05FC9	4383	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d01	__MJ_CTRL000	init	1	0x01223	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d01	__MJ_CTRL000	init	1	0x01223	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d01	__MJ_CTRL000	init	2	0x01229	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d01	__MJ_CTRL000	init	3	0x0122C	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d01	__MJ_CTRL000	mapjump	1	0x01230	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4727,7 +4727,7 @@ bds_d01	__MJ_CTRL000	mapjump	25	0x0132F	74	local_var_s0f1_1; not (regI3)	fadesyn
 bds_d01	__MJ_CTRL000	mapjump	26	0x01335	75	local_var_s0f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_d01	__MJ_CTRL000	mapjump	27	0x01341	76	local_var_s0f1_1; not (regI3)	mapjump	0x01a5, 2, 0	jumps: Hall of Effulgent Light (Necrohol of Nabudis), field 421, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_d01	__MJ_CTRL000	mapjump	28	0x01344	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d01	__MJ_CTRL001	init	1	0x01348	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d01	__MJ_CTRL001	init	1	0x01348	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d01	__MJ_CTRL001	init	2	0x0134E	89	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d01	__MJ_CTRL001	init	3	0x01351	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d01	__MJ_CTRL001	mapjump	1	0x01355	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4758,7 +4758,7 @@ bds_d01	__MJ_CTRL001	mapjump	25	0x01454	139	local_var_s1f1_1; not (regI3)	fadesy
 bds_d01	__MJ_CTRL001	mapjump	26	0x0145A	140	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_d01	__MJ_CTRL001	mapjump	27	0x01466	141	local_var_s1f1_1; not (regI3)	mapjump	0x01a6, 1, 0	jumps: Cloister of Distant Song (Necrohol of Nabudis), field 422, entrance 1	-	-	-	-	resolved	this page's How a call is read
 bds_d01	__MJ_CTRL001	mapjump	28	0x01469	144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d01	__MJ_CTRL002	init	1	0x0146D	153	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d01	__MJ_CTRL002	init	1	0x0146D	153	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d01	__MJ_CTRL002	init	2	0x01473	154	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d01	__MJ_CTRL002	init	3	0x01476	155	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d01	__MJ_CTRL002	mapjump	1	0x0147A	165	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4790,7 +4790,7 @@ bds_d01	__MJ_CTRL002	mapjump	26	0x0157F	205	local_var_s2f1_1; not (regI3)	wait	2
 bds_d01	__MJ_CTRL002	mapjump	27	0x0158B	206	local_var_s2f1_1; not (regI3)	mapjump	0x01aa, 1, 0	jumps: Cloister of the Highborn (Necrohol of Nabudis), field 426, entrance 1	-	-	-	-	resolved	this page's How a call is read
 bds_d01	__MJ_CTRL002	mapjump	28	0x0158E	209	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d01	Map_Director	init	1	0x0158F	218	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d02	__MJ_CTRL000	init	1	0x00623	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d02	__MJ_CTRL000	init	1	0x00623	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d02	__MJ_CTRL000	init	2	0x00629	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d02	__MJ_CTRL000	init	3	0x0062C	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d02	__MJ_CTRL000	mapjump	1	0x00630	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4821,7 +4821,7 @@ bds_d02	__MJ_CTRL000	mapjump	25	0x0072F	74	local_var_s0f1_1; not (regI3)	fadesyn
 bds_d02	__MJ_CTRL000	mapjump	26	0x00735	75	local_var_s0f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_d02	__MJ_CTRL000	mapjump	27	0x00741	76	local_var_s0f1_1; not (regI3)	mapjump	0x01a7, 2, 0	jumps: bds_a03 (Pharos at Ridorana), field 423, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_d02	__MJ_CTRL000	mapjump	28	0x00744	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d02	__MJ_CTRL001	init	1	0x00748	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d02	__MJ_CTRL001	init	1	0x00748	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d02	__MJ_CTRL001	init	2	0x0074E	89	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d02	__MJ_CTRL001	init	3	0x00751	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d02	__MJ_CTRL001	mapjump	1	0x00755	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4852,7 +4852,7 @@ bds_d02	__MJ_CTRL001	mapjump	25	0x00854	139	local_var_s1f1_1; not (regI3)	fadesy
 bds_d02	__MJ_CTRL001	mapjump	26	0x0085A	140	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_d02	__MJ_CTRL001	mapjump	27	0x00866	141	local_var_s1f1_1; not (regI3)	mapjump	0x01a6, 2, 0	jumps: Cloister of Distant Song (Necrohol of Nabudis), field 422, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_d02	__MJ_CTRL001	mapjump	28	0x00869	144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d02	__MJ_CTRL002	init	1	0x0086D	153	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d02	__MJ_CTRL002	init	1	0x0086D	153	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d02	__MJ_CTRL002	init	2	0x00873	154	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d02	__MJ_CTRL002	init	3	0x00876	155	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d02	__MJ_CTRL002	mapjump	1	0x0087A	165	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4884,7 +4884,7 @@ bds_d02	__MJ_CTRL002	mapjump	26	0x0097F	205	local_var_s2f1_1; not (regI3)	wait	2
 bds_d02	__MJ_CTRL002	mapjump	27	0x0098B	206	local_var_s2f1_1; not (regI3)	mapjump	0x01b9, 1, 0	jumps: Cloister of Solace (Necrohol of Nabudis), field 441, entrance 1	-	-	-	-	resolved	this page's How a call is read
 bds_d02	__MJ_CTRL002	mapjump	28	0x0098E	209	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d02	Map_Director	init	1	0x0098F	218	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d03	__MJ_CTRL000	init	1	0x00663	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d03	__MJ_CTRL000	init	1	0x00663	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d03	__MJ_CTRL000	init	2	0x00669	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d03	__MJ_CTRL000	init	3	0x0066C	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d03	__MJ_CTRL000	mapjump	1	0x00670	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4915,7 +4915,7 @@ bds_d03	__MJ_CTRL000	mapjump	25	0x0076F	74	local_var_s0f1_1; not (regI3)	fadesyn
 bds_d03	__MJ_CTRL000	mapjump	26	0x00775	75	local_var_s0f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_d03	__MJ_CTRL000	mapjump	27	0x00781	76	local_var_s0f1_1; not (regI3)	mapjump	0x01ab, 2, 0	jumps: bds_b02 (Pharos at Ridorana), field 427, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bds_d03	__MJ_CTRL000	mapjump	28	0x00784	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d03	__MJ_CTRL001	init	1	0x00788	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d03	__MJ_CTRL001	init	1	0x00788	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d03	__MJ_CTRL001	init	2	0x0078E	89	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d03	__MJ_CTRL001	init	3	0x00791	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d03	__MJ_CTRL001	mapjump	1	0x00795	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4946,7 +4946,7 @@ bds_d03	__MJ_CTRL001	mapjump	25	0x00894	139	local_var_s1f1_1; not (regI3)	fadesy
 bds_d03	__MJ_CTRL001	mapjump	26	0x0089A	140	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bds_d03	__MJ_CTRL001	mapjump	27	0x008A6	141	local_var_s1f1_1; not (regI3)	mapjump	0x01aa, 3, 0	jumps: Cloister of the Highborn (Necrohol of Nabudis), field 426, entrance 3	-	-	-	-	resolved	this page's How a call is read
 bds_d03	__MJ_CTRL001	mapjump	28	0x008A9	144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_d03	__MJ_CTRL002	init	1	0x008AD	153	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_d03	__MJ_CTRL002	init	1	0x008AD	153	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_d03	__MJ_CTRL002	init	2	0x008B3	154	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_d03	__MJ_CTRL002	init	3	0x008B6	155	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_d03	__MJ_CTRL002	mapjump	1	0x008BA	165	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4983,7 +4983,7 @@ bds_e01	setup	battle	1	0x00F31	54	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-
 bds_e01	setup	battle	2	0x00F37	55	-	store	file_var_s0_1 = g_btl_カオス	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bds_e01	setup	battle	3	0x00F3D	56	-	btlAtelSetEntryStruct	0x03000044	-	-	-	-	-		01 verb-table.tsv
 bds_e01	setup	battle	4	0x00F40	57	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_e01	__MJ_CTRL000	init	1	0x00F44	66	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	__MJ_CTRL000	init	1	0x00F44	66	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_e01	__MJ_CTRL000	init	2	0x00F4A	67	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_e01	__MJ_CTRL000	init	3	0x00F4D	68	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_e01	__MJ_CTRL000	mapjump	1	0x00F51	78	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5290,8 +5290,8 @@ bds_e01	Map_Director	init	8	0x0170D	479	-	setmapjumpgroupflag	78	flags set: 0x00
 bds_e01	Map_Director	init	9	0x01710	480	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_e01	Map_Director	main	1	0x01711	485	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_e01	ボスマップ扉	init	1	0x01715	499	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_e01	ボスマップ扉	init	2	0x0171B	500	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_e01	ボスマップ扉	init	3	0x01721	501	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	init	2	0x0171B	500	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	init	3	0x01721	501	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_e01	ボスマップ扉	init	4	0x01724	502	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_e01	ボスマップ扉	main	1	0x0172E	507	-	bganimeplay_9e	0, 0x0190, 0x0190	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_e01	ボスマップ扉	main	2	0x01734	508	-	bganimesync	0	-	-	-	-	-		01 verb-table.tsv
@@ -5369,17 +5369,17 @@ bds_e01	ボスマップ扉	talk	66	0x0193E	585	-	setstatuserrordispdenystatus	0	
 bds_e01	ボスマップ扉	talk	67	0x01944	586	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bds_e01	ボスマップ扉	talk	68	0x01947	587	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_e01	ボスマップ扉	ＦＳ_有効	1	0x0194B	592	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_e01	ボスマップ扉	ＦＳ_有効	2	0x01951	593	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_e01	ボスマップ扉	ＦＳ_有効	3	0x01957	594	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_e01	ボスマップ扉	ＦＳ_有効	4	0x0195D	595	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_e01	ボスマップ扉	ＦＳ_有効	5	0x01963	596	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_e01	ボスマップ扉	ＦＳ_有効	6	0x01969	597	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_有効	2	0x01951	593	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_有効	3	0x01957	594	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_有効	4	0x0195D	595	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_有効	5	0x01963	596	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_有効	6	0x01969	597	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_e01	ボスマップ扉	ＦＳ_有効	7	0x0196C	598	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_e01	ボスマップ扉	ＦＳ_無効	1	0x01970	603	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_e01	ボスマップ扉	ＦＳ_無効	2	0x01976	604	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_e01	ボスマップ扉	ＦＳ_無効	3	0x0197C	605	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_e01	ボスマップ扉	ＦＳ_無効	4	0x01982	606	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_e01	ボスマップ扉	ＦＳ_無効	5	0x01988	607	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_無効	2	0x01976	604	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_無効	3	0x0197C	605	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_無効	4	0x01982	606	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_e01	ボスマップ扉	ＦＳ_無効	5	0x01988	607	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_e01	ボスマップ扉	ＦＳ_無効	6	0x0198B	608	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_e01	PC00	init	1	0x0198F	617	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_e01	PC00	init	2	0x01992	618	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5664,7 +5664,7 @@ bds_f01	setup	battle	1	0x00C61	51	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-
 bds_f01	setup	battle	2	0x00C67	52	-	store	file_var_s0_1 = g_btl_フンババ	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bds_f01	setup	battle	3	0x00C6D	53	-	btlAtelSetEntryStruct	0x03000014	-	-	-	-	-		01 verb-table.tsv
 bds_f01	setup	battle	4	0x00C70	54	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_f01	__MJ_CTRL000	init	1	0x00C74	63	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	__MJ_CTRL000	init	1	0x00C74	63	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_f01	__MJ_CTRL000	init	2	0x00C7A	64	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_f01	__MJ_CTRL000	init	3	0x00C7D	65	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_f01	__MJ_CTRL000	mapjump	1	0x00C81	75	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5971,8 +5971,8 @@ bds_f01	Map_Director	init	16	0x018EF	681	not (g_btl_フンババ < 2)	setmapjump
 bds_f01	Map_Director	init	17	0x018F5	682	not (g_btl_フンババ < 2)	setnavimapindex	0	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_f01	Map_Director	init	18	0x018F8	684	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_f01	ボスマップ扉	init	1	0x018FC	698	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_f01	ボスマップ扉	init	2	0x01902	699	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_f01	ボスマップ扉	init	3	0x01908	700	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	init	2	0x01902	699	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	init	3	0x01908	700	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_f01	ボスマップ扉	init	4	0x0190B	701	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_f01	ボスマップ扉	main	1	0x01915	706	-	bganimeplay_9e	0, 0x0190, 0x0190	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_f01	ボスマップ扉	main	2	0x0191B	707	-	bganimesync	0	-	-	-	-	-		01 verb-table.tsv
@@ -6050,17 +6050,17 @@ bds_f01	ボスマップ扉	talk	66	0x01B25	784	-	setstatuserrordispdenystatus	0	
 bds_f01	ボスマップ扉	talk	67	0x01B2B	785	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bds_f01	ボスマップ扉	talk	68	0x01B2E	786	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_f01	ボスマップ扉	ＦＳ_有効	1	0x01B32	791	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_f01	ボスマップ扉	ＦＳ_有効	2	0x01B38	792	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_f01	ボスマップ扉	ＦＳ_有効	3	0x01B3E	793	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_f01	ボスマップ扉	ＦＳ_有効	4	0x01B44	794	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_f01	ボスマップ扉	ＦＳ_有効	5	0x01B4A	795	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_f01	ボスマップ扉	ＦＳ_有効	6	0x01B50	796	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_有効	2	0x01B38	792	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_有効	3	0x01B3E	793	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_有効	4	0x01B44	794	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_有効	5	0x01B4A	795	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_有効	6	0x01B50	796	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_f01	ボスマップ扉	ＦＳ_有効	7	0x01B53	797	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_f01	ボスマップ扉	ＦＳ_無効	1	0x01B57	802	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_f01	ボスマップ扉	ＦＳ_無効	2	0x01B5D	803	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_f01	ボスマップ扉	ＦＳ_無効	3	0x01B63	804	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_f01	ボスマップ扉	ＦＳ_無効	4	0x01B69	805	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_f01	ボスマップ扉	ＦＳ_無効	5	0x01B6F	806	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_無効	2	0x01B5D	803	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_無効	3	0x01B63	804	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_無効	4	0x01B69	805	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_f01	ボスマップ扉	ＦＳ_無効	5	0x01B6F	806	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_f01	ボスマップ扉	ＦＳ_無効	6	0x01B72	807	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_f01	PC00	init	1	0x01B76	816	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_f01	PC00	init	2	0x01B79	817	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6325,7 +6325,7 @@ bds_g01	setup	battle	1	0x00C61	51	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-
 bds_g01	setup	battle	2	0x00C67	52	-	store	file_var_s0_1 = g_btl_フューリー	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bds_g01	setup	battle	3	0x00C6D	53	-	btlAtelSetEntryStruct	0x03000014	-	-	-	-	-		01 verb-table.tsv
 bds_g01	setup	battle	4	0x00C70	54	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bds_g01	__MJ_CTRL000	init	1	0x00C74	63	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	__MJ_CTRL000	init	1	0x00C74	63	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_g01	__MJ_CTRL000	init	2	0x00C7A	64	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_g01	__MJ_CTRL000	init	3	0x00C7D	65	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_g01	__MJ_CTRL000	mapjump	1	0x00C81	75	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -6619,8 +6619,8 @@ bds_g01	Map_Director	init	7	0x01870	664	-	setnavimapindex	0	argument 1: which of
 bds_g01	Map_Director	init	8	0x01876	665	-	setmapjumpgroupflag	80	flags set: 0x0050: Set or tested in Cloister of Reason (Necrohol of Nabudis)	-	-	-	-	resolved	this page's How a call is read
 bds_g01	Map_Director	init	9	0x01879	666	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_g01	ボスマップ扉	init	1	0x0187D	680	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_g01	ボスマップ扉	init	2	0x01883	681	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_g01	ボスマップ扉	init	3	0x01889	682	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	init	2	0x01883	681	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	init	3	0x01889	682	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_g01	ボスマップ扉	init	4	0x0188C	683	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_g01	ボスマップ扉	main	1	0x01896	688	-	bganimeplay_9e	0, 0x0190, 0x0190	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_g01	ボスマップ扉	main	2	0x0189C	689	-	bganimesync	0	-	-	-	-	-		01 verb-table.tsv
@@ -6698,17 +6698,17 @@ bds_g01	ボスマップ扉	talk	66	0x01AA6	766	-	setstatuserrordispdenystatus	0	
 bds_g01	ボスマップ扉	talk	67	0x01AAC	767	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bds_g01	ボスマップ扉	talk	68	0x01AAF	768	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_g01	ボスマップ扉	ＦＳ_有効	1	0x01AB3	773	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_g01	ボスマップ扉	ＦＳ_有効	2	0x01AB9	774	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_g01	ボスマップ扉	ＦＳ_有効	3	0x01ABF	775	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_g01	ボスマップ扉	ＦＳ_有効	4	0x01AC5	776	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_g01	ボスマップ扉	ＦＳ_有効	5	0x01ACB	777	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_g01	ボスマップ扉	ＦＳ_有効	6	0x01AD1	778	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_有効	2	0x01AB9	774	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_有効	3	0x01ABF	775	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_有効	4	0x01AC5	776	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_有効	5	0x01ACB	777	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_有効	6	0x01AD1	778	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_g01	ボスマップ扉	ＦＳ_有効	7	0x01AD4	779	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_g01	ボスマップ扉	ＦＳ_無効	1	0x01AD8	784	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-bds_g01	ボスマップ扉	ＦＳ_無効	2	0x01ADE	785	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_g01	ボスマップ扉	ＦＳ_無効	3	0x01AE4	786	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_g01	ボスマップ扉	ＦＳ_無効	4	0x01AEA	787	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bds_g01	ボスマップ扉	ＦＳ_無効	5	0x01AF0	788	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_無効	2	0x01ADE	785	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_無効	3	0x01AE4	786	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_無効	4	0x01AEA	787	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bds_g01	ボスマップ扉	ＦＳ_無効	5	0x01AF0	788	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bds_g01	ボスマップ扉	ＦＳ_無効	6	0x01AF3	789	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bds_g01	PC00	init	1	0x01AF7	798	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bds_g01	PC00	init	2	0x01AFA	799	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

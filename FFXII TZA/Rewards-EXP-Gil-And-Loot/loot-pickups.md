@@ -19,15 +19,15 @@ pickups wait.
 
 ### When a pickup is made
 
-The kill handler `0x00312280` makes the pickup after EXP, LP and gil are paid (see the kill rewards
-page). In order (`0x0031256B`-`0x003125B4`):
+The kill handler `0x00312280` makes the pickup after EXP, LP and gil are paid (see
+[Kill rewards](kill-rewards.md)). In order (`0x0031256B`-`0x003125B4`):
 
 1. `0x00265020` reads the dead enemy's position from its actor (`[enemy+0x10]`, position at
    `[actor+0xB8]`, only for an actor whose byte `+0x03` has kind 1 or 3 in its top three bits;
    otherwise 0, 0, 0).
 2. `0x00319490(&position)` runs the placement test. A result of 0 ends the sequence with no pickup
    (`0x00312595`-`0x00312597`).
-3. `0x003180F0(enemy, &drops)` rolls the seven drop entries (see the loot drops page). A result of 0,
+3. `0x003180F0(enemy, &drops)` rolls the seven drop entries (see [Loot drops](loot-drops.md)). A result of 0,
    no item in any entry, ends the sequence (`0x003125A6`-`0x003125A8`).
 4. `0x00319CA0(&drops, &position)` creates the pickup.
 
@@ -46,8 +46,9 @@ page). In order (`0x0031256B`-`0x003125B4`):
   once.
 - Otherwise it queries the units around the position (`0x00391D10` at `0x003378B2`, or `0x003920F0` at
   `0x003378E6` when a coordinate is NaN, up to 32 results) and walks them (`0x00337900`-`0x00337987`).
-  - Skipped: the acting unit itself; a result whose `[+0xE68]` byte `+0x18` bits `0xE` equal 1
-    when the leader's own equal 4; every result while `0x00314EB0(acting)` is 0.
+  - Skipped: the acting unit itself; a result whose `[+0xE68]` byte `+0x18` holds 1 in the
+    three-bit field under the mask `0xE` when the leader's own field holds 4
+    (`0x0033792B`-`0x00337951`); every result while `0x00314EB0(acting)` is 0.
   - Each remaining result is classed by `0x00313F80(acting, result)`; any classed result makes the
     function return 0 (`0x0033798D`-`0x0033799A`).
 - With none it returns `0x00337700(unit, position)` (`0x003379A4`): the position must pass `0x00391410`
@@ -107,7 +108,7 @@ equipment ids) it takes the row `(id - 0x1000) * rowSize` of the equipment table
 The appearance value is 0 as soon as one entry maps to 1-5 (the function returns at once), 1 when an entry
 maps to 6 and none to 1-5, and 2 otherwise, including for a pickup without equipment. Byte `+0x09`
 is the equipment class; the class list is on the
-[item id page](../Items-Equipment-Shops-And-Licenses/equipment-row.md).
+[equipment row page](../Items-Equipment-Shops-And-Licenses/equipment-row.md).
 
 ### The lifetime
 
@@ -163,7 +164,7 @@ action word `+0x714` is `0x4165` (`0x003110E8`-`0x003110F4`):
 3. A party record (stats byte `+0x05` = 0) collects it: `0x00319A00(slot, unit handle)`
    (`0x00311141`). Any other record, or no record, destroys it: `0x00319830(slot, unit handle)`
    (`0x00311284`).
-4. For a party record the tick then rolls the chain bonus (see the loot drops page).
+4. For a party record the tick then rolls the chain bonus (see [Loot drops](loot-drops.md)).
 
 `0x00319920(slot, handle)`, the collect, grants every entry whose id is not `0xFFFF` with
 `0x00300B80(id, count, 1)`, the inventory add with the notification flag (`0x00319950`-`0x00319972`),
@@ -344,7 +345,8 @@ negative number is refused as well. `0x002FB310` takes the number without a boun
 - A drop buffer must hold seven entries with `0xFFFF` in every unused one; an unset middle entry is
   granted.
 - The appearance value is computed once at creation.
-- Eviction is silent: the evicted pickup gets op 5, the same call as expiry.
+- Eviction is silent: the evicted pickup gets op 5, which runs the same `0x003FA820(handle, 0)` as
+  expiry's op 4.
 
 ## Related
 

@@ -27,7 +27,7 @@ Quickenings, the Concurrences, and mounting and dismounting a chocobo.
 
 ### Which actions
 
-An action whose row has bit `0x40000000` (`0x40000000`) of the flag word `+0x0C` goes through
+An action whose row has bit `0x40000000` of the flag word `+0x0C` goes through
 `0x0030CE10`. In the shipped `battle_pack.bin` 87 rows have it: Mount and Dismount (ids `0x94`, `0x95`),
 the 13 Esper finishing attacks among `0xB6`-`0xCF`, the 18 Quickenings `0xD0`-`0xE1`, the
 Concurrences and unused rows `0xE2`-`0xF1`, the 13 summons `0x106`-`0x112`, Dismiss `0x113`, and
@@ -116,7 +116,7 @@ owner it runs these steps (`0x003065D6`-`0x00306716`):
    `0x00300530(target stats, value, attacker stats, 0)` and clears the list.
 4. For kind 4 it calls `0x0030D810`, `0x0030EB10(1)` (the same HP application, plus `0x0030E360` with 4 and
    with 5 for each target), releases the slot `+0x696` and calls `0x0030D720`.
-5. The state becomes 7. When manager 3 is idle the state, kind and owner are cleared, bits 0-1 of
+5. The state becomes 7. When manager 3 is idle the state, kind and owner are cleared, bits `0x3` of
    `0x022C2158` are cleared, and `0x00238A60()` and `0x00332190(3)` run.
 
 `0x00306570(unit)` performs the same clear for the owner (or for no owner) when manager 3 is idle; it is

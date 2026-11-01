@@ -54,7 +54,7 @@ indices coming from the enemy's definition row.
 
 ```c
 amount = d * [E78].i32[+0x34] + [E70].i32[+0x34];
-if (battle mode != 1) {                               // 0x003135C0: 0x0030D9A0() == 1
+if (party control mode != 1) {                        // 0x003135C0: 0x0030D9A0() == 1
     n = members among battle slots 0-3 (0x0031B810) that are not out of play and are not
         party records with type id 0x1A or 0x1B-0x27;
     exp = n ? amount / n : 0;                         // integer division
@@ -75,7 +75,7 @@ A recipient gets 0 unless all of these hold:
 The type id is the record's `chr_data` row: 0-6 the main characters, 7-25 guests and story
 variants, `0x1A` the Chocobo and `0x1B`-`0x27` the thirteen Espers (see the stat growth page).
 
-Battle mode 1 is bit `0x1` of `[0x02EBF190] + 0x5B04` with bits 1-3 clear outside town areas
+Party control mode 1 is bit `0x1` of `[0x02EBF190] + 0x5B04` with the bits under mask `0xE` clear outside town areas
 (`0x0030D9A0`). The script verb `btlAtelSetSummonMode` sets and clears that bit through `0x00313550`. In
 that mode the receiving unit is the one whose id equals byte `[0x02EBF190] + 0x5AD5`, looked up in the
 slot table at `+0x5A48` by `0x00320890`; it must still pass the recipient gate above, or nobody

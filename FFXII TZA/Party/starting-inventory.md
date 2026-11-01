@@ -7,7 +7,7 @@ addresses: "0x02EBF048, 0x0023AF50, 0x00237DF0, 0x00300BA0, 0x003008A0"
 
 ## What it lists
 
-`starting-inventory.tsv` holds one line for each of the 32 rows of the table that registry slot `0x02EBF048` reaches
+[`starting-inventory.tsv`](starting-inventory.tsv) holds one line for each of the 32 rows of the table that registry slot `0x02EBF048` reaches
 (`battle_pack.bin` directory entry `+0xAC`). Every shipped row is the id `0xFFFF` with count 0, so the table adds
 nothing; the items a new party holds come from the first-join lists of the
 [Party table](party-table.md) ([Party members](party-members.md)).

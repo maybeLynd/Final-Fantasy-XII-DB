@@ -10,7 +10,8 @@ addresses: "0x02EBF008, 0x02EBF200, 0x0208E680, 0x002368D0, 0x003843F0, 0x003844
 Every number the battle system looks up, from an item's price and a spell's power to a character's
 starting stats, a gambit's target and an enemy's level, comes from a table the game loads once at
 start-up or each time the party enters a new area. When a table is missing, the game does not fall
-back to a default: the lookup reads address 0 and the game crashes.
+back to a default: most lookups read from address 0 and the game crashes, and the few that first
+check an id against the table's count refuse the id instead.
 
 ## How it works
 
@@ -195,7 +196,7 @@ the id's top nibble (5–19), −1 for nibble 15.
 ### Runtime blocks and dead cells
 
 - `0x02EBF190` is not a table. It always holds `0x002EF640() + 0x4E68C`, the party block (magic
-  `0x05071901` at `+0`; 40 party battle records of `0x1C8` bytes from `+8`), written by `0x00233C10` when
+  `0x05071901` at `+0`; 40 member stats records of `0x1C8` bytes from `+8`), written by `0x00233C10` when
   null and by `0x00238A80`.
 - `0x02EBF178` is written only by `0x00324510`, a builder for 301 kind-`0x1A` files that never runs: its
   state `0x022C27A0` is touched only inside it, and nothing stores the state 1 that starts it.
@@ -210,12 +211,12 @@ Table header (all offsets from the header until bound):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `...` | magic | 'st2e' (or u16 count on `0x003846F0` tables) |
-| `+0x04` | `u32` | row count |  |
-| `+0x08` | `u16` | row stride |  |
+| `+0x04` | `u32` |  | row count |
+| `+0x08` | `u16` |  | row stride |
 | `+0x0A` | `u16` | word0A | 0 |
-| `+0x0C` | `...` | row array |  |
+| `+0x0C` | `...` |  | row array |
 | `+0x10` | `...` | reference |  |
-| `+0x14` | `...` | encoded sub-directory |  |
+| `+0x14` | `...` |  | encoded sub-directory |
 | `+0x18` | `...` | reference |  |
 | `+0x1C` | `...` | reference |  |
 

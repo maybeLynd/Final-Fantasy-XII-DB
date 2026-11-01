@@ -58,7 +58,7 @@ wait slots 40, so the wait slots end exactly at the record's size on every row.
 
 ### The class byte
 
-Bits 5-7 of `+0x03` are the class and bits `0x1F` the sequence. The movement code accepts class 3
+The bits under mask `0xE0` of `+0x03` are the class and bits `0x1F` the sequence. The movement code accepts class 3
 (`+0x03 & 0xE0 == 0x60`); the position read `0x00265020` accepts classes 1 and 3; the `setline` verb
 writes class 2 ([battle units](battle-units.md)). `0x00266BD0` seeds the flag dword `+0x1C` by
 sequence: 0 for sequence 0, `0x38` for 1 and 2, `0x40` for 3 and 4, `0x30004` for 5 and 6, `0x34C85`
@@ -81,7 +81,7 @@ for 7, and sets `+0x14` bit `0x80` (battle-unit eligible) for sequences 5 and 7.
 4. it sets the flag bytes: `+0x14` = `(old & 0xB0) | 0x30`, `+0x0D` = `(old & 0xA2) | 0x82` and
    `+0x08` = `(old & 0x9F) | 0x11` on manager 0 (`(old & 0x22) | 2` and `(old & 0x8F) | 1` elsewhere);
    - then `+0x0D` bit `0x20` and `+0x08` bit `0x80` cleared, `+0x0B` &= `0xC0`, `+0x0C` = `(old & 0x71) | 8` then
-   bits 4-6 cleared, `+0x09` bits `0x20` and `0x80` cleared, `+0x13` &= `0x3C`, `+0x0E` |= `0xF0` then `&= 0xF0`,
+   mask `0x70` cleared, `+0x09` bits `0x20` and `0x80` cleared, `+0x13` &= `0x3C`, `+0x0E` |= `0xF0` then `&= 0xF0`,
    and for class 3 `+0x1C` bits `0x100` and `0x2000` cleared;
 5. it binds the script entry: `+0x02` = 1, or 2 while `i` is below the payload's count word at
    `+[0x14] + 2`; `+0x40` = the entry at payload `+[0x18] + 4 + i * 0x20` (`0x30` when the payload's
@@ -167,7 +167,7 @@ small accessors. Each takes the calling actor unless the row says otherwise:
 | `attachinfo(i, ref)` | `0x01C8` | `0x0026A140` | secondary `+0x120 + i * 8` = the address `0x002650B0` resolves `ref` to through the current slot's homes, and secondary `+0x14F` bit `0x4` set |
 | `setambient(r, g, b)`, `resetambient` | `0x0116`, `0x0117` | `0x0026AD40` | secondary `+0x151` bit `0x10` set, the colour handed to `0x0026A420`; `resetambient` passes the colour `0x00379900` returns and clears the bit again |
 | `fetchambient`, `fetchambient_4e1(x, y, z)` | `0x04E0`, `0x04E1` | `0x0026AD40` | the same bit set, then `0x002E49B0(actor, 0)` or `0x002E49B0(actor, {x, y, z, 1.0})` |
-| `set_ignore_hitgroup(v)` | `0x0503` | `0x00269EE0` | byte `+0x119` of the collision body at secondary `+0x138` = `v` |
+| `set_ignore_hitgroup(v)` | `0x0503` | `0x00269EE0` | byte `+0x119` of the movement body at secondary `+0x138` = `v` |
 | `unkCall_5d0(v)` | `0x05D0` | `0x00269F60` | through the render record the secondary context's `+0x00` names (`0x003EC200`), dword `+0x738` = `v`, with the debug print `set root bone physical` |
 | `enable_by_chocobo(v)` | `0x040A` | `0x0033F650` | `+0x0B` bit `0x1` = `v != 0` (`0x0033F661`-`0x0033F66A`); the bit is read only while the leader rides (below) |
 
@@ -287,7 +287,7 @@ Struct ActorRecord size=by sequence (`0x2D0` to `0x6E0`):
 |---|---|---|---|
 | `+0x000` | `u16` | index | the record's ordinal in its manager |
 | `+0x002` | `u8` | entryClass | 1 or 2 from the initialiser |
-| `+0x003` | `u8` | classAndSequence bits 5-7 class, bits 0-4 sequence |  |
+| `+0x003` | `u8` | classAndSequence | bits under mask `0xE0` class, mask `0x1F` sequence |
 | `+0x004` | `u16` | definitionState | `0xFF00` at init and at release |
 | `+0x006` | `u16` | channelActiveMask |  |
 | `+0x008` | `u8` | flags08 | bit `0x40` set by the field runtime's roster and record loops |
@@ -326,7 +326,7 @@ Struct ActorRecord size=by sequence (`0x2D0` to `0x6E0`):
 | `+0x0A0` | `u8*` | resourceEntries | 20-byte entries |
 | `+0x0A8` | `u8*` | waitSlots | 40-byte slots (field runtime page) |
 | `+0x0B8` | `u8*` | movementContext | at `+0x120`: `0x80` bytes for sequences 1-2 (class 1), `0x20` for 3-4 (class 2), `0x230` for 5-7 (class 3), null for sequence 0 |
-| `+0x0C0` | `u8*` | secondaryContext 0x188 bytes at +0x350, class 3 only |  |
+| `+0x0C0` | `u8*` | secondaryContext | `0x188` bytes at `+0x350`, class 3 only |
 | `+0x0C8` | `u16[18]` | overrides | `0xFFFF` at init |
 | `+0x0F6` | `u16` | entryGroup | 0 at init; stamped by `0x0026CE60` |
 | `+0x0F8` | `u8*` | nameText | the literal name (npc-names page) |
@@ -344,7 +344,7 @@ Struct ActorResourceEntry size=`0x14`:
 | `+0x04` | `u16` | resourceId |  |
 | `+0x06` | `u16` | field06 | `0x8000` when unset |
 | `+0x10` | `u8` | state | 3 a request in flight, 4 detached |
-| `+0x12` | `u8` | classAndFlag the class in bits 1-7 |  |
+| `+0x12` | `u8` | classAndFlag | the class in the bits under mask `0xFE` |
 
 ## Operations
 

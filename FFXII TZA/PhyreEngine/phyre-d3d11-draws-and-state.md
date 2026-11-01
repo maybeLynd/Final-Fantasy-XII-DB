@@ -335,10 +335,10 @@ Render context (`0x005FD050`), fields used here:
 |---|---|---|---|
 | `+0x108` | `void*` | ID3D11Device |  |
 | `+0x110` | `void*` | ID3D11DeviceContext |  |
-| `+0x168` | `u32` | feature level |  |
-| `+0x9C0` | `u32` | dirty bits: 0x2 blend, 0x4 depth-stencil |  |
-| `+0x9EC` | `D3D11_DEPTH_STENCIL_DESC` | pending depth-stencil state |  |
-| `+0xA20` | `D3D11_BLEND_DESC` | pending blend state |  |
+| `+0x168` | `u32` |  | feature level |
+| `+0x9C0` | `u32` |  | dirty bits: `0x2` blend, `0x4` depth-stencil |
+| `+0x9EC` | `D3D11_DEPTH_STENCIL_DESC` |  | pending depth-stencil state |
+| `+0xA20` | `D3D11_BLEND_DESC` |  | pending blend state |
 
 `D3D11_DEPTH_STENCIL_DESC` (`0x34` bytes, offsets from the start of the context+0x9EC):
 
@@ -363,10 +363,10 @@ Index data block, fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0C` | `u8` | index type: 8 = 32-bit |  |
-| `+0x18` | `...` | PSharray of 0x48-byte buffer records; +0x00 of a record is the ID3D11Buffer |  |
+| `+0x0C` | `u8` |  | index type: 8 = 32-bit |
+| `+0x18` | `...` |  | PSharray of `0x48`-byte buffer records; `+0x00` of a record is the ID3D11Buffer |
 | `+0x68` | `u32` | m_offsetInIndexBuffer |  |
-| `+0x6C` | `u32` | bit 0x1: buffers bound |  |
+| `+0x6C` | `u32` |  | bit `0x1`: buffers bound |
 
 `StageCache` (`0x9B0` bytes, offsets from the start of the 0x02CEDA20):
 

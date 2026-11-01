@@ -10,7 +10,7 @@ addresses: "0x003272A0, 0x003594B0, 0x00358BC0, 0x00326500, 0x00263750, 0x003384
 - Switching to another character takes effect at once, and the others immediately follow the new leader.
 - The members who are not controlled walk in a formation around the leader.
 - While the leader is KO'd, turned to stone or in X-Zone, the stick stops responding until the leader recovers;
-  areas whose town flag is set waive this (`0x00377C20`, [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
+  areas whose town flag is set waive this ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 - Scripts lock the stick (`setuclockstatus`) or only moving, turning or heading
   (`setucpcmovelockstatus`), and the controls lock when the last member of an enemy group falls
   ([Boss fights](../Battle-Actions/boss-fights.md)).
@@ -74,9 +74,9 @@ summoner becomes the controlled member ([Quickenings and summons](../Battle-Acti
 
 `0x00326500` turns the party's leader selector, `+0x5AA4` of the party block ([Party slots](party-slots.md),
 [Party data](party-data.md)), into the leader handle. The member it
-picks depends on the battle mode (`0x00326516`-`0x00326542`):
+picks depends on the party control mode (`0x00326516`-`0x00326542`):
 
-| Battle mode | Member |
+| Party control mode | Member |
 |---|---|
 | 0 and 1 (normal, summon) | the party block's leader selector, `+0x5AA4` |
 | 2 (chocobo) | party row 26, the chocobo |
@@ -109,8 +109,9 @@ changes.
 `0x0023B040` recomputes the control lock once a frame (`0x0023B050`-`0x0023B1FA`). Battle flag `0x02089340` bit `0x40` raises
 every lock bit, and nothing waives it (`0x0023B050`-`0x0023B063`).
 
-The rest comes from the leader's state, and is skipped when the battle mode is chocobo (`0x00303EC0`) or the area's
-town bit is set (`0x0023B065`-`0x0023B079`). The lock is raised when the leader is down, when a party wipe is latched
+The rest comes from the leader's state, and is skipped when the party control mode is chocobo (`0x00303EC0`) or the area's
+town bit is set (`0x00377C20`, through its thunk `0x00313F60`; `0x0023B065`-`0x0023B079`). The lock is raised when the
+leader is down, when a party wipe is latched
 (battle flags `0x600`), on several of the leader's action and status states (`0x0023B0CA`-`0x0023B179`), and in
 summon mode when the summoner is down (`0x0023B17C`-`0x0023B1B8`). It is published three ways:
 
@@ -192,6 +193,6 @@ No other instruction reaches these globals. The slots' addresses are taken by `0
 - [Party slots](party-slots.md) - the seats and the fighting map the formation walks.
 - [Party members](party-members.md) - joining and leaving.
 - [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md) - the wipe latches.
-- [Battle mode](../Engine-Core/party-control-modes.md) - summon, chocobo and
+- [Party control modes](../Engine-Core/party-control-modes.md) - summon, chocobo and
   town modes.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the town bit.

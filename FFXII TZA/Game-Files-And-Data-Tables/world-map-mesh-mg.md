@@ -74,7 +74,7 @@ Sub-mesh 1 (strips):
 | `+0x00` | `i32[4]` | colour | R, G, B, A |
 | `+0x10` | `f32[4]` | x, y, z, w | position |
 
-An index entry is a `u16`: bit `0x8000` (`0x8000`) starts a new strip, and bits 0 to 14 are the vertex index.
+An index entry is a `u16`: bit `0x8000` (`0x8000`) starts a new strip, and the bits under mask `0x7FFF` are the vertex index.
 
 ## Shipped data
 
@@ -99,13 +99,13 @@ The tile sizes match the textures: the two upper tiles are square and 1024 × 10
 tiles are a quarter as tall and 1024 × 256.
 
 [`world-map-mesh-mg-mg-rows.tsv`](world-map-mesh-mg-mg-rows.tsv) lists both copies with size, SHA-256 and
-the language ids that load each, then every field of each copy in file order: the directory, both sub-mesh
+the locale ids that load each, then every field of each copy in file order: the directory, both sub-mesh
 headers, the six slots, the 16 tile vertices, the 341 strip vertices, both index streams, the 174 strips and
 the tail, each with the function that reads it and what it shows.
 
 - Tiles 0 to 3 are the four quarters of the Ivalice picture, textured `w_main0` to `w_main3`. Sub-mesh 1 is
   the shading laid over the World Map with `w_shade_p`, and the license board draws the same strips black.
-  Language ids 7, 8 and 11 read the `ch` copy, the others the `in` copy.
+  Locale ids 7, 8 and 11 read the `ch` copy, the others the `in` copy.
 - The 174 strips run back to back over entries 0 to 955 of sub-mesh 1's index stream, and together they use
   all 341 of its vertices. No index reaches past the vertex array, so no field is out of range.
 - Never read: sub-mesh 0's index stream, which gives each tile as `0x8000 + 4k + 2`, `4k`, `4k + 1`, `4k +
@@ -141,15 +141,15 @@ MeshObject (World Map host + `0xC0`):
 |---|---|---|---|
 | `+0x00` | `void*` | sub-mesh 0 | set by the binder |
 | `+0x08` | `void*` | sub-mesh 1 | set by the binder |
-| `+0x10` | `void*` | file buffer |  |
-| `+0x18` | `void*` | w_menu.mrp request |  |
-| `+0x20` | `void*` | w_shade_p image entry |  |
-| `+0x28-0x40` | `...` | w_main0..w_main3 image entries |  |
-| `+0x48` | `...` | w_icon_p image entry |  |
-| `+0x50` | `...` | w_line01 image entry |  |
-| `+0x58` | `...` | w_line02 image entry |  |
-| `+0x70` | `void*` | cursol_4_p image entry |  |
-| `+0x78` | `void*` | w_line01 image entry, looked up by the binder |  |
+| `+0x10` | `void*` |  | file buffer |
+| `+0x18` | `void*` |  | w_menu.mrp request |
+| `+0x20` | `void*` | w_shade_p | image entry |
+| `+0x28-0x40` | `...` |  | w_main0..w_main3 image entries |
+| `+0x48` | `...` | w_icon_p | image entry |
+| `+0x50` | `...` | w_line01 | image entry |
+| `+0x58` | `...` | w_line02 | image entry |
+| `+0x70` | `void*` | cursol_4_p | image entry |
+| `+0x78` | `void*` | w_line01 | image entry, looked up by the binder |
 
 ### Binding textures
 
@@ -173,7 +173,7 @@ That function builds a matrix with `0x00555A70` (scale half of `[0x01F2CAC0]`, a
 into its packet behind it.
 
 The packet is a VIF chunk in the GS command buffer: an UNPACK header for the block (`0x00271100`, `0x6C008000`: V4-32,
-two 16-byte quads per vertex, the count in bits 16 up), the block of `vtxCount`, the matrix and the vertices, then
+two 16-byte quads per vertex, the count in the bits from `0x10000` up), the block of `vtxCount`, the matrix and the vertices, then
 FLUSHE and MSCAL `0x2E95` (`0x005557B9`-`0x005557DD`).
 
 Nothing on this port decodes that buffer
@@ -246,7 +246,7 @@ Nothing in the file is validated:
   size keeps the same mapping.
 - Each slot run in sub-mesh 1 must start with an index that has bit `0x8000` set: the path creates its first
   packet only on a restart, and a run that starts without one reads through a null pointer.
-- Vertex indices are bits 0 to 14, and nothing compares them with `vtxCount`; keep them inside the array.
+- Vertex indices are the bits under mask `0x7FFF`, and nothing compares them with `vtxCount`; keep them inside the array.
 - Sub-mesh 1 cannot carry texture coordinates; its texture is spread over the view by screen position.
 - The file is read whole into a buffer of the size the file-size table gives for kind 7 id `0xA8`; a
   file of another size needs that entry changed in every language's table.

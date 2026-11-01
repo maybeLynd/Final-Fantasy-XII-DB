@@ -13,7 +13,7 @@ small random bonus. A big kill can raise several levels at once; the stats grow 
 and the notice, popup and sound play once, for the last level. Levels stop at 99.
 
 A summoned Esper is grown on the spot to its summoner's level with its own growth values and never gains levels from kills,
-because the EXP formula pays the Esper types `0x1B`-`0x27` nothing. The Chocobo's four stats are at the cap
+because the EXP formula pays Espers nothing. The Chocobo's four stats are at the cap
 from its first level, and it is left out when a kill's EXP is divided ([EXP, LP and level-ups](exp-lp-and-level-ups.md)).
 
 ## How it works
@@ -88,16 +88,19 @@ Then it calls `0x0030C650(record, level, 2)` (`0x0030C562`-`0x0030C56E`), so a n
 from level 0 to its starting level, and sets the EXP total `+0x18C` to `0x002F8F20(level - 1)`, the EXP
 needed for that level, capped at 99,999,999 (`0x0030C573`-`0x0030C586`). The summon start calls it as
 `0x0030C470(Esper record, summoner's level, 0)` (`0x003069EE` in `0x00306760`), so an Esper is rebuilt from
-level 0 to the summoner's level every time it is summoned. A character's starting gil (`row.u16[+0x3E]`) is added once, on its
-first activation (see the gil page).
+level 0 to the summoner's level every time it is summoned.
+
+The EXP formula pays the Esper type ids `0x1B`-`0x27` nothing ([EXP, LP and level-ups](exp-lp-and-level-ups.md)), so kills do not raise an
+Esper's level. A character's starting gil (`row.u16[+0x3E]`) is added once, on its
+first activation (see [Gil](gil.md)).
 
 **Who calls the level walk:**
 
 | Caller | Call | Target level | Flags |
 |---|---|---|---|
 | `0x0030C470` | `0x0030C56E` | the starting level | 2 (silent) |
-| `0x00312280` | `0x003124A3` | the level the EXP total reaches (see the EXP page) | 0 |
-| `0x003112F0` | `0x003113DF` | result byte `+0x11C` (the target's new level, `0xFF` = none) | 0 |
+| `0x00312280` | `0x003124A3` | the level the EXP total reaches (see [EXP, LP and level-ups](exp-lp-and-level-ups.md)) | 0 |
+| `0x003112F0` | `0x003113DF` | result byte `+0x11C` (the target's new level, `0xFF` = no level change) | 0 |
 | `0x003112F0` | `0x003113FD` | result byte `+0x11D` (the source's new level) | 0 |
 | `0x00305960` | `0x003059CB` | 99, for every record of party map 3 | 0 |
 
@@ -180,7 +183,7 @@ The fixed parts sum to 3,210 HP and 333 MP from level 0 to 99, before the random
   character's own HP and MP differ only by its starting values `+0x16` / `+0x1A`.
 - Per-character growth of the four stats is `chr_data` bytes `+0x1F`, `+0x22`, `+0x25`, `+0x28`, in
   1/128 per level; with the base bytes, a stat at level `L` is `base + L × growth / 128`.
-- The level cap 99 is code (`0x0030C650`, and `0x002F8F20` on the EXP page), not data.
+- The level cap 99 is code (`0x0030C650`, and `0x002F8F20` on [EXP, LP and level-ups](exp-lp-and-level-ups.md)), not data.
 
 ## Related
 

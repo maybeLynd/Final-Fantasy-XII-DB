@@ -254,7 +254,7 @@ The parameter block `0x005CD1E0` reads (its second argument):
 | `+0x00` | `void*` | start | thread function |
 | `+0x08` | `u32` | stackSize | passed to CreateThread |
 | `+0x10` | `void*` | arg | argument for the thread function |
-| `+0x18` | `i32` | priorityMode 0: priority 1, 2: priority -1, 3: priority from +0x2C |  |
+| `+0x18` | `i32` | priorityMode | 0: priority 1, 2: priority -1, 3: priority from `+0x2C` |
 | `+0x20` | `void*` | name | thread name for the debugger; null gives "PhyreEngineThread" |
 | `+0x2C` | `i32` | priority | used with mode 3 |
 | `+0x30` | `u64` | affinity | SetThreadAffinityMask argument |

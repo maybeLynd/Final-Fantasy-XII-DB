@@ -351,7 +351,7 @@ blur fade and that hold wait while the others go on.
 At double and quadruple speed every task advances once per world step except the end of a fading music track, which
 advances only on the frame's first step, so a music fade keeps its length in frames.
 
-The table `0x022BDEC0` holds 32 tasks of `0x48` bytes, and bit i of the mask `0x022BE7C0` marks task i as taken.
+The table `0x022BDEC0` holds 32 tasks of `0x48` bytes, and bit `1 << i` of the mask `0x022BE7C0` marks task i as taken.
 `0x002F16B0()` takes the lowest free task (`0x002F16C3`, `0x002F16D3`) and sets its bit (`0x002F16DE`). It zeroes the
 counter `+0x00` and the length `+0x04` (`0x002F16F4`), the end routine `+0x08` (`0x002F16F7`), the step routine `+0x10`
 (`0x002F16FB`) and `+0x28` (`0x002F1702`), and stores the task's index at `+0x18` (`0x002F16FF`).
@@ -379,13 +379,13 @@ its length by counting.
 
 | Taker | The task | Step routine | End routine | Length, step | Menu byte |
 |---|---|---|---|---|---|
-| `0x002EA6E0` (`0x002EA70B`) | a model's extra files ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)) | `0x002E60F0` | none | `+0x04` = `0x30009`, step 0 | 1 |
+| `0x002EA6E0` (`0x002EA70B`) | a model's extra files ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)) | `0x002E60F0` | - | `+0x04` = `0x30009`, step 0 | 1 |
 | `0x002F1A90` (`0x002F1AE6`) | the crossfade ([script screen effects](../Graphics/script-screen-effects.md)) | `0x002F18D0` | `0x002F1950` | frames × `[0x01DFE0B4]`, step 1 | 0 (`0x002F1B30`) |
-| `0x002F1C50` (`0x002F1C66`) | the hold after a message window closes ([controls](../Controls-And-Input/controls.md)) | none | `0x002F18A0` | n × `[0x01DFE0B4]`, step 1 (`0x002F1CAF`) | 0 (`0x002F1C7D`) |
-| `0x00361170` (`0x0036119B`), `0x00361200` (`0x00361276`) | the end of a fading music track ([music](../Sound-And-Music/music.md)) | none | `0x00361080` | the length / `0x00184950()` + 1, step 1 and tag 1 (`0x003611AC`, `0x00361296`) | 1 |
+| `0x002F1C50` (`0x002F1C66`) | the hold after a message window closes ([controls](../Controls-And-Input/controls.md)) | - | `0x002F18A0` | n × `[0x01DFE0B4]`, step 1 (`0x002F1CAF`) | 0 (`0x002F1C7D`) |
+| `0x00361170` (`0x0036119B`), `0x00361200` (`0x00361276`) | the end of a fading music track ([music](../Sound-And-Music/music.md)) | - | `0x00361080` | the length / `0x00184950()` + 1, step 1 and tag 1 (`0x003611AC`, `0x00361296`) | 1 |
 | `0x003614E0` (`0x0036153B`, `0x00361585`) | a music change ([music](../Sound-And-Music/music.md)) | `0x00361340` or `0x00360EE0` | `0x00361460` | 8 or 5, step 0 (`0x003615CE`) | 1 |
-| `0x0037C910` (`0x0037C938`) | the walk over an area's battle data ([ARD](../Game-Files-And-Data-Tables/ard-area-battle-data.md)) | `0x0037C3F0` | none | 10, step 0 | 1 |
-| `0x0037C980`, `0x0037CA00`, `0x0037CA80` (`0x0037C984`, `0x0037CA04`, `0x0037CA84`) | the party read-in ([party control modes](party-control-modes.md)) | `0x0037C730` | none | 4, step 0 | 1 |
+| `0x0037C910` (`0x0037C938`) | the walk over an area's battle data ([ARD](../Game-Files-And-Data-Tables/ard-area-battle-data.md)) | `0x0037C3F0` | - | 10, step 0 | 1 |
+| `0x0037C980`, `0x0037CA00`, `0x0037CA80` (`0x0037C984`, `0x0037CA04`, `0x0037CA84`) | the party read-in ([party control modes](party-control-modes.md)) | `0x0037C730` | - | 4, step 0 | 1 |
 | `0x003DE240`, `0x003DE2A0` (`0x003DE265`, `0x003DE2CC`) | the motion blur fade ([script screen effects](../Graphics/script-screen-effects.md)) | `0x003DE160` | `0x003DE1F0` | frames, step 1 | 0 (`0x003DE291`, `0x003DE2F8`) |
 
 Two tasks are also kept by address. `0x022BE7C8` is the crossfade: `0x002F1A90` stores it (`0x002F1AF2`) and its end
@@ -393,7 +393,7 @@ routine `0x002F1950` clears it (`0x002F19E7`). `0x002F1A20` returns its low 32 b
 (`0x0022AA47`, `0x0022ACEE`) and `0x00353700` (`0x00353704`). `0x002F1A70` copies its length into its counter, so the next
 pass that runs it ends it; the unload (`0x00262B76`), `0x003600D0` (`0x003600E6`) and `0x003601D0` (`0x003602CE`) call it.
 
-`0x022BE7D0` is the message-window hold: `0x002F1C50(n)` takes it when none is kept (`0x002F1C5A`, `0x002F1C66`,
+`0x022BE7D0` is the message-window hold: `0x002F1C50(n)` takes it when no hold is kept (`0x002F1C5A`, `0x002F1C66`,
 `0x002F1C72`), and its end routine `0x002F18A0` clears it (`0x002F18B1`). `0x002F1710()` ends it at once: the counter becomes
 the length (`0x002F1739`), the end routine runs (`0x002F1749`), the step becomes 1 (`0x002F174B`) and the bit is cleared
 (`0x002F1756`). Square (`0x00253F93`), `0x0025AAD0` (`0x0025AB10`) and the unload (`0x00262A82`) call it.
@@ -474,7 +474,7 @@ loaded, unit flag bit `0x8` must be set and bit `0x10000` clear. Then:
 `0x02089340` is one dword the frame and the battle layer share. `0x002341C0`, the area teardown reset
 (`0x0030FE60`, `0x00383A20`, `0x00306570(0)`, `0x00392710`, `0x002FAEC0`, `0x0031BD60`, `0x00325080`, `0x00319B10` (resets the loot pickup pool, [loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)),
 `0x002FA470`), clears bit `0x10`. The area initialisation `0x002342F0` writes `(word & 0xFFFFC01E) | 0x10`:
-bit `0x10` set, bits 0 and 5 to 13 cleared at once. The boot's battle work init `0x002368D0` zeroes the
+bit `0x10` set, bits `0x1` and `0x3FE0` cleared at once. The boot's battle work init `0x002368D0` zeroes the
 word.
 
 The area initialisation also runs three resets:
@@ -490,23 +490,23 @@ The area initialisation also runs three resets:
 
 | Bit | Set by | Cleared by | Meaning |
 |---|---|---|---|
-| 0 | `0x0023B020(fn, handle)`, which stores the one-shot at `0x0208E6A8`/`0x0208E6A4` | `0x00238A60`, which nulls them | a one-shot callback is armed; `0x00234520` consumes it |
-| 1 | the idle unit frame when `0x003070E0()` is 0; the unit combat frame `0x00308610` when `0x00237670(id)` is 0, or when `0x0030DA30(unit)` holds with unit bit `0x1000000` set | the orchestrator every step | the frame is idle |
-| 2 | the orchestrator when the clock counter did not move | the orchestrator | the clock stood still this step |
-| 3 | toggled by the orchestrator's reset loop | the same | reset-loop parity against `0x00253B90` |
-| 4 | the area initialisation `0x002342F0` | `0x002341C0`; `0x002368D0` | an area is live; the party and menu resolvers test it |
-| 5 | `0x00238B70(1)`, which also posts message `0x30B` (`0x002E7C10`) to every unit with byte bit `0x10` in the unit table at `[0x0208E688]` (stride `0xF50`, count `0x0208E6A0`); called from `0x00306F00`, `0x00359A30`, `0x0035A6F0` and `0x0035AB20` | `0x00238B70(0)`; `0x002342F0` | |
-| 6 | `0x0032A200`, which also runs `0x003B0770` when `0x0208CD1C` is not -1 and sets it to -1 | `0x0032A170`, the treasure verb's close, when `0x0208CD18` is 0 (the same `0x003B0770` tail); `0x002342F0` | the treasure-open verb's begin |
-| 7 | `0x00238AE0(1)`, from the same four callers as bit `0x20` | `0x00238AE0(0)`; `0x002342F0` | |
-| 8 | `0x00300FC0` when the torn-down unit's id is `0x003590D0()` (request `0x17`); the orchestrator's `0x17` latch | the latch; `0x002342F0` | the leader is incapacitated |
-| 9 | `0x00300FC0` when `0x00237260()` (request `0x18`); the `0x18` latch | the latch; `0x002342F0` | every active low-type party member is down |
-| 10 | `0x00300FC0` when `0x002372E0()` (request `0x0B`) | `0x002342F0` | the whole roster is down |
-| 11 | `0x00300FC0` when `0x002373C0()`; the orchestrator's bit `0x800` test | the orchestrator; `0x002342F0` | the summoner of `0x003137F0()` is out of play |
-| 12 | `0x00238B00(1)`, from `0x002628B0`, `0x002678C0`, `0x0026C8C0` and `0x0025D580` | `0x00238B00(0)`; `0x002342F0` | brackets a definition load or unload |
-| 13 | `0x00238B20(1)`, from `0x0025B740` only | `0x00238B20(0)`; the orchestrator at the top of every step; `0x002342F0` | |
-| 23 | the verb `btlAtelSetDebugRotControlMode` (`0x0050F2E0`) | the same verb with 0 | a script mode flag |
-| 26 | the verb `btlSetViewCheckMode` (`0x0050F170`) | the same verb with 0 | a script mode flag |
-| 29 | the verb `btlAtelSetRealBattleMode` (`0x0050F380`, which also runs `0x00308DE0`) | the same verb with 0 | a script mode flag |
+| `0x1` | `0x0023B020(fn, handle)`, which stores the one-shot at `0x0208E6A8`/`0x0208E6A4` | `0x00238A60`, which nulls them | a one-shot callback is armed; `0x00234520` consumes it |
+| `0x2` | the idle unit frame when `0x003070E0()` is 0; the unit combat frame `0x00308610` when `0x00237670(id)` is 0, or when `0x0030DA30(unit)` holds with unit bit `0x1000000` set | the orchestrator every step | the frame is idle |
+| `0x4` | the orchestrator when the clock counter did not move | the orchestrator | the clock stood still this step |
+| `0x8` | toggled by the orchestrator's reset loop | the same | reset-loop parity against `0x00253B90` |
+| `0x10` | the area initialisation `0x002342F0` | `0x002341C0`; `0x002368D0` | an area is live; the party and menu resolvers test it |
+| `0x20` | `0x00238B70(1)`, which also posts message `0x30B` (`0x002E7C10`) to every unit with byte bit `0x10` in the unit table at `[0x0208E688]` (stride `0xF50`, count `0x0208E6A0`); called from `0x00306F00`, `0x00359A30`, `0x0035A6F0` and `0x0035AB20` | `0x00238B70(0)`; `0x002342F0` | |
+| `0x40` | `0x0032A200`, which also runs `0x003B0770` when `0x0208CD1C` is not -1 and sets it to -1 | `0x0032A170`, the treasure verb's close, when `0x0208CD18` is 0 (the same `0x003B0770` tail); `0x002342F0` | the treasure-open verb's begin |
+| `0x80` | `0x00238AE0(1)`, from the same four callers as bit `0x20` | `0x00238AE0(0)`; `0x002342F0` | |
+| `0x100` | `0x00300FC0` when the torn-down unit's id is `0x003590D0()` (request `0x17`); the orchestrator's `0x17` latch | the latch; `0x002342F0` | the leader is incapacitated |
+| `0x200` | `0x00300FC0` when `0x00237260()` (request `0x18`); the `0x18` latch | the latch; `0x002342F0` | every active low-type party member is down |
+| `0x400` | `0x00300FC0` when `0x002372E0()` (request `0x0B`) | `0x002342F0` | the whole roster is down |
+| `0x800` | `0x00300FC0` when `0x002373C0()`; the orchestrator's bit `0x800` test | the orchestrator; `0x002342F0` | the summoner of `0x003137F0()` is out of play |
+| `0x1000` | `0x00238B00(1)`, from `0x002628B0`, `0x002678C0`, `0x0026C8C0` and `0x0025D580` | `0x00238B00(0)`; `0x002342F0` | brackets a definition load or unload |
+| `0x2000` | `0x00238B20(1)`, from `0x0025B740` only | `0x00238B20(0)`; the orchestrator at the top of every step; `0x002342F0` | |
+| `0x800000` | the verb `btlAtelSetDebugRotControlMode` (`0x0050F2E0`) | the same verb with 0 | a script mode flag |
+| `0x4000000` | the verb `btlSetViewCheckMode` (`0x0050F170`) | the same verb with 0 | a script mode flag |
+| `0x20000000` | the verb `btlAtelSetRealBattleMode` (`0x0050F380`, which also runs `0x00308DE0`) | the same verb with 0 | a script mode flag |
 
 `0x00300FC0(unit, mode)` is the unit teardown. For a kind-0 record of type `0x1B` to `0x27` in mode
 0 it runs `0x003105D0` and `0x003138D0(0)` only. Otherwise:
@@ -543,43 +543,43 @@ Main loop cells (`0x02064AA0` ..):
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02064AA0` | `u32` | the pump's flag |  |
+| `0x02064AA0` | `u32` |  | the pump's flag |
 | `0x02064AA4` | `u32` | 0 |  |
-| `0x02064AA8` | `u32` | steps this pass |  |
-| `0x02064AC0` | `f32` | time accumulator |  |
-| `0x02064AC4` | `f32` | speed factor |  |
-| `0x02064AC8` | `f32` | step gain (1.0) |  |
-| `0x02064ACC` | `u32` | pacer ticks per frame |  |
-| `0x02064AD0` | `u8` | game-step count |  |
+| `0x02064AA8` | `u32` |  | steps this pass |
+| `0x02064AC0` | `f32` |  | time accumulator |
+| `0x02064AC4` | `f32` |  | speed factor |
+| `0x02064AC8` | `f32` |  | step gain (1.0) |
+| `0x02064ACC` | `u32` |  | pacer ticks per frame |
+| `0x02064AD0` | `u8` |  | game-step count |
 | `0x02064AD1` | `u8` |  |  |
-| `0x02064AD2` | `u8` | speed permit (0x00358550: 0x022C7F9A == 0x1F) |  |
-| `0x02064AD3` | `u8` | state 0-6 |  |
+| `0x02064AD2` | `u8` |  | speed permit (`0x00358550`: `0x022C7F9A` == `0x1F`) |
+| `0x02064AD3` | `u8` |  | state 0-6 |
 | `0x02064AD4` | `f32` | 1.0 |  |
-| `0x01FD4A68` | `u32` | 1 in states 4 and 6 |  |
-| `0x01FD4A84` | `u32` | 1 in states 2, 3 and 5 |  |
-| `0x01FD4A80` | `u32` | frame counter |  |
-| `0x01FD4A74` | `u32` | speed pad latch |  |
-| `0x01FD4A8C` | `u32` | one-shot 1.0 accumulator reload |  |
-| `0x01FD4A98` | `i32` | speed index 0-2 |  |
-| `0x00908BA8` | `f32[4]` | speed table {1.0, 2.0, 4.0, 0.0} |  |
-| `0x022C7F9A` | `u8` | step permit byte (bits 1-4 = the four preconditions; 1 at boot and after every step) |  |
-| `0x01E02820` | `f32` | accumulator at the top of the pass |  |
-| `0x02064AEC` | `void*` | end-of-step callback (called once, then cleared) |  |
+| `0x01FD4A68` | `u32` |  | 1 in states 4 and 6 |
+| `0x01FD4A84` | `u32` |  | 1 in states 2, 3 and 5 |
+| `0x01FD4A80` | `u32` |  | frame counter |
+| `0x01FD4A74` | `u32` |  | speed pad latch |
+| `0x01FD4A8C` | `u32` |  | one-shot 1.0 accumulator reload |
+| `0x01FD4A98` | `i32` |  | speed index 0-2 |
+| `0x00908BA8` | `f32[4]` |  | speed table {1.0, 2.0, 4.0, 0.0} |
+| `0x022C7F9A` | `u8` |  | step permit byte (mask `0x1E` = the four preconditions; 1 at boot and after every step) |
+| `0x01E02820` | `f32` |  | accumulator at the top of the pass |
+| `0x02064AEC` | `void*` |  | end-of-step callback (called once, then cleared) |
 
 Tick globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x022C2548` | `u32` | tick in progress |  |
+| `0x022C2548` | `u32` |  | tick in progress |
 | `0x022C252C` | `u32` | tick counters | with `0x022C2530` |
 | `0x022C2530` | `u32` | tick counters | with `0x022C252C` |
-| `0x01EED060` | `i32` | the deferred mode request (-1 none) | with `0x01EED064` |
-| `0x01EED064` | `i32` | the deferred mode request (-1 none) | with `0x01EED060` |
-| `0x02099ABC` | `u32` | manager request mask (bits 0-4) |  |
-| `0x02098E10` | `...` | actor-manager slots, 5 x 0x288: +0x201 u8 sub-step opt-in |  |
-| `0x02089340` | `u32` | the battle-state word |  |
-| `0x0208E6A8` | `void*` | the one-shot callback |  |
-| `0x0208E6A4` | `u32` | its handle |  |
+| `0x01EED060` | `i32` |  | the deferred mode request (-1 no request); with `0x01EED064` |
+| `0x01EED064` | `i32` |  | the deferred mode request (-1 no request); with `0x01EED060` |
+| `0x02099ABC` | `u32` |  | manager request mask (mask `0x1F`) |
+| `0x02098E10` | `...` |  | actor-manager slots, 5 x `0x288`: `+0x201` u8 sub-step opt-in |
+| `0x02089340` | `u32` |  | the battle-state word |
+| `0x0208E6A8` | `void*` |  | the one-shot callback |
+| `0x0208E6A4` | `u32` |  | its handle |
 
 ## Shipped data
 
@@ -621,7 +621,7 @@ slots' `+0x201` bytes; the eight one-byte field flags `0x02099DA0` to `0x02099DA
 | `0x02099DA6` | `u8` | 0 (zero-filled tail of `.data`) | a requester mask that denies bone physics: `0x00267D40(bit, on)` sets or clears one bit. When the mask goes from 0 to non-zero it saves the wind and calms it (`0x002E4150(1, 1)`, `0x002EAB40`), when it returns to 0 it restores the wind (`0x002EAA60`), and it ends with `0x002EA870(mask != 0)`. Script verbs `03D5` `denybonephysicalall` and `03EA` drive it | `0x00267D40` (`0x00267D5B`); `0x0025AFC0`, 0 (`0x0025B036`); the start-up initialiser `0x00266D10`, 0 (`0x00266D9C`); `0x0026CE60` (`0x0026CF28`) | `0x00267D40` (`0x00267D44`, `0x00267D86`) |
 | `0x02099DA7` | `u8` | 0 (zero-filled tail of `.data`) | 1 between a call of `0x002509A0(0, 0)` and the matching `0x00250960(0, 0)`: `0x002678C0` and `0x0026E0D0` call `0x002509A0` only while it is 0 and then set it, and `0x0025D580` and `0x0025D9E0` call `0x00250960` only while it is 1 and then clear it | `0x002678C0`, 1 (`0x002678E0`); `0x0026E0D0`, 1 (`0x0026E0E2`); `0x0025D580`, 0 (`0x0025D59D`); `0x0025D9E0`, 0 (`0x0025DE5B`); the start-up initialiser `0x00266D10`, 0 (`0x00266D70`) | `0x002678C0` (`0x002678CE`), `0x0026E0D0` (`0x0026E0D4`), `0x0025D580` (`0x0025D58B`), `0x0025D9E0` (`0x0025DE49`) |
 | `0x022BDEC0` | `task[32]` | 0 (zero-filled tail of `.data`) | the 32 scheduled tasks of `0x48` bytes: counter `+0x00`, length `+0x04`, end routine `+0x08`, step routine `+0x10`, index `+0x18`, step `+0x1C`, tag `+0x1E`, menu byte `+0x20`, the taker's own words from `+0x28` | `0x002F16B0`, which clears a task as it takes it; the takers fill the routines and the length | the runner `0x002F1780`, `0x002F1710`, `0x002F1A30`, `0x002F1A70` |
-| `0x022BE7C0` | `u32` | 0 (zero-filled tail of `.data`) | the taken mask: bit i set while task i is taken | `0x002F16B0` (`0x002F16DE`), the runner (`0x002F1859`), `0x002F1710` (`0x002F1756`), `0x002F1A00` (`0x002F1A02`) | `0x002F16B0`, the runner (`0x002F178A`, `0x002F1816`, `0x002F1842`), `0x002F1A30` |
+| `0x022BE7C0` | `u32` | 0 (zero-filled tail of `.data`) | the taken mask: bit `1 << i` set while task i is taken | `0x002F16B0` (`0x002F16DE`), the runner (`0x002F1859`), `0x002F1710` (`0x002F1756`), `0x002F1A00` (`0x002F1A02`) | `0x002F16B0`, the runner (`0x002F178A`, `0x002F1816`, `0x002F1842`), `0x002F1A30` |
 | `0x022BE7C8` | `void*` | 0 (zero-filled tail of `.data`) | the running crossfade's task | `0x002F1A90` (`0x002F1AF2`), `0x002F1950` (`0x002F19E7`), `0x002F1A00` (`0x002F1A08`) | `0x002F1A20`, `0x002F1A70`, `0x002F1A90` (`0x002F1AB5`, `0x002F1B18`, `0x002F1BBE`, `0x002F1BE6`, `0x002F1C2F`) |
 | `0x022BE7D0` | `void*` | 0 (zero-filled tail of `.data`) | the message-window hold's task | `0x002F1C50` (`0x002F1C72`), `0x002F18A0` (`0x002F18B1`), `0x002F1A00` (`0x002F1A0F`) | `0x002F1710` (`0x002F1716`), `0x002F1C50` (`0x002F1C5A`, `0x002F1C9D`) |
 | `0x022CA620` | `u32` | 0 (zero-filled tail of `.data`) | a copy of `0x022CA60C` that the pacer `0x0035EB70` takes on the game thread (`0x0035EC4D`-`0x0035EC53`) | `0x0035EB70` (`0x0035EC53`) | no instruction names it |
@@ -652,3 +652,9 @@ slots' `+0x201` bytes; the eight one-byte field flags `0x02099DA0` to `0x02099DA
   callback.
 - [Enemy respawning](../Enemy-Spawning/enemy-respawning.md): the clock advance and
   the group completion.
+- [`frame-update-order-stick-basis-022c7fa0-accesses.tsv`](frame-update-order-stick-basis-022c7fa0-accesses.tsv):
+  every censused access to the camera basis `0x022C7FA0` that the stick's rotation into camera space keeps ([player
+  movement](../Movement-And-Pathfinding/player-movement.md)), one row per instruction (35 rows).
+- [`frame-update-order-stick-world-vector-022c7fd0-accesses.tsv`](frame-update-order-stick-world-vector-022c7fd0-accesses.tsv):
+  every censused access to the camera-relative movement vector `0x022C7FD0`, which that rotation writes each tick (10
+  rows).

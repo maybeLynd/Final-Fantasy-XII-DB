@@ -27,7 +27,7 @@ bytes apart (`0x0031BA3D`-`0x0031BAAA`):
 | 4 | `+0x5A90` | the members' field actors and the chocobo mount: `0x0031C470` and `0x00320230` (for `0x0035A490`, `0x0035AD40`), `0x0031C0F0`, `0x0031C250`, and `0x0031B950`, the map-4 twin of `0x0031B810` (for `0x00304060`, `0x00304140`) |
 
 Seats 0-3 are the active members and seats 4-8 the reserve. The low byte of a seat is the member's selector,
-the row of the party table and of the forty member records; `0xFF` is an empty seat. The leader selector is
+the row of the party table and of the forty member stats records; `0xFF` is an empty seat. The leader selector is
 kept at `+0x5AA4`; [Party leader](party-leader.md) turns it into the leader, the handle `0x022C7FE0`.
 
 ### Reading a seat
@@ -67,14 +67,14 @@ joins or leaves ([Party members](party-members.md)).
 
 `0x003266C0` rebuilds maps 1-4 from map 0 (`0x003266C0`-`0x00326B97`). It first makes maps 1 and 3 copies of map 0,
 empties the reserve of map 1, and makes maps 2 and 4 copies of map 1, after saving map 4
-(`0x003266F4`-`0x0032674B`). Then it adjusts the four active seats by the battle mode `0x0030D9A0`
-([Battle mode](../Engine-Core/party-control-modes.md)):
+(`0x003266F4`-`0x0032674B`). Then it adjusts the four active seats by the party control mode `0x0030D9A0`
+([Party control modes](../Engine-Core/party-control-modes.md)):
 
 | Mode | Seats 0-3 of maps 1, 2 and 4 | Sites |
 |---|---|---|
 | 0, normal, or any other value | as copied | - |
 | 1, summon | seat 3 holds the Esper (`0x003137E0`), the summoner's seat (`0x00313800`) is kept, the others are emptied | `0x003269D2`-`0x00326A32` |
-| 2, chocobo | seat 3 of maps 1 and 4 holds party row 26, the chocobo, and the other seats of map 1 are emptied; map 2 keeps only the rider's seat (`0x00327200`) | `0x00326991`-`0x003269D0` |
+| 2, chocobo | seat 3 of maps 1 and 4 holds party row 26, the chocobo, and the other seats of map 1 are emptied; map 2 keeps only the rider's seat (`0x00327200`) when it is seat 0, 1 or 2, and its seat 3 is emptied in every case (`0x003269AB`) | `0x00326991`-`0x003269D0` |
 | 3, town | map 4 is restored; the area's leader (`0x00377C70`) fills its seat of maps 1, 2 and 4, or seat 3, and the other seats of maps 1 and 2 are emptied | `0x003268F3`-`0x0032698C` |
 | 4, event party | only the leader's seat is kept, in maps 1, 2 and 4 | `0x0032683F`-`0x003268EE` |
 | 5, second event party | map 4 is restored; only the leader's seat is kept, in maps 1 and 2 | `0x00326783`-`0x0032683A` |
@@ -156,8 +156,8 @@ No other instruction reaches `0x022C2674`.
 
 ## Related
 
-- [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the forty member records a seat points at.
-- [Battle mode](../Engine-Core/party-control-modes.md) - the summon,
+- [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the forty member stats records a seat points at.
+- [Party control modes](../Engine-Core/party-control-modes.md) - the summon,
   chocobo, town and event modes.
 - [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md) - the wipe tests over maps 1 and 3.
 - [Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md) - the fighting party an enemy can notice.

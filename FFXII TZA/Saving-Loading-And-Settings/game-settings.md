@@ -81,7 +81,7 @@ presets control.
 
 A single default means the four columns are equal. The key table is null-terminated at index 31
 (`0x01DFD148`); the value-name rows hold up to nine pointers and the strings sit at `0x008C5904`
-onward. The old value-name rows for the numeric settings hold only the `none` pointer.
+onward. The value-name rows of the numeric settings hold only a pointer to the string `none`.
 
 ### Parsing the file
 
@@ -160,10 +160,10 @@ in the `ID3D11Device` layout). For every count with a non-zero level count it se
 
 | Sample count | Bit, MSAA value |
 |---|---|
-| 2 | 1, MSAA2X |
-| 4 | 2, MSAA4X |
-| 8 | 3, MSAA8X; also 4, CSAA16x, when the level count is above 16 |
-| 16 | 5, CSAA16XQ |
+| 2 | `0x2`, 1 MSAA2X |
+| 4 | `0x4`, 2 MSAA4X |
+| 8 | `0x8`, 3 MSAA8X; also `0x10`, 4 CSAA16x, when the level count is above 16 |
+| 16 | `0x20`, 5 CSAA16XQ |
 
 `0x001DF2C0(object, value, forward)` steps from `value` to the next value (or, with `forward` 0, the
 previous one) in 0-4 whose bit is set, wrapping around, and stores it as MSAA (`+0x20`) of the
@@ -342,7 +342,7 @@ The block's other bytes are not taken from the file:
 
 - `0x02B62DAB` is always 1, and the getter `0x00408B30` reads it only for the 15 tests above.
 - `0x02B62DAD` selects the start-up field: 0 requests field 12, 1 the field in `0x02B62DB4`, and 2 passes the old-save
-  number `0x02B62DC0` to the empty `0x0016D6A0` and requests none (`0x003318C4`-`0x003318FE`). It is 0 in the shipped game.
+  number `0x02B62DC0` to the empty `0x0016D6A0` and requests no field (`0x003318C4`-`0x003318FE`). It is 0 in the shipped game.
 - `0x02B62DB9` is the debug-status flag. It is reset to 0, and no other instruction in the image writes it. While it
   is 0, a jump to field 0 goes to field 12 (`0x00314463`-`0x0031446E`), the pad updates `0x0035FCA0` and `0x0035FF90`
   handle channel 0 only, and the verb `debug_getdebugstatus` (`0x20A6`, `0x0050DFC0`) returns 0.

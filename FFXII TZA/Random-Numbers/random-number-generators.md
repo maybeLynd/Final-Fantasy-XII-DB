@@ -120,7 +120,7 @@ stub `0x00861F38` called once from `0x00149610` (`0x0014963E`): 49 sites in 31 f
 CRT's own generator with per-thread state. `srand` (import `0x008C30A0`) has two callers: the Lua
 binding `LuaMath_RandomSeed` (`0x008193E0`, `0x008193F0`), which seeds with its argument and discards
 one `rand`, and the worker thread procedure `0x007A5400` (`0x007A540B`), which seeds its own thread's
-state once at thread start. The callers are on the roll map page.
+state once at thread start. The callers are on the [roll map page](which-roll-uses-which-generator.md).
 
 ### The presentation bit-feedback generator
 

@@ -53,7 +53,7 @@ a pending bit in the cue entry.
 
 | Cue entry field | Holds |
 |---|---|
-| `+0x08` bits 0-23 | the bank's offset |
+| `+0x08` bits under mask `0xFFFFFF` | the bank's offset |
 | `+0x08` bits `0x7F000000` | the volume, 0-127 |
 | `+0x08` bit `0x80000000` | pending start |
 | `+0x0C` bits `0xFFFFFF`, byte `+0x0F` | the bank's size, the pan |
@@ -124,7 +124,7 @@ named `VOICEWK` at `0x02B5EC68` and picks a member for every group into the eigh
 1. `0x00321EA0` runs the search `0x00321F10` first with the party test and, when that finds no answer, again without it.
 2. `0x00321F10` gives each group in turn one of its candidates, `0xC4` bytes per group with a count at `+0x04` and
    12-byte candidates from `+0x08` whose third word is the member (-1 fits any group), never the same member twice. With the test on, a member must be below 40 and its
-   party record at `[0x02EBF190] + 8 + member x 0x1C8` must have none of the bits `0x88000013` in `+0x64` or `+0x3C`.
+   member stats record at `[0x02EBF190] + 8 + member x 0x1C8` must have none of the bits `0x88000013` in `+0x64` or `+0x3C`.
 3. `battlevoice_calc_member` `0x46D` (`0x003447E0` -> `0x003EBD30`) clears the eight picks and runs the search again on
    the kept table.
 
@@ -222,28 +222,59 @@ wait starts a new clock.
 section 2 of the event's dialogue table ([Archades dialogue](../Menus-And-HUD/archades-dialogue.md) and the other area
 pages); the next message call or `mesclose` closes it.
 
-A cue is joined to the first that applies:
+A cue is joined to the first that applies, rule 5 being checked first:
 
-1. the line the playing function has on screen when it plays the cue: 130 cues;
-2. the one line of a function the playing function requested just before, without waiting for it: 36;
-3. the playing function's next line, opened within 10 frames with no request or wait for one between: 202;
-4. on the clock of a function that reaches the play, the one line on screen when the cue starts (1,053), or else the
-   one line that opens within 10 frames after it (65); every function that reaches the play gives the same line.
+1. the line the playing function has on screen when it plays the cue: 129 cues;
+2. the one line of a function the playing function requested just before, without waiting for it: 6;
+3. the playing function's next line, opened within 10 frames with no request or wait for one between: 204;
+4. on the clock of a function that reaches the play, the one line on screen when the cue starts (1,155), or else the
+   one line that opens within 10 frames after it (88), which is also taken when the line on screen at the start
+   closes within those 10 frames; every function that reaches the play gives the same line;
+5. a cue that starts more than 10 frames before its own line: the one line opened while the cue plays whose speaker
+   the listing names as the cue's. The line opens while an earlier speaker's line is still on screen (2), or no
+   line is on screen when the cue starts and the line opens 12 to 56 frames later (18).
 
-A cue these rules reach keeps no line when its `.vpc` bank is the silent stub (17 cues), when a cue of another
-speaker reaches the same line and the line is not a subtitle of two speakers, which starts `- ` (121), or when the
-listing gives the line to another speaker (1): `ene_a0200` sub-file 2 cue 7, Vossler's, starts on line 36, which
-`TAGmes_ASHE_19` shows between `ASHE::unapaku_on` and `unapaku_off`.
+The listing names a line's speaker by a mouth call, `setkutipakustatus(1)` on the speaker's actor, made directly or
+through a function such as `talking` or `くちパクON`, that has the speaker's mouth open when the line opens or within
+10 frames after, or by a `TAGmes_` function named for the speaker.
 
-Where cues of two speakers reach one line and the listing opens one speaker's mouth with it, that speaker's cue
-keeps the line: Balthier's on `rbn_a1600` line 1, opened after `バルフレア::クチウナオン`, and on `byu_a1880` line 6,
-whose `TAGmes_BALFLAIR_6` requests `BALFLAIR::paku_on`.
+Ten cues were read at the listing with the lines' text:
 
-That joins 1,486 cues. The other 1,010 have no line on their clock when they start (424), share their clock with no
-message call (406), start while two or three lines are on screen (41), or keep no line by the rules above (139). In
-`nal_d0100`, `ボイス.発音` (line 1232) plays cues 1 and 2 of sub-file 0 in scene 4 (`startscene(file_var_s0_2)`),
-Balthier's cue, a silent stub, and Vaan's 1.56-second cue, and `メッセージ.表示` (line 945), which shows the scenes'
-lines, has no case for scene 4.
+- Seven start before their own line in a listing that names no speaker for it: `bhm_a0200` sub-file 2 cue 4,
+  `byu_y0101` sub-file 3 cue 1, `rbn_a1701` sub-file 3 cue 2, `rsn_a0102` sub-file 0 cue 3,
+  `rsn_b0100` sub-file 2 cue 5, `rsn_b0100` sub-file 3 cue 1 and `rsn_y0100` sub-file 0 cue 6; each joins the one line
+  of its speaker opened while it plays, 15 to 43 frames after it starts;
+- Three are reactions inside another speaker's line that outlast the line, so the reaction clause below does not reach
+  them, and keep no line: `alc_b0400` sub-file 1 cue 10, by 5 frames, `dgl_g0101` sub-file 0 cue 7, by 4 frames or
+  more, and `rbn_y0100` sub-file 4 cue 6, by 27 frames.
+
+A cue these rules reach keeps no line when:
+
+- its `.vpc` bank is the silent stub (17 cues);
+- it is a reaction inside another speaker's line: it starts and ends while one line is on screen, and the cue joined
+  to that line, of another speaker, plays from before it starts until after it ends (11);
+- it is a crowd track: its `sound` is a `ga` bank of the 1xx series, which carries no speaker's code (10);
+- a cue of another speaker reaches the same line and the line is not a subtitle of two speakers, which starts `- `
+  (44);
+- the listing gives the line to another speaker (2): `ene_a0200` sub-file 2 cue 7, Vossler's, starts on line
+  36, which `TAGmes_ASHE_19` shows between `ASHE::unapaku_on` and `unapaku_off`, and `bul_a0201` sub-file 0 cue 5,
+  Penelo's, starts on line 1, which `TAGmes_BALFLAIR_1_02` shows, 4 frames before it closes.
+
+Where cues of two speakers reach one line and the listing opens one speaker's mouth with it, within 10 frames of
+the line's opening, that speaker's cue keeps the line: Balthier's on `rbn_a1600` line 1, opened after
+`バルフレア::クチウナオン`, and on `byu_a1880` line 6, whose `TAGmes_BALFLAIR_6` requests `BALFLAIR::paku_on`.
+
+The `sound` column gives each cue's sound name, the name of its bank in the `.vpc`, which carries a speaker code.
+Where that code is another character's than the `speaker`'s, the cue is played through another actor's slot: 28 cues,
+among them Ondore's and Ashe's voices (`ve277_012od`, `ve277_013od`, `ve277_015AS`) on Balthier's slot in `byu_w0100`,
+where Balthier speaks through a voice device, and `dor_b0101` sub-file 5 cue 0, Balthier's `ve177_018BF`, on Doctor
+Cid's slot.
+
+That joins 1,609 cues. The other 887 have no line on their clock when they start (409), share their
+clock with no message call (388), start while two or three lines are on screen (3), or keep no line by the
+rules above (87). In `nal_d0100`, `ボイス.発音` (line 1232) plays cues 1 and 2 of sub-file 0 in scene 4
+(`startscene(file_var_s0_2)`), Balthier's cue, a silent stub, and Vaan's 1.56-second cue, and `メッセージ.表示`
+(line 945), which shows the scenes' lines, has no case for scene 4.
 
 A play that no path reaches with English voices is followed again with `getff12lang` answering 0, Japanese voices.
 One cue is played on that path alone, `rbn_a0200` sub-file 0 cue 13 (`ボイス.なんだと！？`, line 628); its `length` is
@@ -274,8 +305,9 @@ Columns of [voices-cues.tsv](voices-cues.tsv):
 | `index` | the cue's index in the sub-file |
 | `function` | the actor and function that play the cue; two, for the 11 cues two functions play, separated by ` / ` |
 | `speaker` | the game name with the actor's name in brackets; the actor's name alone where the text tables give no game name; `-` for `voiceplay` and `voiceplay_b5`, which name no speaker |
+| `sound` | the cue's sound name, the name of its bank in the `us` `.vpc`, verbatim; it carries a speaker code, `ga` for a crowd track (see "How a cue is joined to its line") |
 | `line_index` | the joined line, its id in section 2 of the event's dialogue table; `-` when no line is joined |
-| `line` | the joined line's `us` text, its control codes dropped and each line break a space; `-` when no line is joined |
+| `line` | the joined line's `us` text, its text codes dropped and each line break a space; `-` when no line is joined |
 | `length` | the cue's length in seconds, from the `.vpc` (the `.vpcjp` for the one cue played only with Japanese voices); `0.04 s, a silent stub` for the 67 cues whose `.vpc` bank is the silent stub |
 | `join` | how the line was joined, or why none was: what the cue's clock holds, a silent stub, or a line of another speaker |
 

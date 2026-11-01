@@ -11,10 +11,10 @@ Nothing, in normal play. When a C++ exception passes through a function, small c
 routines destroy that function's half-built objects, and a catch routine decides where the game
 carries on. None of them shows a message box.
 
-One case leaves a trace. The routine that writes the key bindings (`0x001993B0`, which writes a
-`[Keyboard` section through a wide file stream) has a catch-all handler, `0x00896BE0`. When the write
-throws, the handler prints `Catch exception when writing keymap.ini` (`0x008F39A0`) to standard output
-and resumes the routine at `0x00199763`. The game keeps running with the bindings it has in memory.
+One case leaves a trace. The routine that saves the key bindings to `keymap.ini` has a catch-all
+handler. When the save fails, the handler prints `Catch exception when writing keymap.ini` to
+standard output and the routine carries on. The game keeps running with the bindings it has in
+memory.
 
 ## How it works
 
@@ -115,6 +115,9 @@ and returns the address the parent resumes at.
 - 63 rethrow: they end in `call 0x00861ECC` (`_CxxThrowException`) with two null arguments.
 - 8 return a resume address. `0x008968C8` calls `basic_ios::setstate` (slot `0x008C26A0`) on the
   stream and returns `0x00194C5E`, inside its parent `0x00194B00`.
+- `0x00896BE0`, another of the 8, is the catch-all handler of the key-binding writer `0x001993B0`, which
+  writes a `[Keyboard` section through a wide file stream: it prints `Catch exception when writing
+  keymap.ini` (`0x008F39A0`) to standard output and resumes the writer at `0x00199763`.
 - `0x00896993` frees a `std::string` buffer before rethrowing; see
   [msvc-containers.md](msvc-containers.md).
 - Of the 63 in the first group, 22 first free a half-built block through `0x00210EB0`, and 16 release
@@ -198,10 +201,10 @@ returns true it calls `basic_ostream<wchar_t>::_Osfx`, then makes the same slot-
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | versionFlags | version in bits 0-2 (always 1); flags in bits 3-7: 1 exception handler, 2 termination handler, 4 chained |
+| `+0x00` | `u8` | versionFlags | version in the bits under mask `0x7` (always 1); flags in the bits under mask `0xF8`: 1 exception handler, 2 termination handler, 4 chained |
 | `+0x01` | `u8` | prologSize | bytes of prologue |
 | `+0x02` | `u8` | codeCount | 2-byte unwind codes that follow, padded to an even count; then the handler RVA and its data, or the chained RuntimeFunction |
-| `+0x03` | `u8` | frame | frame register in bits 0-3, scaled offset in bits 4-7 |
+| `+0x03` | `u8` | frame | frame register in the bits under mask `0xF`, scaled offset in the bits under mask `0xF0` |
 
 `FuncInfo` (`0x28` bytes, offsets from the start of the record):
 

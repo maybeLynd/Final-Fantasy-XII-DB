@@ -10,8 +10,9 @@ addresses: "0x02EBA3F8, 0x0036D400, 0x0036F360, 0x003A2D80, 0x003A2E30, 0x0036F2
 Nothing directly. On the PlayStation 2 the game handed each frame's Graphics Synthesizer command
 stream to the console's DMA hardware by writing a few registers, and waited for the hardware to
 take it. The remaster keeps that code: every frame still builds the GS register batch, writes the
-"kick" into one shared dword, spins until the dword settles and clears its bits. The waits finish at
-once unless the vertical-sync thread's end-of-frame callback writes the word between two reads.
+"kick" into one shared word in memory, spins until that word settles and clears its bits. The waits
+finish at once unless the vertical-sync thread's end-of-frame callback writes the word between two
+reads.
 
 The thread layer behind the vertical-sync and background threads keeps the addresses of its thread holders and of
 three of its semaphores in 32 bits. The game makes these allocations while it starts those threads, and while they
@@ -43,7 +44,7 @@ lists its callers and the pass bits that supply `a` and `b`). It reads the width
 `0x022D8EF4` and 1.0 at `0x022D8EF8` and `0x022D8EFC`, and composes two register values:
 
 - FRAME_1 at `0x022D8EC8`: frame index `[0x022D8EA8]` × pages per surface `[0x022D8EB8]`, with the
-  buffer width `width >> 6` in bits 16 and up (`0x0036D477`–`0x0036D4B4`);
+  buffer width `width >> 6` in the bits from `0x10000` and up (`0x0036D477`–`0x0036D4B4`);
 - ZBUF_1 at `0x022D8ED0`: twice the pages per surface, with bit `0x1000000` set (`0x0036D496`–`0x0036D4C2`).
 
 It then writes into the current GS command buffer (`0x02EBEFC0` + 0x18 × `[0x02EBEFF0]`, see
@@ -241,12 +242,12 @@ GS environment globals (seeded by `0x0036D280`):
 | `0x022D8EB0` | `u32` | display width | `0x200`, read as a u16 by `0x0036D2F0` |
 | `0x022D8EB4` | `u32` | height | `0x1C0` |
 | `0x022D8EB8` | `u32` | pages/surface | (width * height) >> 11 = 112 (`0x0036D2F0`) |
-| `0x022D8EC8` | `u64` | FRAME_1 value |  |
-| `0x022D8ED0` | `u64` | ZBUF_1 value |  |
-| `0x022D8ED8` | `u32` | clear colour |  |
-| `0x022D8EDC` | `u32` | clear colour on 1 |  |
-| `0x022D8EF0` | `f32` | width / 2000 |  |
-| `0x022D8EF4` | `f32` | height / 2000 |  |
+| `0x022D8EC8` | `u64` | FRAME_1 | value |
+| `0x022D8ED0` | `u64` | ZBUF_1 | value |
+| `0x022D8ED8` | `u32` |  | clear colour |
+| `0x022D8EDC` | `u32` |  | clear colour on 1 |
+| `0x022D8EF0` | `f32` |  | width / 2000 |
+| `0x022D8EF4` | `f32` |  | height / 2000 |
 
 The spin census is beside this page in [`graphics-thread-handshake-inert-spin-census.tsv`](graphics-thread-handshake-inert-spin-census.tsv): every
 backward loop in 38,161 listed bodies whose body only tests registers, 19 in all. Seventeen are the

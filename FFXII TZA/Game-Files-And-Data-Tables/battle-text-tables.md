@@ -42,7 +42,7 @@ word (battle_pack +0xF8)   +0x00 u16 bank count, +0x04 u32 bank offsets[count + 
 word bank                  +0x00 u16 row count, +0x02 u8[2] 0, +0x04 u32 row offsets[count + 1] (from the
                            bank), the last the bank's end
 word row                   00 00, then NUL-terminated strings
-bank:row word              bits 11-15 bank, bits 0-10 row
+bank:row word              mask 0xF800 bank, mask 0x7FF row
 
 st2e string table          the shared table header ('st2e', +0x04 rows, +0x08 row bytes, +0x0C rows),
                            each row a u32 text id, group * 10000 + n,

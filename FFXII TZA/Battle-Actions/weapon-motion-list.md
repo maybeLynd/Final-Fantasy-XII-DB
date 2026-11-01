@@ -7,7 +7,7 @@ addresses: "0x02EBF180, 0x003202F0, 0x003203B0, 0x00325A20, 0x00325AD0, 0x003201
 
 ## What it lists
 
-`weapon-motion-list.tsv` holds one line for each of the 23 rows of the table that registry slot `0x02EBF180` points
+[`weapon-motion-list.tsv`](weapon-motion-list.tsv) holds one line for each of the 23 rows of the table that registry slot `0x02EBF180` points
 at (`battle_pack.bin` directory entry `+0x04`). The table is not an `st2e` table: it is a `u16` stride (1), a `u16`
 row count (23), and then one byte per row from `+0x04`. Row *m* is a weapon motion class, the byte `+0x26` of a
 main-hand equipment row ([Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)), and its byte is an
@@ -52,9 +52,10 @@ and stored once by the loader (`0x00236C74`); none of them reads the count.
 ### Properties of the shipped rows
 
 - The header gives stride 1 and 23 rows, one TSV line each.
-- Example rows: motion class 3 (Broadsword, Longsword, Iron Sword and 24 more) gives set 3;
+- Example rows: motion class 3 (the 27 weapons listed in the next item) gives set 3;
   motion class 22, read only by the bare-handed rule, gives set 2; row 1, Unarmed, gives set 1, the set of every party
   unit in the action caches.
+- The 27 weapons of motion class 3, in equipment table order: Broadsword, Longsword, Iron Sword, Zwill Blade, Ancient Sword, Blood Sword, Lohengrin, Flametongue, Demonsbane, Icebrand, Platinum Sword, Bastard Sword, Diamond Sword, Runeblade, Deathbringer, Stoneblade, Durandal, Mythril Sword, Hero's Blade, Joyeuse, Chirijiraden, Flimsy Blade, Mythril Blade, Kumbha, Great Trango, Karkata, Simha.
 - Motion classes 0, 9, 16, 19 and 22 have no shipped weapon; class 22 is reached only through the bare-handed rule.
 
 ## Columns

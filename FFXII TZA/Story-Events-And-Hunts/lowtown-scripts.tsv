@@ -134,8 +134,8 @@ slm_a0280	scene, event 720	Mes	m008	requested by Director.main	-	8	I don't know 
 slm_a0280	scene, event 720	Mes	m009	requested by Director.main	-	9	If something happened to you.	-	-	-	-	-	-	-	-	-	-	1	-
 slm_a0280	scene, event 720	Mes	m010	requested by Director.main	Vaan	10	I'm not going anywhere. Okay?	-	-	-	-	-	-	-	-	-	-	1	-
 slm_a0280	scene, event 720	Mes	m011	requested by Director.main	Penelo	11	That's what I wanted to hear.	-	-	-	-	-	-	-	-	-	-	1	-
-slm_a0280	scene, event 720	Mes	m012	requested by Director.main	Vaan	12	See ya later.	-	-	-	-	-	-	-	-	-	-	1	-
-slm_a0280	scene, event 720	Mes	m013	requested by Director.main	Penelo	13	Sorry, Penelo.	-	-	-	-	-	-	-	-	-	-	1	-
+slm_a0280	scene, event 720	Mes	m012	requested by Director.main	Penelo	12	See ya later.	-	-	-	-	-	-	-	-	-	-	1	-
+slm_a0280	scene, event 720	Mes	m013	requested by Director.main	Vaan	13	Sorry, Penelo.	-	-	-	-	-	-	-	-	-	-	1	-
 slm_a0280	scene, event 720	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
 slm_a0280	scene, event 720	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
 slm_a0280	scene, event 720	イベント特殊効果画面_EV	システムメッセージ表示	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-

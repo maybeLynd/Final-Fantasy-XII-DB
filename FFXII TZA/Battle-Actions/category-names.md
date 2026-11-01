@@ -7,7 +7,7 @@ addresses: "0x02EBF128, 0x02EBF110, 0x02EBF050, 0x02EBF0B0, 0x0031C5D0, 0x00322C
 
 ## What it lists
 
-`category-names.tsv` holds one line for each row of four tables, 66 in all. Each row only names a number that
+[`category-names.tsv`](category-names.tsv) holds one line for each row of four tables, 66 in all. Each row only names a number that
 other tables use, and is read through the query filler `0x0031C5D0` with an id of its class
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)):
 

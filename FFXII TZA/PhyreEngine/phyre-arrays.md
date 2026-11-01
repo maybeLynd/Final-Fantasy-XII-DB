@@ -140,7 +140,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | m_count | element count in bits 0-30; bit `0x80000000` = storage not owned; m_count (u32), registered by `0x005B5460` (`0x00632960` at `0x005B55FA`); shipped files name each instantiation, such as PArray&lt;PAnimationChannel *&gt;, each registered by its own template descriptor; the member getter `0x006065E0` returns it with bit `0x80000000` cleared (`0x006065F3`) |
+| `+0x00` | `u32` | m_count | element count in the bits under mask `0x7FFFFFFF`; bit `0x80000000` = storage not owned; m_count (u32), registered by `0x005B5460` (`0x00632960` at `0x005B55FA`); shipped files name each instantiation, such as PArray&lt;PAnimationChannel *&gt;, each registered by its own template descriptor; the member getter `0x006065E0` returns it with bit `0x80000000` cleared (`0x006065F3`) |
 
 `PShadowSplit` (`0xE8` bytes, offsets from the start of the record):
 
@@ -158,7 +158,7 @@ PArray&lt;T&gt; (`0x10`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | m_count | element count in bits 0-30; bit `0x80000000` = storage not owned |
+| `+0x00` | `u32` | m_count | element count in the bits under mask `0x7FFFFFFF`; bit `0x80000000` = storage not owned |
 | `+0x08` | `void*` | m_els | elements, or null |
 
 PSharray&lt;T&gt; (8 + max(8, sizeof T): `0x10` up to 8-byte elements; `0x50` for PDataBlockBufferD3D11 and PIndexDataBlockBufferD3D11):
@@ -166,21 +166,21 @@ PSharray&lt;T&gt; (8 + max(8, sizeof T): `0x10` up to 8-byte elements; `0x50` fo
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | m_count | as above |
-| `+0x08` | `T or ptr` | m_u | count 0: unused; count 1: the element itself, max(8, sizeof T) bytes; count 2+: pointer to elements |
+| `+0x08` | `...` | m_u | the element of type T or a pointer: count 0: unused; count 1: the element itself, max(8, sizeof T) bytes; count 2+: pointer to elements |
 
 PString (8):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | text; bit 0x1 = not owned |  |
+| `+0x00` | `void*` |  | text; bit `0x1` = not owned |
 
 PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x60` | `void*` | count hook (0x005C4CC0) |  |
-| `+0x68` | `void*` | element-pointer hook: 0x00671250 for PSharray&lt;PUInt32&gt;, 0 for PArray&lt;unsigned int,4&gt; |  |
-| `+0x70` | `void*` | set-external hook |  |
+| `+0x60` | `void*` |  | count hook (`0x005C4CC0`) |
+| `+0x68` | `void*` |  | element-pointer hook: `0x00671250` for PSharray&lt;PUInt32&gt;, 0 for PArray&lt;unsigned int,4&gt; |
+| `+0x70` | `void*` |  | set-external hook |
 
 ## Shipped data
 

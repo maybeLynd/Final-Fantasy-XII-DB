@@ -7,9 +7,9 @@ addresses: "0x02EBF130, 0x0023AC80, 0x0030C470, 0x0030C650, 0x002FEF30, 0x0023A5
 
 ## What it lists
 
-`party-table.tsv` holds one line for each of the 40 rows of the party table that registry slot `0x02EBF130` reaches
+[`party-table.tsv`](party-table.tsv) holds one line for each of the 40 rows of the party table that registry slot `0x02EBF130` reaches
 (`battle_pack.bin` directory entry `+0x44`). Row *n* belongs to the stats record whose type byte `+0x04` is *n*:
-`0x0023AC80` builds a party record from it, and every reader below takes its row by that byte.
+`0x0023AC80` builds a member stats record from it, and every reader below takes its row by that byte.
 
 | Rows | Kind | Test |
 |---|---|---|
@@ -36,7 +36,7 @@ Each line is read from the shipped files in these steps:
 4. the status bits named by text bank 5, entry *s* for bit *s*, the names [Statuses](../Status-Effects-And-KO/statuses.md) uses;
 5. the augment bits named by their term on [Augment list](../Damage-And-Battle-Formulas/augment-list.md): the license that
    grants the augment, or the English rendering of its Japanese name where no license grants it;
-6. the gambit preset's lines from `gambit-preset-list.tsv` ([Gambits](../Enemy-AI-And-Gambits/gambits.md)).
+6. the gambit preset's lines from [`gambit-preset-list.tsv`](../Enemy-AI-And-Gambits/gambit-preset-list.tsv) ([Gambits](../Enemy-AI-And-Gambits/gambits.md)).
 
 ### The row layout
 
@@ -56,7 +56,7 @@ Each line is read from the shipped files in these steps:
 | `+0x1E` | `u8[11]` | stats | `0x0030C470`, `0x0030C650` | Strength `+0x1E`/`+0x1F`, Magick Power `+0x21`/`+0x22`, Vitality `+0x24`/`+0x25`, Speed `+0x27`/`+0x28`: base and growth in 1/128 per level |
 | `+0x2A` | `u8` | evade | `0x002FEF30` (`0x002FF095`) | innate evade |
 | `+0x2B` | `u8` | size | `0x0023A570` | unit `+0x68` = this byte, unit `+0x6C` = this byte × 1.5 |
-| `+0x2C` | `u8` | flags | `0x0023AC80`, `0x00317480` | bits 3-4 the catch-up rule; bit `0x40` sets stats `+0x00` bit `0x4` (below) |
+| `+0x2C` | `u8` | flags | `0x0023AC80`, `0x00317480` | mask `0x18` the catch-up rule; bit `0x40` sets stats `+0x00` bit `0x4` (below) |
 | `+0x2D` | `u8` | unread2D | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; `0xFF` on every row |
 | `+0x2E` | `u8` | levelBonus | `0x0023AC80`, `0x00317480` | the starting level (0 means 1), and the levels added to the catch-up average |
 | `+0x30` | `u16` | nameWord | `0x0031C5D0`, `0x0023A570`, `0x00329220`, `0x00536310` | the name, bank 8 |
@@ -70,7 +70,7 @@ Each line is read from the shipped files in these steps:
 | `+0x4C` | `u32` | immunities | `0x002FEF30` (`0x002FF0A3`) | ORed into stats `+0x38`, the statuses that cannot be added |
 | `+0x50` | `u32[2]` | augments | `0x0030FED0` (`0x0030FF1F`-`0x00310018`), `0x00239040` (`0x00239073`) | augments 0-31 and 32-63 the member always has; the script verb handler `0x00239040` (`0x00510580`) reads word *k* of `+0x50`-`+0x57`, *k* below 4, of any unit's row as an order row |
 | `+0x58` | `i16[10]` | list | `0x00316DF0`, `0x003060E0` | ids: first-join items and the actions a guest or Esper may use (below) |
-| `+0x70` | `u32` | model | `0x0031C2F0` | the bound model id, letter class in bits 16-23 |
+| `+0x70` | `u32` | model | `0x0031C2F0` | the bound model id, letter class in the bits under mask `0xFF0000` |
 | `+0x74` | `u8[6]` | unread74 | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; nothing fixes its width |
 | `+0x7A` | `i16` | pushWeight | `0x00238BF0` (`0x00238C65`), `0x00317400` (`0x0031744B`) | a positive value / 10 is the body's push weight, which `0x0026DAC0` sets (below) |
 | `+0x7C` | `u8[2]` | unread7C | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; nothing fixes its width |
@@ -125,7 +125,7 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
 
 ### Flags and the camera type
 
-- `+0x2C` bits 3-4 are the catch-up rule of [Party members](party-members.md): 1 on the first join, 2 on every
+- `+0x2C` bits under mask `0x18` are the catch-up rule of [Party members](party-members.md): 1 on the first join, 2 on every
   join, anything else never (`0x003174D9`-`0x0031750D`).
 - `+0x2C` bit `0x40` makes `0x0023AC80` set stats `+0x00` bit `0x4`. `0x00305AB0` then sends the unit to the order set at unit
   `+0x6E0` instead of the queued `+0x6F8` (`0x00305BFB`-`0x00305C58`).
@@ -162,7 +162,7 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
 | `start_mp`, `mp_percent` | `+0x1A`, `+0x1D` |
 | `strength`, `magick_power`, `vitality`, `speed` | base + growth/128 |
 | `evade`, `size` | `+0x2A`, `+0x2B` |
-| `flags`, `catch_up`, `level_bonus` | `+0x2C`, its bits 3-4, and `+0x2E` |
+| `flags`, `catch_up`, `level_bonus` | `+0x2C`, its bits under mask `0x18`, and `+0x2E` |
 | `summon_time` | `+0x32` |
 | `list_ids`, `list` | the ids of `+0x58` other than `0xFFFF`, and their names with the counts above 1 |
 | `gil`, `lp_bonus` | `+0x3E`, `+0x44` |

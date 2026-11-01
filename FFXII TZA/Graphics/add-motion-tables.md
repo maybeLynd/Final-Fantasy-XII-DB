@@ -34,32 +34,32 @@ A flat stream, read in order with no offsets.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i16` | track count |  |
+| `+0x00` | `i16` |  | track count |
 
 Track (8 bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | kind: 0 keyed by a bone's angle, 1 chosen by a pose sequencer slot |  |
-| `+0x01` | `u8` | kind 0: which angle (0, 1 or 2) drives the keys |  |
-| `+0x02` | `u16` | kind 0: the driving bone; kind 1: the sequencer slot |  |
-| `+0x04` | `i16` | group count |  |
-| `+0x06` | `i16` | records per group | then group count x { `0x1C`-byte group header, records per group x `0x1C`-byte record } |
+| `+0x00` | `u8` |  | kind: 0 keyed by a bone's angle, 1 chosen by a pose sequencer slot |
+| `+0x01` | `u8` |  | kind 0: which angle (0, 1 or 2) drives the keys |
+| `+0x02` | `u16` |  | kind 0: the driving bone; kind 1: the sequencer slot |
+| `+0x04` | `i16` |  | group count |
+| `+0x06` | `i16` |  | records per group then group count x { `0x1C`-byte group header, records per group x `0x1C`-byte record } |
 
 Group header (`0x1C`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[3]` | kind 0: the key, one per angle |  |
-| `+0x18` | `u32` | kind 1: the group's id |  |
+| `+0x00` | `f32[3]` |  | kind 0: the key, one per angle |
+| `+0x18` | `u32` |  | kind 1: the group's id |
 
 Record (`0x1C`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` | bone |  |
-| `+0x04` | `f32[3]` | rotation angles in degrees |  |
-| `+0x10` | `f32[3]` | copied by the parser; the pose code does not read them |  |
+| `+0x04` | `f32[3]` |  | rotation angles in degrees |
+| `+0x10` | `f32[3]` |  | copied by the parser; the pose code does not read them |
 
 The parser `0x001BE1A0` keeps a 32-byte record per file (`+0x00` name, `+0x14` track count, `+0x18`
 tracks), 16 bytes per track (`+0x00` the u16 at file `+0x02`, `+0x02` records, `+0x04` groups,

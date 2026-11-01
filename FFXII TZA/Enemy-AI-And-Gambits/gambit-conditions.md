@@ -166,7 +166,7 @@ The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) unti
 | `pick` | the rule that chooses one target from what the first test kept |
 | `menu_position` | column and row on the gambit menu grid built by `0x00238880` (`0x002389DA`-`0x002389F9`), or `-` |
 | `sites` | the evaluator cases that show the row, and the relation filter |
-| `sources` | where the gambit condition is obtained, one part per kind of source, with each shop's place and opening, clan ranks by name ("Where each gambit condition comes from" above); `-` for none |
+| `sources` | where the gambit condition is obtained, one part per kind of source, with each shop's place and opening, clan ranks by name ("Where each gambit condition comes from" above); `-` when no table names a source |
 
 ## Related
 

@@ -33,7 +33,7 @@ Riding is held in the party block at `[0x02EBF190]` ([the block's field map](../
 | `+0x5B04` bit `0x2` | riding |
 | `+0x5AE0` bit `0x1` | the ride timer is running |
 | `+0x5AE0` bit `0x2` | turbo is on |
-| `+0x5AE0` bits 2-3 | turbo charges, 3 on mounting |
+| `+0x5AE0` bits under mask `0xC` | turbo charges, 3 on mounting |
 | `+0x5AE4` | f32, the ride time left in seconds; 180.0 on mounting |
 | `+0x5AE8` | f32, the turbo time left in seconds |
 | `+0x5AEC` | the last turbo argument |
@@ -254,7 +254,7 @@ record `[0x0209AC30] + 0x28` at `+0x1C8` on message 1:
 
 1. Message 16 sets `+0x1D4` bit `0x1`, decodes the child's layout from that record (`0x002432B0`) and runs
    `0x003CB320`. It gives the three 0x58-byte mark records at `+0xC0` their nodes (`+0x40`, from the table
-   `0x00D11758`) and shows the marks below the charge count, `+0x14` of `0x003200A0` (bits 2-3 of `+0x5AE0`,
+   `0x00D11758`) and shows the marks below the charge count, `+0x14` of `0x003200A0` (mask `0xC` of `+0x5AE0`,
    `0x00304610`); the count, at most 3, goes to `+0x1D0`.
 2. Message 2, while `+0x1D4` bit `0x1` is set, runs `0x003CAED0`. When the count has dropped, the last shown mark
    gets two tweens (`0x002726C0`, `0x002727C0`): the alpha of its four vertex colours over 32 steps and their
@@ -462,7 +462,7 @@ Struct ChocoboRide base=[`0x02EBF190`]`+0x5AE0` size=`0x10`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | flags | bit `0x1` timer running, bit `0x2` turbo on, bits 2-3 turbo charges |
+| `+0x00` | `u32` | flags | bit `0x1` timer running, bit `0x2` turbo on, mask `0xC` turbo charges |
 | `+0x04` | `f32` | rideLeft | seconds; 180.0 at mounting (`0x00303D90`, `0x00304440`) |
 | `+0x08` | `f32` | turboLeft | seconds (`0x00303F00`, `0x00304440`) |
 | `+0x0C` | `u32` | turboArg | the last `0x00303F00` argument |
@@ -489,35 +489,35 @@ Struct TimerSlot base=`0x02B5EBC0` size=`0x14` count=8     slot 1 the ride, slot
 | `+0x0C` | `f32` | step | +-0.016675 per frame step (`0x003EBCA8`; the 0.02 arm is unreachable); not written by the reset |
 | `+0x10` | `u8` | running | 1 from `0x003EBD00`, 0 from the loaders, `0x003EBB90` and the reset |
 | `+0x11` | `u8` | expired | 1 from `0x003EBD00`, the ticker and the reset; 0 from every load (`0x003EBCD7`, `0x003EBC34`); the loaders' zero-step store of 1 (`0x003EBC24`, `0x003EBCD0`) is unreachable |
-| `+0x12` | `u8[2]` | no instruction in the census reaches it |  |
+| `+0x12` | `u8[2]` |  | no instruction in the census reaches it |
 
 Struct RideHudManager size=`0xAA0` at [`0x02B47758`]     procedure `0x003CA860`; the widget header to `+0xC0`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0C0` | `RideHudMarks` | the marks widget, 0x1E0 bytes, built by 0x003CB0C0; the manager reads its +0x1C8 as a | sign-extended dword at its own `+0x288` (`0x003CA8FC`) and its `+0x1D4` at `+0x294` (`0x003CA9B4`, `0x003CAA18`) |
-| `+0x2A0` | `u8[448]` | the control window 0x003CAB00: +0xC0 and +0x140 its two 0x80-byte labels |  |
-| `+0x460` | `u8[400]` | the TIME root 0x003CAE00; its +0xC0 holds the 0xD0-byte timer 0x003CA530 |  |
-| `+0x5F0` | `u8[1184]` | the Dismount dialog 0x003CA310; +0xC0 its window, closed by the hide (0x003CA988, through the | manager's `+0x6B0`); `+0x490` flags (bit `0x1` window closed, by an answer `0x003CA38A`, `0x003CA3D0` or by the hide `0x003CA994`, which tests it first `0x003CA97C`; bit `0x2` first tick pending), `+0x494` the menu mode `0x02092730` at open (`0x003CA432`) |
-| `+0xA90` | `u32` | bits 0-1 the request: 1 show, 2 hide, cleared when acted on |  |
+| `+0x0C0` | `RideHudMarks` |  | the marks widget, `0x1E0` bytes, built by `0x003CB0C0`; the manager reads its `+0x1C8` as a sign-extended dword at its own `+0x288` (`0x003CA8FC`) and its `+0x1D4` at `+0x294` (`0x003CA9B4`, `0x003CAA18`) |
+| `+0x2A0` | `u8[448]` |  | the control window `0x003CAB00`: `+0xC0` and `+0x140` its two `0x80`-byte labels |
+| `+0x460` | `u8[400]` |  | the TIME root `0x003CAE00`; its `+0xC0` holds the `0xD0`-byte timer `0x003CA530` |
+| `+0x5F0` | `u8[1184]` |  | the Dismount dialog `0x003CA310`; `+0xC0` its window, closed by the hide (`0x003CA988`, through the manager's `+0x6B0`); `+0x490` flags (bit `0x1` window closed, by an answer `0x003CA38A`, `0x003CA3D0` or by the hide `0x003CA994`, which tests it first `0x003CA97C`; bit `0x2` first tick pending), `+0x494` the menu mode `0x02092730` at open (`0x003CA432`) |
+| `+0xA90` | `u32` |  | mask `0x3` the request: 1 show, 2 hide, cleared when acted on |
 
 Struct RideHudMarks size=`0x1E0` at manager+`0xC0`     procedure `0x003CB150`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0C0` | `TurboMark[3]` | the three 0x58-byte mark records |  |
-| `+0x1C8` | `void*` | the field HUD layout record [0x0209AC30]+0x28, kept on message 1 (0x003CB198) |  |
-| `+0x1D0` | `u32` | the shown count, at most 3 (0x003CB3A9, 0x003CAFC1) |  |
-| `+0x1D4` | `u32` | bit 0x1 set up (message 16, 0x003CB1BD), bit 0x2 closing (message 15, 0x003CB29F) |  |
+| `+0x0C0` | `TurboMark[3]` |  | the three `0x58`-byte mark records |
+| `+0x1C8` | `void*` |  | the field HUD layout record [`0x0209AC30`]`+0x28`, kept on message 1 (`0x003CB198`) |
+| `+0x1D0` | `u32` |  | the shown count, at most 3 (`0x003CB3A9`, `0x003CAFC1`) |
+| `+0x1D4` | `u32` |  | bit `0x1` set up (message 16, `0x003CB1BD`), bit `0x2` closing (message 15, `0x003CB29F`) |
 
 Struct TurboMark size=`0x58`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[32]` | alpha tween (0x002726C0 / 0x002727C0 at 0x003CAF5F / 0x003CAF6A); +0x14 i16 its value |  |
-| `+0x20` | `u8[32]` | colour tween (0x003CAF8F / 0x003CAFB0); +0x28, +0x2C, +0x30 the targets 0xBF0, 0xFF0, 0xBF0; | `+0x34` i16 its value |
-| `+0x40` | `void*` | the mark's layout item, item 3 + k of the record (0x003CB36E) |  |
-| `+0x48` | `u32` | bit 0x1 shown, bit 0x2 spent, bit 0x4 alpha tween running, bit 0x8 colour tween running |  |
+| `+0x00` | `u8[32]` |  | alpha tween (`0x002726C0` / `0x002727C0` at `0x003CAF5F` / `0x003CAF6A`); `+0x14` i16 its value |
+| `+0x20` | `u8[32]` |  | colour tween (`0x003CAF8F` / `0x003CAFB0`); `+0x28`, `+0x2C`, `+0x30` the targets `0xBF0`, `0xFF0`, `0xBF0`; `+0x34` i16 its value |
+| `+0x40` | `void*` |  | the mark's layout item, item 3 + k of the record (`0x003CB36E`) |
+| `+0x48` | `u32` |  | bit `0x1` shown, bit `0x2` spent, bit `0x4` alpha tween running, bit `0x8` colour tween running |
 
 The timer widget keeps one field of its own, `+0xC0`, the UI tick at which the time first reached 0
 (`0x003CA653`); the control window's two labels are the only fields past its header.
@@ -582,7 +582,7 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 
 ## Modding notes
 
-- To change the ride length, change the `180.0` the setter and the per-frame refresh write
+- To change the ride length, change the `180.0` that the setter and the per-frame refresh write
   (`0x43340000` at `0x00303D90` and `0x00304440`); the timer counts seconds at the frame rate.
 - The dash length is `[0x01DFE0B8] × [0x008F8180]` (`0x00303F98`-`0x00303FA3`). Both are shared constants: `0x008F8180`
   (10.0) also scales the HUD's tenths (`0x003CA5D0`), so change the dash at the `mulss` in `0x00303F00`. The dash speed

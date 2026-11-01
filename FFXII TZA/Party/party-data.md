@@ -1,5 +1,5 @@
 ---
-title: "Party data: every field of the block the save game keeps for the party, above the forty member records"
+title: "Party data: every field of the block the save game keeps for the party, above the forty member stats records"
 kind: "reference"
 category: "Party"
 addresses: "0x02EBF190, 0x00233C10, 0x002370C0, 0x0030B6A0, 0x00320A40, 0x0031B9F0, 0x00327C40"
@@ -17,7 +17,7 @@ whose first step `0x0023AF50` resets the block and adds the starting inventory
 ([Starting inventory](starting-inventory.md)). With the magic in place it rebuilds the gambit order set of all forty
 members with `0x00327F80`, the loop form of `0x00327DE0` (`0x00233CAD`; [Gambits](../Enemy-AI-And-Gambits/gambits.md)).
 
-The reset `0x002370C0` clears all `0x7410` bytes, writes the magic, clears the inventory counts and empties the menu category lists of `[0x020927C0]` (`0x003047F0`, `0x002370E5`; [Save data](../Saving-Loading-And-Settings/save-data-fields.md)), empties map 0's seats
+The reset `0x002370C0` clears all `0x7410` bytes, writes the magic, clears the inventory counts and empties the inventory lists of `[0x020927C0]` ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md#the-inventory-lists)) (`0x003047F0`, `0x002370E5`; [Save data](../Saving-Loading-And-Settings/save-data-fields.md)), empties map 0's seats
 and zeroes the walked distance (`0x002370CD`-`0x0023712E`).
 
 The block holds:
@@ -25,8 +25,8 @@ The block holds:
 - the forty member stats records from `+8` ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md));
 - the inventory: owned counts and learned bits per class, laid out by the descriptors at `0x01EEBCC0` and rebased by
   `0x0030B6A0` ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md));
-- the seats, the leader selector and battle mode ([Party slots](party-slots.md),
-  [Battle mode](../Engine-Core/party-control-modes.md));
+- the seats, the leader selector and party control mode ([Party slots](party-slots.md),
+  [Party control modes](../Engine-Core/party-control-modes.md));
 - the mode flags `+0x5B04`, whose bits `0x1` and `0x2` the status view `0x00329220` tests for its flag bits `0x400` and `0x800`; the
   screens read members through that view, the battle menu's target window `0x002BFD20` among them
   ([Party member status record](../Characters-And-Objects/party-member-status-record.md),
@@ -36,7 +36,7 @@ The block holds:
 
 ## Columns
 
-`party-data.tsv`, one row per field:
+[`party-data.tsv`](party-data.tsv), one row per field:
 
 | Column | Meaning |
 |---|---|
@@ -55,8 +55,8 @@ Rows named `pad` are the bytes between two fields.
 - An access through an inventory descriptor counts for the regions its handler serves (`0x01EEBCC0`): `0x002FD150`
   and `0x002FD8D0` for rows 0-2 (items, equipment, loot), `0x002FD420` and `0x002FD970` for the five bit rows, and
   `0x003047F0` for all eight count regions; `+0x20` is the loot tally and `+0x30` the items-ever-owned bits.
-- The `members` row lists the functions that reach a member record through the block, directly or through the
-  roster array `0x022C1740`, whose nine entries are member records from `0x00320AB0`; the functions that reach one
+- The `members` row lists the functions that reach a member stats record through the block, directly or through the
+  roster array `0x022C1740`, whose nine entries are member stats records from `0x00320AB0`; the functions that reach one
   through a battle unit are on [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md).
 
 The columns hold every access through the block pointer `0x02EBF190`, the active image `0x02164280` (`0x002EF640`),
@@ -84,7 +84,7 @@ the roster array `0x022C1740`, the inventory descriptors `0x01EEBCC0` and the sa
 
 ## Related
 
-- [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the forty member records.
+- [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the forty member stats records.
 - [Party slots](party-slots.md) - the five slot maps and the leader selector.
 - [Party leader](party-leader.md) - the leader handle the selector becomes.
 - [Scenario presets](scenario-presets.md) - the sets that reset and refill the block.

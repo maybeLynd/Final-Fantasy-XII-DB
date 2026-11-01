@@ -91,7 +91,7 @@ its three steps. Every draw, inline or not, advances the same word.
 (two sites in `0x004010A0`) serve presentation code: camera and backend orientation (`0x0040AAD0`
 draws twice with amplitude 0.3), effect parameters and the script-side effect verbs in the
 `0x00515DA0`-`0x0054E040` range. Seven more functions step the generator inline (listed on the
-generators page). None of them touches a gameplay generator.
+[generators page](random-number-generators.md)). None of them touches a gameplay generator.
 
 ### What reseeds what
 

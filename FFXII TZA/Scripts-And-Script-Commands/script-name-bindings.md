@@ -16,7 +16,7 @@ script naming a model by one number and asking the engine to bind it to an actor
 
 ### The bound id: what a script names
 
-A script names a model with a 32-bit bound id: bits 16 to 23 are a letter class and bits 0 to 15 a
+A script names a model with a 32-bit bound id: the bits under mask `0xFF0000` are a letter class and the bits under mask `0xFFFF` a
 number. `0x002E9A60` turns a script's argument into a bound id. A value above `0xFFFFFF` is an index
 into the script image's name table at `[context + 0x100]` (`0x00263F80`: a count, then one dword per
 name; an index at or past the count gives 0, and a missing table gives the low 24 bits unchanged).
@@ -422,74 +422,74 @@ Binding entry   `0x0215FDA0` + slot*`0x40`, 128 slots:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `...` | prev (free / requested / live / retired list) |  |
-| `+0x08` | `...` | next (free / requested / live / retired list) |  |
-| `+0x10` | `u32` | load handle (0x0036B160) |  |
-| `+0x14` | `u32` | bound id |  |
-| `+0x18` | `u8` | state: bit1 ready, bit2 release pending, bit3 not registered with the render system |  |
-| `+0x19` | `u8` | pins: bits0-1 keep at count 0, bit2 no load buffer, bit3 created with a holder, bit4 kept by 0x002E3E90 |  |
-| `+0x1A` | `u16` | own slot |  |
-| `+0x1C` | `i16` | reference count |  |
-| `+0x1E` | `i16` | lane record index (-1 none) |  |
-| `+0x20` | `u16` | holder bits (one per manager) |  |
-| `+0x24` | `u32` | stamp (+0x26 always 0) |  |
-| `+0x28` | `u32` | claimed lanes |  |
-| `+0x2C` | `u32` | lanes with a positive size |  |
-| `+0x30` | `u32` | sub-resources (-1 none) | with `+0x34` and `+0x38` |
-| `+0x34` | `u32` | sub-resources (-1 none) | with `+0x30` and `+0x38` |
-| `+0x38` | `u32` | sub-resources (-1 none) | with `+0x30` and `+0x34` |
+| `+0x00` | `...` |  | prev (free / requested / live / retired list) |
+| `+0x08` | `...` |  | next (free / requested / live / retired list) |
+| `+0x10` | `u32` |  | load handle (`0x0036B160`) |
+| `+0x14` | `u32` |  | bound id |
+| `+0x18` | `u8` |  | state: bit1 ready, bit2 release pending, bit3 not registered with the render system |
+| `+0x19` | `u8` |  | pins: bits0-1 keep at count 0, bit2 no load buffer, bit3 created with a holder, bit4 kept by `0x002E3E90` |
+| `+0x1A` | `u16` |  | own slot |
+| `+0x1C` | `i16` |  | reference count |
+| `+0x1E` | `i16` |  | lane record index (-1 none) |
+| `+0x20` | `u16` |  | holder bits (one per manager) |
+| `+0x24` | `u32` |  | stamp (`+0x26` always 0) |
+| `+0x28` | `u32` |  | claimed lanes |
+| `+0x2C` | `u32` |  | lanes with a positive size |
+| `+0x30` | `u32` |  | sub-resources (-1 none); with `+0x34` and `+0x38` |
+| `+0x34` | `u32` |  | sub-resources (-1 none); with `+0x30` and `+0x38` |
+| `+0x38` | `u32` |  | sub-resources (-1 none); with `+0x30` and `+0x34` |
 
 Lane record     `0x02161DA0` + i*`0x120`, 32 records:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `...` | links (free 0x0215FD70, idle 0x0215FD68, pending 0x0215FD80) | with `+0x08` |
-| `+0x08` | `...` | links (free 0x0215FD70, idle 0x0215FD68, pending 0x0215FD80) | with `+0x00` |
-| `+0x10` | `...` | unload-queue node (0x0215FD90) | with `+0x18` |
-| `+0x18` | `...` | unload-queue node (0x0215FD90) | with `+0x10` |
-| `+0x20` | `u16` | own index |  |
-| `+0x22` | `u16` | owner slot |  |
+| `+0x00` | `...` |  | links (free `0x0215FD70`, idle `0x0215FD68`, pending `0x0215FD80`); with `+0x08` |
+| `+0x08` | `...` |  | links (free `0x0215FD70`, idle `0x0215FD68`, pending `0x0215FD80`); with `+0x00` |
+| `+0x10` | `...` |  | unload-queue node (`0x0215FD90`); with `+0x18` |
+| `+0x18` | `...` |  | unload-queue node (`0x0215FD90`); with `+0x10` |
+| `+0x20` | `u16` |  | own index |
+| `+0x22` | `u16` |  | owner slot |
 | `+0x24` | `...` | loaded |  |
-| `+0x28` | `...` | to load |  |
-| `+0x2C` | `...` | queued for unload |  |
+| `+0x28` | `...` |  | to load |
+| `+0x2C` | `...` |  | queued for unload |
 | `+0x34` | `...` | loading |  |
-| `+0x38` | `...` | hold mask |  |
-| `+0x3C` | `...` | tested with +0x38 |  |
-| `+0x40` | `...` | mask read by 0x002E9C60 |  |
-| `+0x44` | `...` | keep on load |  |
-| `+0x48-0x5B` | `...` | five group words |  |
-| `+0x5C` | `u32` | owner's stamp |  |
-| `+0x60` | `u32[32]` | lane handles |  |
-| `+0xE0` | `i16[32]` | lane counts |  |
+| `+0x38` | `...` |  | hold mask |
+| `+0x3C` | `...` |  | tested with `+0x38` |
+| `+0x40` | `...` |  | mask read by `0x002E9C60` |
+| `+0x44` | `...` |  | keep on load |
+| `+0x48-0x5B` | `...` |  | five group words |
+| `+0x5C` | `u32` |  | owner's stamp |
+| `+0x60` | `u32[32]` |  | lane handles |
+| `+0xE0` | `i16[32]` |  | lane counts |
 
 Chest record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | index in the field |  |
-| `+0x04` | `i16` | x tenths |  |
-| `+0x06` | `i16` | z tenths |  |
-| `+0x08` | `u8` | facing (bits 0-5) and random gil (bit 0x40) |  |
-| `+0x09` | `u8` | opened-flag id |  |
-| `+0x0A` | `u8` | presence % |  |
-| `+0x0B-0x17` | `...` | contents (reward verbs) |  |
+| `+0x00` | `u8` |  | index in the field |
+| `+0x04` | `i16` |  | x tenths |
+| `+0x06` | `i16` |  | z tenths |
+| `+0x08` | `u8` |  | facing (mask `0x3F`) and random gil (bit `0x40`) |
+| `+0x09` | `u8` |  | opened-flag id |
+| `+0x0A` | `u8` |  | presence % |
+| `+0x0B-0x17` | `...` |  | contents (reward verbs) |
 
 Presentation    [actor+`0xC0`]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `...` | render index |  |
-| `+0x004` | `...` | bound id |  |
+| `+0x000` | `...` |  | render index |
+| `+0x004` | `...` |  | bound id |
 | `+0x008` | `...` | entry |  |
 | `+0x010` | `...` | flags |  |
-| `+0x012` | `i8` | motion lane |  |
-| `+0x14C` | `u8` | variant byte b |  |
-| `+0x14D` | `u8` | variant byte c |  |
-| `+0x030` | `...` | attach slots (0x30 each) | with `+0x60` and `+0x90` and `+0xC0` and `+0xF0` |
-| `+0x060` | `...` | attach slots (0x30 each) | with `+0x30` and `+0x90` and `+0xC0` and `+0xF0` |
-| `+0x090` | `...` | attach slots (0x30 each) | with `+0x30` and `+0x60` and `+0xC0` and `+0xF0` |
-| `+0x0C0` | `...` | attach slots (0x30 each) | with `+0x30` and `+0x60` and `+0x90` and `+0xF0` |
-| `+0x0F0` | `...` | attach slots (0x30 each) | with `+0x30` and `+0x60` and `+0x90` and `+0xC0` |
+| `+0x012` | `i8` |  | motion lane |
+| `+0x14C` | `u8` |  | variant byte b |
+| `+0x14D` | `u8` |  | variant byte c |
+| `+0x030` | `...` |  | attach slots (`0x30` each); with `+0x60` and `+0x90` and `+0xC0` and `+0xF0` |
+| `+0x060` | `...` |  | attach slots (`0x30` each); with `+0x30` and `+0x90` and `+0xC0` and `+0xF0` |
+| `+0x090` | `...` |  | attach slots (`0x30` each); with `+0x30` and `+0x60` and `+0xC0` and `+0xF0` |
+| `+0x0C0` | `...` |  | attach slots (`0x30` each); with `+0x30` and `+0x60` and `+0x90` and `+0xF0` |
+| `+0x0F0` | `...` |  | attach slots (`0x30` each); with `+0x30` and `+0x60` and `+0x90` and `+0xC0` |
 
 `0x002ED6F0`, letter class → resource kind, file index, lane count:
 

@@ -22,8 +22,8 @@ The status write `0x0030E360(stats, source, status, ...)` handles statuses being
 When status 0 (KO), 1 (Stone) or 31 (X-Zone) is added to a unit that has a battle unit on the field,
 it runs the unit's death handling `0x00300FC0(unit, 0)` and then `0x00312280(source, unit)`
 (`0x0030E875`-`0x0030E884`). Stone first raises event `0x200C` and X-Zone event `0x200E` through
-`0x003299B0` (`0x0030E86D`). The status names are those of the shipped status table (see the status
-pages).
+`0x003299B0` (`0x0030E86D`). The status names are those of the shipped status table (see
+[Statuses](../Status-Effects-And-KO/statuses.md)).
 
 Nothing happens when the status word does not actually change, and two cases return earlier:
 
@@ -50,7 +50,7 @@ of a `+0x140` word are the periodic tick's HP-drain arms at `0x00386DF5`, `0x003
 **The order of steps in `0x00312280(killer, enemy)`:**
 
 1. **Chain.** When the defeated unit is an enemy (stats `+0x05` = 1) and the killer is a party record,
-   `0x00317ED0(enemy)` updates the chain (see the kill chain page).
+   `0x00317ED0(enemy)` updates the chain (see [Kill chain](kill-chain.md)).
 2. **Counters.** `0x003171C0(enemy)`, for an enemy only:
    - adds 1 to counter kind 4 (`0x003171DF`-`0x003171E7`, through the thunk `0x00253770` into `0x00316A50`);
    - then, unless the actor's class nibble (`[enemy+0x10]` byte `+0x0E` & `0xF`, `0x00263C20`) is 3, or
@@ -62,12 +62,12 @@ of a `+0x140` word are the periodic tick's HP-drain arms at `0x00386DF5`, `0x003
    - bits `0x1` and `0x4` are both set (Poison from a party source, and the killing blow was a periodic drain);
    - status 1 (Stone) is set in the status words `+0x64 | +0x3C` and bit `0x2` is set (Petrify from a
      party source).
-4. **EXP and LP** for each recipient, with level-ups (see the EXP and LP page).
+4. **EXP and LP** for each recipient, with level-ups (see [EXP, LP and level-ups](exp-lp-and-level-ups.md)).
 5. **The reward display** `0x0028FB80` with the amounts computed for no recipient.
-6. **Gil** (see the gil page; the conversion from step 4 is added here).
+6. **Gil** (see [Gil](gil.md); the conversion from step 4 is added here).
 7. **The drop.** `0x00265020` reads the enemy actor's position. When `0x00319490(position)` returns
    non-zero, `0x003180F0(enemy, record)` rolls the loot and, when it returns non-zero, `0x00319CA0(record,
-   position)` places it (see the loot drops page).
+   position)` places it (see [Loot drops](loot-drops.md)).
 8. **Score.** `0x00317090(enemy)`, for an enemy only, adds
    `d * [E78].u16[+0] + [E70].u16[+0]` to counter kind 17. Here `d` is the enemy's level minus stats
    `+0x88`, and `E70` and `E78` are its reward rows (`0x003170AA`-`0x003170D8`, through the thunk `0x00253770`).
@@ -78,7 +78,7 @@ of a `+0x140` word are the periodic tick's HP-drain arms at `0x00386DF5`, `0x003
 
 `0x00315820(species)` ignores species of `0x200` and above. It keeps one
 byte per species at `[0x020927C0] + 0x3404 + species`, where the stored value is the count plus one
-(0 and 1 both mean none), saturating at `0xFF`. The species is counted only when `0x00315D50(species)`
+(0 and 1 both mean no defeats counted), saturating at `0xFF`. The species is counted only when `0x00315D50(species)`
 returns -1. That happens unless the species is in the list in `menuhandbook.bin` (three 16-bit hops
 from `+0x08`, then a count at `+2` and up to eleven species words at `+4`). For a listed species,
 `0x00315D50` returns the word at `0x01EED130 + index*2`.
@@ -87,7 +87,7 @@ from `+0x08`, then a count at `+2` and up to eleven species words at `+4`). For 
 
 Counter kind 4 is a 16-bit total at `[0x020927C0] + 0x3854`, saturating at `0x7FFF`.
 Kind 17 is a 32-bit total at `[0x020927C0] + 0x3868`. Kind 11, the LP total fed in step 4, is 32-bit at
-`+0x385C`. All three are checked as on the gil page:
+`+0x385C`. All three are checked as on the [gil page](gil.md):
 
 | Kind | Total | Achievement (record in `0x01DFE410`) | Threshold in `menuhandbook.bin` |
 |---:|---|---|---|

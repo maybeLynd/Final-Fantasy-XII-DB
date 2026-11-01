@@ -40,8 +40,8 @@ moment.
 
 `0x0030D160` (1,004 bytes) is called once, by the standard-action state machine at
 `0x00304EE2`, as `(unit, effectiveActionId, focusHandle, buffer)`: the action id comes from
-`0x00387090` (`0x00304ECC`), the focus handle from the action context `+0x60`, and the buffer is the
-action's target list, at context `+0xC8` (context = unit `+0x6B0`, so the list is at unit `+0x778`)
+`0x00387090` (`0x00304ECC`), the focus handle from the action state `+0x60`, and the buffer is the
+action's target list, at action state `+0xC8` (the action state, [battle unit fields](../Characters-And-Objects/battle-unit-fields.md), starts at unit `+0x6B0`, so the list is at unit `+0x778`)
 (`0x00304ED1`-`0x00304EE2`). It returns the list's count (`0x0030D51C`).
 
 1. The chosen target is resolved from the focus handle (`0x0031B7E0`); if it does not resolve the
@@ -92,7 +92,7 @@ Besides the unit list, the user can carry a list of stats-record indices (actor 
 `+0x6B6`, bytes from `+0x6B9`.
 
 - The commit `0x0030F760` puts one entry there (from `0x022C1DB8 + 12 * [unit+0xEA9]`) when bit `0x2` of the
-  action-context word `unit+0x6B0` is set (`0x0030F865`-`0x0030F894`).
+  command word `unit+0x6B0` is set (`0x0030F865`-`0x0030F894`).
 - The action reset `0x003105D0` clears it (`0x0031060A`).
 - The effect applier `0x00307300` resolves each byte through `0x00320A40` and applies the result to it
   (`0x003073D7`-`0x0030744B`).
@@ -122,7 +122,7 @@ else 0. It returns 1 when `0x002FFF50(candidate, hostile, mode)` returns an empt
 | `0x01` | the unit is null or lacks bit `0x10` of its first byte |
 | `0x02` | no stats record, or status bits `0x1`, `0x2` or `0x80000000` (KO, Stone, X-Zone) set while `0x00377C20()` returns 0 |
 | `0x04` | `0x003125E0(unit)` returns non-zero: for an active unit, when its flag word has bit `0x200`, `0x400` or `0x800`, the word at `+0x04` has bit `0x4`, bit `0x2` is set while the unit has no stats record or is KO, Stone or X-Zone (without the map waiver), or, for an enemy-side unit, bit `0x8` or `0x10` of the dword at `[unit+0x6A0]` is set |
-| `0x08` | `0x0030B950(unit, hostile)` returns non-zero: bits 9-11 of `0x02089340` (`0x0030B770`), or `0x0030B7F0` - unit flag bit `0x100`, unit flag bit `0x40000000` when `hostile`, a party-side unit of type id `0x1A`, or `0x0017D470()` in state 1 or 2 |
+| `0x08` | `0x0030B950(unit, hostile)` returns non-zero: any of bits `0xE00` of `0x02089340` (`0x0030B770`), or `0x0030B7F0` - unit flag bit `0x100`, unit flag bit `0x40000000` when `hostile`, a party-side unit of type id `0x1A`, or `0x0017D470()` in state 1 or 2 |
 | `0x10` | enemy side (stats `+0x05` = 1), `mode` is not 1, and status bit `0x1000000` (Invisible) set |
 | `0x20` | enemy side, `mode` is not 3, and bit `0x20` of the byte at `[unit+0x6A0]` |
 | `0x40` | enemy side and bit `0x40` of the byte at `[unit+0x6A0]` |
@@ -171,8 +171,8 @@ and `0x00328530` and jumped to from `0x0031AB80`.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u64` | actorWork | the unit's `+0x10` object; stored by `0x00316CDC`, compared by `0x00316D83` |
-| `+0x08` | `u32` | entryFlags | low byte the outcome code (`0x0030DAE0`), bits 8-11 result flags; written by the effect applier `0x00307300` |
-| `+0x0C` | `u32` | tail | no unit-relative reader of `+0x78C` in the image (entry-pointer reads not excluded) |
+| `+0x08` | `u32` | entryFlags | low byte the outcome code (`0x0030DAE0`), bits `0xF00` result flags; written by the effect applier `0x00307300` |
+| `+0x0C` | `u32` | tail | cleared with the whole list by the clear's memset of `0x208` bytes (`0x00316CFF`-`0x00316D0B`); the append (`0x00316CDC`) writes only `+0x00`, and the effect applier `+0x08` |
 
 ## Shipped data
 
@@ -221,8 +221,8 @@ and cones.
 ## Modding notes
 
 - The area fields are bytes of the action row: `+0x06` radius, `+0x07` cone angle in degrees or line
-  half-width; flag word `+0x0C` bits `0x2` (whole party), 21 (centre on user), 24 (cone), 25 (line);
-  word `+0x36` bits `0x4` (other side from the target) and 3 (everyone).
+  half-width; flag word `+0x0C` bits `0x2` (whole party), `0x200000` (centre on user), `0x1000000` (cone), `0x2000000` (line);
+  word `+0x36` bits `0x4` (other side from the target) and `0x8` (everyone).
 - Shipped `battle_pack.bin`: 247 of 543 action rows have a radius (3, 4, 5, 6, 8, 10, 15, 18, 20 or
   100); 26 rows are centred on the user, 49 are cones (32 of them 180 degrees, two at 0), 5 are lines;
   no row has both cone and line bits, and no row without a radius has bits `0x200000`, `0x1000000` or `0x2000000`.

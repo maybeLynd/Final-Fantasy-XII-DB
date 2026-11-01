@@ -232,8 +232,8 @@ The member-scoped pane is the `0xD0`-byte widget at `0x02CA96D8` with procedure 
 The three editors keep themselves in `0x02CA96E0` + 8 × slot, slot 0-2 at `+0x35C` (`0x005692CD`-`0x005692EB`), and the
 three pane roles in `0x02CA96F8` (left, the previous set), `0x02CA9700` (centre) and `0x02CA9708` (right, the next set):
 
-- On message 1 the editor whose slot is the member's selected set takes the centre with layout record 6, slot = set
-  + 1 modulo 3 the right with record 8, and slot = set + 2 modulo 3 the left with record 7 (`0x005692EF`-`0x005693A6`).
+- On message 1 the editor whose slot is the member's selected set takes the centre with layout record 6, slot = set +
+  1 modulo 3 the right with record 8, and slot = set + 2 modulo 3 the left with record 7 (`0x005692EF`-`0x005693A6`).
 - On L2 the centre and left panes slide right by `0x780` and the right pane jumps left by `0xF00`; on R2 the mirror.
   The roles then rotate (`0x005699F0`-`0x00569BED`).
 

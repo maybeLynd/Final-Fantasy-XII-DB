@@ -66,7 +66,7 @@ All multi-byte fields are little-endian.
 | `+0x7E` | `i16` | word7E | returned by `0x00264770`; 0, or 1 to 31 when `+0x7C` is set |
 | `+0x80` | `u32` | table80 | -> u32 count, {u32 id, u32 mask} (`0x0035A270`) |
 | `+0x84` | `u32` | entryPointsB | -> u32 count, 32-byte records (`0x00264B90` kind 1) |
-| `+0x88` | `i16` | treasureModel setuptreasure's chest model (0x0026E060, version 11 or above); -1, 0, 4 or 5 |  |
+| `+0x88` | `i16` | treasureModel | setuptreasure's chest model (`0x0026E060`, version 11 or above); -1, 0, 4 or 5 |
 | `+0x8A` | `u16` | pad8A | 0 in every image |
 | `+0x8C` | `u32` | table8C | -> u32 count, 16-byte records (`0x00264870`) |
 
@@ -84,7 +84,7 @@ All multi-byte fields are little-endian.
 | `+0x18` | `u32` | slotFooter | -> s16 18, s16 function[18], one per entry slot |
 | `+0x1C` | `u32` | localOff | this actor's slice of the local storage |
 | `+0x20` | `u16` | copy | the actor's copy number: `0x00263880` returns it (`0x002638AA`) for an image of version 8 or more |
-| `+0x22` | `u8[14]` | rest of the entry |  |
+| `+0x22` | `u8[14]` |  | rest of the entry |
 
 Function and jump offsets are relative to `codeStart`. The function table's `listOff` follows it
 directly: `jumps = functions + 4 + 8 × count` in every entry.
@@ -262,3 +262,9 @@ Four more header fields are read as values, not as table offsets:
 - [Script requests](../Scripts-And-Script-Commands/script-requests.md): entry slots, list requests and waits.
 - [Weather](../World-Areas-And-Travel/weather.md): the `+0x64` chances.
 - [Resource arenas](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md): the arenas the callbacks allocate from.
+- [`ebp-script-image-actdef-header-census.tsv`](ebp-script-image-actdef-header-census.tsv): for each of the header's
+  first 76 bytes (`+0x00` to `+0x4B`) over the shipped images, whether it is constant, zero or varying, with its
+  distinct values (76 rows).
+- [`ebp-script-image-list-wait-census.tsv`](ebp-script-image-list-wait-census.tsv): every list request (`REQALL`,
+  `REQIALL`, `REQWAITALL`) in the 6,077 images that carry actor lists: the list it names, the list's length and its
+  first 12 actor:function pairs (60,362 rows).

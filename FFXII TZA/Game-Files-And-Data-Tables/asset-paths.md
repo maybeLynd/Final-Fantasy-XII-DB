@@ -7,7 +7,7 @@ addresses: "0x002DF9A0, 0x0215F000, 0x0032E620, 0x002DF960, 0x002DF980, 0x002ED6
 
 ## What it lists
 
-`asset-paths.tsv` holds one line for each entry of the path arrays the executable installs for the US build: every
+[`asset-paths.tsv`](asset-paths.tsv) holds one line for each entry of the path arrays the executable installs for the US build: every
 file the game can request by a resource kind and an id, the way `0x0032E620(kind, index, ...)` requests it
 ([File requests](file-requests-and-the-read-queue.md)). Each line gives the archive path the game uses for that
 kind and id, the size the US size table gives it ([File size tables](file-size-tables-fst.md)), and whether the
@@ -23,7 +23,7 @@ under `gamedata/` is reached by name instead, through the `.ah` lists
 The columns come from the executable's path arrays, the US size table and the archive index:
 
 1. **The arrays.** `ResourcePath_Init` `0x002DF9A0` stores one array pointer per kind at `0x0215F000` + kind × 8, then
-   switches on the language id − 1 and replaces the language's own arrays; the arrays listed are those the US arm
+   switches on the locale id − 1 and replaces the language's own arrays; the arrays listed are those the US arm
    installs.
 2. **The entries.** An array is a run of 8-byte pointers to NUL-terminated paths, or 0; id *n* is entry *n*. Six
    kinds (3, 17, 18, 29, 36 and 40) point at runtime slots near `0x0215F000` instead of an array and have no entries.

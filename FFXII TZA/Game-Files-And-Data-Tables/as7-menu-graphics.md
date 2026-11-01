@@ -33,7 +33,7 @@ All multi-byte fields are big-endian.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[2]` | "A7" | read by no function: the container buffers reach only the walker `0x0024AA00` (from `0x00292390` at `0x00292768` and `0x002CEFD0` at `0x002CF2B4` and `0x002CF2CE`), which starts at byte `+0x02`, and the codec `0x00248500`, which reads the page streams and the dictionary; the slot and widget copies `0x00291D90`, `0x00292050`, `0x002CEB40` and `0x002C8EE0` move the pointer only; nothing fixes its width |
+| `+0x00` | `u8[2]` |  | value "A7": read by no function: the container buffers reach only the walker `0x0024AA00` (from `0x00292390` at `0x00292768` and `0x002CEFD0` at `0x002CF2B4` and `0x002CF2CE`), which starts at byte `+0x02`, and the codec `0x00248500`, which reads the page streams and the dictionary; the slot and widget copies `0x00291D90`, `0x00292050`, `0x002CEB40` and `0x002C8EE0` move the pointer only; nothing fixes its width |
 | `+0x02` | `u16be` | count | number of pages |
 | `+0x04` | `u32be` | dictOff | file offset of the dictionary blob |
 | `+0x08` | `u32be[count]` | pageOff | file offset of each page's token stream |
@@ -111,7 +111,7 @@ count of decoded bytes reaches the length: an exact finish returns 1, an oversho
 ### Item pictures
 
 `0x00291D90`, the item-graphic object's procedure, copies the ten slots into the object (`+0xC8 + 16 × i`, buffer at
-`+0xD0 + 16 × i`), sets bits 0 to 9 of its word `+0x168`, and registers the `itemgra_c.tm2` buffer as the atlas
+`+0xD0 + 16 × i`), sets the bits under mask `0x3FF` of its word `+0x168`, and registers the `itemgra_c.tm2` buffer as the atlas
 `itemgra_c` through `0x0024A440`. `0x00292050(i)` returns slot `i`'s buffer when its bit is set.
 
 The list item procedure `0x00292390` takes a graphic id from message `0x0C` (payload word `+2`) and decodes on its next
@@ -129,7 +129,7 @@ For any other id it takes slot `(id >> 6) + 2` through `0x00292050`, which shift
 keeps the low 16 bits and tests them against the object's word `+0x168` (`0x00292063`-`0x0029206D`); the shift counts the
 slot modulo 32.
 
-`0x00291D90` sets bits 0 to 9, one per slot, so sheets 0 to 7 answer and ids 0 to 511 (512 pictures,
+`0x00291D90` sets the bits under mask `0x3FF`, one per slot, so sheets 0 to 7 answer and ids 0 to 511 (512 pictures,
 highest 511) decode. An id whose slot modulo 32 is 10 to 31 finds no container: ids 512 to 1919, and the same band in
 every later block of 2,048 ids. For those the procedure binds the `itemgra_c` atlas as it stands (`0x00292702`-`0x00292712`,
 `0x0029F580`) without decoding.

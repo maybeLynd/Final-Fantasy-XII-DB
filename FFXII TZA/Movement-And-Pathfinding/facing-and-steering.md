@@ -7,15 +7,17 @@ addresses: "0x0026B5A0, 0x0026B620, 0x0026B6A0, 0x0026C090, 0x002E5E10, 0x002E5F
 
 ## What the player sees
 
-Point Vaan at something behind him and he turns the short way round. The direction, left or
-right, is chosen once when the new heading is set and then spent over the following frames at
-nine degrees a frame. Which way a character is pointing and which way it is travelling are
+Turn a character toward something behind it and it turns the short way round. The direction,
+left or right, is chosen once when the new heading is set and then spent over the following
+frames: nine degrees a frame for a steered turn, or at the turning animation's own rate when the
+turn is played as an animation. Which way a character is pointing and which way it is travelling are
 separate numbers: a party member can back away from a foe while facing it, and a pivot looks
 like a pivot rather than a slide.
 
 A scripted walk has a speed and, optionally, a ramp: constant, accelerating from the start,
-decelerating into the target, or both. The walk ends when the character is within one frame's
-travel of its goal, measured flat on the ground for a walker and in three dimensions for a flier.
+decelerating into the target, or both. The walk ends when the character is within the distance it
+covers in a thirtieth of a second (one frame at 30 fps, two at 60 fps), measured flat on the ground
+for a walker and in three dimensions for a flier.
 
 A cutscene, a conversation or any script that takes an actor interrupts whatever it was doing,
 and when the script ends the actor goes back to its walk. It can, because every steerable
@@ -141,7 +143,7 @@ context's `+0xD0`, `0x0026A640` keeps the raw speed at `+0x7C`, `0x0026AE30` sto
 `0x0026AE90(actor, mode)` collapses modes 2-4 to 1 when `+0x2C` is exactly 0.0, stores the mode at
 `+0x29`, and for mode 0 clears actor byte `+0x0D` bit `0x10`, cancels (`0x002E55C0`: `+0x29` = 0,
 `0x0026C120(actor, 0)` when `+0x28 & 0x7F` is 2, `+0x24` and the context's `+0xD0` zeroed) and zeroes
-`+0x7C`. It has 13 direct call sites; only the two move handlers hand in a non-zero mode, and
+`+0x7C`. It has 14 direct call sites; only the two move handlers hand in a non-zero mode, and
 `movecancel`, `ucmovecancel`, the `setpos` family, `setposparty`, the push and the actor teardown
 `0x002693D0` (twice) all hand in 0.
 
@@ -181,11 +183,12 @@ While `+0x29` is non-zero the wait resolver `0x0025DF00` re-issues `0x0026D6F0(a
    `+0xD0` are zeroed again.
 
 The classical `v = sqrt(2 a d)` with `a` floored in keeps a stopping distance from going negative;
-the arrival scale makes a 60 fps walk end one frame earlier in distance than a 30 fps one.
+at 60 fps the arrival scale `[0x01DFE0B8]` is 2.0 and the speed is halved by `[0x01DFE0BC]`, so a walk
+ends at the same distance from its goal at either frame rate: two 60 fps frames out, one 30 fps frame.
 
 ### The movement mode and the turn direction
 
-`0x0026C120(actor, mode)`, 28 direct call sites, reads the old mode byte `+0x28`, stores the new one and:
+`0x0026C120(actor, mode)`, 29 direct call sites in 28 functions, reads the old mode byte `+0x28`, stores the new one and:
 
 - mode 0: when `+0x65` is set, `0x002EBE50(actor, 0, 0)` and `0x002E8EE0(actor)`; then
   `0x002E6300(actor, context, old)`, which returns `+0x64` when the old mode had bit `0x80`;
@@ -305,54 +308,54 @@ Movement context (actor `+0xB8`), class 3:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x030` | `f32[4]` | start snapshot of the position (0x0026AF10) |  |
-| `+0x038` | `f32` | heading of a class-1 object (also +0x48) |  |
-| `+0x098` | `f32` | untimed-turn frame scales by resume shape | with `+0x9C` |
-| `+0x09C` | `f32` | untimed-turn frame scales by resume shape | with `+0x98` |
+| `+0x030` | `f32[4]` |  | start snapshot of the position (`0x0026AF10`) |
+| `+0x038` | `f32` |  | heading of a class-1 object (also `+0x48`) |
+| `+0x098` | `f32` |  | untimed-turn frame scales by resume shape; with `+0x9C` |
+| `+0x09C` | `f32` |  | untimed-turn frame scales by resume shape; with `+0x98` |
 | `+0x0A0` | `f32` | pitch |  |
 | `+0x0A4` | `f32` | desired heading (yaw) |  |
 | `+0x0A8` | `f32` | facing |  |
 | `+0x0AC` | `f32` | facing aux (pitch lane of the render triple) |  |
-| `+0x0B4` | `f32` | steer channel heading mirror |  |
+| `+0x0B4` | `f32` |  | steer channel heading mirror |
 | `+0x224` | `f32` | steer channel pitch mirror |  |
-| `+0x0DC` | `u8` | slot selector 0 or 1 |  |
+| `+0x0DC` | `u8` |  | slot selector 0 or 1 |
 | `+0x0F0` | `void*` | cursor to the selected slot |  |
-| `+0x120` | `SteeringRecord` | slot 0, 0x80 bytes |  |
-| `+0x1A0` | `SteeringRecord` | slot 1, 0x80 bytes |  |
+| `+0x120` | `SteeringRecord` |  | slot 0, `0x80` bytes |
+| `+0x1A0` | `SteeringRecord` |  | slot 1, `0x80` bytes |
 
 Struct SteeringRecord size=`0x80`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[4]` | target position {x, y, z, 1.0}, or {ordinal, manager} for an actor target |  |
+| `+0x00` | `f32[4]` |  | target position {x, y, z, 1.0}, or {ordinal, manager} for an actor target |
 | `+0x10` | `f32[3]` | resume parameters |  |
 | `+0x1C` | `u32` | resume target handle |  |
-| `+0x20` | `f32` | reach (setreachr) |  |
+| `+0x20` | `f32` |  | reach (setreachr) |
 | `+0x24` | `f32` | requested speed, scaled |  |
-| `+0x28` | `u8` | movement mode (bit 0x80 = untimed turn) |  |
+| `+0x28` | `u8` |  | movement mode (bit `0x80` = untimed turn) |
 | `+0x29` | `u8` | steering mode 0-4 |  |
-| `+0x2A` | `u8` | target kind 0 position, 1 actor |  |
+| `+0x2A` | `u8` |  | target kind 0 position, 1 actor |
 | `+0x2B` | `u8` | configured ramp mode (setaccr) |  |
-| `+0x2C` | `f32` | ramp acceleration, scaled; 0.0 collapses modes 2-4 to 1 |  |
-| `+0x34` | `f32` | target heading |  |
+| `+0x2C` | `f32` |  | ramp acceleration, scaled; 0.0 collapses modes 2-4 to 1 |
+| `+0x34` | `f32` |  | target heading |
 | `+0x38` | `f32` | turn start heading |  |
-| `+0x3C` | `f32` | spin rate (mode 1) |  |
-| `+0x50` | `f32` | yaw approach cap (0x002E5B60) |  |
+| `+0x3C` | `f32` |  | spin rate (mode 1) |
+| `+0x50` | `f32` |  | yaw approach cap (`0x002E5B60`) |
 | `+0x54` | `f32` | pitch approach cap |  |
-| `+0x58` | `f32` | turn step, pi/20 (0x002E5B90) |  |
+| `+0x58` | `f32` |  | turn step, pi/20 (`0x002E5B90`) |
 | `+0x5C` | `f32` | pi, never read |  |
-| `+0x60` | `i16` | steer channel frames |  |
-| `+0x62` | `u8` | flags: mask 0x7 shape, mask 0x38 selector, bit 0x40 direction, bit 0x80 initiator |  |
-| `+0x63` | `u8` | steer arm state |  |
+| `+0x60` | `i16` |  | steer channel frames |
+| `+0x62` | `u8` |  | flags: mask `0x7` shape, mask `0x38` selector, bit `0x40` direction, bit `0x80` initiator |
+| `+0x63` | `u8` |  | steer arm state |
 | `+0x64` | `u8` | returned by 0x002E6300 |  |
 | `+0x65` | `u8` | turn lock (0x0026A18D; read at 0x002692A8 and by the teardown) |  |
-| `+0x66` | `i16` | curve / total frames |  |
-| `+0x68` | `i16` | turn frames |  |
-| `+0x6A` | `u8` | bit 0x1 one-shot latch |  |
-| `+0x6C` | `f32` | initiator turn step |  |
-| `+0x70` | `f32` | steer target heading |  |
-| `+0x74` | `f32` | steer target pitch |  |
-| `+0x78` | `f32` | turn frame index |  |
+| `+0x66` | `i16` |  | curve / total frames |
+| `+0x68` | `i16` |  | turn frames |
+| `+0x6A` | `u8` |  | bit `0x1` one-shot latch |
+| `+0x6C` | `f32` |  | initiator turn step |
+| `+0x70` | `f32` |  | steer target heading |
+| `+0x74` | `f32` |  | steer target pitch |
+| `+0x78` | `f32` |  | turn frame index |
 | `+0x7C` | `f32` | raw move speed (re-armed each frame) |  |
 
 ## Shipped data
@@ -363,7 +366,7 @@ Struct SteeringRecord size=`0x80`:
 | `0x3C0EFA35` | pi/360, half a degree | the integrator's floor on the step |
 | `1.0471976` | pi/3 | the untimed turn's threshold between a body turn and an animation turn |
 | `0x02164200` | 3.0 at run time | the near-flag multiple of the requested speed |
-| `0x01DFE0B4`, `0x01DFE0B8`, `0x01DFE0BC` | 1, 1.0, 1.0 | the time base, the arrival scale, the speed and acceleration scale |
+| `0x01DFE0B4`, `0x01DFE0B8`, `0x01DFE0BC` | 1, 1.0, 1.0 at 30 fps; 2, 2.0, 0.5 at 60 fps ([game settings](../Saving-Loading-And-Settings/game-settings.md)) | the time base, the arrival scale, the speed and acceleration scale |
 
 In the shipped scripts `setaccr` is called twice in the whole corpus, so almost every scripted move
 runs in ramp mode 1.
@@ -383,7 +386,7 @@ replays the saved walk by its shape.
 ## State
 
 The context's angles, mirrors and selector; the two steering records; actor bytes `+0x0D` bits `0x10`
-and 5, `+0x0B` bits `0x8` and `0x10` and `+0x1C` bit `0x20000`; the render record's `+0x124`, `+0x284`, `+0x290` and
+and `0x20`, `+0x0B` bits `0x8` and `0x10` and `+0x1C` bit `0x20000`; the render record's `+0x124`, `+0x284`, `+0x290` and
 its staged triple; the globals `0x02164200` and `0x02099DB4`.
 
 ## Modding notes
@@ -395,8 +398,8 @@ its staged triple; the globals `0x02164200` and `0x02099DB4`.
   Call `setaccr` before the move for a ramp.
 - `+0x5C` is a dead store; `+0x58` is both the per-frame cap and the divisor of the untimed turn's
   frame count.
-- Mode 4's end depends on the Frame Rate setting through `[0x01DFE0B4]`, and a 60 fps walk arrives
-  one frame earlier in distance.
+- Mode 4's frame count is doubled at 60 fps through `[0x01DFE0B4]` and `[0x01DFE0BC]`, so a timed turn
+  keeps its length in seconds; a walk ends at the same distance from its goal at either frame rate.
 - Writing the selector `+0xDC` directly switches slots; a value above 1 keeps the old cursor.
   Copying `+0x120` over `+0x1A0` copies a whole steering state.
 - A look-at (shapes 2 and 3) is not resumed by the pop; only a walk (shapes 0 and 1) is.
@@ -408,3 +411,18 @@ its staged triple; the globals `0x02164200` and `0x02099DB4`.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the resolver that calls the integrator.
 - [Actor record](../Characters-And-Objects/actor-record.md): the class byte and the contexts.
 - [The staged look command](../Graphics/character-rig-and-look.md): the head requests.
+- [`facing-and-steering-steering-record-accesses.tsv`](facing-and-steering-steering-record-accesses.tsv): every
+  censused access to the two steering records (`SteeringRecord`) of the movement context, one row per instruction
+  (186 rows).
+
+The access table has one row per instruction:
+
+- `function`, `name` and `site`: the function, its name and the instruction's address;
+- `disp`: the offset the instruction reaches from the start of a steering record;
+- `kind`: a read (`r`), a write (`w`), both (`rw`) or the address taken (`addr`); `instruction`: the instruction
+  itself;
+- `route`: how the record was reached: `chain:0xB8,0xF0` from the actor through its movement context at `+0xB8` and
+  the context's cursor `+0xF0`, `chain:0xF0` from the context through the cursor, and `ctor` the context initialiser
+  writing a slot directly;
+- `note`: for a `ctor` row the slot written, otherwise the kind of record the function's argument holds where the
+  census resolved it.

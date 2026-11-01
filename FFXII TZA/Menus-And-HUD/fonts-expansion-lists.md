@@ -7,7 +7,7 @@ addresses: "0x001B4C00, 0x001B6030, 0x001FDB90, 0x001FDB50, 0x00674A00, 0x001B63
 
 ## What it lists
 
-`fonts-expansion-lists.tsv` holds one line for each value of the 14 `.fex` files: 127,031 values in 127,070 lines,
+[`fonts-expansion-lists.tsv`](fonts-expansion-lists.tsv) holds one line for each value of the 14 `.fex` files: 127,031 values in 127,070 lines,
 because each of the 39 lists that hold no value has one line of its own. The reader `0x001B4C00` (through `0x001B6030`)
 adds each list for its key with `0x001FDB90` and writes value i with `0x001FDB50`; `0x001E9860` then draws glyph
 `list[index]` for text whose key has a list, as [Fonts](fonts.md) describes. The lines keep the file order.

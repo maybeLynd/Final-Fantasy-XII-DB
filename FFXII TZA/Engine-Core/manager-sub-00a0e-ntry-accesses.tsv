@@ -1,0 +1,52 @@
+function	name	site	disp	kind	instruction	route	note
+0x00202B70	FUN_00202b70	0x00202B86	0x0	w	movups xmmword ptr [rbx], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 exposed	
+0x00202C90	FUN_00202c90	0x00202C93	0x0	w	movups xmmword ptr [rcx], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 exposed	
+0x00202D80	FUN_00202d80	0x00202D84	0x0	r	movss xmm0, dword ptr [rdx]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x00202D80	FUN_00202d80	0x00202DC9	0x0	w	movups xmmword ptr [rcx], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x00203080	FUN_00203080	0x00203084	0x0	r	movss xmm0, dword ptr [rdx]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 exposed	
+0x00270260	FUN_00270260	0x0027029C	0x0	w	movss dword ptr [rcx], xmm1	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F8C70	FUN_003f8c70	0x003F8CB3	0x0	addr	lea rdx, [rdi + 0x20]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x-20	
+0x003F9390	FUN_003f9390	0x003F9534	0x0	addr	lea rdi, [rsi + 0x20]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x-20	
+0x00202D80	FUN_00202d80	0x00202D8D	0x4	r	movss xmm1, dword ptr [rdx + 4]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x00203080	FUN_00203080	0x0020308D	0x4	r	movss xmm1, dword ptr [rdx + 4]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 exposed	
+0x00270260	FUN_00270260	0x002702B3	0x4	w	movss dword ptr [rcx + 4], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x00202D80	FUN_00202d80	0x00202D9D	0x8	r	movss xmm0, dword ptr [rdx + 8]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x00203080	FUN_00203080	0x0020309D	0x8	r	movss xmm0, dword ptr [rdx + 8]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 exposed	
+0x00270260	FUN_00270260	0x002702D2	0x8	w	movss dword ptr [rcx + 8], xmm2	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x00202D80	FUN_00202d80	0x00202DAE	0xC	r	movss xmm1, dword ptr [rdx + 0xc]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x00203080	FUN_00203080	0x002030AE	0xC	r	movss xmm1, dword ptr [rdx + 0xc]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 exposed	
+0x00270260	FUN_00270260	0x002702CB	0xC	w	mov dword ptr [rcx + 0xc], 0x3f800000	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F0133	0xC	w	mov dword ptr [rbx + 0xc], 0x3f800000	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F95B1	0xC	w	mov dword ptr [rdi + 0xc], 0x3f000000	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F0162	0x10	w	movups xmmword ptr [rbx + 0x10], xmm1	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F95E9	0x20	w	mov qword ptr [rdi + 0x20], rdx	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F95F0	0x28	w	mov qword ptr [rdi + 0x28], 6	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x00202C90	FUN_00202c90	0x00202C93	0x30	w	movups xmmword ptr [rcx], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x30 exposed	
+0x003F9390	FUN_003f9390	0x003F95E1	0x30	addr	lea rcx, [rdi + 0x30]	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9629	0x40	w	mov dword ptr [rdi + 0x40], 0xff	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9630	0x44	w	mov dword ptr [rdi + 0x44], 0xff	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9637	0x48	w	mov dword ptr [rdi + 0x48], 0xff	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9623	0x4C	w	mov dword ptr [rdi + 0x4c], ebx	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F963E	0x50	w	mov dword ptr [rdi + 0x50], 0xbe800000	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9645	0x54	w	mov dword ptr [rdi + 0x54], 0xbe800000	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F964C	0x58	w	mov dword ptr [rdi + 0x58], 0x3e800000	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9653	0x5C	w	mov dword ptr [rdi + 0x5c], 0x3e800000	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F011F	0x60	w	movss dword ptr [rbx + 0x60], xmm6	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F1230	FUN_003f1230	0x003F126A	0x60	w	movss dword ptr [rbx + 0x60], xmm7	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F0111	0x64	w	movss dword ptr [rbx + 0x64], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F1230	FUN_003f1230	0x003F125E	0x64	w	movss dword ptr [rbx + 0x64], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F012E	0x68	w	movss dword ptr [rbx + 0x68], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F1230	FUN_003f1230	0x003F1279	0x68	w	movss dword ptr [rbx + 0x68], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F0124	0x6C	w	movss dword ptr [rbx + 0x6c], xmm6	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F1230	FUN_003f1230	0x003F126F	0x6C	w	movss dword ptr [rbx + 0x6c], xmm7	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F0147	0x70	w	movups xmmword ptr [rbx + 0x70], xmm0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F013A	0x80	w	mov dword ptr [rbx + 0x80], eax	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F1290	FUN_003f1290	0x003F1292	0xD0	w	mov qword ptr [rdx + 0xd0], rax	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 zeroclear	
+0x003F1290	FUN_003f1290	0x003F1299	0xD8	w	mov qword ptr [rdx + 0xd8], rax	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 zeroclear	
+0x003F1290	FUN_003f1290	0x003F12BC	0xD8	w	mov qword ptr [rdx + 0xd8], rax	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0 zeroclear	
+0x003F9390	FUN_003f9390	0x003F9661	0xE0	w	mov qword ptr [rdi + 0xe0], rax	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9668	0xE8	w	mov word ptr [rdi + 0xe8], r10w	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F0152	0xEC	w	mov dword ptr [rbx + 0xec], 0xffffffff	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9610	0xEC	w	mov dword ptr [rdi + 0xec], eax	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F00F0	FUN_003f00f0	0x003F015C	0xF0	w	mov dword ptr [rbx + 0xf0], eax	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	
+0x003F9390	FUN_003f9390	0x003F9606	0xF0	w	mov dword ptr [rdi + 0xf0], 0	route-seeded EMBED ManagerSub0209BE80_00A0 +0x20 stride=0x100 count=64 base+0x0	

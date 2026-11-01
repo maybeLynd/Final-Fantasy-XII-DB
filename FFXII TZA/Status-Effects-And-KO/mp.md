@@ -85,7 +85,7 @@ for everyone else (`0x002FB752`-`0x002FB7FE`). A damage of 0 gives 0.
 ### Rich areas
 
 Both gain functions triple their result when the area's MP regime `0x00377BA0` is 2 or 3 (`0x002F9220`-`0x002F9234`,
-`0x002F93C2`-`0x002F93D6`). The regime is bits 12-13 of the area's field word, or a value from the save that
+`0x002F93C2`-`0x002F93D6`). The regime is the field `0x3000` of the area's field word, or a value from the save that
 replaces it ([Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
 ### MP from walking

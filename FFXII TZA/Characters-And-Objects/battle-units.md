@@ -76,12 +76,12 @@ unit.
 ### The handle
 
 `0x003589B0(actor)` encodes an actor as `((actor u16 +0x16 & 0x7FF) << 20) | ((actor u8 +0x15 & 0xF) << 16) | actor u16 +0x00`:
-the low word is the record's index in its manager, bits 16-19 the manager slot, bits 20-30 the
+the low word is the record's index in its manager, mask `0xF0000` the manager slot, mask `0x7FF00000` the
 record's discriminator. `0x002659D0(actor)` advances the discriminator as `(old + 1) & 0x7FF`, with 0
 replaced by 1, so it runs over 1 to 2047 and a handle taken before the advance stops resolving.
 
-`0x003588B0(handle)` decodes it: 0 gives null; a selector of 5 or more gives null; the manager
-`0x02098E10 + selector * 0x288` must have a record pool (`+0x08`) and a payload (`+0x00`), the index
+`0x003588B0(handle)` decodes it: 0 gives null; a manager slot of 5 or more gives null; the manager
+`0x02098E10 + slot * 0x288` must have a record pool (`+0x08`) and a payload (`+0x00`), the index
 must be below the slot's `+0x20` and the pool's own count, the slot's `+0x10` bit `0x1` must be set, the
 entry must be non-null and the actor's full word `+0x16` must equal the discriminator. `0x0031B7E0`
 then returns that actor's unit `+0x30` (`0x00263E30`) when `0x02089340` bit `0x10` is set; `0x0031B760(actor)`
@@ -124,7 +124,7 @@ the actor and returns. Otherwise:
 
 ### The actor class
 
-Bits 5-7 of the actor's byte `+0x03` are its class, and bits 0-3 of byte `+0x0E` are a separate
+The bits under mask `0xE0` of the actor's byte `+0x03` are its class, and the bits under mask `0xF` of byte `+0x0E` are a separate
 nibble (`0x00263C20`). The class decides what code accepts the actor:
 
 | Class | Test | Examples |
@@ -245,7 +245,7 @@ Globals:
 | `0x0208E6A0` | `i32` | the slot count, 32 | `0x002368D0` |
 | `0x0208E690` | `u8*` | btlKeepCharWork1 | `0x002368D0` |
 | `0x0208E698` | `u8*` | btlKeepCharWork2 | `0x002368D0` |
-| `0x02089340` | `u32` | zeroed by 0x002368D0; bit 0x10 gates 0x0031B7E0 |  |
+| `0x02089340` | `u32` |  | zeroed by `0x002368D0`; bit `0x10` gates `0x0031B7E0` |
 
 ### The flag word
 
@@ -315,7 +315,7 @@ Other writers that apply a mask held in a register are not in the table: among t
 ## Related
 
 - [Field runtime](field-runtime.md): the frame callback a bound unit gets.
-- [Actor managers](actor-managers.md): the manager slots the handle's selector names.
+- [Actor managers](actor-managers.md): the manager slot a handle names.
 - [The actor record](actor-record.md): the actor side of the link.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md): the record at `+0x698`.
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn record the release writes.

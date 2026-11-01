@@ -7,7 +7,7 @@ addresses: "0x02EBF040, 0x0031C5D0, 0x002FEF30, 0x002F95D0, 0x002F8410, 0x00387F
 
 ## What it lists
 
-`augment-list.tsv` holds one line for each of the 129 rows of the augment table that registry slot `0x02EBF040`
+[`augment-list.tsv`](augment-list.tsv) holds one line for each of the 129 rows of the augment table that registry slot `0x02EBF040`
 reaches (`battle_pack.bin` directory entry `+0xEC`). Row *n* is augment id *n*, the id whose bit
 [Augments](augments.md) sets in a unit's two augment layers.
 

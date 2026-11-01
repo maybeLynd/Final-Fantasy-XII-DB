@@ -258,7 +258,7 @@ and are not tracked per manager. Section 14 is only stored; `0x0032F1B0` binds i
 | 12 to 15 | `0x0032FCA0`, per companion request | their completions `0x00331760`, `0x003302B0`, `0x003317C0`, `0x00331820` |
 | 17 | `0x00330310` | the end of the walk (`0x00330696`) |
 
-The other handlers clear bits 4 to 8, 10, 11 and 16, which nothing on this route sets. Every
+The other handlers clear the bits under mask `0x10DF0`, which nothing on this route sets. Every
 clearer applies the same rule: when the word without bit `0x1` becomes zero it clears the record's
 `+0x11` bit `0x8`; when the whole word goes from non-zero to zero it runs `0x0032F1B0(manager)`.
 

@@ -144,7 +144,8 @@ next call tries again.
 
 ### Big blocks at boot
 
-Start-up takes eleven blocks, about 257 MiB, through `0x0036D240`, which sign-extends a 32-bit size
+Start-up takes eleven blocks, `0x10120930` bytes in all (269,617,456, 257.13 MiB), through `0x0036D240`, which
+sign-extends a 32-bit size
 and jumps to the `malloc` stub; nine of them become arenas 2 to 9 and 11. The block table, the slot
 counts and the registrar are on the [start-up constants](../Engine-Core/startup-constants.md)
 page, and what an arena does with its block is on the
@@ -313,27 +314,31 @@ Actor pool block:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | n, the record count |  |
-| `+0x08` | `void*` | record pointers, n entries | +header           -    manager `+0x1F0` points here +2*header         -    records, each round16(size) bytes, in row order |
+| `+0x00` | `u32` |  | n, the record count |
+| `+0x08` | `void*` |  | record pointers, n entries +header           -    manager `+0x1F0` points here +2*header         -    records, each round16(size) bytes, in row order |
 
 Ring buffer (`0x006CC5A0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x08` | `void*` | block | from the alloc argument |
-| `+0x10` | `u32` | size + 0x10 | the dword at block + this value is zeroed |
-| `+0x14` | `u32` | 0 | `+0x28`, `+0x38`               two objects set up by `0x005CD0E0`(p, 1) |
-| `+0x4C` | `u32` | size + 0x20 |  |
-| `+0x58` | `void*` | release function |  |
+| `+0x10` | `u32` |  | size + `0x10`; the dword at block + this value is zeroed |
+| `+0x14` | `u32` |  | value 0 |
+| `+0x28` | `-` | object | set up by `0x005CD0E0`(this + `0x28`, 1) |
+| `+0x30` | `u8` |  | value 1: stored after `+0x28` is set up |
+| `+0x38` | `-` | object | set up by `0x005CD0E0`(this + `0x38`, 1) |
+| `+0x40` | `u8` |  | value 1: stored after `+0x38` is set up |
+| `+0x4C` | `u32` |  | size + `0x20` |
+| `+0x58` | `void*` |  | release function |
 
 Static block `0x01F2EA70`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*[6]` | registry tree head, self-pointing when empty; root at +0x18 (0x01F2EA88). The guarded initialiser, | inlined in `0x00675460`, `0x00676450`, `0x00676A70`, `0x00676BD0` and `0x00677BA0`, sets all six, `0x01F2EA70` to `0x01F2EA98`, to `0x01F2EA70` (`0x006754F2`-`0x00675515` in `0x00675460`). The reference census and the accesses table find reads of the root only: `0x00676A70` (`0x00676B2C`) and the tree functions through `+0x18` (the six: `0x01F2EA70`, `0x01F2EA78`, `0x01F2EA80`, `0x01F2EA88`, `0x01F2EA90`, `0x01F2EA98`) |
-| `+0x30` | `u64` | 2, the line-terminator length read by 0x00677030 |  |
-| `+0x38` | `void*` | 0x00584740, allocate 16-byte aligned |  |
-| `+0x40` | `void*` | 0x00584730, aligned free |  |
+| `+0x00` | `void*[6]` |  | registry tree head, self-pointing when empty; root at `+0x18` (`0x01F2EA88`). The guarded initialiser, inlined in `0x00675460`, `0x00676450`, `0x00676A70`, `0x00676BD0` and `0x00677BA0`, sets all six, `0x01F2EA70` to `0x01F2EA98`, to `0x01F2EA70` (`0x006754F2`-`0x00675515` in `0x00675460`). The reference census and the accesses table find reads of the root only: `0x00676A70` (`0x00676B2C`) and the tree functions through `+0x18` (the six: `0x01F2EA70`, `0x01F2EA78`, `0x01F2EA80`, `0x01F2EA88`, `0x01F2EA90`, `0x01F2EA98`) |
+| `+0x30` | `u64` |  | 2, the line-terminator length read by `0x00677030` |
+| `+0x38` | `void*` |  | `0x00584740`, allocate 16-byte aligned |
+| `+0x40` | `void*` |  | `0x00584730`, aligned free |
 
 The file cache manager's other fields are on the
 [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md) page.

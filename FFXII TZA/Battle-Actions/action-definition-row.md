@@ -40,7 +40,7 @@ offsets from the start of the file: `0x00238850` passes the file to `0x003846F0`
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | helpId | help text id; 4000 = none (`0x0031C5D0` at `0x0031DBB1`, through `0x002F9860`) |
+| `+0x00` | `u16` | helpId | help text id; 4000 = no help text (`0x0031C5D0` at `0x0031DBB1`, through `0x002F9860`) |
 | `+0x02` | `u8` | rangeNear | near range band, tenths; used when `+0x0C` bit `0x4000000` is clear (`0x00320D70`) |
 | `+0x03` | `u8` | rangeMiddle | middle range band, tenths (`0x00320D70`) |
 | `+0x04` | `u8` | knockback | knockback chance base (`0x00388B50` at `0x00388BE6`) |
@@ -170,43 +170,43 @@ The battle menu's list builder `0x0031EB20` reads the lists ([Battle menu](../Me
 
 ### The element byte
 
-Bit *n* of `+0x13` is one element; no shipped row sets more than one:
+Each bit of `+0x13` is one element; no shipped row sets more than one:
 
 | Bit | Rows | Examples |
 |---:|---:|---|
-| `0` | 19 | Fire, Fira, Firaga |
-| `1` | 11 | Thunder, Thundara |
-| `2` | 10 | Blizzard, Blizzara |
-| `3` | 8 | Quakeja, Tremor |
-| `4` | 13 | Aqua, Aquara |
-| `5` | 13 | Aero, Aeroga |
-| `6` | 9 | Holy, Holyja |
-| `7` | 13 | Dark, Darkra |
+| `0x1` | 19 | Fire, Fira, Firaga |
+| `0x2` | 11 | Thunder, Thundara |
+| `0x4` | 10 | Blizzard, Blizzara |
+| `0x8` | 8 | Quakeja, Tremor |
+| `0x10` | 13 | Aqua, Aquara |
+| `0x20` | 13 | Aero, Aeroga |
+| `0x40` | 9 | Holy, Holyja |
+| `0x80` | 13 | Dark, Darkra |
 
 ### The flag word at +0x0C
 
 | Bit | Rows | Effect (reader) |
 |---:|---:|---|
-| `0`, `2`, `3` | 71, 341, 416 | the user, allies and foes can be targeted ([Target selection](target-selection.md); `0x003230E0`, `0x0031EB20`) |
-| `1` | 13 | the area is the whole party ([Area of effect](area-of-effect.md); `0x0030D461`) |
-| `4` | 32 | sets bit `0x400` of the command entry (`0x0031F0A4`-`0x0031F0AF`) |
-| `5`, `6` | 22, 103 | how the target list is built ([Target selection](target-selection.md); `0x00322BD5`-`0x00322BED`) |
-| `8`, `9` | 186, 378 | copied to the query record's `+0x20` (`0x0031DB9E`-`0x0031DBA7`) |
-| `11` | 57 | clears bit `0x20` of the result's byte `+0` (`0x00386079`); also read by `0x0031AA30` (`0x0031AB02`) |
-| `12` | 18 | the shape reader reports the whole party or no area, whatever the radius (`0x0031A990`) |
-| `13` | 162 | magick class: a target with augment 56 (Magick-Immunity) voids it as result kind 7 (`0x00390EE5`, `0x003910C3`); no charge time under augment 54 (Swiftcast) (`0x002F8689`) |
-| `14` | 207 | physical class: augment 55 (Physical-Immunity) voids it as result kind 7 (`0x00390E9A`, `0x00391076`) |
-| `16` | 78 | Reflect (status 23) bounces it: result kind 8 and a new target from `0x00384F40` (`0x00390D7F`, `0x00390DF1`-`0x00390E42`) |
-| `17` | 28 | runs the special-guard roll (`0x00388058`) |
-| `19` | 97 | Silence blocks it (`0x002FFE56`, [Command availability](command-availability.md)) |
-| `21` | 26 | the area is centred on the user ([Area of effect](area-of-effect.md); `0x0030D271`) |
-| `24`, `25` | 49, 5 | the area is a cone or a line ([Area of effect](area-of-effect.md); `0x0030D2C0`) |
-| `26` | 35 | the weapon's reach and range bands replace the row's ([Action range](action-range.md); `0x00309377`, `0x00320D74`, `0x00390C7F`) |
-| `27` | 1 | the charge base comes from the weapon row's `+0x27` (`0x002F8494`, [Action phases](action-phases.md)) |
-| `28` | 36 | changes the command entry (`0x0031F0EF`, `0x0031F157`) |
-| `29` | 112 | the command entry carries a cost (`0x0031F000`) |
-| `30` | 87 | runs a scene: summon, Quickening, Concurrence ([Quickenings and summons](quickenings-and-summons.md); 17 sites, `0x00304D3F` among them) |
-| `31` | 64 | consumes an item: the command entry carries the item count (`0x0031F077`) |
+| `0x1`, `0x4`, `0x8` | 71, 341, 416 | the user, allies and foes can be targeted ([Target selection](target-selection.md); `0x003230E0`, `0x0031EB20`) |
+| `0x2` | 13 | the area is the whole party ([Area of effect](area-of-effect.md); `0x0030D461`) |
+| `0x10` | 32 | sets bit `0x400` of the command entry (`0x0031F0A4`-`0x0031F0AF`) |
+| `0x20`, `0x40` | 22, 103 | how the target list is built ([Target selection](target-selection.md); `0x00322BD5`-`0x00322BED`) |
+| `0x100`, `0x200` | 186, 378 | copied to the query record's `+0x20` (`0x0031DB9E`-`0x0031DBA7`) |
+| `0x800` | 57 | clears bit `0x20` of the result's byte `+0` (`0x00386079`); also read by `0x0031AA30` (`0x0031AB02`) |
+| `0x1000` | 18 | the shape reader reports the whole party or no area, whatever the radius (`0x0031A990`) |
+| `0x2000` | 162 | magick class: a target with augment 56 (Magick-Immunity) voids it as result kind 7 (`0x00390EE5`, `0x003910C3`); no charge time under augment 54 (Swiftcast) (`0x002F8689`) |
+| `0x4000` | 207 | physical class: augment 55 (Physical-Immunity) voids it as result kind 7 (`0x00390E9A`, `0x00391076`) |
+| `0x10000` | 78 | Reflect (status 23) bounces it: result kind 8 and a new target from `0x00384F40` (`0x00390D7F`, `0x00390DF1`-`0x00390E42`) |
+| `0x20000` | 28 | runs the special-guard roll (`0x00388058`) |
+| `0x80000` | 97 | Silence blocks it (`0x002FFE56`, [Command availability](command-availability.md)) |
+| `0x200000` | 26 | the area is centred on the user ([Area of effect](area-of-effect.md); `0x0030D271`) |
+| `0x1000000`, `0x2000000` | 49, 5 | the area is a cone or a line ([Area of effect](area-of-effect.md); `0x0030D2C0`) |
+| `0x4000000` | 35 | the weapon's reach and range bands replace the row's ([Action range](action-range.md); `0x00309377`, `0x00320D74`, `0x00390C7F`) |
+| `0x8000000` | 1 | the charge base comes from the weapon row's `+0x27` (`0x002F8494`, [Action phases](action-phases.md)) |
+| `0x10000000` | 36 | changes the command entry (`0x0031F0EF`, `0x0031F157`) |
+| `0x20000000` | 112 | the command entry carries a cost (`0x0031F000`) |
+| `0x40000000` | 87 | runs a scene: summon, Quickening, Concurrence ([Quickenings and summons](quickenings-and-summons.md); 17 sites, `0x00304D3F` among them) |
+| `0x80000000` | 64 | consumes an item: the command entry carries the item count (`0x0031F077`) |
 
 Bits `0x2000` and `0x4000` are also copied into the kind-10 AI operand mask as its bits `0x100` and `0x200` (`0x00312213`-`0x00312232`).
 Bits `0x80`, `0x400`, `0x8000`, `0x40000` and `0x100000` are set on 324, 292, 24, 1 (Attack) and 81 rows and are read by no instruction.
@@ -220,14 +220,14 @@ No shipped row sets bits `0x400000` or `0x800000`.
 
 | Bit | Rows | Effect (reader) |
 |---:|---:|---|
-| `0`-`2` | 70 | a value 0-5; for kind-1 rows, values 0-4 pick which of five magick lists the row joins (`0x002376F0` at `0x002377FF`, `0x00237881`); 5 is only on row 81, `NOT USED` |
-| `3` | 21 | the user gains MP from the damage when it has augment 86 (Inquisitor) (`0x002F92C1`, `0x002F9323`) |
-| `4` | 40 | the user gains MP from the damage when it has augment 20 (Warmage) (`0x002F9330`-`0x002F937B`) |
-| `6`, `7` | 10, 2 | the action may target a KO or a Stone unit ([Target selection](target-selection.md); `0x002FFAF5`, `0x002FFB30`) |
-| `8` | 61 | the effect test of `0x0030CA80` is skipped (`0x0030CB71`) |
-| `10`, `11` | 195, 65 | the target wakes from Sleep and loses Confuse, or loses Invisible (`0x00390F20` at `0x00391112`, `0x00391192`) |
-| `13` | 98 | no License needed ([Command availability](command-availability.md); `0x00323F52`) |
-| `14` | 93 | returned by `0x0030BB30` for categories 1-8 (`0x0030BC0C`) |
+| `0x7` | 70 | a value 0-5; for kind-1 rows, values 0-4 pick which of five magick lists the row joins (`0x002376F0` at `0x002377FF`, `0x00237881`); 5 is only on row 81, `NOT USED` |
+| `0x8` | 21 | the user gains MP from the damage when it has augment 86 (Inquisitor) (`0x002F92C1`, `0x002F9323`) |
+| `0x10` | 40 | the user gains MP from the damage when it has augment 20 (Warmage) (`0x002F9330`-`0x002F937B`) |
+| `0x40`, `0x80` | 10, 2 | the action may target a KO or a Stone unit ([Target selection](target-selection.md); `0x002FFAF5`, `0x002FFB30`) |
+| `0x100` | 61 | the effect test of `0x0030CA80` is skipped (`0x0030CB71`) |
+| `0x400`, `0x800` | 195, 65 | the target wakes from Sleep and loses Confuse, or loses Invisible (`0x00390F20` at `0x00391112`, `0x00391192`) |
+| `0x2000` | 98 | no License needed ([Command availability](command-availability.md); `0x00323F52`) |
+| `0x4000` | 93 | returned by `0x0030BB30` for categories 1-8 (`0x0030BC0C`) |
 
 Bits `0x200`, `0x1000` and `0x8000` (3, 20 and 10 rows) are read through the whole word by the AI order selectors
 (`0x00303434`, `0x00303492`, `0x00308CF2`) and by `0x003851F0` and `0x003872D0` (`0x003852AB`, `0x00387382`).
@@ -235,19 +235,19 @@ Bits `0x200`, `0x1000` and `0x8000` (3, 20 and 10 rows) are read through the who
 Bit `0x20` is set on 227 rows and is read by no instruction. The 44 instructions that read the byte `+0x2C` or the
 word test or keep other bits: bits `0x7` (`0x002377FF`, `0x00237885`, `0x00300B3F`, `0x00317CFF`, `0x0031CDC2`, `0x0031EF87`,
 `0x0032A46F` among them), bits `0x8` and `0x10` (`0x002F9323`, `0x002F9377`), bits `0x40` and `0x80` (`0x002FFAF5`, `0x002FFB30`, `0x00322B67`,
-`0x00322B78` among them) and bits 8-15 (the word tests above, `0x0030847E`, `0x003084B8`, `0x00308CFB`, `0x00308D02`,
+`0x00322B78` among them) and the mask `0xFF00` (the word tests above, `0x0030847E`, `0x003084B8`, `0x00308CFB`, `0x00308D02`,
 `0x0030BC10`).
 
 ### The flag word at +0x36
 
 | Bit | Rows | Effect (reader) |
 |---:|---:|---|
-| `0` | 51 | the action adds statuses: `0x003875D0` returns the mask `+0x18` only with it set and bit `0x200` of `+0x2C` clear (`0x00387629`); the gambit target picker passes over a unit that already has them all ([Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md); `0x0030856F`) |
-| `1` | 26 | the action removes statuses: tested by `0x003872D0` (`0x00387331`); the gambit target picker passes over a unit that has none of them (`0x003084EF`) |
-| `2` | 2 | the area takes the side opposite the target (Self-Sacrifice, Self-Destruct; `0x0030D36C`) |
-| `3` | 1 | the area takes everyone (Mass-Destruct; `0x0030D36C`) |
-| `4` | 227 | when clear, one branch of the pre-resolution gates fails the result (`0x00390D55`-`0x00390D63`) |
-| `5` | 14 | the gambit target picker keeps a candidate whose byte `+0x55` is `0x0D` without testing what the action would change (`0x0030844B`-`0x00308457`) |
+| `0x1` | 51 | the action adds statuses: `0x003875D0` returns the mask `+0x18` only with it set and bit `0x200` of `+0x2C` clear (`0x00387629`); the gambit target picker passes over a unit that already has them all ([Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md); `0x0030856F`) |
+| `0x2` | 26 | the action removes statuses: tested by `0x003872D0` (`0x00387331`); the gambit target picker passes over a unit that has none of them (`0x003084EF`) |
+| `0x4` | 2 | the area takes the side opposite the target (Self-Sacrifice, Self-Destruct; `0x0030D36C`) |
+| `0x8` | 1 | the area takes everyone (Mass-Destruct; `0x0030D36C`) |
+| `0x10` | 227 | when clear, one branch of the pre-resolution gates fails the result (`0x00390D55`-`0x00390D63`) |
+| `0x20` | 14 | the gambit target picker keeps a candidate whose byte `+0x55` is `0x0D` without testing what the action would change (`0x0030844B`-`0x00308457`) |
 
 ## Shipped data
 

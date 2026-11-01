@@ -151,15 +151,15 @@ Descriptor:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x08` | `...` | directory handle |  |
+| `+0x08` | `...` |  | directory handle |
 | `+0x10` | `...` | directory | `0x20`-byte records, `+0x10` encoded bank address |
-| `+0x28` | `...` | bank blob |  |
-| `+0x30` | `...` | slot handle |  |
+| `+0x28` | `...` |  | bank blob |
+| `+0x30` | `...` |  | slot handle |
 | `+0x38` | `...` | slots | `0x10` each: `+0x00` s32 key, -1 empty; `+0x08` s32 next |
-| `+0x40` | `i32` | first slot |  |
-| `+0x48` | `i32` | row stride |  |
-| `+0x4C` | `u32` | bank shift |  |
-| `+0x50` | `u32` | row mask |  |
+| `+0x40` | `i32` |  | first slot |
+| `+0x48` | `i32` |  | row stride |
+| `+0x4C` | `u32` |  | bank shift |
+| `+0x50` | `u32` |  | row mask |
 | `+0x54` | `u32` | capacity |  |
 
 The shared name buffer is listed in

@@ -10,8 +10,10 @@ addresses: "0x02CB7FD0, 0x00162410, 0x005DC720, 0x005DC580, 0x005DC430, 0x008AB7
 The remaster draws things the PlayStation 2 original could not: depth of field that blurs the
 background, ambient occlusion in corners, image-based lighting on skin and metal, cascaded
 shadows, water with reflection and refraction, and a post-processing pass over the whole frame.
-None of those have a slider in the options menu. Their strengths were chosen by the developers
-with a controller in hand and shipped as numbers: each area's scene configuration sets some of
+The options menu can switch several of them on or off or pick a quality level ([game settings](../Saving-Loading-And-Settings/game-settings.md)),
+but none has a strength slider.
+
+Their strengths are shipped as numbers: each area's scene configuration sets some of
 them, a summon scene's own file can override the depth of field, and the rest stay at the
 values compiled into the game.
 
@@ -113,7 +115,7 @@ The same loaders write everything else somewhere other than the block, among oth
   `mMapChrUpwardDirLight*` at `0x01DFE198` / `0x01DFE19C`.
 
 `mEarlyWaterDraw` lands as `value == 1` (the loader's own `cmp` and `sete`) in the dword `0x01F7F504` (`0x00182FE0`, called at
-`0x001C9146`); its getter `0x0017FE20` is read by the frame-capture routine `0x0022B0B0`.
+`0x001C9146`); its getter `0x0017FE20` is read by the frame draw `0x0022B0B0` ([frame update order](frame-update-order.md)).
 
 ### The map-art context's keys
 
@@ -288,7 +290,7 @@ Neither `0x00214B50` nor `0x00214B90` bounds the slot. `0x00214B70`, called at t
 byte, and `0x00214B30` (from `0x001EC4B0`) the scene-reset byte.
 
 `0x00214C30(i)` runs with i = 0 from the main state machine (`0x0022A5C8`) and with i = 1 from the
-capture routine `0x0022B0B0` (`0x0022B127`). It refuses an i above 1 (`__report_rangecheckfailure`).
+frame draw `0x0022B0B0` (`0x0022B127`). It refuses an i above 1 (`__report_rangecheckfailure`).
 For a pending request of slot i it posts a command on the ordered command list `[0x01F7F5E8]`
 ([render command list](../Graphics/render-command-list.md)):
 
@@ -352,29 +354,29 @@ request stores its enable with `setne` and its focus or aperture with `movss` (`
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02CB7FD0` | `...` | the render settings object, 0x1028 bytes (constructor 0x005DC720) |  |
+| `0x02CB7FD0` | `...` |  | the render settings object, `0x1028` bytes (constructor `0x005DC720`) |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000-0x18F` | `...` | console-tunable floats, one shader constant each (graphics-settings.tsv) |  |
-| `+0x190-0x38F` | `...` | 8 x 64-byte shadow-map matrices (0x001F0AD0, per frame) |  |
-| `+0x390-0x434` | `...` | shadow scalars (0x001F0AD0, per frame); +0x3E4 the live slot count |  |
+| `+0x000-0x18F` | `...` |  | console-tunable floats, one shader constant each (graphics-settings.tsv) |
+| `+0x190-0x38F` | `...` |  | 8 x 64-byte shadow-map matrices (`0x001F0AD0`, per frame) |
+| `+0x390-0x434` | `...` |  | shadow scalars (`0x001F0AD0`, per frame); `+0x3E4` the live slot count |
 | `+0x42C` | `u8` | mMapEnableShadowFade |  |
-| `+0x438-0x444` | `...` | mMapShadowFadeSpeed, FadeRange, FlyingFadeSpeed, FlyingFadeRange |  |
-| `+0x450-0x470` | `...` | copied field by field into the snapshot; +0x460 the last slot's far plane (0x001EF6D0, per frame) |  |
-| `+0x478` | `...` | constant-buffer binding list (0x18-byte entries, kind byte at +2, 23 kinds) | with `+0x480` |
-| `+0x480` | `...` | constant-buffer binding list (0x18-byte entries, kind byte at +2, 23 kinds) | with `+0x478` |
+| `+0x438-0x444` | `...` |  | mMapShadowFadeSpeed, FadeRange, FlyingFadeSpeed, FlyingFadeRange |
+| `+0x450-0x470` | `...` |  | copied field by field into the snapshot; `+0x460` the last slot's far plane (`0x001EF6D0`, per frame) |
+| `+0x478` | `...` |  | constant-buffer binding list (`0x18`-byte entries, kind byte at +2, 23 kinds); with `+0x480` |
+| `+0x480` | `...` |  | constant-buffer binding list (`0x18`-byte entries, kind byte at +2, 23 kinds); with `+0x478` |
 | `+0x488` | `...` | stride |  |
-| `+0x498` | `...` | ring length |  |
+| `+0x498` | `...` |  | ring length |
 | `+0x4B0` | `...` | lock |  |
-| `+0x4D8` | `...` | slot index |  |
-| `+0x4E0` | `...` | two 0x598-byte snapshot slots; block image at slot +0x110 (= +0x5F0, +0xB88) | with `+0xA78` |
-| `+0xA78` | `...` | two 0x598-byte snapshot slots; block image at slot +0x110 (= +0x5F0, +0xB88) | with `+0x4E0` |
+| `+0x4D8` | `...` |  | slot index |
+| `+0x4E0` | `...` |  | two `0x598`-byte snapshot slots; block image at slot `+0x110` (= `+0x5F0`, `+0xB88`); with `+0xA78` |
+| `+0xA78` | `...` |  | two `0x598`-byte snapshot slots; block image at slot `+0x110` (= `+0x5F0`, `+0xB88`); with `+0x4E0` |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01F7F5F0` | `void*` | post-process parameter object = 0x01F81300 (0x4A8 bytes) |  |
-| `0x01F82EA8` | `void*` | shadow object = 0x01F812C8 (0xB08 bytes, ctor 0x001EF2D0) |  |
+| `0x01F7F5F0` | `void*` |  | post-process parameter object = `0x01F81300` (`0x4A8` bytes) |
+| `0x01F82EA8` | `void*` |  | shadow object = `0x01F812C8` (`0xB08` bytes, ctor `0x001EF2D0`) |
 
 Post-process parameter object (`0x01F81300`):
 
@@ -387,31 +389,31 @@ Post-process parameter object (`0x01F81300`):
 | `+0x110-0x120` | `...` | DOF |  |
 | `+0x17C` | `...` | contrast |  |
 | `+0x198` | `...` | EnableAO |  |
-| `+0x1C0` | `...` | SAO fade |  |
-| `+0x1DC` | `...` | HBAO fade |  |
+| `+0x1C0` | `...` |  | SAO fade |
+| `+0x1DC` | `...` |  | HBAO fade |
 | `+0x1E9` | `...` | AODepthFullRes |  |
-| `+0x334-0x33C` | `...` | motion blur |  |
-| `+0x4A2` | `u8` | linear tonemap |  |
+| `+0x334-0x33C` | `...` |  | motion blur |
+| `+0x4A2` | `u8` |  | linear tonemap |
 
 Shadow object (`0x01F812C8`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `...` | EnableShadow |  |
-| `+0x0EC-0x0F4` | `...` | ShadowValue R/G/B |  |
-| `+0x13C` | `...` | slot count |  |
-| `+0x148` | `...` | slot cameras, + n*0xD8 |  |
-| `+0x1C0` | `...` | matrices, + n*0xD8 |  |
+| `+0x0EC-0x0F4` | `...` | ShadowValue | R/G/B |
+| `+0x13C` | `...` |  | slot count |
+| `+0x148` | `...` |  | slot cameras, + n*`0xD8` |
+| `+0x1C0` | `...` |  | matrices, + n*`0xD8` |
 | `+0x82C` | `...` | decay | with `+0x830` |
 | `+0x830` | `...` | decay | with `+0x82C` |
-| `+0x848` | `...` | map size |  |
-| `+0x870` | `...` | cascade partitions, from here |  |
-| `+0x890` | `...` | PCF sizes | with `+0x894` |
-| `+0x894` | `...` | PCF sizes | with `+0x890` |
+| `+0x848` | `...` |  | map size |
+| `+0x870` | `...` |  | cascade partitions, from here |
+| `+0x890` | `...` |  | PCF sizes; with `+0x894` |
+| `+0x894` | `...` |  | PCF sizes; with `+0x890` |
 | `+0x898` | `...` | ShadowBias |  |
-| `+0xAFE` | `...` | resize request | with `+0xB00` and `+0xB04` |
-| `+0xB00` | `...` | resize request | with `+0xAFE` and `+0xB04` |
-| `+0xB04` | `...` | resize request | with `+0xAFE` and `+0xB00` |
+| `+0xAFE` | `...` |  | resize request; with `+0xB00` and `+0xB04` |
+| `+0xB00` | `...` |  | resize request; with `+0xAFE` and `+0xB04` |
+| `+0xB04` | `...` |  | resize request; with `+0xAFE` and `+0xB00` |
 
 ```
 0x01F82ED8..0x01F82F08  the second settings run (character light); 0x01DFE190 EnableIBL byte
@@ -507,3 +509,6 @@ and the string's address is taken only at `0x001C3C80` and `0x001C3EA6`.
 
 - [Debug menu](debug-menu.md): the rows that step the block.
 - [Debug menu commands](debug-menu-commands.md): which row steps which field.
+- [Game settings](../Saving-Loading-And-Settings/game-settings.md): the options that switch these effects and the quality presets.
+- [`graphics-settings-02cb7fd0-accesses.tsv`](graphics-settings-02cb7fd0-accesses.tsv): every censused access to the
+  render settings object `0x02CB7FD0`, one row per instruction (58 rows).

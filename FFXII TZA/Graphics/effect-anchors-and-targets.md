@@ -125,7 +125,7 @@ is; otherwise it takes the `+0x90` entry, or the `+0x10` entry when that is 0, a
 adds one to byte `+0x374` and gives −1, and a replacement that `0x00322760` reports goes into `+0x10`,
 with the old entry kept at `+0x90`, after an effect `0x62` is played on it (`0x003B02A0`).
 
-`0x003A4220(id)` picks one of three lookups by the instance: `0x0036E620` when bits 12–14 of word
+`0x003A4220(id)` picks one of three lookups by the instance: `0x0036E620` when the bits under mask `0x7000` of word
 `+0x36A` are 3, `0x0036E4B0` in a kind-2 instance, and `0x0036E4E0` (a 64-entry table at `0x022D97B0`)
 otherwise or when the first finds nothing; it returns the result through `0x002E9B80`.
 

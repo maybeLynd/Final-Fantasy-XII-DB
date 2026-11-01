@@ -27,9 +27,9 @@ Where the numbers come from depends on one flag of the action:
   that kind of weapon.
 - Equipment kind 2 has no such parameters, and an action whose own near or middle value is 0 has none
   either; then near is 60 % of the reach and middle 80 %.
-- An unarmed character holds Unarmed (`0x1000`, reach byte 10), so its weapon-flag actions take a
-  weapon reach of 1.0 (`0x00309300`), like any other weapon; only a unit whose main-hand id is `0xFFFF`
-  gets a weapon reach of 0.
+- An unarmed character holds Unarmed, an equipment entry with a reach of 1.0, so its weapon-flag
+  actions take a weapon reach of 1.0, like any other weapon; only a unit with no equipment entry at
+  all in its main hand, not even Unarmed, gets a weapon reach of 0.
 
 A unit further away than its middle distance plus 2.0 (or its reach, if that is smaller) walks in; a
 unit closer than its near distance may back off. When two units target each other, the one with the
@@ -127,7 +127,7 @@ and multiplies it by the float at `+0x26C` of that character's `0x740`-byte reco
 `ctx+0x108` both the movement block, `ctx+0xF0` the acting unit and `ctx+0xF8` the target unit
 (`0x00336733`-`0x003367BB`). Below, "the block" is that movement block.
 
-1. It stops (speed `ctx+0xB0` = 0, bits 5-14 of block `+0x00` cleared) when the unit in the block's
+1. It stops (speed `ctx+0xB0` = 0, bits `0x7FE0` of block `+0x00` cleared) when the unit in the block's
    slot `+0x177` has the id held at block `+0x150` (`0x0033818E`), or when the unit is within 0.1
    (`0x008C5F6C`, XZ) of the target's live position (`0x003381AF`).
 2. **Mutual targets.** When the target's focus handle `[target+0x710]` resolves (`0x0031B7E0`) to the
@@ -201,6 +201,8 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit `0x100` and returns 0 
   character parameters chosen by the equipment row's kind byte `+0x25`. 35 shipped action rows have bit `0x4000000`.
 - Shipped equipment reaches by kind (`+0x18`): kind 1 10-20, kind 2 100-250, kind 3 10-20, kind 4
   10-30, kind 5 10-20; kind 0 (305 rows) 0-90.
+- Unarmed is equipment id `0x1000` with reach byte 10, so `0x00309300` gives an unarmed character's
+  weapon-flag actions a reach of 1.0; the empty hand `0xFFFF` fails the bound and gives 0.
 - The fallback proportions are the floats at `0x008F3100` (0.6) and `0x008F3108` (0.8); the approach
   margin is `0x01CEBC08` (2.0, a constant shared with other code), the back-off margin `0x008F30E8`
   (0.05), the pacing aim `0x008F3104` (0.7), and the pacing wait the immediate `0x1E` at `0x00337B75`.

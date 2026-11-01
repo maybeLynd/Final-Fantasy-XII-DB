@@ -52,9 +52,9 @@ adds `0x20` to the entry, `0x00379430` adds `0x40`) and from the three zeroing l
 
 | entries | addresses | bank | selected by |
 |---|---|---|---|
-| 0x00-0x1F | 0x0209A3E0-0x0209A4DF | floors | attribute bits 13-17 of a floor polygon |
-| 0x20-0x3F | 0x0209A4E0-0x0209A5DF | walls | attribute bits 13-17 of a wall polygon or wall record, plus 0x20 |
-| 0x40-0x4F | 0x0209A5E0-0x0209A65F | mj groups | attribute bits 3-6, plus 0x40 |
+| 0x00-0x1F | 0x0209A3E0-0x0209A4DF | floors | attribute bits under mask `0x3E000` of a floor polygon |
+| 0x20-0x3F | 0x0209A4E0-0x0209A5DF | walls | attribute bits under mask `0x3E000` of a wall polygon or wall record, plus 0x20 |
+| 0x40-0x4F | 0x0209A5E0-0x0209A65F | mj groups | attribute bits under mask `0x78`, plus 0x40 |
 
 ### How a reader applies the overrides
 
@@ -286,8 +286,8 @@ the camera update `0x003820C0` calls `0x00233230(part, 0x02AEDEE0)` (`0x003827FB
 2. `0x00233050` finds the camera's cell in the part's grid, and the polygons listed for the cell are
    walked;
 3. a type-3 polygon for which `0x002324F0` returns a negative value at the camera position applies its
-   attribute word: with bit `0x8` set, the value `v` in bits 16-23 sets bit `v` of `+0x48` (shown models)
-   when below 64, else bit `v - 64` of `+0x58`; with bit `0x10` set, the value in bits 24-31 does the same
+   attribute word: with bit `0x8` set, the value `v` in the bits under mask `0xFF0000` sets bit `v` of `+0x48` (shown models)
+   when below 64, else bit `v - 64` of `+0x58`; with bit `0x10` set, the value in the bits under mask `0xFF000000` does the same
    with `+0x50` (hidden models) and `+0x60`.
 
 For a model value below 64 `0x0022FF10(part, polygon, camera, v)` also writes the fade weight
@@ -430,8 +430,8 @@ is rebuilt from the map and its script on every load.
 
 ## Modding notes
 
-- A floor group number in a script is the polygon's bits 13-17; a wall group is the same field on a
-  type-1 polygon or wall record; an mj group is bits 3-6. The `+0x20` and `+0x40` banks are offsets the
+- A floor group number in a script is the polygon's bits under mask `0x3E000`; a wall group is the same field on a
+  type-1 polygon or wall record; an mj group is the bits under mask `0x78`. The `+0x20` and `+0x40` banks are offsets the
   natives add, not separate ids a script would write.
 - `v = 1` opens and `v = 0` closes in every bank, even though the stored bit is inverted between floors
   and walls. A negative `v` restores the authored bit; the `resetmapid*` verbs restore whole entries.

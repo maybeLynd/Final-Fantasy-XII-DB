@@ -103,7 +103,7 @@ bul_a0200	scene, event 195	セリフ	cut_14_ex02	requested by 監督.main	-	20	H
 bul_a0200	scene, event 195	セリフ	cut_15	requested by 監督.main	-	21; 22	The new Ivalice holds no place for the name Dalmasca. / The stain of Raithwall's blood...	-	-	-	-	-	-	-	-	-	-	7	-
 bul_a0200	scene, event 195	セリフ	cut_16	requested by 監督.main	-	23	shall be washed clean from history's weave!	-	-	-	-	-	-	-	-	-	-	7	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_BALFLAIR_1	requested by DIRECTOR.EV_e0100	Balthier	0	He set his very bones about with manufacted nethicite.	-	-	-	-	-	-	-	-	-	-	1	-
-bul_a0201	scene, event 196	MESSAGE	TAGmes_BALFLAIR_1_02	requested by DIRECTOR.EV_e0100	Penelo	1	The Gran Kiltias?	-	-	-	-	-	-	-	-	-	-	1	-
+bul_a0201	scene, event 196	MESSAGE	TAGmes_BALFLAIR_1_02	requested by DIRECTOR.EV_e0100	Balthier	1	The Gran Kiltias?	-	-	-	-	-	-	-	-	-	-	1	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_PANNERO_2	requested by DIRECTOR.EV_e0100	Penelo	2	Wait—what about Larsa?	-	-	-	-	-	-	-	-	-	-	1	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_ALCIDE_3	requested by DIRECTOR.EV_e0100	-	3	Gone. Spirited away by Judge Gabranth.	-	-	-	-	-	-	-	-	-	-	1	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_VAN_4	requested by DIRECTOR.EV_e0100	Vaan	4	You okay?	-	-	-	-	-	-	-	-	-	-	1	-
@@ -116,7 +116,7 @@ bul_a0201	scene, event 196	MESSAGE	TAGmes_ASHE_9	requested by DIRECTOR.EV_e0100	
 bul_a0201	scene, event 196	MESSAGE	TAGmes_ALCIDE_10	requested by DIRECTOR.EV_e0100	-	11; 12	I would lay down my life at a single word to be sure... / but I harbor no maundering delusions of valiant grandeur.	-	-	-	-	-	-	-	-	-	-	1	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_ALCIDE_11	requested by DIRECTOR.EV_e0100	-	13	Vayne has our War Pavilion jumping at shadows. They favor a preemptive strike.	-	-	-	-	-	-	-	-	-	-	1	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_ALCIDE_12	requested by DIRECTOR.EV_e0100	-	14	But you—you will convince them otherwise.	-	-	-	-	-	-	-	-	-	-	1	-
-bul_a0201	scene, event 196	MESSAGE	cut_14	requested by DIRECTOR.EV_e0100	Ashe	15	You will see that they do not start this war.	-	-	-	-	-	-	-	-	-	-	1	-
+bul_a0201	scene, event 196	MESSAGE	cut_14	requested by DIRECTOR.EV_e0100	Al-Cid	15	You will see that they do not start this war.	-	-	-	-	-	-	-	-	-	-	1	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_ASHE_13	requested by DIRECTOR.EV_e0100	Ashe	16	This I cannot do. Forgive me. But my errand here is not yet done.	-	-	-	-	-	-	-	-	-	-	1	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_ASHE_14	requested by DIRECTOR.EV_e0100	Ashe	17	I must wield the Sword of Kings, and with it bring an end to the Dusk Shard.	-	-	-	-	-	-	-	-	-	-	1	-
 bul_a0201	scene, event 196	MESSAGE	TAGmes_ALCIDE_15	requested by DIRECTOR.EV_e0100	-	18	Ah, this Stone. Do you even know where it is?	-	-	-	-	-	-	-	-	-	-	1	-

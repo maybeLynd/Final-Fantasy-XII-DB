@@ -113,7 +113,7 @@ None of the six is in a shop, bazaar good, treasure chest, enemy slot, reward pa
 | `id` | the equipment id, `0x1000` + row |
 | `row` | the row number |
 | `name` | the item's shipped name |
-| `slot` | main hand, off hand, head, body or accessory (bits 7-5 of `+0x07`) |
+| `slot` | main hand, off hand, head, body or accessory (mask `0xE0` of `+0x07`) |
 | `class`, `class_name` | the class `+0x09` and its shipped category name |
 | `sub_type` | `+0x04`, the kind of item copied to the query record `+0x2C` (`0x0031C9C4`) |
 | `sort_key` | `+0x06`, the Optimise tie-break (`0x002F7C3C`) |

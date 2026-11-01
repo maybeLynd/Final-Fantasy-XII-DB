@@ -44,14 +44,14 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
    mask, with the hostile flag from the relationship class ([Area of effect](area-of-effect.md))
    (`0x00311354`-`0x00311367`).
 2. **Metadata** `0x00385BA0`: `+0x138` (when not -1) goes to the byte `[0x02EBF190]+0x5B0E`, `+0x13C` to the
-   dword `[0x02EBF190]+0x5B00`; a non-zero steal byte `+0x32`/`+0x33`/`+0x34` clears bit `0x1`/1/2 of
+   dword `[0x02EBF190]+0x5B00`; a non-zero steal byte `+0x32`/`+0x33`/`+0x34` clears bit `0x1`/`0x2`/`0x4` of
    `[targetUnit+0x6A0]+0x14`; with `+0x1C` = 1 the battle-message events are posted (`0x00469EC0`).
 3. Bit `0x80000` of `+0x2C` sets bit `0x8` of the target unit's `+0xE9A`; bit `0x4000` of `+0x140` plays sound `0x34`
    (`0x003A1180`, `0x002DF220`) and sets bit `0x4` (`0x00311384`-`0x003113BF`).
 4. **Levels.** A target level `+0x11C` other than `0xFF` is applied with `0x0030C650(target, level, 0)`,
    and the user's `+0x11D` likewise (`0x003113CB`-`0x003113FD`).
 5. **Steal and poach.** For an enemy-side target, each non-zero steal byte `k` (`+0x32`-`+0x34`) adds
-   one of the item at `[targetUnit+0xE60]+0x32+2k` (when not `0xFFFF`) with `0x003008A0`, clears bit `k`
+   one of the item at `[targetUnit+0xE60]+0x32+2k` (when not `0xFFFF`) with `0x003008A0`, clears bit `1 << k`
    of `[targetUnit+0x6A0]+0x14` (already cleared by step 2) and calls `0x00316A50(3)`; a poach item `+0x38` other than -1 is added (`0x00311402`-`0x003114A8`).
 6. **Statuses.** Each bit `n` of the add mask `+0x54` calls `0x0030E360(target, source, n, +0x5C[n],
    +0xDC[n], ..., 3)` (add); each bit of the remove mask `+0x58` calls `0x0030E360(target, source, n, 0, 0,
@@ -98,22 +98,22 @@ by the effect applier `0x00307300` (`0x00307436`, `0x00307ABD`), the periodic ma
 | `+0x024` | `i32` | targetHp | target HP change or value (step 8) |
 | `+0x028` | `i16` | userMp | user MP change or value (step 9) |
 | `+0x02A` | `i16` | targetMp | target MP change or value (step 8) |
-| `+0x02C` | `u32` | flagsA | bit `0x1` set by `0x003848E0`; bits 1-4 set-not-add; 7, 8, 13, 14 present; 19 marks the target unit |
+| `+0x02C` | `u32` | flagsA | bit `0x1` set by `0x003848E0`; bits `0x1E` set-not-add; bits `0x80`, `0x100`, `0x2000`, `0x4000` present; bit `0x80000` marks the target unit |
 | `+0x030` | `u16` | unused30 | `0xFFFF` by the word store `0x0038490B` in `0x003848E0`; read by no instruction |
 | `+0x032` | `u8[3]` | steal | steal slots 0-2 (step 5, `0x00385BA0`) |
 | `+0x035` | `u8[3]` | zero35 | written only by the clears (below); read by no instruction; nothing fixes its width |
-| `+0x038` | `i32` | poachItem | item id in the low word; -1 none (step 5) |
-| `+0x03C` | `u8[2]` | effectSet | augment bits to set; `0xFF` none (step 10) |
-| `+0x03E` | `u8[4]` | effectClear | augment bits to clear; `0xFF` none (step 10) |
+| `+0x038` | `i32` | poachItem | item id in the low word; -1 when nothing is poached (step 5) |
+| `+0x03C` | `u8[2]` | effectSet | augment bits to set; `0xFF` when the byte sets nothing (step 10) |
+| `+0x03E` | `u8[4]` | effectClear | augment bits to clear; `0xFF` when the byte clears nothing (step 10) |
 | `+0x042` | `i16[8]` | effectTimers copied to target +0x17C..+0x18A when not negative |  |
 | `+0x052` | `u8[2]` | zero52 | written only by the two clears (below); read by no instruction; nothing fixes its width |
 | `+0x054` | `u32` | addMask | statuses to add (step 6) |
 | `+0x058` | `u32` | removeMask | statuses to remove (step 6) |
 | `+0x05C` | `i32[32]` | statusA | per-status parameter A (duration); copied to target `+0xBC` |
 | `+0x0DC` | `i16[32]` | statusB | per-status parameter B (beat timer); copied to target `+0x13C` |
-| `+0x11C` | `u8` | targetLevel | `0xFF` none (step 4) |
-| `+0x11D` | `u8` | userLevel | `0xFF` none (step 4) |
-| `+0x11E` | `i16[4]` | enemyStats | new Strength, Magick Power, Defence, Magick Resist; -1 none (step 11) |
+| `+0x11C` | `u8` | targetLevel | `0xFF` when the level does not change (step 4) |
+| `+0x11D` | `u8` | userLevel | `0xFF` when the level does not change (step 4) |
+| `+0x11E` | `i16[4]` | enemyStats | new Strength, Magick Power, Defence, Magick Resist; -1 when that stat does not change (step 11) |
 | `+0x126` | `u8[2]` | zero126 | written only by the two clears (below); read by no instruction; nothing fixes its width |
 | `+0x128` | `u8[4]` | affinitySet | OR-ed into the enemy record bytes `+0x7B`, `+0x79`, `+0x78`, `+0x7A` (step 12), the immune, absorb, weak and half masks the rebuild copies to stats `+0x43`, `+0x41`, `+0x40`, `+0x42` (`0x0031043F`-`0x0031046D`); Elemental Shift's `0x00384B10` writes `+0x129` (every element but the drawn one) and `+0x12A` (the drawn one) (`0x00384BE6`, `0x00384BFC`; [Battle buffs](../Status-Effects-And-KO/battle-buffs.md)) |
 | `+0x12C` | `u8[4]` | affinityClr | cleared out of the same bytes after the sets (step 12); `0x00384B10` writes `+0x12C` (OR-ed with the drawn element), `+0x12D` (the drawn one) and `+0x12E` (every element but the drawn one) (`0x00384C0B`, `0x00384BF1`, `0x00384BDC`) |
@@ -141,7 +141,7 @@ before use; the ninth, `0x00319F50`, hands its record straight to the resolver, 
 | `0x0030E130` | `0x0030E293` | `0x00386A50` or `0x00386AE0` (`0x0030E2BC`), the applier |
 | `0x0030E360` | `0x0030E5E1` | `0x00386A50` or `0x00386A70` (`0x0030E60E`), the applier |
 | `0x00310DB0` | `0x00310F7A`, `0x00311010`, `0x0031121A` | `0x00385DF0`, the resolver, the applier |
-| `0x00319F50` | none | the resolver `0x00385F60` |
+| `0x00319F50` | no clear of its own (`0x003848E0` in the resolver clears `+0x08`-`+0x147`) | the resolver `0x00385F60` |
 
 The resolver and the preview also put the record's address at `+0x10` of the evaluation context that
 `0x003847C0` builds (`0x003847FF`), and the 202 action-effect handlers of the table `0x01EFA5C0` reach it there.

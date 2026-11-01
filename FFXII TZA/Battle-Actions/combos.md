@@ -14,6 +14,9 @@ Whether a combo happens, and how many hits it has, is decided once, on the first
   percentage (a byte of 20 gives a 14 % chance). With the Genji Gloves equipped (augment 13) the byte is
   multiplied by 1.8 instead, so a byte of 56 or more
   makes every attack a combo.
+- **Weapons that never combo**: a weapon whose damage recipe has no combo roll never combos, whatever
+  its byte: every bow, crossbow, gun and measure, and the Healing Rod, Rod of Faith,
+  Bonebreaker and Excalipur.
 - **The length** is rolled at the same moment: the combo starts with 1 extra hit, and eleven more
   rolls can each add one. Each of those rolls succeeds 8 % of the time at more than a quarter of
   maximum HP, 16 % below a quarter, 32 % below an eighth and 64 % below a sixteenth, so a wounded
@@ -104,7 +107,7 @@ continues, no hit that is followed by another combo hit takes either effect.
 ### From the result to the target entry
 
 The effect applier `0x00307300` copies result flag bit `0x2` to bit
-`0x400` (`0x400`) of the target entry's flags, unless bit `0x200000` of the attacker's word `+0x04` is set
+`0x400` of the target entry's flags, unless bit `0x200000` of the attacker's word `+0x04` is set
 (`0x003075D3`-`0x003075E0`).
 
 ### Continuing
@@ -173,7 +176,7 @@ action is cancelled or reset.
 - [Area of effect](area-of-effect.md) - the target entry flags, including bit `0x400`.
 - [Action range](action-range.md) - how the attacker closes in before the first hit.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
-  `0x20` (Confuse), 16, 27 (Berserk) and 28.
+  `0x20` (Confuse), `0x10000`, `0x8000000` (Berserk) and `0x10000000`.
 - [The R2 modal toggle](../Controls-And-Input/escape.md) - the FLEEING mode
   behind `0x01E0C2B8`.
 - [The formula step table](../Damage-And-Battle-Formulas/damage-formula.md) - the other

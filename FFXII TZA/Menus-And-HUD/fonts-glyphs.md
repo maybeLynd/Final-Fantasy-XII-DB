@@ -7,7 +7,7 @@ addresses: "0x001B4D70, 0x001FDCC0, 0x001E9860, 0x002AA5C7, 0x002AC4EC, 0x002AC5
 
 ## What it lists
 
-`fonts-glyphs.tsv` holds one line for each `0x24`-byte glyph record of the 63 `.dat` files: 23,250 records, the
+[`fonts-glyphs.tsv`](fonts-glyphs.tsv) holds one line for each `0x24`-byte glyph record of the 63 `.dat` files: 23,250 records, the
 22,440 of the 62 listed files and the 810 of `us/fontex_expand.dat`. The lines keep each file's record order, which
 is key order in 23 of the 63 files. The builder `0x001B4D70` files every record by its key (`0x001FDCC0`) and
 `0x001E9860` looks glyphs up by key, and no file repeats a key.

@@ -208,23 +208,23 @@ Actor record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x06` | `u16` | busy channels |  |
-| `+0x10` | `u8` | outstanding requests |  |
-| `+0x11` | `i8` | current wait slot |  |
+| `+0x06` | `u16` |  | busy channels |
+| `+0x10` | `u8` |  | outstanding requests |
+| `+0x11` | `i8` |  | current wait slot |
 | `+0x1C` | `u32` | arming mask | bit n = slot n |
 | `+0x24` | `u16` | channel marks | one of the two channel marks |
 | `+0x26` | `u16` | channel marks | one of the two channel marks |
-| `+0x60` | `u8` | free head |  |
-| `+0x61` | `u8` | detached head |  |
-| `+0x62` | `u8` | selected entry |  |
+| `+0x60` | `u8` |  | free head |
+| `+0x61` | `u8` |  | detached head |
+| `+0x62` | `u8` |  | selected entry |
 | `+0x63` | `u8` | flags |  |
 | `+0x88` | `u8` | channels |  |
 | `+0x89` | `u8` | entries |  |
 | `+0x8C` | `u8[8]` | tail |  |
 | `+0x94` | `u8[8]` | head |  |
-| `+0xA0` | `...` | entry array |  |
-| `+0xA8` | `...` | wait-slot array |  |
-| `+0xC8` | `u16[18]` | slot cache |  |
+| `+0xA0` | `...` |  | entry array |
+| `+0xA8` | `...` |  | wait-slot array |
+| `+0xC8` | `u16[18]` |  | slot cache |
 
 Entry (`0x14`):
 
@@ -233,11 +233,11 @@ Entry (`0x14`):
 | `+0x00` | `...` | next |  |
 | `+0x01` | `...` | prev |  |
 | `+0x02` | `...` | channel |  |
-| `+0x03` | `...` | requester wait slot |  |
+| `+0x03` | `...` |  | requester wait slot |
 | `+0x04` | `u16` | function |  |
-| `+0x06` | `u16` | requester ordinal |  |
-| `+0x08` | `u32` | requester manager |  |
-| `+0x0C` | `u32` | requester return offset |  |
+| `+0x06` | `u16` |  | requester ordinal |
+| `+0x08` | `u32` |  | requester manager |
+| `+0x0C` | `u32` |  | requester return offset |
 | `+0x10` | `...` | mode |  |
 | `+0x11` | `...` | state |  |
 | `+0x12` | `...` | flags |  |
@@ -249,12 +249,12 @@ Descriptor:
 | `+0x00` | `...` | kind |  |
 | `+0x01` | `...` | mode |  |
 | `+0x02` | `...` | channel |  |
-| `+0x03` | `...` | wait slot |  |
+| `+0x03` | `...` |  | wait slot |
 | `+0x04` | `u16` | function |  |
 | `+0x06` | `u16` | ordinal |  |
 | `+0x08` | `...` | flags |  |
 | `+0x0C` | `u32` | manager |  |
-| `+0x10` | `u32` | return offset |  |
+| `+0x10` | `u32` |  | return offset |
 
 Wait slot:
 

@@ -290,7 +290,7 @@ are laid out on [Area of effect](../Battle-Actions/area-of-effect.md#layouts):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | flags | bit `0x1` is kept across a clear (`0x00316D10`-`0x00316D16`); the other bits are cleared with the list |
-| `+0x01` | `u8` | keyType | 0 none, 1 integer keys, 2 float keys: set with the pick rule by the selector (key 1 at `0x003022C7`, key 2 at `0x003027F4`, both bytes as a word at `0x00301ECC`); the picker reads it at `0x00308813` |
+| `+0x01` | `u8` | keyType | 0 no key, 1 integer keys, 2 float keys: set with the pick rule by the selector (key 1 at `0x003022C7`, key 2 at `0x003027F4`, both bytes as a word at `0x00301ECC`); the picker reads it at `0x00308813` |
 | `+0x02` | `u8` | pickRule | with key type 1 or 2: 2 lowest, 3 highest, any other value keeps no unit (`0x00308923`, `0x00308A68`); with any other key type: 1 random, any other value nearest (`0x00308B0D`) |
 | `+0x03` | `u8` | pad03 | moved only by the whole-list copies in `0x0030F130` and `0x003014C0` (read at `0x0030F177`, `0x003016F7`; written at `0x0030F181`, `0x00301705`) and zeroed by the clear's memset (`0x00316D0B`); no instruction of `0x003014C0`, `0x0030F130`, `0x00301AD0`, `0x003087E0` or `0x00316CF0` reads it alone |
 | `+0x04` | `i32` | count | entries in use; the append refuses at 32 (`0x00316CD4`); read at `0x00308828`, `0x00308AFB` |

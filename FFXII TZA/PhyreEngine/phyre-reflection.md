@@ -282,14 +282,14 @@ PType (base of every type and descriptor):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | vtable |  |
-| `+0x08` | `void*` | type-tree links (three pointers, +0x08..+0x1F) |  |
-| `+0x20` | `u32` | name hash, written by 0x006388C0 |  |
-| `+0x28` | `void*` | name, as the tree key |  |
+| `+0x08` | `void*` |  | type-tree links (three pointers, `+0x08`..+`0x1F`) |
+| `+0x20` | `u32` |  | name hash, written by `0x006388C0` |
+| `+0x28` | `void*` |  | name, as the tree key |
 | `+0x30` | `void*` | name |  |
-| `+0x38` | `u32` | instance size |  |
+| `+0x38` | `u32` |  | instance size |
 | `+0x3C` | `u32` | alignment |  |
-| `+0x40` | `void*` | name-writer hook, or null (0x00637320, 0x00637350) |  |
-| `+0x48` | `void*` | name-resolver hook, or null (0x006389C0, 0x00638A50) |  |
+| `+0x40` | `void*` |  | name-writer hook, or null (`0x00637320`, `0x00637350`) |
+| `+0x48` | `void*` |  | name-resolver hook, or null (`0x006389C0`, `0x00638A50`) |
 
 Every list in these records is a circular doubly linked list of 16-byte nodes: a list is empty when its
 node points at itself, and a member sits in a list through a node inside it (`0x006B6700` drains one,
@@ -306,24 +306,24 @@ PClassDescriptor (`0x100`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x50` | `ListNode` | node in the namespace's class list |  |
-| `+0x60` | `ListNode` | drained by 0x006B6700 at teardown |  |
+| `+0x50` | `ListNode` |  | node in the namespace's class list |
+| `+0x60` | `ListNode` |  | drained by `0x006B6700` at teardown |
 | `+0x70` | `void*` | namespace |  |
-| `+0x78` | `void*` | parent descriptor, or null |  |
-| `+0x80` | `ListNode` | data members |  |
+| `+0x78` | `void*` |  | parent descriptor, or null |
+| `+0x80` | `ListNode` |  | data members |
 | `+0x90` | `ListNode` | methods |  |
-| `+0xA0` | `ListNode` | script functions |  |
-| `+0xB0` | `ListNode` | fourth list, emptied by the constructor and the destructor |  |
-| `+0xC0` | `void*` | default instance |  |
-| `+0xC8` | `void*` | undescribed-byte mask |  |
-| `+0xD0` | `void*` | write mask |  |
-| `+0xD8` | `void*` | 0 (zeroed by the constructor) |  |
-| `+0xE0` | `void*` | 0 (zeroed by the constructor) |  |
-| `+0xE8` | `u32` | registration index (0x02CF8260) |  |
-| `+0xEC` | `u32` | 0xFFFFFFFF |  |
-| `+0xF0` | `i32` | this class's adjustment |  |
-| `+0xF4` | `i32` | sum of adjustments to the root |  |
-| `+0xF8` | `i32` | layout base of an instance |  |
+| `+0xA0` | `ListNode` |  | script functions |
+| `+0xB0` | `ListNode` |  | fourth list, emptied by the constructor and the destructor |
+| `+0xC0` | `void*` |  | default instance |
+| `+0xC8` | `void*` |  | undescribed-byte mask |
+| `+0xD0` | `void*` |  | write mask |
+| `+0xD8` | `void*` |  | 0 (zeroed by the constructor) |
+| `+0xE0` | `void*` |  | 0 (zeroed by the constructor) |
+| `+0xE8` | `u32` |  | registration index (`0x02CF8260`) |
+| `+0xEC` | `u32` |  | value `0xFFFFFFFF` |
+| `+0xF0` | `i32` |  | this class's adjustment |
+| `+0xF4` | `i32` |  | sum of adjustments to the root |
+| `+0xF8` | `i32` |  | layout base of an instance |
 | `+0xFC` | `u32` | flags |  |
 
 A list is a `{next, prev}` pair that points at itself when empty; a node sits 8 bytes into its
@@ -351,38 +351,38 @@ PClassDescriptorDynamic (`0x140`), beyond the base:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x100` | `u16` | pair compared by 0x0063D550 to skip a rebuild |  |
-| `+0x104` | `u32` | parent's instance size |  |
-| `+0x108` | `…` | three {u32, ptr} pairs at +0x108, +0x118, +0x128, zeroed by 0x00632E80 |  |
-| `+0x138` | `void*` | tagged name; +0x30 holds it with bit 0x1 cleared |  |
+| `+0x100` | `u16` |  | pair compared by `0x0063D550` to skip a rebuild |
+| `+0x104` | `u32` |  | parent's instance size |
+| `+0x108` | `…` |  | three {u32, ptr} pairs at `+0x108`, `+0x118`, `+0x128`, zeroed by `0x00632E80` |
+| `+0x138` | `void*` |  | tagged name; `+0x30` holds it with bit `0x1` cleared |
 
 PClassDataMember (`0x58`; arrays to `+0x64`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | vtable |  |
-| `+0x08` | `ListNode` | node in the owner's +0x80 list |  |
-| `+0x18` | `void*` | owning descriptor |  |
+| `+0x08` | `ListNode` |  | node in the owner's `+0x80` list |
+| `+0x18` | `void*` |  | owning descriptor |
 | `+0x20` | `void*` | name |  |
-| `+0x28` | `u32` | attribute word |  |
-| `+0x30` | `void*` | type (a PType or a class descriptor) |  |
+| `+0x28` | `u32` |  | attribute word |
+| `+0x30` | `void*` |  | type (a PType or a class descriptor) |
 | `+0x38` | `ListNode` | annotations |  |
-| `+0x48` | `u32` | offset in the owner's layout |  |
-| `+0x50` | `void*` | dynamic-type helper, or null |  |
-| `+0x58` | `u32` | element alignment (arrays) |  |
-| `+0x5C` | `u32` | array kind |  |
-| `+0x60` | `u32` | element count (fixed arrays) |  |
+| `+0x48` | `u32` |  | offset in the owner's layout |
+| `+0x50` | `void*` |  | dynamic-type helper, or null |
+| `+0x58` | `u32` |  | element alignment (arrays) |
+| `+0x5C` | `u32` |  | array kind |
+| `+0x60` | `u32` |  | element count (fixed arrays) |
 
 PAnnotation (`0x30`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | vtable |  |
-| `+0x08` | `ListNode` | node in a member's +0x38 list |  |
-| `+0x18` | `void*` | key (0x02CF8570 for WriteMask) |  |
-| `+0x20` | `void*` | value type |  |
-| `+0x28` | `u32` | fourth constructor argument |  |
-| `+0x30` | `u32` | value (PAnnotationWithValue&lt;unsigned int&gt;) |  |
+| `+0x08` | `ListNode` |  | node in a member's `+0x38` list |
+| `+0x18` | `void*` |  | key (`0x02CF8570` for WriteMask) |
+| `+0x20` | `void*` |  | value type |
+| `+0x28` | `u32` |  | fourth constructor argument |
+| `+0x30` | `u32` |  | value (PAnnotationWithValue&lt;unsigned int&gt;) |
 
 ```
 attribute word (member +0x28)
@@ -398,16 +398,16 @@ Descriptor vtable slots (PClassDescriptorConcrete&lt;PAnimatableComponent&gt;, `
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `...` | visit every member of the class and its ancestors (0x0063E2E0) |  |
-| `+0x18` | `...` | get the value from a script context |  |
-| `+0x20` | `...` | put the value into a script context |  |
-| `+0x38` | `...` | scalar deleting destructor |  |
-| `+0x40` | `...` | attach a member (0x0062EFD0) |  |
-| `+0x48` | `...` | detach a member (0x0062F080) |  |
-| `+0x50` | `...` | construct in place; returns false for a class without one (0x00657140) |  |
-| `+0x58` | `...` | destruct in place (0x0063FC60) |  |
-| `+0x60` | `...` | register the members (_purecall in ForType&lt;T&gt;) |  |
-| `+0x68` | `...` | push the object's held objects of a named class to a script and count them; -1 by default (0x00660570) |  |
+| `+0x00` | `...` |  | visit every member of the class and its ancestors (`0x0063E2E0`) |
+| `+0x18` | `...` |  | get the value from a script context |
+| `+0x20` | `...` |  | put the value into a script context |
+| `+0x38` | `...` |  | scalar deleting destructor |
+| `+0x40` | `...` |  | attach a member (`0x0062EFD0`) |
+| `+0x48` | `...` |  | detach a member (`0x0062F080`) |
+| `+0x50` | `...` |  | construct in place; returns false for a class without one (`0x00657140`) |
+| `+0x58` | `...` |  | destruct in place (`0x0063FC60`) |
+| `+0x60` | `...` |  | register the members (_purecall in ForType&lt;T&gt;) |
+| `+0x68` | `...` |  | push the object's held objects of a named class to a script and count them; -1 by default (`0x00660570`) |
 
 One class overrides slot `+0x68`: `PEntity` (`0x006AB3F0`, which reorders the arguments for `0x006AB540`). It looks the
 name up in the namespace (`0x0063BA10`), returns -1 unless that class is `PComponent` or derives from it, and
@@ -476,11 +476,11 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | m_totalOutputElementSize m_totalOutputElementSize (u32), registered by 0x006D0FA0 (0x00632960 at | `0x006D126A`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it (`0x006CFA76`) |
+| `+0x00` | `u32` | m_totalOutputElementSize | m_totalOutputElementSize (u32), registered by `0x006D0FA0` (`0x00632960` at `0x006D126A`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it (`0x006CFA76`) |
 | `+0x04` | `u8[4]` | bytes04 | the bytes after m_totalOutputElementSize (`+0x00`), before the dword the placement constructor `0x006CFA50` clears at `+0x08` (`0x006CFA57`); no registered member covers it (`0x006CFC50` registers the `0x70`-byte class at `0x006CFCA0`) |
 | `+0x18` | `u32` | m_totalInputCount | m_totalInputCount (u32), registered by `0x006D0FA0` (`0x00632960` at `0x006D10D0`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it (`0x006CFA73`) |
 | `+0x1C` | `u8[4]` | bytes1C | the bytes after m_totalInputCount (`+0x18`), before the dword the placement constructor `0x006CFA50` clears at `+0x20` (`0x006CFA5E`); no registered member covers it (`0x006CFC50` registers the `0x70`-byte class at `0x006CFCA0`) |
-| `+0x50` | `u32` | m_totalPersistentStateSize m_totalPersistentStateSize (u32), registered by 0x006D0FA0 (0x00632960 | at `0x006D13C1`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it with m_totalStateBlockSize (`0x006CFA80`) |
+| `+0x50` | `u32` | m_totalPersistentStateSize | m_totalPersistentStateSize (u32), registered by `0x006D0FA0` (`0x00632960` at `0x006D13C1`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it with m_totalStateBlockSize (`0x006CFA80`) |
 | `+0x54` | `u32` | m_totalStateBlockSize | m_totalStateBlockSize (u32), registered by `0x006D0FA0` (`0x00632960` at `0x006D1434`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it with m_totalPersistentStateSize (`0x006CFA80`) |
 | `+0x58` | `u8` | m_isCompiled | m_isCompiled (u8), registered by `0x006D0FA0` (`0x00632960` at `0x006D14A7`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetwork; the placement constructor `0x006CFA50` clears it (`0x006CFA84`) |
 | `+0x59` | `u8[7]` | pad59 | the bytes after m_isCompiled (u8 at `+0x58`), before the dword the placement constructor `0x006CFA50` clears at `+0x60` (`0x006CFA6C`); no registered member covers it (`0x006CFC50` registers the `0x70`-byte class at `0x006CFCA0`) |
@@ -489,9 +489,9 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x08` | `u32` | m_segmentInputGroupStart m_segmentInputGroupStart (u32), registered by 0x006BCA20 (0x00632960 at | `0x006BCB20`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared with m_segmentOutputGroupStart by the placement constructor `0x005CEEF0` (`0x005CEEFA`) |
-| `+0x0C` | `u32` | m_segmentOutputGroupStart m_segmentOutputGroupStart (u32), registered by 0x006BCA20 (0x00632960 | at `0x006BCB93`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared with m_segmentInputGroupStart by the placement constructor `0x005CEEF0` (`0x005CEEFA`) |
-| `+0x10` | `u32` | m_modifierOutputsAreConsumed m_modifierOutputsAreConsumed (u32), registered by 0x006BCA20 | (`0x00632960` at `0x006BCC06`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared by the placement constructor `0x005CEEF0` (`0x005CEEFE`) |
+| `+0x08` | `u32` | m_segmentInputGroupStart | m_segmentInputGroupStart (u32), registered by `0x006BCA20` (`0x00632960` at `0x006BCB20`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared with m_segmentOutputGroupStart by the placement constructor `0x005CEEF0` (`0x005CEEFA`) |
+| `+0x0C` | `u32` | m_segmentOutputGroupStart | m_segmentOutputGroupStart (u32), registered by `0x006BCA20` (`0x00632960` at `0x006BCB93`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared with m_segmentInputGroupStart by the placement constructor `0x005CEEF0` (`0x005CEEFA`) |
+| `+0x10` | `u32` | m_modifierOutputsAreConsumed | m_modifierOutputsAreConsumed (u32), registered by `0x006BCA20` (`0x00632960` at `0x006BCC06`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkDynamicMeshSegment; cleared by the placement constructor `0x005CEEF0` (`0x005CEEFE`) |
 | `+0x14` | `u8[4]` | bytes14 | the bytes after m_modifierOutputsAreConsumed (`+0x10`) up to the end of the `0x18`-byte class; no registered member covers it (`0x006BBB70` registers the `0x18`-byte class at `0x006BBBC0`) |
 
 `PModifierNetworkInstanceInput` (`0x20` bytes, offsets from the start of the record):
@@ -529,7 +529,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x04` | `u32` | m_constantBufferLocation m_constantBufferLocation (u32), registered by 0x005E89C0 (0x00632960 at | `0x005E8A4E`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferLocationTypeConstantBuffer; the placement constructor `0x005D7DE0` clears `+0x04` to `+0x0B` (`0x005D7DEA`) |
+| `+0x04` | `u32` | m_constantBufferLocation | m_constantBufferLocation (u32), registered by `0x005E89C0` (`0x00632960` at `0x005E8A4E`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferLocationTypeConstantBuffer; the placement constructor `0x005D7DE0` clears `+0x04` to `+0x0B` (`0x005D7DEA`) |
 | `+0x08` | `u32` | m_size | m_size (u32), registered by `0x005E89C0` (`0x00632960` at `0x005E8ABD`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PShaderParameterCaptureBufferLocationTypeConstantBuffer; cleared with m_constantBufferLocation by the placement constructor `0x005D7DE0` (`0x005D7DEA`) |
 | `+0x0D` | `u8[3]` | pad0D | the bytes after the byte the placement constructor `0x005D7DE0` sets to `0x34` at `+0x0C` (`0x005D7DEE`) up to the end of the `0x10`-byte class; no registered member covers it (`0x005DA6D0` registers the `0x10`-byte class at `0x005DA71A`) |
 
@@ -890,7 +890,7 @@ reads the whole word: every load ends in a bit test, a sign test, a bit extracti
 | Bit | Meaning | Written by | Read by |
 |---|---|---|---|
 | `0x1` | dynamic class | `0x00632E80` (`0x00632F18`) | 21 sites: `0x00633790`, `0x006361C0`, `0x00636280`, `0x00637320`, `0x00637350`, `0x00639450`, `0x00639A60`, `0x0063ABF0`, `0x0063BBC0`, `0x0063C910`, `0x008AF490` (`0x008AF4D6`, through `[0x01F2E340]` - `0x50`), and the 10 core registrars after their `bts` (`0x006344F8` and the same test in the other nine) |
-| `0x2` | abstract | set at 393 sites (the 315 class constructors' `or`, the 69 array-type getters and 9 more); cleared at 373 sites: 303 initialisers, the 69 array-type getters after installing the Concrete vtable, and `0x00635DC0` (`0x00635E38`-`0x00635E7C`) | `0x0059AC00` (`0x0059ACDB`), `0x00639510` (`0x0063954C`), `0x00639A60` (`0x00639AF1`), `0x0063A4C0` (`0x0063A51E`) |
+| `0x2` | abstract | set at 393 sites (the 315 class constructors' `or`, the 69 array-type getters and 9 others: `0x00163DB0` (`0x00163DCD`), `0x00163E30` (`0x00163E4D`), `0x00163EA0` (`0x00163EBA`), `0x00163F20` (`0x00163F3A`), `0x00163FA0` (`0x00163FBA`), `0x00164010` (`0x0016402A`), `0x00164090` (`0x001640AD`), `0x00164100` (`0x0016411A`), `0x00635DC0` (`0x00635E38`)); cleared at 373 sites: 303 initialisers, the 69 array-type getters after installing the Concrete vtable, and `0x00635DC0` (`0x00635E38`-`0x00635E7C`) | `0x0059AC00` (`0x0059ACDB`), `0x00639510` (`0x0063954C`), `0x00639A60` (`0x00639AF1`), `0x0063A4C0` (`0x0063A51E`) |
 | `0x4` | set by the initialisers of `PParameterBuffer` and the three header descriptors; the PCluster loader tests it per class | `0x001615C0` (`0x001615FF`), `0x001605C0` (`0x00160602`), `0x00167DB0` (`0x00167DF2`) and `0x001688F0` (`0x00168932`) | `0x00639780` (`0x006397C0`) and the PCluster loaders `0x0059C250`, `0x0059C700`, `0x0059CE30`, `0x0059D590`, `0x0059D6A0` (twice), `0x0059D940` and `0x0059F500` |
 | `0x8` | no default constructor | set by 39 initialisers (load, clear `0x2`, set `0x8`, store); cleared by the three header-descriptor initialisers `0x001605C0`, `0x00167DB0` and `0x001688F0` as they set `0x4` | `0x0059AC00` (`0x0059ACDB`), `0x00639A60` (`0x00639B2C`), `0x0063A990` (`0x0063A99A`), `0x0063AA50` (`0x0063AA5F`) |
 | `0x10` | set for the three header descriptors | `0x005B0700` (`0x005B0720`), `0x006D1810` (`0x006D1830`) and `0x006D9FC0` (`0x006D9FE0`), each right after `0x006388C0` registers the descriptor | `0x0059D940` (`0x0059DCD3`-`0x0059DCDB`), which extracts it: 1 for those three classes, 0 for every other |

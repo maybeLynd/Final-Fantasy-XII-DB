@@ -175,7 +175,7 @@ Struct ActorManagerSlot base=`0x02098E10` size=`0x288` count=5:
 |---|---|---|---|
 | `+0x000` | `u8*` | payload | the bound definition payload (`0x0026C8C0`) |
 | `+0x008` | `u8*` | recordPool | count dword then record pointers (`0x0026CE60`, `0x00358940`) |
-| `+0x010` | `u8` | flags | bit `0x1` live (`0x0026CE60` sets), bit `0x4` field initialised, bits 3-4 the slot-0 request steps, bit `0x20` hold, bit `0x80` field busy |
+| `+0x010` | `u8` | flags | bit `0x1` live (`0x0026CE60` sets), bit `0x4` field initialised, mask `0x18` the slot-0 request steps, bit `0x20` hold, bit `0x80` field busy |
 | `+0x011` | `u8` | flags2 | bit `0x1` copy of flags bit `0x80`, bit `0x2` trigger, bit `0x4` suspended, bit `0x8` blocks the request path |
 | `+0x012` | `u8` | drivePending | 1 at bind when the payload's i16 `+0x50` is not negative |
 | `+0x013` | `u8` | requestFlag | 1 at bind, cleared by `0x0026CE60` (`0x002673F0`) |
@@ -203,7 +203,7 @@ Struct ActorManagerSlot base=`0x02098E10` size=`0x288` count=5:
 | `+0x098` | `void*` | resolver | `0x00264E30` |
 | `+0x0D8` | `u8*` | cameraShotTable | side A's definition table (setter `0x0026CE00`) |
 | `+0x0E0` | `u8*` | cameraSection | set by `0x0026CE20`; `0x0026CE60` runs `0x002572E0` when this and `+0xD8` are set |
-| `+0x0F0` | `u8*` | cameraShakeTable side B's definition table (setter 0x0026D3A0) |  |
+| `+0x0F0` | `u8*` | cameraShakeTable | side B's definition table (setter `0x0026D3A0`) |
 | `+0x100` | `u8*` | section100 | set by `0x0026CE40` |
 | `+0x110` | `u8[96]` | entriesA | four 24-byte camera-shot drivers |
 | `+0x170` | `u8[96]` | entriesB | four 24-byte camera-shake drivers |

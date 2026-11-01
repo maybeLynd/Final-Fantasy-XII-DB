@@ -1,0 +1,11 @@
+function	name	site	disp	kind	instruction	route	note
+0x004742A0	FUN_004742a0	0x0047445E	0x0	w	movss dword ptr [r12], xmm7	route-seeded STATIC 0x022C7FD0 base+0x0	
+0x004742A0	FUN_004742a0	0x004744D8	0x0	w	movss dword ptr [r12], xmm0	route-seeded STATIC 0x022C7FD0 base+0x0	
+0x004742A0	FUN_004742a0	0x0047458A	0x0	w	mov dword ptr [r12], ebp	route-seeded STATIC 0x022C7FD0 base+0x0 zeroclear	
+0x004742A0	FUN_004742a0	0x00474450	0x4	w	mov dword ptr [r12 + 4], ebp	route-seeded STATIC 0x022C7FD0 base+0x0 zeroclear	
+0x004742A0	FUN_004742a0	0x004744E5	0x4	w	movss dword ptr [r12 + 4], xmm2	route-seeded STATIC 0x022C7FD0 base+0x0	
+0x004742A0	FUN_004742a0	0x00474585	0x4	w	mov qword ptr [r12 + 4], rbp	route-seeded STATIC 0x022C7FD0 base+0x0 zeroclear	
+0x004742A0	FUN_004742a0	0x004744DE	0x8	w	movss dword ptr [r12 + 8], xmm9	route-seeded STATIC 0x022C7FD0 base+0x0	
+0x004742A0	FUN_004742a0	0x004744AD	0xC	w	mov dword ptr [r12 + 0xc], 0x3f800000	route-seeded STATIC 0x022C7FD0 base+0x0	
+0x004742A0	FUN_004742a0	0x00474574	0xC	w	movss dword ptr [r12 + 0xc], xmm1	route-seeded STATIC 0x022C7FD0 base+0x0	
+0x004742A0	FUN_004742a0	0x0047458E	0xC	w	mov dword ptr [r12 + 0xc], 0x3f800000	route-seeded STATIC 0x022C7FD0 base+0x0	

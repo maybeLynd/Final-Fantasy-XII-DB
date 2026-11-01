@@ -40,12 +40,12 @@ The TGA image and the PS2 icon pair are little-endian; the CSV tables and JSON d
 | `+0x00` | `u8` | id length | 0 |
 | `+0x01` | `u8` | colour-map type | 0 |
 | `+0x02` | `u8` | image type | 2 (uncompressed true colour) |
-| `+0x03` | `u8[9]` | colour map, origin 0 |  |
+| `+0x03` | `u8[9]` |  | colour map, origin 0 |
 | `+0x0C` | `u16` | width | 1920   <- read |
 | `+0x0E` | `u16` | height | 1080   <- read |
 | `+0x10` | `u8` | bits per pixel | 24 |
 | `+0x11` | `u8` | descriptor | `0x20` (top-left origin) |
-| `+0x12` | `u8[width*height*3]` | pixels, B G R, first row at the top |  |
+| `+0x12` | `u8[width*height*3]` |  | pixels, B G R, first row at the top |
 
 The game reads only the width and height; it assumes the rest (no id field, 24-bit, top-left).
 
@@ -69,10 +69,10 @@ Opt.csv entry (tree node `+0x24`, keyed by the map-name hash):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | ForceMSAAOff starts with Y or y |  |
-| `+0x01` | `u8` | FlipMapOpaqueOrder starts with Y or y |  |
-| `+0x02` | `u8` | SMAA starts with Y or y |  |
-| `+0x03` | `u8` | ForceNoOpaqueChrFirst starts with Y or y |  |
+| `+0x00` | `u8` | ForceMSAAOff | starts with Y or y |
+| `+0x01` | `u8` | FlipMapOpaqueOrder | starts with Y or y |
+| `+0x02` | `u8` |  | SMAA starts with Y or y |
+| `+0x03` | `u8` | ForceNoOpaqueChrFirst | starts with Y or y |
 
 Soft-particle entry, 4 bytes, indexed by the effect number (per-type tables) or by row number (softparticle_bg.csv):
 
@@ -87,14 +87,14 @@ Bg map record, 16 bytes at `0x02F93340`, one per run of rows with the same Map:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[14]` | map name |  |
-| `+0x0E` | `u16` | first row of the run |  |
+| `+0x00` | `char[14]` |  | map name |
+| `+0x0E` | `u16` |  | first row of the run |
 
 EventList.csv record, 8 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | second field |  |
+| `+0x00` | `u16` |  | second field |
 | `+0x04` | `u32` | third field | the first and fourth fields are read and dropped |
 
 ### JSON documents
@@ -111,25 +111,27 @@ Icon.sys (192 bytes; the PS2 icon.sys layout cut at `0xC0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[4]` | "PS2D" |  |
-| `+0x06` | `u16` | 26 | title line-break position |
-| `+0x0C` | `u32` | 109 | background transparency |
-| `+0x10` | `u32[4][4]` | background corner colours (39,24,6,0 / 186,164,125,0 alternating) |  |
-| `+0x50` | `f32[3][4]` | light directions (0.5, 0.5, 0.5, 0) |  |
-| `+0x80` | `f32[3][4], f32[4]` | light colours, ambient | (a full PS2 icon.sys continues with the title at `+0xC0` and three icon names; this one ends here) |
+| `+0x00` | `char[4]` |  | value "PS2D" |
+| `+0x06` | `u16` |  | value 26: title line-break position |
+| `+0x0C` | `u32` |  | value 109: background transparency |
+| `+0x10` | `u32[4][4]` |  | background corner colours (39,24,6,0 / 186,164,125,0 alternating) |
+| `+0x50` | `f32[3][4]` |  | light directions (0.5, 0.5, 0.5, 0) |
+| `+0x80` | `f32[3][4]` |  | light colours |
+| `+0xB0` | `f32[4]` | ambient | (a full PS2 icon.sys continues with the title at `+0xC0` and three icon names; this one ends here) |
 
 Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32` | 0x00010000 | file id (the same four bytes a Windows .ico starts with) |
-| `+0x004` | `u32` | 1 | animation shapes |
-| `+0x008` | `u32` | 6 | texture type |
-| `+0x00C` | `f32` | 1.0 |  |
-| `+0x010` | `u32` | 36 | vertices |
-| `+0x014` | `36 x 24 bytes` | vertex, normal, uv, colour |  |
-| `+0x374` | `20 + 16 bytes` | animation header (one frame), frame record |  |
-| `+0x398` | `u16[128*128]` | texture (32,768 bytes) |  |
+| `+0x000` | `u32` |  | value `0x00010000`: file id (the same four bytes a Windows .ico starts with) |
+| `+0x004` | `u32` |  | value 1: animation shapes |
+| `+0x008` | `u32` |  | value 6: texture type |
+| `+0x00C` | `f32` |  | value 1.0 |
+| `+0x010` | `u32` |  | value 36: vertices |
+| `+0x014` | `u8[36][24]` |  | the 36 vertices, 24 bytes each: position, normal, uv, colour |
+| `+0x374` | `u8[20]` |  | animation header (one frame) |
+| `+0x388` | `u8[16]` |  | frame record |
+| `+0x398` | `u16[128*128]` |  | texture (32,768 bytes) |
 
 ### PS2 boot descriptor
 
@@ -460,7 +462,7 @@ State 7 builds this image at `+0xE8` of the transaction record; the storage requ
 [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md).
 
 [`standard-file-formats-icon-rows.tsv`](standard-file-formats-icon-rows.tsv) lists the four files, with
-size, SHA-256, kind-7 id and the language ids that load each copy, then every field of `icon.sys` and
+size, SHA-256, kind-7 id and the locale ids that load each copy, then every field of `icon.sys` and
 `icon1.ico`: the 16 fields of `icon.sys`, the five header fields, 36 vertices, animation header, frame
 record and texture of `icon1.ico`, each with the code that reads it.
 
@@ -526,7 +528,8 @@ offset table, with an English reading of every Japanese comment.
 `JsonData/debugMenuSettings.json` (`0x008FCCB0`) is a string with no code reference and no shipped file.
 
 [`standard-file-formats-mapjump-nocrystal-rows.tsv`](standard-file-formats-mapjump-nocrystal-rows.tsv) lists
-the 1,776 rows of `prefetchdata/ff12mapjump_custom_nocrystal.csv` in file order. Each row names a source
+the 1,777 lines of `prefetchdata/ff12mapjump_custom_nocrystal.csv` in file order: the header line
+(`name(src),id(src),name(dest),id(dest)` and eleven empty columns), then 1,776 rows. Each row names a source
 zone and a zone it leads to, by internal name and field id, followed by eleven empty columns; the TSV adds
 both places and the `mapjump` calls of the source zone's US script that reach the destination.
 

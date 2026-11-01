@@ -1,0 +1,187 @@
+function	name	site	disp	kind	instruction	route	note
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DF57	0x29	r	movzx eax, byte ptr [rcx + 0x29]	chain:0xB8,0xF0	owner=Movement
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DF5F	0x7C	r	movss xmm2, dword ptr [rcx + 0x7c]	chain:0xB8,0xF0	owner=Movement
+0x00263230	FUN_00263230	0x0026339D	0x62	rw	or byte ptr [rcx + 0x62], 0x80	chain:0xB8,0xF0	owner=ActorEntity
+0x002636F0	Movement_GetSteeringAcceleration	0x0026370C	0x2C	r	movss xmm0, dword ptr [rcx + 0x2c]	chain:0xB8,0xF0	owner=Movement
+0x00263720	Movement_GetConfiguredSteeringMode	0x0026373E	0x2B	r	movzx eax, byte ptr [rcx + 0x2b]	chain:0xB8,0xF0	owner=Movement
+0x00263D00	FUN_00263d00	0x00263D18	0x62	r	cmp byte ptr [rcx + 0x62], 0x80	chain:0xB8,0xF0	owner=-
+0x00264E10	FUN_00264e10	0x00264E2B	0x29	r	movzx eax, byte ptr [rcx + 0x29]	chain:0xB8,0xF0	owner=-
+0x002652A0	FUN_002652a0	0x002652BC	0x38	r	movss xmm0, dword ptr [rcx + 0x38]	chain:0xB8,0xF0	owner=Movement
+0x002654E0	FUN_002654e0	0x00265501	0x28	r	cmp byte ptr [rdx + 0x28], al	chain:0xB8,0xF0	owner=Movement
+0x00265510	FUN_00265510	0x00265528	0x64	r	movzx eax, byte ptr [rcx + 0x64]	chain:0xB8,0xF0	owner=Movement
+0x00265530	FUN_00265530	0x0026554B	0x66	r	movzx eax, word ptr [rcx + 0x66]	chain:0xB8,0xF0	owner=Movement
+0x002655D0	FUN_002655d0	0x002655E8	0x62	r	movzx eax, byte ptr [rcx + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x00265600	FUN_00265600	0x0026561B	0x28	r	movzx eax, byte ptr [rcx + 0x28]	chain:0xB8,0xF0	owner=Movement
+0x00265630	FUN_00265630	0x0026564B	0x78	r	cvttss2si eax, dword ptr [rcx + 0x78]	chain:0xB8,0xF0	owner=Movement
+0x00265660	FUN_00265660	0x0026567B	0x68	r	movsx eax, word ptr [rcx + 0x68]	chain:0xB8,0xF0	owner=Movement
+0x00265830	FUN_00265830	0x0026584C	0x24	r	movss xmm0, dword ptr [rcx + 0x24]	chain:0xB8,0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x0026617B	0x6A	rw	and byte ptr [rax + 0x6a], 0xfe	chain:0xB8,0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x00266186	0x6A	rw	and byte ptr [rax + 0x6a], 0xfd	chain:0xB8,0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x00266201	0x6A	rw	and byte ptr [rax + 0x6a], 0xfe	chain:0xB8,0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x0026620C	0x6A	rw	and byte ptr [rax + 0x6a], 0xfd	chain:0xB8,0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x002664C2	0x24	w	mov dword ptr [rax + 0x24], r15d	chain:0xB8,0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x002664CD	0x7C	w	mov dword ptr [rax + 0x7c], r15d	chain:0xB8,0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x002664E7	0x24	w	mov dword ptr [rax + 0x24], r15d	chain:0xB8,0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x002664F2	0x7C	w	mov dword ptr [rax + 0x7c], r15d	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x00269112	0x62	r	movzx esi, byte ptr [rax + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x00269116	0x34	r	movss xmm6, dword ptr [rax + 0x34]	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x002691ED	0x62	r	movzx ecx, byte ptr [rax + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x00269275	0x74	w	mov dword ptr [rcx + 0x74], edx	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x002692A8	0x65	r	cmp byte ptr [rax + 0x65], dl	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x002692E8	0x28	w	mov byte ptr [rcx + 0x28], 5	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x0026932D	0x28	rw	or byte ptr [rax + 0x28], 0x80	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x00269338	0x34	r	movss xmm0, dword ptr [rcx + 0x34]	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x00269345	0x58	r	divss xmm0, dword ptr [rcx + 0x58]	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x00269351	0x68	w	mov word ptr [rcx + 0x68], ax	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x00269367	0x78	w	movss dword ptr [rax + 0x78], xmm0	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x00269378	0x64	w	mov byte ptr [rax + 0x64], 1	chain:0xB8,0xF0	owner=Movement
+0x002690D0	FUN_002690d0	0x0026939F	0x66	w	mov word ptr [rcx + 0x66], dx	chain:0xB8,0xF0	owner=Movement
+0x002693D0	FUN_002693d0	0x0026944F	0x28	r	movzx eax, byte ptr [rcx + 0x28]	chain:0xB8,0xF0	owner=ActorEntity
+0x002693D0	FUN_002693d0	0x00269453	0x28	w	mov byte ptr [rcx + 0x28], 0	chain:0xB8,0xF0	owner=ActorEntity
+0x002693D0	FUN_002693d0	0x00269462	0x65	r	cmp byte ptr [rax + 0x65], 0	chain:0xB8,0xF0	owner=ActorEntity
+0x00269C30	FUN_00269c30	0x00269C54	0x2C	w	movss dword ptr [rax + 0x2c], xmm0	chain:0xB8,0xF0	owner=-
+0x00269C30	FUN_00269c30	0x00269C60	0x2B	w	mov byte ptr [rax + 0x2b], r8b	chain:0xB8,0xF0	owner=-
+0x0026A170	FUN_0026a170	0x0026A18D	0x65	w	mov byte ptr [rcx + 0x65], dl	chain:0xB8,0xF0	owner=-
+0x0026A1A0	FUN_0026a1a0	0x0026A1C0	0x62	r	movzx eax, byte ptr [r8 + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x0026A1A0	FUN_0026a1a0	0x0026A1C9	0x62	w	mov byte ptr [r8 + 0x62], cl	chain:0xB8,0xF0	owner=Movement
+0x0026A640	FUN_0026a640	0x0026A658	0x7C	w	movss dword ptr [rcx + 0x7c], xmm1	chain:0xB8,0xF0	owner=Movement
+0x0026A870	FUN_0026a870	0x0026A8CF	0x74	w	movss dword ptr [rcx + 0x74], xmm3	chain:0xB8,0xF0	owner=Movement
+0x0026A8E0	FUN_0026a8e0	0x0026A93F	0x70	w	movss dword ptr [rcx + 0x70], xmm3	chain:0xB8,0xF0	owner=Movement
+0x0026AAD0	FUN_0026aad0	0x0026AB37	0x6C	w	movss dword ptr [rcx + 0x6c], xmm3	chain:0xB8,0xF0	owner=Movement
+0x0026ADF0	Movement_SetSteeringTargetActorRef	0x0026AE08	0x0	w	mov dword ptr [rax], edx	chain:0xB8,0xF0	owner=Movement
+0x0026ADF0	Movement_SetSteeringTargetActorRef	0x0026AE11	0x4	w	mov dword ptr [rax + 4], r8d	chain:0xB8,0xF0	owner=Movement
+0x0026ADF0	Movement_SetSteeringTargetActorRef	0x0026AE1C	0x2A	w	mov byte ptr [rax + 0x2a], 1	chain:0xB8,0xF0	owner=Movement
+0x0026AE30	Movement_SetSteeringTargetPosition	0x0026AE6F	0x0	w	movups xmmword ptr [rax], xmm0	chain:0xB8,0xF0	owner=Movement
+0x0026AE30	Movement_SetSteeringTargetPosition	0x0026AE79	0x2A	w	mov byte ptr [rax + 0x2a], 0	chain:0xB8,0xF0	owner=Movement
+0x0026AE90	Movement_SetSteeringMode	0x0026AEBC	0x2C	r	movss xmm1, dword ptr [rax + 0x2c]	chain:0xB8,0xF0	owner=Movement
+0x0026AE90	Movement_SetSteeringMode	0x0026AED4	0x29	w	mov byte ptr [rax + 0x29], dl	chain:0xB8,0xF0	owner=Movement
+0x0026AE90	Movement_SetSteeringMode	0x0026AF02	0x7C	w	mov dword ptr [rcx + 0x7c], 0	chain:0xB8,0xF0	owner=Movement
+0x0026B450	FUN_0026b450	0x0026B46D	0x20	w	movss dword ptr [rcx + 0x20], xmm1	chain:0xB8,0xF0	owner=-
+0x0026C070	FUN_0026c070	0x0026C088	0x64	w	mov byte ptr [rcx + 0x64], dl	chain:0xB8,0xF0	owner=Movement
+0x0026C090	FUN_0026c090	0x0026C0F9	0x34	w	movss dword ptr [rcx + 0x34], xmm3	chain:0xB8,0xF0	owner=-
+0x0026C120	FUN_0026c120	0x0026C14F	0x28	r	movzx esi, byte ptr [rax + 0x28]	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C153	0x28	w	mov byte ptr [rax + 0x28], dl	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C17C	0x34	r	movss xmm0, dword ptr [rax + 0x34]	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C19D	0x62	rw	and byte ptr [rax + 0x62], 0xbf	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C1A3	0x62	rw	or byte ptr [rax + 0x62], 0x40	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C1AE	0x68	r	movsx eax, word ptr [rcx + 0x68]	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C1BE	0x34	r	movss xmm1, dword ptr [rcx + 0x34]	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C1DC	0x28	w	mov byte ptr [rax + 0x28], 0	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C1ED	0x34	r	movss xmm0, dword ptr [rax + 0x34]	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C20E	0x62	rw	and byte ptr [rax + 0x62], 0xbf	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C214	0x62	rw	or byte ptr [rax + 0x62], 0x40	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C224	0x58	w	mov dword ptr [rax + 0x58], 0x3e20d97c	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C237	0x5C	w	mov dword ptr [rax + 0x5c], 0x40490fdb	chain:0xB8,0xF0	owner=Movement
+0x0026C120	FUN_0026c120	0x0026C24B	0x65	r	cmp byte ptr [rax + 0x65], 0	chain:0xB8,0xF0	owner=Movement
+0x0026C290	FUN_0026c290	0x0026C2EF	0x38	w	movss dword ptr [rcx + 0x38], xmm3	chain:0xB8,0xF0	owner=-
+0x0026C300	FUN_0026c300	0x0026C31F	0x78	w	movss dword ptr [rcx + 0x78], xmm0	chain:0xB8,0xF0	owner=Movement
+0x0026C330	FUN_0026c330	0x0026C373	0x68	w	mov word ptr [rax + 0x68], cx	chain:0xB8,0xF0	owner=Movement
+0x0026C330	FUN_0026c330	0x0026C389	0x78	w	movss dword ptr [rax + 0x78], xmm0	chain:0xB8,0xF0	owner=Movement
+0x0026C330	FUN_0026c330	0x0026C3A0	0x66	w	mov word ptr [rax + 0x66], cx	chain:0xB8,0xF0	owner=Movement
+0x0026D6F0	Movement_SetRequestedSpeed	0x0026D72C	0x24	w	movss dword ptr [rax + 0x24], xmm6	chain:0xB8,0xF0	owner=Movement
+0x0026D810	FUN_0026d810	0x0026D842	0x24	w	movss dword ptr [rax + 0x24], xmm6	chain:0xB8,0xF0	owner=Movement
+0x002E28E0	FUN_002e28e0	0x002E3043	0x63	w	mov byte ptr [rax + 0x63], r12b	chain:0xB8,0xF0	owner=-
+0x002E3110	FUN_002e3110	0x002E32BD	0x63	w	mov byte ptr [rax + 0x63], r12b	chain:0xB8,0xF0	owner=-
+0x002E4BC0	FUN_002e4bc0	0x002E4BDD	0x58	r	movss xmm0, dword ptr [rcx + 0x58]	chain:0xB8,0xF0	owner=Movement
+0x002E4BF0	FUN_002e4bf0	0x002E4C0D	0x3C	r	movss xmm0, dword ptr [rcx + 0x3c]	chain:0xB8,0xF0	owner=Movement
+0x002E5030	Movement_UpdateActorFrame	0x002E50A7	0x29	r	movzx ecx, byte ptr [rax + 0x29]	chain:0xB8,0xF0	owner=Movement
+0x002E5B60	Movement_SetDesiredHeadingTurnLimit	0x002E5B7D	0x50	w	movss dword ptr [rcx + 0x50], xmm1	chain:0xB8,0xF0	owner=Movement
+0x002E5B90	FUN_002e5b90	0x002E5BAD	0x58	w	movss dword ptr [rcx + 0x58], xmm1	chain:0xB8,0xF0	owner=Movement
+0x002E60C0	FUN_002e60c0	0x002E60DD	0x3C	w	movss dword ptr [rcx + 0x3c], xmm1	chain:0xB8,0xF0	owner=-
+0x002E64E0	FUN_002e64e0	0x002E6519	0x63	w	mov byte ptr [rax + 0x63], bl	chain:0xB8,0xF0	owner=Movement
+0x002E8EE0	FUN_002e8ee0	0x002E8F0F	0x62	r	movzx edx, byte ptr [rax + 0x62]	chain:0xB8,0xF0	owner=-
+0x002E8EE0	FUN_002e8ee0	0x002E8F6B	0x63	r	movzx edx, byte ptr [rax + 0x63]	chain:0xB8,0xF0	owner=-
+0x002EAAA0	FUN_002eaaa0	0x002EAAE7	0x62	r	movzx ecx, byte ptr [rdx + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002EAAA0	FUN_002eaaa0	0x002EAAF5	0x18	r	mov r9d, dword ptr [rdx + 0x18]	chain:0xB8,0xF0	owner=Movement
+0x002EAAA0	FUN_002eaaa0	0x002EAAFC	0x14	r	mov r8d, dword ptr [rdx + 0x14]	chain:0xB8,0xF0	owner=Movement
+0x002EAAA0	FUN_002eaaa0	0x002EAB00	0x10	r	mov edx, dword ptr [rdx + 0x10]	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBE9C	0x63	r	cmp byte ptr [rax + 0x63], 0	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBEC3	0x70	r	movss xmm0, dword ptr [rax + 0x70]	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBEDF	0x62	r	cmp byte ptr [rax + 0x62], 0x80	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBEE5	0x74	r	movss xmm0, dword ptr [rax + 0x74]	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBEFE	0x70	r	mov eax, dword ptr [rcx + 0x70]	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBF07	0x74	r	mov eax, dword ptr [rcx + 0x74]	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBF10	0x62	r	movzx eax, byte ptr [rcx + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBF18	0x6C	r	movss xmm1, dword ptr [rcx + 0x6c]	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBF55	0x62	w	mov byte ptr [rcx + 0x62], al	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBF63	0x60	w	mov word ptr [rax + 0x60], cx	chain:0xB8,0xF0	owner=Movement
+0x002EBE50	FUN_002ebe50	0x002EBF76	0x63	w	mov byte ptr [rax + 0x63], sil	chain:0xB8,0xF0	owner=Movement
+0x002EBFA0	FUN_002ebfa0	0x002EC01B	0x10	w	mov dword ptr [rax + 0x10], ebp	chain:0xB8,0xF0	owner=Movement
+0x002EBFA0	FUN_002ebfa0	0x002EC025	0x14	w	mov dword ptr [rax + 0x14], r14d	chain:0xB8,0xF0	owner=Movement
+0x002EBFA0	FUN_002ebfa0	0x002EC030	0x18	w	mov dword ptr [rax + 0x18], r15d	chain:0xB8,0xF0	owner=Movement
+0x002EBFA0	FUN_002ebfa0	0x002EC046	0x1C	w	mov dword ptr [rcx + 0x1c], eax	chain:0xB8,0xF0	owner=Movement
+0x002EBFA0	FUN_002ebfa0	0x002EC050	0x62	r	movzx eax, byte ptr [rcx + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002EBFA0	FUN_002ebfa0	0x002EC058	0x62	w	mov byte ptr [rcx + 0x62], al	chain:0xB8,0xF0	owner=Movement
+0x002EC140	FUN_002ec140	0x002EC169	0x10	w	movss dword ptr [rax + 0x10], xmm1	chain:0xB8,0xF0	owner=Movement
+0x002EC140	FUN_002ec140	0x002EC175	0x14	w	movss dword ptr [rax + 0x14], xmm6	chain:0xB8,0xF0	owner=Movement
+0x002EC140	FUN_002ec140	0x002EC181	0x62	r	movzx eax, byte ptr [r8 + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002EC140	FUN_002ec140	0x002EC18A	0x62	w	mov byte ptr [r8 + 0x62], al	chain:0xB8,0xF0	owner=Movement
+0x002EC1C0	FUN_002ec1c0	0x002EC271	0x10	w	movss dword ptr [rax + 0x10], xmm3	chain:0xB8,0xF0	owner=Movement
+0x002EC1C0	FUN_002ec1c0	0x002EC27D	0x14	w	movss dword ptr [rax + 0x14], xmm6	chain:0xB8,0xF0	owner=Movement
+0x002EC1C0	FUN_002ec1c0	0x002EC28C	0x62	r	movzx eax, byte ptr [rdx + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002EC1C0	FUN_002ec1c0	0x002EC294	0x62	w	mov byte ptr [rdx + 0x62], al	chain:0xB8,0xF0	owner=Movement
+0x002EC2C0	FUN_002ec2c0	0x002EC2FA	0x10	w	movups xmmword ptr [rax + 0x10], xmm0	chain:0xB8,0xF0	owner=Movement
+0x002EC2C0	FUN_002ec2c0	0x002EC308	0x62	rw	and byte ptr [rax + 0x62], 0xf8	chain:0xB8,0xF0	owner=Movement
+0x002EC380	FUN_002ec380	0x002EC39B	0x62	r	xor dl, byte ptr [rax + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002EC380	FUN_002ec380	0x002EC3A1	0x62	rw	xor byte ptr [rax + 0x62], dl	chain:0xB8,0xF0	owner=Movement
+0x002EC380	FUN_002ec380	0x002EC3B7	0x60	w	mov word ptr [rax + 0x60], cx	chain:0xB8,0xF0	owner=Movement
+0x002EC3F0	FUN_002ec3f0	0x002EC40F	0x62	r	movzx edx, byte ptr [r9 + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002EC3F0	FUN_002ec3f0	0x002EC424	0x6A	r	test byte ptr [r9 + 0x6a], 1	chain:0xB8,0xF0	owner=Movement
+0x002EC3F0	FUN_002ec3f0	0x002EC433	0x6A	rw	and byte ptr [r9 + 0x6a], 0xfe	chain:0xB8,0xF0	owner=Movement
+0x002EC3F0	FUN_002ec3f0	0x002EC45B	0x62	r	movzx eax, byte ptr [rcx + 0x62]	chain:0xB8,0xF0	owner=Movement
+0x002EC3F0	FUN_002ec3f0	0x002EC45F	0x14	r	movss xmm3, dword ptr [rcx + 0x14]	chain:0xB8,0xF0	owner=Movement
+0x002EC3F0	FUN_002ec3f0	0x002EC466	0x10	r	movss xmm2, dword ptr [rcx + 0x10]	chain:0xB8,0xF0	owner=Movement
+0x002EC3F0	FUN_002ec3f0	0x002EC46D	0x60	r	movsx eax, word ptr [rcx + 0x60]	chain:0xB8,0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E462C	0x2A	r	movzx edx, byte ptr [rcx + 0x2a]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4641	0x4	r	mov edx, dword ptr [rcx + 4]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4648	0x0	r	mov ecx, dword ptr [rcx]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E469E	0x20	r	addss xmm6, dword ptr [rax + 0x20]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E46BF	0x20	r	addss xmm6, dword ptr [rax + 0x20]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E46FA	0x50	r	movss xmm2, dword ptr [rax + 0x50]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E471D	0x54	r	movss xmm2, dword ptr [rax + 0x54]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E47A7	0x29	r	movzx ecx, byte ptr [rdx + 0x29]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E47AB	0x24	r	movss xmm6, dword ptr [rdx + 0x24]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E47D4	0x2C	r	movss xmm8, dword ptr [rdx + 0x2c]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E485B	0x29	r	cmp byte ptr [rdx + 0x29], 2	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4861	0x2C	r	movss xmm8, dword ptr [rdx + 0x2c]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4900	0x2A	r	cmp byte ptr [rax + 0x2a], bl	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4905	0x20	r	movss xmm0, dword ptr [rax + 0x20]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4934	0x24	w	mov dword ptr [rax + 0x24], ebx	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4944	0x2C	w	mov dword ptr [rax + 0x2c], ebx	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E494E	0x29	w	mov byte ptr [rax + 0x29], bl	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4958	0x28	r	movzx edx, byte ptr [rax + 0x28]	chain:0xF0	owner=Movement
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4975	0x24	w	mov dword ptr [rax + 0x24], ebx	chain:0xF0	owner=Movement
+0x002E55C0	Movement_ClearSteeringRequest	0x002E55D0	0x29	w	mov byte ptr [rax + 0x29], 0	chain:0xF0	owner=Movement
+0x002E55C0	Movement_ClearSteeringRequest	0x002E55DB	0x28	r	movzx r8d, byte ptr [rax + 0x28]	chain:0xF0	owner=Movement
+0x002E55C0	Movement_ClearSteeringRequest	0x002E55FA	0x24	w	mov dword ptr [rax + 0x24], ecx	chain:0xF0	owner=Movement
+0x00265FF0	FUN_00265ff0	0x002660D7	0x0	addr	lea rax, [r14 + 0x120]	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x0026610C	0x20	w	mov qword ptr [r14 + 0x140], r15	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x002664AC	0x28	w	mov word ptr [rcx + 0x148], r15w	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x0026613F	0x2c	w	mov qword ptr [r14 + 0x14c], r15	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x0026614D	0x3c	w	mov qword ptr [r14 + 0x15c], r15	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x00266154	0x4c	w	mov dword ptr [r14 + 0x16c], r15d	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x00266113	0x50	w	mov dword ptr [r14 + 0x170], 0x40490fdb	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x0026611E	0x54	w	mov dword ptr [r14 + 0x174], 0x40490fdb	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x00266129	0x58	w	mov dword ptr [r14 + 0x178], 0x3e20d97c	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x00266134	0x5c	w	mov dword ptr [r14 + 0x17c], 0x40490fdb	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x00266100	0x62	rw	and byte ptr [r14 + 0x182], 0x7f	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x002664B4	0x64	w	mov byte ptr [rcx + 0x184], r15b	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x0026616D	0x65	w	mov byte ptr [r14 + 0x185], r15b	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x0026615B	0x6c	w	mov qword ptr [r14 + 0x18c], 0x3e20d97c	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x00266166	0x74	w	mov dword ptr [r14 + 0x194], r15d	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x00266146	0x7c	w	mov dword ptr [r14 + 0x19c], r15d	ctor	context initialiser; direct write into the embedded slot at context+0x120
+0x00265FF0	FUN_00265ff0	0x0026618A	0x20	w	mov qword ptr [r14 + 0x1c0], r15	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002664D1	0x28	w	mov word ptr [rcx + 0x1c8], r15w	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661BD	0x2c	w	mov qword ptr [r14 + 0x1cc], r15	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661CB	0x3c	w	mov qword ptr [r14 + 0x1dc], r15	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661D2	0x4c	w	mov dword ptr [r14 + 0x1ec], r15d	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x00266191	0x50	w	mov dword ptr [r14 + 0x1f0], 0x40490fdb	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x0026619C	0x54	w	mov dword ptr [r14 + 0x1f4], 0x40490fdb	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661A7	0x58	w	mov dword ptr [r14 + 0x1f8], 0x3e20d97c	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661B2	0x5c	w	mov dword ptr [r14 + 0x1fc], 0x40490fdb	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661F2	0x62	rw	and byte ptr [r14 + 0x202], 0x7f	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002664D9	0x64	w	mov byte ptr [rcx + 0x204], r15b	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661EB	0x65	w	mov byte ptr [r14 + 0x205], r15b	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661D9	0x6c	w	mov qword ptr [r14 + 0x20c], 0x3e20d97c	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661E4	0x74	w	mov dword ptr [r14 + 0x214], r15d	ctor	context initialiser; direct write into the embedded slot at context+0x1A0
+0x00265FF0	FUN_00265ff0	0x002661C4	0x7c	w	mov dword ptr [r14 + 0x21c], r15d	ctor	context initialiser; direct write into the embedded slot at context+0x1A0

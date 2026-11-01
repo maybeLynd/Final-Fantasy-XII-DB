@@ -191,9 +191,9 @@ The achievement manager, `0x80` bytes at `[0x01F83450]`:
 | `+0x10` | `i32` | count | 41 |
 | `+0x14` | `i32` | achieved | entries 1-40 achieved |
 | `+0x18` | `u8` | received | set by the stats receipt; gates every send |
-| `+0x20` | `fn*` | 1101 object (handler at +0x38) |  |
-| `+0x40` | `fn*` | 1102 object |  |
-| `+0x60` | `fn*` | 1103 object |  |
+| `+0x20` | `fn*` |  | 1101 object (handler at `+0x38`) |
+| `+0x40` | `fn*` |  | 1102 object |
+| `+0x60` | `fn*` |  | 1103 object |
 
 The connection listener at `0x02EACC90`, four `0x20`-byte callback objects, then:
 

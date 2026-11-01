@@ -118,7 +118,7 @@ gil += (enemyStats.b[+0x1C2] - enemyStats.b[+0x88]) * [[enemy+0xE78] + 0x30]
 `conversion` adds `level × LP × 5` for each recipient whose stats byte `+0x69` or `+0x79` has bit
 `0x10` set. Here `level` is the recipient's byte `+0x1C2` and `LP` is that recipient's share capped
 at 999. Such a recipient receives no LP from the kill. This sits under the same reward gate as EXP and
-LP (`+0xE9A` and the killer test, see the EXP and LP page). The total is floored at 0 and stored through
+LP (`+0xE9A` and the killer test, see [EXP, LP and level-ups](exp-lp-and-level-ups.md)). The total is floored at 0 and stored through
 the setter (`0x00312553`-`0x0031255D`), and the difference is posted as a gain notification (`0x00312566`).
 
 ### The gain notification
@@ -150,7 +150,7 @@ Every function that changes gil: the callers of the setter and of its two wrappe
 | `0x0050FAF0` | via `0x003004B0` | the chest payout, Start of script verb `btlAtelOpenTreasureMessage`: when `0x002FAFD0` reports a gil chest, adds its amount through `0x003004B0(amount, 0)` (no notification) |
 | `0x003004B0` | `0x003004D6` | `v` = the 32-bit sum `gil + delta`, or 0 when it is negative, which includes a sum past 2,147,483,647 that wraps (`0x003004C3`-`0x003004D1`), sets `v`, which the setter stores capped at 99,999,999; when argument 2 bit `0x1` is set, notifies `v - old` (`0x003004DB`-`0x003004E5`); returns `v`, not the stored balance (`0x003004EF`) |
 | `0x00300500` | `0x0030050F` | floors its argument at 0, sets, returns the floored value |
-| `0x00316DF0` | via `0x003004B0` (`0x00317034`) | a party-side character's first activation (record flag `0x10` clear; character type 0-25, record flag 8 clear): grants the ten items at `+0x58` with counts at `+0x34` of the character row in `[0x02EBF130]` (row = type byte `+4`), then adds the row's u16 `+0x3E` as gil when non-zero |
+| `0x00316DF0` | via `0x003004B0` (`0x00317034`) | a party-side character's first activation (record flag `0x10` clear; character type 0-25, record flag `0x8` clear): grants the ten items at `+0x58` with counts at `+0x34` of the character row in `[0x02EBF130]` (row = type byte `+4`), then adds the row's u16 `+0x3E` as gil when non-zero |
 | `0x0032A7F0` | via `0x003004B0` (`0x0032A7F2`, jump) | `0x003004B0(n, 0)`; called by the script verbs `addgill` (`0x2E7`, `0x00346943` in `0x00346930`) with `n` and `subgill` (`0x2E8`, `0x00346E30`) with `-n` |
 | `0x00239960` | via `0x00300500` (`0x00239B1D`) | applying a SetSaveData preset sets gil to the preset row's u16 `+0x0E` (an absolute set) |
 | `0x0032A800` | via `0x00300500` (`0x0032A802`, jump) | `0x00300500(n)`; called by the script verb `debug_setgill` (`0x0A3` in family 2, `0x0050DEF2` in `0x0050DEE0`) |
@@ -177,7 +177,7 @@ verb `questresultwindow` (`0x37C`).
 | `[0x02092758] + 0x08` | `i32` | gil, 0-99,999,999 | `0x00254EE0` (`0x00254F1F`) |
 | `[0x020927C0] + 0x3860` | `i32` | gil gained, saturating at `0x7FFFFFFF` | `0x00316BF0` for kind 6 |
 | `[0x020927C0] + 0x3864` | `i32` | gil spent, saturating at `0x7FFFFFFF` | `0x00316BF0` for kind 7 |
-| `[0x020927C0] + 0x3844` | bits | counters whose achievement has fired (bit = kind) | `0x00316A50`, `0x00315E90` |
+| `[0x020927C0] + 0x3844` | bits | counters whose achievement has fired (bit `1 << kind`) | `0x00316A50`, `0x00315E90` |
 | unit `+0xE58` | `i32` | gil reserved for the action being carried out | `0x0030EFC0`; cleared by `0x00300280`, `0x00305640` |
 | unit `+0xE54` | `i32` | gil amount from the action's result evaluation, deducted on consume | `0x00303954`, `0x00303B2E` |
 
@@ -202,5 +202,6 @@ verb `questresultwindow` (`0x37C`).
 
 ## Related
 
+- [EXP, LP and level-ups from kills: who receives them, the formulas, the split, the doublers and the EXP table](exp-lp-and-level-ups.md)
 - [Kill chain: chain count, chain level, the chain coin and resets](kill-chain.md)
 - [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](loot-drops.md)

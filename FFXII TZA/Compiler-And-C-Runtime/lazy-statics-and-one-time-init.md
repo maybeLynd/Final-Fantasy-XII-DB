@@ -135,8 +135,8 @@ Runtime globals:
 | Address | Type | Name | Meaning |
 |---|---|---|---|
 | `0x01F44850` | `u32` | global epoch | starts `0x80000000` |
-| `0x02EAED40` | `CRITICAL_SECTION` | critical section |  |
-| `0x02EAED68` | `CONDITION_VARIABLE` | condition variable |  |
+| `0x02EAED40` | `CRITICAL_SECTION` |  | critical section |
+| `0x02EAED68` | `CONDITION_VARIABLE` |  | condition variable |
 | `0x02EAED70` | `HANDLE` | event | 0 when the condition variable is used |
 | `0x02EAED78` | `u64` | sleep | encoded SleepConditionVariableCS |
 | `0x02EAED80` | `u64` | wake | encoded WakeAllConditionVariable |
@@ -321,5 +321,12 @@ the three channels (`0x00712748`-`0x00712760`). Every call multiplies the reques
   scalar-conversion registrars.
 - [Object construction and destruction](object-construction-and-destruction.md): the objects these
   statics hold.
-- `exception-handling.md`: the unwind maps that hold the guard-release funclets.
+- [`exception-handling.md`](exception-handling.md): the unwind maps that hold the guard-release funclets.
 - [Class hierarchy](../Engine-Core/class-hierarchy.md): the Phyre descriptor classes by RTTI.
+- [`lazy-statics-and-one-time-init-magic-static-pair-initialisers.tsv`](lazy-statics-and-one-time-init-magic-static-pair-initialisers.tsv):
+  thread-safe local-static accessors that install a tagged pair of descriptor pointers and return the static: the
+  133-byte ones only store, the 134- and 138-byte ones also call one initialiser of their own; with each one's size
+  and the functions it calls (57 rows).
+
+The table has one row per accessor: `address` is where it starts, `size` its length in bytes and `targets` the
+functions it calls directly.

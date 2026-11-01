@@ -28,7 +28,7 @@ All multi-byte fields are little-endian.
 |---|---|---|---|
 | `+0x00` | `char[4]` | 'PKFL' | only byte 0 is tested, for non-zero |
 | `+0x04` | `u32` | slotCount | 16 (.mot, .snd) or 64 (.vpc, .vpcjp); not read |
-| `+0x08` | `{u32 offset, u32 size}[slotCount]` | offsets from the file start; {0, 0} = slot empty |  |
+| `+0x08` | `{u32 offset, u32 size}[slotCount]` |  | offsets from the file start; {0, 0} = slot empty |
 
 The directory ends at file offset `0x88` for 16 slots and `0x208` for 64. Every payload starts on a `0x800`
 boundary, the first at file offset `0x800`.

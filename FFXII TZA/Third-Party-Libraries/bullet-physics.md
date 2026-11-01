@@ -213,8 +213,8 @@ The construction info `0x0069FB10` fills, as `0x008542B0` reads it:
 | `+0x84` | `f32` | angularSleepingThreshold | 1.0 |
 | `+0x88` | `u8` | additionalDamping | 0 |
 | `+0x8C` | `f32` | additionalDampingFactor | 0.005 |
-| `+0x90` | `f32` | additionalLinearDampingThresholdSqr 0.01 |  |
-| `+0x94` | `f32` | additionalAngularDampingThresholdSqr 0.01 |  |
+| `+0x90` | `f32` | additionalLinearDampingThresholdSqr | 0.01 |
+| `+0x94` | `f32` | additionalAngularDampingThresholdSqr | 0.01 |
 | `+0x98` | `f32` | additionalAngularDampingFactor | 0.01 |
 
 `PPhysicsWorld`'s default instance (`0x0068B9E0`): gravity (0, -9.8, 0) at `+0x00`, 1.0 at `+0x10`, and
@@ -284,7 +284,7 @@ Five more words of the library, which run only inside a world too:
   the collision bodies the game actually uses for actors.
 - [Heading and speed to position](../Movement-And-Pathfinding/heading-speed-to-position-delta.md):
   how actors move without physics.
-- `bullet-physics-members.tsv`: the library's functions in its two link ranges.
+- [`bullet-physics-members.tsv`](bullet-physics-members.tsv): the library's functions in its two link ranges.
 - The field accesses of the `PPhysics` classes' class descriptors and vtables, one table per class:
   - [`bullet-physics-pphysics-capsule-base-accesses.tsv`](bullet-physics-pphysics-capsule-base-accesses.tsv);
   - [`bullet-physics-pphysics-character-camera-accesses.tsv`](bullet-physics-pphysics-character-camera-accesses.tsv);

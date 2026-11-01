@@ -27,7 +27,7 @@ The sheets are kind-7 resources `0xDA` to `0xDF` in the archive folder `ps2data/
 | 11 | `0xDE` | `font_stfc_normal.btm` (`font_stf_c_normal.btm` in the `kr` and `cn` arrays) |
 | 12 | `0xDF` | `font_stf_c_shadow.btm` |
 
-The kind-7 path array is chosen per language id by `0x002DF9A0`. Language ids 1-6 and the default array name the
+The kind-7 path array is chosen per locale id by `0x002DF9A0`. Locale ids 1-6 and the default array name the
 `in` sheets, id 8 the `ch` sheets, ids 7 and 11 `kr` and `cn` sheets. The glyph tables that locate the cells come
 from `packfiles/fontpack_fs.bin` (kind 7, `0xD2`): the `us` copy for ids 1-6, `kr`, `ch` and `cn` for 7, 8 and 11,
 and `in` for the default.
@@ -54,7 +54,7 @@ Fontpack_fs.bin (offsets from the file start; `0x003643A0` binds them into the f
 | `+0x14` | `u32` | sheet3 | offset of face 3's sheet; to state `+0x128` when empty |
 | `+0x18` | `u32` | sheet4 | offset of face 4's sheet; to state `+0x130` when empty |
 | `+0x1C` | `u32` | end | `0xFFFFFFFF` in all six files; read by no function |
-| `+0x20` | `u8[32]` | 0xFF in all six files; read by no function |  |
+| `+0x20` | `u8[32]` |  | `0xFF` in all six files; read by no function |
 
 Palette block (640 bytes, from `+0x04` to `+0x08`):
 
@@ -76,7 +76,7 @@ Glyph table:
 |---|---|---|---|
 | `+0x00` | `i32` | next | offset of the next table from this one |
 | `+0x04` | `i32` | glyphCount | number of 12-byte records |
-| `+0x08` | `u8[8]` | read by no function: the tables are reached through the state's table pointers (+0x10 + 8 x face, set by 0x00366080), and their readers 0x00366080 (+0x00, +0x04), 0x00364210, 0x00364530, 0x003647E0 and 0x003655F0 (+0x04, then the records from +0x10) read nothing from +0x08 to +0x0F; nothing fixes its width |  |
+| `+0x08` | `u8[8]` |  | read by no function: the tables are reached through the state's table pointers (`+0x10` + 8 x face, set by `0x00366080`), and their readers `0x00366080` (`+0x00`, `+0x04`), `0x00364210`, `0x00364530`, `0x003647E0` and `0x003655F0` (`+0x04`, then the records from `+0x10`) read nothing from `+0x08` to `+0x0F`; nothing fixes its width |
 | `+0x10` | `...` | records | glyphCount records |
 
 Glyph record (12 bytes):
@@ -86,7 +86,7 @@ Glyph record (12 bytes):
 | `+0x00` | `u16` | code | character code matched by `0x00364210` |
 | `+0x02` | `u8` | cellW | glyph width in texels |
 | `+0x03` | `u8` | cellH | glyph height in texels |
-| `+0x04` | `u8[4]` | skipped by 0x00364210 |  |
+| `+0x04` | `u8[4]` |  | skipped by `0x00364210` |
 | `+0x08` | `u32` | sheetOffset | byte offset of the cell in the sheet of the same face |
 
 The font state is a `0x250`-byte block at `0x022CBBB0`; `0x00364950` zeroes it and stores its address in `0x022CBE00`.
@@ -98,7 +98,7 @@ Font state (pointer at `0x022CBE00`):
 | `+0x000` | `void*` | fontpack | the loaded fontpack_fs.bin |
 | `+0x008` | `void*` | fontBlock | fontpack + u32[0] |
 | `+0x010` | `void*` | tables[16] | glyph table of face n at `+0x10` + 8n |
-| `+0x090` | `void*` | tableEnds[16] end of face n's records |  |
+| `+0x090` | `void*` | tableEnds[16] | end of face n's records |
 | `+0x110` | `void*` | sheets[16] | .btm buffer of face n at `+0x110` + 8n |
 | `+0x228` | `void*` | cacheTail | least recently used glyph cache entry |
 | `+0x230` | `void*` | cacheHead | most recently used glyph cache entry |
@@ -137,22 +137,22 @@ Sheet slot `s` is face `s - 1`, so the six staff-roll faces are faces 6 to 11 an
 | `us` faces 8 to 11 | the first 78 records equal the `in` records; the 49 extra cells lie wholly past the end of the 29,184- and 32,256-byte sheets |
 
 [`btm-exfont-bitmaps-btm-rows.tsv`](btm-exfont-bitmaps-btm-rows.tsv) lists the 12 sheets, with size,
-SHA-256, face, slot, kind-7 id and the language ids that load each with their size-table entries, then the
+SHA-256, face, slot, kind-7 id and the locale ids that load each with their size-table entries, then the
 1,132 cells the glyph tables place in them: the tables that place the cell, its code and character, cell and
 rounded size, sheet offset and length, whether it lies inside the sheet, its SHA-256 and non-zero texels,
 and how often each language's staff-roll text asks for its code.
 
-- Each cell is the PS2-era pixel pattern of one staff-roll letter. The `in` sheets, read by language ids 0
+- Each cell is the PS2-era pixel pattern of one staff-roll letter. The `in` sheets, read by locale ids 0
   to 6, 9 and 10, are asked for 38 of the 78 cells of font A (faces 6 and 7), 63 of font B (faces 8 and 9)
   and 66 of font C (faces 10 and 11); the `ch` sheets, read by id 8, for 35, 63 and 63.
 - Each of the others is fetched by no line: no staff-roll line set in its font, in any language that loads
   the sheet, holds its code once `0x003647E0` has taken out the codes below `0x21`, `0x3000` and the `0x7B`
   escapes. The TSV names those languages per cell.
 - The 49 cells that only the `us` tables place in faces 8 to 11 start 512 to 20,992 bytes past the end of
-  their sheet; the TSV marks them out of range. No staff-roll line of language ids 1 to 6, the ids that use
+  their sheet; the TSV marks them out of range. No staff-roll line of locale ids 1 to 6, the ids that use
   the `us` tables, asks for them, so they are never fetched.
 - Inside each sheet the 78 cells of a table cover every byte exactly once, and every code a staff-roll line
-  asks for has a record in its font's table, for every language id.
+  asks for has a record in its font's table, for every locale id.
 - Faces 0 to 5 hold 36, 1, 10, 31, 12 and 1 records in the `ch`, `cn` and `kr` tables, the same with 45 in face 3 in
   `in`, and 92, 0, 10, 150, 12 and 0 in `us` and `it`, whose two copies are identical.
 
@@ -254,7 +254,7 @@ that is 0) + +0x50`, times `+0x08`, it saw. At the end, with `+0x62` set, it add
 - A replacement sheet must hold every cell its face's glyph table places in it, `roundW x roundH / 2` bytes
   at each record's `sheetOffset`, and its size must match the size table entry the loader allocates from.
 - Edit `fontpack_fs.bin` to add, move or resize a glyph; the sheet itself carries no index.
-- With the `us` glyph tables (language ids 1-6), faces 8 to 11 list 49 accented letters whose cells lie past
+- With the `us` glyph tables (locale ids 1-6), faces 8 to 11 list 49 accented letters whose cells lie past
   the end of the shipped `in` sheets, so drawing one reads beyond the allocation. Extend the sheet and its size
   table entry before using them.
 - The `KR` and `CN` size tables list all six sheets as -1 and no `kr` or `cn` sheet ships. `0x00365810`

@@ -190,8 +190,8 @@ out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` mov
 | `+0x0C0` | `void*` | content | the content widget that holds the rows |
 | `+0x0C8` | `void*` | owner | gets `0x8000` and the other notices |
 | `+0x0D8` | `void*` | data | the rows' data |
-| `+0x0E0` | `u32` | flags | bit `0x10000` from `0x002D45C0`, 22 silent, 23 scroll-only, 24 a wrap is running |
-| `+0x0E4` | `u32` | flags2 | bit `0x2000` fast or no paging, 21 from `0x002D49C0`, 24 no wrap, 27 Clan Primer hook, 29 block-bank sounds |
+| `+0x0E0` | `u32` | flags | bit `0x10000` from `0x002D45C0`, `0x400000` silent, `0x800000` scroll-only, `0x1000000` a wrap is running |
+| `+0x0E4` | `u32` | flags2 | bit `0x2000` fast or no paging, `0x200000` from `0x002D49C0`, `0x1000000` no wrap, `0x8000000` Clan Primer hook, `0x20000000` block-bank sounds |
 | `+0x0E8` | `u16` | items | item count |
 | `+0x0EA` | `u16` | colWidth | column width |
 | `+0x0EC` | `u8` | columns | columns |

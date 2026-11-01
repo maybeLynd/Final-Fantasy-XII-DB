@@ -10,7 +10,7 @@ addresses: "0x01EEC460, 0x00305080, 0x00301830, 0x002FDDA0, 0x002FDA60, 0x002FDC
 A unit's action id `+0x714` holds either an ordinary action (ids up to `0x21E`, which carry a target
 list) or an internal **order** (`0x4000`-`0x4166`, no target list). Orders are what AI order lists and
 scripts use for moving, waiting, changing statuses and augment bits and adjusting stats; each comes with
-a small order record (the action data `+0x708`), whose `i16` at `+0x02` is the order's parameter.
+a small order record (the action context `+0x708`), whose `i16` at `+0x02` is the order's parameter.
 The table lists all 359 order ids with what the game does for each.
 
 ### Dispatch
@@ -30,13 +30,13 @@ id-specific rules (`0x003018DD`-`0x00301AA5`); every other id passes:
 | Ids | Rule |
 |---|---|
 | `0x4051`-`0x4121` except `0x4091`, and `0x414B` | a non-zero parameter is a percentage: refused when the parameter is not above a draw from the gameplay generator (`0x00328370`) modulo 100 |
-| `0x4022`, `0x4124` | must have a reachable movement goal (`0x00312730`, then `0x0033A120` not yet reporting arrival); `0x4022` then stores the goal at `+0x6C0` and `0x00309A90()` at `+0x6D0` |
+| `0x4022`, `0x4124` | must have a reachable movement goal (`0x00312730`, and `0x0033A120` must not report arrival); `0x4022` then stores the goal at `+0x6C0` and `0x00309A90()` at `+0x6D0` |
 | `0x4165` | `0x00312730` must find a goal |
 | `0x414D` | `0x00308130` (party side) or `0x00308040(unit, 0)`, tested against unit bit `0x800000` |
 
 ## Columns
 
-`battle-orders.tsv`, one row per order id:
+[`battle-orders.tsv`](battle-orders.tsv), one row per order id:
 
 | Column | Meaning |
 |---|---|
@@ -66,13 +66,13 @@ The ids fall into these groups (full rows in the `.tsv`):
 | `0x4116`-`0x4121` | `0x002FDDA0` | set unit byte `+0x6B5` to 0-11 |
 | `0x4122`, `0x4123`, `0x4149`, `0x4155`-`0x4157` | `0x002FE660` | read-modify-write a register through `0x00321190`/`0x00329E60` (kind = record `+0x06` >> 12, index = its low byte; `0x4122`/`0x4123` use kind 10 of the unit at `+0x710`, the dword at `+0xB90`): set bit, clear bit, set or add the parameter |
 | `0x4126`-`0x4127`, `0x4129`-`0x4138`, `0x414B`-`0x414C`, `0x4150`-`0x4154` | `0x002FDC30` | move by `0x00312B40` to a goal from the order record, stopping at the larger of the unit's two body sizes; `0x4127`, `0x4129`-`0x4138` and `0x414B` re-resolve the goal every frame; ends when `0x0033A120` reports it reached |
-| `0x4139`-`0x4140` / `0x4141`-`0x4148` | `0x002FDDA0` | set / clear bits 0-7 of the battle flags `0x022C314C` (`0x0031A910` / `0x0031A8C0`, which also call `0x00469C00`) |
+| `0x4139`-`0x4140` / `0x4141`-`0x4148` | `0x002FDDA0` | set / clear one of the bits `0x1`-`0x80` of the battle flags `0x022C314C`, in id order (`0x0031A910` / `0x0031A8C0`, which also call `0x00469C00`) |
 | `0x414D` | `0x002FE840` | unless unit bit `0x1000000` is set or the phase gate of the running-action check applies, `0x00313400(unit)`, or `0x00313480()` when unit bit `0x800000` is set; ends when unit bits `0x4000000000000` and `0x8000000000000` are clear |
 | `0x414F` | `0x002FE8D0` | `0x002E73C0(actor, param)` |
 | `0x4158`-`0x4162` | `0x002FDDA0` | add the parameter to one `i16` of the stats record (`+0x08`, `+0x0A`, `+0x0C`, `+0x0E`, `+0x1E`, `+0x12`, `+0x14`, `+0x10`, `+0x18`, `+0x1A`, `+0x1C`), clamped to +-99, +-100 or +-255, then rebuild (`0x0030FED0`) |
 | `0x4163` / `0x4164` | `0x002FDDA0` | enemy side: set to 1 / add the parameter to the enemy's per-party-member byte table (`[unit+0x6A0]+0x1A` indexed by type id) for every living party member (`0x00321B00`) |
 | `0x4166` | `0x002FE910` | `0x0046A6E0(param)` |
-| `0x4025`, `0x4036`-`0x4045`, `0x4128` | none | empty slots: refused by dispatch and availability |
+| `0x4025`, `0x4036`-`0x4045`, `0x4128` | `00000000` | empty slots: refused by dispatch and availability |
 
 341 slots hold a handler and 18 are empty; 249 ids go to `0x002FDDA0`.
 

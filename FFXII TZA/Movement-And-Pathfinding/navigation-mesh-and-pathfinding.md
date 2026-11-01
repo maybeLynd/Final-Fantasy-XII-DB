@@ -33,7 +33,7 @@ Struct NavDataset base=section:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | 1 |  |
+| `+0x00` | `u32` |  | value 1 |
 | `+0x04` | `u16` | vertexCount |  |
 | `+0x06` | `u16` | triangleCount (the whole-mesh test's bound) |  |
 | `+0x08` | `u16` | portalCount |  |
@@ -44,7 +44,7 @@ Struct NavDataset base=section:
 | `+0x18` | `off` | regions | `0x22` B each: +2 u16 triangleCount, `+0x14` u16 triangleIndex[] |
 | `+0x1C` | `off` | adjacency | regionCount x regionCount u16: the portal index from i to j, 0 = none |
 | `+0x20` | `off` | grid | u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ, +8 off cellTable (u16 per cell), `+0xC` off listPool |
-| `+0x24` | `u32` | trailer record count (at most 32 used) |  |
+| `+0x24` | `u32` |  | trailer record count (at most 32 used) |
 | `+0x28` | `off` | trailer records | `0x20` B each: i16 kind, f32 x +4, f32 z +8, f32 radius `+0xC`, f32 radius2 `+0x10`, f32 `+0x14` (kind 1; read by the segment query only) |
 
 Portal index 0 means no portal, so the adjacency entries are 1-based and record 0 is padding.
@@ -85,13 +85,13 @@ Struct NavPath base=unit+`0x200`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | region the mover was last placed in (written by the same-region exit and the full search) |  |
-| `+0x04` | `i32` | start region of the route held, 0xFF = none |  |
-| `+0x08` | `i32` | goal region of the route held, 0xFF = none |  |
-| `+0x0C` | `u8[2]` | the last (start, goal) pair that had no route |  |
-| `+0x0E` | `u8[2]` | the one before that |  |
-| `+0x10` | `u8[128]` | next[region]: the region to enter after this one; 0xFF ends the chain |  |
-| `+0x90` | `f32[128][2]` | waypoint[region]: the x, z to walk to while in this region |  |
+| `+0x00` | `i32` |  | region the mover was last placed in (written by the same-region exit and the full search) |
+| `+0x04` | `i32` |  | start region of the route held, `0xFF` = none |
+| `+0x08` | `i32` |  | goal region of the route held, `0xFF` = none |
+| `+0x0C` | `u8[2]` |  | the last (start, goal) pair that had no route |
+| `+0x0E` | `u8[2]` |  | the one before that |
+| `+0x10` | `u8[128]` |  | next[region]: the region to enter after this one; `0xFF` ends the chain |
+| `+0x90` | `f32[128][2]` |  | waypoint[region]: the x, z to walk to while in this region |
 
 `0x003839F0` fills `next[]` with `0xFF`; `0x003839C0` fills the two no-route pairs with `0xFFFF`.
 
@@ -167,8 +167,8 @@ the clearance steps of the search and the follower.
 The mover class is the unit's byte `+0x1F4` ([battle unit fields](../Characters-And-Objects/battle-unit-fields.md)).
 
 The script verb `setmapidfloor(mapId, kind, on)` ends in `0x003792E0(mapId, kind, on)` (`0x0034385C`,
-`0x00343EB7`, `0x003441F2`), which switches on `kind` through six real arms, 0 → bit `0x800000`, `0x2` → 25, 2 → 26,
-3 → 27, 7 → 24, 9 → 12, the same bits as the class table: `on` non-zero stores the override with the
+`0x00343EB7`, `0x003441F2`), which switches on `kind` through six real arms, 0 → bit `0x800000`, 1 → `0x2000000`, 2 → `0x4000000`,
+3 → `0x8000000`, 7 → `0x1000000`, 9 → `0x1000`, the same bits as the class table: `on` non-zero stores the override with the
 bit clear (open, `0x0026E880(mapId, on == 0, bit)`), `on` = 0 stores it set (closed), and a negative
 `on` removes the override (`0x0026E850(mapId, bit, 1)`).
 
@@ -375,29 +375,29 @@ Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02AEDFB0` | `void*` | the navigation dataset (null when none) |  |
-| `0x00915760` | `i32[6]` | class to override bit: {23, 25, 26, 27, -1, 24} |  |
-| `0x0209A3E0` | `u32[32][2]` | map-id overrides: dword 0 = override present, dword 1 = closed |  |
-| `0x00D10818` | `f32` | 1.4140000343, the clearance factor |  |
-| `0x00D112B0` | `i32[4]` | {0, 1, 2, 0}, the edge index table |  |
-| `0x02AEE060` | `.. 0x02AEE0C0` | the obstacle grid (section above) |  |
+| `0x02AEDFB0` | `void*` |  | the navigation dataset (null when none) |
+| `0x00915760` | `i32[6]` |  | class to override bit: {23, 25, 26, 27, -1, 24} |
+| `0x0209A3E0` | `u32[32][2]` |  | map-id overrides: dword 0 = override present, dword 1 = closed |
+| `0x00D10818` | `f32` |  | 1.4140000343, the clearance factor |
+| `0x00D112B0` | `i32[4]` |  | {0, 1, 2, 0}, the edge index table |
+| `0x02AEE060` | `u8[96]` |  | the obstacle grid's fields, up to the actor list at `0x02AEE0C0` (section above) |
 
 Battle unit:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x080` | `...` | locomotion block (the solver's argument) |  |
-| `+0x0D0` | `f32[4]` | search start point |  |
-| `+0x0E0` | `f32[4]` | mover position read by the follower |  |
-| `+0x0F0` | `f32[4]` | the waypoint written |  |
+| `+0x080` | `...` |  | locomotion block (the solver's argument) |
+| `+0x0D0` | `f32[4]` |  | search start point |
+| `+0x0E0` | `f32[4]` |  | mover position read by the follower |
+| `+0x0F0` | `f32[4]` |  | the waypoint written |
 | `+0x100` | `f32[4]` | goal |  |
-| `+0x158` | `u32` | zeroed on flag bits 0x80 and 0x400 |  |
-| `+0x1F0` | `u32` | step flags |  |
-| `+0x1F4` | `u8` | mover class |  |
+| `+0x158` | `u32` |  | zeroed on flag bits `0x80` and `0x400` |
+| `+0x1F0` | `u32` |  | step flags |
+| `+0x1F4` | `u8` |  | mover class |
 | `+0x200` | `NavPath` | (0x490 bytes) |  |
-| `+0x698` | `void*` | handler checked on a failed search |  |
-| `+0x708` | `void*` | order record (word +4: 0x200, 0x100) |  |
-| `+0x714` | `u16` | action id |  |
+| `+0x698` | `void*` |  | handler checked on a failed search |
+| `+0x708` | `void*` |  | order record (word +4: `0x200`, `0x100`) |
+| `+0x714` | `u16` |  | action id |
 
 ## Shipped data
 
@@ -444,3 +444,20 @@ obstacle grid's records, occupancy bytes, mask scratch, count and actor list.
 - [Map pack](../World-Areas-And-Travel/mpk-map-pack.md): slot four.
 - [Battle unit fields](../Characters-And-Objects/battle-unit-fields.md): the unit's class byte and blocks.
 - [Movement bodies and separation](movement-bodies-and-separation.md): the collision radii.
+- [`navigation-mesh-run-state-block-accesses.tsv`](navigation-mesh-run-state-block-accesses.tsv): every censused
+  access to the navigation dataset's header through its pointer `[0x02AEDFB0]` (65 rows).
+- [`navigation-mesh-vertex-accesses.tsv`](navigation-mesh-vertex-accesses.tsv): every censused access to its
+  vertices (from `+0x0C`) (26 rows).
+- [`navigation-mesh-triangle-accesses.tsv`](navigation-mesh-triangle-accesses.tsv): every censused access to its
+  triangles (from `+0x10`) (8 rows).
+- [`navigation-mesh-portal-record-accesses.tsv`](navigation-mesh-portal-record-accesses.tsv): every censused access
+  to its portals (from `+0x14`) (9 rows).
+- [`navigation-mesh-region-record-accesses.tsv`](navigation-mesh-region-record-accesses.tsv): every censused access
+  to its regions (from `+0x18`) (3 rows).
+- [`navigation-mesh-broad-phase-header-accesses.tsv`](navigation-mesh-broad-phase-header-accesses.tsv): every
+  censused access to its grid (from `+0x20`) (22 rows).
+- [`navigation-mesh-slot-pointer-array-accesses.tsv`](navigation-mesh-slot-pointer-array-accesses.tsv): every
+  censused access to the obstacle grid's 128-slot actor list `0x02AEE0C0` (6 rows).
+
+In the `route` cells of these tables, `NavRunStateBlock` names the dataset's header, whose offsets are decoded at
+run time.

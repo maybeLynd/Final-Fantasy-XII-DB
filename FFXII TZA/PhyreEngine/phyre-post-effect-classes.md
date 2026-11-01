@@ -11,7 +11,8 @@ One of the game's anti-aliasing paths runs PhyreEngine's own FXAA effect, which 
 inside one of its own rendering objects. The rest of PhyreEngine's post-effect library
 (depth of field, glow, motion blur, MLAA, SSAO, screen-space reflection and others) is linked into the
 executable, and no shipped file names any of its classes. The
-post-processing the player sees otherwise is the game's own (category 17) and YEBIS
+post-processing the player sees otherwise is the game's own
+([post-processing](../Graphics/post-processing.md)) and YEBIS
 ([YEBIS post effects](../Third-Party-Libraries/yebis-ppfx-post-effects.md)).
 
 ## How it works

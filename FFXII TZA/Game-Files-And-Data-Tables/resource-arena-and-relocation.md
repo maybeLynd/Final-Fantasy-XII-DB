@@ -304,23 +304,23 @@ Arena record (`0x022D7FD0` + i*`0xA8`):
 | `+0x00` | `u8` | byte00 |  |
 | `+0x01` | `u8` | index |  |
 | `+0x02` | `u8` | dirty |  |
-| `+0x08` | `...` | name header |  |
-| `+0x10` | `...` | heap start |  |
-| `+0x18` | `...` | heap middle |  |
+| `+0x08` | `...` |  | name header |
+| `+0x10` | `...` |  | heap start |
+| `+0x18` | `...` |  | heap middle |
 | `+0x20` | `...` | bitmap |  |
-| `+0x28` | `...` | page map |  |
-| `+0x30` | `...` | slot table |  |
-| `+0x38` | `...` | slot end |  |
-| `+0x40` | `...` | free slot |  |
-| `+0x48` | `...` | used slot |  |
-| `+0x50` | `...` | tree root |  |
+| `+0x28` | `...` |  | page map |
+| `+0x30` | `...` |  | slot table |
+| `+0x38` | `...` |  | slot end |
+| `+0x40` | `...` |  | free slot |
+| `+0x48` | `...` |  | used slot |
+| `+0x50` | `...` |  | tree root |
 | `+0x58` | `u32` | pages |  |
-| `+0x5C` | `u32` | heap size |  |
+| `+0x5C` | `u32` |  | heap size |
 | `+0x60` | `u16` | tag |  |
 | `+0x62` | `u8` | moved |  |
-| `+0x90` | `...` | free list bottom |  |
-| `+0x98` | `...` | free list top |  |
-| `+0xA0` | `...` | pressure callback |  |
+| `+0x90` | `...` |  | free list bottom |
+| `+0x98` | `...` |  | free list top |
+| `+0xA0` | `...` |  | pressure callback |
 
 Block header (payload `+0x40`):
 
@@ -337,9 +337,9 @@ Block header (payload `+0x40`):
 | `+0x15` | `u8` | blockFlags | bit `0x1` top, bit `0x2` in tree, bit `0x4` not movable, bit `0x8` set while `0x022D8E28` |
 | `+0x16` | `u8` | tag |  |
 | `+0x18` | `i32` | size |  |
-| `+0x1C` | `u16` | check word |  |
-| `+0x1E` | `u16` | label tag |  |
-| `+0x20` | `...` | encoded slot |  |
+| `+0x1C` | `u16` |  | check word |
+| `+0x1E` | `u16` |  | label tag |
+| `+0x20` | `...` |  | encoded slot |
 | `+0x24` | `...` | encoded tree link | one of the three encoded tree links |
 | `+0x28` | `...` | encoded tree link | one of the three encoded tree links |
 | `+0x2C` | `...` | encoded tree link | one of the three encoded tree links |
@@ -354,8 +354,8 @@ Handle slot:
 | `+0x00` | `u16` | next |  |
 | `+0x02` | `u16` | previous |  |
 | `+0x04` | `u8` | arena |  |
-| `+0x05` | `u8` | in use |  |
-| `+0x06` | `u16` | check word |  |
+| `+0x05` | `u8` |  | in use |
+| `+0x06` | `u16` |  | check word |
 | `+0x08` | `...` | header |  |
 
 `ArenaStackEntry` (`0x10` bytes, offsets from the start of the 0x022D89D0+(stack*32+depth)*0x10):

@@ -26,7 +26,7 @@ The two extra drops are the **Monograph** drops: they roll only while the party 
 enemy names (one of the six Monographs or the Canopic Jar), usually for Arcana, High Arcana, a Pebble
 or the enemy's own loot.
 
-Picking up a loot bag can also give a **chain bonus**: at chain level 1 and up, a 10 % HP or MP
+Collecting a [loot pickup](loot-pickups.md) can also give a **chain bonus**: at chain level 1 and up, a 10 % HP or MP
 restore, and from level 2, Protect or Shell.
 
 All of these rolls come from one deterministic generator that restarts from a counter on every area
@@ -181,7 +181,7 @@ identical in all nine language copies.
 | `+0x06` | `i8[20]` | qtyWeights | four cumulative quantity weights per slot (`0x003186F0`) |
 | `+0x1A` | `u8[7]` | bonusCopy | the same values as the chain-bonus row at `0x01EED3B8`; the code reads the EXE copy |
 | `+0x21` | `i8` | breakLimit | breaks-in-a-row limit for the weighted chance profile (`0x00318960`); -1 ends the list |
-| `+0x22` | `i8[3]` | profileWeights weights of chance profiles 0-2 (0x00318820) |  |
+| `+0x22` | `i8[3]` | profileWeights | weights of chance profiles 0-2 (`0x00318820`) |
 
 The shipped rows:
 

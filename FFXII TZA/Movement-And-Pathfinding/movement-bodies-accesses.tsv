@@ -1,0 +1,9 @@
+function	name	site	disp	kind	instruction	route	note
+0x003DA8A0	FUN_003da8a0	0x003DA93D	0x0	w	mov word ptr [rcx], dx	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
+0x003DAD00	FUN_003dad00	0x003DAD90	0x0	w	mov word ptr [rdx], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
+0x003DAD00	FUN_003dad00	0x003DADD1	0x0	w	mov word ptr [rdx], ax	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
+0x003DAC70	FUN_003dac70	0x003DACD8	0x2	r	movzx eax, word ptr [rbx + 2]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
+0x003DAC70	FUN_003dac70	0x003DACA4	0x4	r	movzx eax, word ptr [rbx + 4]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
+0x003DAC70	FUN_003dac70	0x003DACAF	0x120	r	mov ecx, dword ptr [rbx + 0x120]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
+0x003DAC70	FUN_003dac70	0x003DACC8	0x128	r	movss xmm0, dword ptr [rbx + 0x128]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	
+0x003DAC70	FUN_003dac70	0x003DACBD	0x12C	r	movss xmm1, dword ptr [rbx + 0x12c]	route-seeded ARRAY 0x02B4E4C0 stride=0x130 count=128 base+0x0	

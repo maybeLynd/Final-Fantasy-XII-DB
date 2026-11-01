@@ -47,8 +47,8 @@ Two paths set `+0x68` in shipped play:
 - **Clearing everything.** Order `0x4091` clears every id 0-127 from `+0x68` through `0x0030E970`, with flags
   `0x200`, then rebuilds once with `0x0030FED0(stats, 0x200)` (`0x002FDEC1`-`0x002FDEEF`).
 - **Their tests.** The shipped area order sets pair nearly every such order with a test of the same id on the
-  enemy itself, opcode `0x21` "lacks" or `0x20` "has" (`0x00302478`): if it lacks the buff it sets it, if it has
-  it it may clear it.
+  enemy itself, opcode `0x21` "lacks" or `0x20` "has" (`0x00302478`): if the enemy lacks the buff the order sets
+  it, and if the enemy has it the order may clear it.
 - **Abilities of recipe 79.** Wall, Magick Barrier, Force Barrier, Greater Barrier, Battle Cry, Shift, Saber,
   Mana Spring, Enrage, Chain Magick, Limit Break, Unleash, Perfect Defense and Chain Reaction set the ids in their
   action row's bytes `+0x10` and `+0x11` (`0xFF` for none). Slot 187 copies them into the result, and the result

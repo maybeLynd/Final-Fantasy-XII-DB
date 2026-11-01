@@ -1,5 +1,5 @@
 ---
-title: "Movement bodies and separation: the collision body every steerable actor carries, its placement on the field, and the tick that pushes overlapping bodies apart"
+title: "Movement bodies and separation: the movement body every steerable actor carries, its placement on the field, and the tick that pushes overlapping bodies apart"
 kind: "system"
 category: "Movement and pathfinding"
 addresses: "0x003DAE30, 0x002E8E20, 0x0026B2E0, 0x0026BBC0, 0x0026BF60, 0x00265390, 0x0026B170, 0x003DA8A0, 0x003DAD00, 0x002E3500, 0x00269EC0, 0x002682D0, 0x002685F0, 0x00268380, 0x003DAF20, 0x00380D30, 0x003808A0, 0x003DB1B0, 0x003DB020, 0x0046AD20, 0x003DAA40, 0x003DAC70, 0x003DAAB0, 0x003DAB50, 0x00314F30, 0x00314F50, 0x003DA5A0, 0x003DA730, 0x00314E10, 0x003DA9F0, 0x002E5180, 0x002E5380, 0x003B7730, 0x00266D10, 0x00269E60, 0x0026ABD0, 0x0026B9D0, 0x00263810, 0x0026A560, 0x0026BE00, 0x00263640, 0x002E86B0, 0x0026AB60, 0x0026BEE0, 0x0026BDD0, 0x002640E0, 0x003E58B0, 0x00239E10, 0x003204D0, 0x003204E0, 0x003E6150, 0x002E28E0"
@@ -45,10 +45,10 @@ otherwise it releases any body at `[+0xC0] + 0x138`, allocates one and stores th
 null included.
 
 It then runs the five consumers: `0x00269EC0(record, 0)` sets the layer byte `+6`;
-`0x002681D0`; `0x002682D0` copies the context's `+0x151` bits 0-1 into the body's flags `+0x90`;
+`0x002681D0`; `0x002682D0` copies the context's `+0x151` bits under mask `0x3` into the body's flags `+0x90`;
 `0x002685F0` copies the context's float `+0x148` into the weight `+8`; `0x00268380` sizes the shape.
 Every consumer tests the chain and does nothing on a null body, so the 129th actor has no
-collision body and silently drops out of the pass.
+movement body and silently drops out of the pass.
 
 Its callers are the actor's presentation set-up `0x002E28E0` and `0x002E3580`, which releases the
 presentation and re-creates; the releasers `0x002E3D00` and `0x002E3AF0` run from the per-type
@@ -237,8 +237,10 @@ sets the cell to -2.
 
 `0x003808A0(placement, field)` then returns at once with `+0x54` = `0xFFFF`
 when the cell is negative (the -2 included), so a blocked placement keeps its stale attribute
-words; otherwise it reads the cell record (`[field + 0x10] + cell
-* 32`, attribute dword `+0xC`) through the mask table `0x0209A2D0` (`0x00232020`): bits `0x3E000` to `+0x56`,
+words.
+
+Otherwise it reads the cell record (`[field + 0x10] + cell *
+32`, attribute dword `+0xC`) through the mask table `0x0209A2D0` (`0x00232020`): bits `0x3E000` to `+0x56`,
 bits `0x78` to `+0x58`, `0x00231F80`'s bits to `+0x5A`, attribute bit `0x1000` to flag bit `0x4`; `0x00231A90`; the
 second cell `+0x54`'s height to `+0x90` with flag bit `0x8` when above the ground height; and its tail
 steps `+0x80`/`+0x84` toward `+0x64`/`+0x68` by at most 0.25 per step, re-resolving the cell
@@ -324,8 +326,8 @@ body's heading, `(x^2 + z^2) / (x^2 / a^2 + z^2 / b^2)`) and the margins `+0xFC`
 The weights `+8` (both negated when both negative, both 1 when both zero) go through `0x00314E10`,
 which returns A's share `w = wB / (wA + wB)`, or 0 when the sum is 0 (a cancelling pair such as 1
 and -1, which the negative rules then decide), overridden by the masks `+0x110 | +0x114`: each
-body's low byte is masked by the complement of the union's bits 8-15, and with either masked byte
-non-zero an overlap with the union's bits 16-23 returns 0, and unequal values give 0 when A's is
+body's low byte is masked by the complement of the union's mask `0xFF00`, and with either masked byte
+non-zero an overlap with the union's mask `0xFF0000` returns 0, and unequal values give 0 when A's is
 larger, else 1; with both masked bytes zero the ratio stands. A negative `wA` gives 0, a negative
 `wB` 1.
 
@@ -388,11 +390,11 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 | `+0x080` | `u8` | cellClass | the kind the floor overrides test (`0x00230A40`); its word is -1 at allocation (`0x00380B80`) |
 | `+0x082` | `i16` | cell | polygon underfoot, `-2` refused; -1 at allocation (`0x00380B80`) |
 | `+0x084` | `i16` | secondCell | the type-4 marker polygon |
-| `+0x086` | `u16` | floorGroup | attribute bits 13-17; `FFFF` at allocation (`0x00380B80`) |
-| `+0x088` | `u16` | mjGroup | attribute bits 3-6; `FFFF` at allocation (`0x00380B80`) |
+| `+0x086` | `u16` | floorGroup | attribute bits under mask `0x3E000`; `FFFF` at allocation (`0x00380B80`) |
+| `+0x088` | `u16` | mjGroup | attribute bits under mask `0x78`; `FFFF` at allocation (`0x00380B80`) |
 | `+0x08A` | `u16` | groundField | `0x00231F80`'s bits; `FFFF` at allocation (`0x00380B80`) |
 | `+0x08E` | `u16` | blockedMask | the field's blocked kinds (`0x00232090`) |
-| `+0x090` | `u32` | flags | bits 0-1 from the controller's `+0x151`, bit `0x4` attribute bit `0x1000`, bit `0x8` second height above, bit `0x10` the solver moved the body; bits `0x1F` cleared at allocation (`0x00380B80`) |
+| `+0x090` | `u32` | flags | mask `0x3` from the controller's `+0x151`, bit `0x4` attribute bit `0x1000`, bit `0x8` second height above, bit `0x10` the solver moved the body; bits `0x1F` cleared at allocation (`0x00380B80`) |
 | `+0x094` | `f32[3]` | sizeCopy | copies of the two radii and the height; 0.5, 0.5, 2.0 at allocation (`0x00380B80`) |
 | `+0x0A0` | `f32[3]` | innerShape | the percentage-scaled radii and top; 0.5, 0.5, 2.0 at allocation (`0x00380B80`) |
 | `+0x0AC` | `f32` | groundHeight | plane height underfoot; 0 at allocation (`0x00380B80`) |
@@ -510,3 +512,10 @@ centre, each body's placement, accumulators, counters and pair bitmap.
 - [Actor record](../Characters-And-Objects/actor-record.md): the contexts the shape is sized from.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the per-slot step that consumes the push.
 - [Area flags and navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md): the cell attributes.
+- [`movement-bodies-accesses.tsv`](movement-bodies-accesses.tsv): every censused access to the movement bodies
+  (`MovementBody`, 128 of `0x130` bytes at `0x02B4E4C0`) through a register holding the pool's address (8 rows).
+- [`movement-bodies-separation-candidate-scratch-accesses.tsv`](movement-bodies-separation-candidate-scratch-accesses.tsv):
+  the one censused access to the candidate set `0x02B57EE0` through a register holding its address (1 row).
+- [`movement-bodies-separation-cell-masks-accesses.tsv`](movement-bodies-separation-cell-masks-accesses.tsv): every
+  censused access to the sector masks `0x02B57CE0` (32 sectors, two words each) through a register holding their
+  address (19 rows).

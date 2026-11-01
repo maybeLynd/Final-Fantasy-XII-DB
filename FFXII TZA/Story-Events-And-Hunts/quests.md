@@ -10,7 +10,8 @@ addresses: "0x0046B3F0, 0x0046B290, 0x0046B490, 0x0046B350, 0x0046B380, 0x0046B2
 - Taking on a quest marks it as ordered; finishing it marks it as cleared and adds one to the total of
   quests cleared.
 - Each quest also keeps a small progress value and a word the scripts use for its contract.
-- Finishing a quest can also unmark another quest as ordered, through a slip in how the game finds the bit.
+- Finishing a quest numbered above 7 leaves it marked as ordered and unmarks one of the first eight quests instead
+  (finishing quest 13 unmarks quest 5), through a slip in how the game finds the bit.
 
 ## How it works
 

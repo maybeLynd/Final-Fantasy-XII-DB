@@ -54,7 +54,7 @@ handle is returned even when no bank owns the id, and is kept in the voice at `+
 
 `0x00210C00` sends a block-bank request to `0x0021B5B0` and a six-digit request to `0x00219EA0`:
 
-1. A block bank is the one whose registry slot `+0x3C` equals `id / 512`; the sound slot is `id & 0x1FF`
+1. A block bank is the one whose block registry slot `+0x3C` equals `id / 512`; the sound slot is `id & 0x1FF`
    (`0x002245D3`).
 2. A six-digit bank is the one whose `+0x38` equals the whole id, and its voice takes slot 0 (`0x002257D0`).
 

@@ -25,7 +25,7 @@ waits in the background until the event's claim is withdrawn.
 
 `0x0030D9A0()` reads the dword at `[0x02EBF190] + 0x5B04` and returns the first match: bit `0x8` gives 5,
 bit `0x4` gives 4, the town flag `0x00377C20()` gives 3, bit `0x2` gives 2, and otherwise bit `0x1` gives 1 or 0;
-the word is reloaded after the town call. Only bits 0 to 3 are consulted. The town flag is
+the word is reloaded after the town call. Only the bits `0xF` are consulted. The town flag is
 authored data ([area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)): `0x00377C20` takes
 the area index `0x003148F0()`, checks it against the count at `[0x02ADD100] + 4` and returns bit `0x8000` of
 the 16-bit word at `+8 + 3 × index`.
@@ -37,7 +37,7 @@ the 16-bit word at `+8 + 3 × index`.
 | 3 | the area's town flag | a town | authored data |
 | 2 | bit `0x2` | a chocobo ride | `ridechocobo`, `setchocobomode`, the mount stage of a special sequence |
 | 1 | bit `0x1` | a summon | `summonread`, `btlAtelSetSummonMode`, the summon stage |
-| 0 | none | | |
+| 0 | no other row matches | | |
 
 Four predicates compare the level: `0x003135C0` (= 1, thunk `0x0037C8F0`), `0x00303EC0` (= 2, thunks
 `0x0037C860` and `0x003CA2E0`), `0x003072C0` (= 4) and `0x00307280` (= 5).
@@ -46,10 +46,10 @@ Four predicates compare the level: `0x003135C0` (= 1, thunk `0x0037C8F0`), `0x00
 
 | Bit | Getter | Setter | What the setter does when the bit changes |
 |---|---|---|---|
-| 0 | `0x003135E0` (thunk `0x0037C900`) | `0x00313550(on)` | writes the bit, then `0x0035C620` (`0x00273E30` on `0x022CA408`, the width cache) |
-| 1 | `0x00303EE0` (thunk `0x0037C870`) | `0x00303D90(on)` | on: the bit, `+0x5AE0 \|= 0xC` (three turbo charges), `+0x5AE4` = 180.0 (the ride time). Off: the bit cleared, the roster entry-3 actor's render record gets presentation request 3 (`0x002E73C0`), `+0x5AEC` = 0, and when `+0x5AE0` bit `0x2` (the turbo) was on, event `0x2001` to that actor (`0x002EB030`) and that bit cleared (a toggle guarded on the bit being set, so it never sets it) |
-| 2 | `0x003072E0` (thunk `0x0037C8B0`) | `0x00307240(on)` | the bit only |
-| 3 | `0x003072A0` (thunk `0x0037C890`) | `0x00307200(on)` | the bit only |
+| `0x1` | `0x003135E0` (thunk `0x0037C900`) | `0x00313550(on)` | writes the bit, then `0x0035C620` (`0x00273E30` on `0x022CA408`, the width cache) |
+| `0x2` | `0x00303EE0` (thunk `0x0037C870`) | `0x00303D90(on)` | on: the bit, the charge bits `0xC` set in `+0x5AE0` (three turbo charges), `+0x5AE4` = 180.0 (the ride time). Off: the bit cleared, the roster entry-3 actor's render record gets presentation request 3 (`0x002E73C0`), `+0x5AEC` = 0, and when `+0x5AE0` bit `0x2` (the turbo) was on, event `0x2001` to that actor (`0x002EB030`) and that bit cleared (a toggle guarded on the bit being set, so it never sets it) |
+| `0x4` | `0x003072E0` (thunk `0x0037C8B0`) | `0x00307240(on)` | the bit only |
+| `0x8` | `0x003072A0` (thunk `0x0037C890`) | `0x00307200(on)` | the bit only |
 
 Every setter writes nothing when the bit already equals its argument. Who calls them:
 
@@ -152,8 +152,8 @@ with its entry `0x02EBF3FE` = 0 or 3 and its step `0x02EBF3FD` = 1 or -1.
 thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones read for this page:
 
 - the focus row `0x00326500` (the commit wrapper and `0x00327850`): at levels 0 and 1 the saved leader
-  `+0x5AA4`, at level 2 row `0x1A` (the chocobo), at level 3 the town's row `0x00377C70()` (bits `0x10`
-  to 6 of the area record's third byte), and at levels 4 and 5 the row `0xFF`, which no unit has.
+  `+0x5AA4`, at level 2 row `0x1A` (the chocobo), at level 3 the town's row `0x00377C70()` (mask `0x70`
+  of the area record's third byte, shifted down by 4), and at levels 4 and 5 the row `0xFF`, which no unit has.
   - When that row has no unit with a record it falls back to the first selection entry with one,
     then to `0x003589B0` of roster entry 0, so under an event claim the focus is the first selected
     unit; at level 1 it also runs `0x00317400(unit)`; the result goes out through `0x003594B0`
@@ -179,7 +179,7 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
 - the lock evaluator `0x0023B040` tests level 2, and at level 1 tests the summoner's unit
   (`0x0031B770(0x003137F0())`: no record, or status words holding `0x80000003` without the town flag,
   raises every lock bit); the input arbiter `0x00253C70` tests level 2.
-- `0x00309A90`: 24.0 while the party is fighting (`0x00253B90()` = 0, [force fight
+- `0x00309A90`, the approach distance ([battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)): 24.0 while the party is fighting (`0x00253B90()` = 0, [force fight
   mode](force-fight-mode.md)), else 3.8 at level 1 and 2.2 at any other level while fleeing.
 - `0x00303CC0`: at level 2 only, the distance test `0x00336390` between the mount and the rider.
 - `0x00303F00` grants a turbo at level 2 only, spending one of the two charge bits, or refilling them
@@ -188,8 +188,11 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
   while `0x0017D380()` holds) and `+0x5AE8` from channel 2, then ends the ride (`0x00311E20`,
   `0x0035CFA0(1)`) only when `0x00303CC0()` passes, channel 1 has expired (`0x003EBB70(1)`), `0x0017D380()`
   is 0, the level is 2 and `0x0031B8C0(3)` is non-null.
-- `0x00313590`: at level 1, `0x0031E860(3)`.
-- `0x00303E90` returns `0x0031E860(3)` when `0x0030D9A0()` is 2 and 0 otherwise; `0x003200A0` calls it (`0x00320116`).
+- `0x00313590`: at level 1, `0x0031E860(3)`, the actor handle of roster slot 3 (the Esper): `0x00263750(3)`, then
+  `0x003589B0` of that actor, or 0 when the slot is empty ([identifier spaces](identifier-spaces.md)); at any other
+  level 0.
+- `0x00303E90` returns `0x0031E860(3)`, the handle of the mount in slot 3, when `0x0030D9A0()` is 2 and 0 otherwise;
+  `0x003200A0` calls it (`0x00320116`).
 
 ### Carried across an area change, restored and reset
 
@@ -219,16 +222,16 @@ Party block [`0x02EBF190`]:
 | `+0x5A6C` | `u8[18]` | slot map 2 | nine 2-byte seats (seats 0-3 rebuilt by level) |
 | `+0x5A7E` | `u8[18]` | slot map 3 | a whole copy of map 0 |
 | `+0x5A90` | `u8[18]` | slot map 4 | nine 2-byte seats (seats 0-3 rebuilt by level) |
-| `+0x5AA4` | `u8` | saved leader |  |
+| `+0x5AA4` | `u8` |  | saved leader |
 | `+0x5AD0` | `u16` | summon flags | bit `0x2` the timer runs |
 | `+0x5AD4` | `u8` | Esper's row | `0x1B` after reset |
-| `+0x5AD5` | `u8` | summoner's row |  |
+| `+0x5AD5` | `u8` |  | summoner's row |
 | `+0x5AD8` | `f32` | summon timer | one of the two summon timers |
 | `+0x5ADC` | `f32` | summon timer | one of the two summon timers |
-| `+0x5AE0` | `u32` | ride flags | bit `0x1` timers armed, bit `0x2` turbo on, bits 2-3 charges |
-| `+0x5AE4` | `f32` | ride time |  |
-| `+0x5AE8` | `f32` | turbo time |  |
-| `+0x5AEC` | `u32` | last turbo argument |  |
+| `+0x5AE0` | `u32` | ride flags | bit `0x1` timers armed, bit `0x2` turbo on, mask `0xC` charges |
+| `+0x5AE4` | `f32` |  | ride time |
+| `+0x5AE8` | `f32` |  | turbo time |
+| `+0x5AEC` | `u32` |  | last turbo argument |
 | `+0x5B04` | `u32` | mode word | bit `0x1` summon, bit `0x2` chocobo, bit `0x4` event party, bit `0x8` event party 2 |
 | `+0x5B08` | `u32` | previous level | written by the dispatcher with commit |
 
@@ -247,16 +250,16 @@ The area record table [`0x02ADD100`]:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x04` | `...` | count |  |
-| `+0x08` | `...` | rows | rows of 3 bytes; word bit `0x8000` = town, byte +2 bits 4-6 = the town's row |
+| `+0x08` | `...` | rows | rows of 3 bytes; word bit `0x8000` = town, byte +2 bits under mask `0x70` = the town's row |
 
 Transition record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x04` | `...` | captured 0x021B28E4 |  |
+| `+0x04` | `...` |  | captured `0x021B28E4` |
 | `+0x08` | `u8[16]` | ride block | the ride block (16 bytes) |
 | `+0x18` | `u8[16]` | summon block | the summon block (16 bytes) |
-| `+0x28` | `...` | mode word |  |
+| `+0x28` | `...` |  | mode word |
 
 ## Shipped data
 
@@ -305,3 +308,16 @@ leader; the two source bytes.
 - [Frame update order](frame-update-order.md): the drive pass and the orchestrator that run the
   dispatcher and test the level.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the transition record.
+- [`party-control-modes-manager-0209ac60-accesses.tsv`](party-control-modes-manager-0209ac60-accesses.tsv): every
+  censused access to the menu state block `0x0209AC60` (`0xE00` bytes, [menu screens](../Menus-And-HUD/menu-screens.md)),
+  reached at its address or through the pointer `[0x0209AC30]` (964 rows).
+- [`party-control-modes-manager-sub-0209ac60-02f8-accesses.tsv`](party-control-modes-manager-sub-0209ac60-02f8-accesses.tsv):
+  every censused access to the description window that the block's `+0x2F8` points to (83 rows).
+- [`party-control-modes-manager-sub-0209ac60-02f8-00c0-accesses.tsv`](party-control-modes-manager-sub-0209ac60-02f8-00c0-accesses.tsv):
+  every censused access to the object at that window's `+0xC0` (128 rows).
+- [`party-control-modes-party-selection-registry-ptrs-022c8388-accesses.tsv`](party-control-modes-party-selection-registry-ptrs-022c8388-accesses.tsv):
+  every censused access to the four actor record pointers of the party slots at `0x022C8388`, which the party rebuild
+  `0x0035BC50` writes ([party list](../Menus-And-HUD/party-list.md)) (2 rows).
+
+In the `route` cells of these tables, `Manager0209AC60` names the menu state block and `ManagerSub0209AC60_02F8` the
+description window.

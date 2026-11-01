@@ -49,11 +49,11 @@ Row word `+0x06` holds these bits:
 
 | Bit | Meaning | Sites |
 |---|---|---|
-| `13` | harmful: Vitality shortens it, a removal posts "is cured of" rather than "fades from", and augment 57 blocks it | `0x00387806`, `0x0046A34D`, `0x00387D25`-`0x00387D76` |
-| `10` | Remedy always cures it | `0x003873FE`, `0x0038540C` |
-| `14`, `12`, `11` | Remedy cures it with Remedy Lore 3, 2 or 1 (augment 116, 117 or 118) | `0x0038746E`, `0x003874DE`, `0x0038754D` |
-| `5` | it can be applied again while present in the timed word, restarting its timers; one held in `+0x3C` is still refused | `0x00387DA1`-`0x00387DC6`, `0x00390953` |
-| `8` | it is refused on a target that is not a party record | `0x00387E17`, `0x0038FDC6`, `0x003909A5` |
+| `0x2000` | harmful: Vitality shortens it, a removal posts "is cured of" rather than "fades from", and augment 57 blocks it | `0x00387806`, `0x0046A34D`, `0x00387D25`-`0x00387D76` |
+| `0x400` | Remedy always cures it | `0x003873FE`, `0x0038540C` |
+| `0x4000`, `0x1000`, `0x800` | Remedy cures it with Remedy Lore 3, 2 or 1 (augment 116, 117 or 118) | `0x0038746E`, `0x003874DE`, `0x0038754D` |
+| `0x20` | it can be applied again while present in the timed word, restarting its timers; one held in `+0x3C` is still refused | `0x00387DA1`-`0x00387DC6`, `0x00390953` |
+| `0x100` | it is refused on a target that is not a party record | `0x00387E17`, `0x0038FDC6`, `0x003909A5` |
 
 The augment texts (bank 10, entries 116-118) are "Remedies remove Stop, Doom, and Disease.", "Remedies remove
 Petrify, Confuse, and Oil." and "Remedies remove Sleep, Sap, Immobilize, and Disable."
@@ -78,15 +78,15 @@ Nine more masks are each used at one to three sites, and 48 sites test the combi
 
 ## Columns
 
-`statuses.tsv`, one row per status:
+[`statuses.tsv`](statuses.tsv), one row per status:
 
 | Column | Meaning |
 |---|---|
 | `id` | the status id, 0-31 |
 | `name` | the name the game shows, from text bank 5 |
 | `help_text` | the help line, from `listhelp_status.bin` |
-| `duration` | the default duration before Vitality, from row `+0x08`; `-` for none; `count 11` for Petrify and Doom, from the code, not the row |
-| `beat` | the interval of the status's periodic step, from row `+0x09`; `-` for none |
+| `duration` | the default duration before Vitality, from row `+0x08`; `-` when the status has no duration; `count 11` for Petrify and Doom, from the code, not the row |
+| `beat` | the interval of the status's periodic step, from row `+0x09`; `-` when the status has no periodic step |
 | `cancels` | the statuses it removes when it lands, from row `+0x0C` |
 | `blocked_by` | the statuses that keep it from landing, from row `+0x20` |
 | `class` | harmful or beneficial, from flag bit `0x2000` |

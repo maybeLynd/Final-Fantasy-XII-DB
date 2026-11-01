@@ -7,7 +7,7 @@ addresses: "0x00409250, 0x00422380, 0x003E5AD0, 0x003A4290, 0x00426770"
 
 ## What it lists
 
-`weapon-bones.tsv` holds one line for each class-`w` model, the 327 bound ids of kind 16
+[`weapon-bones.tsv`](weapon-bones.tsv) holds one line for each class-`w` model, the 327 bound ids of kind 16
 ([Model asset list](model-asset-list.md)). For each it gives the keys of the model's skeleton nodes, whether two of
 them are present, and the special-id bones of its `@FCP` block.
 

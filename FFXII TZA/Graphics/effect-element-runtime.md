@@ -146,7 +146,7 @@ every instance on `0x020910F0[kind]` (`0x0024C460`). Its callers are `0x0026FB90
 `0x003B2B40` and `0x003B3160`.
 
 - `0x002FBEF0`, with arena 8 selected, moves every handle on the kind-1 used list `0x02EC3D60` to the
-  free list `0x02EC3D70`, keeps bits 0–5 and 28–31 of its id, clears its `+0x10` and `+0x14`, zeroes
+  free list `0x02EC3D70`, keeps the bits under mask `0xF000003F` of its id, clears its `+0x10` and `+0x14`, zeroes
   `0x02EC3D78` and `0x02EC3D7C`, and frees the kind-1 instances (`0x0024C460(1)`).
 - `0x003B0130` frees the instances of kinds 5, 6 and 9 and clears the handle and instance pointer of all
   36 numbered requests.
@@ -161,7 +161,7 @@ call it:
 1. `0x002FBEF0`; then every kind-1 context (`0x020910A8`, `0x0024F410`) and instance is freed;
 2. `0x0026FF50`, the disposal of the map effect bank;
 3. `0x003B2F90` moves every used model-effect slot (`0x02EBDB98`) to the free list `0x02EBDBA0`, ending
-   its instance (`0x0024EE60`) and keeping bits 0–5 and 28–31 of its id, and frees the kind-3 instances;
+   its instance (`0x0024EE60`) and keeping bits under mask `0xF000003F` of its id, and frees the kind-3 instances;
 4. `0x003B0130`, then `0x003B26D0`, which releases every loaded file whose flag `+0x20` bit `0x1` is clear
    (`0x003B18E0`);
 5. `0x3FF` goes to the group mask `0x02092160`, and bit `0x2` of `+0x368` is cleared in the instance of
@@ -190,10 +190,10 @@ The emitter block (instance `+0x1B8`, published at `0x02EBEF88`) keeps, from `+0
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | id (an emitter's +0x1C; -1 ends the table) |  |
-| `+0x04` | `u8` | kind (an emitter's +0x13B) |  |
-| `+0x05` | `u8` | bit 0x1: release pending |  |
-| `+0x06` | `u16` | emitters using it |  |
+| `+0x00` | `i32` |  | id (an emitter's `+0x1C`; -1 ends the table) |
+| `+0x04` | `u8` |  | kind (an emitter's `+0x13B`) |
+| `+0x05` | `u8` |  | bit `0x1`: release pending |
+| `+0x06` | `u16` |  | emitters using it |
 
 - `0x003A8900` resets the block: the frame stamp and both list ends to 0 and all 32 ids to −1.
 - `0x003A8340(id, kind)`, from the emitter maker `0x003A8AE0`, adds one to a matching entry or fills the
@@ -654,61 +654,61 @@ Effect instance (`0x3B0`, `0x0024B270`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u8` | kind (the group and the list 0x020910F0[kind]) |  |
-| `+0x120` | `...` | block published at 0x02EBEF98 |  |
-| `+0x130` | `...` | block published at 0x02EBEFB0 |  |
-| `+0x1B8` | `u32` | frame stamp |  |
-| `+0x1C0` | `...` | first emitter |  |
-| `+0x2E0` | `...` | cull record (first byte 0xFF: use the definition's) |  |
-| `+0x340` | `void*` | effect context |  |
+| `+0x000` | `u8` |  | kind (the group and the list `0x020910F0`[kind]) |
+| `+0x120` | `...` |  | block published at `0x02EBEF98` |
+| `+0x130` | `...` |  | block published at `0x02EBEFB0` |
+| `+0x1B8` | `u32` |  | frame stamp |
+| `+0x1C0` | `...` |  | first emitter |
+| `+0x2E0` | `...` |  | cull record (first byte `0xFF`: use the definition's) |
+| `+0x340` | `void*` |  | effect context |
 | `+0x348` | `void*` | next |  |
 | `+0x350` | `...` | previous |  |
-| `+0x36A` | `u8` | flags: bit 0x1 draws every emitter |  |
-| `+0x378` | `u16` | high nibble: display layer |  |
-| `+0x3A8` | `u16` | stamp from 0x00181DD0() |  |
+| `+0x36A` | `u8` |  | flags: bit `0x1` draws every emitter |
+| `+0x378` | `u16` |  | high nibble: display layer |
+| `+0x3A8` | `u16` |  | stamp from `0x00181DD0`() |
 
 Emitter:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x008` | `void*` | next emitter |  |
+| `+0x008` | `void*` |  | next emitter |
 | `+0x024` | `u32` | births |  |
-| `+0x028` | `u32` | emission limit (frames) |  |
+| `+0x028` | `u32` |  | emission limit (frames) |
 | `+0x02C` | `f32` | age |  |
-| `+0x030` | `i32` | whole frame |  |
-| `+0x034` | `f32` | last firing |  |
-| `+0x0A0-0x0F0` | `...` | sampled spawn values (+0x0F0 colour) |  |
-| `+0x100` | `void*` | emitter record (0x800) |  |
-| `+0x108` | `...` | element definition (0xA00) |  |
-| `+0x118` | `void*` | active head |  |
-| `+0x120` | `...` | free head |  |
-| `+0x128` | `...` | active tail |  |
-| `+0x130` | `void*` | parent element |  |
-| `+0x139` | `u8` | stop emitting |  |
+| `+0x030` | `i32` |  | whole frame |
+| `+0x034` | `f32` |  | last firing |
+| `+0x0A0-0x0F0` | `...` |  | sampled spawn values (`+0x0F0` colour) |
+| `+0x100` | `void*` |  | emitter record (`0x800`) |
+| `+0x108` | `...` |  | element definition (`0xA00`) |
+| `+0x118` | `void*` |  | active head |
+| `+0x120` | `...` |  | free head |
+| `+0x128` | `...` |  | active tail |
+| `+0x130` | `void*` |  | parent element |
+| `+0x139` | `u8` |  | stop emitting |
 
 Element:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u8` | type (from definition +0x44) |  |
-| `+0x001` | `u8` | flags: bit 0x1 draw skip |  |
-| `+0x002` | `u16` | draw counter |  |
+| `+0x000` | `u8` |  | type (from definition `+0x44`) |
+| `+0x001` | `u8` |  | flags: bit `0x1` draw skip |
+| `+0x002` | `u16` |  | draw counter |
 | `+0x008` | `void*` | emitter |  |
 | `+0x010` | `...` | parent |  |
-| `+0x018` | `...` | emitter record |  |
+| `+0x018` | `...` |  | emitter record |
 | `+0x020` | `...` | definition |  |
 | `+0x028` | `void*` | previous |  |
 | `+0x030` | `...` | next |  |
-| `+0x038` | `u32` | frame stamp at the last update |  |
+| `+0x038` | `u32` |  | frame stamp at the last update |
 | `+0x03C` | `f32` | age |  |
-| `+0x040` | `i32` | whole age |  |
-| `+0x044` | `i32` | track frame |  |
+| `+0x040` | `i32` |  | whole age |
+| `+0x044` | `i32` |  | track frame |
 | `+0x048` | `i32` | updates |  |
-| `+0x04C` | `i32` | lifetime (0 none) |  |
+| `+0x04C` | `i32` |  | lifetime (0 none) |
 | `+0x060` | `...` | position |  |
-| `+0x1D0` | `i32[8]` | last firing per spawn slot (-1 unfired) |  |
-| `+0x1F0` | `u32` | colour (0x80808080 neutral) |  |
-| `+0x224` | `u16` | hold word from 0x00250000() |  |
+| `+0x1D0` | `i32[8]` |  | last firing per spawn slot (-1 unfired) |
+| `+0x1F0` | `u32` |  | colour (`0x80808080` neutral) |
+| `+0x224` | `u16` |  | hold word from `0x00250000`() |
 
 ## Operations
 

@@ -184,7 +184,7 @@ Struct ChestRecord base=mspArea+refOffset size=`0x18`:
 | `+0x01` | `u8[3]` | zero | 0 in every shipped record |
 | `+0x04` | `i16` | x | tenths of a world unit (`0x002FAF60`) |
 | `+0x06` | `i16` | z | tenths of a world unit; the record holds no height |
-| `+0x08` | `u8` | facingFlags | bits 0-5 facing in 6-degree steps; bit `0x40` random gil (`0x002FB07C`); bit `0x80` 0 in every record |
+| `+0x08` | `u8` | facingFlags | mask `0x3F` facing in 6-degree steps; bit `0x40` random gil (`0x002FB07C`); bit `0x80` 0 in every record |
 | `+0x09` | `u8` | flagId | opened flag, set on opening and tested at placement; `0xFF` = none (`0x002FAEE2`, `0x002FAFEA`) |
 | `+0x0A` | `u8` | presence | percent; draw % 100 below it places the chest (`0x002FAF0D`) |
 | `+0x0B` | `u8` | gilChance | percent; draw % 100 below it gives gil, otherwise an item (`0x002FB036`) |
@@ -235,7 +235,7 @@ there, with a fixed consumable).
 | `map_name`, `region` | the map's name (`0x00377B60`) and its region's name (`0x003778B0`), as [Zone asset list](zone-asset-list.md) gives them |
 | `script`, `actor` | the zone script in the archive and the chest's actor in it |
 | `record`, `index` | the record's offset in the script image, and its byte `+0x00` |
-| `x`, `z`, `facing` | `+0x04` and `+0x06` divided by ten, in world units, and the facing code, bits 0-5 of `+0x08`, in 6° steps |
+| `x`, `z`, `facing` | `+0x04` and `+0x06` divided by ten, in world units, and the facing code, mask `0x3F` of `+0x08`, in 6° steps |
 | `flag_id`, `comes_back` | `+0x09`, and `yes` for `0xFF` (no flag: the chest can be there again after it has been opened), `no` for a one-time chest |
 | `presence` | `+0x0A`, the percent chance the chest is there each time it is set out |
 | `gil_chance` | `+0x0B`, the percent chance an opening gives gil instead of an item |

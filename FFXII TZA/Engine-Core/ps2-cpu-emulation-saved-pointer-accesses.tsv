@@ -1,0 +1,2 @@
+function	name	site	disp	kind	instruction	route	note
+0x0036D930	FUN_0036d930	0x0036D969	0x0	w	mov qword ptr [r8], rax	route-seeded ARRAY 0x02EC0A00 stride=0x8 count=32 base+0x0	

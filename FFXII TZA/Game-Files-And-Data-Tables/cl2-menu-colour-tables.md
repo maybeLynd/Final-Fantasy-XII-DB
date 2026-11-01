@@ -8,8 +8,9 @@ addresses: "0x003C1F00, 0x003C26C0, 0x003C2190, 0x02B457E0, 0x0024A9E0, 0x0024A4
 ## What the player sees
 
 The colours of the pictures on a location map. No location-map picture uses its own palette: every map takes the
-third colour table of `clutpack_ys.bin`, and the two map entries that name a `.cl2` take that file's table
-instead, so the same pixel data can be recoloured without being reshipped.
+third colour table of `clutpack_ys.bin`, except the Great Crystal and Sky Fortress Bahamut maps, whose two map
+entries name a `.cl2` and take that file's table instead, so the same pixel data can be recoloured without being
+reshipped.
 
 ## Where it comes from
 
@@ -34,7 +35,7 @@ The file is a TIM2 file with the magic changed, one picture and no pixel data.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[4]` | "CLT2" | read by no function: the table pointer, widget `+0x118`, is loaded by the draw `0x003C26C0` (`0x003C2794`), which hands it to `0x0024A9E0` (`+0x06` and the picture header from `+0x10`), and by the releases `0x003C1F00` (`0x003C2024`) and `0x003BC4E0` (`0x003BC55A`); nothing fixes its width |
+| `+0x00` | `u8[4]` |  | value "CLT2": read by no function: the table pointer, widget `+0x118`, is loaded by the draw `0x003C26C0` (`0x003C2794`), which hands it to `0x0024A9E0` (`+0x06` and the picture header from `+0x10`), and by the releases `0x003C1F00` (`0x003C2024`) and `0x003BC4E0` (`0x003BC55A`); nothing fixes its width |
 | `+0x04` | `u8` | version | 4 |
 | `+0x05` | `u8` | format | 0 |
 | `+0x06` | `u16` | pictures | 1; read by `0x0024A9E0` as the bound of the picture index, which is 0 here |
@@ -47,14 +48,14 @@ Picture header (`+0x10`):
 | `+0x10` | `u32` | totalSize | file size - `0x10`; not read |
 | `+0x14` | `u32` | clutSize | colours x 4; not read |
 | `+0x18` | `u32` | imageSize | 0; read |
-| `+0x1C` | `u16` | headerSize 0x30; read |  |
+| `+0x1C` | `u16` | headerSize | `0x30`; read |
 | `+0x1E` | `u16` | colours | read |
-| `+0x20` | `u8` | pictFormat 0 |  |
+| `+0x20` | `u8` | pictFormat | 0 |
 | `+0x21` | `u8` | mipmaps | 0 |
 | `+0x22` | `u8` | clutType | 3 (32-bit colours); not read |
 | `+0x23` | `u8` | imageType | 5 or 4; not read |
 | `+0x24` | `u8[28]` | zero |  |
-| `+0x40` | `u8[4][colours]` | palette: R, G, B, A |  |
+| `+0x40` | `u8[4][colours]` |  | palette: R, G, B, A |
 
 The palette starts at `+0x10 + headerSize + imageSize`. The alpha byte is on the PS2 scale, where `0x80` is
 opaque.
@@ -78,7 +79,7 @@ Measured over every `.cl2` in the archive and every `menumap_common.bin`.
 | selected | entry 40 requests `0xE2` (`Loca_gil`), entry 46 requests `0xE3` (`Loca_bhm`); no entry selects `0xE4` |
 
 [`cl2-menu-colour-tables-cl2-rows.tsv`](cl2-menu-colour-tables-cl2-rows.tsv) lists the 20 files, with size,
-SHA-256, kind-7 id, the language ids whose path array names each copy with their size-table entries, and
+SHA-256, kind-7 id, the locale ids whose path array names each copy with their size-table entries, and
 every header field, then all 1,056 colours of the three distinct contents: the raw RGBA, the alpha the
 upload makes of it, the palette and pixel value the colour serves, and how many pixels of the selecting map
 entry's pictures carry that value.
@@ -86,7 +87,7 @@ entry's pictures carry that value.
 - `Loca_gil.cl2` recolours the two pictures of map entry 40, the Great Crystal maps `gil_i01` and `gil_i02`,
   and `Loca_bhm.cl2` the four of entry 46, the Sky Fortress Bahamut maps `bhm_a01`, `bhm_a02`, `bhm_a03` and
   `bhm_b01`. Those pictures have the same pixel counts in all nine languages.
-- Language ids 0, 6, 9 and 10 read the `in` copies; ids 1 to 5, 7, 8 and 11 read their own folder's (`us`,
+- Locale ids 0, 6, 9 and 10 read the `in` copies; ids 1 to 5, 7, 8 and 11 read their own folder's (`us`,
   `fr`, `de`, `it`, `es`, `kr`, `ch`, `cn`). Every size table gives `0xE2` and `0xE3` their 2,112 bytes.
 - For an 8-bit picture `0x00181000` makes one 256-colour palette per 256 colours (`0x00181039`), so the 512
   colours are palettes 0 and 1. Within a palette, pixel value `v` takes colour `v` with its bits `0x8` and

@@ -181,3 +181,9 @@ scripts' copies differ only in these.
 - [Quickenings and summons](../Battle-Actions/quickenings-and-summons.md) - the battle scene a summon plays, one at a time.
 - [Graphics settings](../Engine-Core/graphics-settings.md) - the depth of field a summon scene's own file can override.
 - [Special move scenes](special-move-scenes.md) - the other battle scene group.
+- [`summons-script-list.tsv`](summons-script-list.tsv) - the script list, one row per summon scene script with its
+  size (39 rows).
+
+The script list's columns are `script`, `kind` and `place` (the script, `scene`, and its event id), `actors` and
+`functions` (the script's actors and functions), `rows` (its rows in a scripts table) and `shared_actors` (the
+shared helper actors it carries).

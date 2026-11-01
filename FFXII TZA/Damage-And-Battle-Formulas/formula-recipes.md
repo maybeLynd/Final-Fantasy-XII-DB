@@ -27,7 +27,7 @@ Besides recipe 0, shipped actions use 89 recipes and weapons 11, and 8 recipes a
 
 ## Columns
 
-`formula-recipes.tsv`, one row per recipe:
+[`formula-recipes.tsv`](formula-recipes.tsv), one row per recipe:
 
 | Column | Meaning |
 |---|---|

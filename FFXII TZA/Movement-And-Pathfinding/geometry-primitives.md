@@ -107,20 +107,20 @@ Struct MeshQuery  (the walker's record, built on the caller's stack):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[4]` | delta = end - start (w from end) |  |
-| `+0x10` | `void*` | start point |  |
-| `+0x18` | `void*` | end point |  |
-| `+0x20` | `void*` | the hit point written |  |
-| `+0x28` | `void*` | per-cell callback |  |
-| `+0x30` | `f32` | best t (starts at the length) |  |
-| `+0x34` | `f32` | segment length |  |
-| `+0x38` | `i32` | stop at the first hit when set |  |
-| `+0x3C` | `i16` | current cell |  |
-| `+0x3E` | `i16` | cell list start |  |
-| `+0x40` | `i16` | cell list count |  |
-| `+0x42` | `i16` | hit id (0xFFFF none) |  |
-| `+0x44` | `i16` | state: 0 none, 1 marker only, 2 hit |  |
-| `+0x46` | `i16` | query kind |  |
+| `+0x00` | `f32[4]` |  | delta = end - start (w from end) |
+| `+0x10` | `void*` |  | start point |
+| `+0x18` | `void*` |  | end point |
+| `+0x20` | `void*` |  | the hit point written |
+| `+0x28` | `void*` |  | per-cell callback |
+| `+0x30` | `f32` |  | best t (starts at the length) |
+| `+0x34` | `f32` |  | segment length |
+| `+0x38` | `i32` |  | stop at the first hit when set |
+| `+0x3C` | `i16` |  | current cell |
+| `+0x3E` | `i16` |  | cell list start |
+| `+0x40` | `i16` |  | cell list count |
+| `+0x42` | `i16` |  | hit id (`0xFFFF` none) |
+| `+0x44` | `i16` |  | state: 0 none, 1 marker only, 2 hit |
+| `+0x46` | `i16` |  | query kind |
 
 `0x0022F430(part, q)` walks the segment through the collision grid. The cell of a point is
 `0x00233050`: column `(x + originX) / cellW`, row `(z + originZ) / cellH` after subtracting half a
@@ -161,13 +161,13 @@ Struct EmitterVolume  base=[`0x022CBAF0`] + offset:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x09` | `u8` | kind (& 0x7F): 0 ellipse, 1 rectangle, 2 segment chain |  |
-| `+0x14` | `u32` | segment count (kind 2) |  |
+| `+0x09` | `u8` |  | kind (& `0x7F`): 0 ellipse, 1 rectangle, 2 segment chain |
+| `+0x14` | `u32` |  | segment count (kind 2) |
 | `+0x20` | `f32[4]` | centre |  |
-| `+0x30` | `f32` | extent a |  |
-| `+0x34` | `f32` | extent b |  |
-| `+0x40` | `f32[8]` | segments (kind 2): start f32[4], direction f32[4], 0x20 bytes each |  |
-| `+0x50` | `f32` | rotation angle |  |
+| `+0x30` | `f32` |  | extent a |
+| `+0x34` | `f32` |  | extent b |
+| `+0x40` | `f32[8]` |  | segments (kind 2): start f32[4], direction f32[4], `0x20` bytes each |
+| `+0x50` | `f32` |  | rotation angle |
 
 Both clamps collapse to the centre when either extent is at or below 0: `out = centre`. Otherwise
 `d = point - centre` is rotated into the volume's frame, `u = d.x cos(a) - d.z sin(a)` and `v =
@@ -186,8 +186,8 @@ then is masked to 24 bits (four generations) and copied to `0x022D9478`. With no
 set `out = point`; otherwise `lx` and `lz` are clamped to `[-1, 1]`, `X = lx a`, `Z = lz b`, and
 `out = (centre.x + X cos(-a) - Z sin(-a), point.y, centre.z + X sin(-a) + Z cos(-a))`.
 
-The segment chain, `0x00362230`, calls `0x00363FD0(point, start, dir)` for each segment: `t = -((start
-- point) . dir) / |dir|^2` clamped to `[0, 1]`, 0 when `|dir|^2` is not positive, with the squared
+The segment chain, `0x00362230`, calls `0x00363FD0(point, start, dir)` for each segment: `t = -((start -
+point) . dir) / |dir|^2` clamped to `[0, 1]`, 0 when `|dir|^2` is not positive, with the squared
 distance `|start - point + t dir|^2` left at `0x022D92D4` (and `0x022D92E4`). The segment with the
 smallest squared distance wins (the first always, a later one only when strictly nearer) and `out =
 start + t dir`; with no segments `out = point`. It returns the record's `+0x30`.
@@ -206,7 +206,7 @@ With record byte `+0x0D` bit `0x8` the same test uses the capsule separation `0x
 bodies](movement-bodies-and-separation.md)) instead of the rectangles.
 
 `0x0025A8E0(p, rec)`, its only caller that test, is the outcode without the clamp: the CLIP word is
-shifted left 6 and takes bits `0x1`/1 for `p.x` above `e` or below `-e`, bits `0x4`/3 for `p.y`, bits `0x10`/5
+shifted left 6 and takes bits `0x1`/`0x2` for `p.x` above `e` or below `-e`, bits `0x4`/`0x8` for `p.y`, bits `0x10`/`0x20`
 for `p.z`, with `e = |rec.+0x0C|`, and the word is copied to `0x022D9478`. The history is what lets
 one function clamp a point and the next read the outcome of the clamp before it.
 
@@ -228,40 +228,40 @@ Shape record (a collision wall record is one):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | type: 0 sphere, 1 cylinder, 2 box |  |
-| `+0x04` | `u32` | attribute word (collision mesh; the primitives do not read it) |  |
-| `+0x10` | `f32[16]` | forward transform (unit frame to world) |  |
-| `+0x50` | `f32[16]` | inverse transform (world to unit frame) |  |
+| `+0x00` | `i32` |  | type: 0 sphere, 1 cylinder, 2 box |
+| `+0x04` | `u32` |  | attribute word (collision mesh; the primitives do not read it) |
+| `+0x10` | `f32[16]` |  | forward transform (unit frame to world) |
+| `+0x50` | `f32[16]` |  | inverse transform (world to unit frame) |
 
 Collision polygon (`0x20` bytes at [part + `0x10`]):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `f32[3]` | plane normal |  |
-| `+0x0C` | `u32` | attribute word |  |
-| `+0x10` | `u16[3]` | vertex indices into the 0x10-byte vertices at [part + 0x08] |  |
+| `+0x00` | `f32[3]` |  | plane normal |
+| `+0x0C` | `u32` |  | attribute word |
+| `+0x10` | `u16[3]` |  | vertex indices into the `0x10`-byte vertices at [part + `0x08`] |
 
 Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x00D11200` | `f32[6][4]` | unit-cube faces {n, 1}: +x, -x, +y, -y, +z, -z |  |
-| `0x00D11260` | `f32[4]` | {0, 0, 0, 1}, the sphere's centre |  |
-| `0x00D11270` | `f32[4]` | {0, 0, 0, 1}, the cylinder's axis point |  |
-| `0x00D11280` | `f32[4]` | {0, 1, 0, 1}, the top cap plane |  |
-| `0x00D11290` | `f32[4]` | {0, -1, 0, 1}, the bottom cap plane |  |
-| `0x00D112A0` | `f32[4]` | {0.999, 1.001, -0.999, 0}; 0x00D112A4 is the box margin |  |
-| `0x00908DE8` | `i32[3]` | {1, 2, 0}, the next-vertex table |  |
-| `0x00908DF8` | `i32[4]` | {0, 1, 2, -1}, the cell-list offsets |  |
-| `0x0209A3E0` | `...` | override entries, 8 bytes each; walls and polygons use entries 32-63 |  |
-| `0x022CBAF0` | `void*` | base of the emitter volume records |  |
-| `0x022D9130` | `...` | the CLIP word |  |
-| `0x022D9478` | `...` | the CLIP word's copy |  |
-| `0x022D9198` | `f32` | the VU0 register image: Q |  |
-| `0x022D91A0` | `f32[4]` | the VU0 register image: ACC |  |
-| `0x022D92A0` | `...` | the VU0 register image: vector registers 0x022D92A0 to 0x022D935F |  |
-| `0x022D9470` | `u8` | the VU0 register image: flag byte |  |
-| `0x01EF93F0` | `f32[4]` | the vf00 image {0, 0, 0, 1} |  |
+| `0x00D11200` | `f32[6][4]` |  | unit-cube faces {n, 1}: +x, -x, +y, -y, +z, -z |
+| `0x00D11260` | `f32[4]` |  | {0, 0, 0, 1}, the sphere's centre |
+| `0x00D11270` | `f32[4]` |  | {0, 0, 0, 1}, the cylinder's axis point |
+| `0x00D11280` | `f32[4]` |  | {0, 1, 0, 1}, the top cap plane |
+| `0x00D11290` | `f32[4]` |  | {0, -1, 0, 1}, the bottom cap plane |
+| `0x00D112A0` | `f32[4]` |  | {0.999, 1.001, -0.999, 0}; `0x00D112A4` is the box margin |
+| `0x00908DE8` | `i32[3]` |  | {1, 2, 0}, the next-vertex table |
+| `0x00908DF8` | `i32[4]` |  | {0, 1, 2, -1}, the cell-list offsets |
+| `0x0209A3E0` | `...` |  | override entries, 8 bytes each; walls and polygons use entries 32-63 |
+| `0x022CBAF0` | `void*` |  | base of the emitter volume records |
+| `0x022D9130` | `...` |  | the CLIP word |
+| `0x022D9478` | `...` |  | the CLIP word's copy |
+| `0x022D9198` | `f32` |  | the VU0 register image: Q |
+| `0x022D91A0` | `f32[4]` |  | the VU0 register image: ACC |
+| `0x022D92A0` | `...` |  | the VU0 register image: vector registers `0x022D92A0` to `0x022D935F` |
+| `0x022D9470` | `u8` |  | the VU0 register image: flag byte |
+| `0x01EF93F0` | `f32[4]` |  | the vf00 image {0, 0, 0, 1} |
 
 ## Shipped data
 

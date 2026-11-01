@@ -38,9 +38,9 @@ Both sections have the same shape. Offsets are from the start of the section.
 
 ```
 +0x00   u32[n]  entry      n = (entry 0 & 0xFFFF) / 4; there is no count field
-                bits 0-15   string offset from the section start
+                mask 0xFFFF   string offset from the section start
                 bit 0x10000      flag (section 2; see Loader behaviour)
-                bits 17-31  0 in every shipped entry; never read
+                mask 0xFFFE0000  0 in every shipped entry; never read
 +4*n    char[]  strings    NUL-terminated, back to back in entry order
                 zero fill to the next 0x40 boundary
 ```
@@ -166,7 +166,7 @@ therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-
   bad id, and the string comes from whatever lies past the table.
 - Set bit `0x10000` on a section 2 entry whose string holds a choice list, as the shipped banks do; `mes`
   does not open a window for a flagged entry and `aask_1ff` opens one only for a flagged entry.
-- Bits 17-31 of an entry and bits 24-31 of a script text id have no effect, and section 3's flag is
+- The bits under mask `0xFFFE0000` of an entry and the bits under mask `0xFF000000` of a script text id have no effect, and section 3's flag is
   never read.
 - Write strings in the language's glyph codes; captions in `ch`, `cn`, `in` and `kr` keep their
   `0x0F` escape.

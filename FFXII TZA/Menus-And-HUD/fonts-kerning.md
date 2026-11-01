@@ -7,7 +7,7 @@ addresses: "0x001B5230, 0x001B6080, 0x001FDC10, 0x001FDDD0, 0x002AC2F0"
 
 ## What it lists
 
-`fonts-kerning.tsv` holds one line for each 12-byte pair `{left, right, adjust}` of the 34 `.ker` files: 39,237
+[`fonts-kerning.tsv`](fonts-kerning.tsv) holds one line for each 12-byte pair `{left, right, adjust}` of the 34 `.ker` files: 39,237
 pairs, 26,816 of them in the 25 files the game requests. The reader `0x001B5230` (through `0x001B6080`) files each pair
 with `0x001FDC10`, and while drawing `0x002AC2F0` looks one up through `0x001FDDD0` by the previous and the current glyph's
 kerning code point, as [Fonts](fonts.md) describes. The lines keep each file's pair order.

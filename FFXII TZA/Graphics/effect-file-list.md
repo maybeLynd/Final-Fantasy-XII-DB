@@ -7,7 +7,7 @@ addresses: "0x002DF9A0, 0x002FC860, 0x002FCFF0, 0x002DEBB0, 0x002DDE20, 0x0030A1
 
 ## What it lists
 
-`effect-file-list.tsv` holds one line for each effect file the executable names: 2,051 rows over the
+[`effect-file-list.tsv`](effect-file-list.tsv) holds one line for each effect file the executable names: 2,051 rows over the
 3,288 `.efx` files the archive ships under `ps2data/effect_finish/<folder>/`. A row is a resource kind
 and id ([File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md)), or a model
 name for the character effects, which no kind names. The chunk layout the contents columns read is
@@ -25,7 +25,7 @@ on [Effect files](effect-files-efx-efb.md).
 Kinds 10, 11 and 38 use one path array for every language. Kind 12's array differs by text
 language: 314 of the 534 shipped event effects have per-language copies (`us`, `fr`, `de`, `it`, `es`,
 `kr`, `ch`, `cn`), the other 220 are the `jp` file for everyone, and the `text_languages` column lists
-which copy each language id takes. The magic effects are chosen by the voice language instead: the
+which copy each locale id takes. The magic effects are chosen by the voice language instead: the
 kind-11 array names `us` copies for 43 ids (the 18 Quickening cinematics 120-137 among them) and `uk`
 copies for 8, while kind 38 names `jp` copies for those 43 and keeps the same `uk` and `in` copies.
 
@@ -34,8 +34,8 @@ copies for 8, while kind 38 names `jp` copies for those 43 and keeps the same `u
 The columns come from the path arrays, the US size table, the archive index and the files:
 
 1. The path arrays: `0x002DF9A0` installs one array per kind at `0x0215F000 + 8 x kind`, then a switch
-   on the language id replaces kind 12's (and kind 7's) with the language's own; the arrays of every
-   language id 0 to 11, named `JP US FR DE IT ES UK KR CH ASIA IN CN` as the size-table loader names
+   on the locale id replaces kind 12's (and kind 7's) with the language's own; the arrays of every
+   locale id 0 to 11, named `JP US FR DE IT ES UK KR CH ASIA IN CN` as the size-table loader names
    them, are listed. Entry n of an array is the path of id n.
 2. The size is the US `FileSizeTable_US.fst` entry `kind x 5000 + id`; `ships` is whether the archive
    index names the path; the contents come from the extracted file.

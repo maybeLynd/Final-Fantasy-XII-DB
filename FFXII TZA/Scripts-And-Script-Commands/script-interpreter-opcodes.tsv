@@ -2,7 +2,7 @@ opcode	mnemonic	length	handler	field2	field4	field16	field20	effect
 0x00	NOP	0	0x0025E613	0	0	0	0	advance the pc by the instruction length; nothing else (the common tail every handler returns through)
 0x01	LABEL	0	0x0025E60A	8	0	0	0	inert: shares the invalid-opcode target 0x0025E60A (marks the tick finished and advances)
 0x02	TAG	0	0x0025E60A	7	0	0	0	inert, as 0x01
-0x03	SYSHALT	1	0x0025E5EA	0	0	0	0	halt: set actor +0x14 bit 6 and rewind the pc, so the instruction repeats every tick
+0x03	SYSHALT	1	0x0025E5EA	0	0	0	0	halt: set actor +0x14 bit 0x40 and rewind the pc, so the instruction repeats every tick
 0x04	SYSTEM	1	0x0025E649	0	0	1	1	pop one value and discard it
 0x05	OPLOR	1	0x0025E664	0	0	1	1	logical OR: pop b, pop a (int, floats truncated), push (a != 0 or b != 0)
 0x06	OPLAND	1	0x0025E6D8	0	0	1	1	logical AND: push (a != 0 and b != 0)
@@ -51,7 +51,7 @@ opcode	mnemonic	length	handler	field2	field4	field16	field20	effect
 0x31	DRET	1	0x0025E60A	0	0	0	0	inert (shares 0x0025E60A)
 0x32	REQWAIT	1	0x00261539	0	0	0	0	wait for a request: pop (function id, actor); if that actor has the entry active, park as wait kind 3 on it
 0x33	PREQWAIT	1	0x002615A6	0	0	0	0	pop two values; no wait is armed
-0x34	REQCHG	1	0x002615BA	0	0	0	0	set an actor's resource-override slot: pop (value, actor, slot) into 0x0025AF60; slots 0x10-0x11 re-arm the EH-5 countdown when the target's +0x0B bit 3 is set
+0x34	REQCHG	1	0x002615BA	0	0	0	0	set an actor's resource-override slot: pop (value, actor, slot) into 0x0025AF60; slots 0x10-0x11 re-arm the EH-5 countdown when the target's +0x0B bit 0x8 is set
 0x35	REQCANCEL	1	0x00261301	0	0	0	0	cancel: pop an index and recycle the entry range above it (0x003DB420)
 0x36	POPI0	1	0x0026161C	0	0	0	0	pop into per-actor int register I0 (record +0x64)
 0x37	POPI1	1	0x0026162D	0	0	0	0	pop into I1
@@ -76,7 +76,7 @@ opcode	mnemonic	length	handler	field2	field4	field16	field20	effect
 0x4A	PUSHDBG	3	0x0026178F	3	0	0	0	resolve a variable for the debug print path
 0x4B	PUSHP	3	0x002617B2	3	0	0	0	push a variable reference (how an array element is passed)
 0x4C	PUSHTAG	3	0x002617C9	2	0	0	0	push tag k of the actor the latest PUSHACT named: 0x02099AB8 selects entry (index + 1) x 16 of the slot's +0x80 table, [slot + 0] + its dword is that actor's tag table, dword [k x 8 + 8] is pushed (0x8000 past its count)
-0x4D	PUSHACT	3	0x00261806	2	0	0	0	push the packed actor handle of the operand's actor index ((word << 16) | index | bit 14; 0x8000 when out of range)
+0x4D	PUSHACT	3	0x00261806	2	0	0	0	push the packed actor handle of the operand's actor index ((word << 16) | index | bit 0x4000; 0x8000 when out of range)
 0x4E	PUSHI	3	0x00261855	2	0	0	0	push the int constant the operand indexes in the slot's pool (+0x68)
 0x4F	PUSHII	3	0x0026186D	1	0	0	0	push the operand itself, sign-extended
 0x50	PUSHF	3	0x0026187D	5	0	0	0	push the float constant the operand indexes in the slot's pool (+0x70)
@@ -86,7 +86,7 @@ opcode	mnemonic	length	handler	field2	field4	field16	field20	effect
 0x54	POPCMPYLOWEQJMP	3	0x002618F0	8	0	0	0	pop v; jump if v >= Y
 0x55	POPCMPYHIGHJMP	3	0x00261903	8	0	0	0	pop v; jump if v < Y
 0x56	POPCMPYHIGHEQJMP	3	0x00261916	8	0	0	0	pop v; jump if v <= Y
-0x57	POP2CMPYBTWNJMP	3	0x0026192C	8	0	0	0	pop two bounds, order them, jump if Y lies between them
+0x57	POP2CMPYBTWNJMP	3	0x0026192C	8	0	0	0	pop two bounds, order them, jump if Y is at least the lower bound and at most the higher (0x0026194E-0x0026195B)
 0x58	CALL	3	0x0026199D	4	0	0	0	call native verb [operand] with X = the actor's own index; if the verb yields, rewind and save the pc so the call repeats next tick
 0x59	CALLACT	3	0x002619EF	4	0	0	0	as CALL, but first pop the target actor into X (skipped while the context is resuming, +0x15)
 0x5A	POPXJMP	3	0x00261A52	8	0	0	0	pop into X, then jump

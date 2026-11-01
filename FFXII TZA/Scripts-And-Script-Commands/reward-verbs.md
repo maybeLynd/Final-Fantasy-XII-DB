@@ -9,8 +9,10 @@ addresses: "0x00345080, 0x003449A0, 0x0034A6D0, 0x0034ABF0, 0x0034B1E0, 0x003459
 
 Talking to someone hands over an item with a "Received" message; a chest gives an item or gil; a
 quest takes an item away; a story scene adds a character to the party or a guest joins; a prison
-stretch strips everyone of their gear and gives it back later. Each of those is a script verb,
-and every one of them ends in the inventory mutator `0x003008A0` or the gil store `0x00254EE0`.
+stretch strips everyone of their gear and gives it back later. Each of those is a script verb.
+Every item and gil change among them ends in the same two places: the one routine that changes the
+inventory, or the one that stores the gil total; a character joining or leaving changes the party
+slots instead (see Party membership).
 
 ## How it works
 

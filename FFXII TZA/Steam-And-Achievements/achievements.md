@@ -13,8 +13,9 @@ loot sold, licence points and clan points. Others test collections (every magick
 Bestiary entry, every map visited), ten rare foes, eight story scenes and two Trial Mode stages. The last,
 Champion of Ivalice, comes when all the others are held.
 
-The thirty tracked achievements are also kept in the save. The Clan Primer's Sky Pirate's Den shows one
-statue for each one earned, and the clan rank counts them, so both work without Steam.
+Thirty of the achievements, all but the eight story scenes, the two Trial Mode stages and Champion of
+Ivalice, are also kept in the save. The Clan Primer's Sky Pirate's Den shows one statue for each of those
+thirty earned, and the clan rank counts them, so both work without Steam.
 
 ## How it works
 
@@ -161,7 +162,7 @@ The achievement record, `0x01DFE410 + entry x 0x198`:
 | `+0x008` | `char*` | tag | ACH_ tag, the name passed to Steam |
 | `+0x010` | `char[128]` | title | English Steam title; replaced by Steam's "name" on stats receipt |
 | `+0x090` | `char[256]` | desc | empty in the image; Steam's "desc" on stats receipt |
-| `+0x190` | `u8` | achieved set by an award, rewritten from Steam on stats receipt |  |
+| `+0x190` | `u8` |  | achieved set by an award, rewritten from Steam on stats receipt |
 | `+0x194` | `u32` | - | cleared by an award |
 
 The descriptor, `0x00D10460 + index x 8`:
@@ -179,14 +180,14 @@ The saved achievement state, block `[0x020927C0]` (`0x002536A0`), which the save
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x3844` | `u32` | awarded | bit i = descriptor i awarded; only ever set |
-| `+0x384C` | `i16[5]` | counters 0-4 |  |
-| `+0x3856` | `i16` | counter 13 (a 16-bit set) |  |
-| `+0x3858` | `i16` | counter 14 |  |
+| `+0x384C` | `i16[5]` |  | counters 0-4 |
+| `+0x3856` | `i16` |  | counter 13 (a 16-bit set) |
+| `+0x3858` | `i16` |  | counter 14 |
 | `+0x385A` | `u16` | - | no descriptor points here |
-| `+0x385C` | `i32` | counter 11 |  |
-| `+0x3860` | `i32` | counter 6 |  |
-| `+0x3864` | `i32` | counter 7 |  |
-| `+0x3868` | `i32` | counter 17 (clan points) |  |
+| `+0x385C` | `i32` |  | counter 11 |
+| `+0x3860` | `i32` |  | counter 6 |
+| `+0x3864` | `i32` |  | counter 7 |
+| `+0x3868` | `i32` |  | counter 17 (clan points) |
 
 The `menuhandbook.bin` chain. Each hop adds the `u16` at the current position, starting at blob `+8`:
 

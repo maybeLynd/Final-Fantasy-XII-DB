@@ -487,7 +487,7 @@ The label widths come from a pre-pass, `0x00273E30`, which scene and action code
 |---|---|---|---|
 | `+0x00` | `u16` | id | action id (class `0x14`) |
 | `+0x02` | `u16` | cost | MP, Mist charges or item count |
-| `+0x04` | `u16` | flags | bit `0x1` greyed, bits 6-9 the targets the action needs |
+| `+0x04` | `u16` | flags | bit `0x1` greyed, mask `0x3C0` the targets the action needs |
 | `+0x06` | `u8` | reason | `0x002FFCF0` code from `0x00317BC0` |
 
 ### The list widget's page tasks

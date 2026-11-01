@@ -97,7 +97,7 @@ bits `0x7` of every flag byte (`0x0030B739`-`0x0030B75B`).
 
 ## Columns
 
-`bazaar.tsv`, one row per good:
+[`bazaar.tsv`](bazaar.tsv), one row per good:
 
 | Column | Meaning |
 |---|---|

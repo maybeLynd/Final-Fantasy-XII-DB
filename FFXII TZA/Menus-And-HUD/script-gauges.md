@@ -166,7 +166,7 @@ scripts](../Story-Events-And-Hunts/trial-mode-scripts.md).
 | `starts_when` | the counter, flag, item or talk that opens it |
 | `rules` | what the player does and what counts |
 | `limits` | the time, count or track the script sets |
-| `reward` | the items or gil given, with `scene-rewards.tsv` |
+| `reward` | the items or gil given, with [`scene-rewards.tsv`](../Story-Events-And-Hunts/scene-rewards.tsv) |
 | `fail` | what happens on failure |
 | `gauge` | the gauge verbs it uses |
 

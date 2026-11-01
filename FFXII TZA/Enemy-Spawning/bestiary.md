@@ -7,7 +7,7 @@ addresses: "0x02EBF120, 0x02EBF150, 0x02EBF148, 0x02EBF140, 0x003EA710, 0x0023A5
 
 ## What it lists
 
-`bestiary.tsv` holds one line for each of the 1,146 enemy definitions in the 166 shipped area files (`.ard`): the
+[`bestiary.tsv`](bestiary.tsv) holds one line for each of the 1,146 enemy definitions in the 166 shipped area files (`.ard`): the
 rows of directory slot 2 that `0x003EA710` binds to registry slot `0x02EBF120` when the area loads
 ([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)).
 
@@ -24,9 +24,13 @@ its class row (slot 0, `0x02EBF150`), its base stat row (slot 5, `0x02EBF148`) a
   (`bog_a` row 3), Axebeak (`enw_b` row 8) and Omega Mark XII (`gil_i` row 7).
 
 [`enemy-placements.tsv`](enemy-placements.tsv) lists those 6,229 placements one by one: the area, the map script by
-its path under `plan_map`, the zone-script function that makes the four calls (its name as the script stores it),
-the definition row it places with its id and name, and the level it sets. The same walk builds both files, and the
+its path under `plan_map`, the actor whose code makes the four calls (`function`, its name as the script stores it),
+the actor's function that holds them (`entry`, an `entryNN` function, named in the actor's function table), the
+definition row it places with its id and name, and the level it sets. The same walk builds both files, and the
 decoder asserts that each definition's `placements` count is its number of lines there.
+
+One actor often places the same definition at the same level from several entry functions, so `entry` is what tells
+those lines apart; it is also the `group` of [`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv).
 
 [`enemy-placements-maps.tsv`](enemy-placements-maps.tsv) gives the same 6,229 placements with the place the player meets
 them: the zone the script belongs to, its map name and its region, as the location line shows them
@@ -49,8 +53,8 @@ The `primer_section`, `hunt`, `story_boss` and `trial_mode` columns give each te
 passes two shows both: 15 `story boss` placements are also a hunt's mark, as Ba'Gamnan in Withering Shores is the mark
 of "A Dark Rumor".
 
-`group_chosen_by` names how the zone script picks the groups the placement belongs to, from the `lane` column of
-[`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv):
+`group_chosen_by` names how the zone script picks the placement's group, from the `lane` column of the rows of
+[`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv) whose `group` is the placement's `entry`:
 
 - 312 placements are in groups that are always constants;
 - the other 5,917 are in at least one group that the automatic selector, a bank-return selector, the selection kept
@@ -96,7 +100,7 @@ Each line is read as the game reads the files:
    [Equipment list](../Items-Equipment-Shops-And-Licenses/equipment-list.md),
    [Loot list](../Items-Equipment-Shops-And-Licenses/loot-list.md) and key-item list, and `0xE000` + *n* as *n* gil
    ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
-5. The model: the class row's dword `+0x00` is a bound id (letter class in bits 16-23, number in bits 0-15).
+5. The model: the class row's dword `+0x00` is a bound id (letter class in the bits under mask `0xFF0000`, number in the bits under mask `0xFFFF`).
    `0x002ED6F0` turns it into a resource kind and file index, and the file name is that index's entry of the kind's
    path array ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
 6. The Clan Primer Bestiary entry: the class row's word `+0x52` (below), and the entry's name from the US Bestiary
@@ -273,7 +277,7 @@ The `+0x03` and `+0x15` bits, by their readers:
 - `+0x03` bit `0x10`: `0x00238BF0` raises the unit byte `+0x58` to 7 ([Battle units](../Characters-And-Objects/battle-units.md));
   `0x00236210` returns the motion height without its random part (`0x002362A4`); the gambit target selector
   `0x00301AD0` tests it (`0x0030268D`).
-- `+0x03` bit `0x20`: `0x00238BF0` passes it to `0x002E8A10`, which stores it as the render record's shadow kind, bits 12-13
+- `+0x03` bit `0x20`: `0x00238BF0` passes it to `0x002E8A10`, which stores it as the render record's shadow kind, mask `0x3000`
   of `+0x304` ([Character lighting and shadows](../Graphics/character-lighting-and-shadows.md)).
 - `+0x15` bit `0x8`: `0x0031AA30` leaves the target-kind word at 0 for an enemy (`0x0031AACF`); bits `0x8` or `0x10`: it leaves the
   reach word at -1 instead of `0x01EED2D0[action kind]` (`0x0031AB39`). `0x0031AA30` runs from `0x00321060` and `0x00328530`.
@@ -321,8 +325,8 @@ chocobo definition has variant 0 and one of these colours:
 | `+0x05` | `u8` | class, unit `+0x56`, the kill chain's class ([Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)), named by word bank 14 (word `0x7000` + class, 64 names; class 34 is Skeleton) | `0x0023A570` |
 | `+0x06` | `u16` | unit `+0x52`; 0 in every row | `0x0023A570` |
 | `+0x10` | `i16` | push weight: a positive value divided by 10 is the weight the separation tick gives the body, as the party table's `+0x7A` ([Party table](../Party/party-table.md)); any other value goes over unchanged, and the -1 of 221 rows makes the body one an overlap never moves (`0x00314E10` gives a negative weight a share of 0) | `0x00238BF0` (`0x00238CEB`) → `0x0026DAC0` ([Movement bodies](../Movement-And-Pathfinding/movement-bodies-and-separation.md)) |
-| `+0x12` | `u8` | flags: bits 0-2 the effect column; bit `0x10` actor `+0x09` bit `0x40`; bit `0x20` the view query; bit `0x40` actor `+0x08` bit `0x8` and `+0x09` bit `0x40`; bit `0x80` the pair clearance | below |
-| `+0x18` | `u8` | bits `0xE` a movement group; bits 4-6 the placement height | `0x00239E10`, `0x003247F0`, the locomotion functions below |
+| `+0x12` | `u8` | flags: mask `0x7` the effect column; bit `0x10` actor `+0x09` bit `0x40`; bit `0x20` the view query; bit `0x40` actor `+0x08` bit `0x8` and `+0x09` bit `0x40`; bit `0x80` the pair clearance | below |
+| `+0x18` | `u8` | bits `0xE` a movement group; mask `0x70` the placement height | `0x00239E10`, `0x003247F0`, the locomotion functions below |
 | `+0x20` | `u8` | combo cap: hits at most this value minus 1 | `0x00388660` (`0x00388845`, [Combos](../Battle-Actions/combos.md)) |
 | `+0x21` | `u8` | bit `0x2`: an enemy may back off from its target | `0x003341A0` (`0x00334204`, [Action range](../Battle-Actions/action-range.md)) |
 | `+0x22` | `u8` | facing in degrees, unit `+0x64` | `0x0023A570` |
@@ -352,7 +356,7 @@ The `+0x12` and `+0x18` bits, by their readers:
 - `+0x18` bits `0xE`, other values: the locomotion functions `0x003357B0`, `0x00336710`, `0x00336CE0`, `0x00337470`,
   `0x003377C0`, `0x00337C10`, `0x00337D90`, `0x00338490`, `0x0033A240`, `0x0033C310` and `0x0033E1F0` compare the group with 0, 1,
   2, 4 and 5.
-- `+0x18` bits 4-6: the placement height byte `+0x1F6` (`0x00239E10`, [Enemy spawning](enemy-spawning.md)).
+- `+0x18` bits under mask `0x70`: the placement height byte `+0x1F6` (`0x00239E10`, [Enemy spawning](enemy-spawning.md)).
 
 ### The base and growth stat rows (slots 5 and 6, 56 bytes)
 

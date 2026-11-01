@@ -47,7 +47,7 @@ The header's `+0x0C` and `+0x18` are offsets from the start of the section, reba
 | `+0x04` | `u8` | subType | kind of item, copied to the query record `+0x2C` (`0x0031C9C4`) |
 | `+0x05` | `u8` | pad05 | 0 on every row |
 | `+0x06` | `u8` | sortKey | the Optimise tie-break: equal values go to the higher id (`0x002F7C3C`) |
-| `+0x07` | `u8` | slotFlags | bits 7-5 slot, bit `0x10` no license, bit `0x4` hits flying, bit `0x2` cannot sell; table below |
+| `+0x07` | `u8` | slotFlags | mask `0xE0` slot, bit `0x10` no license, bit `0x4` hits flying, bit `0x2` cannot sell; table below |
 | `+0x08` | `u8` | ordinal | order of the row inside its class (`0x0031C9CB`) |
 | `+0x09` | `u8` | class | equipment class 0-26; sets the group and the pairing (`0x0031E9F0`) |
 | `+0x0A` | `u32` | pad0A | 0 on every row |

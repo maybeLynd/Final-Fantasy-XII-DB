@@ -71,8 +71,8 @@ The parameter verbs only write the staging block (layout below): `cutintype` (`0
 `cutinlinefade` (`0x0314`, `0x003DF990`), `cutinpos` (`0x0315`, `0x003DF9C0`), `cutinuv` (`0x0318`,
 `0x003DFA30`), `cutincolor` (`0x0319`, `0x003DF950`) and `cutinlinecolor` (`0x031A`, `0x003DF970`).
 
-`0x0024CBE0` draws nothing while the live type byte is 0. In draw 0 it switches the draw mask bits
-0-6 on for both draws and queues a kind-3 capture of the scene into `0x02092638` (stage 7,
+`0x0024CBE0` draws nothing while the live type byte is 0. In draw 0 it switches the draw mask
+bits under mask `0x7F` on for both draws and queues a kind-3 capture of the scene into `0x02092638` (stage 7,
 `0x40703`). In draw 1 it queues a kind-4 bind of that target and calls `0x003AA6B0`, which queues
 two kind-`0x0D` quads in stage 5:
 
@@ -473,7 +473,7 @@ The per-frame driver `0x0024D540` calls `0x0024DEE0(draw)` (`0x0024D6E6`), which
    `+0x1E` = 2 and the target at `+0x38`, keeps its handle in `0x020926E0` and moves to mode 2
    (`0x0024DFCE`-`0x0024E045`).
 2. In mode 2 it files each frame a kind-4 descriptor that binds the target's texture
-   (`0x00182B20`, at `+0x50`) with `+0x1C` = `0x19`; the block address in its qword `+0x30` is bits 0-8
+   (`0x00182B20`, at `+0x50`) with `+0x1C` = `0x19`; the block address in its qword `+0x30` is the bits under mask `0x1FF`
    of the dword at `0x022D8E60 + 0x28 × [0x022D8EA8]`, shifted left by 5 (`0x0024DF2E`-`0x0024DFC6`).
 
 ## Layouts

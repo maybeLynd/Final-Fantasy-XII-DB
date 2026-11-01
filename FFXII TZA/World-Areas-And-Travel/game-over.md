@@ -170,7 +170,7 @@ the re-initialisation `0x0022BC20`). It refreshes the busy mask's bit `0x80` wit
    `0x001DC330(-1)`, `0x002DEB90(1)`, `0x005C5230`: the sound teardown, in which `0x002DF0F0(0, -1)` and
    `0x001DC330(-1)` are the audio manager's stop calls for sounds and for voices, and `0x002DEE90(-1)` calls
    `0x0035EA30(0)` until `0x001DBD00` returns 0 ([audio manager](../Sound-And-Music/audio-manager.md));
-4. the layer mask bits 2 to 4 are cleared through `0x002DF370(0x1C, 0, 1)` and every image slot is
+4. the bits `0x1C` of the layer mask are cleared through `0x002DF370(0x1C, 0, 1)` and every image slot is
    released (`0x00360D70`);
 5. `0x022CB726 = 1`; `0x022CB727`, `0x022CB72A` and `0x022CB72B` are cleared;
 6. `0x002EF840(0)` to `0x002EF840(6)`, `0x002F1A70`, `0x003DE210`, `0x003DE0A0`, `0x002EFE40(6)`,
@@ -221,71 +221,71 @@ Root block [`0x0209AC30`]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0B8` | `void*` | mode-screen task |  |
-| `+0x0C0` | `void*` | area controller (0x00280A00 refuses while set) |  |
-| `+0x0D0` | `void*` | pause task 0x00228C70 |  |
-| `+0x3FC` | `i32` | requested field (0x00285EC0) |  |
-| `+0x400` | `u32` | bit 0x100 field request pending; bits 0x200/10 restore pending/verified; bit 0x800 cleared by 0x0027F2E0; | bit `0x2000` set by `0x00285EA0`; low byte rewritten by `0x0027F2E0` |
-| `+0xDEE` | `u8` | cleared by 0x0027EFA0 |  |
-| `+0xDEF` | `u8` | 1 while a mode screen opens, 0 after the controller's message |  |
+| `+0x0B8` | `void*` |  | mode-screen task |
+| `+0x0C0` | `void*` |  | area controller (`0x00280A00` refuses while set) |
+| `+0x0D0` | `void*` |  | pause task `0x00228C70` |
+| `+0x3FC` | `i32` |  | requested field (`0x00285EC0`) |
+| `+0x400` | `u32` |  | bit `0x100` field request pending; bits `0x200`/`0x400` restore pending/verified; bit `0x800` cleared by `0x0027F2E0`; bit `0x2000` set by `0x00285EA0`; low byte rewritten by `0x0027F2E0` |
+| `+0xDEE` | `u8` |  | cleared by `0x0027EFA0` |
+| `+0xDEF` | `u8` |  | 1 while a mode screen opens, 0 after the controller's message |
 
 Struct GameOverTask size=`0x108`   (`0x00244F50`(`0x108`, `0x003EF830`, 0); `0x02B5F1C8` points at it):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0B4` | `u32` | tick handle (0x001EDEC0) |  |
-| `+0x0C0` | `i32` | state 0..8 |  |
-| `+0x0C4` | `i32` | countdown frames |  |
-| `+0x0D0` | `void*` | image task 0x003EF2E0 |  |
-| `+0x0D8` | `void*` | timing task 0x003EEEC0 |  |
-| `+0x0E0` | `void*` | logo task 0x003EF4A0 |  |
-| `+0x0E8` | `void*` | prompt task 0x003EF050 |  |
-| `+0x0F0` | `i32` | 1 once message 0x10 arrived |  |
-| `+0x0F8` | `reg` | texture registration (0x00393460) |  |
-| `+0x100` | `reg` | texture registration (0x003933F0) |  |
+| `+0x0B4` | `u32` |  | tick handle (`0x001EDEC0`) |
+| `+0x0C0` | `i32` |  | state 0..8 |
+| `+0x0C4` | `i32` |  | countdown frames |
+| `+0x0D0` | `void*` |  | image task `0x003EF2E0` |
+| `+0x0D8` | `void*` |  | timing task `0x003EEEC0` |
+| `+0x0E0` | `void*` |  | logo task `0x003EF4A0` |
+| `+0x0E8` | `void*` |  | prompt task `0x003EF050` |
+| `+0x0F0` | `i32` |  | 1 once message `0x10` arrived |
+| `+0x0F8` | `reg` |  | texture registration (`0x00393460`) |
+| `+0x100` | `reg` |  | texture registration (`0x003933F0`) |
 
 Struct ImageSlot base=`0x022CB9F0` count=4 size=`0x18`   (`0x00361630` loads, `0x00360C20` reads, `0x00360D70` releases):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | state: 0 free, 3 loading, 4 loaded, 5 ready; 0x00360D70 releases state 5 and flags the rest |  |
-| `+0x01` | `u8` | image id (7 = gameover_c) |  |
-| `+0x02` | `u8` | flags: bit 0x1 release requested, bit 0x2 fading (0x00361200) |  |
-| `+0x03` | `u8` | result byte returned by 0x00361630 |  |
+| `+0x00` | `u8` |  | state: 0 free, 3 loading, 4 loaded, 5 ready; `0x00360D70` releases state 5 and flags the rest |
+| `+0x01` | `u8` |  | image id (7 = gameover_c) |
+| `+0x02` | `u8` |  | flags: bit `0x1` release requested, bit `0x2` fading (`0x00361200`) |
+| `+0x03` | `u8` |  | result byte returned by `0x00361630` |
 | `+0x08` | `void*` | payload |  |
-| `+0x14` | `u32` | handle from 0x001DBB80(id) |  |
+| `+0x14` | `u32` |  | handle from `0x001DBB80`(id) |
 
 Title-return bytes:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x022CB720` | `u32` | busy mask (0 = idle; 0x003321E0 refreshes bit 0x80; 0x00360100 and 0x00360370 clear it, 0x003601B0/0x003601C0 modify) |  |
-| `0x022CB724` | `u16` | written 0x5A by 0x00360120 |  |
-| `0x022CB726` | `u8` | 1 after the teardown |  |
-| `0x022CB727` | `u8` | cleared by 0x00360120 |  |
-| `0x022CB72A` | `u8` | softwarereset request (0x003603D0) |  |
-| `0x022CB728` | `u16` | cleared by 0x00360370 (0x0036037E), read by 0x003603B0 |  |
-| `0x022CB72B` | `u8` | title-map request (0x003603E0, from the area controller when +0x3FC is 0x0C) |  |
+| `0x022CB720` | `u32` |  | busy mask (0 = idle; `0x003321E0` refreshes bit `0x80`; `0x00360100` and `0x00360370` clear it, `0x003601B0`/`0x003601C0` modify) |
+| `0x022CB724` | `u16` |  | written `0x5A` by `0x00360120` |
+| `0x022CB726` | `u8` |  | 1 after the teardown |
+| `0x022CB727` | `u8` |  | cleared by `0x00360120` |
+| `0x022CB72A` | `u8` |  | softwarereset request (`0x003603D0`) |
+| `0x022CB728` | `u16` |  | cleared by `0x00360370` (`0x0036037E`), read by `0x003603B0` |
+| `0x022CB72B` | `u8` |  | title-map request (`0x003603E0`, from the area controller when `+0x3FC` is `0x0C`) |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x022CB724` | `u16` | 90 (0x5A), stored as a word every main-loop pass by 0x00360120 (0x00360135) and at boot by 0x00360370 (0x0036039C); read by no instruction |  |
-| `0x022CB727` | `u8` | 0, stored by 0x00360120 (0x0036013C), 0x003601D0 (0x003602AB) and 0x00360370 (0x00360385); read by no instruction |  |
+| `0x022CB724` | `u16` |  | 90 (`0x5A`), stored as a word every main-loop pass by `0x00360120` (`0x00360135`) and at boot by `0x00360370` (`0x0036039C`); read by no instruction |
+| `0x022CB727` | `u8` |  | 0, stored by `0x00360120` (`0x0036013C`), `0x003601D0` (`0x003602AB`) and `0x00360370` (`0x00360385`); read by no instruction |
 
 Request and mode:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x0215F1A0` | `u8` | request pending |  |
-| `0x0215F1A1` | `u8` | latch that refuses 0x002E1B10 |  |
-| `0x0215F1A4` | `u32` | request id |  |
-| `0x0215F1A8` | `u32` | request parameter |  |
-| `0x02092730` | `u32` | current mode |  |
-| `0x02092734` | `u32` | mode parameter |  |
-| `0x020927D8` | `u32` | raw mode |  |
-| `0x022C83E8` | `u32` | bit 0x100 game over posted, bit 0x2 armed, bit 0x1 and bit 0x10 the 0x18 and 0x17 posts |  |
-| `0x00254C70` | `u8[]` | mode-request arm table (id - 1 → arm) |  |
-| `0x00254C58` | `u32[6]` | arm jump table |  |
+| `0x0215F1A0` | `u8` |  | request pending |
+| `0x0215F1A1` | `u8` |  | latch that refuses `0x002E1B10` |
+| `0x0215F1A4` | `u32` |  | request id |
+| `0x0215F1A8` | `u32` |  | request parameter |
+| `0x02092730` | `u32` |  | current mode |
+| `0x02092734` | `u32` |  | mode parameter |
+| `0x020927D8` | `u32` |  | raw mode |
+| `0x022C83E8` | `u32` |  | bit `0x100` game over posted, bit `0x2` armed, bit `0x1` and bit `0x10` the `0x18` and `0x17` posts |
+| `0x00254C70` | `u8[]` |  | mode-request arm table (id - 1 → arm) |
+| `0x00254C58` | `u32[6]` |  | arm jump table |
 
 ## Shipped data
 

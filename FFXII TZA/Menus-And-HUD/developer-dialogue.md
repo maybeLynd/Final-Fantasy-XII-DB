@@ -17,7 +17,8 @@ A row's key is the script, the section and the text id, the entry number in that
 
 - `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
 - `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
-- The `lines` column of `developer-scripts.tsv`, the table of [Developer scripts](../Story-Events-And-Hunts/developer-scripts.md), names section 2 rows by the same key: 30 of its rows name 771 of the 774 section 2 rows here. The `quoted_lines` column of its steps table quotes 771 of them, in 2,326 steps. 12 more rows and 16 more steps name text ids of `evt_t0009`, `evt_t0015` and `evt_t0016`, which have no section 2.
+- The `lines` column of [`developer-scripts.tsv`](../Story-Events-And-Hunts/developer-scripts.tsv), the table of [Developer scripts](../Story-Events-And-Hunts/developer-scripts.md), names section 2 rows by the same key: 30 of its rows name 771 of the 774 section 2 rows here.
+- The `quoted_lines` column of that table's steps table quotes 771 of them, in 2,326 steps. 12 more rows and 16 more steps name text ids of `evt_t0009`, `evt_t0015` and `evt_t0016`, which have no section 2.
 
 ### The scripts
 

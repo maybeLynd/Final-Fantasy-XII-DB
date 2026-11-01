@@ -15,7 +15,7 @@ A row's key is the script, the section and the text id, the entry number in that
 
 - `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
 - `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
-- `summons-scripts.tsv`, the scripts table of [Summon scenes](../Story-Events-And-Hunts/summons-scenes.md), holds no function row, so it names none of the 6 section 2 rows here, and no step of its steps table quotes one.
+- [`summons-scripts.tsv`](../Story-Events-And-Hunts/summons-scripts.tsv), the scripts table of [Summon scenes](../Story-Events-And-Hunts/summons-scenes.md), holds no function row, so it names none of the 6 section 2 rows here, and no step of its steps table quotes one.
 
 ### The scripts
 

@@ -7,7 +7,7 @@ addresses: "0x02EBF060, 0x0031C5D0, 0x0031D7B0, 0x0034B000, 0x0032A880, 0x0030A0
 
 ## What it lists
 
-`price-list.tsv` holds one line for each of the 128 rows of the price table that registry slot `0x02EBF060` reaches
+[`price-list.tsv`](price-list.tsv) holds one line for each of the 128 rows of the price table that registry slot `0x02EBF060` reaches
 (`battle_pack.bin` directory entry `+0x74`). Row *n* is price id `0xB000` + *n*, inventory class 16
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): a gil amount with no item behind it,
 which an event script reads with `getprice`. The aerodrome counters of
@@ -61,7 +61,7 @@ by that arm, the validator `0x00322C50` and the loader `0x00236C30`.
 | `script_calls`, `scripts` | the number of us `getprice` calls that name the id, and their scripts |
 | `explanation` | the amount and who asks for it |
 
-`price-script-calls.tsv` has one line per call: `price_id` (or the variable it passes), `script`, `function` and
+[`price-script-calls.tsv`](price-script-calls.tsv) has one line per call: `price_id` (or the variable it passes), `script`, `function` and
 `pc`, the call's offset in the script section.
 
 ## Related

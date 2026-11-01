@@ -7,7 +7,7 @@ addresses: "0x0037E5B0, 0x002F9920, 0x0037EFC0, 0x0037E8D0, 0x0037EF70, 0x0037EE
 
 ## What it lists
 
-`hunts.tsv` holds one line for each of the 45 hunts, group 1 of `menuquest.dat`, quest ids 128 to 172, with the
+[`hunts.tsv`](hunts.tsv) holds one line for each of the 45 hunts, group 1 of `menuquest.dat`, quest ids 128 to 172, with the
 text the Clan Primer's Hunts page shows for them. The formats and the code that reads each field are on
 [Quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md); this page is the shipped content of
 the `us` files.
@@ -82,9 +82,9 @@ strings of each pair are the same, so the flag changes nothing in these texts.
 |---|---|---|
 | `quest` | the quest id, key bits `0x3FF00` | `0x0037E5B0`, `0x0037EE10` |
 | `record`, `position` | the record's index in `menuquest.dat` and its position among the group's records | `0x0037E5B0`, `0x0037EE10` |
-| `group` | key bits 0-7, 1 for every hunt | `0x0037EAA0`, `0x00577C30` |
+| `group` | key bits under mask `0xFF` for every hunt | `0x0037EAA0`, `0x00577C30` |
 | `name` | the name text, record `+0x00` | `0x002F9920` from `0x0037E5B0` |
-| `picture` | key bits 20-27 | `0x0037E5B0` |
+| `picture` | key bits under mask `0xFF00000` | `0x0037E5B0` |
 | `picture_sheet`, `picture_cell` | the sheet `2 x (picture / 24)`, plus 1 once done, and the cell `picture % 24` | `0x00577C30` |
 | `petitioner` | the `.lst` line, petitioner and town | `0x0037EFC0`, `0x0037E5B0` |
 | `threshold` | the `.lst` threshold, the low nibble of `+0x04`: the row is done once this many parts show | `0x0037E5B0`, `0x00577C30` |

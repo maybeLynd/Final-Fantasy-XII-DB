@@ -47,8 +47,8 @@ EFX stream (offsets from the magic):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[8]` | magic | "EFX0010", "EFX0009" or "EFX0008", NUL-terminated, compared as 8 bytes |
-| `+0x08` | `f32` | 1.0 in every shipped stream; unused by the loader |  |
-| `+0x0C` | `u32` | stream size, header included; the chunk walk ends here |  |
+| `+0x08` | `f32` |  | 1.0 in every shipped stream; unused by the loader |
+| `+0x0C` | `u32` |  | stream size, header included; the chunk walk ends here |
 
 ```
 +0x10  chunks
@@ -62,8 +62,8 @@ Chunk:
 | `+0x04` | `u16` | flag | `0x100` selects the run paths; `0x101`, `0x102` and `0x103` select other routes |
 | `+0x06` | `u16` | type |  |
 | `+0x08` | `i32` | bias | stored at `0x02EBB738` before each record handler runs |
-| `+0x0C` | `...` | record header, read by the record handler |  |
-| `+0x10` | `...` | record payload |  |
+| `+0x0C` | `...` |  | record header, read by the record handler |
+| `+0x10` | `...` |  | record payload |
 
 | Type | Record header at `+0x0C` | Payload at `+0x10` | Handler |
 |---|---|---|---|
@@ -77,20 +77,20 @@ Chunk:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | index, written by the handler from the header byte |  |
-| `+0x0A` | `u8[11]` | eleven bytes |  |
-| `+0x16` | `u8` | high nibble: index of the last non-zero byte of the eleven (0 when none), recomputed at load |  |
-| `+0x2C` | `u32[29]` | slots, reset to the encoded null at load |  |
+| `+0x00` | `u8` |  | index, written by the handler from the header byte |
+| `+0x0A` | `u8[11]` |  | eleven bytes |
+| `+0x16` | `u8` |  | high nibble: index of the last non-zero byte of the eleven (0 when none), recomputed at load |
+| `+0x2C` | `u32[29]` |  | slots, reset to the encoded null at load |
 
 EFB file:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[8]` | magic | "EFB0001" or "EFB0002" |
-| `+0x08` | `u16` | blob count |  |
-| `+0x0A` | `u16` | row count |  |
-| `+0x0C` | `u32` | 0 in every shipped file |  |
-| `+0x10` | `blobs` | { u32 size; 12 bytes; EFX stream[size] } x blob count |  |
+| `+0x08` | `u16` |  | blob count |
+| `+0x0A` | `u16` |  | row count |
+| `+0x0C` | `u32` |  | 0 in every shipped file |
+| `+0x10` | `blobs` |  | { u32 size; 12 bytes; EFX stream[size] } x blob count |
 
 ```
 then   rows     row count rows
@@ -100,10 +100,10 @@ EFB row (type 3, `0xA0` bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | row type: 3 instantiates; 1 is a 0x60-byte row that is stepped over |  |
-| `+0x01` | `u8` | must be 1, or the walk stops |  |
+| `+0x00` | `u8` |  | row type: 3 instantiates; 1 is a `0x60`-byte row that is stepped over |
+| `+0x01` | `u8` |  | must be 1, or the walk stops |
 | `+0x04` | `u8` | channel |  |
-| `+0x05` | `u8` | definition id; in an EFB0002 bank the lookup uses 0 and the instance's +0x373 gets this + 1 |  |
+| `+0x05` | `u8` |  | definition id; in an EFB0002 bank the lookup uses 0 and the instance's `+0x373` gets this + 1 |
 
 ```
 +0x07+s u8  enable byte for weather slot s (1 to 3)

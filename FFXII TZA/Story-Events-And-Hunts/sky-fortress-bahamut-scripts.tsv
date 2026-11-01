@@ -57,9 +57,9 @@ bhm_a0200	scene, event 150	Mes	m0005	-	no name shown	1	(empty string)	-	-	-	-	-	
 bhm_a0200	scene, event 150	Mes	m001	requested by Director.main	Fran	2	The Resistance fights their battle well.	-	-	-	-	-	-	-	-	-	-	1	-
 bhm_a0200	scene, event 150	Mes	m002	requested by Director.main	Fran	3	We dare not fail them. We dare not falter.	-	-	-	-	-	-	-	-	-	-	1	-
 bhm_a0200	scene, event 150	Mes	m003	requested by Director.main	Vaan	4	Stop worrying.	-	-	-	-	-	-	-	-	-	-	1	-
-bhm_a0200	scene, event 150	Mes	m004	requested by Director.main	Penelo	5	We just have to clean up here, and then Ashe'll be the queen.	-	-	-	-	-	-	-	-	-	-	1	-
+bhm_a0200	scene, event 150	Mes	m004	requested by Director.main	Vaan	5	We just have to clean up here, and then Ashe'll be the queen.	-	-	-	-	-	-	-	-	-	-	1	-
 bhm_a0200	scene, event 150	Mes	m005	requested by Director.main	Penelo	6	It's kind of hard to believe.	-	-	-	-	-	-	-	-	-	-	1	-
-bhm_a0200	scene, event 150	Mes	m006	requested by Director.main	Basch	7	I can't even imagine trying to rule a whole kingdom.	-	-	-	-	-	-	-	-	-	-	1	-
+bhm_a0200	scene, event 150	Mes	m006	requested by Director.main	Penelo	7	I can't even imagine trying to rule a whole kingdom.	-	-	-	-	-	-	-	-	-	-	1	-
 bhm_a0200	scene, event 150	Mes	m007	requested by Director.main	-	8	"A queen might always ""run away"" with the help of a sky pirate looking to raise his bounty a peg."	-	-	-	-	-	-	-	-	-	-	1	-
 bhm_a0200	scene, event 150	Mes	m008	requested by Director.main	-	9	I doubt our queen would need the help of any sky pirates.	-	-	-	-	-	-	-	-	-	-	1	-
 bhm_a0200	scene, event 150	Mes	m009	requested by Director.main	Ashe	10	Do you really think me as strong as all that?	-	-	-	-	-	-	-	-	-	-	1	-

@@ -177,7 +177,7 @@ A `PCameraPerspective` as `0x00189C20` uses it. Its `PCamera` part starts 8 byte
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x005E65B0` | `...` | (0x00632A70 at 0x005E671D) |  |
+| `0x005E65B0` | `...` |  | (`0x00632A70` at `0x005E671D`) |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

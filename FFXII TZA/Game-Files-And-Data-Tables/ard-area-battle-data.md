@@ -63,10 +63,10 @@ Slot 7 record (`0x10`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bound id |  |
-| `+0x04` | `u16` | weapon class |  |
+| `+0x00` | `u32` |  | bound id |
+| `+0x04` | `u16` |  | weapon class |
 | `+0x06` | `u16` | motion |  |
-| `+0x08` | `u16` | file index |  |
+| `+0x08` | `u16` |  | file index |
 
 Trailer, then count records:
 
@@ -78,8 +78,8 @@ Trailer record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bound id |  |
-| `+0x04` | `u32` | lane mask |  |
+| `+0x00` | `u32` |  | bound id |
+| `+0x04` | `u32` |  | lane mask |
 
 .nmb:
 

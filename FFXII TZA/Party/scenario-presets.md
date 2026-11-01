@@ -56,7 +56,7 @@ The number `evt_t0505` holds comes from its `loadYoyaku.getLoadYoyaku`, which pi
 
 ## Columns
 
-`scenario-presets.tsv`, one row per scenario:
+[`scenario-presets.tsv`](scenario-presets.tsv), one row per scenario:
 
 | Column | Meaning |
 |---|---|

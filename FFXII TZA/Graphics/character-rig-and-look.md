@@ -52,7 +52,7 @@ controller.
 
 The status arms are on [Character status visuals](character-status-visuals.md): Float switches 6, Immobilize 7, and
 Confuse switches 3 on unless the Sleep flag is set, while Sleep switches it off for a Confused character and back on
-when it ends. Each also sets bits 1 (asleep) and 2 (confused) of the look controller's byte `+0x1C`.
+when it ends. Each also sets bits `0x2` (asleep) and `0x4` (confused) of the look controller's byte `+0x1C`.
 
 ### Record flags and the dirty pass
 
@@ -310,7 +310,7 @@ command, so a request lasts one pass and an attached piece looks where its owner
 | 29 | - | zeroes the eye object's `+0x2C`, `+0x14`, `+0x18` | `0x003E2800`, `eyemovereset` |
 | 30 | bit `0x80000000` | `0x003E3720`: look `+0x1C` bit `0x20` := value; set with bit `0x1` clear starts the neutral return | `0x003E37A0` |
 
-Bits 15 to 20 are one group, tested in the order 15, 17, 16, 18, 19, 20; the first set one runs. `0x003E36A0` (bit `0x80`) and
+The bits under mask `0x1F8000` are one group, tested in the order `0x8000`, `0x20000`, `0x10000`, `0x40000`, `0x80000`, `0x100000`; the first set one runs. `0x003E36A0` (bit `0x80`) and
 `0x003E3570` (bit `0x100`) are staged only from the bind path `0x002E28E0`, and `0x003E37F0` does not test them.
 
 ### Angles, blends and the eyes
@@ -339,7 +339,7 @@ is set, and that bit is cleared.
 |---|---|---|
 | 0, 1 | `0x002E7650`, bit `0x80000` | `0x002E79A0`, bit `0x100000` |
 | 2 | `0x002E7720`, bit `0x8000` | `0x002E77F0`, bit `0x20000` |
-| 3 | stages bit `0x10000` with 0 frames and the angle pair `+0x10`, `+0x14` (`0x003E6B90`), then bits `0x200`/11 and 12/14 with the pair (the actor's record index, `0x30B`) (`0x003E6C00`); raises dirty bit `0x800` | stages bit `0x40000` with 1 frame and the angle pair (`0x003E6B70`); raises dirty bit `0x800` |
+| 3 | stages bit `0x10000` with 0 frames and the angle pair `+0x10`, `+0x14` (`0x003E6B90`), then bits `0x200`/`0x800` and `0x1000`/`0x4000` with the pair (the actor's record index, `0x30B`) (`0x003E6C00`); raises dirty bit `0x800` | stages bit `0x40000` with 1 frame and the angle pair (`0x003E6B70`); raises dirty bit `0x800` |
 
 ### Bone physics and the rebind
 
@@ -386,12 +386,12 @@ Rig (resource entry `+0x94`):
 |---|---|---|---|
 | `+0x00` | `u32[17]` | slots | encoded controller pointers, slot 4 empty |
 | `+0x58` | `u32` | time | slot 0's time input |
-| `+0x5F` | `u8` | flags | bit 1 skips the look and physics applies |
+| `+0x5F` | `u8` | flags | bit `0x2` skips the look and physics applies |
 | `+0x62` | `u8` | denyPhys | bone physics denied |
 | `+0x63` | `u8` | sway | non-zero runs slot 0 only |
 | `+0x68` | `i16[2]` | linked | record indices |
 | `+0x70` | `u32[2]` | linkedRec | encoded record pointers |
-| `+0x78` | `u32[2]` | linkedBones encoded bone arrays |  |
+| `+0x78` | `u32[2]` | linkedBones | encoded bone arrays |
 
 Staged look command (render record `+0x580`):
 
@@ -410,7 +410,7 @@ Look controller (rig slot 2):
 | `+0x05` | `u8` | mode | low nibble; `0x11` when on |
 | `+0x10` | `f32[2]` | angles | current |
 | `+0x18` | `f32` | duration | minimum blend frames |
-| `+0x1C` | `u8` | state | bit `0x1` on, 1 asleep, 2 confused, 5 neutral |
+| `+0x1C` | `u8` | state | bit `0x1` on, `0x2` asleep, `0x4` confused, `0x20` neutral |
 | `+0x1D` | `u8` | modes | low nibble from request bit `0x4` |
 | `+0x1E` | `u8` | limits | low nibble the angle lock |
 | `+0x50` | `f32[3]` | sourceB |  |
@@ -427,12 +427,12 @@ Render-record fields:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x304` | `u32` | flags | bits `0x40`, `0x80`, `0x100`, `0x8000`, `0x10000` the controller requests |
-| `+0x40B` | `u8` | timedOn | bits 5-7 copies of the talking-head bits |
+| `+0x40B` | `u8` | timedOn | mask `0xE0` copies of the talking-head bits |
 | `+0x4BC` | `f32` | shake | body-shake amount |
 | `+0x640` | `f32[3]` | timers | lip flap, nod, head shake |
 | `+0x660` | `f32[3]` | lastKind1 |  |
 | `+0x66C` | `u8` | slide | high nibble kind 1, low nibble kind 0 |
-| `+0x66D` | `u8` | focusFlags bit 0x1 keep the source height, bit 0x2 snap |  |
+| `+0x66D` | `u8` | focusFlags | bit `0x1` keep the source height, bit `0x2` snap |
 | `+0x670` | `f32[4]` | focus |  |
 | `+0x680` | `f32[4]` | second |  |
 | `+0x690` | `f32[3]` | lastKind0 |  |

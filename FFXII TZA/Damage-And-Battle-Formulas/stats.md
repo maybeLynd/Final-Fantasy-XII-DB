@@ -145,8 +145,8 @@ stat = growth[field] * d + base[field] + stats[adjustment]
 
 | Stat | Base and growth field | Adjustment word |
 |---|---|---|
-| max HP | `+0x20` (`u32`) | none |
-| max MP | `+0x24` (`i16`) | none |
+| max HP | `+0x20` (`u32`) | - (no adjustment word) |
+| max MP | `+0x24` (`i16`) | - (no adjustment word) |
 | Strength | `+0x26` | `+0x08` |
 | Magick Power | `+0x27` | `+0x0A` |
 | Vitality | `+0x28` | `+0x0C` |

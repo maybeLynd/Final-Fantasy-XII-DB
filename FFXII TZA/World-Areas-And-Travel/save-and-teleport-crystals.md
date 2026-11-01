@@ -79,13 +79,13 @@ the last rows:
 | bit `0x10` | `setsaveramshutoralstatus(v)` `0x307` `0x00350AE0` → `0x00314CA0(v == 0)` | `getsaveramshutoralstatus` `0x30C` `0x00352080` only | script-defined switch |
 | bit `0x20` | `0x00314530` sets it on the restore path, `0x003145E0` clears it when a jump is staged | `0x0026DB30` | a load is being restored |
 | bit `0x40` | `setnavimapjamming(v)` `0x37D` `0x00346E10` → `0x00314BB0(v != 0)` | `0x00377780`, from the map screens `0x003C4070`, `0x004001D0`, `0x004006A0`, `0x00400E80`, `0x004017D0`, `0x00401D40` | the area map is jammed |
-| bit `0x80` | `setmist(v)` `0x46A` `0x00343CC0` → `0x00314BE0(v)`: `v` at most 0 clears it and `+0x1063` bits `0x30`; a positive `v` sets it and stores `v & 3` in those bits | `0x00377BA0` (thunk `0x00320160`): the stored level when the bit is set, else bits 12-13 of the area's record | mist level override |
+| bit `0x80` | `setmist(v)` `0x46A` `0x00343CC0` → `0x00314BE0(v)`: `v` at most 0 clears it and `+0x1063` bits `0x30`; a positive `v` sets it and stores `v & 3` in those bits | `0x00377BA0` (thunk `0x00320160`): the stored level when the bit is set, else bits under mask `0x3000` of the area's record | mist level override |
 | `+0x1063` bits `0x3` | `setsaveramnavimapstatus(v)` `0x3C7` `0x00349420` → `0x00314C40(v & 3)` | `0x00377750`, from `0x003C5E00`, `0x003C6000`, `0x003C5FB0`: 1 gives 1, 2 gives 0, 0 and 3 give 1 | area map availability |
-| `+0x1063` bits 4-5 | `setmist` (above) | `0x00377BA0` | the mist level |
+| `+0x1063` bits under mask `0x30` | `setmist` (above) | `0x00377BA0` | the mist level |
 | `+0x1063` bit `0x40` | `0x0026A720` | `0x0026DE20`, `0x0025D9E0`, `0x00261F90` | the music override at `+0x1534` is in force |
 
 `0x00314A00`, reached from `0x002695A0` in the manager unload `0x002628B0` (`0x00262CEF`), clears bits `0x1`,
-1, 6 and 7 of `+0x1062` and bits 0-5 of `+0x1063` when a zone is left. Bits `0x4`, `0x8`, `0x10` and `0x20` are not
+1, 6 and 7 of `+0x1062` and the bits under mask `0x3F` of `+0x1063` when a zone is left. Bits `0x4`, `0x8`, `0x10` and `0x20` are not
 touched there, so the save and teleport switches survive a zone change, as the save image does.
 
 ### When teleporting is switched back on
@@ -238,7 +238,7 @@ Struct ZoneTransitionFlags base=payload+`0x1062` size=2:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | flags1 | bit `0x1` battle off, bit `0x2` summoning off, bit `0x4` teleporting off, bit `0x8` saving off, bit `0x10` script switch, bit `0x20` restore pending, bit `0x40` map jammed, bit `0x80` mist override |
-| `+0x01` | `u8` | flags2 | bits 0-1 map availability, bits 4-5 mist level, bit `0x40` music override in force |
+| `+0x01` | `u8` | flags2 | mask `0x3` map availability, mask `0x30` mist level, bit `0x40` music override in force |
 
 Struct MenuRequest base=`0x0215F1A0` size=`0x10`:
 
@@ -403,3 +403,5 @@ position, and `facing` gives the heading in radians. All 81 entries carry a spot
 - [NPC names](../Characters-And-Objects/npc-names.md): the crystal's name tag.
 - [Chocobos and airships](chocobos-and-airships.md): the dismount the teleport performs.
 - [Game over](game-over.md): what a party wipe does instead.
+- [`group-persistent-bank-accesses.tsv`](group-persistent-bank-accesses.tsv): every censused access to the group
+  persistent bank `0x02099FF0` (`0x200` bytes): its copy out to the save (`0x0025D8E0`) and back (`0x00269A20`) (18 rows).

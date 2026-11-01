@@ -146,3 +146,9 @@ scripts' copies differ only in these.
 - [Staff roll](../Menus-And-HUD/staff-roll.md) - `men_z0005` line by line.
 - [Location title scripts](titles-scripts.md) - field 13, whose script loads the staff roll.
 - [Event scenes](../Scripts-And-Script-Commands/event-scenes.md) - how an event id loads a scene script.
+- [`tutorials-script-list.tsv`](tutorials-script-list.tsv) - the script list, one row per scene script of the group
+  with its size (4 rows).
+
+The script list's columns are `script`, `kind` and `place` (the script, `scene`, and its event id), `actors` and
+`functions` (the script's actors and functions), `rows` (its rows in a scripts table) and `shared_actors` (the
+shared helper actors it carries).

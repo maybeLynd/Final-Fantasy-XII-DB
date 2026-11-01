@@ -28,7 +28,7 @@ bhm_a01	setup	battle	25	0x02DDD	77	-	sysDVAR	29, file_var_s0_3	none: the debug-v
 bhm_a01	setup	battle	26	0x02DE4	78	-	sysDVAR	30, file_var_s0_4	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	setup	battle	27	0x02DE8	79	-	btlAtelSetEntryStruct	0x030002e8	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a01	setup	battle	28	0x02DEB	80	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a01	__MJ_CTRL000	init	1	0x02DEF	89	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	__MJ_CTRL000	init	1	0x02DEF	89	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	__MJ_CTRL000	init	2	0x02DF5	90	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a01	__MJ_CTRL000	init	3	0x02DF8	91	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	__MJ_CTRL000	mapjump	1	0x02DFC	101	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -59,7 +59,7 @@ bhm_a01	__MJ_CTRL000	mapjump	25	0x02EFB	140	local_var_s1f1_1; not (regI3)	fadesy
 bhm_a01	__MJ_CTRL000	mapjump	26	0x02F01	141	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a01	__MJ_CTRL000	mapjump	27	0x02F0D	142	local_var_s1f1_1; not (regI3)	mapjump	0x0307, 1, 0	jumps: Catwalk (Sky Fortress Bahamut), field 775, entrance 1	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	__MJ_CTRL000	mapjump	28	0x02F10	145	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a01	__MJ_CTRL001	init	1	0x02F14	154	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	__MJ_CTRL001	init	1	0x02F14	154	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	__MJ_CTRL001	init	2	0x02F1A	155	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a01	__MJ_CTRL001	init	3	0x02F1D	156	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	__MJ_CTRL001	mapjump	1	0x02F21	166	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -90,7 +90,7 @@ bhm_a01	__MJ_CTRL001	mapjump	25	0x03020	205	local_var_s2f1_1; not (regI3)	fadesy
 bhm_a01	__MJ_CTRL001	mapjump	26	0x03026	206	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a01	__MJ_CTRL001	mapjump	27	0x03032	207	local_var_s2f1_1; not (regI3)	mapjump	0x0307, 2, 0	jumps: Catwalk (Sky Fortress Bahamut), field 775, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	__MJ_CTRL001	mapjump	28	0x03035	210	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a01	__MJ_CTRL002	init	1	0x03039	219	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	__MJ_CTRL002	init	1	0x03039	219	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	__MJ_CTRL002	init	2	0x0303F	220	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a01	__MJ_CTRL002	init	3	0x03042	221	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	__MJ_CTRL002	mapjump	1	0x03046	231	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -121,7 +121,7 @@ bhm_a01	__MJ_CTRL002	mapjump	25	0x03145	270	local_var_s3f1_1; not (regI3)	fadesy
 bhm_a01	__MJ_CTRL002	mapjump	26	0x0314B	271	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a01	__MJ_CTRL002	mapjump	27	0x03157	272	local_var_s3f1_1; not (regI3)	mapjump	0x0307, 3, 0	jumps: Catwalk (Sky Fortress Bahamut), field 775, entrance 3	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	__MJ_CTRL002	mapjump	28	0x0315A	275	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a01	__MJ_CTRL003	init	1	0x0315E	284	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	__MJ_CTRL003	init	1	0x0315E	284	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	__MJ_CTRL003	init	2	0x03164	285	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a01	__MJ_CTRL003	init	3	0x03167	286	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	__MJ_CTRL003	mapjump	1	0x0316B	296	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -172,7 +172,7 @@ bhm_a01	Map_Director	init	17	0x032C3	366	nowmap() = 0x0311	break	-	-	-	-	-	-	res
 bhm_a01	Map_Director	init	18	0x032E7	368	-	bgeffectplay	10	argument 1: the effect channel (0 to 63) of the map's effect bank (PS2Data efb file of the map) to start	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a01	Map_Director	init	19	0x032EA	369	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_nw	init	1	0x032EE	378	-	fieldsign	0	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a01	door_nw	init	2	0x032F4	379	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	door_nw	init	2	0x032F4	379	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	door_nw	init	3	0x032F7	380	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_nw	talk	1	0x032FB	385	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a01	door_nw	talk	2	0x032FE	386	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -210,7 +210,7 @@ bhm_a01	door_nw	talk	33	0x033B2	421	not (regI3)	voicestopall	-	every spoken voic
 bhm_a01	door_nw	talk	34	0x033BE	422	not (regI3)	mapjump	0x0308, 1, 0	jumps: Antechamber (Sky Fortress Bahamut), field 776, entrance 1	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	door_nw	talk	35	0x033C1	424	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_ne	init	1	0x033C5	433	-	fieldsign	1	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a01	door_ne	init	2	0x033CB	434	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	door_ne	init	2	0x033CB	434	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	door_ne	init	3	0x033CE	435	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_ne	talk	1	0x033D2	440	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a01	door_ne	talk	2	0x033D5	441	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -248,7 +248,7 @@ bhm_a01	door_ne	talk	33	0x03489	476	not (regI3)	voicestopall	-	every spoken voic
 bhm_a01	door_ne	talk	34	0x03495	477	not (regI3)	mapjump	0x0308, 2, 0	jumps: Antechamber (Sky Fortress Bahamut), field 776, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	door_ne	talk	35	0x03498	479	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_wn	init	1	0x0349C	488	-	fieldsign	2	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a01	door_wn	init	2	0x034A2	489	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	door_wn	init	2	0x034A2	489	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	door_wn	init	3	0x034A5	490	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_wn	talk	1	0x034A9	495	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a01	door_wn	talk	2	0x034AC	496	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -286,7 +286,7 @@ bhm_a01	door_wn	talk	33	0x03560	531	not (regI3)	voicestopall	-	every spoken voic
 bhm_a01	door_wn	talk	34	0x0356C	532	not (regI3)	mapjump	0x0308, 3, 0	jumps: Antechamber (Sky Fortress Bahamut), field 776, entrance 3	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	door_wn	talk	35	0x0356F	534	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_ws	init	1	0x03573	543	-	fieldsign	3	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a01	door_ws	init	2	0x03579	544	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	door_ws	init	2	0x03579	544	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	door_ws	init	3	0x0357C	545	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_ws	talk	1	0x03580	550	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a01	door_ws	talk	2	0x03583	551	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -324,7 +324,7 @@ bhm_a01	door_ws	talk	33	0x03637	586	not (regI3)	voicestopall	-	every spoken voic
 bhm_a01	door_ws	talk	34	0x03643	587	not (regI3)	mapjump	0x0308, 4, 0	jumps: Antechamber (Sky Fortress Bahamut), field 776, entrance 4	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	door_ws	talk	35	0x03646	589	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_en	init	1	0x0364A	598	-	fieldsign	4	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a01	door_en	init	2	0x03650	599	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	door_en	init	2	0x03650	599	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	door_en	init	3	0x03653	600	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_en	talk	1	0x03657	605	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a01	door_en	talk	2	0x0365A	606	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -362,7 +362,7 @@ bhm_a01	door_en	talk	33	0x0370E	641	not (regI3)	voicestopall	-	every spoken voic
 bhm_a01	door_en	talk	34	0x0371A	642	not (regI3)	mapjump	0x0309, 5, 0	jumps: Antechamber (Sky Fortress Bahamut), field 777, entrance 5	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	door_en	talk	35	0x0371D	644	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_es	init	1	0x03721	653	-	fieldsign	5	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a01	door_es	init	2	0x03727	654	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	door_es	init	2	0x03727	654	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	door_es	init	3	0x0372A	655	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_es	talk	1	0x0372E	660	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a01	door_es	talk	2	0x03731	661	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -400,7 +400,7 @@ bhm_a01	door_es	talk	33	0x037E5	696	not (regI3)	voicestopall	-	every spoken voic
 bhm_a01	door_es	talk	34	0x037F1	697	not (regI3)	mapjump	0x0309, 6, 0	jumps: Antechamber (Sky Fortress Bahamut), field 777, entrance 6	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	door_es	talk	35	0x037F4	699	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_sw	init	1	0x037F8	708	-	fieldsign	6	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a01	door_sw	init	2	0x037FE	709	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	door_sw	init	2	0x037FE	709	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	door_sw	init	3	0x03801	710	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_sw	talk	1	0x03805	715	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a01	door_sw	talk	2	0x03808	716	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -438,7 +438,7 @@ bhm_a01	door_sw	talk	33	0x038BC	751	not (regI3)	voicestopall	-	every spoken voic
 bhm_a01	door_sw	talk	34	0x038C8	752	not (regI3)	mapjump	0x0308, 7, 0	jumps: Antechamber (Sky Fortress Bahamut), field 776, entrance 7	-	-	-	-	resolved	this page's How a call is read
 bhm_a01	door_sw	talk	35	0x038CB	754	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_se	init	1	0x038CF	763	-	fieldsign	7	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a01	door_se	init	2	0x038D5	764	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a01	door_se	init	2	0x038D5	764	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a01	door_se	init	3	0x038D8	765	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a01	door_se	talk	1	0x038DC	770	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a01	door_se	talk	2	0x038DF	771	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -754,7 +754,7 @@ bhm_a02	setup	event	4	0x032C6	77	-	case	lt(0x1996)	-	-	-	-	-	resolved	01 ../Scri
 bhm_a02	setup	event	5	0x032C6	78	シナリオフラグ = lt(0x1996)	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
 bhm_a02	setup	event	6	0x032C9	79	シナリオフラグ = lt(0x1996)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	setup	event	7	0x032DB	81	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a02	__MJ_CTRL000	init	1	0x032DF	90	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a02	__MJ_CTRL000	init	1	0x032DF	90	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a02	__MJ_CTRL000	init	2	0x032E5	91	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	__MJ_CTRL000	init	3	0x032E8	92	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	__MJ_CTRL000	mapjump	1	0x032EC	102	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -785,7 +785,7 @@ bhm_a02	__MJ_CTRL000	mapjump	25	0x033EB	141	local_var_s1f1_1; not (regI3)	fadesy
 bhm_a02	__MJ_CTRL000	mapjump	26	0x033F1	142	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a02	__MJ_CTRL000	mapjump	27	0x033FD	143	local_var_s1f1_1; not (regI3)	mapjump	0x0306, 1, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 1	-	-	-	-	resolved	this page's How a call is read
 bhm_a02	__MJ_CTRL000	mapjump	28	0x03400	146	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a02	__MJ_CTRL001	init	1	0x03404	155	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a02	__MJ_CTRL001	init	1	0x03404	155	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a02	__MJ_CTRL001	init	2	0x0340A	156	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	__MJ_CTRL001	init	3	0x0340D	157	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	__MJ_CTRL001	mapjump	1	0x03411	167	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -816,7 +816,7 @@ bhm_a02	__MJ_CTRL001	mapjump	25	0x03510	206	local_var_s2f1_1; not (regI3)	fadesy
 bhm_a02	__MJ_CTRL001	mapjump	26	0x03516	207	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a02	__MJ_CTRL001	mapjump	27	0x03522	208	local_var_s2f1_1; not (regI3)	mapjump	0x0306, 2, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 2	-	-	-	-	resolved	this page's How a call is read
 bhm_a02	__MJ_CTRL001	mapjump	28	0x03525	211	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a02	__MJ_CTRL002	init	1	0x03529	220	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a02	__MJ_CTRL002	init	1	0x03529	220	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a02	__MJ_CTRL002	init	2	0x0352F	221	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	__MJ_CTRL002	init	3	0x03532	222	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	__MJ_CTRL002	mapjump	1	0x03536	232	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -847,7 +847,7 @@ bhm_a02	__MJ_CTRL002	mapjump	25	0x03635	271	local_var_s3f1_1; not (regI3)	fadesy
 bhm_a02	__MJ_CTRL002	mapjump	26	0x0363B	272	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a02	__MJ_CTRL002	mapjump	27	0x03647	273	local_var_s3f1_1; not (regI3)	mapjump	0x0306, 3, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 3	-	-	-	-	resolved	this page's How a call is read
 bhm_a02	__MJ_CTRL002	mapjump	28	0x0364A	276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a02	__MJ_CTRL003	init	1	0x0364E	285	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a02	__MJ_CTRL003	init	1	0x0364E	285	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a02	__MJ_CTRL003	init	2	0x03654	286	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	__MJ_CTRL003	init	3	0x03657	287	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	__MJ_CTRL003	mapjump	1	0x0365B	297	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -878,7 +878,7 @@ bhm_a02	__MJ_CTRL003	mapjump	25	0x0375A	336	local_var_s4f1_1; not (regI3)	fadesy
 bhm_a02	__MJ_CTRL003	mapjump	26	0x03760	337	local_var_s4f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a02	__MJ_CTRL003	mapjump	27	0x0376C	338	local_var_s4f1_1; not (regI3)	mapjump	0x0306, 4, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 4	-	-	-	-	resolved	this page's How a call is read
 bhm_a02	__MJ_CTRL003	mapjump	28	0x0376F	341	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a02	__MJ_CTRL004	init	1	0x03773	350	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a02	__MJ_CTRL004	init	1	0x03773	350	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a02	__MJ_CTRL004	init	2	0x03779	351	-	setmapjumpgroup	5	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	__MJ_CTRL004	init	3	0x0377C	352	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	__MJ_CTRL004	mapjump	1	0x03780	362	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1295,7 +1295,7 @@ bhm_a03	Map_Director	init	16	0x020C9	119	nowmap() = 0x0311	setmapjumpgroupflag	0
 bhm_a03	Map_Director	init	17	0x020CC	120	nowmap() = 0x0311	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	Map_Director	init	18	0x020ED	122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_nw	init	1	0x020F1	131	-	fieldsign	0	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a03	door_nw	init	2	0x020F7	132	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a03	door_nw	init	2	0x020F7	132	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a03	door_nw	init	3	0x020FA	133	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_nw	talk	1	0x020FE	138	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a03	door_nw	talk	2	0x02101	139	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -1333,7 +1333,7 @@ bhm_a03	door_nw	talk	33	0x021B5	174	not (regI3)	voicestopall	-	every spoken voic
 bhm_a03	door_nw	talk	34	0x021C1	175	not (regI3)	mapjump	0x0306, 5, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 5	-	-	-	-	resolved	this page's How a call is read
 bhm_a03	door_nw	talk	35	0x021C4	177	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_ne	init	1	0x021C8	186	-	fieldsign	1	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a03	door_ne	init	2	0x021CE	187	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a03	door_ne	init	2	0x021CE	187	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a03	door_ne	init	3	0x021D1	188	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_ne	talk	1	0x021D5	193	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a03	door_ne	talk	2	0x021D8	194	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -1371,7 +1371,7 @@ bhm_a03	door_ne	talk	33	0x0228C	229	not (regI3)	voicestopall	-	every spoken voic
 bhm_a03	door_ne	talk	34	0x02298	230	not (regI3)	mapjump	0x0306, 6, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 6	-	-	-	-	resolved	this page's How a call is read
 bhm_a03	door_ne	talk	35	0x0229B	232	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_wn	init	1	0x0229F	241	-	fieldsign	2	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a03	door_wn	init	2	0x022A5	242	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a03	door_wn	init	2	0x022A5	242	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a03	door_wn	init	3	0x022A8	243	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_wn	talk	1	0x022AC	248	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a03	door_wn	talk	2	0x022AF	249	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -1409,7 +1409,7 @@ bhm_a03	door_wn	talk	33	0x02363	284	not (regI3)	voicestopall	-	every spoken voic
 bhm_a03	door_wn	talk	34	0x0236F	285	not (regI3)	mapjump	0x0306, 7, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 7	-	-	-	-	resolved	this page's How a call is read
 bhm_a03	door_wn	talk	35	0x02372	287	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_ws	init	1	0x02376	296	-	fieldsign	3	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a03	door_ws	init	2	0x0237C	297	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a03	door_ws	init	2	0x0237C	297	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a03	door_ws	init	3	0x0237F	298	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_ws	talk	1	0x02383	303	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a03	door_ws	talk	2	0x02386	304	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -1447,7 +1447,7 @@ bhm_a03	door_ws	talk	33	0x0243A	339	not (regI3)	voicestopall	-	every spoken voic
 bhm_a03	door_ws	talk	34	0x02446	340	not (regI3)	mapjump	0x0306, 8, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 8	-	-	-	-	resolved	this page's How a call is read
 bhm_a03	door_ws	talk	35	0x02449	342	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_sw	init	1	0x0244D	351	-	fieldsign	6	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a03	door_sw	init	2	0x02453	352	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a03	door_sw	init	2	0x02453	352	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a03	door_sw	init	3	0x02456	353	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_sw	talk	1	0x0245A	358	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a03	door_sw	talk	2	0x0245D	359	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -1485,7 +1485,7 @@ bhm_a03	door_sw	talk	33	0x02511	394	not (regI3)	voicestopall	-	every spoken voic
 bhm_a03	door_sw	talk	34	0x0251D	395	not (regI3)	mapjump	0x0306, 11, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 11	-	-	-	-	resolved	this page's How a call is read
 bhm_a03	door_sw	talk	35	0x02520	397	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_se	init	1	0x02524	406	-	fieldsign	7	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a03	door_se	init	2	0x0252A	407	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a03	door_se	init	2	0x0252A	407	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a03	door_se	init	3	0x0252D	408	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a03	door_se	talk	1	0x02531	413	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a03	door_se	talk	2	0x02534	414	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -2012,7 +2012,7 @@ bhm_a04	Map_Director	init	19	0x02DE7	801	-	sysReqi	1, MAP_SETACTOR_クリスタ�
 bhm_a04	Map_Director	init	20	0x02DEB	802	-	store	file_var_s9_1 = 1	variable file_var_s9_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_a04	Map_Director	init	21	0x02DEE	803	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a04	閉じた扉	init	1	0x02DF2	812	-	fieldsign	8	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a04	閉じた扉	init	2	0x02DF8	813	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a04	閉じた扉	init	2	0x02DF8	813	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a04	閉じた扉	init	3	0x02DFB	814	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a04	閉じた扉	talk	1	0x02DFF	827	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a04	閉じた扉	talk	2	0x02E02	828	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -2079,7 +2079,7 @@ bhm_a04	閉じた扉	talk	62	0x02FAC	892	-	setstatuserrordispdenystatus	0	argume
 bhm_a04	閉じた扉	talk	63	0x02FB2	893	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bhm_a04	閉じた扉	talk	64	0x02FB5	894	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a04	door_en	init	1	0x02FB9	903	-	fieldsign	4	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a04	door_en	init	2	0x02FBF	904	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a04	door_en	init	2	0x02FBF	904	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a04	door_en	init	3	0x02FC2	905	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a04	door_en	talk	1	0x02FC6	910	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a04	door_en	talk	2	0x02FC9	911	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -2117,7 +2117,7 @@ bhm_a04	door_en	talk	33	0x0307D	946	not (regI3)	voicestopall	-	every spoken voic
 bhm_a04	door_en	talk	34	0x03089	947	not (regI3)	mapjump	0x0306, 9, 0	jumps: Periphery (Sky Fortress Bahamut), field 774, entrance 9	-	-	-	-	resolved	this page's How a call is read
 bhm_a04	door_en	talk	35	0x0308C	949	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a04	door_es	init	1	0x03090	958	-	fieldsign	5	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a04	door_es	init	2	0x03096	959	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_a04	door_es	init	2	0x03096	959	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a04	door_es	init	3	0x03099	960	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a04	door_es	talk	1	0x0309D	965	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_a04	door_es	talk	2	0x030A0	966	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -2424,7 +2424,7 @@ bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	6	0x04FB5	2868	not (fil
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	7	0x04FBB	2869	not (file_var_s9_1 == 1)	set_ignore_hitgroup	255	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	8	0x04FC4	2870	not (file_var_s9_1 == 1)	setradius_221	1.29999995, 2.0999999	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	9	0x04FCA	2871	not (file_var_s9_1 == 1)	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	10	0x04FD0	2872	not (file_var_s9_1 == 1)	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	10	0x04FD0	2872	not (file_var_s9_1 == 1)	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	11	0x04FD6	2873	not (file_var_s9_1 == 1)	store	local_var_s21f1_1 = 1	variable local_var_s21f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	12	0x04FD9	2875	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a04	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj	1	0x04FDD	2880	-	store	local_var_s21f1_1 = 0	variable local_var_s21f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2439,7 +2439,7 @@ bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	6	0x05013
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	7	0x05019	2895	local_var_s21f1_1 != 0; file_var_s9_1 != 1	set_ignore_hitgroup	255	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	8	0x05022	2896	local_var_s21f1_1 != 0; file_var_s9_1 != 1	setradius_221	1.29999995, 2.0999999	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	9	0x05028	2897	local_var_s21f1_1 != 0; file_var_s9_1 != 1	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	10	0x0502E	2898	local_var_s21f1_1 != 0; file_var_s9_1 != 1	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	10	0x0502E	2898	local_var_s21f1_1 != 0; file_var_s9_1 != 1	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_a04	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	11	0x05031	2901	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a04	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj_DynamicChange	1	0x05032	2906	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a04	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj_DynamicChange	2	0x05035	2907	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2451,7 +2451,7 @@ bhm_b01	setup	battle	4	0x00F00	54	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_b01	setup	event	1	0x00F10	59	-	if	シナリオフラグ != 0 and シナリオフラグ < 0x1a2c	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b01	setup	event	2	0x00F16	61	シナリオフラグ != 0 and シナリオフラグ < 0x1a2c	store	g_btl_ガブラスバハムート = 1	variable g_btl_ガブラスバハムート (global u_char@0x0a30)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_b01	setup	event	3	0x00F19	63	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_b01	__MJ_CTRL000	init	1	0x00F1D	72	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	__MJ_CTRL000	init	1	0x00F1D	72	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b01	__MJ_CTRL000	init	2	0x00F23	73	-	setmapjumpgroup	6	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	__MJ_CTRL000	init	3	0x00F26	74	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b01	__MJ_CTRL000	mapjump	1	0x00F2A	84	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2886,7 +2886,7 @@ bhm_b01	gate_door	フィールドサインＯＦＦ	4	0x01AC6	628	-	bganimeplay_
 bhm_b01	gate_door	フィールドサインＯＦＦ	5	0x01ACC	629	-	setnavimapindex	2	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	gate_door	フィールドサインＯＦＦ	6	0x01ACF	630	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b01	alift_ctrl	init	1	0x01AD3	639	-	fieldsign	1	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_b01	alift_ctrl	init	2	0x01AD9	640	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	init	2	0x01AD9	640	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b01	alift_ctrl	init	3	0x01ADC	641	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b01	alift_ctrl	talk	1	0x01AE0	653	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_b01	alift_ctrl	talk	2	0x01AE3	654	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -2912,9 +2912,9 @@ bhm_b01	alift_ctrl	talk	21	0x01B77	675	シナリオフラグ >= 0x1a5e; local_va
 bhm_b01	alift_ctrl	talk	22	0x01B7D	676	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_b01	alift_ctrl	talk	23	0x01B83	677	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	setnavimapindex	2	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	alift_ctrl	talk	24	0x01B8F	678	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	sysReqsw	1, anime_ctrl::map_alift_up	actor `anime_ctrl`	-	-	files anime_ctrl::map_alift_up on channel 1; waits until it starts	anime_ctrl.map_alift_up	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_b01	alift_ctrl	talk	25	0x01B93	679	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_b01	alift_ctrl	talk	26	0x01B99	680	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_b01	alift_ctrl	talk	27	0x01B9F	681	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	talk	25	0x01B93	679	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	talk	26	0x01B99	680	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	talk	27	0x01B9F	681	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b01	alift_ctrl	talk	28	0x01BAB	682	シナリオフラグ >= 0x1a5e; local_var_s5f1_2 == 0	sysReqew	1, map_ダミーＰＣ::扉オープン２xyz	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::扉オープン２xyz on channel 1; waits until it ends	map_ダミーＰＣ.扉オープン２xyz	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b01	alift_ctrl	talk	29	0x01BB5	687	not (シナリオフラグ >= 0x1a5e)	setmeswincaptionid	1, 2	argument 1: the message slot 0-7 / argument 2: the caption type of the slot's next window	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	alift_ctrl	talk	30	0x01BC1	688	not (シナリオフラグ >= 0x1a5e)	askpos	1, 0, 127	argument 1: the message window slot (0-7, the 0x68-byte records at 0x0215F200) whose next choice list the call sets / argument 2: the choice the cursor starts on / argument 3: the choice Cancel moves to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2939,21 +2939,21 @@ bhm_b01	alift_ctrl	talk	48	0x01C35	710	local_var_s5f1_1	setstatuserrordispdenyst
 bhm_b01	alift_ctrl	talk	49	0x01C3B	711	local_var_s5f1_1	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 bhm_b01	alift_ctrl	talk	50	0x01C3E	713	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b01	alift_ctrl	フィールドサインＯＫ	1	0x01C42	723	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_b01	alift_ctrl	フィールドサインＯＫ	2	0x01C48	724	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＯＫ	2	0x01C48	724	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b01	alift_ctrl	フィールドサインＯＫ	3	0x01C4E	725	-	store	local_var_s5f2_1 = 0	variable local_var_s5f2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_b01	alift_ctrl	フィールドサインＯＫ	4	0x01C51	726	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b01	alift_ctrl	フィールドサインＮＯＴ	1	0x01C55	731	-	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_b01	alift_ctrl	フィールドサインＮＯＴ	2	0x01C5B	732	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＮＯＴ	2	0x01C5B	732	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b01	alift_ctrl	フィールドサインＮＯＴ	3	0x01C61	733	-	store	local_var_s5f2_1 = 1	variable local_var_s5f2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_b01	alift_ctrl	フィールドサインＮＯＴ	4	0x01C64	734	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_b01	alift_ctrl	フィールドサインＯＮ	1	0x01C68	739	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_b01	alift_ctrl	フィールドサインＯＮ	2	0x01C6E	740	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_b01	alift_ctrl	フィールドサインＯＮ	3	0x01C74	741	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_b01	alift_ctrl	フィールドサインＯＮ	4	0x01C7A	742	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＯＮ	1	0x01C68	739	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＯＮ	2	0x01C6E	740	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＯＮ	3	0x01C74	741	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＯＮ	4	0x01C7A	742	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b01	alift_ctrl	フィールドサインＯＮ	5	0x01C7D	743	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_b01	alift_ctrl	フィールドサインＯＦＦ	1	0x01C81	748	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_b01	alift_ctrl	フィールドサインＯＦＦ	2	0x01C87	749	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_b01	alift_ctrl	フィールドサインＯＦＦ	3	0x01C8D	750	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＯＦＦ	1	0x01C81	748	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＯＦＦ	2	0x01C87	749	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+bhm_b01	alift_ctrl	フィールドサインＯＦＦ	3	0x01C8D	750	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b01	alift_ctrl	フィールドサインＯＦＦ	4	0x01C90	751	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b01	PC00	init	1	0x01C94	760	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	PC00	init	2	0x01C97	761	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2978,7 +2978,7 @@ bhm_b01	eventガブラス	撃破後配置	10	0x01CF4	819	-	motionplay_bb	0x10000
 bhm_b01	eventガブラス	撃破後配置	11	0x01CFA	820	-	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	eventガブラス	撃破後配置	12	0x01D03	821	-	setradius_221	1.5, 0.800000012	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	eventガブラス	撃破後配置	13	0x01D12	822	-	setposoffset	-0.5, 0, 0, 2	argument 1: x of the calling actor's position offset / argument 2: y (height) of the offset, context +0x44 / argument 3: z of the offset, context +0x48 / argument 4: where the offset applies, context +0x107 bits 0x1 and 0x2 (0x0026B230, which re-places the actor when bit 0x2 changes)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_b01	eventガブラス	撃破後配置	14	0x01D18	823	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_b01	eventガブラス	撃破後配置	14	0x01D18	823	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_b01	eventガブラス	撃破後配置	15	0x01D24	824	-	bindc	0, 0x03000007, 3	argument 1: which of the two last attach slots of the calling actor's presentation context takes the model / argument 2: the model to attach / argument 3: the attach point on the actor's main model the attached model is tied to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	eventガブラス	撃破後配置	16	0x01D30	825	-	bindc	1, 0x03000008, 2	argument 1: which of the two last attach slots of the calling actor's presentation context takes the model / argument 2: the model to attach / argument 3: the attach point on the actor's main model the attached model is tied to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	eventガブラス	撃破後配置	17	0x01D33	826	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3905,7 +3905,7 @@ bhm_c01	ラーサー	main	7	0x02577	845	シナリオフラグ == 0	motionstartfr
 bhm_c01	ラーサー	main	8	0x02580	846	シナリオフラグ == 0	motionloopframe	0, -1	argument 1: the first frame of the calling actor's motion loop / argument 2: the last frame of the loop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ラーサー	main	9	0x02586	847	シナリオフラグ == 0	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ラーサー	main	10	0x0258F	848	シナリオフラグ == 0	motionplay_bb	0x10000000, 0	animation 0 of motion 0 of `bhm_c01.mot` (bytes 0x800, length 0x85E0)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
-bhm_c01	ラーサー	main	11	0x02595	849	シナリオフラグ == 0	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_c01	ラーサー	main	11	0x02595	849	シナリオフラグ == 0	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_c01	ラーサー	main	12	0x02598	851	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	ガブラス	init	1	0x02599	860	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	ガブラス	main	1	0x025A1	865	-	if	シナリオフラグ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3918,7 +3918,7 @@ bhm_c01	ガブラス	main	7	0x025CB	872	シナリオフラグ == 0	motionstartfr
 bhm_c01	ガブラス	main	8	0x025D4	873	シナリオフラグ == 0	motionloopframe	0, 61	argument 1: the first frame of the calling actor's motion loop / argument 2: the last frame of the loop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ガブラス	main	9	0x025DA	874	シナリオフラグ == 0	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ガブラス	main	10	0x025E3	875	シナリオフラグ == 0	motionplay_bb	0x10000001, 0	animation 1 of motion 0 of `bhm_c01.mot` (bytes 0x800, length 0x85E0)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
-bhm_c01	ガブラス	main	11	0x025E9	876	シナリオフラグ == 0	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_c01	ガブラス	main	11	0x025E9	876	シナリオフラグ == 0	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_c01	ガブラス	main	12	0x025EC	878	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	Map_Director	init	1	0x025F0	900	-	releasemapjumpgroupflag	0x0104	flags released: 0x0104: Shows a map icon in Catwalk (Sky Fortress Bahamut)	-	-	-	-	resolved	this page's How a call is read
 bhm_c01	Map_Director	init	2	0x025F6	901	-	releasemapjumpgroupflag	0x0105	flags released: 0x0105: Shows a map icon in Catwalk (Sky Fortress Bahamut)	-	-	-	-	resolved	this page's How a call is read
@@ -6218,7 +6218,7 @@ bhm_a0200	Van	init	1	0x03CE6	2032	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_a0200	Van	ready	1	0x03CEA	2037	-	bindp2	0x03000000	model c0 (section 12 entry 0, bound id 0x630000)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_a0200	Van	ready	2	0x03CF0	2038	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Van	ready	3	0x03CF6	2039	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a0200	Van	ready	4	0x03CFC	2040	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_a0200	Van	ready	4	0x03CFC	2040	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_a0200	Van	ready	5	0x03D02	2041	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Van	ready	6	0x03D08	2042	-	setlightgroup	4	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Van	ready	7	0x03D0E	2043	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6277,7 +6277,7 @@ bhm_a0200	Pnr	init	1	0x03E27	2143	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_a0200	Pnr	ready	1	0x03E2B	2148	-	bindp2	0x03000005	model c12 (section 12 entry 5, bound id 0x63000C)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_a0200	Pnr	ready	2	0x03E31	2149	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Pnr	ready	3	0x03E37	2150	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a0200	Pnr	ready	4	0x03E3D	2151	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_a0200	Pnr	ready	4	0x03E3D	2151	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_a0200	Pnr	ready	5	0x03E43	2152	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Pnr	ready	6	0x03E49	2153	-	setlightgroup	2	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Pnr	ready	7	0x03E4F	2154	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6337,7 +6337,7 @@ bhm_a0200	Bsh	init	1	0x03F6E	2255	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_a0200	Bsh	ready	1	0x03F72	2260	-	bindp2	0x03000003	model c13 (section 12 entry 3, bound id 0x63000D)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_a0200	Bsh	ready	2	0x03F78	2261	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Bsh	ready	3	0x03F7E	2262	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a0200	Bsh	ready	4	0x03F84	2263	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_a0200	Bsh	ready	4	0x03F84	2263	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_a0200	Bsh	ready	5	0x03F8A	2264	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Bsh	ready	6	0x03F90	2265	-	setlightgroup	5	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Bsh	ready	7	0x03F96	2266	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6388,7 +6388,7 @@ bhm_a0200	Ash	init	1	0x0407E	2354	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_a0200	Ash	ready	1	0x04082	2359	-	bindp2	0x03000004	model c11 (section 12 entry 4, bound id 0x63000B)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_a0200	Ash	ready	2	0x04088	2360	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Ash	ready	3	0x0408E	2361	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a0200	Ash	ready	4	0x04094	2362	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_a0200	Ash	ready	4	0x04094	2362	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_a0200	Ash	ready	5	0x0409A	2363	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Ash	ready	6	0x040A0	2364	-	setlightgroup	1	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Ash	ready	7	0x040A6	2365	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6440,7 +6440,7 @@ bhm_a0200	Blf	init	1	0x04191	2454	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_a0200	Blf	ready	1	0x04195	2459	-	bindp2	0x03000001	model c5 (section 12 entry 1, bound id 0x630005)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_a0200	Blf	ready	2	0x0419B	2460	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Blf	ready	3	0x041A1	2461	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a0200	Blf	ready	4	0x041A7	2462	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_a0200	Blf	ready	4	0x041A7	2462	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_a0200	Blf	ready	5	0x041AD	2463	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Blf	ready	6	0x041B3	2464	-	setlightgroup	6	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Blf	ready	7	0x041B9	2465	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6501,7 +6501,7 @@ bhm_a0200	Frn	init	1	0x042DB	2567	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_a0200	Frn	ready	1	0x042DF	2572	-	bindp2	0x03000002	model c3 (section 12 entry 2, bound id 0x630003)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_a0200	Frn	ready	2	0x042E5	2573	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Frn	ready	3	0x042EB	2574	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a0200	Frn	ready	4	0x042F1	2575	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_a0200	Frn	ready	4	0x042F1	2575	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_a0200	Frn	ready	5	0x042F7	2576	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Frn	ready	6	0x042FD	2577	-	setlightgroup	7	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Frn	ready	7	0x04303	2578	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -29987,7 +29987,7 @@ bhm_d0101	Van	init	1	0x0DEF0	6764	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_d0101	Van	ready	1	0x0DEF4	6769	-	bindp2	0x03000005	model c0 (section 12 entry 5, bound id 0x630000)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Van	ready	2	0x0DEFA	6770	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Van	ready	3	0x0DF00	6771	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Van	ready	4	0x0DF06	6772	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Van	ready	4	0x0DF06	6772	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Van	ready	5	0x0DF0C	6773	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Van	ready	6	0x0DF12	6774	-	setlightgroup	4	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Van	ready	7	0x0DF18	6775	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30057,7 +30057,7 @@ bhm_d0101	Pnr	init	1	0x0E0A5	6882	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_d0101	Pnr	ready	1	0x0E0A9	6887	-	bindp2	0x0300000a	model c12 (section 12 entry 10, bound id 0x63000C)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Pnr	ready	2	0x0E0AF	6888	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Pnr	ready	3	0x0E0B5	6889	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Pnr	ready	4	0x0E0BB	6890	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Pnr	ready	4	0x0E0BB	6890	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Pnr	ready	5	0x0E0C1	6891	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Pnr	ready	6	0x0E0C7	6892	-	setlightgroup	2	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Pnr	ready	7	0x0E0CD	6893	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30126,7 +30126,7 @@ bhm_d0101	Bsh	init	1	0x0E23C	6999	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_d0101	Bsh	ready	1	0x0E240	7004	-	bindp2	0x03000008	model c13 (section 12 entry 8, bound id 0x63000D)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Bsh	ready	2	0x0E246	7005	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Bsh	ready	3	0x0E24C	7006	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Bsh	ready	4	0x0E252	7007	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Bsh	ready	4	0x0E252	7007	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Bsh	ready	5	0x0E258	7008	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Bsh	ready	6	0x0E25E	7009	-	setlightgroup	5	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Bsh	ready	7	0x0E264	7010	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30196,7 +30196,7 @@ bhm_d0101	Ash	init	1	0x0E3CB	7121	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_d0101	Ash	ready	1	0x0E3CF	7126	-	bindp2	0x03000009	model c11 (section 12 entry 9, bound id 0x63000B)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Ash	ready	2	0x0E3D5	7127	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Ash	ready	3	0x0E3DB	7128	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Ash	ready	4	0x0E3E1	7129	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Ash	ready	4	0x0E3E1	7129	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Ash	ready	5	0x0E3E7	7130	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Ash	ready	6	0x0E3ED	7131	-	setlightgroup	1	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Ash	ready	7	0x0E3F3	7132	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30263,7 +30263,7 @@ bhm_d0101	Blf	init	1	0x0E53C	7240	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_d0101	Blf	ready	1	0x0E540	7245	-	bindp2	0x03000006	model c5 (section 12 entry 6, bound id 0x630005)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Blf	ready	2	0x0E546	7246	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Blf	ready	3	0x0E54C	7247	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Blf	ready	4	0x0E552	7248	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Blf	ready	4	0x0E552	7248	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Blf	ready	5	0x0E558	7249	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Blf	ready	6	0x0E55E	7250	-	bindh	0x03000003	argument 1: the model to attach to the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Blf	ready	7	0x0E564	7251	-	setlightgroup	6	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30326,7 +30326,7 @@ bhm_d0101	Frn	init	1	0x0E6A6	7351	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_d0101	Frn	ready	1	0x0E6AA	7356	-	bindp2	0x03000007	model c3 (section 12 entry 7, bound id 0x630003)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Frn	ready	2	0x0E6B0	7357	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Frn	ready	3	0x0E6B6	7358	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Frn	ready	4	0x0E6BC	7359	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Frn	ready	4	0x0E6BC	7359	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Frn	ready	5	0x0E6C2	7360	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Frn	ready	6	0x0E6C8	7361	-	bindh	0x03000004	argument 1: the model to attach to the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Frn	ready	7	0x0E6CE	7362	-	setlightgroup	6	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30389,7 +30389,7 @@ bhm_d0101	Lar	init	1	0x0E810	7462	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_d0101	Lar	ready2	1	0x0E814	7467	-	bindp2	0x03000002	model c16 (section 12 entry 2, bound id 0x630010)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Lar	ready2	2	0x0E81A	7468	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Lar	ready2	3	0x0E820	7469	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Lar	ready2	4	0x0E826	7470	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Lar	ready2	4	0x0E826	7470	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Lar	ready2	5	0x0E82C	7471	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Lar	ready2	6	0x0E832	7472	-	bindh	0x0300000b	argument 1: the model to attach to the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Lar	ready2	7	0x0E838	7473	-	setlightgroup	3	argument 1: the light group the calling actor joins	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30418,7 +30418,7 @@ bhm_d0101	Gav	init	1	0x0E8A9	7519	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_d0101	Gav	ready2	1	0x0E8AD	7524	-	bindp2	0x0300000c	model n7 (section 12 entry 12, bound id 0x6E0007)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Gav	ready2	2	0x0E8B3	7525	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Gav	ready2	3	0x0E8B9	7526	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Gav	ready2	4	0x0E8BF	7527	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Gav	ready2	4	0x0E8BF	7527	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Gav	ready2	5	0x0E8C5	7528	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Gav	ready2	6	0x0E8CB	7529	-	bindh	0x0300000d	argument 1: the model to attach to the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Gav	ready2	7	0x0E8D1	7530	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30453,7 +30453,7 @@ bhm_d0101	Rem	cut007	1	0x0E963	7594	-	wait	10	-	-	10 frames	waits	-	resolved	01 
 bhm_d0101	Rem	cut007	2	0x0E969	7595	-	bindp2	0x03000010	model m245 (section 12 entry 16, bound id 0x6D00F5)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_d0101	Rem	cut007	3	0x0E96F	7596	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Rem	cut007	4	0x0E975	7597	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d0101	Rem	cut007	5	0x0E97B	7598	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_d0101	Rem	cut007	5	0x0E97B	7598	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_d0101	Rem	cut007	6	0x0E981	7599	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Rem	cut007	7	0x0E98D	7600	-	setpos	140.650513, 15.8051414, 183.830643	this actor, placed at (140.650513, 15.8051414, 183.830643)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_d0101	Rem	cut007	8	0x0E993	7601	-	dir	0.151665002	this actor, turned to facing 0.151665002	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -32731,7 +32731,7 @@ bhm_y0101	Ond	init	1	0x01CE7	1014	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_y0101	Ond	ready	1	0x01CEB	1019	-	bindp2	0x03000001	model n84 (section 12 entry 1, bound id 0x6E0054)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_y0101	Ond	ready	2	0x01CF1	1020	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	Ond	ready	3	0x01CF7	1021	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_y0101	Ond	ready	4	0x01CFD	1022	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_y0101	Ond	ready	4	0x01CFD	1022	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_y0101	Ond	ready	5	0x01D03	1023	-	bindh	0x03000002	argument 1: the model to attach to the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	Ond	ready	6	0x01D0F	1024	-	setpos	-500.101135, 0.650000989, 496.638458	this actor, placed at (-500.101135, 0.650000989, 496.638458)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_y0101	Ond	ready	7	0x01D15	1025	-	dir	-0.158450007	this actor, turned to facing -0.158450007	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -32791,7 +32791,7 @@ bhm_y0101	Ona	init	1	0x01E28	1126	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-An
 bhm_y0101	Ona	ready	1	0x01E2C	1131	-	bindp2	0x03000000	model n97 (section 12 entry 0, bound id 0x6E0061)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bhm_y0101	Ona	ready	2	0x01E32	1132	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	Ona	ready	3	0x01E38	1133	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_y0101	Ona	ready	4	0x01E3E	1134	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+bhm_y0101	Ona	ready	4	0x01E3E	1134	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bhm_y0101	Ona	ready	5	0x01E4A	1135	-	setpos	-500.521637, 0.300000012, 497.270447	this actor, placed at (-500.521637, 0.300000012, 497.270447)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_y0101	Ona	ready	6	0x01E50	1136	-	dir	-0.0357280001	this actor, turned to facing -0.0357280001	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 bhm_y0101	Ona	ready	7	0x01E56	1137	-	motionloop	0	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

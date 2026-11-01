@@ -106,8 +106,8 @@ creeps in. The force-fight predicate `0x00253B90` is reached through the thunk `
 without that flag it returns the heading unchanged.
 
 - Above 120 degrees (`2.0944`) it latches the fast rate (`+0x3C` bit `0x1`) when `+0x170` has all of
-  bits 2-4, and steps the heading by the latched rate (`+0xF0` fast, `+0xEC` slow) in the direction the pair
-  `+0x21` bits 1-2 recorded, unconditionally; with no direction recorded it steps by the sign of
+  mask `0x1C`, and steps the heading by the latched rate (`+0xF0` fast, `+0xEC` slow) in the direction the pair
+  `+0x21` bits under mask `0x6` recorded, unconditionally; with no direction recorded it steps by the sign of
   the wrapped difference and snaps to `desired` when within the rate.
 - Below 20 degrees (`0.349066`) it clears the latch and uses the slow rate; between, it keeps
   whatever is latched. The step snaps to `desired` when within the rate.
@@ -126,7 +126,7 @@ approach helper the modes use: snap within the rate, else step by it and wrap.
 
 ### The steering modes
 
-The block's flag word `+0x00` carries the mode in bits 0-4, a countdown in bits 5-14 and the orbit
+The block's flag word `+0x00` carries the mode in the bits under mask `0x1F`, a countdown in the bits under mask `0x7FE0` and the orbit
 direction in bit `0x8000`. `0x00339F00(ctx)` runs while the countdown is non-zero: it projects the step
 point `+0x10` from the target `+0x40` back by `+0x110 + +0xA4 + 0.1` (the block's second collision
 radius plus the target radius) along the heading, takes the
@@ -165,7 +165,7 @@ goal is blocked (`0x0033D3E0`); otherwise `0x0033A570` stops the unit. The spaci
 5. `0x0033B6F0` updates the zig-zag memory (below), and the fan is tried.
 
 The fan comes from three tables on the stack, picked by the mover class and the side the last
-detour took (block `+0x38` bits 6-7: 0 none, 1 the positive side, 2 the negative side):
+detour took (block `+0x38` bits under mask `0xC0`: 0 none, 1 the positive side, 2 the negative side):
 
 | Fan | Side none | Side 1 | Side 2 |
 |---|---|---|---|
@@ -179,8 +179,8 @@ degrees added to `0x00337470`'s pitch; every other unit at that pitch alone. For
 
 1. it is skipped, and that memory consumed, when it lies within 45 degrees of a remembered heading
    (block bytes `+0x2F`/`+0x30`, live while `+0x31`/`+0x32` are non-zero);
-2. it is skipped when it is more than 150 degrees from the last chosen heading (byte `+0x2C`, `byte
-   * pi / 128`), or its pitch is not within 90 degrees;
+2. it is skipped when it is more than 150 degrees from the last chosen heading (byte `+0x2C`, `byte *
+   pi / 128`), or its pitch is not within 90 degrees;
 3. a candidate of 135 degrees, once an earlier candidate came back 2 (moving units in the way, none
    blocking), is replaced by that earlier candidate, taken without a probe;
 4. otherwise the forward clearance `0x00335B60` probes it at the probe distance (at `+0x110 + 1.8`
@@ -195,8 +195,8 @@ stops the unit, steps both `+0xB4` and `+0xBC` from the current heading toward t
 slow rate `+0xEC`, and starts a countdown of 10 when none runs (cleared when the heading arrives).
 
 The pitch goes to `+0xB8`, the heading to byte `+0x2C`, `0x0033CC80` records the aim, the side bits
-are set by the sign of the offset (both cleared for 0), and the attempt counter (block `+0x3C` bits
-4-7) is cleared. When no candidate is taken, `0x0033CEF0` runs toward the bearing, `0x0033CC80` records
+are set by the sign of the offset (both cleared for 0), and the attempt counter (block `+0x3C`
+bits under mask `0xF0`) is cleared. When no candidate is taken, `0x0033CEF0` runs toward the bearing, `0x0033CC80` records
 mode 4, and the attempt counter rises by one up to 10, which lowers the next search's tolerance.
 
 `0x0033CC80(ctx, mode, heading, pitch, distance)` writes the aim: when the distance exceeds the
@@ -284,8 +284,8 @@ by unit byte `+0xEA9`) has `+0x1C` bit `0x1` joins the circling formation instea
 3. each circling unit takes the next place `0x022C7CE9`: its goal `+0x20` is 1.0 from the centre at
    the angle `0x022C7CE0 + place * 2pi / count` (0 apart with fewer than two), raised to its step scale
    plus 3.2, and its step scale `+0x108` becomes 1.5;
-4. within 0.1 of the goal the slot record's `+0x1C` bit `0x2` is set; until then the speed is `3.0 / (30
-   * [0x01DFE0B8])`, after it the distance capped at `7.0 / (30 * [0x01DFE0B8])`;
+4. within 0.1 of the goal the slot record's `+0x1C` bit `0x2` is set; until then the speed is `3.0 / (30 *
+   [0x01DFE0B8])`, after it the distance capped at `7.0 / (30 * [0x01DFE0B8])`;
 5. the desired heading and pitch aim at the goal (`0x004687F0`, `0x00468700`) and the limited heading
    faces the centre.
 
@@ -409,7 +409,7 @@ Five predicates test a step. Every non-zero exit returns a literal small integer
 | `0x0033D3E0(A, B, class)` (the straight walk) | 0 when `A` is off the mesh or the walk reaches `B`'s region through portals open to `class` (`0x0026E300` 1, or 0 with the mask bit) and the segment crosses each portal (`0x00468880`); 1 when `B` is off the mesh or a region has no crossable portal: blocked |
 | `0x00335E50(A, B, w, class)` (the width walk) | 1 when the walk offset by `+w`, the walk offset by `-w`, or the lateral segment across `B` from `+w` to `-w` is blocked |
 | `0x00335B60(ctx, angle, pitch, distance, tolerance, flags)` (forward step clearance) | 0 at once for a zero distance; otherwise 0 usable; 1 rejected by the obstruction query returning 1, the mode-3 segment test `0x00318CA0`, the width walk at `0.9 * +0x10C` (or the straight walk with flags bit `0x8`), the grid query `0x00391410`, or the terrain test `0x0026E100`; 2 only when the obstruction query returned 2 |
-| `0x003357B0(A, B, radius, unit, exclude, flags)` (dynamic obstruction) | 0 at once unless `flags` bit `0x20` is set or the asker's actor is active (`0x002EA7F0`); otherwise 0 nothing in the corridor; 1 a candidate accepted as blocking; 2 candidates counted but none blocking. The candidates come from the grid's actor list (`0x00391D10` for a point, `0x003920F0(..., 32, ~(flags >> 4) & 8 \| 0x14)` for a segment, at most 32); a unit of definition mode 1 against a mode-4 asker, the excluded unit and the asker itself are skipped; the rest pass the kind filters of `flags` bits 1-4 and 6, then `0x00314EB0` and `0x00313F80` decide blocking (results 1-3 count as candidates, others as blockers) |
+| `0x003357B0(A, B, radius, unit, exclude, flags)` (dynamic obstruction) | 0 at once unless `flags` bit `0x20` is set or the asker's actor is active (`0x002EA7F0`); otherwise 0 nothing in the corridor; 1 a candidate accepted as blocking; 2 candidates counted but none blocking. The candidates come from the grid's actor list (`0x00391D10` for a point, `0x003920F0(..., 32, ~(flags >> 4) & 8 \| 0x14)` for a segment, at most 32); a unit of definition mode 1 against a mode-4 asker, the excluded unit and the asker itself are skipped; the rest pass the kind filters of `flags` bits under mask `0x5E`, then `0x00314EB0` and `0x00313F80` decide blocking (results 1-3 count as candidates, others as blockers) |
 | `0x0033A3D0(A, B)` (path width) | 1 when the walk `B` to `A` is clear, or when a half-way lateral detour at `+-45` degrees is fully clear; 0 only when the direct walk and both detours have a blocked leg |
 | `0x00335F90(ctx)` (corridor blocked) | 1 when the width walk at `0.9 * +0x10C`, the straight walk, or, for class 3, the segment test blocks; else 0 |
 
@@ -467,31 +467,31 @@ Locomotion block (unit `+0x80`; the solver's "state" and "flag block" are the sa
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u32` | flag word: bits 0-4 steering mode, 5-14 countdown, 15 orbit direction |  |
-| `+0x004` | `f32` | orbit radius |  |
+| `+0x000` | `u32` |  | flag word: mask `0x1F` steering mode, `0x7FE0` countdown, bit `0x8000` orbit direction |
+| `+0x004` | `f32` |  | orbit radius |
 | `+0x010` | `f32` | stored path distance |  |
 | `+0x014` | `u8` | stall counter (60) |  |
 | `+0x018` | `f32` | last solve x |  |
 | `+0x01C` | `f32` | last solve z |  |
-| `+0x021` | `u8` | bit 0x1 heading byte valid; bits 0x6 last turn direction |  |
-| `+0x02C` | `u8` | heading as byte * pi/128 |  |
-| `+0x038` | `u32` | bit 0x2 too far, bit 0x4 within reach, bit 0x8 turning, bits 6-7 detour side |  |
-| `+0x03C` | `u32` | bit 0x1 fast latch, bit 0x8 detour pending, bits 4-7 attempt counter |  |
-| `+0x040` | `i32` | goal kind (1 unit, 2 unit with margin) |  |
-| `+0x060-0x090` | `f32[4] x4` | the four positions the context copies |  |
-| `+0x0D0` | `f32` | stop radius |  |
+| `+0x021` | `u8` |  | bit `0x1` heading byte valid; bits `0x6` last turn direction |
+| `+0x02C` | `u8` |  | heading as byte * pi/128 |
+| `+0x038` | `u32` |  | bit `0x2` too far, bit `0x4` within reach, bit `0x8` turning, mask `0xC0` detour side |
+| `+0x03C` | `u32` |  | bit `0x1` fast latch, bit `0x8` detour pending, mask `0xF0` attempt counter |
+| `+0x040` | `i32` |  | goal kind (1 unit, 2 unit with margin) |
+| `+0x060` | `f32[4][4]` |  | the four positions the context copies |
+| `+0x0D0` | `f32` |  | stop radius |
 | `+0x0D8` | `f32` | speed |  |
 | `+0x0DC` | `f32` | desired heading |  |
 | `+0x0F4` | `f32` | pitch |  |
 | `+0x0E0` | `f32` | current heading |  |
-| `+0x0E4` | `f32` | turn rate moving |  |
+| `+0x0E4` | `f32` |  | turn rate moving |
 | `+0x0E8` | `f32` | turn rate standing |  |
-| `+0x0EC` | `f32` | slow turn rate |  |
+| `+0x0EC` | `f32` |  | slow turn rate |
 | `+0x0F0` | `f32` | fast turn rate |  |
 | `+0x0F8` | `f32` | speedA |  |
 | `+0x0FC` | `f32` | speedB |  |
 | `+0x104` | `f32` | speed threshold |  |
-| `+0x108` | `f32` | step scale (2.0 floor) |  |
+| `+0x108` | `f32` |  | step scale (2.0 floor) |
 | `+0x10C` | `f32` | collision radii | with `+0x110` |
 | `+0x110` | `f32` | collision radii | with `+0x10C` |
 | `+0x118` | `f32` | heading cap |  |
@@ -503,8 +503,8 @@ Locomotion block (unit `+0x80`; the solver's "state" and "flag block" are the sa
 | `+0x140` | `f32[3]` | direction |  |
 | `+0x150` | `u32` | target handle |  |
 | `+0x160` | `i32` | goal kind |  |
-| `+0x170` | `u32` | flags (unit +0x1F0): bit 0x1 speedA, bit 0x2 speedB, bits 2-4 the fast-latch condition, bit 0x200 |  |
-| `+0x174` | `u8` | mover class (unit +0x1F4) |  |
+| `+0x170` | `u32` |  | flags (unit `+0x1F0`): bit `0x1` speedA, bit `0x2` speedB, mask `0x1C` the fast-latch condition, bit `0x200` |
+| `+0x174` | `u8` |  | mover class (unit `+0x1F4`) |
 | `+0x176` | `u8` | bit 0x4 detours allowed |  |
 | `+0x177` | `u8` | slot |  |
 
@@ -512,31 +512,31 @@ Solver context (stack, `0x110` bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `...` | position (block +0x60) |  |
-| `+0x010` | `...` | step point (+0x70) |  |
-| `+0x020` | `...` | route goal (+0x80) |  |
-| `+0x030` | `...` | destination (+0x90; the step and spacing distances) |  |
-| `+0x040` | `...` | target position |  |
-| `+0x050` | `...` | detour point |  |
-| `+0x060` | `...` | leader position |  |
+| `+0x000` | `...` |  | position (block `+0x60`) |
+| `+0x010` | `...` |  | step point (`+0x70`) |
+| `+0x020` | `...` |  | route goal (`+0x80`) |
+| `+0x030` | `...` |  | destination (`+0x90`; the step and spacing distances) |
+| `+0x040` | `...` |  | target position |
+| `+0x050` | `...` |  | detour point |
+| `+0x060` | `...` |  | leader position |
 | `+0x0A0` | `...` | radius |  |
-| `+0x0A4` | `...` | target radius |  |
-| `+0x0A8` | `...` | target bearing |  |
-| `+0x0AC` | `...` | stop distance |  |
-| `+0x0B0` | `...` | speed out |  |
-| `+0x0B4` | `...` | desired heading |  |
+| `+0x0A4` | `...` |  | target radius |
+| `+0x0A8` | `...` |  | target bearing |
+| `+0x0AC` | `...` |  | stop distance |
+| `+0x0B0` | `...` |  | speed out |
+| `+0x0B4` | `...` |  | desired heading |
 | `+0x0B8` | `...` | pitch |  |
-| `+0x0BC` | `...` | limited heading |  |
-| `+0x0C0` | `...` | step scale |  |
-| `+0x0C8` | `...` | distance to the route goal, or to the target |  |
-| `+0x0CC` | `...` | flags copy (bit 0x80, bit 0x400 detour) |  |
-| `+0x0D0` | `...` | bit 0x1 leader reachable |  |
-| `+0x0E0` | `...` | target actor |  |
-| `+0x0E8` | `...` | leader actor |  |
+| `+0x0BC` | `...` |  | limited heading |
+| `+0x0C0` | `...` |  | step scale |
+| `+0x0C8` | `...` |  | distance to the route goal, or to the target |
+| `+0x0CC` | `...` |  | flags copy (bit `0x80`, bit `0x400` detour) |
+| `+0x0D0` | `...` |  | bit `0x1` leader reachable |
+| `+0x0E0` | `...` |  | target actor |
+| `+0x0E8` | `...` |  | leader actor |
 | `+0x0F0` | `...` | unit |  |
-| `+0x0F8` | `...` | target unit |  |
-| `+0x100` | `...` | the block | with `+0x108` |
-| `+0x108` | `...` | the block | with `+0x100` |
+| `+0x0F8` | `...` |  | target unit |
+| `+0x100` | `...` |  | the block; with `+0x108` |
+| `+0x108` | `...` |  | the block; with `+0x100` |
 
 ## Shipped data
 
@@ -650,3 +650,10 @@ passes their addresses to; no image-base-relative reference or disp32 displaceme
 - [Battle unit fields](../Characters-And-Objects/battle-unit-fields.md): the locomotion block in the unit.
 - [Battle orders](../Battle-Actions/battle-orders.md): the order ids the decoder reads.
 - [Random number generators](../Random-Numbers/random-number-generators.md): the CRT stream.
+- [`navigation-mesh-corridor-agent-accesses.tsv`](navigation-mesh-corridor-agent-accesses.tsv): every censused
+  access to the solver context, followed from its builder `0x00336710`, one row per instruction (67 rows).
+
+In this access table, `function`, `name` and `site` give the function, its name and the instruction's address,
+`disp` the offset the instruction reaches from the start of the solver context, `kind` a read (`r`), a write (`w`)
+or both (`rw`), `instruction` the instruction itself, and `route` `ctor-seeded 0x00336710`: the context as the builder
+receives it and passes it on to the functions it calls.

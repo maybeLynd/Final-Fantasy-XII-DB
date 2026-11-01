@@ -79,7 +79,7 @@ open: it does nothing while `+0x60` is set and sets it after the move (`0x002E05
 - the `askpos` rows `+0x24` and `+0x28` and the cancel switch `+0x39`, read at `0x002E1978`-`0x002E1981`; only their flag
   `+0x3B` is cleared, by the same word write as `+0x3A` (`0x002E19A1`);
 - the choice byte `+0x38`, the style `+0x3D` (read at `0x002E174B`) and the `messync` bits `+0x3E`;
-- bits 1-7 of `+0x44`; the open clears bit `0x1` only (`0x002E19AF`), and no setter writes the others (`0x002E2160`
+- mask `0xFE` of `+0x44`; the open clears bit `0x1` only (`0x002E19AF`), and no setter writes the others (`0x002E2160`
   stores `value & 1`);
 - the `setshapeanime` animation `+0x46`-`+0x4B` and `+0x50`-`+0x53`, which only `0x003E9440` writes
   (`0x003E9451`-`0x003E9468`) and only `0x003E9320` reads (`0x003E9380`-`0x003E9391`);
@@ -338,7 +338,7 @@ window's messages 15 and 18 close and destroy it. Its layout keys are on [screen
 The HUD switch `0x00251F40` ([HUD](hud.md)) hides and shows windows with the rest of the HUD:
 
 - `0x0035D0E0` walks the widget tree from `0x0208EA28` (`0x0035D280`) and starts the closing run (`0x002A2720`) of every
-  window with parts (`+0x44` bits 19-20 equal to `0x100000`, set by `0x002A2AD0`) whose `+0x40` bit `0x100000` is clear
+  window with parts (`+0x44` bits under mask `0x180000` equal to `0x100000`, set by `0x002A2AD0`) whose `+0x40` bit `0x100000` is clear
   (`0x0035E5C0`). With bit `0x80` of `[0x020927EC]` it takes every window with parts (`0x0035E5A0`) and then every text window
   (`0x180000`, `0x0035E580`). It then marks slot 6's window inactive (`0x002E2010(6, 0)`).
 - `0x0035D1B0` reopens them the same way (`0x0035D2D0`, `0x00246AC0`) and marks slot 6's window active (`0x002E2010(6, 1)`).
@@ -410,7 +410,7 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 | `+0x41` | `u8` | answered | the answer was copied |
 | `+0x42` | `u8` | hasParts | the window gets picture parts |
 | `+0x43` | `u8` | flag43 | the reset writes 0 |
-| `+0x44` | `u8` | noFocus | bit `0x1`: open without the focus; bits 1-7 are never set |
+| `+0x44` | `u8` | noFocus | bit `0x1`: open without the focus; the bits under mask `0xFE` are never set |
 | `+0x45` | `u8` | - | no instruction reads or writes it |
 | `+0x46` | `u16` | animLast | `setshapeanime` last frame; `0x003E9320` passes it to the part's `+0x2F` |
 | `+0x48` | `u16` | animFirst | first frame of the loop, to the part's `+0x30` |
@@ -430,7 +430,7 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `PictureSlot*` | picture | an entry of `0x0209C510` |
-| `+0x08` | `u32` | flags | bit `0x1` shown, 1 centred, 2 frames running, 3 colour tween, 4 scale tween; bit `0x20` is set on every part when it is built (`0x002A2AD0`) |
+| `+0x08` | `u32` | flags | bit `0x1` shown, `0x2` centred, `0x4` frames running, `0x8` colour tween, `0x10` scale tween; bit `0x20` is set on every part when it is built (`0x002A2AD0`) |
 | `+0x0D` | `u8` | palette | from the frame when `0xFF` |
 | `+0x0E` | `i8` | priority | draw order, highest first |
 | `+0x10` | `i16[2]` | pos | x, y |
@@ -537,7 +537,7 @@ The draws copy the window's text record `+0xD0` whole into `0x0209C630`: `0x002A
 ## Modding notes
 
 - `mesopenspeed` values are stored in 33 ms units, but the window keeps run lengths in ten bits of `+0x7C`:
-  bits `0x3FF000` take `open & 0x3FF` and bits 22-31 `close << 22` (`0x002A2FAF`-`0x002A2FDF`), so values above 31
+  bits `0x3FF000` take `open & 0x3FF` and the bits under mask `0xFFC00000` `close << 22` (`0x002A2FAF`-`0x002A2FDF`), so values above 31
   (31 × 33 = 1,023 ms) wrap round.
 - The eighth simultaneous window (registry entry 7) is not removed from the registry when it is destroyed; the entry
   keeps pointing at the destroyed widget, which the loops over `0x0209C4D0` (`0x002A28E0`, `0x002A29A0`, `0x002A38C0`,

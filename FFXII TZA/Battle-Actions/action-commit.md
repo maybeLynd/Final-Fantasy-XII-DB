@@ -27,7 +27,7 @@ Nothing about damage, cost or timing is decided at that moment.
 ### The commit
 
 `0x0030F760(unit, actionData, actionId, targetHandle, reset)` (570 bytes) has five
-callers: action selection `0x00305AB0` (`0x00305B2F`, `0x00305C9B`), the AI order step `0x00305CC0`
+call sites in four functions: action selection `0x00305AB0` (`0x00305B2F`, `0x00305C9B`), the AI order step `0x00305CC0`
 (`0x00305DF4`), the combo continuation `0x0030FA00` (`0x0030FA5C`) and the automatic engage attack `0x00312FA0`
 (`0x003130DC`).
 
@@ -43,7 +43,7 @@ callers: action selection `0x00305AB0` (`0x00305B2F`, `0x00305C9B`), the AI orde
    to `+0x718`-`+0x72F` (`0x0030F7F2`-`0x0030F82A`).
 5. `+0x770` is kept when the unit is on the enemy side (stats `+0x05` = 1), or on the party side with an
    id equal to `+0x744` and a handle equal to `+0x740`; otherwise it is zeroed (`0x0030F832`-`0x0030F85F`).
-6. When bit `0x2` of the action-context word `+0x6B0` is set it is cleared, and the stats-record list gets
+6. When bit `0x2` of the command word `+0x6B0` is set it is cleared, and the stats-record list gets
    one entry: `+0x6B9` = the byte at `0x022C1DB8 + 12 * [unit+0xEA9]`, `+0x6B6` = 1 (`0x0030F865`-`0x0030F894`).
 7. `+0x24` holds the handle of the unit's group leader (see
    [the battle unit field map](../Characters-And-Objects/battle-unit-fields.md)); a unit
@@ -99,8 +99,12 @@ clear (`0x0030868B`-`0x003086DA`):
    `0x022BE981`, which then advances modulo 64.
 
 Draining is done by `0x00313CD0`, called from `0x00234520` (`0x00234582`). The simulation tick `0x00314020`
-calls `0x00234520` once per tick in tick mode 0 (`0x0031412B`; it does nothing for any slot but 0) and
-never in tick mode 1. Inside it the drain runs only when bits `0x1` and `0x4` of `0x02089340` are not 1 and 0
+calls `0x00234520` for every manager slot in tick mode 0 (`0x003141E2`; it does nothing for any slot but 0):
+once in the first pass, and again in each of up to 15 further passes of the same tick while the slot's
+skip flag `0x00267310(slot)` is set. Tick mode 1 calls it only for slots 3 and 4 (`0x0031412B`), where it
+does nothing.
+
+Inside it the drain runs only when bits `0x1` and `0x4` of `0x02089340` are not 1 and 0
 (otherwise the one-shot callback at `0x0208E6A8` runs) and `0x00383C80` reports a loaded navigation
 dataset (`0x00234547`-`0x00234582`).
 
@@ -118,7 +122,7 @@ still has bit `0x20`, it clears the bit and calls `0x00305AB0(unit, 0)` when the
 
 | Field | Width | Meaning | Written by |
 |---|---|---|---|
-| unit `+0x708` | `void*` | committed action data | `0x0030F7F9` |
+| unit `+0x708` | `void*` | committed action context (the action data) | `0x0030F7F9` |
 | unit `+0x710` | `u32` | committed target handle | `0x0030F800` |
 | unit `+0x714` | `u16` | committed action id | `0x0030F806` |
 | unit `+0x718`-`+0x72F` | `u8[24]` | copy of `+0x700`-`+0x717` at commit | `0x0030F823`, `0x0030F82A` |

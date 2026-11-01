@@ -447,8 +447,8 @@ rbl_q0100	scene, event 379	Mes	m002	requested by Director.main	Basch	1	The Sun-c
 rbl_q0100	scene, event 379	Mes	m003	requested by Director.main	-	2	I wonder if she'll really do it.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m004	requested by Director.main	Penelo	3	Take revenge against the Empire.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m005	requested by Director.main	Penelo	4	I mean, I know how she must feel.	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m006	requested by Director.main	Vaan	5	It's hard losing someone you care about.	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m007	requested by Director.main	Penelo	6	Something we all got in common.	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m006	requested by Director.main	Penelo	5	It's hard losing someone you care about.	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m007	requested by Director.main	Vaan	6	Something we all got in common.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m008	requested by Director.main	Penelo	7	But, you know, no matter how hard we try, we can't change the past.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m009	requested by Director.main	Penelo	8	There's nothing that can bring them back.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m010	requested by Director.main	Penelo	9	Still, sometimes, when I close my eyes...	-	-	-	-	-	-	-	-	-	-	1	-

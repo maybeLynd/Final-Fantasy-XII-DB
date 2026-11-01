@@ -138,7 +138,7 @@ The orders that write a register (`0x002FE660`) take it from the order's own tes
 
 ## Columns
 
-`enemy-order-sets.tsv`, one row per set:
+[`enemy-order-sets.tsv`](enemy-order-sets.tsv), one row per set:
 
 | Column | Meaning |
 |---|---|
@@ -148,7 +148,7 @@ The orders that write a register (`0x002FE660`) take it from the order's own tes
 | `phase_counts` | the orders in phases 0, 1, 2 ..., up to the last phase that has one |
 | `used_by` | each enemy definition that names it: its name, its row and, unless it is the starting list, which of lists 1-3 it is; `-` for none |
 
-`enemy-orders.tsv`, one row per order:
+[`enemy-orders.tsv`](enemy-orders.tsv), one row per order:
 
 | Column | Meaning |
 |---|---|

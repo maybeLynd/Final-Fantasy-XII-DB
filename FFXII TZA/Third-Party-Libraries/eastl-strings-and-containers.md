@@ -296,7 +296,7 @@ with a string key at `+0x20` and a value at `+0x40` that it passes to `0x002001F
 - [`eastl-strings-and-containers-ordered-container-runtime.tsv`](eastl-strings-and-containers-ordered-container-runtime.tsv) and
   [`eastl-strings-and-containers-ordered-container-runtime-callers.tsv`](eastl-strings-and-containers-ordered-container-runtime-callers.tsv): the tree runtime and its
   callers.
-- `eastl-strings-and-containers-template-instances.tsv`: container code instantiated per element
+- [`eastl-strings-and-containers-template-instances.tsv`](eastl-strings-and-containers-template-instances.tsv): container code instantiated per element
   type.
 - [Object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md):
   the other per-type container bodies and the record-pool template they build.

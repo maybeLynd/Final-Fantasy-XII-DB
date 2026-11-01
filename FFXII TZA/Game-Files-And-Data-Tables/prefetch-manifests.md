@@ -132,7 +132,7 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
 
 | Column | Meaning |
 |---|---|
-| `list` | the list's number, its row in `prefetch-manifests-lists.tsv` |
+| `list` | the list's number, its row in [`prefetch-manifests-lists.tsv`](prefetch-manifests-lists.tsv) |
 | `path`, `language`, `part` | the file, its language folder (`-` for the file outside them), and its folder or file name within it |
 | `bytes`, `sha256` | the file's size and SHA-256 |
 | `size_token` | the list's `##Total_data_Size:_` token, which the parser drops; empty when it has none |

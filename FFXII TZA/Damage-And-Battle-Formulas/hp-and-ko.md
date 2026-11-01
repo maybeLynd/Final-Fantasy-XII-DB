@@ -37,10 +37,12 @@ battle units first (`0x0031B860`, `0x00300553`, `0x0030055E`).
 | spawn and timeline code (absolute) | `0x00235316`, `0x0023A451`, `0x0031A09B`, `0x00329CAE` | value | caller's |
 
 For the target, the applier runs only when result `+0x2C` bit `0x100` is set (`0x00311610`). It uses the
-absolute form for bit `0x8` (`0x00311657`-`0x00311661`) and builds the flags as bit `0x80000` → flag 8, bit `0x400` → flag 5,
-bit `0x40000` clear → flag 6, bit `0x40` clear → flag 4 (`0x00311608`-`0x00311651`)
-([Action results](../Battle-Actions/action-results.md)). For the user it uses the absolute form for bit
-`0x2` and maps bit `0x200` → flag 5, bit `0x20000` clear → flag 6, bit `0x20` clear → flag 4 (`0x0031170A`-`0x00311732`); it passes
+absolute form for bit `0x8` (`0x00311657`-`0x00311661`) and builds the flags as bit `0x80000` → flag `0x100`, bit `0x400` → flag `0x20`,
+bit `0x40000` clear → flag `0x40`, bit `0x40` clear → flag `0x10` (`0x00311608`-`0x00311651`)
+([Action results](../Battle-Actions/action-results.md)).
+
+For the user it uses the absolute form for bit
+`0x2` and maps bit `0x200` → flag `0x20`, bit `0x20000` clear → flag `0x40`, bit `0x20` clear → flag `0x10` (`0x0031170A`-`0x00311732`); it passes
 no source record, so the user's own write has no killer.
 
 ### The flag bits
@@ -49,14 +51,14 @@ The function unpacks its flags first (`0x00300580`-`0x00300601`):
 
 | Bit | Effect | Sites |
 |---:|---|---|
-| `0` | skip both suppression gates | `0x003005A0`, `0x00300605`, `0x0030072F` |
-| `1` | no "has fallen" message | `0x00300588`, `0x0030079C` |
-| `2` | no presentation event at all | `0x003005D2` |
-| `4` | no hit or heal reaction | `0x0030058D`, `0x003006AC` |
-| `5` | with a delta of 0, the reaction counts as a heal | `0x003005AB`-`0x003005C0` |
-| `6` | no event while the target survives | `0x003005E5`, `0x0030086C` |
-| `7` | no damage number | `0x003005F6`, `0x003006D8` |
-| `8` | the KO event is `0x200E` | `0x00300846` |
+| `0x1` | skip both suppression gates | `0x003005A0`, `0x00300605`, `0x0030072F` |
+| `0x2` | no "has fallen" message | `0x00300588`, `0x0030079C` |
+| `0x4` | no presentation event at all | `0x003005D2` |
+| `0x10` | no hit or heal reaction | `0x0030058D`, `0x003006AC` |
+| `0x20` | with a delta of 0, the reaction counts as a heal | `0x003005AB`-`0x003005C0` |
+| `0x40` | no event while the target survives | `0x003005E5`, `0x0030086C` |
+| `0x80` | no damage number | `0x003005F6`, `0x003006D8` |
+| `0x100` | the KO event is `0x200E` | `0x00300846` |
 
 All flags, including bits this function does not test (`0x217` carries bit `0x200`), are passed on to the
 status write (`0x0030076E`, `0x003007B9`).
@@ -137,7 +139,7 @@ mode 0)` clears KO (`0x0030075C`-`0x0030077A`).
 ### The KO sequence
 
 The "... has fallen." message depends on who fell: `0x002F8E90(target)` returns 1 for a party record, 2
-for an Esper (party type `0x1B`-`0x27`), 4 for an enemy-table unit whose actor class (`0x00263C20`) is 3,
+for an Esper (party type `0x1B`-`0x27`), 4 for an enemy-table unit whose actor class nibble (`0x00263C20`) is 3,
 and 8 or `0x10` for every other unit (`0x002F8E99`-`0x002F8F12`). Only 1, 2 and 4 pass the `& 7` test, so
 ordinary enemies get no message.
 
@@ -164,7 +166,7 @@ A target that survives gets event `0x2005` plus the variant bit, unless flag bit
 
 ## Shipped data
 
-The `btlAtelSetHpLowLimit` calls in the 2,990 `us` scripts:
+The `btlAtelSetHpLowLimit` calls in the 1,114 `us` scripts:
 
 | Fact | Count |
 |---|---:|

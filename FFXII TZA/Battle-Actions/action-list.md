@@ -7,7 +7,7 @@ addresses: "0x02EBF138, 0x0031C5D0, 0x0031DBB1, 0x0031DBBE, 0x002F9860, 0x00305F
 
 ## What it lists
 
-`action-list.tsv` holds one line for each of the 543 rows of the action table that registry slot `0x02EBF138`
+[`action-list.tsv`](action-list.tsv) holds one line for each of the 543 rows of the action table that registry slot `0x02EBF138`
 reaches (`battle_pack.bin` directory entry `+0x3C`). Row *n* is action id *n*. What every field does, and the code
 that reads it, is on [Action definition row](action-definition-row.md); this page is the shipped content.
 

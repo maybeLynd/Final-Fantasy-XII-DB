@@ -24,7 +24,7 @@ four bits of the pointer.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | count | entries that follow |
-| `+0x04` | `entry[count]` | 4 bytes each |  |
+| `+0x04` | `entry[count]` |  | 4 bytes each |
 
 ```
 then zero padding to the section's 0x40-byte boundary
@@ -38,7 +38,7 @@ Entry:
 | `+0x02` | `u16` | letter | ASCII letter class, high byte 0 |
 
 Read as one little-endian dword, an entry is `(letter << 16) | number`, which is the engine's bound
-id: bits 16 to 23 are the letter class and bits 0 to 15 the number
+id: the bits under mask `0xFF0000` are the letter class and the bits under mask `0xFFFF` the number
 ([script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)). `0x002ED6F0` maps the
 letter to a resource kind and file index: `C`, `M`, `N`, `S`, `t` and `w` index directly, `b` and `g`
 by two, `m` by 11, and `c`, `n` and `s` by 25; any other letter becomes kind 1.

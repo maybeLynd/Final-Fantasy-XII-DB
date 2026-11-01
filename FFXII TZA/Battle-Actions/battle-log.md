@@ -51,10 +51,10 @@ The dispatcher first posts, for the source, one notice per bit of the result's `
 
 | Bit of `+0x140` | Event |
 |---:|---:|
-| 8 | `0x36` |
-| 9 | `0x38` |
-| 11 | `0x3A` |
-| 10 | `0x3D` |
+| `0x100` | `0x36` |
+| `0x200` | `0x38` |
+| `0x800` | `0x3A` |
+| `0x400` | `0x3D` |
 
 ### Targets without a battle unit
 
@@ -141,7 +141,7 @@ name; kind 4 is formatted through a sub-template taken from the message table's 
 
 The kind 4 sub-template is drawn in two colours chosen by a colour class. `0x00536410` takes the class from
 `0x00536190(flag, id)` (`0x00536463`), with the request's dword `+4` split into the flag, bit `0x8000`, and the message id,
-bits 0-14 (`0x00536448`-`0x0053645B`). `0x00536190` reads bits `0x3` of the message row's byte `+3` (`0x005361E2`-`0x005361E6`):
+the mask `0x7FFF` (`0x00536448`-`0x0053645B`). `0x00536190` reads bits `0x3` of the message row's byte `+3` (`0x005361E2`-`0x005361E6`):
 
 | Bits `0x3` | Class, flag clear | Class, flag set | Sites |
 |---:|---:|---:|---|

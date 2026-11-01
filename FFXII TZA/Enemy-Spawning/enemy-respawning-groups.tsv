@@ -1,0 +1,20 @@
+function	name	site	disp	kind	instruction	route	note
+0x00306E60	SpawnGroup_UpdateExpectedMemberLaneMask	0x00306ED7	0x0	rw	or qword ptr [r8], rax	array 0x02EC13C0 reg	
+0x00306E60	SpawnGroup_UpdateExpectedMemberLaneMask	0x00306EE2	0x0	rw	and qword ptr [r8], rax	array 0x02EC13C0 reg	
+0x00306F00	SpawnGroup_RecordMemberDeathAndHandleCompletion	0x00306F7C	0x0	r	mov rax, qword ptr [rdx]	array 0x02EC13C0 reg	
+0x00306F00	SpawnGroup_RecordMemberDeathAndHandleCompletion	0x00306F83	0x0	r	cmp rax, qword ptr [rdx]	array 0x02EC13C0 reg	
+0x00306E60	SpawnGroup_UpdateExpectedMemberLaneMask	0x00306EEA	0x8	rw	and qword ptr [r8 + 8], rax	array 0x02EC13C0 reg	
+0x00306F00	SpawnGroup_RecordMemberDeathAndHandleCompletion	0x00306F78	0x8	rw	or qword ptr [rdx + 8], rax	array 0x02EC13C0 reg	
+0x00306F00	SpawnGroup_RecordMemberDeathAndHandleCompletion	0x00306F7F	0x8	r	and rax, qword ptr [rdx + 8]	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070AF	0x8	w	mov qword ptr [rax - 8], rcx	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070B3	0x0	w	mov qword ptr [rax - 0x10], rcx	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070A0	0x10	rw	and byte ptr [rax], 0xfe	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070BB	0x0	w	mov qword ptr [rax + 8], rcx	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070B7	0x8	w	mov qword ptr [rax + 0x10], rcx	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070A3	0x10	rw	and byte ptr [rax + 0x18], 0xfe	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070BF	0x8	w	mov qword ptr [rax + 0x28], rcx	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070C7	0x8	w	mov qword ptr [rax + 0x40], rcx	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070A7	0x10	rw	and byte ptr [rax + 0x30], 0xfe	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070C3	0x0	w	mov qword ptr [rax + 0x20], rcx	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070CB	0x0	w	mov qword ptr [rax + 0x38], rcx	array 0x02EC13C0 reg	
+0x00307090	SpawnGroup_ResetLifecycleLedger	0x003070AB	0x10	rw	and byte ptr [rax + 0x48], 0xfe	array 0x02EC13C0 reg	

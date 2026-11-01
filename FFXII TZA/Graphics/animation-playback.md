@@ -131,8 +131,8 @@ skeleton's byte `+0xA7` (`0x00372A50`). For each node (`0x00372A80`-`0x00372CA8`
   `+0x230`, `(0, 0, 0, 1)` at `+0x1A0` and `+0x1C0`, 1.0 at `+0x1E0`-`+0x1EC`, `+0x280` 0, bit `0x1` of
   `+0x282` and bit `0x4` of `+0x28B` cleared, `+0x278` the encoded null, the links `+0x270`-`+0x276` and
   `+0x27C` −1, bits `0x1` and `0x2` of `+0x28B` set, `+0x283` 0 and `+0x28A` 3.
-- For that node `0x00409300` then reads, with record bit `0x200000`, the pool translation (bits 23-25) and
-  rotation (bits 26-28) into `+0xF0` and `+0xC0`, else writes the identity over `+0xC0`-`+0xFF`
+- For that node `0x00409300` then reads, with record bit `0x200000`, the pool translation (mask `0x3800000`) and
+  rotation (mask `0x1C000000`) into `+0xF0` and `+0xC0`, else writes the identity over `+0xC0`-`+0xFF`
   (`0x00409428`); `0x004094D0` puts the pool matrix into `+0x150` (sixteen pool dwords with record bit `0x200000`,
   else the identity `0x01F204E0` through `0x0046D110`).
 - Any other node gets the short init: identity at `+0x1F0` and `+0x230`, `+0x280` 0, `+0x278` the
@@ -266,7 +266,7 @@ fill `+0x30` to `+0x2AF`.
 | `+0x000` | `i32` | the entry's id, −1 until `0x0051BA80` stores it (`0x0051BB8B`) |
 | `+0x004` | `i32` | −1 |
 | `+0x008` | `i32` | −1 |
-| `+0x00C` | `u32` | flags: bit `0x1` and bit `0x100000` set by `0x0041D220`; bit `0x20` skips the section resolve in `0x0041CA70`; bit `0x1000` asks `0x0041CF00` for the second-set clear; bit `0x2000` set by the locomotion query; bit `0x8000000` set and bits `0x40000` and `0x10000000` tested by the sampler (`0x00419243`, `0x004191CD`, `0x00419179`); bits 1, 3, 6-9, 14, 17, 18, 23 on [presentation entries](presentation-entries.md) and [authored commands](authored-presentation-commands.md) |
+| `+0x00C` | `u32` | flags: bit `0x1` and bit `0x100000` set by `0x0041D220`; bit `0x20` skips the section resolve in `0x0041CA70`; bit `0x1000` asks `0x0041CF00` for the second-set clear; bit `0x2000` set by the locomotion query; bit `0x8000000` set and bits `0x40000` and `0x10000000` tested by the sampler (`0x00419243`, `0x004191CD`, `0x00419179`); mask `0x8643CA` on [presentation entries](presentation-entries.md) and [authored commands](authored-presentation-commands.md) |
 | `+0x010` | `u8[8]` | not touched by the routines on this page |
 | `+0x018` | `void*` | the current track state, `+0x30 + 0xA0 × +0x20` (`0x0041CAE8`-`0x0041CAFD`) |
 | `+0x020` | `i32` | the current track state's number |
@@ -288,7 +288,7 @@ fill `+0x30` to `+0x2AF`.
 | `+0x2DC` | `u8` | selector kind, `0xFF` until command `0x0A` copies one |
 | `+0x2DD` | `u8[3]` | the selector's bytes, from command `0x0A` |
 | `+0x2E0` | `void*` | the character render record |
-| `+0x2E8` | `u32` | flags; bits 0–2 cleared by the constructor, bits `0x1` and `0x2` armed by the blend command `0x08` |
+| `+0x2E8` | `u32` | flags; mask `0x7` cleared by the constructor, bits `0x1` and `0x2` armed by the blend command `0x08` |
 | `+0x2EC` | `u8[36]` | the section name text (`0x00409210`), looked up with the tags |
 | `+0x310` | `void*` | the motion file |
 | `+0x318` | `u16` | index in the file, −1 for none |

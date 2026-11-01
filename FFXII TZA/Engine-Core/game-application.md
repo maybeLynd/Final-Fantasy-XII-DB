@@ -11,8 +11,10 @@ The moment the game finds its data. Everything a player ever sees comes through 
 `FFXII_TZA.vbf`, opened once at start by the application object; a few steps later one byte is set
 that the rest of the application waits on. Before it is set the window exists but nothing runs;
 after it, every frame goes through the same tick: the managers are pumped in a fixed order, the
-game's own state machine advances, the screen fade is stepped, and the frame ends. Scaling the application's time passes through this object; a pause byte the framework keeps here
-is never read by the game.
+game's own state machine advances, the screen fade is stepped, and the frame ends.
+
+Scaling the application's time passes through this object, and so does the pause byte
+that the pause screen sets: while it is set the field frame and the UI tick run only their short paused paths and the loading icon is not drawn.
 
 ## How it works
 
@@ -276,7 +278,7 @@ With the boot byte `+0xDB8` set, `0x00187860` also runs a 3840 × 2160 capture, 
 | 1 | 3 | sets `+0xDA8` to 6 |
 | 3 | 4 | grabs the frame (`0x00185FB0`) and sets `+0xDA8` to 6 |
 | 4 | 0 | writes the grab with `0x001876E0` |
-| 6 | 7 | none |
+| 6 | 7 | no action |
 | 7 | 7 | grabs on the first call (`0x01F7F5AC` = 1), then on each call writes the last grab and grabs again |
 
 `0x001876E0` writes `/Capture 4K/capture%03d.tga` (counter `0x01F7F5A4`), or in state 7
@@ -341,7 +343,7 @@ These cells sit in the static block at `0x02064AA0`, the main loop cells of [Fra
 | `+0x44` | `u32` | drawSkipped | 0x02064AE4: 1 when MainLoop_Draw returned at once on the skip request 0x01FD4A70, clearing the request (0x0022B196-0x0022B1A4); the field frame clears it before each draw (0x0022A824, r12d = 0 from 0x0022A78B). While it is set the next draw runs 0x00182370 in place of the GS register batch (0x0022B1C0-0x0022B1D2) |
 | `+0x48` | `u32` | monsterShown | 0x02064AE8: 1 while the Bestiary's monster viewer shows a monster in the full menu frame (0x00181DD0 at 0x0022BA5D, set at 0x0022BA66); on the first frame without one 0x0022B8C0 clears it and runs 0x00314370(1) and 0x0036F510 (0x0022BA9A-0x0022BAB2) |
 | `+0x4C` | `u32` | endOfPassCallback | 0x02064AEC: the end-of-pass callback word: 0x0022A580 tests it as a dword after the state handler and, when it is set, clears it (0x0022A731-0x0022A73F); no instruction stores a non-zero value |
-| `+0x54` | `u8[3]` | vuClipFlags | 0x02064AF4: the emulated VU1 clip flags, four 6-bit judgements: each clip step in the VU1 programs shifts the word left by 6, clears its top byte +0x57 and sets bits 0 to 5 from comparing x, y and z with +w and -w (0x00476506-0x0047650D, 0x00476635-0x004766BC); the programs read its low word (0x00476622, 0x004766C3) |
+| `+0x54` | `u8[3]` | vuClipFlags | 0x02064AF4: the emulated VU1 clip flags, four 6-bit judgements: each clip step in the VU1 programs shifts the word left by 6, clears its top byte +0x57 and sets the bits 0x3F from comparing x, y and z with +w and -w (0x00476506-0x0047650D, 0x00476635-0x004766BC); the programs read its low word (0x00476622, 0x004766C3) |
 | `+0x57` | `u8` | vuClipTop | 0x02064AF7: the top byte of the clip word at +0x54, cleared after every 6-bit shift so the flags keep 24 bits (0x0047650D, 0x00476641) |
 | `+0x5C` | `u32` | vuRandomOn | 0x02064AFC: the switch of the emulated VU1 random generator: while it is 0, 0x004B97F0 and 0x004B9C50 return 1.0 without stepping the seed 0x01E02828 (0x004B97F0-0x004B9801, 0x004B9C50-0x004B9C68); VU1 programs set it (0x0047C6B4 and 0x004884F3 store 1; 0x00482B24 and 0x004EC23A store a register) and read it (0x0047C8EE, 0x0048347D, 0x004D47C7, 0x004EC8FE) |
 
@@ -366,60 +368,60 @@ GameApplication  (static, `0x01F7E350`, `0x1140` bytes; base Phyre::PFramework::
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0000` | `void*` | vtable 0x008C5760 |  |
-| `+0x0027` | `u8` | base byte written by slot 14 |  |
-| `+0x0048` | `f64` | frame delta, read by the tick |  |
-| `+0x0090` | `...` | passed to the render manager's constructor | with `+0x0E8` |
-| `+0x00E8` | `...` | passed to the render manager's constructor | with `+0x090` |
-| `+0x0D24` | `i32` | viewport width |  |
-| `+0x0D28` | `i32` | viewport height |  |
-| `+0x1130` | `void*` | slot 2's first argument |  |
-| `+0x1138` | `i32` | slot 2's second argument |  |
-| `+0x113C` | `u8` | startup latch: 0 until the init job finishes, 1 after |  |
-| `+0x113D` | `u8` | run-once guard of the frame tick |  |
+| `+0x0000` | `void*` |  | vtable `0x008C5760` |
+| `+0x0027` | `u8` |  | base byte written by slot 14 |
+| `+0x0048` | `f64` |  | frame delta, read by the tick |
+| `+0x0090` | `...` |  | passed to the render manager's constructor; with `+0x0E8` |
+| `+0x00E8` | `...` |  | passed to the render manager's constructor; with `+0x090` |
+| `+0x0D24` | `i32` |  | viewport width |
+| `+0x0D28` | `i32` |  | viewport height |
+| `+0x1130` | `void*` |  | slot 2's first argument |
+| `+0x1138` | `i32` |  | slot 2's second argument |
+| `+0x113C` | `u8` |  | startup latch: 0 until the init job finishes, 1 after |
+| `+0x113D` | `u8` |  | run-once guard of the frame tick |
 
 Vtables:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x008C5760` | `...` | GameApplication, 31 slots (table above) |  |
-| `0x01CB2508` | `...` | Phyre::PFramework::PApplication, 31 slots; RTTI locator at 0x01CB2500 |  |
+| `0x008C5760` | `...` |  | GameApplication, 31 slots (table above) |
+| `0x01CB2508` | `...` |  | Phyre::PFramework::PApplication, 31 slots; RTTI locator at `0x01CB2500` |
 
 Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01F7E340` | `void*` | 0x80-byte object built by the init job |  |
-| `0x01F7F4B0` | `f64` | the frame delta published by the pump |  |
+| `0x01F7E340` | `void*` |  | `0x80`-byte object built by the init job |
+| `0x01F7F4B0` | `f64` |  | the frame delta published by the pump |
 | `0x01F7F4B8` | `u8` | second pass flag |  |
-| `0x01F7F4C0` | `...` | the small objects of the init burst | with `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4D8` and `0x01F7F4E0` |
-| `0x01F7F4C8` | `...` | the small objects of the init burst | with `0x01F7F4C0` and `0x01F7F4D0` and `0x01F7F4D8` and `0x01F7F4E0` |
-| `0x01F7F4D0` | `...` | the small objects of the init burst | with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D8` and `0x01F7F4E0` |
-| `0x01F7F4D8` | `...` | the small objects of the init burst | with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4E0` |
-| `0x01F7F4E0` | `...` | the small objects of the init burst | with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4D8` |
-| `0x01F7F598` | `void*` | render manager (0xDD8) |  |
+| `0x01F7F4C0` | `...` |  | the small objects of the init burst; with `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4D8` and `0x01F7F4E0` |
+| `0x01F7F4C8` | `...` |  | the small objects of the init burst; with `0x01F7F4C0` and `0x01F7F4D0` and `0x01F7F4D8` and `0x01F7F4E0` |
+| `0x01F7F4D0` | `...` |  | the small objects of the init burst; with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D8` and `0x01F7F4E0` |
+| `0x01F7F4D8` | `...` |  | the small objects of the init burst; with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4E0` |
+| `0x01F7F4E0` | `...` |  | the small objects of the init burst; with `0x01F7F4C0` and `0x01F7F4C8` and `0x01F7F4D0` and `0x01F7F4D8` |
+| `0x01F7F598` | `void*` |  | render manager (`0xDD8`) |
 | `0x01F7F5D0` | `void*` | camera pair (0x270) |  |
 | `0x01F7F5D8` | `void*` | running byte (3) |  |
-| `0x01F7F5C0` | `void*` | the camera pair's +0x08 (0x0018A620() + 8), stored once by 0x00189CE0 (0x00189D63) under the | thread-safe static guard `0x01F7F5C8` (`0x008092FC`, `0x0080929C`); no instruction names it after that store |
-| `0x01F7F5E0` | `...` | the object reset on the 0x01FD4A88 path |  |
-| `0x01F7F5E8` | `...` | the vector emptied on the 0x01FD4A88 path |  |
-| `0x01F810F0` | `void*` | pause flag (1 byte) |  |
-| `0x01F810F8` | `void*` | AsyncJobManager (0x158 each) | with `0x01F81100` |
-| `0x01F81100` | `void*` | AsyncJobManager (0x158 each) | with `0x01F810F8` |
+| `0x01F7F5C0` | `void*` |  | the camera pair's `+0x08` (`0x0018A620`() + 8), stored once by `0x00189CE0` (`0x00189D63`) under the thread-safe static guard `0x01F7F5C8` (`0x008092FC`, `0x0080929C`); no instruction names it after that store |
+| `0x01F7F5E0` | `...` |  | the object reset on the `0x01FD4A88` path |
+| `0x01F7F5E8` | `...` |  | the vector emptied on the `0x01FD4A88` path |
+| `0x01F810F0` | `void*` |  | pause flag (1 byte) |
+| `0x01F810F8` | `void*` | AsyncJobManager | (`0x158` each); with `0x01F81100` |
+| `0x01F81100` | `void*` | AsyncJobManager | (`0x158` each); with `0x01F810F8` |
 | `0x01F81160` | `void*` | AsyncLoadManager |  |
-| `0x01F81168` | `void*` | map-art context (0x520) |  |
-| `0x01F81170` | `void*` | the map-art context's 0xA0 list |  |
-| `0x01F81218` | `void*` | movie player (0xBB8; a PCameraPerspective at +0x5A0) |  |
+| `0x01F81168` | `void*` |  | map-art context (`0x520`) |
+| `0x01F81170` | `void*` |  | the map-art context's `0xA0` list |
+| `0x01F81218` | `void*` |  | movie player (`0xBB8`; a PCameraPerspective at `+0x5A0`) |
 | `0x01F81240` | `void*` | model asset cache (0x238) |  |
-| `0x01F81248` | `void*` | recycle queue (0x108) |  |
+| `0x01F81248` | `void*` |  | recycle queue (`0x108`) |
 | `0x01F81258` | `void*` | procedural-texture context (0x1B8) |  |
-| `0x01F81260` | `void*` | SaveloadManager (0xA78) |  |
+| `0x01F81260` | `void*` | SaveloadManager | (`0xA78`) |
 | `0x01F81270` | `void*` | MultipleDebugDisplay (0x4670) |  |
-| `0x01F82CE0` | `void*` | screen fade (0x38) |  |
+| `0x01F82CE0` | `void*` |  | screen fade (`0x38`) |
 | `0x01F82D30` | `u8` | second-pass latch pair: armed by 0x001E0550, set by 0x001E0560, cleared by 0x001E0590 | with `0x01F82D31` |
 | `0x01F82D31` | `u8` | second-pass latch pair: armed by 0x001E0550, set by 0x001E0560, cleared by 0x001E0590 | with `0x01F82D30` |
-| `0x01FD4A68` | `u32` | written by the main state machine; gates the callback ring and the pass count |  |
-| `0x01FD4A88` | `u8` | the reset-then-pump request |  |
+| `0x01FD4A68` | `u32` |  | written by the main state machine; gates the callback ring and the pass count |
+| `0x01FD4A88` | `u8` |  | the reset-then-pump request |
 | `0x02064AA0` | `u32` | the pump mode |  |
 | `0x02064AD0` | `u8` | game step count |  |
 
@@ -508,7 +510,7 @@ The render manager (`0xDD8` bytes at `[0x01F7F598]`, built by `0x00184F20`, its 
 At start: the framework calls slot 2 (mount), slot 3 (device and the init job); the job builds the
 managers and closes the latch. Every frame: the framework calls slot 4 (the pump, the game step,
 the frame end), slot 7 (input) and slot 8 (render), each gated on the latch. Slots 21 and 22 store
-and read back the unused pause byte; slots 23 and 24 scale the framework's time by `0x0017E440()`.
+and read back the pause byte; slots 23 and 24 scale the framework's time by `0x0017E440()`.
 
 ## State
 

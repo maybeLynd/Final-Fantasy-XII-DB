@@ -42,7 +42,7 @@ All multi-byte fields are little-endian.
 |---|---|---|---|
 | `+0x00` | `u8[4]` | magic | "SAFH"; `0x008666B0` rejects anything else as a container (see Loader behaviour) |
 | `+0x04` | `u32` | size | the decoded image size, `0x56690` in this build; must be at most `0x100000` (`0x00866817`) |
-| `+0x08` | `u32` | rotation 0-31, the key rotation; must be below 32 (0x00866805); kept at 0x02EB3868 |  |
+| `+0x08` | `u32` |  | rotation 0-31, the key rotation; must be below 32 (`0x00866805`); kept at `0x02EB3868` |
 
 The body from `+0x0C` to the end of the file is the image, compressed with zlib `compress2` at
 level 9 (`0x0087AF40`, called from `0x00866200` with level 9) and then encrypted with RC4 by
@@ -98,14 +98,14 @@ descriptor's `+0x100` (`0x0057E310`).
 | `+0x44` | `u32` | clanrank | `0x00315390`() when story flag `0x400B` is set, else 0 |
 | `+0x48` | `u32` | mapgroup | the area's map persistence group: `0x00254380`(`0x00264F90`(areaId)) |
 | `+0x4C` | `u32` | area | the active or pending area id (`0x003148F0`) |
-| `+0x50` | `u32` | savecount 0x00583D60's second argument (the controller's +0xD0); in the written image the save counter 0x02CA99B4, saturating at 0xFFFFFFFF (0x0057E3CE-0x0057E3DD) |  |
+| `+0x50` | `u32` |  | savecount `0x00583D60`'s second argument (the controller's `+0xD0`); in the written image the save counter `0x02CA99B4`, saturating at `0xFFFFFFFF` (`0x0057E3CE`-`0x0057E3DD`) |
 | `+0x54` | `u8` | slot | `0x00583D60`'s first argument: the save slot (controller `+0xCD` from `0x00581DA0` at `0x00581EE7`; 0 from `0x005844A0` at `0x005844BE`) |
 | `+0x55` | `u8[2]` | pad2 | not written by the enumerated writers |
 | `+0x57` | `u8` | flags | bit `0x1` from `0x00236760` (Trial Mode stash pending), bit `0x2` from `0x00236740` (New Game+), bit `0x4` from `0x00236780` (New Game-) (`0x00583F5A`-`0x00583F7D`) |
 | `+0x58` | `u32` | date | constant `0x20050223`, written by `0x00253A80` and never read |
-| `+0x5C` | `u32` | clearsize constant 0x1538, the size 0x002EF2DD clears at payload +0 |  |
+| `+0x5C` | `u32` |  | clearsize constant `0x1538`, the size `0x002EF2DD` clears at payload +0 |
 | `+0x60` | `u32` | stamp | constant `0x05071901`, the party block's stamp |
-| `+0x64` | `u32` | blocksize constant 0x7410, the party block's size |  |
+| `+0x64` | `u32` |  | blocksize constant `0x7410`, the party block's size |
 | `+0x68` | `u32` | magic2 | `0x0131F3EA`, tested by `0x00255260` |
 | `+0x6C` | `u32` | size2 | `0x4818`, tested by `0x00255260`; the image-backed state block's size |
 | `+0x70` | `u8[36]` | stash | the mode-3 stash: `+0x70` ticks, `+0x78` hours, `+0x7A` minutes, `+0x7B` seconds, `+0x7C` walked (`0x00320D50`), `+0x80` to `+0x93` the five dwords of the world-transition record (`0x00584210`; the last stored at `0x005842B1` and read back at `0x0058435C`) |
@@ -137,7 +137,7 @@ per byte with `0xEDB88320`, final complement; a non-positive length returns 0 wi
 | active | `0x02164280` | `0x002EF640` | the live image, updated while playing |
 | capture | `0x021BA940` | `0x002EF620` | the finaliser's destination when it is told to write there |
 | write | `0x02211000` | `0x002EF630` | what the file write reads; filled from the capture buffer by `0x0057E310` (`0xACD` 128-byte blocks plus 16) and by `0x002EF690` |
-| backup | `0x022676C0` | none | a copy of the active buffer made by `0x002EF570` |
+| backup | `0x022676C0` | - (no accessor function) | a copy of the active buffer made by `0x002EF570` |
 
 The buffers are `0x566C0` apart, 48 bytes more than the image.
 
@@ -264,6 +264,11 @@ file of the kind.
 
 ## Related
 
+- [Saving and loading: the save slots and their files, the save screen's states, the six-step save transaction, the storage queue, the file layer's read and write rules, the area-change autosave and what a load runs](saving-and-loading.md)
+- [Save data fields: the regions of the save payload, who writes and reads each, and the access table](save-data-fields.md)
 - [Languages: the Language setting, the nine language codes, the locale id each maps to, the data folder it selects, the Windows-locale default, and the confirm and cancel buttons](languages.md)
 - [Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the counter hash and the PPFX xorshift, with their constants, seeds and states](../Random-Numbers/random-number-generators.md)
 - [Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters](../Rewards-EXP-Gil-And-Loot/gil.md)
+- [`save-image-accesses.tsv`](save-image-accesses.tsv): every censused access through a register holding the address
+  of one of the four image buffers (`0x02164280`, `0x021BA940`, `0x02211000`, `0x022676C0`) or loaded from `[0x02092758]` (53
+  rows).

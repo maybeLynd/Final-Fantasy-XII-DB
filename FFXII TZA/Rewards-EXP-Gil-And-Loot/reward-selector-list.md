@@ -7,7 +7,7 @@ addresses: "0x02EBF068, 0x002FD640, 0x0031C5D0, 0x0031D712, 0x00322C50"
 
 ## What it lists
 
-`reward-selector-list.tsv` holds one line for each of the 256 rows of the selector table that registry slot
+[`reward-selector-list.tsv`](reward-selector-list.tsv) holds one line for each of the 256 rows of the selector table that registry slot
 `0x02EBF068` reaches (`battle_pack.bin` directory entry `+0x9C`). Row *n* is selector id `0xA000` + *n*, inventory
 class 15 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)).
 

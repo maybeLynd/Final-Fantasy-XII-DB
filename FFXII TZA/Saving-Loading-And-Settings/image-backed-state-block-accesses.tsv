@@ -1,0 +1,33 @@
+function	name	site	disp	kind	instruction	route	note
+0x00252E60	InventoryDerivedIndex_AddPresentItem	0x00252EB5	0x0	addr	lea rdi, [rax + rcx*4]	gptr 0x020927C0	
+0x00252F70	FUN_00252f70	0x00252F8F	0x0	addr	lea rax, [rax + rcx*4]	gptr 0x020927C0	
+0x00252FF0	FUN_00252ff0	0x00253020	0x0	addr	lea rsi, [rax + rdx*4]	gptr 0x020927C0	
+0x002530E0	FUN_002530e0	0x00253145	0x0	addr	lea rdi, [rax + rcx*4]	gptr 0x020927C0	
+0x00253240	SaveRuntime_InitializeImageBackedPointerDescriptor	0x002532AB	0x0	addr	lea r14, [rcx + rax*4]	gptr 0x020927C0	
+0x002534C0	InventoryDerivedIndex_CompactCategoryList	0x00253512	0x0	addr	lea r14, [rax + rcx*4]	gptr 0x020927C0	
+0x002535D0	InventoryDerivedIndex_RemoveAbsentItem	0x0025362D	0x0	addr	lea r14, [rax + rdx*4]	gptr 0x020927C0	
+0x00252610	FUN_00252610	0x002526AA	0x30	w	mov word ptr [r9 + rax*2 + 0x30], r8w	gptr 0x020927C0	
+0x002526F0	FUN_002526f0	0x00252793	0x30	r	movsx eax, word ptr [rbp + rax*2 + 0x30]	gptr 0x020927C0	
+0x002527B0	FUN_002527b0	0x00252819	0x30	w	mov word ptr [r9 + rax*2 + 0x30], r8w	gptr 0x020927C0	
+0x002527B0	FUN_002527b0	0x0025282D	0x30	w	mov word ptr [r9 + rax*2 + 0x30], r8w	gptr 0x020927C0	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253B3E	0x30	addr	lea rcx, [rbx + 0x30]	gptr 0x020927C0	
+0x00252610	FUN_00252610	0x0025265B	0x90	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	gptr 0x020927C0	
+0x00252610	FUN_00252610	0x0025266E	0x90	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	gptr 0x020927C0	
+0x002526F0	FUN_002526f0	0x0025273B	0x90	r	mov eax, dword ptr [rbp + rax*4 + 0x90]	gptr 0x020927C0	
+0x002526F0	FUN_002526f0	0x00252751	0x90	r	mov eax, dword ptr [rbp + rax*4 + 0x90]	gptr 0x020927C0	
+0x002527B0	FUN_002527b0	0x002527CF	0x90	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	gptr 0x020927C0	
+0x002527B0	FUN_002527b0	0x002527E5	0x90	w	mov dword ptr [r9 + rax*4 + 0x90], r8d	gptr 0x020927C0	
+0x00253480	FUN_00253480	0x002534AA	0x3244	rw	and byte ptr [rax + 0x3244], 1	gptr 0x020927C0	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253B1C	0x3244	rw	and byte ptr [rax + 0x3244], 1	gptr 0x020927C0	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253B47	0x3244	addr	lea rcx, [rbx + 0x3244]	gptr 0x020927C0	
+0x00253480	FUN_00253480	0x002534B1	0x3245	rw	and byte ptr [rax + 0x3245], 0xfe	gptr 0x020927C0	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253B23	0x3245	rw	and byte ptr [rax + 0x3245], 0xfe	gptr 0x020927C0	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253B5D	0x32C4	w	mov qword ptr [rbx + 0x32c4], rax	gptr 0x020927C0	
+0x00250270	FUN_00250270	0x002502D9	0x47B8	r	cmp dword ptr [rdx + r10*4 + 0x47b8], eax	gptr 0x020927C0	
+0x00250270	FUN_00250270	0x002503D9	0x47B8	r	cmp r15d, dword ptr [rdx + r10*4 + 0x47b8]	gptr 0x020927C0	
+0x00252FA0	FUN_00252fa0	0x00252FD7	0x47B8	r	mov eax, dword ptr [rax + rcx*4 + 0x47b8]	gptr 0x020927C0	
+0x002542B0	FUN_002542b0	0x002542D1	0x47E8	r	mov r11, qword ptr [rax + 0x47e8]	gptr 0x020927C0	
+0x00254CC0	FUN_00254cc0	0x00254D06	0x47E8	rw	add qword ptr [rbx + 0x47e8], rcx	gptr 0x020927C0	
+0x00254CC0	FUN_00254cc0	0x00254D0F	0x47E8	r	mov rax, qword ptr [rbx + 0x47e8]	gptr 0x020927C0	
+0x00254CC0	FUN_00254cc0	0x00254D1D	0x47E8	w	mov qword ptr [rbx + 0x47e8], rax	gptr 0x020927C0	
+0x00255040	FUN_00255040	0x00255047	0x47E8	w	mov qword ptr [rax + 0x47e8], 0	gptr 0x020927C0	

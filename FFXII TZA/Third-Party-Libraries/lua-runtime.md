@@ -175,7 +175,7 @@ Five kinds of record live inside these objects and are never collected on their 
 
 ### Interpreter bodies outside the member list
 
-Three of the largest Lua functions are not in `lua-runtime-members.tsv`; each carries Lua's own
+Three of the largest Lua functions are not in [`lua-runtime-members.tsv`](lua-runtime-members.tsv); each carries Lua's own
 messages:
 
 - `0x008216A0` is `luaV_execute`, the bytecode loop: it raises "'for' initial value must be a

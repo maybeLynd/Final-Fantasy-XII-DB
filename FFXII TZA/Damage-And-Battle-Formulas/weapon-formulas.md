@@ -14,10 +14,10 @@ then multiplies by a scale built from the wielder's level and one or two stats:
 |---|---|---|
 | swords, greatswords, spears, rods, crossbows | Strength and Strength | Defense |
 | daggers, ninja swords, bows | Strength and Speed | Defense |
-| katanas, staves | Strength and Magick Power | Defense |
+| katanas, staves, and the sword Kumbha | Strength and Magick Power | Defense |
 | axes, hammers, hand-bombs | Strength and Vitality, with a random share | Defense |
 | poles | Strength and Strength | Magick Resist |
-| maces | Magick Power and Magick Power | Defense |
+| maces, and the sword Joyeuse | Magick Power and Magick Power | Defense |
 | guns, measures, and the Healing Rod, Rod of Faith, Excalipur and Bonebreaker | Attack Power alone | nothing |
 | unarmed | Strength and Strength, without the base of 1 | Defense |
 

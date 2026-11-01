@@ -23,10 +23,10 @@ PUtility module object:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | vtable: 0x00D26BC0 in the image, the module's own after construction |  |
-| `+0x08` | `void*` | next module, 0 at the end |  |
-| `+0x10` | `void*` | module name string ("Rendering", "Text", ...) |  |
-| `+0x18` | `u32` | ordering key, 0xFF in every module |  |
+| `+0x00` | `void*` |  | vtable: `0x00D26BC0` in the image, the module's own after construction |
+| `+0x08` | `void*` |  | next module, 0 at the end |
+| `+0x10` | `void*` |  | module name string ("Rendering", "Text", ...) |
+| `+0x18` | `u32` |  | ordering key, `0xFF` in every module |
 
 The base vtable has three slots: `0x005A0CB0` (destroy), and `0x005C5230` (return 0) for init and
 shutdown. Each module class overrides init (`+0x08`) and shutdown (`+0x10`) where it has work.

@@ -20,7 +20,7 @@ ztc_a01	setup	event	10	0x0188E	73	g_com_mnp_ゼルテニアン洞窟ロケタイ
 ztc_a01	setup	event	11	0x01897	74	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0 and nowjumpindex() == 1; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicread	scratch1_var_2	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a01	setup	event	12	0x0189D	75	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0 and nowjumpindex() == 1; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicreadsync	scratch1_var_2	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a01	setup	event	13	0x018A0	78	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a01	__MJ_CTRL000	init	1	0x018A4	87	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a01	__MJ_CTRL000	init	1	0x018A4	87	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a01	__MJ_CTRL000	init	2	0x018AA	88	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a01	__MJ_CTRL000	init	3	0x018AD	89	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a01	__MJ_CTRL000	mapjump	1	0x018B1	99	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -51,7 +51,7 @@ ztc_a01	__MJ_CTRL000	mapjump	25	0x019B0	138	local_var_s1f1_1; not (regI3)	fadesy
 ztc_a01	__MJ_CTRL000	mapjump	26	0x019B6	139	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a01	__MJ_CTRL000	mapjump	27	0x019C2	140	local_var_s1f1_1; not (regI3)	mapjump	0x0241, 5, 0	jumps: Sandfalls (Zertinan Caverns), field 577, entrance 5	-	-	-	-	resolved	this page's How a call is read
 ztc_a01	__MJ_CTRL000	mapjump	28	0x019C5	143	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a01	__MJ_CTRL001	init	1	0x019C9	152	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a01	__MJ_CTRL001	init	1	0x019C9	152	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a01	__MJ_CTRL001	init	2	0x019CF	153	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a01	__MJ_CTRL001	init	3	0x019D2	154	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a01	__MJ_CTRL001	mapjump	1	0x019D6	164	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -443,7 +443,7 @@ ztc_a02	setup	battle	2	0x01DE7	40	-	btlAtelSetDecidingEntryPointTimes	3	-	-	-	-	
 ztc_a02	setup	battle	3	0x01DED	41	-	btlAtelSetActiveActorMax	6	-	-	-	-	-		01 verb-table.tsv
 ztc_a02	setup	battle	4	0x01DF3	42	-	btlAtelSetEntryStruct	0x03000068	-	-	-	-	-		01 verb-table.tsv
 ztc_a02	setup	battle	5	0x01DF6	43	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a02	__MJ_CTRL000	init	1	0x01DFA	52	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	__MJ_CTRL000	init	1	0x01DFA	52	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	__MJ_CTRL000	init	2	0x01E00	53	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a02	__MJ_CTRL000	init	3	0x01E03	54	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	__MJ_CTRL000	mapjump	1	0x01E07	64	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -474,7 +474,7 @@ ztc_a02	__MJ_CTRL000	mapjump	25	0x01F06	103	local_var_s1f1_1; not (regI3)	fadesy
 ztc_a02	__MJ_CTRL000	mapjump	26	0x01F0C	104	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a02	__MJ_CTRL000	mapjump	27	0x01F18	105	local_var_s1f1_1; not (regI3)	mapjump	0x0249, 6, 0	jumps: The Balamka Fault (Zertinan Caverns), field 585, entrance 6	-	-	-	-	resolved	this page's How a call is read
 ztc_a02	__MJ_CTRL000	mapjump	28	0x01F1B	108	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a02	__MJ_CTRL001	init	1	0x01F1F	117	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	__MJ_CTRL001	init	1	0x01F1F	117	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	__MJ_CTRL001	init	2	0x01F25	118	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a02	__MJ_CTRL001	init	3	0x01F28	119	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	__MJ_CTRL001	mapjump	1	0x01F2C	129	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -505,7 +505,7 @@ ztc_a02	__MJ_CTRL001	mapjump	25	0x0202B	168	local_var_s2f1_1; not (regI3)	fadesy
 ztc_a02	__MJ_CTRL001	mapjump	26	0x02031	169	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a02	__MJ_CTRL001	mapjump	27	0x0203D	170	local_var_s2f1_1; not (regI3)	mapjump	0x0242, 2, 0	jumps: Hourglass Basin (Zertinan Caverns), field 578, entrance 2	-	-	-	-	resolved	this page's How a call is read
 ztc_a02	__MJ_CTRL001	mapjump	28	0x02040	173	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a02	__MJ_CTRL002	init	1	0x02044	182	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	__MJ_CTRL002	init	1	0x02044	182	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	__MJ_CTRL002	init	2	0x0204A	183	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a02	__MJ_CTRL002	init	3	0x0204D	184	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	__MJ_CTRL002	mapjump	1	0x02051	194	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -536,7 +536,7 @@ ztc_a02	__MJ_CTRL002	mapjump	25	0x02150	233	local_var_s3f1_1; not (regI3)	fadesy
 ztc_a02	__MJ_CTRL002	mapjump	26	0x02156	234	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a02	__MJ_CTRL002	mapjump	27	0x02162	235	local_var_s3f1_1; not (regI3)	mapjump	0x0249, 3, 0	jumps: The Balamka Fault (Zertinan Caverns), field 585, entrance 3	-	-	-	-	resolved	this page's How a call is read
 ztc_a02	__MJ_CTRL002	mapjump	28	0x02165	238	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a02	__MJ_CTRL003	init	1	0x02169	247	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	__MJ_CTRL003	init	1	0x02169	247	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	__MJ_CTRL003	init	2	0x0216F	248	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a02	__MJ_CTRL003	init	3	0x02172	249	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	__MJ_CTRL003	mapjump	1	0x02176	259	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -567,7 +567,7 @@ ztc_a02	__MJ_CTRL003	mapjump	25	0x02275	298	local_var_s4f1_1; not (regI3)	fadesy
 ztc_a02	__MJ_CTRL003	mapjump	26	0x0227B	299	local_var_s4f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a02	__MJ_CTRL003	mapjump	27	0x02287	300	local_var_s4f1_1; not (regI3)	mapjump	0x0242, 1, 0	jumps: Hourglass Basin (Zertinan Caverns), field 578, entrance 1	-	-	-	-	resolved	this page's How a call is read
 ztc_a02	__MJ_CTRL003	mapjump	28	0x0228A	303	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a02	__MJ_CTRL004	init	1	0x0228E	312	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	__MJ_CTRL004	init	1	0x0228E	312	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	__MJ_CTRL004	init	2	0x02294	313	-	setmapjumpgroup	5	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a02	__MJ_CTRL004	init	3	0x02297	314	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	__MJ_CTRL004	mapjump	1	0x0229B	324	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -797,10 +797,10 @@ ztc_a02	流砂アニメ３	main	13	0x0283C	752	global_var_3 == 1	animestop	102	-
 ztc_a02	流砂アニメ３	main	14	0x0283F	754	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック１実行	init	1	0x02847	763	-	if	global_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック１実行	init	2	0x0284D	765	global_var_1 == 0	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-ztc_a02	流砂ギミック１実行	init	3	0x02853	766	global_var_1 == 0	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック１実行	init	4	0x02859	767	global_var_1 == 0	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック１実行	init	5	0x0285F	768	global_var_1 == 0	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック１実行	init	6	0x02865	769	global_var_1 == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック１実行	init	3	0x02853	766	global_var_1 == 0	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック１実行	init	4	0x02859	767	global_var_1 == 0	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック１実行	init	5	0x0285F	768	global_var_1 == 0	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック１実行	init	6	0x02865	769	global_var_1 == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	流砂ギミック１実行	init	7	0x0286C	771	-	switch	global_var_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック１実行	init	8	0x0286F	773	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック１実行	init	9	0x02878	774	global_var_1 = 0	setmapidfloor	1, 0, 0	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -822,9 +822,9 @@ ztc_a02	流砂ギミック１実行	talk	1	0x028FA	794	-	sethpmenu	0	the HUD: se
 ztc_a02	流砂ギミック１実行	talk	2	0x028FD	795	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_a02	流砂ギミック１実行	talk	3	0x02903	796	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 ztc_a02	流砂ギミック１実行	talk	4	0x0290F	797	-	sysReqew	1, map_ダミーＰＣ::流砂ギミック１	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::流砂ギミック１ on channel 1; waits until it ends	map_ダミーＰＣ.流砂ギミック１	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック１実行	talk	5	0x02913	798	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック１実行	talk	6	0x02919	799	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック１実行	talk	7	0x0291F	800	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック１実行	talk	5	0x02913	798	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック１実行	talk	6	0x02919	799	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック１実行	talk	7	0x0291F	800	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	流砂ギミック１実行	talk	8	0x02922	801	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_a02	流砂ギミック１実行	talk	9	0x02928	802	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 ztc_a02	流砂ギミック１実行	talk	10	0x0292B	803	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -835,10 +835,10 @@ ztc_a02	流砂ギミック１実行	talk	14	0x02943	807	-	settrapshowstatus	1	al
 ztc_a02	流砂ギミック１実行	talk	15	0x02946	808	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック２実行	init	1	0x0294E	817	-	if	global_var_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック２実行	init	2	0x02954	819	global_var_2 == 0	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-ztc_a02	流砂ギミック２実行	init	3	0x0295A	820	global_var_2 == 0	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック２実行	init	4	0x02960	821	global_var_2 == 0	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック２実行	init	5	0x02966	822	global_var_2 == 0	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック２実行	init	6	0x0296C	823	global_var_2 == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック２実行	init	3	0x0295A	820	global_var_2 == 0	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック２実行	init	4	0x02960	821	global_var_2 == 0	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック２実行	init	5	0x02966	822	global_var_2 == 0	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック２実行	init	6	0x0296C	823	global_var_2 == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	流砂ギミック２実行	init	7	0x02973	825	-	switch	global_var_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック２実行	init	8	0x02976	827	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック２実行	init	9	0x0297F	828	global_var_2 = 0	setmapidfloor	2, 0, 0	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -860,9 +860,9 @@ ztc_a02	流砂ギミック２実行	talk	1	0x02A01	848	-	sethpmenu	0	the HUD: se
 ztc_a02	流砂ギミック２実行	talk	2	0x02A04	849	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_a02	流砂ギミック２実行	talk	3	0x02A0A	850	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 ztc_a02	流砂ギミック２実行	talk	4	0x02A16	851	-	sysReqew	1, map_ダミーＰＣ::流砂ギミック２	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::流砂ギミック２ on channel 1; waits until it ends	map_ダミーＰＣ.流砂ギミック２	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック２実行	talk	5	0x02A1A	852	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック２実行	talk	6	0x02A20	853	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック２実行	talk	7	0x02A26	854	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック２実行	talk	5	0x02A1A	852	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック２実行	talk	6	0x02A20	853	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック２実行	talk	7	0x02A26	854	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	流砂ギミック２実行	talk	8	0x02A29	855	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_a02	流砂ギミック２実行	talk	9	0x02A2F	856	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 ztc_a02	流砂ギミック２実行	talk	10	0x02A32	857	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -873,10 +873,10 @@ ztc_a02	流砂ギミック２実行	talk	14	0x02A4A	861	-	settrapshowstatus	1	al
 ztc_a02	流砂ギミック２実行	talk	15	0x02A4D	862	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック３実行	init	1	0x02A55	871	-	if	global_var_3 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック３実行	init	2	0x02A5B	873	global_var_3 == 0	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-ztc_a02	流砂ギミック３実行	init	3	0x02A61	874	global_var_3 == 0	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック３実行	init	4	0x02A67	875	global_var_3 == 0	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック３実行	init	5	0x02A6D	876	global_var_3 == 0	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック３実行	init	6	0x02A73	877	global_var_3 == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック３実行	init	3	0x02A61	874	global_var_3 == 0	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック３実行	init	4	0x02A67	875	global_var_3 == 0	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック３実行	init	5	0x02A6D	876	global_var_3 == 0	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック３実行	init	6	0x02A73	877	global_var_3 == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	流砂ギミック３実行	init	7	0x02A7A	879	-	switch	global_var_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック３実行	init	8	0x02A7D	881	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a02	流砂ギミック３実行	init	9	0x02A86	882	global_var_3 = 0	setmapidfloor	3, 0, 0	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -898,9 +898,9 @@ ztc_a02	流砂ギミック３実行	talk	1	0x02B08	902	-	sethpmenu	0	the HUD: se
 ztc_a02	流砂ギミック３実行	talk	2	0x02B0B	903	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_a02	流砂ギミック３実行	talk	3	0x02B11	904	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 ztc_a02	流砂ギミック３実行	talk	4	0x02B1D	905	-	sysReqew	1, map_ダミーＰＣ::流砂ギミック３	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::流砂ギミック３ on channel 1; waits until it ends	map_ダミーＰＣ.流砂ギミック３	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック３実行	talk	5	0x02B21	906	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック３実行	talk	6	0x02B27	907	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a02	流砂ギミック３実行	talk	7	0x02B2D	908	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック３実行	talk	5	0x02B21	906	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック３実行	talk	6	0x02B27	907	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a02	流砂ギミック３実行	talk	7	0x02B2D	908	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a02	流砂ギミック３実行	talk	8	0x02B30	909	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_a02	流砂ギミック３実行	talk	9	0x02B36	910	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 ztc_a02	流砂ギミック３実行	talk	10	0x02B39	911	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1456,7 +1456,7 @@ ztc_a03	setup	battle	8	0x021F3	61	file_var_s0_1 == 1; file_var_s0_2 == 5	store	s
 ztc_a03	setup	battle	9	0x021FC	65	file_var_s0_1 == 1; not (file_var_s0_2 == 5)	store	scratch1_var_1 = 2	variable scratch1_var_1 (scratch1 short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ztc_a03	setup	battle	10	0x02202	68	-	btlAtelSetEntryStruct	0x030000c0	-	-	-	-	-		01 verb-table.tsv
 ztc_a03	setup	battle	11	0x02205	69	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a03	__MJ_CTRL000	init	1	0x02209	78	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	__MJ_CTRL000	init	1	0x02209	78	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a03	__MJ_CTRL000	init	2	0x0220F	79	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a03	__MJ_CTRL000	init	3	0x02212	80	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a03	__MJ_CTRL000	mapjump	1	0x02216	90	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1487,7 +1487,7 @@ ztc_a03	__MJ_CTRL000	mapjump	25	0x02315	129	local_var_s1f1_1; not (regI3)	fadesy
 ztc_a03	__MJ_CTRL000	mapjump	26	0x0231B	130	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a03	__MJ_CTRL000	mapjump	27	0x02327	131	local_var_s1f1_1; not (regI3)	mapjump	0x0245, 4, 0	jumps: The Undershore (Zertinan Caverns), field 581, entrance 4	-	-	-	-	resolved	this page's How a call is read
 ztc_a03	__MJ_CTRL000	mapjump	28	0x0232A	134	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a03	__MJ_CTRL001	init	1	0x0232E	143	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	__MJ_CTRL001	init	1	0x0232E	143	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a03	__MJ_CTRL001	init	2	0x02334	144	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a03	__MJ_CTRL001	init	3	0x02337	145	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a03	__MJ_CTRL001	mapjump	1	0x0233B	155	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1518,7 +1518,7 @@ ztc_a03	__MJ_CTRL001	mapjump	25	0x0243A	194	local_var_s2f1_1; not (regI3)	fadesy
 ztc_a03	__MJ_CTRL001	mapjump	26	0x02440	195	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a03	__MJ_CTRL001	mapjump	27	0x0244C	196	local_var_s2f1_1; not (regI3)	mapjump	0x0245, 3, 0	jumps: The Undershore (Zertinan Caverns), field 581, entrance 3	-	-	-	-	resolved	this page's How a call is read
 ztc_a03	__MJ_CTRL001	mapjump	28	0x0244F	199	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a03	__MJ_CTRL002	init	1	0x02453	208	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	__MJ_CTRL002	init	1	0x02453	208	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a03	__MJ_CTRL002	init	2	0x02459	209	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a03	__MJ_CTRL002	init	3	0x0245C	210	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a03	__MJ_CTRL002	mapjump	1	0x02460	220	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1549,7 +1549,7 @@ ztc_a03	__MJ_CTRL002	mapjump	25	0x0255F	259	local_var_s3f1_1; not (regI3)	fadesy
 ztc_a03	__MJ_CTRL002	mapjump	26	0x02565	260	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a03	__MJ_CTRL002	mapjump	27	0x02571	261	local_var_s3f1_1; not (regI3)	mapjump	0x024e, 3, 0	jumps: Athroza Quicksands (Zertinan Caverns), field 590, entrance 3	-	-	-	-	resolved	this page's How a call is read
 ztc_a03	__MJ_CTRL002	mapjump	28	0x02574	264	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a03	__MJ_CTRL003	init	1	0x02578	273	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	__MJ_CTRL003	init	1	0x02578	273	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a03	__MJ_CTRL003	init	2	0x0257E	274	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a03	__MJ_CTRL003	init	3	0x02581	275	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a03	__MJ_CTRL003	mapjump	1	0x02585	285	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1580,7 +1580,7 @@ ztc_a03	__MJ_CTRL003	mapjump	25	0x02684	324	local_var_s4f1_1; not (regI3)	fadesy
 ztc_a03	__MJ_CTRL003	mapjump	26	0x0268A	325	local_var_s4f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_a03	__MJ_CTRL003	mapjump	27	0x02696	326	local_var_s4f1_1; not (regI3)	mapjump	0x0241, 2, 0	jumps: Sandfalls (Zertinan Caverns), field 577, entrance 2	-	-	-	-	resolved	this page's How a call is read
 ztc_a03	__MJ_CTRL003	mapjump	28	0x02699	329	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a03	__MJ_CTRL004	init	1	0x0269D	338	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	__MJ_CTRL004	init	1	0x0269D	338	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a03	__MJ_CTRL004	init	2	0x026A3	339	-	setmapjumpgroup	5	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_a03	__MJ_CTRL004	init	3	0x026A6	340	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a03	__MJ_CTRL004	mapjump	1	0x026AA	350	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1901,10 +1901,10 @@ ztc_a03	流砂アニメ	main	12	0x02F24	847	global_var_1 == 1	wait	3	-	-	3 frame
 ztc_a03	流砂アニメ	main	13	0x02F2A	848	global_var_1 == 1	animestop	100	-	-	-	-	-		01 verb-table.tsv
 ztc_a03	流砂アニメ	main	14	0x02F2D	850	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a03	流砂ギミック実行	init	1	0x02F35	859	-	if	global_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_a03	流砂ギミック実行	init	2	0x02F3B	861	global_var_1 == 0	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a03	流砂ギミック実行	init	3	0x02F41	862	global_var_1 == 0	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a03	流砂ギミック実行	init	4	0x02F47	863	global_var_1 == 0	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a03	流砂ギミック実行	init	5	0x02F4D	864	global_var_1 == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	流砂ギミック実行	init	2	0x02F3B	861	global_var_1 == 0	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	流砂ギミック実行	init	3	0x02F41	862	global_var_1 == 0	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	流砂ギミック実行	init	4	0x02F47	863	global_var_1 == 0	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	流砂ギミック実行	init	5	0x02F4D	864	global_var_1 == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a03	流砂ギミック実行	init	6	0x02F53	865	global_var_1 == 0	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
 ztc_a03	流砂ギミック実行	init	7	0x02F5A	867	-	switch	global_var_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_a03	流砂ギミック実行	init	8	0x02F5D	869	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1930,9 +1930,9 @@ ztc_a03	流砂ギミック実行	talk	1	0x02FFB	893	-	sethpmenu	0	the HUD: sethp
 ztc_a03	流砂ギミック実行	talk	2	0x02FFE	894	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_a03	流砂ギミック実行	talk	3	0x03004	895	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 ztc_a03	流砂ギミック実行	talk	4	0x03010	896	-	sysReqew	1, map_ダミーＰＣ::流砂ギミック	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::流砂ギミック on channel 1; waits until it ends	map_ダミーＰＣ.流砂ギミック	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a03	流砂ギミック実行	talk	5	0x03014	897	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a03	流砂ギミック実行	talk	6	0x0301A	898	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_a03	流砂ギミック実行	talk	7	0x03020	899	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	流砂ギミック実行	talk	5	0x03014	897	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	流砂ギミック実行	talk	6	0x0301A	898	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_a03	流砂ギミック実行	talk	7	0x03020	899	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_a03	流砂ギミック実行	talk	8	0x03023	900	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_a03	流砂ギミック実行	talk	9	0x03029	901	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 ztc_a03	流砂ギミック実行	talk	10	0x0302C	902	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2438,7 +2438,7 @@ ztc_b01	saveactor	main	1	0x02E19	-	-	shared template	cecbbef6fb	-	-	-	-	saveacto
 ztc_b01	saveactor	save_load	1	0x02E1A	-	-	shared template	d3f827524e	-	-	-	-	saveactor.save_load, template d3f827524e	resolved	shared-zone-script-steps.tsv
 ztc_b01	saveactor	save	1	0x02EDE	-	-	shared template	83b2548303	-	-	-	-	saveactor.save, template 83b2548303	resolved	shared-zone-script-steps.tsv
 ztc_b01	saveactor	load	1	0x02FC8	-	-	shared template	7aaf6e0eb2	-	-	-	-	saveactor.load, template 7aaf6e0eb2	resolved	shared-zone-script-steps.tsv
-ztc_b01	__MJ_CTRL000	init	1	0x03063	641	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_b01	__MJ_CTRL000	init	1	0x03063	641	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_b01	__MJ_CTRL000	init	2	0x03069	642	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_b01	__MJ_CTRL000	init	3	0x0306C	643	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_b01	__MJ_CTRL000	mapjump	1	0x03070	653	-	store	local_var_s6f1_1 = 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2469,7 +2469,7 @@ ztc_b01	__MJ_CTRL000	mapjump	25	0x0316F	692	local_var_s6f1_1; not (regI3)	fadesy
 ztc_b01	__MJ_CTRL000	mapjump	26	0x03175	693	local_var_s6f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_b01	__MJ_CTRL000	mapjump	27	0x03181	694	local_var_s6f1_1; not (regI3)	mapjump	0x0242, 4, 0	jumps: Hourglass Basin (Zertinan Caverns), field 578, entrance 4	-	-	-	-	resolved	this page's How a call is read
 ztc_b01	__MJ_CTRL000	mapjump	28	0x03184	697	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_b01	__MJ_CTRL001	init	1	0x03188	706	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_b01	__MJ_CTRL001	init	1	0x03188	706	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_b01	__MJ_CTRL001	init	2	0x0318E	707	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_b01	__MJ_CTRL001	init	3	0x03191	708	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_b01	__MJ_CTRL001	mapjump	1	0x03195	718	-	store	local_var_s7f1_1 = 1	variable local_var_s7f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2500,7 +2500,7 @@ ztc_b01	__MJ_CTRL001	mapjump	25	0x03294	757	local_var_s7f1_1; not (regI3)	fadesy
 ztc_b01	__MJ_CTRL001	mapjump	26	0x0329A	758	local_var_s7f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_b01	__MJ_CTRL001	mapjump	27	0x032A6	759	local_var_s7f1_1; not (regI3)	mapjump	0x0242, 5, 0	jumps: Hourglass Basin (Zertinan Caverns), field 578, entrance 5	-	-	-	-	resolved	this page's How a call is read
 ztc_b01	__MJ_CTRL001	mapjump	28	0x032A9	762	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_b01	__MJ_CTRL002	init	1	0x032AD	771	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_b01	__MJ_CTRL002	init	1	0x032AD	771	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_b01	__MJ_CTRL002	init	2	0x032B3	772	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_b01	__MJ_CTRL002	init	3	0x032B6	773	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_b01	__MJ_CTRL002	mapjump	1	0x032BA	783	-	store	local_var_s8f1_1 = 1	variable local_var_s8f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2531,7 +2531,7 @@ ztc_b01	__MJ_CTRL002	mapjump	25	0x033B9	822	local_var_s8f1_1; not (regI3)	fadesy
 ztc_b01	__MJ_CTRL002	mapjump	26	0x033BF	823	local_var_s8f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_b01	__MJ_CTRL002	mapjump	27	0x033CB	824	local_var_s8f1_1; not (regI3)	mapjump	0x024e, 2, 0	jumps: Athroza Quicksands (Zertinan Caverns), field 590, entrance 2	-	-	-	-	resolved	this page's How a call is read
 ztc_b01	__MJ_CTRL002	mapjump	28	0x033CE	827	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_b01	__MJ_CTRL003	init	1	0x033D2	836	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_b01	__MJ_CTRL003	init	1	0x033D2	836	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_b01	__MJ_CTRL003	init	2	0x033D8	837	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_b01	__MJ_CTRL003	init	3	0x033DB	838	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_b01	__MJ_CTRL003	mapjump	1	0x033DF	848	-	store	local_var_s9f1_1 = 1	variable local_var_s9f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2816,7 +2816,7 @@ ztc_b02	setup	event	10	0x015B2	59	g_com_mnp_ゼルテニアン洞窟ロケタイ
 ztc_b02	setup	event	11	0x015BB	60	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0 and nowjumpindex() == 1; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicread	scratch1_var_1	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_b02	setup	event	12	0x015C1	61	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0 and nowjumpindex() == 1; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicreadsync	scratch1_var_1	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_b02	setup	event	13	0x015C4	64	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_b02	__MJ_CTRL000	init	1	0x015C8	73	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_b02	__MJ_CTRL000	init	1	0x015C8	73	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_b02	__MJ_CTRL000	init	2	0x015CE	74	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_b02	__MJ_CTRL000	init	3	0x015D1	75	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_b02	__MJ_CTRL000	mapjump	1	0x015D5	85	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2847,7 +2847,7 @@ ztc_b02	__MJ_CTRL000	mapjump	25	0x016D4	124	local_var_s1f1_1; not (regI3)	fadesy
 ztc_b02	__MJ_CTRL000	mapjump	26	0x016DA	125	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_b02	__MJ_CTRL000	mapjump	27	0x016E6	126	local_var_s1f1_1; not (regI3)	mapjump	0x0245, 1, 0	jumps: The Undershore (Zertinan Caverns), field 581, entrance 1	-	-	-	-	resolved	this page's How a call is read
 ztc_b02	__MJ_CTRL000	mapjump	28	0x016E9	129	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_b02	__MJ_CTRL001	init	1	0x016ED	138	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_b02	__MJ_CTRL001	init	1	0x016ED	138	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_b02	__MJ_CTRL001	init	2	0x016F3	139	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_b02	__MJ_CTRL001	init	3	0x016F6	140	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_b02	__MJ_CTRL001	mapjump	1	0x016FA	150	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3144,7 +3144,7 @@ ztc_c01	setup	event	10	0x026E8	70	g_com_mnp_ゼルテニアン洞窟ロケタイ
 ztc_c01	setup	event	11	0x026F1	71	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0 and nowjumpindex() == 2; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicread	scratch1_var_1	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	setup	event	12	0x026F7	72	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0 and nowjumpindex() == 2; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicreadsync	scratch1_var_1	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	setup	event	13	0x026FA	75	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c01	__MJ_CTRL000	init	1	0x026FE	84	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	__MJ_CTRL000	init	1	0x026FE	84	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	__MJ_CTRL000	init	2	0x02704	85	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	__MJ_CTRL000	init	3	0x02707	86	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c01	__MJ_CTRL000	mapjump	1	0x0270B	96	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3175,7 +3175,7 @@ ztc_c01	__MJ_CTRL000	mapjump	25	0x0280A	135	local_var_s1f1_1; not (regI3)	fadesy
 ztc_c01	__MJ_CTRL000	mapjump	26	0x02810	136	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c01	__MJ_CTRL000	mapjump	27	0x0281C	137	local_var_s1f1_1; not (regI3)	mapjump	0x024a, 3, 0	jumps: Drybeam Cavern (Zertinan Caverns), field 586, entrance 3	-	-	-	-	resolved	this page's How a call is read
 ztc_c01	__MJ_CTRL000	mapjump	28	0x0281F	140	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c01	__MJ_CTRL001	init	1	0x02823	149	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	__MJ_CTRL001	init	1	0x02823	149	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	__MJ_CTRL001	init	2	0x02829	150	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	__MJ_CTRL001	init	3	0x0282C	151	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c01	__MJ_CTRL001	mapjump	1	0x02830	161	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3206,7 +3206,7 @@ ztc_c01	__MJ_CTRL001	mapjump	25	0x0292F	200	local_var_s2f1_1; not (regI3)	fadesy
 ztc_c01	__MJ_CTRL001	mapjump	26	0x02935	201	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c01	__MJ_CTRL001	mapjump	27	0x02941	202	local_var_s2f1_1; not (regI3)	mapjump	0x024a, 4, 0	jumps: Drybeam Cavern (Zertinan Caverns), field 586, entrance 4	-	-	-	-	resolved	this page's How a call is read
 ztc_c01	__MJ_CTRL001	mapjump	28	0x02944	205	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c01	__MJ_CTRL002	init	1	0x02948	214	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	__MJ_CTRL002	init	1	0x02948	214	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	__MJ_CTRL002	init	2	0x0294E	215	-	setmapjumpgroup	5	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	__MJ_CTRL002	init	3	0x02951	216	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c01	__MJ_CTRL002	mapjump	1	0x02955	226	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3237,7 +3237,7 @@ ztc_c01	__MJ_CTRL002	mapjump	25	0x02A54	265	local_var_s3f1_1; not (regI3)	fadesy
 ztc_c01	__MJ_CTRL002	mapjump	26	0x02A5A	266	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c01	__MJ_CTRL002	mapjump	27	0x02A66	267	local_var_s3f1_1; not (regI3)	mapjump	0x024e, 4, 0	jumps: Athroza Quicksands (Zertinan Caverns), field 590, entrance 4	-	-	-	-	resolved	this page's How a call is read
 ztc_c01	__MJ_CTRL002	mapjump	28	0x02A69	270	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c01	__MJ_CTRL003	init	1	0x02A6D	279	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	__MJ_CTRL003	init	1	0x02A6D	279	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	__MJ_CTRL003	init	2	0x02A73	280	-	setmapjumpgroup	6	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	__MJ_CTRL003	init	3	0x02A76	281	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c01	__MJ_CTRL003	mapjump	1	0x02A7A	291	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3268,7 +3268,7 @@ ztc_c01	__MJ_CTRL003	mapjump	25	0x02B79	330	local_var_s4f1_1; not (regI3)	fadesy
 ztc_c01	__MJ_CTRL003	mapjump	26	0x02B7F	331	local_var_s4f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c01	__MJ_CTRL003	mapjump	27	0x02B8B	332	local_var_s4f1_1; not (regI3)	mapjump	0x0241, 1, 0	jumps: Sandfalls (Zertinan Caverns), field 577, entrance 1	-	-	-	-	resolved	this page's How a call is read
 ztc_c01	__MJ_CTRL003	mapjump	28	0x02B8E	335	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c01	__MJ_CTRL004	init	1	0x02B92	344	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	__MJ_CTRL004	init	1	0x02B92	344	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	__MJ_CTRL004	init	2	0x02B98	345	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	__MJ_CTRL004	init	3	0x02B9B	346	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c01	__MJ_CTRL004	mapjump	1	0x02B9F	356	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3299,7 +3299,7 @@ ztc_c01	__MJ_CTRL004	mapjump	25	0x02C9E	395	local_var_s5f1_1; not (regI3)	fadesy
 ztc_c01	__MJ_CTRL004	mapjump	26	0x02CA4	396	local_var_s5f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c01	__MJ_CTRL004	mapjump	27	0x02CB0	397	local_var_s5f1_1; not (regI3)	mapjump	0x0241, 3, 0	jumps: Sandfalls (Zertinan Caverns), field 577, entrance 3	-	-	-	-	resolved	this page's How a call is read
 ztc_c01	__MJ_CTRL004	mapjump	28	0x02CB3	400	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c01	__MJ_CTRL005	init	1	0x02CB7	409	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	__MJ_CTRL005	init	1	0x02CB7	409	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	__MJ_CTRL005	init	2	0x02CBD	410	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	__MJ_CTRL005	init	3	0x02CC0	411	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c01	__MJ_CTRL005	mapjump	1	0x02CC4	421	-	store	local_var_s6f1_1 = 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3627,15 +3627,15 @@ ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	8	0x0391A	1181	-	talkang	6
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	9	0x03920	1182	-	bindp2	0x03000002	model t2 (section 12 entry 2, bound id 0x740002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	10	0x03923	1183	-	fetchambient	-	-	-	-	-	-		01 verb-table.tsv
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	11	0x03930	1184	-	if	istreasureflag(6) == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	12	0x03936	1186	istreasureflag(6) == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	12	0x03936	1186	istreasureflag(6) == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	13	0x03939	1187	istreasureflag(6) == 0	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	14	0x0393F	1188	istreasureflag(6) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	15	0x03948	1192	not (istreasureflag(6) == 0)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	16	0x0394E	1193	not (istreasureflag(6) == 0)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	17	0x03954	1194	not (istreasureflag(6) == 0)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	15	0x03948	1192	not (istreasureflag(6) == 0)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	16	0x0394E	1193	not (istreasureflag(6) == 0)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	17	0x03954	1194	not (istreasureflag(6) == 0)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	18	0x0395A	1195	not (istreasureflag(6) == 0)	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	19	0x03960	1196	not (istreasureflag(6) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	20	0x03966	1198	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	20	0x03966	1198	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	21	0x0396C	1199	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	22	0x03972	1200	-	talkradius	0.800000012	argument 1: the margin of the calling actor's talk ellipse, the area the player stands in to talk to it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c01	ゼルテニアン地図宝壺	daiji_box_bind	23	0x03978	1201	-	touchradius	2	-	-	-	-	-		01 verb-table.tsv
@@ -3656,9 +3656,9 @@ ztc_c01	ゼルテニアン地図宝壺	talk	11	0x039D5	1219	-	sysReqew	1, イベ
 ztc_c01	ゼルテニアン地図宝壺	talk	12	0x039E2	1220	-	sysReq	1, override_actor::乗っ取り解除	actor `override_actor`	-	-	files override_actor::乗っ取り解除 on channel 1; does not wait	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	ゼルテニアン地図宝壺	talk	13	0x039E9	1221	-	sysReqwait	override_actor::乗っ取り解除	actor `override_actor`	-	-	waits until override_actor::乗っ取り解除 is no longer on its actor	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	ゼルテニアン地図宝壺	talk	14	0x039ED	1222	-	settreasureflag	6	flags set: Bank512, second half 0x0006: Set or tested in The Balamka Fault (Zertinan Caverns)	-	-	-	-	resolved	this page's How a call is read
-ztc_c01	ゼルテニアン地図宝壺	talk	15	0x039F3	1223	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c01	ゼルテニアン地図宝壺	talk	16	0x039F9	1224	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c01	ゼルテニアン地図宝壺	talk	17	0x039FF	1225	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	ゼルテニアン地図宝壺	talk	15	0x039F3	1223	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	ゼルテニアン地図宝壺	talk	16	0x039F9	1224	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c01	ゼルテニアン地図宝壺	talk	17	0x039FF	1225	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c01	ゼルテニアン地図宝壺	talk	18	0x03A02	1226	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ztc_c01	ゼルテニアン地図宝壺	talk	19	0x03A08	1227	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 ztc_c01	ゼルテニアン地図宝壺	talk	20	0x03A0B	1228	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3733,7 +3733,7 @@ ztc_c02	setup	battle	2	0x01AF7	34	-	btlAtelSetDecidingEntryPointTimes	3	-	-	-	-	
 ztc_c02	setup	battle	3	0x01AFD	35	-	btlAtelSetActiveActorMax	7	-	-	-	-	-		01 verb-table.tsv
 ztc_c02	setup	battle	4	0x01B03	36	-	btlAtelSetEntryStruct	0x030000a0	-	-	-	-	-		01 verb-table.tsv
 ztc_c02	setup	battle	5	0x01B06	37	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c02	__MJ_CTRL000	init	1	0x01B0A	46	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c02	__MJ_CTRL000	init	1	0x01B0A	46	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c02	__MJ_CTRL000	init	2	0x01B10	47	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c02	__MJ_CTRL000	init	3	0x01B13	48	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c02	__MJ_CTRL000	mapjump	1	0x01B17	58	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3764,7 +3764,7 @@ ztc_c02	__MJ_CTRL000	mapjump	25	0x01C16	97	local_var_s1f1_1; not (regI3)	fadesyn
 ztc_c02	__MJ_CTRL000	mapjump	26	0x01C1C	98	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c02	__MJ_CTRL000	mapjump	27	0x01C28	99	local_var_s1f1_1; not (regI3)	mapjump	0x0249, 1, 0	jumps: The Balamka Fault (Zertinan Caverns), field 585, entrance 1	-	-	-	-	resolved	this page's How a call is read
 ztc_c02	__MJ_CTRL000	mapjump	28	0x01C2B	102	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c02	__MJ_CTRL001	init	1	0x01C2F	111	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c02	__MJ_CTRL001	init	1	0x01C2F	111	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c02	__MJ_CTRL001	init	2	0x01C35	112	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c02	__MJ_CTRL001	init	3	0x01C38	113	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c02	__MJ_CTRL001	mapjump	1	0x01C3C	123	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3795,7 +3795,7 @@ ztc_c02	__MJ_CTRL001	mapjump	25	0x01D3B	162	local_var_s2f1_1; not (regI3)	fadesy
 ztc_c02	__MJ_CTRL001	mapjump	26	0x01D41	163	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c02	__MJ_CTRL001	mapjump	27	0x01D4D	164	local_var_s2f1_1; not (regI3)	mapjump	0x0249, 4, 0	jumps: The Balamka Fault (Zertinan Caverns), field 585, entrance 4	-	-	-	-	resolved	this page's How a call is read
 ztc_c02	__MJ_CTRL001	mapjump	28	0x01D50	167	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c02	__MJ_CTRL002	init	1	0x01D54	176	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c02	__MJ_CTRL002	init	1	0x01D54	176	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c02	__MJ_CTRL002	init	2	0x01D5A	177	-	setmapjumpgroup	5	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c02	__MJ_CTRL002	init	3	0x01D5D	178	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c02	__MJ_CTRL002	mapjump	1	0x01D61	188	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3826,7 +3826,7 @@ ztc_c02	__MJ_CTRL002	mapjump	25	0x01E60	227	local_var_s3f1_1; not (regI3)	fadesy
 ztc_c02	__MJ_CTRL002	mapjump	26	0x01E66	228	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c02	__MJ_CTRL002	mapjump	27	0x01E72	229	local_var_s3f1_1; not (regI3)	mapjump	0x024e, 1, 0	jumps: Athroza Quicksands (Zertinan Caverns), field 590, entrance 1	-	-	-	-	resolved	this page's How a call is read
 ztc_c02	__MJ_CTRL002	mapjump	28	0x01E75	232	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c02	__MJ_CTRL003	init	1	0x01E79	241	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c02	__MJ_CTRL003	init	1	0x01E79	241	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c02	__MJ_CTRL003	init	2	0x01E7F	242	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c02	__MJ_CTRL003	init	3	0x01E82	243	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c02	__MJ_CTRL003	mapjump	1	0x01E86	253	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3857,7 +3857,7 @@ ztc_c02	__MJ_CTRL003	mapjump	25	0x01F85	292	local_var_s4f1_1; not (regI3)	fadesy
 ztc_c02	__MJ_CTRL003	mapjump	26	0x01F8B	293	local_var_s4f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c02	__MJ_CTRL003	mapjump	27	0x01F97	294	local_var_s4f1_1; not (regI3)	mapjump	0x024b, 2, 0	jumps: Darkened Wharf (Zertinan Caverns), field 587, entrance 2	-	-	-	-	resolved	this page's How a call is read
 ztc_c02	__MJ_CTRL003	mapjump	28	0x01F9A	297	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c02	__MJ_CTRL004	init	1	0x01F9E	306	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c02	__MJ_CTRL004	init	1	0x01F9E	306	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c02	__MJ_CTRL004	init	2	0x01FA4	307	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c02	__MJ_CTRL004	init	3	0x01FA7	308	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c02	__MJ_CTRL004	mapjump	1	0x01FAB	318	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4099,7 +4099,7 @@ ztc_c03	setup	event	10	0x01C12	60	g_com_mnp_ゼルテニアン洞窟ロケタイ
 ztc_c03	setup	event	11	0x01C1B	61	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0 and nowjumpindex() == 3; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicread	scratch1_var_1	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c03	setup	event	12	0x01C21	62	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0 and nowjumpindex() == 3; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicreadsync	scratch1_var_1	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c03	setup	event	13	0x01C24	65	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c03	__MJ_CTRL000	init	1	0x01C28	74	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c03	__MJ_CTRL000	init	1	0x01C28	74	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c03	__MJ_CTRL000	init	2	0x01C2E	75	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c03	__MJ_CTRL000	init	3	0x01C31	76	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c03	__MJ_CTRL000	mapjump	1	0x01C35	86	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4130,7 +4130,7 @@ ztc_c03	__MJ_CTRL000	mapjump	25	0x01D34	125	local_var_s1f1_1; not (regI3)	fadesy
 ztc_c03	__MJ_CTRL000	mapjump	26	0x01D3A	126	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c03	__MJ_CTRL000	mapjump	27	0x01D46	127	local_var_s1f1_1; not (regI3)	mapjump	0x024a, 1, 0	jumps: Drybeam Cavern (Zertinan Caverns), field 586, entrance 1	-	-	-	-	resolved	this page's How a call is read
 ztc_c03	__MJ_CTRL000	mapjump	28	0x01D49	130	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c03	__MJ_CTRL001	init	1	0x01D4D	139	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c03	__MJ_CTRL001	init	1	0x01D4D	139	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c03	__MJ_CTRL001	init	2	0x01D53	140	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c03	__MJ_CTRL001	init	3	0x01D56	141	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c03	__MJ_CTRL001	mapjump	1	0x01D5A	151	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4161,7 +4161,7 @@ ztc_c03	__MJ_CTRL001	mapjump	25	0x01E59	190	local_var_s2f1_1; not (regI3)	fadesy
 ztc_c03	__MJ_CTRL001	mapjump	26	0x01E5F	191	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c03	__MJ_CTRL001	mapjump	27	0x01E6B	192	local_var_s2f1_1; not (regI3)	mapjump	0x024a, 2, 0	jumps: Drybeam Cavern (Zertinan Caverns), field 586, entrance 2	-	-	-	-	resolved	this page's How a call is read
 ztc_c03	__MJ_CTRL001	mapjump	28	0x01E6E	195	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c03	__MJ_CTRL002	init	1	0x01E72	204	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c03	__MJ_CTRL002	init	1	0x01E72	204	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c03	__MJ_CTRL002	init	2	0x01E78	205	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c03	__MJ_CTRL002	init	3	0x01E7B	206	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c03	__MJ_CTRL002	mapjump	1	0x01E7F	216	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4192,7 +4192,7 @@ ztc_c03	__MJ_CTRL002	mapjump	25	0x01F7E	255	local_var_s3f1_1; not (regI3)	fadesy
 ztc_c03	__MJ_CTRL002	mapjump	26	0x01F84	256	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c03	__MJ_CTRL002	mapjump	27	0x01F90	257	local_var_s3f1_1; not (regI3)	mapjump	0x024c, 3, 0	jumps: Canopy of Clay (Zertinan Caverns), field 588, entrance 3	-	-	-	-	resolved	this page's How a call is read
 ztc_c03	__MJ_CTRL002	mapjump	28	0x01F93	260	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c03	__MJ_CTRL003	init	1	0x01F97	269	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c03	__MJ_CTRL003	init	1	0x01F97	269	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c03	__MJ_CTRL003	init	2	0x01F9D	270	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c03	__MJ_CTRL003	init	3	0x01FA0	271	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c03	__MJ_CTRL003	mapjump	1	0x01FA4	281	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4483,7 +4483,7 @@ ztc_c04	setup	event	16	0x01C73	74	g_com_mnp_ゼルテニアン洞窟ロケタイ
 ztc_c04	setup	event	17	0x01C76	75	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	setup	event	18	0x01C76	76	g_com_mnp_ゼルテニアン洞窟ロケタイ == 0; nowjumpindex() is none of 1, 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	setup	event	19	0x01C88	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c04	__MJ_CTRL000	init	1	0x01C8C	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	__MJ_CTRL000	init	1	0x01C8C	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c04	__MJ_CTRL000	init	2	0x01C92	89	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c04	__MJ_CTRL000	init	3	0x01C95	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	__MJ_CTRL000	mapjump	1	0x01C99	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4514,7 +4514,7 @@ ztc_c04	__MJ_CTRL000	mapjump	25	0x01D98	139	local_var_s1f1_1; not (regI3)	fadesy
 ztc_c04	__MJ_CTRL000	mapjump	26	0x01D9E	140	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c04	__MJ_CTRL000	mapjump	27	0x01DAA	141	local_var_s1f1_1; not (regI3)	mapjump	0x024b, 4, 0	jumps: Darkened Wharf (Zertinan Caverns), field 587, entrance 4	-	-	-	-	resolved	this page's How a call is read
 ztc_c04	__MJ_CTRL000	mapjump	28	0x01DAD	144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c04	__MJ_CTRL001	init	1	0x01DB1	153	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	__MJ_CTRL001	init	1	0x01DB1	153	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c04	__MJ_CTRL001	init	2	0x01DB7	154	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c04	__MJ_CTRL001	init	3	0x01DBA	155	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	__MJ_CTRL001	mapjump	1	0x01DBE	165	-	store	local_var_s2f1_1 = 0	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4608,7 +4608,7 @@ ztc_c04	__MJ_CTRL001	mapjump	88	0x0211F	302	local_var_s2f1_1; not (regI3)	fadesy
 ztc_c04	__MJ_CTRL001	mapjump	89	0x02125	303	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_c04	__MJ_CTRL001	mapjump	90	0x02131	304	local_var_s2f1_1; not (regI3)	mapjump	0x0187, 4, 0	jumps: Withering Shores (Nam-Yensa Sandsea), field 391, entrance 4	-	-	-	-	resolved	this page's How a call is read
 ztc_c04	__MJ_CTRL001	mapjump	91	0x02134	307	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c04	__MJ_CTRL002	init	1	0x02138	316	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	__MJ_CTRL002	init	1	0x02138	316	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c04	__MJ_CTRL002	init	2	0x0213E	317	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c04	__MJ_CTRL002	init	3	0x02141	318	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	__MJ_CTRL002	mapjump	1	0x02145	328	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4855,14 +4855,14 @@ ztc_c04	Map_Director	ギミック後通行解除	3	0x026BE	713	-	setmapidwall	1,
 ztc_c04	Map_Director	ギミック後通行解除	4	0x026CA	714	-	setmapidwall	1, 6, 1	-	-	-	-	-		01 verb-table.tsv
 ztc_c04	Map_Director	ギミック後通行解除	5	0x026CD	715	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	ztc0110流砂ギミック実行	init	1	0x026D5	724	-	if	global_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c04	ztc0110流砂ギミック実行	init	2	0x026DB	726	global_var_1 == 0	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	init	3	0x026E1	727	global_var_1 == 0	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	init	4	0x026E7	728	global_var_1 == 0	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	init	5	0x026ED	729	global_var_1 == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	init	2	0x026DB	726	global_var_1 == 0	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	init	3	0x026E1	727	global_var_1 == 0	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	init	4	0x026E7	728	global_var_1 == 0	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	init	5	0x026ED	729	global_var_1 == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c04	ztc0110流砂ギミック実行	init	6	0x026F3	730	global_var_1 == 0	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-ztc_c04	ztc0110流砂ギミック実行	init	7	0x026FC	734	not (global_var_1 == 0)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	init	8	0x02702	735	not (global_var_1 == 0)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	init	9	0x02708	736	not (global_var_1 == 0)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	init	7	0x026FC	734	not (global_var_1 == 0)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	init	8	0x02702	735	not (global_var_1 == 0)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	init	9	0x02708	736	not (global_var_1 == 0)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c04	ztc0110流砂ギミック実行	init	10	0x0270F	738	-	switch	global_var_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	ztc0110流砂ギミック実行	init	11	0x02712	740	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	ztc0110流砂ギミック実行	init	12	0x0271B	741	global_var_1 = 0	setmapidmj	3, 0, 0	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4886,9 +4886,9 @@ ztc_c04	ztc0110流砂ギミック実行	talk	2	0x0279B	763	-	ucoff	-	user contro
 ztc_c04	ztc0110流砂ギミック実行	talk	3	0x027A1	764	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 ztc_c04	ztc0110流砂ギミック実行	talk	4	0x027AD	765	-	sysReqew	1, map_ダミーＰＣ::流砂ギミック	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::流砂ギミック on channel 1; waits until it ends	map_ダミーＰＣ.流砂ギミック	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c04	ztc0110流砂ギミック実行	talk	5	0x027B1	766	-	setmapjumpgroupflag	0x0159	flags set: 0x0159: Draws the location map's link between Darkened Wharf (Zertinan Caverns) and Canopy of Clay (Zertinan Caverns)	-	-	-	-	resolved	this page's How a call is read
-ztc_c04	ztc0110流砂ギミック実行	talk	6	0x027B7	767	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	talk	7	0x027BD	768	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	talk	8	0x027C3	769	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	talk	6	0x027B7	767	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	talk	7	0x027BD	768	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	talk	8	0x027C3	769	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c04	ztc0110流砂ギミック実行	talk	9	0x027C9	770	-	resetmapidmj	3	-	-	-	-	-		01 verb-table.tsv
 ztc_c04	ztc0110流砂ギミック実行	talk	10	0x027D5	771	-	setmapidwall	1, 5, 1	-	-	-	-	-		01 verb-table.tsv
 ztc_c04	ztc0110流砂ギミック実行	talk	11	0x027E1	772	-	setmapidwall	1, 6, 1	-	-	-	-	-		01 verb-table.tsv
@@ -4900,9 +4900,9 @@ ztc_c04	ztc0110流砂ギミック実行	talk	16	0x027F9	777	-	setmapmodelstatus	
 ztc_c04	ztc0110流砂ギミック実行	talk	17	0x027FF	778	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c04	ztc0110流砂ギミック実行	talk	18	0x02805	779	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 ztc_c04	ztc0110流砂ギミック実行	talk	19	0x02808	780	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_c04	ztc0110流砂ギミック実行	ＦＳオフ	1	0x0280C	785	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	ＦＳオフ	2	0x02812	786	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_c04	ztc0110流砂ギミック実行	ＦＳオフ	3	0x02818	787	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	ＦＳオフ	1	0x0280C	785	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	ＦＳオフ	2	0x02812	786	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_c04	ztc0110流砂ギミック実行	ＦＳオフ	3	0x02818	787	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_c04	ztc0110流砂ギミック実行	ＦＳオフ	4	0x0281B	788	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_c04	PC00	init	1	0x0281F	797	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_c04	PC00	init	2	0x02822	798	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5330,7 +5330,7 @@ ztc_d01	setup	map	76	0x01C6F	154	not (g_btl_アドラメレク != 2); nowlocatio
 ztc_d01	setup	map	77	0x01C8A	156	not (g_btl_アドラメレク != 2)	setmist	0	-	-	-	-	-		01 verb-table.tsv
 ztc_d01	setup	map	78	0x01C90	157	not (g_btl_アドラメレク != 2)	animestop	0	-	-	-	-	-		01 verb-table.tsv
 ztc_d01	setup	map	79	0x01C93	159	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_d01	__MJ_CTRL000	init	1	0x01C97	168	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	__MJ_CTRL000	init	1	0x01C97	168	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_d01	__MJ_CTRL000	init	2	0x01C9D	169	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	__MJ_CTRL000	init	3	0x01CA0	170	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	__MJ_CTRL000	mapjump	1	0x01CA4	180	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5361,7 +5361,7 @@ ztc_d01	__MJ_CTRL000	mapjump	25	0x01DA3	219	local_var_s1f1_1; not (regI3)	fadesy
 ztc_d01	__MJ_CTRL000	mapjump	26	0x01DA9	220	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_d01	__MJ_CTRL000	mapjump	27	0x01DB5	221	local_var_s1f1_1; not (regI3)	mapjump	0x024a, 5, 0	jumps: Drybeam Cavern (Zertinan Caverns), field 586, entrance 5	-	-	-	-	resolved	this page's How a call is read
 ztc_d01	__MJ_CTRL000	mapjump	28	0x01DB8	224	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_d01	__MJ_CTRL001	init	1	0x01DBC	233	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	__MJ_CTRL001	init	1	0x01DBC	233	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_d01	__MJ_CTRL001	init	2	0x01DC2	234	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	__MJ_CTRL001	init	3	0x01DC5	235	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	__MJ_CTRL001	mapjump	1	0x01DC9	245	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5392,7 +5392,7 @@ ztc_d01	__MJ_CTRL001	mapjump	25	0x01EC8	284	local_var_s2f1_1; not (regI3)	fadesy
 ztc_d01	__MJ_CTRL001	mapjump	26	0x01ECE	285	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_d01	__MJ_CTRL001	mapjump	27	0x01EDA	286	local_var_s2f1_1; not (regI3)	mapjump	0x0245, 2, 0	jumps: The Undershore (Zertinan Caverns), field 581, entrance 2	-	-	-	-	resolved	this page's How a call is read
 ztc_d01	__MJ_CTRL001	mapjump	28	0x01EDD	289	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_d01	__MJ_CTRL002	init	1	0x01EE1	298	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	__MJ_CTRL002	init	1	0x01EE1	298	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_d01	__MJ_CTRL002	init	2	0x01EE7	299	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	__MJ_CTRL002	init	3	0x01EEA	300	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	__MJ_CTRL002	mapjump	1	0x01EEE	310	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5423,7 +5423,7 @@ ztc_d01	__MJ_CTRL002	mapjump	25	0x01FED	349	local_var_s3f1_1; not (regI3)	fadesy
 ztc_d01	__MJ_CTRL002	mapjump	26	0x01FF3	350	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ztc_d01	__MJ_CTRL002	mapjump	27	0x01FFF	351	local_var_s3f1_1; not (regI3)	mapjump	0x0242, 3, 0	jumps: Hourglass Basin (Zertinan Caverns), field 578, entrance 3	-	-	-	-	resolved	this page's How a call is read
 ztc_d01	__MJ_CTRL002	mapjump	28	0x02002	354	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ztc_d01	__MJ_CTRL003	init	1	0x02006	363	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	__MJ_CTRL003	init	1	0x02006	363	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_d01	__MJ_CTRL003	init	2	0x0200C	364	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	__MJ_CTRL003	init	3	0x0200F	365	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	__MJ_CTRL003	mapjump	1	0x02013	375	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5740,8 +5740,8 @@ ztc_d01	ボス登場01	main	16	0x02891	846	g_btl_アドラメレク == 1; Boss_E
 ztc_d01	ボス登場01	main	17	0x02897	848	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1; local_var_s8f1_1 & 0x100000	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	ボス登場01	main	18	0x028A0	852	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1; not (local_var_s8f1_1 & 0x100000)	settouchuconly	0	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	ボス登場01	main	19	0x028AA	854	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	store	local_var_s8f1_1 = local_var_s8f1_1 & 0xffff	variable local_var_s8f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ztc_d01	ボス登場01	main	20	0x028B0	855	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_d01	ボス登場01	main	21	0x028B6	856	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	ボス登場01	main	20	0x028B0	855	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	ボス登場01	main	21	0x028B6	856	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_d01	ボス登場01	main	22	0x028B9	859	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	ボス登場01	touch	1	0x028C1	864	-	if	g_btl_アドラメレク == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	ボス登場01	touch	2	0x028C4	866	g_btl_アドラメレク == 1	lockmapjump	-	-	-	-	-	-		01 verb-table.tsv
@@ -5931,8 +5931,8 @@ ztc_d01	ボス登場02	main	16	0x02E20	1141	g_btl_アドラメレク == 1; Boss_
 ztc_d01	ボス登場02	main	17	0x02E26	1143	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1; local_var_s9f1_1 & 0x100000	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	ボス登場02	main	18	0x02E2F	1147	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1; not (local_var_s9f1_1 & 0x100000)	settouchuconly	0	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	ボス登場02	main	19	0x02E39	1149	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	store	local_var_s9f1_1 = local_var_s9f1_1 & 0xffff	variable local_var_s9f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ztc_d01	ボス登場02	main	20	0x02E3F	1150	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_d01	ボス登場02	main	21	0x02E45	1151	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	ボス登場02	main	20	0x02E3F	1150	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	ボス登場02	main	21	0x02E45	1151	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_d01	ボス登場02	main	22	0x02E48	1154	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	ボス登場02	touch	1	0x02E50	1159	-	if	g_btl_アドラメレク == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	ボス登場02	touch	2	0x02E53	1161	g_btl_アドラメレク == 1	lockmapjump	-	-	-	-	-	-		01 verb-table.tsv
@@ -6122,8 +6122,8 @@ ztc_d01	ボス登場03	main	16	0x033AF	1436	g_btl_アドラメレク == 1; Boss_
 ztc_d01	ボス登場03	main	17	0x033B5	1438	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1; local_var_s10f1_1 & 0x100000	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	ボス登場03	main	18	0x033BE	1442	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1; not (local_var_s10f1_1 & 0x100000)	settouchuconly	0	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	ボス登場03	main	19	0x033C8	1444	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	store	local_var_s10f1_1 = local_var_s10f1_1 & 0xffff	variable local_var_s10f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ztc_d01	ボス登場03	main	20	0x033CE	1445	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_d01	ボス登場03	main	21	0x033D4	1446	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	ボス登場03	main	20	0x033CE	1445	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	ボス登場03	main	21	0x033D4	1446	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_d01	ボス登場03	main	22	0x033D7	1449	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	ボス登場03	touch	1	0x033DF	1454	-	if	g_btl_アドラメレク == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	ボス登場03	touch	2	0x033E2	1456	g_btl_アドラメレク == 1	lockmapjump	-	-	-	-	-	-		01 verb-table.tsv
@@ -6313,8 +6313,8 @@ ztc_d01	ボス登場04	main	16	0x0393E	1731	g_btl_アドラメレク == 1; Boss_
 ztc_d01	ボス登場04	main	17	0x03944	1733	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1; local_var_s11f1_1 & 0x100000	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	ボス登場04	main	18	0x0394D	1737	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1; not (local_var_s11f1_1 & 0x100000)	settouchuconly	0	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ztc_d01	ボス登場04	main	19	0x03957	1739	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	store	local_var_s11f1_1 = local_var_s11f1_1 & 0xffff	variable local_var_s11f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ztc_d01	ボス登場04	main	20	0x0395D	1740	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ztc_d01	ボス登場04	main	21	0x03963	1741	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	ボス登場04	main	20	0x0395D	1740	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+ztc_d01	ボス登場04	main	21	0x03963	1741	g_btl_アドラメレク == 1; Boss_Enter_End[2] != 1	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ztc_d01	ボス登場04	main	22	0x03966	1744	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	ボス登場04	touch	1	0x0396E	1749	-	if	g_btl_アドラメレク == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ztc_d01	ボス登場04	touch	2	0x03971	1751	g_btl_アドラメレク == 1	lockmapjump	-	-	-	-	-	-		01 verb-table.tsv

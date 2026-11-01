@@ -69,8 +69,8 @@ order_id	handler	operation	value	name
 0x4043	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
 0x4044	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
 0x4045	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4046	0x002FDDA0	set unit flag bit 15		
-0x4047	0x002FDDA0	clear unit flag bit 15		
+0x4046	0x002FDDA0	set unit flag bit 0x8000		
+0x4047	0x002FDDA0	clear unit flag bit 0x8000		
 0x4048	0x002FDDA0	set unit byte +0x54	0	
 0x4049	0x002FDDA0	set unit byte +0x54	1	
 0x404A	0x002FDDA0	set unit byte +0x54	2	
@@ -312,27 +312,27 @@ order_id	handler	operation	value	name
 0x4136	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
 0x4137	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
 0x4138	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4139	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0	
-0x413A	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 1	
-0x413B	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 2	
-0x413C	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 3	
-0x413D	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 4	
-0x413E	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 5	
-0x413F	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 6	
-0x4140	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 7	
-0x4141	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0	
-0x4142	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 1	
-0x4143	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 2	
-0x4144	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 3	
-0x4145	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 4	
-0x4146	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 5	
-0x4147	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 6	
-0x4148	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 7	
+0x4139	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x1	
+0x413A	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x2	
+0x413B	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x4	
+0x413C	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x8	
+0x413D	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x10	
+0x413E	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x20	
+0x413F	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x40	
+0x4140	0x002FDDA0	set a bit of the global battle flags 0x022C314C (0x0031A910)	bit 0x80	
+0x4141	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x1	
+0x4142	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x2	
+0x4143	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x4	
+0x4144	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x8	
+0x4145	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x10	
+0x4146	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x20	
+0x4147	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x40	
+0x4148	0x002FDDA0	clear a bit of the global battle flags 0x022C314C (0x0031A8C0)	bit 0x80	
 0x4149	0x002FE660	set the register to param	register kind = record +0x06 >> 12, index = low byte of +0x06 (0x00321190 / 0x00329E60)	
 0x414A	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
 0x414B	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
 0x414C	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
-0x414D	0x002FE840	calls 0x00313400(unit), or 0x00313480() when unit bit 23 is set; ends when unit bits 50-51 are clear		
+0x414D	0x002FE840	calls 0x00313400(unit), or 0x00313480() when unit bit 0x800000 is set; ends when unit bits under mask 0xC000000000000 are clear		
 0x414E	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits; keeps the target handle +0x710 as the movement target	
 0x414F	0x002FE8D0	calls 0x002E73C0(actor, param)	param = record +0x02	
 0x4150	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	

@@ -58,7 +58,7 @@ Block:
 |---|---|---|---|
 | `+0x00` | `u32` | lineCount |  |
 | `+0x04` | `u32` | textOffset | file offset of the block's first line |
-| `+0x08` | `...` | page[ceil(lineCount / 32)] |  |
+| `+0x08` | `...` |  | page[ceil(lineCount / 32)] |
 
 ```
 page   u16 lineStart[32], then u32 nextPageBase (absent after the last page)
@@ -79,7 +79,7 @@ Offsets ascend; each message is a byte stream ending in `00` that opens with `0F
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `{u32 section; u32 table}[5]` | three used; slot 1's section is the name pool |  |
+| `+0x00` | `{u32 section; u32 table}[5]` |  | three used; slot 1's section is the name pool |
 | `+0x2C` | `u32` | commandTable[16] | one per native command class |
 | `+0x6C` | `u32` | n, u32 nameOffset[n] | source files, one per .sbn block |
 

@@ -135064,7 +135064,7 @@ tri_r01	ラズ	set	3	0x0DD2C	2515	-	bindp2_d4	0x03000002, 0, 0	argument 1: the m
 tri_r01	ラズ	set	4	0x0DD32	2516	-	setnpcname	0x02e3	name pair 0x02e3: Raz	-	-	-	-	resolved	this page's How a call is read
 tri_r01	ラズ	set	5	0x0DD38	2517	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_r01	ラズ	set	6	0x0DD3E	2518	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-tri_r01	ラズ	set	7	0x0DD44	2519	-	setweight	1	this actor's body mask word +0x110: keeps only bit 4	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+tri_r01	ラズ	set	7	0x0DD44	2519	-	setweight	1	this actor's body mask word +0x110: keeps only bit `0x10`	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 tri_r01	ラズ	set	8	0x0DD4A	2520	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_r01	ラズ	set	9	0x0DD4D	2521	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_r01	ラズ	set	10	0x0DD56	2522	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)

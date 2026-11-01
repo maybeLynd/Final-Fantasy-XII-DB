@@ -9,8 +9,9 @@ addresses: "0x003B3160, 0x003B3400, 0x003B3550, 0x003B3300, 0x003B2F90, 0x003B39
 
 A character's model can carry an effect of its own, authored into the model's `@FEF` section. It plays
 with the model, advances only while the character is processed, is drawn only while the character's
-presentation pass allows it, and can be told by a script to start one of up to ten authored cues, which
-happens on the next dirty walk of the render records. When the character's record is torn down, the
+presentation pass allows it, and can be told by a script to start one of up to ten authored cues; the cue
+starts the next time the game passes over the render records that have changed. When
+the character's record is torn down, the
 effect's instance ends with it.
 
 ## How it works
@@ -35,9 +36,9 @@ page covers both tables' records and lists, the id, the handle's life, the trigg
 
 ### The id
 
-An id is three fields: bits 0-5 the slot, bits 6-27 a 22-bit serial, bits 28-31 the constant 3. An
-allocation adds 1 to the table's serial and writes it into bits 6-27 (`0x003B394B`-`0x003B3967` for a
-ticket, `0x003B3457`-`0x003B3470` for a handle); a release keeps only bits 0-5 and 28-31 (`and 0xF000003F`,
+An id is three fields: mask `0x3F` the slot, mask `0xFFFFFC0` a 22-bit serial, mask `0xF0000000` the constant 3. An
+allocation adds 1 to the table's serial and writes it into the bits under mask `0xFFFFFC0` (`0x003B394B`-`0x003B3967` for a
+ticket, `0x003B3457`-`0x003B3470` for a handle); a release keeps only bits under mask `0xF000003F` (`and 0xF000003F`,
 `0x003B3888`, `0x003B3387`).
 
 Every helper that takes a handle id, and the ticket release `0x003B37E0`, first compares the id with the
@@ -192,7 +193,7 @@ A loaded effect file is signalled without the record: `0x003B2830(id, n)` calls
 
 | Offset | Type | Field |
 |---|---|---|
-| `+0x00` | `u32` | id: slot in bits 0-5, serial `0x02EBDBB0` in bits 6-27, 3 in bits 28-31 |
+| `+0x00` | `u32` | id: slot in the bits under mask `0x3F`, serial `0x02EBDBB0` in the bits under mask `0xFFFFFC0`, 3 in the bits under mask `0xF0000000` |
 | `+0x08` | `void*` | the resolved source plus the `@FEF` section offset (`0x003B396E`); 0 at start-up and release |
 | `+0x10` | `u64` | 0 at start-up, allocation and release (`0x003B3963`, `0x003B3892`); no reader |
 | `+0x18` | `void*` | the effect context `0x0024B3A0` built (`0x003B39A9`); read by the release to cancel it |
@@ -205,7 +206,7 @@ A loaded effect file is signalled without the record: `0x003B2830(id, n)` calls
 
 | Offset | Type | Field |
 |---|---|---|
-| `+0x00` | `u32` | id: slot in bits `0x3F`, serial `0x02EBDBB4` in bits 6-27, 3 in bits 28-31 |
+| `+0x00` | `u32` | id: slot in bits `0x3F`, serial `0x02EBDBB4` in the bits under mask `0xFFFFFC0`, 3 in the bits under mask `0xF0000000` |
 | `+0x08` | `u8[8]` | 0 from start-up; not touched afterwards |
 | `+0x10` | `void*` | the `0x3B0`-byte instance (`0x003B367A`); 0 at start-up and on every release |
 | `+0x18` | `u32` | the ticket id the instance was made for (`0x003B367E`); `0x003B39E0` matches it |

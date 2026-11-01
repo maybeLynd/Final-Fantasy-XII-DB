@@ -19,7 +19,7 @@ this page.
 
 `0x0041DA90(entry, stream)` runs the commands of the stream's current block. The block is at
 `[stream + 0x368] + [entry + 0x90]`; its byte `+2 & 0x3F` is the command count and the commands start
-at `+4`. Each command begins with a word whose bits `0x7F` are the id and bits 7 to 15 the command's
+at `+4`. Each command begins with a word whose bits `0x7F` are the id and the bits under mask `0xFF80` the command's
 length in bytes, which is how the walk steps to the next (`0x0041DB6A`). Nothing runs unless bit `0x100000` of
 the stream's `+0x0C` is set. With bit `0x10` of `+0x0C` also set, a command whose pair-table flag is set is
 skipped (`0x0041DB37`).
@@ -117,7 +117,7 @@ Each handler takes the render record and the command:
 
 | Id | Handler | What it does |
 |---|---|---|
-| `0x05` (bank B) | `0x00520C50` | plays a sound on the record's emitter `+0x5F0` (`0x0046CBA0`): word `+2` is mode (bits 12 to 15) and type |
+| `0x05` (bank B) | `0x00520C50` | plays a sound on the record's emitter `+0x5F0` (`0x0046CBA0`): word `+2` is mode (mask `0xF000`) and type |
 | `0x11` | `0x00520160` | stores byte `+2` at `+0x3D0` and raises bit `0x1000000` of `+0x294`: weapon trails on or off |
 | `0x12` | `0x005207C0` | `0x003E29F0(0x003E6DA0(), 4, byte +2 != 0)`: the look-tracking switch of [Character rig and look](character-rig-and-look.md) |
 | `0x13` | `0x00520430` | stores the controller switch (bytes `+2`, `+3`, word `+4` to `+0x3F4` to `+0x3F6`) and broadcasts it (`0x00429500`), holding bit `0x200` of `+0x290` meanwhile; byte `+2 & 0xB9 == 0x80` takes the `0x004288B0` / `0x0042B580` arm |
@@ -217,33 +217,33 @@ A command record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | bits 0-6 id, bits 7-15 length in bytes |  |
-| `+0x02` | `...` | parameters: subtype bytes at +2/+3, words or floats from +4 |  |
+| `+0x00` | `u16` |  | mask `0x7F` id, mask `0xFF80` length in bytes |
+| `+0x02` | `...` |  | parameters: subtype bytes at +2/+3, words or floats from +4 |
 
 A first-pool shadow slot (`0xE0` bytes, 160 at `[0x02B40528]`), the ramp fields:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | counter, channel 0 (pair) |  |
-| `+0x01` | `u8` | counter, channel 1 |  |
-| `+0x02` | `u8` | counter, channel 2 (pair) |  |
-| `+0x03` | `u8` | counter, channel 3 |  |
-| `+0x10` | `u32` | handle: generation << 8 \| slot |  |
-| `+0x40` | `u8` | bit 0x1 enabled |  |
-| `+0x41` | `u8` | bit 0x1 paused, bit 0x2 hidden |  |
-| `+0x43` | `u8` | counter, cross-fade |  |
-| `+0x50` | `f32[2]` | channel 0: anchor offset |  |
-| `+0x60` | `f32[2]` | its step |  |
-| `+0x58` | `f32[2]` | channel 2: extent scales |  |
-| `+0x68` | `f32[2]` | its step |  |
-| `+0x70` | `f32` | channel 1: rotation |  |
-| `+0x74` | `f32` | its step |  |
-| `+0x78` | `f32` | channel 3: strength |  |
-| `+0x7C` | `f32` | its step |  |
-| `+0x80` | `f32[6]` | the cross-fade's previous values |  |
-| `+0x98` | `f32` | cross-fade weight input |  |
-| `+0x9C` | `f32` | its step |  |
-| `+0xC0` | `f32[6]` | the values last built |  |
+| `+0x00` | `u8` |  | counter, channel 0 (pair) |
+| `+0x01` | `u8` |  | counter, channel 1 |
+| `+0x02` | `u8` |  | counter, channel 2 (pair) |
+| `+0x03` | `u8` |  | counter, channel 3 |
+| `+0x10` | `u32` |  | handle: generation << 8 \| slot |
+| `+0x40` | `u8` |  | bit `0x1` enabled |
+| `+0x41` | `u8` |  | bit `0x1` paused, bit `0x2` hidden |
+| `+0x43` | `u8` |  | counter, cross-fade |
+| `+0x50` | `f32[2]` |  | channel 0: anchor offset |
+| `+0x60` | `f32[2]` |  | its step |
+| `+0x58` | `f32[2]` |  | channel 2: extent scales |
+| `+0x68` | `f32[2]` |  | its step |
+| `+0x70` | `f32` |  | channel 1: rotation |
+| `+0x74` | `f32` |  | its step |
+| `+0x78` | `f32` |  | channel 3: strength |
+| `+0x7C` | `f32` |  | its step |
+| `+0x80` | `f32[6]` |  | the cross-fade's previous values |
+| `+0x98` | `f32` |  | cross-fade weight input |
+| `+0x9C` | `f32` |  | its step |
+| `+0xC0` | `f32[6]` |  | the values last built |
 
 `0x003B56D0` takes the first of the 160 slots whose `+0x40` bit `0x1` is clear and returns 0 when none is free
 (`0x003B56F0`-`0x003B5707`); it gives the slot the next generation from `0x02B40520`, wrapping to 1 above `0xFFFFFF`
@@ -273,7 +273,7 @@ The slot's other fields, from the take `0x003B56D0`, the builder `0x003B62D0`, t
 | `+0x3A` | `u16` | previousAnchorBone | the anchor bone before the last `0x003B5CE0` (`0x003B5D08`-`0x003B5D0D`); the builder blends from it while `+0x38` differs (`0x003B65FF`) |
 | `+0x3C` | `u16` | boneA | the model's special bone `0x104` (`0x003E5AD0`, `0x003B57FA`-`0x003B5804`): the builder's first bone matrix through `0x00421FF0` (`0x003B6343`-`0x003B634F`) |
 | `+0x3E` | `u16` | boneB | the model's special bone `0x106` (`0x003B582F`-`0x003B5839`): the builder's second bone matrix (`0x003B6360`-`0x003B636C`) |
-| `+0x40` | `u8` | flags | bit `0x1` in use (set by the take `0x003B56D0` at `0x003B5759`-`0x003B57D0`, cleared by the free `0x003B6000` at `0x003B6016`); bits 1-4 the overrides a motion keeps at `+0xA0`-`+0xB8` (1 offset, 2 rotation, 3 extent scales, 4 base offset; `0x003B5E3F`-`0x003B5EF0`); bit `0x20` keeps the offset out of the cross-fade blend (`0x003B6549`-`0x003B6562`); bit `0x40` takes the shadow's height from the anchor bone instead of the ground (`0x003B645F`-`0x003B64A3`); bits 1-6 come from the motion block's word `+0x32` (`0x003B5F58`-`0x003B5FF4`) |
+| `+0x40` | `u8` | flags | bit `0x1` in use (set by the take `0x003B56D0` at `0x003B5759`-`0x003B57D0`, cleared by the free `0x003B6000` at `0x003B6016`); mask `0x1E` the overrides a motion keeps at `+0xA0`-`+0xB8` (`0x2` offset, `0x4` rotation, `0x8` extent scales, `0x10` base offset; `0x003B5E3F`-`0x003B5EF0`); bit `0x20` keeps the offset out of the cross-fade blend (`0x003B6549`-`0x003B6562`); bit `0x40` takes the shadow's height from the anchor bone instead of the ground (`0x003B645F`-`0x003B64A3`); the bits under mask `0x7E` come from the motion block's word `+0x32` (`0x003B5F58`-`0x003B5FF4`) |
 | `+0x44` | `f32` | offsetScale | a multiplier of the anchor offset and of both extents: `0x003B6BD0` sets it (`0x003B6BE6`), called by `0x0042D050`; the builder multiplies by it (`0x003B64DC`, `0x003B64F0`, `0x003B66E3`, `0x003B66E8`); 1.0 at take (`0x003B5770`) |
 | `+0x48` | `f32` | baseOffsetX | the base offset's first axis, added to channel 0's value before the scale (`0x003B66C1`): `0x003B5CE0` stores it (`0x003B5D12`) after keeping the old one at `+0x30`; `0x003B5E20` restores a kept one from `+0xB4` (`0x003B5EE5`); 0 at take (`0x003B5848`) |
 | `+0x4C` | `f32` | baseOffsetY | the base offset's second axis (`0x003B66CE`; `0x003B5D18`; restored from `+0xB8` at `0x003B5EF0`); 0 at take (`0x003B5848`) |

@@ -187,7 +187,7 @@ Stream:
 | `+0x30` | `...` | archive reader | 0 |
 | `+0x38` | `u8` | selector |  |
 | `+0x40` | `...` | cache view | -1 |
-| `+0x48` | `u32` | cache key |  |
+| `+0x48` | `u32` |  | cache key |
 
 Cache entry:
 
@@ -197,7 +197,7 @@ Cache entry:
 | `+0x08` | `u32` | size |  |
 | `+0x0C` | `i16` | word0C |  |
 | `+0x0E` | `i16` | word0E |  |
-| `+0x10` | `u8` | views open |  |
+| `+0x10` | `u8` |  | views open |
 | `+0x14` | `u32` | kind |  |
 
 Cache view:
@@ -216,7 +216,7 @@ Cache manager:
 | `+0x10` | `...` | usage |  |
 | `+0x18` | `...` | owner | `+0xE8` word |
 | `+0x20` | `...` | key map | header `+0x28`, root `+0x38` |
-| `+0x30` | `...` | entry list |  |
+| `+0x30` | `...` |  | entry list |
 | `+0x48` | `...` | count |  |
 | `+0x58` | `...` | lock |  |
 | `+0x80` | `...` | protected word | one of the two protected words |

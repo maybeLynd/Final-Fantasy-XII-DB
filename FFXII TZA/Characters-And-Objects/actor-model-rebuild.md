@@ -20,12 +20,12 @@ The machine `0x0037B4D0(record)` (thunk `0x0037B4C0`) works on a 12-byte record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | actor, as an encoded image pointer (0x0020E620 / 0x0020E600) |  |
-| `+0x04` | `u32` | handle of the binding entry being waited on |  |
-| `+0x08` | `u8` | state 0..23 in bits 0-6; bit 0x80 = place the actor at the end |  |
-| `+0x09` | `i8` | party slot, -1 for none |  |
-| `+0x0A` | `u8` | pass counter for states 13-15 |  |
-| `+0x0B` | `u8` | saved value of 0x002DEBD0(), restored by 0x002DEB90 at the end |  |
+| `+0x00` | `u32` |  | actor, as an encoded image pointer (`0x0020E620` / `0x0020E600`) |
+| `+0x04` | `u32` |  | handle of the binding entry being waited on |
+| `+0x08` | `u8` |  | state 0..23 in the bits under mask `0x7F`; bit `0x80` = place the actor at the end |
+| `+0x09` | `i8` |  | party slot, -1 for none |
+| `+0x0A` | `u8` |  | pass counter for states 13-15 |
+| `+0x0B` | `u8` |  | saved value of `0x002DEBD0`(), restored by `0x002DEB90` at the end |
 
 Every transition keeps bit `0x80` and writes the new state. A call runs states until one has to wait
 (return 0) or state 23 is reached (return 1). An actor that no longer resolves returns 1 at once,
@@ -196,7 +196,7 @@ from `0x00266D10`.
 rebuild record  +0 u32 encoded actor, +4 u32 pending handle, +8 u8 state | 0x80 place, +9 s8 slot, +0xA u8 pass, +0xB u8 saved byte
 read-in record  0x02EBF3F0 (+0x8 0x02EBF3F8 state, +0x9 0x02EBF3F9 slot, +0xA 0x02EBF3FA pass, +0xB 0x02EBF3FB saved byte, +0xC 0x02EBF3FC mode, +0xD 0x02EBF3FD step, +0xE 0x02EBF3FE slot, +0x10 0x02EBF400 task)
 tick record     0x02EBF3D0 (+0x8 0x02EBF3D8 state, +0x9 0x02EBF3D9 slot, +0xA 0x02EBF3DA pass, +0xB 0x02EBF3DB saved byte, 0x02EBF3DE slot in progress, 0x02EBF3E0 slot mask)
-actor           +0x20 s8 pool entry, +0x23 u8 parts requested (bit 0x1 main, 1 part 0, 2 part 1, 3-4 part 8)
+actor           +0x20 s8 pool entry, +0x23 u8 parts requested (bit 0x1 main, 0x2 part 0, 0x4 part 1, mask 0x18 part 8)
 pool entry      0x022D9AB0 (2) / 0x022D9AE0 (4), 0x18 each: +0 state (3 loaded), +1, +2 index bytes, +0xC, +0x10 loads, +0x14 id, +0x16 count
 ```
 

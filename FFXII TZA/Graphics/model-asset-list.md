@@ -7,9 +7,9 @@ addresses: "0x002ED6F0, 0x002E6EB0, 0x002E6FD1, 0x00320170, 0x003202F0, 0x001BB2
 
 ## What it lists
 
-`model-asset-list.tsv` holds one line for each model a bound id can name: 1,084 models over eleven letter
+[`model-asset-list.tsv`](model-asset-list.tsv) holds one line for each model a bound id can name: 1,084 models over eleven letter
 classes. For each it gives the files the game loads for that model and the tables and scripts that name it. A bound
-id is a letter class in bits 16-23 and a number in bits 0-15 ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md));
+id is a letter class in the bits under mask `0xFF0000` and a number in the bits under mask `0xFFFF` ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md));
 `c0` (`0x00630000`) is Vaan's model, `chara/c10/c1004/c1004`.
 
 | Class | Models | Folder | Kind | Index | Lanes |
@@ -139,9 +139,9 @@ Replacing a file:
 | a motion file that is not shipped | 7,198 path-array entries name a `.ca` the archive lacks: 6,843 lanes and 355 of kind 30, and all twelve size tables give each −1. The lane loader `0x002E6EB0` takes a lane's size from `0x002E9920`, which returns `0x0032E400`'s answer, and skips the lane with no buffer and no request when it is not above 0 (`0x002E6F43`-`0x002E6F45`) |
 | every shipped `.cm` and `.ca` is named | each `.cm` by its bound id's kind (1,066 of 1,066); 1,195 `.ca` by a lane of their model and the other 1,969 by kind 30's array (3,164 of 3,164) |
 | remastered `.ah` lists | 1,050 models, 4 of them with no shipped `.cm`; each list names one `.dae.phyre` mesh, and 8,418 textures in all |
-| `chr/` lists no model's path builds | 6: the `mws/` lists of `m1022`, `m1025`, `m1084` and `m1085`, each naming the same files as the model's own list, and the heads `hn1021_01` and `hn1081_01` ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md) `prefetch-manifests-ah-lists-chr.tsv`) |
+| `chr/` lists no model's path builds | 6: the `mws/` lists of `m1022`, `m1025`, `m1084` and `m1085`, each naming the same files as the model's own list, and the heads `hn1021_01` and `hn1081_01` ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md) [`prefetch-manifests-ah-lists-chr.tsv`](../Game-Files-And-Data-Tables/prefetch-manifests-ah-lists-chr.tsv)) |
 | heads `hn1021_01`, `hn1081_01` | each list names one mesh with face joints (`j_kao`, `j_eye_r`, `j_mayu_r`, `j_ago`) and two face textures (`f0019_face` and `f0019_etc`; `f0062_face` and `f0062_hair`). The 26 names of `hn1021_01.dae.phyre` are all in the bound `hn1021_02` (model N12), which adds 24 arm and hand joints and imports the same files and one more texture. No model's path names `hn1021_01` or `hn1081_01`, so no binding requests their lists, and in the four `.ah` token tables each head's mesh is named by its own list alone |
-| mesh imports | each mesh names the shader variants and base textures it binds as asset imports: 2,280 variant and 1,969 texture imports in the 1,053 `chr/` mesh files ([PhyreEngine asset files](../PhyreEngine/phyre-asset-files.md) `phyre-asset-files-meshes-chr.tsv` `imports`) |
+| mesh imports | each mesh names the shader variants and base textures it binds as asset imports: 2,280 variant and 1,969 texture imports in the 1,053 `chr/` mesh files ([PhyreEngine asset files](../PhyreEngine/phyre-asset-files.md) [`phyre-asset-files-meshes-chr.tsv`](../PhyreEngine/phyre-asset-files-meshes-chr.tsv) `imports`) |
 | shipped `.cm` with no `.ah` | 20: 18 weapons and the NPCs `n1027` and `n1174` |
 | lane files that ship | 1,195 on 449 models |
 | further motions | 1,954 of kind 30's 1,969 files, on 344 models |

@@ -115,8 +115,8 @@ Library initialisers register theirs the same way: the Bullet initialiser `0x008
 `[0x02EAF620]` through `0x0085E710` when it is set and `0x02EAF628` is set, clears both fields and runs `0x00839FD0` on the
 object.
 
-That is 2,630 call sites (1,574 calls and 1,056 tail jumps) for about 2,560 distinct teardown functions,
-counting the `lea rcx` that sets the argument within the 64 bytes before each site.
+That is 2,630 call sites (1,574 calls and 1,056 tail jumps) for 2,582 distinct teardown functions. At every
+site the argument is set by a `lea rcx` earlier in the same straight run of code, with no branch between the two.
 Teardowns registered by lazy statics join the table when their static is first built, so their order
 depends on what ran first.
 
@@ -174,8 +174,8 @@ Module exit tables (encoded qwords, each set to encode(-1) by `0x00808988`):
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02EAED08` | `u64[3]` | atexit table (encoded first, last, end) |  |
-| `0x02EAED20` | `u64[3]` | at_quick_exit table (encoded first, last, end) |  |
+| `0x02EAED08` | `u64[3]` |  | atexit table (encoded first, last, end) |
+| `0x02EAED20` | `u64[3]` | at_quick_exit | table (encoded first, last, end) |
 
 IMAGE_TLS_DIRECTORY64 at `0x01CEBED8`:
 
@@ -196,11 +196,11 @@ IMAGE_TLS_DIRECTORY64 at `0x01CEBED8`:
 | table order | 593 of 1,171 steps ascending |
 | C++ entries registering a teardown | 1,084 |
 | `atexit` sites | 2,630: 1,574 calls, 1,056 tail jumps |
-| distinct teardowns | about 2,560, by the `lea rcx` within the 64 bytes before each site |
+| distinct teardowns | 2,582, by the `lea rcx` that sets the argument before each site |
 | TLS callbacks | none |
 
-Counts come from disassembling every C++ entry and every `atexit` site; a site's teardown is the
-`lea rcx` within the 64 bytes before it (about 35 sites set `rcx` some other way and are counted as sites only).
+Counts come from disassembling every C++ entry and every `atexit` site; a site's teardown is the target of the
+last `lea rcx` before it in its function, which for 35 sites is more than 64 bytes before the site.
 
 The member lists beside this page, each named `static-initialisation-and-teardown-<list>.tsv` with a
 function address in its first column:
@@ -378,7 +378,79 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
   first use, which register 1,541 of the teardowns.
 - [Object construction and destruction](object-construction-and-destruction.md): constructors,
   destructors and vtable installs.
-- `runtime-services.md`: the runtime and Windows imports used here.
+- [`runtime-services.md`](runtime-services.md): the runtime and Windows imports used here.
 - [Startup constants](../Engine-Core/startup-constants.md): what the game's own start-up
   fixes after `WinMain` begins.
 - [Controls](../Controls-And-Input/controls.md): the input manager that reads the semantics registered here.
+- [`static-initialisation-and-teardown-alloc-record-0067ffb0-initialisers.tsv`](static-initialisation-and-teardown-alloc-record-0067ffb0-initialisers.tsv):
+  C++ initialisers of one form (59 or 68 bytes) that call `0x0067FFB0` and end with a jump to `atexit` (`0x00808B90`) (8
+  rows).
+- [`static-initialisation-and-teardown-atexit-teardown-registration-stubs.tsv`](static-initialisation-and-teardown-atexit-teardown-registration-stubs.tsv):
+  12-byte C++ initialisers that only register a teardown with `atexit` (30 rows).
+- [`static-initialisation-and-teardown-callback-record-006155b0-registrars.tsv`](static-initialisation-and-teardown-callback-record-006155b0-registrars.tsv):
+  33-byte C++ initialisers that end with a jump to `0x006155B0` (6 rows).
+- [`static-initialisation-and-teardown-counter-append-initialisers.tsv`](static-initialisation-and-teardown-counter-append-initialisers.tsv):
+  54-byte C++ initialisers with no call that end with a jump to `atexit` (19 rows).
+- [`static-initialisation-and-teardown-ctor-0060df70-initialisers.tsv`](static-initialisation-and-teardown-ctor-0060df70-initialisers.tsv):
+  49-byte C++ initialisers that call `0x0060DF70` and end with a jump to `atexit` (2 rows).
+- [`static-initialisation-and-teardown-ctor-00808fe4-initialisers.tsv`](static-initialisation-and-teardown-ctor-00808fe4-initialisers.tsv):
+  60-byte C++ initialisers that call `0x00808FE4` and end with a jump to `atexit` (5 rows).
+- [`static-initialisation-and-teardown-grow-helper-initialisers.tsv`](static-initialisation-and-teardown-grow-helper-initialisers.tsv):
+  86-byte C++ initialisers that call `0x006BFC60` or `0x006C2380` and end with a jump to `atexit` (6 rows).
+- [`static-initialisation-and-teardown-intrusive-list-node-teardowns-115b.tsv`](static-initialisation-and-teardown-intrusive-list-node-teardowns-115b.tsv):
+  115-byte teardown loops that walk the intrusive node list at `[rcx]`, calling `0x00220390` or `0x001AF2B0` on each
+  node and then slot `+0x18` of the owner's vtable (43 rows).
+- [`static-initialisation-and-teardown-msvc-dynamic-initialiser-stubs.tsv`](static-initialisation-and-teardown-msvc-dynamic-initialiser-stubs.tsv):
+  32-byte C++ initialisers that construct a static and register its teardown, spread over 29 constructors, with the
+  object, the constructor and the teardown of each (43 rows).
+- [`static-initialisation-and-teardown-record-ctor-00616210-initialisers.tsv`](static-initialisation-and-teardown-record-ctor-00616210-initialisers.tsv):
+  C++ initialisers (77, 89 or 91 bytes) that build a named texture-format record through `0x00616210` and end with a
+  jump to `atexit` (33 rows).
+- [`static-initialisation-and-teardown-record-ctor-00662c00-initialisers.tsv`](static-initialisation-and-teardown-record-ctor-00662c00-initialisers.tsv):
+  43-byte C++ initialisers that build a named vertex-format record through `0x00662C00` and call `atexit` (28 rows).
+- [`static-initialisation-and-teardown-record-ctor-006d58d0-initialisers.tsv`](static-initialisation-and-teardown-record-ctor-006d58d0-initialisers.tsv):
+  230-byte C++ initialisers that build a named morph record through `0x006D58D0` and end with a jump to `atexit` (9
+  rows).
+- [`static-initialisation-and-teardown-registry-unlink-teardowns.tsv`](static-initialisation-and-teardown-registry-unlink-teardowns.tsv):
+  the 95-byte registry unlinks, each with the 32-byte initialiser that registers it (327 rows).
+- [`static-initialisation-and-teardown-scalar-deleting-destructors-free.tsv`](static-initialisation-and-teardown-scalar-deleting-destructors-free.tsv):
+  scalar deleting destructors that call their type's destructor and then `free` (`0x00809950`) when bit `0x1` of the
+  flag is set (65 rows).
+- [`static-initialisation-and-teardown-scalar-deleting-destructors-inlined-dtor.tsv`](static-initialisation-and-teardown-scalar-deleting-destructors-inlined-dtor.tsv):
+  43-byte scalar deleting destructors whose destructor is inlined to a vtable store; their only call is `free`
+  (`0x00809950`) under the flag (24 rows).
+- [`static-initialisation-and-teardown-scalar-deleting-destructors-shared-base.tsv`](static-initialisation-and-teardown-scalar-deleting-destructors-shared-base.tsv):
+  62-byte scalar deleting destructors that install their vtable, call the shared base destructor `0x00212CE0` and free
+  under the flag (37 rows).
+- [`static-initialisation-and-teardown-static-intrusive-list-teardown-owners.tsv`](static-initialisation-and-teardown-static-intrusive-list-teardown-owners.tsv):
+  for each list-unlink teardown, the node it unlinks, the class-registration function that builds the node and
+  registers the teardown, the node's kind, its owner and the owner's class, and the node's name (224 rows).
+- [`static-initialisation-and-teardown-two-deallocator-deleting-destructors.tsv`](static-initialisation-and-teardown-two-deallocator-deleting-destructors.tsv):
+  66-byte scalar deleting destructors in which bit `0x4` of the flag picks the sized delete `0x0016D6A0` over
+  `0x00584730` (12 rows).
+- [`static-initialisation-and-teardown-xc-initializer-leftovers.tsv`](static-initialisation-and-teardown-xc-initializer-leftovers.tsv):
+  the C++ initialisers outside the forms above, with their size, calls and tail (83 rows).
+- [`static-initialisation-and-teardown-xc-registered-library-teardowns.tsv`](static-initialisation-and-teardown-xc-registered-library-teardowns.tsv):
+  teardowns that C++ initialisers register for library and runtime statics, by group, each with the initialiser that
+  registers it (190 rows).
+- [`static-initialisation-and-teardown-xc-registered-static-teardowns.tsv`](static-initialisation-and-teardown-xc-registered-static-teardowns.tsv):
+  further teardowns that C++ initialisers register, each with the initialiser that registers it (107 rows).
+- [`static-initialisation-and-teardown-zeroinit-3q-initialisers.tsv`](static-initialisation-and-teardown-zeroinit-3q-initialisers.tsv):
+  35-byte C++ initialisers with no call that end with a jump to `atexit` (3 rows).
+- [`static-initialisation-and-teardown-zeroinit-record-initialisers.tsv`](static-initialisation-and-teardown-zeroinit-record-initialisers.tsv):
+  57-byte C++ initialisers with no call that end with a jump to `atexit` (16 rows).
+
+Each of these function tables has one row per function:
+
+- initialiser tables: `entry` is where the function starts, `size` its length in bytes, `calls` the functions it
+  calls and `tail` the one it ends by jumping to;
+- registered-teardown tables: the same, with `registering_init`, the initialiser that registers the teardown, and in
+  the library table `group`;
+- registry unlinks: `entry`, `size` and `initialiser`, the initialiser that registers it;
+- the 32-byte stubs: `object`, `callee` and `dtor`, the static built, its constructor and its teardown;
+- destructor and teardown-loop tables: `address` is where the function starts and `targets` the functions it calls
+  or jumps to directly;
+- the owners table: `teardown`, `head` the node it unlinks, `initialiser` the function that builds the node and
+  registers the teardown, `kind` `name-node` for a node built by `0x00632FB0` and linked into its owner's list or
+  `global-list-node` for a node appended to a global list, `owner` and `owner_class` the owner and its class, and
+  `entry_name` the node's name.

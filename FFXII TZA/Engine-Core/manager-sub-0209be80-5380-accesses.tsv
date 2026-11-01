@@ -1,0 +1,66 @@
+function	name	site	disp	kind	instruction	route	note
+0x00289BD0	FUN_00289bd0	0x00289C66	0x0	w	mov dword ptr [rbx], eax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289EA4	0x0	addr	lea rbx, [rsi + rbx*8]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289EBF	0x0	w	mov qword ptr [rbx], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289D70	FUN_00289d70	0x00289ED7	0x0	w	movss dword ptr [rbx], xmm0	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x00289FD8	0x0	addr	lea rdx, [rsi + rdx*8]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x00289FEF	0x0	w	mov qword ptr [rdx], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289F50	FUN_00289f50	0x0028A007	0x0	w	movss dword ptr [rdx], xmm0	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00291750	FUN_00291750	0x00291788	0x0	addr	lea rcx, [rdi + 0x5380]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x-5380	
+0x00289BD0	FUN_00289bd0	0x00289C6C	0x4	w	mov dword ptr [rbx + 4], eax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289EE6	0x4	w	movss dword ptr [rbx + 4], xmm1	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x0028A016	0x4	w	movss dword ptr [rdx + 4], xmm1	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289C73	0x8	w	mov dword ptr [rbx + 8], eax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289EC2	0x8	w	mov qword ptr [rbx + 8], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289D70	FUN_00289d70	0x00289EE1	0x8	w	movss dword ptr [rbx + 8], xmm0	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x00289FF2	0x8	w	mov qword ptr [rdx + 8], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289F50	FUN_00289f50	0x0028A011	0x8	w	movss dword ptr [rdx + 8], xmm0	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289C7E	0xC	w	mov word ptr [rbx + 0xc], r15w	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289EEB	0xC	w	mov dword ptr [rbx + 0xc], edi	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x0028A01B	0xC	w	mov dword ptr [rdx + 0xc], edi	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289C7A	0xE	w	mov byte ptr [rbx + 0xe], bpl	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289BE6	0xF	addr	lea rax, [rcx + 0xf]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289C00	0xF	r	cmp byte ptr [rax], r15b	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0xF	
+0x00289BD0	FUN_00289bd0	0x00289C76	0xF	w	mov byte ptr [rbx + 0xf], 1	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289C41	0x10	addr	lea rcx, [rbx + 0x10]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289C53	0x10	r	cmp byte ptr [rbx + rax + 0x10], r15b	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289EC6	0x10	w	mov qword ptr [rbx + 0x10], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289F50	FUN_00289f50	0x00289FF6	0x10	w	mov qword ptr [rdx + 0x10], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289F50	FUN_00289f50	0x0028A002	0x12	rw	or word ptr [rdx + 0x12], 1	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x0028A01E	0x14	w	mov dword ptr [rdx + 0x14], eax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289ED2	0x16	rw	or word ptr [rbx + 0x16], 1	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289C83	0x18	w	mov qword ptr [rbx + 0x18], r15	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289D70	FUN_00289d70	0x00289ECA	0x18	w	mov qword ptr [rbx + 0x18], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289F50	FUN_00289f50	0x00289FFA	0x18	w	mov qword ptr [rdx + 0x18], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289BD0	FUN_00289bd0	0x00289C87	0x20	w	mov qword ptr [rbx + 0x20], r15	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289BD0	FUN_00289bd0	0x00289CE0	0x20	w	mov qword ptr [rbx + 0x20], rcx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289ECE	0x20	w	mov qword ptr [rbx + 0x20], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289D70	FUN_00289d70	0x00289F20	0x20	w	mov qword ptr [rbx + 0x20], rcx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x00289FFE	0x20	w	mov qword ptr [rdx + 0x20], rax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0 zeroclear	
+0x00289F50	FUN_00289f50	0x0028A050	0x20	w	mov qword ptr [rdx + 0x20], rcx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289C5F	0x28	w	mov word ptr [rbx + 0x28], ax	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289CA4	0x2A	w	mov word ptr [rbx + 0x2a], cx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289E76	0x256	addr	lea rax, [rsi + 0x256]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289E80	0x256	r	test byte ptr [rax], 1	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x256	
+0x00289F50	FUN_00289f50	0x00289FAF	0x342	addr	lea rcx, [rsi + 0x342]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x00289FB6	0x342	r	test byte ptr [rcx], 1	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x342	
+0x00289A10	FUN_00289a10	0x00289A56	0x420	r	mov rdi, qword ptr [r15 + 0x420]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289CA8	0x420	r	mov rcx, qword ptr [rsi + 0x420]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289BD0	FUN_00289bd0	0x00289CB4	0x420	w	mov qword ptr [rsi + 0x420], rbx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A550	FUN_0028a550	0x0028A55A	0x420	r	mov rbx, qword ptr [rcx + 0x420]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A550	FUN_0028a550	0x0028A5BC	0x420	r	cmp qword ptr [rsi + 0x420], rbx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A550	FUN_0028a550	0x0028A5C5	0x420	w	mov qword ptr [rsi + 0x420], rdi	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289A10	FUN_00289a10	0x00289B54	0x428	r	mov rbx, qword ptr [r15 + 0x428]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289DB6	0x428	r	mov rbx, qword ptr [rsi + 0x428]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289EEE	0x428	r	mov rcx, qword ptr [rsi + 0x428]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289D70	FUN_00289d70	0x00289EFA	0x428	w	mov qword ptr [rsi + 0x428], rbx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A350	FUN_0028a350	0x0028A368	0x428	r	mov rbx, qword ptr [rcx + 0x428]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A350	FUN_0028a350	0x0028A4C2	0x428	r	cmp qword ptr [rsi + 0x428], rbx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A350	FUN_0028a350	0x0028A4CB	0x428	w	mov qword ptr [rsi + 0x428], rdi	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289A10	FUN_00289a10	0x00289B8A	0x430	r	mov rbx, qword ptr [r15 + 0x430]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x00289F8A	0x430	r	mov rax, qword ptr [rsi + 0x430]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x0028A021	0x430	r	mov rcx, qword ptr [rsi + 0x430]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x00289F50	FUN_00289f50	0x0028A02D	0x430	w	mov qword ptr [rsi + 0x430], rdx	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A620	FUN_0028a620	0x0028A638	0x430	r	mov rbx, qword ptr [rcx + 0x430]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A620	FUN_0028a620	0x0028A711	0x430	r	cmp rbx, qword ptr [rsi + 0x430]	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	
+0x0028A620	FUN_0028a620	0x0028A71A	0x430	w	mov qword ptr [rsi + 0x430], rdi	route-seeded EMBED ManagerSingleton0209BE80 +0x5380 base+0x0	

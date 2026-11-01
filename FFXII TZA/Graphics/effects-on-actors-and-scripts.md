@@ -25,13 +25,13 @@ The requests sit in 36 entries of `0x18` bytes at `0x02EBEC00`, packed from the 
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | handle: kind << 28 \| serial (0x02EBEF60) |  |
-| `+0x04` | `u32` | set by 0x003B0FD0 |  |
-| `+0x08` | `void*` | the instance |  |
-| `+0x10` | `u8` | effect number |  |
+| `+0x00` | `u32` |  | handle: kind << 28 \| serial (`0x02EBEF60`) |
+| `+0x04` | `u32` |  | set by `0x003B0FD0` |
+| `+0x08` | `void*` |  | the instance |
+| `+0x10` | `u8` |  | effect number |
 | `+0x11` | `u8` | target test |  |
 | `+0x12` | `u8` | kind |  |
-| `+0x13` | `u8` | bits 0x6: request kind (3 for 100-103 and 0x94, 1 when the number's 0x01EFE260 byte is 1, else 0) |  |
+| `+0x13` | `u8` |  | bits `0x6`: request kind (3 for 100-103 and `0x94`, 1 when the number's `0x01EFE260` byte is 1, else 0) |
 
 - `0x003B0980` returns the first free entry; with all 36 taken it ends the first instance whose
   request kind is 0 or 3 (`0x0024EE60`), closes the gap and returns the last entry.
@@ -70,13 +70,13 @@ Every slot number is clamped to 0 to 31.
   manager is skipping (`0x00267310`), and then `0x00314D40(1)`.
 - `0x0036E320(manager, slot, id, kind)` acts only on a free slot: it clears the signal bytes, adds
   `0x1000` to the id for kind 1 or `0x2000` for kind 2, files it with `0x003B1A80(id, slot)`, which puts
-  the slot in bits 6 to 11 of the queue id, keeps the manager, and sets state 1 when it got an id.
+  the slot in mask `0xFC0` of the queue id, keeps the manager, and sets state 1 when it got an id.
 - `effectreadsync` (`0x00DC`, slot 0) and `effectreadsync_e1(slot)` (`0x00E1`) poll `0x0036E540`: a
   reading slot waits until `0x0024DE70(id)` reports 2 or 3, then becomes state 2.
 - Play: `effectplay(n)` (`0x00DD`, slot 0) and `effectplay_e2(slot, n)` (`0x00E2`) call
   `0x0036E8B0(slot, n)`. A slot in state 2 or 3 whose file reports 2 or 3 becomes state 3 and is
   played by `0x003B1BA0` with the owner `[0x02EBCC70]`, the target list `0x02EBCBE0` (count
-  `[0x02EBCC60]`) and `n`. Then `0x0024F8D0` sets bits 12 to 14 of the instance's `+0x36A` to 3 for a
+  `[0x02EBCC60]`) and `n`. Then `0x0024F8D0` sets mask `0x7000` of the instance's `+0x36A` to 3 for a
   slot read by manager 3 and to 0 otherwise, which picks the target table above.
 - `effectsync` (`0x00DE`, slot 0) and `effectsync_e3(slot)` (`0x00E3`) wait while the state word
   (`0x0036E5A0`) is non-zero; a skip cancels the slot instead.
@@ -90,7 +90,7 @@ Every slot number is clamped to 0 to 31.
   `effecttriggercancel` (`0x01DC`, slot 0) and `effecttriggercancel_1dd(slot, n)` (`0x01DD`) run
   `0x0036DF80`, which passes a non-free slot's id to `0x003B27A0`.
 - `effectsignal(slot, v)` (`0x0241`, `0x0036E460`) passes `v` to `0x0024F3C0`, which, for `v` = 1,
-  adds 1 to bits 4 to 7 of the instance's word `+0x378`.
+  adds 1 to the bits under mask `0xF0` of the instance's word `+0x378`.
 - `effecthitsyncbyid` (`0x0440`) waits while `0x0036E640(id)` holds: the file reports 2 or 3 and bit `0x20`
   of the instance's `+0x36A` is clear (`0x0024E210(id, 0)`).
 

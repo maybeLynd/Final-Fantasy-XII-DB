@@ -108,7 +108,7 @@ nine-word records and `nMembers` six-word records) and the one the validator `0x
 | `+0x14` | `u32` | poolSize | bytes of the string pool |
 | `+0x18` | `u8[4]` | reserved | 0 in every shipped file; read by no function on a shipped file: the validator `0x0059E070` sums `+0x08`, `+0x0C`, `+0x10`, `+0x14` and `+0x1C` against `+0x04` (`0x0059E173`-`0x0059E191`), checks the byte-order mark `+0x00` (`0x0059E167` cmp dword [rdi], `0x1020304`) and reads nothing else of the header, the binders take the counts and the records, and the byte swap `0x0059C180` (`0x0059C1B7`-`0x0059C1BC`) runs only when `0x0059A3B0` finds the cluster marker byte-reversed (`0x0059A3FF`-`0x0059A437`), which no shipped file is; nothing fixes its width |
 | `+0x1C` | `u32` | extraSize | bytes of the block after the pool |
-| `+0x20` | `u32[nTypes]` | pool offsets of the type names | class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
+| `+0x20` | `u32[nTypes]` |  | pool offsets of the type names class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
 
 The loader requires `size == 0x20 + extraSize + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + poolSize`
 (`0x0059E070`), which places the extra block after the pool.
@@ -166,7 +166,7 @@ The members below are the ones the code of this page's classes uses or the refle
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x70` | `u32` | m_offsetInVertexBuffer where the block's data starts in the file's vertex buffer: 0x00670070 | creates the block's immutable buffer from the file data at this offset (`0x006700C1`); m_offsetInVertexBuffer (u32), registered by `0x00665870` (`0x00632960` at `0x00665A03`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockD3D11 |
+| `+0x70` | `u32` | m_offsetInVertexBuffer | where the block's data starts in the file's vertex buffer: `0x00670070` creates the block's immutable buffer from the file data at this offset (`0x006700C1`); m_offsetInVertexBuffer (u32), registered by `0x00665870` (`0x00632960` at `0x00665A03`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockD3D11 |
 | `+0x78` | `u32` | m_dataSize | the size of the block's data: `0x00670070` creates the block's buffer with this byte width (`0x006700B1`); m_dataSize (u32), registered by `0x00665870` (`0x00632960` at `0x00665990`); the cluster loader binds it by name (`0x0059B430`) in the 2,091 shipped .phyre files that declare PDataBlockD3D11 |
 | `+0x7C` | `u8[4]` | bytes7C | the bytes after m_dataSize (`+0x78`), before `+0x80`; no registered member covers it (`0x00661D30` registers the `0x88`-byte class at `0x00661D7A`) |
 
@@ -191,10 +191,10 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x00` | `u32` | m_size | m_size (u32), registered by `0x006D1810` (`0x00632960` at `0x006D18A5`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
 | `+0x04` | `u32` | m_modifierCodeCount | the number of `0x20`-byte modifier-code records that follow the packet: `0x006D4CF0` reads it to hand them to the visitor (`0x006D4D0E`); m_modifierCodeCount (u32), registered by `0x006D1810` (`0x00632960` at `0x006D1918`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
-| `+0x08` | `u32` | m_modifierInstanceCount the number of 0x20-byte modifier-instance records after the codes: | `0x006D4CF0` reads it (`0x006D4D1A`); m_modifierInstanceCount (u32), registered by `0x006D1810` (`0x00632960` at `0x006D198B`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x08` | `u32` | m_modifierInstanceCount | the number of `0x20`-byte modifier-instance records after the codes: `0x006D4CF0` reads it (`0x006D4D1A`); m_modifierInstanceCount (u32), registered by `0x006D1810` (`0x00632960` at `0x006D198B`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
 | `+0x0C` | `u16` | m_inputCount | counted with m_outputCount for the two-byte buffer entries after the instances: `0x006D4CF0` reads it (`0x006D4D11`); m_inputCount (u16), registered by `0x006D1810` (`0x00632960` at `0x006D19FE`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
 | `+0x0E` | `u16` | m_outputCount | counted with m_inputCount for the two-byte buffer entries: `0x006D4CF0` reads it (`0x006D4D22`); m_outputCount (u16), registered by `0x006D1810` (`0x00632960` at `0x006D1A71`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
-| `+0x14` | `u32` | m_totalPersistentStateSize m_totalPersistentStateSize (u32), registered by 0x006D1810 (0x00632960 | at `0x006D1B56`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
+| `+0x14` | `u32` | m_totalPersistentStateSize | m_totalPersistentStateSize (u32), registered by `0x006D1810` (`0x00632960` at `0x006D1B56`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
 | `+0x18` | `u32` | m_totalStateBlockSize | m_totalStateBlockSize (u32), registered by `0x006D1810` (`0x00632960` at `0x006D1BC9`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
 | `+0x1C` | `u32` | m_spuModifierCodeSize | m_spuModifierCodeSize (u32), registered by `0x006D1810` (`0x00632960` at `0x006D1C3C`); the cluster loader binds it by name (`0x0059B430`) in the 3 shipped .phyre files that declare PModifierNetworkInfoPacket |
 
@@ -311,7 +311,7 @@ Every `chr/` and `chr_shadow/` mesh file decoded: each object's members as its f
 | `exports`, `imports` | the ids of the file's asset references and of its asset imports: the shader variants and textures it binds by name |
 | `index_buffer_bytes`, `vertex_buffer_bytes` | the header's buffer sizes |
 | `ah_lists` | the `.ah` lists that name the file ([Prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md), all four token tables) |
-| `requested` | when the game requests one of those lists (`prefetch-manifests-ah-lists-chr.tsv` and `prefetch-manifests-ah-lists-chr_shadow.tsv`), `-` when it requests no list that names the file |
+| `requested` | when the game requests one of those lists (`prefetch-manifests-ah-lists-chr.tsv` and [`prefetch-manifests-ah-lists-chr_shadow.tsv`](../Game-Files-And-Data-Tables/prefetch-manifests-ah-lists-chr_shadow.tsv)), `-` when it requests no list that names the file |
 | `segment`, `material_index`, `matrix_index`, `skin_bones`, `primitive_type`, `lod_index`, `shape_index`, `gather_index`, `vertex_blocks` | a segment's place in its list and its `PMeshSegmentBase` and `PMeshSegmentD3D11` members (`vertex_blocks`: the element count of `m_vertexData`) |
 | `index_count`, `index_type`, `index_min`, `index_max`, `index_bytes`, `index_offset` | its index block: `m_elementCount`, `m_type`, `m_minimumIndex`, `m_maximumIndex`, `m_dataSize`, `m_offsetInIndexBuffer` |
 | `block`, `stride`, `element_count`, `streams`, `memory_type`, `offset`, `bytes` | a vertex block's place in its list and its `m_stride`, `m_elementCount`, `m_streams` count, `m_memoryType`, `m_offsetInVertexBuffer` and `m_dataSize` |
@@ -593,7 +593,7 @@ dump of data under 32 bytes) and the load goes on.
   through slot `+0x10`; the second location is the end of the two arrays rounded up to the alignment the
   visitor's `+0x08` object answers for that type (its slot `+0x18`, `0x005BFFF8`-`0x005C0058`).
 - `0x005FE350` serves `PParameterBuffer` (`0x20` bytes), and does nothing when slot `+0x18` answers true:
-  for each of the `+0x10` (bits 0-30) `PShaderParameterDefinition` records at `+0x18`, `0x18` bytes
+  for each of the `+0x10` (mask `0x7FFFFFFF`) `PShaderParameterDefinition` records at `+0x18`, `0x18` bytes
   each, it hands one parameter to slot `+0x10` at the record's `+0x10` offset into the buffer
   (`0x005FE3C7`-`0x005FE40A`).
 - A parameter type `+0x02` of `0x42`-`0x44`, `0x47`-`0x49` or `0x4B`-`0x50` is one `PShaderParameterCaptureBuffer`
@@ -610,7 +610,7 @@ dump of data under 32 bytes) and the load goes on.
   returns for `+0x18` through its slot `+0x20`, when that array's class is or derives from
   `PShaderParameterDefinition` (`0x005D8EB0`).
 - Without that array the second location is the first, and both are null unless the offset is at least 4
-  and offset plus size (bits 0-12 of `+0x12`) lies within `+0x00`, both as unsigned compares
+  and offset plus size (mask `0x1FFF` of `+0x12`) lies within `+0x00`, both as unsigned compares
   (`0x005FE36F`-`0x005FE40A`).
 - `0x0059CE30`, `0x0059C700` and `0x0059C250` then read the pointer-array, pointer and array tables. Each
   reads its `*Size` bytes and decodes every list's share into fixed entries (16 bytes for array and
@@ -733,3 +733,6 @@ pair and `0x00675440` destroys one.
 - [File path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md): how an asset path becomes an archive file.
 - [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the asset-name registry at `0x01F2EA70` that holds the asset references.
 - [Phyre entities and components](phyre-entities-and-components.md): the entity and component hooks behind slot `+0x70`.
+- [`phyre-asset-files-user-fixup-census.tsv`](phyre-asset-files-user-fixup-census.tsv): how many shipped `.phyre`
+  files have each pair of user-fixup record count and user-fixup data size, by kind of file (`mesh`, `texture` or
+  `neither`), with one example path (239 rows).

@@ -38,8 +38,8 @@ returns the name in the controller record at `+0x128` and null when no controlle
 
 | State | What the code does | Popup id | Popup text (`menu_message.bin`, through `0x00583990`'s table at `0x00D23DA0`) |
 |---|---|---|---|
-| 0 | arms the card-presence poll (`0x0057EC60`) | none | |
-| 1 | runs the device check (`0x0057EA40`), in save mode when byte `+0xEA` is 0 | none | |
+| 0 | arms the card-presence poll (`0x0057EC60`) | - (no popup) | |
+| 1 | runs the device check (`0x0057EA40`), in save mode when byte `+0xEA` is 0 | - (no popup) | |
 | 2 | confirms a new save | `0x15` | "Create new save data for FINAL FANTASY XII THE ZODIAC AGE?" |
 | 3 | confirms an overwrite | `0x13` | "Save data ... already exists. Overwrite it?" |
 | 4 | opens the save transaction `0x005819F0` as a child widget (`0x00244F50`, `0x00580FFF`) with the slot `+0xEB` and the save counter `+0xE4` + 1; plays sound `0x42` once per controller (`0x00580FBC`) | `0x10` | "Saving... Please do not close ..." |
@@ -124,7 +124,7 @@ the pane for any other. `0x0057EFE0` fills the status pane, whose labels are ESP
 - the seven roster entries through `0x0057E6D0`: an entry whose character byte is `0xFF` is hidden, and
   the level is capped at 99;
 - the gil `+0x08`, capped at 99,999,999;
-- the Esper row, shown only when `+0x3C` (the summoned Esper's character row, see the format page) is
+- the Esper row, shown only when `+0x3C` (the summoned Esper's character row, see the [save file format page](save-file-format.md)) is
   not `0xFF`: `0x0035D330(2, +0x3C)` looks the row up in the character table `[0x02EBF130]` (`0x0031C5D0`)
   and `0x002B58B0` gives its name;
 - the clan rank row, shown when `+0x44` is non-zero and the demo flag `0x0209A2A9` (`0x00264150`) is clear:
@@ -237,7 +237,7 @@ and -5 with result 7. Any other status goes to the command's handler:
 | 0 | `0x003BAC90` |
 | 1 | `0x003BA7B0` |
 | 2 | `0x003BAEB0` |
-| 3, 4, 5 | none: the command ends with result 0 |
+| 3, 4, 5 | no handler: the command ends with result 0 |
 | 6 | `0x003BA990`, the slot scan |
 | 7 | `0x003BA5F0` |
 | 8 | `0x003BA720` |
@@ -268,7 +268,7 @@ The handlers keep their own words beside the command:
 | `0x02B40FE0` | `i32` | 0 (zero-filled tail of `.data`) | the number of descriptors | `0x003BB920`, 1 (`0x003BB981`, an 8-byte store that also zeroes the index); `0x003BB9B0`, its count (`0x003BB9D3`); `0x003BB4C0`, 0 (`0x003BB53B`) | `0x003BB9B0` (`0x003BBA1B`, its copy loop); `0x003BAEB0` (`0x003BB169`) |
 | `0x02B40FE4` | `i32` | 0 (zero-filled tail of `.data`) | the descriptor the worker is on | `0x003BAEB0`, 1 more (`0x003BB170`); 0 from `0x003BB9B0` (`0x003BBA48`) and the other starters (`0x003BB2D2` to `0x003BB77A`, 9 sites); `0x003BB920`, with the count (`0x003BB981`) | `0x003BAEB0` (`0x003BAEBA`), which picks the descriptor `0x02B40EC8 + 0x38 x index` |
 | `0x02B40FE8` | `void*` | 0 (zero-filled tail of `.data`) | the cache row of the file being read: `0x02B40EF0` plus the slot times the row size `0x02B40EF8` | `0x003BA990` (`0x003BAB72`) | `0x003BA990` (`0x003BABA9`), as the buffer of the read `0x00862590` |
-| `0x02B41128` | `u8` | 0 (zero-filled tail of `.data`) | the save and load screen's mode as the listing command receives it: the controller's byte `+0xC1`, 0 when the screen was opened to save and 1 otherwise | `0x003BB4C0`, its second argument (`0x003BB4CE`, `0x003BB5B5`), which `0x00582040` passes from `[0x02CA99B8] + 0xC1` (`0x005821E0`, `0x005821E7`) | none: no RIP-relative, image-base-relative or address-forming reference reads it, the record copy that `0x003BB4C0` makes from `0x02B40FF0` ends `0xB8` bytes on, and no 8-byte pointer or 4-byte RVA in the image holds its address |
+| `0x02B41128` | `u8` | 0 (zero-filled tail of `.data`) | the save and load screen's mode as the listing command receives it: the controller's byte `+0xC1`, 0 when the screen was opened to save and 1 otherwise | `0x003BB4C0`, its second argument (`0x003BB4CE`, `0x003BB5B5`), which `0x00582040` passes from `[0x02CA99B8] + 0xC1` (`0x005821E0`, `0x005821E7`) | no reader: no RIP-relative, image-base-relative or address-forming reference reads it, the record copy that `0x003BB4C0` makes from `0x02B40FF0` ends `0xB8` bytes on, and no 8-byte pointer or 4-byte RVA in the image holds its address |
 | `0x02B4112C` | `f32` | 0 (zero-filled tail of `.data`) | the time the write has waited before its close | `0x003BAEB0`: 0 (`0x003BB074`, `0x003BB0F8`), and the frame time added (`0x003BB0BB`) | `0x003BAEB0` (`0x003BB0AB`, `0x003BB0E2`) |
 
 The controller's `+0xC1` comes from the screen's creation. The request dispatcher `0x0027F5D0` keeps its request's second
@@ -286,7 +286,7 @@ header cache and a row size of `0xA0`. `0x00393630(buffer, size)` writes the pat
 starts command 6, `0x003BA990`, which steps on each call:
 
 1. State 0 sets every status entry to `{1, 0}`, takes the free space `0x02B4054C` from `0x02B40E0C` and lists
-   the files with `0x008621E0(device, pattern, 0, 200, 0x02B41140)`. With none it goes to state `0x10`,
+   the files with `0x008621E0(device, pattern, 0, 200, 0x02B41140)`. With no file found it goes to state `0x10`,
    otherwise to `0x15`.
 2. State `0x15` handles one listed file per call. `0x003BA320(name)` gives its slot; the file is opened
    for reading (`0x008624D0`), read for `0xA0` bytes into the cache at `slot * 0xA0` (`0x00862590`) and
@@ -371,7 +371,7 @@ capacity):
   `offset` from the start (origin 0), the cursor (1) or the end (2) only when the new position is inside
   the vector; the status is set to 0 either way.
 - Close (`0x00866200`) writes the vector as a new container to a temporary file and copies it over the
-  slot file (see the format page). Every written file is a replaced copy, never written in place;
+  slot file (see the [save file format page](save-file-format.md)). Every written file is a replaced copy, never written in place;
   step 8's 8-byte write loads the file step 7 wrote, patches its first 8 bytes and rewrites it.
 
 The stream calls keep one open file. Each acts only for handle 0 (`test ecx, ecx` at the head of each) and works on
@@ -433,7 +433,9 @@ The load lifecycle `0x00582860` creates the slot screen and its panes (message `
 on message `0x12` with flag bit `0x10` of `+0xC4` set runs the post-load sequence: `0x001831A0`,
 `0x005843E0` and `0x00182D40` when the controller's byte `+0x598` is clear (that arm also sets
 `0x0209AC10` to 1), `0x00394400` when `0x00394520` reports a pending mode, then `0x00584210`, which handles the mode-3 stash and reseeds the gameplay generator from the clock
-(see the format page). Message `0x10` records the load mode: with `0x00394450()` = 3 it calls
+(see the [save file format page](save-file-format.md)).
+
+Message `0x10` records the load mode: with `0x00394450()` = 3 it calls
 `0x00238A30(1)`, else `0x00238A30(0)`, then `0x00285E60(-1)`.
 
 On message 1 `0x00582790` loads the screen's two layouts into `+0x100` and `+0x108` and, unless byte
@@ -483,7 +485,7 @@ The queue is the `0x720`-byte widget at `0x02CA99C0` with procedure `0x005823B0`
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x005823B0` |
 | `+0x0C0` | `void*` | callback | the completion callback a kind-1 packet installs (`0x005820A5`); the dequeue `0x00582240` calls it with the finished packet's kind, its result and `+0xC8` (`0x00582373`-`0x0058238E`); 0 at construction (`0x005824A9`) |
 | `+0x0C8` | `u32` | callbackArg | the callback's argument, copied from the kind-1 packet with the callback (`0x005820B2`) and passed to it as its third argument (`0x0058237F`) |
-| `+0x0CC` | `u8` | busy | 1 while a front packet is running: the enqueue sets it when the start `0x00582040` answers 0, the packet not yet finished (`0x005826BA`), and starts nothing new while it is set (`0x00582698`); the dequeue clears it when the queue empties (`0x00582280`); the tick (message 2) completes and starts packets while it is set (`0x00582443`-`0x0058248A`); the device check `0x0057EA40` (`0x0057EA9F`), the poll arm `0x0057EC60` (`0x0057ECC0`) and the disarm `0x0057ED40` (`0x0057ED94`) clear it with the queue; 0 at construction (`0x005824B0`) |
+| `+0x0CC` | `u8` | busy | 1 while a front packet is running: the enqueue sets it when the start `0x00582040` answers 0, the packet still running (`0x005826BA`), and starts nothing new while it is set (`0x00582698`); the dequeue clears it when the queue empties (`0x00582280`); the tick (message 2) completes and starts packets while it is set (`0x00582443`-`0x0058248A`); the device check `0x0057EA40` (`0x0057EA9F`), the poll arm `0x0057EC60` (`0x0057ECC0`) and the disarm `0x0057ED40` (`0x0057ED94`) clear it with the queue; 0 at construction (`0x005824B0`) |
 | `+0x0CD` | `u8` | pad0CD | read and written by no function; nothing fixes its width |
 | `+0x0CE` | `u8` | pad0CE | read and written by no function; nothing fixes its width |
 | `+0x0CF` | `u8` | pad0CF | read and written by no function; nothing fixes its width |
@@ -581,7 +583,7 @@ The table holds 200 entries at `0x02B407C0`; slot `n` is entry `n` (`0x003BB3E0`
 | `+0x00` | `i32` | field | the destination field id (`0x001C1720`) |
 | `+0x04` | `i32` | story | 0 any story counter; otherwise the counter it must equal; -2 matches only while battle-state bit `0x1000` is set |
 | `+0x08` | `i32` | entrance | 0 any entrance; otherwise the entrance it must equal |
-| `+0x0C` | `i32` | variable | 0 none; otherwise the row also matches while `0x002EF390`(variable) is true |
+| `+0x0C` | `i32` | variable | 0 no variable; otherwise the row also matches while `0x002EF390`(variable) is true |
 
 ## Shipped data
 
@@ -662,7 +664,7 @@ and the boss whose fight it tracks, and the rule in words. What the rows show:
 | `0x02B40E18` | `i32` | the last command's result | the command handlers |
 | `0x02EAF8E0` | `i32` | the status of the last file call | `0x008621E0`, `0x00862590`, `0x00862620`, `0x008625D0`, `0x00862490` |
 | `0x02B4054C` | `i32` | the free space the slot scan draws on | `0x003BA990`, `0x003BA720` |
-| `0x01EFAC10` | `u8` | the save-data check: 3 in the image, before the first check; 2 running, 1 a save exists, 0 none | `0x00393EA0` |
+| `0x01EFAC10` | `u8` | the save-data check: 3 in the image, before the first check; 2 running, 1 a save exists, 0 no save file | `0x00393EA0` |
 | `0x01F81260` | `void*` | the SaveloadManager, holding the autosave exclusion rows at `+0x50` | `0x001C18A0` |
 
 The device-check pane:
@@ -679,8 +681,8 @@ it.
 - A tool that writes a slot file must also write the zeroed-header then stamped-header sequence
   only if it wants the game's own semantics; the game never reads the companion files `icon.sys`
   and `static.ico`, it only deletes them.
-- The autosave always targets slot 0; a manual save to slot 0 is overwritten at the next area
-  change.
+- The autosave always targets slot 0, which the save list never offers for a manual save (save mode
+  lists slots 1-199); a slot 0 file copied in from outside the game is overwritten at the next area change that autosaves.
 - A read that falls short reports 0 and leaves the destination partly overwritten; a reimplementation
   must copy before it compares, in that order.
 - The game finds saves by probing `FFXII_000` to `FFXII_199` in the save directory, not by listing
@@ -694,3 +696,5 @@ it.
 - [Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps](save-file-format.md)
 - [Languages: the Language setting, the nine language codes, the locale id each maps to, the data folder it selects, the Windows-locale default, and the confirm and cancel buttons](languages.md)
 - [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](../World-Areas-And-Travel/zone-changes-and-mapjump.md)
+- [`storage-byte-stream-vector-01f44d40-accesses.tsv`](storage-byte-stream-vector-01f44d40-accesses.tsv): every
+  censused access to the file worker's byte vector `0x01F44D40` (its begin, end and capacity pointers) (23 rows).

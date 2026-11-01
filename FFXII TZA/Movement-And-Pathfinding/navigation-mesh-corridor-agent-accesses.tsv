@@ -1,0 +1,68 @@
+function	name	site	disp	kind	instruction	route	note
+0x00203080	FUN_00203080	0x002030C9	0x70	w	movups xmmword ptr [rcx], xmm0	ctor-seeded 0x00336710	
+0x00203080	FUN_00203080	0x002030C9	0x80	w	movups xmmword ptr [rcx], xmm0	ctor-seeded 0x00336710	
+0x00203080	FUN_00203080	0x002030C9	0x90	w	movups xmmword ptr [rcx], xmm0	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336739	0x0	w	mov dword ptr [rcx], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336744	0x4	w	mov dword ptr [rcx + 4], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033674D	0x8	w	mov dword ptr [rcx + 8], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336750	0xc	w	mov dword ptr [rcx + 0xc], 0x3f800000	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033675A	0x10	w	mov dword ptr [rcx + 0x10], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336760	0x14	w	mov dword ptr [rcx + 0x14], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336766	0x18	w	mov dword ptr [rcx + 0x18], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336769	0x1c	w	mov dword ptr [rcx + 0x1c], 0x3f800000	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336776	0x20	w	mov dword ptr [rcx + 0x20], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033677F	0x24	w	mov dword ptr [rcx + 0x24], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336788	0x28	w	mov dword ptr [rcx + 0x28], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033678B	0x2c	w	mov dword ptr [rcx + 0x2c], 0x3f800000	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336798	0x30	w	mov dword ptr [rcx + 0x30], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367A1	0x34	w	mov dword ptr [rcx + 0x34], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367AA	0x38	w	mov dword ptr [rcx + 0x38], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367AD	0x3c	w	mov dword ptr [rcx + 0x3c], 0x3f800000	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367B4	0x108	w	mov qword ptr [rcx + 0x108], rdx	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367BB	0x100	w	mov qword ptr [rcx + 0x100], rdx	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367D2	0xb0	w	mov dword ptr [rcx + 0xb0], r13d	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367D9	0xa0	w	movss dword ptr [rcx + 0xa0], xmm0	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367E7	0xb4	w	mov dword ptr [rcx + 0xb4], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367F3	0xb8	w	mov dword ptr [rcx + 0xb8], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003367FF	0xbc	w	mov dword ptr [rcx + 0xbc], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336819	0xd8	w	mov qword ptr [rdi + 0xd8], rax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336834	0xcc	w	mov dword ptr [rdi + 0xcc], eax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033684F	0x108	r	mov rax, qword ptr [rdi + 0x108]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336862	0x108	r	mov rcx, qword ptr [rdi + 0x108]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336869	0xf0	w	mov qword ptr [rdi + 0xf0], rax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336878	0xc0	w	movss dword ptr [rdi + 0xc0], xmm1	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003368AC	0xc0	w	mov dword ptr [rdi + 0xc0], 0x40000000	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003368B6	0xd0	rw	and dword ptr [rdi + 0xd0], 0xfffffffe	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003368DC	0xe8	w	mov qword ptr [rdi + 0xe8], rcx	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003368E8	0xf0	r	mov rax, qword ptr [rdi + 0xf0]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336906	0xf0	r	mov rax, qword ptr [rdi + 0xf0]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336932	0xd0	rw	or dword ptr [rdi + 0xd0], 1	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033693B	0xe8	w	mov qword ptr [rdi + 0xe8], r13	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033694E	0xc8	w	movss dword ptr [rdi + 0xc8], xmm0	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336956	0xf8	w	mov qword ptr [rdi + 0xf8], r13	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033695D	0x40	w	mov qword ptr [rdi + 0x40], r13	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336961	0x48	w	mov dword ptr [rdi + 0x48], r13d	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336965	0x4c	w	mov dword ptr [rdi + 0x4c], 0x3f800000	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033696C	0x90	w	mov qword ptr [rdi + 0x90], r13	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336973	0x98	w	mov dword ptr [rdi + 0x98], r13d	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x0033697A	0x9c	w	mov dword ptr [rdi + 0x9c], 0x3f800000	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336984	0xa4	w	mov dword ptr [rdi + 0xa4], r13d	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336995	0x108	r	mov rax, qword ptr [rdi + 0x108]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003369BE	0xf8	w	mov qword ptr [rdi + 0xf8], rax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003369D0	0xe0	w	mov qword ptr [rdi + 0xe0], rax	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x003369D7	0xf8	r	cmp qword ptr [rdi + 0xf8], r13	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336A14	0xe0	r	mov rcx, qword ptr [rdi + 0xe0]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336A42	0xa4	w	movss dword ptr [rdi + 0xa4], xmm0	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336A5D	0xa8	w	movss dword ptr [rdi + 0xa8], xmm0	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336A6D	0xc8	w	movss dword ptr [rdi + 0xc8], xmm0	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336A75	0x108	r	mov rax, qword ptr [rdi + 0x108]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336A82	0xa0	r	movss xmm0, dword ptr [rdi + 0xa0]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336A8A	0xa4	r	addss xmm0, dword ptr [rdi + 0xa4]	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336A9A	0xac	w	movss dword ptr [rdi + 0xac], xmm0	ctor-seeded 0x00336710	
+0x00336710	BattleLocomotion_BuildSolverContext	0x00336AAA	0xac	w	mov dword ptr [rdi + 0xac], eax	ctor-seeded 0x00336710	
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D3FE	0x0	r	movss xmm0, dword ptr [rcx]	ctor-seeded 0x00336710	
+0x0033D3E0	Navigation_CheckDirectRouteAcrossRegionsXZ	0x0033D405	0x8	r	movss xmm1, dword ptr [rcx + 8]	ctor-seeded 0x00336710	
+0x004686D0	Vector3_ComputeXZDistance	0x004686D0	0x0	r	movss xmm1, dword ptr [rcx]	ctor-seeded 0x00336710	
+0x004686D0	Vector3_ComputeXZDistance	0x004686D4	0x8	r	movss xmm0, dword ptr [rcx + 8]	ctor-seeded 0x00336710	
+0x00468880	FUN_00468880	0x004688A4	0x0	r	movss xmm0, dword ptr [rcx]	ctor-seeded 0x00336710	
+0x00468880	FUN_00468880	0x004688B4	0x8	r	movss xmm0, dword ptr [rcx + 8]	ctor-seeded 0x00336710	

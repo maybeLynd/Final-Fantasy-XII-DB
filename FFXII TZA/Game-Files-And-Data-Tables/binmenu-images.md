@@ -11,8 +11,8 @@ The game pastes these files into three menu pictures at run time:
 
 - when a guest is in the party, the guest's portrait `face_guestNN` into `partytop_8_c`;
 - a guest's small face, one cell of `mini_guest_face`, into `mini_face_c`;
-- when an area flag is set, the icon `map_efe0N` into `battle_4_c`. Flags `0x4` to `0x20` are the ones that make
-  `0x0031A7B0` refuse commands of four action classes.
+- when an area flag is set, the icon `map_efe0N` into `battle_4_c`. Four of these flags are the ones that stop
+  the party using Attack, Magicks, Technicks or Items ([command availability](../Battle-Actions/command-availability.md)).
 
 ## Where it comes from
 
@@ -39,20 +39,20 @@ Mini_guest_face.bin (73,728 bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `+ 0x2000 n` | u8[128][64] | cell for guest character id 7 + n: 128 rows of 64 indices |
+| `+0x00` | `u8[9][128][64]` | cells | cell n, at `0x2000` × n, is the face of guest character id 7 + n: 128 rows of 64 indices |
 
 Map_efe0N.bin (16,384 bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0000` | `u8[64][128]` | first cell: 64 rows of 128 indices |  |
-| `+0x2000` | `u8[64][128]` | second cell, copied into the 64 rows below the first |  |
+| `+0x0000` | `u8[64][128]` |  | first cell: 64 rows of 128 indices |
+| `+0x2000` | `u8[64][128]` |  | second cell, copied into the 64 rows below the first |
 
 Face_guestNN.bin (12,288 bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8[]` | rows of the partytop_8_c rectangle's width |  |
+| `+0x00` | `u8[]` |  | rows of the partytop_8_c rectangle's width |
 
 The destination rectangle is a sub-image record of the picture's `eXt` block, found as the
 [UI typed lists](ui-typed-lists.md) page gives it (`page = u16[T + 0x14 + (code >> 8) x 2]`, then the entry, then

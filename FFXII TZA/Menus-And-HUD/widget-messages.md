@@ -7,7 +7,7 @@ addresses: "0x00247510, 0x002465F0, 0x00248030, 0x00245E60, 0x002473F0, 0x002448
 
 ## What it lists
 
-`widget-messages.tsv` has one row per message id that a widget procedure answers or a sender raises, 56 in all:
+[`widget-messages.tsv`](widget-messages.tsv) has one row per message id that a widget procedure answers or a sender raises, 56 in all:
 1-26, 29-53 and 285-289. The counts come from decoding the 274 widget procedures of the image (the 267 built by
 [Widgets](widgets.md)'s constructors and seven base procedures their defaults pass messages to).
 

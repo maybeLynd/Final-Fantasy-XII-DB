@@ -52,8 +52,12 @@ steps table described under [Every step](#every-step).
   1970, 3000, 4100, 5100, 6100 and above), `global_flag[3]` from 0 to 10 (0 below 27, 1 up to 290, then one more at
   each bound from 343 on, 10 above 6100), and `g_com_パーティ人数変数` to 0 below 220, 2 up to 249, 3 up to 290 and 2 above.
   It sets `g_iw_ラバナスタ通行止め状態` to 2 below 100 and 0 from 100.
-- It counts the key items `0xC012` to `0xC01E` held into `battle_global_flag[0]`, sets each boss state `g_btl_*` that
-  is 0 to 1 (the Hydra and Tyrant states to 2 in a later counter range), writes the teleport status with
+- It counts the thirteen Espers held, Belias (`0xC012`) to Zodiark (`0xC01E`) ([Quickenings and
+  Espers](../Battle-Actions/quickening-and-esper-list.md)), into `battle_global_flag[0]`.
+- It sets each of the 48 boss states `g_btl_*` that is 0 to 1. Three of them it sets only within a story counter
+  range: Judge Ghis's from 1000 to 1017, Hydro's below 5300 and Tyrant's below 4350. From 5300 and from 4350 up to
+  11000 it sets the Hydro and Tyrant states to 2 ([story bosses](../Enemy-Spawning/story-bosses.tsv)).
+- It writes the teleport status with
   `setsaveramtelepostatus` in seventeen counter ranges ([save and teleport
   crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md)), and ends with `eventdispose`.
 - `pre_a01` and `pre_b01` hold twelve treasure chests each, always there, with a fixed consumable ([treasure

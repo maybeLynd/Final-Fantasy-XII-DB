@@ -123,8 +123,8 @@ record's first byte:
   absolute wrapped difference, and the point passes the arc when that is at most
   `(arcDeg / 2) * 2pi / 360` with an integer halving (`0x00234BF8`-`0x00234C2B`); then
   `0x00234DA0(out, minR^2, maxR^2, outObserved, allSlots)` decides;
-- any other byte: area mode. Two draws of `0x00328370`: `r = (draw % (int)((maxR - minR) * 100)) / 100
-  + minR`, quantised to a hundredth, and `theta = wrap(heading + ((draw % arcDeg) - arcDeg / 2) *
+- any other byte: area mode. Two draws of `0x00328370`: `r = (draw % (int)((maxR - minR) * 100)) / 100 +
+  minR`, quantised to a hundredth, and `theta = wrap(heading + ((draw % arcDeg) - arcDeg / 2) *
   2pi / 360)` (`0x00316DA0`);
 - `0x00319390` then builds `leader + (r * sin(theta), ?, r * cos(theta))` through the 32,768-entry
   sine table at `0x01F004E0` (`cos = sin[(0x2000 - i) & 0x7FFF]`), writing x and z only. The point
@@ -291,44 +291,44 @@ Globals (BSS):
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02089358` | `i32` | heading arc degrees |  |
-| `0x02089360` | `f32` | min distance |  |
-| `0x02089364` | `f32` | max distance |  |
-| `0x02089368` | `f32` | retire range |  |
-| `0x0208D457` | `u8` | attempts (signed use) |  |
-| `0x0208D458` | `u8` | active cap (signed use) |  |
-| `0x0208936C` | `i32` | return window, seconds |  |
-| `0x02F973B8` | `f32` | max considered squared distance, +INF (0x002368F0); shared with AI targeting and loot |  |
+| `0x02089358` | `i32` |  | heading arc degrees |
+| `0x02089360` | `f32` |  | min distance |
+| `0x02089364` | `f32` |  | max distance |
+| `0x02089368` | `f32` |  | retire range |
+| `0x0208D457` | `u8` |  | attempts (signed use) |
+| `0x0208D458` | `u8` |  | active cap (signed use) |
+| `0x0208936C` | `i32` |  | return window, seconds |
+| `0x02F973B8` | `f32` |  | max considered squared distance, +INF (`0x002368F0`); shared with AI targeting and loot |
 
 Initialised .data:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01F004E0` | `f32[32768]` | sine table, table[i] = sin(2 pi i / 32768); entry 0x2000 at 0x01F084E0 = 1.0 |  |
+| `0x01F004E0` | `f32[32768]` |  | sine table, table[i] = sin(2 pi i / 32768); entry `0x2000` at `0x01F084E0` = 1.0 |
 
 .rdata:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x009146EC` | `f32` | 39.0, the script default |  |
-| `0x009146F0` | `f32` | 42.0, the script default |  |
-| `0x009146F4` | `f32` | 43.0, the script default |  |
+| `0x009146EC` | `f32` |  | 39.0, the script default |
+| `0x009146F0` | `f32` |  | 42.0, the script default |
+| `0x009146F4` | `f32` |  | 43.0, the script default |
 
 BattleUnit fields this page uses:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u64` | flags: bit 0x4 active, 3 definition applied, 4 drive, 21 cap-tracked, 26 candidate prepared, | 40 special range, 45 not an initial placement, 49 activated once |
-| `+0x038` | `void*` | candidate table: u16 count, then u16 offsets per lane, then i16 candidate ids |  |
-| `+0x040` | `void*` | lane map: u8 count, u8 slot per lane (0xFF none) |  |
-| `+0x04C` | `f32` | mode-2 threshold |  |
+| `+0x000` | `u64` |  | flags: bit `0x4` active, `0x8` definition applied, `0x10` drive, `0x200000` cap-tracked, `0x4000000` candidate prepared, `0x10000000000` special range, `0x200000000000` not an initial placement, `0x2000000000000` activated once |
+| `+0x038` | `void*` |  | candidate table: u16 count, then u16 offsets per lane, then i16 candidate ids |
+| `+0x040` | `void*` |  | lane map: u8 count, u8 slot per lane (`0xFF` none) |
+| `+0x04C` | `f32` |  | mode-2 threshold |
 | `+0x050` | `u8` | despawn mode 0/1/2 |  |
 | `+0x051` | `u8` | anchor record |  |
-| `+0x057` | `i8` | the unit's own lane |  |
+| `+0x057` | `i8` |  | the unit's own lane |
 | `+0x058` | `u8` | category byte |  |
-| `+0x188` | `f32` | vertical lift |  |
+| `+0x188` | `f32` |  | vertical lift |
 | `+0x1F6` | `u8` | height mode: bit 0x8 = probe |  |
-| `+0x698` | `void*` | stats record (+0x05 kind) |  |
+| `+0x698` | `void*` |  | stats record (`+0x05` kind) |
 | `+0x6A0` | `void*` | spawn record |  |
 | `+0xE68` | `void*` | definition record |  |
 
@@ -336,10 +336,10 @@ Field format-class-0 record (`0x003DFD00`(0, id, rec)):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | type: 0 point, 1 box, 2 ellipse |  |
+| `+0x00` | `u8` |  | type: 0 point, 1 box, 2 ellipse |
 | `+0x04` | `f32` | width |  |
 | `+0x08` | `f32` | depth |  |
-| `+0x10` | `f32[3]` | position or centre |  |
+| `+0x10` | `f32[3]` |  | position or centre |
 | `+0x1C` | `f32` | heading |  |
 
 ## Shipped data
@@ -362,7 +362,7 @@ all; 13 install the defaults and spawn nothing). What the overriding zones autho
 
 [`enemy-placement-conditions.tsv`](enemy-placement-conditions.tsv) gives the spawn condition of each of the 6,229
 placements in [`enemy-placements.tsv`](enemy-placements.tsv), in 23,242 rows. A placement is the `entryNN` function of
-its actor. The actor's `spawnNN` and `respawnNN` functions enter it by a `requestreentry` step after `setentrygroup`
+its actor (the `entry` column there). The actor's `spawnNN` and `respawnNN` functions enter it by a `requestreentry` step after `setentrygroup`
 names its group and `btlAtelSetKeepWorkGroup` its lane (`0x00239840`; a negative lane uses the group as the lane). Each
 row is one such step on one path, and gives:
 

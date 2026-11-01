@@ -20,9 +20,9 @@ Before its list request `0x001B44A0` stores its third argument in the font displ
 `[0x01F811F8] + 0x2378` (`0x001E9F30`, `0x001B4544`), and it ends by tail-jumping to `0x001E98A0` (`0x001B4587`), which
 loads every palette entry `fontclut_0` to `fontclut_27` not yet loaded through `0x001C5F20`.
 
-`0x001B44A0` picks the language's list and folder from the language id `[0x01E02814]` (`0x00229E40`):
+`0x001B44A0` picks the language's list and folder from the locale id `[0x01E02814]` (`0x00229E40`):
 
-| Language id | Folder |
+| Locale id | Folder |
 |---|---|
 | 1-6 | `us` (`0x008F8620`) |
 | 7 | `kr` (`0x008F8728`) |
@@ -276,7 +276,7 @@ header's values as arguments and stores each.
 | `+0x0B0` | `void*` | expansionHeadA | header node, first word: 0 (`0x001FC196`), then the header itself (`0x001FC1B4`) |
 | `+0x0B8` | `void*` | expansionHeadB | header node, second word: 0 (`0x001FC199`), then the header itself (`0x001FC1B7`) |
 | `+0x0C0` | `void*` | expansionRoot | root node: 0 when empty (`0x001FC19D`, `0x001FC1BB`) |
-| `+0x0C8` | `u8` | expansionHeadFlag 0 (0x001FC1BF) |  |
+| `+0x0C8` | `u8` | expansionHeadFlag | 0 (`0x001FC1BF`) |
 | `+0x0C9` | `u8[7]` | expansionPad21 | zeroed by the qword store at `0x001FC1A1` |
 | `+0x0D0` | `u32` | expansionCount | entries: 0 (`0x001FC1C3`) |
 | `+0x0D4` | `u8[4]` | expansionPad2C | not written by the constructor |
@@ -351,14 +351,14 @@ Two more lookups sit beside it: `0x0039C100()` returns entry `[0x02AEE894]` of t
 The font a code is drawn with is a slot of the font manager: two-byte codes whose lead is at least `[0x01E0CDF8]` use
 the context's index `+0xA6`, the place of its glyph sheet in `0x02AEE810`, and other codes index 0, or 7 with the
 context's bit `0x800` in `0x002AC2F0` (0 in the drawer `0x002B0280`; `0x0017FD30`, `0x001E9D20`). font00 takes the first empty slot, 0,
-fontex_subtitle slot 7 for language ids 1 to 6 and 9, and fontguide, fontquest and fonttutorial the first empty slot, filed by the screen as
+fontex_subtitle slot 7 for locale ids 1 to 6 and 9, and fontguide, fontquest and fonttutorial the first empty slot, filed by the screen as
 it registers its sheet ([Font files](fonts-files.md), Which text fonts 1, 3, 4, 5 and 6 draw).
 
 `0x002AC2F0` turns a text code into a glyph index:
 
 - A byte `0x20` or above is index `byte - 0x20` (`0x002AC37C`).
 - A lead byte `0x10`-`0x1F` and the next byte are index `table[lead & 0xF] + second - 0x20` (`0x002AC38D`-`0x002AC3BC`).
-  The table is `0x00916570`, or `0x009165B0` for language ids 7, 8 and 11 (`0x002AB7D0`).
+  The table is `0x00916570`, or `0x009165B0` for locale ids 7, 8 and 11 (`0x002AB7D0`).
 
 Numbers reach the font through the font sheet's two character maps (`0x002AE77C`, `0x002AE861`): the first maps `0`-`9`
 to the `font00` digits and the second to the full-width digits.

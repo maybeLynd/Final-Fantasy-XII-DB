@@ -27,7 +27,7 @@ The zone setup `0x0025D9E0` calls `0x00261F90` (`0x0025DB8E`) for the zone being
 1. The field id is payload `+0x1044` (`0x0026200F`, `0x003148F0`).
 2. When payload `+0x1063` bit `0x40` is set, the track is the saved override at payload `+0x1534`; otherwise it is the
    field's track from the music table, `0x003EAA70` (`0x0026201B`-`0x00262034`).
-3. Unless that track is boss music (`0x00361010`, `0x00262041`), the battle mode decides: summon mode makes it `0x5B`,
+3. Unless that track is boss music (`0x00361010`, `0x00262041`), the party control mode decides: summon mode makes it `0x5B`,
    chocobo mode `0x5A` (`0x0026204A`-`0x00262063`). Summon mode is `0x0030D9A0` answering 1 and chocobo mode answering 2
    (`0x003135C0`, `0x00303EC0`).
 

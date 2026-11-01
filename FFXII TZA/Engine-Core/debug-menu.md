@@ -59,6 +59,9 @@ The information page (page 14) runs its ids through the filter `0x001D0190` firs
 - 10 only while `0x0022A550()` holds (main-loop state 2 with `0x00358330(1)`);
 - 101 only while `+0xA74` is 2; any other id is dropped.
 
+Page 14's own list in the table below holds id 3, which the filter drops, and does not hold ids 1 and 7, which
+the filter passes.
+
 `0x001D5520`, called from the render pass list `0x00187950`, redraws rows 9 and 10 of the information
 page at their remembered positions `+0x10B0` / `+0x10B4`.
 
@@ -111,7 +114,7 @@ setting the end back to the begin (`0x0020A774`, `0x0020A787`); and `0x001C50C0`
 On that byte `0x00214C30` runs `0x001C5040`, which empties `0x01F812A8`, clears the two scene maps of the
 current index `0x01F813F8` (`0x01F813A8` and `0x01F813D8`, through `0x00202880`) and sets that index's
 words at `0x01F81400` and `0x01F81408` to -1. Script call `0x5C9` (`0x00352F00`) pushes `0x001EC500()`, the
-queued count of the marked slot, or 0 when none is marked.
+queued count of the marked slot, or 0 when no slot is marked.
 
 ### The read-out rows
 
@@ -323,10 +326,10 @@ and continues by the mode `+0xBC`:
 
 | Mode | fov | Angles |
 |---|---|---|
-| 0, 1 | 2π / (n − 2), 90° for the constructor's count of 12 | face 0: `a` = −π/2; 1: `a` = π/2; 2: `b` = π/2; 3: `b` = −π/2; 4: `a` = π; 5: none |
+| 0, 1 | 2π / (n − 2), 90° for the constructor's count of 12 | face 0: `a` = −π/2; 1: `a` = π/2; 2: `b` = π/2; 3: `b` = −π/2; 4: `a` = π; 5: the angles stay 0 |
 | 2 | 2π / n | `a` = f × fov + `+0x190` + π; scale and aspect from `0x01DF1B70` and `0x01DF1B74` (1.0 each) |
 | 3 | `+0x1E0` degrees (180) / `+0x1E4` (3) | `a` = `+0x190`; `b` = −`+0x194`, or 0 while byte `0x01F811D0` is set; `c` = fov / 2 − span / 2 + π + f × fov |
-| other | 2π | none |
+| other | 2π | the angles stay 0 |
 
 `0x00189570`, run by the per-frame pump `0x0017D6E0` and by the render pass list `0x00187950`, asks
 `0x001ACC30` and, on true, sets five cameras through `0x00185C30`:
@@ -382,33 +385,33 @@ No arm of `0x001D1660` writes `+0x00`, `+0x04`, `+0xC1C` or `+0xC24`.
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01F81428` | `void*` | the console object (0x10E8), from 0x001D50D0 |  |
+| `0x01F81428` | `void*` |  | the console object (`0x10E8`), from `0x001D50D0` |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x0130` | `char*` | row labels | one per id at `+0x130` + id*8, ids 1-294 (`0x001D0390`) |
-| `+0x0A70` | `u8` | open (always 0) |  |
+| `+0x0A70` | `u8` |  | open (always 0) |
 | `+0x0A74` | `u32` | mode |  |
 | `+0x0A88` | `...` | page |  |
-| `+0x0A90` | `...` | row count |  |
-| `+0x0AAC` | `i32` | weather-slot override |  |
-| `+0x0AB4` | `u32` | field id for the code table |  |
-| `+0x0C56` | `u8` | information page |  |
-| `+0x10B0` | `...` | row of id 9 |  |
-| `+0x10B4` | `...` | row of id 10 |  |
+| `+0x0A90` | `...` |  | row count |
+| `+0x0AAC` | `i32` |  | weather-slot override |
+| `+0x0AB4` | `u32` |  | field id for the code table |
+| `+0x0C56` | `u8` |  | information page |
+| `+0x10B0` | `...` |  | row of id 9 |
+| `+0x10B4` | `...` |  | row of id 10 |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x008FCE00` | `u32[15][22]` | the page table (id, 0 = none) |  |
-| `0x001D4C1C` | `u32[282]` | arm RVAs for ids 12-293; 0x001D4BFA the shared do-nothing arm; 0x001D4C09 the out-of-range arm |  |
-| `0x01DF6E68` | `{char* code; u32 index+1; u32 0}[1314]` | the authored-code table (601 codes) |  |
-| `0x01F832B0` | `u32[5]` | event-slot counts |  |
+| `0x008FCE00` | `u32[15][22]` |  | the page table (id, 0 = no row) |
+| `0x001D4C1C` | `u32[282]` |  | arm RVAs for ids 12-293; `0x001D4BFA` the shared do-nothing arm; `0x001D4C09` the out-of-range arm |
+| `0x01DF6E68` | `{char* code; u32 index+1; u32 0}[1314]` |  | the authored-code table (601 codes) |
+| `0x01F832B0` | `u32[5]` |  | event-slot counts |
 | `0x01F832E8` | `u8` | classification | with `0x01F832E9` |
 | `0x01F832E9` | `u8` | classification | with `0x01F832E8` |
-| `0x01F832F0` | `string[5]` | event-slot names, 0x20 each |  |
-| `0x01F83390` | `vector[5]` | event-slot vectors, 0x20 each |  |
-| `0x01DFE40C` | `i32` | slot marker |  |
-| `0x01F82D20` | `void*` | the game-setting object the Config rows read |  |
+| `0x01F832F0` | `string[5]` |  | event-slot names, `0x20` each |
+| `0x01F83390` | `vector[5]` |  | event-slot vectors, `0x20` each |
+| `0x01DFE40C` | `i32` |  | slot marker |
+| `0x01F82D20` | `void*` |  | the game-setting object the Config rows read |
 | `0x022C7F90` | `u16` | display flag words | one per i at `0x022C7F90` + i*4 (`0x00358330`(i)); word 1 gates the menu draw |
 
 `MultipleDebugDisplay`, `0x4670` bytes at `[0x01F81270]` (constructor `0x001C1D40`):
@@ -459,13 +462,13 @@ The console fields the camera override reads:
 |---|---|---|---|
 | `+0x000` | `f32` | a | first angle for `0x00189130`; 0 |
 | `+0x004` | `f32` | b | second angle; 0 |
-| `+0xC0C` | `u8` | override rows 60 and 103 |  |
+| `+0xC0C` | `u8` |  | override rows 60 and 103 |
 | `+0xC10` | `f32` | fov | row 104; 0.785 |
 | `+0xC14` | `f32` | aspect | row 105; 1.778 |
 | `+0xC18` | `f32` | scale | row 106; 1.155 |
 | `+0xC1C` | `f32` | c | third angle; 0 |
 | `+0xC24` | `u8` | capFov | takes the fov from the cube-map object; 0 |
-| `+0xC28` | `i32` | panorama row 60, 0 to 12 |  |
+| `+0xC28` | `i32` |  | panorama row 60, 0 to 12 |
 
 
 ## Shipped data
@@ -527,7 +530,7 @@ the string's address is taken only at `0x0020AF3E`.
 ## Related
 
 - [Debug menu commands](debug-menu-commands.md): every id with its label, arm, kind and field.
-- [`debug-menu-settings-01f81428-accesses.tsv`](debug-menu-settings-01f81428-accesses.tsv): every censused access
+- [`debug-menu-settings-01f81428-accesses.tsv`](debug-menu-settings-01f81428-accesses.tsv): every access
   to the console object `[0x01F81428]` outside its constructor, one row per instruction (754 rows).
 - [Graphics settings](graphics-settings.md): the block most stepped fields live in.
 - [Frame update order](frame-update-order.md): the draw block and the display flag.

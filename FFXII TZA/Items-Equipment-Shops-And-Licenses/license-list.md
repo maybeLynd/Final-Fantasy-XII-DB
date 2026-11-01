@@ -7,7 +7,7 @@ addresses: "0x02EBF038, 0x0031C5D0, 0x0031DF90, 0x0031DFAB, 0x00323890, 0x002F8F
 
 ## What it lists
 
-`license-list.tsv` holds one line for each of the 361 license nodes that registry slot `0x02EBF038` reaches
+[`license-list.tsv`](license-list.tsv) holds one line for each of the 361 license nodes that registry slot `0x02EBF038` reaches
 (`battle_pack.bin` directory entry `+0x34`). What each field does, and the code that reads it, is on
 [Licenses](licenses.md) and [License Board](license-board.md); this page is the shipped content.
 

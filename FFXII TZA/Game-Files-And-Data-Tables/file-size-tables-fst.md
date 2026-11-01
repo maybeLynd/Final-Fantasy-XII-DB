@@ -20,7 +20,7 @@ Twelve files ship loose in the install's `FileSizeTables` folder, one per langua
 once at boot, builds the name with
  `sprintf("%sFileSizeTables/FileSizeTable_%s.fst", "../", name)`,
 where `name` is the language's entry in the twelve-string table at `0x01E88B00`
-(`JP US FR DE IT ES UK KR CH ASIA IN CN`, indexed by the language id it receives), opens it with
+(`JP US FR DE IT ES UK KR CH ASIA IN CN`, indexed by the locale id it receives), opens it with
 `fopen(…, "rb")` and reads all 820,000 bytes into `0x02EC3EE0` with one `fread`. The working folder is
 the executable's `x64`, so `../` is the install root.
 
@@ -104,7 +104,7 @@ entries), 27 (`sound\wave\wave0000.wd` onward), 31 (`sound\music\data\music000.b
 with nothing read. No call site of `0x0032E620` passes kind 6, 27 or 31.
 
 [`file-size-tables-fst-files-rows.tsv`](file-size-tables-fst-files-rows.tsv) gives each of the twelve files with its
-language id, SHA-256, sized entries and sized kinds.
+locale id, SHA-256, sized entries and sized kinds.
 [`file-size-tables-fst-entries-rows.tsv`](file-size-tables-fst-entries-rows.tsv) gives the 10,532 kind and id pairs
 that any table sizes, with the size in each language, the path each language's array names, and the shipped file's
 size where it differs.
@@ -112,7 +112,7 @@ size where it differs.
 - Sized entries: JP, ASIA and IN 10,505, US 10,521, FR 10,522, DE 10,517, IT 10,521, ES 10,522, UK 8,134, KR
   10,518, CH 10,502 and CN 10,524. Every table sizes the same 31 kinds except UK, which sizes nothing in kinds 5
   and 8, the area scripts and the event scripts.
-- No language id loads the JP, UK or ASIA table: Japanese loads IN, whose bytes equal JP and ASIA
+- No locale id loads the JP, UK or ASIA table: Japanese loads IN, whose bytes equal JP and ASIA
   ([Languages](../Saving-Loading-And-Settings/languages.md#the-data-folder-and-the-file-size-table)). UK's missing script
   sizes therefore reach no player.
 - Where a table sizes an entry and its language's array names a path, the archive holds the file: 123,620 such

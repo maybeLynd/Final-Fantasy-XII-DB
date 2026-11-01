@@ -9,8 +9,8 @@ addresses: "0x005CDAA0, 0x005CDB90, 0x005CDA30, 0x005CD9C0, 0x008AADA0, 0x0019C5
 
 Nothing. The shipped game still carries its developers' logging: engine code formats messages
 such as `[FileCache] …` on every load, and the boot prints the name of each step it runs. None of
-it reaches the screen. The only cost a player pays is time: every log call formats its message
-into a 16 KB stack buffer before the sink discards it.
+it reaches the screen. The only cost a player pays is time: each message is still written out in
+full, up to 16 KB, before it is thrown away unread.
 
 ## How it works
 
@@ -35,7 +35,7 @@ reached only through the thunk `0x00866B80`, which no code calls.
 
 ### What the sink does
 
-Slot 1 of that vtable is `0x005CDB90(sink, channel)`: when the channel is 4 and `IsDebuggerPresent`
+Slot 1 of that vtable is `0x005CDB90(sink, channel, text)`: when the channel is 4 and `IsDebuggerPresent`
 holds it calls `DebugBreak`; otherwise it returns. The text is never read. So the log call's
 whole effect in the shipped game is the formatting. Slot 0, `0x005CD8F0`, is the deleting
 destructor: it resets the vtable, rebuilds the pointer through `0x005CDA30` when the object being
@@ -104,14 +104,14 @@ writes either, so every formatter above passes the value 4.
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x005CDAA0` | `frame` | 0x4050 bytes: a 0x4000-byte message buffer, the va_list and the cookie |  |
-| `0x02CB6140` | `u64` | the sink object: its vtable pointer, Phyre::PTTYCallback 0x00D360A0 |  |
-| `0x02CB6148` | `i32` | guard of the sink object (0x005CDA30) |  |
-| `0x02CB6150` | `void*` | the sink pointer the log call uses |  |
-| `0x02CB6158` | `i32` | guard of the sink pointer (0x005CDAA0, 0x005CD9C0, 0x005CD960, 0x008AADA0) |  |
-| `0x02EBA3D0` | `u64` | printf options, 4 after 0x00809C50 |  |
-| `0x01F7F5B0` | `u64` | scanf options, bit 0x2 set by 0x00809C50 |  |
-| `0x00D360A0` | `vtable` | slot 0 0x005CD8F0 (deleting destructor), slot 1 0x005CDB90(sink, channel, text) |  |
+| `0x005CDAA0` | `frame` |  | `0x4050` bytes: a `0x4000`-byte message buffer, the va_list and the cookie |
+| `0x02CB6140` | `u64` |  | the sink object: its vtable pointer, Phyre::PTTYCallback `0x00D360A0` |
+| `0x02CB6148` | `i32` |  | guard of the sink object (`0x005CDA30`) |
+| `0x02CB6150` | `void*` |  | the sink pointer the log call uses |
+| `0x02CB6158` | `i32` |  | guard of the sink pointer (`0x005CDAA0`, `0x005CD9C0`, `0x005CD960`, `0x008AADA0`) |
+| `0x02EBA3D0` | `u64` |  | printf options, 4 after `0x00809C50` |
+| `0x01F7F5B0` | `u64` |  | scanf options, bit `0x2` set by `0x00809C50` |
+| `0x00D360A0` | `vtable` |  | slot 0 `0x005CD8F0` (deleting destructor), slot 1 `0x005CDB90`(sink, channel, text) |
 
 ## Shipped data
 
@@ -122,7 +122,7 @@ writes either, so every formatter above passes the value 4.
 | `vsprintf` wrapper callers / sites | 120 / 268 |
 | `printf` callers / sites | 38 / 60 |
 | message buffer | 16,384 bytes, truncating |
-| sink action | channel 4 with a debugger attached: `DebugBreak`; otherwise none |
+| sink action | channel 4 with a debugger attached: `DebugBreak`; otherwise nothing |
 
 ## Operations
 

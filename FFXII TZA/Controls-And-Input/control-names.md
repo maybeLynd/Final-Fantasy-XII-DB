@@ -47,7 +47,7 @@ channel registry's 143 names have 113 distinct codes, in 16 groups of aliases.
 
 ## Columns
 
-`control-names.tsv`, one row per name, sorted by code:
+[`control-names.tsv`](control-names.tsv), one row per name, sorted by code:
 
 | Column | Meaning |
 |---|---|

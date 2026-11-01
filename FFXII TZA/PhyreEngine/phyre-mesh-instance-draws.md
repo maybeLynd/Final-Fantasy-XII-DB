@@ -7,8 +7,8 @@ addresses: "0x0060B980, 0x005FF090, 0x005FF200, 0x005EB370, 0x00600B30, 0x005FEC
 
 ## What the player sees
 
-A PhyreEngine mesh instance is drawn by the function on this page, which 58 call sites in 27
-functions use, among them the bitmap-font text and the FXAA pass. It decides which shader build each
+A PhyreEngine mesh instance is drawn by the routine on this page; 27 routines of the game draw
+through it, among them the bitmap-font text and the FXAA pass. It decides which shader build each
 part of the model uses, poses skinned models from their bone matrices, and hands each shader the
 colour, position, fall-off and shadow matrices of up to four lights. A part whose effect has no
 shader build for the current pass is not drawn.
@@ -17,7 +17,8 @@ shader build for the current pass is not drawn.
 
 ### The mesh-instance draw
 
-`0x0060B980(renderer, instance, selector, instancing, value, flag)` draws one `PMeshInstance`:
+`0x0060B980(renderer, instance, selector, instancing, value, flag)` draws one `PMeshInstance`. 58 call
+sites in 27 functions call it, among them the bitmap-font text and the FXAA pass. In order:
 
 1. It returns `0x16` unless bit `0x1` of the renderer's `+0x08` is set, and `0x15` when the renderer has
    no pass record at `+0x80`.

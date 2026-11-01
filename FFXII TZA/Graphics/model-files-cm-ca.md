@@ -70,19 +70,19 @@ stores each entry's offset from the container, or −1 when the entry is absent 
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x1F8` | `void*` | the @FRP container (0x00504940) |  |
-| `+0x208` | `u32` | @FOR offset |  |
-| `+0x214` | `u32` | @FEF offset |  |
-| `+0x20C` | `u32` | @FDM offset |  |
-| `+0x218` | `u32` | @FTE offset |  |
-| `+0x210` | `u32` | @FTR offset |  |
-| `+0x21C` | `u32` | @FCT offset |  |
-| `+0x220` | `u32` | @FCP offset |  |
-| `+0x230` | `void*` | the @FEF section (0x00504940) |  |
-| `+0x0B8` | `i8` | the @FOR record key |  |
-| `+0x0B9` | `i8` | the option number |  |
-| `+0x0B3` | `u8` | LOD levels (+0x3A + 1) |  |
-| `+0x0BA` | `i8` | the palette page (0x00504D20) |  |
+| `+0x1F8` | `void*` |  | the @FRP container (`0x00504940`) |
+| `+0x208` | `u32` |  | @FOR offset |
+| `+0x214` | `u32` |  | @FEF offset |
+| `+0x20C` | `u32` |  | @FDM offset |
+| `+0x218` | `u32` |  | @FTE offset |
+| `+0x210` | `u32` |  | @FTR offset |
+| `+0x21C` | `u32` |  | @FCT offset |
+| `+0x220` | `u32` |  | @FCP offset |
+| `+0x230` | `void*` |  | the @FEF section (`0x00504940`) |
+| `+0x0B8` | `i8` |  | the @FOR record key |
+| `+0x0B9` | `i8` |  | the option number |
+| `+0x0B3` | `u8` |  | LOD levels (`+0x3A` + 1) |
+| `+0x0BA` | `i8` |  | the palette page (`0x00504D20`) |
 
 ### @FCP, the parameter block
 
@@ -90,15 +90,15 @@ Entry 0 of every `.cm`. The payload starts at entry `+0x30`; offsets are from th
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | 4 |  |
-| `+0x01` | `u8` | non-zero: 0x0041F340 allocates a second per-node block and sets record +0x284 bit 0x10000; | id `0x40000000` returns it |
-| `+0x02` | `u16[17]` | offset of sections 1 to 17, 0 = absent (section n at +2n) |  |
-| `+0x24` | `u32` | length of section 2, copied after the skeleton |  |
-| `+0x2C` | `u8[6]` | event map (0x0041E5B0), 0x7F ends it |  |
-| `+0x32` | `u8` | version, 0x0A |  |
-| `+0x3A` | `u16` | bone for special id 0x104 (0x003E5AD0) |  |
-| `+0x3C` | `u16` | bone for special id 0x105 |  |
-| `+0x3E` | `u16` | bone for special id 0x106 |  |
+| `+0x00` | `u8` |  | value 4 |
+| `+0x01` | `u8` |  | non-zero: `0x0041F340` allocates a second per-node block and sets record `+0x284` bit `0x10000`; id `0x40000000` returns it |
+| `+0x02` | `u16[17]` |  | offset of sections 1 to 17, 0 = absent (section n at +2n) |
+| `+0x24` | `u32` |  | length of section 2, copied after the skeleton |
+| `+0x2C` | `u8[6]` |  | event map (`0x0041E5B0`), `0x7F` ends it |
+| `+0x32` | `u8` |  | version, `0x0A` |
+| `+0x3A` | `u16` |  | bone for special id `0x104` (`0x003E5AD0`) |
+| `+0x3C` | `u16` |  | bone for special id `0x105` |
+| `+0x3E` | `u16` |  | bone for special id `0x106` |
 
 ```
 section 1 +0x14C u16[32]  bone for special ids 0 to 31 (0x003E5AD0)
@@ -140,13 +140,13 @@ record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`)
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x30` | `u16` | node count again, read as a word by 0x00409240 (0x0040924A) |  |
-| `+0x34` | `u32` | offset of the value pool, from the entry |  |
-| `+0x38` | `u16` | extra u16 slots after the node list (equal to the @FDM key count) |  |
-| `+0x40` | `u32[n]` | per node: (record offset from the entry << 12) \| node number |  |
+| `+0x30` | `u16` |  | node count again, read as a word by `0x00409240` (`0x0040924A`) |
+| `+0x34` | `u32` |  | offset of the value pool, from the entry |
+| `+0x38` | `u16` |  | extra u16 slots after the node list (equal to the @FDM key count) |
+| `+0x40` | `u32[n]` |  | per node: (record offset from the entry << 12) \| node number |
 
 ```
-record +0x00  u32  bits 0-11 the node's key, bits 12-23 its parent (0xFFF = none), bits 24-31 0xFF
+record +0x00  u32  mask 0xFFF the node's key, mask 0xFFF000 its parent (0xFFF = none), mask 0xFF000000 0xFF
 record +0x04  u32  flags; the u16 pool indices follow at +0x08 (+0x0A when bit 0x40000000 is set)
 ```
 
@@ -166,16 +166,16 @@ index for bit `0x80000000` and sixteen more when bits `0x200100` are both set, a
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x30` | `u8` | record count |  |
-| `+0x32` | `u8` | table B stride per option number |  |
-| `+0x33` | `u8` | option numbers allowed (row +0xB9 is clamped below it) |  |
-| `+0x34` | `u16` | table A offset (0x40) |  |
-| `+0x36` | `u16` | table B offset |  |
-| `+0x38` | `u16` | offset of the records, 0xE0 bytes each |  |
-| `+0x3A` | `u8` | LOD distance count (0, 1 or 2) |  |
-| `+0x3B` | `u8` | highest LOD level |  |
-| `+0x3C` | `u16` | first LOD distance, centimetres |  |
-| `+0x3E` | `u16` | second LOD distance, centimetres |  |
+| `+0x30` | `u8` |  | record count |
+| `+0x32` | `u8` |  | table B stride per option number |
+| `+0x33` | `u8` |  | option numbers allowed (row `+0xB9` is clamped below it) |
+| `+0x34` | `u16` |  | table A offset (`0x40`) |
+| `+0x36` | `u16` |  | table B offset |
+| `+0x38` | `u16` |  | offset of the records, `0xE0` bytes each |
+| `+0x3A` | `u8` |  | LOD distance count (0, 1 or 2) |
+| `+0x3B` | `u8` |  | highest LOD level |
+| `+0x3C` | `u16` |  | first LOD distance, centimetres |
+| `+0x3E` | `u16` |  | second LOD distance, centimetres |
 
 ```
 record +0x00   u8    key
@@ -188,35 +188,35 @@ record +(i+1) x 0x20   part i's selector bytes
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x30` | `u16` | 1, 2 or 3 |  |
-| `+0x32` | `u16` | offset of {u32 count, u32 keys[count]} (0x50) |  |
+| `+0x30` | `u16` |  | 1, 2 or 3 |
+| `+0x32` | `u16` |  | offset of {u32 count, u32 keys[count]} (`0x50`) |
 
 ### @FTE, textures
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x30` | `u8` | count, then u8 texture slots uploaded with every draw |  |
-| `+0x40` | `...` | records, 0x20 bytes each, +0x0C of the header many |  |
-| `+0x00` | `u32` | VRAM bytes, a multiple of 0x2000 |  |
+| `+0x30` | `u8` |  | count, then u8 texture slots uploaded with every draw |
+| `+0x40` | `...` |  | records, `0x20` bytes each, `+0x0C` of the header many |
+| `+0x00` | `u32` |  | VRAM bytes, a multiple of `0x2000` |
 | `+0x04` | `u16` | width |  |
 | `+0x06` | `u16` | height |  |
-| `+0x08` | `u16` | GS pixel format: 0x13 8-bit indexed, 0x14 4-bit indexed |  |
-| `+0x0A` | `u16` | upload width |  |
-| `+0x0C` | `u16` | upload height |  |
-| `+0x14` | `u32` | upload bytes = upload width x height x 4 |  |
-| `+0x18` | `u32` | pixel data offset, from the entry |  |
+| `+0x08` | `u16` |  | GS pixel format: `0x13` 8-bit indexed, `0x14` 4-bit indexed |
+| `+0x0A` | `u16` |  | upload width |
+| `+0x0C` | `u16` |  | upload height |
+| `+0x14` | `u32` |  | upload bytes = upload width x height x 4 |
+| `+0x18` | `u32` |  | pixel data offset, from the entry |
 
 ### @FCT, palettes
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x30` | `...` | records, 0x10 bytes each, +0x0C of the header many |  |
-| `+0x00` | `u16` | VRAM bytes (0x2000) |  |
-| `+0x02` | `u16` | palette bytes (colours = bytes / 4) |  |
-| `+0x04` | `u8` | upload width |  |
-| `+0x05` | `u8` | pages (4) |  |
-| `+0x06` | `u16` | upload height |  |
-| `+0x0C` | `u32` | data offset, from the entry: four pages of palette-bytes each |  |
+| `+0x30` | `...` |  | records, `0x10` bytes each, `+0x0C` of the header many |
+| `+0x00` | `u16` |  | VRAM bytes (`0x2000`) |
+| `+0x02` | `u16` |  | palette bytes (colours = bytes / 4) |
+| `+0x04` | `u8` |  | upload width |
+| `+0x05` | `u8` |  | pages (4) |
+| `+0x06` | `u16` |  | upload height |
+| `+0x0C` | `u32` |  | data offset, from the entry: four pages of palette-bytes each |
 
 ## Shipped data
 
@@ -281,7 +281,7 @@ not name is given by its offsets, as hex bytes.
 | `fdm_30`, `fdm_keys_offset`, `fdm_keys`, `fdm_34_4f` | heads | `@FDM` `+0x30`, `+0x32`, the key count, and the bytes from `+0x34` to the key table |
 | `fte_always_slots` | heads | the texture slots listed after the count at `@FTE` `+0x30` |
 | `section`, `offset`, `span`, `length` | fcp-sections | the section, its offset in the payload, the bytes to the next section or the payload's end, and the length for section 2 (`+0x24`) and section 8 (`0x10` + count × `0x1D0`) |
-| `special_bones_0_31`, `special_bones_104_106` | special-bones | as in weapon-bones.tsv: the set entries of section 1's table at `+0x14C` and of `+0x3A`–`+0x3E`, as "id: bone", or "none" |
+| `special_bones_0_31`, `special_bones_104_106` | special-bones | as in [`weapon-bones.tsv`](weapon-bones.tsv): the set entries of section 1's table at `+0x14C` and of `+0x3A`–`+0x3E`, as "id: bone", or "none" |
 | `node`, `number`, `record` | ftr-nodes | the node's position, the node number of its `+0x40` table word, and its record offset in the entry |
 | `key`, `parent`, `byte_03`, `flags` | ftr-nodes | the key as `0x00409250` reads it, the parent (`-` for none), record byte `+0x03` and the flags `+0x04` |
 | `pool_indices`, `pool_index_list` | ftr-nodes | the record's u16 pool indices in stored order: one for each of flag bits `0x80000000`, `0x400000` and `0x20000000`, sixteen for `0x200000`, and one for each translation and angle bit; the list fills every record |
@@ -422,7 +422,7 @@ with `0x00504450`: a `{0x10000000, 0}` record, then the flip `0x003A1DB0`. `0x00
 
 - `0x0053D4B0` writes a part's alpha and depth test: registers `0x47` and `0x48` with the reference
   `alpha × [0x02CA81DC]`, capped at `0x80` and raised to `[0x01F2CA90]` for an instance with `+0xF8` set
-  whose `0x003E56A0` entry has bit `0x8` of `+0x134`; the alpha is the part's bits 1–7, or the
+  whose `0x003E56A0` entry has bit `0x8` of `+0x134`; the alpha is the part's bits under mask `0xFE`, or the
   instance's byte `+0xBC`. With instance `+0x08` bit `0x8` it writes `0x34000` instead.
 - `0x0053D140` writes a material block: a tag (`0x10000008`, `0x50000005`), two register words per
   mode (`0x44` and `0x42`/`0x43`, or `0x4A`), per-texture pairs from the material when its flag byte

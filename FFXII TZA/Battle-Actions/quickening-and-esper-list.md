@@ -7,7 +7,7 @@ addresses: "0x02EBF0C8, 0x0031C5D0, 0x0031D814, 0x00306340, 0x003064F0, 0x00325F
 
 ## What it lists
 
-`quickening-and-esper-list.tsv` holds one line for each of the 32 rows of the table that registry slot `0x02EBF0C8`
+[`quickening-and-esper-list.tsv`](quickening-and-esper-list.tsv) holds one line for each of the 32 rows of the table that registry slot `0x02EBF0C8`
 reaches (`battle_pack.bin` directory entry `+0x6C`). Row *n* is id `0xC000` + *n*, inventory class 17
 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)), whose owned state is one bit.
 
@@ -45,7 +45,7 @@ The table is loaded by `0x0031C5D0`, `0x00306340`, the validator `0x00322C50` (t
 `+0x02` of this table, and hands it to `0x003064F0`, which asks `0x003060E0` and `0x00323EC0` whether the member may use
 that action. Its two callers never pass a `0xC000` id:
 
-1. `0x002826F0` and `0x00282A40` hand it the ids of the menu category lists 9 and 8
+1. `0x002826F0` and `0x00282A40` hand it the ids of the inventory lists 9 and 8
    ([Party marks](../Menus-And-HUD/party-marks.md)).
 2. The only function that adds an id to a category list is `0x00252E60`, reached from `0x00325F40`. It chooses the
    list from the id's top nibble through the table at `0x01EED1B0`: nibble 3 to list 9, nibble 4 to list 8

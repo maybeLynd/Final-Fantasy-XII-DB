@@ -18,7 +18,7 @@ hne_a01	setup	event	10	0x0198A	68	g_com_mnp_ヘネ魔石鉱ロケタイ == 0; no
 hne_a01	setup	event	11	0x01993	69	g_com_mnp_ヘネ魔石鉱ロケタイ == 0; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicread	scratch1_var_1	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	setup	event	12	0x01999	70	g_com_mnp_ヘネ魔石鉱ロケタイ == 0; not ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))	musicreadsync	scratch1_var_1	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	setup	event	13	0x0199C	73	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a01	__MJ_CTRL000	init	1	0x019A0	82	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	__MJ_CTRL000	init	1	0x019A0	82	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	__MJ_CTRL000	init	2	0x019A6	83	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	__MJ_CTRL000	init	3	0x019A9	84	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	__MJ_CTRL000	mapjump	1	0x019AD	94	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -49,7 +49,7 @@ hne_a01	__MJ_CTRL000	mapjump	25	0x01AAC	133	local_var_s1f1_1; not (regI3)	fadesy
 hne_a01	__MJ_CTRL000	mapjump	26	0x01AB2	134	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a01	__MJ_CTRL000	mapjump	27	0x01ABE	135	local_var_s1f1_1; not (regI3)	mapjump	0x0218, 2, 0	jumps: The Shred (Ozmone Plain), field 536, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_a01	__MJ_CTRL000	mapjump	28	0x01AC1	138	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a01	__MJ_CTRL001	init	1	0x01AC5	147	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	__MJ_CTRL001	init	1	0x01AC5	147	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	__MJ_CTRL001	init	2	0x01ACB	148	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	__MJ_CTRL001	init	3	0x01ACE	149	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	__MJ_CTRL001	mapjump	1	0x01AD2	159	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -479,10 +479,10 @@ hne_a01	ギミックカメラ	ギミック演出	37	0x02811	794	-	fadein	10	the 
 hne_a01	ギミックカメラ	ギミック演出	38	0x02814	795	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	ギミックカメラ	ギミック演出	39	0x02817	796	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	スイッチ	init	1	0x0281B	805	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-hne_a01	スイッチ	init	2	0x02821	806	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	init	3	0x02827	807	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	init	4	0x0282D	808	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	init	5	0x02833	809	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	init	2	0x02821	806	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	init	3	0x02827	807	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	init	4	0x0282D	808	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	init	5	0x02833	809	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	スイッチ	init	6	0x02839	810	-	setmapjumpgroupflag	165	flags set: 0x00A5: Shows a map icon in North Entrance (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
 hne_a01	スイッチ	init	7	0x0283C	811	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	スイッチ	main	1	0x0283D	816	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -511,9 +511,9 @@ hne_a01	スイッチ	talk	22	0x028E3	850	(global_var_2 & 1) != 1	setmapmodelstat
 hne_a01	スイッチ	talk	23	0x028E9	851	(global_var_2 & 1) != 1	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	スイッチ	talk	24	0x028EF	852	(global_var_2 & 1) != 1	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_a01	スイッチ	talk	25	0x028FE	856	not ((global_var_2 & 1) != 1)	sysReqew	1, map_ダミーＰＣ::スイッチ押し	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::スイッチ押し on channel 1; waits until it ends	map_ダミーＰＣ.スイッチ押し	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	talk	26	0x02902	857	not ((global_var_2 & 1) != 1)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	talk	27	0x02908	858	not ((global_var_2 & 1) != 1)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	talk	28	0x0290E	859	not ((global_var_2 & 1) != 1)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	talk	26	0x02902	857	not ((global_var_2 & 1) != 1)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	talk	27	0x02908	858	not ((global_var_2 & 1) != 1)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	talk	28	0x0290E	859	not ((global_var_2 & 1) != 1)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	スイッチ	talk	29	0x0291A	860	not ((global_var_2 & 1) != 1)	sysReq	1, map_ダミーＰＣ::効果音	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::効果音 on channel 1; does not wait	map_ダミーＰＣ.効果音	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	スイッチ	talk	30	0x0291E	861	not ((global_var_2 & 1) != 1)	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a01	スイッチ	talk	31	0x02921	862	not ((global_var_2 & 1) != 1)	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -536,16 +536,16 @@ hne_a01	スイッチ	フィールドサインＩＤ	9	0x0296B	884	global_var_1 =
 hne_a01	スイッチ	フィールドサインＩＤ	10	0x02971	885	global_var_1 = 1	hidemapmodel	31	argument 1: the map model group to hide	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	スイッチ	フィールドサインＩＤ	11	0x02974	886	global_var_1 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	スイッチ	フィールドサインＩＤ	12	0x02986	888	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a01	スイッチ	フィールドサインＯＮ	1	0x0298A	893	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	フィールドサインＯＮ	2	0x02990	894	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	フィールドサインＯＮ	3	0x02996	895	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	スイッチ	フィールドサインＯＮ	4	0x0299C	896	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	フィールドサインＯＮ	1	0x0298A	893	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	フィールドサインＯＮ	2	0x02990	894	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	フィールドサインＯＮ	3	0x02996	895	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	スイッチ	フィールドサインＯＮ	4	0x0299C	896	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	スイッチ	フィールドサインＯＮ	5	0x0299F	897	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	心得ヘルプ	init	1	0x029A3	906	-	fieldsign	3	-	-	-	-	-		01 verb-table.tsv
-hne_a01	心得ヘルプ	init	2	0x029A9	907	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	心得ヘルプ	init	3	0x029AF	908	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	心得ヘルプ	init	4	0x029B5	909	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	心得ヘルプ	init	5	0x029BB	910	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	init	2	0x029A9	907	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	init	3	0x029AF	908	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	init	4	0x029B5	909	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	init	5	0x029BB	910	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	心得ヘルプ	init	6	0x029BE	911	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	心得ヘルプ	talk	1	0x029C2	916	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_a01	心得ヘルプ	talk	2	0x029C5	917	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -564,17 +564,17 @@ hne_a01	心得ヘルプ	talk	14	0x02A1A	929	-	setstatuserrordispdenystatus	0	arg
 hne_a01	心得ヘルプ	talk	15	0x02A20	930	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_a01	心得ヘルプ	talk	16	0x02A23	931	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	心得ヘルプ	フィールドサインＯＮ	1	0x02A27	936	-	fieldsign	3	-	-	-	-	-		01 verb-table.tsv
-hne_a01	心得ヘルプ	フィールドサインＯＮ	2	0x02A2D	937	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	心得ヘルプ	フィールドサインＯＮ	3	0x02A33	938	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	心得ヘルプ	フィールドサインＯＮ	4	0x02A39	939	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	心得ヘルプ	フィールドサインＯＮ	5	0x02A3F	940	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	フィールドサインＯＮ	2	0x02A2D	937	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	フィールドサインＯＮ	3	0x02A33	938	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	フィールドサインＯＮ	4	0x02A39	939	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	フィールドサインＯＮ	5	0x02A3F	940	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	心得ヘルプ	フィールドサインＯＮ	6	0x02A42	941	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a01	心得ヘルプ	フィールドサインＯＦＦ	1	0x02A46	946	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	心得ヘルプ	フィールドサインＯＦＦ	2	0x02A4C	947	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	心得ヘルプ	フィールドサインＯＦＦ	3	0x02A52	948	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	フィールドサインＯＦＦ	1	0x02A46	946	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	フィールドサインＯＦＦ	2	0x02A4C	947	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	心得ヘルプ	フィールドサインＯＦＦ	3	0x02A52	948	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	心得ヘルプ	フィールドサインＯＦＦ	4	0x02A55	949	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	ショートカット	init	1	0x02A59	958	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_a01	ショートカット	init	2	0x02A5F	959	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	init	2	0x02A5F	959	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	ショートカット	init	3	0x02A69	960	-	if	シナリオフラグ >= 0x0726	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	ショートカット	init	4	0x02A6F	962	シナリオフラグ >= 0x0726	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	ショートカット	init	5	0x02A78	966	not (シナリオフラグ >= 0x0726)	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -652,21 +652,21 @@ hne_a01	ショートカット	talk	70	0x02C33	1064	not (local_var_s10f1_1); not 
 hne_a01	ショートカット	talk	71	0x02C39	1065	not (local_var_s10f1_1); not (シナリオフラグ >= 0x0726)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_a01	ショートカット	talk	72	0x02C3C	1067	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	ショートカット	フィールドサインＯＫ	1	0x02C40	1072	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a01	ショートカット	フィールドサインＯＫ	2	0x02C46	1073	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＯＫ	2	0x02C46	1073	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	ショートカット	フィールドサインＯＫ	3	0x02C4C	1074	-	store	local_var_s10f1_1 = 0	variable local_var_s10f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_a01	ショートカット	フィールドサインＯＫ	4	0x02C4F	1075	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	ショートカット	フィールドサインＮＯＴ	1	0x02C53	1080	-	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a01	ショートカット	フィールドサインＮＯＴ	2	0x02C59	1081	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＮＯＴ	2	0x02C59	1081	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	ショートカット	フィールドサインＮＯＴ	3	0x02C5F	1082	-	store	local_var_s10f1_1 = 1	variable local_var_s10f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_a01	ショートカット	フィールドサインＮＯＴ	4	0x02C62	1083	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a01	ショートカット	フィールドサインＯＮ	1	0x02C66	1088	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	ショートカット	フィールドサインＯＮ	2	0x02C6C	1089	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	ショートカット	フィールドサインＯＮ	3	0x02C72	1090	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	ショートカット	フィールドサインＯＮ	4	0x02C78	1091	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＯＮ	1	0x02C66	1088	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＯＮ	2	0x02C6C	1089	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＯＮ	3	0x02C72	1090	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＯＮ	4	0x02C78	1091	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	ショートカット	フィールドサインＯＮ	5	0x02C7B	1092	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a01	ショートカット	フィールドサインＯＦＦ	1	0x02C7F	1097	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	ショートカット	フィールドサインＯＦＦ	2	0x02C85	1098	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a01	ショートカット	フィールドサインＯＦＦ	3	0x02C8B	1099	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＯＦＦ	1	0x02C7F	1097	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＯＦＦ	2	0x02C85	1098	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a01	ショートカット	フィールドサインＯＦＦ	3	0x02C8B	1099	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a01	ショートカット	フィールドサインＯＦＦ	4	0x02C8E	1100	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a01	PC00	init	1	0x02C92	1109	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a01	PC00	init	2	0x02C95	1110	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1009,7 +1009,7 @@ hne_a02	setup	init	1	0x01720	36	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-
 hne_a02	setup	battle	1	0x01721	41	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
 hne_a02	setup	battle	2	0x01727	42	-	btlAtelSetEntryStruct	0x0300003c	-	-	-	-	-		01 verb-table.tsv
 hne_a02	setup	battle	3	0x0172A	43	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a02	__MJ_CTRL000	init	1	0x0172E	52	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	__MJ_CTRL000	init	1	0x0172E	52	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	__MJ_CTRL000	init	2	0x01734	53	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	__MJ_CTRL000	init	3	0x01737	54	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	__MJ_CTRL000	mapjump	1	0x0173B	64	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1040,7 +1040,7 @@ hne_a02	__MJ_CTRL000	mapjump	25	0x0183A	103	local_var_s1f1_1; not (regI3)	fadesy
 hne_a02	__MJ_CTRL000	mapjump	26	0x01840	104	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a02	__MJ_CTRL000	mapjump	27	0x0184C	105	local_var_s1f1_1; not (regI3)	mapjump	0x02c8, 2, 0	jumps: North Entrance (Henne Mines), field 712, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_a02	__MJ_CTRL000	mapjump	28	0x0184F	108	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a02	__MJ_CTRL001	init	1	0x01853	117	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	__MJ_CTRL001	init	1	0x01853	117	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	__MJ_CTRL001	init	2	0x01859	118	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	__MJ_CTRL001	init	3	0x0185C	119	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	__MJ_CTRL001	mapjump	1	0x01860	129	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1071,7 +1071,7 @@ hne_a02	__MJ_CTRL001	mapjump	25	0x0195F	168	local_var_s2f1_1; not (regI3)	fadesy
 hne_a02	__MJ_CTRL001	mapjump	26	0x01965	169	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a02	__MJ_CTRL001	mapjump	27	0x01971	170	local_var_s2f1_1; not (regI3)	mapjump	0x02ca, 1, 0	jumps: Phase 1 Shaft (Henne Mines), field 714, entrance 1	-	-	-	-	resolved	this page's How a call is read
 hne_a02	__MJ_CTRL001	mapjump	28	0x01974	173	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a02	__MJ_CTRL002	init	1	0x01978	182	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	__MJ_CTRL002	init	1	0x01978	182	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	__MJ_CTRL002	init	2	0x0197E	183	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	__MJ_CTRL002	init	3	0x01981	184	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	__MJ_CTRL002	mapjump	1	0x01985	194	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1102,7 +1102,7 @@ hne_a02	__MJ_CTRL002	mapjump	25	0x01A84	233	local_var_s3f1_1; not (regI3)	fadesy
 hne_a02	__MJ_CTRL002	mapjump	26	0x01A8A	234	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a02	__MJ_CTRL002	mapjump	27	0x01A96	235	local_var_s3f1_1; not (regI3)	mapjump	0x02ca, 2, 0	jumps: Phase 1 Shaft (Henne Mines), field 714, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_a02	__MJ_CTRL002	mapjump	28	0x01A99	238	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a02	__MJ_CTRL003	init	1	0x01A9D	247	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	__MJ_CTRL003	init	1	0x01A9D	247	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	__MJ_CTRL003	init	2	0x01AA3	248	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	__MJ_CTRL003	init	3	0x01AA6	249	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	__MJ_CTRL003	mapjump	1	0x01AAA	259	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1470,10 +1470,10 @@ hne_a02	ギミック扉	赤オープン	55	0x0269D	799	-	bganimeplay_9e	1, 90, 9
 hne_a02	ギミック扉	赤オープン	56	0x026A9	800	-	sysReq	1, スイッチ::フィールドサインＩＤ	actor `スイッチ`	-	-	files スイッチ::フィールドサインＩＤ on channel 1; does not wait	スイッチ.フィールドサインＩＤ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	ギミック扉	赤オープン	57	0x026AA	801	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	スイッチ	init	1	0x026AE	810	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_a02	スイッチ	init	2	0x026B4	811	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	スイッチ	init	3	0x026BA	812	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	スイッチ	init	4	0x026C0	813	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	スイッチ	init	5	0x026C6	814	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	スイッチ	init	2	0x026B4	811	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	スイッチ	init	3	0x026BA	812	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	スイッチ	init	4	0x026C0	813	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	スイッチ	init	5	0x026C6	814	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	スイッチ	init	6	0x026CC	815	-	setmapjumpgroupflag	166	flags set: 0x00A6: Shows a map icon in Pithead Junction A (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
 hne_a02	スイッチ	init	7	0x026CF	816	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	スイッチ	main	1	0x026D0	821	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1514,10 +1514,10 @@ hne_a02	スイッチ	フィールドサインＩＤ	10	0x02791	866	global_var_2 
 hne_a02	スイッチ	フィールドサインＩＤ	11	0x02794	867	global_var_2 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	スイッチ	フィールドサインＩＤ	12	0x027A6	869	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	心得その２	init	1	0x027AA	878	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-hne_a02	心得その２	init	2	0x027B0	879	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	心得その２	init	3	0x027B6	880	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	心得その２	init	4	0x027BC	881	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	心得その２	init	5	0x027C2	882	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	init	2	0x027B0	879	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	init	3	0x027B6	880	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	init	4	0x027BC	881	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	init	5	0x027C2	882	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	心得その２	init	6	0x027C5	883	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	心得その２	talk	1	0x027C9	888	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_a02	心得その２	talk	2	0x027CC	889	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -1536,14 +1536,14 @@ hne_a02	心得その２	talk	14	0x02821	901	-	setstatuserrordispdenystatus	0	arg
 hne_a02	心得その２	talk	15	0x02827	902	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_a02	心得その２	talk	16	0x0282A	903	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	心得その２	フィールドサインＯＮ	1	0x0282E	908	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-hne_a02	心得その２	フィールドサインＯＮ	2	0x02834	909	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	心得その２	フィールドサインＯＮ	3	0x0283A	910	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	心得その２	フィールドサインＯＮ	4	0x02840	911	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	心得その２	フィールドサインＯＮ	5	0x02846	912	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	フィールドサインＯＮ	2	0x02834	909	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	フィールドサインＯＮ	3	0x0283A	910	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	フィールドサインＯＮ	4	0x02840	911	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	フィールドサインＯＮ	5	0x02846	912	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	心得その２	フィールドサインＯＮ	6	0x02849	913	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a02	心得その２	フィールドサインＯＦＦ	1	0x0284D	918	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	心得その２	フィールドサインＯＦＦ	2	0x02853	919	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a02	心得その２	フィールドサインＯＦＦ	3	0x02859	920	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	フィールドサインＯＦＦ	1	0x0284D	918	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	フィールドサインＯＦＦ	2	0x02853	919	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a02	心得その２	フィールドサインＯＦＦ	3	0x02859	920	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a02	心得その２	フィールドサインＯＦＦ	4	0x0285C	921	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	PC00	init	1	0x02860	930	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	PC00	init	2	0x02863	931	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1564,7 +1564,7 @@ hne_a02	やられ帝国兵	Init_配置	6	0x028AB	981	-	setpos	204.600006, 45.479
 hne_a02	やられ帝国兵	Init_配置	7	0x028B1	982	-	dir	3.14159274	this actor, turned to facing 3.14159274	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 hne_a02	やられ帝国兵	Init_配置	8	0x028B7	983	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	やられ帝国兵	Init_配置	9	0x028BD	984	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a02	やられ帝国兵	Init_配置	10	0x028C3	985	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a02	やられ帝国兵	Init_配置	10	0x028C3	985	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a02	やられ帝国兵	Init_配置	11	0x028C6	986	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	やられ帝国兵	Init_配置	12	0x028D2	987	-	bindp2_d4	0x03000000, 1, 0	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	やられ帝国兵	Init_配置	13	0x028D5	988	-	fetchambient	-	-	-	-	-	-		01 verb-table.tsv
@@ -1644,7 +1644,7 @@ hne_a02	帝国兵_壁スキマ	setHitObj	4	0x02AB0	1091	-	bindhitobj	-	the calli
 hne_a02	帝国兵_壁スキマ	setHitObj	5	0x02AB6	1092	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	帝国兵_壁スキマ	setHitObj	6	0x02ABF	1093	-	setradius_221	0.5, 0.699999988	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	帝国兵_壁スキマ	setHitObj	7	0x02AC5	1094	-	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a02	帝国兵_壁スキマ	setHitObj	8	0x02ACB	1095	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a02	帝国兵_壁スキマ	setHitObj	8	0x02ACB	1095	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a02	帝国兵_壁スキマ	setHitObj	9	0x02ACE	1096	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	帝国兵_壁スキマ	setHitObj_omoi	1	0x02AD2	1101	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	帝国兵_壁スキマ	setHitObj_omoi	2	0x02ADE	1102	-	setpos	205.300003, 46.6991653, 135	this actor, placed at (205.300003, 46.6991653, 135)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -1653,7 +1653,7 @@ hne_a02	帝国兵_壁スキマ	setHitObj_omoi	4	0x02AE7	1104	-	bindhitobj	-	the 
 hne_a02	帝国兵_壁スキマ	setHitObj_omoi	5	0x02AED	1105	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	帝国兵_壁スキマ	setHitObj_omoi	6	0x02AF6	1106	-	setradius_221	0.5, 0.699999988	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a02	帝国兵_壁スキマ	setHitObj_omoi	7	0x02AFC	1107	-	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a02	帝国兵_壁スキマ	setHitObj_omoi	8	0x02B02	1108	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a02	帝国兵_壁スキマ	setHitObj_omoi	8	0x02B02	1108	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a02	帝国兵_壁スキマ	setHitObj_omoi	9	0x02B05	1109	-	weight_upper_pc	-	-	-	-	-	-		01 verb-table.tsv
 hne_a02	帝国兵_壁スキマ	setHitObj_omoi	10	0x02B08	1110	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a02	帝国兵_壁スキマ	clearHitObj	1	0x02B09	1115	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1946,7 +1946,7 @@ hne_a03	setup	battle	4	0x02610	54	-	nowjumpindex	-	result stored in file_var_s0_
 hne_a03	setup	battle	5	0x02619	55	-	store	file_var_s0_2 = g_btl_nm_イシュタム	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_a03	setup	battle	6	0x0261F	56	-	btlAtelSetEntryStruct	0x03000114	-	-	-	-	-		01 verb-table.tsv
 hne_a03	setup	battle	7	0x02622	57	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a03	__MJ_CTRL000	init	1	0x02626	66	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	__MJ_CTRL000	init	1	0x02626	66	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	__MJ_CTRL000	init	2	0x0262C	67	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a03	__MJ_CTRL000	init	3	0x0262F	68	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a03	__MJ_CTRL000	mapjump	1	0x02633	78	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1977,7 +1977,7 @@ hne_a03	__MJ_CTRL000	mapjump	25	0x02732	117	local_var_s1f1_1; not (regI3)	fadesy
 hne_a03	__MJ_CTRL000	mapjump	26	0x02738	118	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a03	__MJ_CTRL000	mapjump	27	0x02744	119	local_var_s1f1_1; not (regI3)	mapjump	0x02c9, 2, 0	jumps: Pithead Junction A (Henne Mines), field 713, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_a03	__MJ_CTRL000	mapjump	28	0x02747	122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a03	__MJ_CTRL001	init	1	0x0274B	131	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	__MJ_CTRL001	init	1	0x0274B	131	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	__MJ_CTRL001	init	2	0x02751	132	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a03	__MJ_CTRL001	init	3	0x02754	133	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a03	__MJ_CTRL001	mapjump	1	0x02758	143	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2008,7 +2008,7 @@ hne_a03	__MJ_CTRL001	mapjump	25	0x02857	182	local_var_s2f1_1; not (regI3)	fadesy
 hne_a03	__MJ_CTRL001	mapjump	26	0x0285D	183	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a03	__MJ_CTRL001	mapjump	27	0x02869	184	local_var_s2f1_1; not (regI3)	mapjump	0x02c9, 3, 0	jumps: Pithead Junction A (Henne Mines), field 713, entrance 3	-	-	-	-	resolved	this page's How a call is read
 hne_a03	__MJ_CTRL001	mapjump	28	0x0286C	187	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a03	__MJ_CTRL002	init	1	0x02870	196	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	__MJ_CTRL002	init	1	0x02870	196	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	__MJ_CTRL002	init	2	0x02876	197	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a03	__MJ_CTRL002	init	3	0x02879	198	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a03	__MJ_CTRL002	mapjump	1	0x0287D	208	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2039,7 +2039,7 @@ hne_a03	__MJ_CTRL002	mapjump	25	0x0297C	247	local_var_s3f1_1; not (regI3)	fadesy
 hne_a03	__MJ_CTRL002	mapjump	26	0x02982	248	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a03	__MJ_CTRL002	mapjump	27	0x0298E	249	local_var_s3f1_1; not (regI3)	mapjump	0x02c9, 4, 0	jumps: Pithead Junction A (Henne Mines), field 713, entrance 4	-	-	-	-	resolved	this page's How a call is read
 hne_a03	__MJ_CTRL002	mapjump	28	0x02991	252	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a03	__MJ_CTRL003	init	1	0x02995	261	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	__MJ_CTRL003	init	1	0x02995	261	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	__MJ_CTRL003	init	2	0x0299B	262	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a03	__MJ_CTRL003	init	3	0x0299E	263	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a03	__MJ_CTRL003	mapjump	1	0x029A2	273	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2353,15 +2353,15 @@ hne_a03	ヘネ地図宝壺	daiji_box_bind	8	0x0368F	990	-	talkang	6.28318548	arg
 hne_a03	ヘネ地図宝壺	daiji_box_bind	9	0x03695	991	-	bindp2	0x03000000	model t2 (section 12 entry 0, bound id 0x740002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 hne_a03	ヘネ地図宝壺	daiji_box_bind	10	0x03698	992	-	fetchambient	-	-	-	-	-	-		01 verb-table.tsv
 hne_a03	ヘネ地図宝壺	daiji_box_bind	11	0x036A5	993	-	if	istreasureflag(13) == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a03	ヘネ地図宝壺	daiji_box_bind	12	0x036AB	995	istreasureflag(13) == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	ヘネ地図宝壺	daiji_box_bind	12	0x036AB	995	istreasureflag(13) == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	ヘネ地図宝壺	daiji_box_bind	13	0x036AE	996	istreasureflag(13) == 0	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a03	ヘネ地図宝壺	daiji_box_bind	14	0x036B4	997	istreasureflag(13) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-hne_a03	ヘネ地図宝壺	daiji_box_bind	15	0x036BD	1001	not (istreasureflag(13) == 0)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a03	ヘネ地図宝壺	daiji_box_bind	16	0x036C3	1002	not (istreasureflag(13) == 0)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a03	ヘネ地図宝壺	daiji_box_bind	17	0x036C9	1003	not (istreasureflag(13) == 0)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	ヘネ地図宝壺	daiji_box_bind	15	0x036BD	1001	not (istreasureflag(13) == 0)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	ヘネ地図宝壺	daiji_box_bind	16	0x036C3	1002	not (istreasureflag(13) == 0)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	ヘネ地図宝壺	daiji_box_bind	17	0x036C9	1003	not (istreasureflag(13) == 0)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	ヘネ地図宝壺	daiji_box_bind	18	0x036CF	1004	not (istreasureflag(13) == 0)	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a03	ヘネ地図宝壺	daiji_box_bind	19	0x036D5	1005	not (istreasureflag(13) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-hne_a03	ヘネ地図宝壺	daiji_box_bind	20	0x036DB	1007	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a03	ヘネ地図宝壺	daiji_box_bind	20	0x036DB	1007	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a03	ヘネ地図宝壺	daiji_box_bind	21	0x036E1	1008	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a03	ヘネ地図宝壺	daiji_box_bind	22	0x036E7	1009	-	talkradius	0.800000012	argument 1: the margin of the calling actor's talk ellipse, the area the player stands in to talk to it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a03	ヘネ地図宝壺	daiji_box_bind	23	0x036ED	1010	-	touchradius	2	-	-	-	-	-		01 verb-table.tsv
@@ -2382,9 +2382,9 @@ hne_a03	ヘネ地図宝壺	talk	11	0x0374A	1028	-	sysReqew	1, イベント特殊
 hne_a03	ヘネ地図宝壺	talk	12	0x03757	1029	-	sysReq	1, override_actor::乗っ取り解除	actor `override_actor`	-	-	files override_actor::乗っ取り解除 on channel 1; does not wait	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	ヘネ地図宝壺	talk	13	0x0375E	1030	-	sysReqwait	override_actor::乗っ取り解除	actor `override_actor`	-	-	waits until override_actor::乗っ取り解除 is no longer on its actor	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	ヘネ地図宝壺	talk	14	0x03762	1031	-	settreasureflag	13	flags set: Bank512, second half 0x000D: Set or tested in Phase 1 Shaft (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
-hne_a03	ヘネ地図宝壺	talk	15	0x03768	1032	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a03	ヘネ地図宝壺	talk	16	0x0376E	1033	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a03	ヘネ地図宝壺	talk	17	0x03774	1034	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	ヘネ地図宝壺	talk	15	0x03768	1032	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	ヘネ地図宝壺	talk	16	0x0376E	1033	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a03	ヘネ地図宝壺	talk	17	0x03774	1034	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a03	ヘネ地図宝壺	talk	18	0x03777	1035	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 hne_a03	ヘネ地図宝壺	talk	19	0x0377D	1036	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_a03	ヘネ地図宝壺	talk	20	0x03780	1037	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2684,7 +2684,7 @@ hne_a04	setup	battle	3	0x0240D	47	-	btlAtelSetActiveActorMax	8	-	-	-	-	-		01 ver
 hne_a04	setup	battle	4	0x02413	48	-	store	file_var_s0_1 = g_btl_nm_マインドフレア	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_a04	setup	battle	5	0x02419	49	-	btlAtelSetEntryStruct	0x030000e4	-	-	-	-	-		01 verb-table.tsv
 hne_a04	setup	battle	6	0x0241C	50	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a04	__MJ_CTRL000	init	1	0x02420	59	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a04	__MJ_CTRL000	init	1	0x02420	59	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a04	__MJ_CTRL000	init	2	0x02426	60	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a04	__MJ_CTRL000	init	3	0x02429	61	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a04	__MJ_CTRL000	mapjump	1	0x0242D	71	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2715,7 +2715,7 @@ hne_a04	__MJ_CTRL000	mapjump	25	0x0252C	110	local_var_s1f1_1; not (regI3)	fadesy
 hne_a04	__MJ_CTRL000	mapjump	26	0x02532	111	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a04	__MJ_CTRL000	mapjump	27	0x0253E	112	local_var_s1f1_1; not (regI3)	mapjump	0x02ca, 4, 0	jumps: Phase 1 Shaft (Henne Mines), field 714, entrance 4	-	-	-	-	resolved	this page's How a call is read
 hne_a04	__MJ_CTRL000	mapjump	28	0x02541	115	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a04	__MJ_CTRL001	init	1	0x02545	124	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a04	__MJ_CTRL001	init	1	0x02545	124	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a04	__MJ_CTRL001	init	2	0x0254B	125	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a04	__MJ_CTRL001	init	3	0x0254E	126	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a04	__MJ_CTRL001	mapjump	1	0x02552	136	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3381,7 +3381,7 @@ hne_a05	setup	battle	2	0x01C77	41	-	btlAtelSetDecidingEntryPointTimes	3	-	-	-	-	
 hne_a05	setup	battle	3	0x01C7D	42	-	btlAtelSetActiveActorMax	7	-	-	-	-	-		01 verb-table.tsv
 hne_a05	setup	battle	4	0x01C83	43	-	btlAtelSetEntryStruct	0x030000a0	-	-	-	-	-		01 verb-table.tsv
 hne_a05	setup	battle	5	0x01C86	44	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a05	__MJ_CTRL000	init	1	0x01C8A	53	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a05	__MJ_CTRL000	init	1	0x01C8A	53	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a05	__MJ_CTRL000	init	2	0x01C90	54	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a05	__MJ_CTRL000	init	3	0x01C93	55	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a05	__MJ_CTRL000	mapjump	1	0x01C97	65	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3412,7 +3412,7 @@ hne_a05	__MJ_CTRL000	mapjump	25	0x01D96	104	local_var_s1f1_1; not (regI3)	fadesy
 hne_a05	__MJ_CTRL000	mapjump	26	0x01D9C	105	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a05	__MJ_CTRL000	mapjump	27	0x01DA8	106	local_var_s1f1_1; not (regI3)	mapjump	0x02cb, 2, 0	jumps: Phase 1 Dig (Henne Mines), field 715, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_a05	__MJ_CTRL000	mapjump	28	0x01DAB	109	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a05	__MJ_CTRL001	init	1	0x01DAF	118	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a05	__MJ_CTRL001	init	1	0x01DAF	118	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a05	__MJ_CTRL001	init	2	0x01DB5	119	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a05	__MJ_CTRL001	init	3	0x01DB8	120	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a05	__MJ_CTRL001	mapjump	1	0x01DBC	130	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3443,7 +3443,7 @@ hne_a05	__MJ_CTRL001	mapjump	25	0x01EBB	169	local_var_s2f1_1; not (regI3)	fadesy
 hne_a05	__MJ_CTRL001	mapjump	26	0x01EC1	170	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a05	__MJ_CTRL001	mapjump	27	0x01ECD	171	local_var_s2f1_1; not (regI3)	mapjump	0x02cd, 2, 0	jumps: Pithead Junction B (Henne Mines), field 717, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_a05	__MJ_CTRL001	mapjump	28	0x01ED0	174	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a05	__MJ_CTRL002	init	1	0x01ED4	183	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a05	__MJ_CTRL002	init	1	0x01ED4	183	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a05	__MJ_CTRL002	init	2	0x01EDA	184	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a05	__MJ_CTRL002	init	3	0x01EDD	185	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a05	__MJ_CTRL002	mapjump	1	0x01EE1	195	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4043,7 +4043,7 @@ hne_a06	setup	battle	3	0x0183C	50	-	if	rand_29(100) < 50 and g_btl_hunt_hne_プ�
 hne_a06	setup	battle	4	0x01842	52	rand_29(100) < 50 and g_btl_hunt_hne_プリン == 1	store	file_var_s0_1 = 1	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_a06	setup	battle	5	0x01848	54	-	btlAtelSetEntryStruct	0x03000080	-	-	-	-	-		01 verb-table.tsv
 hne_a06	setup	battle	6	0x0184B	55	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a06	__MJ_CTRL000	init	1	0x0184F	64	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a06	__MJ_CTRL000	init	1	0x0184F	64	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a06	__MJ_CTRL000	init	2	0x01855	65	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	__MJ_CTRL000	init	3	0x01858	66	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a06	__MJ_CTRL000	mapjump	1	0x0185C	76	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4074,7 +4074,7 @@ hne_a06	__MJ_CTRL000	mapjump	25	0x0195B	115	local_var_s1f1_1; not (regI3)	fadesy
 hne_a06	__MJ_CTRL000	mapjump	26	0x01961	116	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a06	__MJ_CTRL000	mapjump	27	0x0196D	117	local_var_s1f1_1; not (regI3)	mapjump	0x02cf, 2, 0	jumps: Crossover B (Henne Mines), field 719, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_a06	__MJ_CTRL000	mapjump	28	0x01970	120	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a06	__MJ_CTRL001	init	1	0x01974	129	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a06	__MJ_CTRL001	init	1	0x01974	129	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a06	__MJ_CTRL001	init	2	0x0197A	130	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	__MJ_CTRL001	init	3	0x0197D	131	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a06	__MJ_CTRL001	mapjump	1	0x01981	141	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4468,10 +4468,10 @@ hne_a06	ギミック扉	赤オープン	53	0x025D2	721	-	bganimeplay_9e	1, 90, 9
 hne_a06	ギミック扉	赤オープン	54	0x025DE	722	-	sysReq	1, スイッチ::フィールドサインＩＤ	actor `スイッチ`	-	-	files スイッチ::フィールドサインＩＤ on channel 1; does not wait	スイッチ.フィールドサインＩＤ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a06	ギミック扉	赤オープン	55	0x025DF	723	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a06	スイッチ	init	1	0x025E3	732	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_a06	スイッチ	init	2	0x025E9	733	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a06	スイッチ	init	3	0x025EF	734	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a06	スイッチ	init	4	0x025F5	735	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a06	スイッチ	init	5	0x025FB	736	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a06	スイッチ	init	2	0x025E9	733	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a06	スイッチ	init	3	0x025EF	734	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a06	スイッチ	init	4	0x025F5	735	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a06	スイッチ	init	5	0x025FB	736	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a06	スイッチ	init	6	0x02601	737	-	setmapjumpgroupflag	167	flags set: 0x00A7: Shows a map icon in Pithead Junction B (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
 hne_a06	スイッチ	init	7	0x02604	738	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a06	スイッチ	main	1	0x02605	743	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4529,7 +4529,7 @@ hne_a06	やられ研究員	Init_配置	6	0x02724	850	-	setpos	283.899994, 30.697
 hne_a06	やられ研究員	Init_配置	7	0x0272A	851	-	dir	1.74532926	this actor, turned to facing 1.74532926	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 hne_a06	やられ研究員	Init_配置	8	0x02730	852	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	やられ研究員	Init_配置	9	0x02736	853	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a06	やられ研究員	Init_配置	10	0x0273C	854	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a06	やられ研究員	Init_配置	10	0x0273C	854	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a06	やられ研究員	Init_配置	11	0x0273F	855	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	やられ研究員	Init_配置	12	0x0274B	856	-	bindp2_d4	0x03000000, 1, 0	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	やられ研究員	Init_配置	13	0x0274E	857	-	fetchambient	-	-	-	-	-	-		01 verb-table.tsv
@@ -4550,7 +4550,7 @@ hne_a06	研究員_壁スキマ	setHitObj	4	0x027C1	883	-	bindhitobj	-	the callin
 hne_a06	研究員_壁スキマ	setHitObj	5	0x027C7	884	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	研究員_壁スキマ	setHitObj	6	0x027D0	885	-	setradius_221	0.400000006, 0.699999988	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	研究員_壁スキマ	setHitObj	7	0x027D6	886	-	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a06	研究員_壁スキマ	setHitObj	8	0x027DC	887	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a06	研究員_壁スキマ	setHitObj	8	0x027DC	887	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a06	研究員_壁スキマ	setHitObj	9	0x027DF	888	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a06	研究員_壁スキマ	setHitObj_omoi	1	0x027E3	893	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	研究員_壁スキマ	setHitObj_omoi	2	0x027EF	894	-	setpos	283.799988, 30.6973915, 324.299988	this actor, placed at (283.799988, 30.6973915, 324.299988)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -4559,7 +4559,7 @@ hne_a06	研究員_壁スキマ	setHitObj_omoi	4	0x027F8	896	-	bindhitobj	-	the c
 hne_a06	研究員_壁スキマ	setHitObj_omoi	5	0x027FE	897	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	研究員_壁スキマ	setHitObj_omoi	6	0x02807	898	-	setradius_221	0.400000006, 0.699999988	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a06	研究員_壁スキマ	setHitObj_omoi	7	0x0280D	899	-	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a06	研究員_壁スキマ	setHitObj_omoi	8	0x02813	900	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a06	研究員_壁スキマ	setHitObj_omoi	8	0x02813	900	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a06	研究員_壁スキマ	setHitObj_omoi	9	0x02816	901	-	weight_upper_pc	-	-	-	-	-	-		01 verb-table.tsv
 hne_a06	研究員_壁スキマ	setHitObj_omoi	10	0x02819	902	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a06	研究員_壁スキマ	clearHitObj	1	0x0281A	907	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4943,7 +4943,7 @@ hne_a07	saveactor	main	1	0x022D2	-	-	shared template	cecbbef6fb	-	-	-	-	saveacto
 hne_a07	saveactor	save_load	1	0x022D3	-	-	shared template	d3f827524e	-	-	-	-	saveactor.save_load, template d3f827524e	resolved	shared-zone-script-steps.tsv
 hne_a07	saveactor	save	1	0x02397	-	-	shared template	83b2548303	-	-	-	-	saveactor.save, template 83b2548303	resolved	shared-zone-script-steps.tsv
 hne_a07	saveactor	load	1	0x02481	-	-	shared template	7aaf6e0eb2	-	-	-	-	saveactor.load, template 7aaf6e0eb2	resolved	shared-zone-script-steps.tsv
-hne_a07	__MJ_CTRL000	init	1	0x0251C	623	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	__MJ_CTRL000	init	1	0x0251C	623	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a07	__MJ_CTRL000	init	2	0x02522	624	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	__MJ_CTRL000	init	3	0x02525	625	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a07	__MJ_CTRL000	mapjump	1	0x02529	635	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4974,7 +4974,7 @@ hne_a07	__MJ_CTRL000	mapjump	25	0x02628	674	local_var_s5f1_1; not (regI3)	fadesy
 hne_a07	__MJ_CTRL000	mapjump	26	0x0262E	675	local_var_s5f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a07	__MJ_CTRL000	mapjump	27	0x0263A	676	local_var_s5f1_1; not (regI3)	mapjump	0x02cf, 3, 0	jumps: Crossover B (Henne Mines), field 719, entrance 3	-	-	-	-	resolved	this page's How a call is read
 hne_a07	__MJ_CTRL000	mapjump	28	0x0263D	679	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a07	__MJ_CTRL001	init	1	0x02641	688	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	__MJ_CTRL001	init	1	0x02641	688	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a07	__MJ_CTRL001	init	2	0x02647	689	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	__MJ_CTRL001	init	3	0x0264A	690	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a07	__MJ_CTRL001	mapjump	1	0x0264E	700	-	store	local_var_s6f1_1 = 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5096,10 +5096,10 @@ hne_a07	Map_Director	main	1	0x0295A	920	-	bganimeplay_9e	0, 90, 90	argument 1: t
 hne_a07	Map_Director	main	2	0x02966	921	-	bganimeplay_9e	1, 90, 90	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	Map_Director	main	3	0x02969	922	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a07	心得モンスター	init	1	0x0296D	931	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_a07	心得モンスター	init	2	0x02973	932	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a07	心得モンスター	init	3	0x02979	933	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a07	心得モンスター	init	4	0x0297F	934	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a07	心得モンスター	init	5	0x02985	935	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	init	2	0x02973	932	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	init	3	0x02979	933	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	init	4	0x0297F	934	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	init	5	0x02985	935	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a07	心得モンスター	init	6	0x02988	936	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a07	心得モンスター	talk	1	0x0298C	941	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_a07	心得モンスター	talk	2	0x0298F	942	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -5118,14 +5118,14 @@ hne_a07	心得モンスター	talk	14	0x029E4	954	-	setstatuserrordispdenystatus
 hne_a07	心得モンスター	talk	15	0x029EA	955	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_a07	心得モンスター	talk	16	0x029ED	956	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a07	心得モンスター	フィールドサインＯＮ	1	0x029F1	961	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_a07	心得モンスター	フィールドサインＯＮ	2	0x029F7	962	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a07	心得モンスター	フィールドサインＯＮ	3	0x029FD	963	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a07	心得モンスター	フィールドサインＯＮ	4	0x02A03	964	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a07	心得モンスター	フィールドサインＯＮ	5	0x02A09	965	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	フィールドサインＯＮ	2	0x029F7	962	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	フィールドサインＯＮ	3	0x029FD	963	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	フィールドサインＯＮ	4	0x02A03	964	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	フィールドサインＯＮ	5	0x02A09	965	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a07	心得モンスター	フィールドサインＯＮ	6	0x02A0C	966	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a07	心得モンスター	フィールドサインＯＦＦ	1	0x02A10	971	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a07	心得モンスター	フィールドサインＯＦＦ	2	0x02A16	972	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_a07	心得モンスター	フィールドサインＯＦＦ	3	0x02A1C	973	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	フィールドサインＯＦＦ	1	0x02A10	971	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	フィールドサインＯＦＦ	2	0x02A16	972	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a07	心得モンスター	フィールドサインＯＦＦ	3	0x02A1C	973	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a07	心得モンスター	フィールドサインＯＦＦ	4	0x02A1F	974	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a07	system_crystal_actor	init	1	0x02A20	-	-	shared template	b37432546f	-	-	-	-	system_crystal_actor.init, template b37432546f	resolved	shared-zone-script-steps.tsv
 hne_a07	system_crystal_actor	main	1	0x02E5E	-	-	shared template	1e0c45e223	-	-	-	-	system_crystal_actor.main, template 1e0c45e223	resolved	shared-zone-script-steps.tsv
@@ -5149,7 +5149,7 @@ hne_a07	帝国兵死体_MAIN	Init_配置	6	0x04397	2417	-	setpos	226.957077, 31.
 hne_a07	帝国兵死体_MAIN	Init_配置	7	0x0439D	2418	-	dir	0.734789014	this actor, turned to facing 0.734789014	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 hne_a07	帝国兵死体_MAIN	Init_配置	8	0x043A3	2419	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	帝国兵死体_MAIN	Init_配置	9	0x043A9	2420	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a07	帝国兵死体_MAIN	Init_配置	10	0x043AF	2421	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a07	帝国兵死体_MAIN	Init_配置	10	0x043AF	2421	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a07	帝国兵死体_MAIN	Init_配置	11	0x043B2	2422	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	帝国兵死体_MAIN	Init_配置	12	0x043BE	2423	-	bindp2_d4	0x03000004, 1, 0	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	帝国兵死体_MAIN	Init_配置	13	0x043C1	2424	-	fetchambient	-	-	-	-	-	-		01 verb-table.tsv
@@ -5168,7 +5168,7 @@ hne_a07	ガリフ青年_MF	バインド	4	0x04425	2448	-	setpos	221.350006, 31.9
 hne_a07	ガリフ青年_MF	バインド	5	0x0442B	2449	-	dir	0.87266463	this actor, turned to facing 0.87266463	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 hne_a07	ガリフ青年_MF	バインド	6	0x04431	2450	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	ガリフ青年_MF	バインド	7	0x04437	2451	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a07	ガリフ青年_MF	バインド	8	0x0443D	2452	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a07	ガリフ青年_MF	バインド	8	0x0443D	2452	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a07	ガリフ青年_MF	バインド	9	0x04440	2453	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	ガリフ青年_MF	バインド	10	0x0444C	2454	-	bindp2_d4	0x03000006, 1, 0	argument 1: the model to bind to the calling actor / argument 2: the first selector of the body replacement / argument 3: the second selector of the body replacement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	ガリフ青年_MF	バインド	11	0x0444F	2455	-	fetchambient	-	-	-	-	-	-		01 verb-table.tsv
@@ -5247,7 +5247,7 @@ hne_a07	帝国兵死体_壁スキマ	setHitObj	4	0x04611	2565	-	bindhitobj	-	the
 hne_a07	帝国兵死体_壁スキマ	setHitObj	5	0x04617	2566	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	帝国兵死体_壁スキマ	setHitObj	6	0x04620	2567	-	setradius_221	0.5, 0.600000024	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	帝国兵死体_壁スキマ	setHitObj	7	0x04626	2568	-	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a07	帝国兵死体_壁スキマ	setHitObj	8	0x0462C	2569	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a07	帝国兵死体_壁スキマ	setHitObj	8	0x0462C	2569	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a07	帝国兵死体_壁スキマ	setHitObj	9	0x0462F	2570	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	1	0x04633	2575	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	2	0x0463F	2576	-	setpos	227.850006, 31.9336376, 237.300003	this actor, placed at (227.850006, 31.9336376, 237.300003)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -5256,7 +5256,7 @@ hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	4	0x04648	2578	-	bindhitobj	
 hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	5	0x0464E	2579	-	set_ignore_hitgroup	1	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	6	0x04657	2580	-	setradius_221	0.5, 0.600000024	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	7	0x0465D	2581	-	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	8	0x04663	2582	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	8	0x04663	2582	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	9	0x04666	2583	-	weight_upper_pc	-	-	-	-	-	-		01 verb-table.tsv
 hne_a07	帝国兵死体_壁スキマ	setHitObj_omoi	10	0x04669	2584	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a07	帝国兵死体_壁スキマ	clearHitObj	1	0x0466A	2589	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5494,7 +5494,7 @@ hne_a08	setup	battle	2	0x015E7	40	-	btlAtelSetDecidingEntryPointTimes	3	-	-	-	-	
 hne_a08	setup	battle	3	0x015ED	41	-	btlAtelSetActiveActorMax	8	-	-	-	-	-		01 verb-table.tsv
 hne_a08	setup	battle	4	0x015F3	42	-	btlAtelSetEntryStruct	0x03000078	-	-	-	-	-		01 verb-table.tsv
 hne_a08	setup	battle	5	0x015F6	43	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a08	__MJ_CTRL000	init	1	0x015FA	52	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a08	__MJ_CTRL000	init	1	0x015FA	52	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a08	__MJ_CTRL000	init	2	0x01600	53	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a08	__MJ_CTRL000	init	3	0x01603	54	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a08	__MJ_CTRL000	mapjump	1	0x01607	64	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5525,7 +5525,7 @@ hne_a08	__MJ_CTRL000	mapjump	25	0x01706	103	local_var_s1f1_1; not (regI3)	fadesy
 hne_a08	__MJ_CTRL000	mapjump	26	0x0170C	104	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a08	__MJ_CTRL000	mapjump	27	0x01718	105	local_var_s1f1_1; not (regI3)	mapjump	0x02cc, 3, 0	jumps: Crossover A (Henne Mines), field 716, entrance 3	-	-	-	-	resolved	this page's How a call is read
 hne_a08	__MJ_CTRL000	mapjump	28	0x0171B	108	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a08	__MJ_CTRL001	init	1	0x0171F	117	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a08	__MJ_CTRL001	init	1	0x0171F	117	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a08	__MJ_CTRL001	init	2	0x01725	118	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a08	__MJ_CTRL001	init	3	0x01728	119	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a08	__MJ_CTRL001	mapjump	1	0x0172C	129	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5556,7 +5556,7 @@ hne_a08	__MJ_CTRL001	mapjump	25	0x0182B	168	local_var_s2f1_1; not (regI3)	fadesy
 hne_a08	__MJ_CTRL001	mapjump	26	0x01831	169	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_a08	__MJ_CTRL001	mapjump	27	0x0183D	170	local_var_s2f1_1; not (regI3)	mapjump	0x02cd, 1, 0	jumps: Pithead Junction B (Henne Mines), field 717, entrance 1	-	-	-	-	resolved	this page's How a call is read
 hne_a08	__MJ_CTRL001	mapjump	28	0x01840	173	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_a08	__MJ_CTRL002	init	1	0x01844	182	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_a08	__MJ_CTRL002	init	1	0x01844	182	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_a08	__MJ_CTRL002	init	2	0x0184A	183	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_a08	__MJ_CTRL002	init	3	0x0184D	184	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_a08	__MJ_CTRL002	mapjump	1	0x01851	194	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -6061,7 +6061,7 @@ hne_b01	setup	battle	1	0x00F51	50	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-
 hne_b01	setup	battle	2	0x00F57	51	-	store	file_var_s0_1 = g_btl_ティアマット	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_b01	setup	battle	3	0x00F5D	52	-	btlAtelSetEntryStruct	0x03000014	-	-	-	-	-		01 verb-table.tsv
 hne_b01	setup	battle	4	0x00F60	53	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_b01	__MJ_CTRL000	init	1	0x00F64	62	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	__MJ_CTRL000	init	1	0x00F64	62	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	__MJ_CTRL000	init	2	0x00F6A	63	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_b01	__MJ_CTRL000	init	3	0x00F6D	64	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	__MJ_CTRL000	mapjump	1	0x00F71	74	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -6092,7 +6092,7 @@ hne_b01	__MJ_CTRL000	mapjump	25	0x01070	113	local_var_s1f1_1; not (regI3)	fadesy
 hne_b01	__MJ_CTRL000	mapjump	26	0x01076	114	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_b01	__MJ_CTRL000	mapjump	27	0x01082	115	local_var_s1f1_1; not (regI3)	mapjump	0x02ce, 2, 0	jumps: Staging Shaft (Henne Mines), field 718, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_b01	__MJ_CTRL000	mapjump	28	0x01085	118	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_b01	__MJ_CTRL001	init	1	0x01089	127	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	__MJ_CTRL001	init	1	0x01089	127	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	__MJ_CTRL001	init	2	0x0108F	128	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_b01	__MJ_CTRL001	init	3	0x01092	129	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	__MJ_CTRL001	mapjump	1	0x01096	139	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -6588,10 +6588,10 @@ hne_b01	ギミック	全扉開く	24	0x01F77	825	-	if	not (ismapjumpgroupflag(0x
 hne_b01	ギミック	全扉開く	25	0x01F7D	827	not (ismapjumpgroupflag(0x015b)) and シナリオフラグ >= 0x0726	setmapjumpgroupflag	0x015b	flags set: 0x015B: Draws the location map's link between North Entrance (Henne Mines) and Ore Separation (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
 hne_b01	ギミック	全扉開く	26	0x01F80	829	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	ＥＸ扉	init	1	0x01F84	838	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-hne_b01	ＥＸ扉	init	2	0x01F8A	839	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ＥＸ扉	init	3	0x01F90	840	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ＥＸ扉	init	4	0x01F96	841	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ＥＸ扉	init	5	0x01F9C	842	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	init	2	0x01F8A	839	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	init	3	0x01F90	840	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	init	4	0x01F96	841	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	init	5	0x01F9C	842	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	ＥＸ扉	init	6	0x01F9F	843	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	ＥＸ扉	talk	1	0x01FA3	848	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_b01	ＥＸ扉	talk	2	0x01FA6	849	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -6610,17 +6610,17 @@ hne_b01	ＥＸ扉	talk	14	0x01FFB	861	-	setstatuserrordispdenystatus	0	argument 
 hne_b01	ＥＸ扉	talk	15	0x02001	862	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_b01	ＥＸ扉	talk	16	0x02004	863	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	ＥＸ扉	フィールドサインＯＮ	1	0x02008	868	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-hne_b01	ＥＸ扉	フィールドサインＯＮ	2	0x0200E	869	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ＥＸ扉	フィールドサインＯＮ	3	0x02014	870	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ＥＸ扉	フィールドサインＯＮ	4	0x0201A	871	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ＥＸ扉	フィールドサインＯＮ	5	0x02020	872	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	フィールドサインＯＮ	2	0x0200E	869	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	フィールドサインＯＮ	3	0x02014	870	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	フィールドサインＯＮ	4	0x0201A	871	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	フィールドサインＯＮ	5	0x02020	872	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	ＥＸ扉	フィールドサインＯＮ	6	0x02023	873	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_b01	ＥＸ扉	フィールドサインＯＦＦ	1	0x02027	878	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ＥＸ扉	フィールドサインＯＦＦ	2	0x0202D	879	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ＥＸ扉	フィールドサインＯＦＦ	3	0x02033	880	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	フィールドサインＯＦＦ	1	0x02027	878	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	フィールドサインＯＦＦ	2	0x0202D	879	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ＥＸ扉	フィールドサインＯＦＦ	3	0x02033	880	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	ＥＸ扉	フィールドサインＯＦＦ	4	0x02036	881	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	ショートカット	init	1	0x0203A	890	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_b01	ショートカット	init	2	0x02040	891	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	init	2	0x02040	891	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	ショートカット	init	3	0x02043	892	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	ショートカット	talk	1	0x02047	902	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_b01	ショートカット	talk	2	0x0204A	903	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -6669,21 +6669,21 @@ hne_b01	ショートカット	talk	44	0x02147	954	not (local_var_s9f1_1 == 1)	se
 hne_b01	ショートカット	talk	45	0x0214D	955	not (local_var_s9f1_1 == 1)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_b01	ショートカット	talk	46	0x02150	957	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	ショートカット	フィールドサインＯＫ	1	0x02154	967	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_b01	ショートカット	フィールドサインＯＫ	2	0x0215A	968	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＯＫ	2	0x0215A	968	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	ショートカット	フィールドサインＯＫ	3	0x02160	969	-	store	local_var_s9f2_1 = 0	variable local_var_s9f2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_b01	ショートカット	フィールドサインＯＫ	4	0x02163	970	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	ショートカット	フィールドサインＮＯＴ	1	0x02167	975	-	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_b01	ショートカット	フィールドサインＮＯＴ	2	0x0216D	976	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＮＯＴ	2	0x0216D	976	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	ショートカット	フィールドサインＮＯＴ	3	0x02173	977	-	store	local_var_s9f2_1 = 1	variable local_var_s9f2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_b01	ショートカット	フィールドサインＮＯＴ	4	0x02176	978	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_b01	ショートカット	フィールドサインＯＮ	1	0x0217A	983	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ショートカット	フィールドサインＯＮ	2	0x02180	984	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ショートカット	フィールドサインＯＮ	3	0x02186	985	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ショートカット	フィールドサインＯＮ	4	0x0218C	986	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＯＮ	1	0x0217A	983	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＯＮ	2	0x02180	984	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＯＮ	3	0x02186	985	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＯＮ	4	0x0218C	986	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	ショートカット	フィールドサインＯＮ	5	0x0218F	987	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_b01	ショートカット	フィールドサインＯＦＦ	1	0x02193	992	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ショートカット	フィールドサインＯＦＦ	2	0x02199	993	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_b01	ショートカット	フィールドサインＯＦＦ	3	0x0219F	994	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＯＦＦ	1	0x02193	992	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＯＦＦ	2	0x02199	993	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_b01	ショートカット	フィールドサインＯＦＦ	3	0x0219F	994	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_b01	ショートカット	フィールドサインＯＦＦ	4	0x021A2	995	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_b01	PC00	init	1	0x021A6	1004	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_b01	PC00	init	2	0x021A9	1005	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6921,7 +6921,7 @@ hne_c01	setup	battle	2	0x031F7	41	-	btlAtelSetDecidingEntryPointTimes	3	-	-	-	-	
 hne_c01	setup	battle	3	0x031FD	42	-	btlAtelSetActiveActorMax	8	-	-	-	-	-		01 verb-table.tsv
 hne_c01	setup	battle	4	0x03203	43	-	btlAtelSetEntryStruct	0x0300013c	-	-	-	-	-		01 verb-table.tsv
 hne_c01	setup	battle	5	0x03206	44	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c01	__MJ_CTRL000	init	1	0x0320A	53	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	__MJ_CTRL000	init	1	0x0320A	53	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	__MJ_CTRL000	init	2	0x03210	54	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	__MJ_CTRL000	init	3	0x03213	55	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c01	__MJ_CTRL000	mapjump	1	0x03217	65	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -6952,7 +6952,7 @@ hne_c01	__MJ_CTRL000	mapjump	25	0x03316	104	local_var_s1f1_1; not (regI3)	fadesy
 hne_c01	__MJ_CTRL000	mapjump	26	0x0331C	105	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c01	__MJ_CTRL000	mapjump	27	0x03328	106	local_var_s1f1_1; not (regI3)	mapjump	0x02d2, 2, 0	jumps: Ore Separation (Henne Mines), field 722, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_c01	__MJ_CTRL000	mapjump	28	0x0332B	109	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c01	__MJ_CTRL001	init	1	0x0332F	118	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	__MJ_CTRL001	init	1	0x0332F	118	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	__MJ_CTRL001	init	2	0x03335	119	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	__MJ_CTRL001	init	3	0x03338	120	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c01	__MJ_CTRL001	mapjump	1	0x0333C	130	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -7078,9 +7078,9 @@ hne_c01	ミニゲレクト	talk	41	0x03AB9	551	nowmap() = 0x02da; not (local_var
 hne_c01	ミニゲレクト	talk	42	0x03AC2	552	nowmap() = 0x02da; not (local_var_s9f1_1)	sebsoundplay	0, 39	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	ミニゲレクト	talk	43	0x03ACB	553	nowmap() = 0x02da; not (local_var_s9f1_1)	additemmes	0x9120, 1	items: receives reward package: Bacchus's Wine x3 + Megalixir x2	-	-	-	-	resolved	this page's How a call is read
 hne_c01	ミニゲレクト	talk	44	0x03ACE	554	nowmap() = 0x02da; not (local_var_s9f1_1)	charcommoneffectstop	-	the calling actor's running common-effect job (the effect charcommoneffectplay started, kept at movement context +0x220 for class 3 or +0x74 for class 1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_c01	ミニゲレクト	talk	45	0x03AD4	555	nowmap() = 0x02da; not (local_var_s9f1_1)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ミニゲレクト	talk	46	0x03ADA	556	nowmap() = 0x02da; not (local_var_s9f1_1)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ミニゲレクト	talk	47	0x03AE0	557	nowmap() = 0x02da; not (local_var_s9f1_1)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	talk	45	0x03AD4	555	nowmap() = 0x02da; not (local_var_s9f1_1)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	talk	46	0x03ADA	556	nowmap() = 0x02da; not (local_var_s9f1_1)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	talk	47	0x03AE0	557	nowmap() = 0x02da; not (local_var_s9f1_1)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ミニゲレクト	talk	48	0x03AE3	559	nowmap() = 0x02da	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c01	ミニゲレクト	talk	49	0x03AF5	561	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 hne_c01	ミニゲレクト	talk	50	0x03AFB	562	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -7091,23 +7091,23 @@ hne_c01	ミニゲレクト	talk	54	0x03B10	566	-	setstatuserrordispdenystatus	0	
 hne_c01	ミニゲレクト	talk	55	0x03B16	567	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_c01	ミニゲレクト	talk	56	0x03B19	568	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c01	ミニゲレクト	ＦＳＯＮ	1	0x03B1D	573	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-hne_c01	ミニゲレクト	ＦＳＯＮ	2	0x03B23	574	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ミニゲレクト	ＦＳＯＮ	3	0x03B29	575	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	ＦＳＯＮ	2	0x03B23	574	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	ＦＳＯＮ	3	0x03B29	575	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ミニゲレクト	ＦＳＯＮ	4	0x03B2C	576	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c01	ミニゲレクト	ＦＳＯＦＦ	1	0x03B30	581	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ミニゲレクト	ＦＳＯＦＦ	2	0x03B36	582	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ミニゲレクト	ＦＳＯＦＦ	3	0x03B3C	583	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	ＦＳＯＦＦ	1	0x03B30	581	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	ＦＳＯＦＦ	2	0x03B36	582	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	ＦＳＯＦＦ	3	0x03B3C	583	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ミニゲレクト	ＦＳＯＦＦ	4	0x03B3F	584	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c01	ミニゲレクト	エフェクトＯＮ	1	0x03B43	589	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-hne_c01	ミニゲレクト	エフェクトＯＮ	2	0x03B49	590	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	エフェクトＯＮ	2	0x03B49	590	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ミニゲレクト	エフェクトＯＮ	3	0x03B4F	591	-	charcommoneffectplay	13	argument 1: an index into the 14-entry common effect table 0x01EF9400 (0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 0x87, 0x89, 0x8A, 0x8C, 0x8D, 0x95, 0x8B, 0x96)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	ミニゲレクト	エフェクトＯＮ	4	0x03B55	592	-	charcommoneffecttrigger	1	argument 1: the effect part to run on the calling actor's common-effect job (movement context +0x220 or +0x74, 0x002638C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_c01	ミニゲレクト	エフェクトＯＮ	5	0x03B5B	593	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	エフェクトＯＮ	5	0x03B5B	593	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ミニゲレクト	エフェクトＯＮ	6	0x03B5E	594	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c01	ミニゲレクト	エフェクトＯＦＦ	1	0x03B5F	599	-	charcommoneffectstop	-	the calling actor's running common-effect job (the effect charcommoneffectplay started, kept at movement context +0x220 for class 3 or +0x74 for class 1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_c01	ミニゲレクト	エフェクトＯＦＦ	2	0x03B65	600	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ミニゲレクト	エフェクトＯＦＦ	3	0x03B6B	601	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ミニゲレクト	エフェクトＯＦＦ	4	0x03B71	602	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	エフェクトＯＦＦ	2	0x03B65	600	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	エフェクトＯＦＦ	3	0x03B6B	601	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ミニゲレクト	エフェクトＯＦＦ	4	0x03B71	602	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ミニゲレクト	エフェクトＯＦＦ	5	0x03B74	603	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c01	PC00	init	1	0x03B78	612	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	PC00	init	2	0x03B7B	613	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7487,15 +7487,15 @@ hne_c01	ヘネキャンドル宝壺	daiji_box_bind	8	0x042F4	1225	-	talkang	6.28
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	9	0x042FA	1226	-	bindp2	0x03000002	model t2 (section 12 entry 2, bound id 0x740002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	10	0x042FD	1227	-	fetchambient	-	-	-	-	-	-		01 verb-table.tsv
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	11	0x0430A	1228	-	if	istreasureflag(14) == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c01	ヘネキャンドル宝壺	daiji_box_bind	12	0x04310	1230	istreasureflag(14) == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ヘネキャンドル宝壺	daiji_box_bind	12	0x04310	1230	istreasureflag(14) == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	13	0x04313	1231	istreasureflag(14) == 0	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	14	0x04319	1232	istreasureflag(14) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-hne_c01	ヘネキャンドル宝壺	daiji_box_bind	15	0x04322	1236	not (istreasureflag(14) == 0)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ヘネキャンドル宝壺	daiji_box_bind	16	0x04328	1237	not (istreasureflag(14) == 0)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ヘネキャンドル宝壺	daiji_box_bind	17	0x0432E	1238	not (istreasureflag(14) == 0)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ヘネキャンドル宝壺	daiji_box_bind	15	0x04322	1236	not (istreasureflag(14) == 0)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ヘネキャンドル宝壺	daiji_box_bind	16	0x04328	1237	not (istreasureflag(14) == 0)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ヘネキャンドル宝壺	daiji_box_bind	17	0x0432E	1238	not (istreasureflag(14) == 0)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	18	0x04334	1239	not (istreasureflag(14) == 0)	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	19	0x0433A	1240	not (istreasureflag(14) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-hne_c01	ヘネキャンドル宝壺	daiji_box_bind	20	0x04340	1242	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+hne_c01	ヘネキャンドル宝壺	daiji_box_bind	20	0x04340	1242	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	21	0x04346	1243	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	22	0x0434C	1244	-	talkradius	0.800000012	argument 1: the margin of the calling actor's talk ellipse, the area the player stands in to talk to it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c01	ヘネキャンドル宝壺	daiji_box_bind	23	0x04352	1245	-	touchradius	2	-	-	-	-	-		01 verb-table.tsv
@@ -7516,9 +7516,9 @@ hne_c01	ヘネキャンドル宝壺	talk	11	0x043AF	1263	-	sysReqew	1, イベン
 hne_c01	ヘネキャンドル宝壺	talk	12	0x043BC	1264	-	sysReq	1, override_actor::乗っ取り解除	actor `override_actor`	-	-	files override_actor::乗っ取り解除 on channel 1; does not wait	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ヘネキャンドル宝壺	talk	13	0x043C3	1265	-	sysReqwait	override_actor::乗っ取り解除	actor `override_actor`	-	-	waits until override_actor::乗っ取り解除 is no longer on its actor	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ヘネキャンドル宝壺	talk	14	0x043C7	1266	-	settreasureflag	14	flags set: Bank512, second half 0x000E: Set or tested in Phase 2 Dig (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
-hne_c01	ヘネキャンドル宝壺	talk	15	0x043CD	1267	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ヘネキャンドル宝壺	talk	16	0x043D3	1268	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c01	ヘネキャンドル宝壺	talk	17	0x043D9	1269	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ヘネキャンドル宝壺	talk	15	0x043CD	1267	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ヘネキャンドル宝壺	talk	16	0x043D3	1268	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c01	ヘネキャンドル宝壺	talk	17	0x043D9	1269	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c01	ヘネキャンドル宝壺	talk	18	0x043DC	1270	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 hne_c01	ヘネキャンドル宝壺	talk	19	0x043E2	1271	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_c01	ヘネキャンドル宝壺	talk	20	0x043E5	1272	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7792,7 +7792,7 @@ hne_c02	setup	battle	2	0x01BD7	43	-	btlAtelSetDecidingEntryPointTimes	3	-	-	-	-	
 hne_c02	setup	battle	3	0x01BDD	44	-	btlAtelSetActiveActorMax	7	-	-	-	-	-		01 verb-table.tsv
 hne_c02	setup	battle	4	0x01BE3	45	-	btlAtelSetEntryStruct	0x0300007c	-	-	-	-	-		01 verb-table.tsv
 hne_c02	setup	battle	5	0x01BE6	46	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c02	__MJ_CTRL000	init	1	0x01BEA	55	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	__MJ_CTRL000	init	1	0x01BEA	55	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c02	__MJ_CTRL000	init	2	0x01BF0	56	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c02	__MJ_CTRL000	init	3	0x01BF3	57	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c02	__MJ_CTRL000	mapjump	1	0x01BF7	67	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -7823,7 +7823,7 @@ hne_c02	__MJ_CTRL000	mapjump	25	0x01CF6	106	local_var_s1f1_1; not (regI3)	fadesy
 hne_c02	__MJ_CTRL000	mapjump	26	0x01CFC	107	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c02	__MJ_CTRL000	mapjump	27	0x01D08	108	local_var_s1f1_1; not (regI3)	mapjump	0x02d5, 2, 0	jumps: Phase 2 Dig (Henne Mines), field 725, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_c02	__MJ_CTRL000	mapjump	28	0x01D0B	111	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c02	__MJ_CTRL001	init	1	0x01D0F	120	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	__MJ_CTRL001	init	1	0x01D0F	120	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c02	__MJ_CTRL001	init	2	0x01D15	121	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c02	__MJ_CTRL001	init	3	0x01D18	122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c02	__MJ_CTRL001	mapjump	1	0x01D1C	132	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -7854,7 +7854,7 @@ hne_c02	__MJ_CTRL001	mapjump	25	0x01E1B	171	local_var_s2f1_1; not (regI3)	fadesy
 hne_c02	__MJ_CTRL001	mapjump	26	0x01E21	172	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c02	__MJ_CTRL001	mapjump	27	0x01E2D	173	local_var_s2f1_1; not (regI3)	mapjump	0x02d8, 1, 0	jumps: Phase 2 Shaft (Henne Mines), field 728, entrance 1	-	-	-	-	resolved	this page's How a call is read
 hne_c02	__MJ_CTRL001	mapjump	28	0x01E30	176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c02	__MJ_CTRL002	init	1	0x01E34	185	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	__MJ_CTRL002	init	1	0x01E34	185	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c02	__MJ_CTRL002	init	2	0x01E3A	186	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c02	__MJ_CTRL002	init	3	0x01E3D	187	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c02	__MJ_CTRL002	mapjump	1	0x01E41	197	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -8102,7 +8102,7 @@ hne_c02	ギミック扉	赤オープン	57	0x025D0	564	-	bganimeplay_9e	2, 90, 9
 hne_c02	ギミック扉	赤オープン	58	0x025DC	565	-	bganimeplay_9e	3, 90, 90	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c02	ギミック扉	赤オープン	59	0x025DF	566	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c02	ショートカット	init	1	0x025E3	575	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_c02	ショートカット	init	2	0x025E9	576	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	init	2	0x025E9	576	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c02	ショートカット	init	3	0x025F9	577	-	if	not ((g_com_マップ通行制限フラグ[1] & 1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c02	ショートカット	init	4	0x025FF	579	not ((g_com_マップ通行制限フラグ[1] & 1))	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c02	ショートカット	init	5	0x02608	583	not (not ((g_com_マップ通行制限フラグ[1] & 1)))	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8180,21 +8180,21 @@ hne_c02	ショートカット	talk	70	0x027C9	680	not (local_var_s8f1_1); not (n
 hne_c02	ショートカット	talk	71	0x027CF	681	not (local_var_s8f1_1); not (not ((g_com_マップ通行制限フラグ[1] & 1))); not (local_var_s8f1_2 == 1)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_c02	ショートカット	talk	72	0x027D2	684	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c02	ショートカット	フィールドサインＯＫ	1	0x027D6	689	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_c02	ショートカット	フィールドサインＯＫ	2	0x027DC	690	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＯＫ	2	0x027DC	690	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c02	ショートカット	フィールドサインＯＫ	3	0x027E2	691	-	store	local_var_s8f1_1 = 0	variable local_var_s8f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_c02	ショートカット	フィールドサインＯＫ	4	0x027E5	692	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c02	ショートカット	フィールドサインＮＯＴ	1	0x027E9	697	-	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_c02	ショートカット	フィールドサインＮＯＴ	2	0x027EF	698	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＮＯＴ	2	0x027EF	698	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c02	ショートカット	フィールドサインＮＯＴ	3	0x027F5	699	-	store	local_var_s8f1_1 = 1	variable local_var_s8f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_c02	ショートカット	フィールドサインＮＯＴ	4	0x027F8	700	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c02	ショートカット	フィールドサインＯＮ	1	0x027FC	705	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c02	ショートカット	フィールドサインＯＮ	2	0x02802	706	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c02	ショートカット	フィールドサインＯＮ	3	0x02808	707	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c02	ショートカット	フィールドサインＯＮ	4	0x0280E	708	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＯＮ	1	0x027FC	705	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＯＮ	2	0x02802	706	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＯＮ	3	0x02808	707	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＯＮ	4	0x0280E	708	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c02	ショートカット	フィールドサインＯＮ	5	0x02811	709	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c02	ショートカット	フィールドサインＯＦＦ	1	0x02815	714	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c02	ショートカット	フィールドサインＯＦＦ	2	0x0281B	715	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c02	ショートカット	フィールドサインＯＦＦ	3	0x02821	716	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＯＦＦ	1	0x02815	714	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＯＦＦ	2	0x0281B	715	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c02	ショートカット	フィールドサインＯＦＦ	3	0x02821	716	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c02	ショートカット	フィールドサインＯＦＦ	4	0x02824	717	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c02	PC00	init	1	0x02828	726	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c02	PC00	init	2	0x0282B	727	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8650,7 +8650,7 @@ hne_c03	setup	battle	1	0x015F1	40	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-
 hne_c03	setup	battle	2	0x015F7	41	-	btlAtelSetActiveActorMax	6	-	-	-	-	-		01 verb-table.tsv
 hne_c03	setup	battle	3	0x015FD	42	-	btlAtelSetEntryStruct	0x03000064	-	-	-	-	-		01 verb-table.tsv
 hne_c03	setup	battle	4	0x01600	43	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c03	__MJ_CTRL000	init	1	0x01604	52	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	__MJ_CTRL000	init	1	0x01604	52	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c03	__MJ_CTRL000	init	2	0x0160A	53	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c03	__MJ_CTRL000	init	3	0x0160D	54	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	__MJ_CTRL000	mapjump	1	0x01611	64	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -8681,7 +8681,7 @@ hne_c03	__MJ_CTRL000	mapjump	25	0x01710	103	local_var_s1f1_1; not (regI3)	fadesy
 hne_c03	__MJ_CTRL000	mapjump	26	0x01716	104	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c03	__MJ_CTRL000	mapjump	27	0x01722	105	local_var_s1f1_1; not (regI3)	mapjump	0x02d6, 3, 0	jumps: Crossover C (Henne Mines), field 726, entrance 3	-	-	-	-	resolved	this page's How a call is read
 hne_c03	__MJ_CTRL000	mapjump	28	0x01725	108	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c03	__MJ_CTRL001	init	1	0x01729	117	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	__MJ_CTRL001	init	1	0x01729	117	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c03	__MJ_CTRL001	init	2	0x0172F	118	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c03	__MJ_CTRL001	init	3	0x01732	119	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	__MJ_CTRL001	mapjump	1	0x01736	129	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -8712,7 +8712,7 @@ hne_c03	__MJ_CTRL001	mapjump	25	0x01835	168	local_var_s2f1_1; not (regI3)	fadesy
 hne_c03	__MJ_CTRL001	mapjump	26	0x0183B	169	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c03	__MJ_CTRL001	mapjump	27	0x01847	170	local_var_s2f1_1; not (regI3)	mapjump	0x02d8, 4, 0	jumps: Phase 2 Shaft (Henne Mines), field 728, entrance 4	-	-	-	-	resolved	this page's How a call is read
 hne_c03	__MJ_CTRL001	mapjump	28	0x0184A	173	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c03	__MJ_CTRL002	init	1	0x0184E	182	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	__MJ_CTRL002	init	1	0x0184E	182	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c03	__MJ_CTRL002	init	2	0x01854	183	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c03	__MJ_CTRL002	init	3	0x01857	184	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	__MJ_CTRL002	mapjump	1	0x0185B	194	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -9068,10 +9068,10 @@ hne_c03	ギミック扉	赤オープン	54	0x023E3	708	-	bganimeplay_9e	1, 90, 9
 hne_c03	ギミック扉	赤オープン	55	0x023EF	709	-	sysReq	1, スイッチ::フィールドサインＩＤ	actor `スイッチ`	-	-	files スイッチ::フィールドサインＩＤ on channel 1; does not wait	スイッチ.フィールドサインＩＤ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c03	ギミック扉	赤オープン	56	0x023F0	710	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	スイッチ	init	1	0x023F4	719	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_c03	スイッチ	init	2	0x023FA	720	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	スイッチ	init	3	0x02400	721	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	スイッチ	init	4	0x02406	722	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	スイッチ	init	5	0x0240C	723	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	スイッチ	init	2	0x023FA	720	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	スイッチ	init	3	0x02400	721	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	スイッチ	init	4	0x02406	722	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	スイッチ	init	5	0x0240C	723	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c03	スイッチ	init	6	0x02412	724	-	setmapjumpgroupflag	168	flags set: 0x00A8: Shows a map icon in Pithead Junction C (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
 hne_c03	スイッチ	init	7	0x02415	725	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	スイッチ	main	1	0x02416	730	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9112,10 +9112,10 @@ hne_c03	スイッチ	フィールドサインＩＤ	10	0x024D7	775	global_var_1 
 hne_c03	スイッチ	フィールドサインＩＤ	11	0x024DA	776	global_var_1 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	スイッチ	フィールドサインＩＤ	12	0x024EC	778	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	心得モンスター	init	1	0x024F0	787	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-hne_c03	心得モンスター	init	2	0x024F6	788	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	心得モンスター	init	3	0x024FC	789	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	心得モンスター	init	4	0x02502	790	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	心得モンスター	init	5	0x02508	791	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	init	2	0x024F6	788	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	init	3	0x024FC	789	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	init	4	0x02502	790	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	init	5	0x02508	791	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c03	心得モンスター	init	6	0x0250B	792	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	心得モンスター	talk	1	0x0250F	797	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_c03	心得モンスター	talk	2	0x02512	798	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -9134,14 +9134,14 @@ hne_c03	心得モンスター	talk	14	0x02567	810	-	setstatuserrordispdenystatus
 hne_c03	心得モンスター	talk	15	0x0256D	811	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_c03	心得モンスター	talk	16	0x02570	812	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	心得モンスター	フィールドサインＯＮ	1	0x02574	817	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-hne_c03	心得モンスター	フィールドサインＯＮ	2	0x0257A	818	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	心得モンスター	フィールドサインＯＮ	3	0x02580	819	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	心得モンスター	フィールドサインＯＮ	4	0x02586	820	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	心得モンスター	フィールドサインＯＮ	5	0x0258C	821	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	フィールドサインＯＮ	2	0x0257A	818	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	フィールドサインＯＮ	3	0x02580	819	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	フィールドサインＯＮ	4	0x02586	820	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	フィールドサインＯＮ	5	0x0258C	821	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c03	心得モンスター	フィールドサインＯＮ	6	0x0258F	822	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c03	心得モンスター	フィールドサインＯＦＦ	1	0x02593	827	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	心得モンスター	フィールドサインＯＦＦ	2	0x02599	828	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c03	心得モンスター	フィールドサインＯＦＦ	3	0x0259F	829	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	フィールドサインＯＦＦ	1	0x02593	827	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	フィールドサインＯＦＦ	2	0x02599	828	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c03	心得モンスター	フィールドサインＯＦＦ	3	0x0259F	829	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c03	心得モンスター	フィールドサインＯＦＦ	4	0x025A2	830	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c03	PC00	init	1	0x025A6	839	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c03	PC00	init	2	0x025A9	840	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9455,7 +9455,7 @@ hne_c04	setup	battle	2	0x02B07	41	-	btlAtelSetDecidingEntryPointTimes	3	-	-	-	-	
 hne_c04	setup	battle	3	0x02B0D	42	-	btlAtelSetActiveActorMax	8	-	-	-	-	-		01 verb-table.tsv
 hne_c04	setup	battle	4	0x02B13	43	-	btlAtelSetEntryStruct	0x030000e0	-	-	-	-	-		01 verb-table.tsv
 hne_c04	setup	battle	5	0x02B16	44	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c04	__MJ_CTRL000	init	1	0x02B1A	53	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	__MJ_CTRL000	init	1	0x02B1A	53	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c04	__MJ_CTRL000	init	2	0x02B20	54	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c04	__MJ_CTRL000	init	3	0x02B23	55	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c04	__MJ_CTRL000	mapjump	1	0x02B27	65	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -9486,7 +9486,7 @@ hne_c04	__MJ_CTRL000	mapjump	25	0x02C26	104	local_var_s1f1_1; not (regI3)	fadesy
 hne_c04	__MJ_CTRL000	mapjump	26	0x02C2C	105	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c04	__MJ_CTRL000	mapjump	27	0x02C38	106	local_var_s1f1_1; not (regI3)	mapjump	0x02d6, 2, 0	jumps: Crossover C (Henne Mines), field 726, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_c04	__MJ_CTRL000	mapjump	28	0x02C3B	109	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c04	__MJ_CTRL001	init	1	0x02C3F	118	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	__MJ_CTRL001	init	1	0x02C3F	118	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c04	__MJ_CTRL001	init	2	0x02C45	119	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c04	__MJ_CTRL001	init	3	0x02C48	120	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c04	__MJ_CTRL001	mapjump	1	0x02C4C	130	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -9517,7 +9517,7 @@ hne_c04	__MJ_CTRL001	mapjump	25	0x02D4B	169	local_var_s2f1_1; not (regI3)	fadesy
 hne_c04	__MJ_CTRL001	mapjump	26	0x02D51	170	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c04	__MJ_CTRL001	mapjump	27	0x02D5D	171	local_var_s2f1_1; not (regI3)	mapjump	0x02da, 1, 0	jumps: Special Charter Shaft (Henne Mines), field 730, entrance 1	-	-	-	-	resolved	this page's How a call is read
 hne_c04	__MJ_CTRL001	mapjump	28	0x02D60	174	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c04	__MJ_CTRL002	init	1	0x02D64	183	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	__MJ_CTRL002	init	1	0x02D64	183	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c04	__MJ_CTRL002	init	2	0x02D6A	184	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c04	__MJ_CTRL002	init	3	0x02D6D	185	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c04	__MJ_CTRL002	mapjump	1	0x02D71	195	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -9548,7 +9548,7 @@ hne_c04	__MJ_CTRL002	mapjump	25	0x02E70	234	local_var_s3f1_1; not (regI3)	fadesy
 hne_c04	__MJ_CTRL002	mapjump	26	0x02E76	235	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c04	__MJ_CTRL002	mapjump	27	0x02E82	236	local_var_s3f1_1; not (regI3)	mapjump	0x021d, 5, 0	jumps: Walk of Dancing Shadow (The Feywood), field 541, entrance 5	-	-	-	-	resolved	this page's How a call is read
 hne_c04	__MJ_CTRL002	mapjump	28	0x02E85	239	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c04	__MJ_CTRL003	init	1	0x02E89	248	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	__MJ_CTRL003	init	1	0x02E89	248	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c04	__MJ_CTRL003	init	2	0x02E8F	249	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c04	__MJ_CTRL003	init	3	0x02E92	250	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c04	__MJ_CTRL003	mapjump	1	0x02E96	260	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -9579,7 +9579,7 @@ hne_c04	__MJ_CTRL003	mapjump	25	0x02F95	299	local_var_s4f1_1; not (regI3)	fadesy
 hne_c04	__MJ_CTRL003	mapjump	26	0x02F9B	300	local_var_s4f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_c04	__MJ_CTRL003	mapjump	27	0x02FA7	301	local_var_s4f1_1; not (regI3)	mapjump	0x02d7, 2, 0	jumps: Pithead Junction C (Henne Mines), field 727, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_c04	__MJ_CTRL003	mapjump	28	0x02FAA	304	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_c04	__MJ_CTRL004	init	1	0x02FAE	313	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	__MJ_CTRL004	init	1	0x02FAE	313	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c04	__MJ_CTRL004	init	2	0x02FB4	314	-	setmapjumpgroup	5	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_c04	__MJ_CTRL004	init	3	0x02FB7	315	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c04	__MJ_CTRL004	mapjump	1	0x02FBB	325	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -9981,10 +9981,10 @@ hne_c04	ギミック扉	赤オープン	58	0x03CF6	912	-	bganimeplay_9e	3, 90, 9
 hne_c04	ギミック扉	赤オープン	59	0x03D02	913	-	sysReq	1, スイッチ::フィールドサインＩＤ	actor `スイッチ`	-	-	files スイッチ::フィールドサインＩＤ on channel 1; does not wait	スイッチ.フィールドサインＩＤ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c04	ギミック扉	赤オープン	60	0x03D03	914	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c04	スイッチ	init	1	0x03D07	923	-	fieldsign	1	-	-	-	-	-		01 verb-table.tsv
-hne_c04	スイッチ	init	2	0x03D0D	924	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c04	スイッチ	init	3	0x03D13	925	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c04	スイッチ	init	4	0x03D19	926	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_c04	スイッチ	init	5	0x03D1F	927	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	スイッチ	init	2	0x03D0D	924	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	スイッチ	init	3	0x03D13	925	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	スイッチ	init	4	0x03D19	926	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_c04	スイッチ	init	5	0x03D1F	927	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_c04	スイッチ	init	6	0x03D25	928	-	setmapjumpgroupflag	169	flags set: 0x00A9: Shows a map icon in Phase 2 Shaft (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
 hne_c04	スイッチ	init	7	0x03D28	929	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_c04	スイッチ	main	1	0x03D29	934	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -10471,7 +10471,7 @@ hne_d01	setup	battle	3	0x03F3D	44	-	btlAtelSetActiveActorMax	7	-	-	-	-	-		01 ver
 hne_d01	setup	battle	4	0x03F43	45	-	store	file_var_s0_1 = 60	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_d01	setup	battle	5	0x03F49	46	-	btlAtelSetEntryStruct	0x0300014c	-	-	-	-	-		01 verb-table.tsv
 hne_d01	setup	battle	6	0x03F4C	47	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_d01	__MJ_CTRL000	init	1	0x03F50	56	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	__MJ_CTRL000	init	1	0x03F50	56	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_d01	__MJ_CTRL000	init	2	0x03F56	57	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_d01	__MJ_CTRL000	init	3	0x03F59	58	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_d01	__MJ_CTRL000	mapjump	1	0x03F5D	68	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -10502,7 +10502,7 @@ hne_d01	__MJ_CTRL000	mapjump	25	0x0405C	107	local_var_s1f1_1; not (regI3)	fadesy
 hne_d01	__MJ_CTRL000	mapjump	26	0x04062	108	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 hne_d01	__MJ_CTRL000	mapjump	27	0x0406E	109	local_var_s1f1_1; not (regI3)	mapjump	0x02d8, 2, 0	jumps: Phase 2 Shaft (Henne Mines), field 728, entrance 2	-	-	-	-	resolved	this page's How a call is read
 hne_d01	__MJ_CTRL000	mapjump	28	0x04071	112	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_d01	__MJ_CTRL001	init	1	0x04075	121	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	__MJ_CTRL001	init	1	0x04075	121	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_d01	__MJ_CTRL001	init	2	0x0407B	122	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_d01	__MJ_CTRL001	init	3	0x0407E	123	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_d01	__MJ_CTRL001	mapjump	1	0x04082	133	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -10614,9 +10614,9 @@ hne_d01	ミニゲレクト	talk	41	0x04360	328	nowmap() = 0x02da; not (local_var
 hne_d01	ミニゲレクト	talk	42	0x04369	329	nowmap() = 0x02da; not (local_var_s7f1_1)	sebsoundplay	0, 39	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_d01	ミニゲレクト	talk	43	0x04372	330	nowmap() = 0x02da; not (local_var_s7f1_1)	additemmes	0x9120, 1	items: receives reward package: Bacchus's Wine x3 + Megalixir x2	-	-	-	-	resolved	this page's How a call is read
 hne_d01	ミニゲレクト	talk	44	0x04375	331	nowmap() = 0x02da; not (local_var_s7f1_1)	charcommoneffectstop	-	the calling actor's running common-effect job (the effect charcommoneffectplay started, kept at movement context +0x220 for class 3 or +0x74 for class 1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_d01	ミニゲレクト	talk	45	0x0437B	332	nowmap() = 0x02da; not (local_var_s7f1_1)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_d01	ミニゲレクト	talk	46	0x04381	333	nowmap() = 0x02da; not (local_var_s7f1_1)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_d01	ミニゲレクト	talk	47	0x04387	334	nowmap() = 0x02da; not (local_var_s7f1_1)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	talk	45	0x0437B	332	nowmap() = 0x02da; not (local_var_s7f1_1)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	talk	46	0x04381	333	nowmap() = 0x02da; not (local_var_s7f1_1)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	talk	47	0x04387	334	nowmap() = 0x02da; not (local_var_s7f1_1)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_d01	ミニゲレクト	talk	48	0x0438A	336	nowmap() = 0x02da	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_d01	ミニゲレクト	talk	49	0x0439C	338	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 hne_d01	ミニゲレクト	talk	50	0x043A2	339	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -10627,23 +10627,23 @@ hne_d01	ミニゲレクト	talk	54	0x043B7	343	-	setstatuserrordispdenystatus	0	
 hne_d01	ミニゲレクト	talk	55	0x043BD	344	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_d01	ミニゲレクト	talk	56	0x043C0	345	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_d01	ミニゲレクト	ＦＳＯＮ	1	0x043C4	350	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-hne_d01	ミニゲレクト	ＦＳＯＮ	2	0x043CA	351	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_d01	ミニゲレクト	ＦＳＯＮ	3	0x043D0	352	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	ＦＳＯＮ	2	0x043CA	351	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	ＦＳＯＮ	3	0x043D0	352	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_d01	ミニゲレクト	ＦＳＯＮ	4	0x043D3	353	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_d01	ミニゲレクト	ＦＳＯＦＦ	1	0x043D7	358	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_d01	ミニゲレクト	ＦＳＯＦＦ	2	0x043DD	359	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_d01	ミニゲレクト	ＦＳＯＦＦ	3	0x043E3	360	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	ＦＳＯＦＦ	1	0x043D7	358	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	ＦＳＯＦＦ	2	0x043DD	359	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	ＦＳＯＦＦ	3	0x043E3	360	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_d01	ミニゲレクト	ＦＳＯＦＦ	4	0x043E6	361	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_d01	ミニゲレクト	エフェクトＯＮ	1	0x043EA	366	-	fieldsign	2	-	-	-	-	-		01 verb-table.tsv
-hne_d01	ミニゲレクト	エフェクトＯＮ	2	0x043F0	367	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	エフェクトＯＮ	2	0x043F0	367	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_d01	ミニゲレクト	エフェクトＯＮ	3	0x043F6	368	-	charcommoneffectplay	13	argument 1: an index into the 14-entry common effect table 0x01EF9400 (0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 0x87, 0x89, 0x8A, 0x8C, 0x8D, 0x95, 0x8B, 0x96)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_d01	ミニゲレクト	エフェクトＯＮ	4	0x043FC	369	-	charcommoneffecttrigger	1	argument 1: the effect part to run on the calling actor's common-effect job (movement context +0x220 or +0x74, 0x002638C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_d01	ミニゲレクト	エフェクトＯＮ	5	0x04402	370	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	エフェクトＯＮ	5	0x04402	370	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_d01	ミニゲレクト	エフェクトＯＮ	6	0x04405	371	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_d01	ミニゲレクト	エフェクトＯＦＦ	1	0x04406	376	-	charcommoneffectstop	-	the calling actor's running common-effect job (the effect charcommoneffectplay started, kept at movement context +0x220 for class 3 or +0x74 for class 1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_d01	ミニゲレクト	エフェクトＯＦＦ	2	0x0440C	377	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_d01	ミニゲレクト	エフェクトＯＦＦ	3	0x04412	378	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_d01	ミニゲレクト	エフェクトＯＦＦ	4	0x04418	379	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	エフェクトＯＦＦ	2	0x0440C	377	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	エフェクトＯＦＦ	3	0x04412	378	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_d01	ミニゲレクト	エフェクトＯＦＦ	4	0x04418	379	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_d01	ミニゲレクト	エフェクトＯＦＦ	5	0x0441B	380	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_d01	PC00	init	1	0x0441F	389	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_d01	PC00	init	2	0x04422	390	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -11255,7 +11255,7 @@ hne_e01	setup	battle	1	0x00CD1	49	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-
 hne_e01	setup	battle	2	0x00CD7	50	-	store	file_var_s0_1 = g_btl_ゾディアーク	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_e01	setup	battle	3	0x00CDD	51	-	btlAtelSetEntryStruct	0x03000014	-	-	-	-	-		01 verb-table.tsv
 hne_e01	setup	battle	4	0x00CE0	52	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_e01	__MJ_CTRL000	init	1	0x00CE4	61	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	__MJ_CTRL000	init	1	0x00CE4	61	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_e01	__MJ_CTRL000	init	2	0x00CEA	62	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_e01	__MJ_CTRL000	init	3	0x00CED	63	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_e01	__MJ_CTRL000	mapjump	1	0x00CF1	73	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -11650,7 +11650,7 @@ hne_e01	ギミック	扉アニメ開く	13	0x017E8	590	-	if	not (ismapjumpgroupf
 hne_e01	ギミック	扉アニメ開く	14	0x017EE	592	not (ismapjumpgroupflag(0x015c))	setmapjumpgroupflag	0x015c	flags set: 0x015C: Draws the location map's link between Crossover C (Henne Mines) and Special Charter Dig (Henne Mines)	-	-	-	-	resolved	this page's How a call is read
 hne_e01	ギミック	扉アニメ開く	15	0x017F1	594	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_e01	ショートカット	init	1	0x017F5	603	-	fieldsign	0	-	-	-	-	-		01 verb-table.tsv
-hne_e01	ショートカット	init	2	0x017FB	604	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	init	2	0x017FB	604	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_e01	ショートカット	init	3	0x017FE	605	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_e01	ショートカット	talk	1	0x01802	615	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 hne_e01	ショートカット	talk	2	0x01805	616	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -11699,21 +11699,21 @@ hne_e01	ショートカット	talk	44	0x01902	667	not (local_var_s5f1_1 == 1)	se
 hne_e01	ショートカット	talk	45	0x01908	668	not (local_var_s5f1_1 == 1)	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 hne_e01	ショートカット	talk	46	0x0190B	670	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_e01	ショートカット	フィールドサインＯＫ	1	0x0190F	680	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_e01	ショートカット	フィールドサインＯＫ	2	0x01915	681	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＯＫ	2	0x01915	681	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_e01	ショートカット	フィールドサインＯＫ	3	0x0191B	682	-	store	local_var_s5f2_1 = 0	variable local_var_s5f2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_e01	ショートカット	フィールドサインＯＫ	4	0x0191E	683	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_e01	ショートカット	フィールドサインＮＯＴ	1	0x01922	688	-	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-hne_e01	ショートカット	フィールドサインＮＯＴ	2	0x01928	689	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＮＯＴ	2	0x01928	689	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_e01	ショートカット	フィールドサインＮＯＴ	3	0x0192E	690	-	store	local_var_s5f2_1 = 1	variable local_var_s5f2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 hne_e01	ショートカット	フィールドサインＮＯＴ	4	0x01931	691	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_e01	ショートカット	フィールドサインＯＮ	1	0x01935	696	-	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_e01	ショートカット	フィールドサインＯＮ	2	0x0193B	697	-	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_e01	ショートカット	フィールドサインＯＮ	3	0x01941	698	-	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_e01	ショートカット	フィールドサインＯＮ	4	0x01947	699	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＯＮ	1	0x01935	696	-	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＯＮ	2	0x0193B	697	-	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＯＮ	3	0x01941	698	-	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＯＮ	4	0x01947	699	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_e01	ショートカット	フィールドサインＯＮ	5	0x0194A	700	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-hne_e01	ショートカット	フィールドサインＯＦＦ	1	0x0194E	705	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_e01	ショートカット	フィールドサインＯＦＦ	2	0x01954	706	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-hne_e01	ショートカット	フィールドサインＯＦＦ	3	0x0195A	707	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＯＦＦ	1	0x0194E	705	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＯＦＦ	2	0x01954	706	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+hne_e01	ショートカット	フィールドサインＯＦＦ	3	0x0195A	707	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 hne_e01	ショートカット	フィールドサインＯＦＦ	4	0x0195D	708	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 hne_e01	PC00	init	1	0x01961	717	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 hne_e01	PC00	init	2	0x01964	718	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

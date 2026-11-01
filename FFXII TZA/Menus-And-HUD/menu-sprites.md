@@ -152,7 +152,7 @@ A sprite record, 8 bytes, in the record table of an atlas's `eXt` block:
 |---|---|---|---|
 | `+0x00` | `u16` | x | left edge in the picture |
 | `+0x02` | `u16` | y | top edge |
-| `+0x04` | `u32` | size | bits 0-11 width, 12-23 height, 24-27 palette added, 28-31 palette group |
+| `+0x04` | `u32` | size | mask `0xFFF` width, `0xFFF000` height, `0xF000000` palette added, `0xF0000000` palette group |
 
 The draw record that `0x002D8D10` passes on:
 

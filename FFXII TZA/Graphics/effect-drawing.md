@@ -143,7 +143,7 @@ high)`; they ship as 0 and `0xD1`, so every type draws.
 
 Blended primitives do not draw at once. An emitter appends a `0x28`-byte entry to the list at
 `[0x02F8F2F8]`, counted by the word `0x02F8F2C6`; the point emitter `0x0039D970`, for one, writes the
-projected depth word as the sort key `+8` and ORs the pass nibble into bits 28–31
+projected depth word as the sort key `+8` and ORs the pass nibble into the bits under mask `0xF0000000`
 (`0x0039D986`–`0x0039DA05`). `0x003A3670` allocates the list, `0x190000` bytes, which is 40,960 entries.
 
 `0x003A3740` drains it. It returns for an empty list, sorts the entries by `+8` (`0x003A3A50`), and for
@@ -173,8 +173,8 @@ Draw-list entry (`0x28`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u64` | callback argument |  |
-| `+0x08` | `u32` | sort key; bits 28-31 pass nibble |  |
+| `+0x00` | `u64` |  | callback argument |
+| `+0x08` | `u32` |  | sort key; mask `0xF0000000` pass nibble |
 | `+0x10` | `void*` | callback |  |
 | `+0x18` | `void*` | command |  |
 | `+0x20` | `u32` | flags |  |

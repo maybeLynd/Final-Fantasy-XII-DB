@@ -12,8 +12,10 @@ Every enemy remembers how much each party member has bothered it.
 - **Actions raise it.** An attack, a heal or a spell used by a party member raises the targeted enemy's
   enmity toward that member, can raise it in enemies that already hold a grudge and are watching the same
   target, and lowers the target's enmity toward the rest of the party.
-- **The first grudge is strong.** The first time an enemy holds a real grudge it gets 10 extra, and it
-  starts holding a small grudge against every other party member too.
+- **A fresh grudge is strong.** When no grudge an enemy holds is above 1 - before its first grudge,
+  or after every grudge has decayed to 1 - the next grudge that rises gets 10 extra. The first time a
+  grudge starts from nothing, the enemy also starts holding a small grudge against every other party
+  member.
 - **It decays.** While the enemy is not engaged, every grudge drops by 10 at a fixed interval, but never
   below 1: an enemy never fully forgets someone it was angry at.
 - **Enemies act on it.** Enemy AI orders can pick the party member the enemy hates most.

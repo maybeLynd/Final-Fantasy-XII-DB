@@ -10,7 +10,7 @@ addresses: "0x01EEBCC0, 0x003008A0, 0x002FD150, 0x002FD420, 0x00300B80, 0x0030B6
 - Items, equipment and loot are counted, at most 99 of each; a piece of equipment someone is wearing still counts
   as owned, and it cannot be sold or dropped below the number being worn.
 - Magicks, technicks, gambits, key items, Quickenings and Espers are simply owned or not.
-- Some gifts, such as a picked-up loot bag, show a message naming what was obtained.
+- Some gifts, such as a loot pickup the party collects ([Loot pickups](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)), show a message naming what was obtained.
 - The gil purse holds at most 99,999,999.
 
 ## How it works
@@ -44,7 +44,7 @@ Rows 5, 7 and 11 are empty, and nibble F is refused.
 
 ### The count word
 
-An item, equipment or loot count word is `owned | equipped << 10`: bits 0-9 count the copies owned and bits 10-15
+An item, equipment or loot count word is `owned | equipped << 10`: the bits under mask `0x3FF` count the copies owned and the bits under mask `0xFC00`
 the copies being worn. The packed handler `0x002FD150` builds it (`0x002FD30B`-`0x002FD31A`, `0x002FD28C`-`0x002FD298`), and
 its query `0x002FD8D0` answers four kinds: 0 owned minus worn, 1 owned, 2 worn, 3 the region-two byte
 (`0x002FD906`-`0x002FD95B`). The bit handler `0x002FD420` keeps bit `index & 15` of word `index >> 4`.
@@ -90,7 +90,7 @@ and it writes no count (`0x00316F62`-`0x00316F82`).
 
 | Id | Bits of the party flag word `+4` | Sites |
 |---|---|---|
-| a magick | bit `0x1`, and one of bits 1-5 for its school, the action row's `+0x2C & 7` through the table `0x01EECF98` | `0x003009F7`, `0x00300A47`-`0x00300B5A` |
+| a magick | bit `0x1`, and one of the bits under mask `0x3E` for its school, the action row's `+0x2C & 7` through the table `0x01EECF98` | `0x003009F7`, `0x00300A47`-`0x00300B5A` |
 | a technick | bit `0x40` | `0x003009E7` |
 | a Quickening | bit `0x80` | `0x003009D4` |
 | an Esper | bit `0x100` | `0x003009C1` |
@@ -103,7 +103,7 @@ and it writes no count (`0x00316F62`-`0x00316F82`).
 | shop sell, and the sold tally of loot | `0x003108A6`, `0x003108E8` |
 | bazaar purchase: the sold tallies of its three loots set to 0 | `0x0030B220`-`0x0030B256` |
 | steal and poach | `0x00311457`, `0x003114A8` |
-| an enemy's loot bag picked up | `0x00319965` |
+| an enemy's loot pickup collected | `0x00319965` |
 | a chest | `0x0050FBA0` (verb `0x3037` `btlAtelOpenTreasureMessage`) |
 | a quest or hunt reward | `0x003F4AEA`, `0x003F4B1A` (verb `0x37C` `questresultwindow`) |
 | an item given in a message window | `0x002A541B` |

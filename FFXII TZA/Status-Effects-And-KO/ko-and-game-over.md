@@ -48,9 +48,9 @@ record of type 0-6; a guest is a party record of type 7-25. Each test returns 0 
 | Test | Returns 1 when | Used |
 |---|---|---|
 | `0x002372E0` | no main character in the four or in the roster is up | at the KO, latch `0x400` |
-| `0x00237260` | none of the four is up and not a guest | at the KO, latch `0x200`; every frame |
-| `0x002371B0` | no main character in the four is not torn down, and none in the roster is up | every frame, Game Over |
-| `0x00237140` | none of the four that is not a guest is not torn down | every frame, the `0x18` screen |
+| `0x00237260` | no member of the four who is not a guest is up | at the KO, latch `0x200`; every frame |
+| `0x002371B0` | every main character in the four is torn down, and no main character in the roster is up | every frame, Game Over |
+| `0x00237140` | every member of the four who is not a guest is torn down | every frame, the `0x18` screen |
 
 Torn down is unit flag bit `0x2`, set when a party member's body is torn down (below). So the frame tests count a
 fallen character as gone only once its body has been torn down.
@@ -172,7 +172,7 @@ Removing the last of KO, Stone and X-Zone runs `0x00301140(unit)` (`0x0030E811`;
 3. Revive effect `0x7B` starts on the unit (`0x003011F5`-`0x00301216`), and the re-plan set is installed
    ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)).
 4. The stand-up clip, event `0x200D`, plays (`0x0030127A`-`0x00301282`); it clears bit `0x1000000` when it lands (`0x0032517C`).
-5. Bits 34, 8-10, 1, 19, 20 and 33 are cleared, bits `0x1000000` and `0x40000000` set, the old effect removed, and visibility
+5. Unit flag bits `0x400000000`, `0x700`, `0x2`, `0x180000` and `0x200000000` are cleared, bits `0x1000000` and `0x40000000` set, the old effect removed, and visibility
    refreshed, so the model is shown.
 
 `0x00311F70` asks `0x00336E40` for a point and moves and turns the actor to it (`0x00311FCE`-`0x003120D5`). Without a

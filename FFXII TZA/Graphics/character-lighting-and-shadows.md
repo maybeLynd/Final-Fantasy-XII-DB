@@ -106,7 +106,7 @@ The strength is `0.299|r| + 0.587|g| + 0.114|b|` of `c`.
 `0x003ABD50(record, block, matrix 1, matrix 2, colour scale, use scale)` clears a `0xE0`-byte block,
 sets `+0xD0` to -1, copies the record's light scale and calls the selector with the ambient written to
 `+0xC0`. It sorts the chosen lights (`0x003AEBC0`), evaluates each with the first matrix when its `+5`
-bits 1-3 are clear and the second otherwise, and at the end of each run of equal priority, highest
+the bits under mask `0xE` are clear and the second otherwise, and at the end of each run of equal priority, highest
 first, sorts the run's lit lights by strength (`0x003AE9C0`).
 
 It writes up to six: directions negated and normalised, stored by component (x of lights 0-2 at `+0x00`, y at
@@ -250,7 +250,7 @@ named `NoShadow` (the next are `PCFShadowMap` and `CascadedShadowMap`), `m_split
 
 ### The two shadow pools
 
-A render record holds up to two shadow entries, chosen by its shadow kind (record `+0xC0` bits 3-4).
+A render record holds up to two shadow entries, chosen by its shadow kind (record `+0xC0` bits under mask `0x18`).
 `0x00427DE0` sets the kind from `(+0x304 >> 12) & 3` through `0x003E73B0` when `+0x290` bit `0x400000` is set;
 kind 1 takes a second-pool entry and kind 0 frees it, and the handle is copied to the presentation
 entry's `+0x360`.
@@ -287,7 +287,7 @@ shadow overrides in the slot, flagged in byte `+0x40`:
   `+0xAC`; counter `+0x02`), and bit `0x10` the base offset (`+0xB4`, `+0xB8` into `+0x48`, `+0x4C`);
 - then, when the block's word `+0x32` is non-zero, it keeps the new values (block `+0x4C`, `+0x50`;
   `+0x10`, `+0x54`; `+0x58`, `+0x5C`; the rotation as `(word >> 6)` degrees) and copies the word's
-  bits `0x1`, `0x2`, `0x8`, `0x4`, `0x10` and `0x20` into the flags' bits 1 to 6; it ends by clearing the four counters.
+  bits `0x1`, `0x2`, `0x8`, `0x4`, `0x10` and `0x20` into the flags' the bits under mask `0x7E`; it ends by clearing the four counters.
 
 ### Each frame
 
@@ -341,17 +341,17 @@ A light request (entry `+0x20`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | type: 1-5 directional kinds, 6 ambient, 7 the character's own list |  |
+| `+0x00` | `u8` |  | type: 1-5 directional kinds, 6 ambient, 7 the character's own list |
 | `+0x01` | `u8` | priority |  |
-| `+0x02` | `u8` | subtype (ambient colour form; 5 = multiplier) |  |
+| `+0x02` | `u8` |  | subtype (ambient colour form; 5 = multiplier) |
 | `+0x03` | `u8` | scope |  |
-| `+0x04` | `u8` | scope sub-kind |  |
-| `+0x05` | `u8` | bit 0x10 no ambient mode; bits 1-3 matrix; 0x80 and up no light scale |  |
-| `+0x07` | `u8` | bit 0x1 exclusive (not additive); bit 0x2 skip; bits 2-7 class |  |
-| `+0x08` | `u32` | target: id, handle or group mask |  |
+| `+0x04` | `u8` |  | scope sub-kind |
+| `+0x05` | `u8` |  | bit `0x10` no ambient mode; mask `0xE` matrix; `0x80` and up no light scale |
+| `+0x07` | `u8` |  | bit `0x1` exclusive (not additive); bit `0x2` skip; mask `0xFC` class |
+| `+0x08` | `u32` |  | target: id, handle or group mask |
 | `+0x0C` | `f32` | range |  |
 | `+0x10` | `f32[4]` | colour |  |
-| `+0x20` | `...` | kind data (position, axis, cone, segment end) |  |
+| `+0x20` | `...` |  | kind data (position, axis, cone, segment end) |
 
 ## Modding notes
 

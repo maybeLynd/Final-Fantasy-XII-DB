@@ -142,7 +142,8 @@ Five of the folders have a `jp` folder: the font folder, `prefetchdata`, `effect
 ### Rules that depend on the language
 
 - The kill chain cap and display: `0x00317ED0` caps the length at 998 and posts it plus one whenever
-  the id is non-zero, which it always is (see the kill chain page).
+  the id is non-zero, which it always is (see
+  [Kill chain](../Rewards-EXP-Gil-And-Loot/kill-chain.md)).
 - `0x002AB7D0`: for ids 7, 8 and 11 (`(id - 7) & 0xFFFFFFFA == 0` and `id != 12`, so Korean and the
   two Chinese languages, not Japanese) it sets `0x01E0CDF8` to 28 and `0x0209CC38` to 1; otherwise
   `0x01E0CDF8` = 24.

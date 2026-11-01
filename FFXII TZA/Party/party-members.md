@@ -191,7 +191,7 @@ The names are the row's name word at `+0x30`, read from text bank 8 of `battle_p
 
 ### Catch-up and first-join items
 
-The catch-up columns are the party row's bytes `+0x2C` bits 3-4 and `+0x2E` and its word `+0x44`; the items
+The catch-up columns are the party row's bytes `+0x2C` bits under mask `0x18` and `+0x2E` and its word `+0x44`; the items
 are the row's list at `+0x58` with its counts at `+0x34`, named from the shipped tables, and the gil is the row's
 word `+0x3E`. Rows that are not listed have no catch-up, items or gil.
 

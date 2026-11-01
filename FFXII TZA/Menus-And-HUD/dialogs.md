@@ -11,7 +11,8 @@ addresses: "0x0057C480, 0x0057C380, 0x002CDF20, 0x002CE370, 0x00566680, 0x0056F8
 - Notices, such as an error or a newly obtained license, open the same window without a choice and close themselves
   after a few seconds or at any button.
 - The item screen's Sort command opens it with the sort options.
-- The Clan Primer opens on a list of Hunts, Bestiary, Sky Pirate's Den and Traveler's Tips.
+- Two more screens have a box of their own: the Clan Primer opens on a list of Hunts, Bestiary, Sky Pirate's Den
+  and Traveler's Tips, and the license board chooser shows the name and description of the board under the cursor.
 
 ## How it works
 
@@ -74,7 +75,7 @@ Four builders fill the record `0x00241C90` takes and open the window:
 
 - `0x00394380(text, owner)`, from `0x003939B0`, turns the second draw pass on (`0x00247780(1)`) and opens it with text
   `0x002F9860(text)` under the root `[0x0208EA28]`, flags `0x1002` and mode 2.
-- `0x003948B0(text, owner, flags, options)` opens it under `[0x0208EA28]` with the options' bits 0-4 (`+0x48`) turned
+- `0x003948B0(text, owner, flags, options)` opens it under `[0x0208EA28]` with the options' bits under mask `0x1F` (`+0x48`) turned
   into window bits `0x8`, else `0x200` (with the default row from `+0x44`), then `0x10`, `0x800` and `0x400`; flags with
   `& 0xFF0` of `0x70` or `0xD0` give style 1 or 2. `0x0023E020`, `0x0023E560`, `0x00252030`, `0x0057AA00`, `0x00583990`
   and `0x00583FD0` call it.

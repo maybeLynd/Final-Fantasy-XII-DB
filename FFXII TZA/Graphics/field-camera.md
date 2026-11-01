@@ -247,32 +247,32 @@ Follow camera (controller + `0x2B0`):
 | `+0x07C` | `f32` | height level | 0 to 1 |
 | `+0x080` | `...` | orbit block | look `+0xA0`, heading `+0xB0`, pitch `+0xB4`, distance `+0xB8` (`0x0032DF40`) |
 | `+0x0C0` | `u32` | state | probe hits `0x1`-`0x8`, `0x4000000` pulled in, `0x8000000` leader moving |
-| `+0x0F4` | `i32` | stick dead zone 50 |  |
-| `+0x0F8` | `f32` | heading rate |  |
-| `+0x0FC` | `...` | level rate |  |
+| `+0x0F4` | `i32` |  | stick dead zone 50 |
+| `+0x0F8` | `f32` |  | heading rate |
+| `+0x0FC` | `...` |  | level rate |
 | `+0x100` | `f32` | rate divisor | 1.0 idle, `0x00229E70`() under input |
-| `+0x104` | `f32` | wall turn |  |
-| `+0x108` | `...` | wall lift |  |
+| `+0x104` | `f32` |  | wall turn |
+| `+0x108` | `...` |  | wall lift |
 | `+0x10C` | `...` | auto-rotation |  |
 | `+0x11C` | `f32` | look height | 1.3 |
-| `+0x120` | `f32` | distance scale |  |
-| `+0x124` | `...` | its hold count |  |
-| `+0x128` | `f32` | floor lift |  |
-| `+0x12C` | `...` | its hold count |  |
-| `+0x140` | `...` | four test segments, 0x60 apart |  |
-| `+0x2C0` | `void*` | followed transform |  |
+| `+0x120` | `f32` |  | distance scale |
+| `+0x124` | `...` |  | its hold count |
+| `+0x128` | `f32` |  | floor lift |
+| `+0x12C` | `...` |  | its hold count |
+| `+0x140` | `...` |  | four test segments, `0x60` apart |
+| `+0x2C0` | `void*` |  | followed transform |
 | `+0x2C8` | `void*` | collision part | `0x0026E500`(0) |
-| `+0x2E0` | `f32[4]` | follow eye |  |
-| `+0x2F0` | `...` | follow look |  |
-| `+0x300` | `f32[4]` | framing eye |  |
-| `+0x310` | `...` | framing look |  |
+| `+0x2E0` | `f32[4]` |  | follow eye |
+| `+0x2F0` | `...` |  | follow look |
+| `+0x300` | `f32[4]` |  | framing eye |
+| `+0x310` | `...` |  | framing look |
 | `+0x320` | `i32` | framing count | 0 to 15 x [`0x01DFE0B4`] |
-| `+0x330` | `f32[4]` | published eye |  |
-| `+0x340` | `...` | published look |  |
-| `+0x350` | `f32[4]` | point of interest |  |
-| `+0x360` | `u32` | framed actor |  |
-| `+0x368` | `f32` | travelled distance |  |
-| `+0x370` | `i32` | recentre deflection |  |
+| `+0x330` | `f32[4]` |  | published eye |
+| `+0x340` | `...` |  | published look |
+| `+0x350` | `f32[4]` |  | point of interest |
+| `+0x360` | `u32` |  | framed actor |
+| `+0x368` | `f32` |  | travelled distance |
+| `+0x370` | `i32` |  | recentre deflection |
 | `+0x374` | `u32` | camera input enabled (stick, pad, mouse) | 1 |
 
 ## State

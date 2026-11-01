@@ -50,10 +50,10 @@ footer, and for a name containing `chara\h` it parses `%d.efx` and stores the nu
 
 The tickets are 32 records of `0x38` bytes at `0x02EBCD80` (`0x003B3160` builds them at start-up), with a
 free list (`0x02EBDB88`) and an in-use list (`0x02EBDB80` head, `0x02EBDB90` tail). A ticket id is the slot
-in bits `0x3F`, a 22-bit counter (`0x02EBDBB0`) in bits 6–27 and 3 in bits 28–31, so a recycled slot gets a
+in bits `0x3F`, a 22-bit counter (`0x02EBDBB0`) in the bits under mask `0xFFFFFC0` and 3 in the bits under mask `0xF0000000`, so a recycled slot gets a
 new id.
 
-The record is found by the id's low six bits; an id with slot bits 32–63 would land in the
+The record is found by the id's low six bits; an id with slot bits under mask `0xFFFFFFFF00000000` would land in the
 instance-handle records at `0x02EBD480`, which follow the tickets, but no ticket id has them.
 `0x003B38B0` returns 0 with no context when the free list is empty, and `0x00409FE0` stores that 0 in the
 entry's `+0x44` (`0x0040A17C`). Otherwise it:
@@ -242,8 +242,8 @@ Bank entry (`0x50`):
 | `+0x00` | `u16` | slot | `0xFFFF` free |
 | `+0x04` | `u32` | mode | 0 copy, 1 retained |
 | `+0x10` | `...` | inline buffer | `0x20`: `+0x08` data, `+0x10` capacity, `+0x14` growth, `+0x18` used |
-| `+0x30` | `...` | source handle |  |
-| `+0x38` | `...` | cached pointer |  |
+| `+0x30` | `...` |  | source handle |
+| `+0x38` | `...` |  | cached pointer |
 | `+0x40` | `u32` | size |  |
 | `+0x44` | `i32` | ticket | -1 none, 0 none free |
 
@@ -252,7 +252,7 @@ Effect ticket (`0x38`), `0x02EBCD80` + slot*`0x38`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | id |  |
-| `+0x08` | `...` | source base |  |
+| `+0x08` | `...` |  | source base |
 | `+0x18` | `...` | context |  |
 | `+0x20` | `...` | next |  |
 | `+0x28` | `...` | previous |  |
@@ -264,7 +264,7 @@ Instance handle (`0x38`), `0x02EBD480` + slot*`0x38`:
 |---|---|---|---|
 | `+0x00` | `u32` | id |  |
 | `+0x10` | `...` | instance |  |
-| `+0x18` | `u32` | ticket id |  |
+| `+0x18` | `u32` |  | ticket id |
 | `+0x20` | `...` | link | one of the two links |
 | `+0x28` | `...` | link | one of the two links |
 
@@ -280,7 +280,7 @@ Effect context (`0x890`):
 | `+0x840` | `...` | table | one of the three tables |
 | `+0x848` | `...` | table | one of the three tables |
 | `+0x850` | `...` | table | one of the three tables |
-| `+0x858` | `...` | source base |  |
+| `+0x858` | `...` |  | source base |
 | `+0x860` | `u32` | source |  |
 | `+0x864` | `i32` | offset |  |
 | `+0x870` | `...` | run origin | one of the two run origins |
@@ -293,8 +293,8 @@ Effect instance:
 | `+0x340` | `...` | context |  |
 | `+0x348` | `...` | next |  |
 | `+0x350` | `...` | previous |  |
-| `+0x380` | `...` | deferred block |  |
-| `+0x390` | `...` | base copy |  |
+| `+0x380` | `...` |  | deferred block |
+| `+0x390` | `...` |  | base copy |
 
 Motion slot (`0x1C`), `0x02B581A0` + (g*16 + i)*`0x1C`:
 
@@ -303,11 +303,11 @@ Motion slot (`0x1C`), `0x02B581A0` + (g*16 + i)*`0x1C`:
 | `+0x00` | `...` | handle |  |
 | `+0x04` | `...` | state |  |
 | `+0x08` | `...` | armer argument | 0 |
-| `+0x0C` | `u8` | manager slot |  |
+| `+0x0C` | `u8` |  | manager slot |
 | `+0x0D` | `u8` | route | 1 = arena 11 |
-| `+0x0E` | `u16` | motion number |  |
+| `+0x0E` | `u16` |  | motion number |
 | `+0x10` | `i16` | kind |  |
-| `+0x12` | `i16` | file index |  |
+| `+0x12` | `i16` |  | file index |
 | `+0x14` | `i32` | length |  |
 | `+0x18` | `i32` | offset |  |
 

@@ -9,9 +9,10 @@ addresses: "0x007CFF90, 0x007CF6B0, 0x00223AD0, 0x00222DC0, 0x00222740, 0x0036ED
 
 - Every sword hit, menu blip, spell and footstep plays from a sound bank; the game ships no loose sound files.
 - Battle voices come from 46 banks per language: the party members, guests and summons the model sound tables
-  name, and the Imperial soldiers, judges and other enemies whose battle records name one. Each language ships 66
-  voice banks and the path arrays name `shout00`-`shout63`. Each bank holds ten lines: three for attacking, three
-  for taking damage, two for a critical and two for being knocked out.
+  name, and the Imperial soldiers, judges and other enemies whose battle records name one. Each bank holds ten
+  lines: three for attacking, three for taking damage, two for a critical and two for being knocked out.
+- Each language ships 66 voice banks: the game's path lists reach only the first 64, `shout00`-`shout63`, and 18 of
+  those are named by no model or battle record (see Files nothing loads).
 - Music plays from much larger bank files, one per track.
 
 ## Where it comes from
@@ -62,7 +63,7 @@ their own number, and `se007` by id 1. The index file is read into a block (`0x0
 1. A block already registered adds one to the use count at `+0x0E`, and the new copy of the file is freed.
 2. A new block takes a free record, marks it in the bitmap at `0x02AEF3F0`, and is passed to `0x002DEF00(slot & 0x3F,
    file)`, which builds a `SebAudioBank` through `0x001DBD20`, `0x00210B60` and `0x0021B430` (`0x003A1650`).
-3. `0x00223AD0` reads the index, stores the registry slot at bank `+0x3C` and the block number at `+0x38`, and opens the
+3. `0x00223AD0` reads the index, stores the block registry slot at bank `+0x3C` and the block number at `+0x38`, and opens the
    block's `.win.sab` (`0x00223CB1`-`0x00223D05`).
 
 `0x002DEC10` reads an index's block number, the `i16` at `+0x08`, for `0x003A1650`. A record's handle is its generation
@@ -109,7 +110,7 @@ The table holds 66 entries of the record layout, `0x02AEEDC0`-`0x02AEF3EF`: the 
 
 ### Sound ids
 
-A sound id is `registry slot << 9 + sound slot`. `0x003A1180(slot)` builds it from the current block handle at
+A sound id is `block registry slot << 9 + sound slot`. `0x003A1180(slot)` builds it from the current block handle at
 `0x02AEF3FC`. It answers -1 when `0x00267330(0)` is non-zero (`0x003A1180`-`0x003A118F`), or when that handle is -1 or its
 record does not match (`0x003A11AB`-`0x003A11D1`).
 
@@ -120,7 +121,7 @@ happens when block 1's callback `0x003A1330` stores a failed registration there 
 Until that callback runs the word is 0: it is in the zero-filled tail of `.data`, and `0x003A13F0` stores -1 only to
 `0x02AEF3FC` and `0x02AEF404` (`0x003A14BE`, `0x003A153D`, `0x003A15BC`). 0 is the handle of record 0 while its generation is 0, as the
 start-up loop leaves it (`0x003A1443`, `0x003A145B`), so in that window `0x003A1100` answers the slot itself, an id in
-registry slot 0 (`0x003A115E`), unless `0x00267330(0)` is non-zero, and `0x003A1070` passes its test and builds from
+block registry slot 0 (`0x003A115E`), unless `0x00267330(0)` is non-zero, and `0x003A1070` passes its test and builds from
 `0x02AEF404` once block 2 is loaded.
 
 `0x0021B5B0(id)` finds the bank whose `+0x3C` equals `id / 512` (`0x0021B5DF`-`0x0021B5FA`). An index file has 128 slots,

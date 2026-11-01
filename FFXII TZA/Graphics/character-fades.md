@@ -31,10 +31,10 @@ The channels are eight bytes each at record `+0x4C0`; channel `n` is at `+0x4C0 
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i16` | base, Q12 (0x1000 = 1.0) |  |
-| `+0x02` | `i16` | delta: target - base |  |
-| `+0x04` | `i16` | progress, 0 to 0x1000 |  |
-| `+0x06` | `i16` | step per update; 0 = at rest |  |
+| `+0x00` | `i16` |  | base, Q12 (`0x1000` = 1.0) |
+| `+0x02` | `i16` |  | delta: target - base |
+| `+0x04` | `i16` |  | progress, 0 to `0x1000` |
+| `+0x06` | `i16` |  | step per update; 0 = at rest |
 
 ```
 value = base + ((delta * progress) >> 12)
@@ -206,23 +206,23 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | handle |  |
-| `+0x04` | `u16` | age in steps |  |
+| `+0x04` | `u16` |  | age in steps |
 | `+0x06` | `u16` | frame in the period |  |
-| `+0x20` | `u8` | curve number (3: no curve) |  |
-| `+0x21` | `u8` | bits 0-6: 1 linear, other smoothed; bit 0x80: half strength |  |
-| `+0x22` | `u8` | target kind: 1 a render record, 2 a test through 0x0024E2F0 / 0x0024E6D0 |  |
-| `+0x23` | `u8` | target mode |  |
+| `+0x20` | `u8` |  | curve number (3: no curve) |
+| `+0x21` | `u8` |  | mask `0x7F`: 1 linear, other smoothed; bit `0x80`: half strength |
+| `+0x22` | `u8` |  | target kind: 1 a render record, 2 a test through `0x0024E2F0` / `0x0024E6D0` |
+| `+0x23` | `u8` |  | target mode |
 | `+0x24` | `u32` | target id |  |
-| `+0x28` | `u16` | lifetime in steps (0: none) |  |
+| `+0x28` | `u16` |  | lifetime in steps (0: none) |
 | `+0x2A` | `u16` | period in steps |  |
 | `+0x2C` | `u8` | priority |  |
 | `+0x2D` | `u8` | mask tested against 0x02B404C1 |  |
 | `+0x30` | `f32` | strength |  |
 | `+0x34` | `f32` | weight |  |
-| `+0x38` | `f32` | 1 / period |  |
+| `+0x38` | `f32` |  | 1 / period |
 | `+0x3C` | `f32` | phase, 0 to 1 |  |
-| `+0x40` | `f32[4]` | colour (r, g, b, a); +0x4C is also the lowest weight |  |
-| `+0x50` | `u32` | stamp from 0x00181DD0() |  |
+| `+0x40` | `f32[4]` |  | colour (r, g, b, a); `+0x4C` is also the lowest weight |
+| `+0x50` | `u32` |  | stamp from `0x00181DD0`() |
 
 - `0x003B4160` takes the first of the 64 records whose `+0x00` is 0 and returns 0 when none is free
   (`0x003B4182`-`0x003B4193`); it gives the record the next serial from `0x02B404C4`, wrapping to 1 above

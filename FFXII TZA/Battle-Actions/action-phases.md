@@ -12,8 +12,8 @@ frame.
 
 1. **A short random delay** before anything happens. Enemies wait 1,200 to 2,099 units of
    progress (progress grows by 100 on each update of the action). Party-side units start at once,
-   except for an action whose action data is one particular record kind (byte `+0x09` = `0x38`,
-   byte `+0x08` = 1) when the last cancelled action's was not: then they wait 1,500 to 2,999.
+   except in one case: when the action belongs to one particular kind of action context and the last
+   cancelled action did not, they wait 1,500 to 2,999.
 2. **Setup.** The unit's reach for the action is worked out ([Action range](action-range.md)), the
    charge time is rolled, and **Invisible wears off** - starting any ordinary action removes it.
 3. **Approach and charge.** The unit walks into reach while the charge bar fills. The charge time
@@ -71,10 +71,10 @@ unless it has to wait (returning 0). Phase 12 returns 1: the action is finished.
 
 Phase 0 chooses the delay threshold `+0x764` this way:
 
-- When bit `0x1` of the context word `+0x6B0` is set, it is cleared and the threshold is 0.
+- When bit `0x1` of the command word `+0x6B0` is set, it is cleared and the threshold is 0.
 - A unit with no stats record or on the enemy side always gets `0x002FA1A0(unit)`.
-- A party-side unit (stats `+0x05` = 0) gets `0x002FA1A0(unit)` only when its action data `+0x708` is a
-  record with byte `+0x09` = `0x38` and byte `+0x08` = 1, and the last cancelled action's data
+- A party-side unit (stats `+0x05` = 0) gets `0x002FA1A0(unit)` only when its action context `+0x708` is a
+  record with byte `+0x09` = `0x38` and byte `+0x08` = 1, and the last cancelled action's context
   `+0x738` (the cancel's copy of `+0x708`) is null or not such a record; otherwise 0.
 
 `0x002FA1A0` uses the C runtime `rand()` and the frame base `F` = `0x01DFE0B4` (1 as shipped):
@@ -106,7 +106,7 @@ limit = (int)(30 * F * t * 100)
 `p` sums the percentages (the `u16` at `+4`) of rows `0x5E`, `0x5F` and `0x60` of the table at
 `0x02EBF040` for effects 94, 95 and 96 (bit `0x40` of `+0x73` or `+0x83`, bit `0x80` of `+0x73` or `+0x83`, bit `0x1`
 of `+0x74` or `+0x84`). `battle_pack.bin`'s augment text for these three reads "Reduces action time
-by N%".
+by 10%.", while the value at `+4` is 12.
 
 ### The charge step (`0x002F9C00`, per frame in phase 4)
 
@@ -124,7 +124,7 @@ the unit's five equipment ids (`+0x50`-`+0x58`), with an empty slot counting 0 a
 1.
 
 Finally it is multiplied by 100, 120, 140, 160, 180 or 200 percent for a Battle Speed setting of 1 to
-6 (`0x002DDC90`, bits 4-11 of the options word `*(0x0215E6E0)`, written by Config command 5 through
+6 (`0x002DDC90`, the field `0xFF0` of the options word `*(0x0215E6E0)`, written by Config command 5 through
 `0x002DE0F0`; any other value counts as 3).
 
 ### The saved charge (phase 3, `0x00304ABE`-`0x00304AF6`)
@@ -144,7 +144,7 @@ by `0x00377C20()`), clears its bit `0x1000`, sets bit `0x2000`, stores it and st
 `0x00226BE0(10, unit id, ...)`. While a unit is shown and no scene is playing (state not 5 or 6), it is
 released when it dies or its bit `0x2000` is cleared - which phase 11 does - with `0x00225CD0(10, -1)`.
 
-While a unit is shown, `0x00313A00` sets bits 0, 2-8, 11, 12 and 20 of row 2 of the action-availability table
+While a unit is shown, `0x00313A00` sets the bits `0x1019FD` (`0x1`, `0x4` to `0x100`, `0x800`, `0x1000` and `0x100000`) of row 2 of the action-availability table
 `0x0215F1C0` (`0x00313A68`-`0x00313AF5`; [Action availability](../Controls-And-Input/action-availability.md)), and the menu
 request router `0x00254B50` refuses a request whose id a set bit lists (`0x00254B80`-`0x00254BC1`;
 [Menu requests](../Menus-And-HUD/menus.md)).
@@ -154,7 +154,7 @@ request router `0x00254B50` refuses a request whose id a set bit lists (`0x00254
 Phases 6 and 7 hold the action in a presentation slot until its effect, its animation and, for a
 scene action, its scene are loaded. There are 32 slots of `0x30` bytes at `0x022C17B0` (layout below),
 chained in the order they were taken from `0x022BE978` (first) to `0x022BEB88` (last). A unit keeps its
-slot number in `+0x694` (`0xFF` for none).
+slot number in `+0x694` (`0xFF` when it holds no slot).
 
 ### Taking a slot
 
@@ -264,7 +264,7 @@ With `0x02089340` bit `0x200`, `show` and the return are cleared (`0x0030CBAD`-`
 2. `0x00317EC0(+0x24)` stops the effect through `0x0042FCC0` unless the handle is -1 or 0; the stop is
    counted at `0x02CA4ED8` and done by `0x002FCB60`.
 3. When the scene state `+0x18` is not 0, `0x00306570` clears the scene for the slot's unit.
-4. The slot is reset: flags bits 0-4 cleared, action id `0xFFFF`, effect handle -1, animation
+4. The slot is reset: flags `0x1F` cleared, action id `0xFFFF`, effect handle -1, animation
    `0x80000000`, states and unit id 0.
 
 Phase 3 releases the unit's three slot bytes `+0x694`-`+0x696` (`0x00304B75`, `0x00304B86`,
@@ -275,7 +275,7 @@ Phase 3 releases the unit's three slot bytes `+0x694`-`+0x696` (`0x00304B75`, `0
 
 The `0x00305110` term of phase 4's arrival test is always true: `0x00305110(unit, id)` returns 0
 in every case; for an action that may target KO'd or
-stoned units (row `+0x2C` bits `0x40`/7) whose target is in that state, it also calls
+stoned units (row `+0x2C` bits `0x40`/`0x80`) whose target is in that state, it also calls
 `0x00300310(target, ...)` and clears the target's bit `0x4000000`.
 
 ## Layouts
@@ -291,8 +291,8 @@ A presentation slot is `0x30` bytes; the 32 slots sit at `0x022C17B0` (`0x0030D0
 | `+0x18` | `i32` | sceneState | the same for the scene (`0x0030CD7B`-`0x0030CDD8`) |
 | `+0x1C` | `u16` | actionId | `0xFFFF` when free (`0x0030D0AA`, `0x0030CA22`) |
 | `+0x20` | `u32` | unitId | the owner's unit id (`0x0030D14B`) |
-| `+0x24` | `i32` | effectHandle | -1 none (`0x0030CCCF`, `0x0030CA34`) |
-| `+0x28` | `u32` | animResult | the cache's answer; `0x80000000` none (`0x0030CD30`, `0x0030CA2D`) |
+| `+0x24` | `i32` | effectHandle | -1 when no effect is held (`0x0030CCCF`, `0x0030CA34`) |
+| `+0x28` | `u32` | animResult | the cache's answer; `0x80000000` when no animation is held (`0x0030CD30`, `0x0030CA2D`) |
 | `+0x2C` | `u32` | flags | bit `0x1` scene granted; bits `0x6` the animation answer, bits `0x18` the effect answer (`0x0030C8E2`-`0x0030C907`) |
 
 ## State
@@ -306,7 +306,7 @@ A presentation slot is `0x30` bytes; the 32 slots sit at `0x022C17B0` (`0x0030D0
 | unit `+0x740` / `+0x744` | `u32` / `u16` | target handle and id of the last cancelled action |
 | `0x022BEDA0` / `0x022BEDA1` / `0x022BEDA4` | `u8` / `u8` / `u8[512]` | read index, write index and the show queue: 64 entries of 8 bytes, a unit id in each entry's first dword (`0x00304E5C`) |
 | `0x02089350` | `void*` | the unit being shown |
-| unit `+0x694`-`+0x696` | `u8` | presentation slot numbers, `0xFF` for none |
+| unit `+0x694`-`+0x696` | `u8` | presentation slot numbers, `0xFF` when no slot is held |
 | `0x022BE978` / `0x022BEB88` | `PresentationSlot*` | first and last slot of the chain |
 
 ## Modding notes

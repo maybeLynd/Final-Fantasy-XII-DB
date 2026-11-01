@@ -61,8 +61,8 @@ enemy-side unit in group 0.
 
 ### The battle freeze
 
-`0x00238B70(on)` sets or clears bit `0x20` (`0x20`) of the battle flags `0x02089340` and sends message `0x30B`
-(`0x002E7C10`) to every unit with bit `0x10` of its first byte. `0x00238AE0(on)` sets or clears bit `0x80` (`0x80`).
+`0x00238B70(on)` sets or clears bit `0x20` of the battle flags `0x02089340` and sends message `0x30B`
+(`0x002E7C10`) to every unit with bit `0x10` of its first byte. `0x00238AE0(on)` sets or clears bit `0x80`.
 The script commands `suspendbattle` (`0x0035AB20`: both on, then `0x0035A590`) and `resumebattle`
 (`0x0035A6F0`: `0x00473830(0, 1)`, both off, `0x00267D40(2)`) use the same pair. While bit `0x20` is set, a running
 action is cancelled with reason 2 ([Target selection](target-selection.md)) and idle units are not

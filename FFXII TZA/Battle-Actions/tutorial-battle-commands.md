@@ -7,7 +7,7 @@ addresses: "0x02EBF020, 0x0032A230, 0x0032A320, 0x0032A3E0, 0x0031EB20, 0x0027E0
 
 ## What it lists
 
-`tutorial-battle-commands.tsv` holds one line for each of the 6 rows of the table that registry slot `0x02EBF020`
+[`tutorial-battle-commands.tsv`](tutorial-battle-commands.tsv) holds one line for each of the 6 rows of the table that registry slot `0x02EBF020`
 reaches (`battle_pack.bin` directory entry `+0x70`), and one line for the empty group 0. The rows come in groups;
 a group limits the battle menu of each member it has a row for.
 

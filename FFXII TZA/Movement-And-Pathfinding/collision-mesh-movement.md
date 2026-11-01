@@ -42,7 +42,7 @@ else 0) at `0x02EC1378`. The fields the code on this page reads:
 A cell's list in bank `k` is the ids from `index[k (n + 1) + cell]` up to `index[k (n + 1) + cell +
 1]`. The cell of a point is the staggered-grid lookup `0x00233050` ([geometry
 primitives](geometry-primitives.md)). `0x0022F830(query)` runs the query's callback once per bank whose
-bit is set in the query's mask byte `+0x16` (bits 0-3), each time with the list start at `+0x12` and
+bit is set in the query's mask byte `+0x16` (mask `0xF`), each time with the list start at `+0x12` and
 its count at `+0x14`. The floor searches (`0x00231900`, `0x00233110`) read bank 0 directly, the marker
 search `0x00231A90` reads bank 3, and the sweep's penetration test reads bank 1, plus bank 0 for a
 flier.
@@ -154,7 +154,7 @@ The query is built on the caller's stack:
 | `+0x10` | `i16` | cell | the cell being tested |
 | `+0x12` | `i16` | listStart | written by `0x0022F830` |
 | `+0x14` | `i16` | listCount | written by `0x0022F830` |
-| `+0x16` | `u8` | bankMask | bits 0-3 select the banks |
+| `+0x16` | `u8` | bankMask | the bits under mask `0xF` select the banks |
 | `+0x18` | `f32*` | axes | three `f32[4]` rows, the ellipsoid's half-axis vectors |
 | `+0x20` | `f32*` | centre | the ellipsoid's centre |
 | `+0x28` | `f32*` | push | the summed push, `f32[4]` |

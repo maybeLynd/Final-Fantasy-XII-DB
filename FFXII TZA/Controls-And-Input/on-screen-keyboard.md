@@ -65,7 +65,7 @@ an unbound control gets the empty cap `0x6C` and the panel's dim colour.
 | `6` | `0x00286D60`, `0x00288A60` | Escape, Game Speed/Change Group, Change Group, Lock On, Reset Camera | R2, L1, R1, L2, R3 (0: 9, 10, 11, 8, 2) | all three |
 | `7` | `0x002870D0`, `0x00288DB0` | Pause Game, Regular Game Speed, Double Game Speed, Quadruple Game Speed, Toggle Walk/Run | Start (0: 3), Speed1-3, WalkMode (2: 0-3) | the first |
 
-The titles are the text ids at `0x00286010` (`0x542`, or `0x54C` when `0x001E0EE0` reports any of mode bits 0-2),
+The titles are the text ids at `0x00286010` (`0x542`, or `0x54C` when `0x001E0EE0` reports any of mode bits under mask `0x7`),
 `0x002862A0` (`0x547`, or `0x58E` with mode bit `0x4` from `0x001E0F00(2)`) and `0x00286500` (`0x561`), and the per-row tables
 at `0x00915DD0` (panel 4), `0x00286AA4`-`0x00286AAF` (panel 5), `0x00915DE0` (panel 6) and `0x00915DF0` with `0x0028711E`
 (panel 7). With mode bit `0x4` on, panel 6 reads the second table at `0x00915E00` instead: Escape,

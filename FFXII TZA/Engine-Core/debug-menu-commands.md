@@ -12,7 +12,7 @@ menu](debug-menu.md)). The arm column is decoded from the 282-entry table at `0x
 image; the label is the string the console object's filler `0x001D0390` stores at `+0x130 + id ×
 8`; kind, field, step and bound are read from the arm's instructions. Ids 1 to 11 have labels and
 no arm and are not listed. The 56 ids whose arm is the shared do-nothing tail `0x001D4BFA` are
-listed with kind `none` (a button row whose action is absent) or `readout` (a row that still
+listed with kind `no-action` (a button row whose action is absent) or `readout` (a row that still
 prints a live value).
 
 | Kind | Rows | Meaning |
@@ -23,7 +23,7 @@ prints a live value).
 | cycle | 23 | a small mode value cycled over N states |
 | call | 8 | a subsystem function called with the direction |
 | readout | 16 | prints a value, no action |
-| none | 40 | button rows without an action arm |
+| no-action | 40 | button rows without an action arm |
 
 [The command inputs](debug-menu-commands-inputs.tsv) table gives each id's values, who reaches it, when it takes
 effect, what its arm changes, what the player sees and when it changes nothing.
@@ -41,12 +41,11 @@ effect, what its arm changes, what the player sees and when it changes nothing.
 | `id` | the command id, 12 to 293 |
 | `label` | the row text the console prints, from `0x001D0390` |
 | `arm` | the arm address: `0x120000` + the RVA at `0x001D4C1C + (id - 12) × 4` |
-| `kind` | nudge, int-step, toggle, cycle, call, readout, none |
+| `kind` | nudge, int-step, toggle, cycle, call, readout, no-action |
 | `field` | the `.data` address the arm reads and writes, or `obj+offset` on the console object at `[0x01F81428]`; `-` when the arm only calls |
 | `step` | the magnitude, signed `±` when the direction flag picks the sign |
 | `bound` | the wrap, clamp or floor the arm applies |
 | `note` | what the arm does in plain words, from its instructions |
-| `slice` | the letter of the id range the row falls in (A = 12 to 43 and so on in steps of 32) |
 
 ## Related
 

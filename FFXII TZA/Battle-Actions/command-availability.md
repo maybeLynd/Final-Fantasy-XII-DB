@@ -18,8 +18,8 @@ first that refuses:
    nothing except Dismiss and Dismount.
 3. **Summoning while an Esper is out.** The summon actions are refused while a summoned Esper is in
    the battle (in the plain battle state; in a town or while riding a chocobo this test does not apply).
-4. **Statuses.** Stop, Sleep and Disable refuse every action; Silence refuses Magicks and every action whose row sets bit `0x80000` of
-   `+0x0C`, which the shipped data sets on 16 enemy Foecraft actions such as Fear, Fog, Aquaga, Curse and
+4. **Statuses.** Stop, Sleep and Disable refuse every action; Silence refuses Magicks and the 16 enemy
+   Foecraft actions that the game data also flags for Silence, such as Fear, Fog, Aquaga, Curse and
    Necromancy; KO, Stone and X-Zone refuse everything - even where the town flag lets such a unit pass
    the first test.
 5. **Commands disabled by the battle.** A battle can switch off the Attack, Magicks, Technicks or
@@ -43,14 +43,14 @@ otherwise. It has seven callers: the battle menu `0x0031EB20` (`0x0031F28A`), th
 check `0x002FFB60` (`0x002FFC7C`, its reason 6). In order:
 
 1. Code 2 when the unit lacks bit `0x10` of its first byte or a stats record, when it has status bit `0x1`, `0x2` or
-   31 and `0x00377C20()` is 0, or when it is on the enemy side and the byte at `[unit+0x6A0]` has any of
+   `0x80000000` and `0x00377C20()` is 0, or when it is on the enemy side and the byte at `[unit+0x6A0]` has any of
    bits `0x8`, `0x10`, `0x20` or `0x40` (`0x30` or `0x48`).
 2. Code 4 when `0x00322C50(0x14, id)` rejects the id.
 3. Code `0x24` for a party-side unit without Confuse or Berserk (status `0x08000020`) while
    `0x00253B90()` is 1 (FLEEING, `0x01E0C2B8` = 0), unless the id is `0x113` (Dismiss) or `0x95` (Dismount).
 4. Code `0x2C` for ids `0x106`-`0x112` (the summons) while `0x0030D9A0()` is 1 - bit `0x1` of
    `[0x02EBF190]+0x5B04`, which the summon scene sets ([Quickenings and summons](quickenings-and-summons.md)).
-   `0x0030D9A0` returns 5, 4, 3 (town flag `0x00377C20`), 2 or 1 from bits `0x8`, `0x4`, the town flag, 1 and 0 of
+   `0x0030D9A0` returns 5, 4, 3 (town flag `0x00377C20`), 2 or 1 from bits `0x8`, `0x4`, the town flag, `0x2` and `0x1` of
    that word, in that priority.
 5. **Statuses:** `0x0030E9C0(stats, mask)` with mask `0x8000201B` (status bits `0x1`, `0x2`, `0x8`, `0x10`, `0x2000`, `0x80000000`), or
    `0x8000221B` (adding bit `0x200`) when the row has bit `0x80000` of `+0x0C` or kind byte `+0x1E` = 1 (Magicks).

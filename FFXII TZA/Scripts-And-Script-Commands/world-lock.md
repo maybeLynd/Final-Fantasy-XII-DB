@@ -21,7 +21,7 @@ the taken actor's battle action is cancelled. The request engine reaches it with
 filer passes it for slot 2, so every conversation takes the lock when its script starts
 ([script requests](script-requests.md)).
 
-`0x00263230` also turns the controlled character toward the taken actor: `0x002EC2C0(focus, record
+`0x00263230` also turns the party leader ([Party leader](../Party/party-leader.md)) toward the taken actor: `0x002EC2C0(focus, record
 +0x20)` for a class-1 actor or `0x002EBFA0(focus, manager, ordinal, 0x30B)` for class 3, then
 `0x002EC380(focus, 2, 6.0)`, `0x002EBE50(focus, 1)`, `0x002E8EE0` and `0x002ED040(focus, 1)`. That is the
 turn the player sees at the start of every talk.
@@ -41,7 +41,7 @@ for mode 0, 4 for mode 1 and 7 for mode 2 with the actor as a one-entry list, pa
 release resets them.
 
 Every request locks every actor of managers 0 to 2 and then releases the configured rows: the
-focus actor always, the other party members only when the flag is 0, and the non-party types by
+party leader always, the other party members only when the flag is 0, and the non-party types by
 their configuration. A locked actor keeps the request's bit in `+0x10C`, and the interpreter gate
 refuses its script every frame ([script interpreter](script-interpreter.md)), which is why
 townspeople stand still while the player talks and why the talk partner, released by the request's

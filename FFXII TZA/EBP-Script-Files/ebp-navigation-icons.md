@@ -34,8 +34,7 @@ section start, as `0x003DFCC0` and `0x003DFBE0` read them:
 |---|---|---|---|
 | `+0x00` | `char[8]` | magic | "NAVIICN2"; byte +7 must be '2' or above (`0x32`) |
 | `+0x08` | `u16` | kinds | kinds present; a kind k is read only when 1 <= k <= 9 and k < kinds |
-| `+0x0A` | `+ 4k` | u16 | offset     kind k's entries, from the section start |
-| `+0x0C` | `+ 4k` | u16 | count      kind k's entry count |
+| `+0x0E` | `u16[9][2]` | kindTable | per kind k, 1 to 9, the pair at `+0x0A` + 4k: the offset of the kind's entries from the section start, then their count |
 
 Entry (16 bytes):
 

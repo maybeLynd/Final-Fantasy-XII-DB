@@ -76,7 +76,7 @@ returns a bone index and writes an offset `(x, y, z, 1)`:
   offset;
 - for `0x0B`, when the record's active presentation entry (`0x00422D50`) has its byte `+0x328` set,
   the bone `+0x30` and offset `+0x34` of the block at `+0x30` or `+0x60` of that entry's motion data
-  `+0x70` (by bits 0–1 of its `+0x04`), and otherwise bone 0 with the vector `+0x4C` of the rig
+  `+0x70` (by the bits under mask `0x3` of its `+0x04`), and otherwise bone 0 with the vector `+0x4C` of the rig
   (`0x003E6DA0`).
 
 Two callers take a record's centre point:
@@ -118,7 +118,7 @@ key names a listed bone of the parent is then tied to that bone:
 `0x0046E370(bank, child)` undoes it through `0x00370BA0` (kind 2 only) and `0x00373380`: when the parent's
 `+0x10` names the child it is set to −1 and every listed parent bone's `+0x278` and `+0x27C` are
 cleared; the child's `+0x08` and `+0x14` become −1, its first bone's `+0x1F0` the identity, and each
-listed bone clears bit `0x2` of `+0x280`, takes its parent link back from the node (bits 12 to 23, with
+listed bone clears bit `0x2` of `+0x280`, takes its parent link back from the node (mask `0xFFF000`, with
 `0xFFF` meaning none) and sets `+0x276` to −1.
 
 `0x00372610(a, b, c, scale, d)`, called by the final-pose composer `0x00373860`, multiplies `a`, `b` and

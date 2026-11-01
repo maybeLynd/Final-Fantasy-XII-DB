@@ -21,9 +21,9 @@ list `0x02EC3D70`; the active list runs from `0x02EC3D60` to `0x02EC3D68` throug
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | handle | bits 0-5 the slot, `0x10000000` the kind |
+| `+0x00` | `u32` | handle | mask `0x3F` the slot, `0x10000000` the kind |
 | `+0x08` | `void*` | context | the type-1 context |
-| `+0x10` | `void*` | instance the instance playing it |  |
+| `+0x10` | `void*` |  | instance the instance playing it |
 | `+0x18` | `u32` | request | the file request |
 | `+0x1C` | `u32` | size | the file size |
 | `+0x20` | `u16` | number | the effect number |

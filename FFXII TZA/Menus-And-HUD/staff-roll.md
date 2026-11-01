@@ -86,7 +86,7 @@ line, and "The End".
 
 The roll shows cells 0, 2 and 3 as its last three pictures (order 945, 946 and 950). The picture record's `+0x20` is the file's TIM2 picture header (`0x0024A238`), and the recorder reads cell n from the
 eight-byte records of the header's eXt block at file offset `0x70` + 8 x n: u16 u, u16 v, then the width and height
-in bits 0-11 and 12-23 of the next dword (`0x0053F26E`-`0x0053F28A`).
+in the bits under mask `0xFFFFFF` of the next dword (`0x0053F26E`-`0x0053F28A`).
 
 | Cell | Place on the sheet | Picture |
 |---|---|---|

@@ -111,7 +111,7 @@ count, each recorded type with its name (`0x002FBA60`) and each distinct type on
 
 ### The point and line blend modes
 
-`0x02AEE900`, definition byte `+0x49` bits 5–7, picks the emitter. Mode 0 builds the primitive and
+`0x02AEE900`, definition byte `+0x49` bits under mask `0xE0`, picks the emitter. Mode 0 builds the primitive and
 submits it at once (`0x0039D890` for a point, `0x0039D5A0` for a line). Modes 1 to 7 append a draw-list
 entry first and set the primitive's blend word: `0x01EFAC20[mode]`, or in mode 6 the `+0x30` track
 value from `0x02AEE908` (`0x0039DA89`–`0x0039DAAC`, `0x0039D859`–`0x0039D875`).
@@ -133,7 +133,7 @@ Every effect point, line and polygon reaches the renderer through a pair of emit
 its command at once (blend mode 0, through `0x0020E630(command, 2)`), the other files it on the draw
 list first and sets the blend word as above (modes 1 to 7). The blended ones fill the `0x28`-byte
 entry the same way: the smallest of the vertices' 24-bit depths as the key `+8`, the pass nibble
-`0x02AEE910` in bits 28 to 31, and the flag word `+0x20` = `0x02AEF41C × 4` (`0x003A2C70`), plus `2` when
+`0x02AEE910` in the bits under mask `0xF0000000`, and the flag word `+0x20` = `0x02AEF41C × 4` (`0x003A2C70`), plus `2` when
 `0x0024E460` returns 1 or `0x02AEF418` is set (`0x0039DD60`, `0x0039EC30`).
 
 Each emitter takes vertices that the translated vector routines have already projected into the GS
@@ -197,18 +197,18 @@ segment between two rails of points:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x08` | `void*` | first rail, 16-byte points; segment i uses points i and i+1 |  |
-| `+0x10` | `void*` | second rail |  |
-| `+0x18` | `void*` | two RGBA words (first rail, second rail); with +0x20, one word per segment for the first rail |  |
-| `+0x20` | `void*` | one RGBA word per segment for the second rail, or null |  |
-| `+0x28` | `void*` | 8-byte texture coordinates per point of the first rail, or null for the rectangle below |  |
-| `+0x30` | `void*` | the same for the second rail |  |
-| `+0x38` | `f32[4]` | u0, v0, u1, v1 |  |
-| `+0x48` | `f32` | added to every u after each segment |  |
-| `+0x4C` | `f32` | added to every v after each segment |  |
-| `+0x50` | `void*` | texture pair |  |
-| `+0x58` | `i32` | segment count |  |
-| `+0x5C` | `i32` | segments after which the rectangle starts again from +0x38 |  |
+| `+0x08` | `void*` |  | first rail, 16-byte points; segment i uses points i and i+1 |
+| `+0x10` | `void*` |  | second rail |
+| `+0x18` | `void*` |  | two RGBA words (first rail, second rail); with `+0x20`, one word per segment for the first rail |
+| `+0x20` | `void*` |  | one RGBA word per segment for the second rail, or null |
+| `+0x28` | `void*` |  | 8-byte texture coordinates per point of the first rail, or null for the rectangle below |
+| `+0x30` | `void*` |  | the same for the second rail |
+| `+0x38` | `f32[4]` |  | u0, v0, u1, v1 |
+| `+0x48` | `f32` |  | added to every u after each segment |
+| `+0x4C` | `f32` |  | added to every v after each segment |
+| `+0x50` | `void*` |  | texture pair |
+| `+0x58` | `i32` |  | segment count |
+| `+0x5C` | `i32` |  | segments after which the rectangle starts again from `+0x38` |
 
 The ribbon drawer skips a segment when either rail's pair of points is rejected by `0x00399B80`
 (`0x0039C800`).
@@ -247,7 +247,7 @@ texture handles (`+0x28`, kind `0x52`), `+0x72` names the palette source, a kind
   texture's `+0xB0`, with its handle.
 - `0x00502160(record, draw)` is type `0x08`'s row walk: from the row the draw names, it sets each
   row's texture registers as `0x005030F0` does, switches to blend mode 6 with the row's word `+0x68`
-  when the draw's byte `+0x60` has bits 1–3 equal to `0xC`, and calls `0x0039C800`, until a row with
+  when the draw's byte `+0x60` has the bits under mask `0xE` equal to `0xC`, and calls `0x0039C800`, until a row with
   `+0x70` bit `0x2` or a following row whose `+0x70` byte is non-zero.
 
 ### Draw-source blocks
@@ -262,7 +262,7 @@ source kind `+0xA0`; a number of 0 leaves the handle at 0:
 | `+0xA0` | Records bound (`0x003AA280`) |
 |---:|---|
 | 1 | the kind-`0x54` mesh numbered `+0xA1` into `+0xB0` |
-| 2 | the kind-`0x52` texture `+0xA2` into `+0xB4`; the palette `+0xA3` into `+0xB8`, kind `0x53` when bit `0x80` is set (number in bits 0–6), else kind `0x52` |
+| 2 | the kind-`0x52` texture `+0xA2` into `+0xB4`; the palette `+0xA3` into `+0xB8`, kind `0x53` when bit `0x80` is set (number in the bits under mask `0x7F`), else kind `0x52` |
 | 3 | the kind-`0x50` sprite rows `+0xA5` into `+0xBC` and the kind-`0x51` frame sequence `+0xA6` into `+0xC0` |
 
 The draws read the block back through `0x00431830`. For source kind 2 it returns the texture's
@@ -294,7 +294,7 @@ returns 0 and the source palette stays:
 
 | Kind | Body | Fields it reads |
 |---:|---|---|
-| 1 | `0x0050AC20` | byte `+0x01`, bits 1–2 of `+0x03` |
+| 1 | `0x0050AC20` | byte `+0x01`, mask `0x6` of `+0x03` |
 | 2 | `0x00506B40` | words `+0x08` to `+0x0E`, bit `0x1` of `+0x03` |
 | 3 | `0x005080A0` | words `+0x04`, `+0x06`, bit `0x1` of `+0x03` |
 | 5 | `0x00509BB0` | none besides the track |
@@ -367,7 +367,7 @@ draws nothing (`0x00399B80` at `0x00434ED9` and `0x0043526E`).
 
 - With byte `+0x1F1` bit `0x8` and `0x0024E410` true, the projection is not tested and the first six
   (`0x00434CD0`) or four (`0x00435050`) projected vertices are overwritten with fixed screen values,
-  one set for language ids 1–6 (`0x00229E40`) and another for the rest.
+  one set for locale ids 1–6 (`0x00229E40`) and another for the rest.
 - Byte `+0x1F1` at `0x80` or above hands the mesh to `0x00438860`; bit `0x8` hands it to `0x00437130`.
   Otherwise `0x004355D0` runs its own loop over the `+0x1F0` layers.
 
@@ -697,7 +697,7 @@ Kind-`0x54` payload (from `0x00436D00`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | flags: bits 0x7 -> object +0x18C; bit 0x1 adds the index lists |  |
+| `+0x00` | `u8` |  | flags: bits `0x7` -> object `+0x18C`; bit `0x1` adds the index lists |
 | `+0x02` | `u16` | triangles | -> `+0x10` |
 | `+0x04` | `u16` | quads | -> `+0x12` |
 | `+0x06` | `u16` | positions | -> `+0x14`, array `+0x20`, 16 bytes each, w set to 1.0 |
@@ -706,27 +706,27 @@ Kind-`0x54` payload (from `0x00436D00`):
 | `+0x0C` | `u16` | 8-byte entries | -> `+0x1A`, array `+0x2C` |
 | `+0x0E` | `u16` | id bytes | -> `+0x1C`, ids `+0x180`, handles `+0x184` (8 bytes each) |
 | `+0x10` | `u16` | 20-byte records | -> `+0x1E`, copied inline to `+0x30` |
-| `+0x12` | `...` | positions, vectors, 4-byte, 8-byte and 20-byte arrays in that order; | with flags bit `0x1`, two index lists of 6 x triangles + 8 x quads bytes (`+0x170`, `+0x174`); then one byte per triangle and quad (`+0x188`); then the id bytes |
+| `+0x12` | `...` |  | positions, vectors, 4-byte, 8-byte and 20-byte arrays in that order; with flags bit `0x1`, two index lists of 6 x triangles + 8 x quads bytes (`+0x170`, `+0x174`); then one byte per triangle and quad (`+0x188`); then the id bytes |
 
 Element fields the verified draws read:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x044` | `i32` | track frame, the time every track is sampled at |  |
+| `+0x044` | `i32` |  | track frame, the time every track is sampled at |
 | `+0x1F0` | `u32` | colour |  |
-| `+0x230` | `vec` | point 1 (types 0x01, 0x03); +0x240 point 2 (0x03) |  |
-| `+0x294` | `i32` | mesh index (0x05) |  |
+| `+0x230` | `vec` |  | point 1 (types `0x01`, `0x03`); `+0x240` point 2 (`0x03`) |
+| `+0x294` | `i32` |  | mesh index (`0x05`) |
 
 Definition fields the verified draws read:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x030` | `...` | blend track (mode 6) and alpha percent |  |
-| `+0x044` | `u8` | element type |  |
-| `+0x049` | `u8` | bits 5-7 blend mode |  |
-| `+0x190` | `...` | mesh-index track (0x05) |  |
-| `+0x590` | `u8` | bit 0x10 mesh-index mode |  |
-| `+0x5A0` | `u32[32]` | mesh handles |  |
+| `+0x030` | `...` |  | blend track (mode 6) and alpha percent |
+| `+0x044` | `u8` |  | element type |
+| `+0x049` | `u8` |  | mask `0xE0` blend mode |
+| `+0x190` | `...` |  | mesh-index track (`0x05`) |
+| `+0x590` | `u8` |  | bit `0x10` mesh-index mode |
+| `+0x5A0` | `u32[32]` |  | mesh handles |
 
 ## Shipped data
 
@@ -903,7 +903,7 @@ A layer of kind 2 to 5 that is ready gets word `+0x100` = `0x5D` (`0x4D` for kin
 | `0x02CA8540` | `f32` | 0 (zero-filled tail of `.data`) | request `+0x10`: the float at definition `+0xBEC`; the builder puts it at template `+0x40` (`0x0054B85A`) | `0x0052C070` (`0x0052C14B`) | `0x0054B3E0` (`0x0054B850`, called from `0x0052C070` at `0x0052CB4D`) |
 | `0x02CA8548` | `void*` | 0 (zero-filled tail of `.data`) | request `+0x18`: the address of `0x02CA8A10`, the element's matrix `+0x240` combined with the effect-to-screen matrix `0x02AEEBB0` (`0x00202D70` at `0x0052C0FF`); the builder copies its 64 bytes to template `+0x60` (`0x0054B862`-`0x0054B891`) | `0x0052C070` (`0x0052C112`) | `0x0054B3E0` (`0x0054B84C`, called from `0x0052C070` at `0x0052CB4D`) |
 | `0x02CA8554` | `u8` | 0 (zero-filled tail of `.data`) | request `+0x24`: definition byte `+0xBE3` bits `0xF`; read by no function | `0x0052C070` (`0x0052C122`) | no function |
-| `0x02CA8555` | `u8` | 0 (zero-filled tail of `.data`) | request `+0x25`: definition byte `+0xBE3` bits 4-7; read by no function | `0x0052C070` (`0x0052C132`) | no function |
+| `0x02CA8555` | `u8` | 0 (zero-filled tail of `.data`) | request `+0x25`: definition byte `+0xBE3` bits under mask `0xF0`; read by no function | `0x0052C070` (`0x0052C132`) | no function |
 | `0x02CA89A0` | `void*` | 0 (zero-filled tail of `.data`) | the current layer's block: `0x02CA8560` + `0x110` × layer | `0x0052C070` (`0x0052C45E`) | `0x0052C070` (`0x0052C50D`, `0x0052C55B`, `0x0052C5C1`, `0x0052C604`, `0x0052C66B`, `0x0052C778`, `0x0052C7C1`, `0x0052C80A`, `0x0052C853`, `0x0052C89C`, `0x0052C8E5`, `0x0052C92E`, `0x0052C97A`, `0x0052C9C6`, `0x0052CA26`, `0x0052CAB3`, `0x0052CC0A`, `0x0052CC38`, `0x0052CCA4`, `0x0052CDB4`, `0x0052CDC8`, `0x0052CEAF`) |
 | `0x02CA89A8` | `u32` | 0 (zero-filled tail of `.data`) | the colour of grid point 0: the colour track at definition `+0x80` at the element's frame (`0x0042FDB0`), times the element's colour `+0x1F0` when that is not `0x80808080` (`0x0026EE00`). Every layer multiplies its own colour by it for point 0 | `0x0052C070` (`0x0052C162`); `0x0026EE00` (`0x0026F3FD`, called from `0x0052C070` at `0x0052C18D`) | `0x0026EE00` (`0x0026EE31`, called at `0x0052C18D`; `0x0026EE49`, called at `0x0052C773`); `0x0052C070` (`0x0052C746`) |
 | `0x02CA89AC` | `u32` | 0 (zero-filled tail of `.data`) | the colour of grid point 1, from the colour track at definition `+0xD0`, made the same way | `0x0052C070` (`0x0052C1AF`); `0x0026EE00` (`0x0026F3FD`, called at `0x0052C1DA`) | `0x0026EE00` (`0x0026EE31`, called at `0x0052C1DA`; `0x0026EE49`, called at `0x0052C7BC`); `0x0052C070` (`0x0052C78F`) |
@@ -940,7 +940,7 @@ The surface is a grid of rows of points, the rows running round the shape.
 Their argument is a layer list the draw fills at `[0x01FD4A78]` + `0x800`, one layer for each draw-source block that
 has a source (`0x004458D0`-`0x00445A91` for `0x04`). Its count is byte `+0x1F0`. Per layer it holds:
 
-- the blend mode, byte `+0x134` + layer (block word `+0xAA` bits 0-2), copied to `0x02AEE900` at `0x00443581`;
+- the blend mode, byte `+0x134` + layer (block word `+0xAA` bits under mask `0x7`), copied to `0x02AEE900` at `0x00443581`;
 - the layer colour, word `+0x138` + 4 × layer, from the block's colour track;
 - the lighting byte `+0x1A4` (block byte `+0xA9`), the mapping mode `+0x1B0` (block byte `+0xA7`) and the
   scrolling mode `+0x1AC`.
@@ -1070,7 +1070,7 @@ The arms of `0x8C`, `0x92`, `0x94` and `0x95` call `0x003A2F70` when the blend m
 definition `+0x1A0` (`0x8C`, `0x94`, `0x95`) or `+0x1B0` (`0x92`) is 0, and `0x003A33B0` with a draw-list key
 otherwise (`0x00455C04`, `0x0045A964`, `0x0045B15F`, `0x0045B542`).
 
-Some arms submit their chunk twice. With bits 1-2 of the definition byte that chose the arm at 3, they store 2 in a
+Some arms submit their chunk twice. With the bits under mask `0x6` of the definition byte that chose the arm at 3, they store 2 in a
 pass word before the first submission and 0 before the second. With 2 they submit once with 2, and with 1 or 0 once
 with 0. The pass words are `0x02AE0280` (`0x8C`), `0x02AE09D0` and `0x02AE1940` (`0x90`), `0x02AE2F90` (`0x92`), and bit `0x2`
 of `0x02AE1BF8` (`0x90`).
@@ -1192,7 +1192,7 @@ parent's matrix (`0x0052D1F1`-`0x0052D31F`). It first moves the old `+0x70` into
 
 - A definition's type byte decides everything; a type without an arm in a table gets no behaviour
   for that method, and a draw arm that is `0x0016D6A0` draws nothing.
-- Point and line blending comes from definition byte `+0x49` bits 5–7; mode 6 takes the blend word
+- Point and line blending comes from definition byte `+0x49` bits under mask `0xE0`; mode 6 takes the blend word
   from the `+0x30` track, so that track then serves as both alpha percent and blend.
 - A type-`0x05` mesh index of 32 or more falls back to 0, and its definition holds 32 handles.
 - The registry holds 128 elements of types `0x40`, `0x41`, `0x42` and `0xD0`; `0x00377190` returns 0

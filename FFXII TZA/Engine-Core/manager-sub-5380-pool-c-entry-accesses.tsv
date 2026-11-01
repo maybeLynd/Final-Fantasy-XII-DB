@@ -1,0 +1,3 @@
+function	name	site	disp	kind	instruction	route	note
+0x00289F50	FUN_00289f50	0x00289FAF	0x12	addr	lea rcx, [rsi + 0x342]	route-seeded EMBED ManagerSub0209BE80_5380 +0x330 stride=0x28 count=6 base+0x-330	
+0x00289F50	FUN_00289f50	0x00289FB6	0x12	r	test byte ptr [rcx], 1	route-seeded EMBED ManagerSub0209BE80_5380 +0x330 stride=0x28 count=6 base+0x12	

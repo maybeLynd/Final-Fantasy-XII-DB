@@ -74,7 +74,7 @@ The member's answer for the node sets the purchase flags through the table at `0
 | `3`, `4`, `5`, `8` | the square is emptied (`0x0055C4CA`) |
 
 `0x0055E090` then turns bit `0x8000` into bit `0x1000` on each square next to an owned one. So bit `0x2000` means owned, bit `0x1000`
-obtainable now, bit `0x4000` affordable and bit `0x8000` obtainable later. The state nibble, bits 4-7, takes four values:
+obtainable now, bit `0x4000` affordable and bit `0x8000` obtainable later. The state nibble, mask `0xF0`, takes four values:
 
 | State | Meaning | Set by |
 |---:|---|---|
@@ -240,7 +240,7 @@ The squares are one array at view `+0x120`, row by row, the row width the view's
 | `+0x0C` | `u16` | lpCost | record byte `+0x20`, node byte `+0x04` (`0x0055C117`); the record holds the node at `+0x1C` |
 | `+0x0E` | `u16` | artNode | row of the art table [`0x02CA9670`] (`0x0055C126`) |
 | `+0x10` | `u32[2]` | kindText | the kind of license, Weapon to Gambit (`0x4280`-`0x4289`), (`0x0055C12E`) |
-| `+0x18` | `u32` | state | bits 0-3 corner shape, 4-7 state, 8-11 state shown, 12-15 purchase flags |
+| `+0x18` | `u32` | state | mask `0xF` corner shape, `0xF0` state, `0xF00` state shown, `0xF000` purchase flags |
 | `+0x1C` | `u8[4]` | pad1C | zeroed with the array (`0x0055B643`) and by the qword stores of `+0x18` for an empty or hidden square (`0x0055C387`, `0x0055C4EA`); the fill writes `+0x18` as a dword (`0x0055C47F`, `0x0055C4C2`) |
 | `+0x20` | `u8` | col | column (`0x0055C0E1`) |
 | `+0x21` | `u8` | row | row (`0x0055C0E5`) |
@@ -312,7 +312,7 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x1A0` | `u8[192]` | artEntries | 16 twelve-byte entries the build unpacks from the art table: two words copied, two 12-bit fields of its dword +4, and bytes from the table's second part (`0x0055CF8D`-`0x0055D02A`) |
 | `+0x260` | `u8[168]` | artEntries2 | 14 more of the same shape from the table's next part (`0x0055D030`-`0x0055D0CA`) |
 | `+0x308` | `void*[32]` | changed | the changed squares a fill lists with the collect bit set (`0x0055B388`; The change sweep); `0x0055DD70` takes the list by address (`0x0055DDD8`) |
-| `+0x408` | `i8` | changedCount the number listed: 0 at a fill with the collect bit (0x0055B31C), at most 32 | (`0x0055B379`), raised with each listing (`0x0055B390`); `0x0055DD70` compares and sign-extends it (`0x0055DDC6`, `0x0055DE6F`) |
+| `+0x408` | `i8` | changedCount | the number listed: 0 at a fill with the collect bit (`0x0055B31C`), at most 32 (`0x0055B379`), raised with each listing (`0x0055B390`); `0x0055DD70` compares and sign-extends it (`0x0055DDC6`, `0x0055DE6F`) |
 | `+0x409` | `u8[7]` | gap409 | reached by no instruction in the table |
 | `+0x410` | `u8[208]` | added | 13 entries of 16 bytes, one per square the board read `0x0055BFF0` adds: the column byte at `+0x00`, the row byte at `+0x01` and the square pointer at `+0x08` (`0x0055C2CD`-`0x0055C2F2`); the procedure's announce arm (`0x0055D870`) announces them (`0x0055D884`-`0x0055D8A7`) and `0x0055E9E0` reads them (`0x0055EA44`, `0x0055EC64`) |
 | `+0x4E0` | `u8` | secondCol | the Second Board square's entry, the same shape: column, row and square (`0x0055C322`-`0x0055C330`); read at `0x0055EB78`, `0x0055EB69`, `0x0055D8D8`, `0x0055D8F5` and `0x0055EB49`; the square `+0x4E8` is also 0 when a board is read (`0x0055C02F`) and rewritten at `0x0055D911` |
@@ -345,7 +345,7 @@ beside this page. A field reached by no instruction in that table says so.
 | `+0x540` | `u32` | panStart | the UI tick `0x0208F570` when the pan started |
 | `+0x544` | `i16` | offsetX | the current square offsets: set at build from the cursor and cell size (`0x0055C5FD`, `0x0055C620`), compared by the pan before it moves (`0x0055B8F4`-`0x0055B917`), written by the pan (`0x0055F21A`, `0x0055F239`) and `0x0055E9E0` (`0x0055EA6C`-`0x0055ED88`) |
 | `+0x546` | `i16` | offsetY |  |
-| `+0x548` | `u32` | effectHandle the handle 0x003B2D80 returns at build (0x0055D136), read and rewritten by the destroy | arm's release (`0x0055D1A9`-`0x0055D1BE`) |
+| `+0x548` | `u32` | effectHandle | the handle `0x003B2D80` returns at build (`0x0055D136`), read and rewritten by the destroy arm's release (`0x0055D1A9`-`0x0055D1BE`) |
 | `+0x54C` | `u16` | squareCount | columns x rows (`0x0055E3CE`); read by the grid helpers `0x0055DEA0` (`0x0055DF15`, `0x0055DF4A`, `0x0055DF76`), `0x0055E090` (`0x0055E0EA`, `0x0055E139`, `0x0055E188`, `0x0055E1CE`) and `0x0055E3F0` (`0x0055E475`, `0x0055E4CC`, `0x0055E524`, `0x0055E575`) |
 | `+0x54E` | `i8` | defaultCol | the cursor's default square, the centre, written with `+0x550` (`0x0055E7CE`, `0x0055E7E8`; also `0x0055E620`, `0x0055E812`, `0x0055E9A5`); read at `0x0055ED19`, `0x0055ED23` |
 | `+0x54F` | `i8` | defaultRow |  |
@@ -411,7 +411,7 @@ The board chooser is the `0x390`-byte widget with procedure `0x00557DB0` that th
 | `+0x140` | `void*` | atlasC2 | the member picker's `+0xF0`, the lic_8_c2 label the board screen stores there (`0x005616FE`-`0x00561738`), copied through the window's `+0xC0` on construction (`0x00557FF7`-`0x00558005`); the pictures part copies it to its `+0xC8` when built (`0x005579D2`) |
 | `+0x148` | `void*` | atlasC3 | the member picker's `+0xF8`, the lic_8_c3 label (`0x0056175E`-`0x00561765`), copied on construction (`0x0055800C`-`0x0055801A`); the pictures part copies it to its `+0xD0` (`0x005579E0`) |
 | `+0x150` | `void*` | backAtlas | the member picker's `+0x100`, the lic_bk label (`0x0056169E`-`0x005616A8`), copied on construction (`0x00558021`-`0x0055802F`); the name part copies it to its `+0xE0` (`0x00556986`) |
-| `+0x158` | `u32` | turnBits | the wheel's turn: bit `0x1` a turn is running and bits 2-5 its curve, set to curve 1 by `0x00558A10` (`0x00558A84`-`0x00558A8B`); `0x00558AF0` steps while bits 0-1 are set, passing bits 2-5 to `0x00248F40`, and clears bits 0-1 when the turn is done (`0x00558AF9`-`0x00558B3E`) |
+| `+0x158` | `u32` | turnBits | the wheel's turn: bit `0x1` a turn is running and the bits under mask `0x3C` its curve, set to curve 1 by `0x00558A10` (`0x00558A84`-`0x00558A8B`); `0x00558AF0` steps while the bits under mask `0x3` are set, passing the bits under mask `0x3C` to `0x00248F40`, and clears the bits under mask `0x3` when the turn is done (`0x00558AF9`-`0x00558B3E`) |
 | `+0x15C` | `i16` | turnFrom | the angle in degrees when the turn started, the low word of `+0x350` (`0x00558A98`, `0x00558AB8`); `0x00558AF0` adds the turned part of `+0x160` to it (`0x00558B35`, `0x00558B58`) |
 | `+0x15E` | `i16` | turnTo | the board the wheel turns to: the shown board on construction (`0x00558135`) and each turn (`0x00558AB1`); `0x00558A10` does nothing when asked for the same board (`0x00558A30`) and turns the short way, through 360, when the boards are 0 and 11 (`0x00558A4F`-`0x00558A7E`) |
 | `+0x160` | `i16` | turnBy | the degrees to turn, the board x 30 less `+0x15C` (`0x00558AA5`-`0x00558AC4`); `0x00558AF0` adds it times the curve's 0 to 1 to `+0x15C` (`0x00558B2E`, `0x00558B4D`) |

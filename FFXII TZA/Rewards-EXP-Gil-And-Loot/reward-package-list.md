@@ -7,7 +7,7 @@ addresses: "0x02EBF070, 0x002FD530, 0x0031C5D0, 0x0031D683, 0x00322C50"
 
 ## What it lists
 
-`reward-package-list.tsv` holds one line for each of the 512 rows of the reward-package table that registry slot
+[`reward-package-list.tsv`](reward-package-list.tsv) holds one line for each of the 512 rows of the reward-package table that registry slot
 `0x02EBF070` reaches (`battle_pack.bin` directory entry `+0x98`). Row *n* is package id `0x9000` + *n*, inventory
 class 14 ([Item and ability ids](../Engine-Core/item-and-ability-ids.md)): giving the id gives the
 package's gil and items together.

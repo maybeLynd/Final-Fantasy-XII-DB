@@ -7,9 +7,9 @@ addresses: "0x00377C20, 0x00377480, 0x00377A40, 0x00377BA0, 0x003779F0, 0x003777
 
 ## What the player sees
 
-Three things take a character out of a fight for good: being KO'd, being turned to Stone, and being
-sent to X-Zone. A character in one of those states is treated as absent: no commands, no actions, no
-EXP or LP, no attention from monsters.
+Three things take a character out of a fight until they are cured: being KO'd, being turned to Stone,
+and being sent to X-Zone. A character in one of those states is treated as absent: no commands, no
+actions, no EXP or LP, no attention from monsters.
 
 Inside a town that rule is switched off. In Rabanastre's streets and shops, the Clan Hall, the Sandsea,
 every Aerodrome, the Strahl's Sky Saloon, Jahara, Eruyt Village, Mt Bur-Omisace, Balfonheim and the
@@ -70,7 +70,7 @@ the word from two byte loads, `0x00377C55` shifts by 15.
 
 These seven are the only code that reads the table. Its address is held only in `0x02ADD100`: no instruction or data
 word holds it as an absolute or image-relative value, the key `"MapInfo"` has its one reference in `0x00378540`, and
-each reader returns only its own bits. So no code reads third-byte bits 1-3 or bit `0x80` as a field.
+each reader returns only its own bits. So no code reads third-byte bits under mask `0xE` or bit `0x80` as a field.
 
 ### The current field id
 
@@ -84,7 +84,7 @@ reader answers for the destination as soon as the transition is staged.
 
 Bit `0x8000` is the town flag. The combat layer treats a unit as out of play when either of its two status
 words `+0x3C` or `+0x64` has a bit in the mask `0x80000003`, which is status 0 KO, status 1 Stone and
-status 31 X-Zone, the three statuses that permanently leave play. The waiver is always the same shape:
+status 31 X-Zone, the three statuses that leave play until they are removed. The waiver is always the same shape:
 
 ```c
 if (((stats[+0x3C] | stats[+0x64]) & 0x80000003) != 0 && townFlag() == 0)
@@ -208,13 +208,13 @@ third byte. The defaults do not agree on what they mean:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | flags | bits `0xFFF` Map entry (`0x003779F0`), bits `0x3000` MP regime (`0x00377BA0`), bit `0x4000` area name (`0x00377A40`), bit `0x8000` town (`0x00377C20`, `0x00377480`) |
-| `+0x02` | `u8` | options | bit `0x1` hold flag (`0x00377700`, read inverted), bits 1-3 authored and read by no code, bits `0x70` default leader (`0x00377C70`), bit `0x80` never set and never read |
+| `+0x02` | `u8` | options | bit `0x1` hold flag (`0x00377700`, read inverted), mask `0xE` authored and read by no code, bits `0x70` default leader (`0x00377C70`), bit `0x80` never set and never read |
 
 ## Shipped data
 
 Every record, decoded field by field, is in [area-flags-navimapdata.tsv](area-flags-navimapdata.tsv): one row per area
 id with the `us` name `0x00377B60` returns (empty for an id with no name entry), the flag word, the Map entry
-(`none` for `0xFFF`), the MP regime, the area-name and town bits, the third byte, the hold bit, bits 1-3 and the
+(`none` for `0xFFF`), the MP regime, the area-name and town bits, the third byte, the hold bit, mask `0xE` and the
 default leader.
 
 Census of the 1,154 records in `navimapdata.bin`:
@@ -223,11 +223,11 @@ Census of the 1,154 records in `navimapdata.bin`:
 |---|---|
 | town flag (bit `0x8000`) | set on 193 areas |
 | area name (bit `0x4000`) | set on 155 areas, 154 of them towns |
-| MP regime (bits 12-13) | 0 on 945, 1 on 36, 2 on 69, 3 on 104 |
-| Map entry (bits 0-11) | `0xFFF` (none) on 556; one on the other 598: 0 on 200; 369 distinct values, every value from 0 to 368 |
+| MP regime (mask `0x3000`) | 0 on 945, 1 on 36, 2 on 69, 3 on 104 |
+| Map entry (mask `0xFFF`) | `0xFFF` (none) on 556; one on the other 598: 0 on 200; 369 distinct values, every value from 0 to 368 |
 | hold flag (byte 2 bit `0x1`) | set on 170 areas, every one of them a town; the 23 towns without it are ids 0-22 |
-| byte 2 bits 1-3 | 0x02, 0x04 and 0x08 in eight combinations across 638 areas |
-| byte 2 bits 4-7 | 0 on every record |
+| byte 2 bits under mask `0xE` | 0x02, 0x04 and 0x08 in eight combinations across 638 areas |
+| byte 2 bits under mask `0xF0` | 0 on every record |
 
 The towns, with the names the `us` `planmapname.bin` gives through the name indexer `0x00377B60`
 (offset table at `+0x10`, 1,312 entries; ids with no name entry are omitted):
@@ -283,7 +283,7 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 | `0x00377C20` | `()` | word bit `0x8000` of the current area | 0/1; 65 callers plus 47 through `0x00313F60` |
 | `0x00377480` | `(fieldId)` | word bit `0x8000` | 0/1; caller `0x0026C8C0` |
 | `0x00377A40` | `(fieldId)` | word bit `0x4000` | 0/1; five menu callers |
-| `0x00377BA0` | `()` | payload `+0x1062` bit `0x80`, then `+0x1063` bits 4-5 or word bits `0x3000` | 0-3; four callers through `0x00320160` |
+| `0x00377BA0` | `()` | payload `+0x1062` bit `0x80`, then `+0x1063` bits under mask `0x30` or word bits `0x3000` | 0-3; four callers through `0x00320160` |
 | `0x003779F0` | `(fieldId)` | word bits `0xFFF` | 0-4,094 or -1; nine callers |
 | `0x00377700` | `()` | third byte bit `0x1`, payload `+0x1062` bit `0x1` | 1 when both are clear, else 0; six callers |
 | `0x00377C70` | `()` | third byte bits `0x70` | 0-7; callers `0x00326500`, `0x003266C0`, `0x0031C000` |
@@ -297,7 +297,7 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 | payload `+0x1044` | `i32` | current or pending field id | the zone change (see the zone changes page) |
 | payload `+0x1062` bit `0x1` | bit | vetoes the hold flag | the zone change record's flag byte |
 | payload `+0x1062` bit `0x80` | bit | enables the MP regime override | the zone change record's flag byte |
-| payload `+0x1063` bits 4-5 | 2 bits | the overriding MP regime | the zone change record |
+| payload `+0x1063` bits under mask `0x30` | 2 bits | the overriding MP regime | the zone change record |
 | `0x02099DE7` | `u8` | the party hold parameter, `0x00377700() == 0` | `0x0026A20B`, `0x00268E29` |
 
 ## Modding notes
@@ -305,12 +305,12 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 - Setting bit `0x8000` on an area makes it a town for every system at once: fallen party members stay in
   play, the chain resets on entry, control level 3 applies and the saved leader is ignored. Clearing it
   on a shop interior re-arms the out-of-play rule there.
-- Bits 12-13 are the only per-area MP control: 2 or 3 cuts the walk per MP point to a third, so
-  walking recovery runs three times as fast, and triples the MP gained from damage. The save override at payload `+0x1062` bit `0x80` / `+0x1063` bits 4-5 can
+- The bits under mask `0x3000` are the only per-area MP control: 2 or 3 cuts the walk per MP point to a third, so
+  walking recovery runs three times as fast, and triples the MP gained from damage. The save override at payload `+0x1062` bit `0x80` / `+0x1063` bits under mask `0x30` can
   impose a regime on any area without touching the file.
-- Bits 4-6 of the third byte are a working but unused feature: a non-zero value names the party member
+- The bits under mask `0x70` of the third byte are a working but unused feature: a non-zero value names the party member
   the game follows when control returns inside that town.
-- Bits 1-3 of the third byte are authored on 638 areas and read by no function: the table pointer `0x02ADD100` is
+- The bits under mask `0xE` of the third byte are authored on 638 areas and read by no function: the table pointer `0x02ADD100` is
   loaded by the seven readers above and stored by the two loaders `0x00378540` and `0x00378B80`, and of the seven only
   `0x00377700` (bit `0x1`, `0x00377721`) and `0x00377C70` (bits `0x70`, `0x00377C91`) read the third byte. Changing them does nothing.
 - Area names and the Map pages live in `planmapname.bin`, not here; the record only carries the Map

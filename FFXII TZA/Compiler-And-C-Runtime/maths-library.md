@@ -10,8 +10,8 @@ addresses: "0x008C2BB8, 0x00861F14, 0x0016A270, 0x02EADEF0, 0x007D0F60, 0x007D11
 Smooth movement and sound. A character turning to face a target eases in: the turn is slow when it
 is nearly facing the right way and full speed from 60 degrees off. Range tests measure across the
 ground and ignore height. Positional sound works out the direction and distance of each source with
-four-wide vector code. Almost every sine, cosine, square root and power in the game is a call into
-the C runtime that Windows provides, not code inside the executable.
+four-wide vector code. Almost every sine, cosine, square root and power in the game is worked out by
+the C runtime that Windows provides, not by code inside the executable.
 
 ## How it works
 
@@ -63,8 +63,8 @@ The code section has four `sqrtss` instructions and no `sqrtsd`, `rsqrtss` or `r
 - `0x007E9184` in `0x007E9030`, which advances a time value at `+0x3C0` and interpolates between control
   points linearly or as a cubic.
   - With the curve `[+0x3B8]`, `t = min(time x 999.99994 / u32 [+0x24], 1)` (1 for a zero duration). Mode byte
-    `+0x28` 0 gives `p = p0 + (p3 - p0) t`, mode 1 the cubic Bezier `(1 - t)^3 p0 + 3(1 - t)^2 t p1 + 3(1 - t) t^2 p2
-    + t^3 p3`, with the points `(x, y)` at `+0x04`, `+0x0C`, `+0x14` and `+0x1C`.
+    `+0x28` 0 gives `p = p0 + (p3 - p0) t`, mode 1 the cubic Bezier `(1 - t)^3 p0 + 3(1 - t)^2 t p1 + 3(1 - t) t^2 p2 +
+    t^3 p3`, with the points `(x, y)` at `+0x04`, `+0x0C`, `+0x14` and `+0x1C`.
   - `r = sqrt(x^2 + y^2)`, with `p` scaled to length 1 when `r > 1`; the ramp at `+0xB8` gets `atan2(x, y) / pi`
     (0 when `p` is zero) and the ramp at `+0xE8` gets `min(r, 1)` (`0x007E9030`).
 

@@ -76,7 +76,7 @@ dataset pointer `0x02AEDFB0` or calls its getter `0x00383840` (`0x00335180`, `0x
 |---|---|---|---|
 | `+0x00` | `u32` | one | 1 in all 461; read by none of `0x00384160`, `0x00382D10`, `0x00382FF0`, `0x00383740`, `0x00383850`, `0x00383A30`, `0x00383C90`, `0x00383F10`, `0x00335180`, `0x0033D3E0`, `0x00391410` and `0x00392740` |
 | `+0x04` | `u16` | vertexCount | read by none of the same readers |
-| `+0x06` | `u16` | triangleCount the whole-mesh loops' bound (0x00383AAD, 0x00335293) |  |
+| `+0x06` | `u16` | triangleCount | the whole-mesh loops' bound (`0x00383AAD`, `0x00335293`) |
 | `+0x08` | `u16` | portalCount | read by none of the same readers; it counts the padding record 0 |
 | `+0x0A` | `u16` | regionCount | the adjacency row length (`0x00383883`, `0x0033D4DA`) and the search's bound (`0x003830F4`, `0x003832AA`) |
 | `+0x0C` | `u32` | vertices | `0x00382D6B`, `0x00383B0B`, `0x003352FA`, `0x0033D53F` |
@@ -322,7 +322,7 @@ differ.
 | `+0x24` | `f32` | end | last frame (`0x00466BB0`) |
 | `+0x28` | `i16` | count | with `+0x2C` 0, the target count (`0x00466F81`); otherwise the number of 16-byte map entries from `+0x30` (`0x00467374`, `0x004673AE`, `0x00467842`, `0x00466D26`) |
 | `+0x2A` | `u16` | group | model group the clip belongs to (`0x004669F1`, `0x00466CF9`) |
-| `+0x2C` | `i16` | mapTargets 0, or the target count of a clip with map entries (0x00466FBC-0x00466FC5) |  |
+| `+0x2C` | `i16` | mapTargets | 0, or the target count of a clip with map entries (`0x00466FBC`-`0x00466FC5`) |
 | `+0x2E` | `u8` | flags | bit `0x1`: `0x02EBB6E4` = this slot (`0x00466F8E`) |
 | `+0x2F` | `u8` | byte2F | 0 in all 3,344 shipped clips; read by none of `0x00466E70`, `0x004677A0`, `0x004668C0` and `0x00466CB0` |
 
@@ -548,7 +548,7 @@ model-files page has the operation record).
 | `+0x008` | `f32` | scale | returned by `0x003ED140` (`0x003ED15F`) and stored at `0x01EFE314` by `0x003B6BA0`, which `0x003B62D0` reads (`0x003B6504`); 1.0 in 1,336 records |
 | `+0x00C` | `u32` | word0C | 0 in all 1,383; read by none of `0x003ECCA0`, `0x003ECFD0`, `0x003ED020`, `0x003ED0B0`, `0x003ED140`, `0x003ED190`, `0x003ED3F0` and `0x003ED7B0`, the readers of `0x02EBB7F0` |
 | `+0x010` | `u8[128]` | fog | four Ym00Fog entries of `0x20` bytes, below |
-| `+0x090` | `u8[96]` | lights | three entries of `0x20` bytes: `+0x00` f32[4] angles and `+0x10` f32[4] vector, copied to light i's `+0x10` and `+0x20` at `0x0209A2E0` (`0x003ED054`-`0x003ED0A5`, the weather page); record 0's light 0 angles also turn into the shadow direction (`0x003ED269`) |
+| `+0x090` | `u8[96]` | lights | three entries of `0x20` bytes, each an f32[4] of angles and then an f32[4] vector, copied to light i's `+0x10` and `+0x20` at `0x0209A2E0` (`0x003ED054`-`0x003ED0A5`, the weather page); record 0's light 0 angles also turn into the shadow direction (`0x003ED269`) |
 | `+0x0F0` | `f32[4]` | ambient | copied to `0x0209A370` to `0x0209A37C` (`0x003ECFEF`-`0x003ED017`) |
 | `+0x100` | `u8[128]` | tail | 0 in all 1,383; read by none of the readers of `0x02EBB7F0` |
 
@@ -662,11 +662,11 @@ that section neither part is filled, and both keep the zeroes `0x002F6AB0` clear
 | `+0x18` | `i32` | cells | cols * rows in all 892; stored at the part's `+0x40` (`0x00232413`), the bank stride minus one |
 | `+0x1C` | `u32` | word1C | 0 in all |
 | `+0x20` | `u32` | poolSlots | the id pool's length rounded up to 8 entries in all; read by none of `0x00232380`, `0x00233050`, `0x0022E340`, `0x00231E40`, `0x0022F430`, `0x0022FFE0`, `0x00230C10`, `0x002327D0` and `0x0026E960` |
-| `+0x24` | `u32` | polygonCount the polygon count in all 892; read by none of the same |  |
+| `+0x24` | `u32` | polygonCount | the polygon count in all 892; read by none of the same |
 | `+0x28` | `f32` | float28 | read by none of the same |
 | `+0x2C` | `f32` | float2C | read by none of the same |
-| `+0x30` | `u64` | hiddenModels the part's hidden model set, copied to 0x0209A690 for the +0x40 part (0x0026E9D8); non-zero in 116 tag-31 grids, 0 in every tag-17 grid |  |
-| `+0x38` | `u64` | hiddenEffects the hidden effect set, copied to 0x0209A6A8 (0x0026E9E6); non-zero in 41 tag-31 grids |  |
+| `+0x30` | `u64` | hiddenModels | the part's hidden model set, copied to `0x0209A690` for the `+0x40` part (`0x0026E9D8`); non-zero in 116 tag-31 grids, 0 in every tag-17 grid |
+| `+0x38` | `u64` | hiddenEffects | the hidden effect set, copied to `0x0209A6A8` (`0x0026E9E6`); non-zero in 41 tag-31 grids |
 
 Sub-tag 1 is four banks of `cells + 1` `u16` list starts into the id pool, sub-tag 2 (`[part + 0x28]`). A cell's
 list in bank `k` runs from entry `k (cells + 1) + cell` to the next (`0x0022F855`-`0x0022F890`); each bank's last entry is
@@ -835,7 +835,7 @@ and keeps its width and height (`u16 +0x14` and `+0x16` of the texture header) a
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[3]` | magic | "NPS" |
-| `+0x03` | `u8` | version "2" in all 577 shipped records; 0x00379870 treats "1" as a 256 x 256 picture |  |
+| `+0x03` | `u8` |  | version "2" in all 577 shipped records; `0x00379870` treats "1" as a 256 x 256 picture |
 | `+0x04` | `u8[12]` | pad | zero |
 | `+0x10` | `f32` | x | world position of the picture (`0x00379870` -> `0x003C6360`) |
 | `+0x14` | `f32` | y |  |
@@ -958,7 +958,7 @@ pending word `0x02ADD0EC` and the bind word `0x02ADD0F0`:
 
 | slots | mode 1 (the field's own pack) | mode 0 (the block pack) |
 |---|---|---|
-| 24 to 27, 28 to 31 | stored at `0x02ADD010 + 8i` and `0x02ADD030 + 8i`, bits `0x200` + i and 13 + i | the same |
+| 24 to 27, 28 to 31 | stored at `0x02ADD010 + 8i` and `0x02ADD030 + 8i`, bits `0x200` << i and `0x2000` << i | the same |
 | 4 | copied into a block of the same size (`0x0036C100` reads it from the block header) tagged `IdMapNo` at `0x02ADCFE8`, the original freed | neither stored nor freed |
 | 8 | `0x02ADCFE0`, bit `0x8` | `0x02ADCFF0`, bit `0x8` |
 | 0, 10 | freed | `0x02ADD080` and `0x02ADD068`, bit `0x1` |
@@ -974,7 +974,7 @@ cannot make room the allocation's pressure path, retrying bottom-up, gives up an
 `0x0036C660` skips a null block, but the copy at `0x00378D27` (`memcpy`) then writes the dataset to address 0, and the
 game faults there.
 
-`0x00378BC0` then clears pending bits 0 to 18 one by one and, when the pending word is empty, calls the binder
+`0x00378BC0` then clears pending bits under mask `0x7FFFF` one by one and, when the pending word is empty, calls the binder
 `0x003775D0`; `0x00214B70` ends the completion.
 
 ### The bind
@@ -1052,8 +1052,8 @@ otherwise.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x0209A3A4` | `f32` | 0 (zero-filled tail) | the colour's second float: bits 8-15 of dword 1 (`0x00466147`-`0x0046614D`) / 128 | `0x0026E1D0`, 1.0 (`0x0026E23F`); `0x002F6AB0` (`0x002F6E3C`) | `0x00231A90` (`0x00231DEE`) |
-| `0x0209A3A8` | `f32` | 0 (zero-filled tail) | the third float: bits 16-23 (`0x00466152`-`0x0046615B`) / 128 | `0x0026E1D0`, 1.0 (`0x0026E23F`); `0x002F6AB0` (`0x002F6E47`) | `0x00231A90` (`0x00231DFB`) |
+| `0x0209A3A4` | `f32` | 0 (zero-filled tail) | the colour's second float: mask `0xFF00` of dword 1 (`0x00466147`-`0x0046614D`) / 128 | `0x0026E1D0`, 1.0 (`0x0026E23F`); `0x002F6AB0` (`0x002F6E3C`) | `0x00231A90` (`0x00231DEE`) |
+| `0x0209A3A8` | `f32` | 0 (zero-filled tail) | the third float: mask `0xFF0000` (`0x00466152`-`0x0046615B`) / 128 | `0x0026E1D0`, 1.0 (`0x0026E23F`); `0x002F6AB0` (`0x002F6E47`) | `0x00231A90` (`0x00231DFB`) |
 | `0x02EBB6B0` | `i32` | 0 (zero-filled tail) | the buffer list's entry size: -1 from the list set-up `0x00536120`, then `0x28`; the append `0x005360C0` allocates it plus `0x10` (`0x005360D0`-`0x005360D8`) and copies that many bytes, a sign-extended count (`0x005360FD`) | `0x00536120` (`0x00536130`, as `+0x10` of the list at `0x02EBB6A0`); `0x00467BB0` (`0x00467BC7`) | `0x005360C0` (`0x005360D0`, `0x005360FD`), from `0x00467BF0` (`0x00467C87`) |
 | `0x02EBB6B8` | `void*` | 0 (zero-filled tail) | the list's release callback, `0x00467B20`; the unlink `0x00536140` calls it on the entry's data (`0x0053615B`-`0x0053616D`) | `0x00536120`, 0 (`0x0053612C`); `0x00467BB0` (`0x00467BD1`) | `0x00536140` (`0x0053615B`), from `0x00467CB0` |
 
@@ -1081,3 +1081,5 @@ otherwise.
 - [section_014, the LGT2 light set](../EBP-Script-Files/ebp-lighting-lgt2.md)
 - [The EFX and EFB effect containers](../Graphics/effect-files-efx-efb.md)
 - [MRP menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md)
+- [`shadow-settings-01f82ea8-accesses.tsv`](shadow-settings-01f82ea8-accesses.tsv): every censused access to the
+  shadow object through its pointer `[0x01F82EA8]`, all in the direction setter `0x001F08A0` (18 rows).

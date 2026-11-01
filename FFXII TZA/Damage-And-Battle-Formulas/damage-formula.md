@@ -16,9 +16,9 @@ with a little randomness.
   sleeping target takes 50 % more.
 - **Magicks** scale with Magick Power against Magick Resist; Faith raises them, Shell lowers them, and a
   sleeping target takes 50 % more.
-- **Augments** such as Adrenaline's (augment 10) add their own multipliers after the status
-  multipliers, Oil's ×3 and Float's miss among them, and the element stages apply last
-  ([Elements](elements.md)).
+- **Augments** such as Adrenaline (augment 10) add their own multipliers after the status
+  multipliers, and the element stages apply last, among them Oil's ×3 on fire damage and Float's
+  miss on earth magicks ([Elements](elements.md)).
 
 ## How it works
 
@@ -35,7 +35,7 @@ is replaced by the record's word `+0x10` (`0x00385FE4`-`0x00385FF7`). Then:
    (`0x00386029`-`0x00386087`).
 3. An enemy-table target with KO, Stone or X-Zone gets result kind 6 at once (`0x00386091`-`0x003860A7`).
 4. It builds the context with `0x003847C0` (`0x003860D5`).
-5. It copies bits 1-3 of the memo record's byte `+0x12` into result `+0x18` (`0x003860DF`-`0x00386108`), and
+5. It copies bits `0xE` of the memo record's byte `+0x12` into result `+0x18` (`0x003860DF`-`0x00386108`), and
    goes on only when the result kind is 0 or 9, setting it to 0 (`0x0038610B`-`0x0038612D`).
 6. It takes the recipe from the action row, or from the weapon for recipe 0 (`0x0038617E`-`0x00386210`).
 7. Against a target with KO, Stone or X-Zone, no slot runs (`0x02AEDFB8` = 1) unless the recipe is 1, 2, 3,
@@ -54,7 +54,7 @@ The slots pass their numbers to the resolver through one static block of `0xA8` 
 under Layouts. `0x003849B0` resets it before each resolve and each first-list run (`0x00386001`, `0x0038585E`)
 (`0x003849B2`-`0x00384B03`):
 
-- -1 ("none") goes into the Mist-charge words `0x02AEDFF8` and `0x02AEDFFC` and the HP, MP, stat, level and poach
+- -1 (no value) goes into the Mist-charge words `0x02AEDFF8` and `0x02AEDFFC` and the HP, MP, stat, level and poach
   words `0x02AEE004`-`0x02AEE050`, except the steal bytes `0x02AEE04C`-`0x02AEE04E`;
 - 0 goes into the flags, chances and bands `0x02AEDFB8`-`0x02AEDFD0` and `0x02AEDFD8`-`0x02AEDFF4`, the word `0x02AEE000`,
   the steal bytes and the scale, attack and defence `0x02AEE054`-`0x02AEE05C`;
@@ -221,12 +221,12 @@ Slots 97 and 93 test the user's merged augment bits and the target's layers (`0x
 | 8 | Spellbreaker | user HP Critical | ×2 party, ×1.7 others |
 | 103 | Serenity | user at full HP | ×1.5 party, ×1.4 others |
 | 5 (target) | Last Stand | target HP Critical | ×0.5 party, ÷3 others |
-| 40 (target) | none (Resist Piercing) | the user's main hand is a gun or a measure (class 9 or 16) | ×0.125 |
+| 40 (target) | no license (the augment is Resist Piercing) | the user's main hand is a gun or a measure (class 9 or 16) | ×0.125 |
 
 ## Layouts
 
 The scratch block, `0xA8` bytes at `0x02AEDFB8` in the zero-filled tail of `.data`. "Slot n" is calculator slot n
-([Formula slots](formula-slots.md)); "result" is the action result record. The words read as -1 = none are set
+([Formula slots](formula-slots.md)); "result" is the action result record. The words where -1 means no value are set
 to -1 by the reset (above).
 
 `BattleFormulaScratch` (`0xA8` bytes, offsets from the start of the block):

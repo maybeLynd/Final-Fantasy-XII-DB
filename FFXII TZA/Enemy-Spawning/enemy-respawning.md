@@ -123,14 +123,14 @@ stamp is exactly `counter + 1`.
 A zone script puts an enemy in a group with verb `0x3030` `btlAtelSetEventFlagGroup(group, mode)`.
 Its handler `0x0050F8C0` pops two ints and calls `0x00239710(actor, mode, group)`, which needs the
 actor's battle unit (`0x0031B760`, else returns -1) and writes unit `+0xE98` = `group` and `+0xE99`
-= `(old & ~3) | (mode == 1) | (mode == 2) << 1`, bits 2-7 kept (`0x00239746`-`0x00239766`), then calls
+= `(old & ~3) | (mode == 1) | (mode == 2) << 1`, mask `0xFC` kept (`0x00239746`-`0x00239766`), then calls
 `0x00306E60(unit, 1)`.
 
 `0x00306E60(unit, add)` is the only writer of the member mask. It returns without effect when the unit
 is null, its stats record `+0x698` is null or not kind 1, or its group byte `+0xE98` is 0. It
 resolves the unit's slot as `0x002360D0(map at +0x40, 0x00263D30(actor at +0x10))` and rejects a
 negative. The bit is `(int64)(int32)(1 << (slot & 31))`: a 32-bit shift, sign-extended, so slot 31
-covers bits 31-63 and slots 32 and above alias onto `slot & 31`. With `add` set the member mask
+covers the bits under mask `0xFFFFFFFF80000000` and slots 32 and above alias onto `slot & 31`. With `add` set the member mask
 gains the bit, otherwise it loses it; the dead bit is cleared either way (`0x00306EEA`).
 
 Range retirement (`0x002350C0`, `0x002352BB`) is the one caller with `add` = 0: a retired member leaves
@@ -187,8 +187,8 @@ never releases it. The next area entry does clear the two `0x02089340` bits: `0x
 non-zero (`0x002342F4`), opens with `0x02089340 = (0x02089340 & 0xFFFFC01E) | 0x10` (`0x0023432D`, `0x00234339`,
 stored at `0x00234343`).
 
-The AND clears bit `0x1` and bits 5 to 13, among them the lock bits `0x20` and `0x80` and the
-gate bits 8 to 11, and keeps bits 1 to 4 and 14 to 31, so the "nothing pending" bit `0x2` is kept; the OR sets
+The AND clears bit `0x1` and the bits under mask `0x3FE0`, among them the lock bits `0x20` and `0x80` and the
+gate the bits under mask `0xF00`, and keeps the bits under mask `0xFFFFC01E`, so the "nothing pending" bit `0x2` is kept; the OR sets
 bit `0x10`. The row-12 inhibitions stay until their off form runs.
 
 ### Delivering the completion to the script
@@ -319,17 +319,17 @@ Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x0208D45C` | `u32` | step counter, +1 per simulation step whose timer 0 moved (0x0032A100); 0 at reset |  |
-| `0x01DFE0B8` | `f32` | frame-rate scale, 1.0 at 30 fps, 2.0 at 60; fps = (int)(30.0 * scale) |  |
-| `0x02089370` | `u16` | last field |  |
-| `0x02089372` | `u16` | field two transitions ago |  |
-| `0x02089374` | `u32` | counter at the last transition |  |
-| `0x0208936C` | `i32` | return window, seconds (300) |  |
-| `0x0208D454` | `u8` | bank parity |  |
-| `0x0208D354` | `u16[2][64]` | spawn-history counters |  |
-| `0x02EBF190` | `void*` | party block; dword +0 stamp 0x05071901 |  |
-| `0x02089340` | `u32` | battle flags: bit 0x2 nothing pending, bit 0x20 and 0x80 the lock, bits 0xF00 close the gate |  |
-| `0x02098E68` | `void*` | the 64-word field table; word 3 receives the completed group |  |
+| `0x0208D45C` | `u32` |  | step counter, +1 per simulation step whose timer 0 moved (`0x0032A100`); 0 at reset |
+| `0x01DFE0B8` | `f32` |  | frame-rate scale, 1.0 at 30 fps, 2.0 at 60; fps = (int)(30.0 * scale) |
+| `0x02089370` | `u16` |  | last field |
+| `0x02089372` | `u16` |  | field two transitions ago |
+| `0x02089374` | `u32` |  | counter at the last transition |
+| `0x0208936C` | `i32` |  | return window, seconds (300) |
+| `0x0208D454` | `u8` |  | bank parity |
+| `0x0208D354` | `u16[2][64]` |  | spawn-history counters |
+| `0x02EBF190` | `void*` |  | party block; dword +0 stamp `0x05071901` |
+| `0x02089340` | `u32` |  | battle flags: bit `0x2` nothing pending, bit `0x20` and `0x80` the lock, bits `0xF00` close the gate |
+| `0x02098E68` | `void*` |  | the 64-word field table; word 3 receives the completed group |
 
 ## Shipped data
 
@@ -403,3 +403,10 @@ and only the autosave's restore brings them back.
 - [Enmity](../Enemy-AI-And-Gambits/enmity.md): the threat bytes the bank carries.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the spawn-keep images.
 - [Random number generators](../Random-Numbers/random-number-generators.md): the roll.
+- [`enemy-respawning-groups.tsv`](enemy-respawning-groups.tsv): every censused access to the group table
+  (`SpawnGroupTable`, 64 records of `0x18` bytes at `0x02EC13C0`), one row per instruction (19 rows).
+
+In this access table, `function`, `name` and `site` give the function, its name and the instruction's address,
+`disp` the offset the instruction reaches from the start of a group record, `kind` a read (`r`), a write (`w`) or
+both (`rw`), `instruction` the instruction itself, and `route` `array 0x02EC13C0 reg`: a record of the table at
+`0x02EC13C0` picked by an index in a register.

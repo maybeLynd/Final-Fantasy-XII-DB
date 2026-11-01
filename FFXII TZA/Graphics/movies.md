@@ -68,19 +68,19 @@ The movie player is the singleton `0x01F81218` (getter `0x001B7F20`), `0xBB8` by
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `i32` | movie id; -1 when idle |  |
-| `+0x004` | `i32` | state (0 to 6, below) |  |
-| `+0x008` | `u8` | the result of 0x0067A410, refreshed every update |  |
-| `+0x009` | `u8` | a frame has been fetched (0x0067ABF0) |  |
-| `+0x00C` | `f32` | sound volume: the Music volume option / 100 |  |
-| `+0x010` | `f32` | fade-out time left, seconds |  |
-| `+0x018` | `u64` | position, from 0x0067A2F0 |  |
-| `+0x020` | `u64` | duration, from 0x0067A340 |  |
-| `+0x02D` | `u8` | the fade-out also lowers the sound |  |
-| `+0x678` | `...` | the PVideoPlaybackWin32 playback object |  |
-| `+0xB5D` | `u8` | set by a stop request without fade |  |
-| `+0xBAC` | `u8` | a fading stop was requested |  |
-| `+0xBB0` | `u32` | audio language flag (+0x678 + 0x538): 1 when the Voice language option bit is set |  |
+| `+0x000` | `i32` |  | movie id; -1 when idle |
+| `+0x004` | `i32` |  | state (0 to 6, below) |
+| `+0x008` | `u8` |  | the result of `0x0067A410`, refreshed every update |
+| `+0x009` | `u8` |  | a frame has been fetched (`0x0067ABF0`) |
+| `+0x00C` | `f32` |  | sound volume: the Music volume option / 100 |
+| `+0x010` | `f32` |  | fade-out time left, seconds |
+| `+0x018` | `u64` |  | position, from `0x0067A2F0` |
+| `+0x020` | `u64` |  | duration, from `0x0067A340` |
+| `+0x02D` | `u8` |  | the fade-out also lowers the sound |
+| `+0x678` | `...` |  | the PVideoPlaybackWin32 playback object |
+| `+0xB5D` | `u8` |  | set by a stop request without fade |
+| `+0xBAC` | `u8` |  | a fading stop was requested |
+| `+0xBB0` | `u32` |  | audio language flag (`+0x678` + `0x538`): 1 when the Voice language option bit is set |
 
 ## Shipped data
 

@@ -373,7 +373,7 @@ GS command buffer record (`0x02EBEFC0`, `0x02EBEFD8`), `0x18` bytes:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | begin | [`0x01FD4A78`] + offset * 16 |
-| `+0x08` | `void*` | write cursor |  |
+| `+0x08` | `void*` |  | write cursor |
 | `+0x10` | `u32` | capacity | `0x200` |
 | `+0x14` | `u32` | ready | 1 after `0x004FE420` |
 

@@ -18,8 +18,8 @@ cleared a bit would freeze that part of the interface while the rest kept moving
 ### The word and its reader
 
 `0x01E0C464` is a dword that holds `0xFFFFFFFF` in the image. Its sixteen read sites are all inside
-`0x0028E290`, the interface pump, and no instruction in the image writes it. The pump tests bits
-0 to 3, 5, 6 and 7 as byte tests and bits 8 to 15 as dword tests; bit `0x10` (`0x0010`) is tested
+`0x0028E290`, the interface pump, and no instruction in the image writes it. The pump tests
+the bits under mask `0xEF` as byte tests and the bits under mask `0xFF00` as dword tests; bit `0x10` (`0x0010`) is tested
 nowhere. Bit `0x2` is tested twice, so sixteen tests gate sixteen groups over fifteen distinct bits.
 
 ### Where the pump runs
@@ -86,36 +86,36 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01E0C464` | `u32` | the enable word; 0xFFFFFFFF in the image; readers: the sixteen tests in 0x0028E290; writers: none |  |
-| `0x01E0C2B0` | `u16` | the pump argument; bit 0x1 enables group 6; writers 0x00226280 and 0x0036D840 through 0x002547C0, and 0x00253970 |  |
-| `0x0209BE80` | `void*` | the UI manager object |  |
+| `0x01E0C464` | `u32` |  | the enable word; `0xFFFFFFFF` in the image; readers: the sixteen tests in `0x0028E290`; writers: none |
+| `0x01E0C2B0` | `u16` |  | the pump argument; bit `0x1` enables group 6; writers `0x00226280` and `0x0036D840` through `0x002547C0`, and `0x00253970` |
+| `0x0209BE80` | `void*` |  | the UI manager object |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00080` | `...` | group 2 sub-object |  |
-| `+0x05380` | `...` | group 1 sub-object |  |
-| `+0x057E0` | `...` | groups 5 and 14 sub-object |  |
-| `+0x07EA0` | `...` | group 16 sub-object |  |
-| `+0x07FB0` | `...` | group 9 sub-object |  |
-| `+0x000A0` | `...` | group 12 sub-object |  |
-| `+0x0A0D0` | `...` | group 8 sub-object |  |
-| `+0x10EF0` | `...` | group 3's list |  |
-| `+0x10F00` | `...` | group 3's rebuilt head |  |
-| `+0x10F10` | `...` | group 6's two objects | with `+0x10F20` |
-| `+0x10F20` | `...` | group 6's two objects | with `+0x10F10` |
-| `+0x10F30` | `...` | group 4's object |  |
-| `+0x10F40` | `...` | group 13's object |  |
-| `+0x10F68` | `u32` | flags: bit 0x2 written by group 7, bit 0x8 gates group 3's 0x002917E0 call, bit 0x100 gates group 12 |  |
-| `+0x10F6C` | `u32` | group 3's arguments |  |
-| `+0x10F70` | `u16` | group 3's arguments |  |
-| `+0x10F72` | `u16` | group 3's arguments |  |
-| `+0x10F78` | `...` | group 5's gate |  |
-| `+0x10F80` | `...` | group 15's gate |  |
+| `+0x00080` | `...` |  | group 2 sub-object |
+| `+0x05380` | `...` |  | group 1 sub-object |
+| `+0x057E0` | `...` |  | groups 5 and 14 sub-object |
+| `+0x07EA0` | `...` |  | group 16 sub-object |
+| `+0x07FB0` | `...` |  | group 9 sub-object |
+| `+0x000A0` | `...` |  | group 12 sub-object |
+| `+0x0A0D0` | `...` |  | group 8 sub-object |
+| `+0x10EF0` | `...` |  | group 3's list |
+| `+0x10F00` | `...` |  | group 3's rebuilt head |
+| `+0x10F10` | `...` |  | group 6's two objects; with `+0x10F20` |
+| `+0x10F20` | `...` |  | group 6's two objects; with `+0x10F10` |
+| `+0x10F30` | `...` |  | group 4's object |
+| `+0x10F40` | `...` |  | group 13's object |
+| `+0x10F68` | `u32` |  | flags: bit `0x2` written by group 7, bit `0x8` gates group 3's `0x002917E0` call, bit `0x100` gates group 12 |
+| `+0x10F6C` | `u32` |  | group 3's arguments |
+| `+0x10F70` | `u16` |  | group 3's arguments |
+| `+0x10F72` | `u16` |  | group 3's arguments |
+| `+0x10F78` | `...` |  | group 5's gate |
+| `+0x10F80` | `...` |  | group 15's gate |
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02092748` | `u32` | set to 1 around the 0x00184960 call in 0x002507C0 |  |
-| `0x0208F570` | `u32` | accumulates 0x00184950() per 0x002507C0 call |  |
+| `0x02092748` | `u32` |  | set to 1 around the `0x00184960` call in `0x002507C0` |
+| `0x0208F570` | `u32` |  | accumulates `0x00184950`() per `0x002507C0` call |
 
 ## Shipped data
 
@@ -123,7 +123,7 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 |---|---|
 | the enable word | `0xFFFFFFFF` in the image, no writer |
 | groups, distinct bits | 16, 15 (bit `0x10` unused) |
-| test widths | 8 byte tests (bits 0 to 7), 8 dword tests (bits 8 to 15) |
+| test widths | 8 byte tests (mask `0xFF`), 8 dword tests (mask `0xFF00`) |
 | `0x00296860`'s second argument | 6 |
 
 ## Operations
@@ -141,15 +141,55 @@ object pointers the gates test.
 
 - The word is an authored switch board left fully on; clearing a bit at run time is the only way
   to use it, since nothing in the game writes it.
-- A port that iterates bits 0 to 15 in order runs the groups in the wrong order; the frame order
+- A port that iterates the bits under mask `0xFFFF` in order runs the groups in the wrong order; the frame order
   above is the one the handlers were written against.
 - Bit `0x2` is one bit for two groups; a one-bit-per-subsystem design cannot express it.
 - Group 6 is the only group the game switches off at run time, through the pump argument rather
   than the enable word: a world lock whose record clears bit `0x1000000000` holds it for the lock's duration.
-- Half the tests are byte-wide: a port that stores the word as a byte loses bits 8 to 15.
+- Half the tests are byte-wide: a port that stores the word as a byte loses the bits under mask `0xFF00`.
 
 ## Related
 
 - [Frame update order](frame-update-order.md): where `0x002507C0` sits in the field frame.
 - [UI request router](../Menus-And-HUD/menus.md): the UI manager object the
   groups update.
+- [`subsystem-update-flags-manager-singleton-0209be80-accesses.tsv`](subsystem-update-flags-manager-singleton-0209be80-accesses.tsv):
+  every censused access to the UI manager object, the battle HUD's owner object ([HUD](../Menus-And-HUD/hud.md)), reached
+  through its pointer `[0x0209BE80]` (1,435 rows).
+- [`subsystem-update-flags-manager-sub-0209be80-00a0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-00a0-accesses.tsv):
+  every censused access to its group 12 sub-object at `+0xA0` (83 rows).
+- [`manager-sub-00a0e-ntry-accesses.tsv`](manager-sub-00a0e-ntry-accesses.tsv): every censused access to the 64
+  `0x100`-byte entries from `+0x20` of that sub-object (51 rows).
+- [`manager-sub-0209be80-5380-accesses.tsv`](manager-sub-0209be80-5380-accesses.tsv): every censused access to its
+  group 1 sub-object at `+0x5380`, the part the EXP, LP and combo numbers go to (65 rows).
+- [`manager-sub-5380-pool-a-entry-accesses.tsv`](manager-sub-5380-pool-a-entry-accesses.tsv): every censused access
+  to the first of that part's three pools: 12 entries of `0x30` bytes from its `+0x0` (41 rows).
+- [`manager-sub-5380-pool-b-entry-accesses.tsv`](manager-sub-5380-pool-b-entry-accesses.tsv): every censused access
+  to the second pool: 6 entries of `0x28` bytes from `+0x240` (2 rows).
+- [`manager-sub-5380-pool-c-entry-accesses.tsv`](manager-sub-5380-pool-c-entry-accesses.tsv): every censused access
+  to the third pool: 6 entries of `0x28` bytes from `+0x330` (2 rows).
+- [`subsystem-update-flags-manager-sub-0209be80-57e0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-57e0-accesses.tsv):
+  every censused access to its sub-object for groups 5 and 14 at `+0x57E0`, the world-object manager (472 rows).
+- [`subsystem-update-flags-manager-sub-57e0-array-record-accesses.tsv`](subsystem-update-flags-manager-sub-57e0-array-record-accesses.tsv):
+  every censused access to the record at that sub-object's `+0x270` (30 rows).
+- [`subsystem-update-flags-manager-sub-0209be80-7ea0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-7ea0-accesses.tsv):
+  every censused access to its group 16 sub-object at `+0x7EA0`, the selection marker (124 rows).
+- [`manager-sub-7ea0e-ntry-accesses.tsv`](manager-sub-7ea0e-ntry-accesses.tsv): every censused access to the
+  marker's two `0x20`-byte slots from its `+0x30` (50 rows).
+- [`subsystem-update-flags-manager-sub-0209be80-7fb0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-7fb0-accesses.tsv):
+  every censused access to its group 9 sub-object at `+0x7FB0`, the level-up blink part (90 rows).
+- [`manager-sub-7fb0-record-accesses.tsv`](manager-sub-7fb0-record-accesses.tsv): every censused access to that
+  part's six `0x110`-byte records, one per unit whose level went up (95 rows).
+- [`subsystem-update-flags-manager-sub-0209be80-8fa0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-8fa0-accesses.tsv):
+  every censused access to its sub-object at `+0x8FA0`, the help block (187 rows).
+- [`subsystem-update-flags-manager-sub-8fa0-slot-record-02b8-accesses.tsv`](subsystem-update-flags-manager-sub-8fa0-slot-record-02b8-accesses.tsv):
+  every censused access to the two `0x2B8`-byte records from the help block's `+0xAC0` (60 rows).
+- [`subsystem-update-flags-manager-sub-0209be80-a0d0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-a0d0-accesses.tsv):
+  every censused access to its group 8 sub-object at `+0xA0D0` (9 rows).
+- [`manager-sub-0d0-record-accesses.tsv`](manager-sub-0d0-record-accesses.tsv): every censused access to the two
+  `0x110`-byte elements at the start of that sub-object (1 row).
+- [`subsystem-update-flags-manager-sub-0209be80-ab30-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-ab30-accesses.tsv):
+  every censused access to its sub-object at `+0xAB30`, the battle menu ([widgets](../Menus-And-HUD/widgets.md)) (149 rows).
+
+In the `route` cells of these tables, `ManagerSingleton0209BE80` names the UI manager object and
+`ManagerSub0209BE80_` with an offset its sub-object at that offset.

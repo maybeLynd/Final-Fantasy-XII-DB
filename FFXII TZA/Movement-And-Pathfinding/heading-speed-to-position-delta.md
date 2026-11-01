@@ -8,19 +8,21 @@ addresses: "0x002E5030, 0x002E4380, 0x00424080, 0x002E5610, 0x002E5380, 0x002E54
 ## What the player sees
 
 Every character, monster and NPC moves as a sequence of small steps, each computed from a facing,
-a climb angle and a speed. Walking uphill is slower across the ground than walking on the flat:
-the step is a true three-dimensional decomposition, and the steeper the climb the less of the
-speed goes forward. A creature flagged as a ground mover gets the flat version instead, where the
-whole speed goes forward whatever the slope.
+a climb angle and a speed. A character the game steers toward a point above or below it aims its
+step at that point: part of the speed goes into the climb, so it covers less ground per frame
+than one steered toward a point at its own height, and the steeper the aim the less of the speed
+goes forward. A creature flagged as a ground mover gets the flat version instead, where the whole
+speed goes forward whatever the aim.
 
 Some things never walk. The engine checks an actor's class before it accepts a speed or a heading
 or produces a step, and anything outside that class silently refuses: no error, no movement, a
 zero step.
 
-Animation can drive the character instead of the controller. In certain animation states the
-facing and speed the game computed are set aside and the animation's own values substituted,
-decaying by a fixed factor each frame until control returns. That is the mechanism behind
-knockback slides and animation-locked lunges: the stick is ignored, not merely overridden later.
+Animation can take over the step. When a character that has been in one animation state for at
+least 30 frames is given a speed of 0, the step keeps the facing and speed the character had a
+moment before, shrinking to 0.83 of itself each frame until it falls to 0.05: the character
+slides to a halt instead of stopping dead, and the facing and speed the game sets meanwhile are
+set aside. Two other animation states lower the speed each frame, and one holds it at 0.
 
 ## How it works
 
@@ -168,8 +170,8 @@ It then rewrites the body's mask word `+0x110` through `0x002E9BB0`/`0x002EC5B0`
 when the speed is 0, or bit `0x400` set when the actor is the party focus (`0x003590D0` → `0x003588B0`),
 mode 1 also clearing bits `0x4` and `0x8`. It has ten call sites.
 
-`0x0026D6A0(actor, authored)` is the scaled form: `0x0026D6F0(actor, [0x01DFE0BC] * authored, authored
-> 0 ? 0 : 2)`. `0x0026A330(actor, speed)` calls `0x0026D6F0(actor, speed, speed > 0)` unless
+`0x0026D6A0(actor, authored)` is the scaled form: `0x0026D6F0(actor, [0x01DFE0BC] * authored, authored >
+0 ? 0 : 2)`. `0x0026A330(actor, speed)` calls `0x0026D6F0(actor, speed, speed > 0)` unless
 `0x002E9780()` is set. `0x002E55C0(actor, context)` cancels: the request's mode byte `+0x29` = 0,
 `0x0026C120(actor, 0)` when `+0x28 & 0x7F` is 2, and both speeds zeroed.
 
@@ -203,51 +205,51 @@ WorldActor (actor record):
 | `+0x18` | `u8` | lifecycle | 1 refuses the frame driver |
 | `+0x30` | `void*` | battleUnit |  |
 | `+0xB8` | `void*` | movementContext |  |
-| `+0xC0` | `void*` | controller (secondary context) |  |
+| `+0xC0` | `void*` |  | controller (secondary context) |
 
 Movement context (actor `+0xB8`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `f32[3]` | position |  |
-| `+0x040` | `f32[3]` | offset added on the three-dimensional path when +0x107 bit 0x2 (subtracted after the flat solve) |  |
+| `+0x040` | `f32[3]` |  | offset added on the three-dimensional path when `+0x107` bit `0x2` (subtracted after the flat solve) |
 | `+0x0A0` | `f32` | pitch |  |
 | `+0x0A4` | `f32` | yaw |  |
 | `+0x0A8` | `f32` | facing (facing page) |  |
-| `+0x0B8` | `f32` | last squared displacement |  |
-| `+0x0D0` | `f32` | requested speed |  |
-| `+0x0F0` | `void*` | steering request: +0x24 f32 speed, +0x28 u8 kind, +0x29 u8 mode |  |
-| `+0x0F8` | `f32` | pass-through magnitude; negative = unset, repaired to the speed |  |
-| `+0x107` | `u8` | bit 0x2 apply the +0x40 offset |  |
+| `+0x0B8` | `f32` |  | last squared displacement |
+| `+0x0D0` | `f32` |  | requested speed |
+| `+0x0F0` | `void*` |  | steering request: `+0x24` f32 speed, `+0x28` u8 kind, `+0x29` u8 mode |
+| `+0x0F8` | `f32` |  | pass-through magnitude; negative = unset, repaired to the speed |
+| `+0x107` | `u8` |  | bit `0x2` apply the `+0x40` offset |
 
 Controller (actor `+0xC0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `i32` | render record id, -1 none |  |
-| `+0x138` | `void*` | movement body |  |
-| `+0x14F` | `u8` | bit 0x1 refuses movement |  |
-| `+0x151` | `u8` | bit 0x1 or bit 0x2 = three-dimensional motion |  |
+| `+0x000` | `i32` |  | render record id, -1 none |
+| `+0x138` | `void*` |  | movement body |
+| `+0x14F` | `u8` |  | bit `0x1` refuses movement |
+| `+0x151` | `u8` |  | bit `0x1` or bit `0x2` = three-dimensional motion |
 
 Movement body (controller `+0x138`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x070` | `f32[4]` | the cell solver's displacement |  |
-| `+0x090` | `u32` | bit 4 the solver moved the body |  |
-| `+0x0C8` | `f32` | published locomotion rate, 108 * speed |  |
-| `+0x110` | `u32` | mask word (0x002E9BB0 / 0x002EC5B0) |  |
+| `+0x090` | `u32` | bit 0x10 the solver moved the body |  |
+| `+0x0C8` | `f32` |  | published locomotion rate, 108 * speed |
+| `+0x110` | `u32` |  | mask word (`0x002E9BB0` / `0x002EC5B0`) |
 
 Character render record ([`0x022C6F28`] + id * `0x740`, 160 records):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `i16` | id, -1 empty |  |
-| `+0x006` | `i16` | -1 required for the save/latch block |  |
-| `+0x0CC` | `u16` | state & 0xFFF |  |
-| `+0x284` | `u32` | bit 0x8000000 gates the save/latch block; non-zero gates the publish |  |
-| `+0x240` | `f32[3]` | pitch, yaw, 0.0 from 0x002E5C10 |  |
-| `+0x457` | `i8` | frame counter, against [0x01DFE0B4] * 30 |  |
+| `+0x000` | `i16` |  | id, -1 empty |
+| `+0x006` | `i16` |  | -1 required for the save/latch block |
+| `+0x0CC` | `u16` |  | state & `0xFFF` |
+| `+0x240` | `f32[3]` |  | pitch, yaw, 0.0 from `0x002E5C10` |
+| `+0x284` | `u32` |  | bit `0x8000000` gates the save/latch block; non-zero gates the publish |
+| `+0x457` | `i8` |  | frame counter, against [`0x01DFE0B4`] * 30 |
 | `+0x610` | `f32` | yaw | the incoming group |
 | `+0x614` | `f32` | speed | the incoming group |
 | `+0x618` | `f32` | accumulator | the incoming group |
@@ -257,9 +259,14 @@ Character render record ([`0x022C6F28`] + id * `0x740`, 160 records):
 | `+0x628` | `f32` | accumulator | the previous group |
 | `+0x62C` | `u16` | flags | the previous group; bit `0x1` = latch |
 
-```
-battle unit: +0x158 f32 speed, +0x15C f32 yaw, +0x160 f32 facing, +0x174 f32 pitch; flag bit 0x40000 holds the speed
-```
+Battle unit:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `+0x158` | `f32` |  | speed; while the unit's flag bit `0x40000` is set the producer leaves the speed alone |
+| `+0x15C` | `f32` | yaw |  |
+| `+0x160` | `f32` | facing |  |
+| `+0x174` | `f32` | pitch |  |
 
 ## Shipped data
 

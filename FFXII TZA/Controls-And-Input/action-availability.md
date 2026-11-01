@@ -9,8 +9,8 @@ addresses: "0x0215F1C0, 0x002E1C20, 0x002E1CA0, 0x002E1CD0, 0x002E0FA0, 0x002545
 
 - During a scene, a movie or a screen fade, the main menu, the battle command menu and the map do not open.
 - Changing the party leader and cycling targets in the field stop working at the same moments.
-- Event skip with Start is offered only while a scene allows it, and Start's event-skip arm never runs while a movie plays (bit `0x80000`). Story movies have a skip of their own, run by the scene's script: Start shows or hides a "[confirm button] Skip" prompt, and the confirm button while the prompt shows ends the movie with a half-second fade. The title screen's opening movie ends on Start or the confirm button, with no prompt.
-- Escape Mode switches itself off while availability bit `0x40`, `0x200` or `0x400` is held (the table below; [Escape Mode](escape.md)).
+- Event skip with Start is offered only while a scene allows it, and Start's event skip never runs while a movie plays. Story movies have a skip of their own, run by the scene's script: Start shows or hides a "[confirm button] Skip" prompt, and the confirm button while the prompt shows ends the movie with a half-second fade. The title screen's opening movie ends on Start or the confirm button, with no prompt.
+- Escape Mode switches itself off at several of these moments, among them movies, screen fades, full-screen menus and the pause menu (the table below; [Escape Mode](escape.md)).
 
 ## How it works
 
@@ -82,7 +82,7 @@ installs, which clears bit `0x1` five times (`0x003C8C97`-`0x003C9085`).
 
 ### Battle selection
 
-`0x00313A00` rewrites row 2 every field frame (`0x00313A68`-`0x00313AF5`). Bits 0, 2-8, 11, 12 and 20 are set while a
+`0x00313A00` rewrites row 2 every field frame (`0x00313A68`-`0x00313AF5`). The bits under mask `0x1019FD` are set while a
 battle unit is selected (`0x02089350`). Bit `0x2` is set then, or while Escape Mode is on (`0x00253B90`). Bit `0x400` follows the
 area's bit `0x8000` (`0x00377C20`). It is called from the field frame (`0x00234624`) and from `0x00313DB0`.
 

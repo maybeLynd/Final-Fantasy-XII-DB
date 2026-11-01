@@ -67,7 +67,7 @@ generator and its other users are on the [RNG page](../Random-Numbers/random-num
 
 `0x00431080(record, x, operand)` reads the operand's pairs from the address its payload decodes to.
 The count is the operand's kind byte, the period the `u16` at `+0x08` (A) or `+0x0A` (B), and the curve
-mode bits `0x3` (A) or 2–3 (B) of `+0x0E`:
+mode bits `0x3` (A) or `0xC` (B) of `+0x0E`:
 
 1. When the period is non-zero and smaller than `x`, `x` becomes `x % period`.
 2. Mode 2 or 3 gives 0.
@@ -96,7 +96,7 @@ so the result is garbage.
 `0x0042FDB0(record, x)` evaluates a colour from four consecutive expression records (r, g, b, a) and
 the mode byte `+0x40`:
 
-- bits 0–1 = 0: each component is its own expression (`0x004314E0`);
+- mask `0x3` = 0: each component is its own expression (`0x004314E0`);
 - = 3: one value, the first record's, for r, g and b;
 - = 1: each component combines the first record's channel-0 value with its own channel-1 operand;
 - = 2: each component combines its own channel-0 value with the first record's channel-1 operand `b`
@@ -120,13 +120,13 @@ Expression record (`0x10`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | operand A payload (reference or curve address, encoded) |  |
-| `+0x04` | `u32` | operand B payload |  |
-| `+0x08` | `u16` | operand A curve period (0 = none) |  |
-| `+0x0A` | `u16` | operand B curve period |  |
-| `+0x0C` | `u8` | operand A kind (0 absent, 1 reference, 2+ curve pair count) |  |
-| `+0x0D` | `u8` | operand B kind |  |
-| `+0x0E` | `u16` | bits 0-1 A curve mode, bits 2-3 B curve mode, bits 0xF0 operator |  |
+| `+0x00` | `u32` |  | operand A payload (reference or curve address, encoded) |
+| `+0x04` | `u32` |  | operand B payload |
+| `+0x08` | `u16` |  | operand A curve period (0 = none) |
+| `+0x0A` | `u16` |  | operand B curve period |
+| `+0x0C` | `u8` |  | operand A kind (0 absent, 1 reference, 2+ curve pair count) |
+| `+0x0D` | `u8` |  | operand B kind |
+| `+0x0E` | `u16` |  | mask `0x3` A curve mode, mask `0xC` B curve mode, bits `0xF0` operator |
 
 ```
 curve pair   s32 x, s32 y

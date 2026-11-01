@@ -156,7 +156,7 @@ Counted buffer, 16 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | count | bits 0..30 element count, bit `0x80000000` storage not owned |
+| `+0x00` | `u32` | count | mask `0x7FFFFFFF` element count, bit `0x80000000` storage not owned |
 | `+0x08` | `u64` | data | pointer; the element itself when the count is below 2 (inline form) |
 
 PInputSource vtable, `0x20` bytes per class from `0x01CD6260`; the u64 at `-0x08` is the RTTI complete-object locator:
@@ -171,9 +171,9 @@ PInputSource vtable, `0x20` bytes per class from `0x01CD6260`; the u64 at `-0x08
 
 | Fact | Value |
 |---|---|
-| deleting destructors | about 2,000 bodies under 400 bytes that test bit `0x1` of the incoming flag and then call a deallocator (1,985 to 2,008 depending on how chained entries and register moves are followed) |
-| one-bit form | about 400, most through `0x00809950`, the rest through `0x00584730` |
-| two-bit form | about 1,600; bit-clear side mostly `0x00584730`, then `0x007AD450` and `0x0085E710`; bit-set side `0x0016D6A0` in all |
+| deleting destructors | 1,937 functions, each counted once with its chained exception-table entries: each tests bit `0x1` of the incoming flag, in `edx` or in a register `edx` was copied to, with `test` followed by `je` or `jne`, and on the bit-set side calls `0x00809950`, `0x00210EB0`, `0x00584730`, `0x007AD450`, `0x0085E710` or `0x0016D6A0` with the object, or the object moved by a constant offset, in `rcx`; sizes 43 to 317 bytes |
+| one-bit form | 331, which do not test bit `0x4`: 330 call `0x00809950`, and `0x00158DA0` calls `0x00210EB0`, which jumps on to `free` |
+| two-bit form | 1,606, which test bit `0x4` after bit `0x1`: bit-clear side `0x00584730` (1,494), `0x007AD450` (93) and `0x0085E710` (19); bit-set side `0x0016D6A0` in all 1,606 |
 | `PInputSource` family | 26 vtables at `0x01CD6268`–`0x01CD6588`; sizes `0x28` (20), `0x40` (4), `0x38` (2) |
 
 The member lists beside this page, each named `object-construction-and-destruction-<list>.tsv`, list
@@ -217,6 +217,101 @@ compiler and library forms by function address; each was profiled against the im
 - [Image hardening](image-hardening.md): the `ret 0` body at `0x0016D6A0`.
 - [Lazy statics and one-time initialisation](lazy-statics-and-one-time-init.md): objects built on first
   use.
-- `memory-and-allocation.md` and `msvc-containers.md`: the allocators and containers behind these frees.
+- [`memory-and-allocation.md`](memory-and-allocation.md) and [`msvc-containers.md`](msvc-containers.md): the allocators and containers behind these frees.
 - [Class hierarchy](../Engine-Core/class-hierarchy.md) and
   [vtable methods](../Engine-Core/vtable-methods.md): every RTTI-named vtable and slot.
+- [`object-construction-and-destruction-counted-buffer-field-replace-98b.tsv`](object-construction-and-destruction-counted-buffer-field-replace-98b.tsv):
+  98-byte functions that replace a counted buffer field: they take the new size and buffer from a getter, allocate,
+  free the record's old buffer through `0x00584730` when the record owns it, and store the size and pointer (21 rows).
+- [`object-construction-and-destruction-counted-buffer-field-replace-99b.tsv`](object-construction-and-destruction-counted-buffer-field-replace-99b.tsv):
+  the 99-byte form of the same replace, which tests the ownership flag in `edx` (20 rows).
+- [`object-construction-and-destruction-counted-buffer-list-materialisation.tsv`](object-construction-and-destruction-counted-buffer-list-materialisation.tsv):
+  222-byte functions that count the intrusive list at a global and, when the record's count differs, allocate that
+  many pointers through `0x0017D260`, zero them, free the old buffer through `0x00584730`, store the count and pointer
+  and copy the list in (17 rows).
+- [`object-construction-and-destruction-counted-buffer-release-and-clear.tsv`](object-construction-and-destruction-counted-buffer-release-and-clear.tsv):
+  68-byte functions that free a counted buffer through `0x00584730` when the record owns it and zero its size and
+  pointer either way (12 rows).
+- [`object-construction-and-destruction-intrusive-virtual-node-dispose-loop.tsv`](object-construction-and-destruction-intrusive-virtual-node-dispose-loop.tsv):
+  functions that walk the circular intrusive list at `[rcx]` and dispose of each node through slot `+0x18` of the
+  vtable at `[rdi+0x10]` until they are back at the head (12 rows).
+- [`object-construction-and-destruction-malloc-record-emplace-adapters.tsv`](object-construction-and-destruction-malloc-record-emplace-adapters.tsv):
+  functions that allocate a `0x18`-byte record with `malloc`, initialise it when the type needs it and push it into
+  the caller's container (growth `0x001AB570`, member fetch `0x0018B4E0`), ending with a jump to `0x0018AFF0` (14 rows).
+- [`object-construction-and-destruction-nativeadapter-boundedrangecopycompare.tsv`](object-construction-and-destruction-nativeadapter-boundedrangecopycompare.tsv):
+  404-byte functions that copy and compare a bounded range into storage anchored at `[rcx+8]` through `0x0016D720`,
+  `0x0016D840` and `0x001A3100`, checked with `memcmp` (`0x00861ED2`) (4 rows).
+- [`object-construction-and-destruction-nativeadapter-containerpopfront.tsv`](object-construction-and-destruction-nativeadapter-containerpopfront.tsv):
+  functions that, when the count at `+0x48` is not 0, take the head node from `+0x30`, lower the count, run
+  `0x0016D6D0` and `0x0016DA60` on the node, call slot 3 of the object at `+0x50` with `0x28` and run `0x00199DB0` on
+  `+0x58` (4 rows).
+- [`object-construction-and-destruction-nativeadapter-countedalignedfreeloopself.tsv`](object-construction-and-destruction-nativeadapter-countedalignedfreeloopself.tsv):
+  functions that free each owned pointer of the counted array of 16-byte elements at `[this+8]` through `0x00584730`,
+  then free the object itself the same way (4 rows).
+- [`object-construction-and-destruction-nativeadapter-countedemberloop.tsv`](object-construction-and-destruction-nativeadapter-countedemberloop.tsv):
+  functions that, when `+0x90` is 0 and the count argument is not, call a member operation and then `0x00199DB0` on
+  `+0x20` once per count, stepping the source by `0xA` (4 rows).
+- [`object-construction-and-destruction-nativeadapter-dynamicoffsetrefflagbounded.tsv`](object-construction-and-destruction-nativeadapter-dynamicoffsetrefflagbounded.tsv):
+  functions that compute an element pointer from the offsets at `+0x18` and `+0x48`, bound the index against its
+  counted buffer's count and look the element up, returning `0xD` when the lookup fails (4 rows).
+- [`object-construction-and-destruction-nativeadapter-flaggedteardownchain.tsv`](object-construction-and-destruction-nativeadapter-flaggedteardownchain.tsv):
+  functions that close the lock record at `+0x90` through `0x005CD6D0` when the byte at `+0xB8` is set, tear down
+  `+0x58` and `+0x20`, and end with a jump to a finishing function (4 rows).
+- [`object-construction-and-destruction-nativeadapter-lazysingletonallocinit.tsv`](object-construction-and-destruction-nativeadapter-lazysingletonallocinit.tsv):
+  functions that, while their global is null, allocate the object through `0x00210EC0`, initialise it and store it in
+  the global (4 rows).
+- [`object-construction-and-destruction-nativeadapter-multirecordvtableinit.tsv`](object-construction-and-destruction-nativeadapter-multirecordvtableinit.tsv):
+  functions that zero three qwords of the output record, install vtables through `0x001EDF00` on `+0x18` and a stack
+  record, zero `+0x20` and run `0x00199DB0`, `0x005CC8A0` and `0x005CD0A0` (4 rows).
+- [`object-construction-and-destruction-nativeadapter-refflagalignedfreeclear.tsv`](object-construction-and-destruction-nativeadapter-refflagalignedfreeclear.tsv):
+  functions that free the buffer through `0x00584730` when bit `0x80000000` of the count at `[this]` is clear, then
+  zero the pointer and size (4 rows).
+- [`object-construction-and-destruction-nativeadapter-refflagsiblingalignedfreeinit.tsv`](object-construction-and-destruction-nativeadapter-refflagsiblingalignedfreeinit.tsv):
+  functions that run two member operations on the argument, free the buffer at `[rbx+0x40]` through `0x00584730` and
+  clear its fields when the count's bit `0x80000000` and the count allow it, run a member operation and return 1 (5
+  rows).
+- [`object-construction-and-destruction-nativeadapter-refflagsiblingalignedfreereleasethis.tsv`](object-construction-and-destruction-nativeadapter-refflagsiblingalignedfreereleasethis.tsv):
+  functions that free the buffer at `+0x10` through `0x00584730` when the count's bit `0x80000000` allows it and clear
+  both fields (5 rows).
+- [`object-construction-and-destruction-nativeadapter-refflagsiblingalignedfreetail.tsv`](object-construction-and-destruction-nativeadapter-refflagsiblingalignedfreetail.tsv):
+  functions that run a member teardown and a second member operation, free the buffer at `[rbx+0x20]` through
+  `0x00584730` when the count's bit `0x80000000` allows it, clear the fields and end with a jump to a finishing
+  function (5 rows).
+- [`object-construction-and-destruction-nativeadapter-refflagsiblingboundedlookup.tsv`](object-construction-and-destruction-nativeadapter-refflagsiblingboundedlookup.tsv):
+  functions that bound the index against the count at `[this]` less bit `0x80000000`, pick the inline or the heap
+  element and look it up; when the lookup fails they return `0xD` or free the range through `0x00584730` (4 rows).
+- [`object-construction-and-destruction-nativeadapter-refflagsiblingboundedlookup2.tsv`](object-construction-and-destruction-nativeadapter-refflagsiblingboundedlookup2.tsv):
+  a second form: the smaller of the index and that count, a lookup on `[this+8]`, `0xD` when it fails, and otherwise
+  the range shrinks and its tail is freed through `0x00584730` (4 rows).
+- [`object-construction-and-destruction-nativeleaf-bumpallocpop.tsv`](object-construction-and-destruction-nativeleaf-bumpallocpop.tsv):
+  functions that store `[this+0x10]` to `+0x30` and advance `+0x10` by `0x10` (2 rows).
+- [`object-construction-and-destruction-nativeleaf-listwalkvcallslot3.tsv`](object-construction-and-destruction-nativeleaf-listwalkvcallslot3.tsv):
+  functions that walk the intrusive list at `[this+0x18]`, calling a member operation with each node and then slot 3
+  of the object at `+0x30` with `0x58` (4 rows).
+- [`object-construction-and-destruction-nativeleaf-refflag40strideaccessor.tsv`](object-construction-and-destruction-nativeleaf-refflag40strideaccessor.tsv):
+  accessors that return 0 for an index at or past the count at `+0x18` less bit `0x80000000`, and otherwise `+0x8`
+  of the 40-byte element, inline at `+0x20` or on the heap (4 rows).
+- [`object-construction-and-destruction-nativeleaf-refflag72strideaccessor.tsv`](object-construction-and-destruction-nativeleaf-refflag72strideaccessor.tsv):
+  accessors that return `base + 0x20 + index * stride`: 40 bytes in `0x00623DB0` and `0x00623E30`, 72 bytes in
+  `0x00670D80` and `0x00670DC0` (4 rows).
+- [`object-construction-and-destruction-nativeleaf-vectorbufferrelease.tsv`](object-construction-and-destruction-nativeleaf-vectorbufferrelease.tsv):
+  functions that compute a vector's count of 24-byte elements and release its buffer through slot `+0x18` of its
+  allocator (5 rows).
+- [`object-construction-and-destruction-nativeleaf-vectordestroydeallocloop.tsv`](object-construction-and-destruction-nativeleaf-vectordestroydeallocloop.tsv):
+  functions that destroy each `0x18`-byte element of a vector through slot 0 of its vtable, then release the buffer
+  through slot `+0x18` of the allocator with its size in bytes (5 rows).
+- [`object-construction-and-destruction-refflag-dwordflag-alignedfree-reset-returntrue.tsv`](object-construction-and-destruction-refflag-dwordflag-alignedfree-reset-returntrue.tsv):
+  functions that test a flag in the dword at `[rdx]`, free `[rdx+8]` through `0x00584730` when it is set, zero `+0x8`,
+  `+0x0` and the flag dword, and return 1 (7 rows).
+- [`object-construction-and-destruction-refflag-handle-reset.tsv`](object-construction-and-destruction-refflag-handle-reset.tsv):
+  functions that, when the record owns its pointer, clear the ownership bit and release the pointer through a member
+  function, then zero the size and pointer either way (13 rows).
+- [`object-construction-and-destruction-refflag-handle-store-with-release.tsv`](object-construction-and-destruction-refflag-handle-store-with-release.tsv):
+  functions that return 5 for a negative size; otherwise, when the stored pointer differs and the record owns it,
+  they release it, store the size with bit `0x80000000` and the new pointer, and return 0 (15 rows).
+- [`object-construction-and-destruction-refflag-invertedbit-alignedfree-returntrue.tsv`](object-construction-and-destruction-refflag-invertedbit-alignedfree-returntrue.tsv):
+  functions that test a flag in the dword at `[rdx+0x30]`, free `[rdx+0x18]` through `0x00584730` when it is set, zero
+  `+0x18` and `+0x30`, and return 1 (6 rows).
+
+Each of these function tables has one row per function: `address` is where it starts and `targets` the functions it
+calls or jumps to directly.

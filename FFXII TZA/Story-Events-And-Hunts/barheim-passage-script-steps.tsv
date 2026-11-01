@@ -73,7 +73,7 @@ mic_a01	saveactor	main	1	0x0C022	-	-	shared template	cecbbef6fb	-	-	-	-	saveacto
 mic_a01	saveactor	save_load	1	0x0C023	-	-	shared template	d3f827524e	-	-	-	-	saveactor.save_load, template d3f827524e	resolved	shared-zone-script-steps.tsv
 mic_a01	saveactor	save	1	0x0C0E7	-	-	shared template	83b2548303	-	-	-	-	saveactor.save, template 83b2548303	resolved	shared-zone-script-steps.tsv
 mic_a01	saveactor	load	1	0x0C1D1	-	-	shared template	7aaf6e0eb2	-	-	-	-	saveactor.load, template 7aaf6e0eb2	resolved	shared-zone-script-steps.tsv
-mic_a01	__MJ_CTRL000	init	1	0x0C26C	671	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	__MJ_CTRL000	init	1	0x0C26C	671	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	__MJ_CTRL000	init	2	0x0C272	672	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	__MJ_CTRL000	init	3	0x0C275	673	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	__MJ_CTRL000	mapjump	1	0x0C279	683	-	store	local_var_s6f1_1 = 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -551,7 +551,7 @@ mic_a01	電気スイッチ	init	11	0x0CFCB	1416	global_var_2 is none of lt(3), l
 mic_a01	電気スイッチ	init	12	0x0CFD1	1417	global_var_2 is none of lt(3), lt(5)	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	電気スイッチ	init	13	0x0CFD4	1418	global_var_2 is none of lt(3), lt(5)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	電気スイッチ	init	14	0x0CFE6	1420	-	rectenable	-	the calling actor's trigger rectangles (an ACT form: the named actor's; a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	電気スイッチ	init	15	0x0CFEC	1421	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	電気スイッチ	init	15	0x0CFEC	1421	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	電気スイッチ	init	16	0x0CFEF	1422	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	電気スイッチ	talk	1	0x0CFF3	1432	-	setgaugehidestatus	2	argument 1: whether the script gauge stays up when the HUD hides	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	電気スイッチ	talk	2	0x0CFFC	1433	-	setmeswinhidestatus	3, 2	argument 1: the message slot (0-7; 8 or more is ignored, a negative slot is taken as 0) whose window is set; every call passes 3 / argument 2: 2 keeps the window up when the HUD hides	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -638,14 +638,14 @@ mic_a01	電気スイッチ	フィールドサインＯＫ	3	0x0D202	1527	-	retur
 mic_a01	電気スイッチ	フィールドサインＮＧ	1	0x0D206	1532	-	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	電気スイッチ	フィールドサインＮＧ	2	0x0D209	1533	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	電気スイッチ	フィールドサインＯＮ	1	0x0D20A	1538	-	rectenable	-	the calling actor's trigger rectangles (an ACT form: the named actor's; a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	電気スイッチ	フィールドサインＯＮ	2	0x0D210	1539	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	電気スイッチ	フィールドサインＯＮ	2	0x0D210	1539	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	電気スイッチ	フィールドサインＯＮ	3	0x0D213	1540	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a01	電気スイッチ	フィールドサインＯＦＦ	1	0x0D217	1545	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a01	電気スイッチ	フィールドサインＯＦＦ	2	0x0D21D	1546	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a01	電気スイッチ	フィールドサインＯＦＦ	3	0x0D223	1547	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	電気スイッチ	フィールドサインＯＦＦ	1	0x0D217	1545	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	電気スイッチ	フィールドサインＯＦＦ	2	0x0D21D	1546	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	電気スイッチ	フィールドサインＯＦＦ	3	0x0D223	1547	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	電気スイッチ	フィールドサインＯＦＦ	4	0x0D226	1548	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	ドアスイッチ	init	1	0x0D22A	1557	-	fieldsign	1	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	ドアスイッチ	init	2	0x0D230	1558	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	ドアスイッチ	init	2	0x0D230	1558	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	ドアスイッチ	init	3	0x0D242	1559	-	if	global_var_2 >= 10 or シナリオフラグ > 0x0155	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	ドアスイッチ	init	4	0x0D248	1561	global_var_2 >= 10 or シナリオフラグ > 0x0155	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	ドアスイッチ	init	5	0x0D255	1563	not (global_var_2 >= 10 or シナリオフラグ > 0x0155)	else if	global_var_2 == 5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -716,23 +716,23 @@ mic_a01	ドアスイッチ	talk	62	0x0D40B	1649	-	setmeswinhidestatus	3, 0	argum
 mic_a01	ドアスイッチ	talk	63	0x0D40E	1650	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	ドアスイッチ	フィールドサインＯＫ	1	0x0D412	1655	-	fieldsignmesbyid	2	argument 1: the text id of a line in the calling script's section 3, the bank at manager record +0xA8 (0x00264D90 on the running manager 0x002640C0; the id is masked to 24 bits, and an id past the bank's count or a script without the bank gives the empty string 0x01CEB638), that becomes the calling actor's literal name: 0x00269F20(actor, text, 0) stores the string at actor +0xF8 and 0 at +0x100, shown as the actor's name while its name id +0x102 is negative	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	ドアスイッチ	フィールドサインＯＫ	2	0x0D418	1656	-	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	ドアスイッチ	フィールドサインＯＫ	3	0x0D41E	1657	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	ドアスイッチ	フィールドサインＯＫ	3	0x0D41E	1657	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	ドアスイッチ	フィールドサインＯＫ	4	0x0D421	1658	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	ドアスイッチ	フィールドサインＮＧ	1	0x0D425	1663	-	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	ドアスイッチ	フィールドサインＮＧ	2	0x0D428	1664	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	ドアスイッチ	フィールドサインＯＮ	1	0x0D429	1669	-	rectenable	-	the calling actor's trigger rectangles (an ACT form: the named actor's; a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	ドアスイッチ	フィールドサインＯＮ	2	0x0D42F	1670	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	ドアスイッチ	フィールドサインＯＮ	2	0x0D42F	1670	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	ドアスイッチ	フィールドサインＯＮ	3	0x0D432	1671	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a01	ドアスイッチ	フィールドサインＯＦＦ	1	0x0D436	1676	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a01	ドアスイッチ	フィールドサインＯＦＦ	2	0x0D43C	1677	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a01	ドアスイッチ	フィールドサインＯＦＦ	3	0x0D442	1678	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	ドアスイッチ	フィールドサインＯＦＦ	1	0x0D436	1676	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	ドアスイッチ	フィールドサインＯＦＦ	2	0x0D43C	1677	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	ドアスイッチ	フィールドサインＯＦＦ	3	0x0D442	1678	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	ドアスイッチ	フィールドサインＯＦＦ	4	0x0D445	1679	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	可動柵ＨＥＬＰメッセージ	init	1	0x0D449	1688	-	fieldsign	3	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	可動柵ＨＥＬＰメッセージ	init	2	0x0D44F	1689	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	可動柵ＨＥＬＰメッセージ	init	2	0x0D44F	1689	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	可動柵ＨＥＬＰメッセージ	init	3	0x0D452	1690	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	可動柵ＨＥＬＰメッセージ	main	1	0x0D462	1695	-	if	global_var_2 >= 10 or global_var_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	可動柵ＨＥＬＰメッセージ	main	2	0x0D465	1697	global_var_2 >= 10 or global_var_1 == 1	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	可動柵ＨＥＬＰメッセージ	main	3	0x0D46B	1698	global_var_2 >= 10 or global_var_1 == 1	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	可動柵ＨＥＬＰメッセージ	main	3	0x0D46B	1698	global_var_2 >= 10 or global_var_1 == 1	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	可動柵ＨＥＬＰメッセージ	main	4	0x0D46E	1700	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	可動柵ＨＥＬＰメッセージ	talk	1	0x0D472	1705	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 mic_a01	可動柵ＨＥＬＰメッセージ	talk	2	0x0D475	1706	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -750,9 +750,9 @@ mic_a01	可動柵ＨＥＬＰメッセージ	talk	13	0x0D4BE	1717	-	setmapmodels
 mic_a01	可動柵ＨＥＬＰメッセージ	talk	14	0x0D4C4	1718	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	可動柵ＨＥＬＰメッセージ	talk	15	0x0D4CA	1719	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 mic_a01	可動柵ＨＥＬＰメッセージ	talk	16	0x0D4CD	1720	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a01	可動柵ＨＥＬＰメッセージ	ＨＥＬＰ非表示	1	0x0D4D1	1725	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a01	可動柵ＨＥＬＰメッセージ	ＨＥＬＰ非表示	2	0x0D4D7	1726	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a01	可動柵ＨＥＬＰメッセージ	ＨＥＬＰ非表示	3	0x0D4DD	1727	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	可動柵ＨＥＬＰメッセージ	ＨＥＬＰ非表示	1	0x0D4D1	1725	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	可動柵ＨＥＬＰメッセージ	ＨＥＬＰ非表示	2	0x0D4D7	1726	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a01	可動柵ＨＥＬＰメッセージ	ＨＥＬＰ非表示	3	0x0D4DD	1727	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a01	可動柵ＨＥＬＰメッセージ	ＨＥＬＰ非表示	4	0x0D4E0	1728	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	PC00	init	1	0x0D4E4	1737	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	PC00	init	2	0x0D4E7	1738	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -849,7 +849,7 @@ mic_a01	SHOP_NPC_バンガ	init	3	0x0EFC2	3308	-	bindp2_d4	0x03000006, 3, 1	argu
 mic_a01	SHOP_NPC_バンガ	init	4	0x0EFC8	3309	-	stdmotionread	18	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	SHOP_NPC_バンガ	init	5	0x0EFCB	3310	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	SHOP_NPC_バンガ	init	6	0x0EFD1	3311	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-mic_a01	SHOP_NPC_バンガ	init	7	0x0EFD7	3312	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+mic_a01	SHOP_NPC_バンガ	init	7	0x0EFD7	3312	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 mic_a01	SHOP_NPC_バンガ	init	8	0x0EFDD	3313	-	usecharhit	1	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	SHOP_NPC_バンガ	init	9	0x0EFE3	3314	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	SHOP_NPC_バンガ	init	10	0x0EFEF	3315	-	setpos	22.757452, 0.0500000007, 34.3738594	this actor, placed at (22.757452, 0.0500000007, 34.3738594)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -1454,7 +1454,7 @@ mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	6	0x0FEEC	4275	not (fil
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	7	0x0FEF2	4276	not (file_var_s8_2 == 1)	set_ignore_hitgroup	255	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	8	0x0FEFB	4277	not (file_var_s8_2 == 1)	setradius_221	1, 1	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	9	0x0FF01	4278	not (file_var_s8_2 == 1)	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	10	0x0FF07	4279	not (file_var_s8_2 == 1)	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	10	0x0FF07	4279	not (file_var_s8_2 == 1)	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	11	0x0FF0D	4280	not (file_var_s8_2 == 1)	store	local_var_s35f1_1 = 1	variable local_var_s35f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	12	0x0FF10	4282	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj	1	0x0FF14	4287	-	store	local_var_s35f1_1 = 0	variable local_var_s35f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -1469,7 +1469,7 @@ mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	6	0x0FF4A
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	7	0x0FF50	4302	local_var_s35f1_1 != 0; file_var_s8_2 != 1	set_ignore_hitgroup	255	argument 1: the calling actor's collision group	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	8	0x0FF59	4303	local_var_s35f1_1 != 0; file_var_s8_2 != 1	setradius_221	1, 1	argument 1: the first radius of the calling actor's collision body (the scripts' getdefaultradiusw() x 0.8 and literals) / argument 2: the second radius of the collision body (getdefaultradiusd() x 0.8 and literals)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	9	0x0FF5F	4304	local_var_s35f1_1 != 0; file_var_s8_2 != 1	setheight	0.800000012	argument 1: the calling actor's height for its collision body and its talk and touch tests	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	10	0x0FF65	4305	local_var_s35f1_1 != 0; file_var_s8_2 != 1	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	10	0x0FF65	4305	local_var_s35f1_1 != 0; file_var_s8_2 != 1	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 mic_a01	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj_DynamicChange	11	0x0FF68	4308	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a01	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj_DynamicChange	1	0x0FF69	4313	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a01	MAP_SETACTOR_クリスタル	clearHitObj_ForMapObj_DynamicChange	2	0x0FF6C	4314	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2161,7 +2161,7 @@ mic_a02	setup	battle	23	0x10EAF	146	-	store	file_var_s0_7[4][0] = 255	variable f
 mic_a02	setup	battle	24	0x10EBB	147	-	store	file_var_s0_7[5][0] = 255	variable file_var_s0_7[5][0]	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_a02	setup	battle	25	0x10EC1	148	-	btlAtelSetEntryStruct	0x03000250	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	setup	battle	26	0x10EC4	149	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a02	__MJ_CTRL000	init	1	0x10EC8	158	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	__MJ_CTRL000	init	1	0x10EC8	158	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a02	__MJ_CTRL000	init	2	0x10ECE	159	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	__MJ_CTRL000	init	3	0x10ED1	160	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a02	__MJ_CTRL000	mapjump	1	0x10ED5	170	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2192,7 +2192,7 @@ mic_a02	__MJ_CTRL000	mapjump	25	0x10FD4	209	local_var_s1f1_1; not (regI3)	fadesy
 mic_a02	__MJ_CTRL000	mapjump	26	0x10FDA	210	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_a02	__MJ_CTRL000	mapjump	27	0x10FE6	211	local_var_s1f1_1; not (regI3)	mapjump	58, 2, 0	jumps: Op Sector 29 (Barheim Passage), field 58, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_a02	__MJ_CTRL000	mapjump	28	0x10FE9	214	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a02	__MJ_CTRL001	init	1	0x10FED	223	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	__MJ_CTRL001	init	1	0x10FED	223	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a02	__MJ_CTRL001	init	2	0x10FF3	224	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	__MJ_CTRL001	init	3	0x10FF6	225	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a02	__MJ_CTRL001	mapjump	1	0x10FFA	235	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2223,7 +2223,7 @@ mic_a02	__MJ_CTRL001	mapjump	25	0x110F9	274	local_var_s2f1_1; not (regI3)	fadesy
 mic_a02	__MJ_CTRL001	mapjump	26	0x110FF	275	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_a02	__MJ_CTRL001	mapjump	27	0x1110B	276	local_var_s2f1_1; not (regI3)	mapjump	55, 1, 0	jumps: Op Sector 36 (Barheim Passage), field 55, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_a02	__MJ_CTRL001	mapjump	28	0x1110E	279	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a02	__MJ_CTRL002	init	1	0x11112	288	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	__MJ_CTRL002	init	1	0x11112	288	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a02	__MJ_CTRL002	init	2	0x11118	289	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	__MJ_CTRL002	init	3	0x1111B	290	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a02	__MJ_CTRL002	mapjump	1	0x1111F	300	-	store	local_var_s3f1_1 = 0	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4439,15 +4439,15 @@ mic_a02	バルハイム地図宝壷	daiji_box_bind	8	0x151E2	4423	-	talkang	6.28
 mic_a02	バルハイム地図宝壷	daiji_box_bind	9	0x151E8	4424	-	bindp2	0x03000002	model t2 (section 12 entry 2, bound id 0x740002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 mic_a02	バルハイム地図宝壷	daiji_box_bind	10	0x151EB	4425	-	fetchambient	-	the calling actor's model tint, taken from the ground under it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	バルハイム地図宝壷	daiji_box_bind	11	0x151F8	4426	-	if	istreasureflag(4) == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a02	バルハイム地図宝壷	daiji_box_bind	12	0x151FE	4428	istreasureflag(4) == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	バルハイム地図宝壷	daiji_box_bind	12	0x151FE	4428	istreasureflag(4) == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a02	バルハイム地図宝壷	daiji_box_bind	13	0x15201	4429	istreasureflag(4) == 0	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	バルハイム地図宝壷	daiji_box_bind	14	0x15207	4430	istreasureflag(4) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-mic_a02	バルハイム地図宝壷	daiji_box_bind	15	0x15210	4434	not (istreasureflag(4) == 0)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a02	バルハイム地図宝壷	daiji_box_bind	16	0x15216	4435	not (istreasureflag(4) == 0)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a02	バルハイム地図宝壷	daiji_box_bind	17	0x1521C	4436	not (istreasureflag(4) == 0)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	バルハイム地図宝壷	daiji_box_bind	15	0x15210	4434	not (istreasureflag(4) == 0)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	バルハイム地図宝壷	daiji_box_bind	16	0x15216	4435	not (istreasureflag(4) == 0)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	バルハイム地図宝壷	daiji_box_bind	17	0x1521C	4436	not (istreasureflag(4) == 0)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a02	バルハイム地図宝壷	daiji_box_bind	18	0x15222	4437	not (istreasureflag(4) == 0)	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	バルハイム地図宝壷	daiji_box_bind	19	0x15228	4438	not (istreasureflag(4) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-mic_a02	バルハイム地図宝壷	daiji_box_bind	20	0x1522E	4440	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+mic_a02	バルハイム地図宝壷	daiji_box_bind	20	0x1522E	4440	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 mic_a02	バルハイム地図宝壷	daiji_box_bind	21	0x15234	4441	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	バルハイム地図宝壷	daiji_box_bind	22	0x1523A	4442	-	talkradius	0.800000012	argument 1: the margin of the calling actor's talk ellipse, the area the player stands in to talk to it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a02	バルハイム地図宝壷	daiji_box_bind	23	0x15240	4443	-	touchradius	2	argument 1: the radius of the actor's touch area	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4468,9 +4468,9 @@ mic_a02	バルハイム地図宝壷	talk	11	0x1529D	4461	-	sysReqew	1, イベン
 mic_a02	バルハイム地図宝壷	talk	12	0x152AA	4462	-	sysReq	1, override_actor::乗っ取り解除	actor `override_actor`	-	-	files override_actor::乗っ取り解除 on channel 1; does not wait	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a02	バルハイム地図宝壷	talk	13	0x152B1	4463	-	sysReqwait	override_actor::乗っ取り解除	actor `override_actor`	-	-	waits until override_actor::乗っ取り解除 is no longer on its actor	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a02	バルハイム地図宝壷	talk	14	0x152B5	4464	-	settreasureflag	4	flags set: Bank512, second half 0x0004: Set or tested in Great Eastern Passage (Barheim Passage)	-	-	-	-	resolved	this page's How a call is read
-mic_a02	バルハイム地図宝壷	talk	15	0x152BB	4465	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a02	バルハイム地図宝壷	talk	16	0x152C1	4466	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_a02	バルハイム地図宝壷	talk	17	0x152C7	4467	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	バルハイム地図宝壷	talk	15	0x152BB	4465	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	バルハイム地図宝壷	talk	16	0x152C1	4466	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a02	バルハイム地図宝壷	talk	17	0x152C7	4467	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a02	バルハイム地図宝壷	talk	18	0x152CA	4468	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 mic_a02	バルハイム地図宝壷	talk	19	0x152D0	4469	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 mic_a02	バルハイム地図宝壷	talk	20	0x152D3	4470	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5359,7 +5359,7 @@ mic_a03	setup	battle	6	0x0C9AF	113	-	store	file_var_s0_3 = 8	variable file_var_s
 mic_a03	setup	battle	7	0x0C9B5	114	-	store	file_var_s0_4 = 180	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_a03	setup	battle	8	0x0C9BB	115	-	btlAtelSetEntryStruct	0x030000e8	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a03	setup	battle	9	0x0C9BE	116	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a03	__MJ_CTRL000	init	1	0x0C9C2	125	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a03	__MJ_CTRL000	init	1	0x0C9C2	125	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a03	__MJ_CTRL000	init	2	0x0C9C8	126	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a03	__MJ_CTRL000	init	3	0x0C9CB	127	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a03	__MJ_CTRL000	mapjump	1	0x0C9CF	137	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -7748,7 +7748,7 @@ mic_a04	setup	battle	6	0x0D8DF	118	-	store	file_var_s0_3 = 8	variable file_var_s
 mic_a04	setup	battle	7	0x0D8E5	119	-	store	file_var_s0_4 = 180	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_a04	setup	battle	8	0x0D8EB	120	-	btlAtelSetEntryStruct	0x03000118	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a04	setup	battle	9	0x0D8EE	121	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a04	__MJ_CTRL000	init	1	0x0D8F2	130	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a04	__MJ_CTRL000	init	1	0x0D8F2	130	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a04	__MJ_CTRL000	init	2	0x0D8F8	131	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a04	__MJ_CTRL000	init	3	0x0D8FB	132	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	__MJ_CTRL000	mapjump	1	0x0D8FF	142	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -7779,7 +7779,7 @@ mic_a04	__MJ_CTRL000	mapjump	25	0x0D9FE	181	local_var_s1f1_1; not (regI3)	fadesy
 mic_a04	__MJ_CTRL000	mapjump	26	0x0DA04	182	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_a04	__MJ_CTRL000	mapjump	27	0x0DA10	183	local_var_s1f1_1; not (regI3)	mapjump	54, 3, 0	jumps: Great Eastern Passage (Barheim Passage), field 54, entrance 3	-	-	-	-	resolved	this page's How a call is read
 mic_a04	__MJ_CTRL000	mapjump	28	0x0DA13	186	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a04	__MJ_CTRL001	init	1	0x0DA17	195	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a04	__MJ_CTRL001	init	1	0x0DA17	195	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a04	__MJ_CTRL001	init	2	0x0DA1D	196	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a04	__MJ_CTRL001	init	3	0x0DA20	197	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	__MJ_CTRL001	mapjump	1	0x0DA24	207	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -7810,7 +7810,7 @@ mic_a04	__MJ_CTRL001	mapjump	25	0x0DB23	246	local_var_s2f1_1; not (regI3)	fadesy
 mic_a04	__MJ_CTRL001	mapjump	26	0x0DB29	247	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_a04	__MJ_CTRL001	mapjump	27	0x0DB35	248	local_var_s2f1_1; not (regI3)	mapjump	57, 1, 0	jumps: Op Sector 37 (Barheim Passage), field 57, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_a04	__MJ_CTRL001	mapjump	28	0x0DB38	251	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a04	__MJ_CTRL002	init	1	0x0DB3C	260	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a04	__MJ_CTRL002	init	1	0x0DB3C	260	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a04	__MJ_CTRL002	init	2	0x0DB42	261	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a04	__MJ_CTRL002	init	3	0x0DB45	262	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	__MJ_CTRL002	mapjump	1	0x0DB49	272	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -9453,11 +9453,11 @@ mic_a04	可動柵	init	1	0x108C5	2967	-	fieldsign	0	argument 1: the index of a 1
 mic_a04	可動柵	init	2	0x108CC	2968	-	switch	global_var_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	可動柵	init	3	0x108CF	2970	-	case	lt(20)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	可動柵	init	4	0x108CF	2971	global_var_1 = lt(20)	rectenable	-	the calling actor's trigger rectangles (an ACT form: the named actor's; a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a04	可動柵	init	5	0x108D5	2972	global_var_1 = lt(20)	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a04	可動柵	init	5	0x108D5	2972	global_var_1 = lt(20)	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a04	可動柵	init	6	0x108D8	2973	global_var_1 = lt(20)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	可動柵	init	7	0x108DB	2974	-	case	gte(20)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	可動柵	init	8	0x108DB	2975	global_var_1 = gte(20)	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a04	可動柵	init	9	0x108E1	2976	global_var_1 = gte(20)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a04	可動柵	init	9	0x108E1	2976	global_var_1 = gte(20)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a04	可動柵	init	10	0x108E4	2977	global_var_1 = gte(20)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	可動柵	init	11	0x108F6	2979	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a04	可動柵	talk	1	0x108FA	2984	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -10524,7 +10524,7 @@ mic_a05	setup	battle	6	0x0DF9F	120	-	store	file_var_s0_3 = 8	variable file_var_s
 mic_a05	setup	battle	7	0x0DFA5	121	-	store	file_var_s0_4 = 180	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_a05	setup	battle	8	0x0DFAB	122	-	btlAtelSetEntryStruct	0x0300012c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a05	setup	battle	9	0x0DFAE	123	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a05	__MJ_CTRL000	init	1	0x0DFB2	132	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a05	__MJ_CTRL000	init	1	0x0DFB2	132	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a05	__MJ_CTRL000	init	2	0x0DFB8	133	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a05	__MJ_CTRL000	init	3	0x0DFBB	134	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a05	__MJ_CTRL000	mapjump	1	0x0DFBF	144	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -12075,7 +12075,7 @@ mic_a05	ギミック	ＥＦＦ停止２	1	0x1094D	2731	-	animestop	103	argument 
 mic_a05	ギミック	ＥＦＦ停止２	2	0x10953	2732	-	animestop	102	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a05	ギミック	ＥＦＦ停止２	3	0x10956	2733	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a05	ドアスイッチ	init	1	0x1095A	2747	-	fieldsign	0	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_a05	ドアスイッチ	init	2	0x10960	2748	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a05	ドアスイッチ	init	2	0x10960	2748	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a05	ドアスイッチ	init	3	0x10972	2749	-	if	global_var_1 >= 20 or シナリオフラグ > 0x0155	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a05	ドアスイッチ	init	4	0x10978	2751	global_var_1 >= 20 or シナリオフラグ > 0x0155	fieldsignicon	3	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a05	ドアスイッチ	init	5	0x10981	2755	not (global_var_1 >= 20 or シナリオフラグ > 0x0155)	fieldsignicon	2	argument 1: the kind of field sign shown over the calling actor (2 or 3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -13307,7 +13307,7 @@ mic_a06	setup	battle	3	0x0BECD	108	-	btlAtelSetDecidingEntryPointTimes	3	argumen
 mic_a06	setup	battle	4	0x0BED3	109	-	store	file_var_s0_1 = 20	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_a06	setup	battle	5	0x0BED9	110	-	btlAtelSetEntryStruct	0x03000080	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a06	setup	battle	6	0x0BEDC	111	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a06	__MJ_CTRL000	init	1	0x0BEE0	120	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a06	__MJ_CTRL000	init	1	0x0BEE0	120	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a06	__MJ_CTRL000	init	2	0x0BEE6	121	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a06	__MJ_CTRL000	init	3	0x0BEE9	122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a06	__MJ_CTRL000	mapjump	1	0x0BEED	132	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -13338,7 +13338,7 @@ mic_a06	__MJ_CTRL000	mapjump	25	0x0BFEC	171	local_var_s1f1_1; not (regI3)	fadesy
 mic_a06	__MJ_CTRL000	mapjump	26	0x0BFF2	172	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_a06	__MJ_CTRL000	mapjump	27	0x0BFFE	173	local_var_s1f1_1; not (regI3)	mapjump	53, 1, 0	jumps: The Lightworks (Barheim Passage), field 53, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_a06	__MJ_CTRL000	mapjump	28	0x0C001	176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_a06	__MJ_CTRL001	init	1	0x0C005	185	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_a06	__MJ_CTRL001	init	1	0x0C005	185	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_a06	__MJ_CTRL001	init	2	0x0C00B	186	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_a06	__MJ_CTRL001	init	3	0x0C00E	187	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_a06	__MJ_CTRL001	mapjump	1	0x0C012	197	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -15886,7 +15886,7 @@ mic_b01	setup	battle	5	0x0C0F9	108	-	store	file_var_s0_2 = 8	variable file_var_s
 mic_b01	setup	battle	6	0x0C0FF	109	-	store	file_var_s0_3 = 180	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_b01	setup	battle	7	0x0C105	110	-	btlAtelSetEntryStruct	0x030000d8	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b01	setup	battle	8	0x0C108	111	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b01	__MJ_CTRL000	init	1	0x0C10C	120	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b01	__MJ_CTRL000	init	1	0x0C10C	120	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b01	__MJ_CTRL000	init	2	0x0C112	121	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b01	__MJ_CTRL000	init	3	0x0C115	122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b01	__MJ_CTRL000	mapjump	1	0x0C119	132	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -15917,7 +15917,7 @@ mic_b01	__MJ_CTRL000	mapjump	25	0x0C218	171	local_var_s1f1_1; not (regI3)	fadesy
 mic_b01	__MJ_CTRL000	mapjump	26	0x0C21E	172	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b01	__MJ_CTRL000	mapjump	27	0x0C22A	173	local_var_s1f1_1; not (regI3)	mapjump	66, 2, 0	jumps: North-South Junction (Barheim Passage), field 66, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_b01	__MJ_CTRL000	mapjump	28	0x0C22D	176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b01	__MJ_CTRL001	init	1	0x0C231	185	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b01	__MJ_CTRL001	init	1	0x0C231	185	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b01	__MJ_CTRL001	init	2	0x0C237	186	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b01	__MJ_CTRL001	init	3	0x0C23A	187	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b01	__MJ_CTRL001	mapjump	1	0x0C23E	197	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -15948,7 +15948,7 @@ mic_b01	__MJ_CTRL001	mapjump	25	0x0C33D	236	local_var_s2f1_1; not (regI3)	fadesy
 mic_b01	__MJ_CTRL001	mapjump	26	0x0C343	237	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b01	__MJ_CTRL001	mapjump	27	0x0C34F	238	local_var_s2f1_1; not (regI3)	mapjump	62, 1, 0	jumps: The Zeviah Subterrane (Barheim Passage), field 62, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_b01	__MJ_CTRL001	mapjump	28	0x0C352	241	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b01	__MJ_CTRL002	init	1	0x0C356	250	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b01	__MJ_CTRL002	init	1	0x0C356	250	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b01	__MJ_CTRL002	init	2	0x0C35C	251	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b01	__MJ_CTRL002	init	3	0x0C35F	252	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b01	__MJ_CTRL002	mapjump	1	0x0C363	262	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -15979,7 +15979,7 @@ mic_b01	__MJ_CTRL002	mapjump	25	0x0C462	301	local_var_s3f1_1; not (regI3)	fadesy
 mic_b01	__MJ_CTRL002	mapjump	26	0x0C468	302	local_var_s3f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b01	__MJ_CTRL002	mapjump	27	0x0C474	303	local_var_s3f1_1; not (regI3)	mapjump	0x037b, 1, 0	jumps: East-West Bypass (Barheim Passage), field 891, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_b01	__MJ_CTRL002	mapjump	28	0x0C477	306	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b01	__MJ_CTRL003	init	1	0x0C47B	315	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b01	__MJ_CTRL003	init	1	0x0C47B	315	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b01	__MJ_CTRL003	init	2	0x0C481	316	-	setmapjumpgroup	4	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b01	__MJ_CTRL003	init	3	0x0C484	317	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b01	__MJ_CTRL003	mapjump	1	0x0C488	327	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -17647,7 +17647,7 @@ mic_b02	setup	battle	5	0x0FAC9	119	-	store	file_var_s0_2 = 8	variable file_var_s
 mic_b02	setup	battle	6	0x0FACF	120	-	store	file_var_s0_3 = 180	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_b02	setup	battle	7	0x0FAD5	121	-	btlAtelSetEntryStruct	0x030001b8	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b02	setup	battle	8	0x0FAD8	122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b02	__MJ_CTRL000	init	1	0x0FADC	131	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b02	__MJ_CTRL000	init	1	0x0FADC	131	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b02	__MJ_CTRL000	init	2	0x0FAE2	132	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b02	__MJ_CTRL000	init	3	0x0FAE5	133	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b02	__MJ_CTRL000	mapjump	1	0x0FAE9	143	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -17678,7 +17678,7 @@ mic_b02	__MJ_CTRL000	mapjump	25	0x0FBE8	182	local_var_s1f1_1; not (regI3)	fadesy
 mic_b02	__MJ_CTRL000	mapjump	26	0x0FBEE	183	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b02	__MJ_CTRL000	mapjump	27	0x0FBFA	184	local_var_s1f1_1; not (regI3)	mapjump	61, 2, 0	jumps: Great Central Passage (Barheim Passage), field 61, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_b02	__MJ_CTRL000	mapjump	28	0x0FBFD	187	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b02	__MJ_CTRL001	init	1	0x0FC01	196	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b02	__MJ_CTRL001	init	1	0x0FC01	196	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b02	__MJ_CTRL001	init	2	0x0FC07	197	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b02	__MJ_CTRL001	init	3	0x0FC0A	198	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b02	__MJ_CTRL001	mapjump	1	0x0FC0E	208	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -17709,7 +17709,7 @@ mic_b02	__MJ_CTRL001	mapjump	25	0x0FD0D	247	local_var_s2f1_1; not (regI3)	fadesy
 mic_b02	__MJ_CTRL001	mapjump	26	0x0FD13	248	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b02	__MJ_CTRL001	mapjump	27	0x0FD1F	249	local_var_s2f1_1; not (regI3)	mapjump	70, 1, 0	jumps: Terminus No. 4 Adjunct (Barheim Passage), field 70, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_b02	__MJ_CTRL001	mapjump	28	0x0FD22	252	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b02	__MJ_CTRL002	init	1	0x0FD26	261	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b02	__MJ_CTRL002	init	1	0x0FD26	261	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b02	__MJ_CTRL002	init	2	0x0FD2C	262	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b02	__MJ_CTRL002	init	3	0x0FD2F	263	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b02	__MJ_CTRL002	mapjump	1	0x0FD33	273	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -19572,10 +19572,10 @@ mic_b02	ギミック	ＥＦＦ停止３	2	0x130E3	3487	-	animestop	104	argument 
 mic_b02	ギミック	ＥＦＦ停止３	3	0x130E6	3488	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b02	閉じた扉	init	1	0x130EE	3497	-	if	シナリオフラグ >= 0x0155	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b02	閉じた扉	init	2	0x130F4	3499	シナリオフラグ >= 0x0155	fieldsign	0	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_b02	閉じた扉	init	3	0x130FA	3500	シナリオフラグ >= 0x0155	reqdisable	3	clears bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_b02	閉じた扉	init	4	0x13100	3501	シナリオフラグ >= 0x0155	reqenable	8	sets bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_b02	閉じた扉	init	5	0x13106	3502	シナリオフラグ >= 0x0155	reqenable	13	sets bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_b02	閉じた扉	init	6	0x1310C	3503	シナリオフラグ >= 0x0155	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b02	閉じた扉	init	3	0x130FA	3500	シナリオフラグ >= 0x0155	reqdisable	3	clears bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b02	閉じた扉	init	4	0x13100	3501	シナリオフラグ >= 0x0155	reqenable	8	sets bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b02	閉じた扉	init	5	0x13106	3502	シナリオフラグ >= 0x0155	reqenable	13	sets bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b02	閉じた扉	init	6	0x1310C	3503	シナリオフラグ >= 0x0155	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b02	閉じた扉	init	7	0x1310F	3505	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b02	閉じた扉	talk	1	0x13113	3510	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 mic_b02	閉じた扉	talk	2	0x13116	3511	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -21112,7 +21112,7 @@ mic_b06	saveactor	main	1	0x0AEE2	-	-	shared template	cecbbef6fb	-	-	-	-	saveacto
 mic_b06	saveactor	save_load	1	0x0AEE3	-	-	shared template	d3f827524e	-	-	-	-	saveactor.save_load, template d3f827524e	resolved	shared-zone-script-steps.tsv
 mic_b06	saveactor	save	1	0x0AFA7	-	-	shared template	83b2548303	-	-	-	-	saveactor.save, template 83b2548303	resolved	shared-zone-script-steps.tsv
 mic_b06	saveactor	load	1	0x0B091	-	-	shared template	7aaf6e0eb2	-	-	-	-	saveactor.load, template 7aaf6e0eb2	resolved	shared-zone-script-steps.tsv
-mic_b06	__MJ_CTRL000	init	1	0x0B12C	636	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b06	__MJ_CTRL000	init	1	0x0B12C	636	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b06	__MJ_CTRL000	init	2	0x0B132	637	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b06	__MJ_CTRL000	init	3	0x0B135	638	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b06	__MJ_CTRL000	mapjump	1	0x0B139	648	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -21143,7 +21143,7 @@ mic_b06	__MJ_CTRL000	mapjump	25	0x0B238	687	local_var_s5f1_1; not (regI3)	fadesy
 mic_b06	__MJ_CTRL000	mapjump	26	0x0B23E	688	local_var_s5f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b06	__MJ_CTRL000	mapjump	27	0x0B24A	689	local_var_s5f1_1; not (regI3)	mapjump	56, 3, 0	jumps: Special Op Sector 3 (Barheim Passage), field 56, entrance 3	-	-	-	-	resolved	this page's How a call is read
 mic_b06	__MJ_CTRL000	mapjump	28	0x0B24D	692	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b06	__MJ_CTRL001	init	1	0x0B251	701	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b06	__MJ_CTRL001	init	1	0x0B251	701	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b06	__MJ_CTRL001	init	2	0x0B257	702	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b06	__MJ_CTRL001	init	3	0x0B25A	703	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b06	__MJ_CTRL001	mapjump	1	0x0B25E	713	-	store	local_var_s6f1_1 = 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -21599,7 +21599,7 @@ mic_c01	setup	event	8	0x0A4BD	117	-	case	gte(0x0155)	-	-	-	-	-	resolved	01 ../Sc
 mic_c01	setup	event	9	0x0A4C0	118	シナリオフラグ = gte(0x0155)	store	g_btl_ミミッククイーン = 2	variable g_btl_ミミッククイーン (global u_char@0x0a04)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_c01	setup	event	10	0x0A4C3	119	シナリオフラグ = gte(0x0155)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_c01	setup	event	11	0x0A4D5	121	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_c01	__MJ_CTRL000	init	1	0x0A4D9	130	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_c01	__MJ_CTRL000	init	1	0x0A4D9	130	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_c01	__MJ_CTRL000	init	2	0x0A4DF	131	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_c01	__MJ_CTRL000	init	3	0x0A4E2	132	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_c01	__MJ_CTRL000	mapjump	1	0x0A4E6	142	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -22624,7 +22624,7 @@ mic_c02	saveactor	main	1	0x0AF52	-	-	shared template	cecbbef6fb	-	-	-	-	saveacto
 mic_c02	saveactor	save_load	1	0x0AF53	-	-	shared template	d3f827524e	-	-	-	-	saveactor.save_load, template d3f827524e	resolved	shared-zone-script-steps.tsv
 mic_c02	saveactor	save	1	0x0B017	-	-	shared template	83b2548303	-	-	-	-	saveactor.save, template 83b2548303	resolved	shared-zone-script-steps.tsv
 mic_c02	saveactor	load	1	0x0B101	-	-	shared template	7aaf6e0eb2	-	-	-	-	saveactor.load, template 7aaf6e0eb2	resolved	shared-zone-script-steps.tsv
-mic_c02	__MJ_CTRL000	init	1	0x0B19C	634	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_c02	__MJ_CTRL000	init	1	0x0B19C	634	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_c02	__MJ_CTRL000	init	2	0x0B1A2	635	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_c02	__MJ_CTRL000	init	3	0x0B1A5	636	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_c02	__MJ_CTRL000	mapjump	1	0x0B1A9	646	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -22655,7 +22655,7 @@ mic_c02	__MJ_CTRL000	mapjump	25	0x0B2A8	685	local_var_s5f1_1; not (regI3)	fadesy
 mic_c02	__MJ_CTRL000	mapjump	26	0x0B2AE	686	local_var_s5f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_c02	__MJ_CTRL000	mapjump	27	0x0B2BA	687	local_var_s5f1_1; not (regI3)	mapjump	62, 2, 0	jumps: The Zeviah Subterrane (Barheim Passage), field 62, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_c02	__MJ_CTRL000	mapjump	28	0x0B2BD	690	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_c02	__MJ_CTRL001	init	1	0x0B2C1	699	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_c02	__MJ_CTRL001	init	1	0x0B2C1	699	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_c02	__MJ_CTRL001	init	2	0x0B2C7	700	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_c02	__MJ_CTRL001	init	3	0x0B2CA	701	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_c02	__MJ_CTRL001	mapjump	1	0x0B2CE	711	-	store	local_var_s6f1_1 = 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -23226,7 +23226,7 @@ mic_d01	setup	map	75	0x43ACF	158	not (not ((g_com_マップ通行制限フラグ
 mic_d01	setup	map	76	0x43AEA	160	not (not ((g_com_マップ通行制限フラグ[0] & 1)))	setmist	0	argument 1: the Mist level of the area	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	setup	map	77	0x43AF0	161	not (not ((g_com_マップ通行制限フラグ[0] & 1)))	animestop	0	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk at 0x02B5D080; bucket id / 100, slot id % 100, 0x003E8230) to stop; a miss or no table does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	setup	map	78	0x43AF3	163	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_d01	__MJ_CTRL000	init	1	0x43AF7	172	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_d01	__MJ_CTRL000	init	1	0x43AF7	172	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_d01	__MJ_CTRL000	init	2	0x43AFD	173	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	__MJ_CTRL000	init	3	0x43B00	174	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_d01	__MJ_CTRL000	mapjump	1	0x43B04	184	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -23257,7 +23257,7 @@ mic_d01	__MJ_CTRL000	mapjump	25	0x43C03	223	local_var_s1f1_1; not (regI3)	fadesy
 mic_d01	__MJ_CTRL000	mapjump	26	0x43C09	224	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_d01	__MJ_CTRL000	mapjump	27	0x43C15	225	local_var_s1f1_1; not (regI3)	mapjump	0x037e, 2, 0	jumps: Terminus No. 7 Adjunct (Barheim Passage), field 894, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_d01	__MJ_CTRL000	mapjump	28	0x43C18	228	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_d01	__MJ_CTRL001	init	1	0x43C1C	237	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_d01	__MJ_CTRL001	init	1	0x43C1C	237	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_d01	__MJ_CTRL001	init	2	0x43C22	238	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	__MJ_CTRL001	init	3	0x43C25	239	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_d01	__MJ_CTRL001	mapjump	1	0x43C29	249	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -23869,8 +23869,8 @@ mic_d01	ボス登場	rect_set	14	0x44DAC	1132	-	if	local_var_s9f2_1 & 0x100000	-
 mic_d01	ボス登場	rect_set	15	0x44DB2	1134	local_var_s9f2_1 & 0x100000	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	ボス登場	rect_set	16	0x44DBB	1138	not (local_var_s9f2_1 & 0x100000)	settouchuconly	0	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	ボス登場	rect_set	17	0x44DC5	1140	-	store	local_var_s9f2_1 = local_var_s9f2_1 & 0xffff	variable local_var_s9f2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-mic_d01	ボス登場	rect_set	18	0x44DCB	1141	-	reqenable	3	sets bit 3 of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_d01	ボス登場	rect_set	19	0x44DD1	1142	-	reqenable	4	sets bit 4 of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_d01	ボス登場	rect_set	18	0x44DCB	1141	-	reqenable	3	sets bit `0x8` of this actor's arming mask +0x1C (slot `touch`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_d01	ボス登場	rect_set	19	0x44DD1	1142	-	reqenable	4	sets bit `0x10` of this actor's arming mask +0x1C (slot `touchon`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_d01	ボス登場	rect_set	20	0x44DD4	1143	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_d01	PC00	init	1	0x44DD8	1152	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_d01	PC00	init	2	0x44DDB	1153	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -23965,7 +23965,7 @@ mic_e01	setup	battle	3	0x0158D	42	-	btlAtelSetActiveActorMax	6	argument 1: the c
 mic_e01	setup	battle	4	0x01593	43	-	store	file_var_s0_1 = 20	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_e01	setup	battle	5	0x01599	44	-	btlAtelSetEntryStruct	0x030000a8	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e01	setup	battle	6	0x0159C	45	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e01	__MJ_CTRL000	init	1	0x015A0	54	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e01	__MJ_CTRL000	init	1	0x015A0	54	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e01	__MJ_CTRL000	init	2	0x015A6	55	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e01	__MJ_CTRL000	init	3	0x015A9	56	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e01	__MJ_CTRL000	mapjump	1	0x015AD	66	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -23996,7 +23996,7 @@ mic_e01	__MJ_CTRL000	mapjump	25	0x016AC	105	local_var_s1f1_1; not (regI3)	fadesy
 mic_e01	__MJ_CTRL000	mapjump	26	0x016B2	106	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_e01	__MJ_CTRL000	mapjump	27	0x016BE	107	local_var_s1f1_1; not (regI3)	mapjump	61, 3, 0	jumps: Great Central Passage (Barheim Passage), field 61, entrance 3	-	-	-	-	resolved	this page's How a call is read
 mic_e01	__MJ_CTRL000	mapjump	28	0x016C1	110	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e01	__MJ_CTRL001	init	1	0x016C5	119	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e01	__MJ_CTRL001	init	1	0x016C5	119	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e01	__MJ_CTRL001	init	2	0x016CB	120	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e01	__MJ_CTRL001	init	3	0x016CE	121	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e01	__MJ_CTRL001	mapjump	1	0x016D2	131	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -24259,7 +24259,7 @@ mic_e02	setup	battle	2	0x02F07	52	-	btlAtelSetDecidingEntryPointTimes	3	argument
 mic_e02	setup	battle	3	0x02F0D	53	-	btlAtelSetActiveActorMax	6	argument 1: the cap on live enemies for automatic placement	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	setup	battle	4	0x02F13	54	-	btlAtelSetEntryStruct	0x03000108	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	setup	battle	5	0x02F16	55	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e02	__MJ_CTRL000	init	1	0x02F1A	64	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	__MJ_CTRL000	init	1	0x02F1A	64	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	__MJ_CTRL000	init	2	0x02F20	65	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	__MJ_CTRL000	init	3	0x02F23	66	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	__MJ_CTRL000	mapjump	1	0x02F27	76	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -24290,7 +24290,7 @@ mic_e02	__MJ_CTRL000	mapjump	25	0x03026	115	local_var_s1f1_1; not (regI3)	fadesy
 mic_e02	__MJ_CTRL000	mapjump	26	0x0302C	116	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_e02	__MJ_CTRL000	mapjump	27	0x03038	117	local_var_s1f1_1; not (regI3)	mapjump	0x037b, 2, 0	jumps: East-West Bypass (Barheim Passage), field 891, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_e02	__MJ_CTRL000	mapjump	28	0x0303B	120	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e02	__MJ_CTRL001	init	1	0x0303F	129	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	__MJ_CTRL001	init	1	0x0303F	129	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	__MJ_CTRL001	init	2	0x03045	130	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	__MJ_CTRL001	init	3	0x03048	131	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	__MJ_CTRL001	mapjump	1	0x0304C	141	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -24321,7 +24321,7 @@ mic_e02	__MJ_CTRL001	mapjump	25	0x0314B	180	local_var_s2f1_1; not (regI3)	fadesy
 mic_e02	__MJ_CTRL001	mapjump	26	0x03151	181	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_e02	__MJ_CTRL001	mapjump	27	0x0315D	182	local_var_s2f1_1; not (regI3)	mapjump	0x037d, 1, 0	jumps: West Annex (Barheim Passage), field 893, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_e02	__MJ_CTRL001	mapjump	28	0x03160	185	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e02	__MJ_CTRL002	init	1	0x03164	194	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	__MJ_CTRL002	init	1	0x03164	194	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	__MJ_CTRL002	init	2	0x0316A	195	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	__MJ_CTRL002	init	3	0x0316D	196	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	__MJ_CTRL002	mapjump	1	0x03171	206	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -24792,11 +24792,11 @@ mic_e02	宝レクト	touch	213	0x04222	1136	-	settrapshowstatus	1	all sixteen tr
 mic_e02	宝レクト	touch	214	0x04228	1137	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	宝レクト	touch	215	0x04229	1138	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	トロッコ	init	1	0x0422D	1149	-	fieldsign	0	argument 1: the index of a 16-byte field-sign record in the calling script's header table +0x60 (0x002642C0 on the running manager 0x002640C0; no record, nothing happens)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_e02	トロッコ	init	2	0x04233	1150	-	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	トロッコ	init	2	0x04233	1150	-	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	トロッコ	init	3	0x04236	1151	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	トロッコ	main	1	0x0423E	1156	-	if	global_var_2 >= 30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	トロッコ	main	2	0x04241	1158	global_var_2 >= 30	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_e02	トロッコ	main	3	0x04247	1159	global_var_2 >= 30	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	トロッコ	main	3	0x04247	1159	global_var_2 >= 30	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	トロッコ	main	4	0x0424A	1161	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e02	トロッコ	talk	1	0x0424E	1166	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 mic_e02	トロッコ	talk	2	0x04251	1167	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -24814,9 +24814,9 @@ mic_e02	トロッコ	talk	13	0x042B8	1178	-	setmapidfloor	1, 3, 1	argument 1: th
 mic_e02	トロッコ	talk	14	0x042C4	1179	-	setmapidfloor	1, 2, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	トロッコ	talk	15	0x042D0	1180	-	setmapidfloor	1, 4, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	トロッコ	talk	16	0x042D6	1181	-	store	global_var_2 = 30	variable global_var_2 (global u_char@0x09c1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-mic_e02	トロッコ	talk	17	0x042DC	1182	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_e02	トロッコ	talk	18	0x042E2	1183	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_e02	トロッコ	talk	19	0x042E8	1184	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	トロッコ	talk	17	0x042DC	1182	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	トロッコ	talk	18	0x042E2	1183	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	トロッコ	talk	19	0x042E8	1184	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	トロッコ	talk	20	0x042EE	1185	-	setnavimapindex	1	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	トロッコ	talk	21	0x042FE	1186	-	store	g_com_マップ通行制限フラグ[3] = g_com_マップ通行制限フラグ[3] bitor 1	variable g_com_マップ通行制限フラグ[3] (global u_char[8]@0x0c72)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_e02	トロッコ	talk	22	0x04301	1187	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -25244,15 +25244,15 @@ mic_e02	バルハイムキャンドル	daiji_box_bind	8	0x04B6D	1951	-	talkang	6
 mic_e02	バルハイムキャンドル	daiji_box_bind	9	0x04B73	1952	-	bindp2	0x03000004	model t2 (section 12 entry 4, bound id 0x740002)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 mic_e02	バルハイムキャンドル	daiji_box_bind	10	0x04B76	1953	-	fetchambient	-	the calling actor's model tint, taken from the ground under it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	バルハイムキャンドル	daiji_box_bind	11	0x04B83	1954	-	if	istreasureflag(5) == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e02	バルハイムキャンドル	daiji_box_bind	12	0x04B89	1956	istreasureflag(5) == 0	reqenable	2	sets bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	バルハイムキャンドル	daiji_box_bind	12	0x04B89	1956	istreasureflag(5) == 0	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	バルハイムキャンドル	daiji_box_bind	13	0x04B8C	1957	istreasureflag(5) == 0	npc_to_gimmick	-	the calling actor, which it makes a gimmick (an object the player inspects, as every treasure_NN chest actor does in its init)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	バルハイムキャンドル	daiji_box_bind	14	0x04B92	1958	istreasureflag(5) == 0	stdmotionplay	1	this actor's standard motion 1	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-mic_e02	バルハイムキャンドル	daiji_box_bind	15	0x04B9B	1962	not (istreasureflag(5) == 0)	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_e02	バルハイムキャンドル	daiji_box_bind	16	0x04BA1	1963	not (istreasureflag(5) == 0)	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_e02	バルハイムキャンドル	daiji_box_bind	17	0x04BA7	1964	not (istreasureflag(5) == 0)	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	バルハイムキャンドル	daiji_box_bind	15	0x04B9B	1962	not (istreasureflag(5) == 0)	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	バルハイムキャンドル	daiji_box_bind	16	0x04BA1	1963	not (istreasureflag(5) == 0)	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	バルハイムキャンドル	daiji_box_bind	17	0x04BA7	1964	not (istreasureflag(5) == 0)	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	バルハイムキャンドル	daiji_box_bind	18	0x04BAD	1965	not (istreasureflag(5) == 0)	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	バルハイムキャンドル	daiji_box_bind	19	0x04BB3	1966	not (istreasureflag(5) == 0)	stdmotionplay	0	this actor's standard motion 0	-	-	-	-		0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-mic_e02	バルハイムキャンドル	daiji_box_bind	20	0x04BB9	1968	-	setweight	-1	this actor's body mask word +0x110: keeps only bit 4, and sets bit 4 outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
+mic_e02	バルハイムキャンドル	daiji_box_bind	20	0x04BB9	1968	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 mic_e02	バルハイムキャンドル	daiji_box_bind	21	0x04BBF	1969	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	バルハイムキャンドル	daiji_box_bind	22	0x04BC5	1970	-	talkradius	0.800000012	argument 1: the margin of the calling actor's talk ellipse, the area the player stands in to talk to it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e02	バルハイムキャンドル	daiji_box_bind	23	0x04BCB	1971	-	touchradius	2	argument 1: the radius of the actor's touch area	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -25273,9 +25273,9 @@ mic_e02	バルハイムキャンドル	talk	11	0x04C28	1989	-	sysReqew	1, イベ
 mic_e02	バルハイムキャンドル	talk	12	0x04C35	1990	-	sysReq	1, override_actor::乗っ取り解除	actor `override_actor`	-	-	files override_actor::乗っ取り解除 on channel 1; does not wait	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	バルハイムキャンドル	talk	13	0x04C3C	1991	-	sysReqwait	override_actor::乗っ取り解除	actor `override_actor`	-	-	waits until override_actor::乗っ取り解除 is no longer on its actor	override_actor.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	バルハイムキャンドル	talk	14	0x04C40	1992	-	settreasureflag	5	flags set: Bank512, second half 0x0005: Set or tested in The Zeviah Span (Barheim Passage)	-	-	-	-	resolved	this page's How a call is read
-mic_e02	バルハイムキャンドル	talk	15	0x04C46	1993	-	reqdisable	8	clears bit 8 of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_e02	バルハイムキャンドル	talk	16	0x04C4C	1994	-	reqdisable	13	clears bit 13 of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-mic_e02	バルハイムキャンドル	talk	17	0x04C52	1995	-	reqdisable	2	clears bit 2 of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	バルハイムキャンドル	talk	15	0x04C46	1993	-	reqdisable	8	clears bit `0x100` of this actor's arming mask +0x1C (slot `fieldsign1`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	バルハイムキャンドル	talk	16	0x04C4C	1994	-	reqdisable	13	clears bit `0x2000` of this actor's arming mask +0x1C (slot `fieldsign2`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e02	バルハイムキャンドル	talk	17	0x04C52	1995	-	reqdisable	2	clears bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may not file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e02	バルハイムキャンドル	talk	18	0x04C55	1996	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 mic_e02	バルハイムキャンドル	talk	19	0x04C5B	1997	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 mic_e02	バルハイムキャンドル	talk	20	0x04C5E	1998	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -25577,7 +25577,7 @@ mic_e03	setup	battle	4	0x036D9	42	-	btlAtelSetActiveActorMax	6	argument 1: the c
 mic_e03	setup	battle	5	0x036DF	43	-	store	file_var_s0_1 = g_btl_nm_ブラッディ	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_e03	setup	battle	6	0x036E5	44	-	btlAtelSetEntryStruct	0x03000194	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e03	setup	battle	7	0x036E8	45	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e03	__MJ_CTRL000	init	1	0x036EC	54	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e03	__MJ_CTRL000	init	1	0x036EC	54	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e03	__MJ_CTRL000	init	2	0x036F2	55	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e03	__MJ_CTRL000	init	3	0x036F5	56	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e03	__MJ_CTRL000	mapjump	1	0x036F9	66	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -25608,7 +25608,7 @@ mic_e03	__MJ_CTRL000	mapjump	25	0x037F8	105	local_var_s1f1_1; not (regI3)	fadesy
 mic_e03	__MJ_CTRL000	mapjump	26	0x037FE	106	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_e03	__MJ_CTRL000	mapjump	27	0x0380A	107	local_var_s1f1_1; not (regI3)	mapjump	0x037c, 2, 0	jumps: The Zeviah Span (Barheim Passage), field 892, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_e03	__MJ_CTRL000	mapjump	28	0x0380D	110	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e03	__MJ_CTRL001	init	1	0x03811	119	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e03	__MJ_CTRL001	init	1	0x03811	119	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e03	__MJ_CTRL001	init	2	0x03817	120	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e03	__MJ_CTRL001	init	3	0x0381A	121	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e03	__MJ_CTRL001	mapjump	1	0x0381E	131	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -25639,7 +25639,7 @@ mic_e03	__MJ_CTRL001	mapjump	25	0x0391D	170	local_var_s2f1_1; not (regI3)	fadesy
 mic_e03	__MJ_CTRL001	mapjump	26	0x03923	171	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_e03	__MJ_CTRL001	mapjump	27	0x0392F	172	local_var_s2f1_1; not (regI3)	mapjump	0x037c, 3, 0	jumps: The Zeviah Span (Barheim Passage), field 892, entrance 3	-	-	-	-	resolved	this page's How a call is read
 mic_e03	__MJ_CTRL001	mapjump	28	0x03932	175	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e03	__MJ_CTRL002	init	1	0x03936	184	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e03	__MJ_CTRL002	init	1	0x03936	184	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e03	__MJ_CTRL002	init	2	0x0393C	185	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e03	__MJ_CTRL002	init	3	0x0393F	186	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e03	__MJ_CTRL002	mapjump	1	0x03943	196	-	store	local_var_s3f1_1 = 1	variable local_var_s3f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -26130,7 +26130,7 @@ mic_e04	saveactor	main	1	0x01EF2	-	-	shared template	cecbbef6fb	-	-	-	-	saveacto
 mic_e04	saveactor	save_load	1	0x01EF3	-	-	shared template	d3f827524e	-	-	-	-	saveactor.save_load, template d3f827524e	resolved	shared-zone-script-steps.tsv
 mic_e04	saveactor	save	1	0x01FB7	-	-	shared template	83b2548303	-	-	-	-	saveactor.save, template 83b2548303	resolved	shared-zone-script-steps.tsv
 mic_e04	saveactor	load	1	0x020A1	-	-	shared template	7aaf6e0eb2	-	-	-	-	saveactor.load, template 7aaf6e0eb2	resolved	shared-zone-script-steps.tsv
-mic_e04	__MJ_CTRL000	init	1	0x0213C	619	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e04	__MJ_CTRL000	init	1	0x0213C	619	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e04	__MJ_CTRL000	init	2	0x02142	620	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e04	__MJ_CTRL000	init	3	0x02145	621	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e04	__MJ_CTRL000	mapjump	1	0x02149	631	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -26161,7 +26161,7 @@ mic_e04	__MJ_CTRL000	mapjump	25	0x02248	670	local_var_s5f1_1; not (regI3)	fadesy
 mic_e04	__MJ_CTRL000	mapjump	26	0x0224E	671	local_var_s5f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_e04	__MJ_CTRL000	mapjump	27	0x0225A	672	local_var_s5f1_1; not (regI3)	mapjump	0x037d, 3, 0	jumps: West Annex (Barheim Passage), field 893, entrance 3	-	-	-	-	resolved	this page's How a call is read
 mic_e04	__MJ_CTRL000	mapjump	28	0x0225D	675	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e04	__MJ_CTRL001	init	1	0x02261	684	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e04	__MJ_CTRL001	init	1	0x02261	684	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e04	__MJ_CTRL001	init	2	0x02267	685	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e04	__MJ_CTRL001	init	3	0x0226A	686	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e04	__MJ_CTRL001	mapjump	1	0x0226E	696	-	store	local_var_s6f1_1 = 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -26365,7 +26365,7 @@ mic_e05	setup	battle	3	0x010CD	38	-	btlAtelSetActiveActorMax	6	argument 1: the c
 mic_e05	setup	battle	4	0x010D3	39	-	store	file_var_s0_1 = 20	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mic_e05	setup	battle	5	0x010D9	40	-	btlAtelSetEntryStruct	0x0300006c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e05	setup	battle	6	0x010DC	41	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_e05	__MJ_CTRL000	init	1	0x010E0	50	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_e05	__MJ_CTRL000	init	1	0x010E0	50	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_e05	__MJ_CTRL000	init	2	0x010E6	51	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_e05	__MJ_CTRL000	init	3	0x010E9	52	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e05	__MJ_CTRL000	mapjump	1	0x010ED	62	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36521,7 +36521,7 @@ mic_e0400	PC_03	乗っ取り解除	4	0x011AB	835	-	show_38	1	argument 1: whether
 mic_e0400	PC_03	乗っ取り解除	5	0x011AE	836	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mic_e0400	PC_03	乗っ取り解除	6	0x011B4	837	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_e0400	PC_03	乗っ取り解除	7	0x011B5	838	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b03	__MJ_CTRL000	init	1	0x004D3	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b03	__MJ_CTRL000	init	1	0x004D3	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b03	__MJ_CTRL000	init	2	0x004D9	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b03	__MJ_CTRL000	init	3	0x004DC	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b03	__MJ_CTRL000	mapjump	1	0x004E0	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36552,7 +36552,7 @@ mic_b03	__MJ_CTRL000	mapjump	25	0x005DF	74	local_var_s0f1_1; not (regI3)	fadesyn
 mic_b03	__MJ_CTRL000	mapjump	26	0x005E5	75	local_var_s0f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b03	__MJ_CTRL000	mapjump	27	0x005F1	76	local_var_s0f1_1; not (regI3)	mapjump	61, 3, 0	jumps: Great Central Passage (Barheim Passage), field 61, entrance 3	-	-	-	-	resolved	this page's How a call is read
 mic_b03	__MJ_CTRL000	mapjump	28	0x005F4	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b03	__MJ_CTRL001	init	1	0x005F8	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b03	__MJ_CTRL001	init	1	0x005F8	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b03	__MJ_CTRL001	init	2	0x005FE	89	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b03	__MJ_CTRL001	init	3	0x00601	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b03	__MJ_CTRL001	mapjump	1	0x00605	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36584,7 +36584,7 @@ mic_b03	__MJ_CTRL001	mapjump	26	0x0070A	140	local_var_s1f1_1; not (regI3)	wait	2
 mic_b03	__MJ_CTRL001	mapjump	27	0x00716	141	local_var_s1f1_1; not (regI3)	mapjump	64, 1, 0	jumps: , field 64, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_b03	__MJ_CTRL001	mapjump	28	0x00719	144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b03	Map_Director	init	1	0x0071A	153	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b04	__MJ_CTRL000	init	1	0x00683	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b04	__MJ_CTRL000	init	1	0x00683	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b04	__MJ_CTRL000	init	2	0x00689	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b04	__MJ_CTRL000	init	3	0x0068C	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b04	__MJ_CTRL000	mapjump	1	0x00690	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36615,7 +36615,7 @@ mic_b04	__MJ_CTRL000	mapjump	25	0x0078F	74	local_var_s0f1_1; not (regI3)	fadesyn
 mic_b04	__MJ_CTRL000	mapjump	26	0x00795	75	local_var_s0f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b04	__MJ_CTRL000	mapjump	27	0x007A1	76	local_var_s0f1_1; not (regI3)	mapjump	63, 2, 0	jumps: , field 63, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_b04	__MJ_CTRL000	mapjump	28	0x007A4	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b04	__MJ_CTRL001	init	1	0x007A8	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b04	__MJ_CTRL001	init	1	0x007A8	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b04	__MJ_CTRL001	init	2	0x007AE	89	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b04	__MJ_CTRL001	init	3	0x007B1	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b04	__MJ_CTRL001	mapjump	1	0x007B5	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36646,7 +36646,7 @@ mic_b04	__MJ_CTRL001	mapjump	25	0x008B4	139	local_var_s1f1_1; not (regI3)	fadesy
 mic_b04	__MJ_CTRL001	mapjump	26	0x008BA	140	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b04	__MJ_CTRL001	mapjump	27	0x008C6	141	local_var_s1f1_1; not (regI3)	mapjump	65, 1, 0	jumps: , field 65, entrance 1	-	-	-	-	resolved	this page's How a call is read
 mic_b04	__MJ_CTRL001	mapjump	28	0x008C9	144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b04	__MJ_CTRL002	init	1	0x008CD	153	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b04	__MJ_CTRL002	init	1	0x008CD	153	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b04	__MJ_CTRL002	init	2	0x008D3	154	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b04	__MJ_CTRL002	init	3	0x008D6	155	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b04	__MJ_CTRL002	mapjump	1	0x008DA	165	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36678,7 +36678,7 @@ mic_b04	__MJ_CTRL002	mapjump	26	0x009DF	205	local_var_s2f1_1; not (regI3)	wait	2
 mic_b04	__MJ_CTRL002	mapjump	27	0x009EB	206	local_var_s2f1_1; not (regI3)	mapjump	65, 2, 0	jumps: , field 65, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_b04	__MJ_CTRL002	mapjump	28	0x009EE	209	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b04	Map_Director	init	1	0x009EF	218	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b05	__MJ_CTRL000	init	1	0x00633	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b05	__MJ_CTRL000	init	1	0x00633	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b05	__MJ_CTRL000	init	2	0x00639	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b05	__MJ_CTRL000	init	3	0x0063C	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b05	__MJ_CTRL000	mapjump	1	0x00640	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36709,7 +36709,7 @@ mic_b05	__MJ_CTRL000	mapjump	25	0x0073F	74	local_var_s0f1_1; not (regI3)	fadesyn
 mic_b05	__MJ_CTRL000	mapjump	26	0x00745	75	local_var_s0f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b05	__MJ_CTRL000	mapjump	27	0x00751	76	local_var_s0f1_1; not (regI3)	mapjump	64, 2, 0	jumps: , field 64, entrance 2	-	-	-	-	resolved	this page's How a call is read
 mic_b05	__MJ_CTRL000	mapjump	28	0x00754	79	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b05	__MJ_CTRL001	init	1	0x00758	88	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b05	__MJ_CTRL001	init	1	0x00758	88	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b05	__MJ_CTRL001	init	2	0x0075E	89	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b05	__MJ_CTRL001	init	3	0x00761	90	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b05	__MJ_CTRL001	mapjump	1	0x00765	100	-	store	local_var_s1f1_1 = 1	variable local_var_s1f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36740,7 +36740,7 @@ mic_b05	__MJ_CTRL001	mapjump	25	0x00864	139	local_var_s1f1_1; not (regI3)	fadesy
 mic_b05	__MJ_CTRL001	mapjump	26	0x0086A	140	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b05	__MJ_CTRL001	mapjump	27	0x00876	141	local_var_s1f1_1; not (regI3)	mapjump	64, 3, 0	jumps: , field 64, entrance 3	-	-	-	-	resolved	this page's How a call is read
 mic_b05	__MJ_CTRL001	mapjump	28	0x00879	144	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b05	__MJ_CTRL002	init	1	0x0087D	153	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b05	__MJ_CTRL002	init	1	0x0087D	153	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b05	__MJ_CTRL002	init	2	0x00883	154	-	setmapjumpgroup	3	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b05	__MJ_CTRL002	init	3	0x00886	155	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b05	__MJ_CTRL002	mapjump	1	0x0088A	165	-	store	local_var_s2f1_1 = 1	variable local_var_s2f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36841,7 +36841,7 @@ mic_b07	saveactor	main	1	0x01CA2	-	-	shared template	cecbbef6fb	-	-	-	-	saveacto
 mic_b07	saveactor	save_load	1	0x01CA3	-	-	shared template	d3f827524e	-	-	-	-	saveactor.save_load, template d3f827524e	resolved	shared-zone-script-steps.tsv
 mic_b07	saveactor	save	1	0x01D67	-	-	shared template	83b2548303	-	-	-	-	saveactor.save, template 83b2548303	resolved	shared-zone-script-steps.tsv
 mic_b07	saveactor	load	1	0x01E51	-	-	shared template	7aaf6e0eb2	-	-	-	-	saveactor.load, template 7aaf6e0eb2	resolved	shared-zone-script-steps.tsv
-mic_b07	__MJ_CTRL000	init	1	0x01EEC	615	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b07	__MJ_CTRL000	init	1	0x01EEC	615	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b07	__MJ_CTRL000	init	2	0x01EF2	616	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b07	__MJ_CTRL000	init	3	0x01EF5	617	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b07	__MJ_CTRL000	mapjump	1	0x01EF9	627	-	store	local_var_s5f1_1 = 1	variable local_var_s5f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36872,7 +36872,7 @@ mic_b07	__MJ_CTRL000	mapjump	25	0x01FF8	666	local_var_s5f1_1; not (regI3)	fadesy
 mic_b07	__MJ_CTRL000	mapjump	26	0x01FFE	667	local_var_s5f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mic_b07	__MJ_CTRL000	mapjump	27	0x0200A	668	local_var_s5f1_1; not (regI3)	mapjump	65, 3, 0	jumps: , field 65, entrance 3	-	-	-	-	resolved	this page's How a call is read
 mic_b07	__MJ_CTRL000	mapjump	28	0x0200D	671	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mic_b07	__MJ_CTRL001	init	1	0x02011	680	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b07	__MJ_CTRL001	init	1	0x02011	680	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b07	__MJ_CTRL001	init	2	0x02017	681	-	setmapjumpgroup	2	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b07	__MJ_CTRL001	init	3	0x0201A	682	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b07	__MJ_CTRL001	mapjump	1	0x0201E	692	-	store	local_var_s6f1_1 = 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -36924,7 +36924,7 @@ mic_b07	crystaldummyPC	main	1	0x038E4	-	-	shared template	49e5d2277d	-	-	-	-	cry
 mic_b07	crystaldummyPC	クリスタルタッチ	1	0x03A38	-	-	shared template	7c1a793fd0	-	-	-	-	crystaldummyPC.クリスタルタッチ, template 7c1a793fd0	resolved	shared-zone-script-steps.tsv
 mic_b07	crystaldummyPC	クリスタルビュー	1	0x03A63	-	-	shared template	76961a6cd9	-	-	-	-	crystaldummyPC.クリスタルビュー, template 76961a6cd9	resolved	shared-zone-script-steps.tsv
 mic_b07	crystaldummyPC	クリスタルリリース	1	0x03A8E	-	-	shared template	240d9cbf96	-	-	-	-	crystaldummyPC.クリスタルリリース, template 240d9cbf96	resolved	shared-zone-script-steps.tsv
-mic_b08	__MJ_CTRL000	init	1	0x003B3	23	-	reqenable	12	sets bit 12 of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+mic_b08	__MJ_CTRL000	init	1	0x003B3	23	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mic_b08	__MJ_CTRL000	init	2	0x003B9	24	-	setmapjumpgroup	1	argument 1: the map-exit group n whose owner the calling actor becomes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b08	__MJ_CTRL000	init	3	0x003BC	25	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b08	__MJ_CTRL000	mapjump	1	0x003C0	35	-	store	local_var_s0f1_1 = 1	variable local_var_s0f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md

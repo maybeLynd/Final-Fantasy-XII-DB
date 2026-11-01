@@ -124,7 +124,7 @@ rsn_b0100	scene, event 287	Mes	m009_2	requested by Director.main	-	12	and we wil
 rsn_b0100	scene, event 287	Mes	m010	requested by Director.main	-	13	This is our chance.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_b0100	scene, event 287	Mes	m011	requested by Director.main	-	14	We must see this through, and get to the bottom of it.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_b0100	scene, event 287	Mes	m012	requested by Director.main	-	15	I believe 'tis for the good of Dalmasca, and the good of the Empire.	-	-	-	-	-	-	-	-	-	-	2	-
-rsn_b0100	scene, event 287	Mes	m013	requested by Director.main	Vaan	16	Very well, then.	-	-	-	-	-	-	-	-	-	-	2	-
+rsn_b0100	scene, event 287	Mes	m013	requested by Director.main	Ashe	16	Very well, then.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_b0100	scene, event 287	Mes	m014	requested by Director.main	-	17	"Thanks ""Lamont."""	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_b0100	scene, event 287	Mes	m015	requested by Director.main	-	18	I must apologize.	-	-	-	-	-	-	-	-	-	-	2	-
 rsn_b0100	scene, event 287	Mes	m016	requested by Director.main	-	19	Penelo, for you.	-	-	-	-	-	-	-	-	-	-	2	-

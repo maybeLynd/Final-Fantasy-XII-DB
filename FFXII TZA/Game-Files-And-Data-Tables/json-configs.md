@@ -7,7 +7,7 @@ addresses: "0x00200BF0, 0x001FF740, 0x001C7940, 0x001C3D50, 0x001C6320, 0x001C6C
 
 ## What it lists
 
-`json-configs.tsv` holds one line for each of the 717 keys of the 830 documents under `jsondata/`, by family:
+[`json-configs.tsv`](json-configs.tsv) holds one line for each of the 717 keys of the 830 documents under `jsondata/`, by family:
 
 | Family | Documents | Keys | Keys the executable names | Read by |
 |---|---:|---:|---:|---|
@@ -29,7 +29,7 @@ document repeats a key.
 
 [json-configs-documents.tsv](json-configs-documents.tsv) lists the 832 files under `jsondata/` one by one: the 830
 documents and the two struct files `parametersmanageruisizestruct.csv` and `parametersmanagermonstergallerystruct.txt`,
-3,242,429 bytes in all. Each row gives the file's size, its SHA-256 and the number of rows `json-configs-values.tsv`
+3,242,429 bytes in all. Each row gives the file's size, its SHA-256 and the number of rows [`json-configs-values.tsv`](json-configs-values.tsv)
 gives it: 775 documents give rows, 29 are an empty object and 26 are files of 0 bytes.
 
 [json-configs-inputs.tsv](json-configs-inputs.tsv) gives each of the 717 keys as a setting a modder can change: its
@@ -86,7 +86,7 @@ The columns come from the documents and from the loaders that read them:
 
 ## Columns
 
-`json-configs.tsv`:
+[`json-configs.tsv`](json-configs.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -100,7 +100,7 @@ The columns come from the documents and from the loaders that read them:
 | `explanation` | what the value does, with the code that uses it |
 | `evidence` | the lookup sites and the pages that describe the use |
 
-`json-monster-gallery.tsv`:
+[`json-monster-gallery.tsv`](json-monster-gallery.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -109,7 +109,7 @@ The columns come from the documents and from the loaders that read them:
 | `monsterModelId` ... `light2DirZ` | the entry's values, one column per key; an empty cell is a key the entry does not carry: the viewer then takes the `Common` value for the nine keys named above, leaves `monsterWeaponIndex2` unread, and reads 0 for the others |
 | `explanation` | a one-line summary: the entry, its model and who uses it |
 
-`json-configs-values.tsv`:
+[`json-configs-values.tsv`](json-configs-values.tsv):
 
 | Column | Meaning |
 |---|---|
@@ -118,14 +118,14 @@ The columns come from the documents and from the loaders that read them:
 | `type` | the JSON type: `int`, `float`, `string`, `bool` or `null` |
 | `value` | the value as the document spells it; a tab or line break inside a string is written `\t` or `\n` |
 
-`json-configs-documents.tsv`:
+[`json-configs-documents.tsv`](json-configs-documents.tsv):
 
 | Column | Meaning |
 |---|---|
 | `document` | the archive path of the file |
 | `bytes` | the file's size |
 | `sha256` | the SHA-256 of the file's bytes |
-| `value_rows` | the rows `json-configs-values.tsv` gives the document; 0 for an empty object, a file of 0 bytes and the two struct files |
+| `value_rows` | the rows [`json-configs-values.tsv`](json-configs-values.tsv) gives the document; 0 for an empty object, a file of 0 bytes and the two struct files |
 
 ## Related
 

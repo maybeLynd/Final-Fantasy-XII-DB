@@ -20,7 +20,7 @@ addresses: "0x0031A630, 0x0031A510, 0x0031A410, 0x00317930, 0x00318B40, 0x002F7E
 
 A member record holds five `u16` equipment ids at `+0x50`-`+0x59`, slot 0 main hand to slot 4 accessory, `0xFFFF`
 for empty ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)). Which slot an item fits is its
-row's `+0x07` bits 7-5 ([Equipment row](equipment-row.md)). An empty main hand is always refilled with Unarmed,
+row's `+0x07` bits under mask `0xE0` ([Equipment row](equipment-row.md)). An empty main hand is always refilled with Unarmed,
 `0x1000`.
 
 ### The setters

@@ -330,8 +330,8 @@ The VP8 codec interface at `0x01CDB290`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `void*` | 0x01CEB698 | "WebM Project VP8 Decoder v1.6.0" |
-| `+0x08` | `i32` | 5 | interface ABI version |
-| `+0x0C` | `u32` | 0x140001 | capabilities: decoder, post-processing, input fragments |
+| `+0x08` | `i32` |  | value 5: interface ABI version |
+| `+0x0C` | `u32` |  | value `0x140001`: capabilities: decoder, post-processing, input fragments |
 | `+0x10` | `void*` | 0x0016E110 | init |
 | `+0x18` | `void*` | 0x0016E210 | destroy |
 | `+0x20` | `void*` | 0x01CDB320 | control map |
@@ -346,8 +346,8 @@ The decoder configuration `0x0067A480` builds on its stack:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | threads | the processor count |
-| `+0x04` | `u32` | 0x780 | width, 1920 |
-| `+0x08` | `u32` | 0x438 | height, 1080 |
+| `+0x04` | `u32` |  | value `0x780`: width, 1920 |
+| `+0x08` | `u32` |  | value `0x438`: height, 1080 |
 
 One of the player's three frame queues, as the queue functions use it:
 
@@ -382,7 +382,7 @@ One of the player's three frame queues, as the queue functions use it:
 | libwebm `mkvparser` | `0x007FFBC0` to `0x00808887` and three scattered vtable bodies; 104 functions in [`media-decoder-libraries-libwebm-mkvparser.tsv`](media-decoder-libraries-libwebm-mkvparser.tsv) |
 | libvpx VP8 decoder | `0x0016DDD0` to `0x0017C88F`; 116 functions in [`media-decoder-libraries-libvpx-vp8-decoder.tsv`](media-decoder-libraries-libvpx-vp8-decoder.tsv), and the four control handlers the function list does not hold (`0x0016EE40`, `0x0016EE80`, `0x0016EFF0`, `0x0016F030`) in [`media-decoder-libraries-libvpx-vp8-control-handlers.tsv`](media-decoder-libraries-libvpx-vp8-control-handlers.tsv) |
 | libvpx kernels | 63 in [`media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv`](media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv), `0x00125740` to `0x00158C09` |
-| libvpx kernels nothing reaches | `media-decoder-libraries-libvpx-unreferenced-kernels.tsv`, entries `0x00125770` to `0x00158C97` |
+| libvpx kernels nothing reaches | [`media-decoder-libraries-libvpx-unreferenced-kernels.tsv`](media-decoder-libraries-libvpx-unreferenced-kernels.tsv), entries `0x00125770` to `0x00158C97` |
 | libvorbis | `0x008800C0` to `0x008958AF`; 121 functions in [`media-decoder-libraries-libvorbis.tsv`](media-decoder-libraries-libvorbis.tsv) |
 | CRI HCA decoder | `0x00121000` to `0x0012573F`; 53 functions in [`media-decoder-libraries-cri-hca-decoder.tsv`](media-decoder-libraries-cri-hca-decoder.tsv) |
 | Tremor with `vorbisfile` | `0x007F41A0` to `0x007F6FAF` and `0x007F7680` to `0x007FFBBF`; 103 functions in [`media-decoder-libraries-tremor-vorbisfile.tsv`](media-decoder-libraries-tremor-vorbisfile.tsv) |

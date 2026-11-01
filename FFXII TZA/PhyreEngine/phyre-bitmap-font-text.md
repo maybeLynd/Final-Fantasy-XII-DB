@@ -141,17 +141,17 @@ PBitmapFontText (`0x270`), fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0B8` | `void*` | vertex blocks: positions at +0x00, texture coordinates at +0x88 |  |
-| `+0x0C0` | `PIndexDataBlock` | index data block (min index +0x00, max index +0x04, count +0x08, type +0x0C = 0x0C) |  |
-| `+0x238` | `void*` | material object |  |
-| `+0x240` | `u32` | string buffer size (bit 0x80000000: not owned) |  |
-| `+0x248` | `void*` | string bytes |  |
-| `+0x250` | `void*` | renderer of the last draw |  |
-| `+0x258` | `f32` | widest line |  |
-| `+0x25C` | `f32` | total height |  |
-| `+0x260` | `f32` | line scale, 0.65 at construction |  |
-| `+0x264` | `f32` | highest glyph top |  |
-| `+0x268` | `f32` | lowest glyph bottom |  |
+| `+0x0B8` | `void*` |  | vertex blocks: positions at `+0x00`, texture coordinates at `+0x88` |
+| `+0x0C0` | `PIndexDataBlock` |  | index data block (min index `+0x00`, max index `+0x04`, count `+0x08`, type `+0x0C` = `0x0C`) |
+| `+0x238` | `void*` |  | material object |
+| `+0x240` | `u32` |  | string buffer size (bit `0x80000000`: not owned) |
+| `+0x248` | `void*` |  | string bytes |
+| `+0x250` | `void*` |  | renderer of the last draw |
+| `+0x258` | `f32` |  | widest line |
+| `+0x25C` | `f32` |  | total height |
+| `+0x260` | `f32` |  | line scale, 0.65 at construction |
+| `+0x264` | `f32` |  | highest glyph top |
+| `+0x268` | `f32` |  | lowest glyph bottom |
 
 PBitmapFontCharInfo (`0x30`):
 
@@ -160,14 +160,14 @@ PBitmapFontCharInfo (`0x30`):
 | `+0x00` | `i32` | m_characterCode |  |
 | `+0x04` | `i32` | m_kernPairs | number of kerning triples |
 | `+0x08` | `i32` | m_kernOffset | first triple, in 32-bit units |
-| `+0x0C` | `f32` | texel x |  |
-| `+0x10` | `f32` | texel y |  |
+| `+0x0C` | `f32` |  | texel x |
+| `+0x10` | `f32` |  | texel y |
 | `+0x14` | `f32` | m_width |  |
 | `+0x18` | `f32` | m_height |  |
-| `+0x1C` | `f32` | x offset |  |
-| `+0x20` | `f32` | y offset |  |
-| `+0x24` | `f32` | x advance |  |
-| `+0x28` | `f32` | y advance |  |
+| `+0x1C` | `f32` |  | x offset |
+| `+0x20` | `f32` |  | y offset |
+| `+0x24` | `f32` |  | x advance |
+| `+0x28` | `f32` |  | y advance |
 | `+0x2C` | `bool` | m_rotated |  |
 
 ## Shipped data

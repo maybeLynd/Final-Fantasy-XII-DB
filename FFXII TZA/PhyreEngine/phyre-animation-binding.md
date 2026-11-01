@@ -226,14 +226,14 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x00` | `u16` | m_spuBindingSize | m_spuBindingSize (u16), registered by `0x005B0700` (`0x00632960` at `0x005B0795`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBinding |
 | `+0x02` | `u16` | m_channelCount | m_channelCount (u16), registered by `0x005B0700` (`0x00632960` at `0x005B0808`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBinding |
-| `+0x04` | `u16` | m_constantChannelCount m_constantChannelCount (u16), registered by 0x005B0700 (0x00632960 at | `0x005B087B`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBinding |
+| `+0x04` | `u16` | m_constantChannelCount | m_constantChannelCount (u16), registered by `0x005B0700` (`0x00632960` at `0x005B087B`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBinding |
 | `+0x06` | `u16` | m_interpCountLength | m_interpCountLength (u16), registered by `0x005B0700` (`0x00632960` at `0x005B08EE`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBinding |
 
 `PAnimationClipBindingDataBlockCache` (`0x18` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x10` | `u32` | m_valueWidthAndKeyCount m_valueWidthAndKeyCount (u32), registered by 0x005B0A70 (0x00632960 at | `0x005B0B7C`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBindingDataBlockCache; the placement constructor `0x005A4C40` clears `+0x10` to `+0x17` with one qword store (`0x005A4C4E`) |
+| `+0x10` | `u32` | m_valueWidthAndKeyCount | m_valueWidthAndKeyCount (u32), registered by `0x005B0A70` (`0x00632960` at `0x005B0B7C`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBindingDataBlockCache; the placement constructor `0x005A4C40` clears `+0x10` to `+0x17` with one qword store (`0x005A4C4E`) |
 | `+0x14` | `u16` | m_sourceChannelIndex | m_sourceChannelIndex (u16), registered by `0x005B0A70` (`0x00632960` at `0x005B0B09`); the cluster loader binds it by name (`0x0059B430`) in the 2 shipped .phyre files that declare PAnimationClipBindingDataBlockCache; cleared with m_valueWidthAndKeyCount by the placement constructor `0x005A4C40` (`0x005A4C4E`) |
 | `+0x16` | `u8[2]` | pad16 | the bytes after m_sourceChannelIndex (u16 at `+0x14`) up to the end of the `0x18`-byte class; cleared with it by the placement constructor `0x005A4C40` (`0x005A4C4E`); no registered member covers it (`0x005A8560` registers the `0x18`-byte class at `0x005A85B0`) |
 
@@ -243,10 +243,10 @@ The members below are the ones the code of this page's classes uses or the refle
 |---|---|---|---|
 | `+0x0C` | `u8[4]` | pad0C | the four bytes between the array count at `+0x08` and its pointer at `+0x10`, both released by the destructor `0x005A9F10` (`0x005A9FA7`, `0x005A9FB3`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
 | `+0x1C` | `u8[4]` | pad1C | the four bytes between the array count at `+0x18` and its pointer at `+0x20`, both released by the destructor `0x005A9F10` (`0x005A9F85`, `0x005A9F91`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
-| `+0x38` | `u32` | m_slotArrayElementsRequired m_slotArrayElementsRequired (u32), registered by 0x005B14E0 | (`0x00632960` at `0x005B1716`); no shipped .phyre file declares PAnimationNetworkInstance |
+| `+0x38` | `u32` | m_slotArrayElementsRequired | m_slotArrayElementsRequired (u32), registered by `0x005B14E0` (`0x00632960` at `0x005B1716`); no shipped .phyre file declares PAnimationNetworkInstance |
 | `+0x3C` | `u8[4]` | bytes3C | the four bytes after m_slotArrayElementsRequired (`+0x38`), before the array count at `+0x40`; no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
 | `+0x44` | `u8[4]` | pad44 | the four bytes between the array count at `+0x40` and its pointer at `+0x48`, both released by the destructor `0x005A9F10` (`0x005A9F63`, `0x005A9F6F`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
-| `+0x50` | `u32` | m_preprocessBufferSize m_preprocessBufferSize (u32), registered by 0x005B14E0 (0x00632960 at | `0x005B1827`); no shipped .phyre file declares PAnimationNetworkInstance |
+| `+0x50` | `u32` | m_preprocessBufferSize | m_preprocessBufferSize (u32), registered by `0x005B14E0` (`0x00632960` at `0x005B1827`); no shipped .phyre file declares PAnimationNetworkInstance |
 | `+0x54` | `u8[4]` | bytes54 | the four bytes after m_preprocessBufferSize (`+0x50`), before the array count at `+0x58`; no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
 | `+0x5C` | `u8[4]` | pad5C | the four bytes between the array count at `+0x58` and its pointer at `+0x60`, both released by the destructor `0x005A9F10` (`0x005A9F41`, `0x005A9F4D`); no registered member covers it (`0x005A8B50` registers the `0x78`-byte class at `0x005A8BA0`) |
 

@@ -45,7 +45,7 @@ committed segment with `(userStats, targetStats, &context)` at `0x003863D0` and 
 The roll finds the target's battle unit (`0x0031B860`) and, for an enemy-side unit (byte `+5` of the
 stats record at unit `+0x698` is 1), reads the enemy's record at unit `+0xE60`
 (`0x003903AD`-`0x003903DB`). Its words `+0x32`, `+0x34` and `+0x36` are the common, uncommon and rare item,
-`0xFFFF` meaning none. Byte `+0x14` of the spawn record at unit `+0x6A0` holds one bit per item still
+`0xFFFF` meaning no item. Byte `+0x14` of the spawn record at unit `+0x6A0` holds one bit per item still
 available: bit `0x1`, `0x2` and `0x4`.
 
 The attempt ends as "nothing to steal" in either of these cases:
@@ -53,14 +53,14 @@ The attempt ends as "nothing to steal" in either of these cases:
 - all three item words are `0xFFFF` (`0x003903DB`-`0x003903F3`);
 - an item word is set and its bit is clear (`0x0039041E`, `0x0039044D`, `0x0039047E`).
 
-That exit sets bit `0x800000` (`0x800000`) of the result's `+0x2C` and `0x02AEDFBC` = 1, and returns
+That exit sets bit `0x800000` of the result's `+0x2C` and `0x02AEDFBC` = 1, and returns
 (`0x0039048A`-`0x003904A0`).
 
 ### When the availability bits change
 
 `BattleUnit_ApplyUnitDefinition` (`0x0023A570`) sets them when the spawn record is fresh, that is when
 its byte `+0` has neither bit `0x1` nor bit `0x4` (`0x0023A791`). It writes byte `+0x14` = 0 and then sets bit
-k for each of the three item words that is not `0xFFFF` (`0x0023A7AE`-`0x0023A7E4`).
+`0x1`, `0x2` or `0x4` for each of the common, uncommon and rare item words that is not `0xFFFF` (`0x0023A7AE`-`0x0023A7E4`).
 
 A won item clears its bit twice: the result's first step `0x00385BA0` clears bit `0x4`, `0x2` and `0x1` for the won
 rare, uncommon and common item (`0x00385C17`, `0x00385C41`, `0x00385C6B`), and the applier clears it again
@@ -162,9 +162,9 @@ The enemy's record at unit `+0xE60`, the fields the steal reads:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x32` | `u16` | stealCommon | common steal item; `0xFFFF` = none (`0x00390390`, `0x0023A570`) |
-| `+0x34` | `u16` | stealUncommon | uncommon steal item; `0xFFFF` = none |
-| `+0x36` | `u16` | stealRare | rare steal item; `0xFFFF` = none |
+| `+0x32` | `u16` | stealCommon | common steal item; `0xFFFF` = no item (`0x00390390`, `0x0023A570`) |
+| `+0x34` | `u16` | stealUncommon | uncommon steal item; `0xFFFF` = no item |
+| `+0x36` | `u16` | stealRare | rare steal item; `0xFFFF` = no item |
 
 The spawn record at unit `+0x6A0`:
 

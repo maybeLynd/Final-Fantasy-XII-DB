@@ -96,7 +96,7 @@ gives the same blocks per model, beside the model's other files.
 
 ### The row lookup
 
-`0x002ED950(boundId)` is the only reader of the table pointers. It takes bits 16-23 as the letter
+`0x002ED950(boundId)` is the only reader of the table pointers. It takes the bits under mask `0xFF0000` as the letter
 (`0x002ED953`-`0x002ED959`), picks the table through a jump table, and returns
 `table + 16 × (row + 1)` for the low 16 bits as the row when the table is loaded and the row is below
 the `+0x08` count, compared signed (`0x002ED9C2`); any other letter, a missing table or a row past the count

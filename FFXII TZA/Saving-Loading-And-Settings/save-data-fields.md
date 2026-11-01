@@ -142,15 +142,15 @@ Offsets in this table are block offsets; add `0x8000` for the payload offset.
 | `+0x3244` | 128 | a bit set indexed by a `u16`, entry n at bit value `1 << (n & 7)` of byte n >> 3 (`0x00252D40`). Entries 1-8 are the inventory category bits, set when a category's derived list is non-empty (`0x002CD650`) and cleared together by `0x00253480` after it runs `0x00253240` for lists 0-11 (`0x002534AA`, `0x002534B1`); `0x002CD510` sets 13 entries between 42 and 58 (`0x002CD519`-`0x002CD635`) | `0x00252D40`; zeroed by `0x00253A80` (`0x00253B47`-`0x00253B56`) | `0x00252D10` |
 | `+0x32C4` | 8 | a bit set indexed by a `u16` | `0x00254E00` | `0x00254DD0` |
 | `+0x32CC` | 62 | Clan Primer family A bits for tabs 0-4 (bases at `0x00D10630`, counts at `0x00D10640`) | `0x00315910` | `0x003154B0` |
-| `+0x330C` | 62 | Clan Primer family B bits for tabs 0-4 | `0x00315B50` | |
-| `+0x334C` | 32 | a 256-bit set | `0x00315A20` | |
-| `+0x336C` | 128 | 256 four-bit values, low nibble for even ids | `0x00315CD0` | |
-| `+0x33F4` | 6 | tab 6 (category 5) bits, 48 entries | `0x00315B50` | |
-| `+0x3404` | 512 | bestiary defeat count per entry, stored as count + 1 | | `0x00315420`, `0x003154B0` |
-| `+0x3604` | 512 | bestiary page-viewed bits, 8 per entry | `0x00315B50` | |
-| `+0x3844` | 4 | tab 7 family A, 30 bits: the achievements already fired ([achievement page](../Steam-And-Achievements/achievements.md)) | `0x00315910` | `0x003154B0` |
-| `+0x3848` | 4 | tab 7 family B, 30 bits | `0x00315B50` | |
-| `+0x3868` | 4 | the points `0x00315390` ranks 1-12 against the rank table below | | `0x00315390`, whose rank `0x00583D60` writes to the header's `+0x44` |
+| `+0x330C` | 62 | Clan Primer family B bits for tabs 0-4 | `0x00315B50` | `0x003156E0`, `0x00315B50` |
+| `+0x334C` | 32 | a 256-bit set | `0x00315A20` | `0x00315620`, `0x00315A20` |
+| `+0x336C` | 128 | 256 four-bit values, low nibble for even ids | `0x00315CD0` | `0x00315470`, `0x00315CD0` |
+| `+0x33F4` | 6 | tab 6 (category 5) bits, 48 entries | `0x00315B50` | `0x003156E0`, `0x00315B50` |
+| `+0x3404` | 512 | bestiary defeat count per entry, stored as count + 1 | `0x00315820` (`0x0031588E`, the count), `0x00315A90` (`0x00315AB7`, 1), `0x00316930` (`0x00316A0C`, 2) | `0x00315420`, `0x00315820`, `0x00315A90`, `0x00316930` |
+| `+0x3604` | 512 | bestiary page-viewed bits, 8 per entry | `0x00315AD0`, `0x00315B50` | `0x00315670`, `0x003156E0`, `0x00315AD0`, `0x00315B50` |
+| `+0x3844` | 4 | tab 7 family A, 30 bits: the achievements already fired ([achievement page](../Steam-And-Achievements/achievements.md)) | `0x00315910`, `0x00315E90` (`0x00316069`), `0x00316A50` (`0x00316ADB`, `0x00316B38`) | `0x003154B0`, `0x00315E90`, `0x00316A50` |
+| `+0x3848` | 4 | tab 7 family B, 30 bits | `0x00315B50` | `0x003156E0`, `0x00315B50` |
+| `+0x3868` | 4 | the points `0x00315390` ranks 1-12 against the rank table below | `0x00316BF0`, the counter store, for counter kind 17 (`0x384C` plus the kind's row offset, `0x00316C04`) | `0x00315390`, whose rank `0x00583D60` writes to the header's `+0x44` |
 | `+0x47B8` | 48 | `i32[12]`: the entry count of each class's derived inventory list | `0x00252E60` | `0x00252F70` |
 | `+0x47E8` | 8 | the play clock's block copy: `0x00254CC0` adds each frame's delta and resets it to 0 past `0xFFFFFFFF80BEFBFF`; `0x002542B0` reads it back as hours modulo 9999, minutes and seconds | `0x00254CC0`, `0x00255040` | `0x002542B0` |
 
@@ -236,7 +236,7 @@ the save layer itself does to it:
 
 - `0x002370C0` resets the block: all `0x7410` bytes zeroed, the magic written, the words
   `+0x5A48`-`+0x5A58` set to `0xFFFF` and the dwords `+0x5AC8` and `+0x5ACC` cleared.
-  - It also clears the inventory counts and empties the twelve menu category lists of `[0x020927C0]` (`0x003047F0`
+  - It also clears the inventory counts and empties the twelve inventory lists of `[0x020927C0]` (`0x003047F0`
     at `0x002370E5`, ending in `0x00253480`: each list filled with `0xFFFF` and its count zeroed through
     `0x00253240(i, 1)`, the category bits of `+0x3244` other than bit `0x1` and bit `0x1` of `+0x3245` cleared).
 - Both binders then call `0x0030B6A0`, which rebases the descriptor table at `0x01EEBCC0` (fifteen rows
@@ -262,3 +262,10 @@ the save layer itself does to it:
 - [Story flags](../Story-Events-And-Hunts/story-flags.md): the flag banks and their accessors.
 - [The party block field map](../Party/party-data.md).
 - [Steam integration and achievement catalogue](../Steam-And-Achievements/achievements.md).
+- [`image-backed-state-block-accesses.tsv`](image-backed-state-block-accesses.tsv): every censused access to the
+  image-backed state block through its pointer `[0x020927C0]`, one row per instruction (32 rows).
+
+In this access table, `function`, `name` and `site` give the function, its name and the instruction's address,
+`disp` the offset the instruction reaches from the start of the block, `kind` a read (`r`), a write (`w`), both
+(`rw`) or the address taken (`addr`), `instruction` the instruction itself, and `route` `gptr 0x020927C0`: the block
+reached through the pointer stored at `0x020927C0`.

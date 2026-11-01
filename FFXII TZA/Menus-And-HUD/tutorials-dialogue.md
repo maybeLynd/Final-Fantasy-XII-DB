@@ -15,7 +15,7 @@ A row's key is the script, the section and the text id, the entry number in that
 
 - `mes` (`0x00348DF0`), which the verbs `ames`, `amese`, `amest` and `ames_1fe` reach, and `aask_1ff` (`0x0034ADA0`) look the text id up in the section 2 of the script that issues them through `0x00264D60`, which keeps the low 24 bits of the id. The field-sign and gauge-label verbs read section 2 the same way.
 - `fieldsign` (`0x00355A00`) and `fieldsignmesbyid` (`0x00357120`) read a section 3 caption through `0x00264D90` and give it to the actor as its name text ([NPC names](../Characters-And-Objects/npc-names.md)).
-- The `lines` column of `tutorials-scripts.tsv`, the table of [Tutorial and staff roll scenes](../Story-Events-And-Hunts/tutorials-scenes.md), names section 2 rows by the same key: 3 of its rows name 25 of the 26 section 2 rows here. The `quoted_lines` column of its steps table quotes 25 of them, in 25 steps.
+- The `lines` column of [`tutorials-scripts.tsv`](../Story-Events-And-Hunts/tutorials-scripts.tsv), the table of [Tutorial and staff roll scenes](../Story-Events-And-Hunts/tutorials-scenes.md), names section 2 rows by the same key: 3 of its rows name 25 of the 26 section 2 rows here. The `quoted_lines` column of its steps table quotes 25 of them, in 25 steps.
 
 ### The scripts
 
@@ -86,7 +86,7 @@ An empty cell under a language not in `missing` is an empty string.
 
 ## Related
 
-- [Tutorial and staff roll scenes](../Story-Events-And-Hunts/tutorials-scenes.md) - the scenes, their text and the scripts that load them; `tutorials-scripts.tsv` holds the scenes' functions with the text ids of their lines.
+- [Tutorial and staff roll scenes](../Story-Events-And-Hunts/tutorials-scenes.md) - the scenes, their text and the scripts that load them; [`tutorials-scripts.tsv`](../Story-Events-And-Hunts/tutorials-scripts.tsv) holds the scenes' functions with the text ids of their lines.
 - [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - the layout of sections 2 and 3, the lookups and the verbs that read them.
 - [Text codes](text-codes.md) - every text code and the choice list.
 - [Fonts](fonts.md) - how a character code becomes a glyph, and the expansion lists.

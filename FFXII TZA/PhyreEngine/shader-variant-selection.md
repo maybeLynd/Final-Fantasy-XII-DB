@@ -10,7 +10,7 @@ addresses: "0x00606A20, 0x0060B980, 0x006B8D20, 0x02E522D0, 0x02E522E0, 0x006B90
 Nothing directly. Before PhyreEngine draws a mesh it picks which compiled build of the effect's shader
 to use: with or without skinning, with a given light set, with or without an LOD crossfade. The pick is
 made by eight named switches. In this build every shipped effect authors exactly one variant and an
-empty context-switch list; the lookup runs on every draw that goes through `0x0060B980`.
+empty context-switch list, so the pick always lands on that one build; the lookup still runs on every [mesh-instance draw](phyre-mesh-instance-draws.md).
 
 ## How it works
 
@@ -175,21 +175,21 @@ The members below are the ones the code of this page's classes uses or the refle
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | m_supportedLightMask | 0 in all 93 shipped effects; m_supportedLightMask (u32), registered by `0x005E3F70` (`0x00632960` at `0x005E3FFA`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
-| `+0x04` | `u32` | m_supportedShadowCasterMask m_supportedShadowCasterMask (u32), registered by 0x005E3F70 | (`0x00632960` at `0x005E4069`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
+| `+0x04` | `u32` | m_supportedShadowCasterMask | m_supportedShadowCasterMask (u32), registered by `0x005E3F70` (`0x00632960` at `0x005E4069`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
 | `+0x08` | `void*` | m_effectFile | m_effectFile (ptr), registered by `0x005E3F70` (`0x00632960` at `0x005E40D7`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
-| `+0x10` | `void*` | m_effectFileFromBasePath m_effectFileFromBasePath (ptr), registered by 0x005E3F70 (0x00632960 at | `0x005E4145`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
+| `+0x10` | `void*` | m_effectFileFromBasePath | m_effectFileFromBasePath (ptr), registered by `0x005E3F70` (`0x00632960` at `0x005E4145`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
 | `+0x68` | `void*` | m_effectSource | m_effectSource (ptr), registered by `0x005E3F70` (`0x00632960` at `0x005E41B3`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
 | `+0x70` | `u32` | m_maxLightCount | 0 in all 93 shipped effects; m_maxLightCount (u32), registered by `0x005E3F70` (`0x00632960` at `0x005E450B`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
-| `+0x74` | `u32` | m_numSupportedShaderLODLevels 0 in all 93 shipped effects; m_numSupportedShaderLODLevels | (u32), registered by `0x005E3F70` (`0x00632960` at `0x005E457A`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
+| `+0x74` | `u32` | m_numSupportedShaderLODLevels | 0 in all 93 shipped effects; m_numSupportedShaderLODLevels (u32), registered by `0x005E3F70` (`0x00632960` at `0x005E457A`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffect |
 
 `PEffectVariant` (`0x68` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x38` | `u16` | m_largestShaderPassCount m_largestShaderPassCount (u16), registered by 0x005E45B0 (0x00632960 at | `0x005E4867`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
+| `+0x38` | `u16` | m_largestShaderPassCount | m_largestShaderPassCount (u16), registered by `0x005E45B0` (`0x00632960` at `0x005E4867`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
 | `+0x3A` | `u8[6]` | pad3A | the bytes after m_largestShaderPassCount (u16 at `+0x38`) up to m_tweakableShaderParameterDefinitions at `+0x40`; no registered member covers it (`0x005D9280` registers the `0x68`-byte class at `0x005D92D0`) |
-| `+0x60` | `u16` | m_tweakableParameterBufferSize m_tweakableParameterBufferSize (u16), registered by 0x005E45B0 | (`0x00632960` at `0x005E49F3`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
-| `+0x62` | `u16` | m_untweakableParameterBufferSize m_untweakableParameterBufferSize (u16), registered by | `0x005E45B0` (`0x00632960` at `0x005E4A62`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
+| `+0x60` | `u16` | m_tweakableParameterBufferSize | m_tweakableParameterBufferSize (u16), registered by `0x005E45B0` (`0x00632960` at `0x005E49F3`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
+| `+0x62` | `u16` | m_untweakableParameterBufferSize | m_untweakableParameterBufferSize (u16), registered by `0x005E45B0` (`0x00632960` at `0x005E4A62`); the cluster loader binds it by name (`0x0059B430`) in the 2,184 shipped .phyre files that declare PEffectVariant |
 | `+0x64` | `u8[4]` | pad64 | the bytes after m_untweakableParameterBufferSize (u16 at `+0x62`) up to the end of the `0x68`-byte class; no registered member covers it (`0x005D9280` registers the `0x68`-byte class at `0x005D92D0`) |
 
 `PMaterialSwitch` (`0x10` bytes, offsets from the start of the record):

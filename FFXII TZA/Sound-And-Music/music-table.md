@@ -48,7 +48,7 @@ each one that is not 0 (`0x003EABB6`-`0x003EABC1`), and there are `(maxField + 1
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | fields | bits 0-10 the first field id, bits 11-15 how many more follow |
+| `+0x00` | `u16` | fields | mask `0x7FF` the first field id, mask `0xF800` how many more follow |
 | `+0x02` | `u8` | rungs | ladder steps after the run |
 | `+0x03` | `u8` | track | the track, 0 for none |
 
@@ -131,7 +131,7 @@ bit `0x40` is set (`0x0026201B`-`0x00262029`). A boss-music track stays (`0x0026
 | Column | Meaning |
 |---|---|
 | `field` | the field id |
-| `zone` | the field id's zone, as in `music-table.tsv`; `-` for an id with no zone |
+| `zone` | the field id's zone, as in [`music-table.tsv`](music-table.tsv); `-` for an id with no zone |
 | `counter_from`, `counter_to` | the first and last story counter value of the stretch; `end` is 32,767 |
 | `track` | the track the table gives, or `none` |
 | `on_chocobo` | the track in chocobo mode and the instruction that picks it |

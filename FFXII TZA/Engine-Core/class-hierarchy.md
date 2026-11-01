@@ -77,8 +77,9 @@ PhyreEngine classes carry the engine's own reflection as well: 1,199 of the Phyr
 ### Inheritance and shared bodies
 
 2,101 of the 2,242 primary vtables name at least one base, up to 13 deep through the Phyre
-descriptor templates. 34 classes have more than one vtable (44 secondary vtables at a non-zero
-object offset), which is multiple inheritance: `PrimitiveRendererD3D11` carries a second vtable
+descriptor templates. 44 vtables sit at a non-zero object offset, in 34 classes: 28 of them have two or
+three vtables, and six `std` stream classes have that secondary vtable only. This is multiple and virtual
+inheritance: `PrimitiveRendererD3D11` carries a second vtable
 at `+8` for `IBatchMergerEvent` (`0x00D86AD0`, one slot), and the `std` stream classes carry theirs
 for their virtual bases.
 

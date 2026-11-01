@@ -38,7 +38,7 @@ formatter `0x002B49F0`: through the untyped entry `0x002B4090` when `0x00254A10`
 the typed entry `0x002B40C0` (`0x0053696D`). `0x005369C0` builds the log line and `0x0035B990` posts it
 ([Battle log](../Battle-Actions/battle-log.md)).
 
-`0x00254A10` returns 1 for the language ids 0, 7, 8, 10 and 11 and 0 for ids 1 to 6 and 9. Only the typed path acts on
+`0x00254A10` returns 1 for the locale ids 0, 7, 8, 10 and 11 and 0 for ids 1 to 6 and 9. Only the typed path acts on
 the escapes `0F 6C`, `0F 6D` and `0F 6E`, which the `us`, `de`, `es`, `fr` and `it` templates use for counts, plurals
 and articles ([Text codes](text-codes.md)).
 

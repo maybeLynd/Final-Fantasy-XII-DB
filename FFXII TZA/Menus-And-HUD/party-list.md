@@ -382,7 +382,7 @@ The gil window is the `0xF8`-byte widget at `0x0209C4C8` with procedure `0x002A1
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x002A1FB0` |
-| `+0xC0` | `u32` | countFlags | bit `0x1` (with bit `0x2` tested as the pair 3): a gil count is running, set by `0x002A1DC0` (`0x002A1E47`-`0x002A1E60`), which also clears bits `0x3E` and so picks curve 0 in bits 2-5; the tick clears bits `0x3` when the count ends (`0x002A238A`) and passes bits `0x3C` to `0x00248F40` as the curve (`0x002A231F`-`0x002A2344`). `0x002A1DC0` refuses a new count (`0x002A1DE6`) and the idle test `0x002A2620` answers 0 (`0x002A262C`) while bits `0x3` are set |
+| `+0xC0` | `u32` | countFlags | bit `0x1` (with bit `0x2` tested as the pair 3): a gil count is running, set by `0x002A1DC0` (`0x002A1E47`-`0x002A1E60`), which also clears bits `0x3E` and so picks curve 0 in the bits under mask `0x3C`; the tick clears bits `0x3` when the count ends (`0x002A238A`) and passes bits `0x3C` to `0x00248F40` as the curve (`0x002A231F`-`0x002A2344`). `0x002A1DC0` refuses a new count (`0x002A1DE6`) and the idle test `0x002A2620` answers 0 (`0x002A262C`) while bits `0x3` are set |
 | `+0xC4` | `i32` | countFrom | the gil shown when the count started: `0x002A1DC0` copies the shown amount `+0xEC` (`0x002A1E41`); the tick shows countFrom + countBy x t (`0x002A2352`-`0x002A2380`) and countFrom + countBy at the end (`0x002A2391`) |
 | `+0xC8` | `i32` | countBy | the gil change being counted: `0x002A1DC0` stores the change `0x002524C0` allows, the request clamped so the total stays within 0-99,999,999 (`0x002A1E5A`); read by the tick (`0x002A2349`) |
 | `+0xCC` | `u32` | countFrames | the count's length in frames: `0x002A1DC0` sets `0x15`, 21 frames (`0x002A1E72`); the tick passes it to `0x00248F40` (`0x002A2338`) |
@@ -433,7 +433,7 @@ It keeps a copy of the two text nodes' colour and rectangle, which nothing reads
 | `+0xDC` | `u8[4]` | pad0DC | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
 | `+0xE0` | `u16` | word0E0 | set to 0 at the end of message 1 (`0x0029C755`); no instruction reads it |
 | `+0xE2` | `u8[4]` | pad0E2 | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
-| `+0xE6` | `u16` | runBits | bit `0x8` is set when the opening run starts (message 14, `0x0029C579`) and bit `0x4` when closing begins (message 15, `0x0029C569`); `0x00297100` clears bits 0-1 when it finds the panel already built (`0x00297132`-`0x00297137`). No instruction tests the word |
+| `+0xE6` | `u16` | runBits | bit `0x8` is set when the opening run starts (message 14, `0x0029C579`) and bit `0x4` when closing begins (message 15, `0x0029C569`); `0x00297100` clears mask `0x3` when it finds the panel already built (`0x00297132`-`0x00297137`). No instruction tests the word |
 | `+0xE8` | `u8[8]` | pad0E8 | accessed by no instruction of the procedure or of the cell's two readers; nothing fixes its width |
 
 ## State

@@ -7,7 +7,7 @@ addresses: "0x02EBF0A0, 0x002F8D60, 0x0030DB70, 0x00313120, 0x022C2192"
 
 ## What it lists
 
-`concurrence-list.tsv` holds one line for each of the 16 rows of the table that registry slot `0x02EBF0A0` reaches
+[`concurrence-list.tsv`](concurrence-list.tsv) holds one line for each of the 16 rows of the table that registry slot `0x02EBF0A0` reaches
 (`battle_pack.bin` directory entry `+0x80`). Each row names a Concurrence, action rows 226-241, and three
 thresholds. The chain ends in the Concurrence of the last row whose three thresholds the chain's counts all reach.
 

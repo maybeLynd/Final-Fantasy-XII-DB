@@ -46,7 +46,7 @@ Each of the 32 queued requests at `+0x3F0` of the quest data widget is `0x10` by
 | `+0x02` | `u8` | group | the quest group of a kind-2 request (`0x0037FE13`, `0x0037FE60`), compared only for kind 2 (`0x0037FBE0`-`0x0037FBE4`, `0x0037FC22`-`0x0037FC26`) |
 | `+0x03` | `u8[1]` | gap03 | read and written by no function; nothing fixes its width |
 | `+0x04` | `u16` | record | the menuquest.dat record index (`0x0037FE18`); `0x0037F190` sends it to the owner for kind 2 (`0x0037F1C6`) |
-| `+0x06` | `u16` | questId | the quest id, bits 8-17 of the record's dword `+0x10` (`0x0037FDBC`-`0x0037FDC4`, `0x0037FE06`) |
+| `+0x06` | `u16` | questId | the quest id, mask `0x3FF00` of the record's dword `+0x10` (`0x0037FDBC`-`0x0037FDC4`, `0x0037FE06`) |
 | `+0x08` | `void*` | owner | the widget to tell when the file is ready (`0x0037FE1E`, `0x0037FE51`, `0x0037F563`); a request equal to a queued one only replaces its owner (`0x0037FD34`-`0x0037FD42`) |
 
 ### Listed group files
@@ -77,13 +77,13 @@ The quest data widget is the `0x5F0`-byte widget at `0x02AED490` with procedure 
 | `+0x0C8` | `void*` | questTable | menuquest.dat, kind-7 resource `0x128`, always requested on creation (`0x0037F72A`-`0x0037F750`); `0x0037FD50` finds a quest's group and position in it (`0x0037FD67`-`0x0037FDC4`); freed by `0x0037FA00` |
 | `+0x0D0` | `void*` | questList | menuquest.lst, kind-7 resource `0x13A`, requested when `+0xE0` bit `0x10` is set (`0x0037F745`-`0x0037F778`); `0x0037E5B0` and `0x0037EFC0` read the threshold and petitioner line from it (`0x0037E65F`, `0x0037E6BC`, `0x0037EFCB`); `0x0037F860` frees it and clears this (`0x0037F8A9`-`0x0037F8BA`) |
 | `+0x0D8` | `void*` | nameSheet | menuquest.nfs, kept by `0x0037F1F0` when it arrives and registered as glyph sheet 5 (`0x0037F2B2`-`0x0037F2C3`); `0x0037EB70` returns it (`0x0037EB7D`); `0x003800D0` tests it (`0x003800F2`); `0x0037F860` unregisters it (`0x0037F8C5`) |
-| `+0x0E0` | `u32` | flags | bits 0-4 and 7-9 cleared on creation (`0x0037F62B`). Bit `0x1`: ready, set by `0x0037F340` with `+0xE5` = 2 (`0x0037F389`). Bits 1-4: creation bytes 0-3 (`0x0037F678`-`0x0037F6C1`): bit `0x2` request menuquest.nfs after the first load (`0x0037F54C`-`0x0037F574`), bit `0x4` read by no function, bit `0x8` load resource group `0x15` (`0x0037F70D`-`0x0037F71E`), bit `0x10` load menuquest.lst (`0x0037F745`). Bits `0x20` and `0x40` cleared on creation (`0x0037F6D2`). Bit `0x20`: the first load has arrived (`0x0037F532`-`0x0037F546`). Bit `0x40`: group `0x15` was requested (`0x0037F723`); `0x0037F860` releases it and clears the bit (`0x0037F88D`-`0x0037F8A1`). Bit `0x80`: busy: set while `0x0037E350` works (`0x0037E3BE`, `0x0037E46F`) and by `0x003800A0` (`0x003800AC`-`0x003800BC`); `0x0037F160` returns it and `0x0037E4F0` then answers at once. Bits `0x100` and `0x200`: the selected quest's QHD0 and QHT0 chunks are published (`0x0037FEF5`-`0x0037FF5F`); cleared on creation (`0x0037F6E5`, `0x0037F703`) and by `0x0037F860` (`0x0037F8EC`, `0x0037F902`); `0x0037EB90` and `0x0037EC70` test bit `0x100` (`0x0037EBC3`, `0x0037ECB4`), `0x0037F140` returns bit `0x200` |
+| `+0x0E0` | `u32` | flags | mask `0x39F` cleared on creation (`0x0037F62B`). Bit `0x1`: ready, set by `0x0037F340` with `+0xE5` = 2 (`0x0037F389`). The bits under mask `0x1E`: creation bytes 0-3 (`0x0037F678`-`0x0037F6C1`): bit `0x2` request menuquest.nfs after the first load (`0x0037F54C`-`0x0037F574`), bit `0x4` read by no function, bit `0x8` load resource group `0x15` (`0x0037F70D`-`0x0037F71E`), bit `0x10` load menuquest.lst (`0x0037F745`). Bits `0x20` and `0x40` cleared on creation (`0x0037F6D2`). Bit `0x20`: the first load has arrived (`0x0037F532`-`0x0037F546`). Bit `0x40`: group `0x15` was requested (`0x0037F723`); `0x0037F860` releases it and clears the bit (`0x0037F88D`-`0x0037F8A1`). Bit `0x80`: busy: set while `0x0037E350` works (`0x0037E3BE`, `0x0037E46F`) and by `0x003800A0` (`0x003800AC`-`0x003800BC`); `0x0037F160` returns it and `0x0037E4F0` then answers at once. Bits `0x100` and `0x200`: the selected quest's QHD0 and QHT0 chunks are published (`0x0037FEF5`-`0x0037FF5F`); cleared on creation (`0x0037F6E5`, `0x0037F703`) and by `0x0037F860` (`0x0037F8EC`, `0x0037F902`); `0x0037EB90` and `0x0037EC70` test bit `0x100` (`0x0037EBC3`, `0x0037ECB4`), `0x0037F140` returns bit `0x200` |
 | `+0x0E4` | `u8[1]` | gap0E4 | read and written by no function; nothing fixes its width |
 | `+0x0E5` | `u8` | stage | 0 on creation (`0x0037F650`); 1 when the first load arrives (`0x0037F53F`); 2 ready (`0x0037F390`); 3 closing without a close request and 4 closing with one, set by `0x0037E4F0` (`0x0037E594`, `0x0037E548`). At 3 the procedure retries `0x0037F860` and destroys the widget when it succeeds (`0x0037F583`-`0x0037F5D0`); destroy frees the files except at 3 (`0x0037F50B`); `0x0037F1F0`, `0x0037FBA0` and `0x0037FFD0` wait while it is 0 (`0x0037F205`, `0x0037FC75`, `0x0037FFF2`) |
 | `+0x0E6` | `u8` | group | the selected quest's group, the record's byte `+0x10`, stored by `0x0037FD50` (`0x0037FDDD`), or the group `0x0037FE40` is asked for (`0x0037FE64`); `0xFF` on creation (`0x0037F63D`); `0x0037E8D0` finds the group's file by it (`0x0037E90A`) |
 | `+0x0E7` | `u8` | position | the quest's position in its group, the number of earlier records of the same group (`0x0037FD93`-`0x0037FDE9`); 0 from `0x0037FE40` (`0x0037FE6D`); `0x0037FBA0`, `0x0037F1F0` and `0x0037E8D0` index the group file's 20-byte items with it (`0x0037FCFE`, `0x0037F2F8`, `0x0037E960`, `0x0037E9D9`) |
 | `+0x0E8` | `u16` | record | the selected quest's record index in menuquest.dat (`0x0037FDF7`); 0 from `0x0037FE40` by a dword store with `+0xEA` (`0x0037FE74`); `0x0037E8D0` compares it with the pane's (`0x0037E8F4`) |
-| `+0x0EA` | `u16` | questId | the selected quest's id, bits 8-17 of the record's dword `+0x10` (`0x0037FDBC`-`0x0037FDFF`); 0 from `0x0037FE40` (`0x0037FE74`); `0x0037EB90` and `0x0037EC70` read it (`0x0037EBEE`, `0x0037EC10`, `0x0037ECDF`) |
+| `+0x0EA` | `u16` | questId | the selected quest's id, mask `0x3FF00` of the record's dword `+0x10` (`0x0037FDBC`-`0x0037FDFF`); 0 from `0x0037FE40` (`0x0037FE74`); `0x0037EB90` and `0x0037EC70` read it (`0x0037EBEE`, `0x0037EC10`, `0x0037ECDF`) |
 | `+0x0EC` | `u8[2]` | gap0EC | read and written by no function; nothing fixes its width |
 | `+0x0EE` | `u8` | fileCount | the number of entries in the file list `+0xF0`: 0 on creation with `+0xEF` (`0x0037F647`); `0x0037FBA0` walks it (`0x0037FBAF`), `0x0037FA00` frees that many and sets 0 (`0x0037FA27`, `0x0037FA62`) |
 | `+0x0EF` | `u8` | queueCount | the number of queued requests at `+0x3F0`: `0x0037FBA0` walks it and appends at `+0x3F0` + count x `0x10` (`0x0037FBF7`, `0x0037FC4E`-`0x0037FC6A`); `0x0037FFD0` takes the first and lowers it (`0x00380061`); the procedure runs `0x0037FFD0` while it is not 0 (`0x0037F5DA`) |
@@ -104,14 +104,14 @@ All multi-byte fields are little-endian.
 | `+0x04` | `u32` | version | 100; not read |
 | `+0x08` | `u16` | groups | 3; not read |
 | `+0x0A` | `u16` | count | records; bounds every index (`0x0037E5B0`) |
-| `+0x0C` | `rec[count]` | 8 bytes each |  |
+| `+0x0C` | `rec[count]` |  | 8 bytes each |
 
 A record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` | text | the quest's name, a message id (`0x002F9920`) |
-| `+0x04` | `u32` | key | bits 0-7 group; bits 8-17 quest id; bits 20-27 row picture; bits 18-19 not read |
+| `+0x04` | `u32` | key | mask `0xFF` group; mask `0x3FF00` quest id; mask `0xFF00000` row picture; mask `0xC0000` not read |
 
 A quest's position is its index among the records of its own group; it selects the quest's record in
 the group's `.bin` file (`0x0037FD50`).
@@ -126,7 +126,7 @@ the group's `.bin` file (`0x0037FD50`).
 | `+0x0A` | `u16` | zero |  |
 | `+0x0C` | `u16` | zero |  |
 | `+0x0E` | `u16` | count | directory entries (`0x0037EFD9`) |
-| `+0x10` | `dir[count]` | 8 bytes each |  |
+| `+0x10` | `dir[count]` |  | 8 bytes each |
 
 A directory entry:
 
@@ -146,7 +146,7 @@ The strings are the game's encoded text, zero-terminated. A quest with no entry 
 | `+0x00` | `u16` | sectionAt[6] | offset of each section |
 | `+0x0C` | `u8[2]` | pad | `0xFFFF`; read by no function: the readers of a loaded group file, `0x0037E8D0`, `0x0037EE10`, `0x0037EF70`, `0x0037FD50` and `0x0037FEA0`, take sectionAt and the records from `+0x10`, and the loader `0x003800D0` and the list code `0x0037FFD0`, `0x0037F7C0` and `0x0037FA00` move or free the buffer; nothing fixes its width |
 | `+0x0E` | `u16` | count | records, which the readers index by position; read by no function: the readers of a loaded group file, `0x0037E8D0`, `0x0037EE10`, `0x0037EF70`, `0x0037FD50` and `0x0037FEA0`, take sectionAt and the records from `+0x10`, and the loader `0x003800D0` and the list code `0x0037FFD0`, `0x0037F7C0` and `0x0037FA00` move or free the buffer; nothing fixes its width |
-| `+0x10` | `rec[count]` | 20 bytes each |  |
+| `+0x10` | `rec[count]` |  | 20 bytes each |
 
 A record, at `0x10 + 20 x position`:
 
@@ -183,7 +183,7 @@ A `QHD0` entry, read by `0x00473BB0(entry, step, progress)`:
 |---|---|---|---|
 | `+0x00` | `u8` | steps | step records that follow |
 | `+0x01` | `u8` | type | 0 or 1 |
-| `+0x02` | `step[steps]` | 18 bytes each: |  |
+| `+0x02` | `step[steps]` |  | 18 bytes each: |
 | `+0x00` | `u8` | a | type 0: returned alone; type 1: returned with b and location |
 | `+0x01` | `u8` | b |  |
 | `+0x02` | `u16` | location | the location the map marks (type 1) |
@@ -197,7 +197,7 @@ A `QHT0` entry, read by `0x00473CC0(entry, step)`:
 | `+0x00` | `u8` | count | label pairs; not read |
 | `+0x01` | `u8` | value | returned by `0x00473CC0` |
 | `+0x02` | `u16` | zero |  |
-| `+0x04` | `{u16 first, u16 second}[]` | per step: offsets of two label strings from the entry; 0x8000 and up = none |  |
+| `+0x04` | `{u16 first, u16 second}[]` |  | per step: offsets of two label strings from the entry; `0x8000` and up = none |
 
 ## Shipped data
 
@@ -205,8 +205,8 @@ A `QHT0` entry, read by `0x00473CC0(entry, step)`:
 |---|---|
 | languages | `ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr`, `us`; every folder has all six loaded files |
 | `menuquest.dat` | 540 bytes, identical in all nine: 66 quests, group 0 19 (ids 0-22), group 1 45 hunts (ids 128-172), group 2 2 (ids 50, 51) |
-| `menuquest.dat` keys | bits 18-19 are 1 and bits 28-31 are 4 in group 0's 19 records, both 0 in the other 47; the two group 2 records have text -1; 64 row pictures, picture 0 on three records |
-| hunt row pictures | bits 20-27 run 19 to 63 for the hunts |
+| `menuquest.dat` keys | the bits under mask `0xC0000` are 1 and the bits under mask `0xF0000000` are 4 in group 0's 19 records, both 0 in the other 47; the two group 2 records have text -1; 64 row pictures, picture 0 on three records |
+| hunt row pictures | the bits under mask `0xFF00000` run 19 to 63 for the hunts |
 | `menuquest.lst` | 1,684 (`in`) to 2,036 (`es`) bytes; 66 entries naming the same 66 ids, `stringsAt` `0x220` |
 | `.lst` thresholds | 3 for 44 hunts, 4 for one, 0 for the 21 other quests |
 | `.lst` strings | `us`: "not use." for group 0, an empty string for group 2, "petitioner (town)" for the hunts |
@@ -224,14 +224,14 @@ A `QHT0` entry, read by `0x00473CC0(entry, step)`:
 same in all nine folders: offset, text, the key and its fields, and the record's position in its group.
 
 [`quest-menu-files-lst-rows.tsv`](quest-menu-files-lst-rows.tsv) lists the nine `.lst` files, with size,
-SHA-256, the language ids that load each and the header, then their 594 directory entries: quest id,
+SHA-256, the locale ids that load each and the header, then their 594 directory entries: quest id,
 `menuquest.dat` record and group, `textAt`, the threshold byte and the value `0x0037E5B0` takes from it, the
 pad bytes, the string, the line decoded with the language's font, and what the Hunts row shows.
 
 [`quest-menu-files-nfs-rows.tsv`](quest-menu-files-nfs-rows.tsv) lists the nine `.nfs` files and their ten
 pictures.
 
-- Language ids 0, 9 and 10 load the `in` files and ids 1 to 5, 7, 8 and 11 their own folder's. Id 6 loads no
+- Locale ids 0, 9 and 10 load the `in` files and ids 1 to 5, 7, 8 and 11 their own folder's. Id 6 loads no
   quest file: its array names `uk/quest/`, which ships nothing, and the UK size table holds -1 for ids
   `0x128` to `0x12C` and `0x13A`, so `0x00249210` files no request for them.
 - In every language, 44 hunts have threshold 3 and switch their row picture to the defeated sheet at

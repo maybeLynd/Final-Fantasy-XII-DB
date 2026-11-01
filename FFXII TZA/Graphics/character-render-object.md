@@ -242,67 +242,67 @@ The object, as its constructor `0x001F4DA0` and the methods above use it:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `void*` | vtable 0x00903B68 |  |
-| `+0x008` | `vec` | 16-byte elements (begin, end, capacity), allocator at +0x020 |  |
-| `+0x028` | `void*` | companion object (slots 1 and 3 add it to and remove it from a list) |  |
-| `+0x030` | `vec` | mesh instances, 8-byte pointers, allocator at +0x048 |  |
-| `+0x050` | `void*` | the shadow model's mesh instance |  |
-| `+0x058` | `vec` | part records, 0x318 bytes each, allocator at +0x070 |  |
-| `+0x078` | `0x318 B` | template part record |  |
-| `+0x390` | `vec` | 0x24-byte elements, allocator at +0x3A8 (slot 17 empties it) |  |
-| `+0x3C0` | `f32[4]` | output vector, 0 after a reset |  |
-| `+0x3D0` | `i32[4]` | output vector, 4 after a reset |  |
-| `+0x3E0` | `object` | constructed by 0x00633040 |  |
-| `+0x480` | `i32` | key, -1 at construction |  |
-| `+0x488` | `void*` | model description |  |
-| `+0x490` | `void*` | shadow model record (filed under -2 - key) |  |
-| `+0x498` | `u8` | slot 4 sets, slot 5 returns |  |
-| `+0x499` | `u8` | key is in the table at 0x01DFE1B0 |  |
-| `+0x49C` | `u32` | part id matched by slot 16 (slot 15 sets) |  |
-| `+0x4A0` | `f32` | slot 11 stores its argument / 128 |  |
-| `+0x4A4` | `u32` | slot 11 sets 1 |  |
-| `+0x4A8` | `f32` | 1.0; slot 8 stores its float argument |  |
-| `+0x4AC` | `f32` | 1.0; slot 8 stores the light block's ambient alpha |  |
-| `+0x4B0` | `u32` | mSpecialShadowFlag (slot 25) |  |
+| `+0x000` | `void*` |  | vtable `0x00903B68` |
+| `+0x008` | `vec` |  | 16-byte elements (begin, end, capacity), allocator at `+0x020` |
+| `+0x028` | `void*` |  | companion object (slots 1 and 3 add it to and remove it from a list) |
+| `+0x030` | `vec` |  | mesh instances, 8-byte pointers, allocator at `+0x048` |
+| `+0x050` | `void*` |  | the shadow model's mesh instance |
+| `+0x058` | `vec` |  | part records, `0x318` bytes each, allocator at `+0x070` |
+| `+0x078` | `u8[792]` |  | template part record (`0x318` bytes) |
+| `+0x390` | `vec` |  | `0x24`-byte elements, allocator at `+0x3A8` (slot 17 empties it) |
+| `+0x3C0` | `f32[4]` |  | output vector, 0 after a reset |
+| `+0x3D0` | `i32[4]` |  | output vector, 4 after a reset |
+| `+0x3E0` | `object` |  | constructed by `0x00633040` |
+| `+0x480` | `i32` |  | key, -1 at construction |
+| `+0x488` | `void*` |  | model description |
+| `+0x490` | `void*` |  | shadow model record (filed under -2 - key) |
+| `+0x498` | `u8` |  | slot 4 sets, slot 5 returns |
+| `+0x499` | `u8` |  | key is in the table at `0x01DFE1B0` |
+| `+0x49C` | `u32` |  | part id matched by slot 16 (slot 15 sets) |
+| `+0x4A0` | `f32` |  | slot 11 stores its argument / 128 |
+| `+0x4A4` | `u32` |  | slot 11 sets 1 |
+| `+0x4A8` | `f32` |  | 1.0; slot 8 stores its float argument |
+| `+0x4AC` | `f32` |  | 1.0; slot 8 stores the light block's ambient alpha |
+| `+0x4B0` | `u32` | mSpecialShadowFlag | (slot 25) |
 | `+0x4B4` | `u8` | ready |  |
-| `+0x4B5` | `u8` | 1 |  |
-| `+0x4B6` | `u8` | 1 (slot 21) |  |
-| `+0x4B8` | `u32` | slot 22 |  |
-| `+0x4BC` | `u32` | slot 23 |  |
-| `+0x4C0` | `f32` | 20.0 |  |
-| `+0x4C4` | `f32[48]` | matrix bank A |  |
-| `+0x584` | `f32[48]` | matrix bank B |  |
-| `+0x644` | `f32[4]` | fog colour bank A |  |
-| `+0x654` | `f32[4]` | fog colour bank B |  |
-| `+0x664` | `u32` | refraction mode (slot 24) |  |
+| `+0x4B5` | `u8` |  | value 1 |
+| `+0x4B6` | `u8` |  | 1 (slot 21) |
+| `+0x4B8` | `u32` |  | slot 22 |
+| `+0x4BC` | `u32` |  | slot 23 |
+| `+0x4C0` | `f32` |  | value 20.0 |
+| `+0x4C4` | `f32[48]` |  | matrix bank A |
+| `+0x584` | `f32[48]` |  | matrix bank B |
+| `+0x644` | `f32[4]` |  | fog colour bank A |
+| `+0x654` | `f32[4]` |  | fog colour bank B |
+| `+0x664` | `u32` |  | refraction mode (slot 24) |
 
 The part record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | the mesh's parameter set; its +0x08 is the parameter block |  |
-| `+0x08` | `f32` | z-bias a, bank A |  |
-| `+0x0C` | `f32` | z-bias a, bank B |  |
-| `+0x10` | `f32` | z-bias b, bank A |  |
-| `+0x14` | `f32` | z-bias b, bank B |  |
-| `+0x30` | `void*[92]` | parameter descriptors, sunIndex first, g_txChrAlpha at +0x310 |  |
+| `+0x00` | `void*` |  | the mesh's parameter set; its `+0x08` is the parameter block |
+| `+0x08` | `f32` |  | z-bias a, bank A |
+| `+0x0C` | `f32` |  | z-bias a, bank B |
+| `+0x10` | `f32` |  | z-bias b, bank A |
+| `+0x14` | `f32` |  | z-bias b, bank B |
+| `+0x30` | `void*[92]` |  | parameter descriptors, sunIndex first, g_txChrAlpha at `+0x310` |
 
 The render model instance, as `0x005049E0` resets it:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `i16` | own index, -1 when free |  |
-| `+0x002` | `i16` | next in the draw list |  |
-| `+0x004` | `i32` | sort key |  |
-| `+0x008` | `u32` | bit 0x1 drawn |  |
-| `+0x050` | `f32[16]` | matrix, identity |  |
-| `+0x090` | `f32[4]` | colour, 1.0 |  |
-| `+0x0A0` | `f32[4]` | colour times the script colour, 1.0 |  |
-| `+0x0B0` | `i16` | composite fade, Q12, 0x1000 |  |
-| `+0x0D0` | `f32[4]` | 255.0 |  |
-| `+0x0F8` | `void*` | render record |  |
-| `+0x244` | `u32` | bit 0x1 blend override, bit 0x10 draw twice; 4 after a reset |  |
-| `+0x248` | `f32` | blend override value, 1.0 |  |
+| `+0x000` | `i16` |  | own index, -1 when free |
+| `+0x002` | `i16` |  | next in the draw list |
+| `+0x004` | `i32` |  | sort key |
+| `+0x008` | `u32` |  | bit `0x1` drawn |
+| `+0x050` | `f32[16]` |  | matrix, identity |
+| `+0x090` | `f32[4]` |  | colour, 1.0 |
+| `+0x0A0` | `f32[4]` |  | colour times the script colour, 1.0 |
+| `+0x0B0` | `i16` |  | composite fade, Q12, `0x1000` |
+| `+0x0D0` | `f32[4]` |  | value 255.0 |
+| `+0x0F8` | `void*` |  | render record |
+| `+0x244` | `u32` |  | bit `0x1` blend override, bit `0x10` draw twice; 4 after a reset |
+| `+0x248` | `f32` |  | blend override value, 1.0 |
 
 The vtable has 31 slots (`0x00903B68`, read from the image):
 

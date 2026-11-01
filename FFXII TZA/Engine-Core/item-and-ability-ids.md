@@ -31,7 +31,7 @@ table at `0x01EEBCC0` has fifteen records of `0x58` bytes:
 |---|---|
 | `+0x00` / `+0x08` | region A: offset into the party block `[0x02EBF190]`, and the pointer the rebaser derives from it |
 | `+0x10` | region A length in 16-bit words |
-| `+0x18` / `+0x20`, `+0x28` / `+0x30` | regions B and C the same way (0 = none) |
+| `+0x18` / `+0x20`, `+0x28` / `+0x30` | regions B and C the same way (0 when the class has no such region) |
 | `+0x38` | class, 5 to 19 |
 | `+0x3C` | id count; an index at or past it is invalid |
 | `+0x40` | cumulative id base, the running sum of the earlier counts (written at run time) |
@@ -52,13 +52,13 @@ records, read from the image:
 | 2 | 7 | 512 | `+0x4B10` (512) | `+0x57C8` | | packed count | loot |
 | 3 | 8 | 81 | `+0x4F10` (6) | | | bitset | magicks |
 | 4 | 9 | 24 | `+0x4F1C` (2) | | | bitset | technicks |
-| 5 | 10 | 0 | | | | none | unused |
+| 5 | 10 | 0 | | | | no handler | unused |
 | 6 | 11 | 256 | `+0x4F20` (16) | | | bitset | gambit conditions |
-| 7 | 12 | 0 | | | | none | unused |
+| 7 | 12 | 0 | | | | no handler | unused |
 | 8 | 13 | 512 | `+0x4F40` (32) | | | bitset | key items |
 | 9 | 14 | 512 | | | | mutate only `0x002FD530` | reward packages |
 | A | 15 | 256 | | | | mutate only `0x002FD640` | package selectors |
-| B | 16 | 0 | | | | none | unused |
+| B | 16 | 0 | | | | no handler | unused |
 | C | 17 | 32 | `+0x4F80` (2) | | | bitset | quickenings |
 | D | 18 | 128 | | | | mutate only `0x002FD780` | bazaar goods |
 | E | 19 | 4,095 | | | | mutate only `0x002FD880` | gil amounts |
@@ -79,8 +79,8 @@ hops (byte `+2` of the magick's row in `0x02EBF0F0`, `id - 0x3000`, is an action
 `+0x2C & 7` of that row in `0x02EBF138` is k, and `0x01EECF98[k]` is ORed in when k < 5); `0x40` for a
 technick; `0x80` for a quickening `0xC000` to `0xC011` and `0x100` for `0xC012` to `0xC01E`.
 
-The packed-count classes (items, equipment, loot) keep one 16-bit word per id in region A: bits
-0 to 9 the owned total, capped at 99, bits 10 to 15 the reserved copies. The query handler
+The packed-count classes (items, equipment, loot) keep one 16-bit word per id in region A: mask
+`0x3FF` the owned total, capped at 99, mask `0xFC00` the reserved copies. The query handler
 `0x002FD8D0(id, mode)` returns total minus reserved for mode 0 (which can go negative), the total
 for mode 1, the reserved count for mode 2 and the region-B byte for mode 3. The mutate handler
 `0x002FD150` by channel:
@@ -293,7 +293,7 @@ The menus are those callers: the gambit screen's row and page builders (`0x00567
 `0x0027D480` use the row form ([gambit screen](../Menus-And-HUD/gambit-screen.md),
 [menu screens](../Menus-And-HUD/menu-screens.md)).
 
-The name at `+0x18` is the field half of the callers read and nothing else; the equipment block
+Half of the callers read the name at `+0x18` and no other field; the equipment block
 `+0x3C` to `+0x60` is read by the equip menus, the licence bytes `+0x21` to `+0x25` by the
 licence board. String pointers point into the loaded text banks; the record never allocates or
 copies them.
@@ -320,7 +320,7 @@ the only free value is the largest the byte can hold.
 ## Layouts
 
 ```
-encoded id (u16): nibble = id >> 12 (0..0xE), index = id & 0xFFF; class = nibble + 5; 0xFFFF = none
+encoded id (u16): nibble = id >> 12 (0..0xE), index = id & 0xFFF; class = nibble + 5; 0xFFFF = the empty id
 ```
 
 Globals:
@@ -336,21 +336,21 @@ Party block [`0x02EBF190`]:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0004` | `u32` | discovery bits | 0 magick, 2..0x20 school, `0x40` technick, `0x80` / `0x100` quickenings |
+| `+0x0004` | `u32` | discovery bits | `0x1` magick, `0x2`..0x20 school, `0x40` technick, `0x80` / `0x100` quickenings |
 | `+0x4748` | `u16[64]` | items |  |
 | `+0x47C8` | `u16[420]` | equipment |  |
 | `+0x4B10` | `u16[512]` | loot |  |
-| `+0x4F10` | `u16[6]` | magicks bits |  |
+| `+0x4F10` | `u16[6]` |  | magicks bits |
 | `+0x4F1C` | `u16[2]` | technicks |  |
-| `+0x4F20` | `u16[16]` | gambit conditions |  |
-| `+0x4F40` | `u16[32]` | key items |  |
+| `+0x4F20` | `u16[16]` |  | gambit conditions |
+| `+0x4F40` | `u16[32]` |  | key items |
 | `+0x4F80` | `u16[2]` | quickenings |  |
-| `+0x57C0` | `...` | items ever-owned bits |  |
-| `+0x57C8` | `u8[512]` | loot sold tally |  |
+| `+0x57C0` | `...` |  | items ever-owned bits |
+| `+0x57C8` | `u8[512]` |  | loot sold tally |
 | `+0x59C8` | `u8[128]` | inventoryPackedFlags | masked with `0xF8` by the rebaser |
 
 ```
-packed word: bits 0-9 total (0..99), bits 10-15 reserved
+packed word: mask 0x3FF total (0..99), mask 0xFC00 reserved
 ```
 
 EncodedIdQueryRecord (`0x98`); `0x022CA520` the row-form copy, `0x022CA480` the id-form copy:
@@ -360,11 +360,11 @@ EncodedIdQueryRecord (`0x98`); `0x022CA520` the row-form copy, `0x022CA480` the 
 | `+0x00` | `u32` | class |  |
 | `+0x04` | `u32` | row | row form; the id form has `+0x06` u16 id instead |
 | `+0x06` | `u16` | id | id form |
-| `+0x08` | `void*` | aux text |  |
+| `+0x08` | `void*` |  | aux text |
 | `+0x10` | `void*` | description |  |
 | `+0x18` | `void*` | name |  |
-| `+0x20` | `i32` | channel 0 |  |
-| `+0x24` | `i32` | channel 1 |  |
+| `+0x20` | `i32` |  | channel 0 |
+| `+0x24` | `i32` |  | channel 1 |
 | `+0x28` | `...` | class-specific | from `+0x28` on |
 
 Reward package row (12):
@@ -400,7 +400,7 @@ Bazaar good row (36):
 
 | Fact | Value |
 |---|---|
-| inventory classes | 15 (nibbles 0 to `0xE`), 11 with handlers, 3 empty |
+| inventory classes | 15 (nibbles 0 to `0xE`), 12 with handlers, 3 empty |
 | id counts | items 64, equipment 420, loot 512, magicks 81, technicks 24, gambit conditions 256, key items 512 (64 + 32 + 416 + 0), quickenings 32, reward packages 512, selectors 256, bazaar goods 128, gil 4,095; sum 6,892 |
 | validator classes | 32, 29 arms; four without a table (1, 19, 22, 23) |
 | query classes | 32, 28 arms |
@@ -431,8 +431,10 @@ records.
   appears in an inventory region, so a save shows only the items it gave.
 - Gil ids `0xE000` to `0xEFFE` carry their amount in the low twelve bits; an amount above 4,094
   needs the gil setter, not an id.
-- Classes 10, 12 and 16 are holes in the nibble space: a count of 0 and no handler, so any id with
-  top nibble 5, 7 or `0xB` is refused everywhere.
+- Classes 10, 12 and 16 are holes in the inventory: their descriptors have a count of 0 and no handler, so
+  `0x003008A0` refuses any id with top nibble 5, 7 or `0xB` and the party can never own one. The validator and the
+  query filler still accept class-10 ids from `0x5000` while gambit_data has rows (40) and class-16 ids from
+  `0xB000` while price_data has rows (128); every class-12 id is refused, because its slot is never bound.
 - An encoded id's index is its low twelve bits (`0x00309EC0` at `0x00309F02`, `0x0030AE30` at `0x0030AE72`:
   `and ecx, 0xFFF`), so each of the fifteen classes an id names (5 to 19) reaches at most 4,096 rows, indices 0 to
   `0xFFF`: its table, or for class 13 its four key-item sub-tables together. Rows past that cannot be named by an id.
@@ -444,3 +446,6 @@ records.
   inventory regions sit in the save image.
 - [Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md): the `st2e` header, the
   pack load that binds each slot, and the row arithmetic the readers inline.
+- [`item-and-ability-ids-query-record-accesses.tsv`](item-and-ability-ids-query-record-accesses.tsv): every censused
+  access to the query record (`EncodedIdQueryRecord`, `0x98` bytes): its row-form copy `0x022CA520` and its id-form
+  copy `0x022CA480`, one row per instruction (326 rows).

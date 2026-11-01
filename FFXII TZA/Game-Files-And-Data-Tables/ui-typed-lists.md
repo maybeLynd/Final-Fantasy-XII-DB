@@ -42,15 +42,15 @@ All multi-byte fields are little-endian.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[3]` | "MRP" |  |
-| `+0x03` | `u8` | prepared flag: 0 in the file, set to 1 by 0x002A00F0 |  |
-| `+0x04` | `u32` | number of atlas name records |  |
-| `+0x08` | `u32` | offset of the atlas name records (file-relative; relocated) |  |
-| `+0x10` | `u32` | end of the name records (+0x08 + 16 × count) |  |
-| `+0x1C` | `u32` | number of list records |  |
-| `+0x20` | `u32` | offset of the list records (file-relative; relocated); 0x30 in every shipped list |  |
-| `+0x24` | `u32` | number of file-row atlas registrations |  |
-| `+0x28` | `u32` | offset of the row table (file-relative; relocated); rows are 12 bytes |  |
+| `+0x00` | `char[3]` |  | value "MRP" |
+| `+0x03` | `u8` |  | prepared flag: 0 in the file, set to 1 by `0x002A00F0` |
+| `+0x04` | `u32` |  | number of atlas name records |
+| `+0x08` | `u32` |  | offset of the atlas name records (file-relative; relocated) |
+| `+0x10` | `u32` |  | end of the name records (`+0x08` + 16 × count) |
+| `+0x1C` | `u32` |  | number of list records |
+| `+0x20` | `u32` |  | offset of the list records (file-relative; relocated); `0x30` in every shipped list |
+| `+0x24` | `u32` |  | number of file-row atlas registrations |
+| `+0x28` | `u32` |  | offset of the row table (file-relative; relocated); rows are 12 bytes |
 
 `0x002A00F0` returns at once when byte `+3` is 1. Otherwise it rewrites `+0x08`, `+0x20` (through `0x002A1A80`) and
 `+0x28` from file offsets into the engine's 32-bit encoded addresses (`0x0020E620` subtracts the low half of the base
@@ -64,13 +64,13 @@ through `0x0024A440` (the readers are in `0x00406A60`); every shipped list has n
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bits 0-9 | item count (at most 1,023) bits 10-27 read by no instruction: the decoder takes bits `0x3FF` (`0x002432E3`) and bit `0x10000000` (`0x00243329`), its 113 callers read `+0x04` to `+0x0A` of the returned record, and the peek reader `0x002BF3D0` copies the record whole (`0x002BF456`) into three fields of the menu object (`0x002BE0A0`: `+0x1088`, `+0x109C` and `+0x10B0` of the block at `+0x8FA0`), whose first dwords no instruction reads bit `0x10000000`     copied to bit `0x1` of the built list's header bits 29-31 0 in all 7,665 records; read by no instruction (the same readers as bits 10-27: the decoder takes bits 0-9 and 28, the 113 callers read `+0x04` to `+0x0A`, and `0x002BF3D0`'s whole copy is read by nothing) |
+| `+0x00` | `u32` | mask 0x3FF | item count (at most 1,023) mask `0xFFFFC00` read by no instruction: the decoder takes bits `0x3FF` (`0x002432E3`) and bit `0x10000000` (`0x00243329`), its 113 callers read `+0x04` to `+0x0A` of the returned record, and the peek reader `0x002BF3D0` copies the record whole (`0x002BF456`) into three fields of the menu object (`0x002BE0A0`: `+0x1088`, `+0x109C` and `+0x10B0` of the block at `+0x8FA0`), whose first dwords no instruction reads bit `0x10000000`     copied to bit `0x1` of the built list's header mask `0xE0000000` 0 in all 7,665 records; read by no instruction (the same readers as the bits under mask `0xFFFFC00`: the decoder takes the bits under mask `0x100003FF`, the 113 callers read `+0x04` to `+0x0A`, and `0x002BF3D0`'s whole copy is read by nothing) |
 | `+0x04` | `i16` | x | the list's rectangle, copied by the widgets that own it |
 | `+0x06` | `i16` | y |  |
 | `+0x08` | `u16` | width |  |
 | `+0x0A` | `u16` | height |  |
-| `+0x0C` | `u32` | a value read by the peek reader 0x002BF3D0 (stored in 0x01E0CE88) |  |
-| `+0x10` | `u32` | offset of this record's first item, relative to the record itself |  |
+| `+0x0C` | `u32` |  | a value read by the peek reader `0x002BF3D0` (stored in `0x01E0CE88`) |
+| `+0x10` | `u32` |  | offset of this record's first item, relative to the record itself |
 
 ### Item header
 
@@ -78,15 +78,15 @@ Items are variable-length and say their own length, so the walk steps over any t
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | item length in bytes |  |
-| `+0x01` | `u8` | type, 1-9 |  |
-| `+0x02` | `u8` | read by no instruction: the decoder reads +0x00 and +0x01 (0x00243379, 0x00243340) and bit 0x10 of +0x03 (0x00243329), the six constructors it calls (0x0029F4C0, 0x0029FEB0, 0x0029ED40, 0x0029F130, 0x0029F930, 0x0029ECB0) read nothing at +0x02, and the relocator 0x002A00F0 touches no item |  |
-| `+0x03` | `u8` | bit 0x10 (bit 0x10000000 of the first dword): drawn |  |
+| `+0x00` | `u8` |  | item length in bytes |
+| `+0x01` | `u8` |  | type, 1-9 |
+| `+0x02` | `u8` |  | read by no instruction: the decoder reads `+0x00` and `+0x01` (`0x00243379`, `0x00243340`) and bit `0x10` of `+0x03` (`0x00243329`), the six constructors it calls (`0x0029F4C0`, `0x0029FEB0`, `0x0029ED40`, `0x0029F130`, `0x0029F930`, `0x0029ECB0`) read nothing at `+0x02`, and the relocator `0x002A00F0` touches no item |
+| `+0x03` | `u8` |  | bit `0x10` (bit `0x10000000` of the first dword): drawn |
 | `+0x04` | `i16` | x |  |
 | `+0x06` | `i16` | y |  |
 | `+0x08` | `u16` | width |  |
 | `+0x0A` | `u16` | height |  |
-| `+0x0C` | `...` | type fields |  |
+| `+0x0C` | `...` |  | type fields |
 
 ### Type fields
 
@@ -115,7 +115,7 @@ Type 5, 24 bytes:
 | `+0x0C` | `u32` | colour | text colour |
 | `+0x10` | `u8` | scale | scale in percent; 0 means 100 |
 | `+0x11` | `u8` | text mode | text mode byte |
-| `+0x12` | `u16` | node flag bits | stored in bits 6-15 of the node flags |
+| `+0x12` | `u16` | node flag bits | stored in the bits under mask `0xFFC0` of the node flags |
 | `+0x14` | `i32` | string id | -1 = no text |
 
 Type 7, 72 bytes:
@@ -124,7 +124,7 @@ Type 7, 72 bytes:
 |---|---|---|---|
 | `+0x0C` | `u16` | atlas record | atlas name record index |
 | `+0x0E` | `u16` | base sub-image | sub-image code of the base record |
-| `+0x13` | `u8` | fill palette flag | bit 1: the fill keeps the background's palette and colour |
+| `+0x13` | `u8` | fill palette flag | bit `0x2`: the fill keeps the background's palette and colour |
 | `+0x14` | `i16` | background x | x offset |
 | `+0x16` | `i16` | background y | y offset |
 | `+0x18` | `u16` | background left | left cap, records from the base |
@@ -160,9 +160,9 @@ Type 8, 44 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `char[14]` | atlas name, NUL-terminated |  |
-| `+0x0E` | `u8` | 1 once resolved (0 in the file) |  |
-| `+0x0F` | `u8` | the registry slot it resolved to (0 in the file) |  |
+| `+0x00` | `char[14]` |  | atlas name, NUL-terminated |
+| `+0x0E` | `u8` |  | 1 once resolved (0 in the file) |
+| `+0x0F` | `u8` |  | the atlas registry slot it resolved to (0 in the file) |
 
 ### Built list and node
 
@@ -170,32 +170,32 @@ The caller passes a 24-byte list header, usually at widget `+0x50`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | bit 0x1 = record bit 0x10000000, bit 0x2 = 1, bits 2-17 = item count |  |
-| `+0x08` | `void*` | the list record |  |
-| `+0x10` | `void*` | the block: count node pointers, then the nodes; null when the size is 0 |  |
+| `+0x00` | `u32` |  | bit `0x1` = record bit `0x10000000`, bit `0x2` = 1, mask `0x3FFFC` = item count |
+| `+0x08` | `void*` |  | the list record |
+| `+0x10` | `void*` |  | the block: count node pointers, then the nodes; null when the size is 0 |
 
 Every node starts with the same 0x14 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | the item |  |
-| `+0x08` | `u32` | bit 0x1 = item bit 0x10000000 (drawn), bits 2-5 = type & 0xF, bits 6-15 cleared for the constructor |  |
-| `+0x0A` | `u16` | 0 (types 2, 9 store the frame here, type 7 a phase) |  |
-| `+0x0C` | `i16` | x, y (+0x0E), width (+0x10), height (+0x12), copied from item +0x04..+0x0B |  |
+| `+0x00` | `void*` |  | the item |
+| `+0x08` | `u32` |  | bit `0x1` = item bit `0x10000000` (drawn), mask `0x3C` = type & `0xF`, mask `0xFFC0` cleared for the constructor |
+| `+0x0A` | `u16` |  | 0 (types 2, 9 store the frame here, type 7 a phase) |
+| `+0x0C` | `i16` |  | x, y (`+0x0E`), width (`+0x10`), height (`+0x12`), copied from item `+0x04`..+`0x0B` |
 
 ### Atlas registry slot (0x48 bytes, 64 slots at `0x0208F580`)
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `char[16]` | name |  |
-| `+0x10` | `void*` | palette: the file's, or the reordered copy for format 0x14 |  |
-| `+0x18` | `void*` | the TIM2 buffer |  |
-| `+0x20` | `void*` | the first picture header (buffer + 0x10) |  |
-| `+0x28` | `void*` | a replacement palette, or null |  |
-| `+0x30` | `u64` | texture descriptor written by the layout pass |  |
-| `+0x38` | `u32` | flags: bits 0-3 caller flags, bit 0x20 occupied, bit 0x40 image bound, bit 0x80 in the layout, | bits 8-13 pixel format, bits 14-17 palette format, bits `0x40000`+ replacement palette colours |
-| `+0x40` | `u32` | number appended to the texture name, 0 for none |  |
-| `+0x44` | `u32` | value from 0x00181520 |  |
+| `+0x10` | `void*` |  | palette: the file's, or the reordered copy for format `0x14` |
+| `+0x18` | `void*` |  | the TIM2 buffer |
+| `+0x20` | `void*` |  | the first picture header (buffer + `0x10`) |
+| `+0x28` | `void*` |  | a replacement palette, or null |
+| `+0x30` | `u64` |  | texture descriptor written by the layout pass |
+| `+0x38` | `u32` |  | flags: mask `0xF` caller flags, bit `0x20` occupied, bit `0x40` image bound, bit `0x80` in the layout, mask `0x3F00` pixel format, mask `0x3C000` palette format, bits `0x40000`+ replacement palette colours |
+| `+0x40` | `u32` |  | number appended to the texture name, 0 for none |
+| `+0x44` | `u32` |  | value from `0x00181520` |
 
 `0x02090780` counts registrations.
 
@@ -209,13 +209,13 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 | packs | 10 `mrppack_ys.bin`; 23 units in nine, 21 in `in_sdver` (the last two offsets are `0xFFFFFFFF`); 228 units |
 | list files in all | 344, every one `MRP\0` with byte `+3` = 0, outer table at file offset `0x30`, no rows |
 | list records | 7,665 (1,458 in files, 6,207 in pack units); the largest holds 104 items |
-| every list record | one row each in [`ui-typed-lists-records-rows.tsv`](ui-typed-lists-records-rows.tsv), 7,665 rows: carrier file, pack unit, index, item count, bits 10-27, bit `0x10000000`, bits 29-31, rectangle, the `+0x0C` value and the first item's offset |
+| every list record | one row each in [`ui-typed-lists-records-rows.tsv`](ui-typed-lists-records-rows.tsv), 7,665 rows: carrier file, pack unit, index, item count, mask `0xFFFFC00`, bit `0x10000000`, mask `0xE0000000`, rectangle, the `+0x0C` value and the first item's offset |
 | every item | one row each in [`ui-typed-lists-items-rows.tsv`](ui-typed-lists-items-rows.tsv), 30,546 rows: carrier, unit, record, position, length, type, bytes `+2` and `+3`, rectangle and the type fields in hex |
 | items | 30,546 (5,223 and 25,323) |
 | items by type | 1: 2,661; 2: 20,181; 4: 2,017; 5: 4,484; 6: 46; 7: 278; 8: 879; types 3 and 9: none |
 | item length by type | 1: 16; 2: 36; 4: 28; 5 and 6: 24; 7: 72; 8: 44; no exceptions |
 | item stream | starts at the end of the outer table; each record's items follow the previous record's; 0, 4, 8 or 12 zero bytes pad it to the name records |
-| record bits 10-27 | equal the record's own index in all 7,665 |
+| record bits under mask `0xFFFFC00` | equal the record's own index in all 7,665 |
 | record bit `0x10000000` | clear in 234 records |
 | item byte `+2` | the item's position in its record, in all 30,546 |
 | item byte `+3` | `0x10` (drawn) in 27,880, 0 in 2,666 |
@@ -400,8 +400,8 @@ its six pieces from the base record.
   `0x02090780` and returns the slot; with all 64 busy it returns null. `0x0024A660`, run from the menu system's
   start-up `0x00253970`, zeroes the 64 slots and the count.
 - When the image arrives, `0x00249670` calls `0x0024A1D0(slot, buffer)`. It stores the buffer at `+0x18` and the
-  picture header (buffer `+0x10`) at `+0x20`, copies the pixel format (bits 20-25 of the header's `GsTex0` at
-  `+0x18`) into flag bits 8-13 and the palette format (bits 51-54) into bits `0x3C000`, and names the texture `%s` or
+  picture header (buffer `+0x10`) at `+0x20`, copies the pixel format (mask `0x3F00000` of the header's `GsTex0` at
+  `+0x18`) into flag bits under mask `0x3F00` and the palette format (mask `0x78000000000000`) into bits `0x3C000`, and names the texture `%s` or
   `%s%03d` with `+0x40`.
 - Format `0x13` hands the pixels (header + header size) to `0x00181250` and the palette (header + header size +
   image size, or `+0x28` when set) to `0x00181000`. Format `0x14` copies the palette into a new block from
@@ -433,3 +433,8 @@ slot's descriptor at `+0x30`; slot 63 is never visited, and clearing bit `0x80` 
 - [Menu screens](../Menus-And-HUD/menu-screens.md): which screen procedure decodes which pack unit and record.
 - [Widgets](../Menus-And-HUD/widgets.md): the widgets that own the lists and the children types 1 and 8 create.
 - [Text drawing](../Menus-And-HUD/text-drawing.md): how type-5 text becomes glyphs.
+- [`ui-typed-lists-item-census.tsv`](ui-typed-lists-item-census.tsv): one row per shipped `.mrp` list file: its list
+  records, its items and the item types seen (type:count), and where the walk over the items ends beside the
+  header's `+0x08`, the start of the atlas name records (116 rows).
+- [`ui-typed-lists-item-census-embedded.tsv`](ui-typed-lists-item-census-embedded.tsv): the same for the list units
+  embedded in `packfiles/mrppack_ys.bin` of each language folder, one row per unit (228 rows).

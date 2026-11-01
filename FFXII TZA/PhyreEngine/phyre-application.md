@@ -255,49 +255,49 @@ PApplication  (base of GameApplication; address in `0x02EA5368`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x0000` | `void*` | vtable 0x01CB2508 (GameApplication: 0x008C5760) |  |
-| `+0x0010` | `void*` | PProcessorProfileTimelineCpu sub-object (its vtable) |  |
-| `+0x001E` | `u8` | resize pending (slot 12, run setup) |  |
-| `+0x001F` | `u8` | window-style refresh pending |  |
-| `+0x0020` | `u8` | screen-mode change pending (slot 12) |  |
-| `+0x0021` | `u8` | focus request pending (slot 13) |  |
-| `+0x0026` | `u8` | restore (1) or minimise (0) |  |
-| `+0x0022` | `u8` | monitor re-check pending (slot 19) |  |
-| `+0x0023` | `u8` | skip the next re-check |  |
-| `+0x0024` | `u8` | window moved (slot 20) |  |
-| `+0x0028` | `u8` | title-bar or border mouse press (slot 17) |  |
-| `+0x0029` | `u8` | resize pending (slot 18) |  |
+| `+0x0000` | `void*` |  | vtable `0x01CB2508` (GameApplication: `0x008C5760`) |
+| `+0x0010` | `void*` |  | PProcessorProfileTimelineCpu sub-object (its vtable) |
+| `+0x001E` | `u8` |  | resize pending (slot 12, run setup) |
+| `+0x001F` | `u8` |  | window-style refresh pending |
+| `+0x0020` | `u8` |  | screen-mode change pending (slot 12) |
+| `+0x0021` | `u8` |  | focus request pending (slot 13) |
+| `+0x0026` | `u8` |  | restore (1) or minimise (0) |
+| `+0x0022` | `u8` |  | monitor re-check pending (slot 19) |
+| `+0x0023` | `u8` |  | skip the next re-check |
+| `+0x0024` | `u8` |  | window moved (slot 20) |
+| `+0x0028` | `u8` |  | title-bar or border mouse press (slot 17) |
+| `+0x0029` | `u8` |  | resize pending (slot 18) |
 | `+0x002C` | `i32` | width |  |
 | `+0x0030` | `i32` | height |  |
-| `+0x003C` | `i32` | frame rate used for a full-screen switch |  |
-| `+0x0040` | `f64` | total elapsed time |  |
-| `+0x0048` | `f64` | frame delta |  |
-| `+0x0050` | `f64` | time offset taken at run setup |  |
-| `+0x0058` | `void*` | console object (script or replay mode only) |  |
-| `+0x0060` | `f32` | frames per second, measured over two seconds |  |
-| `+0x0064` | `u32` | frame counter |  |
+| `+0x003C` | `i32` |  | frame rate used for a full-screen switch |
+| `+0x0040` | `f64` |  | total elapsed time |
+| `+0x0048` | `f64` |  | frame delta |
+| `+0x0050` | `f64` |  | time offset taken at run setup |
+| `+0x0058` | `void*` |  | console object (script or replay mode only) |
+| `+0x0060` | `f32` |  | frames per second, measured over two seconds |
+| `+0x0064` | `u32` |  | frame counter |
 | `+0x0069` | `u8` | quit |  |
-| `+0x006C` | `f32` | fixed time step, 0 = real time |  |
-| `+0x0090` | `f32[3]` | global ambient colour, shader parameter type 0x10 ('globalambientcolor'); opens the scene block +0x090..+0x0E7 |  |
+| `+0x006C` | `f32` |  | fixed time step, 0 = real time |
+| `+0x0090` | `f32[3]` |  | global ambient colour, shader parameter type `0x10` ('globalambientcolor'); opens the scene block `+0x090`..+`0x0E7` |
 | `+0x00B0` | `void*` | texture of parameter type 0x12 | `+0x0B8` the second value of its capture record |
-| `+0x00C8` | `void*` | texture of parameter type 0x14 |  |
+| `+0x00C8` | `void*` |  | texture of parameter type `0x14` |
 | `+0x00D0` | `void*` | type 0x15 |  |
 | `+0x00D8` | `void*` | type 0x16 |  |
-| `+0x00E0` | `f32` | total elapsed time as a float, parameter type 0x11 ('time') |  |
-| `+0x00E8` | `...` | render context |  |
-| `+0x0D10` | `void*` | render-interface parameter block (0x01F403A8) |  |
-| `+0x0D18` | `void*` | per-frame function: 0x00793E8C (slot 28) or 0x00793E98 (slot 29) |  |
-| `+0x0D20` | `u8` | full screen |  |
-| `+0x0D24` | `i32` | width (default 1280) |  |
+| `+0x00E0` | `f32` |  | total elapsed time as a float, parameter type `0x11` ('time') |
+| `+0x00E8` | `...` |  | render context |
+| `+0x0D10` | `void*` |  | render-interface parameter block (`0x01F403A8`) |
+| `+0x0D18` | `void*` |  | per-frame function: `0x00793E8C` (slot 28) or `0x00793E98` (slot 29) |
+| `+0x0D20` | `u8` |  | full screen |
+| `+0x0D24` | `i32` |  | width (default 1280) |
 | `+0x0D28` | `i32` | height (default 720) |  |
-| `+0x0D98` | `void*` | input-recording stream |  |
-| `+0x0DB8` | `u32` | viewport count |  |
+| `+0x0D98` | `void*` |  | input-recording stream |
+| `+0x0DB8` | `u32` |  | viewport count |
 | `+0x0DC0` | `void*` | viewport array |  |
-| `+0x0DE8` | `void*` | 96 MiB arena |  |
+| `+0x0DE8` | `void*` |  | 96 MiB arena |
 | `+0x0DF0` | `void*` | 2 MiB block |  |
-| `+0x0DF8` | `void*` | input object |  |
-| `+0x10D4` | `u8` | auto-test switch, 0 in retail: gates the map walker 0x001C2F50 and the scene verbs through 0x001C3370 |  |
-| `+0x10D8` | `...` | embedded PDebugUtils (0x58 bytes); its m_autoClear at +0x1128 is set to 1 |  |
+| `+0x0DF8` | `void*` |  | input object |
+| `+0x10D4` | `u8` |  | auto-test switch, 0 in retail: gates the map walker `0x001C2F50` and the scene verbs through `0x001C3370` |
+| `+0x10D8` | `...` |  | embedded PDebugUtils (`0x58` bytes); its m_autoClear at `+0x1128` is set to 1 |
 
 The application vtable slots the framework calls, named by the framework's own log strings where it
 has them:

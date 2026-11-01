@@ -91,7 +91,7 @@ a pair of values in the layout of the GS registers TEX0 and CLAMP, for draws tha
 
 | Entries | TEX0 value | CLAMP value | Base page (TEX0 bits `0x3FFF`) |
 |---|---|---|---|
-| `0x02AEECF0`, `0x02AEED00` | `0x664100000` with `width / 64` in bits 14-19: PSM 1, 512 × 512, TCC 1 | `10` (region clamp in u and v), maximum u = width − 1, v = height − 1 | `width × height / 64` in one of the two, 0 in the other |
+| `0x02AEECF0`, `0x02AEED00` | `0x664100000` with `width / 64` in the bits under mask `0xFC000`: PSM 1, 512 × 512, TCC 1 | `10` (region clamp in u and v), maximum u = width − 1, v = height − 1 | `width × height / 64` in one of the two, 0 in the other |
 | `0x02AEED10` to `0x02AEED40` | `0x620110000`: PSM 1, 256 × 256, TCC 1 | `10` with half the width and height | `0x3C00`, `0x3700`, `0x3300`, `0x3FFF` |
 
 The full-size base goes into the first entry when bits `0x1FF` of the FRAME_1 value `0x022D8EC8` are 0, and
@@ -151,7 +151,7 @@ when the count is positive (`0x003EC8A0`) and clears the slot.
 
 `0x00862910` truncates a float vector to four integers, and `0x00862930` does the same after scaling by
 16, the GS coordinate form. The model instance's draw setup `0x004FD4B0` converts the instance's
-`+0xD0` with the first and writes the fourth integer into bits 56–63 of the GS FOG register
+`+0xD0` with the first and writes the fourth integer into the bits under mask `0xFF00000000000000` of the GS FOG register
 (`0x0A`); the point projector `0x00272180` and the map screen code `0x003C29A0` use the second.
 
 ### The slot rebuild
@@ -193,8 +193,8 @@ buffer width `0x022D8EAC` / 64, TW the highest set bit of 2 x width - 1 (9 for t
 `0x3F`. It then writes TEXA (`0x3B`) = `0x80` under one A+D GIF tag (`0x00248EB0`, `0x00248E10`).
 
 `0x003A22A0(packet, base, format, width, height, data)` builds a whole upload into a packet. It opens an
-A+D GIF tag (`0x003A2090`) and writes BITBLTBUF with the destination base in bits 32–45, the buffer
-width from `0x003A1FE0` in bits 48–53 and the format in bits 56–61, then TRXPOS 0, TRXREG
+A+D GIF tag (`0x003A2090`) and writes BITBLTBUF with the destination base in the bits under mask `0x3FFF00000000`, the buffer
+width from `0x003A1FE0` in the bits under mask `0x3F000000000000` and the format in the bits under mask `0x3F00000000000000`, then TRXPOS 0, TRXREG
 `width, height` and TRXDIR 0, and closes the tag (`0x0024B150`). The image follows through
 `0x003A21A0`, and a second A+D tag writes TEXFLUSH (`0x3F`).
 
@@ -222,7 +222,7 @@ mode of 0 to 3 chosen from `a` and `b` (`0x00376320`), and records a changed tar
 A texture word in the GS TEX0 layout comes from `0x002D8050(word, width, height, format)`. It keeps the
 base in bits `0x3FFF`, which the caller sets, and writes the buffer width in 64-pixel units rounded up
 (1 becomes 2) in bits `0xFC000`, the format in bits `0x3F00000`, the power-of-two exponents of the width and
-height in bits 26–29 and 30–33, and bit `0x400000000`; bits `0x800000000` and `0x1000000000` are cleared.
+height in the bits under mask `0x3FC000000`, and bit `0x400000000`; bits `0x800000000` and `0x1000000000` are cleared.
 
 The exponent is
 `0x002D8150(n)`, the smallest e with 2^e ≥ n, at most 10. The effect-texture placer `0x002D83B0` builds
@@ -249,7 +249,7 @@ caller's stack and a family of helpers around `0x00271450`:
 | `0x00272390(w, records, n)` | copies `n` 16-byte records to the cursor and advances it; `0x00271290` copies without a writer |
 | `0x00271080(w)` | closes a chunk: VIF FLUSH (`0x11000000`) and `0x10000000` in the header's upper dwords |
 | `0x002710C0(w, eop)` | writes the GIF tag: A+D (`0xE`), one register, the record count as NLOOP and `eop` in bit `0x8000` |
-| `0x00271100(w)` | writes an UNPACK header (`0x6C008000` with the count in bits 16 up) after three `0x10000000` |
+| `0x00271100(w)` | writes an UNPACK header (`0x6C008000` with the count in the bits from `0x10000` up) after three `0x10000000` |
 | `0x00271050(w)` | writes a DIRECT header: `0x13000000` (FLUSHA), `0x10000000`, `0x50000000` with the count |
 | `0x002712E0(w, src, ad)` | closes a DIRECT chunk of `src`, with an A+D end record `{0x8000, 0xE}` when `ad` is 1 |
 | `0x00270FF0(w)`, `0x00271010(w, n)` | end the packet: when anything was written, advance the buffer's cursor and flip it (`0x003A1DB0`) |
@@ -265,7 +265,7 @@ The content helpers write fixed packets:
   four 2047.5 and four 1.0, the last replaced by `extra` when given.
 - `0x00271720(w)` writes VIF BASE 0 and OFFSET `0x200` (`0x03000000`, `0x02000200`) into the record at
   the cursor. `0x002715A0(w, picture, row, half)` writes a picture bind there: A+D with CLAMP_1 = 5 and
-  TEX0_1 from the picture's `+0x30`, the palette offset `(half + row × 2) × 2` in bits 37 up.
+  TEX0_1 from the picture's `+0x30`, the palette offset `(half + row × 2) × 2` in the bits from `0x2000000000` up.
 - Both, and `0x00271870(w, data, bytes)`, store back the cursor value they read and nothing between
   moves it, so the next write lands on the same records. `0x00271870` passes `bytes / 16` and `data`
   to `0x0016D6A0`, so it copies nothing.
@@ -275,7 +275,7 @@ The content helpers write fixed packets:
   PRMODECONT 1 and PRIM `0x5C` (a textured, blended, shaded triangle strip), or `0x54` without shading
   when `flat` is non-zero.
 - `0x00271650(p, picture, row, half, eop)` writes a two-register picture bind, CLAMP_1 = 5 and TEX0_1 from
-  the picture's `+0x30` with the palette offset `(half + row x 2) x 2` in bits 37 up.
+  the picture's `+0x30` with the palette offset `(half + row x 2) x 2` in the bits from `0x2000000000` up.
 - `0x002716C0(p, end)` writes FLUSHA, NOP and a DIRECT header counting the records from `p + 0x10` to `end`.
 - `0x002724A0(w)` ends a VU1 draw: the record at `[w + 0x38]` gets a GIF tag with end-of-packet, NLOOP
   `[w + 0x40]` and the registers ST, RGBAQ, XYZF2 (`0x412`); it completes the UNPACK header at
@@ -312,7 +312,7 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
 - `0x005376D0` first folds the angle into `[−π/2, π/2]` and then sums the odd powers up to the ninth
   with the coefficients −0.16666657, 0.0083330255, −0.00019807414 and 2.601887e-06. Its
   comparisons go through `0x005379D0(flags, vector, value)`, which builds a VU MAC flag word: bits `0x80`
-  to 4 for the lanes x to w below the value, bits 3 to 0 for the lanes equal to it.
+  to `0x10` for the lanes x to w below the value, bits `0x8` to `0x1` for the lanes equal to it.
 
 ## Layouts
 
@@ -332,7 +332,7 @@ Instance record (map `+0x178`, tag 30 of the map pack), `0x30` bytes:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x02` | `i16` | placement row | read by `0x003A6FC0` |
-| `+0x04` | `u16` | texture record index |  |
+| `+0x04` | `u16` |  | texture record index |
 | `+0x0C` | `u32` | flags | bit `0x800000` + slot: present for that weather slot |
 | `+0x1D` | `u8` | sub-index | a repeat of the previous index and sub-index is not counted again |
 
@@ -340,12 +340,12 @@ Slot record (map `+0x218`, count `+0x228`), `0x28` bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u64` | cleared at allocation and by 0x002F4520 every pass |  |
-| `+0x08` | `u64` | cleared at allocation |  |
-| `+0x10` | `u64` | cleared at allocation |  |
-| `+0x18` | `u64` | cleared at allocation |  |
-| `+0x20` | `u8` | 0 at allocation, 0xFF from 0x002F4520 every pass |  |
-| `+0x21` | `-` | never written |  |
+| `+0x00` | `u64` |  | cleared at allocation and by `0x002F4520` every pass |
+| `+0x08` | `u64` |  | cleared at allocation |
+| `+0x10` | `u64` |  | cleared at allocation |
+| `+0x18` | `u64` |  | cleared at allocation |
+| `+0x20` | `u8` |  | 0 at allocation, `0xFF` from `0x002F4520` every pass |
+| `+0x21` | `-` |  | never written |
 
 ```
 GS model constants
