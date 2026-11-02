@@ -97,6 +97,8 @@ Waterway scenes](garamsythe-waterway-scenes.md).
   writes 235, the start of the escape from the waterway.
 - East Spur Stairs: from story counter 235 to 243, `SAKIYOMI_grm_a0480` loads scene `grm_a0480` (event 738),
   Balthier's talk on gambits; touching `TUTORIAL_イベント管理` plays it and writes 244.
+- East Spur Stairs, observed in the game: when the bodies are examined first (their talk plays `grm_a0401`),
+  touching the area afterwards writes 244 but `grm_a0480` does not play, and a second touch does nothing.
 - East Spur Stairs: from story counter 225 to 289, `常駐監督.init` places two bodies (`ダルマスカ兵士死体`, `ダルマスカ兵士死体２`). Talking
   to `ダルマスカ兵士死体` the first time plays scene `grm_a0401` (event 318); after that it shows one line by the controlled
   character: Balthier ("Boys with too much hate and too little experience."), Fran, Amalia ("...") or, for any other,

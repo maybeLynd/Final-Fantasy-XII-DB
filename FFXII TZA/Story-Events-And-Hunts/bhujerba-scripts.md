@@ -83,6 +83,12 @@ scenes](bhujerba-scenes.md).
   Marquis awaits." and, after "I'm ready.", "His Excellency the Marquis is otherwise occupied until sunset.", and
   takes the party to field 864 (`byu_y01`); at 1100 "His Excellency has given orders that you are to be granted an
   audience." leads there too.
+- Travica Way: this `NPC01` is copy 12 of the shared actor, and the offer needs byte 12 of the file variable
+  `file_var_s60_1` not to be 2; at 2 the talk is only "Ridiculous, bhadra! That man is long since dead. Spread such
+  rumors and you are likely to be taken in for disturbing the peace!"
+- Travica Way, observed in the game at 730: the byte reads 0 on arrival and the talk is the offer; set to 2, the
+  talk is that line; after leaving for `byu_a02` and coming back, all 48 bytes of the variable read 0 again and
+  the talk is the offer.
 - Travica Way and Miners' End: `Map_Director.init` releases flag `0x0158` below story counter 710 and sets it from
   710.
 - Travica Way's signs name Targe's Arms, Rithil's Protectives and Mait's Magicks (fields 813, 814 and 816), whose

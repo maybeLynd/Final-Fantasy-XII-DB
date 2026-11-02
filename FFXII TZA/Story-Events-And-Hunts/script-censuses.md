@@ -41,10 +41,10 @@ jump with no label before it, plus `byu_a18` `配置監督.main` lines 821 and 8
 at `0C332` and no jump in the function targets it.
 
 The 128 reached unguarded writes were read by hand: what starts the function, which other variables guard it, and
-which maps lead in. 125 raise or keep the counter. Three may lower it: `mrm_e01` main line 551 (2150), `rui_c01`
-main line 210 (3200) and `rui_d01` main line 225 (3150) run on the first entry into a boss room, and the counter
-tests on the story scripts' map jumps leave other areas open before that entry, where later writes store more,
-so the listings give the counter at that entry no upper bound. Four of the 125 rest on how the maps connect:
+which maps lead in. 127 raise or keep the counter. One may lower it: `mrm_e01` main line 551 (2150) runs on the first
+entry into a boss room, and the counter tests on the story scripts' map jumps leave other areas open before that
+entry, where later writes store more, so the listings give the counter at that entry no upper bound. Six of the 127
+rest on how the maps connect:
 
 - `gil_a02` touch line 854 (4300) and `gil_c02` touch line 969 (4350), the Daedalus and Tyrant fights in Giruvegan. The
   Giruvegan writes above them (`gil_c01` 4320, `gil_g10` 4370, `gil_d01` 4400) lie past warps that open only after each
@@ -59,6 +59,16 @@ so the listings give the counter at that entry no upper bound. Four of the 125 r
 - `mrm_c01` main line 749 (2100), the first entry into the Stilshrine boss room. The link `mrm_b02` to `mrm_d02`
   (line 359) lies in a walkable piece of its own in `mrm_b02`'s collision mesh, which only the arrival from
   `mrm_d02` stands in, so the d-wing is first entered through `mrm_c01`.
+- `rui_c01` main line 210 (3200) and `rui_d01` main line 225 (3150), the first entries into two Sochen Cave Palace
+  boss rooms. Before them the party can reach the Feywood and Balfonheim, but no further:
+  - below `0x1040`, `mfr_a04`'s `Map_Director` closes floor group 1 so that no entrance joins the exit into
+    `mfr_b01`, the only way on to the Feywood's inner maps and Giruvegan;
+  - for counters 1 to `0x0FA0`, `var_a01`'s `EventDirector` closes floor group 1 so that only the arrival from
+    `var_a02` joins the exit into the town;
+  - the airship into Balfonheim needs a destination stored only at `0x1004` or more, or in Archades.
+  - The other writes above 3150 on the maps open before them run only at higher counters: `mfr_a04` touchon line
+    1309 at `0x1004` to `0x103F`, and `alc_z01` main line 194 at 2000 or more, while `alc_z01` is entered only at
+    1130, 1973 and 1998.
 
 ### Save, teleport and anchor declarations
 

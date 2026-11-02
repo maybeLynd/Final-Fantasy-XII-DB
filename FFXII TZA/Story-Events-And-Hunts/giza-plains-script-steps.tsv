@@ -23125,10 +23125,10 @@ sav_d01	訪問有無	init	1	0x02E9F	477	-	lastmap	-	result stored in local_var_s
 sav_d01	訪問有無	init	2	0x02EAB	478	-	sysDVAR	18, mp_sav初訪時間	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_d01	訪問有無	init	3	0x02EB2	479	-	sysDVAR	19, mp_sav補正時間	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_d01	訪問有無	init	4	0x02EBA	480	-	if	シナリオフラグ >= 0x0654	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_d01	訪問有無	init	5	0x02ED0	482	シナリオフラグ >= 0x0654	if	((local_var_s8f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_d01	訪問有無	init	6	0x02ED6	484	シナリオフラグ >= 0x0654; ((local_var_s8f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	store	global_var_6 = 0	variable global_var_6 (global u_char@0x099f)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sav_d01	訪問有無	init	7	0x02EE0	485	シナリオフラグ >= 0x0654; ((local_var_s8f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	if	mp_sav初回 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_d01	訪問有無	init	8	0x02EE6	487	シナリオフラグ >= 0x0654; ((local_var_s8f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228; mp_sav初回 == 0	store	mp_sav初回 = 1	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+sav_d01	訪問有無	init	5	0x02ED0	482	シナリオフラグ >= 0x0654	if	(((local_var_s8f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+sav_d01	訪問有無	init	6	0x02ED6	484	シナリオフラグ >= 0x0654; (((local_var_s8f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	store	global_var_6 = 0	variable global_var_6 (global u_char@0x099f)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+sav_d01	訪問有無	init	7	0x02EE0	485	シナリオフラグ >= 0x0654; (((local_var_s8f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	if	mp_sav初回 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+sav_d01	訪問有無	init	8	0x02EE6	487	シナリオフラグ >= 0x0654; (((local_var_s8f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228; mp_sav初回 == 0	store	mp_sav初回 = 1	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_d01	訪問有無	init	9	0x02EEF	493	not (シナリオフラグ >= 0x0654)	store	mp_sav初回 = 0	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_d01	訪問有無	init	10	0x02EF2	495	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_d01	訪問有無	main	1	0x02EF3	500	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -27463,10 +27463,10 @@ sav_f01	訪問有無	init	1	0x04551	721	-	lastmap	-	result stored in local_var_s
 sav_f01	訪問有無	init	2	0x0455D	722	-	sysDVAR	18, mp_sav初訪時間	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_f01	訪問有無	init	3	0x04564	723	-	sysDVAR	19, mp_sav補正時間	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_f01	訪問有無	init	4	0x0456C	724	-	if	シナリオフラグ >= 0x0654	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_f01	訪問有無	init	5	0x04582	726	シナリオフラグ >= 0x0654	if	((local_var_s10f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_f01	訪問有無	init	6	0x04588	728	シナリオフラグ >= 0x0654; ((local_var_s10f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	store	global_var_6 = 0	variable global_var_6 (global u_char@0x099f)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sav_f01	訪問有無	init	7	0x04592	729	シナリオフラグ >= 0x0654; ((local_var_s10f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	if	mp_sav初回 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_f01	訪問有無	init	8	0x04598	731	シナリオフラグ >= 0x0654; ((local_var_s10f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228; mp_sav初回 == 0	store	mp_sav初回 = 1	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+sav_f01	訪問有無	init	5	0x04582	726	シナリオフラグ >= 0x0654	if	(((local_var_s10f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+sav_f01	訪問有無	init	6	0x04588	728	シナリオフラグ >= 0x0654; (((local_var_s10f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	store	global_var_6 = 0	variable global_var_6 (global u_char@0x099f)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+sav_f01	訪問有無	init	7	0x04592	729	シナリオフラグ >= 0x0654; (((local_var_s10f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	if	mp_sav初回 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+sav_f01	訪問有無	init	8	0x04598	731	シナリオフラグ >= 0x0654; (((local_var_s10f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228; mp_sav初回 == 0	store	mp_sav初回 = 1	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_f01	訪問有無	init	9	0x045A1	737	not (シナリオフラグ >= 0x0654)	store	mp_sav初回 = 0	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_f01	訪問有無	init	10	0x045A4	739	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_f01	訪問有無	main	1	0x045A5	744	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -30401,10 +30401,10 @@ sav_f03	訪問有無	init	1	0x035B9	446	-	lastmap	-	result stored in local_var_s
 sav_f03	訪問有無	init	2	0x035C5	447	-	sysDVAR	18, mp_sav初訪時間	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_f03	訪問有無	init	3	0x035CC	448	-	sysDVAR	19, mp_sav補正時間	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_f03	訪問有無	init	4	0x035D4	449	-	if	シナリオフラグ >= 0x0654	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_f03	訪問有無	init	5	0x035EA	451	シナリオフラグ >= 0x0654	if	((local_var_s8f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_f03	訪問有無	init	6	0x035F0	453	シナリオフラグ >= 0x0654; ((local_var_s8f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	store	global_var_4 = 0	variable global_var_4 (global u_char@0x099f)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sav_f03	訪問有無	init	7	0x035FA	454	シナリオフラグ >= 0x0654; ((local_var_s8f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228	if	mp_sav初回 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sav_f03	訪問有無	init	8	0x03600	456	シナリオフラグ >= 0x0654; ((local_var_s8f0_1 == 0x0132 bitor 0x015b) bitor 0x020d) bitor 228; mp_sav初回 == 0	store	mp_sav初回 = 1	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+sav_f03	訪問有無	init	5	0x035EA	451	シナリオフラグ >= 0x0654	if	(((local_var_s8f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+sav_f03	訪問有無	init	6	0x035F0	453	シナリオフラグ >= 0x0654; (((local_var_s8f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	store	global_var_4 = 0	variable global_var_4 (global u_char@0x099f)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+sav_f03	訪問有無	init	7	0x035FA	454	シナリオフラグ >= 0x0654; (((local_var_s8f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228	if	mp_sav初回 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+sav_f03	訪問有無	init	8	0x03600	456	シナリオフラグ >= 0x0654; (((local_var_s8f0_1 == 0x0132) bitor 0x015b) bitor 0x020d) bitor 228; mp_sav初回 == 0	store	mp_sav初回 = 1	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_f03	訪問有無	init	9	0x03609	462	not (シナリオフラグ >= 0x0654)	store	mp_sav初回 = 0	variable mp_sav初回 (global u_char@0x0984)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sav_f03	訪問有無	init	10	0x0360C	464	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sav_f03	訪問有無	main	1	0x0360D	469	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

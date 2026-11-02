@@ -65,6 +65,10 @@ scenes](archades-scenes.md).
   here, Vaan."). One exit of Trant leads to Alley of Muted Sighs (Old Archades), field `762`.
 - Nilbasse: below story counter 3,255 `SAKIYOMI_ev_alc_a0280` loads scene `alc_a0280` (event 731), in which Jules
   meets the party at the cab.
+- Nilbasse, observed in the game at 3,254 with Vaan and no gil: the Cab Guide's talk plays `alc_a0280` up to
+  Jules's offer, "A boy pays. 2500 gil sounds about right." (Pay up or Decline). After Decline the
+  counter stays at 3,254 and Jules stands by the cab; talking to him in the same visit opens the same offer again,
+  and Decline leaves the same state.
 - Nilbasse: Jules (`NPC_JULES.talk`) and the Cab Guide (`NPC_タクシー受付.talk`) test the counter below 3,255 and write
   3255, Reddas's man caused trouble in the capital; Jules sets the map icon `0x00C3` (Nilbasse), and the Cab Guide
   sets `0x00C3` and `0x00C2` (Tsenoble): "Only those with [value] or more chops may ride this cab, boy." The cab

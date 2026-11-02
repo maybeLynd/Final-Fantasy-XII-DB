@@ -15,8 +15,8 @@ party on foot. The question becomes "You cannot dismount here." where the chocob
 
 While riding, the screen shows the time left in seconds and tenths, which changes colour over the last second
 and pulses once the time is up, and up to three marks for the dashes left. The confirm button spends one
-mark on a ten-second dash at double speed; a ride has three, and nothing gives them back before the next
-mount.
+mark on a dash at double speed, ten seconds at Frame Rate 30 and twenty at Frame Rate 60; a ride has three, and
+nothing gives them back before the next mount.
 
 At an aerodrome counter the player buys a ticket and chooses whether to watch the flight: the
 party then either sees the departure scene and arrives at the other aerodrome, or spends the flight
@@ -182,6 +182,12 @@ The dash drains in slot 2 at the ticker's rate, from `[0x01DFE0B8] x 10.0` to 0 
 the slot expires. The gauge the player sees is the count alone: of the twelve call sites of the record
 filler `0x003200A0` (in seven functions), no site reads the turbo time `+0x10` (the ride HUD record access
 table), so a running dash shows no bar and no number, only the spent mark's fade (below).
+
+Measured in the game at Frame Rate 60, a chocobo hired from Gurdy in West Barbican (field 630): the ride time
+fell by 0.016675 a frame, one second a second, and the dismount task `0x0035CFA0` started when it ran out, 183
+seconds after the riding setter `0x00303D90(1)` ran. One dash took the marks from three to two,
+loaded the turbo time with 20.0 (`0x01DFE0B8` 2.0 times 10.0) and ended after 1,200 frames, twenty seconds, with
+two marks left.
 
 ### The debug switches
 

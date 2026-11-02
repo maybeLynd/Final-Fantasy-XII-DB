@@ -218,6 +218,10 @@ the two floats of its third argument to the heading and pitch instead. Otherwise
 | 4 | timed interpolation from the start heading `+0x38` to `+0x34`: `t = +0x78 / +0x68`, `heading = start + wrap(target - start) * t`, `+0x78 += 1` (`0x0026C300`); at `t >= 1`, or when the skip flag forces it, the final heading and `0x0026C120(actor, 0)` |
 | 5 | waits while `0x002EA780` reports the render record's turn still running (`0x003E6AF0` and `0x002EA910` = 1); when it stops, `0x0026C120(actor, 0)` |
 
+Measured in the game with mode 2 at Frame Rate 60 and at 30: the facing moved by exactly `pi/20` per pass,
+`0x002E5750` ran once per rendered frame (about 60 and 30 times a second), and a half turn took 20 frames, a third
+of a second at 60 and two thirds at 30. The step is not scaled by the frame rate.
+
 `0x002EA910` is 1 for an actor without a live render record or without an active entry (`0x003E6DF0`);
 otherwise it returns the render entry's own test `0x003E2C00` ([character render
 records](../Graphics/character-render-records.md)).

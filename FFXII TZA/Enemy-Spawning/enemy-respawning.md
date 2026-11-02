@@ -68,6 +68,9 @@ when that value differs from the one it kept at `0x022C317C` (`0x0032A12A`-`0x00
 writer is `0x0032A160`, which zeroes it, and its one caller is the battle runtime reset `0x00237DF0`
 (`0x00237E37`). No save writes or restores it.
 
+Measured in the game at Frame Rate 60 (`0x01DFE0B8` 2.0): the counter rose by 60.00 a second whenever the field
+ran. It stood still while the battle menu or a talk was open and for 1.4 to 3.4 seconds at each area change.
+
 Other code reads the counter directly (`0x00319600`,
 `0x003247F0`, `0x00317670`, `0x003191B0`); none of it is respawn code.
 
@@ -83,12 +86,14 @@ stamp test does not restart the clock.
 
 ### Two readers of the cooldown
 
-The zone script reads the three fields through three verbs, each a wrapper around one accessor
-that resolves the lane through the unit's lane map at `+0x40` (count at `+0`, slot bytes from `+1`,
-`0xFF` empty) and the live bank `[0x0208E690] + slot * 0x250`:
+The zone script reads the death limit and the three fields through four verbs, each a wrapper
+around one accessor that resolves the lane through the unit's lane map at `+0x40` (count at `+0`,
+slot bytes from `+1`, `0xFF` empty) and the live bank `[0x0208E690] + slot * 0x250`; a fifth reads
+the flags of the unit's own entry:
 
 | Accessor | Verb wrapper | Returns |
 |---|---|---|
+| `0x00235EF0(lane)` | `0x0050F610` | the death limit `+0x0A` (0 for no limit), or -1 |
 | `0x00235F50(lane)` | `0x0050F660` | the death count `+0x08`, or -1 |
 | `0x00235FB0(lane)` | `0x0050FAB0` | `counter / fps - stamp +0x0C`, the elapsed seconds, or -1 |
 | `0x002366E0(lane)` | `0x005101F0` | the cooldown `+0x10`, or -1 |
@@ -241,6 +246,12 @@ the restore fires on the pattern A, B, A within the window; entering B again fro
 The window is in seconds because the counter difference is in simulation steps and the multiplier is the
 steps per second at normal speed (30 or 60). The high-speed mode runs two or four steps a frame, so there the window
 lasts 150 or 75 wall-clock seconds; menus and time stop do not advance the counter.
+
+Measured in the game, The Stepping (field 227) as A and Yardang Labyrinth (228) as B, after one Cactite was
+killed on A (its spawn record: death count 1, time 303): going to B put A's records in bank 2 and fresh ones in
+bank 1 and flipped the parity to 1; coming back to A 824 steps later put A's records back in bank 1, the dead
+Cactite's record still with death count 1, and set the parity to 0. Going A, B, Sand-swept Naze (229), A instead
+flipped the parity at each move, and on A the same record read death count 0: the area was generated fresh.
 
 `0x00235340(w)` stores `w`, or 300 when `w` is negative (`cmovs`); `0x00235330`
 returns it. Both reach script only through verb `0x306C` `btlAtelSetMapJumoKeep` (`0x005107F0`), which

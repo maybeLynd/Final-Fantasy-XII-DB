@@ -17540,7 +17540,7 @@ function	0x00235DD0	-	Scripts-And-Script-Commands/verb-table.md	-	4
 function	0x00235E80	-	Saving-Loading-And-Settings/save-data-fields.md	-	7
 function	0x00235E90	-	Saving-Loading-And-Settings/save-data-fields.md	-	7
 function	0x00235EA0	-	Movement-And-Pathfinding/player-movement.md	-	4
-function	0x00235EF0	SpawnEntry_GetDeathLimit	Enemy-Spawning/spawn-record-fields.md	-	7
+function	0x00235EF0	SpawnEntry_GetDeathLimit	Enemy-Spawning/enemy-respawning.md	-	8
 function	0x00235F50	SpawnEntry_GetDeathCount	Enemy-Spawning/enemy-respawning.md	-	8
 function	0x00235FB0	SpawnEntry_GetElapsedTicksSinceLastDeath	Enemy-Spawning/enemy-respawning.md	-	7
 function	0x00236030	SpawnEntry_GetCandidateUnitId	Characters-And-Objects/battle-unit-fields.tsv	-	6
@@ -20469,7 +20469,7 @@ function	0x002E5380	Movement_PrepareCandidatePosition	Movement-And-Pathfinding/h
 function	0x002E54A0	Movement_TransformAndAccumulateCandidate	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	4
 function	0x002E55C0	Movement_ClearSteeringRequest	Movement-And-Pathfinding/facing-and-steering.md	-	9
 function	0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	Movement-And-Pathfinding/heading-speed-to-position-delta.md	-	7
-function	0x002E5750	-	Movement-And-Pathfinding/animation-driven-movement.md	-	11
+function	0x002E5750	-	Movement-And-Pathfinding/facing-and-steering.md	-	11
 function	0x002E5B60	Movement_SetDesiredHeadingTurnLimit	Movement-And-Pathfinding/facing-and-steering.md	-	9
 function	0x002E5B90	-	Movement-And-Pathfinding/facing-and-steering.md	-	8
 function	0x002E5BC0	-	Scripts-And-Script-Commands/battle-verbs.md	-	9
@@ -28406,7 +28406,7 @@ function	0x0050F540	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050F560	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
 function	0x0050F5A0	-	Compiler-And-C-Runtime/generated-function-families-nativeadapter-constantfirstargumenttailcall.tsv	-	6
 function	0x0050F5B0	-	Characters-And-Objects/battle-units.md	-	5
-function	0x0050F610	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
+function	0x0050F610	-	Enemy-Spawning/enemy-respawning.md	-	5
 function	0x0050F650	-	Scripts-And-Script-Commands/verb-arguments.tsv	-	6
 function	0x0050F660	-	Enemy-Spawning/enemy-respawning.md	-	6
 function	0x0050F6A0	-	Scripts-And-Script-Commands/verb-table-inputs.tsv	-	4
@@ -46836,7 +46836,7 @@ global	0x01DFDCF8	-	Saving-Loading-And-Settings/game-settings.md	-	1
 global	0x01DFDCFC	-	Saving-Loading-And-Settings/game-settings.md	-	1
 global	0x01DFDDF8	-	Engine-Core/game-application.md	-	1
 global	0x01DFE0B4	-	Engine-Core/startup-constants.md	-	40
-global	0x01DFE0B8	-	Saving-Loading-And-Settings/game-settings.md	-	30
+global	0x01DFE0B8	-	World-Areas-And-Travel/chocobos-and-airships.md	-	30
 global	0x01DFE0BC	-	Movement-And-Pathfinding/facing-and-steering.md	-	32
 global	0x01DFE0C0	-	Engine-Core/global-state-accessors.md	-	8
 global	0x01DFE0C4	-	Graphics/render-command-list.md	-	3

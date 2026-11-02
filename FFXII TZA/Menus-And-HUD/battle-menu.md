@@ -304,6 +304,11 @@ window `0x002BFD20` builds its weakness line with `0x00295D90(size, out, mask)` 
 (`listhelp_common.bin` `0x2331`), an optional part from `0x002AC290`, then one element icon, text `0x4B27` plus the
 element, for each set bit of the mask.
 
+Observed in the game, Reks targeting a Cactite: without Libra on Reks the window shows "Lv. ??" and "HP ????/????".
+With Libra on Reks it shows "Lv. 2 Cactite A", "HP 84/84" and a blue Libra mark at its top right; with augment 41
+(Anti-Libra, the status record's `+0x51` bit `0x2`) on the Cactite it shows "Lv. ??" and "HP ????/????" again and
+the mark is crossed by a red X.
+
 `0x0027C220(page, row)` picks the refusal: in a command list (page kind 6 to 10) a row with flag bit `0x2` gives its reason
 byte `+4`, in an action list (kind 11) a row with flag bit `0x1` gives its byte `+6`; a positive reason with a row in
 `0x0027C150` becomes that text (`0x0027C220`-`0x0027C27E`).

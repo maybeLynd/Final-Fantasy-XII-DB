@@ -164,6 +164,12 @@ A target that survives gets event `0x2005` plus the variant bit, unless flag bit
 (`0x00300861`-`0x00300887`). Steps 3 to 6 need a target unit; a record without one is only KO'd
 (`0x003007D4`).
 
+Measured in the game at Frame Rate 60: Reks's Attack hit a Cactite (72 HP) twice. `0x00300749` stored 72 to 32
+(delta -40) and then 32 to 0 (delta -41), each time with the Cactite's unit as the target and Reks's as the
+source; `0x00306F00` ran with the Cactite's unit in the same frame as the second store, and its spawn record's
+death count `+0x08` went from 0 to 1 and `+0x0C` took 303, the step counter at the kill divided by 60 (at Frame
+Rate 60 `0x01DFE0B8` reads 2.0). In the same play `0x00310508` ran 604 times and never changed a value.
+
 ## Shipped data
 
 The `btlAtelSetHpLowLimit` calls in the 1,114 `us` scripts:
