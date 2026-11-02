@@ -132,8 +132,8 @@ as arenas with `0x00369D30(id, block, size, slotCount)`:
 | 8 | `0x01FD4A38` | `0x2000100` | `0x2000000` (32 MiB) | `0x100` |
 | 9 | `0x01FD4A40` | `0x1200010` | `0x1200000` (18 MiB) | `0x10` |
 | 11 | `0x01FD4A18` | `0x400100` | `0x400000` (4 MiB) | `0x100` |
-| none | `0x01FD4A20` | `0x80000` | not registered | |
-| none | `0x01FD4A90` | `0x100000` | not registered | |
+| no id | `0x01FD4A20` | `0x80000` | not registered | |
+| no id | `0x01FD4A90` | `0x100000` | not registered | |
 
 Every allocation is its registered size plus the slot count in bytes.
 

@@ -4,8 +4,8 @@ tst_a01	setup	init	2	0x00349	20	-	sysReqall	0, reqArr1	-	-	-	files each pair of 
 tst_a01	setup	init	3	0x0034C	21	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tst_a01	PC00	init	1	0x00350	36	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tst_a01	PC00	init	2	0x0035C	37	-	setpos	1.96930301, 0.000113000002, 2.5865109	this actor, placed at (1.96930301, 0.000113000002, 2.5865109)	-	-	-	-	resolved	0x0034EBC0 (read here)
-tst_a01	PC00	init	3	0x00365	38	-	sysDVAR	0, local_var_s1f0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tst_a01	PC00	init	4	0x0036C	39	-	sysDVAR	1, local_var_s1f0_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_a01	PC00	init	3	0x00365	38	-	sysDVAR	0, local_var_s1f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tst_a01	PC00	init	4	0x0036C	39	-	sysDVAR	1, local_var_s1f0_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tst_a01	PC00	init	5	0x00370	40	-	getequipitemid	1	result stored in local_var_s1f0_2	-	-	-	-		01 verb-table.tsv
 tst_a01	PC00	init	6	0x00379	41	-	getequipitemid	0	result stored in local_var_s1f0_1	-	-	-	-		01 verb-table.tsv
 tst_a01	PC00	init	7	0x0037F	42	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

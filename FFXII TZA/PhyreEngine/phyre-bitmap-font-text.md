@@ -93,7 +93,7 @@ The game's overlay object builds its text in `0x001EA3C0`:
 
 1. it loads the two clusters named at `0x01DFDE00`, `PhyreText.fx.phyre` and `tuffysdf.fgen.phyre`;
 2. it finds the first `PBitmapFont` (descriptor `0x02E3FA60`) in the font cluster (`0x13` when there is
-   none), builds the material object around it and sets it up from the shader cluster with mode 3;
+   no such font), builds the material object around it and sets it up from the shader cluster with mode 3;
 3. it copies its `softEdges` value into that material's parameters and creates the text
    (`0x0067B180`), with the string `Debug Info:`, 128 for `0x0067C310` and a capacity for `0x0067C5A0`.
 

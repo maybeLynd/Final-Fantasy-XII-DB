@@ -207,7 +207,7 @@ gives the kinds of steps its tests choose, and the scripts that use it.
 | area state | 328 | its other uses lie in the maps of one area (one three-letter map prefix, such as `rbn`) |
 | game-wide state | 172 | its other uses lie in more than one area |
 | debug display | 16 | the debug display (`sysDVAR`) or a developer menu of the controller scripts is all that uses it |
-| declared | 13 | no statement of the shipped scripts reads or writes it; 12 of them appear in the developer test scripts |
+| declared | 13 | no statement of the story scripts reads or writes it; 12 of them appear in the developer test scripts |
 
 The gates column counts the steps under each test of the variable by kind: map exits, floors and walls, items and gil,
 scenes, messages, requests, stores, map models, battles, music and sound, screen and camera, and actors. A step under
@@ -216,6 +216,12 @@ several tests counts once for each variable it tests. Bits are written as values
 Two developer menus can also fill every byte `0x000` to `0xFFF` of the global area with 255 or 0: the field debug
 menu's second convenience menu, answers 12 and 13 (`bin/mapctrl` lines 2792 to 2802), and the Battle Plan Menu's
 event control, answer 6 (`bin/btlctrl` lines 1494 to 1510).
+
+The scenario-flag menus of `bin/evctrl`,
+`bin/btlctrl` and `bin/mapctrl` store the answer to a menu question in the story counter (`bin/evctrl` line
+1338, `bin/btlctrl` line 3291, `bin/mapctrl` line 2850). Where the pages say that a value is written, or
+never written, by the story scripts, or that something happens once in story play, these menus and the
+developer event scripts (the evt_t scripts) can still write other values.
 
 ### What each global variable gates
 

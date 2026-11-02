@@ -42,7 +42,7 @@ callers. The equipment comparison `0x0030A4E0` calls it with its own block (`0x0
 (`candidate`, laid out like stats `+0x50`). `out` is a `0x2C`-byte record: the `0x24`-byte stats block, then a
 warning code at `+0x24` (`u32`) and an equipment id at `+0x28` (`u16`). In order:
 
-1. It finds the member's stats with `0x00320AB0(member, 3)`; with none it returns -1 and writes nothing
+1. It finds the member's stats with `0x00320AB0(member, 3)`; with no stats it returns -1 and writes nothing
    (`0x0030A503`-`0x0030A513`).
 2. It writes 0 to `out+0x24` and `0xFFFF` to `out+0x28` (`0x0030A518`-`0x0030A524`). With no candidate it goes to step 6.
 3. The slot it judges is the highest of the five whose candidate word differs from the worn one

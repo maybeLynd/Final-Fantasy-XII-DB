@@ -74,7 +74,7 @@ Measured over every `.cl2` in the archive and every `menumap_common.bin`.
 | sizes | 2,112 bytes (`bhm`, `gil`), 192 bytes (`rbl`) |
 | colours | 512 (`bhm`, `gil`, image type 5); 32 (`rbl`, image type 4) |
 | header | version 4, format 0, one picture, image size 0, header size `0x30`, clut type 3, total size = file size - `0x10`, clut size = colours x 4, all other header bytes zero, in all 20 |
-| alpha bytes | `0xFF` in 239 of 512 colours of `bhm` and `gil`; every other alpha is at most `0x6F`; none is `0x80` |
+| alpha bytes | `0xFF` in 239 of 512 colours of `bhm` and `gil`; every other alpha is at most `0x6F`; no alpha is `0x80` |
 | `menumap_common.bin` | nine copies, 1,760 bytes; entry table at `0x0C` with 48 entries; byte `+1` is 1 in entry 40 and 2 in entry 46, 0 elsewhere |
 | selected | entry 40 requests `0xE2` (`Loca_gil`), entry 46 requests `0xE3` (`Loca_bhm`); no entry selects `0xE4` |
 

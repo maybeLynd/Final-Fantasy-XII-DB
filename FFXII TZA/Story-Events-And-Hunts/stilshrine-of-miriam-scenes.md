@@ -29,7 +29,7 @@ changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
 - `mrm_c0100` and `mrm_c0101` (Ward of Steel), `mrm_e0100` and `mrm_e0101` (Hall of Worth), and `mrm_g0100` and
   `mrm_g0101` (Throne of Veiled Gods) are loaded in pairs when a boss fight begins; the victory pose scene `pos_z0000`
   follows each fight. They hold no text of their own: `mrm_e0101` and `mrm_g0101` hold one empty entry, the others
-  none.
+  no entry.
 - `mrm_e0101` and `mrm_g0101` each hold a switch on the current field (`nowmap`) that gives the Esper of that field
   when the party does not hold it; for their own fields these are Mateus (`0xC013`) in Hall of Worth and Zeromus
   (`0xC01B`) in Throne of Veiled Gods ([Quickening and Esper
@@ -73,6 +73,7 @@ made by the scene script itself comes first.
 | `flags_set` | story flags set by the scene or by its loading function after the load, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | story counter values written by the scene or by its loading function after the load, with the first sentence of each explanation on [story counter values](story-counter-values.md) |
 | `next` | the scene or map that follows: a later scene load or a `mapjump` target with its field id; `-` when the loading function does neither |
+| `plays_when` | when the scene plays, in game terms: where, and what the player does (entering the map, talking to someone, touching a spot, winning a battle); the story counter values it plays at, named from [story counter values](story-counter-values.md), with the cases of its switch that come first applied (a switch starts at the first case that matches); every other test on the way to the loading step in what the game holds; and the listing lines it rests on (a step table's line) |
 
 ## Related
 

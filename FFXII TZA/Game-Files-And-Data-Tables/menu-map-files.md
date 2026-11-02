@@ -124,8 +124,8 @@ Record:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | fieldId | the zone's field id |
-| `+0x02` | `u16` | lcmOff | LCMPOS1 block, from the record start; `0xFFFF` = none |
-| `+0x04` | `u16` | naviOff | NAVIICN2 block, from the record start; `0xFFFF` = none |
+| `+0x02` | `u16` | lcmOff | LCMPOS1 block, from the record start; `0xFFFF` = no block |
+| `+0x04` | `u16` | naviOff | NAVIICN2 block, from the record start; `0xFFFF` = no block |
 
 Picture table (at picturesOff):
 
@@ -194,10 +194,10 @@ A zone and B marker (one point space: A first, then B):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i16[2]` | x, y | position on the page |
-| `+0x04` | `u8[4]` | next | four neighbouring points (`0x003BE810`); `0xFF` = none |
+| `+0x04` | `u8[4]` | next | four neighbouring points (`0x003BE810`); `0xFF` = no point |
 | `+0x08` | `u16[2]` | - | copied to the draw row |
 | `+0x0C` | `u16` | fieldId | A: the zone's field id s32      label       B: destination label text id; -1 = destination's name |
-| `+0x0E` | `u16` | gate | A: `0xFFFF` = none; a key item when flags `+0x10` have a bit of `0xFC0` (`0x00309EC0`), otherwise a story flag (`0x0032A8A0`); decoded by `0x003C18A0` |
+| `+0x0E` | `u16` | gate | A: `0xFFFF` = no gate; a key item when flags `+0x10` have a bit of `0xFC0` (`0x00309EC0`), otherwise a story flag (`0x0032A8A0`); decoded by `0x003C18A0` |
 | `+0x10` | `u32` | flags | A: mask `0x3` picture variant, mask `0x3C` zone group |
 | `+0x10` | `u8` | - | B: copied to the draw row |
 | `+0x11` | `u8` | dest | B: destination sub-location |
@@ -212,7 +212,7 @@ C link:
 |---|---|---|---|
 | `+0x00` | `u16[2]` | fieldIds | the two zones it joins |
 | `+0x04` | `i16[6]` | points | three x, y pairs |
-| `+0x10` | `i16` | gate | map-jump flag gate; -1 = none |
+| `+0x10` | `i16` | gate | map-jump flag gate; -1 = no gate |
 | `+0x12` | `u16` | - | 0 |
 
 Zoom:
@@ -247,9 +247,9 @@ Directory (at dirOff), one entry per sub-location:
 | `+0x00` | `u32` | count | 48 |
 | `+0x04` | `...` |  | entry[count], 8 bytes: |
 | `+0x00` | `u8` | group | persistence group |
-| `+0x01` | `u8` | palette | 0 = none, else kind 7 id `0xE1` + palette |
-| `+0x02` | `i16` | gate | story gate; -1 = none (`0x003C12B0`) |
-| `+0x04` | `i32` | name | sub-location name text id; -1 = none |
+| `+0x01` | `u8` | palette | 0 = no palette, else kind 7 id `0xE1` + palette |
+| `+0x02` | `i16` | gate | story gate; -1 = no gate (`0x003C12B0`) |
+| `+0x04` | `i32` | name | sub-location name text id; -1 = no name |
 
 Maps (at mapsOff):
 
@@ -265,7 +265,7 @@ Guide schedule (at mapsOff + 2 + 2*count, rounded up to 4):
 | `+0x00` | `u32` | count | 77 |
 | `+0x04` | `...` |  | entry[count], 8 bytes: |
 | `+0x00` | `u16` | counter | story counter at which it applies |
-| `+0x02` | `u16` | gate | story gate; `0xFFFF` = none |
+| `+0x02` | `u16` | gate | story gate; `0xFFFF` = no gate |
 | `+0x04` | `u8` | file | guide file number |
 | `+0x05` | `u8` | - | 0 |
 | `+0x06` | `u16` | line | line index in the guide file |
@@ -277,13 +277,13 @@ Guide schedule (at mapsOff + 2 + 2*count, rounded up to 4):
 | `+0x00` | `char[4]` | magic | "gmap" |
 | `+0x04` | `u32` | - | `0x64` |
 | `+0x08` | `u16` | textOff | string area, from the file start |
-| `+0x0A` | `u16` | tim2Off | TIM2 picture, from the file start; `0xFFFF` = none |
+| `+0x0A` | `u16` | tim2Off | TIM2 picture, from the file start; `0xFFFF` = no picture |
 | `+0x0C` | `u16` | - | 0 |
 | `+0x0E` | `u16` | count | lines |
 | `+0x10` | `...` |  | entry[count], 8 bytes: |
 | `+0x00` | `u16` | counter | copy of the schedule entry's counter |
 | `+0x02` | `u16` | gate | copy of the schedule entry's gate |
-| `+0x04` | `u16` | text | string offset from textOff; `0xFFFF` = none |
+| `+0x04` | `u16` | text | string offset from textOff; `0xFFFF` = no string |
 | `+0x06` | `u16` | - | 0 |
 
 The strings are zero-terminated game text ([Text drawing](../Menus-And-HUD/text-drawing.md)).
@@ -304,7 +304,7 @@ Header:
 | `+0x12` | `u16` | - | 0 |
 
 ```
-regions: u32 count, s32 name text id[count]; -1 = none
+regions: u32 count, s32 name text id[count]; -1 = no name
 areas:   u32 count, area[count] of 28 bytes, then extra[count] of 8 bytes
 ```
 
@@ -319,15 +319,15 @@ Area:
 | `+0x0B` | `u8` | picture | area picture number |
 | `+0x0C` | `i16[2]` | - | copied beside the name |
 | `+0x10` | `i32` | name | area name text id (repeated at `+0x18`) |
-| `+0x14` | `i16` | gate | story gate; -1 = none |
-| `+0x16` | `i16` | item | area map key item; -1 = none |
+| `+0x14` | `i16` | gate | story gate; -1 = no gate |
+| `+0x16` | `i16` | item | area map key item; -1 = no item |
 | `+0x18` | `i32` | name2 |  |
 
 Extra:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i16` | gate | story gate; -1 = none |
+| `+0x00` | `i16` | gate | story gate; -1 = no gate |
 | `+0x02` | `u8` | type | type byte used while the area is hidden |
 | `+0x03` | `u8[5]` | - | 0 |
 
@@ -344,7 +344,7 @@ destination: {u16 value, u8 area, u8 0}
 | `+0x04` | `u32` | - | `0xC9` |
 | `+0x08` | `u16` | typeOff | u8 count, u8 type[count], per area |
 | `+0x0A` | `u16` | groupOff | u8 count, u8 area[count], per persistence group |
-| `+0x0C` | `u16` | mapOff | u16 count, u16 item[count], per group; `0xFFFF` = none |
+| `+0x0C` | `u16` | mapOff | u16 count, u16 item[count], per group; `0xFFFF` = no list |
 | `+0x0E` | `u16` | nameOff | u32 count, s32 text[count], per area |
 
 ## Shipped data
@@ -460,8 +460,8 @@ no weighted run of `battle_pack.bin` entry `+0x2C` holds a register order in any
 
 ### The map-data widget
 
-`0x003BC450(world, location, owner)` creates the widget `0x02B457E0` (0x278 bytes, procedure `0x003BC4E0`) when none
-exists. On creation `0x003BC4E0` clears the sub-location slots and calls `0x003BC2D0`, which requests
+`0x003BC450(world, location, owner)` creates the widget `0x02B457E0` (0x278 bytes, procedure `0x003BC4E0`) when no such
+widget exists. On creation `0x003BC4E0` clears the sub-location slots and calls `0x003BC2D0`, which requests
 `menumap_world.bin` into `+0xD8` when `world` is set, `menumap_location.bin` into `+0xE0` when `location` is
 set, and `menumap_common.bin` into `+0xE8` always, all through `0x00249210`.
 
@@ -533,7 +533,7 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 ### Readers of lmap
 
 - `0x003C0340(n)` returns `zones + markers` of record n; `0x003BF430(n, i)` returns point i (zone for
-  `i < zones`, else marker) and its kind (0 zone, 1 marker, 3 none). `0x003BF920(n, i)` returns point i's
+  `i < zones`, else marker) and its kind (0 zone, 1 marker, 3 no point). `0x003BF920(n, i)` returns point i's
   field id when it is a zone that passes `0x003C18A0`, and `FFFF` otherwise (callers `0x003BDB30`, `0x003BDCD0`).
 - `0x003C0380(field)` finds the field's sub-location: for each cmap entry whose group is the field's
   persistence group (`0x00264F90`), it maps the field through the record's members (`0x003BFF20`) and looks for a
@@ -549,7 +549,7 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 - `0x003BE680(n)` returns the three zoom levels. The pages keep the remembered level (`0x0209E5B8`) when it is
   one of them, otherwise the first, and scale by 3200 / level (`0x002B7FFA`-`0x002B8067`).
 - `0x003BE1E0(n, group, out)` returns the point that stands for zone group `group` of record n (`0x003BDFF0`),
-  with its index in `out`, -1 when there is none; `0x003BDDE0`, `0x003BED70`, `0x003C12B0` and `0x003C1A20` use it.
+  with its index in `out`, -1 when no point stands for it; `0x003BDDE0`, `0x003BED70`, `0x003C12B0` and `0x003C1A20` use it.
 - `0x003BE700(n, dest)` returns the first marker of record n whose destination byte `+0x11` is `dest`, or -1
   (`0x003C2320`).
 - `0x003C0D30(n, i)` runs point i's gate test, `0x003C18A0` for a zone and `0x003C0F70` for a marker
@@ -566,7 +566,7 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
   right) for `0x003C2320`. It measures from the centres of the points, a zone's from its picture size
   (`0x003BF5E0`), a marker's from its label size (`0x0029CD00`), and takes the point on that side that
   `0x003BD6F0` scores lowest with the direction vector `0x01EFE330`, skipping zones with draw bit `0x800`; 0xFF
-  when none.
+  when no point lies on that side.
 
 ### Readers of cmap
 
@@ -628,10 +628,10 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
   entry (`0x003BD040`) for every area of the region, or of all regions for -1, that is shown (`0x003C08B0`) or
   passes `0x003C0C50`. In mode 6, with `+0xD0` bit `0x400`, an entry with bit `0x20` takes its labels from
   the selected quest's `QHT0` entry (`0x00473CC0`).
-- It then fills each entry's four neighbours: `0x003BFB60(entry, dir, list, n, none)` follows the authored
-  neighbour chain until it meets a listed area, giving -1 for no neighbour (`none` = 1), a loop or the
+- It then fills each entry's four neighbours: `0x003BFB60(entry, dir, list, n, empty)` follows the authored
+  neighbour chain until it meets a listed area, giving -1 for no neighbour (`empty` = 1), a loop or the
   chain's end. When the chain leads nowhere, `0x003BFC70(entry, dir, list, n)` takes the listed area on that
-  side (0 up, 1 down, 2 left, 3 right) that `0x003BD6F0` scores lowest, 0xFF for none.
+  side (0 up, 1 down, 2 left, 3 right) that `0x003BD6F0` scores lowest, 0xFF when there is no such area.
 - `0x003BCAF0(type)`, for the World Map host `0x00552250`: with a non-zero type it clears the bit set `+0x270`,
   and when byte `+0xC8` is 1 it stores the type at `+0xC9` and sets the bits of both areas of every route
   of that type (state bit `0x8` of `0x003BD480`).

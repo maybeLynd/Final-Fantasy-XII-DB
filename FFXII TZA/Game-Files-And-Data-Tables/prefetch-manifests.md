@@ -27,10 +27,10 @@ A manifest is text, so it has no byte order.
 
 | File | Unit | Separator | Comments | Header, count or version |
 |---|---|---|---|---|
-| prefetch manifest | a file name | whitespace | a token beginning `##` is dropped | none; the shipped `##Total_data_Size:_361_MB` is a comment |
-| `eventlist.csv` | a record of four integers | commas within a record | a line beginning `##` is skipped | none |
-| `.ah` list | a path such as `/GameData/D3D11/ArtData/chr/...phyre`, in load order | whitespace | none | none |
-| `TexList.txt` | a texture file name, relative to `GameData/D3D11/ArtData/menu/` | CRLF line ends | none | none |
+| prefetch manifest | a file name | whitespace | a token beginning `##` is dropped | no header; the shipped `##Total_data_Size:_361_MB` is a comment |
+| `eventlist.csv` | a record of four integers | commas within a record | a line beginning `##` is skipped | no header |
+| `.ah` list | a path such as `/GameData/D3D11/ArtData/chr/...phyre`, in load order | whitespace | no comments | no header |
+| `TexList.txt` | a texture file name, relative to `GameData/D3D11/ArtData/menu/` | CRLF line ends | no comments | no header |
 
 A prefetch manifest is whitespace-separated tokens, each a file name. A token beginning `##` is a
 comment and is dropped; the shipped header `##Total_data_Size:_361_MB` is written with underscores so
@@ -59,7 +59,7 @@ ending in CRLF.
 | `maps/` lists the game can request | the 709 names the kind 5 arrays give, the same in every language's array; every language folder ships those 709, and `de` also ships `mic_b03.txt` and `rui_b04.txt`, which no map number names |
 | `events/` lists the game can request | 236 per language, the distinct third integers of its 315 `eventlist.csv` records, each with a shipped list; named by no record: 93 in `us`, `de`, `es`, `fr` and `it`, 92 in `jp`, 89 in `kr`, `ch` and `cn`; `add-on/events/250.txt` is named by a record in every language |
 | outside the language folders | `prefetchdata/add-on/events/250.txt`, `prefetchdata/ff12mapjump_custom_nocrystal.csv` |
-| prefetch `.txt` files | 579 begin with a `##Total_data_Size:_…` token, none with a spaced header; 3,506,346 name tokens in all |
+| prefetch `.txt` files | 579 begin with a `##Total_data_Size:_…` token, no list with a spaced header; 3,506,346 name tokens in all |
 | `.ah` files | 2,564, 12,235,216 bytes, all CRLF; 2,559 begin `/Gam`, 5 (the font lists) `font` |
 | `.ah` tokens | 142,481, of which 62 (in the five font lists) are not paths |
 | `texlist.txt` | 301 bytes, 11 CRLF lines, each a `.dds.phyre` name that exists under `gamedata/d3d11/artdata/menu/` (`targetline_p`, its six `_clut_` variants, `chain_item`, `chainflash`, and `w_line01` with its `_clut_1`) |
@@ -135,7 +135,7 @@ Every prefetch list, every name it holds and every entry, in three kinds of tabl
 | `list` | the list's number, its row in [`prefetch-manifests-lists.tsv`](prefetch-manifests-lists.tsv) |
 | `path`, `language`, `part` | the file, its language folder (`-` for the file outside them), and its folder or file name within it |
 | `bytes`, `sha256` | the file's size and SHA-256 |
-| `size_token` | the list's `##Total_data_Size:_` token, which the parser drops; empty when it has none |
+| `size_token` | the list's `##Total_data_Size:_` token, which the parser drops; empty when the list has no such token |
 | `names` | the list's entries |
 | `same_bytes_as` | the earlier list with the same bytes, whose entries this one has |
 | `name`, `text` | the name's number and the name as written |
@@ -357,7 +357,7 @@ these draws ask for neither.
   later.
 - Comment a prefetch manifest with `##`; a `.ah` has no comments, and a `#` line in it is requested as a
   file.
-- In a `.ah`, end every line with CRLF, start none with whitespace, and keep paths to 255
+- In a `.ah`, end every line with CRLF, start no line with whitespace, and keep paths to 255
   characters or fewer.
 - A part not named in its `.ah` is never loaded for that model.
 - In `TexList.txt`, end every line with CRLF (the loader drops each line's last character), keep each

@@ -94,7 +94,7 @@ mode 1 entry it rewrites the original source.
 | script name-binding entries | `0x002E4D20` | positive size only |
 | script name-binding lanes | `0x002E4E50` | positive size only |
 | script motion slots | `0x003DD850` | length of at least 1 |
-| motion cache | `0x003DC340` | none: `0x003DC5B0` files whatever size `0x003DC8D0` returns, −1 included |
+| motion cache | `0x003DC340` | no test: `0x003DC5B0` files whatever size `0x003DC8D0` returns, −1 included |
 
 Each reads into a block it owns and registers that block, so a registration always sees freshly read
 bytes. A −1 size completes as delivered (see the read queue page), so only the motion cache can reach
@@ -245,7 +245,7 @@ Bank entry (`0x50`):
 | `+0x30` | `...` |  | source handle |
 | `+0x38` | `...` |  | cached pointer |
 | `+0x40` | `u32` | size |  |
-| `+0x44` | `i32` | ticket | -1 none, 0 none free |
+| `+0x44` | `i32` | ticket | -1 no ticket, 0 no ticket free |
 
 Effect ticket (`0x38`), `0x02EBCD80` + slot*`0x38`:
 
@@ -256,7 +256,7 @@ Effect ticket (`0x38`), `0x02EBCD80` + slot*`0x38`:
 | `+0x18` | `...` | context |  |
 | `+0x20` | `...` | next |  |
 | `+0x28` | `...` | previous |  |
-| `+0x30` | `i32` | effect number | -1 none |
+| `+0x30` | `i32` | effect number | -1 no effect |
 
 Instance handle (`0x38`), `0x02EBD480` + slot*`0x38`:
 

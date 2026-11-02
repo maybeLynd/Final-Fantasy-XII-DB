@@ -176,8 +176,8 @@ wall and auto terms.
 `0x0032C650` turns the heading toward `3π/2 − facing` once the leader has been moving (state
 `0x8000000` without `0x4000000`) for `15 × [0x01DFE0B4]` frames. The turn is proportional to the
 angle and falls as the camera rises. It is capped at `0.2 × 2π / (30 × [0x01DFE0B4])` per frame,
-and none is made when the camera would have to swing more than 150°, as when the leader runs toward it. With Camera Auto-Rotation
-off (`0x0017E260`, CameraRevise) the term is 0; on, it is eased as `(3 × old + new) / 4` into `+0x10C`.
+and no turn is made when the camera would have to swing more than 150°, as when the leader runs toward it. With Camera
+Auto-Rotation off (`0x0017E260`, CameraRevise) the term is 0; on, it is eased as `(3 × old + new) / 4` into `+0x10C`.
 
 ### Walls around the camera
 

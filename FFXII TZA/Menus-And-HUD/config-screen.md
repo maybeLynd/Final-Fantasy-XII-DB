@@ -286,7 +286,7 @@ Each of the 24 slots at `+0x4D8` of the Graphics Settings screen (next) is `0x18
 |---|---|---|---|
 | `+0x00` | `i32` | row | the row number 0-23, stored by the construct message for a row that gets a widget (`0x0023C042`) |
 | `+0x04` | `u8[4]` | pad04 | read and written by no function; nothing fixes its width |
-| `+0x08` | `void*` | widget | the row's `0x1D8`-byte widget: procedure `0x0023B330` for kind 3 (Brightness) and `0x0023B6F0` for kinds 2 and 5, none for the other kinds (`0x0023BFC0`-`0x0023C03F`); the input turn passes it on (`0x0023C2F5`), and for a kind-5 row, one that keeps a pending value, the input turn and the cancel compare its shown `+0xC4` with its applied `+0xC8` (`0x0023C257`, `0x0023C35E`) |
+| `+0x08` | `void*` | widget | the row's `0x1D8`-byte widget: procedure `0x0023B330` for kind 3 (Brightness) and `0x0023B6F0` for kinds 2 and 5, no widget for the others (`0x0023BFC0`-`0x0023C03F`); the input turn passes it on (`0x0023C2F5`), and for a kind-5 row, one that keeps a pending value, the input turn and the cancel compare its shown `+0xC4` with its applied `+0xC8` (`0x0023C257`, `0x0023C35E`) |
 | `+0x10` | `void*` | dialog | the confirmation `0x0023DFC0` opens for the row on sub-command `0x8003`, with message `0x27`, `0x2B`, `0x2C` or `0x28` by the row's ordinal (`0x0023C3D8`-`0x0023C43E`); 0 again on sub-command `0x1C` (`0x0023C473`) |
 
 ### The Graphics Settings screen
@@ -299,7 +299,7 @@ Graphics Settings is the `0x730`-byte widget at `0x0208E6C0` with procedure `0x0
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0023BD40` |
 | `+0x0C0` | `u8` | mode | the row-list mode: the construct message's argument a as 0, 1 or 2 (any other value gives 0), stored by `0x0023D610` (`0x0023D628`); read by no instruction of this screen |
-| `+0x0C1` | `u8` | layoutKind | the layout kind of row list `0x01E0BF60`[mode], its first byte, or `0xFF` when there is none, stored by `0x0023D610` (`0x0023D652`), which loads the layout of that kind's `0x01E0B638` entry; read by no instruction of this screen |
+| `+0x0C1` | `u8` | layoutKind | the layout kind of row list `0x01E0BF60`[mode], its first byte, or `0xFF` when there is no row list, stored by `0x0023D610` (`0x0023D652`), which loads the layout of that kind's `0x01E0B638` entry; read by no instruction of this screen |
 | `+0x0C2` | `u8` | origin | the construct message's argument a unchanged, stored by `0x0023D610` (`0x0023D61A`); when the screen is destroyed (message 18) it reopens Config with it (`0x0023C51E`, `0x00244F50` at `0x0023C53E`), so Config returns where it was opened from |
 | `+0x0C3` | `u8` | pad0C3 | read and written by no function; nothing fixes its width |
 | `+0x0C4` | `u8[4]` | pad0C4 | read and written by no function; nothing fixes its width |
@@ -358,7 +358,7 @@ Each of the 42 slots at `+0xE0` of the Config screen (next) is `0x18` bytes.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` | command | the row's command, byte `+0x00` of the row (`0x0023EE47`); `0x0023EF80` matches it (`0x0023EF90`); `0xFF` for none (`0x0023FE84`) |
+| `+0x00` | `u8` | command | the row's command, byte `+0x00` of the row (`0x0023EE47`); `0x0023EF80` matches it (`0x0023EF90`); `0xFF` for no command (`0x0023FE84`) |
 | `+0x01` | `u8` | layoutKind | the layout kind of the row list the command names, or `0xFF` (`0x0023EE69`): kinds 1-10 get a row widget (`0x0023EE6C`-`0x0023EEDD`); the input turn passes the turn on only for kinds 1, 2, 3, 6 and 8 (mask `0x14E`, `0x0023FE9D`-`0x0023FED9`) |
 | `+0x02` | `u8[6]` | pad02 | read and written by no function; nothing fixes its width |
 | `+0x08` | `void*` | widget | the row's widget, `0x0023E770`, `0x0023D6B0` (`0xD8`), `0x0023EBE0` (`0xD8`) or `0x0023E400` (`0xF0`) by the kind (`0x0023EEE2`); the draw places it (`0x0023FDE7`); sub-command `0x12` drops it (`0x0023FF4D`) |
@@ -374,7 +374,7 @@ Config is the `0x4D8`-byte widget at `0x0208E6D8` with procedure `0x0023FBE0` (T
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x0023FBE0` |
 | `+0x0C0` | `u8` | mode | the row-list mode, the index into the 45 row lists of `0x01E0BF60`, stored by `0x0023D4F0` (`0x0023D504`) from the construct message's argument a; the row lookup `0x002405B0` takes it for the help line (`0x0023FF53`) and the confirm (`0x00240046`); `0x0023EFC0` (`0x0023F097`), the row builder `0x0023ED80` (`0x0023EDA3`, `0x0023EE10`), the cursor test `0x0023F190` (`0x0023F1C8`) and the construct message's cursor search (`0x0023FCD4`) read their list through it |
-| `+0x0C1` | `u8` | layoutKind | the layout kind of the row list, its first byte, or `0xFF` when there is none, stored by `0x0023D4F0` (`0x0023D533`) |
+| `+0x0C1` | `u8` | layoutKind | the layout kind of the row list, its first byte, or `0xFF` when there is no row list, stored by `0x0023D4F0` (`0x0023D533`) |
 | `+0x0C2` | `u8` | origin | where Config was opened from, the construct message's argument a: 0 the main menu, 1 the title's New Game list, 2 the main menu before story counter 26 (`0x0023D4FD`; the opener `0x002406D2`). Leaving Config, `0x0023ED10` returns to the Party Menu for origin 0 or 2 and clears the help line for 1 (`0x0023ED37`); `0x0023EFC0` picks the row list `0x01E0BF60`, `0x01E0BF68` or `0x01E0BF70` by it (`0x0023EFCF`); the cancel is handled apart for origin 1 (`0x0023FFAC`); it is passed on to Graphics Settings and Controls (`0x002401C5`, `0x002401F6`, `0x0024025D`, `0x00240276`) and to the row widgets and dialogs (`0x0023EECC`, `0x002400E4`, `0x00240161`); on destruction origin 1 runs `0x002E1CA0` with the leaving bit `+0xD0` (`0x00240226`) |
 | `+0x0C3` | `u8[5]` | pad0C3 | read and written by no function; nothing fixes its width |
 | `+0x0C8` | `void*` | rowList | the row list `0x01E0BF60`[mode], or 0 for a mode of 45 or more, stored by `0x0023D4F0` (`0x0023D549`); `0x0023EFC0` reads its byte `+0x01` for `0x002526F0` (`0x0023F087`) |

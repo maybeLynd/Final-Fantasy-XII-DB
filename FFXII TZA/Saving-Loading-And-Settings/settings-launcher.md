@@ -274,7 +274,7 @@ and `BlendAmount` 0.5 in all five.
 
 [The settings inputs](settings-launcher-inputs.tsv) table gives every key line of the two `ConfigData` files as a
 setting: 33 in `keymap.ini` and 36 in `GaussianFilterSetting.ini`. Each one's values, when it takes effect, what reads
-it and what the player sees are given there, and none takes effect, because no shipped program opens either file.
+it and what the player sees are given there, and no setting takes effect, because no shipped program opens either file.
 
 ### Columns of the keymap, Gaussian filter and settings inputs tables
 

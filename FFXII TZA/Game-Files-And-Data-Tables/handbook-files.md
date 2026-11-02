@@ -50,7 +50,7 @@ Offsets are from the start of the file. Every offset field is relative to the fi
 | `+0x12` | `u16` | sectionCount | sections; bounds every caption index (`0x00576A50`) |
 | `+0x14` | `u16` | textBundles | number of hdat files; the first picture file follows them (`0x005773D2`) |
 | `+0x16` | `u8[2]` | pictureFiles | number of picture files the page map names; read by no function: the catalog readers `0x005778F0`, `0x00575D10`, `0x00575DD0`, `0x00576030`, `0x005760A0`, `0x005766E0`, `0x00576740` and `0x00576A50` (the functions that load [slot 0 `+0xF0`]) read nothing at `+0x16`; nothing fixes its width |
-| `+0x18` | `i32` | caption[sectionCount] | text id of each section caption; -1 = none |
+| `+0x18` | `i32` | caption[sectionCount] | text id of each section caption; -1 = no caption |
 
 ```
 ...    u16      gateCount, u16 gateAt[gateCount]   caption gates, offsets from gateCount's own position
@@ -72,7 +72,7 @@ An entry record, 12 bytes, at `recordsAt + 12 x entry`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | text | name; -1 = none. Families 0-4: message id (`0x002F9920`); Bestiary: battle-text word (`0x003214B0`, `0x002B58B0`) |
+| `+0x00` | `i32` | text | name; -1 = no name. Families 0-4: message id (`0x002F9920`); Bestiary: battle-text word (`0x003214B0`, `0x002B58B0`) |
 | `+0x04` | `u16` | section | the caption the entry is listed under (`0x00576740`) |
 | `+0x06` | `u16` | bundle | which hdat file holds the entry's text (`0x00575D10`) |
 | `+0x08` | `u16` | page | picture page number, through the page map (`0x005778F0`) |
@@ -123,7 +123,7 @@ Bestiary, 16 bytes per entry:
 | `+0x04` | `u32` | version | 103; not read |
 | `+0x08` | `u16` | first | entry number of the bundle's first record |
 | `+0x0A` | `u16` | count | records; the bundle holds entries first to first + count - 1 |
-| `+0x0C` | `i32` | sheet | offset of a TIM2 glyph sheet; -1 = none (`0x00575710`) |
+| `+0x0C` | `i32` | sheet | offset of a TIM2 glyph sheet; -1 = no sheet (`0x00575710`) |
 | `+0x10` | `u16` | stringsAt | base of the string offsets |
 | `+0x12` | `u16` | recordAt[count] | offset of each record |
 
@@ -144,7 +144,7 @@ A string entry:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | textAt | offset of the text from the entry itself; `0xFFFF` = none (an empty line) |
+| `+0x00` | `u16` | textAt | offset of the text from the entry itself; `0xFFFF` = no text (an empty line) |
 | `+0x02` | `u8` | opCount | line-program operations (`0x00577A40`) |
 | `+0x03` | `u8` | pad |  |
 | `+0x04` | `...` |  | {u8 op, u8 index, u8 value, u8 pad}[opCount] |
@@ -229,7 +229,7 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | Column | Meaning |
 |---|---|
 | `language`, `family`, `entry` | the entry; `entry` is the record index in the catalog |
-| `name_text` | record `+0x00`: families 0-4 a message id, the Bestiary a battle-text word; `none` for -1 |
+| `name_text` | record `+0x00`: families 0-4 a message id, the Bestiary a battle-text word; `-` for -1 |
 | `section` | record `+0x04` |
 | `bundle`, `bundle_file` | record `+0x06` and the `hdat` file it names |
 | `bundle_first_entry`, `bundle_last_entry` | that bundle's window, `first` to `first + count - 1` |
@@ -240,18 +240,18 @@ Every instance of the 2,930 files, decoded with the layouts above, one row per i
 | `picture_file`, `picture_file_name` | `textBundles + pageMap[page]` and that file |
 | `picture_in_file` | `page - first` of that `himg` file |
 | `flag` | record `+0x0A` |
-| `nibble_index`, `nibble_value`, `bit_index`, `marker`, `story_flag`, `story_minimum` | families 0-4: the unlock record's fields, `none` for a field of all ones; empty for the Bestiary |
+| `nibble_index`, `nibble_value`, `bit_index`, `marker`, `story_flag`, `story_minimum` | families 0-4: the unlock record's fields, `-` for a field of all ones; empty for the Bestiary |
 | `slot_mode` | Bestiary: 0, 1 or 2 from the unlock record's `mode`; empty for the other families |
 | `slot_mode_word` | Bestiary: the unlock record's `+0x0E` |
 | `slot_thresholds` | Bestiary: the seven slot words in order, `empty` for `0xFF` in mode 0 and `0xFFFF` in modes 1 and 2 |
-| `unlock_test` | the record's tests in words: for families 0-4 each field that is not all ones, or `none`; for the Bestiary what the slot thresholds count |
+| `unlock_test` | the record's tests in words: for families 0-4 each field that is not all ones, or `no test` when every field is all ones; for the Bestiary what the slot thresholds count |
 
 [`handbook-files-sections.tsv`](handbook-files-sections.tsv):
 
 | Column | Meaning |
 |---|---|
 | `language`, `family`, `section` | the section |
-| `caption_text` | `caption[section]`, a message id; `none` for -1 |
+| `caption_text` | `caption[section]`, a message id; `-` for -1 |
 | `entries`, `first_entry` | the number of entries whose `section` is this one, and the lowest of them |
 | `gate` | `yes` when `gateAt` has an offset for the section |
 | `gate_low_nibble` | the gate's `flags` low nibble |
@@ -350,7 +350,7 @@ counter, and mode 2 opens when this monster or the monster the threshold names h
 `0x00576A50(section)` returns the caption text. Without a gate, or with a gate that lists no conditions and
 no maps, the caption is the message `caption[section]`. Otherwise it is shown when any condition id passes
 `0x00309EC0`, or any listed map has at least one bit set in its 32-byte bit set (`0x00255120`; for the
-current map the live set, `0x00255060`); when none does, the caption reads message `0x3EC` (`0x002F9860`).
+current map the live set, `0x00255060`); when no condition or map passes, the caption reads message `0x3EC` (`0x002F9860`).
 A caption of -1 yields no text.
 
 The same two map-bit tests serve the achievement check `0x003160C0`, which needs every map flagged in
@@ -461,7 +461,7 @@ Of those 242 entries, 48 give their name in their text. No field of the records 
 | `name_text_id` | the catalog record's `+0x00` |
 | `text_row` | the row of `penelosdiary.bin` whose own id it is (`0x002F9920`) |
 | `us` to `ch` | that row's string in each tree, as the [string tables](../Menus-And-HUD/text-string-tables.md) give it; `-` for an empty string |
-| `text_name`, `text_name_rule` | the name the entry's text gives and the rule, from [`handbook-files-entry-names.tsv`](handbook-files-entry-names.tsv); `-` when the text gives none |
+| `text_name`, `text_name_rule` | the name the entry's text gives and the rule, from [`handbook-files-entry-names.tsv`](handbook-files-entry-names.tsv); `-` when the text gives no name |
 | `first_line` | the first line of slot 0, with each sheet character in place |
 
 ### Pictures
@@ -499,7 +499,7 @@ record in `0x005760A0`, the sheet in `0x00575710`, the picture in `0x00575B80`),
   ([File size tables](file-size-tables-fst.md)).
 - Bestiary lore appears in slot order and stops at the first locked slot; a slot after a locked one never shows.
 - Set the Bestiary slot-count byte to the bundle record's `slots`; the detail record copies that many thresholds.
-- A line program changes save nibbles and bits each time its line is shown; shipped strings have none.
+- A line program changes save nibbles and bits each time its line is shown; shipped strings have no line program.
 - Traveler's Tips pictures are never drawn, whatever the page map says: the only binder, `0x00575B80`, refuses
   family 4 (`0x00575BD2`). Only `tutorial001` is ever loaded (page 0, a 1,024 x 448 parchment); `tutorial002` to
   `tutorial008` hold pages 4 to 29, which the one-page page map cannot name, and all 26 are the same "Dummy"

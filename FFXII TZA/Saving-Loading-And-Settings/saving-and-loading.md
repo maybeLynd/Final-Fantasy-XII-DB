@@ -342,7 +342,7 @@ The title-screen script asks whether any save exists with two verbs:
    the pattern `FFXII_*` with `0x00393630`, selects device 0 (`0x003BB730`) and starts command 9 with
    `0x003BB320`.
 3. `fsttl_getdatacheckstatus` (`0x00511F30`) returns `0x01EFAC10` through `0x00394440`: 2 while running, 1
-   when a save file exists, 0 when none does, and 3, the byte's value in the image, before the first check.
+   when a save file exists, 0 when no save file does, and 3, the byte's value in the image, before the first check.
 
 `0x003BB320(pattern)` copies the pattern to `0x02B4055C`, sets command 9 at `0x02B40E1C`, the busy flag and
 state 1. The handler `0x003BA680` lists the files (`0x008621E0(device, 0x02B4055C, 0, 200, 0x02B41140)`) and
@@ -610,7 +610,7 @@ and the boss whose fight it tracks, and the rule in words. What the rows show:
 - Each of the 13 variable rows names a boss flag (`g_btl_...`). The zone scripts set it to 1 when the fight is
   waiting and to 2 once it is won, so the area change skips the autosave only while that boss is still to be
   fought: for example field 441 (Cloister of Solace) while Humbaba Mistant waits (variable 15, image byte
-  `+0xC0F`). The TSV names the scripts that write each value.
+  `+0xC0F`).
 - Field 769 (`vic_a04`) is listed, but the US script table holds no script for that field, so no area change
   reaches it and its row never matches; `vic_a04.ebp` still ships in the archive.
 

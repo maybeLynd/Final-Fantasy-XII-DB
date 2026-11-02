@@ -98,7 +98,7 @@ wdl_b01	Wyrm's Nest (Dalmasca Westersand)	wdl_stop02	touch	touch	no name shown	2
 wdl_a0600	scene, event 232	台詞	カット２	requested by カット.カット２	Ashe	0	"This ""come in handy"" often?"	-	-	-	-	-	-	-	-	-	-	1	-
 wdl_a0600	scene, event 232	台詞	カット３a	requested by カット.カット３	Balthier	1; 2	It's tough being popular. Wouldn't want admirers dropping in while we're away. / Well now, that's as far as she goes. We'll be in jagd from here onwards.	-	-	-	-	-	-	-	-	-	-	1	-
 wdl_a0600	scene, event 232	台詞	カット３b	requested by カット.カット３, カット.カット４	Ashe	3	Across the sandsea, to the Valley of the Dead.	-	-	-	-	-	-	-	-	-	-	1	-
-wdl_a0600	scene, event 232	台詞	カット３c	requested by カット.カット４	-	4	And to King Raithwall's tomb below.	-	-	-	-	-	-	-	-	-	-	1	-
+wdl_a0600	scene, event 232	台詞	カット３c	requested by カット.カット４	Ashe	4	And to King Raithwall's tomb below.	-	-	-	-	-	-	-	-	-	-	1	-
 wdl_a0600	scene, event 232	台詞	カット５	requested by カット.カット５, カット.カット１０５	Vaan; Penelo	5; 6; 7; 8; 9	"So, when you're in jagd, skystones don't work at all. / That's why we gotta hoof it the rest of the way, ya see? / Happy you get to teach me something for a change? / Well, if you want to be a sky pirate, you gotta know your— / Hey! What do you mean, ""for a change""?"	-	-	-	-	-	-	-	-	-	-	1	-
-wdl_a0600	scene, event 232	台詞	カット６	requested by カット.カット６	-	10; 11	At least we thought to bring entertainment. / (empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-wdl_a0600	scene, event 232	台詞	カット７	requested by カット.カット７	-	12	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+wdl_a0600	scene, event 232	台詞	カット６	requested by カット.カット６	no name shown	10; 11	At least we thought to bring entertainment. / (empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+wdl_a0600	scene, event 232	台詞	カット７	requested by カット.カット７	no name shown	12	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-

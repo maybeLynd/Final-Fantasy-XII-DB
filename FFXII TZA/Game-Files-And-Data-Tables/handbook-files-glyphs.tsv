@@ -315,7 +315,7 @@ ch	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 ch	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 ch	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 ch	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-ch	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+ch	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 ch	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 ch	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 ch	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が
@@ -1111,7 +1111,7 @@ cn	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 cn	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 cn	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 cn	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-cn	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+cn	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 cn	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 cn	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 cn	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が
@@ -1907,7 +1907,7 @@ de	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 de	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 de	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 de	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-de	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+de	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 de	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 de	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 de	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が
@@ -2703,7 +2703,7 @@ es	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 es	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 es	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 es	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-es	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+es	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 es	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 es	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 es	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が
@@ -3499,7 +3499,7 @@ fr	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 fr	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 fr	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 fr	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-fr	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+fr	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 fr	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 fr	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 fr	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が
@@ -4295,7 +4295,7 @@ in	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 in	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 in	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 in	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-in	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+in	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 in	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 in	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 in	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が
@@ -5091,7 +5091,7 @@ it	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 it	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 it	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 it	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-it	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+it	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 it	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 it	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 it	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が
@@ -5887,7 +5887,7 @@ kr	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 kr	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 kr	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 kr	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-kr	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+kr	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 kr	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 kr	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 kr	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が
@@ -6683,7 +6683,7 @@ us	world	0	0xBC	疑	0.9388	0.8830	変の生き方に[疑]問を持つ年若	疑	
 us	world	0	0xBD	由	0.9430	0.9325	れており、自[{exp:0xBD}]に通り抜けら	田	由	cell	cell: a box with a cross, rows 5-17, whose middle upright at columns 8-9 goes on above the box in rows 1-4 and not below it; the 田 cell world000 0x60 holds nothing above 2 in rows 0-2, and 甲 carries the upright below; reading: 由 (自由 four times, 理由)
 us	world	0	0xBE	嫌	0.9377	0.9204	入りするのを[嫌]ったヴィエラ	嫌	鎌	jis	corpus: のを嫌,を嫌っ,嫌った
 us	world	0	0xBF	標	0.9222	0.9095	近寄らない。[標]高が高く、森	標	楯	jis	corpus: 。標高,い。標,標高,標高が
-us	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by none (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
+us	world	0	0xC0	雪	0.8871	0.8784	高く、森には[{exp:0xC0}]が舞うことも	雪	雷	cell	cell: a 雨 in rows 1-10; below it three strokes across, rows 11, 14 and 16, joined by one upright on the right at columns 13-14 and on the left by no upright (column 4 holds at most B in rows 12-15), ヨ, where the 田 of 雷 has a left and a middle upright; reading: 雪 (雪が舞う)
 us	world	0	0xC1	齢	0.9117	0.8683	{line}数千年の樹[齢]を数える木々	齢	搬	game	corpus: の樹齢,樹齢,樹齢を,齢を数
 us	world	0	0xC2	偽	0.9201	0.8729	般的だが、真[偽]は定かでない	偽	恊	jis	corpus: 、真偽,偽は定,真偽,真偽は
 us	world	0	0xC3	析	0.9384	0.9139	部分の技術解[析]が難航したり	析	折	jis	corpus: 析が難,術解析,解析,解析が

@@ -15,13 +15,13 @@ sword or a shield stays in the hand because its bones are tied to the hand's bon
 ### Skeleton entries: links and the update order
 
 A skeleton entry knows its own index (`+0x04`), the index of the skeleton it hangs from (`+0x08`,
-−1 for none) with that entry's encoded address at `+0x0C`, and the index of an entry attached to it
+−1 for no parent) with that entry's encoded address at `+0x0C`, and the index of an entry attached to it
 (`+0x10`). The bank keeps an update list at `+0x60` in which a parent always comes before its
 children; `0x0046E6F0` rebuilds it after every acquire (`0x0046E4D0`), release and attach.
 
 - `0x0046E6F0` first runs `0x0046E950` on every entry, which clears bit `0x2` of `+0x00` and forgets a
   parent index whose entry is gone (`+0x08` and the word `+0x14` set to −1). It then appends, pass
-  after pass, every entry with a skeleton (`+0xA0`) whose parent is none or already listed
+  after pass, every entry with a skeleton (`+0xA0`) that has no parent or whose parent is already listed
   (`0x00537260`), marking it with bit `0x2`.
 - `0x0046E2B0(bank, index)` releases an entry: it clears it (`0x003721E0`), frees its slot (`0x0051FCF0`)
   and rebuilds the list. The record teardown `0x0041E860` calls it for the record's `+0x18`.
@@ -119,7 +119,7 @@ key names a listed bone of the parent is then tied to that bone:
 `+0x10` names the child it is set to −1 and every listed parent bone's `+0x278` and `+0x27C` are
 cleared; the child's `+0x08` and `+0x14` become −1, its first bone's `+0x1F0` the identity, and each
 listed bone clears bit `0x2` of `+0x280`, takes its parent link back from the node (mask `0xFFF000`, with
-`0xFFF` meaning none) and sets `+0x276` to −1.
+`0xFFF` meaning no parent) and sets `+0x276` to −1.
 
 `0x00372610(a, b, c, scale, d)`, called by the final-pose composer `0x00373860`, multiplies `a`, `b` and
 `c` into `0x02AD9E40` (`0x00217150`), scales the four rows of that matrix by the four floats of `scale`, and

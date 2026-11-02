@@ -64,7 +64,7 @@ The `es` plural is the first 4 bytes of `Poción` and `ones`, `Pociones`; the `i
 | `same_bytes` | the groups of languages whose string bytes are identical, each group's languages joined by `=` and the groups by `;`; only groups of two or more, and the languages in `missing` take no part |
 
 An empty cell under a language not in `missing` is an empty string. Empty strings per tree: `us` 437, `de` 140, `es`
-152, `fr` 436, `it` 406, none in `in`, `kr`, `cn` and `ch`.
+152, `fr` 436, `it` 406, 0 in `in`, `kr`, `cn` and `ch`.
 
 ## Data
 

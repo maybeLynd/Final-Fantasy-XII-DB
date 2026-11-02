@@ -20,7 +20,7 @@ its class row (slot 0, `0x02EBF150`), its base stat row (slot 5, `0x02EBF148`) a
   carry 457 distinct names; Imperial Swordsman has 51 definitions, Flan 5 and Wolf 2. Every definition is kept.
 - The level, the status immunities, the starting statuses and the augments are not in the area file. Each placement
   sets them through four script verbs (below), so a definition placed several ways lists every combination.
-- 1,143 definitions are placed by the us map scripts, 6,229 times in all. Three are placed by none: Dead Bones
+- 1,143 definitions are placed by the us map scripts, 6,229 times in all. Three are placed by no script: Dead Bones
   (`bog_a` row 3), Axebeak (`enw_b` row 8) and Omega Mark XII (`gil_i` row 7).
 
 [`enemy-placements.tsv`](enemy-placements.tsv) lists those 6,229 placements one by one: the area, the map script by
@@ -189,7 +189,7 @@ name the fight.
 - Montblanc's lines;
 - the package and what it gives;
 - the bit;
-- the shipped script steps that write the defeat, with their map and region;
+- the story script steps that write the defeat, with their map and region;
 - the developer and preset scripts that also write it.
 
 ### Columns of clan-hall-boss-rewards.tsv
@@ -198,7 +198,7 @@ name the fight.
 |---|---|
 | `montblanc_lines` | the two texts the talk shows for the boss, separated by ` / `: Montblanc's line naming the fight, then the dedication of the reward in double quotes; the two Society of Antiquaries rows hold the dedication alone |
 | `given_bit` | the boss's bit in `g_iw_報酬あげたボスフラグ`, the word that records a given reward: byte `order / 8`, bit value `1 << (order mod 8)`, from `byte 0 bit 0x1` for order 0 to `byte 2 bit 0x4` for order 18 |
-| `defeat_set_at` | the shipped steps that set the defeat variable to 2, as script, actor, function and step, with the map name and region in brackets |
+| `defeat_set_at` | the story steps that set the defeat variable to 2, as script, actor, function and step, with the map name and region in brackets |
 | `developer_or_preset_setters` | the developer test scripts (`evt_t0081` to `evt_t0505`) and the new-game set `pre_z0000` that also store the variable, as script, function and step; `-` on 10 bosses |
 | `cite` | the steps behind the row: the boss's step of `funcActor.getClearBoss` in `rbn_a14` and the case of Montblanc's talk that gives the package |
 
@@ -228,7 +228,7 @@ The `story_counter_link` column says how the fight touches the story counter:
 | not in the fight's steps | 27 |
 
 Where a story-counter value's developer name names the battle, `link_reason` gives the value and its number of
-shipped writes. Eight fights store a value other than the one named for them, because the counter skips the named
+story writes. Eight fights store a value other than the one named for them, because the counter skips the named
 value; `link_reason` gives both.
 
 ### Columns of story-bosses.tsv
@@ -271,7 +271,7 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 | Offset | Type | Field | Read by |
 |---|---|---|---|
 | `+0x00` | `u16` | class row | `0x0023A570`, `0x002FEF30`; `0x0031C2F0` reads its low byte for the model ([Battle unit construction](../Characters-And-Objects/battle-unit-construction.md)) |
-| `+0x02` | `u8` | spawn counter slot, `0xFF` none | `0x0023A570` |
+| `+0x02` | `u8` | spawn counter slot, `0xFF` no slot | `0x0023A570` |
 | `+0x03` | `u8` | flags: bits `0x3` the tracked-HP class (`0x00328FF0`); bit `0x10` the height and AI tests below; bit `0x20` the shadow kind | `0x0023A570`, `0x00238BF0`, `0x00236210`, `0x00301AD0` |
 | `+0x04` | `u8[4]` | 0 in every row | `0x00313120` (`0x0031337B`) reads `+0x04`-`+0x06` as a party row's Quickening slots for any unit the verb `spattackplay` (`0x003495A0`) names; `+0x07` no instruction (below) |
 | `+0x08` | `u16` | name word | `0x0023A570`, `0x0031C5D0` (`0x0031DD5A`), `0x00536310` |
@@ -283,14 +283,14 @@ So a Wolf placed at levels 2-3 and one placed at levels 6-7 both have 94 HP at t
 | `+0x14` | `u8` | 0 in every row | no instruction (below) |
 | `+0x15` | `u8` | flags: bit `0x1` Attack and weapon evade from the rows; bit `0x2` shield and magick evade from the rows; bit `0x4` unit flag bit `0x80000000000`; bits `0x18` the target-information query | `0x002FEF30`, `0x0023A570`, `0x0031AA30` |
 | `+0x16` | `u16` | main-hand equipment id | `0x0023AC80` (slot 0) |
-| `+0x18` | `u32` | starting HP, 0 for none | `0x0023A410` ([Enemy spawning](enemy-spawning.md)) |
+| `+0x18` | `u32` | starting HP, 0 for no starting HP | `0x0023A410` ([Enemy spawning](enemy-spawning.md)) |
 | `+0x1C` | `u16` | off-hand equipment id | `0x0023AC80` (slot 1) |
 | `+0x22` | `u16` | base stat row | `0x0023A570`, `0x002FEF30` |
 | `+0x24` | `u16` | growth stat row | `0x0023A570`, `0x002FEF30` |
 | `+0x26` | `i16` | voice bank, negative for the model's | `0x003212E0` ([Character sound tables](../Game-Files-And-Data-Tables/character-se-tables-chse.md)) |
 | `+0x28` | `u16[5]` | drop slots 1-5 | `0x003180F0` ([Loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md)) |
 | `+0x32` | `u16[3]` | steal: common, uncommon, rare | `0x00390390`, `0x0023A570` ([Steal](../Damage-And-Battle-Formulas/steal.md)) |
-| `+0x38` | `u32[2]` | the ids of the model's part 8 entries 0 and 1, 0 for none; 0 in every row | `0x0031C000` through `0x0031BEC0` ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), states 13-15) |
+| `+0x38` | `u32[2]` | the ids of the model's part 8 entries 0 and 1, 0 for no entry; 0 in every row | `0x0031C000` through `0x0031BEC0` ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md), states 13-15) |
 | `+0x40` | `u8[2]` | those entries' attach links, through the table at `0x00D107F8`; 0 in every row | `0x0031BE30` |
 | `+0x42` | `u8[2]` | Monograph drop chances | `0x003180F0` |
 | `+0x44` | `u16[2]` | poach: common (95 %), rare (5 %) | `0x00390680` ([Formula slots](../Damage-And-Battle-Formulas/formula-slots.md)) |
@@ -320,7 +320,7 @@ unit's row `+0x698` byte `+5` is 1. Otherwise it fails with both 0 and a non-zer
    `0x00420480` keeps the variant at render record `+0x5C`, 1 when it is 0 (`0x00420557`-`0x00420568`), and the colour at
    `+0x5D` (`0x0042056C`-`0x00420576`).
 3. The bind `0x0041F340` hands both to the model row (`0x0041F641`-`0x0041F69E`, `0x004780C0`). `0x00504F00` matches the
-   variant against the model's `@FOR` record keys (`+0xB8`; the first record's key when none matches, 0 with no
+   variant against the model's `@FOR` record keys (`+0xB8`; the first record's key when no key matches, 0 with no
    record) and keeps the colour as the option number `+0xB9`
    while it is below the `@FOR` option count `+0x33`, else 0
    ([model files](../Graphics/model-files-cm-ca.md)).
@@ -361,16 +361,16 @@ chocobo definition has variant 0 and one of these colours:
 | `+0x27` | `u8` | unit `+0x6C` | `0x0023A570` |
 | `+0x28` | `u8` | bit `0x1` the view query's height; bit `0x2` the kill chain skips it | `0x0031ADB0` (`0x0031B08D`), `0x00317ED0` (`0x00317F09`) |
 | `+0x29` | `u8[5]` | absorb, halve, nullify, weak, potency | `0x002FEF30` ([Elements](../Damage-And-Battle-Formulas/elements.md)) |
-| `+0x30` | `u8[16]` | read and written by no instruction (below); taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | none |
+| `+0x30` | `u8[16]` | read and written by no instruction (below); taken as eight little-endian pairs, each is `0xFFFF` or `0x0100`-`0x01FF` | no instruction |
 | `+0x40` | `u16` | model family, the same-model run | `0x00317ED0` (`0x00317F77`) |
-| `+0x52` | `u16` | Clan Primer Bestiary entry, `0xFFFF` none (above) | `0x003171C0`, `0x0031B9A0`, `0x00329220` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
+| `+0x52` | `u16` | Clan Primer Bestiary entry, `0xFFFF` no entry (above) | `0x003171C0`, `0x0031B9A0`, `0x00329220` ([Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)) |
 
 The other bytes (`08`-`0F`, `13`-`17`, `19`-`1F`, `24`, `2E`-`2F`, `42`-`51`) are 0 in every row.
 
 The `+0x12` and `+0x18` bits, by their readers:
 
 - `+0x12` bits `0x7`: `0x00329F80` picks the action effect from the table at `0x00D10720`, five values per effect class,
-  and starts none for a value above 4 (`0x00329FB3`).
+  and starts no effect for a value above 4 (`0x00329FB3`).
 - `+0x12` bits `0x10` and `0x40`: `0x00238BF0` hands bit `0x10` to `0x0026A3A0` (actor `+0x09` bit `0x40`) and bit `0x40` to `0x0026A430`
   (actor `+0x08` bit `0x8` and `+0x09` bit `0x40`), the bits `partyusecharhit` sets ([Party verbs](../Scripts-And-Script-Commands/party-verbs.md)).
 - `+0x12` bit `0x20`: the view builder `0x0031ADB0` reports kind 1 instead of 2 for a target with it (`0x0031B394`).
@@ -433,7 +433,7 @@ No instruction in that set touches the bytes above, so the TSV gives them raw.
 | `class_row`, `model`, `model_id` | the class row, its model's file name and bound id |
 | `type`, `race` | class row `+0x04`, and its name in the `us` text: battle-text word `0x6800` + type, word bank 13 |
 | `class`, `family` | class row `+0x05`, and its name in the `us` text: battle-text word `0x7000` + class, word bank 14. The `us` text of class 46 carries the prefix "NOT USED" ("NOT USED Wings"; the `de` text is Flugwesen), and the column keeps it as shipped |
-| `primer_entry`, `primer_name` | class row `+0x52`, the Clan Primer Bestiary entry (empty for none), and that entry's name in the US Bestiary catalog |
+| `primer_entry`, `primer_name` | class row `+0x52`, the Clan Primer Bestiary entry (empty for no entry), and that entry's name in the US Bestiary catalog |
 | `model_family` | class row `+0x40` |
 | `base_row`, `growth_row` | definition `+0x22`, `+0x24` |
 | `hp` ... `magick_evade` | the stats `0x002FEF30` builds at a placement's base level without order adjustments: the base row plus the gear's bonus records, Attack and evades from the gear unless `+0x15` says otherwise, capped as on [Stats](../Damage-And-Battle-Formulas/stats.md) |

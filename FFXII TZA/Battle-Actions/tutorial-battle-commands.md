@@ -13,7 +13,7 @@ a group limits the battle menu of each member it has a row for.
 
 | Group | Rows | Member and what is left |
 |---:|---|---|
-| 0 | none | nothing is limited |
+| 0 | no row | nothing is limited |
 | 1 | 0, 1 | Vaan: nothing; Penelo: Potion |
 | 2 | 2, 3 | Vaan and Penelo: the Gambits command |
 | 3 | 4 | Vaan: Blind and Fire |

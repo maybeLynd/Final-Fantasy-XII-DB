@@ -1,5 +1,5 @@
 ---
-title: "Story flag ids: every flag id the shipped scripts set, release or test, by bank, with the scripts that touch it"
+title: "Story flag ids: every flag id the US scripts set, release or test, by bank, with the scripts that touch it"
 kind: "reference"
 category: "Story, events and hunts"
 addresses: "0x0032AB60, 0x0032A8A0, 0x0032ABF0, 0x0032ADF0, 0x0032AAD0, 0x00377970"
@@ -8,7 +8,9 @@ addresses: "0x0032AB60, 0x0032A8A0, 0x0032ABF0, 0x0032ADF0, 0x0032AAD0, 0x003779
 ## What it lists
 
 The table has one row per bank and flag id that a script under `plan_master/us` passes to a flag verb. The banks,
-their accessors and what each holds are on [Story flags](story-flags.md).
+their accessors and what each holds are on [Story flags](story-flags.md). The developer menu `bin/mapctrl` also
+sets Primary ids 155, 156, 196 and 197 (lines 2516-2517 and 2557-2558) and releases them (2655-2656 and
+2696-2697), in the `in` and `ch` trees; no `us` script names them.
 
 ### How a call is read
 
@@ -107,7 +109,9 @@ reach 31 ids and Montblanc 10; each is a row of the table, with the call in `com
 
 The `set_when` column gives, for a flag whose shipping set calls are all one call site in an actor's own `init`, `touchon`,
 `main` or `talk` function, the actor and its field and the tests that enclose the call there, in the listing's `if`
-and `switch` nesting: 60 flags. A set call with no test is made each time that function runs.
+and `switch` nesting: 60 flags. A set call with no test is made each time that function runs. The `set_conditions`
+column gives every shipping set site of each of the 328 Primary flags with a shipping set call, these 60 included,
+with the tests around each call.
 
 ## Columns
 
@@ -120,8 +124,21 @@ and `switch` nesting: 60 flags. A set call with no test is made each time that f
 | `set_in`, `release_in`, `tested_in` | the shipping scripts that do so |
 | `developer_only` | `yes` when only the developer scripts `evt_t*` name it |
 | `explanation` | what the flag opens or records, in English, then the maps whose scripts set or test it, as map name (region): see below |
-| `computed_set` | the script that sets the id through a computed id (the clan boards and Montblanc above), with the hunt; `-` when none |
+| `computed_set` | the script that sets the id through a computed id (the clan boards and Montblanc above), with the hunt; `-` when no script does |
 | `set_when` | the one call site that sets the flag, as above, and the tests around it; `-` for the other flags |
+| `set_conditions` | every shipping set site of the flag: its place (map name (region), field and script), actor, function and listing line, then the tests around the call in game terms; sites with the same actor, function and tests are one entry. A saved value a test reads is named by its label, whose stores are in [saved-value-stores.tsv](../World-Areas-And-Travel/saved-value-stores.tsv); `-` for a flag with no shipping set call |
+
+### Set sites
+
+[story-flag-set-sites.tsv](story-flag-set-sites.tsv) has one row for each of the 4,625 shipping set sites of the 328
+Primary flags with a shipping set call: `flag_id` (as in this table), `map_name` (map name and region), `field`,
+`script`, `actor`, `function`, `line` (the listing line), `verb` and `condition` (the tests around the call in game
+terms; `always` when the call has no test). The 8 sites of `mic_b07`, a script no zone loads, and the 1 site of
+`ttl_z0009`, the scene of the Royal Palace location title, have `-` for the map and the field.
+
+A test of a saved value names the value by a label, such as `the value of alc_b03 file_var_s7_1`, the script and the
+variable's name in its listing. [saved-value-stores.tsv](../World-Areas-And-Travel/saved-value-stores.tsv) gives every
+store of each label with that store's own condition, so each store is written once and a cell does not repeat it.
 
 ### Where the explanations come from
 

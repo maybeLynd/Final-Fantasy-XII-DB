@@ -64,13 +64,13 @@ language trees, plus control scripts under `ps2data/image/ff12/{ch,in}/bin/`).
 | section 2 | in 7,466 files: 828 in each of `us`, `de`, `es`, `fr` and `it`, 829 in `ch` and `in`, 830 in `cn` and `kr`, and 8 control scripts |
 | section 2 strings | 156,337; 17,327 in `us` |
 | section 2 sizes | 64 to 60,544 bytes; 1 to 287 strings, median 7 |
-| empty section 2 strings | 2,371 (466 in `us`); none in `ch`, `cn`, `in` and `kr` |
+| empty section 2 strings | 2,371 (466 in `us`); 0 in `ch`, `cn`, `in` and `kr` |
 | flagged entries | 33,484 (3,692 in `us`); the upper half of every entry is 0 or 1 |
-| strings holding a `0x0E` byte | 33,167, every one of them flagged; 317 more flagged strings hold none: 33 in each of the nine trees and 10 in each control set (`ctl-in`, `ctl-ch`) |
+| strings holding a `0x0E` byte | 33,167, every one of them flagged; 317 more flagged strings hold no `0x0E` byte: 33 in each of the nine trees and 10 in each control set (`ctl-in`, `ctl-ch`) |
 | entry 0 flagged | 1,929 sections (213 in each Latin tree), so the engine's count is 16,384 or more there |
 | section 3 | in 3,232 files: 359 per tree, 360 in `in` |
 | section 3 strings | 20,818 (2,313 in `us`), at most 38 bytes; no entry is flagged |
-| empty section 3 strings | 328: 327 in `it` and 1 in `es`; none in the other trees |
+| empty section 3 strings | 328: 327 in `it` and 1 in `es`; 0 in the other trees |
 | section 3 sizes | 64 to 1,472 bytes; 1 to 43 strings, median 2 |
 | section 3 codes | in the Latin trees the only byte below `0x20` is the space `0x04`, plus lead byte `0x14` in `es`, `fr` and `it`; every caption in `ch`, `cn`, `in` and `kr` holds a `0x0F` escape |
 | table checks | in every section the offsets ascend, the first string follows the table, the strings are contiguous and the bytes after the last are zero |

@@ -108,7 +108,7 @@ history counter, the key restore and the affinity reset happen only then.
 
 `0x00235360` copies `0x250` bytes, four `0x80` blocks and a `0x50` tail (`0x00235460`-`0x002354DD`), from
 the matching history entry over the live one. The three bank loops in `0x00233780`, `0x00233440` and
-`0x00233550` move `0x9400` bytes per bank in 128-byte `movups` pairs. None names a field: the stats
+`0x00233550` move `0x9400` bytes per bank in 128-byte `movups` pairs. No loop names a field: the stats
 page at `+0x80`, the enmity bytes and the positions travel with everything else.
 
 ## Related

@@ -146,11 +146,11 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 | `.tga` | 2 files, 6,220,818 bytes each: `warning.tga`, `sqex logo size_ffx.tga`, both in `gamedata/titleimage/in/` |
 | TGA header | both type 2, 1920 × 1080, 24 bpp, descriptor `0x20`; 18 + 1920 × 1080 × 3 = the file size |
 | `.csv` | 17 files, 209,639 bytes |
-| `ps2data/opt.csv` | 10,182 bytes, header + 459 rows; SMAA `Yes` in all 459, FlipMapOpaqueOrder in 7, ForceNoOpaqueChrFirst in 9, ForceMSAAOff in none |
+| `ps2data/opt.csv` | 10,182 bytes, header + 459 rows; SMAA `Yes` in all 459, FlipMapOpaqueOrder in 7, ForceNoOpaqueChrFirst in 9, ForceMSAAOff in no row |
 | `ps2data/soft_particle/` | `bg` 65,112 bytes (2,373 rows; 418 maps in 433 runs), `chara` 2,187 (126 rows, ids 0–125), `common` 2,686 (147, ids 1–151), `event` 3,747 (218, ids 0–227), `magic` 6,528 (362, ids 0–396) |
 | `prefetchdata/<lang>/eventlist.csv` | 9 identical files (`us fr it es de jp kr cn ch`), 4,912 bytes, 315 records |
 | other CSV | `jsondata/parametersmanageruisizestruct.csv` 10,350 bytes; `prefetchdata/ff12mapjump_custom_nocrystal.csv` 64,639 bytes |
-| `.json` | 830 files, 3,230,298 bytes; 775 CRLF, 29 on one line, 26 empty; none with a byte-order mark |
+| `.json` | 830 files, 3,230,298 bytes; 775 CRLF, 29 on one line, 26 empty; no file with a byte-order mark |
 | `jsondata/` root | `0.json` 2 bytes, `init.json` 5,746, `monstergallery.json` 337,640, `monstertoweapon.json` 50,445 |
 | `jsondata/maps/` | 459 files, 581,069 bytes; the same 459 map names as `opt.csv` |
 | `jsondata/cutscenes/` | 337 files, 2,235,149 bytes; 39 `sum_*`, of which 26 are empty; one `_2ndscreen` file (`slm_z0100_2ndscreen.json`) |
@@ -505,7 +505,7 @@ opens it with `0x0067A480` on the player object at its `+0x678`. A null path ent
 
 The first 98 ids of kind 28 hold 45 `.md` paths at even ids, each followed by its `.mh` path, and
 four empty pairs. 40 of the 45 base names have a `.webm`; `dlb`, `opd`, `se1`, `se2` and `bd2` have
-none. Which script step opens each movie id, and so what each `.webm` is shown for, is in
+no `.webm`. Which script step opens each movie id, and so what each `.webm` is shown for, is in
 [`movies-by-id.tsv`](../Graphics/movies-by-id.tsv) ([movies](../Graphics/movies.md)).
 
 ### Files no path names
@@ -539,7 +539,7 @@ both places and the `mapjump` calls of the source zone's US script that reach th
   can build the name.
 - Every prefetch path is `/PrefetchData/` (`0x00900648`) with a language folder and a fixed tail: `common.txt`
   (`0x001DA610`), `Maps/<map>.txt` (`0x001DA290`), `eventList.csv` (`0x001D9A40`) and `Events/<n>.txt`
-  (`0x001D9DA0`), whose add-on form is the one path without a language. None ends at the folder's top level,
+  (`0x001D9DA0`), whose add-on form is the one path without a language. No path ends at the folder's top level,
   the executable imports no directory search, and no prefetch list, `.ah`, JSON, CSV or text file in the
   archive names the file.
 - The rows are the zone-to-zone jumps the zone scripts make, without the crystal warps: 1,616 pairs are

@@ -177,7 +177,7 @@ clears `+0x18`.
 
 The border shader's parameters are `ColorBuffer`, `SingleStepOffset`, `FontBorderSetting` and `FontBorderColor`
 (`0x001902FF`-`0x00190352`). The colour is the palette's border colour, and `FontBorderSetting` is the border width from
-the font display, 4.0 when none is set (`0x0017F9A0`, `0x001B5210`). 64 of these objects are kept, one per border colour
+the font display, 4.0 when no width is set (`0x0017F9A0`, `0x001B5210`). 64 of these objects are kept, one per border colour
 and target size (`0x001E96A0`).
 
 The 64 border objects are `0x38` bytes each at font display `+0x1500`. `0x001E96A0` takes the first whose byte `+0x20`
@@ -445,8 +445,8 @@ eight-byte stores in the lists put 0 in two of them at once.
 | `0x0209CC7C` | `f32` | 0 | the kerning before the glyph, unscaled: `0x0017F8E0` of the glyph's code point `+0x20` ([kerning](fonts.md)), taken when `0x0017F940()` answers non-zero, the glyph record exists and its code point is not -1, and 0 otherwise; the multiply turns it into `0x0209CC6C` | `0x002AC2F0`: 0 with `0x0209CC78` (`0x002AC316`), the kerning (`0x002AC53B`); `0x002B0280`: 0 with `0x0209CC78` (`0x002B040E`), the kerning (`0x002B06FF`) or 0 (`0x002B0709`); 0 with `0x0209CC78`: `0x002AC5F0` (`0x002AD1D9`), `0x002AF960` (`0x002AFA1F`) | `0x002AC2F0` (`0x002AC55C`); `0x002B0280` (`0x002B0727`), the fourth float of the 16-byte multiply |
 
 Nothing else reads or writes these five. The addresses taken near them, `0x0209CC3C` by `0x001AF470` (a `UISize.json` cell, [Screen
-layouts](screen-layouts.md)) and `0x0209CC30` by `0x002A84F0` (the end of a loop over `0x0209CC18`-`0x0209CC28`), reach none
-of them.
+layouts](screen-layouts.md)) and `0x0209CC30` by `0x002A84F0` (the end of a loop over `0x0209CC18`-`0x0209CC28`), reach
+none of them.
 
 ### The screen-width counter
 

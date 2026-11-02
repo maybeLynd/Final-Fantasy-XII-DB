@@ -157,8 +157,8 @@ When Reflect bounces an action, `0x00384F40(source, target)` picks the new targe
 
 Its gap is the distance between the two positions (`0x003A1920`) less the target's smaller radius (`0x00334790`, the
 lesser of the two `0x00265090` floats) and the candidate's larger radius (`0x00334A70`, the greater, 0 without an
-actor). The candidate with the smallest gap below the action row's reach `+0x05` / 10 wins (`0x0038517D`); with none,
-it returns 0.
+actor). The candidate with the smallest gap below the action row's reach `+0x05` / 10 wins (`0x0038517D`); with no
+candidate below it, it returns 0.
 
 Each battle unit keeps a bounce slot beside every entry of the action's target list ([Area of effect](area-of-effect.md)): 32 slots of `0x10` bytes at `+0x988`,
 slot i beside the entry at `+0x780` + `0x10` x i. The Reflect arm marks an entry bounced by writing code 8 to its

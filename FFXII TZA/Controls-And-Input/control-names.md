@@ -54,7 +54,7 @@ channel registry's 143 names have 113 distinct codes, in 16 groups of aliases.
 | `code` | the node's value, the code keymap.ini stores |
 | `name` | the registered name |
 | `registries` | `channel`, `key` or both |
-| `band` | `none`, `pad button` or `keyboard` |
+| `band` | `pad button` or `keyboard`; `-` for code 0 (`Empty`) |
 | `aliases` | the other channel names with the same code, or `-` |
 | `channel_node`, `key_node` | the node's address in each registry, or `-` |
 

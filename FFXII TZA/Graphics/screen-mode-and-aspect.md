@@ -136,7 +136,7 @@ Resolution size at 60/1 Hz.
   switches succeed.
 
 1. It lists the output's modes and logs `[Screen Mode]number of modes: %d  pOutput = %x`.
-2. It takes the mode of that size whose refresh rate is `hz`; when none matches it takes the last one, or fails in
+2. It takes the mode of that size whose refresh rate is `hz`; when no mode matches it takes the last one, or fails in
    full screen.
 3. It logs the mode id and the desktop refresh rate (`EnumDisplaySettingsA`).
 4. It switches the full-screen state (`SetFullscreenState`, vtable `+0x50`) and resizes the target (`ResizeTarget`,

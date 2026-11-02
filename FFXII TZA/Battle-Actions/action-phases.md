@@ -139,7 +139,7 @@ once.
 ### Showing one action at a time
 
 `0x00313DB0`, run every frame from `0x00234520`, keeps one shown unit at
-`0x02089350`. With none, it takes ids from the ring until one resolves to a living unit (or one waived
+`0x02089350`. With no unit shown, it takes ids from the ring until one resolves to a living unit (or one waived
 by `0x00377C20()`), clears its bit `0x1000`, sets bit `0x2000`, stores it and starts the display with
 `0x00226BE0(10, unit id, ...)`. While a unit is shown and no scene is playing (state not 5 or 6), it is
 released when it dies or its bit `0x2000` is cleared - which phase 11 does - with `0x00225CD0(10, -1)`.

@@ -233,8 +233,8 @@ gives `0x00267C20` when arena 13 or 14 is enabled; every other case gives `0x002
 
 `0x006CC5A0(ring, size, extra, alloc, free)` builds a ring buffer that takes its allocator as
 arguments. It stores `size + 0x20` at `+0x4C` and the release function at `+0x58` (`0x00584730` when
-none is given), allocates `size + 0x20 + extra + 0xF` bytes with `alloc` (`0x00584740` when none is
-given) into `+0x08`, sets `+0x10` to `size + 0x10` and zeroes the dword there, and returns whether
+no release function is given), allocates `size + 0x20 + extra + 0xF` bytes with `alloc` (`0x00584740` when no
+allocator is given) into `+0x08`, sets `+0x10` to `size + 0x10` and zeroes the dword there, and returns whether
 the block is non-null.
 
 Its three calls pass the pair held in the static cells `0x01F2EAA8` (`0x00584740`) and `0x01F2EAB0`
@@ -296,18 +296,18 @@ Memory log record   `0x01F82E48` -> malloc(`0x20`):
 |---|---|---|---|
 | `+0x00` | `u32` | budget | `0x2000000`, never read |
 | `+0x04` | `u32` | block | `0x200000`, never read |
-| `+0x08` | `u32` | (none) | never written |
-| `+0x0C` | `u32` | (none) | never written |
+| `+0x08` | `u32` | - | never written |
+| `+0x0C` | `u32` | - | never written |
 | `+0x10` | `u64` | total | 0, never read |
 | `+0x18` | `u32` | count | 0, never read |
-| `+0x1C` | `u32` | (none) | never written |
+| `+0x1C` | `u32` | - | never written |
 
 Actor record size table   `0x01E0C328`, 8 rows of 4 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8` | class | 0 to 3; indexes the manager's words `+0x1D0` and the record's byte +3 |
-| `+0x01` | `u8` | (none) | 0 or 1; read by nothing |
+| `+0x01` | `u8` | - | 0 or 1; read by nothing |
 | `+0x02` | `u16` | size | record bytes before rounding to 16 rows   0: class 0 `0x328`   1: class 1 `0x3A8`   2: class 1 `0x330`   3: class 2 `0x348` 4: class 2 `0x2D0`   5: class 3 `0x6E0`   6: class 3 `0x6E0`   7: class 3 `0x668` |
 
 Actor pool block:

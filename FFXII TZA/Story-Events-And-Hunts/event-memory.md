@@ -72,7 +72,7 @@ The one shipped file is 26 bytes and lists the ids 0, 49, 668, 670, 782, 871, 87
 ## Modding notes
 
 - Adding a field's id to the list frees 1 MiB in that field; an event that needs the event memory heap there will
-  have none.
+  have no event memory heap.
 - Marking a field as a town also drops its summon memory heap.
 
 ## Related

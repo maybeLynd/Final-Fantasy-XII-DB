@@ -202,7 +202,7 @@ parameters. Its ten log calls are gated by `0x01F3BA80` together with `0x02EA0B4
 The largest technique family is `tech_DepthOfField` (53 names), then
 `tech_CompositeColorAndAlphaEffectsMask` (20), `tech_GenerateNormalDepth` (15) and
 `tech_TemporalAntialias` (14). The helper `0x0072DCF0`, called at 65 sites with a count `n`, drops the
-name's last character, appends `1` to `n`, and fetches each of those under 22 suffixes: none, and 21
+name's last character, appends `1` to `n`, and fetches each of those under 22 suffixes: the empty suffix, and 21
 HDR conversions such as `_REINHARDRGB_RGB` and `_LOGRGBLUM_RGBFAST` (table `0x02EA2250`).
 
 Handles are 32-bit values stored from `this + 8` (`0x0072A496`). One run is addressed from `this + 0x1AA10`
@@ -249,6 +249,13 @@ Two sets of named pass records exist side by side:
 | `node` | in post-processing-render-pass-registry-60.tsv, the record the row's `teardown` unlinks: its first instruction is `lea rcx, [node]` and its second `jmp 0x005DDD60`, on all 60 rows |
 | `registration_site` | the static initialiser that registers the record: `xor r8d, r8d`, `lea rdx, [name]`, `lea rcx, [node]`, `call 0x005DC6F0`, then `lea rcx, [teardown]` and a tail jump to the exit registrar `0x00808B90`, on all 60 rows |
 | `flag_at_plus10` | the flag the initialiser passes in `r8d`, which `0x005DC6F0` stores at record `+0x10`: 0 on all 60 rows |
+
+### Columns that mark selected pass records
+
+| Column | Holds |
+|---|---|
+| `selected_by_001E2AF0` | in post-processing-named-render-pass-array.tsv, `yes` on the 19 records, indexes 4 to 22, whose address `0x001E2AF0`, the function `MapOrderedObject`'s execute slot forwards to, stores at `[rsi + 0x80]` (`0x001E3111` to `0x001E3347`). It picks one record from its flag bytes `+0xC1` to `+0xC4` and `+0xB8` and the dword it reads through `+0x78`: the `DefaultMapRenderPass…` records (indexes 4 to 12), the `AteGequalFbonly…` records and `NoBlendWithAlphaClip` (13 to 17), and the `WaterPassFor…` records (18 to 22). Every load of an array record in `0x001E2AF0` is one of these 19 |
+| `submitted_by_a_post_effect_worker` | in post-processing-runtime-render-pass-registry.tsv, `yes` on the 29 records that one of the eleven post-effect workers stores at `[ctx + 0x80]` before it submits with `0x0060B980`: the eleven functions from `0x00652940` to `0x0065BA00` that call `0x0060B980`. All 29 are in the `phyre-post-effect` band; 6 of them are the `…Inverted` and `…Combine` variants a worker picks with a conditional jump or `cmov` before the same store. The game-band records `VideoScreen`, `MapShadowRender`, `OpaqueDepth`, `OpaqueGray`, `ShadowRender`, `ShadowRenderWithRef` and `AlphaModeRender` are stored the same way by the game's own functions `0x001B76E0`, `0x001E2AF0`, `0x001EE8E0` and `0x001F5D70`, and are left blank |
 
 ### The frame-marker table
 

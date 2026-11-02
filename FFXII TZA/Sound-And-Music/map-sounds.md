@@ -22,7 +22,7 @@ Each map pack (`.mpk`) carries its list in slot 10 and its `SeSep` sound-bank re
 When the map pack binds its sound, `0x003635E0(list, bank, handle)`:
 
 1. unbinds the previous list (`0x00363750`);
-2. takes the pack's bank, or `list + [list + 0x0C]` when none is given;
+2. takes the pack's bank, or `list + [list + 0x0C]` when the pack gives no bank;
 3. opens every `SeSep` record in `[list + 0x08]` bytes through `0x002DF070` ([Sound banks](sound-banks.md)) and calls
    `0x002DEE90(-1)`, which returns at once because the load query answers 0 for a negative id
    ([Audio manager](audio-manager.md));
@@ -75,12 +75,12 @@ instruction reads the count.
 `0x00363B40` picks the ambience when the weather is set (`0x002620E0`):
 
 1. It reads up to three entries of the list's weather table, or of the `SP1` block's table at `+0x04` when the list
-   has none, into three selections at `0x022CBB58`. An index in range whose id is above 0 is kept, and each id is
-   added once to a keep list at `0x022CBB64`.
+   has no weather table, into three selections at `0x022CBB58`. An index in range whose id is above 0 is kept, and each
+   id is added once to a keep list at `0x022CBB64`.
 2. The weather slot is `0x00265920()` minus one; a slot at or past the table's count picks nothing.
 3. A new ambience becomes `0x022CBA7C`. While `0x022CBB2D` is set it starts at once through `0x00363840`. Otherwise it
    waits in `0x022CBA7C` until `0x003633B0` or `0x00363410` sets `0x022CBB2D`, which starts it through `0x00363840`: a
-   playing ambience fades out over 15 frames (`0x002DF190(current, 0xF)`), and with none playing `0x003636A0` releases
+   playing ambience fades out over 15 frames (`0x002DF190(current, 0xF)`), and with no ambience playing `0x003636A0` releases
    the previous map's kept ambiences (below).
 4. With no ambience for the slot, the current one fades out over 180 frames (`0x002DF190(current, 0xB4)`).
 
@@ -218,7 +218,7 @@ Each id entry, `Spp1Id`, 4 bytes:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | count | entries |
-| `+0x02` | `i16[7]` | entry | a list index per weather slot; -1 for none |
+| `+0x02` | `i16[7]` | entry | a list index per weather slot; -1 for no entry |
 
 The magic, `+0x10`-`+0x18` and `+0x1C` are read by none of the binder, the unbinder, the two verbs, the emitter
 reader and the weather pick.
@@ -261,7 +261,7 @@ by entry 24 of the ten kind 1 arrays. It lists the eleven ambience ids 1,001 to 
 | the `SeSep` part | opens exactly the listed ids, in order, in 454 lists; slot 6 of `bhm_c0102` has no records part and a `bankOffset` of 0, so its three ids open no bank |
 | `+0x10` | 1 in 319 lists, 0 in 136 |
 
-All but one id name a shipped bank under `se600`-`se610`; `600070` has none.
+All but one id name a shipped bank under `se600`-`se610`; `600070` has no bank.
 
 ## Loader behaviour
 
@@ -274,7 +274,7 @@ All but one id name a shipped bank under `se600`-`se610`; `600070` has none.
    `+0x08` (`0x003DF399`), and every reader indexes it there.
 6. No loader checks the list itself. The map bind reads only its `+0x08` and `+0x0C` (`0x00363607`, `0x00363627`); the
    event bind reads those (`0x003DF3A2`, `0x003DF3B1`) and `+0x10` and `+0x12` (`0x003DF301`, `0x003DF306`). No reader
-   on this page tests the count, `+0x0C`, `+0x18` or `+0x1A` against the list's size, and none compares the
+   on this page tests the count, `+0x0C`, `+0x18` or `+0x1A` against the list's size, and no reader compares the
    magic: the bytes `SPP1` occur nowhere in the image.
 
 ## Modding notes

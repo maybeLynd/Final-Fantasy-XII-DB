@@ -34,11 +34,11 @@ bound (`0x0030B6C0`-`0x0030B6ED`; [Party data](../Party/party-data.md)).
 | 4 | `0x4000`-`0x4017` | technicks | one bit each at `+0x4F1C` |
 | 6 | `0x6000`-`0x60FF` | gambits | one bit each at `+0x4F20` |
 | 8 | `0x8000`-`0x81FF` | key items and maps | one bit each at `+0x4F40` |
-| 9 | `0x9000`-`0x91FF` | reward packages: gil and two nested grants | none (`0x002FD530`) |
-| A | `0xA000`-`0xA0FF` | package selectors: two triples of ids | none (`0x002FD640`) |
+| 9 | `0x9000`-`0x91FF` | reward packages: gil and two nested grants | no storage (`0x002FD530`) |
+| A | `0xA000`-`0xA0FF` | package selectors: two triples of ids | no storage (`0x002FD640`) |
 | C | `0xC000`-`0xC01F` | Quickenings `0xC000`-`0xC011`, Espers `0xC012`-`0xC01E`, Second Board `0xC01F` | one bit each at `+0x4F80` |
-| D | `0xD000`-`0xD07F` | bazaar goods: three granted pairs | none (`0x002FD780`) |
-| E | `0xE000`-`0xEFFE` | gil carried as an id, `(id & 0xFFF) * count` | none (`0x002FD880`) |
+| D | `0xD000`-`0xD07F` | bazaar goods: three granted pairs | no storage (`0x002FD780`) |
+| E | `0xE000`-`0xEFFE` | gil carried as an id, `(id & 0xFFF) * count` | no storage (`0x002FD880`) |
 
 Rows 5, 7 and 11 are empty, and nibble F is refused.
 

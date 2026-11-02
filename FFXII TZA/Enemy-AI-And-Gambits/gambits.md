@@ -299,7 +299,7 @@ are laid out on [Area of effect](../Battle-Actions/area-of-effect.md#layouts):
 ## Shipped data
 
 The presets are `battle_pack.bin` section 8, 40 rows of 64 bytes. 29 party table rows name one in word
-`+0x14`; rows 14 and 16 share `0x500E`, and rows 6 and 17-26 have none (`0xFFFF`). Presets `0x5006` and
+`+0x14`; rows 14 and 16 share `0x500E`, and rows 6 and 17-26 have no preset (`0xFFFF`). Presets `0x5006` and
 `0x5010`-`0x501A` are named by no party row. Party rows 0-5 are Vaan, Ashe, Fran, Balthier, Basch and Penelo,
 the characters the "Ally: Vaan" to "Ally: Penelo" conditions test, and rows 27-39 are the Espers.
 

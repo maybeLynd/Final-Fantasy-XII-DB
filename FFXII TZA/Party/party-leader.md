@@ -19,13 +19,13 @@ addresses: "0x003272A0, 0x003594B0, 0x00358BC0, 0x00326500, 0x00263750, 0x003384
 
 ### The leader handle
 
-The leader is one actor handle, `0x022C7FE0`. `0x003272A0` turns it into the leader's battle unit, or none: the battle
+The leader is one actor handle, `0x022C7FE0`. `0x003272A0` turns it into the leader's battle unit, or no unit: the battle
 flag `0x02089340` bit `0x10` must be set, the handle must resolve to an actor with a battle unit, and the unit's flag bit
 `0x8` must be set (`0x003272A4`-`0x003272CE`). Every reader of the leader's battle unit asks `0x003272A0`; the lock setters
 below and the release `0x00358B40` resolve the handle `0x022C7FE0` to its actor directly, without those three tests.
 
 Two more readers keep only the bit `0x10` test. `0x00327270` returns the leader's actor (`0x003590D0()` through
-`0x003588B0`), or none while bit `0x10` is clear (`0x00327274`-`0x0032728D`). `0x003272F0` returns the leader's
+`0x003588B0`), or no actor while bit `0x10` is clear (`0x00327274`-`0x0032728D`). `0x003272F0` returns the leader's
 roster slot, the first of slots 0-3 whose `0x00263750` actor is that actor, or -1 when bit `0x10` is clear,
 the handle does not resolve or no slot holds it (`0x003272F6`-`0x0032734E`).
 
@@ -81,15 +81,15 @@ picks depends on the party control mode (`0x00326516`-`0x00326542`):
 | 0 and 1 (normal, summon) | the party block's leader selector, `+0x5AA4` |
 | 2 (chocobo) | party row 26, the chocobo |
 | 3 (town) | the area's default leader, `0x00377C70` |
-| 4 and 5 (event party) | none, so the fallback below |
+| 4 and 5 (event party) | no member, so the fallback below |
 
 When that member has no battle unit with a stats record, it takes the first of fighting seats 0-3 that has one,
 and otherwise the actor in roster slot 0 (`0x00326571`-`0x003265D9`).
 
 ### The roster
 
-The four active actors are pointers at `0x0209A1F0`; `0x00263750(slot)` returns one for slots 0-3 and none above
-(`0x00263750`-`0x00263766`); the compare is unsigned, so a negative slot gives none too. `0x00269C70(actor, slot)` installs an actor in a slot, clearing the actor's previous slot, recording the slot in the
+The four active actors are pointers at `0x0209A1F0`; `0x00263750(slot)` returns one for slots 0-3 and no actor above
+(`0x00263750`-`0x00263766`); the compare is unsigned, so a negative slot gives no actor too. `0x00269C70(actor, slot)` installs an actor in a slot, clearing the actor's previous slot, recording the slot in the
 actor's byte `+0x12`, and requesting it as leader when no leader is set ([Party slots](party-slots.md)).
 
 ### The follow formation
@@ -99,9 +99,9 @@ skips a member that is missing, down (KO, Stone or X-Zone), or the leader itself
 the four 0x60-byte formation slots at `0x022C7E00`, keyed by its unit's slot byte `+0xEA9`, with its angle around
 the leader.
 
-`0x00339A60(unit)` returns a follower's destination (`0x00339A70`-`0x00339AC1`). It gives none when there is no leader,
-when the unit is the leader, or when the leader is an enemy-table record, and otherwise finds the unit's entry by
-its slot byte. So every follower follows the controlled character, and nobody has to be told when the leader
+`0x00339A60(unit)` returns a follower's destination (`0x00339A70`-`0x00339AC1`). It gives no destination when there is no
+leader, when the unit is the leader, or when the leader is an enemy-table record, and otherwise finds the unit's entry
+by its slot byte. So every follower follows the controlled character, and nobody has to be told when the leader
 changes.
 
 ### When control is taken away
@@ -138,7 +138,7 @@ The stick filter reads one dword and four bytes, and each source of a lock owns 
 | `0x022C8004` | script `setucpcmovelockstatus` | `0x00359250` |
 | `0x022C8005` | the leader's state, above | `0x003592C0` |
 | `0x022C8006` | the event lock, bit `0x2` | `0x00359330` |
-| `0x022C8007` | nobody | none: it is read with the others, and only the reset `0x003590E0` clears it (`0x00359115`-`0x00359122`) |
+| `0x022C8007` | nobody | no setter: it is read with the others, and only the reset `0x003590E0` clears it (`0x00359115`-`0x00359122`) |
 
 Any bit of `0x022C8000` stops the stick. Of the OR of the four bytes, bit `0x1` stops the move, bit `0x2` the turn to the
 stick and bit `0x4` the desired heading (`0x00358DFB`-`0x00358E99`). A setter that leaves a lock standing stops the

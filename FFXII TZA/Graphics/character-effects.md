@@ -157,7 +157,7 @@ The script verb `charefftrigger(n)` (`0x325`, one argument; [verb table](../Scri
 has the handler `0x003401D0`: it pops `n` (`0x00267E10`) and calls `0x002E73C0(actor, n)`.
 
 `0x002E73C0` takes the
-actor's presentation context (`+0xC0`), its record index (word `+0x00`, −1 none) and the render record
+actor's presentation context (`+0xC0`), its record index (word `+0x00`, −1 for no record) and the render record
 `[0x022C6F28] + index × 0x740` (the array pointer held at `0x022C6F28`, `0x002E73EA`), and for a record whose `+0x284` is non-zero tail-jumps to
 `0x003E6AA0(record, n)`, which stores `n` in bits `0xF8000000` of `+0x304` and sets `+0x294` bit `0x8000000`
 (`0x003E6AA0`-`0x003E6ABD`). Nothing plays yet.

@@ -68,7 +68,7 @@ A row draws the parts in [Battle menu](battle-menu.md) (name, HP, HP gauge, maxi
   "Reddas" (`0x00916200`), 27-39 the Espers from "Belias" to "Zodiark" (`0x00916218`);
 - one of three HP frames by digit count: `0x00297710` takes the larger of HP and the cap `+0x28`, below 100, below
   1000 or 1000 and above;
-- one of three MP frames by the bar count `+0x87`, 1 to 3, or none for 0 (`0x00297880`); rows of kind 3 draw no MP;
+- one of three MP frames by the bar count `+0x87`, 1 to 3, or no frame for 0 (`0x00297880`); rows of kind 3 draw no MP;
 - the status mark and name (`0x00297FE0`), and the summon gauge on the summoner's row (`0x0029B1C0`), below.
 
 ### Row effects
@@ -451,7 +451,7 @@ the `0xC0` bytes from `0x0209C240` (`0x0029626F`).
 |---|---|---|---|---|---|
 | `0x0209C288` | `void*` | 0 | the HP counter's context `+0x48`: the record `0x00296360` was given | `0x003F89C0`, which zeroes the record and stores its fourth argument (`0x003F89E5`, `0x003F89FB`), from `0x00296360` (`0x002963E2`); `0x00296360` (`0x0029642F`); `0x00296260`, 0 (`0x0029626F`) | `0x0029B7D0`, the HP callback, through the counter it is called with (`0x0029B7D7`) |
 | `0x0209C2E0` | `void*` | 0 | the MP counter's context `+0x48`, the same record | `0x003F89C0` as above, from `0x00296360` (`0x00296402`); `0x00296360` (`0x00296436`); `0x00296260`, 0 (`0x0029626F`) | `0x0029B810`, the MP callback, the same way (`0x0029B814`) |
-| `0x0209C2F0` | `u32` | 0 | the handle of the unit whose HP and MP the target window rolls, 0 for none | `0x00296360`: 0 (`0x002963A0`), the handle (`0x002963C8`); `0x00296260`, 0 (`0x0029626F`) | `0x00296360` (`0x0029636A`); through the address `0x002962C0` returns: `0x0028F1F0` (`0x0028F21D`), which starts the window's roll when the changed unit's handle matches, and `0x002C0400` (`0x002C0449`) |
+| `0x0209C2F0` | `u32` | 0 | the handle of the unit whose HP and MP the target window rolls, 0 for no unit | `0x00296360`: 0 (`0x002963A0`), the handle (`0x002963C8`); `0x00296260`, 0 (`0x0029626F`) | `0x00296360` (`0x0029636A`); through the address `0x002962C0` returns: `0x0028F1F0` (`0x0028F21D`), which starts the window's roll when the changed unit's handle matches, and `0x002C0400` (`0x002C0449`) |
 
 No other instruction reaches these three. The two records' addresses are taken by `0x00296260`, `0x00296360` and
 `0x002962C0` only.

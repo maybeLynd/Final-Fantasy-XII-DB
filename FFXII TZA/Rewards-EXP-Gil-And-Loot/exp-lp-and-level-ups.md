@@ -8,7 +8,7 @@ addresses: "0x00312280, 0x002F8BB0, 0x002F90C0, 0x002F8F20, 0x0023A570, 0x0028FB
 ## What the player sees
 
 When an enemy dies, the party members fighting on the field share its EXP; party members not on the
-field get none. Every party member, on the field or not, receives the enemy's full LP.
+field get no EXP. Every party member, on the field or not, receives the enemy's full LP.
 
 Four augments, each carried by one piece of equipment, change this per member:
 

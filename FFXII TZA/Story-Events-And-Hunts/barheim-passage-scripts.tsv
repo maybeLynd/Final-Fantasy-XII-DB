@@ -158,7 +158,7 @@ mic_e05	Special Op Sector 5 (Barheim Passage)	treasure_06	talk	talk	-	-	-	-	-	-	
 mic_e05	Special Op Sector 5 (Barheim Passage)	treasure_07	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000168	-	-	-	-	1	-
 mic_a0100	scene, event 185	ディレクター	main	main	no name shown; system message	0; system message 47	(empty string) / [value] joins the party as a guest! (the game fills [value] with Basch, party table row 4)	-	-	-	-	-	-	-	-	-	-	3	-
 mic_a0100	scene, event 185	日本語字幕	カット６	requested by ＡＤ.s06	Balthier; Vaan	1; 2; 3	Spare us your quiddities. / Yeah, but— But he's a— / A traitor. I know. Stay here and fight, if you want.	-	-	-	-	-	-	-	-	-	-	1	-
-mic_a0100	scene, event 185	日本語字幕	カット７	requested by ＡＤ.s07	-	4; 5; 6; 7	If you can walk, let's go. / You're taking him with us? / We could use another sword arm. / And you have it.	-	-	-	-	-	-	-	-	-	-	1	-
+mic_a0100	scene, event 185	日本語字幕	カット７	requested by ＡＤ.s07	Balthier; Vaan; Basch	4; 5; 6; 7	If you can walk, let's go. / You're taking him with us? / We could use another sword arm. / And you have it.	-	-	-	-	-	-	-	-	-	-	1	-
 mic_a0100	scene, event 185	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
 mic_a0100	scene, event 185	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_2	-	-	-	-	1	-
 mic_a0100	scene, event 185	イベント特殊効果画面_EV	システムメッセージ表示	requested by ディレクター.main	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
@@ -172,9 +172,9 @@ mic_a0100	scene, event 185	イベント特殊効果画面_EV	だいじなもの�
 mic_a0100	scene, event 185	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 mic_a0100	scene, event 185	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s0_2; receives the item held in file_var_s15_1	-	-	-	-	1	-
 mic_a0600	scene, event 184	メッセージ	メッセージ01	requested by 監督.main	Vaan	0	Hey! Who turned out the lights? One of those!?	-	-	-	-	-	-	-	-	-	-	1	-
-mic_a0600	scene, event 184	メッセージ	メッセージ02	requested by 監督.main	-	1; 2; 3; 4	I've heard of these: Mimics. / They disguise themselves as all manner of things, then strike when you're least wary. / Some of them have a fondness for energy, I'm told. / They gorge themselves on the stuff till there's naught left.	-	-	-	-	-	-	-	-	-	-	1	-
+mic_a0600	scene, event 184	メッセージ	メッセージ02	requested by 監督.main	Balthier	1; 2; 3; 4	I've heard of these: Mimics. / They disguise themselves as all manner of things, then strike when you're least wary. / Some of them have a fondness for energy, I'm told. / They gorge themselves on the stuff till there's naught left.	-	-	-	-	-	-	-	-	-	-	1	-
 mic_a0600	scene, event 184	メッセージ	メッセージ03	requested by 監督.main	Vaan	5	So...what happens then?	-	-	-	-	-	-	-	-	-	-	1	-
-mic_a0600	scene, event 184	メッセージ	メッセージ04	requested by 監督.main	-	6; 7; 8	Lights out. And it's worse in the dark. Much worse. / So, let them get too close to one of those conduits and they'll suck it dry. / (empty string)	-	-	-	-	-	-	-	-	-	-	1	-
+mic_a0600	scene, event 184	メッセージ	メッセージ04	requested by 監督.main	Balthier; no name shown	6; 7; 8	Lights out. And it's worse in the dark. Much worse. / So, let them get too close to one of those conduits and they'll suck it dry. / (empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 mic_a0600	scene, event 184	メッセージ	メッセージ05	requested by 監督.main	Balthier	9; 10	But don't worry. It'll give the energy back, if you ask nicely. / Sticking it with a sword helps too. Clock's ticking!	-	-	-	-	-	-	-	-	-	-	1	-
 mic_b0600	scene, event 186	セリフ	a_cut_01	requested by 監督.main	Fran; Balthier	1; 2	The Mist seethes. / It reeks. Something's close.	-	-	-	-	-	-	-	-	-	-	4	-
 mic_b0600	scene, event 186	セリフ	a_cut_03	requested by 監督.main	Balthier; Vaan	3; 4; 5; 6; 7	"Nice moves there, Captain. / You mean ""traitor."" / So they say. / But I didn't see him kill anyone. / My brother did."	-	-	-	-	-	-	-	-	-	-	4	-
@@ -187,9 +187,9 @@ mic_b0600	scene, event 186	セリフ	c_cut_02	requested by 監督.main	Vaan; Bas
 mic_b0600	scene, event 186	セリフ	c_cut_03	requested by 監督.main	Vaan	29	You don't know anything!	-	-	-	-	-	-	-	-	-	-	4	-
 mic_b0600	scene, event 186	セリフ	c_cut_04	requested by 監督.main	Balthier	30	Believe what you want to. Whatever it takes to make you happy.	-	-	-	-	-	-	-	-	-	-	4	-
 mic_b0600	scene, event 186	セリフ	c_cut_05	requested by 監督.main	Balthier	31	What's done is done.	-	-	-	-	-	-	-	-	-	-	4	-
-mic_b0601	scene, event 188	KOE	start1	requested by AD.main	-	0; 1; 2; 3	Reks, sir. My name's Reks. / He's two years younger than I. Living in Rabanastre. / It's time, Basch! Save the discussion for later. / But if we arrive after he's signed the treaty—	-	-	-	-	-	-	-	-	-	-	3	-
-mic_b0601	scene, event 188	KOE	start2	requested by AD.main	-	4; 5	Sir! We have little time! You must go to the King! / It's as I feared. They're slowing us down.	-	-	-	-	-	-	-	-	-	-	3	-
-mic_b0601	scene, event 188	KOE	start4	requested by AD.main	-	6; 7; 8	Captain, why? / Our king— What have you done? / His Majesty was a traitor.	-	-	-	-	-	-	-	-	-	-	3	-
+mic_b0601	scene, event 188	KOE	start1	requested by AD.main	no name shown	0; 1; 2; 3	Reks, sir. My name's Reks. / He's two years younger than I. Living in Rabanastre. / It's time, Basch! Save the discussion for later. / But if we arrive after he's signed the treaty—	-	-	-	-	-	-	-	-	-	-	3	-
+mic_b0601	scene, event 188	KOE	start2	requested by AD.main	no name shown	4; 5	Sir! We have little time! You must go to the King! / It's as I feared. They're slowing us down.	-	-	-	-	-	-	-	-	-	-	3	-
+mic_b0601	scene, event 188	KOE	start4	requested by AD.main	no name shown	6; 7; 8	Captain, why? / Our king— What have you done? / His Majesty was a traitor.	-	-	-	-	-	-	-	-	-	-	3	-
 mic_d0101	scene, event 183	プロデューサー	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	1	-
 mic_d0101	scene, event 183	監督	死亡演出	requested by プロデューサー.main	-	-	-	-	-	-	-	-	-	-	every foe in group 0 removed	-	-	1	-
 mic_d0101	scene, event 183	システムメッセージ	召喚獣手に入れた！	-	system message	system message 7	NOT USED (message kind 1: the game names id 0xC018, Zalera, and gives it)	-	-	-	-	-	receives Zalera (system message 7, kind 1)	-	-	-	-	1	-

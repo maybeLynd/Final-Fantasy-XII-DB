@@ -222,7 +222,7 @@ type 0's palette.
 
 Both it (`0x00250ED7`) and the backdrop's procedure `0x002509D0` (`0x00250C26`, with `+0xF8`) go
 through `0x002553C0(palette)`. It creates the palette texture `0x0209AC48` with `0x00183760(palette, 0x100, 1)` when there
-is none, and otherwise rewrites it through `0x00183640` with the same arguments.
+is no such texture, and otherwise rewrites it through `0x00183640` with the same arguments.
 
 ### The screen blur sprites
 

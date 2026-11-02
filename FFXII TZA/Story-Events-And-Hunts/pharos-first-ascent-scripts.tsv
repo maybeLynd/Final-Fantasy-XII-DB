@@ -444,7 +444,7 @@ rbl_q01	Empyrean Ravel (Pharos - Third Ascent)	treasure_03	talk	talk	-	-	-	-	-	-
 rbl_q01	Empyrean Ravel (Pharos - Third Ascent)	treasure_04	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000088	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m001	requested by Director.main	Fran	0	The din of the Mist grows greater.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m002	requested by Director.main	Basch	1	The Sun-cryst must be near.	-	-	-	-	-	-	-	-	-	-	1	-
-rbl_q0100	scene, event 379	Mes	m003	requested by Director.main	-	2	I wonder if she'll really do it.	-	-	-	-	-	-	-	-	-	-	1	-
+rbl_q0100	scene, event 379	Mes	m003	requested by Director.main	Penelo	2	I wonder if she'll really do it.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m004	requested by Director.main	Penelo	3	Take revenge against the Empire.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m005	requested by Director.main	Penelo	4	I mean, I know how she must feel.	-	-	-	-	-	-	-	-	-	-	1	-
 rbl_q0100	scene, event 379	Mes	m006	requested by Director.main	Penelo	5	It's hard losing someone you care about.	-	-	-	-	-	-	-	-	-	-	1	-

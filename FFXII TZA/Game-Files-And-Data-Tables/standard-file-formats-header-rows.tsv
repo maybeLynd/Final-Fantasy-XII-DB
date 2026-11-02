@@ -3,7 +3,7 @@ us/worldmap/menumap_sub.h	14	define	menumap_sub_image_MAX	18	１つのサブロ�
 us/worldmap/menumap_sub.h	15	define	menumap_sub_info_MAX	17	１つのサブロケーション内の最大情報数	most info entries in one sub-location	
 us/worldmap/menumap_sub.h	17	define	menumap_sub_data_size_double_MAX	(320 * 1024)	最大データサイズ（ダブルバッファ）	largest data size, double-buffered	
 us/worldmap/menumap_sub.h	18	define	menumap_sub_data_size_single_MAX	(512 * 1024)	最大データサイズ（シングルバッファ）	largest data size, single-buffered	
-us/worldmap/menumap_world.h	16	define	menumap_world_region_0	0	なし	none	
+us/worldmap/menumap_world.h	16	define	menumap_world_region_0	0	なし	nothing	
 us/worldmap/menumap_world.h	17	define	menumap_world_region_1	1	ダルマスカ地方	Dalmasca	
 us/worldmap/menumap_world.h	18	define	menumap_world_region_2	2	ナブディス地方	Nabradia	
 us/worldmap/menumap_world.h	19	define	menumap_world_region_3	3	アルケイディス地方	Archadia	
@@ -16,7 +16,7 @@ us/worldmap/menumap_world.h	25	define	menumap_world_region_9	9
 us/worldmap/menumap_world.h	26	define	menumap_world_region_10	10			
 us/worldmap/menumap_world.h	27	define	menumap_world_region_11	11			
 us/worldmap/menumap_world.h	28	define	menumap_world_region_MAX	11	リージョン数	region count	12 region slots (0 to 11)
-us/worldmap/menumap_world.h	33	define	menumap_world_area_none	0	なし	none	
+us/worldmap/menumap_world.h	33	define	menumap_world_area_none	0	なし	nothing	
 us/worldmap/menumap_world.h	34	define	menumap_world_area_rbn	1	王都ラバナスタ	Rabanastre	
 us/worldmap/menumap_world.h	35	define	menumap_world_area_grm	2	ガラムサイズ水路	Garamsythe Waterway	
 us/worldmap/menumap_world.h	36	define	menumap_world_area_nal	3	ナルビナ城塞	Nalbina Fortress, upper level	

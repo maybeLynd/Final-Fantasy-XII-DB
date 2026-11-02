@@ -339,7 +339,7 @@ third.
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `0x01EED064` | `i32` | pending map id, -1 when none | `0x003145E0`, `0x00314530`, `0x00314020` |
+| `0x01EED064` | `i32` | pending map id, -1 when no map is pending | `0x003145E0`, `0x00314530`, `0x00314020` |
 | `0x02099ABC` | `u32` | manager request mask | `0x0026A5F0`, `0x0025BFB0` |
 | `0x022C6E48` | `u64[5]` | pending-load mask per manager; bit `0x1` the start hold | `0x0032FC30`, `0x0032FCA0`, `0x00330310`, `0x0032ED70`, `0x00332130`, the load callbacks |
 | `0x022CB720` | `u32` | the busy mask | the table above |

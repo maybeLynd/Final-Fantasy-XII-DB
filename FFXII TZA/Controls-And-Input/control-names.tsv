@@ -1,5 +1,5 @@
 code	name	registries	band	aliases	channel_node	key_node
-0	Empty	channel, key	none	-	0x01F47528	0x01F456C8
+0	Empty	channel, key	-	-	0x01F47528	0x01F456C8
 11	Button_0	channel	pad button	Button_LeftMB, Button_Square, Button_X	0x01F47508	-
 11	Button_LeftMB	channel	pad button	Button_0, Button_Square, Button_X	0x01F474A8	-
 11	Button_Square	channel	pad button	Button_0, Button_LeftMB, Button_X	0x01F474E8	-

@@ -111,7 +111,7 @@ Every standard library of Lua 5.2 is compiled in, each with its registration arr
 | debug | `0x00828540` | 16 |
 | package | `0x00828D30` | 2, plus the global `require` |
 
-None is ever opened:
+No library is ever opened:
 
 - `luaL_openlibs`' two lists, `loadedlibs` at `0x01CCB3E0` (`_G`, `table`, `package`, `coroutine`,
   `io`, `os`, `string`, `debug`) and `preloadedlibs` at `0x01CCB470` (`bit32`, `math`, `string`), are
@@ -223,6 +223,14 @@ The `PScript` fields `0x00683C30` reads:
 | files containing a Lua 5.2 header start `1B 4C 75 61 52 00` | 0 |
 | bare `1B 4C 75 61` matches | 2, inside `anx.webm` and `vnp.webm` video data, followed by `08` and `17`, not `52` |
 | files containing `PScript`, `PScheduler`, `PCallerScript`, `PUtilityScripting` or a Lua 5.2 chunk header | 0 of 89,414, among them 0 of the 35,984 `.phyre` files |
+
+### Columns of lua-runtime-lua-math-unaryfunctionadapter.tsv
+
+One row per function, 13 rows in address order. Each body is 54 bytes: it reads its argument with `0x00812590`, widens it to a double, calls an import stub of its own, narrows the result, pushes it with `0x00810640` and returns 1.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address. The `math` library's registration array names them `sin` (`0x00818AC0`), `sinh` (`0x00818B00`), `cos` (`0x00818B40`), `cosh` (`0x00818B80`), `tan` (`0x00818BC0`), `tanh` (`0x00818C00`), `asin` (`0x00818C40`), `acos` (`0x00818C80`), `atan` (`0x00818CC0`), `ceil` (`0x00818D60`), `floor` (`0x00818DA0`), `sqrt` (`0x00818EA0`) and `exp` (`0x00819000`) |
 
 ## Modding notes
 

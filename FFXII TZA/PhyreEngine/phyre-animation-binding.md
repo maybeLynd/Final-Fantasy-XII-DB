@@ -326,7 +326,7 @@ Channel value slot, `0x28` bytes:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `f32[4]` | value |  |
-| `+0x10` | `void*` | semantic | descriptor at `0x01F2CE40`..., null for none |
+| `+0x10` | `void*` | semantic | descriptor at `0x01F2CE40`..., null for no semantic |
 
 Channel semantic, `0x18` bytes:
 

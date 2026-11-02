@@ -269,10 +269,10 @@ grm_g01	Overflow Cloaca (Garamsythe Waterway)	__MJ_CTRL000	mapjump	mapjump	-	-	-
 grm_g01	Overflow Cloaca (Garamsythe Waterway)	常駐監督	main	main	no name shown	0	ボスイベントチェックモード (choices: 登場イベント再生 / 死イベント再生 / チェックモード終了)	0x001F: Set or tested in Overflow Cloaca (Garamsythe Waterway)	-	-	33: After getting away before being found	-	-	Muthru Bazaar (Rabanastre), field 290, entrance 0	boss gauge shown; every foe in a group removed	grm_g0101, event 267; grm_g0100, event 235	-	2	-
 grm_g01	Overflow Cloaca (Garamsythe Waterway)	常駐監督	賞金首レイス監視	requested by 常駐監督.main	-	-	-	-	-	-	-	-	-	-	every foe in a group removed	-	-	2	-
 grm_g01	Overflow Cloaca (Garamsythe Waterway)	SOUTH_door_e13	talk	talk	no name shown	2	The door is securely closed.	-	-	-	-	at least 350	-	Central Waterway Control (Garamsythe Waterway), field 850, entrance 15	-	-	-	5	-
-grm_a0200	scene, event 237	セリフ	cut_02	requested by 監督.main	-	1; 2	Squads 3 through 6 are in place. They stand ready. / So far the Imperials haven't noticed a thing.	-	-	-	-	-	-	-	-	-	-	5	-
-grm_a0200	scene, event 237	セリフ	cut_03_01	requested by 監督.main	-	3; 4	Then go now and hurry the others. / By nightfall, we must ensure all our men are in place.	-	-	-	-	-	-	-	-	-	-	5	-
+grm_a0200	scene, event 237	セリフ	cut_02	requested by 監督.main	解放軍メンバー１ (script label, Resistance member 1)	1; 2	Squads 3 through 6 are in place. They stand ready. / So far the Imperials haven't noticed a thing.	-	-	-	-	-	-	-	-	-	-	5	-
+grm_a0200	scene, event 237	セリフ	cut_03_01	requested by 監督.main	Vossler	3; 4	Then go now and hurry the others. / By nightfall, we must ensure all our men are in place.	-	-	-	-	-	-	-	-	-	-	5	-
 grm_a0400	scene, event 317	監督	main	main	no name shown; system message	0; system message 66	(empty string) / [value] and [value] join the party! (the game fills the two [value] with Balthier, party table row 3, and Fran, party table row 2)	-	-	-	-	-	-	-	-	-	-	1	-
-grm_a0400	scene, event 317	メッセージ	表示	requested by 監督.main	-	1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20; 21	What happened? / Our hover didn't just drop— it disappeared. / Bah. Forget it. / Even if we could fly... / the Ifrit's playing with fire, and I'd rather not get burned. / We'll go the old-fashioned way. / Not many viera where you come from, thief? / It's Vaan. / Well, Fran is special... / in that she'd deign to partner with a hume. / Oh? Like a sky pirate that chooses to steal through the sewers? / Sorry. / Pirates? You're sky pirates? / So you have an airship? / It's Balthier. / Listen thief—Vaan. / If you ever want to see your home again, you do exactly as I say. / Myself, Fran, and you. We're working together now. / Understood? / Don't even think you're getting this. / The thought never crossed my mind.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0400	scene, event 317	メッセージ	表示	requested by 監督.main	Fran; Balthier; Vaan	1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20; 21	What happened? / Our hover didn't just drop— it disappeared. / Bah. Forget it. / Even if we could fly... / the Ifrit's playing with fire, and I'd rather not get burned. / We'll go the old-fashioned way. / Not many viera where you come from, thief? / It's Vaan. / Well, Fran is special... / in that she'd deign to partner with a hume. / Oh? Like a sky pirate that chooses to steal through the sewers? / Sorry. / Pirates? You're sky pirates? / So you have an airship? / It's Balthier. / Listen thief—Vaan. / If you ever want to see your home again, you do exactly as I say. / Myself, Fran, and you. We're working together now. / Understood? / Don't even think you're getting this. / The thought never crossed my mind.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_a0400	scene, event 317	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_7	-	-	-	-	1	-
 grm_a0400	scene, event 317	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_7	-	-	-	-	1	-
 grm_a0400	scene, event 317	イベント特殊効果画面_EV	システムメッセージ表示	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
@@ -285,7 +285,7 @@ grm_a0400	scene, event 317	イベント特殊効果画面_EV	システムメッ�
 grm_a0400	scene, event 317	イベント特殊効果画面_EV	だいじなものゲット_FADE付_音量復帰ナシ	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_7	-	-	-	-	1	-
 grm_a0400	scene, event 317	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 grm_a0400	scene, event 317	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s0_7; receives the item held in file_var_s9_1	-	-	-	-	1	-
-grm_a0401	scene, event 318	KOE	カット０１ａ	requested by AD.main	-	0; 1; 2; 3; 4; 5; 6	Insurgents. Most like they thought to take advantage of a lax watch while the fete's on... / ...to feed the good consul a length of steel for his supper. / I should think Vayne used to such hospitality. / Clever. He used himself as the bait to draw them near, and then sent in the air brigade. / A fine, bloody banquet. / Hmph. I daresay I've soiled my cuffs. / If a dungeon's waiting for us at the end of the night, it had best have a change of wardrobe.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_a0401	scene, event 318	KOE	カット０１ａ	requested by AD.main	Balthier	0; 1; 2; 3; 4; 5; 6	Insurgents. Most like they thought to take advantage of a lax watch while the fete's on... / ...to feed the good consul a length of steel for his supper. / I should think Vayne used to such hospitality. / Clever. He used himself as the bait to draw them near, and then sent in the air brigade. / A fine, bloody banquet. / Hmph. I daresay I've soiled my cuffs. / If a dungeon's waiting for us at the end of the night, it had best have a change of wardrobe.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_a0480	scene, event 738	ＡＤ	Ｃ０１_バルフレア解説	requested by 監督.main	Balthier; system message	1; 2; 3; 5; 6; system message 59; system message 58; 7	"Balthier Ah, Vaan. There's something I want to check before we set out. / Balthier As I thought. You don't know much about gambits yet, do you? / Balthier Listen carefully—I don't care to repeat myself. For each gambit, you can combine one action with a target for that action. Example: you can arrange that Cure be cast on an ally whose HP falls below fifty percent. Useful, that. Of course, one error of judgment, and you could well find yourself throwing punches at that same ally. If you've a good head on your shoulders, it should come easily enough. Hmm... I fear a more detailed explanation is in order. / Balthier We're like to come across new actions and targets, so don't be afraid to experiment with new gambit combinations. But don't put all of your faith in any one combination. With each passing day, the world finds new and exciting ways to kill a man. / Balthier Be flexible! If you find yourself up against beasts that don't take well to fire, create a gambit to cast Fire on nearby foes. Likewise, should we face a creature that uses poison, a gambit to cast Poisona on poisoned allies just might come in handy. A bit much to take in? Don't let it worry you— you're in good company. Yes, these sewers are thick with the bones of others who had similar ""difficulties."" / Gambits has been added to the Party Menu. / Party has been added to the Party Menu. / Balthier Let's be off then, shall we?"	-	-	-	-	-	-	-	-	-	-	4	-
 grm_a0480	scene, event 738	イベント特殊効果画面_EV	だいじなものゲット	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
 grm_a0480	scene, event 738	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s1_1	-	-	-	-	1	-
@@ -300,21 +300,21 @@ grm_a0480	scene, event 738	イベント特殊効果画面_EV	だいじなもの�
 grm_a0480	scene, event 738	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	8	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 grm_a0480	scene, event 738	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	8	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_1; receives the item held in file_var_s1_2	-	-	-	-	1	-
 grm_b0200	scene, event 319	メッセージ	メッセージ01	requested by 監督.アルマ登場	-	0	Who would be next?	-	-	-	-	-	-	-	-	-	-	3	-
-grm_b0200	scene, event 319	メッセージ	メッセージ02	requested by 監督.アルマ登場	-	1	Close ranks! Bring her down!	-	-	-	-	-	-	-	-	-	-	3	-
+grm_b0200	scene, event 319	メッセージ	メッセージ02	requested by 監督.アルマ登場	no name shown	1	Close ranks! Bring her down!	-	-	-	-	-	-	-	-	-	-	3	-
 grm_b0200	scene, event 319	メッセージ	メッセージ04	requested by 監督.アルマ登場	Vaan	2; 3	Jump down! / Hurry!	-	-	-	-	-	-	-	-	-	-	3	-
-grm_b0200	scene, event 319	メッセージ	メッセージ06	requested by 監督.アルマ登場	-	4	She's not alone!	-	-	-	-	-	-	-	-	-	-	3	-
+grm_b0200	scene, event 319	メッセージ	メッセージ06	requested by 監督.アルマ登場	no name shown	4	She's not alone!	-	-	-	-	-	-	-	-	-	-	3	-
 grm_b0200	scene, event 319	メッセージ	メッセージ07	requested by 監督.アルマ登場	Fran	5	Our ranks grow by the hour.	-	-	-	-	-	-	-	-	-	-	3	-
 grm_b0200	scene, event 319	メッセージ	メッセージ08	requested by 監督.アルマ登場	Balthier	6	And our troubles with them.	-	-	-	-	-	-	-	-	-	-	3	-
 grm_b0202	scene, event 238	メッセージ	メッセージ01	requested by 監督.アルマとアーシェ	Vaan; Ashe	0; 1; 2; 3; 4	You all right? / Thank you. / I'm Vaan. / And this is Balthier and— / Hey!	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ04	requested by 監督.アルマとアーシェ	Vaan	5	What's your name?	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ05	requested by 監督.アルマとアーシェ	Ashe; Vaan	6; 7	Amalia. / Amalia, huh? Nice to meet you.	-	-	-	-	-	-	-	-	-	-	2	-
-grm_b0202	scene, event 238	メッセージ	メッセージ07	requested by 監督.アルマとアーシェ	-	8; 9	There were others with me... / I'm sorry.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ07	requested by 監督.アルマとアーシェ	no name shown; Fran	8; 9	There were others with me... / I'm sorry.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ08	requested by 監督.アルマとアーシェ	Ashe	10	No...	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ09	requested by 監督.アルマとアーシェ	Vaan	11	Huh?	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ10	requested by 監督.アルマとアーシェ	Balthier	12	Oh, now isn't that impressive.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ11	requested by 監督.アルマとアーシェ	Vaan	13	Don't get any ideas. I said it's mine.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ12	requested by 監督.アルマとアーシェ	Balthier	14	I'm afraid the jury's still out on that one.	-	-	-	-	-	-	-	-	-	-	2	-
-grm_b0202	scene, event 238	メッセージ	メッセージ13	requested by 監督.アルマとアーシェ	-	15; 16	You stole that? / Yeah!	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0202	scene, event 238	メッセージ	メッセージ13	requested by 監督.アルマとアーシェ	Ashe; no name shown	15; 16	You stole that? / Yeah!	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ15	requested by 監督.アルマとアーシェ	Fran	17; 18	Have you finished? / When the guards don't report in, they'll come looking for us.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ16	requested by 監督.アルマとアーシェ	Balthier	19	If they aren't already.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0202	scene, event 238	メッセージ	メッセージ17	requested by 監督.アルマとアーシェ	Vaan	20	You should come with us. Better than being by yourself.	-	-	-	-	-	-	-	-	-	-	2	-
@@ -337,12 +337,12 @@ grm_b0280	scene, event 716	イベント特殊効果画面_EV	だいじなもの�
 grm_b0280	scene, event 716	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	1	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 grm_b0280	scene, event 716	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	1	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_1; receives the item held in file_var_s4_1	-	-	-	-	1	-
 grm_b0280	scene, event 716	字幕	カット０１ｂ	requested by ＡＤ.Ｃ０１_ゲストとして	Ashe	2; 3	The situation requires I accept such help as I find. / Though it be from thieves.	-	-	-	-	-	-	-	-	-	-	2	-
-grm_b0280	scene, event 716	字幕	カット０１ｃ	requested by ＡＤ.Ｃ０１_ゲストとして	-	4; 5	I shall accompany you until we find my companions. / No longer.	-	-	-	-	-	-	-	-	-	-	2	-
+grm_b0280	scene, event 716	字幕	カット０１ｃ	requested by ＡＤ.Ｃ０１_ゲストとして	Ashe	4; 5	I shall accompany you until we find my companions. / No longer.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0280	scene, event 716	字幕	カット０１ｅ	requested by ＡＤ.Ｃ０１_ゲストとして	Balthier	6; 7; 8	"Let's think of her as a ""guest,"" then. / Unlike Fran or myself, our ""guest"" probably won't be taking orders from anyone anytime soon. / And she'll leave when she pleases."	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0280	scene, event 716	字幕	カット０２ａ	requested by ＡＤ.Ｃ０２_すかしやがって	Balthier	9; 10; 11	So, we keep to our affairs, and she to hers. / I doubt we'll find her wanting in valor... / being such an upstanding member of the insurgence.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0280	scene, event 716	字幕	カット０２ｂ	requested by ＡＤ.Ｃ０２_すかしやがって	Ashe	12	Resistance.	-	-	-	-	-	-	-	-	-	-	2	-
 grm_b0280	scene, event 716	字幕	カット０２ｄ	requested by ＡＤ.Ｃ０２_すかしやがって	Ashe	13	Well, what are we waiting for?	-	-	-	-	-	-	-	-	-	-	2	-
-grm_d0102	scene, event 236	セリフ	cut_01	requested by 監督.main	-	1	Stand where you are!	-	-	-	-	-	-	-	-	-	-	3	-
+grm_d0102	scene, event 236	セリフ	cut_01	requested by 監督.main	モブ帝国兵１ (script label, background Imperial 1)	1	Stand where you are!	-	-	-	-	-	-	-	-	-	-	3	-
 grm_d0102	scene, event 236	セリフ	cut_04	requested by 監督.main	Balthier	2	Now is not the time.	-	-	-	-	-	-	-	-	-	-	3	-
 grm_f0101	scene, event 315	プロデューサー	main	main	-	-	-	-	-	-	-	-	receives Belias; receives SecondJob; receives Zalera; receives Mateus; receives Exodus; receives Shemhazai; receives Hashmal; receives Famfrit; receives Cúchulainn; receives Adrammelech; receives Zodiark; receives Zeromus; receives Chaos; receives Ultima	-	-	-	-	1	-
 grm_f0101	scene, event 315	監督	死亡演出	requested by プロデューサー.main	-	-	-	-	-	-	-	-	-	-	every foe in group 0 removed	-	-	1	-
@@ -361,16 +361,16 @@ grm_f0101	scene, event 315	イベント特殊効果画面_EV	システムメッ�
 grm_f0101	scene, event 315	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s5_1; receives the item held in file_var_s9_1	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m001	requested by Director.main	-	0	Wow, Vaan. You got 'em all yourself?	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m002	requested by Director.main	Kytes	1	Guess I know who to call when something big comes along!	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m003	requested by Director.main	-	2	Hey, it's good practice for the desert. I'm ready for anything now.	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m004	requested by Director.main	-	3	That's enough for today.	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m005	requested by Director.main	-	4	You should get back to Migelo's place, Kytes. Aren't you running errands for him?	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m003	requested by Director.main	Vaan	2	Hey, it's good practice for the desert. I'm ready for anything now.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m004	requested by Director.main	no name shown	3	That's enough for today.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m005	requested by Director.main	no name shown	4	You should get back to Migelo's place, Kytes. Aren't you running errands for him?	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m006	requested by Director.main	Kytes	5	Oops! Heh. Totally forgot.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m007	requested by Director.main	Kytes	6	You should come, Vaan.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0100	scene, event 235	Mes	m008	requested by Director.main	Kytes	7	He's busy today. Might have some work for you to do, too.	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m009	requested by Director.main	-	8	"I got other ""work"" to do."	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m010	requested by Director.main	-	9	Hey, lock this place up for me, will you?	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0100	scene, event 235	Mes	m011	requested by Director.main	-	10	If Migelo finds out we've been down here, he'll tan our hides.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m009	requested by Director.main	Vaan	8	"I got other ""work"" to do."	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m010	requested by Director.main	Vaan	9	Hey, lock this place up for me, will you?	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0100	scene, event 235	Mes	m011	requested by Director.main	Vaan	10	If Migelo finds out we've been down here, he'll tan our hides.	-	-	-	-	-	-	-	-	-	-	1	-
 grm_g0101	scene, event 267	Mes	m001	requested by Director.main	-	0	Vaan! Hurry it up or they'll find us!	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0101	scene, event 267	Mes	m002	requested by Director.main	-	1	I know, I know! Just a little more.	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0101	scene, event 267	Mes	m003	requested by Director.main	-	2	You keep an eye out for me up there, Kytes.	-	-	-	-	-	-	-	-	-	-	1	-
-grm_g0101	scene, event 267	Mes	m004	requested by Director.main	-	3	One...two...three more. Right. Time to clean house.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m002	requested by Director.main	no name shown	1	I know, I know! Just a little more.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m003	requested by Director.main	no name shown	2	You keep an eye out for me up there, Kytes.	-	-	-	-	-	-	-	-	-	-	1	-
+grm_g0101	scene, event 267	Mes	m004	requested by Director.main	no name shown	3	One...two...three more. Right. Time to clean house.	-	-	-	-	-	-	-	-	-	-	1	-

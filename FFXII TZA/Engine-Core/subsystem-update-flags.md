@@ -86,7 +86,7 @@ Script verbs call `0x0036D840`: `setmenuhptargetshowstatus` (`0x2A7`, `0x0034D70
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x01E0C464` | `u32` |  | the enable word; `0xFFFFFFFF` in the image; readers: the sixteen tests in `0x0028E290`; writers: none |
+| `0x01E0C464` | `u32` |  | the enable word; `0xFFFFFFFF` in the image; readers: the sixteen tests in `0x0028E290`; never written |
 | `0x01E0C2B0` | `u16` |  | the pump argument; bit `0x1` enables group 6; writers `0x00226280` and `0x0036D840` through `0x002547C0`, and `0x00253970` |
 | `0x0209BE80` | `void*` |  | the UI manager object |
 

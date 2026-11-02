@@ -56,7 +56,7 @@ widget at `+0x08`.
 
 - `0x002CD440(set, id)` returns the row with the id, or null.
 - `0x002C9F30(set, id, colour)` writes a colour to the widget's `+0xE4` for the row with the id, or row 0
-  when none has it; `0x002C9F80` does the same but changes nothing then, and `0x002C9FD0(set, colour)`
+  when no row has it; `0x002C9F80` does the same but changes nothing then, and `0x002C9FD0(set, colour)`
   colours every row. `0x002C9F20(row, colour)` and `0x002C9E60(row)` write and read one row's colour, grey
   `0x80808080` when it has no widget.
 - `0x002CA010(set, id, on)` sets or clears bit `0x2` of the widget's `+0xF0` for the row with the id, or for
@@ -149,7 +149,7 @@ the rows and the arrow strip only.
   - it passes whether the piece can be worn (`0x00317B70`) to `0x002CB360` with the difference widget and to
     `0x002CA5D0` with the row (`0x002CAA9C`-`0x002CAAB5`);
   - it shows the differences with `0x002CC780`.
-- It shows one difference for a weapon (group 1) and two for a shield or armour (groups 2 and 3), and none for
+- It shows one difference for a weapon (group 1) and two for a shield or armour (groups 2 and 3), and 0 for
   ammunition or classes 21 and 22. For a magick, technick or gambit (classes 8, 9, 11, 12) it fades both toward
   `0x20` instead: the difference widget's node 11 through `0x002CB360` (`0x002CA994`-`0x002CA99B`; the target at
   `0x002CB424`, the start at `0x002CB43A`) and the row's node 0 by writing the row's fade record itself
@@ -191,14 +191,14 @@ The four objects' own fields, beyond the widget header ([Widgets](widgets.md)) a
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u8[192]` | header | the widget header: the build takes its rect `+0x98`-`+0x9E` from the layout `0x002432B0` returns for the creation record's two words, with the header's `+0x50` passed by address (`0x002CBFD1`-`0x002CC02F`), and installs the animation descriptor `0x00916FA8` through `0x00247570` (`0x002CC036`-`0x002CC040`, the header's `+0x48`); a builder that finds a record already kept at [`0x0209AC30`] + `0x2E0` builds none and goes on only when that record's `+0x7C` bit `0x20` is set (`0x002CBE1A`, `0x002CBE9F`, `0x002CBF51`); message 18 clears the block's `+0x2E0` (`0x002CBFB3`-`0x002CBFBD`) |
+| `+0x000` | `u8[192]` | header | the widget header: the build takes its rect `+0x98`-`+0x9E` from the layout `0x002432B0` returns for the creation record's two words, with the header's `+0x50` passed by address (`0x002CBFD1`-`0x002CC02F`), and installs the animation descriptor `0x00916FA8` through `0x00247570` (`0x002CC036`-`0x002CC040`, the header's `+0x48`); a builder that finds a record already kept at [`0x0209AC30`] + `0x2E0` builds no panel and goes on only when that record's `+0x7C` bit `0x20` is set (`0x002CBE1A`, `0x002CBE9F`, `0x002CBF51`); message 18 clears the block's `+0x2E0` (`0x002CBFB3`-`0x002CBFBD`) |
 | `+0x0C0` | `void*` | strip | the arrow strip (above); with bit `0x10000` of `+0x168` the build adds 8 to the strip's `+0x98` and 4 to its `+0x9A` and runs `0x00247870` on it (`0x002CC21D`-`0x002CC25C`) |
 | `+0x0C8` | `void*` | labels | the stat labels (above), 0 outside the shop's panel; `0x002CC2A0` reads it at `0x002CC47F` |
 | `+0x0D0` | `void*[9]` | rows | the nine rows (above); `0x002CB8D0` (`0x002CB901`-`0x002CB922`), `0x002CBA50` (`0x002CBA79`-`0x002CBAB0`), `0x002CBC50` (`0x002CBCC0`) and `0x002CC660` (`0x002CC6E0`) walk them |
 | `+0x118` | `void*[9]` | differences | the nine difference widgets (above), 0 outside the shop's panel |
 | `+0x160` | `i16` | rowX | row 0's `+0x98` and `+0x9C`, its x and width, copied at the build (`0x002CC185`-`0x002CC1E0`) |
 | `+0x162` | `i16` | rowW |  |
-| `+0x164` | `i16` | diffX | the same of difference widget 0, or of row 0 when there is none (`0x002CC1A2`-`0x002CC1F0`); `0x002CC2A0` places the rows from `+0x164`/`+0x166` when bits `0xF0000` of `+0x168` are set, else from `+0x160`/`+0x162` (`0x002CC2BF`-`0x002CC300`) |
+| `+0x164` | `i16` | diffX | the same of difference widget 0, or of row 0 when there is no such widget (`0x002CC1A2`-`0x002CC1F0`); `0x002CC2A0` places the rows from `+0x164`/`+0x166` when bits `0xF0000` of `+0x168` are set, else from `+0x160`/`+0x162` (`0x002CC2BF`-`0x002CC300`) |
 | `+0x166` | `i16` | diffW |  |
 | `+0x168` | `u32` | flags | byte 0: the rows shown, zeroed and counted by `0x002CC2A0` (`0x002CC33E`, `0x002CC431`), the n `0x002CAFE0` takes (above), read by `0x002CBC50` and `0x002CC660` before they walk the rows (`0x002CBC7B`, `0x002CC68D`); bit `0x100`: the build counted at most one party slot whose stats record (`0x00282DF0`) has a non-negative `+0x60` word and, when the menu block's `+0xD3C` bit `0x10` is set, passes `0x00282FA0` (written as byte `+0x169`, `0x002CC12B`-`0x002CC155` and `0x002CC261`-`0x002CC26C`; tested at `0x002CC379` and by the strip at `0x002CAC3D`); bit `0x200`: a copy of bit `0x10000` (`0x002CC272`-`0x002CC280`); bits `0xF0000`: the creation block's byte `+0x0C`, the mode (`0x002CC045`-`0x002CC059`), also read as the word `+0x16A` by `0x002CC4F0` (`0x002CC513`, `0x002CC550`); bit `0x10000` also moves the strip (above); bit `0x20000` set by `0x002CB850` at `0x002CB86D` and cleared at `0x002CB87E`; bit `0x100000`: the block's `+0x10` bit `0x4` (`0x002CC065`-`0x002CC078`); bits `0x300000` tested by `0x002CBA50`, `0x002CC2A0` and `0x002CC4F0` (`0x002CBAA8`, `0x002CC37F`, `0x002CC574`); bits `0xC00000`: `0x002CC4F0` sets bit `0x400000` and clears bit `0x800000` when the item's class (the first dword of `0x0035D330`(1, id << 16)) is 8, 9, 11 or 12 and clears both otherwise (`0x002CC59E`-`0x002CC5D6`), only with bits `0x300000` set and an id other than `0xFFFF` (`0x002CC574`-`0x002CC592`); `0x002CC2A0` tests both at `0x002CC36D` |
 | `+0x16C` | `u8[4]` | gap16C | reached by no instruction in the table |
@@ -304,7 +304,7 @@ The refreshers fill both rows from two comparisons, as worn and with the candida
 or `+0x09` of the comparison's block ([Stats](../Damage-And-Battle-Formulas/stats.md)).
 
 `0x003FEAD0(candidate)` refreshes for
-a candidate set, or with none shows the worn set in both rows; `0x003FE720(mode, slot)` builds the candidate for
+a candidate set, or with no candidate shows the worn set in both rows; `0x003FE720(mode, slot)` builds the candidate for
 mode `0x401` (every slot empty), `0x402` (the Optimise set, `0x002F9F20`) and `0x404` (the worn set, the five
 words at the menu block's `+0xD48` 32 bytes apart, with `slot` emptied) (`0x003FE73C`-`0x003FE852`). Any other mode,
 `0x403` included, refreshes with no candidate, the worn set in both rows (`0x003FE751`, `0x003FE7E6`). The callers pass
@@ -401,7 +401,7 @@ table of 24-byte entries:
 | party leader choice | 1 |
 | game over, special-attack window, notice board list | 5, 4 and 1 |
 
-144 procedures belong to a screen. The other 123 belong to none: the field HUD and its children (root `0x00253780`),
+144 procedures belong to a screen. The other 123 belong to no screen: the field HUD and its children (root `0x00253780`),
 the party HP and MP list, the help line and target window, the message windows, the shared dialogs, list rows, the
 title screen, the logos, the screen mask, the NG signal and the shared backgrounds and captions. Several are shared by
 many screens, for example the list item `0x00292390` (11 owners) and the layout item `0x0029E7D0`, which the layout decoder
@@ -472,11 +472,11 @@ menu screens share.
 | `+0x000` | `void*[23]` | layoutUnits | the 23 layout units of mrppack_ys.bin, unit u at +8 x u: `0x00280980` fills each empty one with the pack's address plus the pack's u32 at 4 x u (`0x002809A3`-`0x002809B7`) and relocates it (`0x002A00F0`); the screens read their layout records from it through `0x002432B0` (the unit table below) |
 | `+0x0B8` | `void*` | modeScreenTask | the open mode-screen task, the `0xD8`-byte widget `0x0027FB70` that `0x00280A00` builds for a menu request (`0x00280A6F`-`0x00280A76`): it stores itself when it opens (`0x0027FE02`) and clears this on message `0x12` (`0x0027FBAB`); `0x00280A00` opens nothing while this or areaController is set (`0x00280A1A`-`0x00280A30`) (Game over) |
 | `+0x0C0` | `void*` | areaController | the open area controller, the `0xD8`-byte widget `0x00280140` that `0x00280A00` builds beside the mode-screen task (`0x00280A85`-`0x00280A8C`): set when it opens (`0x00280429`) and cleared on its message `0x12` (`0x002802A0`); `0x00280120` answers 1 while this is 0 (`0x00280129`), and `0x0027EFA0` writes 2 to its `+0xC8` before a game over (`0x0027EFDA`-`0x0027EFE8`) |
-| `+0x0C8` | `void*` | eventSkipTask | the event-skip task, the `0xD8`-byte widget `0x00228130` that `0x00228700` builds for Start's skip arm (`0x0022875F`-`0x00228777`) and that clears this when it ends (`0x002281E9`); `0x00228700` builds none while it is set (`0x0022871A`) (Action availability) |
+| `+0x0C8` | `void*` | eventSkipTask | the event-skip task, the `0xD8`-byte widget `0x00228130` that `0x00228700` builds for Start's skip arm (`0x0022875F`-`0x00228777`) and that clears this when it ends (`0x002281E9`); `0x00228700` builds no task while it is set (`0x0022871A`) (Action availability) |
 | `+0x0D0` | `void*` | pauseTask | the pause task `0x00228C70` (Game over): set when it opens (`0x00228DC6`) and cleared when it ends (`0x0022946D`) |
 | `+0x0D8` | `void*` | partyMenu | the open Party Menu `0x00280DE0`, stored by its menu task `0x00281AE0` (`0x00281B23`, called from `0x00280E4E`) and cleared by `0x00281E00` (`0x00281EB4`); the script menu host `0x002D70F0` stores itself here when a script opens a menu (`0x002D735A`); `0x00280B70` closes it (`0x00280C6A`-`0x00280C71`) |
-| `+0x0E0` | `void*` | scriptResourceTask | the `0xC0`-byte task `0x002D6EE0` that the script verb fsmenu_loadresource builds through `0x002D7840` (`0x002D7862`-`0x002D786E`): it requests the picture tuto_win_c into tutoWinPicture (`0x002D6F39`-`0x002D6F65`), stores itself (`0x002D6F80`) and clears this on message `0x12` (`0x002D6F0F`); `0x002D7840` builds none while it or tutoWinPicture is set (`0x002D784B`-`0x002D785D`) |
-| `+0x0E8` | `void*` | autoWindow | the auto window `0x002D66D0` that the script verbs fsmenu_showauto and fsmenu_showautofast build through `0x002D7B40` (`0x002D7B7C`-`0x002D7B9C`): it stores itself (`0x002D673A`) and clears this (`0x002D6708`); `0x002D7B40` builds none while it is set (`0x002D7B5F`) |
+| `+0x0E0` | `void*` | scriptResourceTask | the `0xC0`-byte task `0x002D6EE0` that the script verb fsmenu_loadresource builds through `0x002D7840` (`0x002D7862`-`0x002D786E`): it requests the picture tuto_win_c into tutoWinPicture (`0x002D6F39`-`0x002D6F65`), stores itself (`0x002D6F80`) and clears this on message `0x12` (`0x002D6F0F`); `0x002D7840` builds no task while it or tutoWinPicture is set (`0x002D784B`-`0x002D785D`) |
+| `+0x0E8` | `void*` | autoWindow | the auto window `0x002D66D0` that the script verbs fsmenu_showauto and fsmenu_showautofast build through `0x002D7B40` (`0x002D7B7C`-`0x002D7B9C`): it stores itself (`0x002D673A`) and clears this (`0x002D6708`); `0x002D7B40` builds no window while it is set (`0x002D7B5F`) |
 | `+0x0F0` | `void*` | highlightRectWindow | the `0x188`-byte highlight-rectangle window `0x002D6CA0` that fsmenu_loadresource builds through `0x002D7840` (`0x002D7887`-`0x002D7897`): it stores itself (`0x002D6D82`) and clears this when it closes (`0x002D6CE2`); the verbs fsmenu_registrect, fsmenu_showrect, fsmenu_hiderect and fsmenu_registiconrect drive it (`0x002D78B0`, `0x002D7CB0`, `0x002D7800`, `0x002D7710`), as do the gambit editor (`0x0056A3D0`, `0x0056BE40`) and the location map (`0x003C6B70`) |
 | `+0x0F8` | `void*` | memberList | the Party Menu's member list `0x00285290`: set when it opens (`0x002852F0`) and cleared when it closes (`0x0028562C`); its row widgets sit at its `+0xC0` + 8 x slot, which `0x002830A0`, `0x00280B70` and `0x00282FC0` walk beside memberSlots (`0x002830F3`, `0x00280BC3`, `0x00282FF3`) |
 | `+0x100` | `void*` | requestDispatcher | the request-screen dispatcher `0x0027F5D0` under the mode-screen task: set when it opens (`0x0027F738`) and cleared when it leaves (`0x0027F84F`) |
@@ -704,7 +704,7 @@ and has `0x00577BD0` send message 16 to the Clan Primer widget at `[0x02CA9730]`
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02B5F218` | `u16` | 0 | the Optimise set's accessory, slot 4; `0xFFFF` for none | `0x003FE720` (`0x003FE839`) | `0x003FF1F0`, row 4 (`0x003FF280`, through `0x02B5F210` + 2 × row) |
+| `0x02B5F218` | `u16` | 0 | the Optimise set's accessory, slot 4; `0xFFFF` for no accessory | `0x003FE720` (`0x003FE839`) | `0x003FF1F0`, row 4 (`0x003FF280`, through `0x02B5F210` + 2 × row) |
 | `0x02CA972C` | `u32` | 0 | stays 0: the one store, `0x002CE854`, writes 0, so the gradient never sends the message | `0x002CE7E0`, 0 (`0x002CE854`) | `0x002CE7E0` (`0x002CE848`) |
 
 ## Columns
@@ -715,7 +715,7 @@ and has `0x00577BD0` send message 16 to the Clan Primer widget at `[0x02CA9730]`
 | `size` | the procedure's code size in bytes |
 | `installer` | the functions that construct it |
 | `install site` | the `lea` of the procedure and the constructor call |
-| `parent` | the widget procedures above the installer, `shared: n parents` for more than three, or `none (top)` |
+| `parent` | the widget procedures above the installer, `shared: n parents` for more than three, or `top (no parent)` |
 | `screen` | the screen it belongs to, or `no screen` |
 | `screen text id` | the shipped text that names that screen |
 | `resources` | layout records (`mrppack_ys` unit and record), files and image labels it loads |

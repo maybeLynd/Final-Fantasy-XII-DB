@@ -318,7 +318,7 @@ sets the compute UAVs from `+0x30` (8 slots, 1 below level 11.0) and clears `0x0
 ### Full-screen quads
 
 `0x00621C00(context, texture, x0, y0, x1, y1, sampler)` draws a texture as a quad with the object at
-context `+0x7D8`, using the default sampler at `+0x1820` when none is given.
+context `+0x7D8`, using the default sampler at `+0x1820` when no sampler is given.
 
 1. `0x00629580` copies the context's pending state block (`+0x9C0`, `0x190` bytes) into
    that object's pass state, turning depth on with `ALWAYS`.

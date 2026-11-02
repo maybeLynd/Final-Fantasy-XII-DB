@@ -79,7 +79,7 @@ Small wrappers file fourteen of the classes. They check that the owner list
 | `0x00183120` | `0x0018CB30` | `SetPrimIdEnableObj` | only when `0x005C5230()` is non-zero; it returns 0, so nothing is filed |
 | `0x001EB110` | `0x0018C0D0` | `RazorMarkerPopObj` | only when `[0x01F7F4E0]` exists and its byte `+0x08` is set, as for the push `0x001EB150` |
 | `0x001826E0` | `0x0018B970` | `CopyDepthBufferObj` | the render parameters' `+0x2B8` (`0x00193D50`), 0, 0 |
-| `0x0017ECF0` | `0x0018C740` | `AmbientOcclusionObj` | none |
+| `0x0017ECF0` | `0x0018C740` | `AmbientOcclusionObj` | nothing |
 
 `0x0017F6B0` files `MaskBorderObj` with 3 when the owner list exists and one of these holds:
 `0x01DF08EC` and `0x01F7F4F0` are both set, `0x01F7F4F4` is set, `0x01F7F4F8` is set (the effect draw sets
@@ -289,7 +289,7 @@ The installer also calls `0x001BDA50` (`0x00186CFB`), which allocates the 0x108-
 `0x01F81248` (constructor `0x001BC9D0`, getter `0x001BDAB0`). Its first 0x20 bytes are the same pointer
 vector, reserved to 50 entries through `0x0018B320` (`0x001BCACC`).
 
-`0x001BD4A0` creates a 0x668-byte `CharacterRenderObject` (`0x001F4DA0`) when its map has none for the
+`0x001BD4A0` creates a 0x668-byte `CharacterRenderObject` (`0x001F4DA0`) when its map has no object for the
 key and increments `+0xFC` (`0x001BD54F`). `0x001F6E70` increments `+0x100` with a locked `xadd`
 (`0x001BD7D0`, from `0x001F7739`). `0x001BD620` reports whether the two counts are equal, and `0x001800C0`
 returns 1 while they differ; the field frame tests it at `0x0022ABC2` to decide whether the simulation
@@ -443,7 +443,7 @@ method, slot 2 the order key and slot 3 the setter of the `FontBorder` classes. 
 
 | Column | Holds |
 |---|---|
-| `role` | what the body does, as one or more of the labels below separated by semicolons, then after `->` the body's other direct callees, the lowest four by address; the table's comment calls this the complete set, but 16 of the 35 bodies with a list have more |
+| `role` | what the body does, as one or more of the labels below separated by semicolons, then after `->` every direct callee of the body by address: each call or jump with an immediate target outside the body, the callees behind the labels included (35 bodies, 1 to 15 callees) |
 | `cite` | one instruction of the body that shows the role: a call or jump where the body has one (84 rows), else its `ret` (45 rows), its first instruction (2 rows) or, once, a `jne` |
 
 | Label in `role` | Meaning |

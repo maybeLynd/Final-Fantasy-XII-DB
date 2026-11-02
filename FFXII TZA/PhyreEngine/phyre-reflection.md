@@ -679,12 +679,12 @@ These tables stay beside this page. Each lists one generated family or one per-c
 
 | File | Rows | What it lists |
 |---|---:|---|
-| [phyre-reflection-abstract-class-descriptor-constructors.tsv](phyre-reflection-abstract-class-descriptor-constructors.tsv) | 177 | Abstract descriptor constructors such as `0x005A7ED0` |
-| [phyre-reflection-abstract-class-descriptor-base-aware-constructors.tsv](phyre-reflection-abstract-class-descriptor-base-aware-constructors.tsv) | 131 | Abstract constructors that pass a parent descriptor |
-| [phyre-reflection-pclassdescriptor-static-initialisers.tsv](phyre-reflection-pclassdescriptor-static-initialisers.tsv) | 253 | Concrete static initialisers such as `0x001603E0` |
-| [phyre-reflection-descriptor-flag-registrars.tsv](phyre-reflection-descriptor-flag-registrars.tsv) | 33 | descriptor initialisers, 64-byte form |
-| [phyre-reflection-descriptor-flag-registrars-compact.tsv](phyre-reflection-descriptor-flag-registrars-compact.tsv) | 4 | descriptor initialisers, 53-byte form |
-| [phyre-reflection-guarded-class-registration-stubs.tsv](phyre-reflection-guarded-class-registration-stubs.tsv) | 98 | thread-safe guarded class registrars |
+| [phyre-reflection-abstract-class-descriptor-constructors.tsv](phyre-reflection-abstract-class-descriptor-constructors.tsv) | 178 | Abstract descriptor constructors such as `0x005A7ED0` |
+| [phyre-reflection-abstract-class-descriptor-base-aware-constructors.tsv](phyre-reflection-abstract-class-descriptor-base-aware-constructors.tsv) | 132 | Abstract constructors that pass a parent descriptor |
+| [phyre-reflection-pclassdescriptor-static-initialisers.tsv](phyre-reflection-pclassdescriptor-static-initialisers.tsv) | 254 | Concrete static initialisers such as `0x001603E0` |
+| [phyre-reflection-descriptor-flag-registrars.tsv](phyre-reflection-descriptor-flag-registrars.tsv) | 34 | descriptor initialisers, 64-byte form |
+| [phyre-reflection-descriptor-flag-registrars-compact.tsv](phyre-reflection-descriptor-flag-registrars-compact.tsv) | 5 | descriptor initialisers, 53-byte form |
+| [phyre-reflection-guarded-class-registration-stubs.tsv](phyre-reflection-guarded-class-registration-stubs.tsv) | 99 | thread-safe guarded class registrars |
 | [phyre-reflection-name-only-class-registration-initialisers.tsv](phyre-reflection-name-only-class-registration-initialisers.tsv) | 110 | initialisers that call `0x006388C0` and jump to `0x00639450` |
 | [phyre-reflection-two-member-descriptor-registrars.tsv](phyre-reflection-two-member-descriptor-registrars.tsv) | 38 | array descriptors with `m_count` and `m_els` |
 | [phyre-reflection-phyre-registrar-classes.tsv](phyre-reflection-phyre-registrar-classes.tsv) | 409 | registrars and the classes they name |
@@ -696,7 +696,7 @@ These tables stay beside this page. Each lists one generated family or one per-c
 | [phyre-reflection-phyre-class-default-buffers.tsv](phyre-reflection-phyre-class-default-buffers.tsv) | 384 | the `+0xC0`, `+0xC8` and `+0xD0` buffers per class |
 | [phyre-reflection-array-type-names.tsv](phyre-reflection-array-type-names.tsv) | 69 | the class name each array-type getter receives, with one call that passes it |
 | [phyre-reflection-phyre-class-descriptor-vtable.tsv](phyre-reflection-phyre-class-descriptor-vtable.tsv) | 315 | each class's descriptor vtable and its slots |
-| [phyre-reflection-phyre-class-descriptor-accesses.tsv](phyre-reflection-phyre-class-descriptor-accesses.tsv) | 168 | instructions that access descriptor fields |
+| [phyre-reflection-phyre-class-descriptor-accesses.tsv](phyre-reflection-phyre-class-descriptor-accesses.tsv) | 223 | instructions that access descriptor fields |
 | [phyre-reflection-p-type-default-u-int-accesses.tsv](phyre-reflection-p-type-default-u-int-accesses.tsv) | 16 | accesses to the `PTypeDefault<unsigned int>` object |
 | [phyre-reflection-ptexture2d-d3d11-accesses.tsv](phyre-reflection-ptexture2d-d3d11-accesses.tsv) | 24 | accesses to a `PTexture2DD3D11`, from its constructor `0x006160B0` |
 | [phyre-reflection-ptexture-cube-map-d3d11-accesses.tsv](phyre-reflection-ptexture-cube-map-d3d11-accesses.tsv) | 95 | accesses to a `PTextureCubeMapD3D11`, from its constructor `0x006161A0` (placement constructor `0x00612D00`) |
@@ -712,18 +712,79 @@ These tables stay beside this page. Each lists one generated family or one per-c
 | [phyre-reflection-nativeadapter-staticdescriptorsingletonlazyinit3.tsv](phyre-reflection-nativeadapter-staticdescriptorsingletonlazyinit3.tsv) | 4 | guarded descriptor singletons, third form |
 | [phyre-reflection-nativeadapter-singletonallocdescriptorinstall.tsv](phyre-reflection-nativeadapter-singletonallocdescriptorinstall.tsv) | 5 | adapters that allocate an 8-byte object and install a descriptor |
 | [phyre-reflection-nativeadapter-descriptorfieldselecttail.tsv](phyre-reflection-nativeadapter-descriptorfieldselecttail.tsv) | 4 | adapters that select a descriptor field |
-| [phyre-reflection-class-descriptor-static-teardowns.tsv](phyre-reflection-class-descriptor-static-teardowns.tsv) | 403 | descriptor `atexit` teardowns such as `0x008A8E20` |
-| [phyre-reflection-pclassdescriptor-destructor-thunks.tsv](phyre-reflection-pclassdescriptor-destructor-thunks.tsv) | 383 | thunks that restore a vtable and jump to `0x00633390` |
-| [phyre-reflection-pclassdescriptor-deleting-destructors.tsv](phyre-reflection-pclassdescriptor-deleting-destructors.tsv) | 1,147 | ForType deleting destructors such as `0x005847E0` |
-| [phyre-reflection-pclassdescriptor-deleting-destructors-map.tsv](phyre-reflection-pclassdescriptor-deleting-destructors-map.tsv) | 1,148 | the vtable each of them installs |
-| [phyre-reflection-data-member-metadata-static-teardowns.tsv](phyre-reflection-data-member-metadata-static-teardowns.tsv) | 852 | member-record `atexit` teardowns |
-| [phyre-reflection-pclassdatamember-deleting-destructors.tsv](phyre-reflection-pclassdatamember-deleting-destructors.tsv) | 137 | member-record deleting destructors |
-| [phyre-reflection-pclassdatamemberstaticteardownadapter.tsv](phyre-reflection-pclassdatamemberstaticteardownadapter.tsv) | 29 | member-record teardown adapters |
-| [phyre-reflection-annotationstaticteardown.tsv](phyre-reflection-annotationstaticteardown.tsv) | 54 | annotation teardowns |
-| [phyre-reflection-nameddescriptorstaticteardown.tsv](phyre-reflection-nameddescriptorstaticteardown.tsv) | 14 | named-descriptor teardowns |
-| [phyre-reflection-ptypestaticteardown.tsv](phyre-reflection-ptypestaticteardown.tsv) | 16 | `PType` teardowns |
-| [phyre-reflection-reflectionstaticteardown.tsv](phyre-reflection-reflectionstaticteardown.tsv) | 27 | other reflection-object teardowns |
-| [phyre-reflection-staticdescriptorsingleton.tsv](phyre-reflection-staticdescriptorsingleton.tsv) | 11 | static descriptor singletons |
+| [phyre-reflection-class-descriptor-static-teardowns.tsv](phyre-reflection-class-descriptor-static-teardowns.tsv) | 404 | descriptor `atexit` teardowns such as `0x008A8E20` |
+| [phyre-reflection-pclassdescriptor-destructor-thunks.tsv](phyre-reflection-pclassdescriptor-destructor-thunks.tsv) | 384 | thunks that restore a vtable and jump to `0x00633390` |
+| [phyre-reflection-pclassdescriptor-deleting-destructors.tsv](phyre-reflection-pclassdescriptor-deleting-destructors.tsv) | 1,148 | ForType deleting destructors such as `0x005847E0` |
+| [phyre-reflection-pclassdescriptor-deleting-destructors-map.tsv](phyre-reflection-pclassdescriptor-deleting-destructors-map.tsv) | 1,149 | the vtable each of them installs |
+| [phyre-reflection-data-member-metadata-static-teardowns.tsv](phyre-reflection-data-member-metadata-static-teardowns.tsv) | 853 | member-record `atexit` teardowns |
+| [phyre-reflection-pclassdatamember-deleting-destructors.tsv](phyre-reflection-pclassdatamember-deleting-destructors.tsv) | 138 | member-record deleting destructors |
+| [phyre-reflection-pclassdatamemberstaticteardownadapter.tsv](phyre-reflection-pclassdatamemberstaticteardownadapter.tsv) | 30 | member-record teardown adapters |
+| [phyre-reflection-annotationstaticteardown.tsv](phyre-reflection-annotationstaticteardown.tsv) | 55 | annotation teardowns |
+| [phyre-reflection-nameddescriptorstaticteardown.tsv](phyre-reflection-nameddescriptorstaticteardown.tsv) | 15 | named-descriptor teardowns |
+| [phyre-reflection-ptypestaticteardown.tsv](phyre-reflection-ptypestaticteardown.tsv) | 17 | `PType` teardowns |
+| [phyre-reflection-reflectionstaticteardown.tsv](phyre-reflection-reflectionstaticteardown.tsv) | 28 | other reflection-object teardowns |
+| [phyre-reflection-staticdescriptorsingleton.tsv](phyre-reflection-staticdescriptorsingleton.tsv) | 12 | static descriptor singletons |
+
+### Columns of the one-column lists
+
+Fourteen of the data files above have one column, `entry`: the entry address of one body, one row per body in
+address order. Every body of a list has the form below; sizes are body lengths in bytes.
+
+| File | Each body |
+|---|---|
+| `phyre-reflection-abstract-class-descriptor-constructors.tsv` | 152 bytes: calls `0x006373D0`, then `0x00632D80` with an image address as its sixth argument, stores the vtable, sets bit `0x2` of `+0xFC` and calls `0x0063DC80`, `0x0063DF90` and `0x0063DFA0` |
+| `phyre-reflection-abstract-class-descriptor-base-aware-constructors.tsv` | 163 bytes: the same, except that the sixth argument of `0x00632D80` is the value `0x006372A0` returns |
+| `phyre-reflection-pclassdescriptor-static-initialisers.tsv` | 53 bytes: calls its class's constructor (254 different ones) on a static descriptor, clears bit `0x2` of the descriptor's `+0xFC`, stores a vtable at its `+0x00` and jumps to `atexit` (`0x00808B90`) with a teardown |
+| `phyre-reflection-class-descriptor-static-teardowns.tsv` | 26 bytes: stores a vtable at a static descriptor and jumps to the base destructor `0x00633390` with that descriptor in `rcx` |
+| `phyre-reflection-pclassdescriptor-destructor-thunks.tsv` | 15 bytes: stores a vtable at `[rcx]` and jumps to `0x00633390` |
+| `phyre-reflection-pclassdescriptor-deleting-destructors.tsv` | 92 bytes: stores a vtable at `[rcx]` and calls `0x00633390`; when bit `0x1` of the flag argument is set it calls `_aligned_free` (`0x00584730`), or, with bit `0x4` also set, `0x0016D6A0` with the size `0x100` (1,144 rows) or `0x108` (`0x005A4010`, `0x005D1DC0`, `0x006CEFC0`, `0x006D9EA0`) |
+| `phyre-reflection-data-member-metadata-static-teardowns.tsv` | 12 bytes: loads a static object into `rcx` and jumps to `0x00633240` (662 rows) or `0x006332A0` (191 rows) |
+| `phyre-reflection-pclassdatamember-deleting-destructors.tsv` | 82 bytes: calls `0x006332A0`, then `0x00584730` or `0x0016D6A0` by the flag argument, as the descriptor deleting destructors do |
+| `phyre-reflection-pclassdatamemberstaticteardownadapter.tsv` | 12 bytes: loads a static object into `rcx` and jumps to `0x00633240` |
+| `phyre-reflection-annotationstaticteardown.tsv` | 12 bytes: loads a static object into `rcx` and jumps to `0x006B6750` |
+| `phyre-reflection-nameddescriptorstaticteardown.tsv` | 12 bytes: loads a static object into `rcx` and jumps to `0x006B68A0` |
+| `phyre-reflection-ptypestaticteardown.tsv` | 15 bytes: stores a vtable at a static object and returns |
+| `phyre-reflection-reflectionstaticteardown.tsv` | 12 bytes: loads a static object into `rcx` and jumps to `0x006B6750` (15 rows), `0x00633240` (9), `0x006332A0` (3) or `0x006B68A0` (1) |
+| `phyre-reflection-staticdescriptorsingleton.tsv` | 98 bytes: returns the address of a static; on first use it registers a teardown with `atexit` (`0x00808B90`) between `_Init_thread_header` (`0x008092FC`) and `_Init_thread_footer` (`0x0080929C`) |
+
+### Columns of phyre-reflection-descriptor-flag-registrars.tsv and phyre-reflection-descriptor-flag-registrars-compact.tsv
+
+One row per initialiser, 34 and 5 rows in address order. Each body calls a constructor on a static descriptor,
+stores the descriptor's vtable, changes its flags word `+0xFC` and jumps to `atexit` (`0x00808B90`) with the
+teardown. The 64-byte bodies clear bit `0x2` and set bit `0x8` in one read-modify-write; the 53-byte bodies only
+clear bit `0x2`.
+
+| Column | Holds |
+|---|---|
+| `entry` | the initialiser's entry address |
+| `size` | the body length in bytes: 64 in the first table, 53 in the second |
+| `object` | the static descriptor: the constructor's `rcx` and the address the vtable is stored at |
+| `vtable` | the address stored at the descriptor's `+0x00`. Its RTTI names a `PClassDescriptorWithoutDefaultConstructor<T>` on all 34 rows of the first table and a `PClassDescriptorConcrete<T>` on all 5 of the second |
+| `constructor` | the function the initialiser calls on the descriptor |
+| `teardown` | the function passed to `atexit` |
+
+### Columns of phyre-reflection-guarded-class-registration-stubs.tsv
+
+One row per registrar, 99 rows in address order. Each body calls `_Init_thread_header` (`0x008092FC`),
+`_Init_thread_footer` (`0x0080929C`) and `atexit` (`0x00808B90`).
+
+| Column | Holds |
+|---|---|
+| `entry` | the registrar's entry address |
+| `size` | the body length in bytes, from 129 to 3,757 |
+| `call_targets` | every function the body calls or jumps to other than those three, in address order and separated by commas; 1 to 14 per row |
+| `guarded_callees` | the functions of `call_targets` whose own bodies call `_Init_thread_header`, separated by commas; `-` on the 23 rows with no such callee |
+
+### Columns of phyre-reflection-pclassdescriptor-deleting-destructors-map.tsv
+
+One row per deleting destructor, 1,149 rows in address order: the 1,148 of
+`phyre-reflection-pclassdescriptor-deleting-destructors.tsv` and `0x005D2630`, a body of the same 92-byte form.
+
+| Column | Holds |
+|---|---|
+| `entry` | the destructor's entry address |
+| `vtable` | the vtable it stores at `[rcx]` before it calls the base destructor; 400 distinct values |
+| `base_destructor` | the base destructor it calls: `0x00633390` on every row |
 
 ### Per-class field accesses
 
@@ -872,7 +933,7 @@ that name in both (`0x005B4F31`, `0x005B4F3F`, `0x005B4F46`).
 calls at `0x005B1DFF`, `0x005B82DC`, `0x005B82EE`, `0x005BB255`, `0x005C7982`, `0x005C7E32`, `0x005CACA0` and `0x005CACBB` give no
 name.
 
-All 69 getters are named this way. 682 direct calls reach them, none by a jump, and no RIP-relative address form
+All 69 getters are named this way. 682 direct calls reach them, not one by a jump, and no RIP-relative address form
 or 8-byte pointer in the image names a getter. 98 of the calls load the name from an image pointer to a static
 string, the other 584 give no name, and no getter receives two different names.
 
@@ -897,7 +958,7 @@ reads the whole word: every load ends in a bit test, a sign test, a bit extracti
 | `0x20` | set by the class's registrar or wrapper getter before `0x00639450` registers the members: right after `0x006388C0` registers the descriptor by name in 22 registrars, twice between `0x006388C0` and `0x00639450` in `0x00608A40` (`0x00608AC5`, `0x00608C0F`), after the member record is built in the nine wrapper getters `0x006B0760` to `0x006B33F0` (seven Vectormath types, `PMatrix4` and `PMatrix4x3`), and at entry in PBase's registrar (`0x006344B2`) | 34 sites in 33 functions | read by no instruction |
 | `0x08000000` | a member is a PSharray (`0x00639EE2`-`0x00639EEF`), or the parent has the bit (`0x00639D9D`-`0x00639DB0`) | `0x00639C80`: cleared (`0x00639CB4`), set (`0x00639EEF`), and copied from the parent's word (`0x00639D9D`-`0x00639DB0`) | `0x00639C80` (the parent's bit, `0x00639DAB`) |
 | `0x10000000` | every instance byte is described by a member | `0x00639C80`: cleared (`0x00639CB4`), set (`0x0063A0E2`) | `0x00639850` (`0x00639868`) |
-| `0x20000000` | set by `0x0063BC00`, never tested | `0x0063BC00` (`0x0063BC49`) | none |
+| `0x20000000` | set by `0x0063BC00`, never tested | `0x0063BC00` (`0x0063BC49`) | no reader |
 | `0x40000000` | members registered (`0x00639450`) | set by `0x00636280` (`0x006363E0`), `0x00639450` (`0x00639465`) and the 10 core registrars' `bts` (12 sites); cleared by `0x00638C90` (`0x00638D8D`) | 13 sites in `0x00636280`, `0x00637A70`, `0x00639850`, `0x00639A40`, `0x00639C80` (two), `0x0063A790`, `0x0063BB10`, `0x0063BC00`, `0x0063C1A0`, `0x0063C5E0`, `0x0063C910` (two) |
 | `0x80000000` | default instance and masks built | set by `0x00639A60` (`0x00639C55`); cleared by `0x00632E80` (`0x00632F3C`), `0x0063D410` (`0x0063D4DB`) and `0x0063D930` (`0x0063D945`) | 13 sign tests: at the loads of the `0x40000000` readers other than `0x00639A40`, and at `0x00639A60` (`0x00639A94`) |
 

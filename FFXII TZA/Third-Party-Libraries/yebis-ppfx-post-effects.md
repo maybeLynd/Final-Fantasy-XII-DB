@@ -46,9 +46,14 @@ So a path names the source file of the code that made the allocation, and a func
 
 ### The diagnostic log
 
-`0x006DF480` is the library's log. It has 801 direct call sites, every one inside the library; 795 of
-them load a literal format string, 386 distinct. Most are a prefix naming the source file followed
-by the message, such as "..\src\GPU\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: " (113 sites).
+`0x006DF480` is the library's log. It has 801 direct call sites, 800 calls and the tail jump at
+`0x00788471`, every one inside the library. At 798 of them every path into the call loads a literal
+format string; the other three (`0x00727604`, `0x007276A0`, `0x007277A0`) print a message the function
+assembled on the stack.
+
+Seven calls are shared by branches that load different strings, so 422 distinct strings reach the
+log over 835 string-and-call pairs. Most are a prefix naming the source file followed by the
+message, such as "..\src\GPU\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: " (113 sites).
 The game's own code never calls it.
 
 `0x006DF480` formats the message into the `0x800`-byte buffer `0x02EA0BA0` (`__stdio_common_vsprintf`, `0x006DF4CC`) and
@@ -119,7 +124,7 @@ record pointer from the object's `+0x00` and jumps to the integration function:
 
 | Wrapper | Target | Call in `0x00193DA0` |
 |---|---|---|
-| `0x0065E5B0` | none: true when the record's context pointer is set | `0x00193DD1`, `0x00193DF5` |
+| `0x0065E5B0` | no target: true when the record's context pointer is set | `0x00193DD1`, `0x00193DF5` |
 | `0x0065E5A0` | `0x006CBD20`, create the context | `0x00193DE8` |
 | `0x0065E6C0` | `0x006CC2F0` | the branch taken when the command's `+0x99` is set |
 | `0x0065E6A0` | `0x006CC1F0`, the first block of scene values | `0x00193E11` |
@@ -695,9 +700,17 @@ EndDay = 0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...
 | member lists | [`yebis-ppfx-post-effects-members.tsv`](yebis-ppfx-post-effects-members.tsv), 1,598 functions; [`yebis-ppfx-post-effects-unlisted-bodies.tsv`](yebis-ppfx-post-effects-unlisted-bodies.tsv), 732 bodies in the span that the function list does not hold |
 | source paths | 25 distinct, 299 copies, 363 loading sites; most sites: `GPUDepthOfField.cpp` 75, `GPUPostEffect.cpp` 48, `GPURenderGlare.cpp` 39, `TFXString.cpp` 30 |
 | absolute header path | 12 copies, 6 of them loaded, 20 sites |
-| diagnostic log | 801 call sites, 386 distinct literal strings; listed in [`yebis-ppfx-post-effects-diagnostic-strings.tsv`](yebis-ppfx-post-effects-diagnostic-strings.tsv) |
+| diagnostic log | 801 call sites, 422 distinct literal strings; listed in [`yebis-ppfx-post-effects-diagnostic-strings.tsv`](yebis-ppfx-post-effects-diagnostic-strings.tsv) |
 | licence dates | all six 0 |
 | calls into the span from outside | the integration functions at `0x006CBD20` to `0x006CC2F0`, static initialisers, exit and unwind code, and seven PhyreEngine calls to `0x0071F970`, a formatted-scan body (`__stdio_common_vsscanf`) the linker placed inside the span |
+
+### Columns of yebis-ppfx-post-effects-members.tsv
+
+One row per function, 1,598 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address, from `0x006DA880` to `0x00791140`, all inside the span |
 
 ### Columns of yebis-ppfx-post-effects-unlisted-bodies.tsv
 
@@ -714,7 +727,9 @@ One row per body, 732 rows, each inside the span between two functions of
 
 | Column | Holds |
 |---|---|
-| `owner_functions` | the start addresses of the functions that hold the string's call sites, in address order and separated by spaces; one function on 347 of the 385 rows, up to 12 on six rows. 160 functions occur, all inside the span; `0x006FF900` is the one owner of 44 strings |
+| `format_string` | the literal as the image holds it, with a backslash written `\\`, a line feed `\n` and a tab `\t`; 422 rows, one per distinct string |
+| `call_sites` | the calls to `0x006DF480` that the string reaches as the format: the `lea rcx` that loads it is followed forward through branches to the call, so a call shared by several branches counts once for each string. The column sums to 835 over 798 calls |
+| `owner_functions` | the start addresses of the functions that hold the string's call sites, in address order and separated by spaces; one function on 383 of the 422 rows, up to 44 on one row. 160 functions occur, all inside the span; `0x006FF900` is the one owner of 73 strings |
 
 ## Operations
 

@@ -176,10 +176,10 @@ painter greys a row (`0x00392FC0`, or `0x00393240` on four labels in `0x0056CF10
 - selling, when the price word's bit `0x80000000` marks it unsaleable or its sellable count `+0x0C` is 0;
 - with the quantity window open, every row but the cursor's.
 
-`0x0056D870(row, widgets, layout)` paints the common part: the icon frame `+0x0A` (none for `-1`), the name and the price.
-`0x0056DA80` paints the quantity window's row: the quantity and, when bit `0x4` is set, the price times the quantity
-(`0x0029FF60`). `0x0056D9D0(list, quantity)` stores the quantity at `+0xDC`, sets `+0xE4` bit `0x4` when `0x0056E700` refuses it
-and bit `0x8` when it is not 1, and passes both to the list.
+`0x0056D870(row, widgets, layout)` paints the common part: the icon frame `+0x0A` (no icon for `-1`), the name and the
+price. `0x0056DA80` paints the quantity window's row: the quantity and, when bit `0x4` is set, the price times the
+quantity (`0x0029FF60`). `0x0056D9D0(list, quantity)` stores the quantity at `+0xDC`, sets `+0xE4` bit `0x4` when
+`0x0056E700` refuses it and bit `0x8` when it is not 1, and passes both to the list.
 
 ### Tabs and the help line
 
@@ -242,7 +242,7 @@ The grant list is the `0x130`-byte widget with procedure `0x003F4840` that `0x00
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x000` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x003F4840` |
-| `+0x0C0` | `u8` | page | the page on show: 0 none yet (the construct message, `0x003F48E1`), 1 the item list (`0x003F47BB`), 2 the second list (`0x003F4747`). `0x003F4690` opens the next page from it (`0x003F46A8`): from 0 the item list when the copied reward record has its gil bit or item pairs, else the second list when it has single items; from 1 the second list when there are single items; otherwise it answers 0 and message 12 (sub-command `0x12`, the page is done) closes the window. Message 12 drops the finished page's child by it (`0x003F49AE`). `0x003F4670` returns it, or 3 when no window exists (`0x003F4682`); the grant window `0x0057A4E0` and `0x0057A440` wait on that, and so does the quest result window `0x003F4E70` for 3 (`0x003F4F56`) |
+| `+0x0C0` | `u8` | page | the page on show: 0 no page (the construct message, `0x003F48E1`), 1 the item list (`0x003F47BB`), 2 the second list (`0x003F4747`). `0x003F4690` opens the next page from it (`0x003F46A8`): from 0 the item list when the copied reward record has its gil bit or item pairs, else the second list when it has single items; from 1 the second list when there are single items; otherwise it answers 0 and message 12 (sub-command `0x12`, the page is done) closes the window. Message 12 drops the finished page's child by it (`0x003F49AE`). `0x003F4670` returns it, or 3 when no window exists (`0x003F4682`); the grant window `0x0057A4E0` and `0x0057A440` wait on that, and so does the quest result window `0x003F4E70` for 3 (`0x003F4F56`) |
 | `+0x0C1` | `u8[7]` | pad0C1 | read and written by no function; nothing fixes its width |
 | `+0x0C8` | `u64` | owner | the creator's first argument, the first qword of the creation record (`0x003F487F`; `0x0057A4E0` passes its rsi); handed to the item list child `0x003F4330` as the first word of its creation record (`0x003F4750`) |
 | `+0x0D0` | `u8[16]` | reward00 | bytes `0x00`-`0x0F` of the `0x24`-byte reward record the creator points to (`0x003F488D`): byte `+0x00` bit `0x1` marks gil, word `+0x08` the number of item pairs and word `+0x0A` the number of single items, which `0x003F4690` tests to choose the pages (`0x003F46D4`, `0x003F46D9`, `0x003F46E3`); both children get this copy's address (`0x003F46F7`, `0x003F4768`) |
@@ -269,7 +269,7 @@ The shop window is the `0x268`-byte widget with procedure `0x0057B890` that `0x0
 | `+0x0C0` | `u8` | shop | the shop number, the construct message's argument a (`0x0057B8BD`-`0x0057B8C3`): the title is the shop's name `0x002FAE40`(shop) on opening (message 16, `0x0057B977`) and on return from a trade (`0x0057C01B`); the tab lists `0x0057B500` (`0x0057B5E9`, `0x0057B609`) and the new-goods check `0x0057B6F0` (`0x0057B70A`, `0x0057B71A`) list its goods; `0x0057BD40` asks `0x0056E880` whether rows 1 and 2 are offered for it (`0x0057BE23`); choosing a row opens the trade screen `0x0056DD50`(shop, text) (`0x0057C0F0`); the grant window `0x0057A4E0` reads it (`0x0057A573`) |
 | `+0x0C1` | `u8` | savedMenuByte | byte `+0xDE0` of the menu layout block [`0x0209AC30`] when the shop opens (`0x0057B92F`-`0x0057B936`); the construct message then calls `0x00285F20`(0), and message 18 restores the saved value with `0x00285F20` (`0x0057BCA0`) |
 | `+0x0C2` | `u8[2]` | pad0C2 | read and written by no function; nothing fixes its width |
-| `+0x0C4` | `u8` | activeRow | the command row whose trade screen is open: `0x0057C070` stores the confirmed row (`0x0057C0AA`); `0xFF` for none (the construct message `0x0057B8F1`, message 8 `0x0057BA83`). While a row is active `0x0057BD40` draws it in style 0 and the other rows in style 3 (`0x0057BE3C`-`0x0057BE57`); message 8 runs `0x002CB8B0` unless it is row 2 (`0x0057BA72`) |
+| `+0x0C4` | `u8` | activeRow | the command row whose trade screen is open: `0x0057C070` stores the confirmed row (`0x0057C0AA`); `0xFF` for no row (the construct message `0x0057B8F1`, message 8 `0x0057BA83`). While a row is active `0x0057BD40` draws it in style 0 and the other rows in style 3 (`0x0057BE3C`-`0x0057BE57`); message 8 runs `0x002CB8B0` unless it is row 2 (`0x0057BA72`) |
 | `+0x0C5` | `u8[3]` | pad0C5 | read and written by no function; nothing fixes its width |
 | `+0x0C8` | `i16` | listCursor | the head of the command rows' list state: `0x002CD4D0` sets it to 0, points `+0xD0` at the rows and registers the state at [`0x0209AC30`] + `0x330` (`0x002CD4E5`, called by `0x0057B400` at `0x0057B421`); the command list builder `0x002C9BF0` takes it as the list's row (`0x002C9C79`) |
 | `+0x0CA` | `u8[6]` | pad0CA | read and written by no function; nothing fixes its width |

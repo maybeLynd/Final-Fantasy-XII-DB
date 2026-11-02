@@ -244,7 +244,8 @@ lasts 150 or 75 wall-clock seconds; menus and time stop do not advance the count
 
 `0x00235340(w)` stores `w`, or 300 when `w` is negative (`cmovs`); `0x00235330`
 returns it. Both reach script only through verb `0x306C` `btlAtelSetMapJumoKeep` (`0x005107F0`), which
-no shipped script calls, so the window is 300 seconds everywhere. After a reset the previous-field
+no story script calls, so in story play the window is 300 seconds everywhere; the developer Battle Plan Menu
+(`bin/btlctrl` lines 1180 and 1187) passes -1, which gives 300, and 0. After a reset the previous-field
 word is `0xFFFF` (sign-extended to -1 at `0x002337CD`) and `0x003148F0` never returns a negative, so the
 first rotation after any reset wipes.
 
@@ -339,7 +340,8 @@ Globals:
 - All 1,765 `btlAtelGetRespawnTime` calls are `btlAtelGetElapseTime(i) > btlAtelGetRespawnTime(i)`
   with the same lane; 1,737 add `|| btlAtelGetDeadCountNow(i) == 0` and 28 add
   `|| btlAtelGetRespawnCause() == -1`.
-- No shipped script calls `btlAtelSetMapJumoKeep`; the window is the native 300 seconds.
+- No story script calls `btlAtelSetMapJumoKeep`, so in story play the window is the native 300 seconds; only the
+  developer Battle Plan Menu (`bin/btlctrl`) sets it, to 300 or 0.
 - Of the 239 scripts that import the completed-group word, 236 park on it with `waitv`.
 - [`enemy-group-completions.tsv`](enemy-group-completions.tsv) gives the 248 groups that hold a placement: 563
   placements in 235 scripts, read from the `btlAtelSetEventFlagGroup` call of each placement's `entryNN` function.

@@ -159,7 +159,7 @@ gives its value, the depth times the wave at the phase `p`:
 
 | Wave | Shape |
 |---:|---|
-| 0 | none: 0 |
+| 0 | flat: 0 |
 | 1 | `sin(2pi * p)` |
 | 2 | 1 below `p` 0.5, then -1 |
 | 3 | triangle: 0 up to 1 at 0.25, down to -1 at 0.75, up to 0 |
@@ -181,7 +181,7 @@ Over all 4,609 `.sab` banks:
 | sound records | 13,150 |
 | class 0 | 1,985, with no candidate |
 | class 1 | 11,165, each with one candidate |
-| classes 2-5 | none |
+| classes 2-5 | 0 |
 | weights, groups, switch ranges, cycle intervals, allow-repeat bits | 0 in every record |
 
 So every shipped sound is a plain `Sound`, and the random, ordered, cycling and switched rules never run.

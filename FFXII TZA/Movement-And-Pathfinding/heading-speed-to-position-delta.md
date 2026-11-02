@@ -226,7 +226,7 @@ Controller (actor `+0xC0`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `i32` |  | render record id, -1 none |
+| `+0x000` | `i32` |  | render record id, -1 no record |
 | `+0x138` | `void*` |  | movement body |
 | `+0x14F` | `u8` |  | bit `0x1` refuses movement |
 | `+0x151` | `u8` |  | bit `0x1` or bit `0x2` = three-dimensional motion |

@@ -49,7 +49,7 @@ holds the slot pointer in `0x02099D70` for the duration):
    `0x0209A2A0[0..7]`, and `0x0042ED30`;
 4. between the slot-0 extras and the pointer block it makes one indirect call through a checked
    function pointer with the slot index as its argument;
-5. it fills the pointer block: `+0x88` = the callback or `0x00267930` when none was given, `+0x48` =
+5. it fills the pointer block: `+0x88` = the callback or `0x00267930` when no callback was given, `+0x48` =
    the persistent save payload (`0x002EF2B0()`), `+0x50` = payload + payload `+0x48`, `+0x58` =
    `0x02099DF0`, `+0x60` = `0x02099FF0`, `+0x98` = `0x00264E30`;
 6. it sets `+0x68`, `+0x70`, `+0x78` and `+0x80` = payload + its dwords `+0x20`, `+0x24`, `+0x28` and

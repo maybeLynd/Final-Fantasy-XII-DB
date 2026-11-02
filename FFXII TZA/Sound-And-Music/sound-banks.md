@@ -41,9 +41,9 @@ The columns are under Shipped data.
 
 ### Block banks and the block index
 
-An actor's sound-effect record names up to three SE blocks as `u16` ids, bit `0x8000` meaning none. `0x002E60F0` turns each id
-into an index into the kind-32 path array of 608 `.seb` paths at `0x01E7FCF0` (`0x002E6157`-`0x002E618E`). The array holds
-`se000`, `se007`, `se001`-`se006`, then `se200`-`se499` from index 8 and `se700`-`se999` from index 308:
+An actor's sound-effect record names up to three SE blocks as `u16` ids, bit `0x8000` meaning no block. `0x002E60F0`
+turns each id into an index into the kind-32 path array of 608 `.seb` paths at `0x01E7FCF0` (`0x002E6157`-`0x002E618E`). The
+array holds `se000`, `se007`, `se001`-`se006`, then `se200`-`se499` from index 8 and `se700`-`se999` from index 308:
 
 | Block id | Index |
 |---|---|
@@ -399,7 +399,7 @@ tables of Layouts and Shipped data.
 | `referenced_by` | in the block table, `charseinfo blockN: N rows (...)`, the `charseinfo` field (`block0`, `block1` or `block2`) that names the block, with the first codes of those rows, on 217 rows; `start-up block N (...)` with the addresses of the code on `se000`, `se002` and `se007`; empty on the 28 blocks of Files nothing loads |
 | `referenced_by` | in the voice table, `charseinfo voiceBank: N rows (...)` with the first codes of those rows, or `bestiary voice_bank: N rows`, both on 4 rows, separated by `; `; empty on 80 rows |
 | `slot_flags` | in the block table, each present slot as `slot:flags`, separated by spaces: the slot number (0 to 126 in the shipped files) and the slot's flag byte `+0x04`, read when the sound starts (`0x00224570`); as many pairs as `slots_present` on all 248 rows |
-| `bank_sounds_without_slot` | `bank_sounds` less `slots_present`, 0 to 21. Where every slot names a sound of the bank it counts the bank's sounds that no slot names; on `se007`, `se228`, `se241` and `se353`, whose slots run past the bank, it does not (their unmatched sounds are in the table of The block banks) |
+| `bank_sounds_without_slot` | the bank's sounds, empty ones included, that no present slot names (slot n names sound n), 0 to 21. It equals `bank_sounds` less `slots_present` except where slots run past the bank: 1 on `se007` (sound 0), 12 on `se228` and `se241` (sounds 19 to 30) and 8 on `se353` (sounds 13 to 20), as in the table of The block banks |
 | `slots_past_bank` | the slots whose number is the bank's sound count or above: 1 on `se007`, 12 on `se228` and `se241`, 2 on `se353`, 0 on the other 244 rows |
 
 ## Loader behaviour
@@ -447,7 +447,7 @@ value is `y[k] + 0x007A9E50((x - x[k]) / (x[k + 1] - x[k]), ease[k]) x (y[k + 1]
 8. A six-digit or block bank whose file cannot be read stops the game. The load thread leaves the bank's data
    pointer at 0 when the file gives no length (`0x00212293`-`0x0021229E`), and the completion stores to address 0:
    `0x00222F9E` for a six-digit bank, `0x00223E1E` for a block bank.
-9. The six-digit pool holds 256 banks. When every bank is taken and the sweep (`0x00212860`) frees none, the take
+9. The six-digit pool holds 256 banks. When every bank is taken and the sweep (`0x00212860`) frees no bank, the take
    answers 0 (`0x00219A4F`) and `0x0021A0BF` stores through it at address `0x60`.
 10. A block sound plays only when its slot is in the index, `id & 0x1FF` (`0x002245D3`, `0x0022462A`), the slot is below
     the bank's sound count (`0x007A8DB8`-`0x007A8DC6`) and the sound's byte `+0x04` is set (`0x007A8DE3`); otherwise

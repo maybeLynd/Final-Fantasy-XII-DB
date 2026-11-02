@@ -132,9 +132,9 @@ After a move the cursor is pulled back onto the last item, and the direction bit
 
 `0x002D2D40(list, answer)` plays the step's sound:
 
-- answers 1-3, a move: the list's sound `+0xFF`, 1 when it is 0 and none when it is -1; nothing while `+0xE0` bit `0x400000`
-  is set; with `+0xE4` bit `0x20000000` the block-bank sound `0x003A11F0` gives, played through `0x002DF220(id, 0x40, 0x7F)` while
-  `0x02091098` is 0 ([Sound effects](../Sound-And-Music/sound-effects.md));
+- answers 1-3, a move: the list's sound `+0xFF`, 1 when it is 0 and no sound when it is -1; nothing while `+0xE0` bit
+  `0x400000` is set; with `+0xE4` bit `0x20000000` the block-bank sound `0x003A11F0` gives, played through `0x002DF220(id,
+  0x40, 0x7F)` while `0x02091098` is 0 ([Sound effects](../Sound-And-Music/sound-effects.md));
 - answers 4-6, a jump: sound `0x17` through `0x00249C60`, or `0x00249CA0` with `+0xE4` bit `0x20000000`.
 
 ### Other switches
@@ -149,11 +149,11 @@ After a move the cursor is pulled back onto the last item, and the direction bit
 ### The hand cursor
 
 The menus share one hand cursor, a `0x70`-byte state block at `0x022CBE30`: the mode `0x022CBE30` (0 off, 1 resting,
-2 sliding), the flags `0x022CBE32`, positions with `0x8000` for none, the bounce at `0x022CBE3D`-`0x022CBE43`, the
+2 sliding), the flags `0x022CBE32`, positions with `0x8000` for no position, the bounce at `0x022CBE3D`-`0x022CBE43`, the
 holder `0x022CBE68`, a four-point trail from `0x022CBE76`, and the fade `0x022CBE87` (0 shown, 1 fading in, 2 fading
 out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` moves it ([Battle menu](battle-menu.md)).
 
-- `0x00368270()` resets the block: every position to none, mode 1 and flags `0x115`.
+- `0x00368270()` resets the block: every position to `0x8000`, mode 1 and flags `0x115`.
 - `0x00368010(pos, widget, plain)`, from `0x00368360`, adds up a widget's position and its ancestors' (next at
   `+0x10`, `0x00246480`): with flag bit `0x20` through each widget's rotation and scale (`0x00398910`, `0x003985B0`,
   `0x00398C50`) about its centre, with flag bit `0x200` from a widget's `+0x84`/`+0x8C` while its `+0x80` bit `0x1` is set,
@@ -200,7 +200,7 @@ out, 3 hidden) with its count `0x022CBE8A` out of `0x022CBE88`. `0x00368360` mov
 | `+0x0F0` | `u16` | rows | rows of items |
 | `+0x0F2` | `i16` | top | first shown row |
 | `+0x0F4` | `i16` | cursorRow | cursor row on screen |
-| `+0x0FF` | `i8` | sound | cursor sound, 0 for 1, -1 for none |
+| `+0x0FF` | `i8` | sound | cursor sound, 0 for 1, -1 for no sound |
 | `+0x100` | `u16` | rowHeight | row height |
 | `+0x10B` | `u8` | hold | hold counter |
 | `+0x10C` | `u32` | holdTime | frame of the last held tick (`0x0208F574`) |
@@ -269,13 +269,13 @@ It reads them through the block's address (`0x00367A30`, `0x00367A47`, `0x00367A
 | `0x022CBE72` | `u8` | 0 | point 1's alpha | `0x00367200` (`0x0036732A`, `0x00367402`) | `0x00367200` (`0x003673EE`); `0x00367940` (`0x00367A30`) |
 | `0x022CBE73` | `u8` | 0 | point 2's alpha | `0x00367200` (`0x0036732A`, `0x0036740F`) | `0x00367200` (`0x003673FB`); `0x00367940` (`0x00367A30`) |
 | `0x022CBE74` | `u8` | 0 | point 3's alpha | `0x00367200` (`0x0036732A`) | `0x00367200` (`0x00367408`); `0x00367940` (`0x00367A30`) |
-| `0x022CBE76` | `i16` | 0 | point 0's x, `0x8000` for none | `0x00367200` (`0x003672EB`; `0x8000`: `0x0036741D`, `0x00367669`); `0x003678F0`, `0x8000` (`0x00367901`); `0x00368270`, `0x8000` (`0x003682D0`); `0x00368940`, `0x8000` (`0x00368996`) | `0x00367200` (`0x003672CA`); `0x00367940` (`0x00367A4D`) |
+| `0x022CBE76` | `i16` | 0 | point 0's x, `0x8000` for no point | `0x00367200` (`0x003672EB`; `0x8000`: `0x0036741D`, `0x00367669`); `0x003678F0`, `0x8000` (`0x00367901`); `0x00368270`, `0x8000` (`0x003682D0`); `0x00368940`, `0x8000` (`0x00368996`) | `0x00367200` (`0x003672CA`); `0x00367940` (`0x00367A4D`) |
 | `0x022CBE78` | `i16` | 0 | point 0's y | `0x00367200` (`0x003672F7`) | `0x00367200` (`0x003672D8`); `0x00367940` (`0x00367A47`) |
-| `0x022CBE7A` | `i16` | 0 | point 1's x, `0x8000` for none | `0x00367200` (`0x003672D1`; `0x8000`: `0x0036741D`, `0x00367671`); `0x003678F0` (`0x0036790F`); `0x00368270` (`0x003682D7`); `0x00368940` (`0x003689A4`) | `0x00367200` (`0x003672AE`); `0x00367940` (`0x00367A4D`) |
+| `0x022CBE7A` | `i16` | 0 | point 1's x, `0x8000` for no point | `0x00367200` (`0x003672D1`; `0x8000`: `0x0036741D`, `0x00367671`); `0x003678F0` (`0x0036790F`); `0x00368270` (`0x003682D7`); `0x00368940` (`0x003689A4`) | `0x00367200` (`0x003672AE`); `0x00367940` (`0x00367A4D`) |
 | `0x022CBE7C` | `i16` | 0 | point 1's y | `0x00367200` (`0x003672DF`) | `0x00367200` (`0x003672BC`); `0x00367940` (`0x00367A47`) |
-| `0x022CBE7E` | `i16` | 0 | point 2's x, `0x8000` for none | `0x00367200` (`0x003672B5`; `0x8000`: `0x0036741D`, `0x00367679`); `0x003678F0` (`0x00367916`); `0x00368270` (`0x003682DE`); `0x00368940` (`0x003689AB`) | `0x00367200` (`0x00367292`); `0x00367940` (`0x00367A4D`) |
+| `0x022CBE7E` | `i16` | 0 | point 2's x, `0x8000` for no point | `0x00367200` (`0x003672B5`; `0x8000`: `0x0036741D`, `0x00367679`); `0x003678F0` (`0x00367916`); `0x00368270` (`0x003682DE`); `0x00368940` (`0x003689AB`) | `0x00367200` (`0x00367292`); `0x00367940` (`0x00367A4D`) |
 | `0x022CBE80` | `i16` | 0 | point 2's y | `0x00367200` (`0x003672C3`) | `0x00367200` (`0x003672A0`); `0x00367940` (`0x00367A47`) |
-| `0x022CBE82` | `i16` | 0 | point 3's x, `0x8000` for none | `0x00367200` (`0x00367299`; `0x8000`: `0x0036741D`, `0x00367681`); `0x003678F0` (`0x0036791D`); `0x00368270` (`0x003682E5`); `0x00368940` (`0x003689B2`) | `0x00367940` (`0x00367A4D`) |
+| `0x022CBE82` | `i16` | 0 | point 3's x, `0x8000` for no point | `0x00367200` (`0x00367299`; `0x8000`: `0x0036741D`, `0x00367681`); `0x003678F0` (`0x0036791D`); `0x00368270` (`0x003682E5`); `0x00368940` (`0x003689B2`) | `0x00367940` (`0x00367A4D`) |
 | `0x022CBE84` | `i16` | 0 | point 3's y | `0x00367200` (`0x003672A7`) | `0x00367940` (`0x00367A47`) |
 
 ### The request
@@ -287,9 +287,9 @@ sliding hand, or moves a resting one there at once, without a slide (`0x0036787B
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x022CBE50` | `i16` | 0 | x of the last request's position before its offset; the target itself when the hand is placed at once; `0x8000` for none | `0x00367200`, `0x8000` when a fade out ends with flag bit `0x80` (`0x00367658`); `0x00367820` (`0x003678CE`); `0x003678F0`, `0x8000` (`0x00367934`); `0x00368270`, `0x8000` (`0x003682AD`); `0x00368360` (`0x003686DD`; the target: `0x00368723`); `0x00368940`, `0x8000` without a position (`0x003689C9`) | `0x00367820` (`0x0036787B`) |
+| `0x022CBE50` | `i16` | 0 | x of the last request's position before its offset; the target itself when the hand is placed at once; `0x8000` for no request | `0x00367200`, `0x8000` when a fade out ends with flag bit `0x80` (`0x00367658`); `0x00367820` (`0x003678CE`); `0x003678F0`, `0x8000` (`0x00367934`); `0x00368270`, `0x8000` (`0x003682AD`); `0x00368360` (`0x003686DD`; the target: `0x00368723`); `0x00368940`, `0x8000` without a position (`0x003689C9`) | `0x00367820` (`0x0036787B`) |
 | `0x022CBE52` | `i16` | 0 | y of the same | `0x00367200` (`0x00367658`); `0x00367820` (`0x003678D9`); `0x003678F0` (`0x00367934`); `0x00368270` (`0x003682AD`); `0x00368360` (`0x003686E9`; the target: `0x00368744`); `0x00368940` (`0x003689C9`) | `0x00367820` (`0x00367887`) |
-| `0x022CBE54` | `i16` | 0 | x of the last request's offset, 0 when it had none; the next request's offset minus this is the shift `0x022CBE58` | `0x00368360` (`0x003684D6`) | `0x00368360` (`0x003684AA`) |
+| `0x022CBE54` | `i16` | 0 | x of the last request's offset, 0 when it had no offset; the next request's offset minus this is the shift `0x022CBE58` | `0x00368360` (`0x003684D6`) | `0x00368360` (`0x003684AA`) |
 | `0x022CBE56` | `i16` | 0 | y of the same, for `0x022CBE5A` | `0x00368360` (`0x003684DD`) | `0x00368360` (`0x003684BC`) |
 | `0x022CBE86` | `u8` | 0 | the hand's alpha while flag bit `0x40` is set, in place of the fade's: every request that sets the flags stores `0x80`, full, first | `0x00368360`, `0x80` (`0x0036854F`) | `0x00367940` (`0x003679D6`) |
 

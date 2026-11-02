@@ -794,7 +794,7 @@ dor_b0101	4	3	ボイス.cut_25	Reddas (レダス)	ve177_015Re	19	The sky pirate 
 dor_c1200	0	8	メッセージ.メッセージ01	Reddas (レダス)	ve175_008Re	-	-	5.70 s	no line on the cue's clock at its start
 dor_c1200	0	9	メッセージ.メッセージ01	BASH	ve175_009BS	2	And you are... our earlier visitor.	5.91 s	the line the playing function has on screen
 dor_c1200	0	10	メッセージ.メッセージ01	-	ve175_010Cd	3	Yes, a valuable man, one I'd sooner not lose. Yet he knows too much.	5.70 s	the line the playing function has on screen
-dor_c1200	0	11	メッセージ.メッセージ01	Reddas (レダス)	ve175_011Re	3	Yes, a valuable man, one I'd sooner not lose. Yet he knows too much.	2.47 s	the line the playing function has on screen
+dor_c1200	0	11	メッセージ.メッセージ01	Reddas (レダス)	ve175_011Re	-	-	2.47 s	a short reaction inside another speaker's line, so no line
 dor_c1200	0	12	メッセージ.メッセージ01	Reddas (レダス)	ve175_011Re_1	-	-	3.73 s	no line on the cue's clock at its start
 dor_c1200	0	0	ボイス.cut_03	BASH	ve175_001BS	-	-	1.28 s	no message call on the cue's clock
 dor_c1200	0	1	ボイス.cut_04	Reddas (レダス)	ve175_002Re	-	-	1.66 s	no message call on the cue's clock
@@ -1906,7 +1906,7 @@ rsn_a0100	0	2	ボイス.発音	Balthier (バルフレア)	ve283_003BF	2	Tell the
 rsn_a0100	0	3	ボイス.発音	Imperial (帝国兵Ａ)	ve283_004sa	3	Keep quiet!	0.90 s	on screen in メッセージ.表示 at the cue's start
 rsn_a0100	0	4	ボイス.発音	Basch (バッシュ)	ve283_005BS	4	There was nothing else that I could do. You know that.	3.99 s	on screen in メッセージ.表示 at the cue's start
 rsn_a0100	0	5	ボイス.発音	Balthier (バルフレア)	ve283_006BF	5	Oh, I understand. Honor, duty, and all that.	7.40 s	on screen in メッセージ.表示 at the cue's start
-rsn_a0100	0	6	ボイス.発音	Imperial (帝国兵Ｂ)	ve283_007sa	6	I still can't believe that was the Princess.	1.47 s	on screen in メッセージ.表示 at the cue's start
+rsn_a0100	0	6	ボイス.発音	Imperial (帝国兵Ｂ)	ve283_007sa	7	I said keep quiet!	1.47 s	opened by メッセージ.表示 within 10 frames after the cue starts
 rsn_a0100	0	9	ボイス.発音	Imperial (帝国兵Ｂ)	ve283_010sa	-	-	1.86 s	no message call on the cue's clock
 rsn_a0100	0	7	ボイス.発音	Balthier (バルフレア)	ve283_008BF	-	-	1.49 s	no message call on the cue's clock
 rsn_a0100	0	8	ボイス.発音	Basch (バッシュ)	ve283_009BS	-	-	0.04 s, a silent stub	no message call on the cue's clock

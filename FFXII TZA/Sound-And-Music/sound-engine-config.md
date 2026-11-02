@@ -124,7 +124,7 @@ The class names are the run-time type names of each chunk's wrapper.
 | `+0x00` | `u8` | version | 2 |
 | `+0x01` | `u8` | c01 | the element index |
 | `+0x02` | `u16` | nameAt | offset of the name, `0x10` |
-| `+0x04` | `i16` | size | 0 none; above 0 that many sound slots; below 0 shares category -size |
+| `+0x04` | `i16` | size | 0 no slots; above 0 that many sound slots; below 0 shares category -size |
 | `+0x06` | `u16` | c06 | the name length |
 | `+0x10` | `char` | name | the category name, inline, `+0x06` characters long |
 
@@ -149,7 +149,7 @@ builds one `0x88`-byte `Driver::Category` per element (`0x007A96F0`; `0x007A9760
 | chunk `+0x00` version | picks how element `i` is found, on every call of `0x007ADAB0` |
 | chunk `+0x02`, element offsets | relocated on every call of `0x007ADAB0` (`0x007ADAB8`-`0x007ADAD2`) |
 | chunk `+0x04` count | copied to `0x02EAD000` (`0x007AAA60`), the length of the category table |
-| element `version` | picks where the name is: from 2 at `nameAt`, at 1 at `+0x10`, at 0 none (`0x007AA137`-`0x007AA14F`) |
+| element `version` | picks where the name is: from 2 at `nameAt`, at 1 at `+0x10`, at 0 no name (`0x007AA137`-`0x007AA14F`) |
 | `nameAt` | relocated: the element's address plus `nameAt` is stored at category `+0x70` (`0x007AA13E`-`0x007AA156`) |
 | `size` above 0 | the handle-list capacity, category `+0x10` (`0x007AA2EC`-`0x007AA2F3`, stored at `0x007AA075`), and added to `0x02EAD3E8` (`0x007B108A`) |
 | `size` 0 | no category; a null table slot (`0x007AAB6C`-`0x007AAB73`) |
@@ -282,10 +282,10 @@ The shipped `bus ` has version 2, `B = C + 0x10` and one offset, `0x20`.
 |---|---|
 | chunk `+0x00` version | picks how element `i` is found (`0x007AD950`); below 1 the engine adds a bus 0 of its own before the elements, with level 1.0 and no effects (`0x007AC569`-`0x007AC570`, `0x007AC6D9`-`0x007AC6FE`) |
 | chunk `+0x04` count | added to the mixer's bus count `+0x10` (`0x007AC55D`-`0x007AC565`), which sizes the bus table; also handed to the voice set-up `0x007AEF30` (`0x007AC69F`, `0x007AC6B9`) |
-| element `version` | where the name is: from 2 at `nameAt`, at 1 at `+0x20`, at 0 none (`0x007AC77B`-`0x007AC798`); where the effect table is: from 2 as above, below 2 at the `u16` `+0x02` itself (`0x007ADA34`-`0x007ADA55`) |
+| element `version` | where the name is: from 2 at `nameAt`, at 1 at `+0x20`, at 0 no name (`0x007AC77B`-`0x007AC798`); where the effect table is: from 2 as above, below 2 at the `u16` `+0x02` itself (`0x007ADA34`-`0x007ADA55`) |
 | `busIndex` | the bus-table slot the element fills (`0x007AC770`-`0x007AC774`); 0 takes the root path (`0x007ACAA9`) |
 | `nameAt` | relocated: the element's address plus `nameAt` is stored at bus `+0x30` (`0x007AC787`-`0x007AC79B`) |
-| `send0` | 0 or above: the first send, to the voice of bus `send0` (`0x007AC7AD`-`0x007AC7D3`); below 0, none |
+| `send0` | 0 or above: the first send, to the voice of bus `send0` (`0x007AC7AD`-`0x007AC7D3`); below 0, no first send |
 | `effectCount` | the number of effect records built (`0x007AC83A`, `0x007ACA83`) |
 | `sendTargets` | each the bus whose voice is a further send (`0x007AC800`-`0x007AC81E`) |
 | `sendCount` | the number of `sendTargets` read (`0x007AC7E4`, `0x007AC82A`) |
@@ -482,7 +482,7 @@ An `EventData` is `0x38` bytes (`0x007B68C0`-`0x007B68CA`) whose only field from
 `+0x18` (`0x007B6917`-`0x007B691B`). The rest are its vtables `0x01CB4ED8`, `0x01CB4EE8` and `0x01CB4920` at `+0x00`, `+0x08`
 and `+0x10`, -1 at `+0x20` and 0 at `+0x28` and `+0x30` (`0x007B6905`-`0x007B6935`). Their pointers go to the table at
 `0x02EAD760`, one per element, with the chunk's count at `0x02EAD754` (`0x007B6861`-`0x007B6876`, `0x007B695A`); with no `evt `
-chunk none are built (`0x007B680F`).
+chunk no `EventData` is built (`0x007B680F`).
 
 Command `0x33` starts an event (`0x007B6350`): `0x007EE910` builds the `Event` and `0x007EE990` sets it running (state 1) and runs its first step. `0x007EEA00(event, seconds)` counts its wait
 down and then runs commands until one waits. A command has a header length at `+0x01`, an opcode at `+0x02` and a
@@ -509,7 +509,7 @@ gives the ramped value of the row whose name matches, or -1; a switched sound re
 
 `0x007AE020(chunk, out, i)` gives element `i` as `C + u32[C + u16[C + 0x02] + 4 * i]` whatever the version, and a null
 element for `i` below 0 or at or above the count (`0x007AE02C`-`0x007AE046`). An element, as the code reads it (the shipped
-chunk has none):
+chunk has no elements):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -532,17 +532,17 @@ The row:
 
 | Offset | Type | Name | Meaning | Set by |
 |---|---|---|---|---|
-| `+0x00` | `u8[8]` | | | none |
+| `+0x00` | `u8[8]` | | | no writer |
 | `+0x08` | `void*` | element | the `expr` element in the copy | `0x007B112B` |
-| `+0x10` | `u8[8]` | | | none |
+| `+0x10` | `u8[8]` | | | no writer |
 | `+0x18` | `f32` | start | the value the ramp starts from; 0 | `0x007B1196`; `0x007B12DD` |
 | `+0x1C` | `f32` | target | the value set; 0 | `0x007B1196`; `0x007B12E3` |
 | `+0x20` | `f32` | elapsed | time so far, stopped at the duration | `0x007B119B`; `0x007B12E9`, `0x007B13A9`, `0x007B13B1` |
 | `+0x24` | `f32` | duration | 0 snaps to the target | `0x007B119B`; `0x007B12E9`, `0x007B1329`, `0x007B135A` |
-| `+0x28` | `u8[4]` | | | none |
+| `+0x28` | `u8[4]` | | | no writer |
 | `+0x2C` | `i32` | curve | 0, linear | `0x007B11A0`; `0x007B12F2` |
 | `+0x30` | `u8` | active | 1 while the ramp runs | `0x007B11A4`; `0x007B12FA`, `0x007B13B7`, `0x007B13BE` |
-| `+0x31` | `u8[3]` | | | none |
+| `+0x31` | `u8[3]` | | | no writer |
 | `+0x34` | `u32` | limited | from the element, as above | `0x007B118C` |
 | `+0x38` | `f32` | riseRate | from the element when `+0x34` is 1 | `0x007B118C` |
 | `+0x3C` | `f32` | fallRate | from the element when `+0x34` is 1 | `0x007B1192` |

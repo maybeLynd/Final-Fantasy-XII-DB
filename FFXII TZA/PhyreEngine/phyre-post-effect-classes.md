@@ -94,8 +94,8 @@ argument of `0x0060B980`:
 
 Each class's `PClassDescriptorConcrete<T>` vtable carries a construct-in-place factory at slot 10
 (`+0x50`); for `PAtmospherics` it is `0x00640280` at `0x00D5B0C0`, which runs the base constructor and stores
-the class vtable and descriptor. The 35 descriptor vtables of the family (none exists for
-`PDepthOfFieldLayered`) and the manager's have 36 distinct slot-10 bodies, and none has a direct call
+the class vtable and descriptor. The 35 descriptor vtables of the family (`PDepthOfFieldLayered`
+has no descriptor vtable) and the manager's have 36 distinct slot-10 bodies, and no body has a direct call
 site in `.text`; nor does any of the ten slot-6 bodies. They are reached only through the reflection
 loader and through vtables.
 

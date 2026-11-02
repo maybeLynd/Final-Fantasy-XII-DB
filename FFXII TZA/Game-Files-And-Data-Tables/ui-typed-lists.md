@@ -194,7 +194,7 @@ Every node starts with the same 0x14 bytes:
 | `+0x28` | `void*` |  | a replacement palette, or null |
 | `+0x30` | `u64` |  | texture descriptor written by the layout pass |
 | `+0x38` | `u32` |  | flags: mask `0xF` caller flags, bit `0x20` occupied, bit `0x40` image bound, bit `0x80` in the layout, mask `0x3F00` pixel format, mask `0x3C000` palette format, bits `0x40000`+ replacement palette colours |
-| `+0x40` | `u32` |  | number appended to the texture name, 0 for none |
+| `+0x40` | `u32` |  | number appended to the texture name, 0 for no number |
 | `+0x44` | `u32` |  | value from `0x00181520` |
 
 `0x02090780` counts registrations.
@@ -212,7 +212,7 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 | every list record | one row each in [`ui-typed-lists-records-rows.tsv`](ui-typed-lists-records-rows.tsv), 7,665 rows: carrier file, pack unit, index, item count, mask `0xFFFFC00`, bit `0x10000000`, mask `0xE0000000`, rectangle, the `+0x0C` value and the first item's offset |
 | every item | one row each in [`ui-typed-lists-items-rows.tsv`](ui-typed-lists-items-rows.tsv), 30,546 rows: carrier, unit, record, position, length, type, bytes `+2` and `+3`, rectangle and the type fields in hex |
 | items | 30,546 (5,223 and 25,323) |
-| items by type | 1: 2,661; 2: 20,181; 4: 2,017; 5: 4,484; 6: 46; 7: 278; 8: 879; types 3 and 9: none |
+| items by type | 1: 2,661; 2: 20,181; 4: 2,017; 5: 4,484; 6: 46; 7: 278; 8: 879; types 3 and 9: 0 |
 | item length by type | 1: 16; 2: 36; 4: 28; 5 and 6: 24; 7: 72; 8: 44; no exceptions |
 | item stream | starts at the end of the outer table; each record's items follow the previous record's; 0, 4, 8 or 12 zero bytes pad it to the name records |
 | record bits under mask `0xFFFFC00` | equal the record's own index in all 7,665 |
@@ -221,7 +221,7 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 | item byte `+3` | `0x10` (drawn) in 27,880, 0 in 2,666 |
 | largest block | `0x1040` bytes for one list |
 | atlas name records | 1,998; 49 distinct names, 28 of them referenced by items; longest 12 characters; bytes 14 and 15 zero in all |
-| atlas indices | none out of range; 58 type-7 items have no overlay, 220 overlay `battle_4_c` |
+| atlas indices | no index out of range; 58 type-7 items have no overlay, 220 overlay `battle_4_c` |
 | sprite palette | 12,341 of 20,181 type-2 items use the record default (`0xFF`) |
 | text | 2,859 type-5 items have no string; 1,625 carry ids 12,034 to 191,536, in groups 1, 2, 18 and 19 |
 | type 6 | 46 items, all type-5 text records with string id -1 and colour `0x80808080`, and each the last item of its record |
@@ -242,7 +242,7 @@ walk advances by `item[0]` (`0x0024337F`). Types 3, 6 and anything outside 1-9 a
 |---|---|---|
 | 1 | `0x20` | `0x0029ECB0` |
 | 2, 9 | `0x40` | `0x0029F4C0` |
-| 3, 6 | 0 | none |
+| 3, 6 | 0 | no constructor |
 | 4 | `0x20` | `0x0029ED40` |
 | 5 | `0x30` | `0x0029FEB0` |
 | 7 | `0xA0` | `0x0029F130` |

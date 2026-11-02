@@ -53,7 +53,7 @@ technick, `0x6xxx` gambit.
 
 | Kind | Condition | Test |
 |---|---|---|
-| `0` | none | always passes (`0x002FADC5`-`0x002FADCA`) |
+| `0` | no condition | always passes (`0x002FADC5`-`0x002FADCA`) |
 | `1` | story operand | operand bank element *operand* at least the threshold (`0x002FADD0`-`0x002FADEC`); no shipped entry uses it |
 | `2` | story progress | operand bank element 0 at least the threshold (`0x002FADF3`-`0x002FAE0D`) |
 | `3` | clan rank | the clan rank at least the threshold (`0x002FAE14`-`0x002FAE1F`) |
@@ -67,7 +67,7 @@ Of the shipped ladders, 43 end in an entry with no condition, two in a story thr
 player below it gets that last list through the fallback: shops 43, 44 and 51 at 500, 21 at 1,580, 22 at 1,982,
 26, 27, 48 and 49 at 3,100, and 54 and 55 at 3,250.
 
-Story progress is a signed 16-bit value; the values the scripts write in reachable code run from 13 to 7,150 ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), and no script writes 500 or 960. It goes from 490 (After the captive Penelo) to 520 (After the floating continent), and from 930 (After the Leviathan tutorial) to 966 (After the battle with the lesser judges). The test passes at the threshold or any higher value (`0x002FAE09` `cmp`, `0x002FAE0D` `jge`), so a list that waits on 500 is sold from 520 and one that waits on 960 from 966.
+Story progress is a signed 16-bit value; the values the scripts write in reachable code run from 13 to 7,150 ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), and no story script writes 500 or 960. It goes from 490 (After the captive Penelo) to 520 (After the floating continent), and from 930 (After the Leviathan tutorial) to 966 (After the battle with the lesser judges). The test passes at the threshold or any higher value (`0x002FAE09` `cmp`, `0x002FAE0D` `jge`), so a list that waits on 500 is sold from 520 and one that waits on 960 from 966.
 
 Of the 23 lists at 500 or 960, 17 go on sale at 520. The other six are sold from the start: shop 24's lists 25 (960), 27 and 35 (500) come after its list 15, which has no condition, and the 500 lists of shops 43, 44 and 51 are the last of their ladders. The story test reads story progress only, so no clan rank opens these lists. The `on_sale` column gives the point from which each list is sold.
 
@@ -158,7 +158,7 @@ The Clan Provisioner's actor in Muthru Bazaar (Rabanastre) is a Mysterious Merch
 | `shop` | the shop's row in the table, the number `setshopname` takes |
 | `name` | its name from the `us` `npcdic.bin`; "(later X)" gives the second name of the pair |
 | `list` | the list's place in the ladder, 0 first |
-| `condition` | `none`, `story progress` or `clan rank` |
+| `condition` | `no condition`, `story progress` or `clan rank` |
 | `threshold` | the value the condition needs, or `-` |
 | `classes` | the kinds of goods in the list |
 | `stock_ids` | the list's encoded ids, in order |
@@ -179,7 +179,7 @@ A list is sold when its own entry or an earlier one in the ladder is the first w
 | `reward` | what the package gives |
 | `provisioner_list` | the Clan Provisioner's list (shop 2) the rank opens |
 | `provisioner_stock` | that list's stock; the lists of the lower ranks stay on sale |
-| `hunts` | the hunts whose rank test is this rank, with who posts each and from which story progress, or `none` |
+| `hunts` | the hunts whose rank test is this rank, with who posts each and from which story progress, or `-` when no hunt tests this rank |
 
 ## Related
 

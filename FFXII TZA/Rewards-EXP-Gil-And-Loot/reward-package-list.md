@@ -26,9 +26,9 @@ item's name is the name word of the item's own row, as the matching arm of `0x00
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
 | `+0x00` | `u32` | gil | times the give's count, added to the party's gil and floored at 0 (`0x002FD530`) |
-| `+0x04` | `u16` | item1 | an inventory id, `0xFFFF` for none |
+| `+0x04` | `u16` | item1 | an inventory id, `0xFFFF` for no item |
 | `+0x06` | `u16` | count1 | given as count1 times the give's count (negative for a take) |
-| `+0x08` | `u16` | item2 | an inventory id, `0xFFFF` for none |
+| `+0x08` | `u16` | item2 | an inventory id, `0xFFFF` for no item |
 | `+0x0A` | `u16` | count2 | as `count1` |
 
 The class-14 handler `0x002FD530` gives the gil and then each item that is not `0xFFFF` through `0x003008A0`, and the

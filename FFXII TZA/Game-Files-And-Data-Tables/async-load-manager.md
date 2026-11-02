@@ -35,7 +35,7 @@ event (`0x005CD570`) when a thread is waiting.
 
 A pool is a vector of fixed records with a free set and a used set, each an ordered tree of record
 addresses. `0x001BA860(pool)` takes the lowest free record, moves it to the used set and returns it, or
-returns 0 when none is free; `0x002124C0(pool, record)` moves a record back. A pool built with its lock
+returns 0 when no record is free; `0x002124C0(pool, record)` moves a record back. A pool built with its lock
 byte set takes its own lock around both; the manager's pool is built without one and the manager
 guards it with its lock `+0x178` instead.
 
@@ -213,7 +213,7 @@ its pointer `0x01F82CC0` for PS2 file reads.
 
 ## Modding notes
 
-- At most 1,024 requests can be outstanding; with none free, `0x001BA860` returns 0 and every caller
+- At most 1,024 requests can be outstanding; with no record free, `0x001BA860` returns 0 and every caller
   writes the kind through it without a test.
 - The appendix is fixed in the executable: a model listed there always gets its effect file appended,
   so its size table entry must cover the model, the effect and 4 bytes. A model not listed gets

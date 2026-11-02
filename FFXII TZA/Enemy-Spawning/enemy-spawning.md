@@ -32,7 +32,7 @@ whose definition asks for the probe get it.
 ### The lane map and the spawn table
 
 Every spawning actor's battle unit holds a lane map at `+0x40`: a count byte, then one slot byte per
-lane naming a record in the live keep bank, `0xFF` for none. `0x00236100(map, lane)` returns
+lane naming a record in the live keep bank, `0xFF` for no record. `0x00236100(map, lane)` returns
 `[0x0208E690] + slot * 0x250` and `0x002360D0(map, lane)` the slot; both refuse a null map, a negative
 lane, a lane at or past the count and the `0xFF` slot. The record is [the spawn
 record](spawn-record-fields.md); its back-pointer is unit `+0x6A0`.
@@ -260,8 +260,8 @@ no error.
 Verb `0x3019` `btlAtelSetDeSpawnType(mode, threshold, anchor)` (`0x0050F4A0`, three pops, the first
 pop being the last script argument) calls `0x00238FC0(actor, anchor, threshold, mode)`, which stores
 the mode at unit `+0x50` always and, for mode 2, the threshold `+0x4C` = `threshold / 10.0` (6.0
-when 0) and the anchor `+0x51`. The shipped scripts call it with `(1, 0, 0)` 4,937 times and
-`(0, 0, 0)` 1,809 times; no shipped script authors mode 2.
+when 0) and the anchor `+0x51`. The scripts of each language tree call it with `(1, 0, 0)` 4,937 times and
+`(0, 0, 0)` 1,809 times, and no developer menu calls it; no shipped script authors mode 2.
 
 ### Range retirement
 
@@ -274,7 +274,7 @@ the `0x80000003` gate or the field waives it, and the record's flag bit `0x10` i
 
 - mode 1: for party slots 0-3, a slot counts when it has flag bit `0x10`, a stats record passing the gate,
   and is the party focus. The unit is kept when any counted slot's squared planar distance is below
-  `0x02089368^2` (`0x0023527D`, `comiss`/`ja`); it retires when at least one slot counted and none was
+  `0x02089368^2` (`0x0023527D`, `comiss`/`ja`); it retires when at least one slot counted and no slot was
   nearer. At exactly the range it retires;
 - mode 2: needs the leader and the anchor point `0x00320940(+0x51)`; retires when the leader's
   navigation position (unit `+0xE0`) is within `(+0x4C)^2` of it (`comiss`/`jbe`);
@@ -320,7 +320,7 @@ BattleUnit fields this page uses:
 |---|---|---|---|
 | `+0x000` | `u64` |  | flags: bit `0x4` active, `0x8` definition applied, `0x10` drive, `0x200000` cap-tracked, `0x4000000` candidate prepared, `0x10000000000` special range, `0x200000000000` not an initial placement, `0x2000000000000` activated once |
 | `+0x038` | `void*` |  | candidate table: u16 count, then u16 offsets per lane, then i16 candidate ids |
-| `+0x040` | `void*` |  | lane map: u8 count, u8 slot per lane (`0xFF` none) |
+| `+0x040` | `void*` |  | lane map: u8 count, u8 slot per lane (`0xFF` no record) |
 | `+0x04C` | `f32` |  | mode-2 threshold |
 | `+0x050` | `u8` | despawn mode 0/1/2 |  |
 | `+0x051` | `u8` | anchor record |  |

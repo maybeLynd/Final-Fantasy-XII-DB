@@ -263,9 +263,9 @@ Movie fade row (registry slot `0x02EBF008`, stride 8):
 |---|---|---|---|
 | `+0x00` | `u8` | id | equals the row index |
 | `+0x01` | `u8` | inStart | frame the fade-in starts |
-| `+0x02` | `u8` | inLength | fade-in frames, 0 for none |
+| `+0x02` | `u8` | inLength | fade-in frames, 0 for no fade-in |
 | `+0x03` | `u8` | outLead | frames between the fade-out's end and the end mark |
-| `+0x04` | `u8` | outLength | fade-out frames, 0 for none |
+| `+0x04` | `u8` | outLength | fade-out frames, 0 for no fade-out |
 | `+0x05` | `u8` | unused | 0 in every row |
 | `+0x06` | `u8` | unused | 0 in every row |
 | `+0x07` | `u8` | flags | bit `0x1` white fade-in, bit `0x2` white fade-out |

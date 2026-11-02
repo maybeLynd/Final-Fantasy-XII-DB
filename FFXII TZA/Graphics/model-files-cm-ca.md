@@ -146,7 +146,7 @@ record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`)
 | `+0x40` | `u32[n]` |  | per node: (record offset from the entry << 12) \| node number |
 
 ```
-record +0x00  u32  mask 0xFFF the node's key, mask 0xFFF000 its parent (0xFFF = none), mask 0xFF000000 0xFF
+record +0x00  u32  mask 0xFFF the node's key, mask 0xFFF000 its parent (0xFFF = no parent), mask 0xFF000000 0xFF
 record +0x04  u32  flags; the u16 pool indices follow at +0x08 (+0x0A when bit 0x40000000 is set)
 ```
 
@@ -281,9 +281,9 @@ not name is given by its offsets, as hex bytes.
 | `fdm_30`, `fdm_keys_offset`, `fdm_keys`, `fdm_34_4f` | heads | `@FDM` `+0x30`, `+0x32`, the key count, and the bytes from `+0x34` to the key table |
 | `fte_always_slots` | heads | the texture slots listed after the count at `@FTE` `+0x30` |
 | `section`, `offset`, `span`, `length` | fcp-sections | the section, its offset in the payload, the bytes to the next section or the payload's end, and the length for section 2 (`+0x24`) and section 8 (`0x10` + count × `0x1D0`) |
-| `special_bones_0_31`, `special_bones_104_106` | special-bones | as in [`weapon-bones.tsv`](weapon-bones.tsv): the set entries of section 1's table at `+0x14C` and of `+0x3A`–`+0x3E`, as "id: bone", or "none" |
+| `special_bones_0_31`, `special_bones_104_106` | special-bones | as in [`weapon-bones.tsv`](weapon-bones.tsv): the set entries of section 1's table at `+0x14C` and of `+0x3A`–`+0x3E`, as "id: bone", or `-` when every entry is `0xFFFF` |
 | `node`, `number`, `record` | ftr-nodes | the node's position, the node number of its `+0x40` table word, and its record offset in the entry |
-| `key`, `parent`, `byte_03`, `flags` | ftr-nodes | the key as `0x00409250` reads it, the parent (`-` for none), record byte `+0x03` and the flags `+0x04` |
+| `key`, `parent`, `byte_03`, `flags` | ftr-nodes | the key as `0x00409250` reads it, the parent (`-` for no parent), record byte `+0x03` and the flags `+0x04` |
 | `pool_indices`, `pool_index_list` | ftr-nodes | the record's u16 pool indices in stored order: one for each of flag bits `0x80000000`, `0x400000` and `0x20000000`, sixteen for `0x200000`, and one for each translation and angle bit; the list fills every record |
 | `record`, `key`, `selectors_0`, `selectors_1`, `selectors_2` | for-records | the record's position, its key, and the selector counts of parts 0, 1 and 2 at `+0x05`, `+0x06` and `+0x07` |
 | `scale`, `part_0`, `part_1`, `part_2` | for-records | float `+0x18`, and the selector bytes of parts 0, 1 and 2 at `+0x20`, `+0x40` and `+0x60`, as many as the part's selector count, separated by spaces; `-` when the count is 0 (815 rows for part 1) |
@@ -473,7 +473,7 @@ and the record joins a list (head `0x02B47778`, tail `0x02B47780`, count byte `0
 | `+0x04` | `u8` | paletteSlot | palette slot |
 | `+0x08` | `u16` | length | length in steps (0 = no end) |
 | `+0x0A` | `i16` | delay | start delay |
-| `+0x10` | `u16` | period | 0 = none |
+| `+0x10` | `u16` | period | 0 = no period |
 | `+0x15` | `u8` | mode | 0 wrap, 1 back and forth |
 | `+0x20` | `u32` | secondPalette | second palette handle (kinds 4 and 8) |
 | `+0x30` | `u32` | handle | operation handle |

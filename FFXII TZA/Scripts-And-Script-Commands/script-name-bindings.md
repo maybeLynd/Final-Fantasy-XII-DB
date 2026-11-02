@@ -118,7 +118,7 @@ An entry whose `+0x10` is 0 is not passed to `0x002E9360`: when the walk reaches
 `0x002E6D60`, which arenas 6 and 10 call when an allocation in them fails, unloads
 the oldest queued lane record (`0x002E6900(0)`; with a non-zero argument `0x002E6900` runs the whole
 queue), then releases the single oldest retired entry the same way, and runs the queue once more
-when there was none. While the oldest retired entry has `+0x10` = 0 and is not alone on the list,
+when there was no retired entry. While the oldest retired entry has `+0x10` = 0 and is not alone on the list,
 `0x002E6D60` picks it on every call and makes no progress.
 
 `0x002E9360(entry)` queues all 32 lanes of the entry's lane record for unload (`0x002EAFA0`, unloaded
@@ -143,7 +143,7 @@ calls `0x0036C5D0(handle, 1)`. The entry then moves to the live list and pin bit
 `0x002EAD50` files `0x0032E620(kind, index, buffer, size, record)` with the completion callback
 `0x002E4D20` and the entry as its argument. On completion `0x002E4D20` registers the model with the
 render system (`0x0041E580`) unless a release is already pending (`+0x18` bit `0x4`), in which case it
-sets `+0x18` bit `0x8`. It then asks `0x002EA6E0` whether sub-resources follow: when none do, it sets the
+sets `+0x18` bit `0x8`. It then asks `0x002EA6E0` whether sub-resources follow: when no sub-resource follows, it sets the
 ready bit `+0x18` bit `0x2` and, if a release was deferred, re-lists the entry at once.
 
 `0x002EA6E0` files a task with step function `0x002E60F0` when the model has a row in `0x002ED950` and
@@ -172,7 +172,7 @@ record `+0x5C` = the entry's stamp. Every lane access checks `+0x5C` against the
 null otherwise; the model loader `0x002EE430` uses it.
 
 `0x002EB5E0(entry, lane, delta, group)` picks the lane with `0x002EB9D0`, creates the lane record if the
-entry has none, and requests lane 0 and the chosen lane through `0x002EB690`. `0x002EB9D0(entry, n)`
+entry has no lane record, and requests lane 0 and the chosen lane through `0x002EB690`. `0x002EB9D0(entry, n)`
 sets lane n in the entry's `+0x28`; when the lane's file has a positive size (`0x002E9920`) it also
 sets `+0x2C` and returns n, otherwise −1. A lane already in `+0x28` gives n only when it is in
 `+0x2C`. A negative n tries lanes from 1 upwards below the lane count (at most 32) the same way.
@@ -373,7 +373,7 @@ x = 1, y = 0.
 
 `modelread(model)` finds or creates the entry with holder bit = manager and raises the loading flag
 when the entry is not ready. `modelreadsync(model)` stores the handle of the model's entry (0 when
-none exists); its poll waits until the entry is ready, counting the waits in `args[2]`, and ends at
+no entry exists); its poll waits until the entry is ready, counting the waits in `args[2]`, and ends at
 once for a handle of 0 or one that no longer resolves.
 
 `stdmotionreadsync`'s poll `0x0034B8D0` reads the actor's motion lane, the signed byte
@@ -430,14 +430,14 @@ Binding entry   `0x0215FDA0` + slot*`0x40`, 128 slots:
 | `+0x19` | `u8` |  | pins: bits0-1 keep at count 0, bit2 no load buffer, bit3 created with a holder, bit4 kept by `0x002E3E90` |
 | `+0x1A` | `u16` |  | own slot |
 | `+0x1C` | `i16` |  | reference count |
-| `+0x1E` | `i16` |  | lane record index (-1 none) |
+| `+0x1E` | `i16` |  | lane record index (-1 no lane record) |
 | `+0x20` | `u16` |  | holder bits (one per manager) |
 | `+0x24` | `u32` |  | stamp (`+0x26` always 0) |
 | `+0x28` | `u32` |  | claimed lanes |
 | `+0x2C` | `u32` |  | lanes with a positive size |
-| `+0x30` | `u32` |  | sub-resources (-1 none); with `+0x34` and `+0x38` |
-| `+0x34` | `u32` |  | sub-resources (-1 none); with `+0x30` and `+0x38` |
-| `+0x38` | `u32` |  | sub-resources (-1 none); with `+0x30` and `+0x34` |
+| `+0x30` | `u32` |  | sub-resources (-1 no sub-resource); with `+0x34` and `+0x38` |
+| `+0x34` | `u32` |  | sub-resources (-1 no sub-resource); with `+0x30` and `+0x38` |
+| `+0x38` | `u32` |  | sub-resources (-1 no sub-resource); with `+0x30` and `+0x34` |
 
 Lane record     `0x02161DA0` + i*`0x120`, 32 records:
 

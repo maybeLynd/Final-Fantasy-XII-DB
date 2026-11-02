@@ -1,16 +1,16 @@
 id	label	arm	kind	field	step	bound	note
 12	Read Json Data:	0x001D16B1	toggle	0x01DF6E48	-	0/1	flips the byte that makes the cutscene JSON sidecar readers parse on the next pass
-13	Reread Json Data: Press Circle to reread json data	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+13	Reread Json Data: Press Circle to reread json data	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 14	Invincible:	0x001D16C4	cycle	obj+0xC20	±1	wraps at 3 (0..2)	sil steps up, bl down; read by the battle target-eligibility getter 0x0017D470
 15	Load ps2 savedata from slot:	0x001D17D8	cycle	obj+0xAA8	±1	wraps mod 200	inc or add 0xC7; signed modulo 200 through the 0x51EB851F reciprocal
-16	Convert PS2 Savedata	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-17	Save autosave to common save data:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-18	Jump To:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+16	Convert PS2 Savedata	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+17	Save autosave to common save data:	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+18	Jump To:	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 19	Load sample chr:	0x001D1740	int-step	obj+0xDA0	±1	wraps 0..0x11	cmov ±1; 0x12 or more becomes 0 (0x001D175B cmovge), below 0 becomes 0x11 (0x001D176F); one value per material name of the 18-entry table 0x01DFCE90 ('teeth, eye, skin' to 'plant&bush') that the renderer prints for id 19
 20	Load chr:	0x001D170E	call	obj+0xC40	±1	-	passes the current id and ±1 to 0x002EEEE0 and stores the returned id
 21	Variation:	0x001D177E	int-step	obj+0xC44	±1	floor 1	cmov ±1; a value of 0 or below becomes 1 (0x001D1793-0x001D17A0)
 22	CLUT:	0x001D17AB	int-step	obj+0xC48	±1	-	cmov ±1; no bound on obj+0xC48: the floor test reads obj+0xC44 (id 21's field) and sets it to 0 when negative (0x001D17BE-0x001D17CD)
-23	Set chr rotation:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
+23	Set chr rotation:	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
 24	Change cast shadow object:	0x001D1818	call	obj+0xAB8	-	-	calls 0x001F0850, then 0x001EF500 on its result, and stores the return value
 25	Shadow Level:	0x001D1830	cycle	0x001F0850()+0x138	±1	wraps 0..4	cmov ±1 on a field of the 0x001F0850 object
 26	Debug high model skeleton:	0x001D1867	nudge	obj+0xCF4	±1.0	-	addss of 1.0 or -1.0 selected by sil; the only float arm in slice A
@@ -43,10 +43,10 @@ id	label	arm	kind	field	step	bound	note
 53	Debug Cubemap:	0x001D3988	cycle	0x02CB813C	±1	wraps 0..2	inc/dec
 54	Toggle event cubemap:	0x001D39CD	int-step	obj+0xD08	±1	floor 0 (down)	down floors at 0 then 0x001AC390(0x001AD440(), v); up stores 0x001AC390's return value
 55	Toggle cube map probes mode:	0x001D3A2A	call	-	-	-	calls the ret stub 0x0016D6A0 on the 0x001AD440 object; no effect
-56	Capture cube map. (L/R to toggle SkyBox)	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+56	Capture cube map. (L/R to toggle SkyBox)	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 57	Operate cube map	0x001D3A4A	int-step	0x001AD440()+0x168	±1	-	passes value ±1 to 0x001AD4D0; skipped when the object is null
-58	Set cube map properties:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
-59	Recapture cube maps:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+58	Set cube map properties:	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
+59	Recapture cube maps:	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 60	Capture panorama:	0x001D1F5A	int-step	obj+0xC28	±1	clamp 0..12	cmov ±1; also writes obj+0xC0C
 61	Camera Light enable:	0x001D213D	toggle	0x01DFE192	-	0/1	global byte
 62	After Water fix enable:	0x001D2150	toggle	obj+0x10D9	-	0/1	cmp/sete
@@ -87,9 +87,9 @@ id	label	arm	kind	field	step	bound	note
 97	Fresnel Specular Clamp Value:	0x001D20D1	nudge	0x02CB80A8	±0.1	-	subss/addss, one constant
 98	Fresnel Specular Skin Intensity:	0x001D2107	nudge	0x02CB80AC	±0.05	-	subss/addss, one constant
 99	Fresnel Reflection enable:	0x001D2052	toggle	0x01DFE191	-	0/1	global byte
-100	Camera Pose:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
-101	Advanced panorama:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
-102	Current GPU Temperature:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
+100	Camera Pose:	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
+101	Advanced panorama:	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
+102	Current GPU Temperature:	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
 103	Camera Over Write (O to capture):	0x001D2AFD	toggle	obj+0xC0C	-	0/1	off edge copies live engine fields +0xCC4/+0xCC8/+0xCCC into obj+0xC10/0xC14/0xC18 (ids 104-106)
 104	FOV:	0x001D2B4D	nudge	obj+0xC10	±0.00555556	-	subss/addss, one constant
 105	Aspect Ratio:	0x001D2B83	nudge	obj+0xC14	±0.01	-	subss/addss, one constant
@@ -152,7 +152,7 @@ id	label	arm	kind	field	step	bound	note
 162	Map Hair Camera Light X Modifier:	0x001D3826	nudge	0x02CB8038	±0.01	-	two constants: addss -0.01 down, addss +0.01 up; shipped default 0.0
 163	Map Hair Camera Light Y Modifier:	0x001D385C	nudge	0x02CB803C	±0.01	-	two constants: addss -0.01 down, addss +0.01 up; shipped default -0.13
 164	Map Hair Camera Light Z Modifier:	0x001D3892	nudge	0x02CB8040	±0.01	-	two constants: addss -0.01 down, addss +0.01 up; shipped default 0.0
-165	Re-read soft particle config	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+165	Re-read soft particle config	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 166	Use soft particle:	0x001D2923	call	[0x01F82D20]+0x38	-	-	sets GameSetting property 14 = (field != 1) via 0x001DF340, then the same flag through vtable slot +0x60 of obj+0xA80
 167	SSS enable:	0x001D2983	toggle	0x02CB8434	-	0/1	cmp/sete; shipped default 1
 168	SSS Width:	0x001D2996	nudge	0x02CB8438	±0.1	-	subss/addss, one constant; shipped default 7.0
@@ -171,7 +171,7 @@ id	label	arm	kind	field	step	bound	note
 181	Map render DisplayList Id End:	0x001D2D68	cycle	obj+0xAD8	±1	wraps at obj+0xADC	end cursor over the same count; lowers the start cursor obj+0xAD4 to it when it passes below the start; past the count both cursors return to 0 (qword store 0x001D2DB6); then 0x002F4510(start, end) stores obj+0xAD4 at 0x022BE7DC and obj+0xAD8 at 0x01EEBAE4
 182	Fusion Technique Select:	0x001D2DD3	int-step	obj+0xAE0	±1	clamp 0..8	does not wrap; then 0x002F7A00(value - 1)
 183	Print Magic Info:	0x001D2E04	toggle	-	-	0/1	read and written through a call pair; ignores the direction flags
-184	Set All Enemy HP One:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+184	Set All Enemy HP One:	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 185	Huge Damage:	0x001D3A91	toggle	obj+0xC34	-	0/1	ignores the direction flags
 186	Camera speed:	0x001D3AE5	cycle	obj+0xC38	±1	wraps mod 4	two-button: bl down, sil up
 187	Enable mouse control camera:	0x001D3AA6	toggle	obj+0xC35	-	0/1	ignores the direction flags
@@ -181,37 +181,37 @@ id	label	arm	kind	field	step	bound	note
 191	Adjust tracmap center y (L/R):	0x001D3D17	nudge	-	±0.002	-	getter 0x002B6660 / setter 0x002B6680; step x obj+0xC58/5 when that selector exceeds 20; two-button; then 0x001C7360
 192	Adjust tracmap Super Wide Mul (L/R)	0x001D3D84	nudge	-	±0.002	-	getter 0x002B66B0 / setter 0x002B6690; step x obj+0xC58/5 when that selector exceeds 20; two-button
 193	Adjust tracmap Super Wide MidPoint (L/R):	0x001D3DE5	nudge	-	±0.1	refused outside [15.9, 48.0]	getter 0x002B66C0 / setter 0x002B66A0; step x obj+0xC58/5 when that selector exceeds 20; a step past a limit is refused
-194	Procedural texture: Toggle Usage	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-195	Procedural texture: Toggle Management	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+194	Procedural texture: Toggle Usage	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+195	Procedural texture: Toggle Management	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 196	Procedural texture rotation ratio	0x001D454A	cycle	obj+0xD90	±1	wraps 0..2	two-button
 197	100% Spawn Rare Monster :	0x001D3E7A	toggle	obj+0xC70	-	0/1	sil gates the bl-clear path
-198	Save My Memory Leak Table	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+198	Save My Memory Leak Table	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 199	Set gill to max:	0x001D3E9C	toggle	obj+0xCEC	-	0/1	first calls Debug_SetGilToMaximum 0x003058B0, which is the command; the byte is a marker
 200	Set LP to max:	0x001D3EB6	toggle	obj+0xCED	-	0/1	first calls 0x00305A00 (LP = 99999 for each party member) then 0x00316C60; the byte is a marker
 201	Set level to max:	0x001D3ED0	toggle	obj+0xCEE	-	0/1	first calls 0x00305960 (level 99 growth) and 0x003058C0 (exp 99999999) per party member; byte is a marker
 202	File Cache Enable :	0x001D3C77	toggle	obj+0xC3E	-	0/1	sil gates the bl-clear path
-203	File Cache Reset Memory	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-204	File Cache Info :	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
+203	File Cache Reset Memory	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+204	File Cache Info :	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
 205	Music :	0x001D3EEF	toggle	obj+0xCF9	-	0/1	then 0x001DBB00(1, byte): music category volume 1.0 or 0.0; both directions act
 206	Voice:	0x001D3F1E	toggle	obj+0xCFA	-	0/1	then 0x001DBB00(3, byte): voice category volume 1.0 or 0.0; both directions act
 207	Sound Effect:	0x001D3F4D	toggle	obj+0xCFB	-	0/1	then 0x001DBB00(2, byte): sound-effect category volume 1.0 or 0.0; both directions act
 208	60fps input :	0x001D3C99	toggle	obj+0xD07	-	0/1	sil gates the bl-clear path
-209	Load Debug Menu Settings	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-210	Save Debug Menu Settings	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-211	Debug Menu Text Shadow UVOffset X:	0x001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
-212	Debug Menu Text Shadow UVOffset Y:	0x001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
-213	Debug Menu Text Soft Edges X:	0x001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
-214	Debug Menu Text Soft Edges Y:	0x001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
-215	Debug Menu Text Shadow Dimension Offset X:	0x001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
-216	Debug Menu Text Shadow Dimension Offset Y:	0x001D4BFA	none	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
+209	Load Debug Menu Settings	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+210	Save Debug Menu Settings	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+211	Debug Menu Text Shadow UVOffset X:	0x001D4BFA	no-action	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
+212	Debug Menu Text Shadow UVOffset Y:	0x001D4BFA	no-action	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
+213	Debug Menu Text Soft Edges X:	0x001D4BFA	no-action	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
+214	Debug Menu Text Soft Edges Y:	0x001D4BFA	no-action	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
+215	Debug Menu Text Shadow Dimension Offset X:	0x001D4BFA	no-action	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
+216	Debug Menu Text Shadow Dimension Offset Y:	0x001D4BFA	no-action	-	-	-	blank row: the renderer prints (EMPTY) instead of the label; action arm is the do-nothing tail
 217	3D Sound Behind Ratio:	0x001D4006	nudge	0x0215EFD0	±0.1	-	getter 0x002DEBA0 / setter 0x002DF2A0; two constants -0.1 / +0.1; initialised to 0.3 by 0x002DE360
 218	Scene Item Debug Text Offset X:	0x001D3F7C	nudge	0x001C2F40()+0x4664	±0.1	-	subss/addss, one constant; MultipleDebugDisplay float
 219	Scene Item Debug Text Offset Y:	0x001D3FC1	nudge	0x001C2F40()+0x4668	±0.1	-	subss/addss, one constant; MultipleDebugDisplay float
 220	Extra BGM status:	0x001D4033	call	0x01DF0010	±1	wraps 0..2	passes ±1 to 0x0017E7A0, which steps the forced-BGM state: Not forced / Forced on / Forced off
-221	PS2 Far Plane:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-222	Control character position:	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-223	Unlock All license: Press Circle	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-224	Unlock all item: Press Circle	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+221	PS2 Far Plane:	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+222	Control character position:	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+223	Unlock All license: Press Circle	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+224	Unlock all item: Press Circle	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 225	Set clan point:	0x001D405C	int-step	obj+0xDB4	±1	digit 0 wraps 0..9	8-digit decimal editor: digits obj+0xDB8..0xDD4, cursor obj+0xDD8, value recomposed into obj+0xDB4; only the constructor writes the cursor (0, 0x001CCD77), so only digit 0 (obj+0xDB8) changes and the value stays 0..9
 226	Set step count:	0x001D4155	int-step	obj+0xDE0	±1	digit 0 wraps 0..9	8-digit decimal editor: digits obj+0xDE4..0xE00, cursor obj+0xE04, value recomposed into obj+0xDE0; only the constructor writes the cursor (qword 0, 0x001CCDA4), so only digit 0 (obj+0xDE4) changes and the value stays 0..9
 227	Set play time:	0x001D424E	int-step	obj+0xE08	±1	obj+0xE08 mod obj+0xE18; 0xE0C, 0xE10 mod 60	time entry: selector obj+0xE14 picks obj+0xE08, 0xE0C or 0xE10; two-button
@@ -220,9 +220,9 @@ id	label	arm	kind	field	step	bound	note
 230	Enable infinite chocobo turbo time:	0x001D3B46	toggle	obj+0xE1E	-	0/1	ignores the direction flags
 231	Set scenario flag:	0x001D4362	cycle	obj+0xE2C	±1 or ±10	wraps mod 311	step 10 when obj+0xE30 is set (always 0 in this image); index into the 311-entry scenario table 0x01DFC0D0
 232	Count of battle:	0x001D4BFA	readout	-	-	-	display row drawn by the renderer with a live value; no action
-233	Count of magic:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
-234	Count of tech:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
-235	Count of steal:	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
+233	Count of magic:	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
+234	Count of tech:	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
+235	Count of steal:	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
 236	Count of killed monsters:	0x001D4BFA	readout	-	-	-	display row drawn by the renderer with a live value; no action
 237	Current LP:	0x001D4BFA	readout	-	-	-	display row drawn by the renderer with a live value; no action
 238	Set count of battle:	0x001D43C9	int-step	obj+0xE34	±1 or ±10	floor 0	step 10 when the flag obj+0xE38 is set; two-button; no ceiling
@@ -246,10 +246,10 @@ id	label	arm	kind	field	step	bound	note
 256	MGC:	0x001D4BFA	readout	-	-	-	character stat read-out drawn from the stat array; no action
 257	WPR:	0x001D4BFA	readout	-	-	-	character stat read-out drawn from the stat array; no action
 258	SPD:	0x001D4BFA	readout	-	-	-	character stat read-out drawn from the stat array; no action
-259	Reset Parameter: Press Circle	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+259	Reset Parameter: Press Circle	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 260	Master Volume Ratio:	0x001D4590	nudge	obj+0x10B8	±0.01	-	subss/addss, one constant; then 0x002DF2B0(1, value); can leave [0, 1]
-261	Set Leather Count to 2: Press Circle	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
-262	Print Memory stats: Press Circle	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+261	Set Leather Count to 2: Press Circle	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
+262	Print Memory stats: Press Circle	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 263	Game Window Mode:	0x001D45E9	cycle	obj+0x10BC	±1	wraps mod 3	mirrors [0x01F82D20]+8; bl only; then pushes the mode through a string-taking call
 264	Game Display Resolution:	0x001D46DD	call	-	-	acts only when window mode <= 1	0x00182E10 with argument 0 or 1 chosen by bl; reads [0x01F82D20]+8 first
 265	Game Monitor :	0x001D4712	call	0x001DDAB0()+0x60	-	-	re-applies the current monitor through 0x001DC7A0(obj, monitor, 0); neither direction is read
@@ -269,15 +269,15 @@ id	label	arm	kind	field	step	bound	note
 279	Ambient Occlusion :	0x001D4B03	int-step	[0x01F82D20]+0x28	±1	wraps 0..2	GameSetting property 10 on both paths: Off / HalfResolution / FullResolution
 280	Depth of Field :	0x001D4B37	toggle	[0x01F82D20]+0x30	-	0/1	GameSetting property 12; jumps into id 281's body for the setter call
 281	Glare :	0x001D4B49	toggle	[0x01F82D20]+0x34	-	0/1	GameSetting property 13, then writes property 3 = 3 (VQ_CUSTOM)
-282	Save Config File :	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+282	Save Config File :	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 283	Apply Graphic Quality Default :	0x001D4B7D	cycle	[0x01F82D20]+0x0C	±1	wraps 0..2	GameSetting property 3 preset: VQ_LOW / VQ_MEDIUM / VQ_HIGH; VQ_CUSTOM is not reachable here
 284	BackBufferCount :	0x001D4907	toggle	[0x01F82D20]+0x44	-	0/1	GameSetting property 17: DoubleBuffer / TripleBuffer; then a vtable call
 285	Frame Limit (Apply save config file & restart game) :	0x001D494F	toggle	[0x01F82D20]+0x48	-	0/1	GameSetting property 18: frame limit 30 / 60
-286	Clear Achievements :	0x001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail
+286	Clear Achievements :	0x001D4BFA	no-action	-	-	-	button row; the action arm is the shared do-nothing tail
 287	FrameSkip Enabled:	0x001D47EA	toggle	0x01E02801	-	0/1	global byte; ignores the direction flags
 288	Mouse Control Camera Max Move:	0x001D479B	int-step	obj+0x10D4	±1	-	two-button; unbounded
-289	Disable PauseMenu :	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
-290	Game Time Stop is	0x001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail
+289	Disable PauseMenu :	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
+290	Game Time Stop is	0x001D4BFA	no-action	-	-	-	label row; the action arm is the shared do-nothing tail
 291	Save Load Message Debug State :	0x001D4BB7	cycle	obj+0x10DC	±1	wraps 0..3	sub/inc with wrap at both ends
 292	Super wide Mask Debug Enable :	0x001D4BEA	toggle	obj+0x10E0	-	0/1	ignores the direction flags
 293	Key Board Debug For Japanese Keyboard:	0x001D3AD0	toggle	obj+0xC3D	-	0/1	ignores the direction flags

@@ -128,8 +128,8 @@ regex routines that only this use reaches are listed in [`msvc-containers-stl-re
 `0x0020A800` reaches the regex traits' `std::collate<char>` through `0x00203E60` (`0x0020A849`), the library's `use_facet`.
 1. Under the lock `_Lockit` it keeps the cached facet in a local.
 2. It looks the facet's id `collate<char>::id` (import `0x008C2580`) up in the locale and then in the global locale.
-3. When neither has the facet it returns the cached one. When there is none, `0x00207FB0` builds it (vtable `0x00905888`,
-   `std::collate<char>`), or `bad cast` is thrown (`0x00203F05`-`0x00203F29`).
+3. When neither has the facet it returns the cached one. When there is no cached facet, `0x00207FB0` builds it (vtable
+   `0x00905888`, `std::collate<char>`), or `bad cast` is thrown (`0x00203F05`-`0x00203F29`).
 4. A new facet is cached, its reference is taken (`[vtable + 8]`) and it is registered with `0x00808850`.
 
 | Global | Type | Start | Meaning | Set by | Read by |
@@ -143,6 +143,16 @@ are called only from `0x0020A800` and the routines of the first list. The node d
 (`_Node_class`) and `0x00204660` (`_Node_if`) are called by the deleting destructors in the vtables at
 `0x00905A28` and `0x00905930`; `0x00206CD0` and `0x00204590` are reached from the catch funclet `0x008996A0`
 of `0x00206AD0` and the unwind funclet `0x008999D0` of `0x0020A800`.
+
+### Columns of msvc-containers-stl-regex-char.tsv
+
+One row per routine, 8 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the routine's entry address, `0x00203240` to `0x002094D0` |
+| `referring_function` | the start of the function that holds the reference in `reference` |
+| `reference` | the instruction that names the routine and its address: a `call` on six rows, a `jb` on `0x00203240` and a `jmp` on `0x00204340`. On `0x00204340` and `0x002094D0` the instruction is in an unwind funclet that the function's exception table names (`0x008993F0` of `0x00203790`, `0x008999A0` of `0x0020A4D0`) |
 
 ### Columns of msvc-containers-stl-regex-char-members.tsv
 

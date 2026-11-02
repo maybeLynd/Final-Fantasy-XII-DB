@@ -68,11 +68,11 @@ glf_z01	glf_z01 (Jahara)	choco_sum_ctrl	sumcho_byebye	requested by 常駐ディ�
 glf_z01	glf_z01 (Jahara)	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 glf_a0200	scene, event 327	DIRECTOR	EV_a0313	requested by PRODUCER.main	system message; no name shown	system message 75; 0	[value] joins the party as a guest! (the game fills [value] with Larsa, party table row 13) / (empty string)	-	-	-	-	-	-	-	-	-	-	2	-
 glf_a0200	scene, event 327	MESSAGE	TAGmes_ASHE_1	requested by DIRECTOR.EV_a0300	Ashe	1	I will accompany you to Mt Bur-Omisace.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0200	scene, event 327	MESSAGE	TAGmes_LARSAR_2	requested by DIRECTOR.EV_a0300	-	2	I had hoped you'd say yes. I am glad.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0200	scene, event 327	MESSAGE	TAGmes_LARSAR_2	requested by DIRECTOR.EV_a0300	Larsa	2	I had hoped you'd say yes. I am glad.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0200	scene, event 327	MESSAGE	TAGmes_ASHE_3	requested by DIRECTOR.EV_a0300	Ashe	3; 4	My heart is not set. I still have questions. / I hope to find answers along the way.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0200	scene, event 327	MESSAGE	TAGmes_LARSAR_4	requested by DIRECTOR.EV_a0300	-	5; 6	I had other reason to invite you. / There is someone I'd like you to meet waiting on Bur-Omisace.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0200	scene, event 327	MESSAGE	TAGmes_LARSAR_4	requested by DIRECTOR.EV_a0300	Larsa	5; 6	I had other reason to invite you. / There is someone I'd like you to meet waiting on Bur-Omisace.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0200	scene, event 327	MESSAGE	TAGmes_ASHE_5	requested by DIRECTOR.EV_a0300	Ashe	7	Who is that?	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0200	scene, event 327	MESSAGE	TAGmes_LARSAR_6	requested by DIRECTOR.EV_a0300	-	8; 9	An enemy, and an ally also. / You will just have to wait and see for yourself.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0200	scene, event 327	MESSAGE	TAGmes_LARSAR_6	requested by DIRECTOR.EV_a0300	Larsa	8; 9	An enemy, and an ally also. / You will just have to wait and see for yourself.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0200	scene, event 327	MESSAGE	TAGmes_VAN_7	requested by DIRECTOR.EV_a0300	Vaan	10	That Larsa likes his secrets.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0200	scene, event 327	MESSAGE	TAGmes_ASHE_8	requested by DIRECTOR.EV_a0300	Ashe	11	He does not mean ill by it.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0200	scene, event 327	MESSAGE	TAGmes_VAN_9	requested by DIRECTOR.EV_a0300	Vaan	12; 13	He's not bad. / At least for an Imperial.	-	-	-	-	-	-	-	-	-	-	1	-
@@ -102,42 +102,42 @@ glf_a0200	scene, event 327	イベント特殊効果画面_EV	システムメッ�
 glf_a0200	scene, event 327	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s1_2; receives the item held in file_var_s8_1	-	-	-	-	1	-
 glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_1	requested by DIRECTOR.EV_a0300	-	0	This nethicite— you have used it.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0300	scene, event 325	MESSAGE	TAGmes_ASHE_2	requested by DIRECTOR.EV_a0300	Ashe	1; 2	It was not I who used it. / Indeed I had hoped you could show me how. Thus I've come.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_3	requested by DIRECTOR.EV_a0300	-	3; 4; 5	You do not know the workings of the Stone. / Then we are no different. / What?	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_4	requested by DIRECTOR.EV_a0300	-	6; 7	In ages past, the gods made a gift of nethicite to my people. / But the manner of its use eluded us.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_6	requested by DIRECTOR.EV_a0300	-	8; 9	Displeased by our failure, the gods took back their Stones. / They chose instead to give them to a hume king.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_8	requested by DIRECTOR.EV_a0300	-	10	Called the Dynast-King, he used the nethicite's power to bring peace to a troubled time.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_9	requested by DIRECTOR.EV_a0300	-	11; 12	It is a curious thing. / Though the blood of King Raithwall flow through your veins, you cannot wield nethicite.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_3	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label); Ashe	3; 4; 5	You do not know the workings of the Stone. / Then we are no different. / What?	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_4	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	6; 7	In ages past, the gods made a gift of nethicite to my people. / But the manner of its use eluded us.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_6	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	8; 9	Displeased by our failure, the gods took back their Stones. / They chose instead to give them to a hume king.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_8	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	10	Called the Dynast-King, he used the nethicite's power to bring peace to a troubled time.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_9	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	11; 12	It is a curious thing. / Though the blood of King Raithwall flow through your veins, you cannot wield nethicite.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0300	scene, event 325	MESSAGE	TAGmes_ASHE_10	requested by DIRECTOR.EV_a0300	Ashe	13; 14	Cannot wield it? / So then, am I to understand you can't tell me how to use the Stone?	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_11	requested by DIRECTOR.EV_a0300	-	15	Though it shame me so to admit.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_12	requested by DIRECTOR.EV_a0300	-	16; 17	Here before me stands a descendant of the Dynast-King himself... / and I can accord her no help at all.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_13	requested by DIRECTOR.EV_a0300	-	18	Still, even if you knew how to use the nethicite, you would find it of small avail.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_14	requested by DIRECTOR.EV_a0300	-	19	The Mist collected in the Stone over ages past is lost, and with it the Stone's power.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_15	requested by DIRECTOR.EV_a0300	-	20	It will be your posterity who wield the Stone in ages yet to come.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_17	requested by DIRECTOR.EV_a0300	-	21; 22; 23	This Stone is devoid of power. / Empty, yet full of thirst. / A terrible longing to drink the world dry.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_18	requested by DIRECTOR.EV_a0300	-	23	A terrible longing to drink the world dry.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_19	requested by DIRECTOR.EV_a0300	-	24; 25	The power of men, and of magick. / Of good, and of evil.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_19_2	requested by DIRECTOR.EV_a0300	-	26	It is often those who desire nethicite whom the nethicite itself desires.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_11	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	15	Though it shame me so to admit.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_12	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	16; 17	Here before me stands a descendant of the Dynast-King himself... / and I can accord her no help at all.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_13	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	18	Still, even if you knew how to use the nethicite, you would find it of small avail.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_14	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	19	The Mist collected in the Stone over ages past is lost, and with it the Stone's power.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_15	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	20	It will be your posterity who wield the Stone in ages yet to come.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_17	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label); no name shown	21; 22; 23	This Stone is devoid of power. / Empty, yet full of thirst. / A terrible longing to drink the world dry.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_18	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	23	A terrible longing to drink the world dry.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_19	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	24; 25	The power of men, and of magick. / Of good, and of evil.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_a0300	scene, event 325	MESSAGE	TAGmes_ELDER_GALIF_19_2	requested by DIRECTOR.EV_a0300	ELDER_GALIF (script label)	26	It is often those who desire nethicite whom the nethicite itself desires.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0300	scene, event 325	MESSAGE	TAGmes_PANNERO_20	requested by DIRECTOR.EV_a0300	Penelo	27	Larsa?	-	-	-	-	-	-	-	-	-	-	1	-
 glf_a0300	scene, event 325	choco_sum_ctrl	sumcho_byebye	requested by PRODUCER.main	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 glf_a0300	scene, event 325	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 glf_z0100	scene, event 326	MESSAGE	TAGmes_ASHE_1	requested by DIRECTOR.EV_z0100	Ashe	0	To Bur-Omisace?	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_2	requested by DIRECTOR.EV_z0100	-	1	I say we ought leave tomorrow.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_3	requested by DIRECTOR.EV_z0100	-	2	I was going to wait for my escort to return, but meeting you here has presented a great opportunity.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_4	requested by DIRECTOR.EV_z0100	-	3	This terrible war can be stopped, but I will need your help to do so.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_2	requested by DIRECTOR.EV_z0100	LARSAR (script label)	1	I say we ought leave tomorrow.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_3	requested by DIRECTOR.EV_z0100	LARSAR (script label)	2	I was going to wait for my escort to return, but meeting you here has presented a great opportunity.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_4	requested by DIRECTOR.EV_z0100	LARSAR (script label)	3	This terrible war can be stopped, but I will need your help to do so.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_z0100	scene, event 326	MESSAGE	TAGmes_ASHE_5	requested by DIRECTOR.EV_z0100	Ashe	4	A war?	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_6	requested by DIRECTOR.EV_z0100	-	5; 6; 7; 8	You know the Marquis Ondore leads a group of insurgents— / your pardon, he leads a large resistance force against the Empire. / Lady Ashe, neither of our countries can afford this now. / The Rozarrian Empire would stir.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_8	requested by DIRECTOR.EV_z0100	-	9; 10	They would aid the Resistance and use this aid as a pretext to declare war on Archadia... / and Archadia would have no choice but to answer.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_10	requested by DIRECTOR.EV_z0100	-	11	Lady Ashe, let us go to Bur-Omisace.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_11	requested by DIRECTOR.EV_z0100	-	12	With the blessing of His Grace the Gran Kiltias Anastasis...	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_11_02	requested by DIRECTOR.EV_z0100	-	13	you may rightly wear your crown, and declare the restoration of the Kingdom of Dalmasca.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_12	requested by DIRECTOR.EV_z0100	-	14; 15	As queen, you can call for peace between the Empire and Dalmasca... / and stop Marquis Ondore.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_6	requested by DIRECTOR.EV_z0100	LARSAR (script label)	5; 6; 7; 8	You know the Marquis Ondore leads a group of insurgents— / your pardon, he leads a large resistance force against the Empire. / Lady Ashe, neither of our countries can afford this now. / The Rozarrian Empire would stir.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_8	requested by DIRECTOR.EV_z0100	LARSAR (script label)	9; 10	They would aid the Resistance and use this aid as a pretext to declare war on Archadia... / and Archadia would have no choice but to answer.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_10	requested by DIRECTOR.EV_z0100	LARSAR (script label)	11	Lady Ashe, let us go to Bur-Omisace.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_11	requested by DIRECTOR.EV_z0100	LARSAR (script label)	12	With the blessing of His Grace the Gran Kiltias Anastasis...	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_11_02	requested by DIRECTOR.EV_z0100	LARSAR (script label)	13	you may rightly wear your crown, and declare the restoration of the Kingdom of Dalmasca.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_12	requested by DIRECTOR.EV_z0100	LARSAR (script label)	14; 15	As queen, you can call for peace between the Empire and Dalmasca... / and stop Marquis Ondore.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_z0100	scene, event 326	MESSAGE	TAGmes_ASHE_13	requested by DIRECTOR.EV_z0100	Ashe	16	For peace?	-	-	-	-	-	-	-	-	-	-	1	-
 glf_z0100	scene, event 326	MESSAGE	TAGmes_ASHE_14	requested by DIRECTOR.EV_z0100	Ashe	17	How dare you say that!	-	-	-	-	-	-	-	-	-	-	1	-
 glf_z0100	scene, event 326	MESSAGE	TAGmes_ASHE_15	requested by DIRECTOR.EV_z0100	Ashe	18; 19	The Empire attacked us, stole all we hold dear... / and you would have me save them from war?	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_16	requested by DIRECTOR.EV_z0100	-	20	Dalmasca would be the battlefield!	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_17	requested by DIRECTOR.EV_z0100	-	21; 22	What if nethicite were used on Rabanastre? / You know my brother would do this!	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_18	requested by DIRECTOR.EV_z0100	-	23; 24	Forgive me, I presumed overmuch. / I could think of no other way to avoid bloodshed.	-	-	-	-	-	-	-	-	-	-	1	-
-glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_19	requested by DIRECTOR.EV_z0100	-	25	If you cannot trust me, then please, take me as your hostage.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_16	requested by DIRECTOR.EV_z0100	LARSAR (script label)	20	Dalmasca would be the battlefield!	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_17	requested by DIRECTOR.EV_z0100	LARSAR (script label)	21; 22	What if nethicite were used on Rabanastre? / You know my brother would do this!	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_18	requested by DIRECTOR.EV_z0100	LARSAR (script label)	23; 24	Forgive me, I presumed overmuch. / I could think of no other way to avoid bloodshed.	-	-	-	-	-	-	-	-	-	-	1	-
+glf_z0100	scene, event 326	MESSAGE	TAGmes_LARSAR_19	requested by DIRECTOR.EV_z0100	LARSAR (script label)	25	If you cannot trust me, then please, take me as your hostage.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_z0100	scene, event 326	MESSAGE	TAGmes_ASHE_21	requested by DIRECTOR.EV_z0100	Ashe	26	Rasler.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_z0100	scene, event 326	MESSAGE	TAGmes_VAN_22	requested by DIRECTOR.EV_z0100	Vaan	27; 28	You saw him, didn't you. / Like at the king's tomb.	-	-	-	-	-	-	-	-	-	-	1	-
 glf_z0100	scene, event 326	MESSAGE	TAGmes_ASHE_23	requested by DIRECTOR.EV_z0100	Ashe	29; 30	So you did see him, too. / But why?	-	-	-	-	-	-	-	-	-	-	1	-

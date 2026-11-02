@@ -50,8 +50,8 @@ On delivery `0x003EA710` binds the sections through `0x0023A160(category, addres
 | 0 | `+0x10` | `0x02EBF150` | `0x003845F0` |
 | 1 | `+0x14` | `0x02EBF168` | `0x003846F0`, depth 0 |
 | 2 | `+0x18` | `0x02EBF120` | `0x003845F0` |
-| 3 | `+0x24` (0 = none) | `0x02EBF148` | `0x003845F0` |
-| 4 | `+0x28` (0 = none) | `0x02EBF140` | `0x003845F0` |
+| 3 | `+0x24` (0 = no section) | `0x02EBF148` | `0x003845F0` |
+| 4 | `+0x28` (0 = no section) | `0x02EBF140` | `0x003845F0` |
 
 Categories 0–2 are bound from their offsets unconditionally; 3 and 4 are null when the field is 0.
 These five are the only slots that change when the area changes.
@@ -171,11 +171,11 @@ the id's top nibble (5–19), −1 for nibble 15.
 | 16 | `0xB000` | `0x02EBF060` price_data |
 | 17 | `0xC000` | `0x02EBF0C8` menkyo_data |
 | 18 | `0xD000` | `0x02EBF058` horidashi |
-| 19 | `0xE000` | none: `0xE000`–`0xEFFE` |
+| 19 | `0xE000` | no table: `0xE000`–`0xEFFE` |
 | 20 | 0 | `0x02EBF138` action_data |
 | 21 | 0 | `0x02EBF128` comac_data |
-| 22 | 0 | none: 0–3 |
-| 23 | 0 | none: 0–8 |
+| 22 | 0 | no table: 0–3 |
+| 23 | 0 | no table: 0–8 |
 | 24 | 0 | `0x02EBF110` mgccategory_data |
 | 25, 32 | 0 | `0x02EBF038` license_data |
 | 26 | 0 | `0x02EBF118` status_data |

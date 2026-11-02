@@ -25,6 +25,11 @@ different operand widths). For each family the image was also searched for every
 every target the listed members share. For all 171 families the search returns exactly the member list, so
 each family's member count is the number of functions in the image with its body.
 
+In the tables under Data, each
+family's member count links to its member list, the file beside this page that gives every member's entry
+address (`address`) and, in the lists with a `targets` column, functions outside the member's body that
+it calls or jumps to, by entry address and separated by commas.
+
 Two pairs of lists share one form and are told apart by a value the form drops:
 
 - the vtable-installing deleting destructors, by whether the destructor they call is `0x00633390`;
@@ -88,7 +93,7 @@ only adapters shared between classes: `0x006B2950` serves `Matrix3`, `Matrix4` a
 
 The other 401 targets each load the name of one script pointer accessor,
 `Phyre::PScripting::PScriptAccessors::PObjectAccessor<T *>::Get`, beside their error messages;
-none loads a reference accessor's (`T &`) name.
+no target loads a reference accessor's (`T &`) name.
 
 `0x005BEC00`, the target above, starts with
 `0x00682980`, which looks up `PhyreObject` in the Lua registry (pseudo-index `-1001000`) and returns
@@ -132,7 +137,7 @@ These member files beside the page are not single-form families:
 
 ### Columns of the lists beside the families
 
-The letters in `callee-disposition` say how a function is explained in this database: `A`, a page says
+The letters in `callee_explanation` say how a function is explained in this database: `A`, a page says
 what this function does and cites an address inside its body; `B`, one page explains a body shape that a
 family of functions shares and lists the family by a stated method; `C`, the function is named as library,
 middleware or compiler code and the boundary of that code is stated.
@@ -142,7 +147,7 @@ middleware or compiler code and the boundary of that code is stated.
 | `section` | in generated-function-families-trivial-global-accessors.tsv, the image section of the global: `.data` on 470 rows, `.rdata` on 12 |
 | `mnemonic` | in the same list, the body's one instruction before `ret`: `mov` 290, `lea` 91, `movzx` 49, `movsx` 26, `movss` 25, `movsd` 1 |
 | `owning-page` | in generated-function-families-documented-global-leaf-accessors.tsv, the pages that cited the global by its address when the list was last recomputed, as paths below the database root separated by a vertical bar; `-` on 13 rows. In generated-function-families-explained-callee-adapters.tsv, the same for the callee: for an `A` callee the pages that cite an address inside its body, for a `B` or `C` callee the page that lists its family; `-` on 43 rows |
-| `callee-disposition` | in generated-function-families-explained-callee-adapters.tsv, how the one function the adapter calls or jumps to is explained: `A` on 261 rows, `C` on 171, `B` on 51 |
+| `callee_explanation` | in generated-function-families-explained-callee-adapters.tsv, how the one function the adapter calls or jumps to is explained: `A` on 261 rows, `C` on 171, `B` on 51 |
 | `transform` | in the same list, what the instructions before that call do to the four argument registers. `this-adjusted` (67 rows): `rcx` is moved by a constant or loaded through itself; `shifted` (227): a register takes another argument's value, or an argument other than `rcx` is loaded through itself; `flag-normalised` (5): a register is turned into 0 or 1; `constant-inserted` (56): a register takes a constant or a value loaded from a fixed address. On the other 128 rows the value says that no argument register changes. When several apply, the first in that order is written |
 | `family_file` | in generated-function-families-generated-families-installed-classes.tsv and generated-function-families-generated-families-shared-implementations.tsv, the member list of the family the row is about |
 | `role` | in the installed-classes list, what the family's instruction form does with the vtable, read from one member per family (7 values, one per family); in the shared-implementations list, what the shared function is, taken from the pages that cite its address (`CRT` on 11 rows) |
@@ -156,7 +161,7 @@ middleware or compiler code and the boundary of that code is stated.
 | `family` | the family's name |
 | `shape` | what every member's body does, in instruction terms |
 | `members` | the number of members; the image search returns exactly the member list for every family |
-| `example` | one member's entry address (the lowest) |
+| `example` | one member's entry address |
 | `member_list` | the file beside this page that lists every member |
 
 ## Data
@@ -165,232 +170,232 @@ middleware or compiler code and the boundary of that code is stated.
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `NativeLeaf.ConstantDwordReturn` | 89 | `0x0017E410` | `mov eax, imm32; ret`: returns a constant. |
-| `NativeLeaf.DoubleCallBool` | 4 | `0x0017E4E0` | Calls one function, calls a second on its result, returns the second result's low byte zero-extended. |
-| `NativeLeaf.DoubleDerefFlagExtract` | 6 | `0x001E4AE0` | `rax = [rcx+off]`; returns one bit of the dword at `[[rax]+off2]` (`shr`, `and 1`). |
-| `NativeLeaf.FieldByteGetter` | 31 | `0x00187530` | `movzx eax, byte [rcx+off]; ret` (or `[rcx]`). |
-| `NativeLeaf.FieldByteStore` | 27 | `0x001863E0` | `mov byte [rcx+off], dl; ret` (or `[rcx]`). |
-| `NativeLeaf.FieldClear` | 20 | `0x00189C10` | `mov [rcx+off], 0; ret`, byte to qword width. Same instruction form as the constant stores, with the constant 0. |
-| `NativeLeaf.FieldConstStore` | 19 | `0x00193930` | `mov [rcx+off], imm; ret` with a non-zero constant, byte to qword width. |
-| `NativeLeaf.FieldDwordGetter` | 52 | `0x00186980` | `mov eax, [rcx+off]; ret` (or `[rcx]`). |
-| `NativeLeaf.FieldDwordStore` | 22 | `0x001B1FA0` | `mov [rcx+off], edx; ret`. |
-| `NativeLeaf.FieldFlagMaskClear` | 6 | `0x00313F70` | `and [rcx+off], mask; ret`: clears flag bits of a byte or dword field. |
-| `NativeLeaf.FieldFloatGetter` | 35 | `0x001867D0` | `movss xmm0, [rcx+off]; ret`. |
-| `NativeLeaf.FieldFloatStore` | 23 | `0x00194300` | `movss [rcx+off], xmm1; ret`. |
-| `NativeLeaf.FieldQwordGetter` | 36 | `0x00186660` | `mov rax, [rcx+off]; ret` (or `[rcx]`). |
-| `NativeLeaf.FieldQwordStore` | 16 | `0x001B22D0` | `mov [rcx+off], rdx; ret` (or `[rcx]`). |
-| `NativeLeaf.FlagBit1SetClear` | 4 | `0x0018B070` | When the byte argument `dl` is non-zero, sets bit `0x2` of the dword at `this+0x20`; otherwise clears it. |
-| `NativeLeaf.FlagBit2SetClear` | 4 | `0x0026A320` | Clears one bit of a byte field, then sets it again when `edx` is non-zero (`setne`, `shl`, `or`). |
-| `NativeLeaf.GlobalHandleStateRead` | 6 | `0x001B5FB0` | Calls `0x0016D6A0` with `ecx` = (pointer global non-zero), then returns a second global. |
-| `NativeLeaf.GlobalQwordStore` | 9 | `0x00378B80` | `mov eax, ecx; mov [global], rax; ret`: stores the zero-extended argument into a qword global. |
-| `NativeLeaf.MemberAddressAccessor` | 22 | `0x001B0FA0` | `lea rax, [rcx+off]; ret`: returns the address of a member. |
-| `NativeLeaf.NoOpReturnStub` | 38 | `0x006DA8C0` | `ret 0`: returns at once. |
-| `NativeLeaf.NullableDerefWordAdd` | 4 | `0x003E6CF0` | `rdx = [rcx+off]`; when it and its word at `+0x10` are non-zero returns that word plus the low 32 bits of `rdx`, sign-extended; otherwise 0. |
-| `NativeLeaf.PairedStaticConstStore` | 10 | `0x0017F270` | Two `mov [global], imm` stores into two globals, then `ret`; byte to dword width. |
-| `NativeLeaf.PayloadBaseBitExtract` | 6 | `0x00314A80` | Calls `0x002EF2B0` and returns one bit of a byte at a fixed offset in the returned block. |
-| `NativeLeaf.PayloadBaseFlagSet` | 4 | `0x00314BB0` | Calls `0x002EF2B0`, clears one bit of a byte in the returned block, and sets it again when the argument is non-zero. |
-| `NativeLeaf.StaticGlobalFloatSetter` | 21 | `0x002B6670` | `movss [global], xmm0; ret`: stores the float argument into a global. |
-| `NativeLeaf.StaticPointerBitfieldGetter` | 14 | `0x00236780` | Loads a pointer global and returns one bit of a dword field of its object (`shr`, `and 1`). |
-| `NativeLeaf.StaticPointerNestedFieldGetter` | 14 | `0x0027E9D0` | Loads a pointer global and returns the qword at a fixed offset in what it points to. |
-| `NativeLeaf.StaticPointerNonNullPredicate` | 11 | `0x00228480` | Returns 1 when a pointer global is non-zero (`cmp [global], 0; setne al`). |
-| `NativeLeaf.TaggedStaticAddressAccessor` | 23 | `0x005C51E0` | `lea rax, [global]; or rax, 1; ret`: returns a static's address with bit `0x1` set. |
-| `NativeLeaf.ThreeFloatStore` | 4 | `0x00194330` | Stores `xmm1`, `xmm2` and `xmm3` into three adjacent float fields of `this`. |
-| `NativeLeaf.TwoFloatStore` | 5 | `0x00180870` | Stores `xmm1` and `xmm2` into two adjacent float fields of `this`. |
-| `NativeLeaf.VectCountFloatOrConst` | 4 | `0x001C0820` | Divides the span `[+0x60] - [+0x58]` by 20 (multiply by `0x6666666666666667`); when non-zero returns a float constant, else 0.0 when `[+0x10]` is 0, else the float at `[[+0x18]+0x24]`. |
+| `NativeLeaf.ConstantDwordReturn` | [89](generated-function-families-nativeleaf-constantdwordreturn.tsv) | `0x0017E410` | `mov eax, imm32; ret`: returns a constant. |
+| `NativeLeaf.DoubleCallBool` | [4](generated-function-families-nativeleaf-doublecallbool.tsv) | `0x0017E4E0` | Calls one function, calls a second on its result, returns the second result's low byte zero-extended. |
+| `NativeLeaf.DoubleDerefFlagExtract` | [6](generated-function-families-nativeleaf-doublederefflagextract.tsv) | `0x001E4AE0` | `rax = [rcx+off]`; returns one bit of the dword at `[[rax]+off2]` (`shr`, `and 1`). |
+| `NativeLeaf.FieldByteGetter` | [31](generated-function-families-nativeleaf-fieldbytegetter.tsv) | `0x00187530` | `movzx eax, byte [rcx+off]; ret` (or `[rcx]`). |
+| `NativeLeaf.FieldByteStore` | [27](generated-function-families-nativeleaf-fieldbytestore.tsv) | `0x001863E0` | `mov byte [rcx+off], dl; ret` (or `[rcx]`). |
+| `NativeLeaf.FieldClear` | [20](generated-function-families-nativeleaf-fieldclear.tsv) | `0x00189C10` | `mov [rcx+off], 0; ret`, byte to qword width. Same instruction form as the constant stores, with the constant 0. |
+| `NativeLeaf.FieldConstStore` | [19](generated-function-families-nativeleaf-fieldconststore.tsv) | `0x00193930` | `mov [rcx+off], imm; ret` with a non-zero constant, byte to qword width. |
+| `NativeLeaf.FieldDwordGetter` | [52](generated-function-families-nativeleaf-fielddwordgetter.tsv) | `0x00186980` | `mov eax, [rcx+off]; ret` (or `[rcx]`). |
+| `NativeLeaf.FieldDwordStore` | [22](generated-function-families-nativeleaf-fielddwordstore.tsv) | `0x001B1FA0` | `mov [rcx+off], edx; ret`. |
+| `NativeLeaf.FieldFlagMaskClear` | [6](generated-function-families-nativeleaf-fieldflagmaskclear.tsv) | `0x00313F70` | `and [rcx+off], mask; ret`: clears flag bits of a byte or dword field. |
+| `NativeLeaf.FieldFloatGetter` | [35](generated-function-families-nativeleaf-fieldfloatgetter.tsv) | `0x001867D0` | `movss xmm0, [rcx+off]; ret`. |
+| `NativeLeaf.FieldFloatStore` | [23](generated-function-families-nativeleaf-fieldfloatstore.tsv) | `0x00194300` | `movss [rcx+off], xmm1; ret`. |
+| `NativeLeaf.FieldQwordGetter` | [36](generated-function-families-nativeleaf-fieldqwordgetter.tsv) | `0x00186660` | `mov rax, [rcx+off]; ret` (or `[rcx]`). |
+| `NativeLeaf.FieldQwordStore` | [16](generated-function-families-nativeleaf-fieldqwordstore.tsv) | `0x001B22D0` | `mov [rcx+off], rdx; ret` (or `[rcx]`). |
+| `NativeLeaf.FlagBit1SetClear` | [4](generated-function-families-nativeleaf-flagbit1setclear.tsv) | `0x0018B070` | When the byte argument `dl` is non-zero, sets bit `0x2` of the dword at `this+0x20`; otherwise clears it. |
+| `NativeLeaf.FlagBit2SetClear` | [4](generated-function-families-nativeleaf-flagbit2setclear.tsv) | `0x0026A320` | Clears one bit of a byte field, then sets it again when `edx` is non-zero (`setne`, `shl`, `or`). |
+| `NativeLeaf.GlobalHandleStateRead` | [6](generated-function-families-nativeleaf-globalhandlestateread.tsv) | `0x001B5FB0` | Calls `0x0016D6A0` with `ecx` = (pointer global non-zero), then returns a second global. |
+| `NativeLeaf.GlobalQwordStore` | [9](generated-function-families-nativeleaf-globalqwordstore.tsv) | `0x00378B80` | `mov eax, ecx; mov [global], rax; ret`: stores the zero-extended argument into a qword global. |
+| `NativeLeaf.MemberAddressAccessor` | [22](generated-function-families-nativeleaf-memberaddressaccessor.tsv) | `0x001B0FA0` | `lea rax, [rcx+off]; ret`: returns the address of a member. |
+| `NativeLeaf.NoOpReturnStub` | [38](generated-function-families-nativeleaf-noopreturnstub.tsv) | `0x006DA8C0` | `ret 0`: returns at once. |
+| `NativeLeaf.NullableDerefWordAdd` | [4](generated-function-families-nativeleaf-nullablederefwordadd.tsv) | `0x003E6CF0` | `rdx = [rcx+off]`; when it and its word at `+0x10` are non-zero returns that word plus the low 32 bits of `rdx`, sign-extended; otherwise 0. |
+| `NativeLeaf.PairedStaticConstStore` | [10](generated-function-families-nativeleaf-pairedstaticconststore.tsv) | `0x0017F270` | Two `mov [global], imm` stores into two globals, then `ret`; byte to dword width. |
+| `NativeLeaf.PayloadBaseBitExtract` | [6](generated-function-families-nativeleaf-payloadbasebitextract.tsv) | `0x00314A80` | Calls `0x002EF2B0` and returns one bit of a byte at a fixed offset in the returned block. |
+| `NativeLeaf.PayloadBaseFlagSet` | [4](generated-function-families-nativeleaf-payloadbaseflagset.tsv) | `0x00314BB0` | Calls `0x002EF2B0`, clears one bit of a byte in the returned block, and sets it again when the argument is non-zero. |
+| `NativeLeaf.StaticGlobalFloatSetter` | [21](generated-function-families-nativeleaf-staticglobalfloatsetter.tsv) | `0x002B6670` | `movss [global], xmm0; ret`: stores the float argument into a global. |
+| `NativeLeaf.StaticPointerBitfieldGetter` | [14](generated-function-families-nativeleaf-staticpointerbitfieldgetter.tsv) | `0x00236780` | Loads a pointer global and returns one bit of a dword field of its object (`shr`, `and 1`). |
+| `NativeLeaf.StaticPointerNestedFieldGetter` | [14](generated-function-families-nativeleaf-staticpointernestedfieldgetter.tsv) | `0x0027E9D0` | Loads a pointer global and returns the qword at a fixed offset in what it points to. |
+| `NativeLeaf.StaticPointerNonNullPredicate` | [11](generated-function-families-nativeleaf-staticpointernonnullpredicate.tsv) | `0x00228480` | Returns 1 when a pointer global is non-zero (`cmp [global], 0; setne al`). |
+| `NativeLeaf.TaggedStaticAddressAccessor` | [23](generated-function-families-nativeleaf-taggedstaticaddressaccessor.tsv) | `0x005C51E0` | `lea rax, [global]; or rax, 1; ret`: returns a static's address with bit `0x1` set. |
+| `NativeLeaf.ThreeFloatStore` | [4](generated-function-families-nativeleaf-threefloatstore.tsv) | `0x00194330` | Stores `xmm1`, `xmm2` and `xmm3` into three adjacent float fields of `this`. |
+| `NativeLeaf.TwoFloatStore` | [5](generated-function-families-nativeleaf-twofloatstore.tsv) | `0x00180870` | Stores `xmm1` and `xmm2` into two adjacent float fields of `this`. |
+| `NativeLeaf.VectCountFloatOrConst` | [4](generated-function-families-nativeleaf-vectcountfloatorconst.tsv) | `0x001C0820` | Divides the span `[+0x60] - [+0x58]` by 20 (multiply by `0x6666666666666667`); when non-zero returns a float constant, else 0.0 when `[+0x10]` is 0, else the float at `[[+0x18]+0x24]`. |
 
 ### Forwarders that set an argument and jump
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `NativeAdapter.ConstantFirstArgumentTailCall` | 26 | `0x002549F0` | `mov ecx, imm; jmp target`. |
-| `NativeAdapter.FieldResetOffsetTailCall` | 26 | `0x0051E580` | Stores 0 or 1 into a dword field of `this`, sets `edx` to a small constant, adds `0x20` (`0x70` in four members) to `rcx` and jumps to one of four targets (`0x00470050`, `0x0046FFA0`, `0x0051DDC0`, `0x0051DBF0`); the members come in 0 / 1 pairs. |
-| `NativeAdapter.FirstMemberPointerTailCall` | 18 | `0x00210960` | `mov rcx, [rcx]; jmp target`: the offset-0 spelling of the member-pointer forwarder. |
-| `NativeAdapter.FourthArgumentZeroTailCall` | 7 | `0x00214B80` | `xor r9d, r9d; jmp target`. |
-| `NativeAdapter.GlobalOffsetTailCall` | 5 | `0x0028E220` | `mov rcx, [global]; add rcx, off; jmp target`. |
-| `NativeAdapter.MemberFieldSpanTailCall` | 4 | `0x00537F10` | Sets `rdx = this`, `r8 = this+off`, `rcx = [this+0xE0] + off2` and `r9` = the second argument, then jumps to `0x003A56C0`. |
-| `NativeAdapter.MemberOffsetTailCall` | 44 | `0x001A5800` | `add rcx, off; jmp target`: calls a member sub-object's method. |
-| `NativeAdapter.MemberPointerTailCall` | 45 | `0x00210B60` | `mov rcx, [rcx+off]; jmp target`: calls a method of a pointed-to member. |
-| `NativeAdapter.NullableFirstMemberTail` | 5 | `0x002BDAE0` | `mov rcx, [rcx+off]; test rcx, rcx; jne target; ret`. |
-| `NativeAdapter.NullableGlobalTailDispatch` | 12 | `0x001AD450` | `mov rcx, [global]; test rcx, rcx; jne target; ret`. |
-| `NativeAdapter.NullGuardTailCall` | 5 | `0x002681D0` | `test rcx, rcx; jne target; ret`: forwards only a non-null `this`. |
-| `NativeAdapter.RelativeMemberAddressTailCall32` | 46 | `0x005C9720` | `rcx = rdx + ([this+0x48] - [[this+0x18]+0xF4])`, `edx = r8d`, then `jmp target`. |
-| `NativeAdapter.RelativeMemberAddressTailCall64` | 19 | `0x005CA350` | The same relative address with the 64-bit `r8` kept as `rdx` and `r9d` moved to `r8d`, then `jmp target`. |
-| `NativeAdapter.SecondArgumentConstTailCall` | 12 | `0x0024ACE0` | `mov edx, imm; jmp target`. |
-| `NativeAdapter.SecondArgumentZeroTailCall` | 13 | `0x0025E3F0` | `xor edx, edx; jmp target`. |
-| `NativeAdapter.SetneFirstArgTailCall` | 5 | `0x00291D70` | `ecx = (ecx != 0)`, then `jmp target`. |
-| `NativeAdapter.StaticAddressTailCall` | 2948 | `0x00160310` | `lea rcx, [static]; jmp target`: passes a static's address. |
-| `NativeAdapter.StaticPointerTailCall` | 298 | `0x0017E520` | `mov rcx, [global]; jmp target`: passes a pointer global. |
-| `NativeAdapter.ThirdArgumentZeroTailCall` | 10 | `0x0025A690` | `xor r8d, r8d; jmp target`. |
-| `NativeAdapter.VtableInstallTail` | 400 | `0x00212C50` | `lea rax, [vtable]; mov [rcx], rax; jmp target`: installs a vtable, then tail-calls. |
-| `NativeAdapter.ZeroFirstArgTailCall` | 16 | `0x002A2BF0` | `xor ecx, ecx; jmp target`. |
-| `NativeAdapter.ZeroSecondArgTailCall` | 4 | `0x002DF610` | `mov r8d, edx; xor edx, edx; jmp target`: shifts the second argument to the third and passes 0 as the second. |
+| `NativeAdapter.ConstantFirstArgumentTailCall` | [26](generated-function-families-nativeadapter-constantfirstargumenttailcall.tsv) | `0x002549F0` | `mov ecx, imm; jmp target`. |
+| `NativeAdapter.FieldResetOffsetTailCall` | [26](generated-function-families-nativeadapter-fieldresetoffsettailcall.tsv) | `0x0051E580` | Stores 0 or 1 into a dword field of `this`, sets `edx` to a small constant, adds `0x20` (`0x70` in four members) to `rcx` and jumps to one of four targets (`0x00470050`, `0x0046FFA0`, `0x0051DDC0`, `0x0051DBF0`); the members come in 0 / 1 pairs. |
+| `NativeAdapter.FirstMemberPointerTailCall` | [18](generated-function-families-nativeadapter-firstmemberpointertailcall.tsv) | `0x00210960` | `mov rcx, [rcx]; jmp target`: the offset-0 spelling of the member-pointer forwarder. |
+| `NativeAdapter.FourthArgumentZeroTailCall` | [7](generated-function-families-nativeadapter-fourthargumentzerotailcall.tsv) | `0x00214B80` | `xor r9d, r9d; jmp target`. |
+| `NativeAdapter.GlobalOffsetTailCall` | [5](generated-function-families-nativeadapter-globaloffsettailcall.tsv) | `0x0028E220` | `mov rcx, [global]; add rcx, off; jmp target`. |
+| `NativeAdapter.MemberFieldSpanTailCall` | [4](generated-function-families-nativeadapter-memberfieldspantailcall.tsv) | `0x00537F10` | Sets `rdx = this`, `r8 = this+off`, `rcx = [this+0xE0] + off2` and `r9` = the second argument, then jumps to `0x003A56C0`. |
+| `NativeAdapter.MemberOffsetTailCall` | [44](generated-function-families-nativeadapter-memberoffsettailcall.tsv) | `0x001A5800` | `add rcx, off; jmp target`: calls a member sub-object's method. |
+| `NativeAdapter.MemberPointerTailCall` | [45](generated-function-families-nativeadapter-memberpointertailcall.tsv) | `0x00210B60` | `mov rcx, [rcx+off]; jmp target`: calls a method of a pointed-to member. |
+| `NativeAdapter.NullableFirstMemberTail` | [5](generated-function-families-nativeadapter-nullablefirstmembertail.tsv) | `0x002BDAE0` | `mov rcx, [rcx+off]; test rcx, rcx; jne target; ret`. |
+| `NativeAdapter.NullableGlobalTailDispatch` | [12](generated-function-families-nativeadapter-nullableglobaltaildispatch.tsv) | `0x001AD450` | `mov rcx, [global]; test rcx, rcx; jne target; ret`. |
+| `NativeAdapter.NullGuardTailCall` | [5](generated-function-families-nativeadapter-nullguardtailcall.tsv) | `0x002681D0` | `test rcx, rcx; jne target; ret`: forwards only a non-null `this`. |
+| `NativeAdapter.RelativeMemberAddressTailCall32` | [46](generated-function-families-nativeadapter-relativememberaddresstailcall32.tsv) | `0x005C9720` | `rcx = rdx + ([this+0x48] - [[this+0x18]+0xF4])`, `edx = r8d`, then `jmp target`. |
+| `NativeAdapter.RelativeMemberAddressTailCall64` | [19](generated-function-families-nativeadapter-relativememberaddresstailcall64.tsv) | `0x005CA350` | The same relative address with the 64-bit `r8` kept as `rdx` and `r9d` moved to `r8d`, then `jmp target`. |
+| `NativeAdapter.SecondArgumentConstTailCall` | [12](generated-function-families-nativeadapter-secondargumentconsttailcall.tsv) | `0x0024ACE0` | `mov edx, imm; jmp target`. |
+| `NativeAdapter.SecondArgumentZeroTailCall` | [13](generated-function-families-nativeadapter-secondargumentzerotailcall.tsv) | `0x0025E3F0` | `xor edx, edx; jmp target`. |
+| `NativeAdapter.SetneFirstArgTailCall` | [5](generated-function-families-nativeadapter-setnefirstargtailcall.tsv) | `0x00291D70` | `ecx = (ecx != 0)`, then `jmp target`. |
+| `NativeAdapter.StaticAddressTailCall` | [2948](generated-function-families-nativeadapter-staticaddresstailcall.tsv) | `0x00160310` | `lea rcx, [static]; jmp target`: passes a static's address. |
+| `NativeAdapter.StaticPointerTailCall` | [298](generated-function-families-nativeadapter-staticpointertailcall.tsv) | `0x0017E520` | `mov rcx, [global]; jmp target`: passes a pointer global. |
+| `NativeAdapter.ThirdArgumentZeroTailCall` | [10](generated-function-families-nativeadapter-thirdargumentzerotailcall.tsv) | `0x0025A690` | `xor r8d, r8d; jmp target`. |
+| `NativeAdapter.VtableInstallTail` | [400](generated-function-families-nativeadapter-vtableinstalltail.tsv) | `0x00212C50` | `lea rax, [vtable]; mov [rcx], rax; jmp target`: installs a vtable, then tail-calls. |
+| `NativeAdapter.ZeroFirstArgTailCall` | [16](generated-function-families-nativeadapter-zerofirstargtailcall.tsv) | `0x002A2BF0` | `xor ecx, ecx; jmp target`. |
+| `NativeAdapter.ZeroSecondArgTailCall` | [4](generated-function-families-nativeadapter-zerosecondargtailcall.tsv) | `0x002DF610` | `mov r8d, edx; xor edx, edx; jmp target`: shifts the second argument to the third and passes 0 as the second. |
 
 ### Adapters that call one function and pass its result on
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `FrameAdvanceContinuation` | 51 | `0x003D9000` | Calls `0x002F2530(this)`; when it returns non-zero calls a second function on `this`; returns the first result. |
-| `NativeAdapter.BoolArgFetchResultTail` | 7 | `0x0017F720` | Saves `ecx != 0`, calls a getter, then `jmp target(result, saved bool)`. |
-| `NativeAdapter.ByteSaveSecondArgResultTailCall2` | 5 | `0x0017F650` | Saves the low byte of `ecx`, calls a getter, then `jmp target(result, saved byte)`. |
-| `NativeAdapter.CallBoolNormalizeReturn` | 6 | `0x001803D0` | Calls a function and returns `al != 0` as 0 or 1. |
-| `NativeAdapter.CallBoolNormalizeReturnSete` | 15 | `0x002FFED0` | Calls a function and returns `eax == 0` as 0 or 1. |
-| `NativeAdapter.CallResultArgShiftTailCall` | 9 | `0x0017FB90` | Saves `ecx` and `edx`, calls a getter, then `jmp target(result, ecx, edx)`. |
-| `NativeAdapter.CallResultField32Getter` | 21 | `0x0017D340` | Calls a getter and returns the dword at a fixed offset in its result. |
-| `NativeAdapter.CallResultMarshal24Bytes` | 16 | `0x005A3CE0` | Calls a function with `rcx = rdx` and copies 24 bytes of its result to the pointer in `r8`. |
-| `NativeAdapter.CallResultMarshalCompositeRecord` | 19 | `0x00867040` | Calls a function with `rcx = rdx` and copies fields `+0x08` to `+0x20` (qword, qword, dword, byte, dword) of its result to the record in `r8`. |
-| `NativeAdapter.CallResultTailCall` | 72 | `0x0017E220` | Calls a getter, then `jmp target` with its result as `rcx`. |
-| `NativeAdapter.CallResultWithSavedIntTailCall` | 38 | `0x0017D940` | Saves `ecx`, calls a getter, then `jmp target(result, saved ecx)`. |
-| `NativeAdapter.CallResultWithSavedThisTailCall` | 15 | `0x0017F190` | Saves `rcx`, calls a getter, then `jmp target(result, saved rcx)`. |
-| `NativeAdapter.CallThenReturnZero` | 21 | `0x005A0D20` | Calls one function and returns 0. |
-| `NativeAdapter.CallThenTailCall` | 20 | `0x0017D650` | Calls one function, then `jmp` to another. |
-| `NativeAdapter.ChainedMemberResultTailCall` | 7 | `0x00340230` | Calls `0x00263F10(rdx)`, a member function on that result, then `jmp 0x0026B4E0(this, result)`. |
-| `NativeAdapter.ConstFirstArgumentCallTailCall` | 7 | `0x00295CA0` | `ecx = imm`, calls one function, then `jmp` to another. |
-| `NativeAdapter.DoubleSelfInvoke` | 6 | `0x001F40F0` | Calls `0x0067F580(this)` twice. |
-| `NativeAdapter.EHCallWrapper` | 11 | `0x00199D30` | An exception-frame prologue (`[rsp+0x20] = -2`) around one call with the incoming arguments. |
-| `NativeAdapter.FanoutFieldUpdate4` | 5 | `0x0050C450` | Calls one function on `this`, then three field-object functions on `this+off` with the saved `edx`, and returns the address of a later field. |
-| `NativeAdapter.FanoutFieldUpdate5` | 4 | `0x005324C0` | Calls one function on `this`, then four field-object functions on `this+off` with the saved `edx`, and returns the address of a later field. |
-| `NativeAdapter.FixedPipelineCallResult` | 5 | `0x00271420` | Calls `0x0036C1D0(3, 0xF)`, `0x0036A100(ecx)`, `0x0036C140()`, and returns the middle call's result. |
-| `NativeAdapter.ForwardSecondArgumentCallReturnTrue` | 50 | `0x005A3420` | Calls a function with `rcx = rdx` and returns 1. |
-| `NativeAdapter.MemberArgumentEHCallWrapper` | 12 | `0x001A28B0` | The same frame around one call with `rdx = [this+0x18]`. |
-| `NativeAdapter.NamedRecordRegisterPair` | 7 | `0x00862E90` | Calls `0x001FB840` with one string, then `jmp 0x0020E630` with a second string and the saved `ecx`. |
-| `NativeAdapter.SavedFourArgCallResultCall` | 6 | `0x001816F0` | Saves four arguments, calls a getter, then calls a second function with the result and the four arguments (the fourth on the stack). |
-| `NativeAdapter.SharedGetterThreeArgTailCall` | 6 | `0x001DBAC0` | Saves three arguments, calls `0x00210B30`, then `jmp target(result, arg1, arg2, arg3)`. |
-| `NativeAdapter.SmallRecordVtableCtor` | 8 | `0x001F17B0` | Calls `0x00212CC0(this)`, stores `edx` at `+0x18`, installs a vtable and returns `this`. |
-| `NativeAdapter.StackConstOneCall` | 5 | `0x00272F60` | Stores a constant (0 or 1) as the fifth argument and calls one function. |
-| `NativeAdapter.TwoSubobjectInvokeTailCall` | 6 | `0x00219470` | Calls one function on two member sub-objects of `this`, then `jmp` to another on `this`. |
+| `FrameAdvanceContinuation` | [51](generated-function-families-frame-advance-continuation-adapters.tsv) | `0x003D9000` | Calls `0x002F2530(this)`; when it returns non-zero calls a second function on `this`; returns the first result. |
+| `NativeAdapter.BoolArgFetchResultTail` | [7](generated-function-families-nativeadapter-boolargfetchresulttail.tsv) | `0x0017F720` | Saves `ecx != 0`, calls a getter, then `jmp target(result, saved bool)`. |
+| `NativeAdapter.ByteSaveSecondArgResultTailCall2` | [5](generated-function-families-nativeadapter-bytesavesecondargresulttailcall2.tsv) | `0x0017F650` | Saves the low byte of `ecx`, calls a getter, then `jmp target(result, saved byte)`. |
+| `NativeAdapter.CallBoolNormalizeReturn` | [6](generated-function-families-nativeadapter-callboolnormalizereturn.tsv) | `0x001803D0` | Calls a function and returns `al != 0` as 0 or 1. |
+| `NativeAdapter.CallBoolNormalizeReturnSete` | [15](generated-function-families-nativeadapter-callboolnormalizereturnsete.tsv) | `0x002FFED0` | Calls a function and returns `eax == 0` as 0 or 1. |
+| `NativeAdapter.CallResultArgShiftTailCall` | [9](generated-function-families-nativeadapter-callresultargshifttailcall.tsv) | `0x0017FB90` | Saves `ecx` and `edx`, calls a getter, then `jmp target(result, ecx, edx)`. |
+| `NativeAdapter.CallResultField32Getter` | [21](generated-function-families-nativeadapter-callresultfield32getter.tsv) | `0x0017D340` | Calls a getter and returns the dword at a fixed offset in its result. |
+| `NativeAdapter.CallResultMarshal24Bytes` | [16](generated-function-families-nativeadapter-callresultmarshal24bytes.tsv) | `0x005A3CE0` | Calls a function with `rcx = rdx` and copies 24 bytes of its result to the pointer in `r8`. |
+| `NativeAdapter.CallResultMarshalCompositeRecord` | [19](generated-function-families-nativeadapter-callresultmarshalcompositerecord.tsv) | `0x00867040` | Calls a function with `rcx = rdx` and copies fields `+0x08` to `+0x20` (qword, qword, dword, byte, dword) of its result to the record in `r8`. |
+| `NativeAdapter.CallResultTailCall` | [72](generated-function-families-nativeadapter-callresulttailcall.tsv) | `0x0017E220` | Calls a getter, then `jmp target` with its result as `rcx`. |
+| `NativeAdapter.CallResultWithSavedIntTailCall` | [38](generated-function-families-nativeadapter-callresultwithsavedinttailcall.tsv) | `0x0017D940` | Saves `ecx`, calls a getter, then `jmp target(result, saved ecx)`. |
+| `NativeAdapter.CallResultWithSavedThisTailCall` | [15](generated-function-families-nativeadapter-callresultwithsavedthistailcall.tsv) | `0x0017F190` | Saves `rcx`, calls a getter, then `jmp target(result, saved rcx)`. |
+| `NativeAdapter.CallThenReturnZero` | [21](generated-function-families-nativeadapter-callthenreturnzero.tsv) | `0x005A0D20` | Calls one function and returns 0. |
+| `NativeAdapter.CallThenTailCall` | [20](generated-function-families-nativeadapter-callthentailcall.tsv) | `0x0017D650` | Calls one function, then `jmp` to another. |
+| `NativeAdapter.ChainedMemberResultTailCall` | [7](generated-function-families-nativeadapter-chainedmemberresulttailcall.tsv) | `0x00340230` | Calls `0x00263F10(rdx)`, a member function on that result, then `jmp 0x0026B4E0(this, result)`. |
+| `NativeAdapter.ConstFirstArgumentCallTailCall` | [7](generated-function-families-nativeadapter-constfirstargumentcalltailcall.tsv) | `0x00295CA0` | `ecx = imm`, calls one function, then `jmp` to another. |
+| `NativeAdapter.DoubleSelfInvoke` | [6](generated-function-families-nativeadapter-doubleselfinvoke.tsv) | `0x001F40F0` | Calls `0x0067F580(this)` twice. |
+| `NativeAdapter.EHCallWrapper` | [11](generated-function-families-nativeadapter-ehcallwrapper.tsv) | `0x00199D30` | An exception-frame prologue (`[rsp+0x20] = -2`) around one call with the incoming arguments. |
+| `NativeAdapter.FanoutFieldUpdate4` | [5](generated-function-families-nativeadapter-fanoutfieldupdate4.tsv) | `0x0050C450` | Calls one function on `this`, then three field-object functions on `this+off` with the saved `edx`, and returns the address of a later field. |
+| `NativeAdapter.FanoutFieldUpdate5` | [4](generated-function-families-nativeadapter-fanoutfieldupdate5.tsv) | `0x005324C0` | Calls one function on `this`, then four field-object functions on `this+off` with the saved `edx`, and returns the address of a later field. |
+| `NativeAdapter.FixedPipelineCallResult` | [5](generated-function-families-nativeadapter-fixedpipelinecallresult.tsv) | `0x00271420` | Calls `0x0036C1D0(3, 0xF)`, `0x0036A100(ecx)`, `0x0036C140()`, and returns the middle call's result. |
+| `NativeAdapter.ForwardSecondArgumentCallReturnTrue` | [50](generated-function-families-nativeadapter-forwardsecondargumentcallreturntrue.tsv) | `0x005A3420` | Calls a function with `rcx = rdx` and returns 1. |
+| `NativeAdapter.MemberArgumentEHCallWrapper` | [12](generated-function-families-nativeadapter-memberargumentehcallwrapper.tsv) | `0x001A28B0` | The same frame around one call with `rdx = [this+0x18]`. |
+| `NativeAdapter.NamedRecordRegisterPair` | [7](generated-function-families-nativeadapter-namedrecordregisterpair.tsv) | `0x00862E90` | Calls `0x001FB840` with one string, then `jmp 0x0020E630` with a second string and the saved `ecx`. |
+| `NativeAdapter.SavedFourArgCallResultCall` | [6](generated-function-families-nativeadapter-savedfourargcallresultcall.tsv) | `0x001816F0` | Saves four arguments, calls a getter, then calls a second function with the result and the four arguments (the fourth on the stack). |
+| `NativeAdapter.SharedGetterThreeArgTailCall` | [6](generated-function-families-nativeadapter-sharedgetterthreeargtailcall.tsv) | `0x001DBAC0` | Saves three arguments, calls `0x00210B30`, then `jmp target(result, arg1, arg2, arg3)`. |
+| `NativeAdapter.SmallRecordVtableCtor` | [8](generated-function-families-nativeadapter-smallrecordvtablector.tsv) | `0x001F17B0` | Calls `0x00212CC0(this)`, stores `edx` at `+0x18`, installs a vtable and returns `this`. |
+| `NativeAdapter.StackConstOneCall` | [5](generated-function-families-nativeadapter-stackconstonecall.tsv) | `0x00272F60` | Stores a constant (0 or 1) as the fifth argument and calls one function. |
+| `NativeAdapter.TwoSubobjectInvokeTailCall` | [6](generated-function-families-nativeadapter-twosubobjectinvoketailcall.tsv) | `0x00219470` | Calls one function on two member sub-objects of `this`, then `jmp` to another on `this`. |
 
 ### Guarded and conditional adapters
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `NativeAdapter.BooleanSelectedCallReturnTrue` | 10 | `0x0062EE00` | Calls one of two functions on `rdx`, chosen by the byte in `r8b`, and returns 1. |
-| `NativeAdapter.CallResultDualTailDispatch` | 8 | `0x00340B90` | Calls `0x00267E10(r9)` and jumps to one of two functions chosen by whether the result is zero. |
-| `NativeAdapter.ChainPredicateReleaseTail` | 5 | `0x005DD5E0` | Calls a predicate on `this`; when true calls a second function on `this`; then jumps to a third on `this`. |
-| `NativeAdapter.ConditionalDoubleCallResultTailCall` | 9 | `0x0017F040` | Saves `ecx`; calls a getter, and when non-null calls it again and jumps to `target(result, saved ecx)`. |
-| `NativeAdapter.DoubleCallResultTailCallSavedThis` | 5 | `0x00182310` | Saves `rcx`; calls a getter, and when non-null calls it again and jumps to `target(result, saved rcx)`. |
-| `NativeAdapter.DynamicOffsetRefFlagCall` | 5 | `0x005CA3E0` | Returns 5 when bit `0x80000000` of `r9d` is set; otherwise sets it, calls a function on `rdx + ([this+0x48] - [[this+0x18]+0xF4])` and returns 0. |
-| `NativeAdapter.FirstMemberInvokeFieldStore` | 7 | `0x0029F100` | When the pointer at `this+off` is non-null, calls a function on it and then clears the field. |
-| `NativeAdapter.FlagByteConditionalOp` | 4 | `0x005CE800` | When the byte at `rdx+8` is non-zero, calls `0x005CDAA0(3, string)`; when the pointer at `rdx+0x20` is non-null, calls `0x006108C0` on it; returns 1. |
-| `NativeAdapter.FlagGatedInitTailCall` | 7 | `0x00227460` | When one bit of the dword `0x01FD46D4` is clear, calls `0x00226BE0(imm, 0, 0, 0, -1, -1)` and jumps to `0x00226280`. |
-| `NativeAdapter.GlobalGuardIndexedCall` | 4 | `0x00226180` | When one bit of the dword `0x01FD46D4` is set, calls `0x00225CD0(imm, -1)` and jumps to `0x00226280`. |
-| `NativeAdapter.GuardedCallResultBoolInvert` | 6 | `0x005113A0` | Calls `0x00280120`; when non-zero returns 0, else calls a function and returns `eax == 0`. |
-| `NativeAdapter.GuardedPairInvokeFieldStore` | 11 | `0x0044BA80` | Calls `0x002F2D60(this)`; when non-zero calls a function on `this`, then `0x0044B960`, stores its result in a field and returns 1. |
-| `NativeAdapter.GuardedRecordBuildCookie` | 4 | `0x005571F0` | Under a stack cookie: when a field of `this` is zero, builds a stack record, calls `0x00244F50`, stores the result in that field and passes it to `0x00246AD0`. |
-| `NativeAdapter.GuardedSharedPairTailCall` | 9 | `0x00511510` | Calls `0x00280120`; when zero calls `0x00267E10(r9)` and jumps to a function with that result. |
-| `NativeAdapter.HandleRecordOutFloatInit` | 4 | `0x002E9A90` | Resolves the argument with `0x003588B0`, follows `+0xC0` into the same `0x740`-stride table, calls a function on the out record in `rdx` when `+0x284` is set, zeroes its first 12 bytes when the handle or record pointer is missing, and always stores 1.0 at its `+0xC`. |
-| `NativeAdapter.IndexedRecordStoreCookie` | 4 | `0x00227E20` | Under a stack cookie: builds a stack record holding the sign-extended argument and calls `0x00244F50(imm, code address, record)`. |
-| `NativeAdapter.NullableCallChainTailCall` | 19 | `0x0017CFD0` | Calls a getter; when it returns non-null, calls it again and jumps to a second function with that result. |
-| `NativeAdapter.NullableFetchByteTail` | 4 | `0x0017F5B0` | Saves the low byte of `ecx`; calls a getter, and when non-null calls it again and jumps to `target(result, saved byte)`. |
-| `NativeAdapter.NullableRecordWordTail` | 4 | `0x002E8B60` | When `this`, the pointer at `+0xC0` and its dword are valid (not null, not -1), jumps to a function with the record's word in `ecx`. |
-| `NativeAdapter.OutRecordMemberCallTailCall` | 5 | `0x0042DCA0` | Calls `0x00426220(this, [rdx+8])`; when it returns 0, jumps to a function on `this`. |
-| `NativeAdapter.PredicateGuardConstCall` | 4 | `0x00347C60` | Calls a predicate; when non-zero calls `0x00314D40(imm)` and returns 1, else returns 0. |
-| `NativeAdapter.PredicateGuardSharedCall` | 4 | `0x0044A5F0` | Calls `0x002F2D60(this)`; when non-zero calls a function on `this` and returns 1, else returns 0. |
-| `NativeAdapter.RefFlagSetCallZero` | 5 | `0x005CA2B0` | When bit `0x80000000` of `r8d` is clear, sets it and calls a function; returns 0. |
-| `NativeAdapter.TableIndexDispatchSetFlag` | 8 | `0x002E7450` | The same resolution; when `+0x284` is non-zero calls a function on the record and sets bit `0x800` of its `+0x290`. |
-| `NativeAdapter.TableIndexDispatchTailCall` | 5 | `0x002E5BC0` | Resolves the word at `[[this+0xC0]]` through the record table whose base is the qword `0x022C6F28` (stride `0x740`) and jumps to a function when the record's dword `+0x284` is non-zero. |
-| `NativeAdapter.TripleMemberChainReturnTrue` | 6 | `0x005CF750` | Calls a predicate on `rdx`; when true calls a second function on `rdx`; always calls a third on `rdx`; returns 1. |
-| `NativeLeaf.NullableGlobalClearCall` | 5 | `0x00366A00` | When a pointer global is non-null, calls a function on it and then zeroes the global. |
-| `NativeLeaf.StaticHandleReplaceWithPreRelease` | 12 | `0x00238390` | Frees the handle in a global through `0x003844F0` when it is non-null, then stores the sign-extended argument there. |
+| `NativeAdapter.BooleanSelectedCallReturnTrue` | [10](generated-function-families-nativeadapter-booleanselectedcallreturntrue.tsv) | `0x0062EE00` | Calls one of two functions on `rdx`, chosen by the byte in `r8b`, and returns 1. |
+| `NativeAdapter.CallResultDualTailDispatch` | [8](generated-function-families-nativeadapter-callresultdualtaildispatch.tsv) | `0x00340B90` | Calls `0x00267E10(r9)` and jumps to one of two functions chosen by whether the result is zero. |
+| `NativeAdapter.ChainPredicateReleaseTail` | [5](generated-function-families-nativeadapter-chainpredicatereleasetail.tsv) | `0x005DD5E0` | Calls a predicate on `this`; when true calls a second function on `this`; then jumps to a third on `this`. |
+| `NativeAdapter.ConditionalDoubleCallResultTailCall` | [9](generated-function-families-nativeadapter-conditionaldoublecallresulttailcall.tsv) | `0x0017F040` | Saves `ecx`; calls a getter, and when non-null calls it again and jumps to `target(result, saved ecx)`. |
+| `NativeAdapter.DoubleCallResultTailCallSavedThis` | [5](generated-function-families-nativeadapter-doublecallresulttailcallsavedthis.tsv) | `0x00182310` | Saves `rcx`; calls a getter, and when non-null calls it again and jumps to `target(result, saved rcx)`. |
+| `NativeAdapter.DynamicOffsetRefFlagCall` | [5](generated-function-families-nativeadapter-dynamicoffsetrefflagcall.tsv) | `0x005CA3E0` | Returns 5 when bit `0x80000000` of `r9d` is set; otherwise sets it, calls a function on `rdx + ([this+0x48] - [[this+0x18]+0xF4])` and returns 0. |
+| `NativeAdapter.FirstMemberInvokeFieldStore` | [7](generated-function-families-nativeadapter-firstmemberinvokefieldstore.tsv) | `0x0029F100` | When the pointer at `this+off` is non-null, calls a function on it and then clears the field. |
+| `NativeAdapter.FlagByteConditionalOp` | [4](generated-function-families-nativeadapter-flagbyteconditionalop.tsv) | `0x005CE800` | When the byte at `rdx+8` is non-zero, calls `0x005CDAA0(3, string)`; when the pointer at `rdx+0x20` is non-null, calls `0x006108C0` on it; returns 1. |
+| `NativeAdapter.FlagGatedInitTailCall` | [7](generated-function-families-nativeadapter-flaggatedinittailcall.tsv) | `0x00227460` | When one bit of the dword `0x01FD46D4` is clear, calls `0x00226BE0(imm, 0, 0, 0, -1, -1)` and jumps to `0x00226280`. |
+| `NativeAdapter.GlobalGuardIndexedCall` | [4](generated-function-families-nativeadapter-globalguardindexedcall.tsv) | `0x00226180` | When one bit of the dword `0x01FD46D4` is set, calls `0x00225CD0(imm, -1)` and jumps to `0x00226280`. |
+| `NativeAdapter.GuardedCallResultBoolInvert` | [6](generated-function-families-nativeadapter-guardedcallresultboolinvert.tsv) | `0x005113A0` | Calls `0x00280120`; when non-zero returns 0, else calls a function and returns `eax == 0`. |
+| `NativeAdapter.GuardedPairInvokeFieldStore` | [11](generated-function-families-nativeadapter-guardedpairinvokefieldstore.tsv) | `0x0044BA80` | Calls `0x002F2D60(this)`; when non-zero calls a function on `this`, then `0x0044B960`, stores its result in a field and returns 1. |
+| `NativeAdapter.GuardedRecordBuildCookie` | [4](generated-function-families-nativeadapter-guardedrecordbuildcookie.tsv) | `0x005571F0` | Under a stack cookie: when a field of `this` is zero, builds a stack record, calls `0x00244F50`, stores the result in that field and passes it to `0x00246AD0`. |
+| `NativeAdapter.GuardedSharedPairTailCall` | [9](generated-function-families-nativeadapter-guardedsharedpairtailcall.tsv) | `0x00511510` | Calls `0x00280120`; when zero calls `0x00267E10(r9)` and jumps to a function with that result. |
+| `NativeAdapter.HandleRecordOutFloatInit` | [4](generated-function-families-nativeadapter-handlerecordoutfloatinit.tsv) | `0x002E9A90` | Resolves the argument with `0x003588B0`, follows `+0xC0` into the same `0x740`-stride table, calls a function on the out record in `rdx` when `+0x284` is set, zeroes its first 12 bytes when the handle or record pointer is missing, and always stores 1.0 at its `+0xC`. |
+| `NativeAdapter.IndexedRecordStoreCookie` | [4](generated-function-families-nativeadapter-indexedrecordstorecookie.tsv) | `0x00227E20` | Under a stack cookie: builds a stack record holding the sign-extended argument and calls `0x00244F50(imm, code address, record)`. |
+| `NativeAdapter.NullableCallChainTailCall` | [19](generated-function-families-nativeadapter-nullablecallchaintailcall.tsv) | `0x0017CFD0` | Calls a getter; when it returns non-null, calls it again and jumps to a second function with that result. |
+| `NativeAdapter.NullableFetchByteTail` | [4](generated-function-families-nativeadapter-nullablefetchbytetail.tsv) | `0x0017F5B0` | Saves the low byte of `ecx`; calls a getter, and when non-null calls it again and jumps to `target(result, saved byte)`. |
+| `NativeAdapter.NullableRecordWordTail` | [4](generated-function-families-nativeadapter-nullablerecordwordtail.tsv) | `0x002E8B60` | When `this`, the pointer at `+0xC0` and its dword are valid (not null, not -1), jumps to a function with the record's word in `ecx`. |
+| `NativeAdapter.OutRecordMemberCallTailCall` | [5](generated-function-families-nativeadapter-outrecordmembercalltailcall.tsv) | `0x0042DCA0` | Calls `0x00426220(this, [rdx+8])`; when it returns 0, jumps to a function on `this`. |
+| `NativeAdapter.PredicateGuardConstCall` | [4](generated-function-families-nativeadapter-predicateguardconstcall.tsv) | `0x00347C60` | Calls a predicate; when non-zero calls `0x00314D40(imm)` and returns 1, else returns 0. |
+| `NativeAdapter.PredicateGuardSharedCall` | [4](generated-function-families-nativeadapter-predicateguardsharedcall.tsv) | `0x0044A5F0` | Calls `0x002F2D60(this)`; when non-zero calls a function on `this` and returns 1, else returns 0. |
+| `NativeAdapter.RefFlagSetCallZero` | [5](generated-function-families-nativeadapter-refflagsetcallzero.tsv) | `0x005CA2B0` | When bit `0x80000000` of `r8d` is clear, sets it and calls a function; returns 0. |
+| `NativeAdapter.TableIndexDispatchSetFlag` | [8](generated-function-families-nativeadapter-tableindexdispatchsetflag.tsv) | `0x002E7450` | The same resolution; when `+0x284` is non-zero calls a function on the record and sets bit `0x800` of its `+0x290`. |
+| `NativeAdapter.TableIndexDispatchTailCall` | [5](generated-function-families-nativeadapter-tableindexdispatchtailcall.tsv) | `0x002E5BC0` | Resolves the word at `[[this+0xC0]]` through the record table whose base is the qword `0x022C6F28` (stride `0x740`) and jumps to a function when the record's dword `+0x284` is non-zero. |
+| `NativeAdapter.TripleMemberChainReturnTrue` | [6](generated-function-families-nativeadapter-triplememberchainreturntrue.tsv) | `0x005CF750` | Calls a predicate on `rdx`; when true calls a second function on `rdx`; always calls a third on `rdx`; returns 1. |
+| `NativeLeaf.NullableGlobalClearCall` | [5](generated-function-families-nativeleaf-nullableglobalclearcall.tsv) | `0x00366A00` | When a pointer global is non-null, calls a function on it and then zeroes the global. |
+| `NativeLeaf.StaticHandleReplaceWithPreRelease` | [12](generated-function-families-nativeleaf-statichandlereplacewithprerelease.tsv) | `0x00238390` | Frees the handle in a global through `0x003844F0` when it is non-null, then stores the sign-extended argument there. |
 
 ### Adapters over an argument record
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `NativeAdapter.FloatFetchPushForward` | 4 | `0x00342040` | Calls a float getter on `rdx`, passes the float to `0x00267F60(r9)`, then jumps to a function with the four original arguments. |
-| `NativeAdapter.PopIntForwardTail` | 4 | `0x00342340` | Reads an integer from the record in `r9` with `0x00267E10`, passes it through one function and jumps to another with the result. |
-| `NativeAdapter.PopThreeFloatGuardTail` | 4 | `0x00340D00` | Reads three floats with `0x00267DB0` and an integer with `0x00267E10`, calls `0x0016D6A0` and `0x003EB700` on the integer, then jumps to a function with the result and the three floats. |
-| `NativeAdapter.PopThreeIntForwardTail` | 4 | `0x00348C50` | Reads three integers with `0x00267E10`, passes the last through `0x00264010` and `0x00263F10`, then jumps to a function with that result and the first two. |
-| `NativeAdapter.SharedNormalizeTailCallOne` | 6 | `0x0034B450` | Calls `0x0026A1A0(rdx, 1)`, restores the four arguments and jumps to a function. |
-| `NativeAdapter.SharedNormalizeTailCallZero` | 6 | `0x00341390` | Calls `0x0026A1A0(rdx, 0)`, restores the four arguments and jumps to a function. |
-| `NativeAdapter.TwoSharedComposeTailCall` | 6 | `0x00340DC0` | Calls `0x002640C0`, reads an integer with `0x00267E10(r9)`, then jumps to a function with both. |
+| `NativeAdapter.FloatFetchPushForward` | [4](generated-function-families-nativeadapter-floatfetchpushforward.tsv) | `0x00342040` | Calls a float getter on `rdx`, passes the float to `0x00267F60(r9)`, then jumps to a function with the four original arguments. |
+| `NativeAdapter.PopIntForwardTail` | [4](generated-function-families-nativeadapter-popintforwardtail.tsv) | `0x00342340` | Reads an integer from the record in `r9` with `0x00267E10`, passes it through one function and jumps to another with the result. |
+| `NativeAdapter.PopThreeFloatGuardTail` | [4](generated-function-families-nativeadapter-popthreefloatguardtail.tsv) | `0x00340D00` | Reads three floats with `0x00267DB0` and an integer with `0x00267E10`, calls `0x0016D6A0` and `0x003EB700` on the integer, then jumps to a function with the result and the three floats. |
+| `NativeAdapter.PopThreeIntForwardTail` | [4](generated-function-families-nativeadapter-popthreeintforwardtail.tsv) | `0x00348C50` | Reads three integers with `0x00267E10`, passes the last through `0x00264010` and `0x00263F10`, then jumps to a function with that result and the first two. |
+| `NativeAdapter.SharedNormalizeTailCallOne` | [6](generated-function-families-nativeadapter-sharednormalizetailcallone.tsv) | `0x0034B450` | Calls `0x0026A1A0(rdx, 1)`, restores the four arguments and jumps to a function. |
+| `NativeAdapter.SharedNormalizeTailCallZero` | [6](generated-function-families-nativeadapter-sharednormalizetailcallzero.tsv) | `0x00341390` | Calls `0x0026A1A0(rdx, 0)`, restores the four arguments and jumps to a function. |
+| `NativeAdapter.TwoSharedComposeTailCall` | [6](generated-function-families-nativeadapter-twosharedcomposetailcall.tsv) | `0x00340DC0` | Calls `0x002640C0`, reads an integer with `0x00267E10(r9)`, then jumps to a function with both. |
 
 ### Out-record initialisers
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `NativeAdapter.NullableOutRecordHeaderInitReturnTrue` | 9 | `0x005CE010` | When `rdx` is non-null writes a constant qword (a different one per member) and two zero qwords there; returns 1. |
-| `NativeAdapter.NullableOutRecordVptrCall` | 5 | `0x0063F2A0` | When `rdx` is non-null calls a function on it and installs a vtable at `+0`; returns 1. |
-| `NativeAdapter.OutRecordDescriptorInitReturnTrue` | 19 | `0x00866FA0` | When `rdx` is non-null writes three addresses at `+0`, `+8`, `+0x10`, zeroes `+0x18` and `+0x1C`, and stores 1.0 at `+0x20`; returns 1. |
-| `NativeAdapter.OutRecordVtablePairStore` | 7 | `0x0063EF60` | When `rdx` is non-null calls a function on it and stores two addresses at `+0` and `+8`; returns 1. |
-| `NativeAdapter.OutRecordZeroInitMemberInit` | 7 | `0x005CFF00` | When `rdx` is non-null clears `0x90` bytes there with `memset` (`0x00861EC0`) and calls an initialiser on it; returns 1. |
-| `NativeLeaf.TaggedOutRecordFloatVcall` | 5 | `0x006B3120` | Advances the cursor in the fifth argument by 8, converts the double there to float, calls `[this+8](rdx, float)`; when the third argument equals `0x006B0B20()` with bit `0x1` set, stores the result at `out+8`, zeroes `out+0` and returns 1, else 0. |
+| `NativeAdapter.NullableOutRecordHeaderInitReturnTrue` | [9](generated-function-families-nativeadapter-nullableoutrecordheaderinit.tsv) | `0x005CE010` | When `rdx` is non-null writes a constant qword (a different one per member) and two zero qwords there; returns 1. |
+| `NativeAdapter.NullableOutRecordVptrCall` | [5](generated-function-families-nativeadapter-nullableoutrecordvptrcall.tsv) | `0x0063F2A0` | When `rdx` is non-null calls a function on it and installs a vtable at `+0`; returns 1. |
+| `NativeAdapter.OutRecordDescriptorInitReturnTrue` | [19](generated-function-families-nativeadapter-outrecorddescriptorinit.tsv) | `0x00866FA0` | When `rdx` is non-null writes three addresses at `+0`, `+8`, `+0x10`, zeroes `+0x18` and `+0x1C`, and stores 1.0 at `+0x20`; returns 1. |
+| `NativeAdapter.OutRecordVtablePairStore` | [7](generated-function-families-nativeadapter-outrecordvtablepairstore.tsv) | `0x0063EF60` | When `rdx` is non-null calls a function on it and stores two addresses at `+0` and `+8`; returns 1. |
+| `NativeAdapter.OutRecordZeroInitMemberInit` | [7](generated-function-families-nativeadapter-outrecordzeroinitmemberinit.tsv) | `0x005CFF00` | When `rdx` is non-null clears `0x90` bytes there with `memset` (`0x00861EC0`) and calls an initialiser on it; returns 1. |
+| `NativeLeaf.TaggedOutRecordFloatVcall` | [5](generated-function-families-nativeleaf-taggedoutrecordfloatvcall.tsv) | `0x006B3120` | Advances the cursor in the fifth argument by 8, converts the double there to float, calls `[this+8](rdx, float)`; when the third argument equals `0x006B0B20()` with bit `0x1` set, stores the result at `out+8`, zeroes `out+0` and returns 1, else 0. |
 
 ### Construction, destruction and static lifetime
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `CompilerGeneratedCpp.GuardedStaticObjectTeardown` | 28 | `0x008B0E20` | Calls `0x0016D6A0` (`ret 0`) with a static's address and returns. |
-| `CompilerGeneratedCpp.StaticContainerTeardown.IndirectAllocator` | 60 | `0x008A69F0` | When a static container holds more than one byte and a non-null begin, returns the storage through slot 3 of its allocator object. |
-| `CompilerGeneratedCpp.StaticZeroInitObjectInitializer` | 11 | `0x00169A10` | Clears a `0x50`-byte static with `memset`, constructs its lock with `0x007DF6D0`, and registers its teardown with `atexit` (`0x00808B90`). |
-| `CxxObjectLifecycle.ConditionalTeardownReturnTrue` | 29 | `0x00611A10` | When `rdx` is non-null calls a destructor on it; returns 1. |
-| `CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree` | 196 | `0x005AC810` | Deleting destructor: calls the destructor; when flag bit `0x1` is set frees `this` with `0x00584730`, or, when bit `0x4` is also set, calls `0x0016D6A0(this, size)`; returns `this`. |
-| `CxxObjectLifecycle.DeletingDestructor.VtableAlignedOrGuardedFree` | 14 | `0x0017CC70` | The same deleting destructor with a vtable install before the destructor call. |
-| `CxxObjectLifecycle.DerivedConstructorVtableInstall` | 27 | `0x001F1740` | Calls the base constructor on `this`, installs the derived vtable, returns `this`. |
-| `CxxObjectLifecycle.VtableInstallStub` | 42 | `0x0018D0E0` | `lea rax, [vtable]; mov [rcx], rax; ret`. |
-| `DeletingDestructor.SharedTeardown` | 1185 | `0x00584870` | The vtable-installing deleting destructor whose destructor call is always `0x00633390`. Same instruction form as the previous family. |
-| `Platform.Windows.CriticalSectionStaticInitializer` | 19 | `0x00169690` | `InitializeCriticalSection` (IAT `0x008C20B0`) on a static, then registers its teardown with `atexit`. |
-| `Runtime.NamedRegistryRecord.StaticInitializer` | 60 | `0x0015C510` | Calls `0x005DC6F0(static, string, 0)`, then registers its teardown with `atexit`. |
-| `Runtime.NameRegistryEntry.StaticInitializer` | 56 | `0x00162430` | Calls `0x005FDCB0` with a static's address, then registers its teardown with `atexit`. |
-| `Runtime.Singleton.LazyAllocatorInitializer` | 13 | `0x0019CDE0` | When a pointer global is null, allocates a fixed size with `0x00210EC0`, constructs the object in it, and stores the pointer. |
-| `Runtime.Singleton.StaticObjectFixupRegisterRelease` | 19 | `0x008AF570` | Installs a vtable in a static; when a link static does not point at itself, calls slot `0x48` of the object in another static; calls `0x006B6700` on a member static; frees a buffer with `0x00584730` when bit `0x1` of a flag byte is set. |
+| `CompilerGeneratedCpp.GuardedStaticObjectTeardown` | [28](generated-function-families-compilergeneratedcpp-guardedstaticobjectteardown.tsv) | `0x008B0E20` | Calls `0x0016D6A0` (`ret 0`) with a static's address and returns. |
+| `CompilerGeneratedCpp.StaticContainerTeardown.IndirectAllocator` | [60](generated-function-families-compilergeneratedcpp-staticcontainerteardown-indirectallocator.tsv) | `0x008A69F0` | When a static container holds more than one byte and a non-null begin, returns the storage through slot 3 of its allocator object. |
+| `CompilerGeneratedCpp.StaticZeroInitObjectInitializer` | [11](generated-function-families-compilergeneratedcpp-staticzeroinitobjectinitializer.tsv) | `0x00169A10` | Clears a `0x50`-byte static with `memset`, constructs its lock with `0x007DF6D0`, and registers its teardown with `atexit` (`0x00808B90`). |
+| `CxxObjectLifecycle.ConditionalTeardownReturnTrue` | [29](generated-function-families-cxxobjectlifecycle-conditionalteardownreturntrue.tsv) | `0x00611A10` | When `rdx` is non-null calls a destructor on it; returns 1. |
+| `CxxObjectLifecycle.DeletingDestructor.AlignedOrGuardedFree` | [196](generated-function-families-cxxobjectlifecycle-deletingdestructor-alignedorguardedfree.tsv) | `0x005AC810` | Deleting destructor: calls the destructor; when flag bit `0x1` is set frees `this` with `0x00584730`, or, when bit `0x4` is also set, calls `0x0016D6A0(this, size)`; returns `this`. |
+| `CxxObjectLifecycle.DeletingDestructor.VtableAlignedOrGuardedFree` | [14](generated-function-families-cxxobjectlifecycle-deletingdestructor-vtablealignedorguardedfree.tsv) | `0x0017CC70` | The same deleting destructor with a vtable install before the destructor call. |
+| `CxxObjectLifecycle.DerivedConstructorVtableInstall` | [27](generated-function-families-cxxobjectlifecycle-derivedconstructorvtableinstall.tsv) | `0x001F1740` | Calls the base constructor on `this`, installs the derived vtable, returns `this`. |
+| `CxxObjectLifecycle.VtableInstallStub` | [42](generated-function-families-cxxobjectlifecycle-vtableinstallstub.tsv) | `0x0018D0E0` | `lea rax, [vtable]; mov [rcx], rax; ret`. |
+| `DeletingDestructor.SharedTeardown` | [1185](generated-function-families-deletingdestructor-sharedteardown.tsv) | `0x00584870` | The vtable-installing deleting destructor whose destructor call is always `0x00633390`. Same instruction form as the previous family. |
+| `Platform.Windows.CriticalSectionStaticInitializer` | [19](generated-function-families-platform-windows-criticalsectionstaticinitializer.tsv) | `0x00169690` | `InitializeCriticalSection` (IAT `0x008C20B0`) on a static, then registers its teardown with `atexit`. |
+| `Runtime.NamedRegistryRecord.StaticInitializer` | [60](generated-function-families-runtime-namedregistryrecord-staticinitializer.tsv) | `0x0015C510` | Calls `0x005DC6F0(static, string, 0)`, then registers its teardown with `atexit`. |
+| `Runtime.NameRegistryEntry.StaticInitializer` | [56](generated-function-families-runtime-nameregistryentry-staticinitializer.tsv) | `0x00162430` | Calls `0x005FDCB0` with a static's address, then registers its teardown with `atexit`. |
+| `Runtime.Singleton.LazyAllocatorInitializer` | [13](generated-function-families-runtime-singleton-lazyallocatorinitializer.tsv) | `0x0019CDE0` | When a pointer global is null, allocates a fixed size with `0x00210EC0`, constructs the object in it, and stores the pointer. |
+| `Runtime.Singleton.StaticObjectFixupRegisterRelease` | [19](generated-function-families-runtime-singleton-staticobjectfixup.tsv) | `0x008AF570` | Installs a vtable in a static; when a link static does not point at itself, calls slot `0x48` of the object in another static; calls `0x006B6700` on a member static; frees a buffer with `0x00584730` when bit `0x1` of a flag byte is set. |
 
 ### Owned buffers and allocator releases
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `Runtime.Container.OwnedBufferAlignedFreeResetReturnTrue` | 11 | `0x005C3430` | On `rdx`: when bit `0x80000000` is clear and the count is above 1, frees `+8` with `0x00584730`; zeroes both; returns 1. |
-| `Runtime.Container.OwnedBufferReset` | 25 | `0x001B6EA0` | When bit `0x80000000` of the count word at `+0` is clear frees the pointer at `+8` with `0x00584730`; zeroes both. |
-| `Runtime.Container.OwnedBufferTeardownResetReturnTrue` | 13 | `0x005C31D0` | On `rdx`: when bit `0x80000000` is clear calls a teardown with the pointer and the count; zeroes both; returns 1. |
-| `Runtime.Container.SpanCheckMemberVcall` | 6 | `0x001AAD20` | When the span `[this] .. [this+0x10]` holds more than one byte and begins non-null, calls slot 3 of the object at `this+0x18`. |
-| `Runtime.Memory.IndirectAllocatorRelease` | 22 | `0x00185070` | When `[this]` is non-null, returns the span `[this] .. [this+0x10]` (masked to the element alignment) through slot 3 of the allocator object at `this+0x18`. |
+| `Runtime.Container.OwnedBufferAlignedFreeResetReturnTrue` | [11](generated-function-families-runtime-container-ownedbufferalignedfreeresetreturntrue.tsv) | `0x005C3430` | On `rdx`: when bit `0x80000000` is clear and the count is above 1, frees `+8` with `0x00584730`; zeroes both; returns 1. |
+| `Runtime.Container.OwnedBufferReset` | [25](generated-function-families-runtime-container-ownedbufferreset.tsv) | `0x001B6EA0` | When bit `0x80000000` of the count word at `+0` is clear frees the pointer at `+8` with `0x00584730`; zeroes both. |
+| `Runtime.Container.OwnedBufferTeardownResetReturnTrue` | [13](generated-function-families-runtime-container-ownedbufferteardownresetreturntrue.tsv) | `0x005C31D0` | On `rdx`: when bit `0x80000000` is clear calls a teardown with the pointer and the count; zeroes both; returns 1. |
+| `Runtime.Container.SpanCheckMemberVcall` | [6](generated-function-families-runtime-container-spancheckmembervcall.tsv) | `0x001AAD20` | When the span `[this] .. [this+0x10]` holds more than one byte and begins non-null, calls slot 3 of the object at `this+0x18`. |
+| `Runtime.Memory.IndirectAllocatorRelease` | [22](generated-function-families-runtime-memory-indirectallocatorrelease.tsv) | `0x00185070` | When `[this]` is non-null, returns the span `[this] .. [this+0x10]` (masked to the element alignment) through slot 3 of the allocator object at `this+0x18`. |
 
 ### Virtual and indirect dispatch
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `NativeAdapter.DualLookupIndirectCallback` | 13 | `0x005C2060` | Calls two lookups on `rdx`; when the second is non-null calls the function at `[this+8]` with both results; returns 0. |
-| `NativeAdapter.TwoMemberCallIndexedVcall` | 7 | `0x0063A300` | Calls two functions on `rdx`; when the second is non-null calls `[this+8]` with `rcx = result + [this+0x10]`; returns 0. |
-| `NativeDispatch.GlobalHandlerSlotTailCall` | 25 | `0x004174F0` | Loads a handler global; when set, jumps to it with `rdx = rcx` and `rcx = [r8+0x2E0]`. |
-| `NativeDispatch.MemberVirtualTailCall` | 28 | `0x00726DB0` | `mov rcx, [rcx+off]; mov rax, [rcx]; jmp [rax+slot]`. |
-| `NativeDispatch.NullableVirtualTailCall` | 11 | `0x0017F0C0` | Returns when `rcx` is null; otherwise `jmp [[rcx]+slot]`. |
-| `NativeDispatch.VirtualTailCall` | 14 | `0x00616E24` | `mov rax, [rcx]; jmp [rax+slot]`. Same instruction form as the fixed-slot adapters; held as a pointer in a vtable or a pointer table. |
-| `Runtime.VirtualDispatch.FixedSlotAdapter` | 20 | `0x00616E0C` | `mov rax, [rcx]; jmp [rax+slot]`. Same form as the virtual tail calls; its address is taken only by an installer's `lea`, and it is never called directly or held as a pointer in the image. |
+| `NativeAdapter.DualLookupIndirectCallback` | [13](generated-function-families-nativeadapter-duallookupindirectcallback.tsv) | `0x005C2060` | Calls two lookups on `rdx`; when the second is non-null calls the function at `[this+8]` with both results; returns 0. |
+| `NativeAdapter.TwoMemberCallIndexedVcall` | [7](generated-function-families-nativeadapter-twomanifoldcallindexedvcall.tsv) | `0x0063A300` | Calls two functions on `rdx`; when the second is non-null calls `[this+8]` with `rcx = result + [this+0x10]`; returns 0. |
+| `NativeDispatch.GlobalHandlerSlotTailCall` | [25](generated-function-families-nativedispatch-globalhandlerslottailcall.tsv) | `0x004174F0` | Loads a handler global; when set, jumps to it with `rdx = rcx` and `rcx = [r8+0x2E0]`. |
+| `NativeDispatch.MemberVirtualTailCall` | [28](generated-function-families-nativedispatch-membervirtualtailcall.tsv) | `0x00726DB0` | `mov rcx, [rcx+off]; mov rax, [rcx]; jmp [rax+slot]`. |
+| `NativeDispatch.NullableVirtualTailCall` | [11](generated-function-families-nativedispatch-nullablevirtualtailcall.tsv) | `0x0017F0C0` | Returns when `rcx` is null; otherwise `jmp [[rcx]+slot]`. |
+| `NativeDispatch.VirtualTailCall` | [14](generated-function-families-nativedispatch-virtualtailcall.tsv) | `0x00616E24` | `mov rax, [rcx]; jmp [rax+slot]`. Same instruction form as the fixed-slot adapters; held as a pointer in a vtable or a pointer table. |
+| `Runtime.VirtualDispatch.FixedSlotAdapter` | [20](generated-function-families-runtime-virtualdispatch-fixedslotadapter.tsv) | `0x00616E0C` | `mov rax, [rcx]; jmp [rax+slot]`. Same form as the virtual tail calls; its address is taken only by an installer's `lea`, and it is never called directly or held as a pointer in the image. |
 
 ### Loops, walks, lookups and table reads
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `NativeAdapter.BitfieldOrNodeWalk` | 9 | `0x001A20A0` | Initialises a record in `this` (zeroes `+0` to `+0x1B`, `+0x20` = `rdx+0x38`, `+0x28` = the list's first node, `+0x30` = a table address), steps it with `0x001B7CE0` until that returns true, then calls `0x001AA0A0`; returns `this`. |
-| `NativeAdapter.CountedLoopMemberInvoke` | 5 | `0x0062B020` | For each index below the count at `+0x18` (bit `0x80000000` masked, at least 1), calls `0x005CCB80(1)` while a lookup's dword is positive. |
-| `NativeAdapter.GlobalSlotFlagClearOps` | 4 | `0x003302B0` | Clears bit `0x2000` of the qword `table[ecx]`; when no bit but bit `0x1` remains, calls `0x00263FF0(ecx)` and clears bit `0x8` of the byte at its `+0x11`; when a non-zero slot became zero, calls `0x0032F1B0(ecx)`. |
-| `NativeAdapter.MallocRecordEmplaceTailCall` | 7 | `0x0018B5D0` | Allocates `0x20` bytes through `0x0085E730` (`malloc`), constructs a record with `edx`, appends its pointer to the vector in `this` (end `+8`, capacity `+0x10`, grown by `0x001AB570`), then jumps to `0x0018AFF0(0x0018B4E0(), record)`. |
-| `NativeAdapter.MemberPredicateTreeSearch` | 6 | `0x00219E30` | Walks the circular list at `this+8` calling a predicate on each node's `+0x10` with the three other arguments; returns 1 at the first true, else 0. |
-| `NativeLeaf.BoundedTableWordLookup` | 5 | `0x0032F260` | When `ecx` is within a bound, takes a row pointer from a table; when the row's first byte is non-zero returns its dword at `+8 + edx*8`, else -1. |
-| `NativeLeaf.ClampedIndexTableStore` | 4 | `0x002E2050` | Stores `edx` into entry `ecx` of a table (fixed stride); a negative index stores into entry 0, an index at or above the bound stores nothing. |
-| `NativeLeaf.ClampedTableLookup` | 7 | `0x0035EE50` | Returns 0 when `ecx` is at or above a bound; otherwise takes row `ecx` (stride `0x294`), wraps `byte [row+1] + edx` into 0 to 15, and returns the word at `+0x4A` of that 36-byte entry. |
-| `NativeLeaf.ListStringCompare` | 4 | `0x005C5250` | Walks a global chain (next at `+8`) comparing each node's name at `+0` with the argument; returns the node or 0. |
-| `NativeLeaf.RecursiveListVcallWalk` | 5 | `0x001A48C0` | Recurses into `[node]`, then calls slot 3 of the object at `this+0x30` with `(node, 0x38)`, moving to `[node+8]` until null. |
-| `Runtime.Container.RecursiveSpanNodeWalk` | 7 | `0x001A4B50` | The same recursive walk with node size `0x40`, which also returns each node's own span `[node+0x20] .. [node+0x30]` through slot 3 of the allocator at `node+0x38`. |
-| `Runtime.Container.StringKeyedChainAttach` | 11 | `0x006B8D20` | Returns `0x11` when the name at `+8` is null; walks a global chain comparing names byte by byte; returns `0x12` on a match, else links `this` at the head and returns 0. |
-| `Runtime.Registry.StringLookup` | 10 | `0x006C04C0` | Walks a global chain (next at `+0x10`) comparing each node's name at `+8` with the argument; returns the node or 0. |
-| `Runtime.SerialRangeInvokeLoop` | 7 | `0x0030DCB0` | For every id of one class, `0x1000 * class + i` below the class count, calls `0x003008A0(id, 0x63, 0, 1, 0)`. |
+| `NativeAdapter.BitfieldOrNodeWalk` | [9](generated-function-families-nativeadapter-bitfieldornodewalk.tsv) | `0x001A20A0` | Initialises a record in `this` (zeroes `+0` to `+0x1B`, `+0x20` = `rdx+0x38`, `+0x28` = the list's first node, `+0x30` = a table address), steps it with `0x001B7CE0` until that returns true, then calls `0x001AA0A0`; returns `this`. |
+| `NativeAdapter.CountedLoopMemberInvoke` | [5](generated-function-families-nativeadapter-countedloopmemberinvoke.tsv) | `0x0062B020` | For each index below the count at `+0x18` (bit `0x80000000` masked, at least 1), calls `0x005CCB80(1)` while a lookup's dword is positive. |
+| `NativeAdapter.GlobalSlotFlagClearOps` | [4](generated-function-families-nativeadapter-globalslotflagclearops.tsv) | `0x003302B0` | Clears bit `0x2000` of the qword `table[ecx]`; when no bit but bit `0x1` remains, calls `0x00263FF0(ecx)` and clears bit `0x8` of the byte at its `+0x11`; when a non-zero slot became zero, calls `0x0032F1B0(ecx)`. |
+| `NativeAdapter.MallocRecordEmplaceTailCall` | [7](generated-function-families-nativeadapter-mallcorecordemplacetailcall.tsv) | `0x0018B5D0` | Allocates `0x20` bytes through `0x0085E730` (`malloc`), constructs a record with `edx`, appends its pointer to the vector in `this` (end `+8`, capacity `+0x10`, grown by `0x001AB570`), then jumps to `0x0018AFF0(0x0018B4E0(), record)`. |
+| `NativeAdapter.MemberPredicateTreeSearch` | [6](generated-function-families-nativeadapter-memberpredicatetreesearch.tsv) | `0x00219E30` | Walks the circular list at `this+8` calling a predicate on each node's `+0x10` with the three other arguments; returns 1 at the first true, else 0. |
+| `NativeLeaf.BoundedTableWordLookup` | [5](generated-function-families-nativeleaf-boundedtablewordlookup.tsv) | `0x0032F260` | When `ecx` is within a bound, takes a row pointer from a table; when the row's first byte is non-zero returns its dword at `+8 + edx*8`, else -1. |
+| `NativeLeaf.ClampedIndexTableStore` | [4](generated-function-families-nativeleaf-clampedindextablestore.tsv) | `0x002E2050` | Stores `edx` into entry `ecx` of a table (fixed stride); a negative index stores into entry 0, an index at or above the bound stores nothing. |
+| `NativeLeaf.ClampedTableLookup` | [7](generated-function-families-nativeleaf-clampedtablelookup.tsv) | `0x0035EE50` | Returns 0 when `ecx` is at or above a bound; otherwise takes row `ecx` (stride `0x294`), wraps `byte [row+1] + edx` into 0 to 15, and returns the word at `+0x4A` of that 36-byte entry. |
+| `NativeLeaf.ListStringCompare` | [4](generated-function-families-nativeleaf-liststringcompare.tsv) | `0x005C5250` | Walks a global chain (next at `+8`) comparing each node's name at `+0` with the argument; returns the node or 0. |
+| `NativeLeaf.RecursiveListVcallWalk` | [5](generated-function-families-nativeleaf-recursivelistvcallwalk.tsv) | `0x001A48C0` | Recurses into `[node]`, then calls slot 3 of the object at `this+0x30` with `(node, 0x38)`, moving to `[node+8]` until null. |
+| `Runtime.Container.RecursiveSpanNodeWalk` | [7](generated-function-families-runtime-container-recursivespannodewalk.tsv) | `0x001A4B50` | The same recursive walk with node size `0x40`, which also returns each node's own span `[node+0x20] .. [node+0x30]` through slot 3 of the allocator at `node+0x38`. |
+| `Runtime.Container.StringKeyedChainAttach` | [11](generated-function-families-runtime-container-stringkeyedchainattach.tsv) | `0x006B8D20` | Returns `0x11` when the name at `+8` is null; walks a global chain comparing names byte by byte; returns `0x12` on a match, else links `this` at the head and returns 0. |
+| `Runtime.Registry.StringLookup` | [10](generated-function-families-runtime-registry-stringlookup.tsv) | `0x006C04C0` | Walks a global chain (next at `+0x10`) comparing each node's name at `+8` with the argument; returns the node or 0. |
+| `Runtime.SerialRangeInvokeLoop` | [7](generated-function-families-runtime-serialrangeinvokeloop.tsv) | `0x0030DCB0` | For every id of one class, `0x1000 * class + i` below the class count, calls `0x003008A0(id, 0x63, 0, 1, 0)`. |
 
 ### Large bodies
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `NativeAdapter.RecordChainDoubleResolve` | 4 | `0x00429A50` | Under a stack cookie: resolves a word id through the `0x740`-stride table, checks each hop with `0x00426220`, follows the record's `+8` word the same way, and calls `0x0042EF90` for the words at `+8` and `+0xA`. |
-| `NativeAdapter.RecordFieldCopy` | 5 | `0x0068C260` | Calls a getter with `rcx = rdx` and copies its fields from `+8` onward to the record in `r8`, field by field. |
-| `NativeLeaf.FloatBankGlobalPublish` | 4 | `0x004630D0` | Copies the vector at `this+0x60` into a bank of float globals (adding each lane to a base), stores `this` in a global, then continues through `0x0039AF70`, `0x00398F90` and others. |
-| `NativeLeaf.LargeFloatGlobalPublish` | 4 | `0x00452020` | Under a stack cookie: copies a record with `0x00430B90` into `this+0x110`, publishes it to a bank of float globals, then runs a long sequence of fixed calls. |
-| `NativeLeaf.SlideTableRecordCopyInvoke` | 10 | `0x002EFE70` | Two word globals select two 16-byte slots of a global record array; copies a 16-byte record and an 8-byte tail between them, advances the counters, and calls the function in `rcx`. |
+| `NativeAdapter.RecordChainDoubleResolve` | [4](generated-function-families-nativeadapter-recordchaindoubleresolve.tsv) | `0x00429A50` | Under a stack cookie: resolves a word id through the `0x740`-stride table, checks each hop with `0x00426220`, follows the record's `+8` word the same way, and calls `0x0042EF90` for the words at `+8` and `+0xA`. |
+| `NativeAdapter.RecordFieldCopy` | [5](generated-function-families-nativeadapter-recordfieldcopy.tsv) | `0x0068C260` | Calls a getter with `rcx = rdx` and copies its fields from `+8` onward to the record in `r8`, field by field. |
+| `NativeLeaf.FloatBankGlobalPublish` | [4](generated-function-families-nativeleaf-floatbankglobalpublish.tsv) | `0x004630D0` | Copies the vector at `this+0x60` into a bank of float globals (adding each lane to a base), stores `this` in a global, then continues through `0x0039AF70`, `0x00398F90` and others. |
+| `NativeLeaf.LargeFloatGlobalPublish` | [4](generated-function-families-nativeleaf-largefloatglobalpublish.tsv) | `0x00452020` | Under a stack cookie: copies a record with `0x00430B90` into `this+0x110`, publishes it to a bank of float globals, then runs a long sequence of fixed calls. |
+| `NativeLeaf.SlideTableRecordCopyInvoke` | [10](generated-function-families-nativeleaf-slidetablerecordcopyinvoke.tsv) | `0x002EFE70` | Two word globals select two 16-byte slots of a global record array; copies a 16-byte record and an 8-byte tail between them, advances the counters, and calls the function in `rcx`. |
 
 ### Reflection descriptor adapters
 
 | Family | Members | Example | Body |
 |---|---|---|---|
-| `Reflection.OwnedBufferResetAdapter` | 46 | `0x005A4830` | On `rdx`: when bit `0x80000000` of the count word at `+0` is clear and the pointer at `+8` is non-null, frees it with `0x00584730`; zeroes both; returns 1 (59 bytes). |
-| `Reflection.ReturnValueAdapter` | 403 | `0x00584780` | `push rbx; sub rsp, 0x20; mov rcx, rdx; mov rbx, r8; call target; mov [rbx], rax; ...; ret` (26 bytes): calls the target with the second argument and stores the returned pointer through the third. |
+| `Reflection.OwnedBufferResetAdapter` | [46](generated-function-families-df1-owned-buffer-reset-adapters.tsv) | `0x005A4830` | On `rdx`: when bit `0x80000000` of the count word at `+0` is clear and the pointer at `+8` is non-null, frees it with `0x00584730`; zeroes both; returns 1 (59 bytes). |
+| `Reflection.ReturnValueAdapter` | [403](generated-function-families-df4-return-value-adapters.tsv) | `0x00584780` | `push rbx; sub rsp, 0x20; mov rcx, rdx; mov rbx, r8; call target; mov [rbx], rax; ...; ret` (26 bytes): calls the target with the second argument and stores the returned pointer through the third. |
 
 
 ## Related

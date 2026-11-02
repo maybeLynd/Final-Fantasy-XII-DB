@@ -99,12 +99,12 @@ count, each recorded type with its name (`0x002FBA60`) and each distinct type on
 | `0x00` | `0x002F2D60` | `0x002F2530` | - | `0x00500470` | - | 1,446 / 458 |
 | `0x01` | `0x00442520` | `0x004424E0` | `0x00442550` | `0x00538A60` | - | 476 / 370 |
 | `0x02` | `0x00448DE0` | `0x00448D70` | `0x004490D0` | `0x00538AB0` | - | 7,523 / 1,141 |
-| `0x03` | `0x004427A0` | `0x00442760` | `0x004427D0` | `0x00538B80` | - | none |
+| `0x03` | `0x004427A0` | `0x00442760` | `0x004427D0` | `0x00538B80` | - | 0 / 0 |
 | `0x04` | `0x00445310` | `0x004452D0` | `0x004453D0` | `0x00538C80` | - | 173 / 81 |
 | `0x05` | `0x00449970` | `0x00449930` | `0x00449AB0` | `0x00538DB0` | - | 5,204 / 1,115 |
 | `0x06` | `0x00446F60` | `0x00446F20` | `0x00447020` | `0x00538EB0` | - | 25 / 9 |
-| `0x07` | `0x00447E10` | `0x00447DD0` | `0x00447ED0` | `0x00538EB0` | - | none |
-| `0x08` | `0x0044A5F0` | `0x0044A5B0` | `0x0044A620` | `0x00539030` | - | none |
+| `0x07` | `0x00447E10` | `0x00447DD0` | `0x00447ED0` | `0x00538EB0` | - | 0 / 0 |
+| `0x08` | `0x0044A5F0` | `0x0044A5B0` | `0x0044A620` | `0x00539030` | - | 0 / 0 |
 | `0x0A` | `0x0044BA80` | `0x0044BA40` | `0x0044BAC0` | `0x00539170` | - | 40 / 39 |
 
 - `0x00` has no draw method: it moves and fires spawn slots only.
@@ -130,7 +130,7 @@ value from `0x02AEE908` (`0x0039DA89`–`0x0039DAAC`, `0x0039D859`–`0x0039D875
 
 | Mode | Blend word |
 |---:|---|
-| 0 | none: the immediate emitter |
+| 0 | no blend word: the immediate emitter |
 | 1 | `0x48` |
 | 2 | `0x42` |
 | 3 | `0x44` |
@@ -309,7 +309,7 @@ returns 0 and the source palette stays:
 | 1 | `0x0050AC20` | byte `+0x01`, mask `0x6` of `+0x03` |
 | 2 | `0x00506B40` | words `+0x08` to `+0x0E`, bit `0x1` of `+0x03` |
 | 3 | `0x005080A0` | words `+0x04`, `+0x06`, bit `0x1` of `+0x03` |
-| 5 | `0x00509BB0` | none besides the track |
+| 5 | `0x00509BB0` | only the track |
 | 6 | `0x00507490` | words `+0x04`, `+0x06` |
 | 7 | `0x00508C90` | bytes `+0x01`, `+0x02`, words `+0x04`, `+0x06` |
 
@@ -343,9 +343,9 @@ sprite frame drawers `0x00501A50` and `0x00502280` use them.
 
 | Emitter | Texture | Filing |
 |---|---|---|
-| `0x0043D8F0(positions, colours, n)` | none | at once, `0x0020E630(command, 2)` |
+| `0x0043D8F0(positions, colours, n)` | no texture | at once, `0x0020E630(command, 2)` |
 | `0x0043DB90(positions, uv, q, textures, colours, n)` | `u / q`, `v / q`; texture pair at `+0x38`, `+0x48` | at once |
-| `0x0043E440(positions, colours, n)` | none | draw-list entry |
+| `0x0043E440(positions, colours, n)` | no texture | draw-list entry |
 | `0x0043DF80(positions, uv, q, textures, colours, n)` | as `0x0043DB90` | draw-list entry |
 
 The colour bytes become floats. The two list emitters key the entry on the smallest of the three
@@ -452,7 +452,7 @@ the type's apply body: `0x004640A0` (`0x40`), `0x00464BD0` (`0x41`), `0x0047BD30
 | `0x69` (sub) | `0x00523C30` | `0x00523BF0` | `0x00523D30` | `0x0054ED10` | - | 58 / 22 |
 | `0x6A` (sub) | `0x00525D50` | `0x00525D10` | `0x00526080` | `0x0054F070` | `0x00526040` | 395 / 210 |
 | `0x6B` (sub) | `0x00529200` | `0x005291C0` | `0x005294F0` | `0x0054F7C0` | `0x005294B0` | 258 / 117 |
-| `0x70` (sub) | `0x0053DD10` | `0x005C5230` | `0x0016D6A0` | `0x0054F270` | `0x0016D6A0` | none |
+| `0x70` (sub) | `0x0053DD10` | `0x005C5230` | `0x0016D6A0` | `0x0054F270` | `0x0016D6A0` | 0 / 0 |
 | `0x71` (sub) | `0x0052A130` | `0x0052A0F0` | `0x0052A360` | `0x0054F9B0` | `0x0052A340` | 28 / 12 |
 | `0x72` (sub) | `0x0052ADF0` | `0x0052ADB0` | `0x0052B080` | `0x0054FBE0` | `0x0052B060` | 89 / 47 |
 | `0x73` (sub) | `0x0052D3B0` | `0x0052D370` | `0x0052D920` | `0x0054FFF0` | `0x0052D8E0` | 14 / 8 |
@@ -613,7 +613,7 @@ leaves the piece unmoved that step.
 | Type | Birth | Update | Draw | Setup | Release | Authored |
 |---|---|---|---|---|---|---|
 | `0x80` | `0x0044CC10` | `0x00450480` | `0x0044CC50` | `0x00539320` | - | 875 / 381 |
-| `0x81` | `0x0044D460` | `0x0044D420` | `0x0044D4A0` | `0x00539270` | - | none |
+| `0x81` | `0x0044D460` | `0x0044D420` | `0x0044D4A0` | `0x00539270` | - | 0 / 0 |
 | `0x82` | `0x0044CC10` | `0x00450480` | `0x0044DD00` | `0x00539320` | - | 617 / 161 |
 | `0x83` | `0x0044CC10` | `0x00450480` | `0x0044E530` | `0x00539320` | - | 80 / 48 |
 | `0x84` | `0x0044ED90` | `0x0044ED50` | `0x0044EDD0` | `0x00539980` | - | 1,972 / 501 |
@@ -622,7 +622,7 @@ leaves the piece unmoved that step.
 | `0x87` | `0x00451140` | `0x00450480` | `0x00451180` | `0x00539560` | - | 175 / 54 |
 | `0x88` | `0x00451890` | `0x00451850` | `0x004518D0` | `0x00539610` | - | 41 / 31 |
 | `0x89` | `0x004524C0` | `0x00452480` | `0x00452540` | `0x00539740` | - | 36 / 8 |
-| `0x8A` | `0x00453110` | `0x004530D0` | `0x00453150` | `0x00539870` | - | none |
+| `0x8A` | `0x00453110` | `0x004530D0` | `0x00453150` | `0x00539870` | - | 0 / 0 |
 | `0x8B` | `0x004548F0` | `0x004548B0` | `0x00454930` | `0x00539A60` | - | 1 / 1 |
 | `0x8C` | `0x00455390` | `0x0045B260` | `0x00455540` | `0x00539B30` | - | 7,509 / 910 |
 | `0x8D` | `0x00455D70` | `0x00455D30` | `0x00455DB0` | `0x00539C10` | - | 1,170 / 553 |
@@ -634,7 +634,7 @@ leaves the piece unmoved that step.
 | `0x94` | `0x00455390` | `0x0045B260` | `0x0045AEE0` | `0x00539B30` | - | 2,344 / 387 |
 | `0x95` | `0x00455390` | `0x0045B260` | `0x0045B2A0` | `0x00539B30` | - | 456 / 226 |
 | `0x96` | `0x00453CB0` | `0x00453C70` | `0x00453CF0` | `0x00539980` | - | 268 / 75 |
-| `0x97` | `0x00455390` | `0x0045B260` | `0x0045BAD0` | `0x00539F80` | - | none |
+| `0x97` | `0x00455390` | `0x0045B260` | `0x0045BAD0` | `0x00539F80` | - | 0 / 0 |
 
 The band shares handlers across types, so a type here often selects a variant rather than a class:
 
@@ -649,16 +649,16 @@ The band shares handlers across types, so a type here often selects a variant ra
 
 | Type | Birth | Update | Draw | Setup | Release | Authored |
 |---|---|---|---|---|---|---|
-| `0xA0` | `0x00460B80` | `0x00460B40` | `0x00460BC0` | `0x0053A6F0` | - | none |
+| `0xA0` | `0x00460B80` | `0x00460B40` | `0x00460BC0` | `0x0053A6F0` | - | 0 / 0 |
 | `0xA1` | `0x00461090` | `0x00461050` | `0x00461270` | `0x0053A790` | `0x00461250` | 504 / 343 |
 | `0xA2` | `0x00462480` | `0x00462440` | `0x00462540` | `0x0053A840` | - | 6,303 / 2,018 |
 | `0xA3` (sub) | `0x00524800` | `0x005247C0` | `0x00524A50` | `0x0054EE70` | `0x00524A10` | 447 / 131 |
-| `0xA4` (sub) | `0x005222D0` | `0x00522290` | `0x00522300` | `0x0054EA70` | - | none |
+| `0xA4` (sub) | `0x005222D0` | `0x00522290` | `0x00522300` | `0x0054EA70` | - | 0 / 0 |
 | `0xA5` | `0x004633A0` | `0x00463360` | `0x00463460` | `0x0053A900` | - | 36 / 20 |
 | `0xA6` (sub) | `0x00524D70` | `0x00524D30` | `0x00524E30` | `0x0054EED0` | - | 359 / 178 |
 | `0xA7` (sub) | `0x005269B0` | `0x00526970` | `0x00526A10` | `0x0054F1B0` | - | 14 / 14 |
 | `0xA8` (sub) | `0x00527110` | `0x005270D0` | `0x005271D0` | `0x0054F350` | - | 367 / 159 |
-| `0xA9` (sub) | `0x00528090` | `0x00528050` | `0x00528150` | `0x0054F520` | - | none |
+| `0xA9` (sub) | `0x00528090` | `0x00528050` | `0x00528150` | `0x0054F520` | - | 0 / 0 |
 | `0xAA` (sub) | `0x00528AF0` | `0x00528AB0` | `0x00528B50` | `0x0054F700` | - | 3 / 3 |
 | `0xAB` (sub) | `0x0052BFB0` | `0x0052BF70` | `0x0052C070` | `0x0054FE00` | - | 7 / 4 |
 
@@ -752,7 +752,7 @@ Definition fields the verified draws read:
 | kind-`0x54` sizes | the layout above plus 0 to 15 bytes of padding fills every record's chunk |
 | kind-`0x54` arrays | 20-byte count 0 in all; 8-byte count equal to the 4-byte count in all |
 | kind-`0x54` id bytes | 0 in 2,275 records, 1 in 444, 2 in 14; all 472 name a kind-`0x52` record of key 0 in the same stream |
-| type-`0x05` definitions | 5,204; mesh slots filled at `+0x570`: one in 4,304, two in 898, three in 1, none in 1 |
+| type-`0x05` definitions | 5,204; mesh slots filled at `+0x570`: one in 4,304, two in 898, three in 1, no slot in 1 |
 | type-`0x05` mesh ids | all 6,103 equal the slot byte of a kind-`0x54` record in the same stream |
 
 The tables beside this page:
@@ -916,7 +916,7 @@ through the table `0x0052CF40` (`0x0052C452`-`0x0052C474`):
 | 0 | `0x0052C476` | off: word `+0` is 0 |
 | 1 | `0x0052CB7C` | the draw returns at once, with no packet for any layer |
 | 2 | `0x0052CBBC` | the block's texture (`0x00431830` at `0x0052CBDB`); its size in pixels from the texture record |
-| 3 | `0x0052CD79` | a sprite-row frame (`0x00431830` at `0x0052CDA0`); off when there is none |
+| 3 | `0x0052CD79` | a sprite-row frame (`0x00431830` at `0x0052CDA0`); off when there is no frame |
 | 4 | `0x0052CE86` | the block's texture over 256 × 224, texture rectangle (0.001, 0.002)-(1.0, 0.875) |
 | 5 | `0x0052C47E` | untextured, 256 × 224 |
 

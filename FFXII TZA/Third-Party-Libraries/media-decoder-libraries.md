@@ -100,7 +100,7 @@ Two of the parser's larger bodies are outside its member list:
 
 - `0x00806F20`, called from `0x00803190` (`0x008031B5`), parses the segment's headers. It creates the Info
   (`1549A966`) and Tracks (`1654AE6B`) objects, returning -2 when either is already present, and the
-  Cues object (`1C53BB6B`) when there is none yet.
+  Cues object (`1C53BB6B`) when there is no Cues object.
 - `0x00801550`, called from `0x00803230` (`0x0080324D`), loads the next cluster: it sets up the Cues object
   when it meets that element first and parses a Cluster (`1F43B675`).
 
@@ -389,6 +389,70 @@ One of the player's three frame queues, as the queue functions use it:
 | libogg | `framing.c` 22 functions in [`media-decoder-libraries-libogg-framing.tsv`](media-decoder-libraries-libogg-framing.tsv); `bitwise.c` 4 in [`media-decoder-libraries-libogg-bitwise.tsv`](media-decoder-libraries-libogg-bitwise.tsv) |
 | VP8 decoder fields | the decoder instance and macroblock-decoder field accesses in [`media-decoder-libraries-vp8-decoder-instance-accesses.tsv`](media-decoder-libraries-vp8-decoder-instance-accesses.tsv) and [`media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv`](media-decoder-libraries-vp8-macroblock-decoder-accesses.tsv) |
 | encoder text | `mkvmuxer`, "VP8 Encoder" and "VP9" occur zero times |
+
+### Columns of media-decoder-libraries-libwebm-mkvparser.tsv
+
+One row per function, 104 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address: 101 from `0x007FFBC0` to `0x00808887` and the three vtable bodies `0x007AD440`, `0x007BD590` and `0x007E3260` |
+
+### Columns of media-decoder-libraries-tremor-vorbisfile.tsv
+
+One row per function, 103 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address: 25 from `0x007F41A0` to `0x007F6FAF` and 78 from `0x007F7680` to `0x007FFBBF` |
+
+### Columns of media-decoder-libraries-libvpx-vp8-decoder.tsv
+
+One row per function, 116 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address, from `0x0016DDD0` to `0x0017C2F0` |
+
+### Columns of media-decoder-libraries-libvpx-vp8-dsp-kernels.tsv
+
+One row per kernel, 63 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the kernel's entry address, from `0x00125740` to `0x00158C09` |
+
+### Columns of media-decoder-libraries-libvorbis.tsv
+
+One row per function, 121 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address, from `0x008800C0` to `0x008955A0` |
+
+### Columns of media-decoder-libraries-cri-hca-decoder.tsv
+
+One row per function, 53 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address, from `0x00121000` to `0x00125710` |
+
+### Columns of media-decoder-libraries-libogg-framing.tsv
+
+One row per function, 22 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address, from `0x007B9D70` to `0x007BA970` |
+
+### Columns of media-decoder-libraries-libogg-bitwise.tsv
+
+One row per function, 4 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address, from `0x0017C890` to `0x0017CB40` |
 
 ### Columns of media-decoder-libraries-libvpx-vp8-control-handlers.tsv
 

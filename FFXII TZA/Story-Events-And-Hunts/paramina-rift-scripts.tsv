@@ -108,8 +108,8 @@ pbc_c03	Silverflow's End (Paramina Rift)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	t
 pbc_c03	Silverflow's End (Paramina Rift)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000258	-	-	-	-	1	-
 pbc_c03	Silverflow's End (Paramina Rift)	treasure_10	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000270	-	-	-	-	1	-
 pbc_a0300	scene, event 269	MESSAGE	TAGmes_BALFLAIR_1	requested by DIRECTOR.EV_e0100	Balthier	1	Empires parade down city streets, while refugees walk barefoot through the snow.	-	-	-	-	-	-	-	-	-	-	1	-
-pbc_a0300	scene, event 269	MESSAGE	TAGmes_LARSAR_2	requested by DIRECTOR.EV_e0100	-	2	And so I sue for peace to stop short war and ease their suffering.	-	-	-	-	-	-	-	-	-	-	1	-
-pbc_a0300	scene, event 269	MESSAGE	TAGmes_LARSAR_3	requested by DIRECTOR.EV_e0100	-	3	My father will choose peace.	-	-	-	-	-	-	-	-	-	-	1	-
+pbc_a0300	scene, event 269	MESSAGE	TAGmes_LARSAR_2	requested by DIRECTOR.EV_e0100	LARSAR (script label)	2	And so I sue for peace to stop short war and ease their suffering.	-	-	-	-	-	-	-	-	-	-	1	-
+pbc_a0300	scene, event 269	MESSAGE	TAGmes_LARSAR_3	requested by DIRECTOR.EV_e0100	no name shown	3	My father will choose peace.	-	-	-	-	-	-	-	-	-	-	1	-
 pbc_a0300	scene, event 269	MESSAGE	TAGmes_BALFLAIR_4	requested by DIRECTOR.EV_e0100	Balthier	4; 5	Will he now? / You sound sure of yourself.	-	-	-	-	-	-	-	-	-	-	1	-
 pbc_a0300	scene, event 269	MESSAGE	TAGmes_BALFLAIR_5	requested by DIRECTOR.EV_e0100	Balthier	6	You can never know another, even your father.	-	-	-	-	-	-	-	-	-	-	1	-
 pbc_a0300	scene, event 269	MESSAGE	TAGmes_VAN_6	requested by DIRECTOR.EV_e0100	Vaan	7	Don't take it the wrong way, okay?	-	-	-	-	-	-	-	-	-	-	1	-

@@ -67,7 +67,7 @@ SHK1 (section 11):
 | `+0x00` | `char[24]` | name | read only by the name lookup, which never runs |
 | `+0x18` | `u32` | duration | read as a u16 |
 | `+0x1C` | `u32` | - | 0; not read |
-| `+0x20` | `u16[32]` | curve | slot k: 0 = none, else curve number + 1 |
+| `+0x20` | `u16[32]` | curve | slot k: 0 = no curve, else curve number + 1 |
 
 ```
 dataOffset: curve[curves], each starting with an i32 length

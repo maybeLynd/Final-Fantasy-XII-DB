@@ -28,19 +28,19 @@ a polygon and at `+4` of a wall record. Its fields, with the functions that read
 
 | bits | field | written by a verb | read by |
 |---|---|---|---|
-| 0-2 | polygon type: 0 floor, 1 wall, 2 and 4 marker polygons, 3 camera region | none | `0x00230A40`, `0x0022D4B0`, `0x0022CC50`, `0x00231A90`, `0x002321D0`, `0x00233230` |
-| 3-6 | mj group 0-15; selects override entry `0x40 + group` | none | `0x00232020`, `0x00230A40`, `0x00232090`, `0x00231F80`, `0x002321D0`, `0x00231A90` |
+| 0-2 | polygon type: 0 floor, 1 wall, 2 and 4 marker polygons, 3 camera region | no verb | `0x00230A40`, `0x0022D4B0`, `0x0022CC50`, `0x00231A90`, `0x002321D0`, `0x00233230` |
+| 3-6 | mj group 0-15; selects override entry `0x40 + group` | no verb | `0x00232020`, `0x00230A40`, `0x00232090`, `0x00231F80`, `0x002321D0`, `0x00231A90` |
 | 12 | copied into bit `0x4` of the body's flag word | `setmapidfloor` kind 9 | `0x003808A0` |
-| 13-17 | floor group 0-31; the wall group on type-1 polygons and wall records | none | every override reader below |
+| 13-17 | floor group 0-31; the wall group on type-1 polygons and wall records | no verb | every override reader below |
 | 18-22 | ground field | `setmapidfloorground` | `0x00231F80` |
 | 23-27 | block bits for movement kinds 0, 5, 1, 2, 3 (bits `0x800000`, `0x1000000`, `0x2000000`, `0x4000000`, `0x8000000`) | `setmapidfloor`, `setmapidmj` | `0x00230A40`, `0x00232090`, `0x0022D4B0`, `0x0022CC50` |
-| 26 | on type-1 polygons and wall records: skipped by the sphere sweep | none | `0x0022D7E0` |
+| 26 | on type-1 polygons and wall records: skipped by the sphere sweep | no verb | `0x0022D7E0` |
 | 30 | wall ignored by kind-4 queries | `setmapidwall` kind 6 | `0x0022D4B0`, `0x0022CC50` |
 | 31 | wall switched off | `setmapidwall` kind 5 | `0x0022F8B0`, `0x0022DE60`, `0x0022D7E0`, `0x0022D4B0`, `0x0022CC50` |
 
 `0x00230A40` closes a polygon to every movement kind when there is no neighbour across the edge (`0x00230A4F`) or the
 polygon type (bits `0x7`, after the overrides) is not 0 (`0x00230AB9`). Otherwise kinds 0, 1, 2, 3 and 5 test their block bit;
-kind 4 and kinds 6 and above have none and pass every floor polygon (`0x00230B4A`).
+kind 4 and kinds 6 and above have no block bit and pass every floor polygon (`0x00230B4A`).
 
 ### The override table
 
@@ -107,11 +107,11 @@ native as (group, kind, v): `0x00343E60` runs `or edx, -1; call 0x00267F90`, fou
 
 | id | name | handler | native call | script operands |
 |---|---|---|---|---|
-| 0xF6 | resetmapidfloorall | `0x003416E0` | `0x003791D0(-1)` | none; -1 is pushed and popped |
+| 0xF6 | resetmapidfloorall | `0x003416E0` | `0x003791D0(-1)` | no operand; -1 is pushed and popped |
 | 0xF7 | resetmapidfloor | `0x00341290` | `0x003791D0(g)` | g |
-| 0xF8 | resetmapidwallall | `0x00341E30` | `0x00379270(-1)` | none |
+| 0xF8 | resetmapidwallall | `0x00341E30` | `0x00379270(-1)` | no operand |
 | 0xF9 | resetmapidwall | `0x00341A90` | `0x00379270(g)` | g |
-| 0xFA | resetmapidmjall | `0x003424D0` | `0x00379220(-1)` | none |
+| 0xFA | resetmapidmjall | `0x003424D0` | `0x00379220(-1)` | no operand |
 | 0xFB | resetmapidmj | `0x003421B0` | `0x00379220(g)` | g |
 | 0xFC | setmapidfloorground | `0x003429B0` | `0x003791F0(g, v)` | g, v |
 | 0xFD | setmapidmjground | `0x00343140` | `0x00379240(g, v)` | g, v |
@@ -352,7 +352,7 @@ Eighty entries: floors 0x00-0x1F, walls 0x20-0x3F, mj groups 0x40-0x4F.
 | `+0x00` | `f32[3]` | normal | plane normal, dotted with a vertex in `0x0022DE60` and `0x0022D7E0` |
 | `+0x0C` | `u32` | attr | the attribute word (field table in How it works) |
 | `+0x10` | `i16[3]` | vertex | indices into the `0x10`-byte vertex array at [part + 8]; `0x00231A90` reads the vertex colour at `+0xC` |
-| `+0x16` | `i16[3]` | neighbour | polygon id across each edge, -1 for none (`0x0022F9B0`) |
+| `+0x16` | `i16[3]` | neighbour | polygon id across each edge, -1 for no neighbour (`0x0022F9B0`) |
 | `+0x1C` | `u32` | flags | bit `0x400` is tested by `0x0022E7D0` (`0x0022E93B`), from `0x0022D7E0`, and by `0x0022EAC0` (`0x0022ECA2`), from `0x0022DE60`: no contact past the third edge; the polygon readers `0x00230A40`, `0x0022CC50`, `0x0022D4B0`, `0x0022D7E0`, `0x0022DE60`, `0x0022F9B0`, `0x00231A90`, `0x00232090`, `0x002321D0`, `0x00233110` and `0x00233230` read nothing from `+0x1C` to `+0x1F` themselves |
 
 `RouteEdge` (`0x8` bytes, offsets from the start of the edge):

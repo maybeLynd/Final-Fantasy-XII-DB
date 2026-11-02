@@ -21,13 +21,13 @@ value it stores. Reading the `if` chains and every `switch` case form (`case N`,
 `gte`, `default`) gives: raises or keeps 179, lowers 33, unguarded 1,545, may lower 2.
 
 All 33 lowering writes are in `evt_t` developer scripts (debug menus). The two "may lower" writes stay on the
-forward side on shipped paths. `bhm_d01` main line 192 writes 7100 under `g_btl_ラスト・ヴェイン == 1`, a state
+forward side on story paths. `bhm_d01` main line 192 writes 7100 under `g_btl_ラスト・ヴェイン == 1`, a state
 that moves only 0 to 1 (`pre_z0000` line 242) and then to 2 (`bhm_d01` line 307, before 7150 at line 315).
 `gil_d01` main line 696 writes 4400; the only write in 4401-4999 is developer `evt_t0505` line 14333.
 
 Map scripts often test the counter once in `init` and keep the answer in a file variable. Giving a test of a file
 variable the counter bounds of that value's stores (three passes to a fixed point) gives: raises or keeps 194,
-lowers 33, unguarded 1,530, may lower 2. With reachability, the shipped writes are:
+lowers 33, unguarded 1,530, may lower 2. With reachability, the story writes are:
 
 | Verdict | Reached | Unreachable |
 |---|---:|---:|
@@ -41,7 +41,10 @@ jump with no label before it, plus `byu_a18` `配置監督.main` lines 821 and 8
 at `0C332` and no jump in the function targets it.
 
 The 128 reached unguarded writes were read by hand: what starts the function, which other variables guard it, and
-which maps lead in. All 128 raise or keep the counter. Four of them rest on how the maps connect:
+which maps lead in. 125 raise or keep the counter. Three may lower it: `mrm_e01` main line 551 (2150), `rui_c01`
+main line 210 (3200) and `rui_d01` main line 225 (3150) run on the first entry into a boss room, and the counter
+tests on the story scripts' map jumps leave other areas open before that entry, where later writes store more,
+so the listings give the counter at that entry no upper bound. Four of the 125 rest on how the maps connect:
 
 - `gil_a02` touch line 854 (4300) and `gil_c02` touch line 969 (4350), the Daedalus and Tyrant fights in Giruvegan. The
   Giruvegan writes above them (`gil_c01` 4320, `gil_g10` 4370, `gil_d01` 4400) lie past warps that open only after each
@@ -155,7 +158,7 @@ Four kinds of exit name no field in the call; `destination_map` gives the maps t
   came from (verb `0x92`: `0x00314870` reads payload `+0x104C`, which the zone change sets to the old area). 399 rows in
   21 rooms name the corridor whose door jumps into the room: `dor_c01` (66th Floor), `dor_c12` (70th Floor),
   `dor_d01` (67th Floor) or `dor_e01` (68th Floor), each door taking the Lab Access Card.
-- **Draklor rooms no exit enters.** The other 551 room-door rows are in 29 rooms (`dor_a02` to `dor_e16`, such as Rm 6613 West) that no shipped exit enters: in the listings of all nine language trees the only jumps to their field ids are the developer menus `evt_t0084` and `evt_t0509`, no stored room id reaches a jump call, and none of the 29 holds a save crystal.
+- **Draklor rooms no exit enters.** The other 551 room-door rows are in 29 rooms (`dor_a02` to `dor_e16`, such as Rm 6613 West) that no story exit enters: in the listings of all nine language trees the only jumps to their field ids are the developer menus `evt_t0084` and `evt_t0509`, no stored room id reaches a jump call, and none of the 29 holds a save crystal.
 - **The World Map picker.** The aerodrome desks of `alc_e01`, `byu_b01`, `nac_b01`, `rbn_b01` and `var_b01` and the
   Strahl flights (`ym_shutoraljump.shtjump`, 13 zones) jump to the value `openfullscreenmenu_48d(0x8000, 0)` returns.
   Selector 0 opens the World Map as a destination picker (menu id 17), which hands back the chosen area's destination
@@ -223,6 +226,12 @@ a test sets one of them earlier in the exit's own function, that test's clause e
 exit is never taken"; it ends "so this test always passes" when every value passes. A test the script compares with
 itself is marked the same way.
 
+Every store of each saved value a door condition tests, with that store's own condition, is in
+[saved-value-stores.tsv](../World-Areas-And-Travel/saved-value-stores.tsv): a script's own variable under the script and
+its listing name, an engine-held value under its block, unit and offset (a scratch1 value with its script, a scratch2
+value with its area's script prefix), and a value the game's symbols name, such as `global_flag[2]`, by that name in its
+`store` column. A tested value that no script stores has no rows.
+
 ### Verbs that steer battle AI
 
 32 verbs were taken from the verb table and the verb pages, and 32,071 calls in 915 scripts were counted. 29 verbs
@@ -273,13 +282,13 @@ table). `line` is the listing line of the write or call.
 
 | Column | Meaning |
 |---|---|
-| `script`, `script_kind` | The script, and `shipped` or `developer (evt_t)` |
+| `script`, `script_kind` | The script, and `story` or `developer (evt_t)` |
 | `function`, `line`, `value` | Where the write is and the value it stores in the main story counter |
-| `lower_bound`, `upper_bound` | The counter bounds its guards admit (`-` for none), file-variable tests included |
+| `lower_bound`, `upper_bound` | The counter bounds its guards admit (`-` when the guards set no bound), file-variable tests included |
 | `verdict` | `raises or keeps`, `lowers`, `may lower` or `unguarded`, from the bounds |
 | `guards` | The `if` and `switch` tests that hold at the write |
 | `reach` | `reached` or `unreachable` |
-| `read_guard`, `started_by`, `counter_range` | For the 128 reached unguarded shipped writes, read by hand: what guards the write, what starts its function, and the counter values at which it runs; `-` for the other rows |
+| `read_guard`, `started_by`, `counter_range` | For the 128 reached unguarded story writes, read by hand: what guards the write, what starts its function, and the counter values at which it runs; `-` for the other rows |
 | `read_verdict`, `evidence` | The hand reading's verdict and the listing lines it rests on; `-` for the other rows |
 
 ### [`script-census-declarations.tsv`](script-census-declarations.tsv)

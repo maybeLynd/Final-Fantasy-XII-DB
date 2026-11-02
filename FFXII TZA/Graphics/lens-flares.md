@@ -125,7 +125,7 @@ query list (`0x00184A70`), and for each slot with a handle and flag bit `0x8` cl
    copied to `+0x30`).
 3. The visibility target is 0 when the test square leaves the GS screen: `y0` beyond the height,
    `y1` below 1, `x1` beyond the width or `x0` below 1. Otherwise it is the query
-   result whose handle matches the slot's, or the result at the slot's own position when none does.
+   result whose handle matches the slot's, or the result at the slot's own position when no handle does.
    The visibility `+0x08` moves 40% of the way to the target.
 4. Flag bit `0x1` runs the dimming `0x00376AC0` (below).
 5. The four corners of the float square, at the slot's depth, are transformed by the matrix
@@ -179,7 +179,7 @@ entry:
   count divided by the rectangle's area in back-buffer pixels (width `0x00182EB0`, height `0x00182E80`),
   0 when the area is 10 pixels or less, clamped to 0 to 1. A rectangle outside the screen or a depth
   outside 0 to 1 gives 0 and no new query;
-- when the count is not ready it keeps last frame's value and issues a new query only if none is
+- when the count is not ready it keeps last frame's value and issues a new query only if no query is
   pending;
 - to issue, it begins the query, draws the rectangle as a six-vertex quad at depth `z × 0.5 + 0.5`,
   ends the query and sets the pending byte.
@@ -211,7 +211,7 @@ Last it copies the eight entries, with their visibility, to `+0xE4` under the lo
 | `+0x3C` | `f32` | radiusC | definition `+0x1F8` |
 | `+0x40` | `f32` | dimStrength | definition `+0x1DC` |
 | `+0x44` | `f32[3]` | lightColour | definition `+0x1E0` to `+0x1E8` |
-| `+0x50` | `u32` | light | light handle, 0 = none |
+| `+0x50` | `u32` | light | light handle, 0 = no light |
 | `+0x54` | `u16` | flags | bit `0x1` dimming and light, bit `0x2` fades A and B, bit `0x4` set at creation and while unprojected, bit `0x8` frozen |
 | `+0x60` | `f32[4]` | lightDirection | request `+0x20` (`0x00377160`) |
 | `+0x70` | `i32[4]` | testSquare | y0, y1, x1, x0 in GS pixels (`0x00377100`) |

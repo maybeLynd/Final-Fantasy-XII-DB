@@ -53,13 +53,13 @@ counter that increases by one on every area initialisation.
 ### The drop roll
 
 `Loot_RollDropEntries` (`0x003180F0`, 641 bytes) fills seven output entries
-`{u16 item (0xFFFF none), u32 quantity}`, all set to empty first (`0x0031811D`-`0x00318158`). The enemy's
+`{u16 item (0xFFFF no item), u32 quantity}`, all set to empty first (`0x0031811D`-`0x00318158`). The enemy's
 drop data is the record at `[unit+0xE60]`.
 
 1. **Chance profile** = chain level `0x022C3158` (`0x00318116`); when breaks in a row `0x022C3164` is above
    zero it is replaced by `Loot_SelectChanceProfileByWeight` (`0x00318820`, `0x0031815C`-`0x0031816A`).
 2. **Quantity profile** = the first row of the drop table whose signed byte `+0x05` is negative or at
-   least the same-model run `0x022C3160`; row 0 if none qualifies (`0x003181C7`-`0x003181EF`).
+   least the same-model run `0x022C3160`; row 0 if no row qualifies (`0x003181C7`-`0x003181EF`).
    - With the shipped limits 8, 16, 24 and -1 this is row 0 for a run of 0-8, row 1 for 9-16,
      row 2 for 17-24 and row 3 from 25.
    - When the killer is a party unit, the roll reads the run after the same kill's chain update:
@@ -90,7 +90,7 @@ Each roll is its own function:
   drops.
 - `Loot_RollNormalSlotQuantityBucket(profile, slot)` (`0x003186F0`): sums the four signed weights at
   `row + 6 + slot*4` and returns the index (0-3) of the first one whose running sum exceeds `r`, or 4
-  when none does (`0x003187E3`-`0x003187FB`); 0 for bad arguments. So the code allows 1 to 5 items; in the
+  when no sum does (`0x003187E3`-`0x003187FB`); 0 for bad arguments. So the code allows 1 to 5 items; in the
   shipped table every slot's weights sum to 100, so it is 1 to 4.
 - `Loot_SelectChanceProfileByWeight()` (`0x00318820`): `0x00318960` picks the first row whose signed byte
   `+0x21` is negative or at least `0x022C3164`, or row 0 (`0x003189D6`). The walk sums signed bytes from
@@ -213,7 +213,7 @@ The enemy's drop record (`[unit+0xE60]`), the fields the drop roll reads:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x28` | `u16[5]` | slotItems | the five normal drops; `0xFFFF` = none |
+| `+0x28` | `u16[5]` | slotItems | the five normal drops; `0xFFFF` = no drop |
 | `+0x32` | `u16[3]` | steal | the three steal slots; not read by the drop roll |
 | `+0x38` | `u32[2]` | partIds | model rebuild parts; not read by the drop roll |
 | `+0x40` | `u8[2]` | partLinks | their attach links; not read by the drop roll |

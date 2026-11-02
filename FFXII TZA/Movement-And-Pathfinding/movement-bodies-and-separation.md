@@ -375,8 +375,8 @@ the body's mask word `+0x110` (`0x002E9BB0`, `0x002EC5B0`) and, for a negative `
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x000` | `u16` | prev | previous body in its list, `FFFF` none |
-| `+0x002` | `u16` | next | next body in its list, `FFFF` none |
+| `+0x000` | `u16` | prev | previous body in its list, `FFFF` when there is no previous body |
+| `+0x002` | `u16` | next | next body in its list, `FFFF` when there is no next body |
 | `+0x004` | `u16` | self | the body's own index |
 | `+0x006` | `u8` | layer | set by `0x00269EC0`; only equal layers pair |
 | `+0x007` | `u8` | activeThisTick | set by `0x003DB020`, cleared by `0x003DAA40` |

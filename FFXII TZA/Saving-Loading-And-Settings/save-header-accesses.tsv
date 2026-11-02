@@ -1,0 +1,200 @@
+function	name	site	disp	kind	instruction	route	note
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C50	0x80	addr	lea rax, [rax + 0x80]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C57	0x0	r	movups xmm0, xmmword ptr [rbx]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C5A	0x80	addr	lea rbx, [rbx + 0x80]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C61	0x0	w	movups xmmword ptr [rax - 0x80], xmm0	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C65	0x10	r	movups xmm1, xmmword ptr [rbx - 0x70]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C69	0x10	w	movups xmmword ptr [rax - 0x70], xmm1	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C6D	0x20	r	movups xmm0, xmmword ptr [rbx - 0x60]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C71	0x20	w	movups xmmword ptr [rax - 0x60], xmm0	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C75	0x30	r	movups xmm1, xmmword ptr [rbx - 0x50]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C79	0x30	w	movups xmmword ptr [rax - 0x50], xmm1	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C7D	0x40	r	movups xmm0, xmmword ptr [rbx - 0x40]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C81	0x40	w	movups xmmword ptr [rax - 0x40], xmm0	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C85	0x50	r	movups xmm1, xmmword ptr [rbx - 0x30]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C89	0x50	w	movups xmmword ptr [rax - 0x30], xmm1	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C8D	0x60	r	movups xmm0, xmmword ptr [rbx - 0x20]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C91	0x60	w	movups xmmword ptr [rax - 0x20], xmm0	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C95	0x70	r	movups xmm1, xmmword ptr [rbx - 0x10]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229C99	0x70	w	movups xmmword ptr [rax - 0x10], xmm1	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CA3	0x80	r	movups xmm0, xmmword ptr [rbx]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CA6	0x80	w	movups xmmword ptr [rax], xmm0	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CA9	0x90	r	movups xmm1, xmmword ptr [rbx + 0x10]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CAD	0x90	w	movups xmmword ptr [rax + 0x10], xmm1	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CB1	0xA0	r	movups xmm0, xmmword ptr [rbx + 0x20]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CB5	0xA0	w	movups xmmword ptr [rax + 0x20], xmm0	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CB9	0xB0	r	movups xmm1, xmmword ptr [rbx + 0x30]	seed	
+0x00229B40	WorldTransitionSnapshot_CaptureRuntimeState	0x00229CC2	0xB0	w	movups xmmword ptr [rax + 0x30], xmm1	seed	
+0x00253690	GameState_GetGil	0x00253697	0x8	r	mov eax, dword ptr [rax + 8]	seed	
+0x002536B0	FUN_002536b0	0x002536B7	0x18	r	movzx eax, word ptr [rdx + 0x18]	seed	
+0x002536B0	FUN_002536b0	0x002536BE	0x1A	r	movzx eax, byte ptr [rdx + 0x1a]	seed	
+0x002536B0	FUN_002536b0	0x002536C7	0x1B	r	movzx ecx, byte ptr [rdx + 0x1b]	seed	
+0x002536D0	FUN_002536d0	0x002536DC	0xC	r	mov eax, dword ptr [rax + 0xc]	seed	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AB8	0x58	w	mov dword ptr [rax + 0x58], ebx	seed	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AC7	0x5C	w	mov dword ptr [rax + 0x5c], ebx	seed	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AD6	0x60	w	mov dword ptr [rax + 0x60], ebx	seed	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AE5	0x64	w	mov dword ptr [rax + 0x64], ebx	seed	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AED	0x68	w	mov dword ptr [rax + 0x68], 0x131f3ea	seed	
+0x00253A80	SaveRuntime_InitializeHeaderAndImageBackedState	0x00253AFB	0x6C	w	mov dword ptr [rax + 0x6c], 0x4818	seed	
+0x00254C90	FUN_00254c90	0x00254C97	0x18	r	movzx eax, word ptr [r9 + 0x18]	seed	
+0x00254C90	FUN_00254c90	0x00254C9E	0x1A	r	movzx eax, byte ptr [r9 + 0x1a]	seed	
+0x00254C90	FUN_00254c90	0x00254CA5	0x1B	r	movzx eax, byte ptr [r9 + 0x1b]	seed	
+0x00254CC0	FUN_00254cc0	0x00254CF8	0x10	rw	add qword ptr [rdi + 0x10], rcx	seed	
+0x00254CC0	FUN_00254cc0	0x00254D27	0x10	r	mov r8, qword ptr [rdi + 0x10]	seed	
+0x00254CC0	FUN_00254cc0	0x00254D3A	0x10	w	mov qword ptr [rdi + 0x10], r8	seed	
+0x00254CC0	FUN_00254cc0	0x00254D63	0x1B	w	mov byte ptr [rdi + 0x1b], cl	seed	
+0x00254CC0	FUN_00254cc0	0x00254D9E	0x1A	w	mov byte ptr [rdi + 0x1a], cl	seed	
+0x00254CC0	FUN_00254cc0	0x00254DBF	0x18	w	mov word ptr [rdi + 0x18], r8w	seed	
+0x00254E80	FUN_00254e80	0x00254E90	0xC	w	mov dword ptr [rcx + 0xc], eax	seed	
+0x00254EE0	GameState_SetGil	0x00254EF1	0x8	r	sub edx, dword ptr [rax + 8]	seed	
+0x00254EE0	GameState_SetGil	0x00254F1F	0x8	w	mov dword ptr [rax + 8], ecx	seed	
+0x00280140	FUN_00280140	0x0028036E	0x68	addr	lea rcx, [rax + 0x68]	seed	
+0x002CF940	FUN_002cf940	0x002CF9A5	0x18	r	movzx ebx, word ptr [rax + 0x18]	seed	
+0x002CF940	FUN_002cf940	0x002CF9A9	0x1A	r	movzx r15d, byte ptr [rax + 0x1a]	seed	
+0x002CF940	FUN_002cf940	0x002CF9AE	0x1B	r	movzx r12d, byte ptr [rax + 0x1b]	seed	
+0x002CF940	FUN_002cf940	0x002CFA9B	0xC	r	mov ecx, dword ptr [r14 + 0xc]	seed	
+0x00394130	FUN_00394130	0x003941D8	0x68	addr	lea rcx, [rax + 0x68]	seed	
+0x00394130	FUN_00394130	0x003942B9	0x10	w	mov qword ptr [rax + 0x10], rcx	seed	
+0x00394130	FUN_00394130	0x003942BD	0x18	w	mov dword ptr [rax + 0x18], ecx	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E350	0x80	addr	lea rdx, [rdx + 0x80]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E357	0x0	r	movups xmm0, xmmword ptr [rax]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E35A	0x80	addr	lea rax, [rax + 0x80]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E361	0x0	w	movups xmmword ptr [rdx - 0x80], xmm0	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E365	0x10	r	movups xmm1, xmmword ptr [rax - 0x70]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E369	0x10	w	movups xmmword ptr [rdx - 0x70], xmm1	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E36D	0x20	r	movups xmm0, xmmword ptr [rax - 0x60]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E371	0x20	w	movups xmmword ptr [rdx - 0x60], xmm0	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E375	0x30	r	movups xmm1, xmmword ptr [rax - 0x50]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E379	0x30	w	movups xmmword ptr [rdx - 0x50], xmm1	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E37D	0x40	r	movups xmm0, xmmword ptr [rax - 0x40]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E381	0x40	w	movups xmmword ptr [rdx - 0x40], xmm0	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E385	0x50	r	movups xmm1, xmmword ptr [rax - 0x30]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E389	0x50	w	movups xmmword ptr [rdx - 0x30], xmm1	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E38D	0x60	r	movups xmm0, xmmword ptr [rax - 0x20]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E391	0x60	w	movups xmmword ptr [rdx - 0x20], xmm0	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E395	0x70	r	movups xmm1, xmmword ptr [rax - 0x10]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E399	0x70	w	movups xmmword ptr [rdx - 0x10], xmm1	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3A3	0x80	r	movups xmm0, xmmword ptr [rax]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3A6	0x80	w	movups xmmword ptr [rdx], xmm0	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3AE	0x8	addr	lea rcx, [rax + 8]	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3BF	0x0	w	mov dword ptr [rsi], eax	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3C7	0x4	w	mov dword ptr [rsi + 4], 1	seed	
+0x0057E310	SaveWrite_PrepareAndSubmitFullImage	0x0057E3DD	0x50	w	mov dword ptr [rsi + 0x50], eax	seed	
+0x0057FE80	FUN_0057fe80	0x0057FFA1	0x50	r	mov eax, dword ptr [r13 + 0x50]	seed	
+0x0057FE80	FUN_0057fe80	0x005800C8	0x50	r	mov eax, dword ptr [r13 + 0x50]	seed	
+0x00580CD0	FUN_00580cd0	0x00580D8E	0x50	w	mov dword ptr [r9 + 0x50], eax	seed	
+0x00580CD0	FUN_00580cd0	0x00580DB7	0x0	r	movups xmm0, xmmword ptr [r9]	seed	
+0x00580CD0	FUN_00580cd0	0x00580DC1	0x10	r	movups xmm1, xmmword ptr [r9 + 0x10]	seed	
+0x00580CD0	FUN_00580cd0	0x00580DCA	0x20	r	movups xmm0, xmmword ptr [r9 + 0x20]	seed	
+0x00580CD0	FUN_00580cd0	0x00580DD3	0x30	r	movups xmm1, xmmword ptr [r9 + 0x30]	seed	
+0x00580CD0	FUN_00580cd0	0x00580DDC	0x40	r	movups xmm0, xmmword ptr [r9 + 0x40]	seed	
+0x00580CD0	FUN_00580cd0	0x00580DE5	0x50	r	movups xmm1, xmmword ptr [r9 + 0x50]	seed	
+0x00580CD0	FUN_00580cd0	0x00580DEE	0x60	r	movups xmm0, xmmword ptr [r9 + 0x60]	seed	
+0x00580CD0	FUN_00580cd0	0x00580DF7	0x70	r	movups xmm0, xmmword ptr [r9 + 0x70]	seed	
+0x00580CD0	FUN_00580cd0	0x00580E00	0x80	r	movups xmm1, xmmword ptr [r9 + 0x80]	seed	
+0x00580CD0	FUN_00580cd0	0x00580E0F	0x90	r	movups xmm0, xmmword ptr [r9 + 0x90]	seed	
+0x005819F0	SaveSlotScan_ControllerCallback	0x00581AAE	0x50	r	mov eax, dword ptr [rax + 0x50]	seed	
+0x00581B70	SaveSlotProbe_StorageCompletionCallback	0x00581D2B	0x50	w	mov dword ptr [rax + 0x50], ecx	seed	
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581E0E	0x0	w	mov qword ptr [rdi], rax	seed	
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581EBE	0x1B	r	movzx eax, byte ptr [rdi + 0x1b]	seed	
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581EC4	0x1A	r	movzx r9d, byte ptr [rdi + 0x1a]	seed	
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581EC9	0x18	r	movzx r8d, word ptr [rdi + 0x18]	seed	
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581FB4	0x0	w	mov dword ptr [rdi], eax	seed	
+0x00581DA0	SaveSlotTransaction_StateMachine	0x00581FBA	0x4	w	mov dword ptr [rdi + 4], 1	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C30	0x80	addr	lea rax, [rax + 0x80]	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C41	0x0	w	movups xmmword ptr [rax - 0x80], xmm0	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C49	0x10	w	movups xmmword ptr [rax - 0x70], xmm1	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C51	0x20	w	movups xmmword ptr [rax - 0x60], xmm0	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C59	0x30	w	movups xmmword ptr [rax - 0x50], xmm1	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C61	0x40	w	movups xmmword ptr [rax - 0x40], xmm0	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C69	0x50	w	movups xmmword ptr [rax - 0x30], xmm1	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C71	0x60	w	movups xmmword ptr [rax - 0x20], xmm0	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C79	0x70	w	movups xmmword ptr [rax - 0x10], xmm1	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C86	0x80	w	movups xmmword ptr [rax], xmm0	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C8D	0x90	w	movups xmmword ptr [rax + 0x10], xmm1	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C95	0xA0	w	movups xmmword ptr [rax + 0x20], xmm0	seed	
+0x00583C00	SaveUI_RestoreActiveHeaderFromControllerBackup	0x00583C9D	0xB0	w	movups xmmword ptr [rax + 0x30], xmm1	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583CE7	0x0	r	movups xmm0, xmmword ptr [rax]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583CEA	0x80	addr	lea rax, [rax + 0x80]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583CF5	0x10	r	movups xmm1, xmmword ptr [rax - 0x70]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583CFD	0x20	r	movups xmm0, xmmword ptr [rax - 0x60]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D05	0x30	r	movups xmm1, xmmword ptr [rax - 0x50]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D0D	0x40	r	movups xmm0, xmmword ptr [rax - 0x40]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D15	0x50	r	movups xmm1, xmmword ptr [rax - 0x30]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D1D	0x60	r	movups xmm0, xmmword ptr [rax - 0x20]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D25	0x70	r	movups xmm1, xmmword ptr [rax - 0x10]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D33	0x80	r	movups xmm0, xmmword ptr [rax]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D39	0x90	r	movups xmm1, xmmword ptr [rax + 0x10]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D41	0xA0	r	movups xmm0, xmmword ptr [rax + 0x20]	seed	
+0x00583CB0	SaveUI_BackupActiveHeaderToControllerCache	0x00583D49	0xB0	r	movups xmm1, xmmword ptr [rax + 0x30]	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583DBA	0x23	addr	lea rbx, [rdi + 0x23]	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583DE4	0x20	w	mov byte ptr [rbx - 3], al	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583DEE	0x21	w	mov byte ptr [rbx - 2], al	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E01	0x22	w	mov byte ptr [rbx - 1], al	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E04	0x23	w	mov byte ptr [rbx], 0	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E10	0x23	r	movzx ecx, byte ptr [rbx]	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E1B	0x23	w	mov byte ptr [rbx], cl	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E2C	0x23	rw	or byte ptr [rbx], 2	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E49	0x23	w	mov byte ptr [rdi + r8*4 + 0x23], 0	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E59	0x23	r	movzx ecx, byte ptr [rdi + r8*4 + 0x23]	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E6B	0x23	w	mov byte ptr [rdi + r8*4 + 0x23], cl	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E7F	0x23	rw	or byte ptr [rdi + r8*4 + 0x23], 2	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E8A	0x20	w	mov byte ptr [rdi + r8*4 + 0x20], al	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583E97	0x21	w	mov byte ptr [rdi + r8*4 + 0x21], al	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583EAE	0x23	rw	or byte ptr [rdi + r8*4 + 0x23], 4	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583EB6	0x22	w	mov byte ptr [rdi + r8*4 + 0x22], al	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583ECD	0x0	addr	lea rax, [rdi + rax*4]	seed	idx
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F0D	0x3C	w	mov dword ptr [rdi + 0x3c], eax	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F10	0x44	w	mov dword ptr [rdi + 0x44], 0	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F27	0x40	w	mov dword ptr [rdi + 0x40], eax	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F32	0x44	w	mov dword ptr [rdi + 0x44], eax	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F3C	0x4C	w	mov dword ptr [rdi + 0x4c], eax	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F4B	0x48	w	mov dword ptr [rdi + 0x48], eax	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F53	0x54	w	mov byte ptr [rdi + 0x54], al	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F56	0x50	w	mov dword ptr [rdi + 0x50], r13d	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F63	0x57	rw	or byte ptr [rdi + 0x57], 1	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F70	0x57	rw	or byte ptr [rdi + 0x57], 4	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F7D	0x57	rw	or byte ptr [rdi + 0x57], 2	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583F86	0x8	addr	lea rcx, [rax + 8]	seed	
+0x00583D60	SaveImage_FinalizeHeaderAndChecksum	0x00583FA1	0x0	w	mov dword ptr [rdi], ecx	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058423A	0x57	r	movzx eax, byte ptr [rdi + 0x57]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584255	0x10	r	mov rax, qword ptr [rdi + 0x10]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584259	0x70	w	mov qword ptr [rbx + 0x70], rax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058425D	0x18	r	movzx eax, word ptr [rdi + 0x18]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584261	0x78	w	mov word ptr [rbx + 0x78], ax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584265	0x1A	r	movzx eax, byte ptr [rdi + 0x1a]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584269	0x7A	w	mov byte ptr [rbx + 0x7a], al	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058426C	0x1B	r	movzx eax, byte ptr [rdi + 0x1b]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584270	0x7B	w	mov byte ptr [rbx + 0x7b], al	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584278	0x7C	w	mov dword ptr [rbx + 0x7c], eax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584281	0x80	w	mov dword ptr [rbx + 0x80], eax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058428D	0x84	w	mov dword ptr [rbx + 0x84], eax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584299	0x88	w	mov dword ptr [rbx + 0x88], eax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842A5	0x8C	w	mov dword ptr [rbx + 0x8c], eax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842B1	0x90	w	mov dword ptr [rbx + 0x90], eax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842CB	0x10	w	mov qword ptr [rdi + 0x10], rsi	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842CF	0x18	w	mov dword ptr [rdi + 0x18], esi	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842DC	0xC	w	mov dword ptr [rdi + 0xc], esi	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842F9	0x70	r	mov rax, qword ptr [rbx + 0x70]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x005842FD	0x10	w	mov qword ptr [rdi + 0x10], rax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584301	0x78	r	movzx eax, word ptr [rbx + 0x78]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584305	0x18	w	mov word ptr [rdi + 0x18], ax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584309	0x7A	r	movzx eax, byte ptr [rbx + 0x7a]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058430D	0x1A	w	mov byte ptr [rdi + 0x1a], al	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584310	0x7B	r	movzx eax, byte ptr [rbx + 0x7b]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584314	0x1B	w	mov byte ptr [rdi + 0x1b], al	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584317	0x7C	r	mov eax, dword ptr [rbx + 0x7c]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058431A	0xC	w	mov dword ptr [rdi + 0xc], eax	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058431D	0x7C	r	mov ecx, dword ptr [rbx + 0x7c]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584325	0x80	r	mov eax, dword ptr [rbx + 0x80]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584338	0x84	r	mov eax, dword ptr [rbx + 0x84]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584344	0x88	r	mov eax, dword ptr [rbx + 0x88]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x00584350	0x8C	r	mov eax, dword ptr [rbx + 0x8c]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058435C	0x90	r	mov eax, dword ptr [rbx + 0x90]	seed	
+0x00584210	SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG	0x0058436D	0x57	rw	and byte ptr [rbx + 0x57], 0xfe	seed	
+0x005843E0	WorldTransitionSnapshot_RestorePersistencePairForActiveSlot	0x00584404	0x57	r	movzx ebx, byte ptr [rbx + 0x57]	seed	
+0x00255260	SaveImage_ValidateRuntimeFormatHeader	0x00255265	0x68	r	mov eax, dword ptr [rcx]	arg0+0x68<0x00280140@0x00280372	
+0x00255260	SaveImage_ValidateRuntimeFormatHeader	0x0025526B	0x6C	r	cmp dword ptr [rcx + 4], eax	arg0+0x68<0x00280140@0x00280372	
+0x00255260	SaveImage_ValidateRuntimeFormatHeader	0x0025527C	0x6C	r	cmp dword ptr [rcx + 4], 0x4818	arg0+0x68<0x00280140@0x00280372	
+0x003BB220	CRC32_Compute	0x003BB230	0x8	r	movzx r8d, byte ptr [rcx]	arg0+0x8<0x0057E310@0x0057E3BA	
+0x003BB220	CRC32_Compute	0x003BB234	0x9	addr	lea rcx, [rcx + 1]	arg0+0x8<0x0057E310@0x0057E3BA	

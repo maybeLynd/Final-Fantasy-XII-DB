@@ -110,11 +110,11 @@ its list. For the scripting module this is `0x00685AC0` (slot 1 of `PUtilityScri
 - `0x00681D80`: `PClassCallableMethodScript` members `m_script`, `m_nameAsString`, `m_entryPoint`.
 
 All of these write the engine's reflection tables through `0x00632960`, `0x00632A10` and `0x00632FB0`;
-none calls the Lua interpreter. `0x00685AC0` then appends four library openers to a list nothing reads.
+no registrar calls the Lua interpreter. `0x00685AC0` then appends four library openers to a list nothing reads.
 
 ### What installs the bindings in Lua
 
-Nothing does. Of the interpreter's functions, code outside it calls 32, and none puts an engine
+Nothing does. Of the interpreter's functions, code outside it calls 32, and no call puts an engine
 function or table where a script can reach it:
 
 - `lua_pushcclosure` (`0x00810470`) is called only inside the interpreter, by its own library openers,
@@ -230,7 +230,7 @@ Measured from the executable (SHA-256 `73461d08…d89721f8`).
 - `0x02E41000`: the most recent accessor failure, overwritten by each.
 - `0x02E41058`: the script record being run. The `PScheduler` slots `0x00685140`, `0x006853C0` and `0x00685560` store the
   record before each call of `0x006852B0` or `0x00684F60` and 0 after it; `0x00683AF0` returns its script `+0x08`, or 0
-  when none is set, and `0x00681F30` takes that function's address (`0x006820EF`).
+  when no record is set, and `0x00681F30` takes that function's address (`0x006820EF`).
 - The registry keys `"PhyreObject"`, `"Vector"` and `"Matrix"`: read, never written, by the binding
   layer.
 
@@ -278,3 +278,20 @@ Measured from the executable (SHA-256 `73461d08…d89721f8`).
   - slot 2 native calls: [`phyre-lua-bindings-tagged-outrecord-vcall-adapters.tsv`](phyre-lua-bindings-tagged-outrecord-vcall-adapters.tsv),
     [`phyre-lua-bindings-tagged-outrecord-vcall-advance-adapters.tsv`](phyre-lua-bindings-tagged-outrecord-vcall-advance-adapters.tsv), [`phyre-lua-bindings-nativeleaf-taggedoutrecordvptrstore.tsv`](phyre-lua-bindings-nativeleaf-taggedoutrecordvptrstore.tsv);
   - [`phyre-lua-bindings-pscript-accesses.tsv`](phyre-lua-bindings-pscript-accesses.tsv) (the `PScript` field stores of `0x00680F40`).
+
+### Columns of the six adapter and accessor lists
+
+`phyre-lua-bindings-object-push-adapters.tsv`, `phyre-lua-bindings-nullable-object-push-adapters.tsv`,
+`phyre-lua-bindings-object-pointer-accessors.tsv`, `phyre-lua-bindings-object-reference-accessors.tsv`,
+`phyre-lua-bindings-context-acquire-three-arg-dispatch-adapters.tsv` and
+`phyre-lua-bindings-optional-pointer-context-dispatch-adapters.tsv` have one column, `entry`: the entry address of
+one body, one row per body in address order. Every body of a list has the form below.
+
+| List | Rows | Each body |
+|---|---:|---|
+| object push adapters | 304 | ends with a jump to `0x00684080`: 188 bodies of 21 bytes pass the object as it is; 116 of 31 bytes add a base offset (8 in 111, 1 in 3, `0x30` and `0x10` in one each) and pass null for a null object |
+| nullable object push adapters | 295 | 60 bytes (184), 64 (108) or 63 (3): for a null object it calls `lua_checkstack` (`0x0080F420`) and jumps to the `nil` push `0x00810620`, otherwise it jumps to `0x00684080` |
+| object pointer accessors | 323 | 301 bytes (203) or 302 (120): calls `0x00682980` once and `0x00811130`, `0x008119F0` and `luaL_error` (`0x00812960`) twice each |
+| object reference accessors | 264 | 249 bytes (160) or 282 (104): calls `0x00682980`, `0x00811130` and `0x0063BC00` once each and `luaL_error` (`0x00812960`) twice |
+| context-acquire three-argument dispatch adapters | 70 | 47 bytes: calls a getter of its own with `rcx` 0 (70 different getters) and jumps to `0x00684080` with the getter's result in `r8` |
+| optional-pointer context dispatch adapters | 70 | 80 bytes: the same getter call (70 different getters); for a null object it calls `0x0080F420` and jumps to `0x00810620` instead |

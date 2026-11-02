@@ -58,7 +58,7 @@ ene_a0180	739	"""So, where exactly is Raithwall's tomb?"""	Platform 1 - East Tan
 ene_a0200	135	"""A construct to draw oil from the ground."""	Platform 1 - Refinery	3	20	1196032	1249280	0x0032FCA0 when event 135 loads (kind 8 .vpc, kind 37 .vpcjp); started by ene_a02 EventDirector.main
 enw_c0100	328	"""So we've drawn you out at last!"""	Withering Shores	1	6	368640	382976	0x0032FCA0 when event 328 loads (kind 8 .vpc, kind 37 .vpcjp); started by enw_c01 ボス監督.main
 enw_c0101	329	a scene with no text lines	Withering Shores	1	4	81920	114688	0x0032FCA0 when event 329 loads (kind 8 .vpc, kind 37 .vpcjp); started by enw_c01 ボス監督.main
-evt_t0005	-	developer script	developer script, named by no path array	2	3	6144	6144	none: a developer script has no event id, so 0x0032FCA0 has no index for it
+evt_t0005	-	developer script	developer script, named by no path array	2	3	6144	6144	no pack: a developer script has no event id, so 0x0032FCA0 has no index for it
 fon_a0600	251	"""It would seem we made the right choice."""	Kaukula Pass	1	4	198656	192512	0x0032FCA0 when event 251 loads (kind 8 .vpc, kind 37 .vpcjp); started by fon_a06 常駐ディレクター.main
 fon_b0100	250	"""Why the capital?"""	Hunters' Camp	5	23	1650688	1701888	0x0032FCA0 when event 250 loads (kind 8 .vpc, kind 37 .vpcjp); started by fon_b01 監督.init
 gil_a0100	207	"""On the farthest shores of the river of time, shrouded deep in the roiling Mist."""	Gate of Earth	1	14	399360	622592	0x0032FCA0 when event 207 loads (kind 8 .vpc, kind 37 .vpcjp); started by gil_a01 EventDirector.main

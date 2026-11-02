@@ -172,6 +172,18 @@ The member lists beside this page, each named `lazy-statics-and-one-time-init-<l
 | `magic-static-singleton-guards` | 17 holders whose only calls are header, footer and `atexit` |
 | `holders-without-teardown` | 30 further holders that register no teardown |
 
+### Columns of lazy-statics-and-one-time-init-descriptor-pair-accessors.tsv
+
+One row per accessor, 61 rows in address order. Each body is 115 bytes: while the thread's epoch shows the static built it returns the static's address; otherwise, between `_Init_thread_header` (`0x008092FC`) and `_Init_thread_footer` (`0x0080929C`), it stores the descriptor's address with bit `0x1` set at the static and 0 at the static's `+8`.
+
+| Column | Holds |
+|---|---|
+| `entry` | the accessor's entry address |
+| `size` | the body length in bytes, 115 on every row |
+| `static` | the 16-byte pair the accessor returns |
+| `guard` | the guard it passes to `_Init_thread_header` and `_Init_thread_footer`: the static's `+0x10` on every row |
+| `descriptor` | the class descriptor whose address the pair holds; 27 distinct values |
+
 ## State
 
 ### Caller type lists

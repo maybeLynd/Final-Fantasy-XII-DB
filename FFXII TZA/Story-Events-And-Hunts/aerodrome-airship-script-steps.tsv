@@ -16,49 +16,49 @@ pas_z0000	監督	init	1	0x013DB	76	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-A
 pas_z0000	監督	main	1	0x013DC	81	-	nowmap	-	result stored in file_var_s1_1; the area the party is in	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	監督	main	2	0x013E5	82	-	hide_freetarget_group	-1	argument 1: the actor group whose members are hidden (negative means every actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	監督	main	3	0x013E8	83	-	goto	local_jmp_8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	4	0x013EB	84	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	5	0x013EB	85	-	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	6	0x013EE	86	-	label	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	7	0x013F1	87	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	8	0x013FD	88	-	sysReqew	1, 民間飛空艇発着イベント選択::離陸	actor `民間飛空艇発着イベント選択`	-	-	files 民間飛空艇発着イベント選択::離陸 on channel 1; waits until it ends	民間飛空艇発着イベント選択.離陸	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-pas_z0000	監督	main	9	0x01401	89	-	skipend	0	argument 1: the skip entry of the calling manager to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	10	0x01407	90	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-pas_z0000	監督	main	11	0x0140D	91	-	fadein	1	the screen fade, in	-	1 frame	-	-	resolved	17 ../Graphics/screen-fades.md
-pas_z0000	監督	main	12	0x01410	92	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	13	0x01419	93	-	fadein_d2	2, 1	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	14	0x0141C	94	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	15	0x0142E	95	-	aask	0, 0x01000001, 0x03c0, 0x021c, 4	result stored in file_var_s1_2	line 1: (choices: もう一度 / やめる)	-	-	-	resolved	this page's How a call is read
-pas_z0000	監督	main	16	0x0143B	96	-	if	file_var_s1_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	17	0x0143E	98	file_var_s1_2 == 0	goto	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	18	0x01441	100	-	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	19	0x01444	101	-	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	20	0x01447	102	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	21	0x01453	103	-	sysReqew	1, 民間飛空艇発着イベント選択::到着	actor `民間飛空艇発着イベント選択`	-	-	files 民間飛空艇発着イベント選択::到着 on channel 1; waits until it ends	民間飛空艇発着イベント選択.到着	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-pas_z0000	監督	main	22	0x01457	104	-	skipend	0	argument 1: the skip entry of the calling manager to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	23	0x0145D	105	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-pas_z0000	監督	main	24	0x01463	106	-	fadein	1	the screen fade, in	-	1 frame	-	-	resolved	17 ../Graphics/screen-fades.md
-pas_z0000	監督	main	25	0x01466	107	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	26	0x0146F	108	-	fadein_d2	2, 1	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	27	0x01472	109	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	28	0x01484	110	-	aask	0, 0x01000001, 0x03c0, 0x021c, 4	result stored in file_var_s1_2	line 1: (choices: もう一度 / やめる)	-	-	-	resolved	this page's How a call is read
-pas_z0000	監督	main	29	0x01491	111	-	if	file_var_s1_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	30	0x01494	113	file_var_s1_2 == 0	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	31	0x01497	115	-	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	32	0x0149A	116	-	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	33	0x0149A	117	-	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	34	0x014A0	118	regY == 0	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	35	0x014A6	119	regY == 1	goto	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	36	0x014AC	120	regY == 2	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	37	0x014AF	121	-	goto	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	38	0x014B2	122	-	label	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	監督	main	39	0x014B2	123	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
-pas_z0000	監督	main	40	0x014B8	124	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
-pas_z0000	監督	main	41	0x014BB	125	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	42	0x014C1	126	-	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	43	0x014C7	127	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	44	0x014CD	128	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-pas_z0000	監督	main	45	0x014D3	129	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-pas_z0000	監督	main	46	0x014D6	130	-	goto	local_jmp_13	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	4	0x013EB	84	unreachable in the listing	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	5	0x013EB	85	unreachable in the listing	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	6	0x013EE	86	unreachable in the listing	label	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	7	0x013F1	87	unreachable in the listing	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	8	0x013FD	88	unreachable in the listing	sysReqew	1, 民間飛空艇発着イベント選択::離陸	actor `民間飛空艇発着イベント選択`	-	-	files 民間飛空艇発着イベント選択::離陸 on channel 1; waits until it ends	民間飛空艇発着イベント選択.離陸	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+pas_z0000	監督	main	9	0x01401	89	unreachable in the listing	skipend	0	argument 1: the skip entry of the calling manager to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	10	0x01407	90	unreachable in the listing	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+pas_z0000	監督	main	11	0x0140D	91	unreachable in the listing	fadein	1	the screen fade, in	-	1 frame	-	-	resolved	17 ../Graphics/screen-fades.md
+pas_z0000	監督	main	12	0x01410	92	unreachable in the listing	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	13	0x01419	93	unreachable in the listing	fadein_d2	2, 1	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	14	0x0141C	94	unreachable in the listing	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	15	0x0142E	95	unreachable in the listing	aask	0, 0x01000001, 0x03c0, 0x021c, 4	result stored in file_var_s1_2	line 1: (choices: もう一度 / やめる)	-	-	-	resolved	this page's How a call is read
+pas_z0000	監督	main	16	0x0143B	96	unreachable in the listing	if	file_var_s1_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	17	0x0143E	98	file_var_s1_2 == 0; unreachable in the listing	goto	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	18	0x01441	100	unreachable in the listing	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	19	0x01444	101	unreachable in the listing	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	20	0x01447	102	unreachable in the listing	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	21	0x01453	103	unreachable in the listing	sysReqew	1, 民間飛空艇発着イベント選択::到着	actor `民間飛空艇発着イベント選択`	-	-	files 民間飛空艇発着イベント選択::到着 on channel 1; waits until it ends	民間飛空艇発着イベント選択.到着	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+pas_z0000	監督	main	22	0x01457	104	unreachable in the listing	skipend	0	argument 1: the skip entry of the calling manager to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	23	0x0145D	105	unreachable in the listing	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+pas_z0000	監督	main	24	0x01463	106	unreachable in the listing	fadein	1	the screen fade, in	-	1 frame	-	-	resolved	17 ../Graphics/screen-fades.md
+pas_z0000	監督	main	25	0x01466	107	unreachable in the listing	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	26	0x0146F	108	unreachable in the listing	fadein_d2	2, 1	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	27	0x01472	109	unreachable in the listing	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	28	0x01484	110	unreachable in the listing	aask	0, 0x01000001, 0x03c0, 0x021c, 4	result stored in file_var_s1_2	line 1: (choices: もう一度 / やめる)	-	-	-	resolved	this page's How a call is read
+pas_z0000	監督	main	29	0x01491	111	unreachable in the listing	if	file_var_s1_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	30	0x01494	113	file_var_s1_2 == 0; unreachable in the listing	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	31	0x01497	115	unreachable in the listing	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	32	0x0149A	116	unreachable in the listing	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	33	0x0149A	117	unreachable in the listing	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	34	0x014A0	118	unreachable in the listing; regY == 0	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	35	0x014A6	119	unreachable in the listing; regY == 1	goto	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	36	0x014AC	120	unreachable in the listing; regY == 2	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	37	0x014AF	121	unreachable in the listing	goto	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	38	0x014B2	122	unreachable in the listing	label	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	監督	main	39	0x014B2	123	unreachable in the listing	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+pas_z0000	監督	main	40	0x014B8	124	unreachable in the listing	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+pas_z0000	監督	main	41	0x014BB	125	unreachable in the listing	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	42	0x014C1	126	unreachable in the listing	setmaphighmodeldepth	-1	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	43	0x014C7	127	unreachable in the listing	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	44	0x014CD	128	unreachable in the listing	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+pas_z0000	監督	main	45	0x014D3	129	unreachable in the listing	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+pas_z0000	監督	main	46	0x014D6	130	unreachable in the listing	goto	local_jmp_13	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	監督	main	47	0x014D9	131	-	label	local_jmp_8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	監督	main	48	0x014E0	132	-	switch	event_global_flag[3]	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	監督	main	49	0x014E3	134	-	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -805,7 +805,7 @@ pas_z0000	ラバナスタ用１	action_rbn_到着編	17	0x026D1	1265	-	return	-	
 pas_z0000	ラバナスタ用１	bindoff_rbn	1	0x026D2	1270	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ラバナスタ用１	bindoff_rbn	2	0x026D5	1271	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ラバナスタ用１	bindoff_rbn	3	0x026DB	1272	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ラバナスタ用１	bindoff_rbn	4	0x026DC	1273	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ラバナスタ用１	bindoff_rbn	4	0x026DC	1273	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ラバナスタ用２	init	1	0x026DD	1282	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ラバナスタ用２	main	1	0x026DE	1287	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ラバナスタ用２	talk	1	0x026DF	1292	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -855,7 +855,7 @@ pas_z0000	ラバナスタ用２	action_rbn_到着編	18	0x027E5	1351	-	return	-	
 pas_z0000	ラバナスタ用２	bindoff_rbn	1	0x027E6	1356	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ラバナスタ用２	bindoff_rbn	2	0x027E9	1357	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ラバナスタ用２	bindoff_rbn	3	0x027EF	1358	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ラバナスタ用２	bindoff_rbn	4	0x027F0	1359	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ラバナスタ用２	bindoff_rbn	4	0x027F0	1359	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ラバナスタ用３	init	1	0x027F1	1368	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ラバナスタ用３	main	1	0x027F2	1373	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ラバナスタ用３	talk	1	0x027F3	1378	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -887,7 +887,7 @@ pas_z0000	ラバナスタ用３	action_rbn_到着編	6	0x02893	1419	-	return	-	-
 pas_z0000	ラバナスタ用３	bindoff_rbn	1	0x02894	1424	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ラバナスタ用３	bindoff_rbn	2	0x02897	1425	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ラバナスタ用３	bindoff_rbn	3	0x0289D	1426	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ラバナスタ用３	bindoff_rbn	4	0x0289E	1427	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ラバナスタ用３	bindoff_rbn	4	0x0289E	1427	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用１	init	1	0x0289F	1436	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用１	main	1	0x028A0	1441	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用１	talk	1	0x028A1	1446	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -930,7 +930,7 @@ pas_z0000	ナルビナ用１	action_nac_到着編	18	0x0297D	1498	-	return	-	-	-
 pas_z0000	ナルビナ用１	bindoff_nac	1	0x0297E	1503	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ナルビナ用１	bindoff_nac	2	0x02981	1504	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ナルビナ用１	bindoff_nac	3	0x02987	1505	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ナルビナ用１	bindoff_nac	4	0x02988	1506	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ナルビナ用１	bindoff_nac	4	0x02988	1506	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用２	init	1	0x02989	1515	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用２	main	1	0x0298A	1520	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用２	talk	1	0x0298B	1525	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -957,7 +957,7 @@ pas_z0000	ナルビナ用２	action_nac_到着編	3	0x029FB	1561	-	return	-	-	-	
 pas_z0000	ナルビナ用２	bindoff_nac	1	0x029FC	1566	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ナルビナ用２	bindoff_nac	2	0x029FF	1567	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ナルビナ用２	bindoff_nac	3	0x02A05	1568	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ナルビナ用２	bindoff_nac	4	0x02A06	1569	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ナルビナ用２	bindoff_nac	4	0x02A06	1569	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用３	init	1	0x02A07	1578	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用３	main	1	0x02A08	1583	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ナルビナ用３	talk	1	0x02A09	1588	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -991,7 +991,7 @@ pas_z0000	ナルビナ用３	action_nac_到着編	6	0x02AC1	1631	-	return	-	-	-	
 pas_z0000	ナルビナ用３	bindoff_nac	1	0x02AC2	1636	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ナルビナ用３	bindoff_nac	2	0x02AC5	1637	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ナルビナ用３	bindoff_nac	3	0x02ACB	1638	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ナルビナ用３	bindoff_nac	4	0x02ACC	1639	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ナルビナ用３	bindoff_nac	4	0x02ACC	1639	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用１	init	1	0x02ACD	1648	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用１	main	1	0x02ACE	1653	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用１	talk	1	0x02ACF	1658	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1027,7 +1027,7 @@ pas_z0000	ビュエルバ用１	action_byu_到着編	5	0x02B7E	1703	-	return	-	-
 pas_z0000	ビュエルバ用１	bindoff_byu	1	0x02B7F	1708	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ビュエルバ用１	bindoff_byu	2	0x02B82	1709	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ビュエルバ用１	bindoff_byu	3	0x02B88	1710	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ビュエルバ用１	bindoff_byu	4	0x02B89	1711	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ビュエルバ用１	bindoff_byu	4	0x02B89	1711	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用２	init	1	0x02B8A	1720	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用２	main	1	0x02B8B	1725	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用２	talk	1	0x02B8C	1730	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1056,7 +1056,7 @@ pas_z0000	ビュエルバ用２	action_byu_到着編	5	0x02C11	1768	-	return	-	-
 pas_z0000	ビュエルバ用２	bindoff_byu	1	0x02C12	1773	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ビュエルバ用２	bindoff_byu	2	0x02C15	1774	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ビュエルバ用２	bindoff_byu	3	0x02C1B	1775	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ビュエルバ用２	bindoff_byu	4	0x02C1C	1776	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ビュエルバ用２	bindoff_byu	4	0x02C1C	1776	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用３	init	1	0x02C1D	1785	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用３	main	1	0x02C1E	1790	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	ビュエルバ用３	talk	1	0x02C1F	1795	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1098,7 +1098,7 @@ pas_z0000	ビュエルバ用３	action_byu_到着編	16	0x02CF2	1846	-	return	-	
 pas_z0000	ビュエルバ用３	bindoff_byu	1	0x02CF3	1851	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ビュエルバ用３	bindoff_byu	2	0x02CF6	1852	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	ビュエルバ用３	bindoff_byu	3	0x02CFC	1853	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	ビュエルバ用３	bindoff_byu	4	0x02CFD	1854	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	ビュエルバ用３	bindoff_byu	4	0x02CFD	1854	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用１	init	1	0x02CFE	1863	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用１	main	1	0x02CFF	1868	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用１	talk	1	0x02D00	1873	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1141,7 +1141,7 @@ pas_z0000	アルケ用１	action_alc_到着編	11	0x02DCD	1925	-	return	-	-	-	-	
 pas_z0000	アルケ用１	bindoff_alc	1	0x02DCE	1930	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	アルケ用１	bindoff_alc	2	0x02DD1	1931	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	アルケ用１	bindoff_alc	3	0x02DD7	1932	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	アルケ用１	bindoff_alc	4	0x02DD8	1933	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	アルケ用１	bindoff_alc	4	0x02DD8	1933	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用２	init	1	0x02DD9	1942	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用２	main	1	0x02DDA	1947	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用２	talk	1	0x02DDB	1952	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1187,7 +1187,7 @@ pas_z0000	アルケ用２	action_alc_到着編	14	0x02EB7	2007	-	return	-	-	-	-	
 pas_z0000	アルケ用２	bindoff_alc	1	0x02EB8	2012	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	アルケ用２	bindoff_alc	2	0x02EBB	2013	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	アルケ用２	bindoff_alc	3	0x02EC1	2014	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	アルケ用２	bindoff_alc	4	0x02EC2	2015	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	アルケ用２	bindoff_alc	4	0x02EC2	2015	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用３	init	1	0x02EC3	2024	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用３	main	1	0x02EC4	2029	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	アルケ用３	talk	1	0x02EC5	2034	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1221,7 +1221,7 @@ pas_z0000	アルケ用３	action_alc_到着編	5	0x02F62	2077	-	return	-	-	-	-	-
 pas_z0000	アルケ用３	bindoff_alc	1	0x02F63	2082	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	アルケ用３	bindoff_alc	2	0x02F66	2083	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	アルケ用３	bindoff_alc	3	0x02F6C	2084	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	アルケ用３	bindoff_alc	4	0x02F6D	2085	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	アルケ用３	bindoff_alc	4	0x02F6D	2085	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用１	init	1	0x02F6E	2094	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用１	main	1	0x02F6F	2099	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用１	talk	1	0x02F70	2104	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1254,7 +1254,7 @@ pas_z0000	バーフォン用１	action_var_到着編	5	0x03022	2146	-	return	-	-
 pas_z0000	バーフォン用１	bindoff_var	1	0x03023	2151	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	バーフォン用１	bindoff_var	2	0x03026	2152	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	バーフォン用１	bindoff_var	3	0x0302C	2153	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	バーフォン用１	bindoff_var	4	0x0302D	2154	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	バーフォン用１	bindoff_var	4	0x0302D	2154	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用２	init	1	0x0302E	2163	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用２	main	1	0x0302F	2168	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用２	talk	1	0x03030	2173	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1295,7 +1295,7 @@ pas_z0000	バーフォン用２	action_var_到着編	15	0x03106	2223	-	return	-	
 pas_z0000	バーフォン用２	bindoff_var	1	0x03107	2228	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	バーフォン用２	bindoff_var	2	0x0310A	2229	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	バーフォン用２	bindoff_var	3	0x03110	2230	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	バーフォン用２	bindoff_var	4	0x03111	2231	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	バーフォン用２	bindoff_var	4	0x03111	2231	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用３	init	1	0x03112	2240	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用３	main	1	0x03113	2245	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 pas_z0000	バーフォン用３	talk	1	0x03114	2250	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1332,4 +1332,4 @@ pas_z0000	バーフォン用３	action_var_到着編	6	0x031C3	2296	-	return	-	-
 pas_z0000	バーフォン用３	bindoff_var	1	0x031C4	2301	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	バーフォン用３	bindoff_var	2	0x031C7	2302	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 pas_z0000	バーフォン用３	bindoff_var	3	0x031CD	2303	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-pas_z0000	バーフォン用３	bindoff_var	4	0x031CE	2304	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+pas_z0000	バーフォン用３	bindoff_var	4	0x031CE	2304	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

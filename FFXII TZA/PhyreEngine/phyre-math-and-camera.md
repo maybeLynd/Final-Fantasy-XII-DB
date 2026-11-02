@@ -79,7 +79,7 @@ A `PMeshInstanceBounds` keeps a minimum corner at `+0x00`, a size at `+0x18`, th
   (`m_bounds`, `+0x38`) or zeroes them, and becomes the instance's `m_bounds`.
 - `0x0060E410(bounds, corner, size)` sets the corner and size.
 - `0x006045E0(bounds, &min, &max)` gives the world-space box: it expands the 4×3 world matrix to 4×4
-  (identity when there is none) and transforms the box with `0x005FD810`, which puts all eight corners
+  (identity when there is no world matrix) and transforms the box with `0x005FD810`, which puts all eight corners
   through the matrix and keeps the smallest and largest of each axis.
 
 ### Look-at

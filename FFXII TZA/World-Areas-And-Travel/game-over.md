@@ -294,7 +294,7 @@ Request and mode:
 | `healall` calls in the 1,114 us zone scripts | `healall(0)` 1,228 in 184 scripts; `healall(5)` 903 in 103; `healall(2)` 20 in 18 |
 | `setnowjumpindex(-2)` | 1,146 calls in 183 scripts: the 81 crystal scripts and 102 others, each around a save screen |
 | save screens opened (`openfullscreenmenu_48d(0x8005, …)`) | 1,148 calls |
-| `mapjump` calls | 7,356; none passes a negative entrance, so the `-2` alias is only ever set through `setnowjumpindex` |
+| `mapjump` calls | 7,356; no call passes a negative entrance, so the `-2` alias is only ever set through `setnowjumpindex` |
 | GAME OVER image | `gameover_c.tm2` under each language's `Tm2_Menu` folder; image id 7 in the slot table |
 | pause texts | `0x85F` "This will return you to the title screen. Are you sure?", `0x890` "This will close FINAL FANTASY XII THE ZODIAC AGE. Are you sure?" |
 | title map | field `0x0C` is `ttl_a01` ([zone changes](zone-changes-and-mapjump.md)) |
@@ -332,8 +332,10 @@ actors' halt class `0x16`; `0x022C3158` to `0x022C3178` after a crystal touch.
   to the title screen sees nothing; watch `0x003603E0` or `0x022CB72B` instead.
 - "Respawn at the last crystal" has no native field: the crystal-touch point is the verb handler
   `0x0034AAB0`, run once per crystal confirm and only from the crystal actor; record
-  `(+0x1044, -2)` there and request `mapjump(field, -2, mode)` through the zone-change funnel. No
-  shipped script passes a negative entrance to `mapjump`, so that path is unexercised.
+  `(+0x1044, -2)` there and request `mapjump(field, -2, mode)` through the zone-change funnel.
+- No shipped script passes a literal negative entrance to `mapjump`: the 59,674 literal entrances in the
+  10,036 listings (every language tree, the developer events and the developer menus) are 0 to 34, and the
+  other 6,640 calls pass a variable or `nowjumpindex()`.
 - "Entrance of the last zone entered" is `(+0x1044, +0x1048)` read at death; scripts rewrite
   `+0x1048` freely and it may hold an alias.
 - Whether a party can get back to a crystal has no native answer: exits are authored scripts,

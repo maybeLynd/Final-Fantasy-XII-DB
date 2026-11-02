@@ -53,7 +53,7 @@ The header's `+0x0C` and `+0x18` are offsets from the start of the section, reba
 | `+0x0A` | `u32` | pad0A | 0 on every row |
 | `+0x0E` | `u16` | helpId | extra text id, through `0x002F9860` (`0x0031C9B0`); 0 on every row |
 | `+0x10` | `u8` | chargeWeight | summed over the five equipped items to slow the charge while battle flag `0x022C314C` bit `0x40` is set (`0x002F9C00`) |
-| `+0x11` | `i8` | offHandClass | the class an off-hand item must have; -1 for none (`0x002F7EC0`, `0x00317930`) |
+| `+0x11` | `i8` | offHandClass | the class an off-hand item must have; -1 for no class (`0x002F7EC0`, `0x00317930`) |
 | `+0x12` | `u16` | price | buy price in gil (`0x0031C981`) |
 | `+0x14` | `u32` | pad14 | 0 on every row |
 | `+0x18` | `u8` | value18 | reach, shield evade or Defense, by group; table below |
@@ -126,7 +126,7 @@ category 1-9, and `0x0031E9A0` folds the category into the group (`0x0031E9A0`-`
 | 4 | 7, 8, 9, 17 | `1` | reach | recipe | Attack Power |
 | 5 | 23-26 | `1` | 0 | 0 | Attack Power |
 | 6 | 18 | `2` | shield evade | magick evade | 0 |
-| 7, 8, 9 | 19, 20, 21-22 | `3` | Defense | Magick Resist | augment, `0xFF` for none |
+| 7, 8, 9 | 19, 20, 21-22 | `3` | Defense | Magick Resist | augment, `0xFF` for no augment |
 
 Reach is in tenths (`0x00309300` at `0x0030938B`); the recipe is the plain Attack's damage formula (`0x00385F60` at
 `0x003861FD`, [Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md)); the augment is the one the item gives
@@ -147,33 +147,33 @@ two-handed weapons take nothing in the off hand.
 
 | Class | Category | Rows | Off hand | First items |
 |---|---|---:|---|---|
-| `0` | 1 | 11 | 18 or none | Unarmed |
+| `0` | 1 | 11 | 18 or -1 | Unarmed |
 | `1` | 2 | 27 | 18 | Broadsword, Longsword, Iron Sword |
-| `2` | 3 | 13 | none | Claymore, Defender, Save the Queen |
-| `3` | 3 | 10 | none | Kotetsu, Osafune, Kogarasumaru |
-| `4` | 3 | 8 | none | Ashura, Sakura-saezuri, Kagenui |
-| `5` | 3 | 15 | none | Javelin, Spear, Partisan |
-| `6` | 3 | 13 | none | Oaken Pole, Cypress Pole, Battle Bamboo |
+| `2` | 3 | 13 | -1 | Claymore, Defender, Save the Queen |
+| `3` | 3 | 10 | -1 | Kotetsu, Osafune, Kogarasumaru |
+| `4` | 3 | 8 | -1 | Ashura, Sakura-saezuri, Kagenui |
+| `5` | 3 | 15 | -1 | Javelin, Spear, Partisan |
+| `6` | 3 | 13 | -1 | Oaken Pole, Cypress Pole, Battle Bamboo |
 | `7` | 4 | 16 | 23 | Shortbow, Silver Bow, Aevis Killer |
 | `8` | 4 | 9 | 24 | Bowgun, Crossbow, Paramina Crossbow |
 | `9` | 4 | 12 | 25 | Altair, Capella, Vega |
 | `10` | 2 | 7 | 18 | Handaxe, Broadaxe, Slasher |
 | `11` | 2 | 6 | 18 | Iron Hammer, War Hammer, Sledgehammer |
 | `12` | 2 | 12 | 18 | Dagger, Mage Masher, Assassin's Dagger |
-| `13` | 3 | 8 | none | Rod, Serpent Rod, Healing Rod |
-| `14` | 3 | 10 | none | Oak Staff, Cherry Staff, Wizard's Staff |
+| `13` | 3 | 8 | -1 | Rod, Serpent Rod, Healing Rod |
+| `14` | 3 | 10 | -1 | Oak Staff, Cherry Staff, Wizard's Staff |
 | `15` | 2 | 11 | 18 | Mace, Bronze Mace, Bhuj |
 | `16` | 2 | 6 | 18 | Gilt Measure, Arc Scale, Multiscale |
 | `17` | 4 | 6 | 26 | Hornito, Fumarole, Tumulus |
-| `18` | 6 | 20 | none | Gendarme, Leather Shield, Buckler |
-| `19` | 7 | 60 | none | Leather Cap, Headgear, Headguard |
-| `20` | 8 | 60 | none | Leather Clothing, Chromed Leathers, Leather Breastplate |
-| `21` | 9 | 42 | none | Opal Ring, Ruby Ring, Tourmaline Ring |
-| `22` | 9 | 6 | none | Manufacted Nethicite, Cat-ear Hood, Fuzzy Miter |
-| `23` | 5 | 8 | none | Onion Arrows, Parallel Arrows, Fiery Arrows |
-| `24` | 5 | 8 | none | Onion Bolts, Long Bolts, Stone Bolts |
-| `25` | 5 | 8 | none | Onion Shot, Silent Shot, Aqua Shot |
-| `26` | 5 | 8 | none | Onion Bombs, Poison Bombs, Stun Bombs |
+| `18` | 6 | 20 | -1 | Gendarme, Leather Shield, Buckler |
+| `19` | 7 | 60 | -1 | Leather Cap, Headgear, Headguard |
+| `20` | 8 | 60 | -1 | Leather Clothing, Chromed Leathers, Leather Breastplate |
+| `21` | 9 | 42 | -1 | Opal Ring, Ruby Ring, Tourmaline Ring |
+| `22` | 9 | 6 | -1 | Manufacted Nethicite, Cat-ear Hood, Fuzzy Miter |
+| `23` | 5 | 8 | -1 | Onion Arrows, Parallel Arrows, Fiery Arrows |
+| `24` | 5 | 8 | -1 | Onion Bolts, Long Bolts, Stone Bolts |
+| `25` | 5 | 8 | -1 | Onion Shot, Silent Shot, Aqua Shot |
+| `26` | 5 | 8 | -1 | Onion Bombs, Poison Bombs, Stun Bombs |
 
 The rows count ids `0x1000`-`0x11A3`, and the names are each row's own name word. Rows 420-556 are unused
 placeholder rows named "NOT USED" and "Reserve".
@@ -217,8 +217,8 @@ The load never checks the `st2e` magic, the stride, the row count against the se
 field other than `+0x28`. The four bytes `st2e` occur nowhere in the image.
 
 Of the header reads made through the registry slots, listed one by one on
-[Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), none is at `+0x00`. All 562 reads
-of `+0x08` are `movzx` loads that feed the row formula or its inverse (21 divide an offset by the stride), and none
+[Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md), no read is at `+0x00`. All 562 reads
+of `+0x08` are `movzx` loads that feed the row formula or its inverse (21 divide an offset by the stride), and no read
 is compared.
 
 ## Modding notes

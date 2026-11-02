@@ -1,3 +1,4 @@
+entry	dll	symbol
 0x0019A650	KERNEL32.dll	InitializeCriticalSectionEx
 0x0019C570	api-ms-win-crt-heap-l1-1-0.dll	_aligned_free
 0x0019C590	api-ms-win-crt-heap-l1-1-0.dll	free

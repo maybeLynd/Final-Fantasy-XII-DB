@@ -48,7 +48,7 @@ destructor, reinstalls that vtable and frees an owned name the same way.
   that holds a frame without its stream; `0x001D6E80(frame)` closes one and frees it.
 - `0x0059FBA0(frame, offset, origin)` seeks with an origin: through the archive reader (`0x00215220`),
   `SetFilePointer`, or a positive view (`0x0020C180` → `0x00217AD0`), the first that is set, and returns
-  −1 when none is.
+  −1 when no route is.
 - `0x0019EAA0(…, name)` opens a name (selector 1), closes it when it opened, and returns whether it did.
 - `0x0059D510(stream, buffer, n)` reads through slot 5, adds the count to the stream's dword `+0x18`,
   and returns 0 when all n bytes came and 9 otherwise.
@@ -230,7 +230,7 @@ Cache manager:
 | separator | `\` | `/` |
 | case | upper, CRT `toupper` | lower, `A`-`Z` only |
 | leading text | skipped to the first letter or digit | `.`, `/`, `\` skipped |
-| other | doubled `\` collapsed, trailing spaces stripped | none |
+| other | doubled `\` collapsed, trailing spaces stripped | nothing |
 | hash | 33-multiplicative, 31 bits | MD5, 128 bits |
 
 ## Shipped data

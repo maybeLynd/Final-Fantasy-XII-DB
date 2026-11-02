@@ -42,7 +42,7 @@ Struct NavDataset base=section:
 | `+0x10` | `off` | triangles | 8 B each: u16 vertex[3], u16 region |
 | `+0x14` | `off` | portals | 8 B each: u16 vertexA, u16 vertexB, u8 gated (+4), u8 mapId (+5), u8 classMask (+6) |
 | `+0x18` | `off` | regions | `0x22` B each: +2 u16 triangleCount, `+0x14` u16 triangleIndex[] |
-| `+0x1C` | `off` | adjacency | regionCount x regionCount u16: the portal index from i to j, 0 = none |
+| `+0x1C` | `off` | adjacency | regionCount x regionCount u16: the portal index from i to j, 0 = no portal |
 | `+0x20` | `off` | grid | u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ, +8 off cellTable (u16 per cell), `+0xC` off listPool |
 | `+0x24` | `u32` |  | trailer record count (at most 32 used) |
 | `+0x28` | `off` | trailer records | `0x20` B each: i16 kind, f32 x +4, f32 z +8, f32 radius `+0xC`, f32 radius2 `+0x10`, f32 `+0x14` (kind 1; read by the segment query only) |
@@ -86,8 +86,8 @@ Struct NavPath base=unit+`0x200`:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` |  | region the mover was last placed in (written by the same-region exit and the full search) |
-| `+0x04` | `i32` |  | start region of the route held, `0xFF` = none |
-| `+0x08` | `i32` |  | goal region of the route held, `0xFF` = none |
+| `+0x04` | `i32` |  | start region of the route held, `0xFF` = no route held |
+| `+0x08` | `i32` |  | goal region of the route held, `0xFF` = no route held |
 | `+0x0C` | `u8[2]` |  | the last (start, goal) pair that had no route |
 | `+0x0E` | `u8[2]` |  | the one before that |
 | `+0x10` | `u8[128]` |  | next[region]: the region to enter after this one; `0xFF` ends the chain |
@@ -113,7 +113,7 @@ repacks two world positions:
    region through the cost function below; a strict improvement records the predecessor, the new
    entry point (the closest point on the portal) and the distance walked to it. The next current
    region is the unsettled one with the least distance, ties to the lowest index; the search ends
-   when none is reachable;
+   when no unsettled region is reachable;
 7. the waypoints are laid walking back from the last region settled, carrying a target that starts
    as the goal. For each step from `pred` to `cur` with the portal's ends `A` and `B`: `c` is the
    point of `AB` closest to the target at distance `d1` (`0x00382EA0`), `e` the entry point recorded on
@@ -172,9 +172,12 @@ The script verb `setmapidfloor(mapId, kind, on)` ends in `0x003792E0(mapId, kind
 bit clear (open, `0x0026E880(mapId, on == 0, bit)`), `on` = 0 stores it set (closed), and a negative
 `on` removes the override (`0x0026E850(mapId, bit, 1)`).
 
-The shipped scripts make 106,618 such calls: 84,066 with a literal kind (2: 28,510; 3: 26,951; 0:
-8,706; 1: 8,699; 7: 7,223; 9: 2,091; 4: 1,886) and 22,552 with a variable; kind 4 reaches the bare
-return and does nothing.
+The `us` scripts call `setmapidfloor` 84,066 times, 82,447 in the story scripts and 1,619 in the
+developer events (each other language tree the same, the developer menus never), every call with a
+literal kind (2: 28,510; 3: 26,951; 0: 8,706; 1: 8,699; 7: 7,223; 9: 2,091; 4: 1,886); kind 4 reaches
+the bare return and does nothing. `resetmapidfloor_109` (184 `us` calls) also ends in `0x003792E0`, at
+`0x003441F2`, and `setmapidfloor_101` has no caller. `resetmapidfloor` (22,552 `us` calls) takes only
+a map id and ends in `0x003791D0`.
 
 Every override change ends in `0x003278D0` (seven sites in the setters), which, for each live
 battle-unit slot (byte `+0` bit `0x10`; the slot count re-read every iteration), wipes the no-route
@@ -332,7 +335,7 @@ The distance and the first heading depend on the mode:
 Twelve headings are tried in order, the first heading plus 0, -30, +30, -60, +60 and so on to -180
 degrees, each at the distance along that heading; a second ring adds 1.0 to the distance and 20
 degrees to the first heading. The first point that passes both tests below wins and the call
-returns 1; with none the base is used and it returns 0. The point is dropped onto the floor and the
+returns 1; with no point passing, the base is used and it returns 0. The point is dropped onto the floor and the
 heading is the bearing from the point to the base, so the unit faces the anchor.
 
 `0x00336210(point, base, unit, kind)` accepts a point when the dynamic obstruction query
@@ -355,7 +358,7 @@ no anchor and nothing recorded, the copy is the stack as it was.
 party's battle units (`0x0031B810` for slots 0-3) that have a status record free of `0x80000003`, or
 any of them in a town (the town flag `0x00377C20`), into `0x022C1788` (four at most):
 
-- with none, the character `0x00327270()` names is placed at the point and turned to the angle;
+- with no unit collected, the character `0x00327270()` names is placed at the point and turned to the angle;
 - with no leader (`0x003272A0`), `0x00310D30` does the same and every collected unit is placed at the
   point itself;
 - with a leader, the leader is placed at the point and every other unit at the spot `0x00336E40`
@@ -375,7 +378,7 @@ Globals:
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
-| `0x02AEDFB0` | `void*` |  | the navigation dataset (null when none) |
+| `0x02AEDFB0` | `void*` |  | the navigation dataset (null when there is no dataset) |
 | `0x00915760` | `i32[6]` |  | class to override bit: {23, 25, 26, 27, -1, 24} |
 | `0x0209A3E0` | `u32[32][2]` |  | map-id overrides: dword 0 = override present, dword 1 = closed |
 | `0x00D10818` | `f32` |  | 1.4140000343, the clearance factor |
@@ -408,7 +411,7 @@ Battle unit:
 | largest region count | 128, the array bound |
 | portals ungated, gated | 51,248 and 926, under 30 map ids |
 | class masks | `0x2F` 32,467; `0x08` 19,374; `0x00` 324; `0x0C` 8; `0x2B` 1 |
-| `setmapidfloor` calls | 106,618 in the 1,114 zone scripts; 84,066 with a literal kind (2, 3, 0, 1, 7, 9 and 4, the 1,886 no-ops), 22,552 with a variable |
+| `setmapidfloor` calls | 84,066 in the 1,114 `us` scripts, every one with a literal kind (2, 3, 0, 1, 7, 9 and 4, the 1,886 no-ops) |
 
 ## Operations
 
@@ -431,8 +434,8 @@ obstacle grid's records, occupancy bytes, mask scratch, count and actor list.
 - The clearance factor is the decimal 1.414, not root two, and it is applied by the caller; the
   difference decides waypoints on portals within a fraction of a centimetre of twice the radius.
 - Costs are integers of `trunc(100 * distance)`; a port in floating point breaks ties differently.
-- A gated portal defers to the script's override when one exists and to its authored mask when
-  none does; kind 4 has no bit and its verb calls do nothing.
+- A gated portal defers to the script's override when one exists and to its authored mask
+  otherwise; kind 4 has no bit and its verb calls do nothing.
 - The region lookup admits the rectangle's upper edges and does not bound the cell index; keep
   computed columns and rows inside their counts and cell sizes non-zero.
 - Shaped obstacles (ids 128 and up) are visible to the segment query and invisible to the actor

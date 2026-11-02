@@ -213,7 +213,7 @@ formats `1` and `0x31`, `n / 2` for `2`, `0x0A`, `0x32` and `0x3A`, `n / 4` for 
 
 `0x0039D0C0(mode, id, width, height, target, a, b)` copies the rendered frame into the target of a GS
 texture id. With no target given it takes the id's own (`0x002D7FA0`), or a new one from `0x00182B40`
-when the id has none. It closes an open scene around the copy (`0x001FBE30`, `0x001FBE50`, then
+when the id lacks one. It closes an open scene around the copy (`0x001FBE30`, `0x001FBE50`, then
 `0x001FBD80`), copies through `0x00182A60`, whose source the first argument picks (`0x00186910`), with a
 mode of 0 to 3 chosen from `a` and `b` (`0x00376320`), and records a changed target for the id
 (`0x002D7D90`). `0x00244200` calls it for id `0x333C` at

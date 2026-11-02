@@ -36,7 +36,7 @@ function accepts. The names are under Shipped data.
 1. It refuses a selector above 6, and one already in any of map 0's nine seats (`0x00317310`-`0x00317329`), so nobody
    is in the party twice.
 2. `0x00321100` finds a free reserve seat, the first of seats 4-8 of map 3 whose id check fails or whose byte is
-   `0xFF` (`0x0032110A`-`0x00321148`); there is none when all five are taken, and the add fails.
+   `0xFF` (`0x0032110A`-`0x00321148`); there is no free seat when all five are taken, and the add fails.
 3. Map 0 is copied to the staging map `0x022C2580`, and the selector is written to that seat if it is empty there
    (`0x00317343`-`0x00317396`).
 4. The member's record is activated with `0x00316DF0` and the change is committed with `0x003261D0(0)`
@@ -141,7 +141,7 @@ target group with `0x002ECD50(actor, 0)`, through its thunk `0x0026DC40` (`0x003
 
 ### Choosing who fights
 
-`setbattlemember(a, b, c)` takes three selectors in the order the script pushes them, `-1` for none
+`setbattlemember(a, b, c)` takes three selectors in the order the script pushes them, `-1` for no selector
 (`0x0034D547`-`0x0034D57B`). When every one given is in the party (`0x00359C00`, `0x0034D57D`-`0x0034D58F`),
 `0x00328DB0(list, 3)` moves them into fighting seats 0-2:
 
@@ -205,13 +205,13 @@ word `+0x3E`. Rows that are not listed have no catch-up, items or gil.
 | 5 Penelo | every join | 0 | 20 | Potion x3, Phoenix Down, Foe: nearest visible, Foe: party leader's target, Ally: Penelo, Foe: targeting Penelo | 150 |
 | 6 Reks | never | 3 | 0 | Potion x8, Hi-Potion x5, the Nalbina Fortress key item, Cure, Thunder | 0 |
 | 7 Amalia | first join | 1 | 0 | Potion x10, Hi-Potion, Phoenix Down x2, Antidote x2, Eye Drops x3, Ally: guest | 1,230 |
-| 8, 9 Basch | first join | 2 | 0 | none | 0 |
+| 8, 9 Basch | first join | 2 | 0 | no items | 0 |
 | 10 Lamont | first join | 0 | 0 | Hi-Potion x12 | 0 |
 | 11 Vossler | first join | 4 | 0 | Phoenix Down x3, Dispel Mote x3, Aeroga Mote | 0 |
 | 12 Vossler | first join | 4 | 0 | Phoenix Down x7, Dispel Mote x4, Shock Mote | 0 |
-| 13 Larsa | first join | 2 | 0 | none | 0 |
+| 13 Larsa | first join | 2 | 0 | no items | 0 |
 | 14 Reddas | first join | 2 | 0 | Domaine Calvados x12, Serum x3, Dark Matter | 1,868 |
-| 16 Reddas | first join | 2 | 0 | none | 0 |
+| 16 Reddas | first join | 2 | 0 | no items | 0 |
 
 ### Scripted joins and leaves
 
@@ -221,7 +221,7 @@ other scripts are these:
 
 | Member | Joins (`addpartymember`) | Leaves (`removepartymember`) |
 |---|---|---|
-| 0 Vaan | none | none |
+| 0 Vaan | no call | no call |
 | 1 Ashe | `rsn_y01` | `naf_a01` |
 | 2 Fran | `grm_a04`, `nal_b0101`, `rbn_a16` | `naf_a01`, `rbn_a17`, `rbn_a18`, `rbn_a19`, `slm_a01` |
 | 3 Balthier | `grm_a04`, `nal_b0100`, `rbn_a16` | `naf_a01`, `rbn_a17`, `rbn_a18`, `rbn_a19`, `slm_a01` |
@@ -246,7 +246,7 @@ other scripts are these:
 | Vaan, Balthier and Fran (0, 3, 2) | `grm_a04`, `nal_b0101` |
 | Vaan and Penelo (0, 5, -1) | `sav_b01`, twice |
 
-No script calls `removebattlemember`, `setbattlememberone` or `setbattlememberlock`, and none adds Reks or a
+No script calls `removebattlemember`, `setbattlememberone` or `setbattlememberlock`, and no script adds Reks or a
 guest row above 14. The other eight language folders make the same calls.
 
 ## State
@@ -264,8 +264,8 @@ Most accesses take the seat as an index, so the seats each one can reach decide 
 
 | Function | Seats 0-3 | Seats 4-8 |
 |---|---|---|
-| `0x003172E0`, adding a main character | none | the free reserve seat from `0x00321100`: read `0x0031736B`, written `0x00317396` |
-| `0x00326110`, from the guest add `0x003170E0` (`0x003171AE`), its only caller | seat 3, 2 or 1: read `0x0032615A`, written `0x00326185` | none |
+| `0x003172E0`, adding a main character | no seat | the free reserve seat from `0x00321100`: read `0x0031736B`, written `0x00317396` |
+| `0x00326110`, from the guest add `0x003170E0` (`0x003171AE`), its only caller | seat 3, 2 or 1: read `0x0032615A`, written `0x00326185` | no seat |
 | `0x003286E0`, `removebattlemember` | the member's fighting seat: read `0x00328770`, written `0x0032877C` | the free reserve seat from `0x00321100`: read `0x00328779`, written `0x0032877F` |
 | `0x003287A0`, `setbattlememberone` | seats 0-2 only: read `0x003288A6`, written `0x003288B2` | the first empty reserve seat: read `0x00328890`, `0x003288AD`, written `0x003288B5` |
 | `0x003288F0` and `0x00328B20`, the removes | the member's seat, found among all nine: written `0x0032895E`, `0x00328B92` | the same |

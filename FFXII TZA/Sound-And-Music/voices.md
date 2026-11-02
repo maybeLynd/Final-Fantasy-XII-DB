@@ -95,7 +95,7 @@ The speaker argument of `voiceplay_28b` and `voiceplay_28c` has no effect: `0x00
 
 ### Stopping, pan and volume
 
-`0x002DF690(id)` destroys the stream bank with that id, or every one for -1 (`0x0021D840`); only when that finds none
+`0x002DF690(id)` destroys the stream bank with that id, or every one for -1 (`0x0021D840`); only when that finds no bank
 does it go on to the battle-voice banks (`0x0021C870`). Pan and volume go through the sound-effect setters `0x002256F0` and `0x002257E0`
 ([Sound effects](sound-effects.md)). Every voice bank's sound has category 3, so the Config Voice row scales it
 (`0x002DE310`).
@@ -139,7 +139,7 @@ of the picked candidate of a group.
 |---|---|---|---|
 | `+0x00` | `char[4]` | magic | "PKFL" |
 | `+0x04` | `u32` | count | 64 |
-| `+0x08` | `u32[128]` | files | per sub-file an offset then a size; size 0 for none |
+| `+0x08` | `u32[128]` | files | per sub-file an offset then a size; size 0 for no sub-file |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -224,11 +224,11 @@ pages); the next message call or `mesclose` closes it.
 
 A cue is joined to the first that applies, rule 5 being checked first:
 
-1. the line the playing function has on screen when it plays the cue: 129 cues;
+1. the line the playing function has on screen when it plays the cue: 128 cues;
 2. the one line of a function the playing function requested just before, without waiting for it: 6;
 3. the playing function's next line, opened within 10 frames with no request or wait for one between: 204;
-4. on the clock of a function that reaches the play, the one line on screen when the cue starts (1,155), or else the
-   one line that opens within 10 frames after it (88), which is also taken when the line on screen at the start
+4. on the clock of a function that reaches the play, the one line on screen when the cue starts (1,154), or else the
+   one line that opens within 10 frames after it (89), which is also taken when the line on screen at the start
    closes within those 10 frames; every function that reaches the play gives the same line;
 5. a cue that starts more than 10 frames before its own line: the one line opened while the cue plays whose speaker
    the listing names as the cue's. The line opens while an earlier speaker's line is still on screen (2), or no
@@ -252,7 +252,9 @@ A cue these rules reach keeps no line when:
 
 - its `.vpc` bank is the silent stub (17 cues);
 - it is a reaction inside another speaker's line: it starts and ends while one line is on screen, and the cue joined
-  to that line, of another speaker, plays from before it starts until after it ends (11);
+  to that line, of another speaker, plays from before it starts until after it ends (12). A cue whose play call
+  names no speaker counts as the speaker its sound code gives: on `dor_c1200` line 3, Reddas's cue 11 of sub-file 0
+  plays inside cue 10, `ve175_010Cd`, Doctor Cid's;
 - it is a crowd track: its `sound` is a `ga` bank of the 1xx series, which carries no speaker's code (10);
 - a cue of another speaker reaches the same line and the line is not a subtitle of two speakers, which starts `- `
   (44);
@@ -270,9 +272,9 @@ among them Ondore's and Ashe's voices (`ve277_012od`, `ve277_013od`, `ve277_015A
 where Balthier speaks through a voice device, and `dor_b0101` sub-file 5 cue 0, Balthier's `ve177_018BF`, on Doctor
 Cid's slot.
 
-That joins 1,609 cues. The other 887 have no line on their clock when they start (409), share their
+That joins 1,608 cues. The other 888 have no line on their clock when they start (409), share their
 clock with no message call (388), start while two or three lines are on screen (3), or keep no line by the
-rules above (87). In `nal_d0100`, `ボイス.発音` (line 1232) plays cues 1 and 2 of sub-file 0 in scene 4
+rules above (88). In `nal_d0100`, `ボイス.発音` (line 1232) plays cues 1 and 2 of sub-file 0 in scene 4
 (`startscene(file_var_s0_2)`), Balthier's cue, a silent stub, and Vaan's 1.56-second cue, and `メッセージ.表示`
 (line 945), which shows the scenes' lines, has no case for scene 4.
 
@@ -309,7 +311,7 @@ Columns of [voices-cues.tsv](voices-cues.tsv):
 | `line_index` | the joined line, its id in section 2 of the event's dialogue table; `-` when no line is joined |
 | `line` | the joined line's `us` text, its text codes dropped and each line break a space; `-` when no line is joined |
 | `length` | the cue's length in seconds, from the `.vpc` (the `.vpcjp` for the one cue played only with Japanese voices); `0.04 s, a silent stub` for the 67 cues whose `.vpc` bank is the silent stub |
-| `join` | how the line was joined, or why none was: what the cue's clock holds, a silent stub, or a line of another speaker |
+| `join` | how the line was joined, or why it was not: what the cue's clock holds, a silent stub, or a line of another speaker |
 
 ## State
 

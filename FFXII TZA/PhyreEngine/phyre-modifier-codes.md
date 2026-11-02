@@ -57,7 +57,7 @@ parameters take; with a null buffer it only returns the size.
 output. A kernel takes the weights, the element count, the source pointers and the output pointer:
 
 1. it keeps only the sources whose weight is not 0, in order;
-2. with none left it zeroes the output;
+2. with no source left it zeroes the output;
 3. with one left it copies it when its weight is exactly 1.0 and scales it otherwise;
 4. with two to four left it writes, per float, the sum of each kept source times its weight.
 

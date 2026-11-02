@@ -149,9 +149,9 @@ The requests that do meet a −1 in a shipped table:
 | `0x00324510` | kind 26, its own list of 301 at `0x022C27B8` | every table sizes only 166 kind-26 entries | `0x003244F0` counts the request done with its part of `[0x022C27B0]` unwritten |
 | `0x003DC5B0` | the caller's | any | `0x003DC8D0` returns the −1 size and a flag `0x003DC5B0` never tests; the callback `0x003DC340` binds the block unwritten |
 
-The BGM stream reader (`0x0032E780`'s two sites) never files in shipped play. Only `0x003EB100` arms the record
-`0x02B5E0E0` (`0x003EB139`), and its one caller is the verb `bgmstreamread` (`0x448`, `0x00354690`), which no shipped script
-calls ([music](../Sound-And-Music/music-table.md)). The reset `0x003EB050` leaves `+0x31` at 0, so `0x003EADE0` returns at once
+The BGM stream reader (`0x0032E780`'s two sites) never files in story play. Only `0x003EB100` arms the record
+`0x02B5E0E0` (`0x003EB139`), and its one caller is the verb `bgmstreamread` (`0x448`, `0x00354690`), which only the developer
+menu `bin/ctrl` calls ([music](../Sound-And-Music/music-table.md)). The reset `0x003EB050` leaves `+0x31` at 0, so `0x003EADE0` returns at once
 (`0x003EADF4`-`0x003EADF8`). Armed, it would file kind `0x24` parts, which every table leaves at −1, and hand the unwritten
 buffer to the sound library (`0x002DF660`), whose `0x0021D770` refuses a byte count of 0 or less (`0x0021D7AD`-`0x0021D7AF`).
 

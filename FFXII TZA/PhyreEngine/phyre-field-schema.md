@@ -42,7 +42,7 @@ Packed namespace (at m_size):
 
 ```
 class record (9 u32)
-w0  parent: 1-based index of the parent class record, 0 for none
+w0  parent: 1-based index of the parent class record, 0 for no parent
 w1  top 4 bits (mask 0xF0000000) a value 0..4; low 28 bits the size of one record of the class in the file layout
 w2  name, string-pool offset
 w3  number of member records that follow for this class
@@ -605,7 +605,7 @@ None of these stops the load.
   or `0x00595E70` for a one-byte member that is not an array;
 - same type with a different width, or a fixed-size array whose count differs while offset and
   attribute word match: skipped;
-- different type: the conversion `0x0059A030` returns, or skipped when there is none. `0x0059A030` runs the 144
+- different type: the conversion `0x0059A030` returns, or skipped when there is no conversion. `0x0059A030` runs the 144
   conversion registrars `0x005850F0`-`0x00592770` once (guard byte `0x02CA9D91`), then looks the `(source, destination)`
   pair up in the tree they fill ([Image hardening](../Compiler-And-C-Runtime/image-hardening.md)).
 

@@ -43,7 +43,7 @@ rows named Reserve.
 | Offset | Type | Field | Read by | Meaning |
 |---|---|---|---|---|
 | `+0x00` | `u16` | stride | `0x003202F0`, `0x00325A20`, `0x00325AD0` | the row size, 1 |
-| `+0x02` | `u16` | count | none | 23 |
+| `+0x02` | `u16` | count | no instruction | 23 |
 | `+0x04` | `u8[23]` | sets | `0x003202F0`, `0x00325A20`, `0x00325AD0` | the animation set of each motion class |
 
 The slot is loaded by `0x00320376` and `0x0032042D` (`0x003202F0`), `0x00325A50` (`0x00325A20`) and `0x00325AF5` (`0x00325AD0`),

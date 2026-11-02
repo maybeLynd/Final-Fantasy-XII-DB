@@ -9,7 +9,7 @@ addresses: "0x0017E270, 0x001DE050, 0x0022A0B0, 0x00229E40, 0x00229E50, 0x00254A
 
 The Config screen offers nine languages: Japanese, English, French, German, Italian, Spanish,
 Korean, Traditional Chinese and Simplified Chinese. On a fresh install the game picks the one
-matching Windows' display language, English when none matches.
+matching Windows' display language, English when no language matches.
 
 The choice decides which data folder the text, voices and fonts load from, and a few rules change
 with it: the kill chain counter is capped at 998 and shown one higher, one text parameter differs

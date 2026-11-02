@@ -29,8 +29,8 @@ Each line is read from the shipped `battle_pack.bin` in these steps:
 
 1. the `st2e` table at entry `+0x3C`: 543 rows of 60 bytes from the section's `+0x20`;
 2. the name word `+0x34` through the word banks at entry `+0xF8` (`0x00305F10`);
-3. the help line `+0x00` (4000 for none) and the description `+0x2E` through the text groups, group `id / 1000` and
-   row `id % 1000` as `0x002F9860` resolves them for `0x0031C5D0` (`0x0031DBB1`, `0x0031DBBE`);
+3. the help line `+0x00` (4000 for no help line) and the description `+0x2E` through the text groups, group
+   `id / 1000` and row `id % 1000` as `0x002F9860` resolves them for `0x0031C5D0` (`0x0031DBB1`, `0x0031DBBE`);
 4. every one-byte text code through the glyph table of the shipped `us` font `font00.dat` (records of `0x24` bytes
    from `+0x28`, key = byte - `0x20`, the glyph's UTF-8 at `+0x04`, as [Fonts](../Menus-And-HUD/fonts.md) describes);
    token `0x02` (line break) is written as a space;
@@ -53,7 +53,7 @@ Each line is read from the shipped `battle_pack.bin` in these steps:
 | Column | Meaning |
 |---|---|
 | `id`, `name` | the action id (the row) and its shipped name |
-| `kind`, `kind_name` | `+0x1E` and its name from the kind table (`none` for 255) |
+| `kind`, `kind_name` | `+0x1E` and its name from the kind table (`-` for 255) |
 | `category` | `+0x1C`, which picks the presentation event |
 | `linked_id` | `+0x22`, the magick, technick, item or ability id the row stands for |
 | `cost` | `+0x0A`: MP, or Mist charges for summons and Quickenings |
@@ -70,10 +70,10 @@ Each line is read from the shipped `battle_pack.bin` in these steps:
 | `flags`, `flag_names` | `+0x0C` as hex and the bits with a named effect |
 | `flags2`, `flag2_names` | `+0x2C` as hex and the bits with a named effect |
 | `target_flags`, `target_flag_names` | `+0x36` as hex and the bits with a named effect |
-| `help_id`, `help` | `+0x00` and its shipped line (4000 = none) |
+| `help_id`, `help` | `+0x00` and its shipped line (4000 = no line) |
 | `desc_id`, `description` | `+0x2E` and its shipped line |
 | `explanation` | a one-line summary built from the row's own fields: "an unused row" for the `NOT USED` and Reserve rows, "kind 255, no linked id" for the nine named kind-255 rows |
-| `enemy_users` | how many distinct enemy names use the action through their order sets, then the names in alphabetical order; a definition with no name as `No name (<area> row <n>)`; `none` when no order of the 1,422 sets names it |
+| `enemy_users` | how many distinct enemy names use the action through their order sets, then the names in alphabetical order; a definition with no name as `No name (<area> row <n>)`; `-` when no order of the 1,422 sets names it |
 
 ## Related
 

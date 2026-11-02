@@ -9,7 +9,7 @@ addresses: "0x00267E10, 0x00267DB0, 0x00267F90, 0x00267F60, 0x0026B4E0, 0x0026B4
 
 [verb-arguments.tsv](verb-arguments.tsv) has 1,449 rows for 960 script verbs, one row per argument.
 
-- **The verbs.** They are taken in order of how many operations of the shipped scene and zone scripts call them, so
+- **The verbs.** They are taken in order of how many operations of the US scene and zone scripts call them, so
   the verbs that most scene steps use come first.
 - **Which verbs have rows.** A verb is listed once all of its arguments are read to the point where the game uses
   them. The [verb table](verb-table.md) lists every call id.
@@ -92,7 +92,7 @@ and `0x01000010`-`0x01000016`. An id without bit `0x1000000` plays as the render
 | 26 | `0x0100001A` | `0x1014` | 20 | `field_damage` (611 archives) |
 | 27 | `0x0100001B` | `0x1015` | 21 | `field_item` (621 archives) |
 | 28 | `0x0100001C` | `0x104A` | 74 | `field_attack` (576 archives) |
-| 29 | `0x0100001D` | `0x302F` | 47 | none: no archive fills slot 47 |
+| 29 | `0x0100001D` | `0x302F` | 47 | no name: no archive fills slot 47 |
 
 ## Related
 

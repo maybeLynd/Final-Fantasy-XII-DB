@@ -1,5 +1,5 @@
 ---
-title: "Script verb table: every call id with its name, callbacks, shape, argument count, what it reaches and how often the shipped scripts use it"
+title: "Script verb table: every call id with its name, callbacks, shape, argument count, what it reaches and how often the US scripts use it"
 kind: "reference"
 category: "Scripts and script commands"
 addresses: "0x01EED700, 0x01F281B0, 0x01F29418, 0x01F29440, 0x01F26720, 0x0016D6A0, 0x005C5230, 0x00267E10, 0x00267DB0, 0x0026B4E0, 0x00263D00, 0x00355940, 0x00355E80, 0x0050C910"
@@ -22,8 +22,10 @@ it does:
 - `consumers` (the callbacks), `visible_effect` (what the player sees or which state changes, with the address of
   the code that does it) and `inert_when`.
 
-The 773 verbs that no shipped US script calls read "none in the shipped game: no step calls it"; the row named `-`
-holds the 19 call ids that have no name.
+Of the 773 verbs that no `us` script calls, 678 read "no visible change in the shipped game: no step calls it": no script of any
+tree calls them. Another 94 read "nothing in story play" and name the developer menus (`bin/ctrl`, `bin/btlctrl`,
+`bin/evctrl`, `bin/mapctrl`) that call them, and `musicfadeoutall` names the `ch`, `cn` and `kr` story scripts
+that call it. The row named `-` holds the 19 call ids that have no name.
 
 ### The staff-roll loader
 
@@ -53,7 +55,7 @@ picture (`0x0024A680(picture, 1)`) and clears the pointer (`0x0053EF15`-`0x0053E
 | `call_id` | the sixteen-bit id a script instruction carries: `family << 12 \| command` |
 | `family`, `command` | the two halves |
 | `verb` | the authored name; `unkCall_xxx` is the catalogue's own placeholder |
-| `name_source` | `catalogue` for the ff12-script list, `other` for a name from another authored source, empty when none |
+| `name_source` | `catalogue` for the ff12-script list, `other` for a name from another authored source, empty when the verb has no name |
 | `cat_args`, `cat_ret`, `cat_act`, `param_types` | the catalogue's declared argument count, whether it returns a value, whether it takes an actor, and its parameter type bytes in the order the handler pops them, last argument first (`04A2`: `0x30` is the float popped first, `0x00352BA8`, the second argument); blank when the name is not the catalogue's |
 | `begin`, `poll`, `result` | the three callbacks of the record, empty when null |
 | `stub` | which of `begin` and `result` holds the bare `ret` at `0x0016D6A0` |
@@ -74,11 +76,11 @@ picture (`0x0024A680(picture, 1)`) and clears the pointer (`0x0053EF15`-`0x0053E
 | shapes | result only 1,571; begin and poll 202; begin only 76; all three 48; poll only 28; poll and result 6; begin and result 1; stub 24; empty 4 |
 | names | 1,270 from the catalogue (54 of them `unkCall` placeholders), 671 from other sources, 19 without a name (the 19 `DERIVED-UNNAMED` rows) |
 | argument count | 1,229 confirmed against the catalogue, 653 derived, 34 guarded, 24 conditional, 19 derived without a name, 1 conflict |
-| the conflict | `unkCall_5c7` (`0x05C7`): the catalogue declares two arguments, the result is the `ret` stub and pops none |
+| the conflict | `unkCall_5c7` (`0x05C7`): the catalogue declares two arguments, the result is the `ret` stub and pops no argument |
 | verbs called in the US corpus | 1,169 of 1,960; 1,850,846 calls in all |
 | most called | `setmapidfloor` 84,066; `wait` 83,795; `setmapidwall` 76,134; `nowmap` 63,695 |
 | `setforcefightmode` (`0x0334`) | 177 calls in 83 scripts, every one `setforcefightmode(0)` |
-| the four empty records | `setnorecovertelepostatus` `0x0330`, `battlemembersync` `0x0356`, `restartbattle` `0x03B0`, `debug_meswin_3e` `0x203E`; none is called in the corpus |
+| the four empty records | `setnorecovertelepostatus` `0x0330`, `battlemembersync` `0x0356`, `restartbattle` `0x03B0`, `debug_meswin_3e` `0x203E`; no script in the corpus calls them |
 
 The poll-only rows are the waits on something an earlier verb started: `movesync`, `turnsync`,
 `stdmotionreadsync`, `crossfadesync`, `gaugeshowsync`, `resumebehindcamerasync`,
@@ -135,7 +137,7 @@ its first word is the render index, -1 when the actor has no model.
 | `0x003E9190()` | `setgaugeraceiconparty` `0x0371` | `0x002E9FE0` on each of the four party actors |
 | `0x003E9480`, `0x003E95E0`, `0x003E9640` | `setshapeclut` `0x0184`, `setshapeprior` `0x018C`, `setshapesampling` `0x0185` | on shape i of the map's shape list (`0x002E1040`, `0x60`-byte entries): the palette nibble `+0x0D`, the priority `+0x0E` (marking the list dirty, `+0x3F2` and `+0x3F3` bit `0x20`), or bit `0x20` of `+0x08` |
 | `0x003EA5C0`, `0x003EA4B0` | `voicechangevolume` `0x00B3`, `voicechangepan` `0x00B4` | for a voice slot in state 3 (`0x02B5D0B4` + `0x40` x slot), entry i of its table for the current language (`0x002DEBB0`) goes to `0x001DC350` or `0x001DC240` |
-| `0x003944D0()`, `0x00394500()` | `fsttl_opencommandsync` `0x705F`, `fsttl_initialize` `0x7055` | 0 while `0x01EFAC12` is 2 and bit `0x2` of `[0x02AEE4C8] + 0xC4` is clear, else 1; and bit `0x1` of `[0x02AEE4C0] + 0xC0`, 0 with none |
+| `0x003944D0()`, `0x00394500()` | `fsttl_opencommandsync` `0x705F`, `fsttl_initialize` `0x7055` | 0 while `0x01EFAC12` is 2 and bit `0x2` of `[0x02AEE4C8] + 0xC4` is clear, else 1; and bit `0x1` of `[0x02AEE4C0] + 0xC0`, 0 when `[0x02AEE4C0]` is null |
 | `0x00233D50()` | `unkCall_3091` `0x3091` | whether world lock 10 is free (`0x00226BD0`) |
 | `0x00235DD0(unit, x, z)`, `0x00237460(point, unit)` | `btlAtelGetAngleDiff` `0x3063`, `btlAtelIsPcOnPoint` `0x3045` | for the unit (`0x0031B810`, or `0x003272A0` for a negative one): the angle in degrees from its facing `+0x160` to the point (`0x0031AC90`, `0x0031A930`), -1.0 without a unit; and `0x002374E0` on its position and the point `0x003209C0` gives, -1 without one |
 | `0x00237D60()` | `callgameover` `0x04D8` | `0x0035C7A0(0xB)` unless `0x0035C700` answers non-zero; returns 1 |

@@ -80,7 +80,7 @@ the HCA decoder (`0x00123870`, `0x00123A50`) or the Vorbis stream (`0x007F5970`)
 
 | Codec | Format | Block decoder, run by the feed |
 |---:|---|---|
-| 1 | 16-bit PCM, read in place | none |
+| 1 | 16-bit PCM, read in place | no decoder |
 | 2 | Microsoft ADPCM blocks | `0x007F6FB0`, which builds the seven coefficient pairs (256, 0) to (392, -232) and the 16-entry adaptation table 230 to 768 as constants; samples per block `0x007F7350` |
 | 3 | Ogg Vorbis | `0x007F6750` |
 | 7 | CRI HCA, to float | `0x001242F0` |
@@ -215,7 +215,7 @@ A source voice moves from open (1) to playing (3, slot 3 `0x007E2710`) or paused
 ### The command queue
 
 Game calls do not touch voices directly; they post actions. A poster takes an action from the free list `0x02EAD028`
-(`0x007AB460`; when none is left it prints "Action exhausted!!") and appends it with `0x007AB550`. The driver thread
+(`0x007AB460`; when no action is left it prints "Action exhausted!!") and appends it with `0x007AB550`. The driver thread
 drains the queue in order in `0x007AB5C0`, by the action's type through the 54-entry jump table `0x007AC080`.
 
 Types `0x00`-`0x04`, `0x07` and `0x08` first find a category with `0x007AAA20(id)`: entry `id` of the table at
@@ -365,7 +365,7 @@ argument at `+0x10` (`0x007A5557`-`0x007A555B`). All of these are 0 in the file 
 | `0x02EAD818` | `void*` | 0 | `+0x08` of the worker's block: its body `0x007B6D40` | `0x00169F50` (`0x00169F60`); `0x007B6F70` (`0x007B6FA4`) | `0x007A5550`, through the block's address (`0x007B6F9B`) |
 | `0x02EAD820` | `void*` | 0 | `+0x10` of that block: the argument, 0 | `0x00169F50` (`0x00169F67`); `0x007B6F70` (`0x007B6FDD`) | `0x007A5550`, through the block's address |
 | `0x02EAD890` | `u8` | 0 | the job worker's stop flag: the loop ends when it is not 0, and nothing stores anything but 0 | `0x007B6F70`, 0 (`0x007B6FD6`) | `0x007B6D40` (`0x007B6D44`, `0x007B6F43`) |
-| `0x02EAD8A0` | `i32` | 0 | the id of the job the worker is running, 0 when none; the worker copies the job's 16-byte ring entry here | `0x007B6D40` (`0x007B6DCB`, and 0 after the job at `0x007B6E54`); `0x007B6F70`, 0 (`0x007B703F`) | `0x007B7070`, which answers whether a job is still pending or running (`0x007B7091`) |
+| `0x02EAD8A0` | `i32` | 0 | the id of the job the worker is running, 0 when no job runs; the worker copies the job's 16-byte ring entry here | `0x007B6D40` (`0x007B6DCB`, and 0 after the job at `0x007B6E54`); `0x007B6F70`, 0 (`0x007B703F`) | `0x007B7070`, which answers whether a job is still pending or running (`0x007B7091`) |
 | `0x02EAD8A8` | `void*` | 0 | the running job's object, whose slot 1 the worker calls | `0x007B6D40` (`0x007B6DCB`, and 0 after the job at `0x007B6E5A`); `0x007B6F70`, 0 (`0x007B7047`) | `0x007B6D40` (`0x007B6E35`) |
 | `0x01F40438` | `u8` | 1 | 1 until the first block: the first block copies its per-channel peaks into the meter at `[0x02EAD380]`, every later block keeps the larger of the two; nothing sets it back to 1 | `0x007AF740`, 0 (`0x007AFE68`) | `0x007AF740` (`0x007AFC15`) |
 | `0x02EAD3AC` | `i32` | 0 | a position `0x007AF740` reads and advances only while `[0x02EAD390]` is 2 (`0x007AFEF4`-`0x007AFF79`); the only store to `0x02EAD390` puts 0 there (`0x007AEF30`, `0x007AF339`, the same 0 it stores into `0x02EAD308`), so in the shipped game this is never reached | `0x007AF740` (`0x007AFF79`) | `0x007AF740` (`0x007AFF06`, `0x007AFF6D`) |

@@ -25,7 +25,7 @@ Where the numbers come from depends on one flag of the action:
   reaches 10.0 to 25.0, and every row of kinds 1, 3, 4 and 5 reaches 1.0 to 3.0.
 - For weapon-flag actions the near and middle distances come from the character's own parameters for
   that kind of weapon.
-- Equipment kind 2 has no such parameters, and an action whose own near or middle value is 0 has none
+- Equipment kind 2 has no such parameters, and an action whose own near or middle value is 0 has no such parameters
   either; then near is 60 % of the reach and middle 80 %.
 - An unarmed character holds Unarmed, an equipment entry with a reach of 1.0, so its weapon-flag
   actions take a weapon reach of 1.0, like any other weapon; only a unit with no equipment entry at

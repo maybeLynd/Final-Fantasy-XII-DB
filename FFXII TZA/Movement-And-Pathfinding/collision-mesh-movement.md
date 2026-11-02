@@ -120,13 +120,13 @@ with `next = {1, 2, 0}` (`0x00908DE8`), flattens the edge `e` and the offset `w 
 ground plane. An edge counts when the point is on its outer side (the y of `unit(e) x w` below
 -0.0001) and `|e|` exceeds 0.0001. Of the edges that count it returns the one whose crossing
 parameter `t = (w . unit(e)) / |e|` is nearest 0.5, the edge crossed nearest its middle, and -1 when
-none counts: the point is inside, seen from above.
+no edge counts: the point is inside, seen from above.
 
 ### Keeping the footprint off closed edges
 
 `0x0022F9B0(part, placement, centre, polygon)` maps the polygon's three vertices through `0x020892C0`
 and flattens them. For each edge it reads the neighbour across it, treating a neighbour closed to
-the body's kind (`0x00230A40`) as none, and finds the closest point `c` of the edge to the flattened
+the body's kind (`0x00230A40`) as no neighbour, and finds the closest point `c` of the edge to the flattened
 centre in footprint space. When the centre is less than 1 from `c`:
 
 - a closed edge whose closest point lies inside the edge pushes the centre directly away from `c`
@@ -159,7 +159,7 @@ The query is built on the caller's stack:
 | `+0x20` | `f32*` | centre | the ellipsoid's centre |
 | `+0x28` | `f32*` | push | the summed push, `f32[4]` |
 | `+0x30` | `f32` | deepest | deepest penetration, -1.0 at start |
-| `+0x34` | `i16` | deepestId | its id, `FFFF` none |
+| `+0x34` | `i16` | deepestId | its id, `FFFF` when nothing was hit |
 | `+0x36` | `i16` | kind | a word `0x00231690` stores from one of its stack arguments (`0x002316F0`, `0x00231708`); neither callback reads it |
 | `+0x38` | `i32` | dynamic | test ids from `0x5000` |
 | `+0x3C` | `i32` | bit26Walls | test walls with attribute bit `0x4000000` |
@@ -251,7 +251,7 @@ direction. The offset is mapped through `+0x10` as a direction and its length re
   and `p` inside them seen from above (`0x002324F0` = -1), the one with the highest plane height wins;
   -1 without a part, a cell or a candidate.
 - `0x0026E350(p)` drops `p` onto the highest type-0 polygon of the bound map (`0x00231900(..., 1)`, then
-  `0x00231820`) and returns 0, or -1 when there is none.
+  `0x00231820`) and returns 0, or -1 when there is no such polygon.
 - `0x0026E3C0(part, p)`, reached from the terrain probe `0x003208C0`, does the same and then raises a
   probe point from the floor by 1.0 at a time, up to 30 times, until the wall contact test
   `0x00232490` reports no contact; from there a ray cast (`0x00230B60`) down to the floor point replaces
@@ -263,7 +263,7 @@ direction. The offset is mapped through `+0x10` as a direction and its length re
 - `0x0022F050(part, polygon, p, out)` gives `p`'s barycentric weights in the polygon, seen from above:
   the areas of the three sub-triangles `p` forms with each edge, over their sum. The marker search
   `0x00231A90` uses them to blend the vertex colour bytes (times 1/128) of the type-2 polygon under a
-  body into the placement's `+0x30`-`+0x3C`, or copies `0x0209A3A0` there when there is none.
+  body into the placement's `+0x30`-`+0x3C`, or copies `0x0209A3A0` there when there is no such polygon.
 
 ## Layouts
 

@@ -57,8 +57,8 @@ When no track is chosen and one is playing, `0x002DEE50(current, 0x78)` and `0x0
 `0x003614E0` hands the change to one of two tasks, and `0x00361460` ends either one by clearing busy bit `0x40`:
 
 - With `0x022CBA60` clear, `0x00360EE0` loads the track into a slot (`0x00361630`) and waits for it to be ready. With a
-  track playing it crossfades to the new one (`0x002DEC30`); with none, it sets the volume (`0x002DEE30`) and starts the
-  track. When the task's release flag is set it then schedules the old track's end (`0x00361170`).
+  track playing it crossfades to the new one (`0x002DEC30`); with no track playing, it sets the volume (`0x002DEE30`) and
+  starts the track. When the task's release flag is set it then schedules the old track's end (`0x00361170`).
 - With `0x022CBA60` set, `0x00361340` fades the current track out (`0x002DEE50`, `0x00361170`), waits until no track is
   current, then loads, sets the volume and starts the new one the same way.
 
@@ -159,8 +159,9 @@ The shipping scripts call `setnowmapmusicno` 1,393 times, 229 of them with -1, `
 
 ### The script music stream
 
-The verbs `bgmstreamread` `0x448` to `getbgmstreamstatus` `0x44F` drive a separate streamed-music player. No shipped
-script calls any of the eight; the developer verb `debug_bgmstream` `0x201E` (`0x0050C7F0`) is the only other entry.
+The verbs `bgmstreamread` `0x448` to `getbgmstreamstatus` `0x44F` drive a separate streamed-music player. No story
+script calls any of the eight; the developer menu `bin/ctrl` calls all eight (lines 443-456 and
+811-814), and the developer verb `debug_bgmstream` `0x201E` (`0x0050C7F0`) is the only other entry.
 `usebgmstream` `0x44D` (`0x003557C0`) sizes its buffer: `0x003EACA0` rounds the request up to 64 KiB, with at least
 `0x30000` bytes, allocates it under the name `BGMSTR`, and `0x003EB180` keeps the buffer and the size at `0x02B5E0E8`
 and `0x02B5E0F0`.

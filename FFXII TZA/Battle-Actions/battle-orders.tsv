@@ -36,7 +36,7 @@ order_id	handler	operation	value	name
 0x4022	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
 0x4023	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal set once (0x003291B0); a failed navigation step (0x00325BB0 = 0) ends the order with -1	
 0x4024	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
-0x4025	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+0x4025	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
 0x4026	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
 0x4027	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
 0x4028	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
@@ -53,22 +53,22 @@ order_id	handler	operation	value	name
 0x4033	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
 0x4034	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
 0x4035	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal refreshed every frame (0x00319110); a failed navigation step waits	
-0x4036	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4037	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4038	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4039	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403A	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403B	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403C	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403D	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403E	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x403F	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4040	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4041	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4042	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4043	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4044	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
-0x4045	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+0x4036	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4037	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4038	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4039	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x403A	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x403B	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x403C	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x403D	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x403E	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x403F	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4040	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4041	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4042	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4043	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4044	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
+0x4045	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
 0x4046	0x002FDDA0	set unit flag bit 0x8000		
 0x4047	0x002FDDA0	clear unit flag bit 0x8000		
 0x4048	0x002FDDA0	set unit byte +0x54	0	
@@ -295,7 +295,7 @@ order_id	handler	operation	value	name
 0x4125	0x002FDA60	move to the goal the order record gives (0x00312730); ends when 0x0033A120 reports it reached	goal set once (0x003291B0); a failed navigation step (0x00325BB0 = 0) ends the order with -1	
 0x4126	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal resolved once	
 0x4127	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
-0x4128	00000000	none: the slot is empty, dispatch and the precondition refuse the order		
+0x4128	00000000	no operation: the slot is empty, dispatch and the precondition refuse the order		
 0x4129	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
 0x412A	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	
 0x412B	0x002FDC30	move by 0x00312B40 to a goal from the order record, stopping at the larger body size; ends when 0x0033A120 reports it reached	goal re-resolved every frame	

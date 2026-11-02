@@ -47,7 +47,7 @@ The columns come from the path arrays, the US size table, the archive index and 
 4. The actions: `0x0030CBE0` runs every frame and asks `0x0030A190(row)` for the effect to load: the
    row's `+0x24`, or its cinematic id `+0x28` for rows `0xD0`-`0xF1` (the Quickenings and
    Concurrences) while the battle state `0x022C2160` is 5 or 6; `0xFFFF`, bit `0x8000` or flag `+0x0C` bit `0x40000000`
-   give none (`0x0030A213`-`0x0030A238`).
+   give no effect (`0x0030A213`-`0x0030A238`).
 5. `0x00328360` passes the id to `0x0042FCE0`, which counts the start and calls `0x002FCBF0(id)`; that
    stores it at `+0x20` of a load record and runs `0x002FC860`. Effect programs load another effect
    the same way (`0x003B8670`, opcode `0x21`).
@@ -81,7 +81,7 @@ The columns come from the path arrays, the US size table, the archive index and 
 |---|---|
 | `kind`, `id` | the resource kind and id; `chara` and the lowest table slot for a character effect |
 | `file`, `group`, `path`, `folder` | the file name, its `effect_finish` sub-folder (`common`, `menu`, `magic`, `event`, `chara`), the path as the executable writes it, and its language folder |
-| `size`, `ships`, `archive_size` | the US size-table entry (empty for none), whether the archive holds the file, and the archive record's size |
+| `size`, `ships`, `archive_size` | the US size-table entry (empty when there is no entry), whether the archive holds the file, and the archive record's size |
 | `voice_language` | which voice setting loads this kind: English (kind 11) or Japanese (kind 38); `any` otherwise |
 | `text_languages` | for kinds 12 and 7, the folder each text language's array names for this id, grouped by folder; `jp: all` when every language takes the `jp` file |
 | `effect_number` | for kind 12, the script's effect number and variant letter: `e n`, `l n` or `q n` |
@@ -103,4 +103,4 @@ The columns come from the path arrays, the US size table, the archive index and 
 - [Action phases: delay, charge time, approach, execution and the end of a battle action](../Battle-Actions/action-phases.md)
 - [File size tables: the per-language .fst that sizes every file by resource kind and id](../Game-Files-And-Data-Tables/file-size-tables-fst.md)
 - [Voices: the voice packs a cutscene loads, the sixty-four voice slots, the English or Japanese choice, and the verbs that play, stop and pan a line](../Sound-And-Music/voices.md)
-- [Script verb table: every call id with its name, callbacks, shape, argument count, what it reaches and how often the shipped scripts use it](../Scripts-And-Script-Commands/verb-table.md)
+- [Script verb table: every call id with its name, callbacks, shape, argument count, what it reaches and how often the US scripts use it](../Scripts-And-Script-Commands/verb-table.md)

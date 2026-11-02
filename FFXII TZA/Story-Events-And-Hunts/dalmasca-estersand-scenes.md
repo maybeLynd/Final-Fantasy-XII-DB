@@ -8,7 +8,7 @@ addresses: "0x003529E0, 0x00351880, 0x00353080, 0x003522C0, 0x0032FCA0, 0x00348D
 ## What it lists
 
 The table has one row per scene script of Dalmasca Estersand under `plan_master/us/event` that an event id names,
-and one for the developer script `dst_z9900`, which none names. The zone scripts load
+and one for the developer script `dst_z9900`, which no event id names. The zone scripts load
 them with `eventread` (`0x0E7`, `0x003529E0`) and `eventread_e8` (`0x0E8`, `0x00351880`); the end handlers `0x00353080` and
 `0x003522C0` queue the load of event `n`, which `0x0032FCA0` reads from index `4n` of the event file table
 ([event scenes](../Scripts-And-Script-Commands/event-scenes.md),
@@ -63,6 +63,7 @@ made by the scene script itself comes first.
 | `flags_set` | story flags set by the scene or by its loading function after the load, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | story counter values written by the scene or by its loading function after the load, with the first sentence of each explanation on [story counter values](story-counter-values.md) |
 | `next` | the scene or map that follows: a later scene load or a `mapjump` target with its field id; `-` when the loading function does neither |
+| `plays_when` | when the scene plays, in game terms: where, and what the player does (entering the map, talking to someone, touching a spot, winning a battle); the story counter values it plays at, named from [story counter values](story-counter-values.md), with the cases of its switch that come first applied (a switch starts at the first case that matches); every other test on the way to the loading step in what the game holds; and the listing lines it rests on (a step table's line) |
 
 ## Related
 

@@ -48,7 +48,7 @@ line follows the column (`0x00569E6D`):
 | condition | "Change the conditions under which an action is performed. ..." (`0xCEE`) |
 | action | "Change which action is performed. ..." (`0xCEF`) |
 
-`0x005678C0(column)` gives the help kind of a column from `0x00D234F8`: none, 4 and 5 for columns 0 to 2, and 8 or 9 for
+`0x005678C0(column)` gives the help kind of a column from `0x00D234F8`: no kind, 4 and 5 for columns 0 to 2, and 8 or 9 for
 column 3, by the language test `0x00254A10` (`0x00569CB8`, `0x00569D87`, `0x00569DA8`). `0x00568AA0` paints a line's number in
 two digits (`0x0029F6E0`), nudging the second label for numbers below 10 unless `0x00254A10` is true.
 
@@ -101,7 +101,7 @@ action." (`0xCD8`) or "Select action to be performed." (`0xCD7`) as its help, an
 The pages are built by `0x0056B100` (conditions, the page count from `0x00327BD0`) and `0x0056AE80` (actions, `0x00327BB0`),
 eight bytes a page from `+0x300`, from the run state of `0x0056A3D0` and the tab colouring of `0x0056ADA0`:
 
-- each page's entries come from `0x0031EB20`; a page with none, or whose entries all have state `0x0F`, gets colour
+- each page's entries come from `0x0031EB20`; a page with no entries, or whose entries all have state `0x0F`, gets colour
   `0x87` and is disabled (state 2 for conditions, 3 for actions);
 - a condition page is coloured by the target class `+0x38` of its entries' class `0xB` record: 1 `0x85`, 2 `0x86`,
   3 `0x84`; an action page by the class 1 record its item names (`0x0035D330(0x14)` `+0x2C`): 5 `0x8B`, 8 `0x89`,
@@ -140,7 +140,7 @@ page's rows in a cache of 17 rows of `0x20` bytes, rows 0 to 16, at `+0xE0`-`+0x
 | `+0x08` | `u16` | id | the condition or action id; `0xFFFF` for an empty row |
 | `+0x0A` | `u8` | icon | the condition row's `+0x2C`; for an action, `+0x2C` of the item record its `+0x2C` names, 0 when that is `0xFFFF` |
 | `+0x0B` | `u8` | pad0B | 0; the fillers do not write it |
-| `+0x0C` | `u16` | number | the count shown with text `0x465F`, for an action whose item record (its own record when it names none) has kind 5 at `+0x00` (that record's `+0x24`) or 8 (the action's `+0x24`) (`0x0056A9AA`-`0x0056AA17`) |
+| `+0x0C` | `u16` | number | the count shown with text `0x465F`, for an action whose item record (its own record when it names no item) has kind 5 at `+0x00` (that record's `+0x24`) or 8 (the action's `+0x24`) (`0x0056A9AA`-`0x0056AA17`) |
 | `+0x0E` | `u8[2]` | pad0E | 0; the fillers do not write them |
 | `+0x10` | `u8` | state | the enumerator's state for the entry; `0x0F` for one not yet owned |
 | `+0x11` | `u8` | hasNumber | 1 when `+0x0C` is shown |

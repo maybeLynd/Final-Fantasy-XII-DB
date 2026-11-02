@@ -187,7 +187,7 @@ Struct EnemyRow table=`0x02EBF120` (stride at table `+0x08`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | classRow | row of `0x02EBF150` (the class row at unit `+0xE68`) |
-| `+0x02` | `u8` | counterSlot | spawn counter index, `0xFF` for none |
+| `+0x02` | `u8` | counterSlot | spawn counter index, `0xFF` for no counter |
 | `+0x03` | `u8` | flags | mask `0x3` the tracked-HP class (`0x00328FF0`, flag bit `0x80000000000`); bit `0x10`: unit `+0x58` = 7 (`0x00238BF0`), the motion height without its random part (`0x002362A4`), a test of the gambit selector (`0x0030268D`); bit `0x20`: the shadow kind, through `0x002E8A10` |
 | `+0x08` | `u16` | nameRef | bank << 11 \| entry into `0x02EBF170` |
 | `+0x0A` | `i16[3]` | scalePercent | 0 means 100; divided by 100 and handed to `0x002E5FD0` (`0x00238D1B`-`0x00238D68`) |
@@ -195,13 +195,13 @@ Struct EnemyRow table=`0x02EBF120` (stride at table `+0x08`):
 | `+0x13` | `u8` | animSet | `0xFF` for the weapon's (`0x003202F0`) |
 | `+0x15` | `u8` | flags2 | bit `0x1` Attack and weapon evade, bit `0x2` shield and magick evade from the stat rows (`0x002FEF30`); bit `0x4` also sets flag bit `0x80000000000`; bit `0x8` (`0x0031AACF`) and the bits under mask `0x18` (`0x0031AB39`) in the target-information query `0x0031AA30` |
 | `+0x16` | `u16` | equipment0 |  |
-| `+0x18` | `u32` | startHp | 0 for none (`0x0023A410`) |
+| `+0x18` | `u32` | startHp | 0 for no starting HP (`0x0023A410`) |
 | `+0x1C` | `u16` | equipment1 |  |
 | `+0x22` | `u16` | rewardRow | row of `0x02EBF148` (unit `+0xE70`) |
 | `+0x24` | `u16` | rewardLevelRow | row of `0x02EBF140` (unit `+0xE78`) |
 | `+0x26` | `i16` | voiceBank | negative for the model's (`0x003212E0`) |
 | `+0x28` | `u16[5]` | drops | the five drop slots (`0x003180F0`) |
-| `+0x32` | `u16` | steal0 | `0xFFFF` for none; record `+0x14` bit `0x1` |
+| `+0x32` | `u16` | steal0 | `0xFFFF` for no item; record `+0x14` bit `0x1` |
 | `+0x34` | `u16` | steal1 | bit `0x2` |
 | `+0x36` | `u16` | steal2 | bit `0x4` |
 | `+0x38` | `u32[2]` | partIds | part 8 entries 0 and 1 of the model rebuild (`0x0031C000` through `0x0031BEC0`) |
@@ -250,11 +250,11 @@ Class row (`0x02EBF150`):
 | `+0x29` | `u8[5]` | affinity | absorb, halve, nullify, weak, potency (`0x002FEF30`) |
 | `+0x30` | `u16[8]` | words30 | no reader among the four readers of `0x02EBF150` and the 47 loads of unit `+0xE68`, each followed to its fields |
 | `+0x40` | `u16` | modelFamily | the same-model run (`0x00317F77`) |
-| `+0x52` | `u16` | species | `0xFFFF` none (`0x003171C0`) |
+| `+0x52` | `u16` | species | `0xFFFF` no entry (`0x003171C0`) |
 
 ## Modding notes
 
-- An enemy's statuses and augments are not in its row: the installer writes none, and the masks
+- An enemy's statuses and augments are not in its row: the installer writes no status or augment, and the masks
   the recompute reads come from the enemy's script ([augments](../Damage-And-Battle-Formulas/augments.md)).
 - Giving a party member a starting level sets its experience to exactly that level's threshold
   and strips every status in the two masks; the MP starts at the row's percentage of capacity.

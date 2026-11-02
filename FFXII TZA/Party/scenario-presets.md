@@ -67,7 +67,7 @@ The number `evt_t0505` holds comes from its `loadYoyaku.getLoadYoyaku`, which pi
 | `items` | each item, piece of gear, magick, technick, quickening or key item granted, with its count |
 | `members` | each member the set sets up: name, level, gear, gambit preset, License Points, licenses, MP bars, MP share, and the gambit mark |
 | `sites` | the scenario row's file offset in `battle_pack.bin`, and how many preset rows it has |
-| `loaded_by` | each script, step and story point, or the new game, that asks for the set ("Which scripts ask for a set" above), or `none` |
+| `loaded_by` | each script, step and story point, or the new game, that asks for the set ("Which scripts ask for a set" above), or `not loaded` with the reason |
 
 Scenario rows are section 60 (50 × 208 bytes, bound to `0x02EBF030` at `0x00236FA2`); preset rows are section 59
 (226 × 44 bytes, bound to `0x02EBF028` at `0x00236FBC`). Names come from each id's class table and text bank.

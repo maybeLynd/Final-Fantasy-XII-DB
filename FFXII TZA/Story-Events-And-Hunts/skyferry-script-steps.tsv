@@ -1163,16 +1163,16 @@ asp_a01	バトル時扉前軍人配置監督	set_バトル時_共通	4	0x0854A	1
 asp_a01	バトル時扉前軍人配置監督	set_バトル時_共通	5	0x08551	1718	-	sysReqwait	バトル時帝国軍人D::set_バトル時_軍人	actor `バトル時帝国軍人D`	-	-	waits until バトル時帝国軍人D::set_バトル時_軍人 is no longer on its actor	バトル時帝国軍人D.set_バトル時_軍人	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a01	バトル時扉前軍人配置監督	set_バトル時_共通	6	0x08559	1719	-	store	file_var_s8_1 = getcharclipdefaultdistance() - 25	variable file_var_s8_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 asp_a01	バトル時扉前軍人配置監督	set_バトル時_共通	7	0x0855C	1720	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	1	0x08563	1734	-	sysDVAR	1, global_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	2	0x0856A	1735	-	sysDVAR	2, local_var_s9f0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	3	0x08571	1736	-	sysDVAR	4, global_var_12	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	4	0x08578	1737	-	sysDVAR	5, global_var_10	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	5	0x0857F	1738	-	sysDVAR	6, global_var_13	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	6	0x08586	1739	-	sysDVAR	7, global_var_16	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	7	0x0858D	1740	-	sysDVAR	8, global_var_14	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	8	0x08594	1741	-	sysDVAR	9, global_var_11	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	9	0x0859B	1742	-	sysDVAR	10, global_var_15	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	乗船アナウンス監督	init	10	0x085A2	1743	-	sysDVAR	12, scratch2_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	1	0x08563	1734	-	sysDVAR	1, global_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	2	0x0856A	1735	-	sysDVAR	2, local_var_s9f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	3	0x08571	1736	-	sysDVAR	4, global_var_12	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	4	0x08578	1737	-	sysDVAR	5, global_var_10	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	5	0x0857F	1738	-	sysDVAR	6, global_var_13	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	6	0x08586	1739	-	sysDVAR	7, global_var_16	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	7	0x0858D	1740	-	sysDVAR	8, global_var_14	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	8	0x08594	1741	-	sysDVAR	9, global_var_11	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	9	0x0859B	1742	-	sysDVAR	10, global_var_15	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	乗船アナウンス監督	init	10	0x085A2	1743	-	sysDVAR	12, scratch2_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	乗船アナウンス監督	init	11	0x085A3	1744	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	乗船アナウンス監督	main	1	0x085A4	1749	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	乗船アナウンス監督	乗船アナウンス	1	0x085A8	1754	-	store	local_var_s9f0_1 = 0	variable local_var_s9f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2284,7 +2284,7 @@ asp_a01	エキストラショップ01	set	17	0x0A388	3499	-	return	-	-	-	-	-	-	r
 asp_a01	エキストラショップ01	bindoff_TAG	1	0x0A389	3504	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	エキストラショップ01	bindoff_TAG	2	0x0A38C	3505	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	エキストラショップ01	bindoff_TAG	3	0x0A392	3506	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	エキストラショップ01	bindoff_TAG	4	0x0A393	3507	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	エキストラショップ01	bindoff_TAG	4	0x0A393	3507	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アイドルおねえさん	init	1	0x0A394	3516	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アイドルおねえさん	main	1	0x0A395	3521	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アイドルおねえさん	talk	1	0x0A396	3526	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2311,7 +2311,7 @@ asp_a01	アイドルおねえさん	walk_後読み_通常時共通	3	0x0A420	355
 asp_a01	アイドルおねえさん	bindoff_TAG	1	0x0A426	3561	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アイドルおねえさん	bindoff_TAG	2	0x0A429	3562	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アイドルおねえさん	bindoff_TAG	3	0x0A42F	3563	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アイドルおねえさん	bindoff_TAG	4	0x0A430	3564	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アイドルおねえさん	bindoff_TAG	4	0x0A430	3564	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	おねえさんの追っかけ	init	1	0x0A431	3573	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	おねえさんの追っかけ	main	1	0x0A432	3578	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	おねえさんの追っかけ	talk	1	0x0A433	3583	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2346,7 +2346,7 @@ asp_a01	おねえさんの追っかけ	walk_後読み_通常時共通	7	0x0A4FA	
 asp_a01	おねえさんの追っかけ	bindoff_TAG	1	0x0A500	3626	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	おねえさんの追っかけ	bindoff_TAG	2	0x0A503	3627	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	おねえさんの追っかけ	bindoff_TAG	3	0x0A509	3628	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	おねえさんの追っかけ	bindoff_TAG	4	0x0A50A	3629	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	おねえさんの追っかけ	bindoff_TAG	4	0x0A50A	3629	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC01	init	1	0x0A50B	3638	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC01	main	1	0x0A50C	3643	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC01	talk	1	0x0A50D	3648	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2495,7 +2495,7 @@ asp_a01	ラバナ_通常_NPC01	walk_バトル時_RN	2	0x0A86F	3847	-	return	-	-	
 asp_a01	ラバナ_通常_NPC01	bindoff_TAG_RN	1	0x0A870	3852	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC01	bindoff_TAG_RN	2	0x0A873	3853	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC01	bindoff_TAG_RN	3	0x0A879	3854	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC01	bindoff_TAG_RN	4	0x0A87A	3855	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC01	bindoff_TAG_RN	4	0x0A87A	3855	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC02	init	1	0x0A87B	3864	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC02	main	1	0x0A87C	3869	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC02	talk	1	0x0A87D	3874	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2561,7 +2561,7 @@ asp_a01	ラバナ_通常_NPC02	walk_バトル時_RN	14	0x0AA01	3960	loop while t
 asp_a01	ラバナ_通常_NPC02	bindoff_TAG_RN	1	0x0AA07	3966	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC02	bindoff_TAG_RN	2	0x0AA0A	3967	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC02	bindoff_TAG_RN	3	0x0AA10	3968	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC02	bindoff_TAG_RN	4	0x0AA11	3969	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC02	bindoff_TAG_RN	4	0x0AA11	3969	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC02用アタリ	init	1	0x0AA12	3978	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC02用アタリ	setHitObj	1	0x0AA16	3983	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC02用アタリ	setHitObj	2	0x0AA22	3984	-	setpos	17.2866058, -4.76752186, 36.4183197	this actor, placed at (17.2866058, -4.76752186, 36.4183197)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -2651,7 +2651,7 @@ asp_a01	ラバナ_通常_NPC03	walk_バトル時_RN	11	0x0AC28	4118	loop while t
 asp_a01	ラバナ_通常_NPC03	bindoff_TAG_RN	1	0x0AC2E	4124	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC03	bindoff_TAG_RN	2	0x0AC31	4125	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC03	bindoff_TAG_RN	3	0x0AC37	4126	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC03	bindoff_TAG_RN	4	0x0AC38	4127	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC03	bindoff_TAG_RN	4	0x0AC38	4127	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC03用アタリ	init	1	0x0AC39	4136	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC03用アタリ	setHitObj	1	0x0AC3D	4141	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC03用アタリ	setHitObj	2	0x0AC49	4142	-	setpos	17.9855824, -4.76752186, 36.8876266	this actor, placed at (17.9855824, -4.76752186, 36.8876266)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -2847,7 +2847,7 @@ asp_a01	ラバナ_通常_NPC04	walk_バトル時_RN	12	0x0B0D2	4420	loop while t
 asp_a01	ラバナ_通常_NPC04	bindoff_TAG_RN	1	0x0B0D8	4426	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC04	bindoff_TAG_RN	2	0x0B0DB	4427	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC04	bindoff_TAG_RN	3	0x0B0E1	4428	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC04	bindoff_TAG_RN	4	0x0B0E2	4429	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC04	bindoff_TAG_RN	4	0x0B0E2	4429	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC05	init	1	0x0B0E3	4438	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC05	main	1	0x0B0E4	4443	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC05	talk	1	0x0B0E5	4448	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3010,7 +3010,7 @@ asp_a01	ラバナ_通常_NPC05	walk_RN	15	0x0B4DF	4658	loop while true	move_5e	1
 asp_a01	ラバナ_通常_NPC05	bindoff_TAG_RN	1	0x0B4E5	4664	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC05	bindoff_TAG_RN	2	0x0B4E8	4665	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC05	bindoff_TAG_RN	3	0x0B4EE	4666	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC05	bindoff_TAG_RN	4	0x0B4EF	4667	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC05	bindoff_TAG_RN	4	0x0B4EF	4667	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC06	init	1	0x0B4F0	4676	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC06	main	1	0x0B4F1	4681	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC06	talk	1	0x0B4F2	4686	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3075,7 +3075,7 @@ asp_a01	ラバナ_通常_NPC06	walk_RN	22	0x0B67A	4765	loop while true	move	14.4
 asp_a01	ラバナ_通常_NPC06	bindoff_TAG_RN	1	0x0B680	4771	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC06	bindoff_TAG_RN	2	0x0B683	4772	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC06	bindoff_TAG_RN	3	0x0B689	4773	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC06	bindoff_TAG_RN	4	0x0B68A	4774	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC06	bindoff_TAG_RN	4	0x0B68A	4774	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC07	init	1	0x0B68B	4783	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC07	main	1	0x0B68C	4788	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC07	talk	1	0x0B68D	4793	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3238,7 +3238,7 @@ asp_a01	ラバナ_通常_NPC07	walk_バトル時_RN	8	0x0BA55	5014	loop while tr
 asp_a01	ラバナ_通常_NPC07	bindoff_TAG_RN	1	0x0BA5B	5020	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC07	bindoff_TAG_RN	2	0x0BA5E	5021	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC07	bindoff_TAG_RN	3	0x0BA64	5022	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC07	bindoff_TAG_RN	4	0x0BA65	5023	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC07	bindoff_TAG_RN	4	0x0BA65	5023	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC07用アタリ	init	1	0x0BA66	5032	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC07用アタリ	setHitObj	1	0x0BA6A	5037	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC07用アタリ	setHitObj	2	0x0BA76	5038	-	setpos	25.9330158, -4.5999999, 13.6232586	this actor, placed at (25.9330158, -4.5999999, 13.6232586)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -3320,7 +3320,7 @@ asp_a01	ラバナ_通常_NPC08	walk_バトル時_RN	9	0x0BC38	5164	loop while tr
 asp_a01	ラバナ_通常_NPC08	bindoff_TAG_RN	1	0x0BC3E	5170	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC08	bindoff_TAG_RN	2	0x0BC41	5171	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC08	bindoff_TAG_RN	3	0x0BC47	5172	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC08	bindoff_TAG_RN	4	0x0BC48	5173	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC08	bindoff_TAG_RN	4	0x0BC48	5173	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC08用アタリ	init	1	0x0BC49	5182	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_通常_NPC08用アタリ	setHitObj	1	0x0BC4D	5187	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC08用アタリ	setHitObj	2	0x0BC59	5188	-	setpos	22.850769, -7.599998, 44.2009544	this actor, placed at (22.850769, -7.599998, 44.2009544)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -3403,7 +3403,7 @@ asp_a01	ラバナ_通常_NPC09	walk_バトル時_RN	15	0x0BE32	5315	loop while t
 asp_a01	ラバナ_通常_NPC09	bindoff_TAG_RN	1	0x0BE38	5321	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC09	bindoff_TAG_RN	2	0x0BE3B	5322	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_通常_NPC09	bindoff_TAG_RN	3	0x0BE41	5323	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_通常_NPC09	bindoff_TAG_RN	4	0x0BE42	5324	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_通常_NPC09	bindoff_TAG_RN	4	0x0BE42	5324	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_多_NPC01	init	1	0x0BE43	5333	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_多_NPC01	main	1	0x0BE44	5338	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_多_NPC01	talk	1	0x0BE45	5343	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3434,7 +3434,7 @@ asp_a01	ラバナ_多_NPC01	set_バトル時_RM	23	0x0BEE9	5375	-	return	-	-	-	-
 asp_a01	ラバナ_多_NPC01	bindoff_TAG_RM	1	0x0BEEA	5380	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_多_NPC01	bindoff_TAG_RM	2	0x0BEED	5381	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_多_NPC01	bindoff_TAG_RM	3	0x0BEF3	5382	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_多_NPC01	bindoff_TAG_RM	4	0x0BEF4	5383	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_多_NPC01	bindoff_TAG_RM	4	0x0BEF4	5383	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_多_NPC02	init	1	0x0BEF5	5392	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_多_NPC02	main	1	0x0BEF6	5397	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ラバナ_多_NPC02	talk	1	0x0BEF7	5402	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3491,7 +3491,7 @@ asp_a01	ラバナ_多_NPC02	walk_バトル時_RM	33	0x0C03D	5465	loop while true
 asp_a01	ラバナ_多_NPC02	bindoff_TAG_RM	1	0x0C043	5471	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ラバナ_多_NPC02	bindoff_TAG_RM	2	0x0C046	5472	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ラバナ_多_NPC02	bindoff_TAG_RM	3	0x0C04C	5473	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ラバナ_多_NPC02	bindoff_TAG_RM	4	0x0C04D	5474	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ラバナ_多_NPC02	bindoff_TAG_RM	4	0x0C04D	5474	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC01	init	1	0x0C04E	5483	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC01	main	1	0x0C04F	5488	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC01	talk	1	0x0C050	5493	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3530,7 +3530,7 @@ asp_a01	ナルビ_通常_NPC01	walk_NN	14	0x0C131	5542	loop while true	motionsyn
 asp_a01	ナルビ_通常_NPC01	bindoff_TAG_NN	1	0x0C137	5548	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC01	bindoff_TAG_NN	2	0x0C13A	5549	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC01	bindoff_TAG_NN	3	0x0C140	5550	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC01	bindoff_TAG_NN	4	0x0C141	5551	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC01	bindoff_TAG_NN	4	0x0C141	5551	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC02	init	1	0x0C142	5560	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC02	main	1	0x0C143	5565	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC02	talk	1	0x0C144	5570	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3594,7 +3594,7 @@ asp_a01	ナルビ_通常_NPC02	walk_バトル時_NN	8	0x0C2CC	5654	loop while tr
 asp_a01	ナルビ_通常_NPC02	bindoff_TAG_NN	1	0x0C2D2	5660	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC02	bindoff_TAG_NN	2	0x0C2D5	5661	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC02	bindoff_TAG_NN	3	0x0C2DB	5662	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC02	bindoff_TAG_NN	4	0x0C2DC	5663	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC02	bindoff_TAG_NN	4	0x0C2DC	5663	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC02用アタリ	init	1	0x0C2DD	5672	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC02用アタリ	setHitObj	1	0x0C2E1	5677	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC02用アタリ	setHitObj	2	0x0C2ED	5678	-	setpos	16.6667671, -7.599998, 46.5732994	this actor, placed at (16.6667671, -7.599998, 46.5732994)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -3682,7 +3682,7 @@ asp_a01	ナルビ_通常_NPC03	walk_バトル時_NN	8	0x0C4EC	5810	loop while tr
 asp_a01	ナルビ_通常_NPC03	bindoff_TAG_NN	1	0x0C4F2	5816	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC03	bindoff_TAG_NN	2	0x0C4F5	5817	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC03	bindoff_TAG_NN	3	0x0C4FB	5818	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC03	bindoff_TAG_NN	4	0x0C4FC	5819	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC03	bindoff_TAG_NN	4	0x0C4FC	5819	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC04	init	1	0x0C4FD	5828	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC04	main	1	0x0C4FE	5833	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC04	talk	1	0x0C4FF	5838	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3726,7 +3726,7 @@ asp_a01	ナルビ_通常_NPC04	walk_NN	19	0x0C5FC	5892	loop while true	move	19.2
 asp_a01	ナルビ_通常_NPC04	bindoff_TAG_NN	1	0x0C602	5898	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC04	bindoff_TAG_NN	2	0x0C605	5899	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC04	bindoff_TAG_NN	3	0x0C60B	5900	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC04	bindoff_TAG_NN	4	0x0C60C	5901	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC04	bindoff_TAG_NN	4	0x0C60C	5901	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC05	init	1	0x0C60D	5910	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC05	main	1	0x0C60E	5915	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC05	talk	1	0x0C60F	5920	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3887,7 +3887,7 @@ asp_a01	ナルビ_通常_NPC05	walk_バトル時_NN	14	0x0C9CA	6139	loop while t
 asp_a01	ナルビ_通常_NPC05	bindoff_TAG_NN	1	0x0C9D0	6145	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC05	bindoff_TAG_NN	2	0x0C9D3	6146	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC05	bindoff_TAG_NN	3	0x0C9D9	6147	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC05	bindoff_TAG_NN	4	0x0C9DA	6148	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC05	bindoff_TAG_NN	4	0x0C9DA	6148	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC05用アタリ	init	1	0x0C9DB	6157	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC05用アタリ	setHitObj	1	0x0C9DF	6162	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC05用アタリ	setHitObj	2	0x0C9EB	6163	-	setpos	20.1243534, -4.5999999, 31.3030224	this actor, placed at (20.1243534, -4.5999999, 31.3030224)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -4073,7 +4073,7 @@ asp_a01	ナルビ_通常_NPC06	walk_バトル時_NN	13	0x0CE21	6431	loop while t
 asp_a01	ナルビ_通常_NPC06	bindoff_TAG_NN	1	0x0CE27	6437	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC06	bindoff_TAG_NN	2	0x0CE2A	6438	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC06	bindoff_TAG_NN	3	0x0CE30	6439	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC06	bindoff_TAG_NN	4	0x0CE31	6440	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC06	bindoff_TAG_NN	4	0x0CE31	6440	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC07	init	1	0x0CE32	6449	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC07	main	1	0x0CE33	6454	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC07	talk	1	0x0CE34	6459	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4210,7 +4210,7 @@ asp_a01	ナルビ_通常_NPC07	walk_バトル時_NN	8	0x0D17A	6649	loop while tr
 asp_a01	ナルビ_通常_NPC07	bindoff_TAG_NN	1	0x0D180	6655	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC07	bindoff_TAG_NN	2	0x0D183	6656	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC07	bindoff_TAG_NN	3	0x0D189	6657	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC07	bindoff_TAG_NN	4	0x0D18A	6658	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC07	bindoff_TAG_NN	4	0x0D18A	6658	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC08	init	1	0x0D18B	6667	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC08	main	1	0x0D18C	6672	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC08	talk	1	0x0D18D	6677	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4298,7 +4298,7 @@ asp_a01	ナルビ_通常_NPC08	walk_バトル時_NN	1	0x0D3DB	6784	-	return	-	-	
 asp_a01	ナルビ_通常_NPC08	bindoff_TAG_NN	1	0x0D3DC	6789	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC08	bindoff_TAG_NN	2	0x0D3DF	6790	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC08	bindoff_TAG_NN	3	0x0D3E5	6791	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC08	bindoff_TAG_NN	4	0x0D3E6	6792	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC08	bindoff_TAG_NN	4	0x0D3E6	6792	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC09	init	1	0x0D3E7	6801	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC09	main	1	0x0D3E8	6806	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC09	talk	1	0x0D3E9	6811	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4435,7 +4435,7 @@ asp_a01	ナルビ_通常_NPC09	walk_バトル時_NN	8	0x0D719	7001	loop while tr
 asp_a01	ナルビ_通常_NPC09	bindoff_TAG_NN	1	0x0D71F	7007	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC09	bindoff_TAG_NN	2	0x0D722	7008	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC09	bindoff_TAG_NN	3	0x0D728	7009	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC09	bindoff_TAG_NN	4	0x0D729	7010	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC09	bindoff_TAG_NN	4	0x0D729	7010	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC10	init	1	0x0D72A	7019	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC10	main	1	0x0D72B	7024	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_通常_NPC10	talk	1	0x0D72C	7029	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4462,7 +4462,7 @@ asp_a01	ナルビ_通常_NPC10	walk_NN	2	0x0D7A8	7065	-	return	-	-	-	-	-	-	resol
 asp_a01	ナルビ_通常_NPC10	bindoff_TAG_NN	1	0x0D7A9	7070	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC10	bindoff_TAG_NN	2	0x0D7AC	7071	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_通常_NPC10	bindoff_TAG_NN	3	0x0D7B2	7072	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_通常_NPC10	bindoff_TAG_NN	4	0x0D7B3	7073	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_通常_NPC10	bindoff_TAG_NN	4	0x0D7B3	7073	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC01	init	1	0x0D7B4	7082	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC01	main	1	0x0D7B5	7087	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC01	talk	1	0x0D7B6	7092	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4544,7 +4544,7 @@ asp_a01	ナルビ_多_NPC01	walk_バトル時_NM	25	0x0D9BB	7195	loop while true
 asp_a01	ナルビ_多_NPC01	bindoff_TAG_NM	1	0x0D9C1	7201	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_多_NPC01	bindoff_TAG_NM	2	0x0D9C4	7202	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_多_NPC01	bindoff_TAG_NM	3	0x0D9CA	7203	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_多_NPC01	bindoff_TAG_NM	4	0x0D9CB	7204	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_多_NPC01	bindoff_TAG_NM	4	0x0D9CB	7204	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC02	init	1	0x0D9CC	7213	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC02	main	1	0x0D9CD	7218	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC02	talk	1	0x0D9CE	7223	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4611,7 +4611,7 @@ asp_a01	ナルビ_多_NPC02	walk_バトル時_NM	13	0x0DB51	7311	loop while true
 asp_a01	ナルビ_多_NPC02	bindoff_TAG_NM	1	0x0DB57	7317	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_多_NPC02	bindoff_TAG_NM	2	0x0DB5A	7318	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_多_NPC02	bindoff_TAG_NM	3	0x0DB60	7319	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_多_NPC02	bindoff_TAG_NM	4	0x0DB61	7320	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_多_NPC02	bindoff_TAG_NM	4	0x0DB61	7320	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC03	init	1	0x0DB62	7329	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC03	main	1	0x0DB63	7334	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC03	talk	1	0x0DB64	7339	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4647,7 +4647,7 @@ asp_a01	ナルビ_多_NPC03	walk_バトル時_NM	12	0x0DC1C	7381	loop while true
 asp_a01	ナルビ_多_NPC03	bindoff_TAG_NM	1	0x0DC22	7387	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ナルビ_多_NPC03	bindoff_TAG_NM	2	0x0DC25	7388	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_多_NPC03	bindoff_TAG_NM	3	0x0DC2B	7389	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ナルビ_多_NPC03	bindoff_TAG_NM	4	0x0DC2C	7390	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ナルビ_多_NPC03	bindoff_TAG_NM	4	0x0DC2C	7390	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC03用アタリ	init	1	0x0DC2D	7399	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ナルビ_多_NPC03用アタリ	setHitObj	1	0x0DC31	7404	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ナルビ_多_NPC03用アタリ	setHitObj	2	0x0DC3D	7405	-	setpos	12.2747469, -4.5999999, 33.9367867	this actor, placed at (12.2747469, -4.5999999, 33.9367867)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -4723,7 +4723,7 @@ asp_a01	ビュエ_通常_NPC01	walk_バトル時_BN	7	0x0DDD7	7525	loop while tr
 asp_a01	ビュエ_通常_NPC01	bindoff_TAG_BN	1	0x0DDDD	7531	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC01	bindoff_TAG_BN	2	0x0DDE0	7532	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC01	bindoff_TAG_BN	3	0x0DDE6	7533	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC01	bindoff_TAG_BN	4	0x0DDE7	7534	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC01	bindoff_TAG_BN	4	0x0DDE7	7534	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC01用アタリ	init	1	0x0DDE8	7543	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC01用アタリ	setHitObj	1	0x0DDEC	7548	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC01用アタリ	setHitObj	2	0x0DDF8	7549	-	setpos	20.9395065, -4.5999999, 26.7016659	this actor, placed at (20.9395065, -4.5999999, 26.7016659)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -4802,7 +4802,7 @@ asp_a01	ビュエ_通常_NPC02	walk_バトル時_BN	7	0x0DFA1	7672	loop while tr
 asp_a01	ビュエ_通常_NPC02	bindoff_TAG_BN	1	0x0DFA7	7678	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC02	bindoff_TAG_BN	2	0x0DFAA	7679	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC02	bindoff_TAG_BN	3	0x0DFB0	7680	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC02	bindoff_TAG_BN	4	0x0DFB1	7681	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC02	bindoff_TAG_BN	4	0x0DFB1	7681	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC02用アタリ	init	1	0x0DFB2	7690	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC02用アタリ	setHitObj	1	0x0DFB6	7695	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC02用アタリ	setHitObj	2	0x0DFC2	7696	-	setpos	20.696991, -4.5999999, 26.907011	this actor, placed at (20.696991, -4.5999999, 26.907011)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -4998,7 +4998,7 @@ asp_a01	ビュエ_通常_NPC03	walk_バトル時_BN	14	0x0E43E	7969	loop while t
 asp_a01	ビュエ_通常_NPC03	bindoff_TAG_BN	1	0x0E444	7975	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC03	bindoff_TAG_BN	2	0x0E447	7976	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC03	bindoff_TAG_BN	3	0x0E44D	7977	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC03	bindoff_TAG_BN	4	0x0E44E	7978	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC03	bindoff_TAG_BN	4	0x0E44E	7978	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC04	init	1	0x0E44F	7987	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC04	main	1	0x0E450	7992	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC04	talk	1	0x0E451	7997	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5166,7 +5166,7 @@ asp_a01	ビュエ_通常_NPC04	walk_バトル時_BN	17	0x0E826	8223	loop while t
 asp_a01	ビュエ_通常_NPC04	bindoff_TAG_BN	1	0x0E82C	8229	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC04	bindoff_TAG_BN	2	0x0E82F	8230	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC04	bindoff_TAG_BN	3	0x0E835	8231	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC04	bindoff_TAG_BN	4	0x0E836	8232	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC04	bindoff_TAG_BN	4	0x0E836	8232	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC05	init	1	0x0E837	8241	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC05	main	1	0x0E838	8246	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC05	talk	1	0x0E839	8251	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5241,7 +5241,7 @@ asp_a01	ビュエ_通常_NPC05	walk_バトル時_BN	5	0x0EA23	8346	loop while tr
 asp_a01	ビュエ_通常_NPC05	bindoff_TAG_BN	1	0x0EA29	8352	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC05	bindoff_TAG_BN	2	0x0EA2C	8353	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC05	bindoff_TAG_BN	3	0x0EA32	8354	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC05	bindoff_TAG_BN	4	0x0EA33	8355	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC05	bindoff_TAG_BN	4	0x0EA33	8355	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC06	init	1	0x0EA34	8364	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC06	main	1	0x0EA35	8369	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC06	talk	1	0x0EA36	8374	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5350,7 +5350,7 @@ asp_a01	ビュエ_通常_NPC06	walk_BN	4	0x0ECA4	8526	loop while true	motionsync
 asp_a01	ビュエ_通常_NPC06	bindoff_TAG_BN	1	0x0ECAA	8532	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC06	bindoff_TAG_BN	2	0x0ECAD	8533	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC06	bindoff_TAG_BN	3	0x0ECB3	8534	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC06	bindoff_TAG_BN	4	0x0ECB4	8535	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC06	bindoff_TAG_BN	4	0x0ECB4	8535	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC06用アタリ	init	1	0x0ECB5	8544	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC06用アタリ	setHitObj	1	0x0ECB9	8549	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC06用アタリ	setHitObj	2	0x0ECC5	8550	-	setpos	24.3404789, -7.599998, 46.5280151	this actor, placed at (24.3404789, -7.599998, 46.5280151)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -5482,7 +5482,7 @@ asp_a01	ビュエ_通常_NPC07	walk_BN	5	0x0EFA7	8749	loop while true	motionsync
 asp_a01	ビュエ_通常_NPC07	bindoff_TAG_BN	1	0x0EFAD	8755	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC07	bindoff_TAG_BN	2	0x0EFB0	8756	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC07	bindoff_TAG_BN	3	0x0EFB6	8757	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC07	bindoff_TAG_BN	4	0x0EFB7	8758	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC07	bindoff_TAG_BN	4	0x0EFB7	8758	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC08	init	1	0x0EFB8	8767	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC08	main	1	0x0EFB9	8772	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC08	talk	1	0x0EFBA	8777	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5544,7 +5544,7 @@ asp_a01	ビュエ_通常_NPC08	walk_バトル時_BN	16	0x0F16C	8859	loop while t
 asp_a01	ビュエ_通常_NPC08	bindoff_TAG_BN	1	0x0F172	8865	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC08	bindoff_TAG_BN	2	0x0F175	8866	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC08	bindoff_TAG_BN	3	0x0F17B	8867	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC08	bindoff_TAG_BN	4	0x0F17C	8868	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC08	bindoff_TAG_BN	4	0x0F17C	8868	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC09	init	1	0x0F17D	8877	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC09	main	1	0x0F17E	8882	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_通常_NPC09	talk	1	0x0F17F	8887	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5584,7 +5584,7 @@ asp_a01	ビュエ_通常_NPC09	walk_BN	15	0x0F266	8937	loop while true	turn_62	2
 asp_a01	ビュエ_通常_NPC09	bindoff_TAG_BN	1	0x0F26C	8943	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC09	bindoff_TAG_BN	2	0x0F26F	8944	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_通常_NPC09	bindoff_TAG_BN	3	0x0F275	8945	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_通常_NPC09	bindoff_TAG_BN	4	0x0F276	8946	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_通常_NPC09	bindoff_TAG_BN	4	0x0F276	8946	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC01	init	1	0x0F277	8955	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC01	main	1	0x0F278	8960	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC01	talk	1	0x0F279	8965	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5615,7 +5615,7 @@ asp_a01	ビュエ_多_NPC01	walk_バトル時_BM	6	0x0F316	9002	loop while true	
 asp_a01	ビュエ_多_NPC01	bindoff_TAG_BM	1	0x0F31C	9008	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_多_NPC01	bindoff_TAG_BM	2	0x0F31F	9009	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_多_NPC01	bindoff_TAG_BM	3	0x0F325	9010	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_多_NPC01	bindoff_TAG_BM	4	0x0F326	9011	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_多_NPC01	bindoff_TAG_BM	4	0x0F326	9011	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC01用アタリ	init	1	0x0F327	9020	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC01用アタリ	setHitObj	1	0x0F32B	9025	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_多_NPC01用アタリ	setHitObj	2	0x0F337	9026	-	setpos	16.0834789, -4.5999999, 35.3619232	this actor, placed at (16.0834789, -4.5999999, 35.3619232)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -5699,7 +5699,7 @@ asp_a01	ビュエ_多_NPC02	walk_バトル時_BM	6	0x0F504	9155	loop while true	
 asp_a01	ビュエ_多_NPC02	bindoff_TAG_BM	1	0x0F50A	9161	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_多_NPC02	bindoff_TAG_BM	2	0x0F50D	9162	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_多_NPC02	bindoff_TAG_BM	3	0x0F513	9163	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_多_NPC02	bindoff_TAG_BM	4	0x0F514	9164	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_多_NPC02	bindoff_TAG_BM	4	0x0F514	9164	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC03	init	1	0x0F515	9173	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC03	main	1	0x0F516	9178	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC03	talk	1	0x0F517	9183	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5755,7 +5755,7 @@ asp_a01	ビュエ_多_NPC03	walk_バトル時_BM	1	0x0F65A	9259	-	return	-	-	-	-
 asp_a01	ビュエ_多_NPC03	bindoff_TAG_BM	1	0x0F65B	9264	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_多_NPC03	bindoff_TAG_BM	2	0x0F65E	9265	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_多_NPC03	bindoff_TAG_BM	3	0x0F664	9266	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_多_NPC03	bindoff_TAG_BM	4	0x0F665	9267	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_多_NPC03	bindoff_TAG_BM	4	0x0F665	9267	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC04	init	1	0x0F666	9276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC04	main	1	0x0F667	9281	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC04	talk	1	0x0F668	9286	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5784,7 +5784,7 @@ asp_a01	ビュエ_多_NPC04	walk_バトル時_BM	4	0x0F6F9	9321	loop while true	
 asp_a01	ビュエ_多_NPC04	bindoff_TAG_BM	1	0x0F6FF	9327	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_多_NPC04	bindoff_TAG_BM	2	0x0F702	9328	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_多_NPC04	bindoff_TAG_BM	3	0x0F708	9329	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_多_NPC04	bindoff_TAG_BM	4	0x0F709	9330	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_多_NPC04	bindoff_TAG_BM	4	0x0F709	9330	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC04用アタリ	init	1	0x0F70A	9339	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ビュエ_多_NPC04用アタリ	setHitObj	1	0x0F70E	9344	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_多_NPC04用アタリ	setHitObj	2	0x0F71A	9345	-	setpos	17.4436703, -4.5999999, 35.6618042	this actor, placed at (17.4436703, -4.5999999, 35.6618042)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -5873,7 +5873,7 @@ asp_a01	ビュエ_多_NPC05	walk_バトル時_BM	12	0x0F902	9479	loop while true
 asp_a01	ビュエ_多_NPC05	bindoff_TAG_BM	1	0x0F908	9485	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	ビュエ_多_NPC05	bindoff_TAG_BM	2	0x0F90B	9486	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ビュエ_多_NPC05	bindoff_TAG_BM	3	0x0F911	9487	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ビュエ_多_NPC05	bindoff_TAG_BM	4	0x0F912	9488	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ビュエ_多_NPC05	bindoff_TAG_BM	4	0x0F912	9488	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC01	init	1	0x0F913	9497	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC01	main	1	0x0F914	9502	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC01	talk	1	0x0F915	9507	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5919,7 +5919,7 @@ asp_a01	アルケ_通常_NPC01	walk_AN_03	11	0x0FA10	9570	-	return	-	-	-	-	-	-	r
 asp_a01	アルケ_通常_NPC01	bindoff_TAG_AN	1	0x0FA11	9575	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC01	bindoff_TAG_AN	2	0x0FA14	9576	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC01	bindoff_TAG_AN	3	0x0FA1A	9577	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC01	bindoff_TAG_AN	4	0x0FA1B	9578	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC01	bindoff_TAG_AN	4	0x0FA1B	9578	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC02	init	1	0x0FA1C	9587	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC02	main	1	0x0FA1D	9592	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC02	talk	1	0x0FA1E	9597	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6077,7 +6077,7 @@ asp_a01	アルケ_通常_NPC02	walk_AN_04	9	0x0FDB3	9816	-	return	-	-	-	-	-	-	re
 asp_a01	アルケ_通常_NPC02	bindoff_TAG_AN	1	0x0FDB4	9821	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC02	bindoff_TAG_AN	2	0x0FDB7	9822	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC02	bindoff_TAG_AN	3	0x0FDBD	9823	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC02	bindoff_TAG_AN	4	0x0FDBE	9824	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC02	bindoff_TAG_AN	4	0x0FDBE	9824	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC03	init	1	0x0FDBF	9833	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC03	main	1	0x0FDC0	9838	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC03	talk	1	0x0FDC1	9843	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6233,7 +6233,7 @@ asp_a01	アルケ_通常_NPC03	walk_バトル時_AN	9	0x1016B	10057	loop while t
 asp_a01	アルケ_通常_NPC03	bindoff_TAG_AN	1	0x10171	10063	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC03	bindoff_TAG_AN	2	0x10174	10064	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC03	bindoff_TAG_AN	3	0x1017A	10065	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC03	bindoff_TAG_AN	4	0x1017B	10066	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC03	bindoff_TAG_AN	4	0x1017B	10066	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC04	init	1	0x1017C	10075	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC04	main	1	0x1017D	10080	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC04	talk	1	0x1017E	10085	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6440,7 +6440,7 @@ asp_a01	アルケ_通常_NPC04	walk_喧嘩_AN	8	0x10660	10365	loop while true	wa
 asp_a01	アルケ_通常_NPC04	bindoff_TAG_AN	1	0x10666	10371	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC04	bindoff_TAG_AN	2	0x10669	10372	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC04	bindoff_TAG_AN	3	0x1066F	10373	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC04	bindoff_TAG_AN	4	0x10670	10374	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC04	bindoff_TAG_AN	4	0x10670	10374	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC04用アタリ	init	1	0x10671	10383	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC04用アタリ	setHitObj	1	0x10675	10388	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC04用アタリ	setHitObj	2	0x10681	10389	-	setpos	14.8352566, -4.5999999, 12.8217382	this actor, placed at (14.8352566, -4.5999999, 12.8217382)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -6514,7 +6514,7 @@ asp_a01	アルケ_通常_NPC05	walk_通常_AN	11	0x10812	10501	loop while true	w
 asp_a01	アルケ_通常_NPC05	bindoff_TAG_AN	1	0x10818	10507	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC05	bindoff_TAG_AN	2	0x1081B	10508	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC05	bindoff_TAG_AN	3	0x10821	10509	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC05	bindoff_TAG_AN	4	0x10822	10510	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC05	bindoff_TAG_AN	4	0x10822	10510	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC06	init	1	0x10823	10519	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC06	main	1	0x10824	10524	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC06	talk	1	0x10825	10529	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6645,7 +6645,7 @@ asp_a01	アルケ_通常_NPC06	walk_AN	26	0x10B1A	10703	loop while true	lookatof
 asp_a01	アルケ_通常_NPC06	bindoff_TAG_AN	1	0x10B20	10709	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC06	bindoff_TAG_AN	2	0x10B23	10710	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC06	bindoff_TAG_AN	3	0x10B29	10711	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC06	bindoff_TAG_AN	4	0x10B2A	10712	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC06	bindoff_TAG_AN	4	0x10B2A	10712	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC07	init	1	0x10B2B	10721	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC07	main	1	0x10B2C	10726	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC07	talk	1	0x10B2D	10731	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6680,7 +6680,7 @@ asp_a01	アルケ_通常_NPC07	walk_AN	10	0x10BDA	10776	loop while true	wait	(50
 asp_a01	アルケ_通常_NPC07	bindoff_TAG_AN	1	0x10BE0	10782	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC07	bindoff_TAG_AN	2	0x10BE3	10783	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC07	bindoff_TAG_AN	3	0x10BE9	10784	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC07	bindoff_TAG_AN	4	0x10BEA	10785	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC07	bindoff_TAG_AN	4	0x10BEA	10785	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC08	init	1	0x10BEB	10794	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC08	main	1	0x10BEC	10799	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC08	talk	1	0x10BED	10804	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6737,7 +6737,7 @@ asp_a01	アルケ_通常_NPC08	walk_バトル時_AN	11	0x10D38	10881	loop while 
 asp_a01	アルケ_通常_NPC08	bindoff_TAG_AN	1	0x10D3E	10887	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC08	bindoff_TAG_AN	2	0x10D41	10888	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC08	bindoff_TAG_AN	3	0x10D47	10889	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC08	bindoff_TAG_AN	4	0x10D48	10890	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC08	bindoff_TAG_AN	4	0x10D48	10890	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC09	init	1	0x10D49	10899	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC09	main	1	0x10D4A	10904	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_通常_NPC09	talk	1	0x10D4B	10909	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6769,7 +6769,7 @@ asp_a01	アルケ_通常_NPC09	set_AN	23	0x10DF0	10946	-	return	-	-	-	-	-	-	reso
 asp_a01	アルケ_通常_NPC09	bindoff_TAG_AN	1	0x10DF1	10951	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_通常_NPC09	bindoff_TAG_AN	2	0x10DF4	10952	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_通常_NPC09	bindoff_TAG_AN	3	0x10DFA	10953	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_通常_NPC09	bindoff_TAG_AN	4	0x10DFB	10954	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_通常_NPC09	bindoff_TAG_AN	4	0x10DFB	10954	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC01	init	1	0x10DFC	10963	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC01	main	1	0x10DFD	10968	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC01	talk	1	0x10DFE	10973	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6833,7 +6833,7 @@ asp_a01	アルケ_多_NPC01	walk_バトル時_AM	9	0x10F6F	11058	loop while true
 asp_a01	アルケ_多_NPC01	bindoff_TAG_AM	1	0x10F75	11064	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_多_NPC01	bindoff_TAG_AM	2	0x10F78	11065	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_多_NPC01	bindoff_TAG_AM	3	0x10F7E	11066	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_多_NPC01	bindoff_TAG_AM	4	0x10F7F	11067	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_多_NPC01	bindoff_TAG_AM	4	0x10F7F	11067	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC01用アタリ	init	1	0x10F80	11076	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC01用アタリ	setHitObj	1	0x10F84	11081	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_多_NPC01用アタリ	setHitObj	2	0x10F90	11082	-	setpos	17.5796928, -7.599998, 42.4476051	this actor, placed at (17.5796928, -7.599998, 42.4476051)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -6888,7 +6888,7 @@ asp_a01	アルケ_多_NPC02	walk_バトル時_AM	9	0x110A1	11167	loop while true
 asp_a01	アルケ_多_NPC02	bindoff_TAG_AM	1	0x110A7	11173	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_多_NPC02	bindoff_TAG_AM	2	0x110AA	11174	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_多_NPC02	bindoff_TAG_AM	3	0x110B0	11175	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_多_NPC02	bindoff_TAG_AM	4	0x110B1	11176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_多_NPC02	bindoff_TAG_AM	4	0x110B1	11176	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC05	init	1	0x110B2	11185	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC05	main	1	0x110B3	11190	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC05	talk	1	0x110B4	11195	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6917,7 +6917,7 @@ asp_a01	アルケ_多_NPC05	set_バトル時_AM	21	0x11149	11225	-	return	-	-	-	
 asp_a01	アルケ_多_NPC05	bindoff_TAG_AM	1	0x1114A	11230	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_多_NPC05	bindoff_TAG_AM	2	0x1114D	11231	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_多_NPC05	bindoff_TAG_AM	3	0x11153	11232	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_多_NPC05	bindoff_TAG_AM	4	0x11154	11233	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_多_NPC05	bindoff_TAG_AM	4	0x11154	11233	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC06	init	1	0x11155	11242	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC06	main	1	0x11156	11247	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC06	talk	1	0x11157	11252	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6985,7 +6985,7 @@ asp_a01	アルケ_多_NPC06	walk_バトル時_AM	14	0x112E0	11341	loop while tru
 asp_a01	アルケ_多_NPC06	bindoff_TAG_AM	1	0x112E6	11347	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_多_NPC06	bindoff_TAG_AM	2	0x112E9	11348	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_多_NPC06	bindoff_TAG_AM	3	0x112EF	11349	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_多_NPC06	bindoff_TAG_AM	4	0x112F0	11350	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_多_NPC06	bindoff_TAG_AM	4	0x112F0	11350	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC07	init	1	0x112F1	11359	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC07	main	1	0x112F2	11364	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	アルケ_多_NPC07	talk	1	0x112F3	11369	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7040,7 +7040,7 @@ asp_a01	アルケ_多_NPC07	walk_バトル時_AM	7	0x1142A	11430	loop while true
 asp_a01	アルケ_多_NPC07	bindoff_TAG_AM	1	0x11430	11436	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	アルケ_多_NPC07	bindoff_TAG_AM	2	0x11433	11437	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	アルケ_多_NPC07	bindoff_TAG_AM	3	0x11439	11438	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	アルケ_多_NPC07	bindoff_TAG_AM	4	0x1143A	11439	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	アルケ_多_NPC07	bindoff_TAG_AM	4	0x1143A	11439	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC01	init	1	0x1143B	11448	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC01	main	1	0x1143C	11453	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC01	talk	1	0x1143D	11458	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7203,7 +7203,7 @@ asp_a01	バーフ_通常_NPC01	walk_バトル時_VN	1	0x11820	11678	-	return	-	-
 asp_a01	バーフ_通常_NPC01	bindoff_TAG_VN	1	0x11821	11683	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC01	bindoff_TAG_VN	2	0x11824	11684	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC01	bindoff_TAG_VN	3	0x1182A	11685	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC01	bindoff_TAG_VN	4	0x1182B	11686	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC01	bindoff_TAG_VN	4	0x1182B	11686	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC02	init	1	0x1182C	11695	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC02	main	1	0x1182D	11700	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC02	talk	1	0x1182E	11705	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7272,7 +7272,7 @@ asp_a01	バーフ_通常_NPC02	walk_バトル時_VN	9	0x119D0	11794	loop while t
 asp_a01	バーフ_通常_NPC02	bindoff_TAG_VN	1	0x119D6	11800	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC02	bindoff_TAG_VN	2	0x119D9	11801	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC02	bindoff_TAG_VN	3	0x119DF	11802	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC02	bindoff_TAG_VN	4	0x119E0	11803	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC02	bindoff_TAG_VN	4	0x119E0	11803	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC02用アタリ	init	1	0x119E1	11812	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC02用アタリ	setHitObj	1	0x119E5	11817	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC02用アタリ	setHitObj	2	0x119F1	11818	-	setpos	22.4961452, -7.599998, 41.7412109	this actor, placed at (22.4961452, -7.599998, 41.7412109)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -7423,7 +7423,7 @@ asp_a01	バーフ_通常_NPC03	walk_バトル時_VN	6	0x11D4F	12046	loop while t
 asp_a01	バーフ_通常_NPC03	bindoff_TAG_VN	1	0x11D55	12052	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC03	bindoff_TAG_VN	2	0x11D58	12053	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC03	bindoff_TAG_VN	3	0x11D5E	12054	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC03	bindoff_TAG_VN	4	0x11D5F	12055	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC03	bindoff_TAG_VN	4	0x11D5F	12055	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC04	init	1	0x11D60	12064	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC04	main	1	0x11D61	12069	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC04	talk	1	0x11D62	12074	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7470,7 +7470,7 @@ asp_a01	バーフ_通常_NPC04	walk_バトル時_VN	1	0x11E6D	12140	-	return	-	-
 asp_a01	バーフ_通常_NPC04	bindoff_TAG_VN	1	0x11E6E	12145	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC04	bindoff_TAG_VN	2	0x11E71	12146	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC04	bindoff_TAG_VN	3	0x11E77	12147	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC04	bindoff_TAG_VN	4	0x11E78	12148	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC04	bindoff_TAG_VN	4	0x11E78	12148	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC05	init	1	0x11E79	12157	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC05	main	1	0x11E7A	12162	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC05	talk	1	0x11E7B	12167	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7544,7 +7544,7 @@ asp_a01	バーフ_通常_NPC05	walk_バトル時_VN	15	0x12042	12261	loop while 
 asp_a01	バーフ_通常_NPC05	bindoff_TAG_VN	1	0x12048	12267	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC05	bindoff_TAG_VN	2	0x1204B	12268	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC05	bindoff_TAG_VN	3	0x12051	12269	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC05	bindoff_TAG_VN	4	0x12052	12270	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC05	bindoff_TAG_VN	4	0x12052	12270	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC05用アタリ	init	1	0x12053	12279	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC05用アタリ	setHitObj	1	0x12057	12284	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC05用アタリ	setHitObj	2	0x12063	12285	-	setpos	17.3913956, -4.5999999, 35.5046501	this actor, placed at (17.3913956, -4.5999999, 35.5046501)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -7628,7 +7628,7 @@ asp_a01	バーフ_通常_NPC06	walk_バトル時_VN	7	0x12241	12413	loop while t
 asp_a01	バーフ_通常_NPC06	bindoff_TAG_VN	1	0x12247	12419	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC06	bindoff_TAG_VN	2	0x1224A	12420	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC06	bindoff_TAG_VN	3	0x12250	12421	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC06	bindoff_TAG_VN	4	0x12251	12422	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC06	bindoff_TAG_VN	4	0x12251	12422	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC07	init	1	0x12252	12431	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC07	main	1	0x12253	12436	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC07	talk	1	0x12254	12441	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7655,7 +7655,7 @@ asp_a01	バーフ_通常_NPC07	walk_VN	2	0x122D6	12477	-	return	-	-	-	-	-	-	reso
 asp_a01	バーフ_通常_NPC07	bindoff_TAG_VN	1	0x122D7	12482	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC07	bindoff_TAG_VN	2	0x122DA	12483	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC07	bindoff_TAG_VN	3	0x122E0	12484	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC07	bindoff_TAG_VN	4	0x122E1	12485	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC07	bindoff_TAG_VN	4	0x122E1	12485	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC08	init	1	0x122E2	12494	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC08	main	1	0x122E3	12499	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC08	talk	1	0x122E4	12504	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7771,7 +7771,7 @@ asp_a01	バーフ_通常_NPC08	walk_VN	9	0x12595	12663	loop while true	move_5e	1
 asp_a01	バーフ_通常_NPC08	bindoff_TAG_VN	1	0x1259B	12669	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC08	bindoff_TAG_VN	2	0x1259E	12670	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC08	bindoff_TAG_VN	3	0x125A4	12671	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC08	bindoff_TAG_VN	4	0x125A5	12672	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC08	bindoff_TAG_VN	4	0x125A5	12672	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC09	init	1	0x125A6	12681	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC09	main	1	0x125A7	12686	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC09	talk	1	0x125A8	12691	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7826,7 +7826,7 @@ asp_a01	バーフ_通常_NPC09	walk_バトル時_VN	8	0x126E9	12760	loop while t
 asp_a01	バーフ_通常_NPC09	bindoff_TAG_VN	1	0x126EF	12766	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC09	bindoff_TAG_VN	2	0x126F2	12767	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC09	bindoff_TAG_VN	3	0x126F8	12768	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC09	bindoff_TAG_VN	4	0x126F9	12769	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC09	bindoff_TAG_VN	4	0x126F9	12769	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC10	init	1	0x126FA	12778	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC10	main	1	0x126FB	12783	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC10	talk	1	0x126FC	12788	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7993,7 +7993,7 @@ asp_a01	バーフ_通常_NPC10	walk_バトル時_VN	10	0x12ADC	13013	loop while 
 asp_a01	バーフ_通常_NPC10	bindoff_TAG_VN	1	0x12AE2	13019	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC10	bindoff_TAG_VN	2	0x12AE5	13020	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC10	bindoff_TAG_VN	3	0x12AEB	13021	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC10	bindoff_TAG_VN	4	0x12AEC	13022	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC10	bindoff_TAG_VN	4	0x12AEC	13022	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC11	init	1	0x12AED	13031	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC11	main	1	0x12AEE	13036	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_通常_NPC11	talk	1	0x12AEF	13041	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8162,7 +8162,7 @@ asp_a01	バーフ_通常_NPC11	walk_バトル時_VN	10	0x12EEB	13268	loop while 
 asp_a01	バーフ_通常_NPC11	bindoff_TAG_VN	1	0x12EF1	13274	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_通常_NPC11	bindoff_TAG_VN	2	0x12EF4	13275	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_通常_NPC11	bindoff_TAG_VN	3	0x12EFA	13276	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_通常_NPC11	bindoff_TAG_VN	4	0x12EFB	13277	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_通常_NPC11	bindoff_TAG_VN	4	0x12EFB	13277	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_多_NPC01	init	1	0x12EFC	13286	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_多_NPC01	main	1	0x12EFD	13291	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_多_NPC01	talk	1	0x12EFE	13296	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8195,7 +8195,7 @@ asp_a01	バーフ_多_NPC01	walk_バトル時_VM	9	0x12FA7	13335	loop while true
 asp_a01	バーフ_多_NPC01	bindoff_TAG_VM	1	0x12FAD	13341	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_多_NPC01	bindoff_TAG_VM	2	0x12FB0	13342	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_多_NPC01	bindoff_TAG_VM	3	0x12FB6	13343	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_多_NPC01	bindoff_TAG_VM	4	0x12FB7	13344	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_多_NPC01	bindoff_TAG_VM	4	0x12FB7	13344	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_多_NPC01用アタリ	init	1	0x12FB8	13353	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_多_NPC01用アタリ	setHitObj	1	0x12FBC	13358	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_多_NPC01用アタリ	setHitObj	2	0x12FC8	13359	-	setpos	27.4322624, -4.5999999, 31.6666069	this actor, placed at (27.4322624, -4.5999999, 31.6666069)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -8250,7 +8250,7 @@ asp_a01	バーフ_多_NPC02	walk_バトル時_VM	9	0x130D9	13444	loop while true
 asp_a01	バーフ_多_NPC02	bindoff_TAG_VM	1	0x130DF	13450	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_多_NPC02	bindoff_TAG_VM	2	0x130E2	13451	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_多_NPC02	bindoff_TAG_VM	3	0x130E8	13452	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_多_NPC02	bindoff_TAG_VM	4	0x130E9	13453	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_多_NPC02	bindoff_TAG_VM	4	0x130E9	13453	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_多_NPC03	init	1	0x130EA	13462	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_多_NPC03	main	1	0x130EB	13467	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バーフ_多_NPC03	talk	1	0x130EC	13472	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8295,7 +8295,7 @@ asp_a01	バーフ_多_NPC03	walk_バトル時_VM	1	0x131E5	13522	-	return	-	-	-	
 asp_a01	バーフ_多_NPC03	bindoff_TAG_VM	1	0x131E6	13527	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バーフ_多_NPC03	bindoff_TAG_VM	2	0x131E9	13528	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バーフ_多_NPC03	bindoff_TAG_VM	3	0x131EF	13529	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バーフ_多_NPC03	bindoff_TAG_VM	4	0x131F0	13530	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バーフ_多_NPC03	bindoff_TAG_VM	4	0x131F0	13530	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人A	init	1	0x131F1	13539	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人A	main	1	0x131F2	13544	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人A	talk	1	0x131F3	13549	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8351,7 +8351,7 @@ asp_a01	バトル時帝国軍人A	set_バトル時_軍人	19	0x13335	13621	-	ret
 asp_a01	バトル時帝国軍人A	bindoff_TAG	1	0x13336	13626	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バトル時帝国軍人A	bindoff_TAG	2	0x13339	13627	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バトル時帝国軍人A	bindoff_TAG	3	0x1333F	13628	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バトル時帝国軍人A	bindoff_TAG	4	0x13340	13629	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バトル時帝国軍人A	bindoff_TAG	4	0x13340	13629	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人B	init	1	0x13341	13638	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人B	main	1	0x13342	13643	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人B	talk	1	0x13343	13648	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8407,7 +8407,7 @@ asp_a01	バトル時帝国軍人B	set_バトル時_軍人	19	0x13485	13720	-	ret
 asp_a01	バトル時帝国軍人B	bindoff_TAG	1	0x13486	13725	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バトル時帝国軍人B	bindoff_TAG	2	0x13489	13726	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バトル時帝国軍人B	bindoff_TAG	3	0x1348F	13727	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バトル時帝国軍人B	bindoff_TAG	4	0x13490	13728	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バトル時帝国軍人B	bindoff_TAG	4	0x13490	13728	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人C	init	1	0x13491	13737	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人C	main	1	0x13492	13742	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人C	talk	1	0x13493	13747	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8435,7 +8435,7 @@ asp_a01	バトル時帝国軍人C	set_バトル時_軍人	20	0x1351F	13776	-	ret
 asp_a01	バトル時帝国軍人C	bindoff_TAG	1	0x13520	13781	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バトル時帝国軍人C	bindoff_TAG	2	0x13523	13782	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バトル時帝国軍人C	bindoff_TAG	3	0x13529	13783	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バトル時帝国軍人C	bindoff_TAG	4	0x1352A	13784	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バトル時帝国軍人C	bindoff_TAG	4	0x1352A	13784	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人D	init	1	0x1352B	13793	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人D	main	1	0x1352C	13798	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	バトル時帝国軍人D	talk	1	0x1352D	13803	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8463,7 +8463,7 @@ asp_a01	バトル時帝国軍人D	set_バトル時_軍人	20	0x135B9	13832	-	ret
 asp_a01	バトル時帝国軍人D	bindoff_TAG	1	0x135BA	13837	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a01	バトル時帝国軍人D	bindoff_TAG	2	0x135BD	13838	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	バトル時帝国軍人D	bindoff_TAG	3	0x135C3	13839	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	バトル時帝国軍人D	bindoff_TAG	4	0x135C4	13840	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	バトル時帝国軍人D	bindoff_TAG	4	0x135C4	13840	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	下船説明おねえさん	init	1	0x135C5	13849	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	下船説明おねえさん	main	1	0x135C6	13854	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	下船説明おねえさん	talk	1	0x135C7	13859	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8596,7 +8596,7 @@ asp_a01	下船説明モグ	walk_first_ev_モグ去る	2	0x1389A	14095	-	lookatrt
 asp_a01	下船説明モグ	walk_first_ev_モグ去る	3	0x1389D	14096	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	下船説明モグ	bindoff_first_ev	1	0x1389E	14101	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	下船説明モグ	bindoff_first_ev	2	0x138A4	14102	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	下船説明モグ	bindoff_first_ev	3	0x138A5	14103	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	下船説明モグ	bindoff_first_ev	3	0x138A5	14103	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	下船説明シーク	init	1	0x138A6	14112	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	下船説明シーク	main	1	0x138A7	14117	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	下船説明シーク	talk	1	0x138A8	14122	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -8628,7 +8628,7 @@ asp_a01	下船説明シーク	walk_first_ev_モグ去る	1	0x1392A	14175	-	rmove
 asp_a01	下船説明シーク	walk_first_ev_モグ去る	2	0x1392D	14176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	下船説明シーク	bindoff_first_ev	1	0x1392E	14181	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	下船説明シーク	bindoff_first_ev	2	0x13934	14182	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	下船説明シーク	bindoff_first_ev	3	0x13935	14183	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	下船説明シーク	bindoff_first_ev	3	0x13935	14183	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ヴァンくん乗っ取り	init	1	0x13936	14192	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ヴァンくん乗っ取り	main	1	0x13937	14197	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	ヴァンくん乗っ取り	walk_first_ev_モグの問い	1	0x1393B	14202	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -8641,7 +8641,7 @@ asp_a01	ヴァンくん乗っ取り	walk_first_ev_モグ去る	2	0x13955	14216	-
 asp_a01	ヴァンくん乗っ取り	bindoff_first_ev	1	0x13956	14221	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a01	ヴァンくん乗っ取り	bindoff_first_ev	2	0x13959	14222	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 asp_a01	ヴァンくん乗っ取り	bindoff_first_ev	3	0x1395F	14223	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a01	ヴァンくん乗っ取り	bindoff_first_ev	4	0x13960	14224	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a01	ヴァンくん乗っ取り	bindoff_first_ev	4	0x13960	14224	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	map_ダミーＰＣ	init	1	0x13961	14233	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a01	map_ダミーＰＣ	扉オープン	1	0x13965	14238	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 asp_a01	map_ダミーＰＣ	扉オープン	2	0x1396B	14239	-	rlookat	mp_map_set_angle	argument 1: the heading the calling actor's head turns to, in radians on the same measure as the actor's facing, with pitch 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8891,18 +8891,18 @@ asp_a02	setup	event	22	0x05ADE	98	-	if	scratch2_var_3 == 0	-	-	-	-	-	resolved	01
 asp_a02	setup	event	23	0x05AE8	100	scratch2_var_3 == 0	store	global_var_1 = global_var_1 + 1	variable global_var_1 (global u_char@0x05a1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 asp_a02	setup	event	24	0x05AEE	101	scratch2_var_3 == 0	store	scratch2_var_3 = 1	variable scratch2_var_3 (scratch2 u_char@0xc3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 asp_a02	setup	event	25	0x05AF1	103	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	1	0x05AF8	112	-	sysDVAR	1, global_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	2	0x05AFF	113	-	sysDVAR	2, global_var_3	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	3	0x05B06	114	-	sysDVAR	3, scratch2_var_4	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	4	0x05B0D	115	-	sysDVAR	5, global_var_4	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	5	0x05B14	116	-	sysDVAR	6, global_var_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	6	0x05B1B	117	-	sysDVAR	7, global_var_6	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	7	0x05B22	118	-	sysDVAR	8, global_var_7	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	8	0x05B29	119	-	sysDVAR	9, global_var_8	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	9	0x05B30	120	-	sysDVAR	10, global_var_9	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	10	0x05B37	121	-	sysDVAR	11, global_var_10	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	11	0x05B41	122	-	sysDVAR	13, battle_global_flag[1]	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	監督	init	12	0x05B48	123	-	sysDVAR	14, scratch2_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	1	0x05AF8	112	-	sysDVAR	1, global_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	2	0x05AFF	113	-	sysDVAR	2, global_var_3	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	3	0x05B06	114	-	sysDVAR	3, scratch2_var_4	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	4	0x05B0D	115	-	sysDVAR	5, global_var_4	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	5	0x05B14	116	-	sysDVAR	6, global_var_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	6	0x05B1B	117	-	sysDVAR	7, global_var_6	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	7	0x05B22	118	-	sysDVAR	8, global_var_7	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	8	0x05B29	119	-	sysDVAR	9, global_var_8	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	9	0x05B30	120	-	sysDVAR	10, global_var_9	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	10	0x05B37	121	-	sysDVAR	11, global_var_10	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	11	0x05B41	122	-	sysDVAR	13, battle_global_flag[1]	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	監督	init	12	0x05B48	123	-	sysDVAR	14, scratch2_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	監督	init	13	0x05B55	124	-	sysReqewi	1, キャラキャッシュ管理::不必要キャッシュ廃棄と隠し読み	actor `キャラキャッシュ管理`	-	-	files キャラキャッシュ管理::不必要キャッシュ廃棄と隠し読み on channel 1; waits until it ends; the target goes through INCINITTAG	キャラキャッシュ管理.不必要キャッシュ廃棄と隠し読み	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a02	監督	init	14	0x05B68	125	-	if	global_var_2 == 0 and battle_global_flag[1] == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	監督	init	15	0x05B6E	127	global_var_2 == 0 and battle_global_flag[1] == 1	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -12237,7 +12237,7 @@ asp_a02	ラバナ_通常_NPC01	hide_TAG	5	0x0C28F	5101	-	return	0	-	-	-	-	-	reso
 asp_a02	ラバナ_通常_NPC01	bindoff_TAG_RN	1	0x0C290	5106	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC01	bindoff_TAG_RN	2	0x0C293	5107	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC01	bindoff_TAG_RN	3	0x0C299	5108	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_通常_NPC01	bindoff_TAG_RN	4	0x0C29A	5109	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_通常_NPC01	bindoff_TAG_RN	4	0x0C29A	5109	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_通常_NPC02	init	1	0x0C29B	5118	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_通常_NPC02	main	1	0x0C29C	5123	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_通常_NPC02	talk	1	0x0C29D	5128	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12422,7 +12422,7 @@ asp_a02	ラバナ_通常_NPC02	hide_TAG	5	0x0C6E1	5376	-	return	0	-	-	-	-	-	reso
 asp_a02	ラバナ_通常_NPC02	bindoff_TAG_RN	1	0x0C6E2	5381	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC02	bindoff_TAG_RN	2	0x0C6E5	5382	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC02	bindoff_TAG_RN	3	0x0C6EB	5383	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_通常_NPC02	bindoff_TAG_RN	4	0x0C6EC	5384	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_通常_NPC02	bindoff_TAG_RN	4	0x0C6EC	5384	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_通常_NPC02用アタリ	init	1	0x0C6ED	5393	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_通常_NPC02用アタリ	setHitObj	1	0x0C6F1	5398	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC02用アタリ	setHitObj	2	0x0C6FD	5399	-	setpos	19.6602077, -7.5999999, 72.5459213	this actor, placed at (19.6602077, -7.5999999, 72.5459213)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -12503,7 +12503,7 @@ asp_a02	ラバナ_通常_NPC03	hide_TAG	5	0x0C8B2	5521	-	return	0	-	-	-	-	-	reso
 asp_a02	ラバナ_通常_NPC03	bindoff_TAG_RN	1	0x0C8B3	5526	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC03	bindoff_TAG_RN	2	0x0C8B6	5527	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC03	bindoff_TAG_RN	3	0x0C8BC	5528	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_通常_NPC03	bindoff_TAG_RN	4	0x0C8BD	5529	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_通常_NPC03	bindoff_TAG_RN	4	0x0C8BD	5529	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_通常_NPC04	init	1	0x0C8BE	5538	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_通常_NPC04	main	1	0x0C8BF	5543	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_通常_NPC04	talk	1	0x0C8C0	5548	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12561,7 +12561,7 @@ asp_a02	ラバナ_通常_NPC04	hide_TAG	5	0x0CA09	5621	-	return	0	-	-	-	-	-	reso
 asp_a02	ラバナ_通常_NPC04	bindoff_TAG_RN	1	0x0CA0A	5626	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC04	bindoff_TAG_RN	2	0x0CA0D	5627	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_通常_NPC04	bindoff_TAG_RN	3	0x0CA13	5628	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_通常_NPC04	bindoff_TAG_RN	4	0x0CA14	5629	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_通常_NPC04	bindoff_TAG_RN	4	0x0CA14	5629	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC01	init	1	0x0CA15	5638	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC01	main	1	0x0CA16	5643	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC01	talk	1	0x0CA17	5648	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12640,7 +12640,7 @@ asp_a02	ラバナ_多_NPC01	hide_TAG	5	0x0CBE4	5753	-	return	0	-	-	-	-	-	resolve
 asp_a02	ラバナ_多_NPC01	bindoff_TAG_RM	1	0x0CBE5	5758	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_多_NPC01	bindoff_TAG_RM	2	0x0CBE8	5759	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_多_NPC01	bindoff_TAG_RM	3	0x0CBEE	5760	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_多_NPC01	bindoff_TAG_RM	4	0x0CBEF	5761	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_多_NPC01	bindoff_TAG_RM	4	0x0CBEF	5761	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC02	init	1	0x0CBF0	5770	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC02	main	1	0x0CBF1	5775	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC02	talk	1	0x0CBF2	5780	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12676,7 +12676,7 @@ asp_a02	ラバナ_多_NPC02	hide_TAG	5	0x0CCA3	5827	-	return	0	-	-	-	-	-	resolve
 asp_a02	ラバナ_多_NPC02	bindoff_TAG_RM	1	0x0CCA4	5832	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_多_NPC02	bindoff_TAG_RM	2	0x0CCA7	5833	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_多_NPC02	bindoff_TAG_RM	3	0x0CCAD	5834	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_多_NPC02	bindoff_TAG_RM	4	0x0CCAE	5835	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_多_NPC02	bindoff_TAG_RM	4	0x0CCAE	5835	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC03	init	1	0x0CCAF	5844	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC03	main	1	0x0CCB0	5849	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC03	talk	1	0x0CCB1	5854	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12714,7 +12714,7 @@ asp_a02	ラバナ_多_NPC03	hide_TAG	5	0x0CD68	5903	-	return	0	-	-	-	-	-	resolve
 asp_a02	ラバナ_多_NPC03	bindoff_TAG_RM	1	0x0CD69	5908	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_多_NPC03	bindoff_TAG_RM	2	0x0CD6C	5909	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_多_NPC03	bindoff_TAG_RM	3	0x0CD72	5910	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_多_NPC03	bindoff_TAG_RM	4	0x0CD73	5911	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_多_NPC03	bindoff_TAG_RM	4	0x0CD73	5911	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC03用アタリ	init	1	0x0CD74	5920	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC03用アタリ	setHitObj	1	0x0CD78	5925	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_多_NPC03用アタリ	setHitObj	2	0x0CD84	5926	-	setpos	18.0575638, -7.599998, 61.4536552	this actor, placed at (18.0575638, -7.599998, 61.4536552)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -12808,7 +12808,7 @@ asp_a02	ラバナ_多_NPC04	hide_TAG	5	0x0CF7D	6070	-	return	0	-	-	-	-	-	resolve
 asp_a02	ラバナ_多_NPC04	bindoff_TAG_RM	1	0x0CF7E	6075	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_多_NPC04	bindoff_TAG_RM	2	0x0CF81	6076	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_多_NPC04	bindoff_TAG_RM	3	0x0CF87	6077	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_多_NPC04	bindoff_TAG_RM	4	0x0CF88	6078	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_多_NPC04	bindoff_TAG_RM	4	0x0CF88	6078	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC05	init	1	0x0CF89	6087	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC05	main	1	0x0CF8A	6092	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC05	talk	1	0x0CF8B	6097	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12854,7 +12854,7 @@ asp_a02	ラバナ_多_NPC05	hide_TAG	5	0x0D080	6154	-	return	0	-	-	-	-	-	resolve
 asp_a02	ラバナ_多_NPC05	bindoff_TAG_RM	1	0x0D081	6159	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_多_NPC05	bindoff_TAG_RM	2	0x0D084	6160	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_多_NPC05	bindoff_TAG_RM	3	0x0D08A	6161	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_多_NPC05	bindoff_TAG_RM	4	0x0D08B	6162	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_多_NPC05	bindoff_TAG_RM	4	0x0D08B	6162	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC06	init	1	0x0D08C	6171	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC06	main	1	0x0D08D	6176	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC06	talk	1	0x0D08E	6181	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12885,7 +12885,7 @@ asp_a02	ラバナ_多_NPC06	hide_TAG	5	0x0D11E	6217	-	return	0	-	-	-	-	-	resolve
 asp_a02	ラバナ_多_NPC06	bindoff_TAG_RM	1	0x0D11F	6222	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_多_NPC06	bindoff_TAG_RM	2	0x0D122	6223	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_多_NPC06	bindoff_TAG_RM	3	0x0D128	6224	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_多_NPC06	bindoff_TAG_RM	4	0x0D129	6225	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_多_NPC06	bindoff_TAG_RM	4	0x0D129	6225	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC07	init	1	0x0D12A	6234	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC07	main	1	0x0D12B	6239	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ラバナ_多_NPC07	talk	1	0x0D12C	6244	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12925,7 +12925,7 @@ asp_a02	ラバナ_多_NPC07	hide_TAG	5	0x0D1F2	6295	-	return	0	-	-	-	-	-	resolve
 asp_a02	ラバナ_多_NPC07	bindoff_TAG_RM	1	0x0D1F3	6300	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ラバナ_多_NPC07	bindoff_TAG_RM	2	0x0D1F6	6301	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ラバナ_多_NPC07	bindoff_TAG_RM	3	0x0D1FC	6302	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ラバナ_多_NPC07	bindoff_TAG_RM	4	0x0D1FD	6303	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ラバナ_多_NPC07	bindoff_TAG_RM	4	0x0D1FD	6303	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC01	init	1	0x0D1FE	6312	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC01	main	1	0x0D1FF	6317	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC01	talk	1	0x0D200	6322	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12994,7 +12994,7 @@ asp_a02	ナルビ_通常_NPC01	hide_TAG	5	0x0D38A	6408	-	return	0	-	-	-	-	-	reso
 asp_a02	ナルビ_通常_NPC01	bindoff_TAG_NN	1	0x0D38B	6413	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC01	bindoff_TAG_NN	2	0x0D38E	6414	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC01	bindoff_TAG_NN	3	0x0D394	6415	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_通常_NPC01	bindoff_TAG_NN	4	0x0D395	6416	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_通常_NPC01	bindoff_TAG_NN	4	0x0D395	6416	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC01用アタリ	init	1	0x0D396	6425	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC01用アタリ	setHitObj	1	0x0D39A	6430	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC01用アタリ	setHitObj	2	0x0D3A6	6431	-	setpos	24.309948, -7.59287119, 67.2243042	this actor, placed at (24.309948, -7.59287119, 67.2243042)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -13184,7 +13184,7 @@ asp_a02	ナルビ_通常_NPC02	hide_TAG	5	0x0D7DE	6723	-	return	0	-	-	-	-	-	reso
 asp_a02	ナルビ_通常_NPC02	bindoff_TAG_NN	1	0x0D7DF	6728	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC02	bindoff_TAG_NN	2	0x0D7E2	6729	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC02	bindoff_TAG_NN	3	0x0D7E8	6730	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_通常_NPC02	bindoff_TAG_NN	4	0x0D7E9	6731	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_通常_NPC02	bindoff_TAG_NN	4	0x0D7E9	6731	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC02用アタリ	init	1	0x0D7EA	6740	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC02用アタリ	setHitObj	1	0x0D7EE	6745	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC02用アタリ	setHitObj	2	0x0D7FA	6746	-	setpos	19.4355106, -7.5999999, 72.5683212	this actor, placed at (19.4355106, -7.5999999, 72.5683212)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -13349,7 +13349,7 @@ asp_a02	ナルビ_通常_NPC03	hide_TAG	5	0x0DB83	6988	-	return	0	-	-	-	-	-	reso
 asp_a02	ナルビ_通常_NPC03	bindoff_TAG_NN	1	0x0DB84	6993	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC03	bindoff_TAG_NN	2	0x0DB87	6994	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC03	bindoff_TAG_NN	3	0x0DB8D	6995	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_通常_NPC03	bindoff_TAG_NN	4	0x0DB8E	6996	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_通常_NPC03	bindoff_TAG_NN	4	0x0DB8E	6996	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC03用アタリ	init	1	0x0DB8F	7005	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC03用アタリ	setHitObj	1	0x0DB93	7010	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC03用アタリ	setHitObj	2	0x0DB9F	7011	-	setpos	21.1292915, -7.599998, 62.2153435	this actor, placed at (21.1292915, -7.599998, 62.2153435)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -13429,7 +13429,7 @@ asp_a02	ナルビ_通常_NPC04	hide_TAG	5	0x0DD63	7132	-	return	0	-	-	-	-	-	reso
 asp_a02	ナルビ_通常_NPC04	bindoff_TAG_NN	1	0x0DD64	7137	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC04	bindoff_TAG_NN	2	0x0DD67	7138	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC04	bindoff_TAG_NN	3	0x0DD6D	7139	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_通常_NPC04	bindoff_TAG_NN	4	0x0DD6E	7140	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_通常_NPC04	bindoff_TAG_NN	4	0x0DD6E	7140	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC04用アタリ	init	1	0x0DD6F	7149	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_通常_NPC04用アタリ	setHitObj	1	0x0DD73	7154	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_通常_NPC04用アタリ	setHitObj	2	0x0DD7F	7155	-	setpos	26.5830898, -7.599998, 59.5416679	this actor, placed at (26.5830898, -7.599998, 59.5416679)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -13501,7 +13501,7 @@ asp_a02	ナルビ_多_NPC01	hide_TAG	5	0x0DEE5	7262	-	return	0	-	-	-	-	-	resolve
 asp_a02	ナルビ_多_NPC01	bindoff_TAG_NM	1	0x0DEE6	7267	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_多_NPC01	bindoff_TAG_NM	2	0x0DEE9	7268	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC01	bindoff_TAG_NM	3	0x0DEEF	7269	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_多_NPC01	bindoff_TAG_NM	4	0x0DEF0	7270	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_多_NPC01	bindoff_TAG_NM	4	0x0DEF0	7270	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC02	init	1	0x0DEF1	7279	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC02	main	1	0x0DEF2	7284	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC02	talk	1	0x0DEF3	7289	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -13528,7 +13528,7 @@ asp_a02	ナルビ_多_NPC02	hide_TAG	5	0x0DF5C	7321	-	return	0	-	-	-	-	-	resolve
 asp_a02	ナルビ_多_NPC02	bindoff_TAG_NM	1	0x0DF5D	7326	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_多_NPC02	bindoff_TAG_NM	2	0x0DF60	7327	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC02	bindoff_TAG_NM	3	0x0DF66	7328	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_多_NPC02	bindoff_TAG_NM	4	0x0DF67	7329	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_多_NPC02	bindoff_TAG_NM	4	0x0DF67	7329	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC03	init	1	0x0DF68	7338	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC03	main	1	0x0DF69	7343	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC03	talk	1	0x0DF6A	7348	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -13563,7 +13563,7 @@ asp_a02	ナルビ_多_NPC03	hide_TAG	5	0x0E019	7394	-	return	0	-	-	-	-	-	resolve
 asp_a02	ナルビ_多_NPC03	bindoff_TAG_NM	1	0x0E01A	7399	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_多_NPC03	bindoff_TAG_NM	2	0x0E01D	7400	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC03	bindoff_TAG_NM	3	0x0E023	7401	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_多_NPC03	bindoff_TAG_NM	4	0x0E024	7402	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_多_NPC03	bindoff_TAG_NM	4	0x0E024	7402	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC03用アタリ	init	1	0x0E025	7411	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC03用アタリ	setHitObj	1	0x0E029	7416	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC03用アタリ	setHitObj	2	0x0E035	7417	-	setpos	27.2068501, -7.59999895, 60.0260658	this actor, placed at (27.2068501, -7.59999895, 60.0260658)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -13657,7 +13657,7 @@ asp_a02	ナルビ_多_NPC04	hide_TAG	5	0x0E23B	7561	-	return	0	-	-	-	-	-	resolve
 asp_a02	ナルビ_多_NPC04	bindoff_TAG_NM	1	0x0E23C	7566	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_多_NPC04	bindoff_TAG_NM	2	0x0E23F	7567	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC04	bindoff_TAG_NM	3	0x0E245	7568	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_多_NPC04	bindoff_TAG_NM	4	0x0E246	7569	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_多_NPC04	bindoff_TAG_NM	4	0x0E246	7569	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC04用アタリ	init	1	0x0E247	7578	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC04用アタリ	setHitObj	1	0x0E24B	7583	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC04用アタリ	setHitObj	2	0x0E257	7584	-	setpos	22.4742336, -7.599998, 62.750206	this actor, placed at (22.4742336, -7.599998, 62.750206)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -13746,7 +13746,7 @@ asp_a02	ナルビ_多_NPC05	hide_TAG	5	0x0E439	7723	-	return	0	-	-	-	-	-	resolve
 asp_a02	ナルビ_多_NPC05	bindoff_TAG_NM	1	0x0E43A	7728	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_多_NPC05	bindoff_TAG_NM	2	0x0E43D	7729	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC05	bindoff_TAG_NM	3	0x0E443	7730	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_多_NPC05	bindoff_TAG_NM	4	0x0E444	7731	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_多_NPC05	bindoff_TAG_NM	4	0x0E444	7731	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC06	init	1	0x0E445	7740	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC06	main	1	0x0E446	7745	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC06	talk	1	0x0E447	7750	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -13815,7 +13815,7 @@ asp_a02	ナルビ_多_NPC06	hide_TAG	5	0x0E5CD	7845	-	return	0	-	-	-	-	-	resolve
 asp_a02	ナルビ_多_NPC06	bindoff_TAG_NM	1	0x0E5CE	7850	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_多_NPC06	bindoff_TAG_NM	2	0x0E5D1	7851	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC06	bindoff_TAG_NM	3	0x0E5D7	7852	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_多_NPC06	bindoff_TAG_NM	4	0x0E5D8	7853	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_多_NPC06	bindoff_TAG_NM	4	0x0E5D8	7853	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC06用アタリ	init	1	0x0E5D9	7862	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ナルビ_多_NPC06用アタリ	setHitObj	1	0x0E5DD	7867	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC06用アタリ	setHitObj	2	0x0E5E9	7868	-	setpos	15.2557249, -7.599998, 63.4217644	this actor, placed at (15.2557249, -7.599998, 63.4217644)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -13875,7 +13875,7 @@ asp_a02	ナルビ_多_NPC07	hide_TAG	5	0x0E715	7963	-	return	0	-	-	-	-	-	resolve
 asp_a02	ナルビ_多_NPC07	bindoff_TAG_NM	1	0x0E716	7968	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ナルビ_多_NPC07	bindoff_TAG_NM	2	0x0E719	7969	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ナルビ_多_NPC07	bindoff_TAG_NM	3	0x0E71F	7970	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ナルビ_多_NPC07	bindoff_TAG_NM	4	0x0E720	7971	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ナルビ_多_NPC07	bindoff_TAG_NM	4	0x0E720	7971	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC01	init	1	0x0E721	7985	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC01	main	1	0x0E722	7990	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC01	talk	1	0x0E723	7995	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -14100,7 +14100,7 @@ asp_a02	ビュエ_通常_NPC01	hide_TAG	5	0x0EC4D	8262	-	return	0	-	-	-	-	-	reso
 asp_a02	ビュエ_通常_NPC01	bindoff_TAG_BN	1	0x0EC4E	8267	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC01	bindoff_TAG_BN	2	0x0EC51	8268	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC01	bindoff_TAG_BN	3	0x0EC57	8269	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_通常_NPC01	bindoff_TAG_BN	4	0x0EC58	8270	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_通常_NPC01	bindoff_TAG_BN	4	0x0EC58	8270	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC01用アタリ	init	1	0x0EC59	8279	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC01用アタリ	setHitObj	1	0x0EC5D	8284	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC01用アタリ	setHitObj	2	0x0EC69	8285	-	setpos	27.4315376, -7.599998, 60.0279884	this actor, placed at (27.4315376, -7.599998, 60.0279884)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -14311,7 +14311,7 @@ asp_a02	ビュエ_通常_NPC02	hide_TAG	5	0x0F0F2	8608	-	return	0	-	-	-	-	-	reso
 asp_a02	ビュエ_通常_NPC02	bindoff_TAG_BN	1	0x0F0F3	8613	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC02	bindoff_TAG_BN	2	0x0F0F6	8614	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC02	bindoff_TAG_BN	3	0x0F0FC	8615	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_通常_NPC02	bindoff_TAG_BN	4	0x0F0FD	8616	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_通常_NPC02	bindoff_TAG_BN	4	0x0F0FD	8616	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC02用アタリ	init	1	0x0F0FE	8625	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC02用アタリ	setHitObj	1	0x0F102	8630	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC02用アタリ	setHitObj	2	0x0F10E	8631	-	setpos	25.0874653, -7.59999895, 69.4866104	this actor, placed at (25.0874653, -7.59999895, 69.4866104)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -14397,7 +14397,7 @@ asp_a02	ビュエ_通常_NPC03	hide_TAG	5	0x0F2BF	8768	-	return	0	-	-	-	-	-	reso
 asp_a02	ビュエ_通常_NPC03	bindoff_TAG_BN	1	0x0F2C0	8773	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC03	bindoff_TAG_BN	2	0x0F2C3	8774	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC03	bindoff_TAG_BN	3	0x0F2C9	8775	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_通常_NPC03	bindoff_TAG_BN	4	0x0F2CA	8776	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_通常_NPC03	bindoff_TAG_BN	4	0x0F2CA	8776	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC03用アタリ	init	1	0x0F2CB	8785	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC03用アタリ	setHitObj	1	0x0F2CF	8790	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC03用アタリ	setHitObj	2	0x0F2DB	8791	-	setpos	24.9135666, -7.59144211, 67.3827591	this actor, placed at (24.9135666, -7.59144211, 67.3827591)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -14529,7 +14529,7 @@ asp_a02	ビュエ_通常_NPC04	hide_TAG	5	0x0F5AA	9010	-	return	0	-	-	-	-	-	reso
 asp_a02	ビュエ_通常_NPC04	bindoff_TAG_BN	1	0x0F5AB	9015	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC04	bindoff_TAG_BN	2	0x0F5AE	9016	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC04	bindoff_TAG_BN	3	0x0F5B4	9017	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_通常_NPC04	bindoff_TAG_BN	4	0x0F5B5	9018	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_通常_NPC04	bindoff_TAG_BN	4	0x0F5B5	9018	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC05	init	1	0x0F5B6	9027	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC05	main	1	0x0F5B7	9032	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC05	talk	1	0x0F5B8	9037	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -14604,7 +14604,7 @@ asp_a02	ビュエ_通常_NPC05	hide_TAG	5	0x0F755	9139	-	return	0	-	-	-	-	-	reso
 asp_a02	ビュエ_通常_NPC05	bindoff_TAG_BN	1	0x0F756	9144	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC05	bindoff_TAG_BN	2	0x0F759	9145	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC05	bindoff_TAG_BN	3	0x0F75F	9146	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_通常_NPC05	bindoff_TAG_BN	4	0x0F760	9147	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_通常_NPC05	bindoff_TAG_BN	4	0x0F760	9147	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC05用アタリ	init	1	0x0F761	9156	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_通常_NPC05用アタリ	setHitObj	1	0x0F765	9161	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC05用アタリ	setHitObj	2	0x0F771	9162	-	setpos	15.0249996, -7.599998, 64.0068665	this actor, placed at (15.0249996, -7.599998, 64.0068665)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -14822,7 +14822,7 @@ asp_a02	ビュエ_通常_NPC06	hide_TAG	5	0x0FC68	9469	-	return	0	-	-	-	-	-	reso
 asp_a02	ビュエ_通常_NPC06	bindoff_TAG_BN	1	0x0FC69	9474	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC06	bindoff_TAG_BN	2	0x0FC6C	9475	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_通常_NPC06	bindoff_TAG_BN	3	0x0FC72	9476	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_通常_NPC06	bindoff_TAG_BN	4	0x0FC73	9477	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_通常_NPC06	bindoff_TAG_BN	4	0x0FC73	9477	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC01	init	1	0x0FC74	9486	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC01	main	1	0x0FC75	9491	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC01	talk	1	0x0FC76	9496	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -14893,7 +14893,7 @@ asp_a02	ビュエ_多_NPC01	hide_TAG	5	0x0FE11	9593	-	return	0	-	-	-	-	-	resolve
 asp_a02	ビュエ_多_NPC01	bindoff_TAG_BM	1	0x0FE12	9598	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_多_NPC01	bindoff_TAG_BM	2	0x0FE15	9599	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_多_NPC01	bindoff_TAG_BM	3	0x0FE1B	9600	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_多_NPC01	bindoff_TAG_BM	4	0x0FE1C	9601	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_多_NPC01	bindoff_TAG_BM	4	0x0FE1C	9601	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC01用アタリ	init	1	0x0FE1D	9610	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC01用アタリ	setHitObj	1	0x0FE21	9615	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_多_NPC01用アタリ	setHitObj	2	0x0FE2D	9616	-	setpos	15.020647, -7.59999895, 66.7894897	this actor, placed at (15.020647, -7.59999895, 66.7894897)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -14963,7 +14963,7 @@ asp_a02	ビュエ_多_NPC02	hide_TAG	5	0x0FF96	9721	-	return	0	-	-	-	-	-	resolve
 asp_a02	ビュエ_多_NPC02	bindoff_TAG_BM	1	0x0FF97	9726	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_多_NPC02	bindoff_TAG_BM	2	0x0FF9A	9727	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_多_NPC02	bindoff_TAG_BM	3	0x0FFA0	9728	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_多_NPC02	bindoff_TAG_BM	4	0x0FFA1	9729	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_多_NPC02	bindoff_TAG_BM	4	0x0FFA1	9729	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC02用アタリ	init	1	0x0FFA2	9738	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC02用アタリ	setHitObj	1	0x0FFA6	9743	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_多_NPC02用アタリ	setHitObj	2	0x0FFB2	9744	-	setpos	21.0558758, -7.5999999, 70.341217	this actor, placed at (21.0558758, -7.5999999, 70.341217)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -15075,7 +15075,7 @@ asp_a02	ビュエ_多_NPC03	hide_TAG	5	0x101F7	9931	-	return	0	-	-	-	-	-	resolve
 asp_a02	ビュエ_多_NPC03	bindoff_TAG_BM	1	0x101F8	9936	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_多_NPC03	bindoff_TAG_BM	2	0x101FB	9937	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_多_NPC03	bindoff_TAG_BM	3	0x10201	9938	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_多_NPC03	bindoff_TAG_BM	4	0x10202	9939	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_多_NPC03	bindoff_TAG_BM	4	0x10202	9939	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC04	init	1	0x10203	9948	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC04	main	1	0x10204	9953	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC04	talk	1	0x10205	9958	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15142,7 +15142,7 @@ asp_a02	ビュエ_多_NPC04	hide_TAG	5	0x1037F	10051	-	return	0	-	-	-	-	-	resolv
 asp_a02	ビュエ_多_NPC04	bindoff_TAG_BM	1	0x10380	10056	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_多_NPC04	bindoff_TAG_BM	2	0x10383	10057	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_多_NPC04	bindoff_TAG_BM	3	0x10389	10058	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_多_NPC04	bindoff_TAG_BM	4	0x1038A	10059	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_多_NPC04	bindoff_TAG_BM	4	0x1038A	10059	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC05	init	1	0x1038B	10068	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC05	main	1	0x1038C	10073	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC05	talk	1	0x1038D	10078	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15177,7 +15177,7 @@ asp_a02	ビュエ_多_NPC05	hide_TAG	5	0x1043E	10118	-	return	0	-	-	-	-	-	resolv
 asp_a02	ビュエ_多_NPC05	bindoff_TAG_BM	1	0x1043F	10123	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_多_NPC05	bindoff_TAG_BM	2	0x10442	10124	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_多_NPC05	bindoff_TAG_BM	3	0x10448	10125	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_多_NPC05	bindoff_TAG_BM	4	0x10449	10126	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_多_NPC05	bindoff_TAG_BM	4	0x10449	10126	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC06	init	1	0x1044A	10135	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC06	main	1	0x1044B	10140	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ビュエ_多_NPC06	talk	1	0x1044C	10145	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15231,7 +15231,7 @@ asp_a02	ビュエ_多_NPC06	hide_TAG	5	0x10571	10210	-	return	0	-	-	-	-	-	resolv
 asp_a02	ビュエ_多_NPC06	bindoff_TAG_BM	1	0x10572	10215	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	ビュエ_多_NPC06	bindoff_TAG_BM	2	0x10575	10216	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	ビュエ_多_NPC06	bindoff_TAG_BM	3	0x1057B	10217	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ビュエ_多_NPC06	bindoff_TAG_BM	4	0x1057C	10218	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ビュエ_多_NPC06	bindoff_TAG_BM	4	0x1057C	10218	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC01	init	1	0x1057D	10227	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC01	main	1	0x1057E	10232	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC01	talk	1	0x1057F	10237	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15438,7 +15438,7 @@ asp_a02	アルケ_通常_NPC01	hide_TAG	5	0x10A99	10507	-	return	0	-	-	-	-	-	res
 asp_a02	アルケ_通常_NPC01	bindoff_TAG_AN	1	0x10A9A	10512	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_通常_NPC01	bindoff_TAG_AN	2	0x10A9D	10513	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_通常_NPC01	bindoff_TAG_AN	3	0x10AA3	10514	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_通常_NPC01	bindoff_TAG_AN	4	0x10AA4	10515	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_通常_NPC01	bindoff_TAG_AN	4	0x10AA4	10515	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC01用アタリ	init	1	0x10AA5	10524	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC01用アタリ	setHitObj	1	0x10AA9	10529	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_通常_NPC01用アタリ	setHitObj	2	0x10AB5	10530	-	setpos	19.0823555, -7.5999999, 73.042511	this actor, placed at (19.0823555, -7.5999999, 73.042511)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -15569,7 +15569,7 @@ asp_a02	アルケ_通常_NPC02	hide_TAG	5	0x10D7B	10718	-	return	0	-	-	-	-	-	res
 asp_a02	アルケ_通常_NPC02	bindoff_TAG_AN	1	0x10D7C	10723	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_通常_NPC02	bindoff_TAG_AN	2	0x10D7F	10724	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_通常_NPC02	bindoff_TAG_AN	3	0x10D85	10725	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_通常_NPC02	bindoff_TAG_AN	4	0x10D86	10726	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_通常_NPC02	bindoff_TAG_AN	4	0x10D86	10726	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC02用アタリ	init	1	0x10D87	10735	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC02用アタリ	setHitObj	1	0x10D8B	10740	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_通常_NPC02用アタリ	setHitObj	2	0x10D97	10741	-	setpos	14.9025087, -7.599998, 64.2341995	this actor, placed at (14.9025087, -7.599998, 64.2341995)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -15634,7 +15634,7 @@ asp_a02	アルケ_通常_NPC03	hide_TAG	5	0x10ED3	10845	-	return	0	-	-	-	-	-	res
 asp_a02	アルケ_通常_NPC03	bindoff_TAG_AN	1	0x10ED4	10850	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_通常_NPC03	bindoff_TAG_AN	2	0x10ED7	10851	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_通常_NPC03	bindoff_TAG_AN	3	0x10EDD	10852	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_通常_NPC03	bindoff_TAG_AN	4	0x10EDE	10853	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_通常_NPC03	bindoff_TAG_AN	4	0x10EDE	10853	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC04	init	1	0x10EDF	10862	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC04	main	1	0x10EE0	10867	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_通常_NPC04	talk	1	0x10EE1	10872	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15706,7 +15706,7 @@ asp_a02	アルケ_通常_NPC04	hide_TAG	5	0x11087	10969	-	return	0	-	-	-	-	-	res
 asp_a02	アルケ_通常_NPC04	bindoff_TAG_AN	1	0x11088	10974	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_通常_NPC04	bindoff_TAG_AN	2	0x1108B	10975	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_通常_NPC04	bindoff_TAG_AN	3	0x11091	10976	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_通常_NPC04	bindoff_TAG_AN	4	0x11092	10977	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_通常_NPC04	bindoff_TAG_AN	4	0x11092	10977	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC01	init	1	0x11093	10986	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC01	main	1	0x11094	10991	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC01	talk	1	0x11095	10996	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15748,7 +15748,7 @@ asp_a02	アルケ_多_NPC01	hide_TAG	5	0x11174	11049	-	return	0	-	-	-	-	-	resolv
 asp_a02	アルケ_多_NPC01	bindoff_TAG_AM	1	0x11175	11054	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_多_NPC01	bindoff_TAG_AM	2	0x11178	11055	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_多_NPC01	bindoff_TAG_AM	3	0x1117E	11056	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_多_NPC01	bindoff_TAG_AM	4	0x1117F	11057	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_多_NPC01	bindoff_TAG_AM	4	0x1117F	11057	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC02	init	1	0x11180	11066	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC02	main	1	0x11181	11071	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC02	talk	1	0x11182	11076	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15789,7 +15789,7 @@ asp_a02	アルケ_多_NPC02	hide_TAG	5	0x1124F	11128	-	return	0	-	-	-	-	-	resolv
 asp_a02	アルケ_多_NPC02	bindoff_TAG_AM	1	0x11250	11133	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_多_NPC02	bindoff_TAG_AM	2	0x11253	11134	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_多_NPC02	bindoff_TAG_AM	3	0x11259	11135	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_多_NPC02	bindoff_TAG_AM	4	0x1125A	11136	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_多_NPC02	bindoff_TAG_AM	4	0x1125A	11136	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC02用アタリ	init	1	0x1125B	11145	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC02用アタリ	setHitObj	1	0x1125F	11150	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_多_NPC02用アタリ	setHitObj	2	0x1126B	11151	-	setpos	22.0011196, -7.59999704, 62.8718681	this actor, placed at (22.0011196, -7.59999704, 62.8718681)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -15895,7 +15895,7 @@ asp_a02	アルケ_多_NPC03	hide_TAG	5	0x114AA	11307	-	return	0	-	-	-	-	-	resolv
 asp_a02	アルケ_多_NPC03	bindoff_TAG_AM	1	0x114AB	11312	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_多_NPC03	bindoff_TAG_AM	2	0x114AE	11313	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_多_NPC03	bindoff_TAG_AM	3	0x114B4	11314	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_多_NPC03	bindoff_TAG_AM	4	0x114B5	11315	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_多_NPC03	bindoff_TAG_AM	4	0x114B5	11315	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC04	init	1	0x114B6	11324	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC04	main	1	0x114B7	11329	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC04	talk	1	0x114B8	11334	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15932,7 +15932,7 @@ asp_a02	アルケ_多_NPC04	hide_TAG	5	0x11570	11382	-	return	0	-	-	-	-	-	resolv
 asp_a02	アルケ_多_NPC04	bindoff_TAG_AM	1	0x11571	11387	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_多_NPC04	bindoff_TAG_AM	2	0x11574	11388	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_多_NPC04	bindoff_TAG_AM	3	0x1157A	11389	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_多_NPC04	bindoff_TAG_AM	4	0x1157B	11390	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_多_NPC04	bindoff_TAG_AM	4	0x1157B	11390	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC05	init	1	0x1157C	11399	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC05	main	1	0x1157D	11404	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	アルケ_多_NPC05	talk	1	0x1157E	11409	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -15994,7 +15994,7 @@ asp_a02	アルケ_多_NPC05	hide_TAG	5	0x116DD	11497	-	return	0	-	-	-	-	-	resolv
 asp_a02	アルケ_多_NPC05	bindoff_TAG_AM	1	0x116DE	11502	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	アルケ_多_NPC05	bindoff_TAG_AM	2	0x116E1	11503	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	アルケ_多_NPC05	bindoff_TAG_AM	3	0x116E7	11504	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	アルケ_多_NPC05	bindoff_TAG_AM	4	0x116E8	11505	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	アルケ_多_NPC05	bindoff_TAG_AM	4	0x116E8	11505	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC01	init	1	0x116E9	11514	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC01	main	1	0x116EA	11519	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC01	talk	1	0x116EB	11524	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16065,7 +16065,7 @@ asp_a02	バーフ_通常_NPC01	hide_TAG	5	0x1186C	11620	-	return	0	-	-	-	-	-	res
 asp_a02	バーフ_通常_NPC01	bindoff_TAG_VN	1	0x1186D	11625	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	バーフ_通常_NPC01	bindoff_TAG_VN	2	0x11870	11626	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_通常_NPC01	bindoff_TAG_VN	3	0x11876	11627	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	バーフ_通常_NPC01	bindoff_TAG_VN	4	0x11877	11628	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	バーフ_通常_NPC01	bindoff_TAG_VN	4	0x11877	11628	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC02	init	1	0x11878	11637	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC02	main	1	0x11879	11642	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC02	talk	1	0x1187A	11647	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16125,7 +16125,7 @@ asp_a02	バーフ_通常_NPC02	hide_TAG	5	0x119CB	11732	-	return	0	-	-	-	-	-	res
 asp_a02	バーフ_通常_NPC02	bindoff_TAG_VN	1	0x119CC	11737	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	バーフ_通常_NPC02	bindoff_TAG_VN	2	0x119CF	11738	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_通常_NPC02	bindoff_TAG_VN	3	0x119D5	11739	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	バーフ_通常_NPC02	bindoff_TAG_VN	4	0x119D6	11740	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	バーフ_通常_NPC02	bindoff_TAG_VN	4	0x119D6	11740	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC03	init	1	0x119D7	11749	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC03	main	1	0x119D8	11754	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC03	talk	1	0x119D9	11759	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16284,7 +16284,7 @@ asp_a02	バーフ_通常_NPC03	hide_TAG	5	0x11D79	11981	-	return	0	-	-	-	-	-	res
 asp_a02	バーフ_通常_NPC03	bindoff_TAG_VN	1	0x11D7A	11986	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	バーフ_通常_NPC03	bindoff_TAG_VN	2	0x11D7D	11987	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_通常_NPC03	bindoff_TAG_VN	3	0x11D83	11988	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	バーフ_通常_NPC03	bindoff_TAG_VN	4	0x11D84	11989	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	バーフ_通常_NPC03	bindoff_TAG_VN	4	0x11D84	11989	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC03用アタリ	init	1	0x11D85	11998	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_通常_NPC03用アタリ	setHitObj	1	0x11D89	12003	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_通常_NPC03用アタリ	setHitObj	2	0x11D95	12004	-	setpos	20.2509651, -7.59999895, 70.7147293	this actor, placed at (20.2509651, -7.59999895, 70.7147293)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -16477,7 +16477,7 @@ asp_a02	バーフ_通常_NPC04	hide_TAG	5	0x121DF	12299	-	return	0	-	-	-	-	-	res
 asp_a02	バーフ_通常_NPC04	bindoff_TAG_VN	1	0x121E0	12304	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	バーフ_通常_NPC04	bindoff_TAG_VN	2	0x121E3	12305	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_通常_NPC04	bindoff_TAG_VN	3	0x121E9	12306	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	バーフ_通常_NPC04	bindoff_TAG_VN	4	0x121EA	12307	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	バーフ_通常_NPC04	bindoff_TAG_VN	4	0x121EA	12307	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC01	init	1	0x121EB	12316	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC01	main	1	0x121EC	12321	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC01	talk	1	0x121ED	12326	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16552,7 +16552,7 @@ asp_a02	バーフ_多_NPC01	hide_TAG	5	0x123AA	12427	-	return	0	-	-	-	-	-	resolv
 asp_a02	バーフ_多_NPC01	bindoff_TAG_VM	1	0x123AB	12432	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	バーフ_多_NPC01	bindoff_TAG_VM	2	0x123AE	12433	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_多_NPC01	bindoff_TAG_VM	3	0x123B4	12434	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	バーフ_多_NPC01	bindoff_TAG_VM	4	0x123B5	12435	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	バーフ_多_NPC01	bindoff_TAG_VM	4	0x123B5	12435	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC02	init	1	0x123B6	12444	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC02	main	1	0x123B7	12449	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC02	talk	1	0x123B8	12454	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16621,7 +16621,7 @@ asp_a02	バーフ_多_NPC02	hide_TAG	5	0x12544	12549	-	return	0	-	-	-	-	-	resolv
 asp_a02	バーフ_多_NPC02	bindoff_TAG_VM	1	0x12545	12554	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	バーフ_多_NPC02	bindoff_TAG_VM	2	0x12548	12555	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_多_NPC02	bindoff_TAG_VM	3	0x1254E	12556	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	バーフ_多_NPC02	bindoff_TAG_VM	4	0x1254F	12557	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	バーフ_多_NPC02	bindoff_TAG_VM	4	0x1254F	12557	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC03	init	1	0x12550	12566	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC03	main	1	0x12551	12571	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC03	talk	1	0x12552	12576	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16663,7 +16663,7 @@ asp_a02	バーフ_多_NPC03	hide_TAG	5	0x12642	12629	-	return	0	-	-	-	-	-	resolv
 asp_a02	バーフ_多_NPC03	bindoff_TAG_VM	1	0x12643	12634	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	バーフ_多_NPC03	bindoff_TAG_VM	2	0x12646	12635	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_多_NPC03	bindoff_TAG_VM	3	0x1264C	12636	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	バーフ_多_NPC03	bindoff_TAG_VM	4	0x1264D	12637	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	バーフ_多_NPC03	bindoff_TAG_VM	4	0x1264D	12637	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC04	init	1	0x1264E	12646	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC04	main	1	0x1264F	12651	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	バーフ_多_NPC04	talk	1	0x12650	12656	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16704,7 +16704,7 @@ asp_a02	バーフ_多_NPC04	hide_TAG	5	0x12720	12708	-	return	0	-	-	-	-	-	resolv
 asp_a02	バーフ_多_NPC04	bindoff_TAG_VM	1	0x12721	12713	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	バーフ_多_NPC04	bindoff_TAG_VM	2	0x12724	12714	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	バーフ_多_NPC04	bindoff_TAG_VM	3	0x1272A	12715	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	バーフ_多_NPC04	bindoff_TAG_VM	4	0x1272B	12716	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	バーフ_多_NPC04	bindoff_TAG_VM	4	0x1272B	12716	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	乗っ取り	init	1	0x1272C	12725	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	乗っ取り	main	1	0x1272D	12730	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	乗っ取り	talk	1	0x1272E	12735	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16762,7 +16762,7 @@ asp_a02	賞金稼ぎバンガ	hide_TAG	2	0x1283F	12846	-	movecancel	-	the callin
 asp_a02	賞金稼ぎバンガ	hide_TAG	3	0x12842	12847	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 asp_a02	賞金稼ぎバンガ	hide_TAG	4	0x12845	12848	-	hideshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	賞金稼ぎバンガ	hide_TAG	5	0x1284B	12849	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	賞金稼ぎバンガ	hide_TAG	6	0x1284C	12850	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	賞金稼ぎバンガ	hide_TAG	6	0x1284C	12850	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	デスゲイズ脅し	init	1	0x1284D	12859	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	デスゲイズ脅し	main	1	0x1284E	12864	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	デスゲイズ脅し	talk	1	0x1284F	12869	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -16788,7 +16788,7 @@ asp_a02	デスゲイズ脅し	walk_qst_153_飛んでいく	3	0x128C0	12904	-	ret
 asp_a02	デスゲイズ脅し	bindoff_TAG	1	0x128C1	12909	-	stdmotiondispose	-	-	-	-	-	-		01 verb-table.tsv
 asp_a02	デスゲイズ脅し	bindoff_TAG	2	0x128C4	12910	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a02	デスゲイズ脅し	bindoff_TAG	3	0x128CA	12911	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	デスゲイズ脅し	bindoff_TAG	4	0x128CB	12912	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	デスゲイズ脅し	bindoff_TAG	4	0x128CB	12912	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ヴァン乗っ取り	init	1	0x128CC	12921	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ヴァン乗っ取り	main	1	0x128CD	12926	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ヴァン乗っ取り	set_qst_153	1	0x128D1	12931	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -16801,7 +16801,7 @@ asp_a02	ヴァン乗っ取り	walk_qst_153_走っていく	3	0x128FF	12941	-	sys
 asp_a02	ヴァン乗っ取り	walk_qst_153_走っていく	4	0x12902	12942	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	ヴァン乗っ取り	bindoff_TAG	1	0x12903	12947	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 asp_a02	ヴァン乗っ取り	bindoff_TAG	2	0x12909	12948	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a02	ヴァン乗っ取り	bindoff_TAG	3	0x1290A	12949	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a02	ヴァン乗っ取り	bindoff_TAG	3	0x1290A	12949	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	姉妹イベント用ヴァン乗っ取り	init	1	0x1290B	12958	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	姉妹イベント用ヴァン乗っ取り	main	1	0x1290C	12963	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a02	姉妹イベント用ヴァン乗っ取り	walk_stw_ev_長女イベント準備	1	0x12910	12968	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -17980,7 +17980,7 @@ asp_a03	btl_trap_ctrl	init	1	0x04468	53	-	modelread	0x03000001	argument 1: the m
 asp_a03	btl_trap_ctrl	init	2	0x0446E	54	-	modelreadsync	0x03000001	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_a03	btl_trap_ctrl	init	3	0x04474	55	-	settrapresource	0x03000001	-	-	-	-	-		01 verb-table.tsv
 asp_a03	btl_trap_ctrl	init	4	0x04477	56	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_a03	監督	init	1	0x0447E	65	-	sysDVAR	1, scratch2_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_a03	監督	init	1	0x0447E	65	-	sysDVAR	1, scratch2_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_a03	監督	init	2	0x0448B	66	-	sysReqewi	1, キャラキャッシュ管理::不必要キャッシュ廃棄	actor `キャラキャッシュ管理`	-	-	files キャラキャッシュ管理::不必要キャッシュ廃棄 on channel 1; waits until it ends; the target goes through INCINITTAG	キャラキャッシュ管理.不必要キャッシュ廃棄	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	監督	init	3	0x04498	67	-	sysReqewi	1, AD::客種選択	actor `AD`	-	-	files AD::客種選択 on channel 1; waits until it ends; the target goes through INCINITTAG	AD.客種選択	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 asp_a03	監督	init	4	0x04499	68	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -23860,7 +23860,7 @@ asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	13	0
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	14	0x01A76	178	-	if	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	15	0x01A7D	180	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	16	0x01A80	182	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	goto	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	17	0x01A83	183	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	17	0x01A83	183	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap()); unreachable in the listing	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	18	0x01A86	184	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	label	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	19	0x01A8C	185	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadeout_d0	1, 1	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	20	0x01A92	186	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadesync_d3	1	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -23874,20 +23874,20 @@ asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	27	0
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	28	0x01AC0	198	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	29	0x01AC3	199	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	partyallread	-	-	-	-	-	-		01 verb-table.tsv
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	30	0x01AC6	200	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	goto	local_jmp_9	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	31	0x01AD8	201	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	if	not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	32	0x01AE7	203	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicfadeout_231	getnowmusicno(), 90, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	33	0x01AEA	204	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	34	0x01AF0	205	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	35	0x01AF6	206	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicstop	-1	-	-	-	-	-		01 verb-table.tsv
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	36	0x01AFC	207	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicclear	-1	-	-	-	-	-		01 verb-table.tsv
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	37	0x01B05	208	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicread	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	38	0x01B0E	209	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicreadsync	getnowmapmusicno_47a(1)	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	39	0x01B17	210	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicplay	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	40	0x01B26	211	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musictrans	getnowmapmusicno_47a(1), 0, 0	music track getnowmapmusicno_47a(1)	-	volume 0 at once	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	41	0x01B2C	212	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	42	0x01B3B	213	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musictrans	getnowmapmusicno_47a(1), 90, 127	music track getnowmapmusicno_47a(1)	-	fade length 90 to volume 127	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	43	0x01B41	215	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
-asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	44	0x01B44	216	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	partyallread	-	-	-	-	-	-		01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	31	0x01AD8	201	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; unreachable in the listing	if	not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	32	0x01AE7	203	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicfadeout_231	getnowmusicno(), 90, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	33	0x01AEA	204	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	34	0x01AF0	205	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	35	0x01AF6	206	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicstop	-1	-	-	-	-	-		01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	36	0x01AFC	207	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicclear	-1	-	-	-	-	-		01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	37	0x01B05	208	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicread	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	38	0x01B0E	209	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicreadsync	getnowmapmusicno_47a(1)	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	39	0x01B17	210	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicplay	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	40	0x01B26	211	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musictrans	getnowmapmusicno_47a(1), 0, 0	music track getnowmapmusicno_47a(1)	-	volume 0 at once	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	41	0x01B2C	212	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	42	0x01B3B	213	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musictrans	getnowmapmusicno_47a(1), 90, 127	music track getnowmapmusicno_47a(1)	-	fade length 90 to volume 127	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	43	0x01B41	215	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; unreachable in the listing	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
+asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	44	0x01B44	216	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; unreachable in the listing	partyallread	-	-	-	-	-	-		01 verb-table.tsv
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	45	0x01B47	218	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	label	local_jmp_9	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	46	0x01B4B	219	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 asp_b03	お祝いイベント監督	デスゲイズ撃破祝いイベント	47	0x01B54	221	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadein_d2	1, 1	-	-	-	-	-		01 verb-table.tsv

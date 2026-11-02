@@ -307,6 +307,14 @@ with a string key at `+0x20` and a value at `+0x40` that it passes to `0x002001F
 - [Object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md):
   the other per-type container bodies and the record-pool template they build.
 
+### Columns of eastl-strings-and-containers-ordered-container-runtime.tsv
+
+One row per function, 6 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | one of the six tree functions: the next-node step `0x0016D6D0`, the previous-node step `0x0016D720`, the rotations `0x0016D780` and `0x0016D7E0`, the insert `0x0016D840` and the erase `0x0016DA60` |
+
 ### Columns of eastl-strings-and-containers-ordered-container-runtime-callers.tsv
 
 | Column | Holds |

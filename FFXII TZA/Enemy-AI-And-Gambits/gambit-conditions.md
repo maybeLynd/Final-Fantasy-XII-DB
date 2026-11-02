@@ -93,7 +93,7 @@ would change nothing on the candidate (`0x0030846A`-`0x003085E6`):
 | `+0x2C` bit `0x1000` | restores HP | current HP `+0x48` is at least the maximum: max HP `+0x24`, doubled under Bubble, or under Disease the current HP and at least 1 | `0x0030846A`-`0x003084B1` |
 | `+0x2C` bit `0x8000` | restores MP | current MP `+0x4C` is at least max MP `+0x28`, which counts as 0 when byte `+0x6C` or `+0x7C` is negative | `0x003084B3`-`0x003084E1` |
 | `+0x36` bit `0x2` | removes statuses | `0x0031C500` finds none of them on the candidate (the action's mask from `0x003872D0` ANDed with the statuses `+0x64` and `+0x3C`), or each one is also removed by the action of a unit already committed against it | `0x003084EF`-`0x00308565` |
-| `+0x36` bit `0x1` | adds statuses | `0x00320AF0` finds none still to add, or each one is also added by the action of a unit already committed against it | `0x0030856F`-`0x003085DE` |
+| `+0x36` bit `0x1` | adds statuses | `0x00320AF0` finds no status still to add, or each one is also added by the action of a unit already committed against it | `0x0030856F`-`0x003085DE` |
 
 The units already committed against the candidate are the bits of its mask `+0xEA4`, each unit's action being
 its `+0x714` ([Committing an action](../Battle-Actions/action-commit.md); `0x00308520`-`0x00308535`, `0x003085A0`-`0x003085B4`).
@@ -137,7 +137,7 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
 
 - `shop:` each shop that sells it, by name and number in [Shops](../Items-Equipment-Shops-And-Licenses/shops.md), with the map (region) whose script gives an actor that shop (`setshopname`, the `place` column), and when the list that holds it goes on sale:
   - from the start;
-  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or the value alone where no script writes it, which is so for 500 (below);
+  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or the value alone where no story script writes it, which is so for 500 (below);
   - from a clan rank, with the rank's shipped name;
   - for the Clan Provisioner's last list, from joining Clan Centurio (below).
 - `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).

@@ -178,12 +178,12 @@ busy):
 - `0x005770A0(widget, v)` and `0x00577180` send message 16 to a widget, the latter after re-attaching it; `0x00577BD0` sends
   it to `[0x02CA9730]`.
 
-A catalog record is 12 bytes (below), with text -1 for none (`0x00575D10`,
+A catalog record is 12 bytes (below), with text -1 for no text (`0x00575D10`,
 `0x005778F0`, `0x005760A0`).
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i32` | text | entry text, -1 for none |
+| `+0x00` | `i32` | text | entry text, -1 for no text |
 | `+0x04` | `u16` | group | group |
 | `+0x06` | `u16` | bundle | text bundle |
 | `+0x08` | `u16` | picturePage | picture page |
@@ -298,7 +298,7 @@ request at `0x02164240` (`0x002EEA75`-`0x002EEAB3`).
   `0x02164208`. Any other is written as the request and sets the flag (`0x002EEAF5`); a request already pending first
   gives its entry of `0x01EEBAB0` back as -1 (`0x002EEA1B`-`0x002EEA27`).
 - The entry is the first of the ten dwords of `0x01EEBAB0` that holds -1, searched from 0, or from the pending request's
-  entry `[0x02164268]`, up to `0x01EEBAD8`, the dword just past the table (`0x002EEA32`-`0x002EEA6E`). With none free it
+  entry `[0x02164268]`, up to `0x01EEBAD8`, the dword just past the table (`0x002EEA32`-`0x002EEA6E`). With no dword free it
   returns -1 and writes no record.
 
 The record's words, the current one's address first:

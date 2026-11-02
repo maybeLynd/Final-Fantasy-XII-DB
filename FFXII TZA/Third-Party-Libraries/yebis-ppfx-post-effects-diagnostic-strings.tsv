@@ -1,12 +1,12 @@
 format_string	call_sites	owner_functions
-..\\src\\GPU\\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: 	113	0x006F2560 0x006F2690 0x006F3BE0 0x006F6010 0x006F7660 0x006F8740 0x006F9030 0x006FB810 0x006FE4C0 0x006FF900 0x00705520 0x00706690
+..\\src\\GPU\\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: 	113	0x006F2560 0x006F2690 0x006F3BE0 0x006F6010 0x006F7660 0x006F8740 0x006F9030 0x006FB810 0x006FE4C0 0x006FF900 0x00705520 0x00706690 0x00706760 0x007067E0 0x00706940 0x007069E0 0x00706A50 0x00706B70 0x00707500 0x00707560 0x00708110 0x0070B070 0x0070B780 0x0070B990 0x0070BA00 0x0070BB00 0x0070BD80 0x0070C050 0x0070C460 0x0070C810 0x0070CD40 0x0070D090 0x0070D400 0x0070D5C0 0x0070D780 0x0070D920 0x0070DBA0 0x0070DFD0 0x0070E1B0 0x0070E520 0x0070E600 0x007112F0 0x00711350 0x007114F0
 ..\\src\\GPU\\GPUPostEffect.cpp(%d) : PPFX: 	29	0x006FF900 0x00705520
-..\\src\\GPU\\GPUTextureUtil.cpp(%d) : Feb 18 2016 PPFX ERROR: 	28	0x00729870 0x0072A320 0x0072D820 0x0072F7D0 0x007307A0 0x00731EA0 0x00735240 0x00735530 0x00735720 0x00735B70 0x007364D0 0x00737D70
-..\\src\\GPU\\TinyEffect\\TinyEffect.cpp(%d) : PPFX FX: 	28	0x0078C080 0x0078C730 0x0078DFB0
-..\\src\\GPU\\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX WARNING: 	26	0x006FD110 0x006FF050 0x006FF900 0x00707880 0x00709C90 0x00709D10 0x00709F40 0x0070A060 0x0070A0F0 0x0070A1F0 0x0070A260 0x0070A350
-..\\src\\GPU\\GPUInterfaceDevice.cpp(%d) : Feb 18 2016 PPFX ERROR: 	22	0x00723440 0x00723760 0x00723A90 0x00723CA0 0x00723FB0 0x007259D0 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x00726360 0x00726550
+..\\src\\GPU\\GPUTextureUtil.cpp(%d) : Feb 18 2016 PPFX ERROR: 	28	0x00729870 0x0072A320 0x0072D820 0x0072F7D0 0x007307A0 0x00731EA0 0x00735240 0x00735530 0x00735720 0x00735B70 0x007364D0 0x00737D70 0x0073BD30 0x0073DD70
+..\\src\\GPU\\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX WARNING: 	26	0x006FD110 0x006FF050 0x006FF900 0x00707880 0x00709C90 0x00709D10 0x00709F40 0x0070A060 0x0070A0F0 0x0070A1F0 0x0070A260 0x0070A350 0x0070A410 0x0070A480 0x0070AA80 0x0070AB80 0x0070AF90 0x0070B500 0x0070B610 0x0070C810 0x0070D400 0x0070D5C0 0x0070D780 0x0070D920 0x0070DC10 0x00713EB0
+..\\src\\GPU\\TinyEffect\\TinyEffect.cpp(%d) : PPFX FX: 	26	0x0078C080 0x0078C730 0x0078DFB0
+..\\src\\GPU\\GPUInterfaceDevice.cpp(%d) : Feb 18 2016 PPFX ERROR: 	22	0x00723440 0x00723760 0x00723A90 0x00723CA0 0x00723FB0 0x007259D0 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x00726360 0x00726550 0x00726700 0x007268C0 0x00726A70 0x00726C30 0x00726D00
 ..\\src\\ppfx.cpp(%d) : PPFX: 	17	0x006DAA70 0x006DAFB0 0x006DB1B0 0x006DE780 0x006DE950 0x006DEB40
-..\\src\\GPU\\GPUInterfaceDevice.cpp(%d) : PPFX: 	16	0x00723760 0x00724500 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x007261B0 0x00726360 0x00726550 0x00726700 0x007268C0 0x00726A70
+..\\src\\GPU\\GPUInterfaceDevice.cpp(%d) : PPFX: 	16	0x00723760 0x00724500 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x007261B0 0x00726360 0x00726550 0x00726700 0x007268C0 0x00726A70 0x00726C30 0x00726D00
 PPFX: 	15	0x006DAA70 0x006DAFB0 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x007261B0 0x00726360 0x00726550 0x00726700 0x007268C0 0x00726A70
 ..\\src\\ppfx.cpp(%d) : Feb 18 2016 PPFX ERROR: 	13	0x006DAA70 0x006DAFB0 0x006DB1B0 0x006DE780 0x006DE950 0x006DEB40 0x006DECD0 0x006DED50 0x006DFF40
 ..\\src\\GPU\\GPUDepthOfField.cpp(%d) : Feb 18 2016 PPFX ERROR: 	11	0x0076F400 0x00779150 0x0077A8C0 0x0077BF30 0x0077ECE0
@@ -18,13 +18,14 @@ PPFX: 	15	0x006DAA70 0x006DAFB0 0x00725AA0 0x00725C80 0x00725E40 0x00725FF0 0x00
 ..\\src\\GPU\\GPUInterfaceSurface.cpp(%d) : Feb 18 2016 PPFX ERROR: 	7	0x00785C90 0x007861A0 0x00786500
 Invalid pGlobalParameter->m_eType: %d: %s.\n	7	0x0078EAF0
 %s %s:\t%4d x %4d,\t%s (0x%04x),\tMSAA(%2dx, %2d),\tUsage 0x%08x,\tFlags 0x%08x\n	6	0x00725AA0 0x00725E40 0x007261B0 0x00726360 0x00726550 0x00726700
-..\\src\\GPU\\GPUResourceManage.cpp(%d) : Feb 18 2016 PPFX WARNING: 	6	0x00727460 0x007276F0
+\n	5	0x0078C730 0x0078EAF0
 ..\\src\\GPU\\GPURenderTexture.cpp(%d) : Feb 18 2016 PPFX ERROR: 	5	0x00722A40 0x00722C80
 ..\\src\\ppfxRenderToTexture.cpp(%d) : Feb 18 2016 PPFX ERROR: 	5	0x006E04F0 0x006E07A0 0x006E0DB0
 ..\\src\\GPU\\GPUInterfaceDevice.cpp(%d) : Feb 18 2016 PPFX WARNING: 	4	0x00723760 0x00724EC0 0x00724F50 0x00724FF0
 ..\\src\\GPU\\GPURenderTextureArray.cpp(%d) : Feb 18 2016 PPFX ERROR: 	4	0x0075B760 0x0075C080 0x0075DA10
 ..\\src\\GPU\\GPUInterfaceTexture.cpp(%d) : Feb 18 2016 PPFX ERROR: 	3	0x007872F0
 ..\\src\\GPU\\GPURenderTextureArray.cpp(%d) : PPFX: 	3	0x0075B760
+..\\src\\GPU\\GPUResourceManage.cpp(%d) : Feb 18 2016 PPFX WARNING: 	3	0x00727460 0x007276F0
 CTextureUtil::DrawRectGPU_MadT1_Sn(): GetHandle_tech_MadT1_Sn(%d, %d) failed.\n	3	0x00735720 0x00735B70 0x00737D70
 %s %s:\t%4d x %4d x %4d,\t%s (0x%04x),\tUsage 0x%08x,\tFlags 0x%08x\n	2	0x00725C80 0x00725FF0
 %s %s:\t%6d x %3d (%8d),\t%s (0x%04x),\tUsage 0x%08x,\tFlags 0x%08x\n	2	0x007268C0 0x00726A70
@@ -50,11 +51,14 @@ CPostEffect::SetRenderSceneLuminanceScale(): SceneLuminanceScale mest be greater
 CPostEffectEndPostEffectScene_PreProcess: CRenderTexture::ResolveCurrentDepthStencilTexture() failed (0x%x: %s).\n	2	0x006F8740
 CTextureUtil::GetResult_UpdateInternalLuminance(): CPU may be blocked.\n	2	0x00780590
 IGPUSurface::AttachToOtherSurfaceFramebuffer(): Surface width is not match. (framebuffer: %d != surface: %d).\n	2	0x007861A0
+License is not valid.\n	2	0x006DFF40
 m_apGlobalParameter[%d]->m_sizeOfElement: %d\n	2	0x0078C730
+strFragmentProgramName: %s\n	2	0x0078C730
 strVertexProgramName: %s\n	2	0x0078C730
 \tRetrying dynamic usage.\n	1	0x00787E40
 \nm_apGlobalParameter.size(): %d\n	1	0x0078C730
 \nm_strName       : %s\nm_strElementName: %s\n	1	0x0078DFB0
+  NULL texture.\n	1	0x0078EAF0
   fragmentprogram name: %s\n	1	0x0078EAF0
   vertexprogram name:   %s\n	1	0x0078EAF0
 %s\n	1	0x0072A320
@@ -133,7 +137,7 @@ CPostEffect::EndPostEffectScene_Process(): EndPostEffectScene() called without B
 CPostEffect::EndPostEffectScene_Process(): EndPostEffectScene_PostProcess() failed (0x%x: %s).\n	1	0x006FB810
 CPostEffect::EndPostEffectScene_Process(): EndPostEffectScene_PreProcess() failed (0x%x: %s).\n	1	0x006FB810
 CPostEffect::EndTemporaryFilter(): Failed to re-begin (BeginPostEffectScene).\n	1	0x006F2690
-CPostEffect::GetMaxMotionBlurCameraRecurrences():\n\tFor using PFXMB_VELOCITYBASE at SetMotionBlurMode() and\n\tPFXVS_AUTOGEN or PFXVS_AUTOGEN_APPOVERWRITE at SetMotionBlurVelocitySource(),\n\tPFXINIT_MOTIO	1	0x006FE4C0
+CPostEffect::GetMaxMotionBlurCameraRecurrences():\n\tFor using PFXMB_VELOCITYBASE at SetMotionBlurMode() and\n\tPFXVS_AUTOGEN or PFXVS_AUTOGEN_APPOVERWRITE at SetMotionBlurVelocitySource(),\n\tPFXINIT_MOTIONBLUR_INTERNALVELOCITYTEXTURE must be set at Initialize().\n	1	0x006FE4C0
 CPostEffect::Initialize(): Argment iGlareQuality must be greater than or equal to 0.\n	1	0x006FF900
 CPostEffect::Initialize(): CSingleTextureUtil::InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): CSingleTextureUtil::InitializeDevice() succeeded.\n	1	0x006FF900
@@ -143,30 +147,58 @@ CPostEffect::Initialize(): DeviceParam must be set.\n	1	0x006FF900
 CPostEffect::Initialize(): IGPUDevice::CreateDevice() failed.\n	1	0x006FF900
 CPostEffect::Initialize(): PFXINIT_DEPTHTEXTURE cannot be set with PFXINIT_RENDERSCENE_EXTERNAL\n	1	0x006FF900
 CPostEffect::Initialize(): PFX_INITPARAM::m_nEffectViews must be greater than or equal to 0.\n	1	0x006FF900
+CPostEffect::Initialize(): aeparam.m_pQuerySceneLuminance->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): afaram.m_pQuerySceneDepth->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture_Reduced->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture_Reduced->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture_Reduced->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture_ReducedVertical->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture_ReducedVertical->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAmbientOcclusion_NormalDepthTexture_ReducedVertical->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAmbientOcclusion_Result->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced2->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced2->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced2->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced3->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced3->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAmbientOcclusion_Result_Reduced3->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_ReducedVertical->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAmbientOcclusion_Result_ReducedVertical->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAmbientOcclusion_Result_ReducedVertical->InitializeDevice() succeeded.\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAutoExposureParam[%d].m_pQuerySceneLuminance->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAutoExposureParam[%d].m_pQuerySceneLuminance->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pAutoFocusParam[%d].m_pQuerySceneDepth->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pAutoFocusParam[%d].m_pQuerySceneLuminance->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pDepthOfField->Initialize() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pDepthOfField->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pDepthOfField->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pDepthOfField->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pEffectColorAlphaDestinationWork->Initialize() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pEffectColorAlphaDestinationWork->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pEffectColorAlphaDestinationWork->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pEffectColorAlphaDestinationWork->InitializeDevice() succeeded.\n	1	0x006FF900
 CPostEffect::Initialize(): m_pGPUDevice->Reset() failed.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pGlareModulatorWork->Initialize() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pGlareModulatorWork->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pGlareModulatorWork->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pGlareModulatorWork->InitializeDevice() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pMotionBlurInternalVelocityTexture->Initialize() failed (0x%x: %s).\n	1	0x006FF900
+CPostEffect::Initialize(): m_pMotionBlurInternalVelocityTexture->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pMotionBlurInternalVelocityTexture->InitializeDevice() succeeded.\n	1	0x006FF900
 CPostEffect::Initialize(): m_pRenderBuffer->Initialize() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pRenderBuffer->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pRenderBuffer->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pRenderBuffer->InitializeDevice() succeeded.\n	1	0x006FF900
 CPostEffect::Initialize(): m_pRenderGlare->Initialize() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pRenderGlare->Initialize() succeeded.\n	1	0x006FF900
+CPostEffect::Initialize(): m_pRenderGlare->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_pRenderGlare->InitializeDevice() succeeded.\n	1	0x006FF900
 CPostEffect::Initialize(): m_ppFeedbackBuffer[%d]->Initialize() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): m_ppFeedbackBuffer[%d]->InitializeDevice() failed (0x%x: %s).\n	1	0x006FF900
@@ -175,6 +207,7 @@ CPostEffect::Initialize(): m_ppTemporalAntialias_History[%d]->InitializeDevice()
 CPostEffect::Initialize(): m_ppTemporalAntialias_History[%d]->InitializeDevice() succeeded.\n	1	0x006FF900
 CPostEffect::Initialize(): pTexUtil->GetTexturePool()->AllocateTexture(&m_pFeedbackTonemapTexture) failed.\n	1	0x006FF900
 CPostEffect::Initialize(): pTexUtil->GetTexturePool()->AllocateTexture(&m_pTonemapConvolutionTexture) failed.\n	1	0x006FF900
+CPostEffect::Initialize(): pTexUtil->InitializeDeviceSharedTexturePool() failed (0x%x: %s).\n	1	0x006FF900
 CPostEffect::Initialize(): pTexUtil->InitializeDeviceSharedTexturePool() succeeded.\n	1	0x006FF900
 CPostEffect::InitializeAfterimage(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x007069E0
 CPostEffect::InitializeContinuousEffects(): Cannot be called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x00706940
@@ -251,6 +284,7 @@ CTextureUtil::DrawRectGPU_DepthOfFieldLayerMask(): GetHandle_tech_DepthOfField_B
 CTextureUtil::DrawRectGPU_MadCocT2_Sn(): GetHandle_tech_MadCocT2_Sn(%d, %d) failed.\n	1	0x007364D0
 CTextureUtil::DrawRectGPU_TexCoordMadT1_Sn(): GetHandle_tech_TexCoordMadT1_Sn(%d) failed.\n	1	0x00735530
 CTextureUtil::DrawRectGPU_TexCoordOffsetMadTn(): GetHandle_tech_TexCoordOffsetMadTn(%d, %d) failed.\n	1	0x00735240
+CTextureUtil::DrawRectGPU_TonemapHDR(): 0x%04x, HDRTMAP_IsPremap(eTonemap: %d): %s,\n\tbFullColorDither: %s, bVignette: %s, bVignetteSim: %s, bExposure: %s,\n\tbPreColorMatrix: %s, bColorMatrix: %s, bGammaCorrect: %s\n	1	0x0073BD30
 CTextureUtil::InitializeDevice(): CGPUResourceManage::InitializeDevice() failed (0x%x: %s).\n	1	0x007307A0
 CTextureUtil::InitializeDevice(): InitializeDeviceSharedTexturePool() failed (0x%x: %s).\n	1	0x007307A0
 CTextureUtil::InitializeDevice(): m_pGPUDevice->CreateDepthStencilSurface(&m_pGPUDepthMeasurement) failed (0x%x: %s).\n	1	0x007307A0
@@ -276,6 +310,7 @@ CTinyEffect::CreateGlobalParameter():\nstrName: %s\neType: %d\nnElements: %d\n	1
 CTinyEffect::CreateParameter(): \n%d: %s\n	1	0x0078C080
 "CTinyEffect::CreateParameter(programIndex: %d, pProgram->m_strName: ""%s""):\n"	1	0x0078C080
 CTinyEffect::CreateProgram(): pD3DDevice->CreatePixelShader() failed (0x%x: %s).\n	1	0x0078E3C0
+CTinyEffect::CreateProgram(): pD3DDevice->CreateVertexShader() failed (0x%x: %s).\n	1	0x0078E3C0
 CTinyEffect::CreateTechniquePrograms(): CreateParameter() failed (0x%x: %s).\n	1	0x0078F800
 CTinyEffect::CreateTechniquePrograms(): CreateShaderProgram() failed (0x%x: %s).\n	1	0x0078F800
 DXGI_ERROR_WAS_STILL_DRAWING !!\n	1	0x00789370
@@ -328,7 +363,9 @@ IGPUSurface::AttachToOtherSurfaceFramebuffer(): Surface multisample type is not 
 IGPUSurface::CreateSurface(): CreateRenderTargetOrDepthStencilViewFromShaderResource() failed.\n	1	0x00786500
 IGPUSurface::CreateSurface(): pD3DDevice->CreateTexture2D() failed.\n	1	0x00786500
 IGPUSurface::RegisterD3DSurface(): AttachFramebuffer() failed (0x%x: %s).\n	1	0x00785C90
+IGPUTexture::CreateTexture(): Multisample-texture is not supported.\n	1	0x007872F0
 IGPUTexture::CreateTexture(): pD3DDevice->CreateShaderResourceView() failed.\n	1	0x007872F0
+IGPUTexture::CreateTexture(): pD3DDevice->CreateTexture2D() failed.\n	1	0x007872F0
 IGPUTexture::ReleaseLevelSurfacesAttachToTexture(): m_apGPUSurfaceMipmap[%d]->GetRefCount() reference counter is non-zero: %d.\n	1	0x00786DD0
 IGPUVertexBuffer::CreateVertexBufferpGPUVertexBuffer->BuildVertexBuffer(Size: %d, nBuffers: %d, Usage: 0x%x, Flag:0x%x) failed (0x%x: %s).\n	1	0x007885A0
 IPfxBaseContext::Initialize(): s_pSinglePostEffect->Initialize() failed (0x%x: %s).\n	1	0x006DAA70
@@ -344,7 +381,7 @@ IPfxBaseRenderToTexture::Initialize(): pRenderTexture->InitializeDevice() failed
 IPfxBaseRenderToTexture::Uninitialize(): Called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x006E07A0
 IPfxBaseRenderToTexture::~IPfxBaseRenderToTexture(): IPfxBaseRenderToTexture::Uninitialize() implicitly called while BeginPostEffectScene() and EndPostEffectScene().\n	1	0x006E0DB0
 Instance name: %s\n	1	0x0075B760
-License is not valid.\n	1	0x006DFF40
+License is expired.\n	1	0x006DFF40
 License text is not set.\n	1	0x006DFF40
 SetApertureFilterLevelVisualize() does not work properly.\n	1	0x00772410
 SetMemoryAllocator(): Call when any pfx interface is not instantiated yet.\n	1	0x006DA8F0
@@ -358,7 +395,9 @@ Unexpected License Error.\n	1	0x006DFF40
 cgParameter name: %s%s.\n	1	0x0078C080
 cgParameter name: %s[%d]%s.\n	1	0x0078C080
 float\n	1	0x0078EAF0
+float4\n	1	0x0078EAF0
 float4[%d]\n	1	0x0078EAF0
+float4x4\n	1	0x0078EAF0
 float4x4[%d]\n	1	0x0078EAF0
 float[%d]\n	1	0x0078EAF0
 m_apGlobalParameter[%d]->m_eType: %d: %s\n	1	0x0078C730
@@ -378,9 +417,7 @@ ppfxUninitialize(): s_pSinglePostEffect->Uninitialize() succeeded.\n	1	0x006DEB4
 program: %s has %d parameters.\n	1	0x0078EAF0
 sampler\n	1	0x0078EAF0
 strFragmentProgramFile: %s\n	1	0x0078C730
-strFragmentProgramName: %s\n	1	0x0078C730
 strLinkedProgramFile: %s\n	1	0x0078C730
 strLinkedProgramName: %s\n	1	0x0078C730
 strVertexProgramFile: %s\n	1	0x0078C730
 technique name: %s\n	1	0x0078EAF0
-true	1	0x0073BD30

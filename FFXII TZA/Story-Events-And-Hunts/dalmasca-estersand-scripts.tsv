@@ -197,8 +197,8 @@ dst_c02	Broken Sands (Dalmasca Estersand)	treasure_11	talk	talk	-	-	-	-	-	-	-	-	
 dst_c02	Broken Sands (Dalmasca Estersand)	treasure_12	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000320	-	-	-	-	1	-
 dst_a0181	scene, event 724	トマト監視監督	main	main	-	-	-	-	-	-	-	-	receives Galbana Lilies	-	-	-	-	1	-
 dst_a0181	scene, event 724	セリフ監督	ヴァン１	requested by 乗っ取り00.g_cut01_go	-	0	Galbana lilies?	-	-	-	-	-	-	-	-	-	-	2	-
-dst_a0181	scene, event 724	セリフ監督	ヴァン２	requested by 乗っ取り00.g_cut02_ready	-	1	Never thought I'd see them growing out here.	-	-	-	-	-	-	-	-	-	-	2	-
-dst_a0181	scene, event 724	セリフ監督	ヴァン３	requested by 乗っ取り00.g_cut03_ready	-	2	This'll make a nice souvenir. Time to call it a day.	-	-	-	-	-	-	-	-	-	-	2	-
+dst_a0181	scene, event 724	セリフ監督	ヴァン２	requested by 乗っ取り00.g_cut02_ready	Vaan	1	Never thought I'd see them growing out here.	-	-	-	-	-	-	-	-	-	-	2	-
+dst_a0181	scene, event 724	セリフ監督	ヴァン３	requested by 乗っ取り00.g_cut03_ready	Vaan	2	This'll make a nice souvenir. Time to call it a day.	-	-	-	-	-	-	-	-	-	-	2	-
 dst_a0181	scene, event 724	イベント特殊効果画面_EV	だいじなものゲット	requested by トマト監視監督.main	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_1	-	-	-	-	1	-
 dst_a0181	scene, event 724	イベント特殊効果画面_EV	だいじなものゲット_FADE付	-	-	-	-	-	-	-	-	-	receives the item held in file_var_s0_1	-	-	-	-	1	-
 dst_a0181	scene, event 724	イベント特殊効果画面_EV	システムメッセージ表示	-	no name shown	3	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-

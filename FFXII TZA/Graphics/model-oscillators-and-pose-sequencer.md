@@ -89,7 +89,7 @@ the record's byte `+0x1A` for the entry to be switched at all.
   and calling `0x0040ED90` with 0. Either clears the nibble again when `+0x2A` bit `0x1` equals the high
   nibble of `+0x29`.
 - `0x003E0E70` and `0x003E1210` do the same for the group whose word `+0x2A >> 4` equals an id
-  (`0x0040DB00`, which returns `0xFFF` for none), and `0x003E1950(rig, on)` for every group whose state
+  (`0x0040DB00`, which returns `0xFFF` when no group matches), and `0x003E1950(rig, on)` for every group whose state
   differs.
 
 `0x0040ED90(record, entry, flag)` walks the entry's chains (count byte `+0x00`, `0x40` bytes a chain)
@@ -258,7 +258,7 @@ rectangle table:  +0 / +2 destination x, y; +4 / +6 width, height; +0x0E + 4v / 
 | `+0x0C` | `u32` | variant |  |
 | `+0x10` | `u8[8]` | active |  |
 | `+0x18` | `u8[8]` | re-pick |  |
-| `+0x20` | `u8[8]` | event (0xFF none) |  |
+| `+0x20` | `u8[8]` | event (0xFF no event) |  |
 | `+0x28` | `u8[8]` | choice |  |
 | `+0x30` | `u8[8]` | frame |  |
 | `+0x38` | `u8[8]` | ticks in the frame |  |
@@ -275,7 +275,7 @@ One row per function, 39 rows, in address order.
 | `address` | the function's start address |
 | `size` | its length in bytes, as the disassembly's function list gives it (equal on all 39 rows) |
 | `role` | what the function does in the oscillator and sequencer code, with the callers, callees and record fields that show it |
-| `evidence` | how much of the function the role rests on: `full body` (the whole body read, 5 rows, two with the size in bytes); `head + call shape`, `head + store map` or `head + body sketch` (the opening read, then its calls, its stores or an outline of the rest, 7 rows); `call-signature` (its calls and the fields it touches, 19 rows); `body read` (the body, at its call sites or as a section of this page describes it, 4 rows); `family member` (a member of the family `0x0036DD80`, 2 rows); `named` (by its function name, `0x001EDE70`); `non-function` (`0x00861F56`, a data row inside a math family) |
+| `evidence` | how much of the function the role rests on: `full body` (the whole body read, 7 rows, four with the size in bytes); `head + call shape` or `head + store map` (the opening read, then its calls or its stores, 7 rows, one also with the float constants it loads); `call-signature` (its calls and the fields it touches, 19 rows); `body read in full` with the size in bytes (3 rows) or `body read at call sites` (`0x00415EE0`); `named` (by its function name, `0x001EDE70`); `non-function` (`0x00861F56`, a data row inside a math family) |
 
 ## Shipped data
 
@@ -285,7 +285,7 @@ One row per function, 39 rows, in address order.
 | section 7 | in all 1,066 `.cm` blocks |
 | blocks with an enabled event | 67: 54 NPCs and 13 `chara` models; events 0, 1 and 2 in each, all on slot 0 |
 | choices per enabled event | 2 in 67, 3 in 122, 4 in 12 |
-| sequences | 548, of 1, 3, 4, 5 or 6 frames; none past its entry |
+| sequences | 548, of 1, 3, 4, 5 or 6 frames; no sequence past its entry |
 | durations | 1, 3, 10, 60 and 250 ticks; values 0 to 3 |
 | last frame's end action | stop 67, hold 414, loop 67 |
 | the NPC events (54 blocks) | event 0: snap to 0, 2→1→0 over three ticks each, or 0→2→0; event 1: snap to 2, or 0→1→2; event 2: wait 10, 60 or 250 ticks, then 0→2→0 one tick a step |

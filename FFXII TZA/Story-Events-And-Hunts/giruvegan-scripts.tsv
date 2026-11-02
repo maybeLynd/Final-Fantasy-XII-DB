@@ -925,11 +925,11 @@ gil_z01	Siti Bhrusuna (Giruvegan)	常駐監督	main	main	-	-	-	-	-	-	5000: After
 gil_z01	Siti Bhrusuna (Giruvegan)	choco_sum_ctrl	sumcho_byebye	requested by 常駐監督.main	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 gil_z01	Siti Bhrusuna (Giruvegan)	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 gil_a0100	scene, event 207	字幕	カット２	requested by カット.カット２	Ashe; Penelo; Fran; Vaan	1; 2; 3; 4; 5; 6	On the farthest shores of the river of time, shrouded deep in the roiling Mist. / What is it, Fran? / The Mist runs thick here. / Like on the Leviathan? / Do not worry. I will behave myself. / The Mist here is cooled.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_a0100	scene, event 207	字幕	カット３	requested by カット.カット３	-	7	I sense something like the shadow here.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_a0100	scene, event 207	字幕	カット４	requested by カット.カット４	-	8	Venat.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_a0100	scene, event 207	字幕	カット５	requested by カット.カット５	-	9; 10; 11	It appears Cid has yet to arrive. We'll lie in wait for him here. / So we're not going inside? / Not unless you want to end up twisted.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_a0100	scene, event 207	字幕	カット６	requested by カット.カット６	-	12; 13	Like the old man. / Something there?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_a0100	scene, event 207	字幕	カット８	requested by カット.カット８	-	14; 15	What is it? / She can see him. Let's follow her.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_a0100	scene, event 207	字幕	カット３	requested by カット.カット３	no name shown	7	I sense something like the shadow here.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_a0100	scene, event 207	字幕	カット４	requested by カット.カット４	no name shown	8	Venat.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_a0100	scene, event 207	字幕	カット５	requested by カット.カット５	no name shown	9; 10; 11	It appears Cid has yet to arrive. We'll lie in wait for him here. / So we're not going inside? / Not unless you want to end up twisted.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_a0100	scene, event 207	字幕	カット６	requested by カット.カット６	Balthier; no name shown	12; 13	Like the old man. / Something there?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_a0100	scene, event 207	字幕	カット８	requested by カット.カット８	no name shown	14; 15	What is it? / She can see him. Let's follow her.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_c0100	scene, event 208	MesDir	cut02a	requested by Director.main	Penelo	0	I can't shake the feeling we're somewhere we're not meant to be.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_c0100	scene, event 208	MesDir	cut02b	requested by Director.main	Vaan	1	Yeah, it's exciting.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_c0100	scene, event 208	MesDir	cut03a	requested by Director.main	Penelo	2	Exciting?	-	-	-	-	-	-	-	-	-	-	1	-
@@ -975,24 +975,24 @@ gil_h0101	scene, event 205	イベント特殊効果画面_EV	だいじなもの�
 gil_h0101	scene, event 205	イベント特殊効果画面_EV	システムメッセージ表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
 gil_h0101	scene, event 205	イベント特殊効果画面_EV	GET_GET_SYSMES表示_FADE付_音量復帰ナシ	-	no name shown	0	(empty string)	-	-	-	-	-	receives the item held in file_var_s10_1; receives the item held in file_var_s10_2	-	-	-	-	1	-
 gil_z0100	scene, event 206	Director	main	main	-	-	-	-	-	-	-	-	receives Treaty-Blade	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut01a	requested by Director.main	-	2	Where is everyone?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut01b	requested by Director.main	-	3; 4	Fear not, princess of Dalmasca. / We Occuria have chosen you, and you alone.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut07a	requested by Director.main	-	5; 6; 7; 8; 9	Ashelia B'nargin Dalmasca. / We see your heart desires power, and power most holy shall we grant. / Seek you the Sun-cryst, slumb'ring star. In tower on distant shore it dreams. / The mother of all nethicite, the source of its unending power. / The Dynast-King, his fallow shards, coarse trinkets cut from Sun-cryst's light.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut09a	requested by Director.main	-	10	Such power exists?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut10a	requested by Director.main	-	11; 12; 13	In times that are long passed away, we thought to save this Ivalice... / and chose Raithwall the Dynast-King. He took the sword and cut the Cryst. / Three Shards he took from its gilt grasp, and so became the Dynast-King. His words and deeds run through your veins.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut12a	requested by Director.main	-	14	That's why I was given it— the Sword of Kings.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut13a	requested by Director.main	-	15; 16	The treaty held with kings of old is but a mem'ry, cold and still. / With you we now shall treat anew, to cut a run for hist'ry's flow.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut13b	requested by Director.main	-	17; 18; 19	Now take this sword, this Treaty-Blade. Occurian seal, mark of your worth. / Cut deep the Cryst and seize your Shards. / Wield Dynast-King's power! Destroy Venat!	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut14a	requested by Director.main	-	20; 21	But Venat— / Venat is an Occurian. A being like you.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut15a	requested by Director.main	-	22	Venat is a heretic!	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut21a	requested by Director.main	-	23; 24; 25; 26; 27	The nethicite is ours to give, to chosen bearer or to none. / The heretic trespassed and set the rose of knowledge in Man's hand. / With imitations they profane, it is anathema to us. / We give you now the Stone and task. / Administer judgment: destroy them all!	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut26a	requested by Director.main	-	28	Judgment?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut27a	requested by Director.main	-	29	Destroy them all? The Empire?	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut28a	requested by Director.main	-	30; 31; 32	The humes ever skew hist'ry's weave. / With haste they move through too-short lives. / Driven to err by base desires, t'ward waste and wasting on they run.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut29a	requested by Director.main	-	33; 34	Undying, we Occuria light the path for wayward sons of Man. / Oft did we pass judgment on them so that Ivalice might endure.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut29b	requested by Director.main	-	35; 36; 37	Eternal, we are hist'ry's stewards, to set the course and keep it true. / The chosen is our hand, our fist, to let live some and crush the rest. / Princess, you have been chosen.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut30a	requested by Director.main	-	38	Take revenge against those who stole your kingdom. Fulfil your role as savior.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut31a	requested by Director.main	-	39	Attain to your birthright!	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut01a	requested by Director.main	Ashe	2	Where is everyone?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut01b	requested by Director.main	Gelen (script label)	3; 4	Fear not, princess of Dalmasca. / We Occuria have chosen you, and you alone.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut07a	requested by Director.main	Gelen (script label)	5; 6; 7; 8; 9	Ashelia B'nargin Dalmasca. / We see your heart desires power, and power most holy shall we grant. / Seek you the Sun-cryst, slumb'ring star. In tower on distant shore it dreams. / The mother of all nethicite, the source of its unending power. / The Dynast-King, his fallow shards, coarse trinkets cut from Sun-cryst's light.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut09a	requested by Director.main	Ashe	10	Such power exists?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut10a	requested by Director.main	Gelen (script label)	11; 12; 13	In times that are long passed away, we thought to save this Ivalice... / and chose Raithwall the Dynast-King. He took the sword and cut the Cryst. / Three Shards he took from its gilt grasp, and so became the Dynast-King. His words and deeds run through your veins.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut12a	requested by Director.main	Ashe	14	That's why I was given it— the Sword of Kings.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut13a	requested by Director.main	Gelen (script label)	15; 16	The treaty held with kings of old is but a mem'ry, cold and still. / With you we now shall treat anew, to cut a run for hist'ry's flow.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut13b	requested by Director.main	Gelen (script label)	17; 18; 19	Now take this sword, this Treaty-Blade. Occurian seal, mark of your worth. / Cut deep the Cryst and seize your Shards. / Wield Dynast-King's power! Destroy Venat!	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut14a	requested by Director.main	Ashe	20; 21	But Venat— / Venat is an Occurian. A being like you.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut15a	requested by Director.main	Gelen (script label)	22	Venat is a heretic!	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut21a	requested by Director.main	Gelen (script label)	23; 24; 25; 26; 27	The nethicite is ours to give, to chosen bearer or to none. / The heretic trespassed and set the rose of knowledge in Man's hand. / With imitations they profane, it is anathema to us. / We give you now the Stone and task. / Administer judgment: destroy them all!	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut26a	requested by Director.main	no name shown	28	Judgment?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut27a	requested by Director.main	Ashe	29	Destroy them all? The Empire?	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut28a	requested by Director.main	Gelen (script label)	30; 31; 32	The humes ever skew hist'ry's weave. / With haste they move through too-short lives. / Driven to err by base desires, t'ward waste and wasting on they run.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut29a	requested by Director.main	Gelen (script label)	33; 34	Undying, we Occuria light the path for wayward sons of Man. / Oft did we pass judgment on them so that Ivalice might endure.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut29b	requested by Director.main	Gelen (script label)	35; 36; 37	Eternal, we are hist'ry's stewards, to set the course and keep it true. / The chosen is our hand, our fist, to let live some and crush the rest. / Princess, you have been chosen.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut30a	requested by Director.main	Gelen (script label)	38	Take revenge against those who stole your kingdom. Fulfil your role as savior.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut31a	requested by Director.main	Gelen (script label)	39	Attain to your birthright!	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut32a	requested by Director.main	Vaan	40	Ashe!	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut34a	requested by Director.main	Vaan; Fran	41; 42	What's with these Occuria? What gives them the right to tell you what to do? / Will you take revenge, as they ask?	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut35a	requested by Director.main	Basch	43; 44; 45; 46	We could not see them, but we heard the Occuria speak. / They may be gods, but we are the arbiters of our destiny. / Your Highness, I am against this. / The Empire must pay, but destruction?	-	-	-	-	-	-	-	-	-	-	1	-
@@ -1001,7 +1001,7 @@ gil_z0100	scene, event 206	MesDir	cut37a	requested by Director.main	Basch; Balth
 gil_z0100	scene, event 206	MesDir	cut38a	requested by Director.main	Balthier	52; 53	He's not coming. / He laid out the bait, and we bit.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut39a	requested by Director.main	Balthier	54; 55; 56; 57; 58	Remember what he said? / He wanted Ashe to get the stone. / He wanted that all along. / That's why he flaunted his nethicite, and reeled us in with his stories about Giruvegan. / All to bring Ashe to the Occuria.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut40a	requested by Director.main	Penelo; Balthier	59; 60; 61	But wait—if we got a hold of the nethicite, wouldn't that be bad for the Empire? / Maybe he wants to see what happens when foes with nethicite collide? / That'd be just like Doctor Cid.	-	-	-	-	-	-	-	-	-	-	1	-
-gil_z0100	scene, event 206	MesDir	cut41a	requested by Director.main	-	62	I will search out the Sun-cryst.	-	-	-	-	-	-	-	-	-	-	1	-
+gil_z0100	scene, event 206	MesDir	cut41a	requested by Director.main	Ashe	62	I will search out the Sun-cryst.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut42a	requested by Director.main	Balthier	63; 64	"""History is built by our hands."" That's his favorite line. / He'd never stand by and watch the Occuria's Stones shape things."	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	MesDir	cut43a	requested by Director.main	Balthier	65; 66; 67	So... / he was talking to Venat all along. / He wasn't mad at all then, was he.	-	-	-	-	-	-	-	-	-	-	1	-
 gil_z0100	scene, event 206	movieSkip監督	Skip監視	requested by Director.main	no name shown	68	Skip	-	-	-	-	-	-	-	-	-	-	1	-

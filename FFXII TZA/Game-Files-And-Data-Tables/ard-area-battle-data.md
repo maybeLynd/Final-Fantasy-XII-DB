@@ -209,7 +209,7 @@ Only `+0x2C` and the trailer offset `+0x0C` of this block are read; its `st2e` s
 2. the area's slot 7 (`0x02B58178`), matching model, motion and weapon class;
 3. the table `0x02B58180` installed with the second area root (`0x003DCF10`).
 
-The first match gives the file index; none gives −1.
+The first match gives the file index; no match gives −1.
 
 ### Preloading the trailer's models
 

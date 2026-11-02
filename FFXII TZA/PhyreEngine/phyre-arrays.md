@@ -40,7 +40,7 @@ The registrations of `PSharray<PUInt32>` (`0x005EFD0A`), `PSharray<PDataBlockBuf
 layer reads as "measured and defaulted inline".
 
 Element access follows from this. `0x006045B0` returns the pointer at `+0x08` of a `PArray`; `0x0063B9B0` returns the
-address of `+0x08` itself for a `PSharray` holding one element, null for none, and the stored pointer
+address of `+0x08` itself for a `PSharray` holding one element, null for no element, and the stored pointer
 otherwise.
 
 ### The ownership bit

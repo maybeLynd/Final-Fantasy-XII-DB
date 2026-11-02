@@ -63,8 +63,8 @@ for one pad.
 All three constructors call the base `0x00792940`, which links the object into the list `0x01F401E8` and zeroes
 `0x244` bytes at `+0x1D0` (`0x00792A89`-`0x00792A96`). The DirectInput and XInput constructors then copy the listed
 device's description, `0x244` bytes, into `+0x1D0` (`0x00792AD7`-`0x00792AF1`, `0x00792CF4`-`0x00792D11`), so its instance
-GUID is at `+0x1D4`, the field step 2 compares. The Steam constructor `0x00792B70` copies none, so a Steam controller
-holds no GUID. The XInput controller adds its user index at `+0x458` (`0x00792CB0`).
+GUID is at `+0x1D4`, the field step 2 compares. The Steam constructor `0x00792B70` copies no description, so a Steam
+controller holds no GUID. The XInput controller adds its user index at `+0x458` (`0x00792CB0`).
 
 The base also builds four
 `0x48`-byte entries at `+0xB0` with `0x00792D90` (`0x007929BD`), which points each entry's two links at itself and sets

@@ -33,7 +33,7 @@ The reader and the writer both use that one path.
 
 1. It clears the three profiles, `0x150` bytes at `0x01F80F90`.
 2. It builds the path and reads the file into the profiles (`0x00198000`).
-3. It checks that no code repeats and none is reserved (`0x00196550`), and that profile 1 is filled with legal codes
+3. It checks that no code repeats and no code is reserved (`0x00196550`), and that profile 1 is filled with legal codes
    (`0x001965E0`).
 4. When both checks pass it publishes what was read (`0x00195DF0`); otherwise it installs the shipped defaults over it
    (`0x00198B60`).
@@ -68,7 +68,7 @@ line by line, at most 127 characters each:
 2. A line whose characters 2-9 are `Keyboard` is a header: the number before `]` minus one becomes the profile. The
    first character can be anything, and a header without `]` ends the read.
 3. A line with `=` is a binding: the name before it is compared case-insensitively with all 28 names, and a match
-   stores the number after it in that slot of the current profile; a name that matches none changes nothing.
+   stores the number after it in that slot of the current profile; a name without a match changes nothing.
 4. Any other line ends the read, keeping what was read before it (`0x00198278`, `0x00198387`).
 
 A value or profile number with no digits, or one too large for an `i32`, stops the game: `wcstol` (`0x00198328`,

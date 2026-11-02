@@ -79,4 +79,4 @@ zone	map_name	region	script	number	kind	key_item	destination	reached	x	y	z	facin
 1105	Reach of the Occult	Pharos - Second Ascent	rbl_a05.ebp	0	save crystal	-	-	yes	85.0	0.0	107.0	1.021
 1143	Empyrean Ravel	Pharos - Third Ascent	rbl_q01.ebp	0	save crystal	-	-	yes	54.0	96.2	70.0	0.000
 1151	Babbling Vale	Mosphoran Highwaste	mnt_d01.ebp	28	gate crystal	0x8059 Mosphoran Highwaste	field 1151 entrance 7 (Babbling Vale)	yes	49.4	-20.0	86.0	0.000
-none	-	-	mic_b07.ebp	0	save crystal	-	-	no: no resource-kind 5 path names the script, so no zone loads it	37.9	-0.0	21.9	0.000
+-	-	-	mic_b07.ebp	0	save crystal	-	-	no: no resource-kind 5 path names the script, so no zone loads it	37.9	-0.0	21.9	0.000

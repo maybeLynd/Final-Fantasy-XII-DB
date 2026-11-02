@@ -76,7 +76,7 @@ family 0 table.
 ### Moving the group into summon space and back
 
 Each actor keeps a pose snapshot at `+0xED0` of the record its `+0x30` points to (`0x00359B80`, null
-when there is none). `duplicatebattletarget` (`0x0194`, `0x003475D0` → `0x003B7440`) fills it for the
+when there is no record). `duplicatebattletarget` (`0x0194`, `0x003475D0` → `0x003B7440`) fills it for the
 leader (`0x003B73B0`) and for every non-null slot of the requested count: the position
 (`0x00265020`), the three floats at body `+0x20` (`0x00265240`), the heading (`0x00265200`, body
 `+0xA8`), the movement heading (`0x00263CC0`, body `+0xA4`) and the presentation byte `+0x13`
@@ -151,7 +151,7 @@ re-applies the render scale; the owner copies the member's body pointers (`+0xC0
 `captureactor` (`0x0366`, `0x00354E10`) captures by name. It reads the issuer's own entry name
 (`0x00263A30(manager, ordinal)`: payload plus its `+0x4C` dword plus the first int of the entry's
 `+0x40` record,
-`"NOACTOR"` when there is none) and has `0x00358800(0, name)` search manager 0's ordinal window for
+`"NOACTOR"` when there is no entry) and has `0x00358800(0, name)` search manager 0's ordinal window for
 an entry with the same name, returning its actor from the table at manager `+8`.
 
 When one is found and it is not the issuer, `0x00262F50(issuer, found)` binds them, so a scene's

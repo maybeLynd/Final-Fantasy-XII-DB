@@ -101,7 +101,7 @@ order](frame-update-order.md)).
 
 The records each id builds, read as the categories each set stops (F the party leader, P the
 other roster entries, T127 / T3 / T0 the three type classes, R the request's actor, H the handle
-list; "all" is every category and "-" none):
+list; "all" is every category and "-" no category):
 
 | Id | Flag | A | B | Managers | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -178,9 +178,9 @@ folds them (`live |= set; live &= ~clear;` both zeroed) and fires the set's hook
 | Set | Live | Pending set / clear | On change | What the live set stops |
 |---|---|---|---|---|
 | 1 | battle unit `+0x40` (`0x00359B80`: `[record + 0x30] + 0xED0`) | `+0x54` / `+0x60` | becoming non-zero: `0x0026D6D0` → `0x0026D6F0(actor, 0.0, 2)`, the movement speed written to 0 | movement |
-| 2 | record `+0x10C` | `+0x110` / `+0x114` | none | the actor's per-step tail in the drive pass `0x0025DF00`: the animation-driven step `0x003E6EF0`, the mode word `0x002681E0`, the movement step `0x002E5030` and the facing integrator `0x002E5750` run only when the set is 0 and byte `+0x13` bit `0x1` is clear, or byte `+0x0B` bit `0x20` is set; otherwise `0x002E6310` runs instead; the interpreter refuses at `0x0025E524` and `0x00264DF0` refuses the stick |
+| 2 | record `+0x10C` | `+0x110` / `+0x114` | no hook | the actor's per-step tail in the drive pass `0x0025DF00`: the animation-driven step `0x003E6EF0`, the mode word `0x002681E0`, the movement step `0x002E5030` and the facing integrator `0x002E5750` run only when the set is 0 and byte `+0x13` bit `0x1` is clear, or byte `+0x0B` bit `0x20` is set; otherwise `0x002E6310` runs instead; the interpreter refuses at `0x0025E524` and `0x00264DF0` refuses the stick |
 | 3 | controller `[record + 0xC0] + 0x170` | `+0x174` / `+0x178` | `0x002E92F0`: `0x00428FE0(render record, 0x00264DC0(actor) = 0)`, which writes `+0x304` bit `0x10` and queues `+0x290` bit `0x4000000` or `0x8000000` | the additive motions of the character |
-| 4 | controller `+0x164` | `+0x168` / `+0x16C` | none | presence: `0x002E9FE0` and `0x002E7E90` treat a kind-3 actor with a non-zero set as absent |
+| 4 | controller `+0x164` | `+0x168` / `+0x16C` | no hook | presence: `0x002E9FE0` and `0x002E7E90` treat a kind-3 actor with a non-zero set as absent |
 | 5 | controller `+0x158` | `+0x15C` / `+0x160` | `0x002269A0` appends the actor's id to the manager's list `+0x1F0` (count `+0x1F8`) | the fade (below) |
 | 6 | battle unit `+0x44` | `+0x4C` / `+0x58` | `0x00238B40(actor, live ≠ 0 or record byte `+9` bit 0x20)` → battle unit `+4` bit `0x20` (`0x0031B760`) | the unit's stop flag |
 | 7 | battle unit `+0x48` | `+0x50` / `+0x5C` | `0x00312130(actor, live = 0 and that bit clear)` → unit flag bit `0x1000000000` set while stopped | the unit's flag word |
@@ -265,7 +265,7 @@ Record B:
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u64` |  | permission bits |
-| `+0x10` | `i32` |  | fade (-1 none; 0 before the first apply) |
+| `+0x10` | `i32` |  | fade (-1 no fade; 0 before the first apply) |
 | `+0x14` | `u8` | flag |  |
 
 Record (actor):

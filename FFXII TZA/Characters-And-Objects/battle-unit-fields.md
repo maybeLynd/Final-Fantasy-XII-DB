@@ -46,7 +46,7 @@ seven test the pointer for null and the rest are in the table.
 | `+0x778` | 520 | the target buffer (below) | [target selection](../Battle-Actions/target-selection.md) |
 | `+0xBA0` | 2 | the issued command's action id | [party member status record](party-member-status-record.md) |
 | `+0xBC4`, `+0xBC8` | 4 + `0x200` | the perception candidate cache: count, then 16-byte entries | [enmity](../Enemy-AI-And-Gambits/enmity.md) |
-| `+0xDC8` | 2 | the reserved consumed item, `0xFFFF` when none | [command availability](../Battle-Actions/command-availability.md) |
+| `+0xDC8` | 2 | the reserved consumed item, `0xFFFF` when no item is reserved | [command availability](../Battle-Actions/command-availability.md) |
 | `+0xE54`, `+0xE58` | 8 | the gil the preview computed and the reserved gil cost | [command availability](../Battle-Actions/command-availability.md) |
 | `+0xE60` | 8 | the definition row | [steal](../Damage-And-Battle-Formulas/steal.md) |
 | `+0xE68` | 8 | the class row the status record reads `+0x52` and `+0x12` bit `0x80` from | [party member status record](party-member-status-record.md) |
@@ -89,7 +89,7 @@ seven test the pointer for null and the rest are in the table.
 | Column | Meaning |
 |---|---|
 | `function` | the function containing the instruction |
-| `name` | the name the scan carried for that function; blank or `FUN_` when none was assigned |
+| `name` | the name the scan carried for that function; blank or `FUN_` when no name was assigned |
 | `site` | the instruction's address |
 | `disp` | the unit offset reached |
 | `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on, `set` a clear over the span the instruction cell gives |

@@ -30,7 +30,7 @@ It stops at once, running nothing below, when (`0x00310DCB`-`0x00310E1B`):
 
 For a party-side unit (stats `+0x05` = 0) the `+0x24` value is `0x003271E0()`: the id `+0x08` of the
 unit that `0x00327150` finds, the slot unit whose stats record is entry `[[0x02EBF190] + 0x5AA4]` (0 to 39)
-of the records at `[0x02EBF190] + 8`, or 0 when there is none (`0x00305E70`-`0x00305E97`,
+of the records at `[0x02EBF190] + 8`, or 0 when there is no such unit (`0x00305E70`-`0x00305E97`,
 `0x00327150`-`0x003271BF`, `0x003271E0`).
 
 A summoned Esper at 0 HP or below (a signed 32-bit test, `0x00310E5B`-`0x00310E5F`), or whose summoner is gone or

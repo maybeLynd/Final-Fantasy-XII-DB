@@ -30,11 +30,11 @@ no entry. The lookup:
 
 1. kinds 6 and 9 go to the global table reader `0x003DFAC0`; every other kind is mapped by
    `0x00264E40` to a list number: kinds 0, 1 and 2 to list 0, kind 3 to list 2, kind 4 to list 1,
-   kind 5 to list 3, kind 8 to list 4, any other kind to none;
+   kind 5 to list 3, kind 8 to list 4, any other kind to no list;
 2. `0x002649B0(list, index)` reads the list from the primary manager's payload: `0x00264AE0(list)`
    returns section `list` of the table at payload `+[0x70]` when slot 0's flag bit `0x1` is set;
 3. the section holds a count at `+0x00` and entries of `0x20` bytes from `+0x10`; an index at or
-   above the count gives none, and for lists 0 and 1 the entry's byte `+0x1C` must have bit
+   above the count gives no entry, and for lists 0 and 1 the entry's byte `+0x1C` must have bit
    `[0x02ADD0E8]` (`0x00377860`) set.
 
 The script keeps the number as the crystal's kind: 0 is a save crystal, 255 is the save crystal

@@ -245,7 +245,7 @@ A first-pool shadow slot (`0xE0` bytes, 160 at `[0x02B40528]`), the ramp fields:
 | `+0x9C` | `f32` |  | its step |
 | `+0xC0` | `f32[6]` |  | the values last built |
 
-`0x003B56D0` takes the first of the 160 slots whose `+0x40` bit `0x1` is clear and returns 0 when none is free
+`0x003B56D0` takes the first of the 160 slots whose `+0x40` bit `0x1` is clear and returns 0 when no slot is free
 (`0x003B56F0`-`0x003B5707`); it gives the slot the next generation from `0x02B40520`, wrapping to 1 above `0xFFFFFF`
 (`0x003B5719`-`0x003B5744`), and stores `generation << 8 | slot` at `+0x10` (`0x003B574A`-`0x003B5756`). `0x003B6890` sets
 the generation to 0 when it allocates or resets the pool (`0x003B68C9`-`0x003B68CB`).

@@ -150,8 +150,8 @@ fetches the manager with `0x00210B30` and calls one method:
 A request that two families can own asks the block controller first and the six-digit one only when no block bank
 takes it (`0x00210CD0`, `0x00210E10`). The six-digit stop `0x0021A100` stops every sound of
 the bank with that id, of every bank for -1 and -3, and runs bank slot 1 on every bank for -4 (`0x00223300`). `0x00210710`, called by both starts, runs bank slot 6 over every six-digit bank and,
-when none answered, over every block bank (`0x0021B0D0`, slot 2 of both controllers' vtables `0x00907BA8` and `0x00907DE0`); the block bank's slot 6 is `0x002238F0`, the one-at-a-time fade
-of flag bit `0x40`.
+when no bank answered, over every block bank (`0x0021B0D0`, slot 2 of both controllers' vtables `0x00907BA8` and
+`0x00907DE0`); the block bank's slot 6 is `0x002238F0`, the one-at-a-time fade of flag bit `0x40`.
 
 ### Load ids
 
@@ -176,7 +176,7 @@ The `AudioFileLoadManager` object, `0x158` bytes at `0x01FD36A8`, reads bank fil
    named `AudioFileLoadManager`.
 2. `0x002120E0` takes a free record and `0x002121C0` queues it, or runs it at once.
 3. The thread `0x00212600` takes the request at the tail of the queue, the one queued last, or sleeps 1 ms when there
-   is none.
+   is no request.
 4. `0x00212050` runs it: kind 1 reads the whole file named at `+0x20` into a new buffer (`0x00212260`), then the record's
    callback runs and the record goes back to the free set.
 5. A bank's callback `0x00222200` calls bank slot 8 when the bank is still loading (`+0x30` = 1). Otherwise it cancels

@@ -55,7 +55,7 @@ The row layout:
 
 - `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), with the map (region) whose script gives an actor that shop (`setshopname`, the `place` column), and when the list that holds it goes on sale:
   - from the start;
-  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or, where no script writes the value, with the first written value that meets it, which is so for 500: "from story progress 500 (met from 520, After the floating continent)" (below);
+  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or, where no story script writes the value, with the first written value that meets it, which is so for 500: "from story progress 500 (met from 520, After the floating continent)" (below);
   - from a clan rank, with the rank's shipped name;
   - for the Clan Provisioner's last list, from joining Clan Centurio (below).
 - `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
@@ -77,7 +77,7 @@ The row layout:
 - `hunt reward:` the hunt whose report gives it, with the package and the map (region) and script that report it ([Hunts](../Story-Events-And-Hunts/hunts.md), [Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)):
   - the script verb `questresultwindow(n)` opens the reward window for quest n and grants at once the package its selector names ([Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md));
   - the selector is `0xA000` + the text index of entry n of `questbase.bin` (`0x00344C60`, `0x00473C90`), which is n for the 45 hunts, quest ids 128-172 ([Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md));
-  - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; none is.
+  - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; no package is.
 - `first join:` the members whose first join adds it, with the count when it is above 1 ([Party table](../Party/party-table.md)).
 
 A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
@@ -107,7 +107,7 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |
 | `explanation` | a one-line summary built from the row and its action |
-| `sources` | where the item is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over and the hunt reward, the treasure chests that hold it with the odds ("Where each item comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` for none |
+| `sources` | where the item is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over and the hunt reward, the treasure chests that hold it with the odds ("Where each item comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` when the item has no source |
 
 ## Related
 

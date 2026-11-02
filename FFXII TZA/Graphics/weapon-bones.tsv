@@ -1,328 +1,328 @@
 bound_id	name	cm	categories	equipment	ftr_nodes	keys	j_blade	n_grip	special_bones_0_31	special_bones_104_106	note
-0x00770000	weapon/w2002	PS2Data\obj_finish\in\weapon\w2002.cm	Dagger (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770001	weapon/w2202	PS2Data\obj_finish\in\weapon\w2202.cm	Mace (1H)	Bonebreaker, NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770002	weapon/w2203	PS2Data\obj_finish\in\weapon\w2203.cm	Mace (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770003	weapon/w2204	PS2Data\obj_finish\in\weapon\w2204.cm	Mace (1H)	Bone of Byblos, NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770004	weapon/w2302	PS2Data\obj_finish\in\weapon\w2302.cm	Mace (1H)	NOT USED	4	0x1D 0x66C 0x66D 0x66E	no	no	none	0x106: 0	
-0x00770005	weapon/w4001	PS2Data\obj_finish\in\weapon\w4001.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770006	weapon/w2101	PS2Data\obj_finish\in\weapon\w2101.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770007	weapon/w3001	PS2Data\obj_finish\in\weapon\w3001.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770008	weapon/w6101	PS2Data\obj_finish\in\weapon\w6101.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770009	weapon/w6001	PS2Data\obj_finish\in\weapon\w6001.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077000A	weapon/w5001	PS2Data\obj_finish\in\weapon\w5001.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077000B	weapon/w0001	PS2Data\obj_finish\in\weapon\w0001.cm	none		2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077000C	weapon/w0002	PS2Data\obj_finish\in\weapon\w0002.cm	none		2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077000D	weapon/w0003	PS2Data\obj_finish\in\weapon\w0003.cm	none		2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077000E	weapon/w5003	PS2Data\obj_finish\in\weapon\w5003.cm	Spear (2H)	NOT USED, Reserve	16	0x1D 0x656 0x658 0x657 0x18BC 0x18BD 0x18B4 0x18B5 0x18BA 0x18BB 0x18B6 0x18B7 0x18BE 0x18BF 0x18B8 0x18B9	no	yes	none	0x105: 1; 0x106: 0	
-0x0077000F	weapon/w2102	PS2Data\obj_finish\in\weapon\w2102.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770010	weapon/w2103	PS2Data\obj_finish\in\weapon\w2103.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770011	weapon/w4002	PS2Data\obj_finish\in\weapon\w4002.cm	Sword (2H)	NOT USED	4	0x1D 0x656 0x1B09 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770012	weapon/w4003	PS2Data\obj_finish\in\weapon\w4003.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770013	weapon/w7002	PS2Data\obj_finish\in\weapon\w7002.cm	none		5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770014	weapon/w5019	PS2Data\obj_finish\in\weapon\w5019.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770015	weapon/w7102	PS2Data\obj_finish\in\weapon\w7102.cm	Arrows	Onion Arrows	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770016	weapon/w2105	PS2Data\obj_finish\in\weapon\w2105.cm	Sword (1H)	Broadsword, Flimsy Blade, NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770017	weapon/w2125	PS2Data\obj_finish\in\weapon\w2125.cm	Sword (1H)	Longsword	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770018	weapon/w6108	PS2Data\obj_finish\in\weapon\w6108.cm	Staff (2H)	Golden Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770019	weapon/w0004	PS2Data\obj_finish\in\weapon\w0004.cm	none		2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077001A	weapon/w6109	PS2Data\obj_finish\in\weapon\w6109.cm	Staff (2H)	Judicer's Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077001B	weapon/w0005	PS2Data\obj_finish\in\weapon\w0005.cm	Shield	Leather Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077001C	weapon/w0006	PS2Data\obj_finish\in\weapon\w0006.cm	Shield	Buckler	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077001D	weapon/w0007	PS2Data\obj_finish\in\weapon\w0007.cm	Shield	Bronze Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077001E	weapon/w0008	PS2Data\obj_finish\in\weapon\w0008.cm	Shield	Round Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077001F	weapon/w0009	PS2Data\obj_finish\in\weapon\w0009.cm	Shield	Shell Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770020	weapon/w2110	PS2Data\obj_finish\in\weapon\w2110.cm	Sword (1H)	Flametongue	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770021	weapon/w2111	PS2Data\obj_finish\in\weapon\w2111.cm	Sword (1H)	Demonsbane	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770022	weapon/w2112	PS2Data\obj_finish\in\weapon\w2112.cm	Sword (1H)	Icebrand	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770023	weapon/w2113	PS2Data\obj_finish\in\weapon\w2113.cm	Sword (1H)	Platinum Sword	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770024	weapon/w2114	PS2Data\obj_finish\in\weapon\w2114.cm	Sword (1H)	Bastard Sword	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770025	weapon/w2115	PS2Data\obj_finish\in\weapon\w2115.cm	Sword (1H)	Diamond Sword	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770026	weapon/w4004	PS2Data\obj_finish\in\weapon\w4004.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770027	weapon/w2116	PS2Data\obj_finish\in\weapon\w2116.cm	Sword (1H)	Runeblade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770028	weapon/w2117	PS2Data\obj_finish\in\weapon\w2117.cm	Sword (1H)	Deathbringer	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770029	weapon/w4005	PS2Data\obj_finish\in\weapon\w4005.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077002A	weapon/w2402	PS2Data\obj_finish\in\weapon\w2402.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077002B	weapon/w2118	PS2Data\obj_finish\in\weapon\w2118.cm	Sword (1H)	Stoneblade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077002C	weapon/w4006	PS2Data\obj_finish\in\weapon\w4006.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077002D	weapon/w2119	PS2Data\obj_finish\in\weapon\w2119.cm	Sword (1H)	Durandal, Simha	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077002E	weapon/w4007	PS2Data\obj_finish\in\weapon\w4007.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077002F	weapon/w2403	PS2Data\obj_finish\in\weapon\w2403.cm	none		4	0x1D 0x656 0x657 0x658	no	yes	none	0x105: 1; 0x106: 0	
-0x00770030	weapon/w4008	PS2Data\obj_finish\in\weapon\w4008.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770031	weapon/w4009	PS2Data\obj_finish\in\weapon\w4009.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770032	weapon/w6110	PS2Data\obj_finish\in\weapon\w6110.cm	Staff (2H)	Cloud Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770033	weapon/w6111	PS2Data\obj_finish\in\weapon\w6111.cm	Staff (2H)	Staff of the Magi	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770034	weapon/w8001	PS2Data\obj_finish\in\weapon\w8001.cm	none		5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	none	0x105: 1; 0x106: 0	
-0x00770035	weapon/w0010	PS2Data\obj_finish\in\weapon\w0010.cm	Shield	Golden Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770036	weapon/w0011	PS2Data\obj_finish\in\weapon\w0011.cm	Shield	Ice Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770037	weapon/w0012	PS2Data\obj_finish\in\weapon\w0012.cm	Shield	Flame Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770038	weapon/w0013	PS2Data\obj_finish\in\weapon\w0013.cm	Shield	Diamond Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770039	weapon/w0014	PS2Data\obj_finish\in\weapon\w0014.cm	Shield	Platinum Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077003A	weapon/w0015	PS2Data\obj_finish\in\weapon\w0015.cm	Shield	Dragon Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077003B	weapon/w0016	PS2Data\obj_finish\in\weapon\w0016.cm	Shield	Crystal Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077003C	weapon/w0017	PS2Data\obj_finish\in\weapon\w0017.cm	Shield	Genji Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077003D	weapon/w0018	PS2Data\obj_finish\in\weapon\w0018.cm	Shield	Kaiser Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077003E	weapon/w0019	PS2Data\obj_finish\in\weapon\w0019.cm	Shield	Aegis Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077003F	weapon/w2120	PS2Data\obj_finish\in\weapon\w2120.cm	Sword (1H)	Mythril Sword, NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770040	weapon/w2121	PS2Data\obj_finish\in\weapon\w2121.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770041	weapon/w2122	PS2Data\obj_finish\in\weapon\w2122.cm	Sword (1H)	Mythril Blade, NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770042	weapon/w4010	PS2Data\obj_finish\in\weapon\w4010.cm	Sword (1H)	NOT USED	4	0x1D 0x656 0x1B09 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770043	weapon/w2123	PS2Data\obj_finish\in\weapon\w2123.cm	none								not shipped
+0x00770000	weapon/w2002	PS2Data\obj_finish\in\weapon\w2002.cm	Dagger (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770001	weapon/w2202	PS2Data\obj_finish\in\weapon\w2202.cm	Mace (1H)	Bonebreaker, NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770002	weapon/w2203	PS2Data\obj_finish\in\weapon\w2203.cm	Mace (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770003	weapon/w2204	PS2Data\obj_finish\in\weapon\w2204.cm	Mace (1H)	Bone of Byblos, NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770004	weapon/w2302	PS2Data\obj_finish\in\weapon\w2302.cm	Mace (1H)	NOT USED	4	0x1D 0x66C 0x66D 0x66E	no	no	-	0x106: 0	
+0x00770005	weapon/w4001	PS2Data\obj_finish\in\weapon\w4001.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770006	weapon/w2101	PS2Data\obj_finish\in\weapon\w2101.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770007	weapon/w3001	PS2Data\obj_finish\in\weapon\w3001.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770008	weapon/w6101	PS2Data\obj_finish\in\weapon\w6101.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770009	weapon/w6001	PS2Data\obj_finish\in\weapon\w6001.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077000A	weapon/w5001	PS2Data\obj_finish\in\weapon\w5001.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077000B	weapon/w0001	PS2Data\obj_finish\in\weapon\w0001.cm	-		2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077000C	weapon/w0002	PS2Data\obj_finish\in\weapon\w0002.cm	-		2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077000D	weapon/w0003	PS2Data\obj_finish\in\weapon\w0003.cm	-		2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077000E	weapon/w5003	PS2Data\obj_finish\in\weapon\w5003.cm	Spear (2H)	NOT USED, Reserve	16	0x1D 0x656 0x658 0x657 0x18BC 0x18BD 0x18B4 0x18B5 0x18BA 0x18BB 0x18B6 0x18B7 0x18BE 0x18BF 0x18B8 0x18B9	no	yes	-	0x105: 1; 0x106: 0	
+0x0077000F	weapon/w2102	PS2Data\obj_finish\in\weapon\w2102.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770010	weapon/w2103	PS2Data\obj_finish\in\weapon\w2103.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770011	weapon/w4002	PS2Data\obj_finish\in\weapon\w4002.cm	Sword (2H)	NOT USED	4	0x1D 0x656 0x1B09 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770012	weapon/w4003	PS2Data\obj_finish\in\weapon\w4003.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770013	weapon/w7002	PS2Data\obj_finish\in\weapon\w7002.cm	-		5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
+0x00770014	weapon/w5019	PS2Data\obj_finish\in\weapon\w5019.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770015	weapon/w7102	PS2Data\obj_finish\in\weapon\w7102.cm	Arrows	Onion Arrows	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770016	weapon/w2105	PS2Data\obj_finish\in\weapon\w2105.cm	Sword (1H)	Broadsword, Flimsy Blade, NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770017	weapon/w2125	PS2Data\obj_finish\in\weapon\w2125.cm	Sword (1H)	Longsword	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770018	weapon/w6108	PS2Data\obj_finish\in\weapon\w6108.cm	Staff (2H)	Golden Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770019	weapon/w0004	PS2Data\obj_finish\in\weapon\w0004.cm	-		2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077001A	weapon/w6109	PS2Data\obj_finish\in\weapon\w6109.cm	Staff (2H)	Judicer's Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077001B	weapon/w0005	PS2Data\obj_finish\in\weapon\w0005.cm	Shield	Leather Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077001C	weapon/w0006	PS2Data\obj_finish\in\weapon\w0006.cm	Shield	Buckler	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077001D	weapon/w0007	PS2Data\obj_finish\in\weapon\w0007.cm	Shield	Bronze Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077001E	weapon/w0008	PS2Data\obj_finish\in\weapon\w0008.cm	Shield	Round Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077001F	weapon/w0009	PS2Data\obj_finish\in\weapon\w0009.cm	Shield	Shell Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770020	weapon/w2110	PS2Data\obj_finish\in\weapon\w2110.cm	Sword (1H)	Flametongue	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770021	weapon/w2111	PS2Data\obj_finish\in\weapon\w2111.cm	Sword (1H)	Demonsbane	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770022	weapon/w2112	PS2Data\obj_finish\in\weapon\w2112.cm	Sword (1H)	Icebrand	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770023	weapon/w2113	PS2Data\obj_finish\in\weapon\w2113.cm	Sword (1H)	Platinum Sword	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770024	weapon/w2114	PS2Data\obj_finish\in\weapon\w2114.cm	Sword (1H)	Bastard Sword	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770025	weapon/w2115	PS2Data\obj_finish\in\weapon\w2115.cm	Sword (1H)	Diamond Sword	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770026	weapon/w4004	PS2Data\obj_finish\in\weapon\w4004.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770027	weapon/w2116	PS2Data\obj_finish\in\weapon\w2116.cm	Sword (1H)	Runeblade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770028	weapon/w2117	PS2Data\obj_finish\in\weapon\w2117.cm	Sword (1H)	Deathbringer	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770029	weapon/w4005	PS2Data\obj_finish\in\weapon\w4005.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077002A	weapon/w2402	PS2Data\obj_finish\in\weapon\w2402.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077002B	weapon/w2118	PS2Data\obj_finish\in\weapon\w2118.cm	Sword (1H)	Stoneblade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077002C	weapon/w4006	PS2Data\obj_finish\in\weapon\w4006.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077002D	weapon/w2119	PS2Data\obj_finish\in\weapon\w2119.cm	Sword (1H)	Durandal, Simha	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077002E	weapon/w4007	PS2Data\obj_finish\in\weapon\w4007.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077002F	weapon/w2403	PS2Data\obj_finish\in\weapon\w2403.cm	-		4	0x1D 0x656 0x657 0x658	no	yes	-	0x105: 1; 0x106: 0	
+0x00770030	weapon/w4008	PS2Data\obj_finish\in\weapon\w4008.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770031	weapon/w4009	PS2Data\obj_finish\in\weapon\w4009.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770032	weapon/w6110	PS2Data\obj_finish\in\weapon\w6110.cm	Staff (2H)	Cloud Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770033	weapon/w6111	PS2Data\obj_finish\in\weapon\w6111.cm	Staff (2H)	Staff of the Magi	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770034	weapon/w8001	PS2Data\obj_finish\in\weapon\w8001.cm	-		5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	-	0x105: 1; 0x106: 0	
+0x00770035	weapon/w0010	PS2Data\obj_finish\in\weapon\w0010.cm	Shield	Golden Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770036	weapon/w0011	PS2Data\obj_finish\in\weapon\w0011.cm	Shield	Ice Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770037	weapon/w0012	PS2Data\obj_finish\in\weapon\w0012.cm	Shield	Flame Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770038	weapon/w0013	PS2Data\obj_finish\in\weapon\w0013.cm	Shield	Diamond Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770039	weapon/w0014	PS2Data\obj_finish\in\weapon\w0014.cm	Shield	Platinum Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077003A	weapon/w0015	PS2Data\obj_finish\in\weapon\w0015.cm	Shield	Dragon Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077003B	weapon/w0016	PS2Data\obj_finish\in\weapon\w0016.cm	Shield	Crystal Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077003C	weapon/w0017	PS2Data\obj_finish\in\weapon\w0017.cm	Shield	Genji Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077003D	weapon/w0018	PS2Data\obj_finish\in\weapon\w0018.cm	Shield	Kaiser Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077003E	weapon/w0019	PS2Data\obj_finish\in\weapon\w0019.cm	Shield	Aegis Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077003F	weapon/w2120	PS2Data\obj_finish\in\weapon\w2120.cm	Sword (1H)	Mythril Sword, NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770040	weapon/w2121	PS2Data\obj_finish\in\weapon\w2121.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770041	weapon/w2122	PS2Data\obj_finish\in\weapon\w2122.cm	Sword (1H)	Mythril Blade, NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770042	weapon/w4010	PS2Data\obj_finish\in\weapon\w4010.cm	Sword (1H)	NOT USED	4	0x1D 0x656 0x1B09 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770043	weapon/w2123	PS2Data\obj_finish\in\weapon\w2123.cm	-								not shipped
 0x00770044	weapon/w4011	PS2Data\obj_finish\in\weapon\w4011.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	13: 0	0x105: 1; 0x106: 0	
-0x00770045	weapon/w4012	PS2Data\obj_finish\in\weapon\w4012.cm	Sword (2H)	Ragnarok	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770046	weapon/w2124	PS2Data\obj_finish\in\weapon\w2124.cm	Sword (1H)	Hero's Blade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770047	weapon/w4013	PS2Data\obj_finish\in\weapon\w4013.cm	Sword (2H)	Excalibur, Excalipur	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770048	weapon/w4014	PS2Data\obj_finish\in\weapon\w4014.cm	Pole (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770049	weapon/w2411	PS2Data\obj_finish\in\weapon\w2411.cm	Ninja Sword (2H)	Ashura	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077004A	weapon/w4015	PS2Data\obj_finish\in\weapon\w4015.cm	Sword (2H)	Claymore	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077004B	weapon/w4016	PS2Data\obj_finish\in\weapon\w4016.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077004C	weapon/w2412	PS2Data\obj_finish\in\weapon\w2412.cm	Ninja Sword (2H)	Sakura-saezuri	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077004D	weapon/w4017	PS2Data\obj_finish\in\weapon\w4017.cm	Sword (2H)	Defender	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077004E	weapon/w2413	PS2Data\obj_finish\in\weapon\w2413.cm	Ninja Sword (2H)	Kagenui	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077004F	weapon/w4018	PS2Data\obj_finish\in\weapon\w4018.cm	Sword (2H)	Save the Queen	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770050	weapon/w2414	PS2Data\obj_finish\in\weapon\w2414.cm	Ninja Sword (2H)	Koga Blade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770051	weapon/w2415	PS2Data\obj_finish\in\weapon\w2415.cm	Ninja Sword (2H)	Iga Blade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770052	weapon/w3501	PS2Data\obj_finish\in\weapon\w3501.cm	Sword (2H)	NOT USED	4	0x1D 0x656 0x3CE6 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770053	weapon/w2416	PS2Data\obj_finish\in\weapon\w2416.cm	Ninja Sword (2H)	Mesa, Orochi	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770054	weapon/w2417	PS2Data\obj_finish\in\weapon\w2417.cm	Ninja Sword (2H)	Yagyu Darkblade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
+0x00770045	weapon/w4012	PS2Data\obj_finish\in\weapon\w4012.cm	Sword (2H)	Ragnarok	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770046	weapon/w2124	PS2Data\obj_finish\in\weapon\w2124.cm	Sword (1H)	Hero's Blade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770047	weapon/w4013	PS2Data\obj_finish\in\weapon\w4013.cm	Sword (2H)	Excalibur, Excalipur	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770048	weapon/w4014	PS2Data\obj_finish\in\weapon\w4014.cm	Pole (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770049	weapon/w2411	PS2Data\obj_finish\in\weapon\w2411.cm	Ninja Sword (2H)	Ashura	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077004A	weapon/w4015	PS2Data\obj_finish\in\weapon\w4015.cm	Sword (2H)	Claymore	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077004B	weapon/w4016	PS2Data\obj_finish\in\weapon\w4016.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077004C	weapon/w2412	PS2Data\obj_finish\in\weapon\w2412.cm	Ninja Sword (2H)	Sakura-saezuri	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077004D	weapon/w4017	PS2Data\obj_finish\in\weapon\w4017.cm	Sword (2H)	Defender	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077004E	weapon/w2413	PS2Data\obj_finish\in\weapon\w2413.cm	Ninja Sword (2H)	Kagenui	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077004F	weapon/w4018	PS2Data\obj_finish\in\weapon\w4018.cm	Sword (2H)	Save the Queen	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770050	weapon/w2414	PS2Data\obj_finish\in\weapon\w2414.cm	Ninja Sword (2H)	Koga Blade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770051	weapon/w2415	PS2Data\obj_finish\in\weapon\w2415.cm	Ninja Sword (2H)	Iga Blade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770052	weapon/w3501	PS2Data\obj_finish\in\weapon\w3501.cm	Sword (2H)	NOT USED	4	0x1D 0x656 0x3CE6 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770053	weapon/w2416	PS2Data\obj_finish\in\weapon\w2416.cm	Ninja Sword (2H)	Mesa, Orochi	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770054	weapon/w2417	PS2Data\obj_finish\in\weapon\w2417.cm	Ninja Sword (2H)	Yagyu Darkblade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
 0x00770055	weapon/w8010	PS2Data\obj_finish\in\weapon\w8010.cm	Crossbow (2H)	Bowgun	5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	14: 2	0x105: 1; 0x106: 0	
 0x00770056	weapon/w8011	PS2Data\obj_finish\in\weapon\w8011.cm	Crossbow (2H)	Crossbow	5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770057	weapon/w0020	PS2Data\obj_finish\in\weapon\w0020.cm	Shield	Demon Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
+0x00770057	weapon/w0020	PS2Data\obj_finish\in\weapon\w0020.cm	Shield	Demon Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
 0x00770058	weapon/w8012	PS2Data\obj_finish\in\weapon\w8012.cm	Crossbow (2H)	Paramina Crossbow	5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770059	weapon/w0021	PS2Data\obj_finish\in\weapon\w0021.cm	Shield	Venetian Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
+0x00770059	weapon/w0021	PS2Data\obj_finish\in\weapon\w0021.cm	Shield	Venetian Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
 0x0077005A	weapon/w8013	PS2Data\obj_finish\in\weapon\w8013.cm	Crossbow (2H)	Recurve Crossbow	5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x0077005B	weapon/w0022	PS2Data\obj_finish\in\weapon\w0022.cm	Shield	Zodiac Escutcheon	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
+0x0077005B	weapon/w0022	PS2Data\obj_finish\in\weapon\w0022.cm	Shield	Zodiac Escutcheon	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
 0x0077005C	weapon/w8014	PS2Data\obj_finish\in\weapon\w8014.cm	Crossbow (2H)	Hunting Crossbow	5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x0077005D	weapon/w0023	PS2Data\obj_finish\in\weapon\w0023.cm	Shield	Ensanguined Shield	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
+0x0077005D	weapon/w0023	PS2Data\obj_finish\in\weapon\w0023.cm	Shield	Ensanguined Shield	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
 0x0077005E	weapon/w8015	PS2Data\obj_finish\in\weapon\w8015.cm	Crossbow (2H)	Penetrator Crossbow	5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	14: 2	0x105: 1; 0x106: 0	
 0x0077005F	weapon/w8016	PS2Data\obj_finish\in\weapon\w8016.cm	Crossbow (2H)	Gastrophetes, Tula	5	0x1D 0x656 0x1D00 0x3C5A 0x3C5B	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770060	weapon/w2201	PS2Data\obj_finish\in\weapon\w2201.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770061	weapon/w2205	PS2Data\obj_finish\in\weapon\w2205.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770062	weapon/w7001	PS2Data\obj_finish\in\weapon\w7001.cm	none		5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770063	weapon/w6201	PS2Data\obj_finish\in\weapon\w6201.cm	none		4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x00770060	weapon/w2201	PS2Data\obj_finish\in\weapon\w2201.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770061	weapon/w2205	PS2Data\obj_finish\in\weapon\w2205.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770062	weapon/w7001	PS2Data\obj_finish\in\weapon\w7001.cm	-		5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
+0x00770063	weapon/w6201	PS2Data\obj_finish\in\weapon\w6201.cm	-		4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x00770064	weapon/w7006	PS2Data\obj_finish\in\weapon\w7006.cm	Bow (2H)	Shortbow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770065	weapon/w6204	PS2Data\obj_finish\in\weapon\w6204.cm	Pole (2H)	Oaken Pole	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x00770065	weapon/w6204	PS2Data\obj_finish\in\weapon\w6204.cm	Pole (2H)	Oaken Pole	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x00770066	weapon/w7007	PS2Data\obj_finish\in\weapon\w7007.cm	Bow (2H)	Silver Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770067	weapon/w6205	PS2Data\obj_finish\in\weapon\w6205.cm	Pole (2H)	Cypress Pole	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x00770067	weapon/w6205	PS2Data\obj_finish\in\weapon\w6205.cm	Pole (2H)	Cypress Pole	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x00770068	weapon/w7008	PS2Data\obj_finish\in\weapon\w7008.cm	Bow (2H)	Aevis Killer	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770069	weapon/w6206	PS2Data\obj_finish\in\weapon\w6206.cm	Pole (2H)	Battle Bamboo	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x00770069	weapon/w6206	PS2Data\obj_finish\in\weapon\w6206.cm	Pole (2H)	Battle Bamboo	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x0077006A	weapon/w7009	PS2Data\obj_finish\in\weapon\w7009.cm	Bow (2H)	Killer Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x0077006B	weapon/w6207	PS2Data\obj_finish\in\weapon\w6207.cm	Pole (2H)	Musk Stick	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
-0x0077006C	weapon/w6208	PS2Data\obj_finish\in\weapon\w6208.cm	Pole (2H)	Iron Pole	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
-0x0077006D	weapon/w6209	PS2Data\obj_finish\in\weapon\w6209.cm	Pole (2H)	Six-fluted Pole	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
-0x0077006E	weapon/w4101	PS2Data\obj_finish\in\weapon\w4101.cm	none		5	0x1D 0x656 0x657 0x658 0x100A	no	yes	none	0x105: 1; 0x106: 0	
-0x0077006F	weapon/w3301	PS2Data\obj_finish\in\weapon\w3301.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770070	weapon/w2215	PS2Data\obj_finish\in\weapon\w2215.cm	Hammer (1H)	Iron Hammer	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770071	weapon/w3302	PS2Data\obj_finish\in\weapon\w3302.cm	Measure (1H)	Gilt Measure	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770072	weapon/w2216	PS2Data\obj_finish\in\weapon\w2216.cm	Hammer (1H)	War Hammer	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770073	weapon/w2217	PS2Data\obj_finish\in\weapon\w2217.cm	Hammer (1H)	Sledgehammer	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770074	weapon/w3303	PS2Data\obj_finish\in\weapon\w3303.cm	Measure (1H)	Arc Scale	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770075	weapon/w2218	PS2Data\obj_finish\in\weapon\w2218.cm	Hammer (1H)	Morning Star	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770076	weapon/w3304	PS2Data\obj_finish\in\weapon\w3304.cm	Measure (1H)	Multiscale	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770077	weapon/w2219	PS2Data\obj_finish\in\weapon\w2219.cm	Hammer (1H)	Scorpion Tail, Vrscika	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770078	weapon/w3305	PS2Data\obj_finish\in\weapon\w3305.cm	Measure (1H)	Cross Scale	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770079	weapon/w3306	PS2Data\obj_finish\in\weapon\w3306.cm	Measure (1H)	Caliper	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077007A	weapon/w3307	PS2Data\obj_finish\in\weapon\w3307.cm	Measure (1H)	Euclid's Sextant	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
+0x0077006B	weapon/w6207	PS2Data\obj_finish\in\weapon\w6207.cm	Pole (2H)	Musk Stick	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
+0x0077006C	weapon/w6208	PS2Data\obj_finish\in\weapon\w6208.cm	Pole (2H)	Iron Pole	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
+0x0077006D	weapon/w6209	PS2Data\obj_finish\in\weapon\w6209.cm	Pole (2H)	Six-fluted Pole	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
+0x0077006E	weapon/w4101	PS2Data\obj_finish\in\weapon\w4101.cm	-		5	0x1D 0x656 0x657 0x658 0x100A	no	yes	-	0x105: 1; 0x106: 0	
+0x0077006F	weapon/w3301	PS2Data\obj_finish\in\weapon\w3301.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770070	weapon/w2215	PS2Data\obj_finish\in\weapon\w2215.cm	Hammer (1H)	Iron Hammer	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770071	weapon/w3302	PS2Data\obj_finish\in\weapon\w3302.cm	Measure (1H)	Gilt Measure	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770072	weapon/w2216	PS2Data\obj_finish\in\weapon\w2216.cm	Hammer (1H)	War Hammer	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770073	weapon/w2217	PS2Data\obj_finish\in\weapon\w2217.cm	Hammer (1H)	Sledgehammer	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770074	weapon/w3303	PS2Data\obj_finish\in\weapon\w3303.cm	Measure (1H)	Arc Scale	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770075	weapon/w2218	PS2Data\obj_finish\in\weapon\w2218.cm	Hammer (1H)	Morning Star	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770076	weapon/w3304	PS2Data\obj_finish\in\weapon\w3304.cm	Measure (1H)	Multiscale	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770077	weapon/w2219	PS2Data\obj_finish\in\weapon\w2219.cm	Hammer (1H)	Scorpion Tail, Vrscika	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770078	weapon/w3305	PS2Data\obj_finish\in\weapon\w3305.cm	Measure (1H)	Cross Scale	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770079	weapon/w3306	PS2Data\obj_finish\in\weapon\w3306.cm	Measure (1H)	Caliper	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077007A	weapon/w3307	PS2Data\obj_finish\in\weapon\w3307.cm	Measure (1H)	Euclid's Sextant	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
 0x0077007B	weapon/w7010	PS2Data\obj_finish\in\weapon\w7010.cm	Bow (2H)	Longbow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
 0x0077007C	weapon/w7011	PS2Data\obj_finish\in\weapon\w7011.cm	Bow (2H)	Elfin Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
 0x0077007D	weapon/w7012	PS2Data\obj_finish\in\weapon\w7012.cm	Bow (2H)	Loxley Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x0077007E	weapon/w6210	PS2Data\obj_finish\in\weapon\w6210.cm	Pole (2H)	Gokuu Pole	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x0077007E	weapon/w6210	PS2Data\obj_finish\in\weapon\w6210.cm	Pole (2H)	Gokuu Pole	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x0077007F	weapon/w7013	PS2Data\obj_finish\in\weapon\w7013.cm	Bow (2H)	Giant Stonebow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770080	weapon/w6211	PS2Data\obj_finish\in\weapon\w6211.cm	Pole (2H)	Zephyr Pole	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x00770080	weapon/w6211	PS2Data\obj_finish\in\weapon\w6211.cm	Pole (2H)	Zephyr Pole	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x00770081	weapon/w7014	PS2Data\obj_finish\in\weapon\w7014.cm	Bow (2H)	Burning Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770082	weapon/w6212	PS2Data\obj_finish\in\weapon\w6212.cm	Pole (2H)	Ivory Pole	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x00770082	weapon/w6212	PS2Data\obj_finish\in\weapon\w6212.cm	Pole (2H)	Ivory Pole	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x00770083	weapon/w7015	PS2Data\obj_finish\in\weapon\w7015.cm	Bow (2H)	Traitor's Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770084	weapon/w6213	PS2Data\obj_finish\in\weapon\w6213.cm	Pole (2H)	Sweep	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
-0x00770085	weapon/w8101	PS2Data\obj_finish\in\weapon\w8101.cm	none		2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
+0x00770084	weapon/w6213	PS2Data\obj_finish\in\weapon\w6213.cm	Pole (2H)	Sweep	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
+0x00770085	weapon/w8101	PS2Data\obj_finish\in\weapon\w8101.cm	-		2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
 0x00770086	weapon/w7016	PS2Data\obj_finish\in\weapon\w7016.cm	Bow (2H)	Yoichi Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770087	weapon/w6214	PS2Data\obj_finish\in\weapon\w6214.cm	Pole (2H)	Eight-fluted Pole	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x00770087	weapon/w6214	PS2Data\obj_finish\in\weapon\w6214.cm	Pole (2H)	Eight-fluted Pole	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x00770088	weapon/w7017	PS2Data\obj_finish\in\weapon\w7017.cm	Bow (2H)	Perseus Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x00770089	weapon/w6215	PS2Data\obj_finish\in\weapon\w6215.cm	Pole (2H)	Kanya, Whale Whisker	4	0x1D 0x656 0x658 0x657	no	yes	none	0x105: 1; 0x106: 0	
+0x00770089	weapon/w6215	PS2Data\obj_finish\in\weapon\w6215.cm	Pole (2H)	Kanya, Whale Whisker	4	0x1D 0x656 0x658 0x657	no	yes	-	0x105: 1; 0x106: 0	
 0x0077008A	weapon/w7018	PS2Data\obj_finish\in\weapon\w7018.cm	Bow (2H)	Artemis Bow	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
 0x0077008B	weapon/w7019	PS2Data\obj_finish\in\weapon\w7019.cm	Bow (2H)	Dhanusha, Sagittarius	5	0x1D 0x656 0x1D00 0x1CFF 0x1CFD	no	yes	14: 2	0x105: 1; 0x106: 0	
-0x0077008C	weapon/w2001	PS2Data\obj_finish\in\weapon\w2001.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077008D	weapon/w8107	PS2Data\obj_finish\in\weapon\w8107.cm	Gun (2H)	Altair	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077008E	weapon/w8108	PS2Data\obj_finish\in\weapon\w8108.cm	Gun (2H)	Capella	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077008F	weapon/w8109	PS2Data\obj_finish\in\weapon\w8109.cm	Gun (2H)	Vega	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770090	weapon/w8110	PS2Data\obj_finish\in\weapon\w8110.cm	Gun (2H)	Sirius	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770091	weapon/w8111	PS2Data\obj_finish\in\weapon\w8111.cm	Gun (2H)	Betelgeuse	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770092	weapon/w8112	PS2Data\obj_finish\in\weapon\w8112.cm	Gun (2H)	Ras Algethi	3	0x1D 0x656 0x4059	no	yes	none	0x105: 1; 0x106: 0	
-0x00770093	weapon/w8113	PS2Data\obj_finish\in\weapon\w8113.cm	Gun (2H)	Aldebaran, Mithuna	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770094	weapon/w8114	PS2Data\obj_finish\in\weapon\w8114.cm	Gun (2H)	Spica	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770095	weapon/w2010	PS2Data\obj_finish\in\weapon\w2010.cm	Dagger (1H)	Dagger	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770096	weapon/w8115	PS2Data\obj_finish\in\weapon\w8115.cm	Gun (2H)	Antares	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770097	weapon/w8116	PS2Data\obj_finish\in\weapon\w8116.cm	Gun (2H)	Arcturus	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770098	weapon/w2012	PS2Data\obj_finish\in\weapon\w2012.cm	Dagger (1H)	Mage Masher	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770099	weapon/w8117	PS2Data\obj_finish\in\weapon\w8117.cm	Gun (2H)	Fomalhaut	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077009A	weapon/w2013	PS2Data\obj_finish\in\weapon\w2013.cm	Dagger (1H)	Assassin's Dagger	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077009B	weapon/w2014	PS2Data\obj_finish\in\weapon\w2014.cm	Dagger (1H)	Chopper	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077009C	weapon/w2015	PS2Data\obj_finish\in\weapon\w2015.cm	Dagger (1H)	Main Gauche	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077009D	weapon/w3101	PS2Data\obj_finish\in\weapon\w3101.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077009E	weapon/w2016	PS2Data\obj_finish\in\weapon\w2016.cm	Dagger (1H)	Gladius	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077009F	weapon/w3102	PS2Data\obj_finish\in\weapon\w3102.cm	Mace (1H)	Mace	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A0	weapon/w2301	PS2Data\obj_finish\in\weapon\w2301.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A1	weapon/w3103	PS2Data\obj_finish\in\weapon\w3103.cm	Mace (1H)	Bronze Mace	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A2	weapon/w2018	PS2Data\obj_finish\in\weapon\w2018.cm	Dagger (1H)	Avenger	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A3	weapon/w3104	PS2Data\obj_finish\in\weapon\w3104.cm	Mace (1H)	Bhuj	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A4	weapon/w2019	PS2Data\obj_finish\in\weapon\w2019.cm	Dagger (1H)	Orichalcum Dirk	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A5	weapon/w2303	PS2Data\obj_finish\in\weapon\w2303.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A6	weapon/w3105	PS2Data\obj_finish\in\weapon\w3105.cm	Mace (1H)	Miter	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A7	weapon/w3106	PS2Data\obj_finish\in\weapon\w3106.cm	Mace (1H)	Thorned Mace	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A8	weapon/w3107	PS2Data\obj_finish\in\weapon\w3107.cm	Mace (1H)	Chaos Mace	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700A9	weapon/w3108	PS2Data\obj_finish\in\weapon\w3108.cm	Mace (1H)	Doom Mace	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700AA	weapon/w4121	PS2Data\obj_finish\in\weapon\w4121.cm	Katana (2H)	Kotetsu	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700AB	weapon/w3109	PS2Data\obj_finish\in\weapon\w3109.cm	Mace (1H)	Zeus Mace	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700AC	weapon/w2308	PS2Data\obj_finish\in\weapon\w2308.cm	Axe (1H)	Handaxe	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700AD	weapon/w4122	PS2Data\obj_finish\in\weapon\w4122.cm	Katana (2H)	Osafune	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700AE	weapon/w6011	PS2Data\obj_finish\in\weapon\w6011.cm	Rod (2H)	Rod	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700AF	weapon/w2309	PS2Data\obj_finish\in\weapon\w2309.cm	Axe (1H)	Broadaxe	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B0	weapon/w4123	PS2Data\obj_finish\in\weapon\w4123.cm	Katana (2H)	Kogarasumaru	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B1	weapon/w4124	PS2Data\obj_finish\in\weapon\w4124.cm	Katana (2H)	Magoroku	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B2	weapon/w6012	PS2Data\obj_finish\in\weapon\w6012.cm	Rod (2H)	Serpent Rod	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B3	weapon/w4125	PS2Data\obj_finish\in\weapon\w4125.cm	Katana (2H)	Murasame	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B4	weapon/w6013	PS2Data\obj_finish\in\weapon\w6013.cm	Rod (2H)	Healing Rod	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B5	weapon/w4126	PS2Data\obj_finish\in\weapon\w4126.cm	Katana (2H)	Kiku-ichimonji	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B6	weapon/w6014	PS2Data\obj_finish\in\weapon\w6014.cm	Rod (2H)	Gaia Rod	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B7	weapon/w4127	PS2Data\obj_finish\in\weapon\w4127.cm	Katana (2H)	Yakei	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B8	weapon/w6015	PS2Data\obj_finish\in\weapon\w6015.cm	Rod (2H)	Power Rod	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700B9	weapon/w4128	PS2Data\obj_finish\in\weapon\w4128.cm	Katana (2H)	Ame-no-Murakumo	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700BA	weapon/w7101	PS2Data\obj_finish\in\weapon\w7101.cm	none		2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x007700BB	weapon/w6016	PS2Data\obj_finish\in\weapon\w6016.cm	Rod (2H)	Empyrean Rod	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700BC	weapon/w4129	PS2Data\obj_finish\in\weapon\w4129.cm	Katana (2H)	Muramasa	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700BD	weapon/w6017	PS2Data\obj_finish\in\weapon\w6017.cm	Rod (2H)	Holy Rod	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700BE	weapon/w7103	PS2Data\obj_finish\in\weapon\w7103.cm	Arrows	Parallel Arrows	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x007700BF	weapon/w6018	PS2Data\obj_finish\in\weapon\w6018.cm	Rod (2H)	Rod of Faith	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C0	weapon/w2020	PS2Data\obj_finish\in\weapon\w2020.cm	Dagger (1H)	Platinum Dagger	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C1	weapon/w2021	PS2Data\obj_finish\in\weapon\w2021.cm	Dagger (1H)	Zwill Crossblade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C2	weapon/w2023	PS2Data\obj_finish\in\weapon\w2023.cm	Dagger (1H)	Mina, Shikari Nagasa	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C3	weapon/w3110	PS2Data\obj_finish\in\weapon\w3110.cm	Mace (1H)	Grand Mace	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C4	weapon/w2310	PS2Data\obj_finish\in\weapon\w2310.cm	Axe (1H)	Slasher	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C5	weapon/w2311	PS2Data\obj_finish\in\weapon\w2311.cm	Axe (1H)	Hammerhead	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C6	weapon/w2312	PS2Data\obj_finish\in\weapon\w2312.cm	Axe (1H)	Francisca	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C7	weapon/w5002	PS2Data\obj_finish\in\weapon\w5002.cm	Spear (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C8	weapon/w2313	PS2Data\obj_finish\in\weapon\w2313.cm	Axe (1H)	Greataxe	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700C9	weapon/w2314	PS2Data\obj_finish\in\weapon\w2314.cm	Axe (1H)	Golden Axe	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700CA	weapon/w5004	PS2Data\obj_finish\in\weapon\w5004.cm	Spear (2H)	Javelin	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700CB	weapon/w4130	PS2Data\obj_finish\in\weapon\w4130.cm	Katana (2H) / Sword (1H)	Kumbha, Masamune	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700CC	weapon/w3401	PS2Data\obj_finish\in\weapon\w3401.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700CD	weapon/w5006	PS2Data\obj_finish\in\weapon\w5006.cm	Spear (2H)	Spear	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700CE	weapon/w5007	PS2Data\obj_finish\in\weapon\w5007.cm	Spear (2H)	Partisan	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700CF	weapon/w2601	PS2Data\obj_finish\in\weapon\w2601.cm	Hand-bomb (2H)	Hornito	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D0	weapon/w5008	PS2Data\obj_finish\in\weapon\w5008.cm	Spear (2H)	Heavy Lance	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D1	weapon/w2602	PS2Data\obj_finish\in\weapon\w2602.cm	Hand-bomb (2H)	Fumarole	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D2	weapon/w5009	PS2Data\obj_finish\in\weapon\w5009.cm	Spear (2H)	Storm Spear	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D3	weapon/w2603	PS2Data\obj_finish\in\weapon\w2603.cm	Hand-bomb (2H)	Tumulus	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D4	weapon/w2604	PS2Data\obj_finish\in\weapon\w2604.cm	Hand-bomb (2H)	Caldera	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D5	weapon/w2605	PS2Data\obj_finish\in\weapon\w2605.cm	Hand-bomb (2H)	Makara, Volcano	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D6	weapon/w2606	PS2Data\obj_finish\in\weapon\w2606.cm	none		3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D7	weapon/w2104	PS2Data\obj_finish\in\weapon\w2104.cm	Sword (1H)	Iron Sword	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D8	weapon/w2106	PS2Data\obj_finish\in\weapon\w2106.cm	Sword (1H)	Zwill Blade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700D9	weapon/w2107	PS2Data\obj_finish\in\weapon\w2107.cm	Sword (1H)	Ancient Sword	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700DA	weapon/w2108	PS2Data\obj_finish\in\weapon\w2108.cm	Sword (1H)	Blood Sword, Karkata	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700DB	weapon/w2109	PS2Data\obj_finish\in\weapon\w2109.cm	Sword (1H)	Lohengrin	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700DC	weapon/w5010	PS2Data\obj_finish\in\weapon\w5010.cm	Spear (2H)	Obelisk	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700DD	weapon/w5011	PS2Data\obj_finish\in\weapon\w5011.cm	Spear (2H)	Halberd	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700DE	weapon/w5012	PS2Data\obj_finish\in\weapon\w5012.cm	Spear (2H)	Trident	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700DF	weapon/w5014	PS2Data\obj_finish\in\weapon\w5014.cm	Spear (2H)	Holy Lance	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E0	weapon/w5015	PS2Data\obj_finish\in\weapon\w5015.cm	Spear (2H)	Gungnir	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E1	weapon/w6102	PS2Data\obj_finish\in\weapon\w6102.cm	Staff (2H)	Oak Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E2	weapon/w5017	PS2Data\obj_finish\in\weapon\w5017.cm	Spear (2H)	Dragon Whisker, Vrsabha	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E3	weapon/w6103	PS2Data\obj_finish\in\weapon\w6103.cm	Staff (2H)	Cherry Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E4	weapon/w5018	PS2Data\obj_finish\in\weapon\w5018.cm	Spear (2H)	Zodiac Spear	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E5	weapon/w6104	PS2Data\obj_finish\in\weapon\w6104.cm	Staff (2H)	Wizard's Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E6	weapon/w6105	PS2Data\obj_finish\in\weapon\w6105.cm	Staff (2H)	Flame Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E7	weapon/w6106	PS2Data\obj_finish\in\weapon\w6106.cm	Staff (2H)	Storm Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700E8	weapon/w6107	PS2Data\obj_finish\in\weapon\w6107.cm	Staff (2H)	Glacial Staff	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
+0x0077008C	weapon/w2001	PS2Data\obj_finish\in\weapon\w2001.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077008D	weapon/w8107	PS2Data\obj_finish\in\weapon\w8107.cm	Gun (2H)	Altair	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077008E	weapon/w8108	PS2Data\obj_finish\in\weapon\w8108.cm	Gun (2H)	Capella	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077008F	weapon/w8109	PS2Data\obj_finish\in\weapon\w8109.cm	Gun (2H)	Vega	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770090	weapon/w8110	PS2Data\obj_finish\in\weapon\w8110.cm	Gun (2H)	Sirius	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770091	weapon/w8111	PS2Data\obj_finish\in\weapon\w8111.cm	Gun (2H)	Betelgeuse	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770092	weapon/w8112	PS2Data\obj_finish\in\weapon\w8112.cm	Gun (2H)	Ras Algethi	3	0x1D 0x656 0x4059	no	yes	-	0x105: 1; 0x106: 0	
+0x00770093	weapon/w8113	PS2Data\obj_finish\in\weapon\w8113.cm	Gun (2H)	Aldebaran, Mithuna	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770094	weapon/w8114	PS2Data\obj_finish\in\weapon\w8114.cm	Gun (2H)	Spica	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770095	weapon/w2010	PS2Data\obj_finish\in\weapon\w2010.cm	Dagger (1H)	Dagger	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770096	weapon/w8115	PS2Data\obj_finish\in\weapon\w8115.cm	Gun (2H)	Antares	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770097	weapon/w8116	PS2Data\obj_finish\in\weapon\w8116.cm	Gun (2H)	Arcturus	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770098	weapon/w2012	PS2Data\obj_finish\in\weapon\w2012.cm	Dagger (1H)	Mage Masher	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770099	weapon/w8117	PS2Data\obj_finish\in\weapon\w8117.cm	Gun (2H)	Fomalhaut	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077009A	weapon/w2013	PS2Data\obj_finish\in\weapon\w2013.cm	Dagger (1H)	Assassin's Dagger	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077009B	weapon/w2014	PS2Data\obj_finish\in\weapon\w2014.cm	Dagger (1H)	Chopper	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077009C	weapon/w2015	PS2Data\obj_finish\in\weapon\w2015.cm	Dagger (1H)	Main Gauche	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077009D	weapon/w3101	PS2Data\obj_finish\in\weapon\w3101.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077009E	weapon/w2016	PS2Data\obj_finish\in\weapon\w2016.cm	Dagger (1H)	Gladius	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077009F	weapon/w3102	PS2Data\obj_finish\in\weapon\w3102.cm	Mace (1H)	Mace	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A0	weapon/w2301	PS2Data\obj_finish\in\weapon\w2301.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A1	weapon/w3103	PS2Data\obj_finish\in\weapon\w3103.cm	Mace (1H)	Bronze Mace	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A2	weapon/w2018	PS2Data\obj_finish\in\weapon\w2018.cm	Dagger (1H)	Avenger	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A3	weapon/w3104	PS2Data\obj_finish\in\weapon\w3104.cm	Mace (1H)	Bhuj	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A4	weapon/w2019	PS2Data\obj_finish\in\weapon\w2019.cm	Dagger (1H)	Orichalcum Dirk	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A5	weapon/w2303	PS2Data\obj_finish\in\weapon\w2303.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A6	weapon/w3105	PS2Data\obj_finish\in\weapon\w3105.cm	Mace (1H)	Miter	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A7	weapon/w3106	PS2Data\obj_finish\in\weapon\w3106.cm	Mace (1H)	Thorned Mace	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A8	weapon/w3107	PS2Data\obj_finish\in\weapon\w3107.cm	Mace (1H)	Chaos Mace	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700A9	weapon/w3108	PS2Data\obj_finish\in\weapon\w3108.cm	Mace (1H)	Doom Mace	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700AA	weapon/w4121	PS2Data\obj_finish\in\weapon\w4121.cm	Katana (2H)	Kotetsu	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700AB	weapon/w3109	PS2Data\obj_finish\in\weapon\w3109.cm	Mace (1H)	Zeus Mace	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700AC	weapon/w2308	PS2Data\obj_finish\in\weapon\w2308.cm	Axe (1H)	Handaxe	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700AD	weapon/w4122	PS2Data\obj_finish\in\weapon\w4122.cm	Katana (2H)	Osafune	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700AE	weapon/w6011	PS2Data\obj_finish\in\weapon\w6011.cm	Rod (2H)	Rod	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700AF	weapon/w2309	PS2Data\obj_finish\in\weapon\w2309.cm	Axe (1H)	Broadaxe	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B0	weapon/w4123	PS2Data\obj_finish\in\weapon\w4123.cm	Katana (2H)	Kogarasumaru	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B1	weapon/w4124	PS2Data\obj_finish\in\weapon\w4124.cm	Katana (2H)	Magoroku	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B2	weapon/w6012	PS2Data\obj_finish\in\weapon\w6012.cm	Rod (2H)	Serpent Rod	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B3	weapon/w4125	PS2Data\obj_finish\in\weapon\w4125.cm	Katana (2H)	Murasame	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B4	weapon/w6013	PS2Data\obj_finish\in\weapon\w6013.cm	Rod (2H)	Healing Rod	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B5	weapon/w4126	PS2Data\obj_finish\in\weapon\w4126.cm	Katana (2H)	Kiku-ichimonji	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B6	weapon/w6014	PS2Data\obj_finish\in\weapon\w6014.cm	Rod (2H)	Gaia Rod	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B7	weapon/w4127	PS2Data\obj_finish\in\weapon\w4127.cm	Katana (2H)	Yakei	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B8	weapon/w6015	PS2Data\obj_finish\in\weapon\w6015.cm	Rod (2H)	Power Rod	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700B9	weapon/w4128	PS2Data\obj_finish\in\weapon\w4128.cm	Katana (2H)	Ame-no-Murakumo	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700BA	weapon/w7101	PS2Data\obj_finish\in\weapon\w7101.cm	-		2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x007700BB	weapon/w6016	PS2Data\obj_finish\in\weapon\w6016.cm	Rod (2H)	Empyrean Rod	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700BC	weapon/w4129	PS2Data\obj_finish\in\weapon\w4129.cm	Katana (2H)	Muramasa	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700BD	weapon/w6017	PS2Data\obj_finish\in\weapon\w6017.cm	Rod (2H)	Holy Rod	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700BE	weapon/w7103	PS2Data\obj_finish\in\weapon\w7103.cm	Arrows	Parallel Arrows	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x007700BF	weapon/w6018	PS2Data\obj_finish\in\weapon\w6018.cm	Rod (2H)	Rod of Faith	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C0	weapon/w2020	PS2Data\obj_finish\in\weapon\w2020.cm	Dagger (1H)	Platinum Dagger	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C1	weapon/w2021	PS2Data\obj_finish\in\weapon\w2021.cm	Dagger (1H)	Zwill Crossblade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C2	weapon/w2023	PS2Data\obj_finish\in\weapon\w2023.cm	Dagger (1H)	Mina, Shikari Nagasa	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C3	weapon/w3110	PS2Data\obj_finish\in\weapon\w3110.cm	Mace (1H)	Grand Mace	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C4	weapon/w2310	PS2Data\obj_finish\in\weapon\w2310.cm	Axe (1H)	Slasher	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C5	weapon/w2311	PS2Data\obj_finish\in\weapon\w2311.cm	Axe (1H)	Hammerhead	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C6	weapon/w2312	PS2Data\obj_finish\in\weapon\w2312.cm	Axe (1H)	Francisca	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C7	weapon/w5002	PS2Data\obj_finish\in\weapon\w5002.cm	Spear (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C8	weapon/w2313	PS2Data\obj_finish\in\weapon\w2313.cm	Axe (1H)	Greataxe	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700C9	weapon/w2314	PS2Data\obj_finish\in\weapon\w2314.cm	Axe (1H)	Golden Axe	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700CA	weapon/w5004	PS2Data\obj_finish\in\weapon\w5004.cm	Spear (2H)	Javelin	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700CB	weapon/w4130	PS2Data\obj_finish\in\weapon\w4130.cm	Katana (2H) / Sword (1H)	Kumbha, Masamune	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700CC	weapon/w3401	PS2Data\obj_finish\in\weapon\w3401.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700CD	weapon/w5006	PS2Data\obj_finish\in\weapon\w5006.cm	Spear (2H)	Spear	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700CE	weapon/w5007	PS2Data\obj_finish\in\weapon\w5007.cm	Spear (2H)	Partisan	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700CF	weapon/w2601	PS2Data\obj_finish\in\weapon\w2601.cm	Hand-bomb (2H)	Hornito	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D0	weapon/w5008	PS2Data\obj_finish\in\weapon\w5008.cm	Spear (2H)	Heavy Lance	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D1	weapon/w2602	PS2Data\obj_finish\in\weapon\w2602.cm	Hand-bomb (2H)	Fumarole	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D2	weapon/w5009	PS2Data\obj_finish\in\weapon\w5009.cm	Spear (2H)	Storm Spear	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D3	weapon/w2603	PS2Data\obj_finish\in\weapon\w2603.cm	Hand-bomb (2H)	Tumulus	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D4	weapon/w2604	PS2Data\obj_finish\in\weapon\w2604.cm	Hand-bomb (2H)	Caldera	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D5	weapon/w2605	PS2Data\obj_finish\in\weapon\w2605.cm	Hand-bomb (2H)	Makara, Volcano	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D6	weapon/w2606	PS2Data\obj_finish\in\weapon\w2606.cm	-		3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D7	weapon/w2104	PS2Data\obj_finish\in\weapon\w2104.cm	Sword (1H)	Iron Sword	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D8	weapon/w2106	PS2Data\obj_finish\in\weapon\w2106.cm	Sword (1H)	Zwill Blade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700D9	weapon/w2107	PS2Data\obj_finish\in\weapon\w2107.cm	Sword (1H)	Ancient Sword	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700DA	weapon/w2108	PS2Data\obj_finish\in\weapon\w2108.cm	Sword (1H)	Blood Sword, Karkata	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700DB	weapon/w2109	PS2Data\obj_finish\in\weapon\w2109.cm	Sword (1H)	Lohengrin	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700DC	weapon/w5010	PS2Data\obj_finish\in\weapon\w5010.cm	Spear (2H)	Obelisk	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700DD	weapon/w5011	PS2Data\obj_finish\in\weapon\w5011.cm	Spear (2H)	Halberd	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700DE	weapon/w5012	PS2Data\obj_finish\in\weapon\w5012.cm	Spear (2H)	Trident	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700DF	weapon/w5014	PS2Data\obj_finish\in\weapon\w5014.cm	Spear (2H)	Holy Lance	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E0	weapon/w5015	PS2Data\obj_finish\in\weapon\w5015.cm	Spear (2H)	Gungnir	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E1	weapon/w6102	PS2Data\obj_finish\in\weapon\w6102.cm	Staff (2H)	Oak Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E2	weapon/w5017	PS2Data\obj_finish\in\weapon\w5017.cm	Spear (2H)	Dragon Whisker, Vrsabha	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E3	weapon/w6103	PS2Data\obj_finish\in\weapon\w6103.cm	Staff (2H)	Cherry Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E4	weapon/w5018	PS2Data\obj_finish\in\weapon\w5018.cm	Spear (2H)	Zodiac Spear	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E5	weapon/w6104	PS2Data\obj_finish\in\weapon\w6104.cm	Staff (2H)	Wizard's Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E6	weapon/w6105	PS2Data\obj_finish\in\weapon\w6105.cm	Staff (2H)	Flame Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E7	weapon/w6106	PS2Data\obj_finish\in\weapon\w6106.cm	Staff (2H)	Storm Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700E8	weapon/w6107	PS2Data\obj_finish\in\weapon\w6107.cm	Staff (2H)	Glacial Staff	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
 0x007700E9	weapon/w1000	PS2Data\obj_finish\in\weapon\w1000.cm	Unarmed	Reserve, Unarmed	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
-0x007700EA	weapon/w8102	PS2Data\obj_finish\in\weapon\w8102.cm	Bolts	Onion Bolts	3	0x1D 0x656 0x1D00	no	yes	none	0x105: 1; 0x106: 0	
+0x007700EA	weapon/w8102	PS2Data\obj_finish\in\weapon\w8102.cm	Bolts	Onion Bolts	3	0x1D 0x656 0x1D00	no	yes	-	0x105: 1; 0x106: 0	
 0x007700EB	weapon/w1001	PS2Data\obj_finish\in\weapon\w1001.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
-0x007700EC	weapon/w4019	PS2Data\obj_finish\in\weapon\w4019.cm	Sword (2H)	Ultima Blade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700ED	weapon/w4020	PS2Data\obj_finish\in\weapon\w4020.cm	Sword (2H)	Tournesol	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x007700EE	weapon/w8301	PS2Data\obj_finish\in\weapon\w8301.cm	Shot	Onion Shot	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700EF	weapon/w8302	PS2Data\obj_finish\in\weapon\w8302.cm	Shot	Silent Shot	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700F0	weapon/w8303	PS2Data\obj_finish\in\weapon\w8303.cm	Shot	Aqua Shot	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700F1	weapon/w8304	PS2Data\obj_finish\in\weapon\w8304.cm	Shot	Wyrmfire Shot	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700F2	weapon/w8305	PS2Data\obj_finish\in\weapon\w8305.cm	Shot	Mud Shot	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700F3	weapon/w8306	PS2Data\obj_finish\in\weapon\w8306.cm	Shot	Windslicer Shot	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700F4	weapon/w8307	PS2Data\obj_finish\in\weapon\w8307.cm	Shot	Dark Shot	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700F5	weapon/w8308	PS2Data\obj_finish\in\weapon\w8308.cm	Shot	Stone Shot	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700F6	weapon/w7104	PS2Data\obj_finish\in\weapon\w7104.cm	Arrows	Fiery Arrows	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x007700F7	weapon/w7105	PS2Data\obj_finish\in\weapon\w7105.cm	Arrows	Bamboo Arrows	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x007700F8	weapon/w7106	PS2Data\obj_finish\in\weapon\w7106.cm	Arrows	Lightning Arrows	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x007700F9	weapon/w7107	PS2Data\obj_finish\in\weapon\w7107.cm	Arrows	Assassin's Arrows	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x007700FA	weapon/w7108	PS2Data\obj_finish\in\weapon\w7108.cm	Arrows	Icecloud Arrows	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x007700FB	weapon/w7109	PS2Data\obj_finish\in\weapon\w7109.cm	Arrows	Artemis Arrows	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x007700FC	weapon/w2701	PS2Data\obj_finish\in\weapon\w2701.cm	Incendiaries	Onion Bombs	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700FD	weapon/w2702	PS2Data\obj_finish\in\weapon\w2702.cm	Incendiaries	Poison Bombs	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700FE	weapon/w2703	PS2Data\obj_finish\in\weapon\w2703.cm	Incendiaries	Stun Bombs	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x007700FF	weapon/w2704	PS2Data\obj_finish\in\weapon\w2704.cm	Incendiaries	Oil Bombs	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x00770100	weapon/w2705	PS2Data\obj_finish\in\weapon\w2705.cm	Incendiaries	Chaos Bombs	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x00770101	weapon/w2706	PS2Data\obj_finish\in\weapon\w2706.cm	Incendiaries	Stink Bombs	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x00770102	weapon/w2707	PS2Data\obj_finish\in\weapon\w2707.cm	Incendiaries	Water Bombs	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x00770103	weapon/w2708	PS2Data\obj_finish\in\weapon\w2708.cm	Incendiaries	Castellanos	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x00770104	weapon/w8202	PS2Data\obj_finish\in\weapon\w8202.cm	Bolts	Long Bolts	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770105	weapon/w8203	PS2Data\obj_finish\in\weapon\w8203.cm	Bolts	Stone Bolts	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770106	weapon/w8204	PS2Data\obj_finish\in\weapon\w8204.cm	Bolts	Lead Bolts	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770107	weapon/w8205	PS2Data\obj_finish\in\weapon\w8205.cm	Bolts	Black Bolts	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770108	weapon/w8206	PS2Data\obj_finish\in\weapon\w8206.cm	Bolts	Time Bolts	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770109	weapon/w8207	PS2Data\obj_finish\in\weapon\w8207.cm	Bolts	Sapping Bolts	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077010A	weapon/w8208	PS2Data\obj_finish\in\weapon\w8208.cm	Bolts	Grand Bolts	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077010B	weapon/w8002	PS2Data\obj_finish\in\weapon\w8002.cm	Crossbow (2H)	NOT USED, Reserve	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x0077010C	weapon/w4021	PS2Data\obj_finish\in\weapon\w4021.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077010D	weapon/w2126	PS2Data\obj_finish\in\weapon\w2126.cm	Sword (1H)	Joyeuse, NOT USED	5	0x1D 0x656 0xCE1 0xCE2 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077010E	weapon/w2128	PS2Data\obj_finish\in\weapon\w2128.cm	Gun (2H)	NOT USED	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x0077010F	weapon/w0024	PS2Data\obj_finish\in\weapon\w0024.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770110	weapon/w0025	PS2Data\obj_finish\in\weapon\w0025.cm	Shot	NOT USED	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770111	weapon/w8103	PS2Data\obj_finish\in\weapon\w8103.cm	Gun (2H)	NOT USED	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770112	weapon/w6112	PS2Data\obj_finish\in\weapon\w6112.cm	Staff (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770113	weapon/w4022	PS2Data\obj_finish\in\weapon\w4022.cm	Sword (2H)	NOT USED, Nightmare	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770114	weapon/w2129	PS2Data\obj_finish\in\weapon\w2129.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770115	weapon/w0026	PS2Data\obj_finish\in\weapon\w0026.cm	Shield	NOT USED	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770116	weapon/w0027	PS2Data\obj_finish\in\weapon\w0027.cm	Shield	NOT USED	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770117	weapon/w0028	PS2Data\obj_finish\in\weapon\w0028.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770118	weapon/w0029	PS2Data\obj_finish\in\weapon\w0029.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770119	weapon/w2130	PS2Data\obj_finish\in\weapon\w2130.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077011A	weapon/w2131	PS2Data\obj_finish\in\weapon\w2131.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077011B	weapon/w2132	PS2Data\obj_finish\in\weapon\w2132.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077011C	weapon/w2133	PS2Data\obj_finish\in\weapon\w2133.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077011D	weapon/w2134	PS2Data\obj_finish\in\weapon\w2134.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077011E	weapon/w0030	PS2Data\obj_finish\in\weapon\w0030.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077011F	weapon/w0031	PS2Data\obj_finish\in\weapon\w0031.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770120	weapon/w0032	PS2Data\obj_finish\in\weapon\w0032.cm	Shield	NOT USED	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
-0x00770121	weapon/w8118	PS2Data\obj_finish\in\weapon\w8118.cm	Gun (2H)	NOT USED	2	0x1D 0x656	no	yes	none	0x105: 1; 0x106: 0	
+0x007700EC	weapon/w4019	PS2Data\obj_finish\in\weapon\w4019.cm	Sword (2H)	Ultima Blade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700ED	weapon/w4020	PS2Data\obj_finish\in\weapon\w4020.cm	Sword (2H)	Tournesol	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x007700EE	weapon/w8301	PS2Data\obj_finish\in\weapon\w8301.cm	Shot	Onion Shot	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700EF	weapon/w8302	PS2Data\obj_finish\in\weapon\w8302.cm	Shot	Silent Shot	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700F0	weapon/w8303	PS2Data\obj_finish\in\weapon\w8303.cm	Shot	Aqua Shot	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700F1	weapon/w8304	PS2Data\obj_finish\in\weapon\w8304.cm	Shot	Wyrmfire Shot	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700F2	weapon/w8305	PS2Data\obj_finish\in\weapon\w8305.cm	Shot	Mud Shot	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700F3	weapon/w8306	PS2Data\obj_finish\in\weapon\w8306.cm	Shot	Windslicer Shot	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700F4	weapon/w8307	PS2Data\obj_finish\in\weapon\w8307.cm	Shot	Dark Shot	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700F5	weapon/w8308	PS2Data\obj_finish\in\weapon\w8308.cm	Shot	Stone Shot	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700F6	weapon/w7104	PS2Data\obj_finish\in\weapon\w7104.cm	Arrows	Fiery Arrows	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x007700F7	weapon/w7105	PS2Data\obj_finish\in\weapon\w7105.cm	Arrows	Bamboo Arrows	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x007700F8	weapon/w7106	PS2Data\obj_finish\in\weapon\w7106.cm	Arrows	Lightning Arrows	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x007700F9	weapon/w7107	PS2Data\obj_finish\in\weapon\w7107.cm	Arrows	Assassin's Arrows	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x007700FA	weapon/w7108	PS2Data\obj_finish\in\weapon\w7108.cm	Arrows	Icecloud Arrows	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x007700FB	weapon/w7109	PS2Data\obj_finish\in\weapon\w7109.cm	Arrows	Artemis Arrows	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x007700FC	weapon/w2701	PS2Data\obj_finish\in\weapon\w2701.cm	Incendiaries	Onion Bombs	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700FD	weapon/w2702	PS2Data\obj_finish\in\weapon\w2702.cm	Incendiaries	Poison Bombs	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700FE	weapon/w2703	PS2Data\obj_finish\in\weapon\w2703.cm	Incendiaries	Stun Bombs	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x007700FF	weapon/w2704	PS2Data\obj_finish\in\weapon\w2704.cm	Incendiaries	Oil Bombs	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x00770100	weapon/w2705	PS2Data\obj_finish\in\weapon\w2705.cm	Incendiaries	Chaos Bombs	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x00770101	weapon/w2706	PS2Data\obj_finish\in\weapon\w2706.cm	Incendiaries	Stink Bombs	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x00770102	weapon/w2707	PS2Data\obj_finish\in\weapon\w2707.cm	Incendiaries	Water Bombs	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x00770103	weapon/w2708	PS2Data\obj_finish\in\weapon\w2708.cm	Incendiaries	Castellanos	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x00770104	weapon/w8202	PS2Data\obj_finish\in\weapon\w8202.cm	Bolts	Long Bolts	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770105	weapon/w8203	PS2Data\obj_finish\in\weapon\w8203.cm	Bolts	Stone Bolts	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770106	weapon/w8204	PS2Data\obj_finish\in\weapon\w8204.cm	Bolts	Lead Bolts	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770107	weapon/w8205	PS2Data\obj_finish\in\weapon\w8205.cm	Bolts	Black Bolts	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770108	weapon/w8206	PS2Data\obj_finish\in\weapon\w8206.cm	Bolts	Time Bolts	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770109	weapon/w8207	PS2Data\obj_finish\in\weapon\w8207.cm	Bolts	Sapping Bolts	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077010A	weapon/w8208	PS2Data\obj_finish\in\weapon\w8208.cm	Bolts	Grand Bolts	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077010B	weapon/w8002	PS2Data\obj_finish\in\weapon\w8002.cm	Crossbow (2H)	NOT USED, Reserve	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x0077010C	weapon/w4021	PS2Data\obj_finish\in\weapon\w4021.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077010D	weapon/w2126	PS2Data\obj_finish\in\weapon\w2126.cm	Sword (1H)	Joyeuse, NOT USED	5	0x1D 0x656 0xCE1 0xCE2 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077010E	weapon/w2128	PS2Data\obj_finish\in\weapon\w2128.cm	Gun (2H)	NOT USED	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x0077010F	weapon/w0024	PS2Data\obj_finish\in\weapon\w0024.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770110	weapon/w0025	PS2Data\obj_finish\in\weapon\w0025.cm	Shot	NOT USED	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770111	weapon/w8103	PS2Data\obj_finish\in\weapon\w8103.cm	Gun (2H)	NOT USED	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770112	weapon/w6112	PS2Data\obj_finish\in\weapon\w6112.cm	Staff (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770113	weapon/w4022	PS2Data\obj_finish\in\weapon\w4022.cm	Sword (2H)	NOT USED, Nightmare	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770114	weapon/w2129	PS2Data\obj_finish\in\weapon\w2129.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770115	weapon/w0026	PS2Data\obj_finish\in\weapon\w0026.cm	Shield	NOT USED	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770116	weapon/w0027	PS2Data\obj_finish\in\weapon\w0027.cm	Shield	NOT USED	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770117	weapon/w0028	PS2Data\obj_finish\in\weapon\w0028.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770118	weapon/w0029	PS2Data\obj_finish\in\weapon\w0029.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770119	weapon/w2130	PS2Data\obj_finish\in\weapon\w2130.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077011A	weapon/w2131	PS2Data\obj_finish\in\weapon\w2131.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077011B	weapon/w2132	PS2Data\obj_finish\in\weapon\w2132.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077011C	weapon/w2133	PS2Data\obj_finish\in\weapon\w2133.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077011D	weapon/w2134	PS2Data\obj_finish\in\weapon\w2134.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077011E	weapon/w0030	PS2Data\obj_finish\in\weapon\w0030.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077011F	weapon/w0031	PS2Data\obj_finish\in\weapon\w0031.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770120	weapon/w0032	PS2Data\obj_finish\in\weapon\w0032.cm	Shield	NOT USED	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
+0x00770121	weapon/w8118	PS2Data\obj_finish\in\weapon\w8118.cm	Gun (2H)	NOT USED	2	0x1D 0x656	no	yes	-	0x105: 1; 0x106: 0	
 0x00770122	weapon/w1002	PS2Data\obj_finish\in\weapon\w1002.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770123	weapon/w1003	PS2Data\obj_finish\in\weapon\w1003.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
-0x00770124	weapon/w1004	PS2Data\obj_finish\in\weapon\w1004.cm	none		2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
+0x00770124	weapon/w1004	PS2Data\obj_finish\in\weapon\w1004.cm	-		2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770125	weapon/w1005	PS2Data\obj_finish\in\weapon\w1005.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770126	weapon/w1006	PS2Data\obj_finish\in\weapon\w1006.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770127	weapon/w1007	PS2Data\obj_finish\in\weapon\w1007.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770128	weapon/w1008	PS2Data\obj_finish\in\weapon\w1008.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770129	weapon/w1009	PS2Data\obj_finish\in\weapon\w1009.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
-0x0077012A	weapon/w1010	PS2Data\obj_finish\in\weapon\w1010.cm	none		2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
+0x0077012A	weapon/w1010	PS2Data\obj_finish\in\weapon\w1010.cm	-		2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x0077012B	weapon/w1011	PS2Data\obj_finish\in\weapon\w1011.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x0077012C	weapon/w1012	PS2Data\obj_finish\in\weapon\w1012.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x0077012D	weapon/w1013	PS2Data\obj_finish\in\weapon\w1013.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x0077012E	weapon/w1014	PS2Data\obj_finish\in\weapon\w1014.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x0077012F	weapon/w1015	PS2Data\obj_finish\in\weapon\w1015.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770130	weapon/w1016	PS2Data\obj_finish\in\weapon\w1016.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
-0x00770131	weapon/w5020	PS2Data\obj_finish\in\weapon\w5020.cm	Spear (2H)	NOT USED, Reserve	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x00770132	weapon/w4023	PS2Data\obj_finish\in\weapon\w4023.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770133	weapon/w2135	PS2Data\obj_finish\in\weapon\w2135.cm	Sword (1H)	Chirijiraden, NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770134	weapon/w0033	PS2Data\obj_finish\in\weapon\w0033.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770135	weapon/w0034	PS2Data\obj_finish\in\weapon\w0034.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770136	weapon/w0035	PS2Data\obj_finish\in\weapon\w0035.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770137	weapon/w8003	PS2Data\obj_finish\in\weapon\w8003.cm	Crossbow (2H)	NOT USED	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x00770138	weapon/w4024	PS2Data\obj_finish\in\weapon\w4024.cm	Sword (2H)	NOT USED	4	0x1D 0x656 0x3BBC 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770139	weapon/w4025	PS2Data\obj_finish\in\weapon\w4025.cm	Sword (2H)	Treaty-Blade	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077013A	weapon/w4026	PS2Data\obj_finish\in\weapon\w4026.cm	Sword (2H)	Sword of Kings	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077013B	weapon/w8210	PS2Data\obj_finish\in\weapon\w8210.cm	Bolts	NOT USED	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x0077013C	weapon/w8209	PS2Data\obj_finish\in\weapon\w8209.cm	Bolts	NOT USED	2	0x1D 0x1E	no	no	none	0x104: 1; 0x106: 0	
-0x0077013D	weapon/w2304	PS2Data\obj_finish\in\weapon\w2304.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077013E	weapon/w2305	PS2Data\obj_finish\in\weapon\w2305.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x0077013F	weapon/w4027	PS2Data\obj_finish\in\weapon\w4027.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770140	weapon/w4028	PS2Data\obj_finish\in\weapon\w4028.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
-0x00770141	weapon/w4029	PS2Data\obj_finish\in\weapon\w4029.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
+0x00770131	weapon/w5020	PS2Data\obj_finish\in\weapon\w5020.cm	Spear (2H)	NOT USED, Reserve	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x00770132	weapon/w4023	PS2Data\obj_finish\in\weapon\w4023.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770133	weapon/w2135	PS2Data\obj_finish\in\weapon\w2135.cm	Sword (1H)	Chirijiraden, NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770134	weapon/w0033	PS2Data\obj_finish\in\weapon\w0033.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770135	weapon/w0034	PS2Data\obj_finish\in\weapon\w0034.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770136	weapon/w0035	PS2Data\obj_finish\in\weapon\w0035.cm	Shield	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770137	weapon/w8003	PS2Data\obj_finish\in\weapon\w8003.cm	Crossbow (2H)	NOT USED	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x00770138	weapon/w4024	PS2Data\obj_finish\in\weapon\w4024.cm	Sword (2H)	NOT USED	4	0x1D 0x656 0x3BBC 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770139	weapon/w4025	PS2Data\obj_finish\in\weapon\w4025.cm	Sword (2H)	Treaty-Blade	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077013A	weapon/w4026	PS2Data\obj_finish\in\weapon\w4026.cm	Sword (2H)	Sword of Kings	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077013B	weapon/w8210	PS2Data\obj_finish\in\weapon\w8210.cm	Bolts	NOT USED	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x0077013C	weapon/w8209	PS2Data\obj_finish\in\weapon\w8209.cm	Bolts	NOT USED	2	0x1D 0x1E	no	no	-	0x104: 1; 0x106: 0	
+0x0077013D	weapon/w2304	PS2Data\obj_finish\in\weapon\w2304.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077013E	weapon/w2305	PS2Data\obj_finish\in\weapon\w2305.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x0077013F	weapon/w4027	PS2Data\obj_finish\in\weapon\w4027.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770140	weapon/w4028	PS2Data\obj_finish\in\weapon\w4028.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
+0x00770141	weapon/w4029	PS2Data\obj_finish\in\weapon\w4029.cm	Sword (2H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	
 0x00770142	weapon/w1017	PS2Data\obj_finish\in\weapon\w1017.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770143	weapon/w1018	PS2Data\obj_finish\in\weapon\w1018.cm	Gun (2H)	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770144	weapon/w1019	PS2Data\obj_finish\in\weapon\w1019.cm	Unarmed	NOT USED	2	0x1D 0x1E	no	no	0: 1; 1: 1; 2: 1; 3: 1; 4: 1; 5: 1; 6: 1; 7: 1; 8: 1	0x104: 1; 0x106: 0	
 0x00770145	weapon/w4030	PS2Data\obj_finish\in\weapon\w4030.cm	Sword (2H)	Wyrmhero Blade	3	0x1D 0x656 0x65E	yes	yes	13: 0	0x105: 1; 0x106: 0	
-0x00770146	weapon/w2136	PS2Data\obj_finish\in\weapon\w2136.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	none	0x105: 1; 0x106: 0	
+0x00770146	weapon/w2136	PS2Data\obj_finish\in\weapon\w2136.cm	Sword (1H)	NOT USED	3	0x1D 0x656 0x65E	yes	yes	-	0x105: 1; 0x106: 0	

@@ -152,7 +152,7 @@ A record, at `0x10 + 20 x position`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | item[6] | offset of the quest's item in each section, from sectionAt[s]; `0xFFFF` = none |
+| `+0x00` | `u16` | item[6] | offset of the quest's item in each section, from sectionAt[s]; `0xFFFF` = no item |
 | `+0x0C` | `u16` | fill[4] | `0x0FFF`; not read |
 
 No reader uses `item[5]`: the progress row is found by position. The sections:
@@ -197,7 +197,7 @@ A `QHT0` entry, read by `0x00473CC0(entry, step)`:
 | `+0x00` | `u8` | count | label pairs; not read |
 | `+0x01` | `u8` | value | returned by `0x00473CC0` |
 | `+0x02` | `u16` | zero |  |
-| `+0x04` | `{u16 first, u16 second}[]` |  | per step: offsets of two label strings from the entry; `0x8000` and up = none |
+| `+0x04` | `{u16 first, u16 second}[]` |  | per step: offsets of two label strings from the entry; `0x8000` and up = no label |
 
 ## Shipped data
 
@@ -300,7 +300,7 @@ state byte (1 loaded, 2 loading, 3 dropped on arrival) and the buffer at `+0x10`
 - `0x0037F340(widget)` sends `{0x10, 8}` to the owner's handler at `+0xC0`, then sets bit `0x1` of `+0xE0`
   and `+0xE5` = 2. `0x0037F190(owner, entry)` sends `{0x10, entry byte 1, its word +4 when that byte is 2}`.
 - `0x0037F050()` answers whether no quest data widget exists, and `0x0037F160()` returns `+0xE0` bit `0x80`, or 0
-  with none; the map-data widget's `0x003BBFB0` reads both.
+  with no widget; the map-data widget's `0x003BBFB0` reads both.
 - `0x0037E4F0(owner)` closes the widget for an owner. While `+0xE0` bit `0x80` is set it sends `{0x10, 10}` to the
   owner at once. Otherwise it unregisters the glyph sheet (`0x0037F860`), keeps the owner at `+0xC0` and sets
   `+0xE5` to 3 when that returns 0, or to 4 with a close request (`0x00244F00`) and `{0x10, 9}` to the owner.

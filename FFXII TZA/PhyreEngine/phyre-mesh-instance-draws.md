@@ -75,7 +75,7 @@ pass record:
 | 3 | always | `+0x10` |
 | 4 | `+0x04` is 2 | `+0x08` |
 | 5 | `+0x04` is 3 | `+0x08` |
-| any other non-zero | always | none |
+| any other non-zero | always | no override |
 
 A null override leaves the renderer's pass record in use.
 
@@ -87,7 +87,7 @@ ring buffer (`0x006B6410`, `0x006B64F0`), whose data starts `0x10` bytes in.
 
 - `0x005FF090(instance, palette)` writes the instance's world matrix into the leading slot (the 64
   bytes before `palette`): `m_localToWorldMatrix` (`+0x08`) expanded from 4×3 to 4×4 as `0x006045E0`
-  does, or the identity when there is none or bit `0x1` of `m_flags` (`+0x58`) is set. It then jumps to
+  does, or the identity when there is no world matrix or bit `0x1` of `m_flags` (`+0x58`) is set. It then jumps to
   `0x005FF200`.
 - `0x005FF200(instance, palette)` fills entry *i* from the instance's matrix array at `+0x18`. With bit
   `0x2` of `m_flags` set it copies the matrices as they are. Otherwise entry *i* is the product
@@ -130,7 +130,7 @@ variant entry's `+0x08` count. On false, `0x0060B980` first calls the renderer's
 | `[1]` | `0x2` | `0x00602A40(renderer, parameterBuffer)` |
 | `[2]` | `0x4` | `0x00602EA0(renderer, draw)` |
 | `[3]` | `0x8` | the per-instance block from `0x00600F30`, then passed to `0x0060A010` (after `0x00609D80` for a dynamic mesh instance) |
-| `[4]` | none | for a dynamic mesh instance whose slot 1 reports a size: a preprocess ring block of that size, filled by its slot 2 |
+| `[4]` | no flag | for a dynamic mesh instance whose slot 1 reports a size: a preprocess ring block of that size, filled by its slot 2 |
 
 For each parameter it walks, `0x00602EA0` reads the type byte `+0x03` (`0x00603356`) and handles types `0x30` and
 `0x31`. Any other type prints the type-id message at `0x00D4B3C8` (`0x005CDAA0`) once,
@@ -186,7 +186,7 @@ These do not depend on the record's light slot:
 - `0xDE`–`0xE1`: the vertex data block holding the stream `Vertex`, `Normal`, `Color` or `ST` of the
   draw's segment (`+0x38`), as a capture record with the block at `+0x10`. When the record's light slot is empty, a
   missing block logs `Could not find data block on mesh instance for shader parameter '%s'.`.
-- `0xE2`: the segment's `m_indexData` (`+0x40`); on the same empty-slot path, none logs `Could not
+- `0xE2`: the segment's `m_indexData` (`+0x40`); on the same empty-slot path, a missing one logs `Could not
   find index data block on mesh instance for shader parameter '%s'.`.
 - `0xE3`: the LOD blend weight, the first float of the element of the instance's `m_lodLevel`
   (`+0x40`) that draw `+0x18` names (`0x006073D0`), in all four floats; 1.0 without a LOD level.
@@ -212,7 +212,7 @@ and `0xD9`–`0xDC` a record with a null texture.
 `0x00670920(segment, &block, type)` walks the segment's vertex data blocks (`0x88` bytes; count `+0x30`,
 array `+0x38`) and, in each, its `0x18`-byte stream records (count `+0x08`, array `+0x10`), and
 returns the first stream whose `m_renderDataType` (`+0x08`) is `type`, with its block in `block`; null
-when none matches.
+when no stream matches.
 
 The data types are static objects named before `main`: `Vertex` `0x02D3AB18`
 (`0x00165E10`), `Normal` `0x02D3AB30` (`0x00165B70`), `ST` `0x02D3AB48` (`0x00165BA0`) and `Color` `0x02D3AB78`

@@ -96,7 +96,7 @@ The columns come from the documents and from the loaders that read them:
 | `named_in_exe` | `yes` with the file offset of the name when the executable holds it as a string, else `no` |
 | `reader` | the function that asks for the key, and the documents it looks in |
 | `destination` | where the value is stored: the object and offset, or the global |
-| `conversion` | how the value is converted on the way, `-` for none |
+| `conversion` | how the value is converted on the way, `-` when the value is not converted |
 | `explanation` | what the value does, with the code that uses it |
 | `evidence` | the lookup sites and the pages that describe the use |
 

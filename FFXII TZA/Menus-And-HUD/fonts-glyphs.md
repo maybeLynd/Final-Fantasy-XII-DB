@@ -48,7 +48,7 @@ record's own character, the key is:
 | `atlasX`, `atlasY` | the left and top edge in the atlas, `atlasY` counted from the top (`0x002AA5C7`) |
 | `cellW`, `cellH` | the width and height in the atlas |
 | `advance2`, `advance` | the two advance words; the pen advance is `advance` (`0x002AC4EC`) |
-| `kernCp` | the code point the glyph kerns as, or -1 for none (`0x002AC527`) |
+| `kernCp` | the code point the glyph kerns as, or -1 for no kerning (`0x002AC527`) |
 
 ## Related
 

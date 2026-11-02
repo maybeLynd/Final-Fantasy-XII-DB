@@ -72,14 +72,14 @@ files nothing.
 
 The engine files requests by **entry slot**, not by function id. Slot *n* of an actor names a
 function through the cache word `actor + 0xC8 + 2n`, or, when that word is `0xFFFF`, through the
-image's special-function footer at `table + 2 + 2n` (`0x002652D0`; slots above 17 give none, and
+image's special-function footer at `table + 2 + 2n` (`0x002652D0`; slots above 17 give no function, and
 slot 14 reads slot 7 when the image's version word is below 6). The shipped scripts declare the
 slots as 1 `main`, 2 `talk`, 3 `touch`, 4 `touchon`, 5 `touchoff`, 6 `across`, 7 `spawn`,
 8 `fieldsign1`, 9 `initevent`, 11 `parameter`, 12 `mapjump`, 13 `fieldsign2`, 14 `respawn`,
 16 `talkhold`, 17 `talkterm`.
 
 Whether a slot may be filed is bit *n* of the actor's arming mask `+0x1C`. `0x00266BD0` seeds it by
-sequence type: 0 none; 1 and 2 `0x38` (touch, touchon, touchoff); 3 and 4 `0x40` (across); 5 and
+sequence type: 0 no slots; 1 and 2 `0x38` (touch, touchon, touchoff); 3 and 4 `0x40` (across); 5 and
 6 `0x30004` (talk, talkhold, talkterm); 7 `0x34C85` (slots 0, 2, 7, 10, 11, 14, 16 and 17). The verbs `reqenable` (`0x0026B4A0`) and `reqdisable` (`0x0025D5E0`) set
 and clear one bit; `reqdisable` refuses slots 4 and 5 while `+0x0C` bit `0x20` marks a stop zone, and
 for slot 16 clears `+0x0B` bit `0x4` and runs `0x00262740`, for 17 runs `0x002626C0`.
@@ -101,7 +101,7 @@ and re-selects when the requester differs, exactly as the script path does.
 | `0x0025B2E0` | 6 `across` ch 5, mode 0 | a party actor's last move crosses the type-2 line record (`0x003A17D0`) |
 | `0x0025B600` | 12 `mapjump` ch 6, mode 0 | the focus actor's collision record names a map-exit owner in `0x0209A210` and `0x003B7730` allows it |
 | `0x00269860` | 7 `spawn` (mode argument non-zero) or 14 `respawn` ch 2, mode 0, then `0x00269640` | the scripts-live byte `0x02099DE1` is set |
-| `0x00269640` | slot 0 on channel 1, then 11 `parameter` on channel 0, mode 0 | bits `0x1` and `0x800` of the mask; no shipped script declares slot 0, so only `parameter` is filed |
+| `0x00269640` | slot 0 on channel 1, then 11 `parameter` on channel 0, mode 0 | bits `0x1` and `0x800` of the mask; no shipped script names a function for slot 0: its footer entry is -1 in all 237,662 actors of the 10,036 version-11 images, and the 16,956 `REQCHG` of the listings re-point slots 2 to 5, 16 and 17 only |
 | `0x00266C50` | every function of the image's `+0x58` list on the actor its `+0x50` word names, top channel, mode 2 | the manager's image is started |
 | `0x00268B10` | each `(actor, function)` pair of a list in the image's `+0x30` table, mode 0 | a scripted group request; a flag marks `+0x24` bit *channel* and raises `+0x10` on the target |
 | `0x00269BA0` | slot *n* on one actor, mode 0 | bit *n* or the force argument |

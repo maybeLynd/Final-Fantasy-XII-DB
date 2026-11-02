@@ -188,7 +188,7 @@ tables.
 | `menu00.bin` | 22 | 128 |
 | `menu01.bin` | 23 | 71 |
 | `menu02.bin` | 24 | 60 |
-| `battle_pack.bin#57` | none | 128 |
+| `battle_pack.bin#57` | no group | 128 |
 
 Empty strings per tree: `us` 2,713, `de` 9, `es` 1, `fr` 437, `it` 2,410, `in` 1, `kr` 2, `cn` 16, `ch` 20. Where the
 `us` and `it` tables leave an unused string empty, `de` writes `/Unused`, `es` `DUMMY` and `fr` `/`, as in

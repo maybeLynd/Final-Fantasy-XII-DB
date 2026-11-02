@@ -288,7 +288,7 @@ Presentation record, `0x02B59D80` + slot × `0x150`:
 | `+0x000` | `u16` | live | 1 when set up by `0x003E7500` |
 | `+0x004` | `i16` | record | the render-record index |
 | `+0x008` | `u32` | shown | the status word last pushed |
-| `+0x010` | `void*` | rig | `0x003E6DA0` of the render record, 0 = none |
+| `+0x010` | `void*` | rig | `0x003E6DA0` of the render record, 0 = no rig |
 | `+0x020` | `0x50` | colourList | block 1 |
 | `+0x070` | `0x48` | second | block 2 |
 | `+0x0C0` | `u32[32]` | flags | one per status bit |
@@ -301,7 +301,7 @@ Colour-look block (record `+0x20`):
 |---|---|---|---|
 | `+0x00` | `u32` | mask | mask `0x3FFF` |
 | `+0x04` | `u8` | shown |  |
-| `+0x05` | `u8` | wanted | lowest set bit, `0xFF` = none |
+| `+0x05` | `u8` | wanted | lowest set bit, `0xFF` = no bit set |
 | `+0x06` | `u8` | frame | flash and cycle counter |
 | `+0x07` | `u8` | flags | bit `0x1` changing, mask `0xFE` entry count |
 | `+0x08` | `u32` | light0 | handle |

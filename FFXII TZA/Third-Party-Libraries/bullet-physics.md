@@ -54,7 +54,7 @@ PhyreEngine wraps Bullet in its `PPhysics` classes; the Bullet-backed ones are n
    lists (`0x0069EF20`).
 3. `0x0069EF20` calls `0x0069F070` for every rigid body in every list and links each body to its list.
 4. `0x0069F070` removes the body from a Bullet world it is already in (world slot `+0xA0`), builds the
-   Bullet body when it has none (`0x0069FB10`), builds the world if it is still missing, and puts a
+   Bullet body when it has no Bullet body (`0x0069FB10`), builds the world if it is still missing, and puts a
    body that was in a world back into it (`0x006A65A0`).
 
 `0x0069FB10` is the only caller of the `btRigidBody` constructor and `0x006A0310` the only caller of the
@@ -100,7 +100,7 @@ it (`0x006A04AE`).
 `0x0069FB10` turns one `PPhysicsRigidBody` into Bullet objects:
 
 1. It returns 0 at once when the body already has a Bullet body (`+0x118`).
-2. It allocates a 128-byte `btCompoundShape` when there is none (`+0x120`). The one call to the
+2. It allocates a 128-byte `btCompoundShape` when there is no shape (`+0x120`). The one call to the
    constructor passes 0 for the dynamic AABB tree (`0x0069FBBA`), so no compound in the game has one.
 3. Each child shape builds itself (its vtable slot `+0x08`); the first failure is returned. The
    children's masses (`+0x0C`) are summed.
@@ -232,6 +232,14 @@ the broadphase box from (-5000, -5000, -5000) at `+0x14` to (5000, 5000, 5000) a
 
 No shipped cluster declares or instantiates a `PPhysics` class, so even with the manager enabled the
 class-descriptor callback would have no instances to visit.
+
+### Columns of bullet-physics-members.tsv
+
+One row per function, 467 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address: 453 from `0x00830760` to `0x00861C80` and 14 from `0x0087F180` to `0x00880020` |
 
 ## State
 

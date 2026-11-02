@@ -58,7 +58,7 @@ as the stats rebuild `0x002FEF30` reads them ([Equipment row](equipment-row.md),
 
 - `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), with the map (region) whose script gives an actor that shop (`setshopname`, the `place` column), and when the list that holds it goes on sale:
   - from the start;
-  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or, where no script writes the value, with the first written value that meets it, which is so for 500: "from story progress 500 (met from 520, After the floating continent)" (below);
+  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or, where no story script writes the value, with the first written value that meets it, which is so for 500: "from story progress 500 (met from 520, After the floating continent)" (below);
   - from a clan rank, with the rank's shipped name;
   - for the Clan Provisioner's last list, from joining Clan Centurio (below).
 - `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
@@ -85,7 +85,7 @@ as the stats rebuild `0x002FEF30` reads them ([Equipment row](equipment-row.md),
 - `hunt reward:` the hunt whose report gives it, with the package and the map (region) and script that report it ([Hunts](../Story-Events-And-Hunts/hunts.md), [Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)):
   - the script verb `questresultwindow(n)` opens the reward window for quest n and grants at once the package its selector names ([Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md));
   - the selector is `0xA000` + the text index of entry n of `questbase.bin` (`0x00344C60`, `0x00473C90`), which is n for the 45 hunts, quest ids 128-172 ([Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md));
-  - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; none is.
+  - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; no package is.
 - `starting equipment:` the main characters who wear it when the game begins ([Party table](../Party/party-table.md)).
 
 A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
@@ -98,13 +98,13 @@ Every part names every source. A cell that would be longer than 1,000 characters
 
 That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source. The starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
 
-Six weapons have no source for the player, and their cells start `none`. Joyeuse, Chirijiraden, Flimsy Blade and the two Nightmare rows are the main-hand weapons of guests in the party table ([Party table](../Party/party-table.md), word `+0x0A`): Larsa (row 13), Reddas (rows 14 and 16), Basch (row 9) and Vossler (`0x10A6` row 11, `0x10A9` row 12). No party table row wears the Hero's Blade.
+Six weapons have no source for the player, and their cells start `no source for the player`. Joyeuse, Chirijiraden, Flimsy Blade and the two Nightmare rows are the main-hand weapons of guests in the party table ([Party table](../Party/party-table.md), word `+0x0A`): Larsa (row 13), Reddas (rows 14 and 16), Basch (row 9) and Vossler (`0x10A6` row 11, `0x10A9` row 12). No party table row wears the Hero's Blade.
 
 None of the six is in a shop, bazaar good, treasure chest, enemy slot, reward package, hunt reward or script give. Scenario sets give or equip them ([Scenario presets](../Party/scenario-presets.md)), but a new game asks for set 0, `naf_b04` for set 1, and the developer script `evt_t0505` for sets 0, 2, 3, 11-13, 15, 17, 18, 20 and 22-49.
 
 ### The licence it needs
 
-`licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character equip it. The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with `0x002F8FA0` ([Licenses](licenses.md), "The test"). `none needed` marks a row whose `+0x07` bit `0x10` is set, which `0x00323C60` passes without the board (`0x00323CDF`).
+`licence` names the licence squares whose node lists the equipment id among its grants ([`license-list.tsv`](license-list.tsv), `grant_ids`), by name and node. Owning any one of them lets a character equip it. The equip test `0x00317B70` calls `0x00317930`, which asks `0x00323C60` (`0x00317ADE`); that builds the node mask with `0x002F8FA0` ([Licenses](licenses.md), "The test"). `no licence needed` marks a row whose `+0x07` bit `0x10` is set, which `0x00323C60` passes without the board (`0x00323CDF`).
 
 ## Columns
 
@@ -120,14 +120,14 @@ None of the six is in a shop, bazaar good, treasure chest, enemy slot, reward pa
 | `ordinal` | `+0x08`, the row's order inside its class (`0x0031C9CB`) |
 | `price` | buy price in gil (`+0x12`) |
 | `attack`, `reach_tenths`, `recipe` | weapons and ammunition: Attack Power `+0x1A`; weapons: reach in tenths `+0x18` and the damage recipe `+0x19` ([Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md)) |
-| `defense`, `magick_resist`, `augment` | head, body and accessories: Defense `+0x18`, Magick Resist `+0x19`, and the augment `+0x1A` by its term on [Augment list](../Damage-And-Battle-Formulas/augment-list.md) with its id (empty for none; [Augments](../Damage-And-Battle-Formulas/augments.md)) |
+| `defense`, `magick_resist`, `augment` | head, body and accessories: Defense `+0x18`, Magick Resist `+0x19`, and the augment `+0x1A` by its term on [Augment list](../Damage-And-Battle-Formulas/augment-list.md) with its id (empty for no augment; [Augments](../Damage-And-Battle-Formulas/augments.md)) |
 | `shield_evade`, `magick_evade` | shields: `+0x18` and `+0x19` |
 | `knockback`, `combo`, `weapon_evade` | weapons (classes 0-17): `+0x1B`, `+0x1C`, `+0x1D`; empty on ammunition, where all three are 0 |
 | `element` | weapons and ammunition: the attack element `+0x1E` (`0x0038BE30`) |
 | `status_chance`, `statuses_inflicted` | weapons and ammunition: the on-hit chance `+0x1F` and the statuses `+0x20` |
 | `charge_base` | weapons (classes 0-17): the charge time base `+0x27` |
 | `charge_weight` | `+0x10`, summed over the equipped items while the battle flag slows the charge |
-| `off_hand_class` | `+0x11`, the class the off-hand item must have; -1 for none |
+| `off_hand_class` | `+0x11`, the class the off-hand item must have; -1 for no class |
 | `hp`, `mp`, `strength`, `magick_power`, `vitality`, `speed` | the bonus record's stat bonuses |
 | `statuses_held`, `status_immune` | the bonus record's statuses the wearer has, and those it cannot get |
 | `absorb`, `nullify`, `halve`, `weak`, `potency` | the bonus record's element sets |
@@ -139,8 +139,8 @@ None of the six is in a shop, bazaar good, treasure chest, enemy slot, reward pa
 | `bonus_record` | the bonus record's index: `+0x28` / 24 |
 | `model_id` | weapons, ammunition and shields: the held model `+0x30` |
 | `explanation` | a one-line summary built from the row's own fields; for the Reserve rows 179-191 and the rows past the inventory's 420, what the row is |
-| `sources` | where the piece of equipment is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over, the trophy trade and the hunt reward, the treasure chests that hold it with the odds ("Where each piece of equipment comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; for the six guest weapons, `none` and who wears them; `-` for none |
-| `licence` | the licence squares that grant it, by name and node, or `none needed` ("The licence it needs" above) |
+| `sources` | where the piece of equipment is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over, the trophy trade and the hunt reward, the treasure chests that hold it with the odds ("Where each piece of equipment comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; for the six guest weapons, `no source for the player` and who wears them; `-` for a row with no source |
+| `licence` | the licence squares that grant it, by name and node, or `no licence needed` ("The licence it needs" above) |
 
 ## Related
 

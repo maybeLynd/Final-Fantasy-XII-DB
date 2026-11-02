@@ -12,16 +12,16 @@ index	address	name	selected_by_001E2AF0
 10	0x01F2D7E0	DefaultMapRenderPassZtZwNatNoBlending	yes
 11	0x01F2D800	DefaultMapRenderPassZtZwNatLinearBlending	yes
 12	0x01F2D820	DefaultMapRenderPassZtNzwAtLinearBlending	yes
-13	0x01F2D840	AteGequalFbonly	
-14	0x01F2D860	AteGequalFbonlyATC	
-15	0x01F2D880	AteGequalFbonlyAdd	
-16	0x01F2D8A0	AteGequalFbonlySub	
+13	0x01F2D840	AteGequalFbonly	yes
+14	0x01F2D860	AteGequalFbonlyATC	yes
+15	0x01F2D880	AteGequalFbonlyAdd	yes
+16	0x01F2D8A0	AteGequalFbonlySub	yes
 17	0x01F2D8C0	NoBlendWithAlphaClip	yes
 18	0x01F2D8E0	WaterPassForStencil	yes
-19	0x01F2D900	WaterPassForClearBg	
-20	0x01F2D920	WaterPassForFrac	
-21	0x01F2D940	WaterPassForFracAdd	
-22	0x01F2D960	WaterPassForFracSub	
+19	0x01F2D900	WaterPassForClearBg	yes
+20	0x01F2D920	WaterPassForFrac	yes
+21	0x01F2D940	WaterPassForFracAdd	yes
+22	0x01F2D960	WaterPassForFracSub	yes
 23	0x01F2D980	ChrOpaque	
 24	0x01F2D9A0	ChrOpaqueClip	
 25	0x01F2D9C0	ChrOpaqueReflection	

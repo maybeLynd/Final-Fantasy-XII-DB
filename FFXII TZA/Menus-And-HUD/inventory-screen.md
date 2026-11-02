@@ -114,7 +114,7 @@ for kinds 0 to 37 hold at most 9 tabs (kind 32, `0x00D23C70`).
 kept for the tab, scrolled into view (`0x002D1820`, `0x002D47C0`). `0x00565A00` does the same inside `0x005655F0`, the row
 builder that the shop tabs and the Inventory's tab switch share.
 
-The row painters `0x00563560` and `0x005637D0` draw a row: the icon frame `+0x0A` (none for `-1`), the name `+0x00`, and
+The row painters `0x00563560` and `0x005637D0` draw a row: the icon frame `+0x0A` (no icon for `-1`), the name `+0x00`, and
 numbers through `0x0029FF60`: `0x00563560` writes `+0x0E` less `+0x0C` and `+0x0E`, `0x005637D0` only `+0x0E`. The held row
 is drawn in colour 6. An empty tab shows text `0x7D8`.
 

@@ -46,7 +46,7 @@ so its records carry a `FuncInfo` RVA exactly like the 4,377. The stack cookie i
 The language data of a C++ record is one RVA, to a 40-byte `FuncInfo` in `.rdata`. The 4,518 C++
 records name 4,446 distinct `FuncInfo` records: one per parent function, plus a second `.pdata`
 record for each of the 72 catch funclets, which names its parent's `FuncInfo`. Every record has the
-magic `0x19930522`; none has an exception-specification list.
+magic `0x19930522`; no record has an exception-specification list.
 
 - The unwind map has `maxState` entries. Entry `n` gives the state to fall back to and the cleanup
   funclet to run when leaving state `n`; in all 7,488 entries the fallback state is lower than `n`,
@@ -193,6 +193,12 @@ They are listed in [the sentry destructor clones table](exception-handling-bk6-s
 returns true it calls `basic_ostream<wchar_t>::_Osfx`, then makes the same slot-2 call. The funclet
 `0x0089690C` (`lea rcx,[rdx+0x28] ; jmp 0x001953F0`) reaches it from `0x00194CD0`.
 
+### Columns of exception-handling-bk6-sentry-base-destructor-clones.tsv
+
+| Column | Holds |
+|---|---|
+| `entry` | the entry address of one of the four byte-identical 45-byte bodies: `0x001952E0`, `0x00195310`, `0x001AAF20` and `0x001AAF50` |
+
 ## Layouts
 
 `RuntimeFunction` (`0xC` bytes, offsets from the start of the record):
@@ -232,7 +238,7 @@ returns true it calls `basic_ostream<wchar_t>::_Osfx`, then makes the same slot-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `i32` | toState | state to continue with; always lower than this entry's index |
-| `+0x04` | `u32` | action | RVA of the cleanup funclet, 0 for none |
+| `+0x04` | `u32` | action | RVA of the cleanup funclet, 0 for no funclet |
 
 `IpToStateEntry` (`0x8` bytes, offsets from the start of the record):
 
@@ -285,8 +291,8 @@ The unwind map:
 |---|---|---|---|
 | 0 | -1 | `0x008968B0` | `lea rcx,[rdx+0x28]` ; `jmp 0x001952E0` (sentry) |
 | 1 | -1 | `0x008968BC` | `lea rcx,[rdx+0x28]` ; `jmp 0x001953A0` |
-| 2 | 1 | none | none |
-| 3 | 1 | none | none |
+| 2 | 1 | 0 | no cleanup |
+| 3 | 1 | 0 | no cleanup |
 | 4 | -1 | `0x00861EAE` | the `__std_terminate` stub |
 | 5 | 4 | `0x00861EAE` | the `__std_terminate` stub |
 

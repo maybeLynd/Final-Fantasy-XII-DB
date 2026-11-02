@@ -55,7 +55,7 @@ free runs only when `0x005C5230(5)` returns non-zero (`0x003318A2`-`0x003318A9`)
 
 | Fact | Value |
 |---|---|
-| files | 209 field map scripts per language tree, all under `plan_map/`; none in event scripts |
+| files | 209 field map scripts per language tree, all under `plan_map/`; 0 in event scripts |
 | `kinds` | 10 in every block |
 | sizes | 128 to 704 bytes, 128 in most |
 | `us` entries | 650: kind 3 93, kind 5 455, kind 6 1, kind 8 13, kind 9 88; kinds 1, 2, 4 and 7 unused |
@@ -89,7 +89,7 @@ location map's accessors; they never read `0x02B59D58`.
 | 1, 2 | `0x00264A40` | entry `i` of list 0 in the zone script's image |
 | 3, 5, 8 | `0x00264CA0` | entry `i` of list 2, 3 or 4 (`0x00264E40`) |
 | 6 | `0x00264CA0` → `0x003DFAC0` | an older-layout table that `0x003DFAC0` looks for in section 16 at the offset in its `+0x08`; in an `FF12POS3` section that word is `size`, so the lookup reads past the records ([Position entries](ebp-position-entries.md)) |
-| 4, 7, 9 | none | nothing, so `0x003DFBE0` refuses every entry |
+| 4, 7, 9 | no resolver | nothing, so `0x003DFBE0` refuses every entry |
 
 The lists are the per-class tables of manager 0's bound script image, found through its header
 `+0x70` (`0x00264AE0`). `0x002649B0(class, i)` returns `table + 0x10 + i * 0x20`, or null when `i` is

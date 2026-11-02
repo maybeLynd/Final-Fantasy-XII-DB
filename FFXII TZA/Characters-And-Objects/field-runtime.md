@@ -181,7 +181,7 @@ Then it resolves the current wait slot `[record + 0xA8] + (i8 record +0x11) * 0x
 | 5 | `0x002674B0(slot, &targetRef)`: walks the list `listRef` names from the cursor `listCursor`, resolving each entry's low word as a record ordinal (`0x00358940`) and its high word as a resource id, and stops at the first `0x003DBF60(record, id, -1)` that is not `0xFF` | an entry is found | `waitKind` = 1 |
 | 6 | `0x003DB640(0x0020E600(targetRef), waitChannel)` | the channel bit is set | `waitKind` = 1, `settled` = 1 |
 | 7 | `0x00267420(slot, &targetRef)`: the same walk, stopping at the first record whose channel bit `waitChannel` is set (`0x003DB640`) | an entry is found | `waitKind` = 1, `settled` = 1 |
-| 0, 8 and above | none | always | `parked` = 1 |
+| 0, 8 and above | nothing | always | `parked` = 1 |
 
 After the loop the resolver finishes the visit:
 

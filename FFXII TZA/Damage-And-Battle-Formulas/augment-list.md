@@ -60,7 +60,7 @@ Each line is read from the shipped files in these steps:
 
 | Offset | Type | Field | Meaning |
 |---|---|---|---|
-| `+0x00` | `u16` | textId | an extra text, through `0x002F9860`; 0 for none |
+| `+0x00` | `u16` | textId | an extra text, through `0x002F9860`; 0 for no text |
 | `+0x02` | `u16` | nameWord | the name: bank 10, row = the augment id, on every row |
 | `+0x04` | `u16` | value | the augment's number; its reader decides what it means (table below) |
 | `+0x06` | `u8` | timerSlot | 3, 4 and 5 on ids 55-57, `0xFF` (no timer) on the others ([Battle buffs](../Status-Effects-And-KO/battle-buffs.md), `0x0030EA40`) |
@@ -93,7 +93,7 @@ Fifteen functions load `0x02EBF040`, at 111 instructions: `0x002FEF30`, `0x002F9
   `+0x06` only.
 - `0x0031C5D0` reads `+0x00` and `+0x02`.
 
-No other instruction reaches the table, and none writes it after `battle_pack.bin` is loaded. Every read of
+No other instruction reaches the table, and no instruction writes it after `battle_pack.bin` is loaded. Every read of
 `+0x04` is one of the 28 in these functions: 23 take a fixed row, three in `0x002FEF30` take the 44 ids of its
 lists (the rows in the table above), and the two that take any id (`0x00387074` from `0x0030EA40`, `0x00390071` in
 `0x0038FF20`) read only a row whose slot `+0x06` is at most 7
@@ -135,7 +135,7 @@ describes a behaviour this census did not locate for augment 114 (Project notes)
 |---|---|
 | `id`, `term` | the augment id (the row) and its name in the database: its license's name, or the modding community's name (above) |
 | `name`, `name_jp` | the English name word `+0x02`, and the same word in the Japanese build |
-| `license` | the license that grants the augment, empty for none |
+| `license` | the license that grants the augment, empty when no license grants it |
 | `text_id`, `text` | `+0x00` and its shipped text; empty for 0 |
 | `value` | `+0x04` |
 | `value_reader`, `value_use` | the function that reads this row's value and what it does with it; empty when no instruction reads it |

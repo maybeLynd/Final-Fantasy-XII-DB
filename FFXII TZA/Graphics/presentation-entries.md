@@ -99,7 +99,7 @@ only records with `+0x284` bit `0x8000000` and no parent, and in phase 2 it skip
   With only `+0x2C8` bit `0x1000` set and `+0x348` not −1 it sets `+0x24` to 2.
 - With the record's `+0x4B7` bit `0x10` set it picks the locomotion mode (`0x004255B0`).
 - It runs every track state through the walker `0x0041DA90`, then calls `0x0041DD40` on states 1 and up
-  until a pass finds none to act on, sets `+0x0C` bit `0x100`, and copies whether `0x003E7D10(+0x6A4, 3)` is
+  until a pass finds no state to act on, sets `+0x0C` bit `0x100`, and copies whether `0x003E7D10(+0x6A4, 3)` is
   non-zero into the record's `+0xC0` bit `0x40`.
 
 `0x004255B0` gives controller 5 (`0x003E4890` → `0x0051A920`) a mode from the record's speed `+0x23C`

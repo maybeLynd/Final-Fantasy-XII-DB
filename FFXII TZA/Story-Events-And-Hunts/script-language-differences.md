@@ -21,9 +21,9 @@ the code was in `us` and what it is in those trees, which kind of change it is, 
 | `distance-culling` | 392 | `kr, cn, ch` | 12 | character distance culling is switched back on when control returns to the player |
 | `message-window` | 71 | `in` 29, `cn, ch` 29, all eight 13 | 16 | where an icon window opens: its height, or its message slot |
 | `demo-build` | 46 | `kr, cn, ch` | 8 | code for a build that ends early (closed passages, a thank-you page); none of it runs |
-| `capture-reference` | 11 | `in, kr, cn, ch` 10, `it` 1 | 5 | none: the same actor name sits at a different offset |
-| `sign-record` | 1 | `in` | 1 | none: an extra field-sign record that no code reads |
-| `script-only` | 1 | `kr, cn` | 1 | none: a second title-screen script that no build loads |
+| `capture-reference` | 11 | `in, kr, cn, ch` 10, `it` 1 | 5 | nothing: the same actor name sits at a different offset |
+| `sign-record` | 1 | `in` | 1 | nothing: an extra field-sign record that no code reads |
+| `script-only` | 1 | `kr, cn` | 1 | nothing: a second title-screen script that no build loads |
 
 Changes in text, and changes that only move code without changing it, are not rows.
 
@@ -43,7 +43,7 @@ Changes in text, and changes that only move code without changing it, are not ro
 | `calls` | the verbs and script functions the changed code calls |
 | `kind` | the kind of change, one of the seven of the table above |
 | `meaning` | what the change does in the game, in that tree |
-| `area_page` | the area pages of this folder that cover the script's group, `-` when none does |
+| `area_page` | the area pages of this folder that cover the script's group, `-` when no area page does |
 
 The listings name a verb without a name of its own `verb_0x<id>`, its call id; the `Data` sections below say what each
 such verb does from its native body. The table of `frs_b02` is named `signRecords`, after the verb that reads it. A
@@ -162,7 +162,7 @@ false; `0x5B1` runs the same body ([standard file formats](../Game-Files-And-Dat
 |---|---:|---|---|
 | `gol_a01` group 1, `gol_b01` group 2, `pla_a02` group 1, `pla_a03` group 5, `pla_b02` groups 2 and 3 | 5 | `if (verb_0x5B4())`: `setmapidmj(group, 0, 0)`, `setmapidmj(group, 7, 0)`, `verb_0x5C7()` | never runs |
 | `gol_c01`, `nal_d01` | 4 | the thank-you return to the title, under `verb_0x5B4()` | never runs |
-| `gol_c01` | 32 | the same variables under new numbers | none |
+| `gol_c01` | 32 | the same variables under new numbers | no change |
 | `rui_a04` (Doubt Abandoned) | 5 | the save offer wrapped in `if (!verb_0x5B4())` | runs as in `us` |
 
 `setmapidmj` (`0x100`, `0x003458D0` → `0x00379430`) with kinds 0 and 7 and value 0 would turn the floor of the map-jump
@@ -212,10 +212,10 @@ actor names and the scripts' pictures. In every row the same name sits at the ne
 ### Sign record (`sign-record`)
 
 In `in`, the image header's `+0x60` table of `frs_b02` (the Grand Bower, The Salikawood) holds one 16-byte record,
-words 1, 2, 3, 1, 1, 0, 0, 0; in `us` it holds none ([EBP script image](../EBP-Script-Files/ebp-script-image.md)).
-The table's reader is `0x002642C0`, whose one direct caller is `fieldsign` (`0x176`, `0x00355A00`, at `0x00355A23`), the
-verb that sets up a field object's touch and talk area. `frs_b02` calls `fieldsign` in no tree, so the record has no
-effect.
+words 1, 2, 3, 1, 1, 0, 0, 0; in `us` it holds no record ([EBP script
+image](../EBP-Script-Files/ebp-script-image.md)). The table's reader is `0x002642C0`, whose one direct caller
+is `fieldsign` (`0x176`, `0x00355A00`, at `0x00355A23`), the verb that sets up a field object's touch and talk area.
+`frs_b02` calls `fieldsign` in no tree, so the record has no effect.
 
 ### The title script `ttl_a01_e3` (`script-only`)
 

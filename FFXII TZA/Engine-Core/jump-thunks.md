@@ -27,7 +27,7 @@ exception-cleanup funclet (`0x0083AB80` from three unwind funclets) both leave a
 The 86 terminate pads jump to the import stub `0x00861EAE`, which is `jmp [0x008C2A78]`, the
 `__std_terminate` import from `VCRUNTIME140.dll`. 85 lie in one run from `0x008A26E4` to
 `0x008A508D`, with other code between 33 of them. The 86th, `0x008A5B1F`, stands alone after the `ret` of a funclet that ends at
-`0x008A5B1E`. None is called and none is held in a table; they are the landing pads the exception
+`0x008A5B1E`. No pad is called and no pad is held in a table; they are the landing pads the exception
 records name for functions that must not throw.
 
 The 763 forwarders jump to 763 distinct targets, one each, and 33 of the targets are themselves

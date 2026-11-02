@@ -449,7 +449,7 @@ fades](../Graphics/screen-fades.md)) begins it on one path with
 `0x007980A0` registers two callbacks after the window is created, each with the `PWindow` on its stack (`[rbp - 0x40]`)
 as the argument, and clears both after the message loop (`0x007986BF`, `0x007986C8`). Both callbacks, `0x00798910` and
 `0x007989B0`, pump the pending window messages with `PeekMessageW`, `TranslateMessage` and `DispatchMessageW` until
-none is left or `WM_QUIT` is next, so the window keeps answering while the renderer waits.
+no message is left or `WM_QUIT` is next, so the window keeps answering while the renderer waits.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|

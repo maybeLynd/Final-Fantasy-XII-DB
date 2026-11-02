@@ -67,22 +67,22 @@ rrp_a04	Secret Passage (Royal Palace)	ゲットFS	talk	talk	Switch	5	Switch You 
 rrp_a04	Secret Passage (Royal Palace)	いつわりの壁	talk	talk	no name shown	9	It's tightly shut.	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a05	Treasure Room No. 8 (Royal Palace)	常駐ディレクター	main	main	-	-	-	-	-	-	220: After Balthier and Fran; after the party	-	receives Goddess's Magicite	The Garden Stairs (Royal Palace), field 572, entrance 0	-	rrp_a0500, event 266	-	1	-
 rrp_a06	The Garden Stairs (Royal Palace)	常駐ディレクター	main	main	-	-	-	-	-	-	-	-	-	-	-	rrp_a0600, event 258	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	あいつらは	requested by 監視監督.Movie監視	-	1	What's going on?	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	イフリート	requested by 監視監督.Movie監視	-	2	The Ifrit, eh? That's quite an entrance.	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	手回しがよ	requested by 監視監督.Movie監視	-	3	Impeccable timing. If I didn't know better, I'd say they were waiting all along.	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	あ、こらっ	requested by 監視監督.Movie監視	-	4	Stop running!	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	さぁ、ボウ	requested by 監視監督.Movie監視	-	5	End of the line!	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	観念して、	requested by 監視監督.Movie監視	-	6	You have something that belongs to me.	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	ここにもい	requested by 監視監督.Movie監視	-	7	More this way!	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	行け！フラ	requested by 監視監督.Movie監視	-	8	Fran! Let's move!	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	そらよっと	requested by 監視監督.Movie監視	-	9	Off with you!	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	放せこのヤ	requested by 監視監督.Movie監視	-	10	Let go of me!	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	じたばたす	requested by 監視監督.Movie監視	-	11	Keep this up and I will!	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	どうした？	requested by 監視監督.Movie監視	-	12	What's going on, Fran?	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	わからない	requested by 監視監督.Movie監視	-	13	I don't know. It's not heeding me.	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	ちっ、どう	requested by 監視監督.Movie監視	-	14	I don't have time for this.	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	うあ、ちょ	requested by 監視監督.Movie監視	-	15	I— I'm slipping!	-	-	-	-	-	-	-	-	-	-	2	-
-rrp_a06	The Garden Stairs (Royal Palace)	台詞	くそっ！	requested by 監視監督.Movie監視	-	16	Not good!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	あいつらは	requested by 監視監督.Movie監視	movie subtitle	1	What's going on?	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	イフリート	requested by 監視監督.Movie監視	movie subtitle	2	The Ifrit, eh? That's quite an entrance.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	手回しがよ	requested by 監視監督.Movie監視	movie subtitle	3	Impeccable timing. If I didn't know better, I'd say they were waiting all along.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	あ、こらっ	requested by 監視監督.Movie監視	movie subtitle	4	Stop running!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	さぁ、ボウ	requested by 監視監督.Movie監視	movie subtitle	5	End of the line!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	観念して、	requested by 監視監督.Movie監視	movie subtitle	6	You have something that belongs to me.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	ここにもい	requested by 監視監督.Movie監視	movie subtitle	7	More this way!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	行け！フラ	requested by 監視監督.Movie監視	movie subtitle	8	Fran! Let's move!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	そらよっと	requested by 監視監督.Movie監視	movie subtitle	9	Off with you!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	放せこのヤ	requested by 監視監督.Movie監視	movie subtitle	10	Let go of me!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	じたばたす	requested by 監視監督.Movie監視	movie subtitle	11	Keep this up and I will!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	どうした？	requested by 監視監督.Movie監視	movie subtitle	12	What's going on, Fran?	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	わからない	requested by 監視監督.Movie監視	movie subtitle	13	I don't know. It's not heeding me.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	ちっ、どう	requested by 監視監督.Movie監視	movie subtitle	14	I don't have time for this.	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	うあ、ちょ	requested by 監視監督.Movie監視	movie subtitle	15	I— I'm slipping!	-	-	-	-	-	-	-	-	-	-	2	-
+rrp_a06	The Garden Stairs (Royal Palace)	台詞	くそっ！	requested by 監視監督.Movie監視	movie subtitle	16	Not good!	-	-	-	-	-	-	-	-	-	-	2	-
 rrp_a06	The Garden Stairs (Royal Palace)	movieSkip監督	Skip監視	requested by ムービー開始位置.touchon	no name shown	17	Skip	-	-	-	-	-	-	-	-	-	-	1	-
 rrp_a06	The Garden Stairs (Royal Palace)	ムービー開始位置	touchon	touchon	-	-	-	-	-	-	225: After the falling airship	-	-	East Spur Stairs (Garamsythe Waterway), field 314, entrance 4	-	-	-	4	-
 rrp_a06	The Garden Stairs (Royal Palace)	door1	talk	talk	Vaan	18	Vaan Between the guards and whoever those two were, it's not safe that way. No turning back now.	-	-	-	-	-	-	-	-	-	-	1	-

@@ -165,9 +165,9 @@ goal is blocked (`0x0033D3E0`); otherwise `0x0033A570` stops the unit. The spaci
 5. `0x0033B6F0` updates the zig-zag memory (below), and the fan is tried.
 
 The fan comes from three tables on the stack, picked by the mover class and the side the last
-detour took (block `+0x38` bits under mask `0xC0`: 0 none, 1 the positive side, 2 the negative side):
+detour took (block `+0x38` bits under mask `0xC0`: 0 no side, 1 the positive side, 2 the negative side):
 
-| Fan | Side none | Side 1 | Side 2 |
+| Fan | Side 0 | Side 1 | Side 2 |
 |---|---|---|---|
 | mover class 0-1, 12 entries | 0, 30, -30, 60, -60, 90, -90, 135, -135, 0, 0, 0 | 0, 30, 60, 90, -30, -60, -90, 135, -135, 0, 0, 0 | 0, -30, -60, -90, 30, 60, 90, -135, 135, 0, 0, 0 |
 | the row's narrow flag, 10 entries | 0, 30, -30, 60, -60, 90, -90, 0, 0, 0 | 0, 30, 60, 90, -30, -60, -90, 0, 0, 0 | 0, -30, -60, -90, 30, 60, 90, 0, 0, 0 |
@@ -181,8 +181,8 @@ degrees added to `0x00337470`'s pitch; every other unit at that pitch alone. For
    (block bytes `+0x2F`/`+0x30`, live while `+0x31`/`+0x32` are non-zero);
 2. it is skipped when it is more than 150 degrees from the last chosen heading (byte `+0x2C`, `byte *
    pi / 128`), or its pitch is not within 90 degrees;
-3. a candidate of 135 degrees, once an earlier candidate came back 2 (moving units in the way, none
-   blocking), is replaced by that earlier candidate, taken without a probe;
+3. a candidate of 135 degrees, once an earlier candidate came back 2 (moving units in the way, no
+   blocker), is replaced by that earlier candidate, taken without a probe;
 4. otherwise the forward clearance `0x00335B60` probes it at the probe distance (at `+0x110 + 1.8`
    for the 135-degree entries), with tolerance `1 - attempts / 10` and flags 8 for the straight
    heading, plus 4 under order `0x4124` or `0x4022` while fleeing, else 2. A result of 0 takes it; a
@@ -192,7 +192,7 @@ A taken heading gets its steering mode from `0x00339DF0` (below). Mode 2 needs a
 along the limited heading `+0xBC` (distance 1.0, tolerance 0.8) and then runs `0x0033D200`, whose
 result replaces the mode; a blocked second probe makes it mode 1. Mode 1 runs `0x0033CEF0`. Mode 3
 stops the unit, steps both `+0xB4` and `+0xBC` from the current heading toward the candidate by the
-slow rate `+0xEC`, and starts a countdown of 10 when none runs (cleared when the heading arrives).
+slow rate `+0xEC`, and starts a countdown of 10 when no countdown runs (cleared when the heading arrives).
 
 The pitch goes to `+0xB8`, the heading to byte `+0x2C`, `0x0033CC80` records the aim, the side bits
 are set by the sign of the offset (both cleared for 0), and the attempt counter (block `+0x3C`
@@ -380,7 +380,7 @@ actor is active (`0x002EA7F0`) it lists the actors in the corridor (`0x00391D10`
 `0x003920F0` for a segment, 32 at most) and with any candidate or blocker among them zeroes the
 speed and returns 1.
 
-With none, and the stall counter under 60, it aims a point `+0xAC + 0.1`
+With neither, and the stall counter under 60, it aims a point `+0xAC + 0.1`
 ahead along the last move (from block `+0x18`/`+0x1C`); when that direction differs from the
 current heading by over 5 degrees, is reachable (`0x0033D3E0` not 1) and on walkable terrain
 (`0x0026E100`), the desired heading takes the byte `+0x2C`, `+0xBC` the approach helper's result,
@@ -409,7 +409,7 @@ Five predicates test a step. Every non-zero exit returns a literal small integer
 | `0x0033D3E0(A, B, class)` (the straight walk) | 0 when `A` is off the mesh or the walk reaches `B`'s region through portals open to `class` (`0x0026E300` 1, or 0 with the mask bit) and the segment crosses each portal (`0x00468880`); 1 when `B` is off the mesh or a region has no crossable portal: blocked |
 | `0x00335E50(A, B, w, class)` (the width walk) | 1 when the walk offset by `+w`, the walk offset by `-w`, or the lateral segment across `B` from `+w` to `-w` is blocked |
 | `0x00335B60(ctx, angle, pitch, distance, tolerance, flags)` (forward step clearance) | 0 at once for a zero distance; otherwise 0 usable; 1 rejected by the obstruction query returning 1, the mode-3 segment test `0x00318CA0`, the width walk at `0.9 * +0x10C` (or the straight walk with flags bit `0x8`), the grid query `0x00391410`, or the terrain test `0x0026E100`; 2 only when the obstruction query returned 2 |
-| `0x003357B0(A, B, radius, unit, exclude, flags)` (dynamic obstruction) | 0 at once unless `flags` bit `0x20` is set or the asker's actor is active (`0x002EA7F0`); otherwise 0 nothing in the corridor; 1 a candidate accepted as blocking; 2 candidates counted but none blocking. The candidates come from the grid's actor list (`0x00391D10` for a point, `0x003920F0(..., 32, ~(flags >> 4) & 8 \| 0x14)` for a segment, at most 32); a unit of definition mode 1 against a mode-4 asker, the excluded unit and the asker itself are skipped; the rest pass the kind filters of `flags` bits under mask `0x5E`, then `0x00314EB0` and `0x00313F80` decide blocking (results 1-3 count as candidates, others as blockers) |
+| `0x003357B0(A, B, radius, unit, exclude, flags)` (dynamic obstruction) | 0 at once unless `flags` bit `0x20` is set or the asker's actor is active (`0x002EA7F0`); otherwise 0 nothing in the corridor; 1 a candidate accepted as blocking; 2 candidates counted but no blocker. The candidates come from the grid's actor list (`0x00391D10` for a point, `0x003920F0(..., 32, ~(flags >> 4) & 8 \| 0x14)` for a segment, at most 32); a unit of definition mode 1 against a mode-4 asker, the excluded unit and the asker itself are skipped; the rest pass the kind filters of `flags` bits under mask `0x5E`, then `0x00314EB0` and `0x00313F80` decide blocking (results 1-3 count as candidates, others as blockers) |
 | `0x0033A3D0(A, B)` (path width) | 1 when the walk `B` to `A` is clear, or when a half-way lateral detour at `+-45` degrees is fully clear; 0 only when the direct walk and both detours have a blocked leg |
 | `0x00335F90(ctx)` (corridor blocked) | 1 when the width walk at `0.9 * +0x10C`, the straight walk, or, for class 3, the segment test blocks; else 0 |
 

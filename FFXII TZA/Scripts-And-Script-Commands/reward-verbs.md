@@ -239,7 +239,7 @@ flag, the interaction latch `0x0208CD18`, the presence ledger, and the equipment
 
 - Every scripted item grant passes through `0x003008A0`; a hook there sees chests, talks, quests and
   party joins alike. The discovery bits are set on the first copy only for mode-1 grants, so the
-  action ids a party join grants through `0x00300490` set none.
+  action ids a party join grants through `0x00300490` set no discovery bit.
 - A chest's contents are decided when it is opened, by the roll in `0x002FAFD0`; its presence is
   decided by the roll in `0x002FAED0` each time `setuptreasure` runs, and the chest code does not read
   back the ledger that roll writes.

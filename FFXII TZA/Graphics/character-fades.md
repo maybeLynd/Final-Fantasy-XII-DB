@@ -226,7 +226,7 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
 | `+0x22` | `u8` |  | target kind: 1 a render record, 2 a test through `0x0024E2F0` / `0x0024E6D0` |
 | `+0x23` | `u8` |  | target mode |
 | `+0x24` | `u32` | target id |  |
-| `+0x28` | `u16` |  | lifetime in steps (0: none) |
+| `+0x28` | `u16` |  | lifetime in steps (0: no lifetime) |
 | `+0x2A` | `u16` | period in steps |  |
 | `+0x2C` | `u8` | priority |  |
 | `+0x2D` | `u8` | mask tested against 0x02B404C1 |  |
@@ -237,7 +237,7 @@ Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at 
 | `+0x40` | `f32[4]` |  | colour (r, g, b, a); `+0x4C` is also the lowest weight |
 | `+0x50` | `u32` |  | stamp from `0x00181DD0`() |
 
-- `0x003B4160` takes the first of the 64 records whose `+0x00` is 0 and returns 0 when none is free
+- `0x003B4160` takes the first of the 64 records whose `+0x00` is 0 and returns 0 when no record is free
   (`0x003B4182`-`0x003B4193`); it gives the record the next serial from `0x02B404C4`, wrapping to 1 above
   `0xFFFFFF` (`0x003B41AB`-`0x003B41BB`), and stores `serial << 8 | slot` at `+0x00` (`0x003B41ED`-`0x003B41F2`),
   which is never 0, the serial being 1 to 0xFFFFFF (its only writers are `0x003B41BB` and the reset's `0x003B480E`).

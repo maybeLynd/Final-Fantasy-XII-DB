@@ -159,7 +159,7 @@ and the same quad to the batcher as a four-vertex strip (`0x00181460`).
 | `0x002D9DB0(writer, widget, src, x, y, w, h, flags)` | a textured quad | widget `+0x90` | region from `src` |
 | `0x002DA2D0(writer, widget, colours, src, x, y, w, h, flags)` | a textured quad | four corners | region from `src` |
 | `0x002DA7C0(writer, widget, colours, clamp, src, x, y, w, h, flags)` | a textured quad | four corners | the caller's CLAMP_1 value, decoded into the mirror |
-| `0x002DC7F0(writer, widget, colours, x, y, w, h, flags)` | an untextured patch | four corners | none |
+| `0x002DC7F0(writer, widget, colours, x, y, w, h, flags)` | an untextured patch | four corners | no clamp |
 
 - `src` is `s16` x, y, width, height in texels. When its size differs from the target's, the first three
   set flag `0x2` in each UV record; CLAMP_1 (register 8) is written as region clamp on both axes, `0xA`

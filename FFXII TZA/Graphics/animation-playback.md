@@ -291,7 +291,7 @@ fill `+0x30` to `+0x2AF`.
 | `+0x2E8` | `u32` | flags; mask `0x7` cleared by the constructor, bits `0x1` and `0x2` armed by the blend command `0x08` |
 | `+0x2EC` | `u8[36]` | the section name text (`0x00409210`), looked up with the tags |
 | `+0x310` | `void*` | the motion file |
-| `+0x318` | `u16` | index in the file, −1 for none |
+| `+0x318` | `u16` | index in the file, −1 for no index |
 | `+0x31A` | `u16` | request `+0x24` (the record's signed byte `+0x413`) |
 | `+0x31C` | `u16` | the motion number; its top nibble is the kind the query tests |
 | `+0x31E` | `u8[2]` | not touched by the routines on this page |
@@ -301,7 +301,7 @@ fill `+0x30` to `+0x2AF`.
 | `+0x32A` | `u16` | 0 |
 | `+0x32C` | `u8[4]` | not touched by the routines on this page |
 | `+0x330` | `void*` | the skeleton bank (request `+0x08`) |
-| `+0x338` | `i32` | the skeleton entry id (request `+0x14`), −1 for none |
+| `+0x338` | `i32` | the skeleton entry id (request `+0x14`), −1 for no entry |
 | `+0x33C` | `u32` | set with `+0x0C` bit `0x1000` by `0x0041D4D0` |
 | `+0x340` | `f32` | `[0x01DFE0BC] × [0x008F8D80]` at reset; the per-entry update runs only while it is non-zero; not read by the sampler, which steps by `+0x20` / `+0x1A` and the two constants themselves |
 | `+0x344` | `f32[3]` | the time window `0x0041D7E0` stores, −1.0 at reset |
@@ -354,7 +354,7 @@ Set up by `0x0041CD30` and the bind `0x0041BEE0`; the reset values are `0x0041CF
 | `+0x84` | `u32` | track header offset |
 | `+0x88` | `u32` | start cursor (the first command, or the one after a `0xFFFF` marker) |
 | `+0x8C` | `u32` | cursor, back to `+0x88` at reset |
-| `+0x90` | `i32` | marker, −1 for none |
+| `+0x90` | `i32` | marker, −1 for no marker |
 | `+0x94` | `u8` | `0xFF` |
 | `+0x95` | `u8` | 1 for the primary track |
 | `+0x96` | `u16` | flags: bit `0x1` active, bit `0x4` finish, bit `0x10` blend, bit `0x20` the second set (`0x0041D4D0`), bit `0x40` makes the bind set `+0x18` to 0, bit `0x80` cleared at reset |

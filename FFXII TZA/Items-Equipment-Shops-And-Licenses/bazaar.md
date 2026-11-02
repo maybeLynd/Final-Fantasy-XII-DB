@@ -21,7 +21,7 @@ bytes:
 | `+0x00` | `u16` | name | name word, read by the query filler `0x0031C5D0` |
 | `+0x02` | `u16` | description | description text id, read by the query filler |
 | `+0x04` | `u16` | item0 | first item given (`0x002FD780`, `0x002FD7F2`-`0x002FD85D`) |
-| `+0x06` | `u8` | count0 | its count; 0 for none |
+| `+0x06` | `u8` | count0 | its count; 0 for no item |
 | `+0x08` | `u16` | item1 | second item given |
 | `+0x0A` | `u8` | count1 | its count |
 | `+0x0C` | `u16` | item2 | third item given |
@@ -106,7 +106,7 @@ bits `0x7` of every flag byte (`0x0030B739`-`0x0030B75B`).
 | `name` | its name from the shipped text |
 | `price` | gil |
 | `gives` | the items it gives, with counts and ids |
-| `unlocked_by_selling` | the loots and the counts that must be sold, with ids; `-` for none |
+| `unlocked_by_selling` | the loots and the counts that must be sold, with ids; `-` when no sale is needed |
 | `repeatable` | flag bit `0x1`: it can come back after it is bought |
 | `script_sets_availability` | flag bit `0x2`: a script offers it; for the seven script goods, the `sethoridashi` calls that offer it and when ("Goods a script offers" above) |
 

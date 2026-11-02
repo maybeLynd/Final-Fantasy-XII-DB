@@ -42,11 +42,11 @@ descriptor table at `0x01E0C328` has eight entries of `{u8 class, u8 sub, u16 si
 
 | Sequence | Class | Sub | Size | Movement context | Secondary context | Request entries | Wait slots |
 |---|---|---|---|---|---|---|---|
-| 0 | 0 | 0 | `0x328` | none | none | `+288`, 10 | `+0x1E8`, 8 |
-| 1 | 1 | 0 | `0x3A8` | `+0x120` | none | `+416`, 10 | `+0x268`, 8 |
-| 2 | 1 | 1 | `0x330` | `+0x120` | none | `+416`, 8 | `+0x240`, 6 |
-| 3 | 2 | 0 | `0x348` | `+0x120` | none | `+320`, 10 | `+0x208`, 8 |
-| 4 | 2 | 1 | `0x2D0` | `+0x120` | none | `+320`, 8 | `+0x1E0`, 6 |
+| 0 | 0 | 0 | `0x328` | no context | no context | `+288`, 10 | `+0x1E8`, 8 |
+| 1 | 1 | 0 | `0x3A8` | `+0x120` | no context | `+416`, 10 | `+0x268`, 8 |
+| 2 | 1 | 1 | `0x330` | `+0x120` | no context | `+416`, 8 | `+0x240`, 6 |
+| 3 | 2 | 0 | `0x348` | `+0x120` | no context | `+320`, 10 | `+0x208`, 8 |
+| 4 | 2 | 1 | `0x2D0` | `+0x120` | no context | `+320`, 8 | `+0x1E0`, 6 |
 | 5 | 3 | 0 | `0x6E0` | `+0x120` | `+0x350` | `+1240`, 10 | `+0x5A0`, 8 |
 | 6 | 3 | 0 | `0x6E0` | `+0x120` | `+0x350` | `+1240`, 10 | `+0x5A0`, 8 |
 | 7 | 3 | 1 | `0x668` | `+0x120` | `+0x350` | `+1240`, 8 | `+0x578`, 6 |
@@ -124,7 +124,7 @@ them (`+0x00` next, `+0x01` previous, `+0x04` = `0x80000000`, `+0x10` = 0), sets
 
 - `0x003DBF60(record, id, class)` walks every channel whose bit in `+0x06` is set, from its head,
   returning the first entry whose `+0x04` word equals `id` or whose `+0x12 >> 1` equals `class`
-  (either filter may be -1), bounded by the entry count; `0xFF` when none.
+  (either filter may be -1), bounded by the entry count; `0xFF` when no entry matches.
 - `0x003DB640(record, channel)` tests bit `channel` of `+0x06`.
 - `0x003DB2A0(record, index)` removes an entry. An entry in state 4 (`+0x10`) or with a negative
   channel byte `+0x02` is on the detached list at `+0x61`, otherwise on its channel's list at

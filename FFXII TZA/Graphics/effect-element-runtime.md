@@ -319,7 +319,7 @@ The distance is from the point at `0x02AED5F0` to the position transformed by `0
 by `0x002F1D90` (`0x00500324`–`0x00500381`, `0x005003D9`–`0x00500442`).
 
 The release `0x002F31C0(element, emitter)` runs the type's release method (types `0x40`–`0xD1`, then
-the sub-range table `0x0043E9C0` for `0x42`–`0xA3`; anything else has none), unlinks the element
+the sub-range table `0x0043E9C0` for `0x42`–`0xA3`; anything else has no release method), unlinks the element
 from the active list and pushes it on the free list `+0x120` (`0x002F31CA`–`0x002F3297`). A culled
 element is gone, not hidden.
 
@@ -704,7 +704,7 @@ Element:
 | `+0x040` | `i32` |  | whole age |
 | `+0x044` | `i32` |  | track frame |
 | `+0x048` | `i32` | updates |  |
-| `+0x04C` | `i32` |  | lifetime (0 none) |
+| `+0x04C` | `i32` |  | lifetime (0: no lifetime) |
 | `+0x060` | `...` | position |  |
 | `+0x1D0` | `i32[8]` |  | last firing per spawn slot (-1 unfired) |
 | `+0x1F0` | `u32` |  | colour (`0x80808080` neutral) |

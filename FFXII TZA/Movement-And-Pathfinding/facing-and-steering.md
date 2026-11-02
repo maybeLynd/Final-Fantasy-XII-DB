@@ -114,7 +114,7 @@ class-1 record, `0x002EBFA0` with its handle and `0x30B` for class 3, then `0x00
 is counted at the manager's `+0x1E0` and the record's steering pushed (`0x002EAB80`). A record with a
 battle unit also has its speed set to 0 (`0x0026D6F0(record, 0, 2)`) and `0x0035AE10(record, 1)`.
 
-`0x00263050(record, op)` ends it. Op 1 decrements the count and, when none remain, runs
+`0x00263050(record, op)` ends it. Op 1 decrements the count and, when it reaches 0, runs
 `0x002E1CD0(1)`, zeroes `0x02099DE5`, sets `0x02099DE7` to `0xFF`, calls `0x00263480(record, 2 when +0x0C
 bit 0x80 is set, else 1)` and, with `0x0209A2A8` set and `+0x0C` non-negative, `0x00225CD0(6, 4)`; it then
 releases the focus actor's look (`0x002EBE50(focus, 0, 0)`, `0x002E8EE0`, `0x002ED040(focus, 0)`). In
@@ -368,7 +368,7 @@ Struct SteeringRecord size=`0x80`:
 | `0x02164200` | 3.0 at run time | the near-flag multiple of the requested speed |
 | `0x01DFE0B4`, `0x01DFE0B8`, `0x01DFE0BC` | 1, 1.0, 1.0 at 30 fps; 2, 2.0, 0.5 at 60 fps ([game settings](../Saving-Loading-And-Settings/game-settings.md)) | the time base, the arrival scale, the speed and acceleration scale |
 
-In the shipped scripts `setaccr` is called twice in the whole corpus, so almost every scripted move
+`setaccr` (`0x122`) is called twice in each language tree's story scripts and by no developer script, so almost every scripted move
 runs in ramp mode 1.
 
 ## Operations

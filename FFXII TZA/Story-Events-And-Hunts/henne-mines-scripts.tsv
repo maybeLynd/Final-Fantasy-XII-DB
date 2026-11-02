@@ -164,7 +164,7 @@ hne_a0700	scene, event 344	日本語字幕	cut4	requested by ＡＤ.s04	Fran	3	I
 hne_a0700	scene, event 344	日本語字幕	cut5	requested by ＡＤ.s05	Fran	4	Mjrn!	-	-	-	-	-	-	-	-	-	-	1	-
 hne_a0700	scene, event 344	日本語字幕	cut6	requested by ＡＤ.s06	Mjrn	5	The stench of humes. The stench of power.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_a0700	scene, event 344	日本語字幕	cut7	requested by ＡＤ.s07	Ashe	6	What's wrong with her?	-	-	-	-	-	-	-	-	-	-	1	-
-hne_a0700	scene, event 344	日本語字幕	cut8	requested by ＡＤ.s08	-	7; 8	Stay away! / Power-needy hume!	-	-	-	-	-	-	-	-	-	-	1	-
+hne_a0700	scene, event 344	日本語字幕	cut8	requested by ＡＤ.s08	Mjrn	7; 8	Stay away! / Power-needy hume!	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0101	scene, event 341	choco_sum_ctrl	sumcho_byebye	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 hne_b0101	scene, event 341	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073: Riding a chocobo: the keeper scripts set it on mounting and the shared dismount routine releases it	-	-	-	-	-	-	-	-	4	-
 hne_b0102	scene, event 345	日本語字幕	cut10	requested by ＡＤ.s10	Vaan	0	That thing inside her. What was it?	-	-	-	-	-	-	-	-	-	-	1	-
@@ -172,7 +172,7 @@ hne_b0102	scene, event 345	日本語字幕	cut11	requested by ＡＤ.s11	Mjrn	1	
 hne_b0102	scene, event 345	日本語字幕	cut12	requested by ＡＤ.s12	Mjrn	2; 3	When the hume soldiers came to the Wood, the village took small heed of them. / So long as the Wood Herself is safe from harm, the viera give little care to goings-on beyond Her.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut13	requested by ＡＤ.s13	Mjrn	4	But in me an uneasiness stirred. I had to discover why they had come.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut14	requested by ＡＤ.s14	Balthier	5; 6	So you came here hoping to find something out, and got yourself caught. / You're as foolhardy as your sister.	-	-	-	-	-	-	-	-	-	-	1	-
-hne_b0102	scene, event 345	日本語字幕	cut15	requested by ＡＤ.s15	-	7; 8; 9; 10	They took me then, and set close beside me a stone. / They said its Mist would be drawn into me, that the viera well suited this end. / I saw the light coming from the stone, and then— / We have seen this.	-	-	-	-	-	-	-	-	-	-	1	-
+hne_b0102	scene, event 345	日本語字幕	cut15	requested by ＡＤ.s15	Mjrn; Fran	7; 8; 9; 10	They took me then, and set close beside me a stone. / They said its Mist would be drawn into me, that the viera well suited this end. / I saw the light coming from the stone, and then— / We have seen this.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut16	requested by ＡＤ.s16	Fran	11; 12	On Leviathan, the Mist from the Dawn Shard drove me, too, into such a rage. / She was taken not by the Dawn Shard.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut17	requested by ＡＤ.s17	Larsa	13	Manufacted nethicite.	-	-	-	-	-	-	-	-	-	-	1	-
 hne_b0102	scene, event 345	日本語字幕	cut19	requested by ＡＤ.s19	Larsa	14	Then that means—Penelo, the stone I gave you, do you still carry it with you?	-	-	-	-	-	-	-	-	-	-	1	-

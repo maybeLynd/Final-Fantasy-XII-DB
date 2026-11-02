@@ -99,8 +99,8 @@ gets the same level, and with 1 the sound is fully directional ([Sound effects](
 | `0` | `PolygonSound` | an ellipse of 13 triangles with half-sizes `+0x30`, `+0x34`, turned by `+0x50` |
 | `1` | `PolygonSound` | a rectangle of half-sizes `+0x30`, `+0x34` |
 | `2` | `PolygonSound` | a line through the record's points |
-| `3` | `AmbientSound` | none |
-| `4` | `DynamicSound` | none; its range comes from the bank |
+| `3` | `AmbientSound` | no outline |
+| `4` | `DynamicSound` | no outline; its range comes from the bank |
 
 `0x002DE420` writes the outline for shapes 0 and 2, the ellipse, and 1, the rectangle; it writes nothing for any other
 shape. The ellipse is the centre and 14 points round it, 15 in all, and the rectangle the centre and its four corners with the first repeated, 6 in all (`0x002DEA9A`-`0x002DEB00`). It takes the range from

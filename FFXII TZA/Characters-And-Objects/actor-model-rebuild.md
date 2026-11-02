@@ -23,7 +23,7 @@ The machine `0x0037B4D0(record)` (thunk `0x0037B4C0`) works on a 12-byte record:
 | `+0x00` | `u32` |  | actor, as an encoded image pointer (`0x0020E620` / `0x0020E600`) |
 | `+0x04` | `u32` |  | handle of the binding entry being waited on |
 | `+0x08` | `u8` |  | state 0..23 in the bits under mask `0x7F`; bit `0x80` = place the actor at the end |
-| `+0x09` | `i8` |  | party slot, -1 for none |
+| `+0x09` | `i8` |  | party slot, -1 for no slot |
 | `+0x0A` | `u8` |  | pass counter for states 13-15 |
 | `+0x0B` | `u8` |  | saved value of `0x002DEBD0`(), restored by `0x002DEB90` at the end |
 
@@ -35,7 +35,7 @@ and nothing runs while `0x00377DB0()` (the dword `0x02ADD0D8`) is 0.
 
 Binding entries, handles, the ready bit and the lane tests are those of
 [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md). A part id is the one
-`0x0031BEC0(actor, part, n)` returns, mapped through `0x002EB7A0`; a value of 0 or less means none.
+`0x0031BEC0(actor, part, n)` returns, mapped through `0x002EB7A0`; a value of 0 or less means no part.
 
 States 2, 8, 11 and 14 resolve their handle first, and a handle that no longer resolves is requested
 again from the current definition (`0x002EAE20(id, 0)`) without advancing. State 20 waits on its
@@ -58,7 +58,7 @@ record is gone or its stamp differs, so neither wait can end after its target is
 | 16 | the motion lane: `0x00320170` gives the lane the definition calls for; when it is valid, claimable (`0x002EB9D0`) and differs from context `+0x12`, it calls `0x002E6BB0(actor, 1)`, stores it in context `+0x12` (`0x002EC6B0`), which also points the render record's `+0x42C` at the lane's motion resource and `+0x430` at lane 0's, both from the model's entry in `0x02161DA0` (`0x002EDD20`, `0x002EDE20`; the handle of 0 for a negative lane), and clears bit `0x40000` of render record `+0x284` for a negative lane or one of 16 or more, and requests it (`0x002EB490`) | 17; 18 otherwise |
 | 17 | waits until the lane is loaded (`0x002E4C30` > 0) | 18 |
 | 18 | `0x002EAC90`, `0x002E8450(actor, 0x00321380(unit) or 0)`, and `0x002699D0` in read-in mode | 19 |
-| 19 | the body replacement: `0x0037CB90(id, 0x002657E0(actor), 0x00263FC0(actor))`; a replacement is found or created with `0x002EB540(id, 0)` | 20; 22 when there is none |
+| 19 | the body replacement: `0x0037CB90(id, 0x002657E0(actor), 0x00263FC0(actor))`; a replacement is found or created with `0x002EB540(id, 0)` | 20; 22 when there is no replacement |
 | 20 | waits, then `0x002EBC90(actor, 3, 1)`, `0x002E3110(actor, 4, 0, entry)`, `0x002EAC90` | 21 |
 | 21 | — | 22 |
 | 22 | places the actor when record bit `0x80` is set and the slot is not negative; shows it (`0x002EBB80(actor, 1)`), `0x00233AD0(actor)`, `0x00263560()` for a slot, `0x00359B10()`, restores `0x002DEB90(+0x0B)` | 23 |
@@ -133,7 +133,7 @@ caller is `0x00324360`); `partyallread`'s result `0x0034D460` is `0x003601C0(0x1
 bit `0x80000`.
 
 Every launcher calls `0x00233CF0` (`0x0030D8B0(0)`, `0x003266C0`, `0x00311E10(1)`), the counterpart of
-`0x00233AA0`, and none tests `0x02EBF400` first: a read-in started while one runs replaces the task
+`0x00233AA0`, and no launcher tests `0x02EBF400` first: a read-in started while one runs replaces the task
 pointer, and both tasks share the record `0x02EBF3F0`. `0x0037C730` clears `0x02EBF400` on the call after
 the one that runs `0x00233AA0`.
 

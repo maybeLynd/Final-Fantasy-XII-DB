@@ -309,7 +309,7 @@ shop rows (`0x0056E410`, `0x0056E49D`) and the hunt pane (`0x003F41C0`, `0x003F4
 `0xFFFF` is the empty id. The dispatchers refuse it before the nibble test, `0x003008A0` refuses it,
 the bundle rows use it for "no item", a derived-index list blanks a removed entry with it and
 compacts past it, an equipment slot holds it when empty and a unit's reserved item at `+0xDC8`
-when none is reserved.
+when no item is reserved.
 
 One-byte fields use `0xFF` the same way: the relation pool at `0x02CA81F0` links its 16-byte
 records through byte indices at `+0xD` and `+0xE`, and `0x00512CD0` unlinks a record by writing

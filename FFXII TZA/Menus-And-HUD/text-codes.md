@@ -34,7 +34,7 @@ selector, is:
 
 | Code | Bytes | Parser |
 |---|---:|---|
-| `0F !` | 2 | none (`0x002AD1E5`) |
+| `0F !` | 2 | no parser (`0x002AD1E5`) |
 | `0F 40`-`0F 6B`, the icons | 3 | `0x002AEB20`, which always returns 2 |
 | most escapes | 4 | `0x003FFAB0`, `0x003FFB90`, `0x003FFC60`, `0x003FFDA0`, `0x003FFEE0` |
 | `0F 1`, `0F l` | 5 | `0x003FFF10`, `0x003FFCE0` |
@@ -265,7 +265,7 @@ reads past those options; their codes are counted separately.
 | `code` | the control byte, or `0F` and the selector byte |
 | `char` | the selector as a character; `space` and `quote` stand for `0x20` and `0x22` |
 | `arm` | the address the jump table sends the code to |
-| `parser` | the payload parser the arm calls, or `none` |
+| `parser` | the payload parser the arm calls, or `-` when it calls none of them |
 | `bytes` | the whole code's length, `0x0F` and selector included |
 | `does` | what the arm does, with its addresses |
 | `st2e` to `npcdic` | the count in each text source, as in the table above |

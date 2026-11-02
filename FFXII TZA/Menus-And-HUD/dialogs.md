@@ -168,7 +168,7 @@ The table `0x0208EA60` holds one 8-byte window pointer per slot. `0x00241D40` st
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x0208EA68` | `void*` | 0 (zero-filled tail) | slot 1: the second confirm window opened under a root other than `[0x0208EA38]` and `[0x0208EA50]`, 0 when none is open | `0x00241D40`: the window (`0x00241E48`), 0 when it closes (`0x0024257E`); `0x002419B0`, 0 after it closes the window (`0x00241A04`, `0x00241A31`) | `0x002419B0` (`0x002419B6`); `0x00241A50(slot)` (`0x00241A5C`), with 1 from the battle menu (`0x0027C4D2`) and with a variable slot from `0x0027A353` and `0x00229095` |
+| `0x0208EA68` | `void*` | 0 (zero-filled tail) | slot 1: the second confirm window opened under a root other than `[0x0208EA38]` and `[0x0208EA50]`, 0 when no such window is open | `0x00241D40`: the window (`0x00241E48`), 0 when it closes (`0x0024257E`); `0x002419B0`, 0 after it closes the window (`0x00241A04`, `0x00241A31`) | `0x002419B0` (`0x002419B6`); `0x00241A50(slot)` (`0x00241A5C`), with 1 from the battle menu (`0x0027C4D2`) and with a variable slot from `0x0027A353` and `0x00229095` |
 
 `0x002419B0`, run by `0x0035BB70` at the field set-up and teardown (`0x0035BB99`), closes the slot-1 window unless its
 `+0x7C` bit `0x20` is set: it hides it (`0x00244DD0`) when bits `0x1` and `0x20` of `+0x40` are set, and otherwise sends it message 15

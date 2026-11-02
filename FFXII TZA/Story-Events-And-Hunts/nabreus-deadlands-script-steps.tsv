@@ -349,7 +349,7 @@ bog_a02	__MJ_CTRL001	mapjump	28	0x02FAC	797	not (getchocobomodebit()); regI3	sys
 bog_a02	__MJ_CTRL001	mapjump	29	0x02FB2	801	not (getchocobomodebit()); not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a02	__MJ_CTRL001	mapjump	30	0x02FBE	802	not (getchocobomodebit()); not (regI3)	spotsoundtrans	24, 0	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a02	__MJ_CTRL001	mapjump	31	0x02FC1	803	not (getchocobomodebit()); not (regI3)	goto	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a02	__MJ_CTRL001	mapjump	32	0x02FC4	804	not (getchocobomodebit()); not (regI3)	goto	local_jmp_6	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a02	__MJ_CTRL001	mapjump	32	0x02FC4	804	not (getchocobomodebit()); not (regI3); unreachable in the listing	goto	local_jmp_6	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	__MJ_CTRL001	mapjump	33	0x02FC7	805	not (getchocobomodebit()); not (regI3)	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	__MJ_CTRL001	mapjump	34	0x02FCA	806	not (getchocobomodebit()); not (regI3)	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a02	__MJ_CTRL001	mapjump	35	0x02FD0	807	not (getchocobomodebit()); not (regI3)	fadeprior	255	argument 1: the draw priority of the next screen fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -892,7 +892,7 @@ bog_a02	マクレイオ	talk	81	0x05933	3214	0x390000 bitor getquestscenarioflag
 bog_a02	マクレイオ	talk	82	0x05941	3215	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e	if	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	マクレイオ	talk	83	0x05948	3217	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	マクレイオ	talk	84	0x0594B	3219	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	goto	local_jmp_18	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a02	マクレイオ	talk	85	0x0594E	3220	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	goto	local_jmp_20	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a02	マクレイオ	talk	85	0x0594E	3220	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap()); unreachable in the listing	goto	local_jmp_20	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	マクレイオ	talk	86	0x05951	3221	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	label	local_jmp_18	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	マクレイオ	talk	87	0x05957	3222	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadeout_d0	1, 1	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a02	マクレイオ	talk	88	0x0595D	3223	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadesync_d3	1	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -906,20 +906,20 @@ bog_a02	マクレイオ	talk	95	0x05985	3234	0x390000 bitor getquestscenarioflag
 bog_a02	マクレイオ	talk	96	0x0598B	3235	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
 bog_a02	マクレイオ	talk	97	0x0598E	3236	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1	partyallread	-	-	-	-	-	-		01 verb-table.tsv
 bog_a02	マクレイオ	talk	98	0x05991	3237	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1	goto	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a02	マクレイオ	talk	99	0x059A3	3238	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1	if	not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a02	マクレイオ	talk	100	0x059B2	3240	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicfadeout_231	getnowmusicno(), 90, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_a02	マクレイオ	talk	101	0x059B5	3241	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_a02	マクレイオ	talk	102	0x059BB	3242	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bog_a02	マクレイオ	talk	103	0x059C1	3243	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicstop	-1	-	-	-	-	-		01 verb-table.tsv
-bog_a02	マクレイオ	talk	104	0x059C7	3244	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicclear	-1	-	-	-	-	-		01 verb-table.tsv
-bog_a02	マクレイオ	talk	105	0x059D0	3245	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicread	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_a02	マクレイオ	talk	106	0x059D9	3246	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicreadsync	getnowmapmusicno_47a(1)	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_a02	マクレイオ	talk	107	0x059E2	3247	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicplay	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_a02	マクレイオ	talk	108	0x059F1	3248	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musictrans	getnowmapmusicno_47a(1), 0, 0	music track getnowmapmusicno_47a(1)	-	volume 0 at once	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
-bog_a02	マクレイオ	talk	109	0x059F7	3249	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bog_a02	マクレイオ	talk	110	0x05A06	3250	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musictrans	getnowmapmusicno_47a(1), 90, 127	music track getnowmapmusicno_47a(1)	-	fade length 90 to volume 127	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
-bog_a02	マクレイオ	talk	111	0x05A0C	3252	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
-bog_a02	マクレイオ	talk	112	0x05A0F	3253	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1	partyallread	-	-	-	-	-	-		01 verb-table.tsv
+bog_a02	マクレイオ	talk	99	0x059A3	3238	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; unreachable in the listing	if	not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a02	マクレイオ	talk	100	0x059B2	3240	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicfadeout_231	getnowmusicno(), 90, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_a02	マクレイオ	talk	101	0x059B5	3241	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_a02	マクレイオ	talk	102	0x059BB	3242	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+bog_a02	マクレイオ	talk	103	0x059C1	3243	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicstop	-1	-	-	-	-	-		01 verb-table.tsv
+bog_a02	マクレイオ	talk	104	0x059C7	3244	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicclear	-1	-	-	-	-	-		01 verb-table.tsv
+bog_a02	マクレイオ	talk	105	0x059D0	3245	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicread	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_a02	マクレイオ	talk	106	0x059D9	3246	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicreadsync	getnowmapmusicno_47a(1)	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_a02	マクレイオ	talk	107	0x059E2	3247	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicplay	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_a02	マクレイオ	talk	108	0x059F1	3248	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musictrans	getnowmapmusicno_47a(1), 0, 0	music track getnowmapmusicno_47a(1)	-	volume 0 at once	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+bog_a02	マクレイオ	talk	109	0x059F7	3249	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+bog_a02	マクレイオ	talk	110	0x05A06	3250	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musictrans	getnowmapmusicno_47a(1), 90, 127	music track getnowmapmusicno_47a(1)	-	fade length 90 to volume 127	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+bog_a02	マクレイオ	talk	111	0x05A0C	3252	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; unreachable in the listing	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
+bog_a02	マクレイオ	talk	112	0x05A0F	3253	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; unreachable in the listing	partyallread	-	-	-	-	-	-		01 verb-table.tsv
 bog_a02	マクレイオ	talk	113	0x05A12	3255	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	マクレイオ	talk	114	0x05A16	3256	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	マクレイオ	talk	115	0x05A1F	3258	0x390000 bitor getquestscenarioflag(57) = 0x390032; isquestclear(58) == 1 and (0x3b0000 bitor getquestscenarioflag(59)) == 0x3b001e; (getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadein_d2	1, 1	-	-	-	-	-		01 verb-table.tsv
@@ -1183,7 +1183,7 @@ bog_a02	マクレイオ	talkterm	3	0x0611B	3582	((getrotangzx() - getdestrotangz
 bog_a02	マクレイオ	talkterm	4	0x0611E	3584	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	マクレイオ	バインドオフ	1	0x0611F	3589	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a02	マクレイオ	バインドオフ	2	0x06125	3590	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a02	マクレイオ	バインドオフ	3	0x06126	3591	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a02	マクレイオ	バインドオフ	3	0x06126	3591	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	ンモウ右	init	1	0x06127	3605	-	getduplicateid	-	result stored in local_var_s20f0_1	-	-	-	-		01 verb-table.tsv
 bog_a02	ンモウ右	init	2	0x0612D	3606	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	ンモウ右	main	1	0x0612E	3611	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1253,7 +1253,7 @@ bog_a02	ンモウ右	終了	2	0x062BE	3735	-	bindoff	-	the calling actor's bindi
 bog_a02	ンモウ右	終了	3	0x062C4	3736	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	ンモウ右	バインドオフ	1	0x062C5	3741	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a02	ンモウ右	バインドオフ	2	0x062CB	3742	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a02	ンモウ右	バインドオフ	3	0x062CC	3743	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a02	ンモウ右	バインドオフ	3	0x062CC	3743	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	ンモウ左	init	1	0x062CD	3757	-	getduplicateid	-	result stored in local_var_s21f0_1	-	-	-	-		01 verb-table.tsv
 bog_a02	ンモウ左	init	2	0x062D3	3758	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	ンモウ左	main	1	0x062D4	3763	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1323,7 +1323,7 @@ bog_a02	ンモウ左	終了	2	0x06464	3887	-	bindoff	-	the calling actor's bindi
 bog_a02	ンモウ左	終了	3	0x0646A	3888	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	ンモウ左	バインドオフ	1	0x0646B	3893	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a02	ンモウ左	バインドオフ	2	0x06471	3894	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a02	ンモウ左	バインドオフ	3	0x06472	3895	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a02	ンモウ左	バインドオフ	3	0x06472	3895	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	Ｅヴァン	init	1	0x06473	3904	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	Ｅヴァン	main	1	0x06474	3909	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	Ｅヴァン	出発イベントセット	1	0x06478	3914	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1372,7 +1372,7 @@ bog_a02	Ｅヴァン	クリア移動	4	0x06577	3981	-	motionplay_bb	0x10000002, 
 bog_a02	Ｅヴァン	クリア移動	5	0x0657A	3982	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a02	Ｅヴァン	退場	1	0x0657B	3987	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a02	Ｅヴァン	退場	2	0x06581	3988	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a02	Ｅヴァン	退場	3	0x06582	3989	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a02	Ｅヴァン	退場	3	0x06582	3989	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a03	setup	init	1	0x01630	29	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a03	setup	battle	1	0x01631	34	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
 bog_a03	setup	battle	2	0x01637	35	-	btlAtelSetDecidingEntryPointTimes	3	-	-	-	-	-		01 verb-table.tsv
@@ -2480,11 +2480,11 @@ bog_a05	ガイア	main	47	0x0315B	1240	nowmap() = 0x0352; haveitem(0x8064) != 0;
 bog_a05	ガイア	main	48	0x03164	1241	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s22f1_1 = gte(9)	move	138.616699, -2.49999994e-05, 186.097549	this actor, walks to (138.616699, -2.49999994e-05, 186.097549)	-	-	waits on the poll 0x00356A90, shared with movesync	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md, 06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bog_a05	ガイア	main	49	0x0316A	1242	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s22f1_1 = gte(9)	wait	local_var_s22f1_2	-	-	frames held in local_var_s22f1_2	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a05	ガイア	main	50	0x0316D	1243	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s22f1_1 = gte(9)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	ガイア	main	51	0x0319A	1247	nowmap() = 0x0352	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	ガイア	main	51	0x0319A	1247	nowmap() = 0x0352; not (haveitem(0x8064) != 0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	ガイア	main	52	0x0319D	1248	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	ガイア	main	53	0x0319D	1249	nowmap() is none of 0x0352	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	ガイア	main	54	0x031AC	1251	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	ガイア	main	55	0x031AD	1252	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	ガイア	main	54	0x031AC	1251	not ((nowmap() = 0x0352) and (haveitem(0x8064) != 0))	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	ガイア	main	55	0x031AD	1252	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	オルテガ	init	1	0x031AE	1261	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	オルテガ	main	1	0x031B3	1272	-	switch	nowmap()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	オルテガ	main	2	0x031B6	1274	-	case	0x0352	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2536,11 +2536,11 @@ bog_a05	オルテガ	main	47	0x032E7	1322	nowmap() = 0x0352; haveitem(0x8064) !=
 bog_a05	オルテガ	main	48	0x032F0	1323	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s23f1_1 = gte(9)	move	150.776047, -1.49999996e-05, 172.011032	this actor, walks to (150.776047, -1.49999996e-05, 172.011032)	-	-	waits on the poll 0x00356A90, shared with movesync	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md, 06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bog_a05	オルテガ	main	49	0x032F6	1324	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s23f1_1 = gte(9)	wait	local_var_s23f1_2	-	-	frames held in local_var_s23f1_2	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a05	オルテガ	main	50	0x032F9	1325	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s23f1_1 = gte(9)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	オルテガ	main	51	0x03326	1329	nowmap() = 0x0352	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	オルテガ	main	51	0x03326	1329	nowmap() = 0x0352; not (haveitem(0x8064) != 0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	オルテガ	main	52	0x03329	1330	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	オルテガ	main	53	0x03329	1331	nowmap() is none of 0x0352	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	オルテガ	main	54	0x03338	1333	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	オルテガ	main	55	0x03339	1334	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	オルテガ	main	54	0x03338	1333	not ((nowmap() = 0x0352) and (haveitem(0x8064) != 0))	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	オルテガ	main	55	0x03339	1334	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	マッシュ	init	1	0x0333A	1343	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	マッシュ	main	1	0x0333F	1354	-	switch	nowmap()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	マッシュ	main	2	0x03342	1356	-	case	0x0352	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2592,11 +2592,11 @@ bog_a05	マッシュ	main	47	0x03473	1404	nowmap() = 0x0352; haveitem(0x8064) !=
 bog_a05	マッシュ	main	48	0x0347C	1405	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s24f1_1 = gte(9)	move	140.708069, -1.20000004e-05, 182.506805	this actor, walks to (140.708069, -1.20000004e-05, 182.506805)	-	-	waits on the poll 0x00356A90, shared with movesync	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md, 06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 bog_a05	マッシュ	main	49	0x03482	1406	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s24f1_1 = gte(9)	wait	local_var_s24f1_2	-	-	frames held in local_var_s24f1_2	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a05	マッシュ	main	50	0x03485	1407	nowmap() = 0x0352; haveitem(0x8064) != 0; loop while true; local_var_s24f1_1 = gte(9)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	マッシュ	main	51	0x034B2	1411	nowmap() = 0x0352	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	マッシュ	main	51	0x034B2	1411	nowmap() = 0x0352; not (haveitem(0x8064) != 0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	マッシュ	main	52	0x034B5	1412	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	マッシュ	main	53	0x034B5	1413	nowmap() is none of 0x0352	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	マッシュ	main	54	0x034C4	1415	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a05	マッシュ	main	55	0x034C5	1416	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	マッシュ	main	54	0x034C4	1415	not ((nowmap() = 0x0352) and (haveitem(0x8064) != 0))	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a05	マッシュ	main	55	0x034C5	1416	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	ボトルＰＣ乗っ取り	init	1	0x034C6	1425	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	ボトルＰＣ乗っ取り	main	1	0x034C7	1430	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a05	ボトルＰＣ乗っ取り	talk	1	0x034C8	1435	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3761,7 +3761,7 @@ bog_b04	祠イベントレクト	touch	24	0x03CE5	583	-	unkCall_5ac	1, 2.3580000
 bog_b04	祠イベントレクト	touch	25	0x03CF3	584	-	if	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	祠イベントレクト	touch	26	0x03CFA	586	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	祠イベントレクト	touch	27	0x03CFD	588	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	goto	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_b04	祠イベントレクト	touch	28	0x03D00	589	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	goto	local_jmp_9	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_b04	祠イベントレクト	touch	28	0x03D00	589	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap()); unreachable in the listing	goto	local_jmp_9	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	祠イベントレクト	touch	29	0x03D03	590	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	label	local_jmp_7	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	祠イベントレクト	touch	30	0x03D09	591	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadeout_d0	1, 1	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	祠イベントレクト	touch	31	0x03D0F	592	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadesync_d3	1	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3775,20 +3775,20 @@ bog_b04	祠イベントレクト	touch	38	0x03D37	603	(getsummonmodebit() or get
 bog_b04	祠イベントレクト	touch	39	0x03D3D	604	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
 bog_b04	祠イベントレクト	touch	40	0x03D40	605	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	partyallread	-	-	-	-	-	-		01 verb-table.tsv
 bog_b04	祠イベントレクト	touch	41	0x03D43	606	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	goto	local_jmp_14	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_b04	祠イベントレクト	touch	42	0x03D55	607	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	if	not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_b04	祠イベントレクト	touch	43	0x03D64	609	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicfadeout_231	getnowmusicno(), 90, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_b04	祠イベントレクト	touch	44	0x03D67	610	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_b04	祠イベントレクト	touch	45	0x03D6D	611	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bog_b04	祠イベントレクト	touch	46	0x03D73	612	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicstop	-1	-	-	-	-	-		01 verb-table.tsv
-bog_b04	祠イベントレクト	touch	47	0x03D79	613	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicclear	-1	-	-	-	-	-		01 verb-table.tsv
-bog_b04	祠イベントレクト	touch	48	0x03D82	614	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicread	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_b04	祠イベントレクト	touch	49	0x03D8B	615	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicreadsync	getnowmapmusicno_47a(1)	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_b04	祠イベントレクト	touch	50	0x03D94	616	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicplay	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bog_b04	祠イベントレクト	touch	51	0x03DA3	617	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musictrans	getnowmapmusicno_47a(1), 0, 0	music track getnowmapmusicno_47a(1)	-	volume 0 at once	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
-bog_b04	祠イベントレクト	touch	52	0x03DA9	618	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bog_b04	祠イベントレクト	touch	53	0x03DB8	619	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musictrans	getnowmapmusicno_47a(1), 90, 127	music track getnowmapmusicno_47a(1)	-	fade length 90 to volume 127	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
-bog_b04	祠イベントレクト	touch	54	0x03DBE	621	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
-bog_b04	祠イベントレクト	touch	55	0x03DC1	622	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1	partyallread	-	-	-	-	-	-		01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	42	0x03D55	607	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; unreachable in the listing	if	not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_b04	祠イベントレクト	touch	43	0x03D64	609	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicfadeout_231	getnowmusicno(), 90, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	44	0x03D67	610	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	45	0x03D6D	611	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+bog_b04	祠イベントレクト	touch	46	0x03D73	612	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicstop	-1	-	-	-	-	-		01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	47	0x03D79	613	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicclear	-1	-	-	-	-	-		01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	48	0x03D82	614	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicread	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	49	0x03D8B	615	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicreadsync	getnowmapmusicno_47a(1)	argument 1: the music track number to load, waiting for it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	50	0x03D94	616	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musicplay	getnowmapmusicno_47a(1)	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	51	0x03DA3	617	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musictrans	getnowmapmusicno_47a(1), 0, 0	music track getnowmapmusicno_47a(1)	-	volume 0 at once	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+bog_b04	祠イベントレクト	touch	52	0x03DA9	618	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+bog_b04	祠イベントレクト	touch	53	0x03DB8	619	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; not ((getnowmusicno() == -1 or getnowmapmusicno() == -1)); unreachable in the listing	musictrans	getnowmapmusicno_47a(1), 90, 127	music track getnowmapmusicno_47a(1)	-	fade length 90 to volume 127	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
+bog_b04	祠イベントレクト	touch	54	0x03DBE	621	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; unreachable in the listing	seteventpartymode	1	-	-	-	-	-		01 verb-table.tsv
+bog_b04	祠イベントレクト	touch	55	0x03DC1	622	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_2 != 1; unreachable in the listing	partyallread	-	-	-	-	-	-		01 verb-table.tsv
 bog_b04	祠イベントレクト	touch	56	0x03DC4	624	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	label	local_jmp_14	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	祠イベントレクト	touch	57	0x03DC8	625	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085()	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	祠イベントレクト	touch	58	0x03DD1	627	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadein_d2	1, 1	-	-	-	-	-		01 verb-table.tsv
@@ -3972,7 +3972,7 @@ bog_b04	マクレイオ	終了	1	0x04221	927	-	setdrawalphamode	0	-	-	-	-	-		01 
 bog_b04	マクレイオ	終了	2	0x04224	928	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	マクレイオ	終了	3	0x04227	929	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	マクレイオ	終了	4	0x0422D	930	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_b04	マクレイオ	終了	5	0x0422E	931	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_b04	マクレイオ	終了	5	0x0422E	931	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	ンモウ右	init	1	0x0422F	945	-	getduplicateid	-	result stored in local_var_s14f0_1	-	-	-	-		01 verb-table.tsv
 bog_b04	ンモウ右	init	2	0x04235	946	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	ンモウ右	main	1	0x04236	951	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4003,7 +4003,7 @@ bog_b04	ンモウ右	終了	1	0x042D4	989	-	setdrawalphamode	0	-	-	-	-	-		01 ver
 bog_b04	ンモウ右	終了	2	0x042D7	990	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	ンモウ右	終了	3	0x042DA	991	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	ンモウ右	終了	4	0x042E0	992	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_b04	ンモウ右	終了	5	0x042E1	993	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_b04	ンモウ右	終了	5	0x042E1	993	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	ンモウ左	init	1	0x042E2	1007	-	getduplicateid	-	result stored in local_var_s15f0_1	-	-	-	-		01 verb-table.tsv
 bog_b04	ンモウ左	init	2	0x042E8	1008	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	ンモウ左	main	1	0x042E9	1013	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4034,7 +4034,7 @@ bog_b04	ンモウ左	終了	1	0x04387	1051	-	setdrawalphamode	0	-	-	-	-	-		01 ve
 bog_b04	ンモウ左	終了	2	0x0438A	1052	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	ンモウ左	終了	3	0x0438D	1053	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	ンモウ左	終了	4	0x04393	1054	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_b04	ンモウ左	終了	5	0x04394	1055	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_b04	ンモウ左	終了	5	0x04394	1055	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	Ｅヴァン	init	1	0x04395	1064	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	Ｅヴァン	main	1	0x04396	1069	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	Ｅヴァン	NPCバインド	1	0x043A2	1074	-	switch	0x390000 bitor getquestscenarioflag(57)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4064,7 +4064,7 @@ bog_b04	Ｅヴァン	終了	1	0x0441D	1111	-	setdrawalphamode	0	-	-	-	-	-		01 ve
 bog_b04	Ｅヴァン	終了	2	0x04420	1112	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	Ｅヴァン	終了	3	0x04423	1113	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b04	Ｅヴァン	終了	4	0x04429	1114	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_b04	Ｅヴァン	終了	5	0x0442A	1115	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_b04	Ｅヴァン	終了	5	0x0442A	1115	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	map_ダミーＰＣ	init	1	0x0442B	1124	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b04	map_ダミーＰＣ	扉オープン	1	0x0442F	1129	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_b04	map_ダミーＰＣ	扉オープン	2	0x04435	1130	-	rlookat	mp_map_set_angle	argument 1: the heading the calling actor's head turns to, in radians on the same measure as the actor's facing, with pitch 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4749,7 +4749,7 @@ bog_b06	__MJ_CTRL001	mapjump	29	0x01738	193	getchocobomodebit(); not (getchocobo
 bog_b06	__MJ_CTRL001	mapjump	30	0x0173E	197	getchocobomodebit(); not (getchocobomodebit()); not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b06	__MJ_CTRL001	mapjump	31	0x0174A	198	getchocobomodebit(); not (getchocobomodebit()); not (regI3)	spotsoundtrans	24, 0	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b06	__MJ_CTRL001	mapjump	32	0x0174D	199	getchocobomodebit(); not (getchocobomodebit()); not (regI3)	goto	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_b06	__MJ_CTRL001	mapjump	33	0x01750	200	getchocobomodebit(); not (getchocobomodebit()); not (regI3)	goto	local_jmp_6	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_b06	__MJ_CTRL001	mapjump	33	0x01750	200	getchocobomodebit(); not (getchocobomodebit()); not (regI3); unreachable in the listing	goto	local_jmp_6	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b06	__MJ_CTRL001	mapjump	34	0x01753	201	getchocobomodebit(); not (getchocobomodebit()); not (regI3)	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_b06	__MJ_CTRL001	mapjump	35	0x01756	202	getchocobomodebit(); not (getchocobomodebit()); not (regI3)	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_b06	__MJ_CTRL001	mapjump	36	0x0175C	203	getchocobomodebit(); not (getchocobomodebit()); not (regI3)	fadeprior	255	argument 1: the draw priority of the next screen fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5205,11 +5205,11 @@ bog_a0200	死都ナブディス	main	76	0x00BEE	104	loop while true	sysReqwait	�
 bog_a0200	死都ナブディス	main	77	0x00BF5	105	loop while true	sysReqwait	ぼやけ::解放	actor `ぼやけ`	-	-	waits until ぼやけ::解放 is no longer on its actor	ぼやけ.解放	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bog_a0200	死都ナブディス	main	78	0x00BFC	106	loop while true	sysReqwait	暁の断片::解放	actor `暁の断片`	-	-	waits until 暁の断片::解放 is no longer on its actor	暁の断片.解放	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bog_a0200	死都ナブディス	main	79	0x00BFD	107	loop while true	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	死都ナブディス	main	80	0x00C00	108	loop while true	label	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	死都ナブディス	main	81	0x00C03	110	-	label	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	死都ナブディス	main	82	0x00C03	111	-	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	死都ナブディス	main	83	0x00C09	112	regY == 0	goto	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	死都ナブディス	main	84	0x00C0F	113	regY == 1	goto	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	死都ナブディス	main	80	0x00C00	108	loop while true; unreachable in the listing	label	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	死都ナブディス	main	81	0x00C03	110	unreachable in the listing	label	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	死都ナブディス	main	82	0x00C03	111	unreachable in the listing	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	死都ナブディス	main	83	0x00C09	112	unreachable in the listing; regY == 0	goto	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	死都ナブディス	main	84	0x00C0F	113	unreachable in the listing; regY == 1	goto	local_jmp_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	死都ナブディス	main	85	0x00C15	114	-	label	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	死都ナブディス	main	86	0x00C18	115	-	unkCall_5cf	0	argument 1: whether the calling event keeps the depth-mask pass forced on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	死都ナブディス	main	87	0x00C1B	116	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5221,7 +5221,7 @@ bog_a0200	死都ナブディス	main	92	0x00C39	121	-	skipend	0	-	-	-	-	-		01 ve
 bog_a0200	死都ナブディス	main	93	0x00C3F	122	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 bog_a0200	死都ナブディス	main	94	0x00C42	123	-	eventdispose	-	ends an event scene	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	死都ナブディス	main	95	0x00C48	124	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	死都ナブディス	main	96	0x00C49	125	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	死都ナブディス	main	96	0x00C49	125	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	カット	init	1	0x00C4A	134	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	カット	カット１	1	0x00C54	139	-	sysReq	1, ＢＧＭ::カット１	actor `ＢＧＭ`	-	-	files ＢＧＭ::カット１ on channel 1; does not wait	ＢＧＭ.カット１	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bog_a0200	カット	カット１	2	0x00C58	140	-	fadein	45	the screen fade, in	-	45 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -5272,7 +5272,7 @@ bog_a0200	カット	カット５	4	0x00DC5	204	-	sysReq	1, 環境音::カット�
 bog_a0200	カット	カット５	5	0x00DCF	205	-	sysReqew	6, カメラ::カメラ５	actor `カメラ`	-	-	files カメラ::カメラ５ on channel 6; waits until it ends	カメラ.カメラ５	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bog_a0200	カット	カット５	6	0x00DD6	206	-	sysReqwait	環境音::カット５	actor `環境音`	-	-	waits until 環境音::カット５ is no longer on its actor	環境音.カット５	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bog_a0200	カット	カット５	7	0x00DDA	207	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	カット	カット５	8	0x00DDB	208	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	カット	カット５	8	0x00DDB	208	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	カメラ	init	1	0x00DDC	217	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	カメラ	カメラ１a	1	0x00DE0	222	-	camerastart	0x02000000	camera row 0 `cut1a`: shot 0 `cut1a`, channel 0	-	shot 300 frames in 1 segment	-	-	resolved	0x0034FE00 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 bog_a0200	カメラ	カメラ１a	2	0x00DE3	223	-	camerasync	-	camera channel 0	-	-	waits while camera channel 0 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -5300,20 +5300,20 @@ bog_a0200	カメラ	カメラ５	4	0x00E49	268	-	fadesync	-	the screen fade of l
 bog_a0200	カメラ	カメラ５	5	0x00E4F	269	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	カメラ	解放	1	0x00E50	274	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	カメラ	解放	2	0x00E56	275	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	カメラ	解放	3	0x00E57	276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	カメラ	解放	3	0x00E57	276	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ANNEX_FOCUS	init	1	0x00E58	285	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ANNEX_FOCUS	カット４	1	0x00E5C	290	-	wait	200	-	-	200 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a0200	ANNEX_FOCUS	カット４	2	0x00E62	291	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bog_a0200	ANNEX_FOCUS	カット４	3	0x00E66	292	-	store	regF1 = 90	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bog_a0200	ANNEX_FOCUS	カット４	4	0x00E67	293	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bog_a0200	ANNEX_FOCUS	カット４	4	0x00E67	293	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	ANNEX_FOCUS	カット４	5	0x00E70	294	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ANNEX_FOCUS	カット４	6	0x00E87	296	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (2.61999989 + ((16.3800011 * regF0) / regF1)), 88	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	ANNEX_FOCUS	カット４	7	0x00E8F	297	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bog_a0200	ANNEX_FOCUS	カット４	8	0x00E95	298	loop while regI1 == unkCall_5c9()	if	regF0 > 90	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ANNEX_FOCUS	カット４	9	0x00E98	300	loop while regI1 == unkCall_5c9(); regF0 > 90	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	ANNEX_FOCUS	カット４	10	0x00E9E	302	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+bog_a0200	ANNEX_FOCUS	カット４	10	0x00E9E	302	loop while regI1 == unkCall_5c9(); not (regF0 > 90)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a0200	ANNEX_FOCUS	カット４	11	0x00EA7	304	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	ANNEX_FOCUS	カット４	12	0x00EA8	305	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	ANNEX_FOCUS	カット４	12	0x00EA8	305	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ＢＧＭ	init	1	0x00EA9	314	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ＢＧＭ	読み込み	1	0x00EAD	319	-	musicstop	-1	-	-	-	-	-		01 verb-table.tsv
 bog_a0200	ＢＧＭ	読み込み	2	0x00EB3	320	-	wait	-1	-	-	-1 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -5329,17 +5329,17 @@ bog_a0200	ＢＧＭ	カット１	5	0x00EF3	333	-	musictrans	79, 0, 0	music track
 bog_a0200	ＢＧＭ	カット１	6	0x00EF9	334	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a0200	ＢＧＭ	カット１	7	0x00F05	335	-	musictrans	79, 0x01e0, 127	music track 79	-	fade length 0x01e0 to volume 127	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
 bog_a0200	ＢＧＭ	カット１	8	0x00F0B	336	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	ＢＧＭ	カット１	9	0x00F0C	337	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	ＢＧＭ	カット１	9	0x00F0C	337	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ＳＥ	init	1	0x00F0D	346	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ＳＥ	カット２	1	0x00F11	351	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a0200	ＳＥ	カット２	2	0x00F17	352	-	eventsoundplay	0x04000000	list entry 0 of event sound slot 0 (sub-file 0 of `bog_a0200.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 bog_a0200	ＳＥ	カット２	3	0x00F1D	353	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	ＳＥ	カット２	4	0x00F1E	354	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	ＳＥ	カット２	4	0x00F1E	354	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	環境音	init	1	0x00F1F	363	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	環境音	カット５	1	0x00F23	368	-	wait	105	-	-	105 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a0200	環境音	カット５	2	0x00F29	369	-	stopenvsound_3de	88	-	-	-	-	-		01 verb-table.tsv
 bog_a0200	環境音	カット５	3	0x00F2F	370	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	環境音	カット５	4	0x00F30	371	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	環境音	カット５	4	0x00F30	371	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ぼやけ	init	1	0x00F31	380	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ぼやけ	カット１a	1	0x00F35	385	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ぼやけ	カット１b	1	0x00F39	390	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5402,7 +5402,7 @@ bog_a0200	ぼやけ	解放	2	0x010AE	498	-	blurstop	-	stops screen blur sprite 0
 bog_a0200	ぼやけ	解放	3	0x010B4	499	-	setfocusstatus	0	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	ぼやけ	解放	4	0x010C3	500	-	setsoftfocusmode	0, 0, 0, 0	-	-	-	-	-		01 verb-table.tsv
 bog_a0200	ぼやけ	解放	5	0x010C9	501	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	ぼやけ	解放	6	0x010CA	502	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	ぼやけ	解放	6	0x010CA	502	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	EventLightActor	init	1	0x010CB	511	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	EventLightActor	setEventLight	1	0x010D3	516	-	if	scratch1_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	EventLightActor	setEventLight	2	0x010D6	518	scratch1_var_1 == 0	blurstop	-	stops screen blur sprite 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5578,7 +5578,7 @@ bog_a0200	ヴァン	カット５	2	0x015AF	724	-	setpos	19.3192997, 20.1599998, 
 bog_a0200	ヴァン	カット５	3	0x015B5	725	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	ヴァン	カット５	4	0x015B8	726	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0200	ヴァン	カット５	5	0x015BE	727	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	ヴァン	カット５	6	0x015BF	728	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	ヴァン	カット５	6	0x015BF	728	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	アーシェ	init	1	0x015C0	737	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	アーシェ	取得	1	0x015C4	742	-	bindp2	0x03000004	model c11 (section 12 entry 4, bound id 0x63000B)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bog_a0200	アーシェ	取得	2	0x015CA	743	-	bindh	0x03000002	argument 1: the model to attach to the calling actor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5665,7 +5665,7 @@ bog_a0200	アーシェ	カット５	2	0x017AD	859	-	setpos	15.0355997, 21, 324.1
 bog_a0200	アーシェ	カット５	3	0x017B3	860	-	bonecalcforce	-1	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	アーシェ	カット５	4	0x017B6	861	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0200	アーシェ	カット５	5	0x017BC	862	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	アーシェ	カット５	6	0x017BD	863	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	アーシェ	カット５	6	0x017BD	863	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ラスラ	init	1	0x017BE	872	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ラスラ	取得	1	0x017C2	877	-	bindp2	0x03000000	model n170 (section 12 entry 0, bound id 0x6E00AA)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bog_a0200	ラスラ	取得	2	0x017C8	878	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -5724,7 +5724,7 @@ bog_a0200	ラスラ	消え	7	0x0192F	950	-	wait	90	-	-	90 frames	waits	-	resolve
 bog_a0200	ラスラ	消え	8	0x01935	951	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	ラスラ	カット５	1	0x01936	956	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	ラスラ	カット５	2	0x0193C	957	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	ラスラ	カット５	3	0x0193D	958	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	ラスラ	カット５	3	0x0193D	958	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	暁の断片	init	1	0x0193E	973	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0200	暁の断片	取得	1	0x01942	978	-	bindp2	0x03000005	model g36 (section 12 entry 5, bound id 0x670024)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 bog_a0200	暁の断片	取得	2	0x01948	979	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5759,7 +5759,7 @@ bog_a0200	暁の断片	アタッチアーシェ	3	0x019F3	1019	-	return	-	-	-	-	
 bog_a0200	暁の断片	アタッチOFF	1	0x019F4	1024	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0200	暁の断片	アタッチOFF	2	0x019F7	1025	-	attachoff	-	detaches the calling actor from what it rides or holds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0200	暁の断片	アタッチOFF	3	0x019FD	1026	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0200	暁の断片	アタッチOFF	4	0x019FE	1027	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0200	暁の断片	アタッチOFF	4	0x019FE	1027	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	プロデューサー	init	1	0x00D90	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	プロデューサー	main	1	0x00D94	32	-	modelread	0x03000000	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	プロデューサー	main	2	0x00D9A	33	-	modelreadsync	0x03000000	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5791,9 +5791,9 @@ bog_a0201	プロデューサー	main	27	0x00E3A	63	(getsummonmodebit() or getcho
 bog_a0201	プロデューサー	main	28	0x00E43	65	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	プロデューサー	main	29	0x00E4A	66	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	プロデューサー	main	30	0x00E4D	68	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap())	goto	local_jmp_10	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	プロデューサー	main	31	0x00E50	69	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap())	goto	local_jmp_12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	プロデューサー	main	32	0x00E53	70	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap())	goto	local_jmp_12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	プロデューサー	main	33	0x00E56	71	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap())	goto	local_jmp_12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	プロデューサー	main	31	0x00E50	69	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap()); unreachable in the listing	goto	local_jmp_12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	プロデューサー	main	32	0x00E53	70	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap()); unreachable in the listing	goto	local_jmp_12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	プロデューサー	main	33	0x00E56	71	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap()); unreachable in the listing	goto	local_jmp_12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	プロデューサー	main	34	0x00E59	72	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap())	label	local_jmp_10	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	プロデューサー	main	35	0x00E68	73	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap())	if	not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	プロデューサー	main	36	0x00E77	75	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_3 != 1; not (istownmap()); not ((getnowmusicno() == -1 or getnowmapmusicno() == -1))	musicfadeout_231	getnowmusicno(), 90, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6100,7 +6100,7 @@ bog_a0201	監督	ナブレウス湿原D	34	0x01687	434	-	showparty	-	the party's
 bog_a0201	監督	ナブレウス湿原D	35	0x0168D	435	-	partyusemapid	1	argument 1: whether the party members move on the map's floor, usemapid for the party	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	監督	ナブレウス湿原D	36	0x0169C	436	-	setposparty	18.4665298, 20.2752342, 335.569214, 2.71513796	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	監督	ナブレウス湿原D	37	0x016A2	437	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	監督	ナブレウス湿原D	38	0x016A3	438	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	監督	ナブレウス湿原D	38	0x016A3	438	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	カメラ	init	1	0x016A4	447	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	カメラ	cut_01	1	0x016AB	452	-	camerastart_7e	0, 0x02000000	camera row 0 `カメラ01`: shot 6 `カメラ01`, channel 0	-	shot 400 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 bog_a0201	カメラ	cut_01	2	0x016B1	453	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6125,7 +6125,7 @@ bog_a0201	カメラ	cut_99	2	0x01723	507	-	resetbehindcamera	2.86999989, 0.30000
 bog_a0201	カメラ	cut_99	3	0x01726	508	-	camerashakeclear	-	the camera-shake bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	カメラ	cut_99	4	0x01729	509	-	blurstop	-	stops screen blur sprite 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	カメラ	cut_99	5	0x0172F	510	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	カメラ	cut_99	6	0x01730	511	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	カメラ	cut_99	6	0x01730	511	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	メッセージ	init	1	0x01731	520	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	メッセージ	cut_02	1	0x01735	525	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a0201	メッセージ	cut_02	2	0x0173E	526	-	voiceplay_28b	8, 0	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6243,7 +6243,7 @@ bog_a0201	メッセージ	メッセージ01_02	10	0x01AD8	653	-	return	0	-	-	-	-
 bog_a0201	メッセージ	メスクローズ	1	0x01ADC	658	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 bog_a0201	メッセージ	メスクローズ	2	0x01AE2	659	-	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 bog_a0201	メッセージ	メスクローズ	3	0x01AE8	660	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	メッセージ	メスクローズ	4	0x01AE9	661	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	メッセージ	メスクローズ	4	0x01AE9	661	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	BGM	init	1	0x01AEA	670	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	BGM	cut_01	1	0x01AEE	680	-	wait	150	-	-	150 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bog_a0201	BGM	cut_01	2	0x01AF1	681	-	getnowmapmusicno	-	result stored in local_var_s4f1_1	-	-	-	-		01 verb-table.tsv
@@ -6262,7 +6262,7 @@ bog_a0201	BGM	music_stop	1	0x01B6F	703	-	if	(skipcheck(0) and ((getsummonmodebit
 bog_a0201	BGM	music_stop	2	0x01B75	705	(skipcheck(0) and ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))) and getnowmusicno() == local_var_s4f1_1	musicstop	-1	-	-	-	-	-		01 verb-table.tsv
 bog_a0201	BGM	music_stop	3	0x01B7B	706	(skipcheck(0) and ((getsummonmodebit() or getchocobomodebit()) and not (istownmap()))) and getnowmusicno() == local_var_s4f1_1	musicclear	-1	-	-	-	-	-		01 verb-table.tsv
 bog_a0201	BGM	music_stop	4	0x01B81	708	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	BGM	music_stop	5	0x01B82	709	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	BGM	music_stop	5	0x01B82	709	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	EventLightActor	init	1	0x01B83	718	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	EventLightActor	setEventLight	1	0x01B8B	723	-	if	scratch1_var_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	EventLightActor	setEventLight	2	0x01B8E	725	scratch1_var_1 == 0	blurstop	-	stops screen blur sprite 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6442,7 +6442,7 @@ bog_a0201	VAN	cut_07	4	0x02031	971	-	motionloop	1	argument 1: whether the motion
 bog_a0201	VAN	cut_07	5	0x02037	972	-	motionplay	0x11000012	animation 18 of motion 1 of `bog_a0201.mot` (bytes 0x800, length 0xAA890)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 bog_a0201	VAN	cut_07	6	0x02046	973	-	move_5e	18.2479401, 21, 329.398651, 0.0299999993	-	-	-	-	-		01 verb-table.tsv
 bog_a0201	VAN	cut_07	7	0x0204C	974	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	VAN	cut_07	8	0x0204D	975	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	VAN	cut_07	8	0x0204D	975	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	ASHE	init	1	0x02051	984	-	effectactor	0	argument 1: the index (clamped 0-63) of the effect-anchor table entry that the calling actor's effect handle (0x003589B0(0x00263F10(actor))) fills	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	ASHE	init	2	0x02054	985	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	ASHE	バインドオン	1	0x02058	990	-	bindp2	0x03000002	model c11 (section 12 entry 2, bound id 0x63000B)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
@@ -6496,7 +6496,7 @@ bog_a0201	ASHE	cut_05	7	0x02167	1077	-	return	0	-	-	-	-	-	resolved	01 ../Scripts
 bog_a0201	ASHE	cut_06	1	0x02171	1082	-	setpos	22.8392792, 20.675005, 321.450256	this actor, placed at (22.8392792, 20.675005, 321.450256)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bog_a0201	ASHE	cut_06	2	0x02177	1083	-	dir	3.13844299	this actor, turned to facing 3.13844299	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 bog_a0201	ASHE	cut_06	3	0x0217D	1084	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	ASHE	cut_06	4	0x0217E	1085	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	ASHE	cut_06	4	0x0217E	1085	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	BASH	init	1	0x02182	1094	-	effectactor	0	argument 1: the index (clamped 0-63) of the effect-anchor table entry that the calling actor's effect handle (0x003589B0(0x00263F10(actor))) fills	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	BASH	init	2	0x02185	1095	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	BASH	バインドオン	1	0x02189	1100	-	bindp2	0x03000003	model c13 (section 12 entry 3, bound id 0x63000D)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
@@ -6552,7 +6552,7 @@ bog_a0201	BASH	cut_07	4	0x0229D	1187	-	motionloop	1	argument 1: whether the moti
 bog_a0201	BASH	cut_07	5	0x022A3	1188	-	motionplay	0x11000011	animation 17 of motion 1 of `bog_a0201.mot` (bytes 0x800, length 0xAA890)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 bog_a0201	BASH	cut_07	6	0x022B2	1189	-	move_5e	17.0128059, 20.9960823, 326.20636, 0.0299999993	-	-	-	-	-		01 verb-table.tsv
 bog_a0201	BASH	cut_07	7	0x022B8	1190	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	BASH	cut_07	8	0x022B9	1191	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	BASH	cut_07	8	0x022B9	1191	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	BALFLAIR	init	1	0x022BD	1200	-	effectactor	0	argument 1: the index (clamped 0-63) of the effect-anchor table entry that the calling actor's effect handle (0x003589B0(0x00263F10(actor))) fills	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	BALFLAIR	init	2	0x022C0	1201	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	BALFLAIR	バインドオン	1	0x022C4	1206	-	bindp2	0x03000001	model c5 (section 12 entry 1, bound id 0x630005)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
@@ -6672,7 +6672,7 @@ bog_a0201	FRAN	cut_07	2	0x0253D	1419	-	dir	1.49398506	this actor, turned to faci
 bog_a0201	FRAN	cut_07	3	0x02543	1420	-	motionstartframe	110	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	FRAN	cut_07	4	0x02549	1421	-	motionplay	0x11000014	animation 20 of motion 1 of `bog_a0201.mot` (bytes 0x800, length 0xAA890)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 bog_a0201	FRAN	cut_07	5	0x0254F	1422	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	FRAN	cut_07	6	0x02550	1423	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	FRAN	cut_07	6	0x02550	1423	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PANNERO	init	1	0x02554	1432	-	effectactor	0	argument 1: the index (clamped 0-63) of the effect-anchor table entry that the calling actor's effect handle (0x003589B0(0x00263F10(actor))) fills	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	PANNERO	init	2	0x02557	1433	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PANNERO	バインドオン	1	0x0255B	1438	-	bindp2	0x03000004	model c12 (section 12 entry 4, bound id 0x63000C)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
@@ -6740,8 +6740,8 @@ bog_a0201	PANNERO	cut_07	4	0x026BC	1543	-	motionloop	1	argument 1: whether the m
 bog_a0201	PANNERO	cut_07	5	0x026C2	1544	-	motionplay	0x11000013	animation 19 of motion 1 of `bog_a0201.mot` (bytes 0x800, length 0xAA890)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 bog_a0201	PANNERO	cut_07	6	0x026D1	1545	-	move_5e	15.1610518, 21, 326.641724, 0.0299999993	-	-	-	-	-		01 verb-table.tsv
 bog_a0201	PANNERO	cut_07	7	0x026D7	1546	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	PANNERO	cut_07	8	0x026DB	1547	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	PANNERO	cut_07	9	0x026DC	1548	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	PANNERO	cut_07	8	0x026DB	1547	unreachable in the listing	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	PANNERO	cut_07	9	0x026DC	1548	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PC_00	init	1	0x026DD	1557	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PC_00	cut_01	1	0x026E1	1562	-	capturepc	0	party slot 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0201	PC_00	cut_01	2	0x026E7	1563	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6761,7 +6761,7 @@ bog_a0201	PC_00	乗っ取り解除	3	0x0272C	1588	-	setcharclipall	1	argument 1:
 bog_a0201	PC_00	乗っ取り解除	4	0x02732	1589	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	PC_00	乗っ取り解除	5	0x02735	1590	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0201	PC_00	乗っ取り解除	6	0x0273B	1591	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	PC_00	乗っ取り解除	7	0x0273C	1592	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	PC_00	乗っ取り解除	7	0x0273C	1592	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PC_01	init	1	0x0273D	1601	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PC_01	cut_01	1	0x02741	1606	-	capturepc	1	party slot 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0201	PC_01	cut_01	2	0x02747	1607	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6781,7 +6781,7 @@ bog_a0201	PC_01	乗っ取り解除	3	0x0278C	1632	-	setcharclipall	1	argument 1:
 bog_a0201	PC_01	乗っ取り解除	4	0x02792	1633	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	PC_01	乗っ取り解除	5	0x02795	1634	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0201	PC_01	乗っ取り解除	6	0x0279B	1635	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	PC_01	乗っ取り解除	7	0x0279C	1636	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	PC_01	乗っ取り解除	7	0x0279C	1636	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PC_02	init	1	0x0279D	1645	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PC_02	cut_01	1	0x027A1	1650	-	capturepc	2	party slot 2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0201	PC_02	cut_01	2	0x027A7	1651	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6801,7 +6801,7 @@ bog_a0201	PC_02	乗っ取り解除	3	0x027EC	1676	-	setcharclipall	1	argument 1:
 bog_a0201	PC_02	乗っ取り解除	4	0x027F2	1677	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	PC_02	乗っ取り解除	5	0x027F5	1678	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0201	PC_02	乗っ取り解除	6	0x027FB	1679	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	PC_02	乗っ取り解除	7	0x027FC	1680	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	PC_02	乗っ取り解除	7	0x027FC	1680	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PC_03	init	1	0x027FD	1689	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bog_a0201	PC_03	cut_01	1	0x02801	1694	-	capturepc	3	party slot 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0201	PC_03	cut_01	2	0x02807	1695	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6821,4 +6821,4 @@ bog_a0201	PC_03	乗っ取り解除	3	0x0284C	1720	-	setcharclipall	1	argument 1:
 bog_a0201	PC_03	乗っ取り解除	4	0x02852	1721	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bog_a0201	PC_03	乗っ取り解除	5	0x02855	1722	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bog_a0201	PC_03	乗っ取り解除	6	0x0285B	1723	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bog_a0201	PC_03	乗っ取り解除	7	0x0285C	1724	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+bog_a0201	PC_03	乗っ取り解除	7	0x0285C	1724	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

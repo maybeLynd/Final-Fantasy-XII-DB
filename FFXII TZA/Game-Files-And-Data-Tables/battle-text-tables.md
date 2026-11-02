@@ -22,7 +22,7 @@ loads when it first needs them.
 
 | Groups | Kind-2 ids | Files |
 |---|---|---|
-| 0 | none | — |
+| 0 | no id | — |
 | 1–4 | 20–23 | `menu_command`, `menu_message`, `help_menu`, `help_action` |
 | 5 | 1 | `key_signal` |
 | 6–19 | 43–56 | `menu_mapname`, `penelosdiary`, `help_penelosdiary`, `listhelp_common`, `listhelp_action`, `listhelp_sobicategory`, `listhelp_status`, `listhelp_ability`, `listhelp_eventitem`, `listhelp_gambit`, `listhelp_targetchip`, `listhelp_license`, `menu_command_template`, `menu_expansion` |

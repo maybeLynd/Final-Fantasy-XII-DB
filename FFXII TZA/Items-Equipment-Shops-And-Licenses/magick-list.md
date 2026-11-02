@@ -53,7 +53,7 @@ The row layout, as the class-8 arm copies it (`0x0031CD4C`-`0x0031CD69`):
 
 - `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), with the map (region) whose script gives an actor that shop (`setshopname`, the `place` column), and when the list that holds it goes on sale:
   - from the start;
-  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or, where no script writes the value, with the first written value that meets it, which is so for 500: "from story progress 500 (met from 520, After the floating continent)" (below);
+  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or, where no story script writes the value, with the first written value that meets it, which is so for 500: "from story progress 500 (met from 520, After the floating continent)" (below);
   - from a clan rank, with the rank's shipped name;
   - for the Clan Provisioner's last list, from joining Clan Centurio (below).
 - `treasure chest (N):` every treasure chest that can give it, N chests in all ([Treasure chests](../World-Areas-And-Travel/treasure-chests.md)). 62 magicks have a chest part, 31 of them no other source.
@@ -92,7 +92,7 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 | `flag_names`, `flag2_names` | the action's `+0x0C` and `+0x2C` bits with a named effect |
 | `help`, `description` | the action's shipped help and description lines |
 | `explanation` | a one-line summary built from the row and its action |
-| `sources` | where the magick is obtained, one part per kind of source, with each shop's place and opening, clan ranks by name, the treasure chests that hold it with the odds ("Where each magick comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` for none |
+| `sources` | where the magick is obtained, one part per kind of source, with each shop's place and opening, clan ranks by name, the treasure chests that hold it with the odds ("Where each magick comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `-` when it has no source |
 | `licence` | the licence squares that grant it, by name and node ("The licence it needs" above); every magick names at least one, since the action bypass bit (bit `0x2000` of the action row's second flag word, `0x00323F52`) is clear on all 81 magick actions |
 
 ## Related

@@ -202,17 +202,17 @@ byu_y01	byu_y01 (Bhujerba)	choco_sum_ctrl	sumcho_byebye_fadeout	-	-	-	-	-	0x0073
 byu_z01	byu_z01 (Bhujerba)	常駐監督	main	main	-	-	-	-	-	-	490: After the captive Penelo / 520: After the floating continent	-	-	Aerodrome (Bhujerba), field 791, entrance 0	-	byu_z0100, event 270	-	1	-
 byu_a0100	scene, event 271	監督	main	main	system message; no name shown	system message 71; 0	[value] joins the party as a guest! (the game fills [value] with Lamont, party table row 10) / (empty string)	-	-	-	-	-	-	-	-	-	-	2	-
 byu_a0100	scene, event 271	セリフ	cut_ex	requested by 監督.main	Balthier	2	The Lhusu Mines are just up ahead.	-	-	-	-	-	-	-	-	-	-	8	-
-byu_a0100	scene, event 271	セリフ	cut_01	requested by 監督.main	-	3; 4	Though, I do hear there's not much left there these days. / You're on your way to the mines?	-	-	-	-	-	-	-	-	-	-	8	-
+byu_a0100	scene, event 271	セリフ	cut_01	requested by 監督.main	no name shown; Larsa	3; 4	Though, I do hear there's not much left there these days. / You're on your way to the mines?	-	-	-	-	-	-	-	-	-	-	8	-
 byu_a0100	scene, event 271	セリフ	cut_02	requested by 監督.main	Larsa	5; 6	Then please, allow me to accompany you. / I've an errand to attend to there.	-	-	-	-	-	-	-	-	-	-	8	-
 byu_a0100	scene, event 271	セリフ	cut_03	requested by 監督.main	Basch; Larsa	7; 8	What manner of errand? / What errand? I might ask the same of you.	-	-	-	-	-	-	-	-	-	-	8	-
 byu_a0100	scene, event 271	セリフ	cut_04	requested by 監督.main	Balthier; Vaan	9; 10	Right, come on then. / What?	-	-	-	-	-	-	-	-	-	-	8	-
-byu_a0100	scene, event 271	セリフ	cut_05	requested by 監督.main	-	11; 12; 13	Excellent. / Do me a favor and stay where I can keep my eye on you. / Should be less trouble that way.	-	-	-	-	-	-	-	-	-	-	8	-
+byu_a0100	scene, event 271	セリフ	cut_05	requested by 監督.main	Larsa; Balthier; no name shown	11; 12; 13	Excellent. / Do me a favor and stay where I can keep my eye on you. / Should be less trouble that way.	-	-	-	-	-	-	-	-	-	-	8	-
 byu_a0100	scene, event 271	セリフ	cut_06	requested by 監督.main	Larsa	14	For us both.	-	-	-	-	-	-	-	-	-	-	8	-
 byu_a0100	scene, event 271	セリフ	cut_07	requested by 監督.main	Vaan; Larsa	15; 16; 17	So what's your name? / Oh, I— / I'm Lamont.	-	-	-	-	-	-	-	-	-	-	8	-
 byu_a0100	scene, event 271	セリフ	cut_08	requested by 監督.main	Vaan	18; 19; 20	Don't worry. / I don't know what's in that mine, Lamont, but you're in good hands. / Right, Basch?	-	-	-	-	-	-	-	-	-	-	8	-
 byu_a0100	scene, event 271	イベント特殊効果画面_EV	システムメッセージ表示_FADE付	requested by 監督.main	no name shown	0	(empty string)	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a0400	scene, event 272	セリフ	cut_03	requested by 監督.main	-	1; 2	I see you've been out walking without the company of your cortege... / Lord Larsa.	-	-	-	-	-	-	-	-	-	-	6	-
-byu_a0400	scene, event 272	セリフ	cut_06	requested by 監督.main	-	3; 4	We caught her wandering out of the mines. / You must take care with such undesirables about.	-	-	-	-	-	-	-	-	-	-	6	-
+byu_a0400	scene, event 272	セリフ	cut_03	requested by 監督.main	Judge Ghis	1; 2	I see you've been out walking without the company of your cortege... / Lord Larsa.	-	-	-	-	-	-	-	-	-	-	6	-
+byu_a0400	scene, event 272	セリフ	cut_06	requested by 監督.main	Judge Ghis	3; 4	We caught her wandering out of the mines. / You must take care with such undesirables about.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_a0400	scene, event 272	セリフ	cut_07	requested by 監督.main	Penelo; Judge Ghis; Larsa	5; 6; 7; 8	I was kidnapped— / Silence! / If it is a crime to wander on one's own... / then I, too, am guilty.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_a0400	scene, event 272	セリフ	cut_08	requested by 監督.main	Larsa; Ondore	9; 10; 11	Marquis. / I trust that your estate can accommodate another guest? / Why not?	-	-	-	-	-	-	-	-	-	-	6	-
 byu_a0400	scene, event 272	セリフ	cut_09	requested by 監督.main	Larsa; Judge Ghis	12; 13; 14	Judge Ghis, I shall heed your counsel. / I will not travel unaccompanied any longer. / That was unexpected.	-	-	-	-	-	-	-	-	-	-	6	-
@@ -220,52 +220,52 @@ byu_a0400	scene, event 272	セリフ	cut_10	requested by 監督.main	Larsa	15	Th
 byu_a0400	scene, event 272	セリフ	cut_11	requested by 監督.main	Penelo	16	O-Of course.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_a0400	scene, event 272	セリフ	cut_12	requested by 監督.main	Vaan; Balthier	17; 18; 19	"What's Penelo doing? / And what's the deal with that Lamont? / That's no ""Lamont."""	-	-	-	-	-	-	-	-	-	-	6	-
 byu_a0400	scene, event 272	セリフ	cut_13	requested by 監督.main	Balthier; Vaan	20; 21; 22	Larsa Ferrinas Solidor. / Fourth son to Emperor Gramis... and brother to Vayne. / What? That kid!?	-	-	-	-	-	-	-	-	-	-	6	-
-byu_a0400	scene, event 272	セリフ	cut_14	requested by 監督.main	-	23; 24; 25; 26; 27	Do not worry. / I believe he will treat her well. / Nobody knows men like Fran does. / Our purposes lead the same way: to Ondore. / We must find means to approach him.	-	-	-	-	-	-	-	-	-	-	6	-
-byu_a0400	scene, event 272	セリフ	cut_15	requested by 監督.main	-	28; 29	The Marquis is channeling money to organizations opposing the Empire. / We'll start there.	-	-	-	-	-	-	-	-	-	-	6	-
-byu_a0480	scene, event 705	MESSAGE	カット１	requested by AD.カット１_ad, AD.終了_ad	-	0; 1; 2; 3	The Lhusu Mines: one of the richest veins in Ivalice. / Under Imperial guard, no doubt. / Actually, no. With but few exceptions, the Imperial army is not permitted in Bhujerba. / Well, shall we proceed?	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a0400	scene, event 272	セリフ	cut_14	requested by 監督.main	Fran; Balthier; Basch	23; 24; 25; 26; 27	Do not worry. / I believe he will treat her well. / Nobody knows men like Fran does. / Our purposes lead the same way: to Ondore. / We must find means to approach him.	-	-	-	-	-	-	-	-	-	-	6	-
+byu_a0400	scene, event 272	セリフ	cut_15	requested by 監督.main	Balthier	28; 29	The Marquis is channeling money to organizations opposing the Empire. / We'll start there.	-	-	-	-	-	-	-	-	-	-	6	-
+byu_a0480	scene, event 705	MESSAGE	カット１	requested by AD.カット１_ad, AD.終了_ad	Balthier; no name shown	0; 1; 2; 3	The Lhusu Mines: one of the richest veins in Ivalice. / Under Imperial guard, no doubt. / Actually, no. With but few exceptions, the Imperial army is not permitted in Bhujerba. / Well, shall we proceed?	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a0481	scene, event 725	MESSAGE	TAGmes_BASH_1	requested by DIRECTOR.EV_e0100	Basch	0; 1	Marquis Ondore announced my execution 2 years ago. / If news of my survival were to spread, the Marquis may find his position compromised.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a0481	scene, event 725	MESSAGE	TAGmes_BALFLAIR_2	requested by DIRECTOR.EV_e0100	Balthier	2; 3	The men he's been funding bear little love for the Empire. / They won't be thrilled to discover that rumors of your death were, in fact, greatly exaggerated.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a0481	scene, event 725	MESSAGE	TAGmes_BALFLAIR_3	requested by DIRECTOR.EV_e0100	Balthier	4	If we were to raise a clamor to that effect, we might just get their attention.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a0481	scene, event 725	MESSAGE	TAGmes_VAN_4	requested by DIRECTOR.EV_e0100	Vaan	5	Nothin' to it! I'll just go around town spreading the word. How 'bout this?	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a0481	scene, event 725	MESSAGE	TAGmes_SYSTEM_4	requested by DIRECTOR.EV_e0100	-	6	Press .	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a0481	scene, event 725	MESSAGE	TAGmes_SYSTEM_4	requested by DIRECTOR.EV_e0100	no name shown	6	Press .	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a0481	scene, event 725	MESSAGE	TAGmes_VAN_5	requested by DIRECTOR.EV_e0100	Vaan	7	I'm Captain Basch fon Ronsenburg of Dalmasca!	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a0481	scene, event 725	MESSAGE	TAGmes_VAN_6	requested by DIRECTOR.EV_e0100	Vaan	8	Well? Whaddaya think?	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a0481	scene, event 725	MESSAGE	TAGmes_BALFLAIR_7	requested by DIRECTOR.EV_e0100	Balthier	9	That certainly qualifies as a clamor.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a0481	scene, event 725	MESSAGE	TAGmes_BALFLAIR_8	requested by DIRECTOR.EV_e0100	Balthier	10; 11; 12; 13	All right, Vaan, get to it. For the girl's sake, eh? / Oh, and the more people around to witness your little performance, the better. / If we're going to reach the Marquis, it's up to you. / We'll be waiting here, if you need us.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a1880	scene, event 265	MESSAGE	TAGmes_BANGAA_1	requested by DIRECTOR.EV_e0100	-	0	This is the one, Havharo. Says he's Captain Basch he does.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_2	requested by DIRECTOR.EV_e0100	-	1	He would sooner pass for the King.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_BANGAA_3	requested by DIRECTOR.EV_e0100	-	2	I knew he weren't no captain! That was a mean trick to be playing.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_4	requested by DIRECTOR.EV_e0100	-	3	If at trickery it ended, it would end well enough. But why this boy, and why Captain Ronsenburg?	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_5	requested by DIRECTOR.EV_e0100	-	4; 5	An explanation is due, and I will hear it. / The Empire's hounds grow passing bold indeed.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_2	requested by DIRECTOR.EV_e0100	LEADER (script label)	1	He would sooner pass for the King.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_BANGAA_3	requested by DIRECTOR.EV_e0100	BLACK (script label)	2	I knew he weren't no captain! That was a mean trick to be playing.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_4	requested by DIRECTOR.EV_e0100	LEADER (script label)	3	If at trickery it ended, it would end well enough. But why this boy, and why Captain Ronsenburg?	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_5	requested by DIRECTOR.EV_e0100	LEADER (script label)	4; 5	An explanation is due, and I will hear it. / The Empire's hounds grow passing bold indeed.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a1880	scene, event 265	MESSAGE	TAGmes_BALFLAIR_6	requested by DIRECTOR.EV_e0100	Balthier	6; 7; 8	A shame if they learnt the Marquis trafficked with the likes of you. / Agents masquerading as guides. A hideout at the back of a tavern. / Not exactly earning high marks for originality, are we?	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_BANGAA_8	requested by DIRECTOR.EV_e0100	-	9; 10	Now you've done it! / Wait!	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_10	requested by DIRECTOR.EV_e0100	-	11; 12	(empty string) / So Basch fon Ronsenburg does yet live.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_11	requested by DIRECTOR.EV_e0200	-	13	I knew there must be more to it, but to find you at the end of this tale...	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_12	requested by DIRECTOR.EV_e0200	-	14	Ah, to see the Marquis's face when he learns of it.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_BANGAA_8	requested by DIRECTOR.EV_e0100	BLACK (script label); LEADER (script label)	9; 10	Now you've done it! / Wait!	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_10	requested by DIRECTOR.EV_e0100	no name shown; LEADER (script label)	11; 12	(empty string) / So Basch fon Ronsenburg does yet live.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_11	requested by DIRECTOR.EV_e0200	LEADER (script label)	13	I knew there must be more to it, but to find you at the end of this tale...	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_12	requested by DIRECTOR.EV_e0200	LEADER (script label)	14	Ah, to see the Marquis's face when he learns of it.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_a1880	scene, event 265	MESSAGE	TAGmes_BASH_13	requested by DIRECTOR.EV_e0200	Basch	15; 16	I should like nothing more. / I would meet him, and see for myself.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_14	requested by DIRECTOR.EV_e0200	-	17	How say you, my lord?	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_AIDE_15	requested by DIRECTOR.EV_e0200	-	18	There is little to be said.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_a1880	scene, event 265	MESSAGE	TAGmes_AIDE_16	requested by DIRECTOR.EV_e0200	-	19	I shall arrange a meeting with the Marquis. We shall expect you at the estate.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_HABARLO_14	requested by DIRECTOR.EV_e0200	LEADER (script label)	17	How say you, my lord?	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_AIDE_15	requested by DIRECTOR.EV_e0200	SOKKIN (script label)	18	There is little to be said.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_a1880	scene, event 265	MESSAGE	TAGmes_AIDE_16	requested by DIRECTOR.EV_e0200	SOKKIN (script label)	19	I shall arrange a meeting with the Marquis. We shall expect you at the estate.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_b0100	scene, event 276	台詞	カット２	requested by カット.カット２	Penelo	0	Balthier, your handkerchief. I thought you might want it back.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_b0100	scene, event 276	台詞	カット３	requested by カット.カット３	Balthier	1	I shall wear it close to my heart.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_b0100	scene, event 276	台詞	カット４	requested by カット.カット４	Ashe; Basch; Vossler	2; 3; 4; 5; 6; 7; 8; 9; 10	Perhaps you forget all that Ondore has wrought. / I do not forget, Majesty. / It was by his counsel, dangerous though it may have been, that we were able to free you. / You must meet with him, Your Highness, and give ear to his words. / He may act in league with the Empire, but his heart is not. / It is as he says. / I ought not have kept Ondore at so great a distance for so long a time. / I have played the fool! / You were only being cautious.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_b0100	scene, event 276	台詞	カット５	requested by カット.カット５	Vossler; Ashe	11; 12; 13; 14; 15; 16; 17; 18	Majesty, I would ask you for some time. On our own, we struggle in vain to restore Dalmasca. / I must search out some other way. / Until I should find it, I would have Basch remain at your side. / Doubt him you may, but I measure his loyalty to Dalmasca no less than my own. / I know you would not speak so lightly. / Very well. / Keep her well. / Go to Ondore, and there await my return.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_b0101	scene, event 278	セリフ	cut_03	requested by 監督.main	Balthier	2	Easy.	-	-	-	-	-	-	-	-	-	-	5	-
-byu_b0101	scene, event 278	セリフ	cut_04	requested by 監督.main	-	3; 4; 5; 6; 7	No good. He's not here. / Keep searching! / You're a dead man. Don't forget it. / And no names. / Of course.	-	-	-	-	-	-	-	-	-	-	5	-
+byu_b0101	scene, event 278	セリフ	cut_04	requested by 監督.main	Imperial; Balthier; no name shown; Basch	3; 4; 5; 6; 7	No good. He's not here. / Keep searching! / You're a dead man. Don't forget it. / And no names. / Of course.	-	-	-	-	-	-	-	-	-	-	5	-
 byu_b0101	scene, event 278	movieSkip監督	Skip監視	requested by 監督.main	no name shown	8	Skip	-	-	-	-	-	-	-	-	-	-	1	-
 byu_w0100	scene, event 277	日本語字幕	cut1	requested by ＡＤ.s01, ＡＤ.s02	Vaan	0	What are you doing?	-	-	-	-	-	-	-	-	-	-	3	-
-byu_w0100	scene, event 277	日本語字幕	cut2_2	requested by ＡＤ.s02	-	1	This is Balthier's ship.	-	-	-	-	-	-	-	-	-	-	3	-
+byu_w0100	scene, event 277	日本語字幕	cut2_2	requested by ＡＤ.s02	Vaan	1	This is Balthier's ship.	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut3	requested by ＡＤ.s03	Ashe; Vaan	2; 3; 4; 5	I'm going to retrieve the Dawn Shard. It's the proof that I need. / I know where it's hidden. / I'll return his airship later. / Are you crazy?	-	-	-	-	-	-	-	-	-	-	3	-
-byu_w0100	scene, event 277	日本語字幕	cut4	requested by ＡＤ.s04	-	6; 7; 8	This is something that I have to do! Not only for myself, but for all those who have fallen. / I will not be made to hide! / I'll fight alone, if I must.	-	-	-	-	-	-	-	-	-	-	3	-
+byu_w0100	scene, event 277	日本語字幕	cut4	requested by ＡＤ.s04	Ashe	6; 7; 8	This is something that I have to do! Not only for myself, but for all those who have fallen. / I will not be made to hide! / I'll fight alone, if I must.	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut5	requested by ＡＤ.s05	Vaan; Ashe; Balthier	9; 10; 11; 12	You still have Basch, right? / Besides, you can't just go around stealing people's ships. What are you trying to do? / I'm trying to concentrate! / That's quite enough, Your Majesty.	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut6	requested by ＡＤ.s06	Balthier	13; 14; 15	What do you think? A bit over the top? / In my line of work, you never know when something like this might come in handy. / I'm trying to concentrate!	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut8	requested by ＡＤ.s08	Balthier; Ashe	16; 17	I'm leaving you with the Marquis. / You can't.	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut8_2	requested by ＡＤ.s08, ＡＤ.s09	Balthier	18	Trust me, you're better off staying here.	-	-	-	-	-	-	-	-	-	-	3	-
-byu_w0100	scene, event 277	日本語字幕	cut9_1	requested by ＡＤ.s09	-	19; 20; 21; 22	Suppose you kidnapped me instead? / You're a sky pirate, aren't you? / Then steal me. Is that so much to ask? / What do you have that I would want?	-	-	-	-	-	-	-	-	-	-	3	-
+byu_w0100	scene, event 277	日本語字幕	cut9_1	requested by ＡＤ.s09	Ashe; Balthier	19; 20; 21; 22	Suppose you kidnapped me instead? / You're a sky pirate, aren't you? / Then steal me. Is that so much to ask? / What do you have that I would want?	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut10	requested by ＡＤ.s10	Ashe	23; 24	The Dynast-King's treasure. / The Dawn Shard is but one of the riches that lie waiting in King Raithwall's tomb.	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut11	requested by ＡＤ.s11	Balthier	25	King Raithwall, you say?	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut11_2	requested by ＡＤ.s11, ＡＤ.s12	Basch	26	Kidnapping royalty is a serious offense.	-	-	-	-	-	-	-	-	-	-	3	-
-byu_w0100	scene, event 277	日本語字幕	cut12_2	requested by ＡＤ.s12	-	27; 28; 29	It won't do much to lower the bounty on your head. / How much is the price on your head these days, I wonder? / Allow me to escort you in Vossler's place.	-	-	-	-	-	-	-	-	-	-	3	-
+byu_w0100	scene, event 277	日本語字幕	cut12_2	requested by ＡＤ.s12	Basch; Balthier	27; 28; 29	It won't do much to lower the bounty on your head. / How much is the price on your head these days, I wonder? / Allow me to escort you in Vossler's place.	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut13	requested by ＡＤ.s13	Fran	30	Will you be joining us?	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut14	requested by ＡＤ.s14	Vaan	31; 32	What, are you kidding? / I don't wanna stick around this place.	-	-	-	-	-	-	-	-	-	-	3	-
 byu_w0100	scene, event 277	日本語字幕	cut15	requested by ＡＤ.s15	Vaan; Penelo	33	- Then I'm coming too! - Penelo?	-	-	-	-	-	-	-	-	-	-	3	-
@@ -287,36 +287,36 @@ byu_y0100	scene, event 273	セリフ	cut_01	requested by 監督.main	Ondore	2; 3
 byu_y0100	scene, event 273	セリフ	cut_02	requested by 監督.main	Basch	4	And that is the only reason I draw breath.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	セリフ	cut_03	requested by 監督.main	Ondore	5; 6; 7	So you are the sword he's strung above my head. / Vayne has left not a thing to chance. / And?	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	セリフ	cut_04	requested by 監督.main	Basch	8; 9	A leader of the Resistance has fallen into Imperial hands. / A woman by the name of Amalia.	-	-	-	-	-	-	-	-	-	-	6	-
-byu_y0100	scene, event 273	セリフ	cut_05	requested by 監督.main	-	10	I would rescue her, but I need your help.	-	-	-	-	-	-	-	-	-	-	6	-
+byu_y0100	scene, event 273	セリフ	cut_05	requested by 監督.main	Basch	10	I would rescue her, but I need your help.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	セリフ	cut_06	requested by 監督.main	Ondore	11; 12	This resistance leader— this Amalia. / She must be very important.	-	-	-	-	-	-	-	-	-	-	6	-
-byu_y0100	scene, event 273	セリフ	cut_07	requested by 監督.main	-	13; 14; 15	You understand I've my position to consider. / Would you let us see Larsa? / He's got my friend with him.	-	-	-	-	-	-	-	-	-	-	6	-
+byu_y0100	scene, event 273	セリフ	cut_07	requested by 監督.main	Ondore; Vaan; no name shown	13; 14; 15	You understand I've my position to consider. / Would you let us see Larsa? / He's got my friend with him.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	セリフ	cut_08	requested by 監督.main	Ondore	16; 17; 18	I'm afraid you're too late. / Lord Larsa's cortege has already rejoined the Imperial detachment. / I am told they will depart for Rabanastre upon the arrival of the fleet this eventide.	-	-	-	-	-	-	-	-	-	-	6	-
-byu_y0100	scene, event 273	セリフ	cut_09	requested by 監督.main	-	19; 20	- What are we waiting for!? - For you to calm down. / (empty string)	-	-	-	-	-	-	-	-	-	-	6	-
-byu_y0100	scene, event 273	セリフ	cut_10	requested by 監督.main	-	21; 22; 23; 24	Captain Ronsenburg. / Surely the exigencies of position are not lost on you. / Why indeed, you should find the enemy's chains... / an easy burden to bear.	-	-	-	-	-	-	-	-	-	-	6	-
+byu_y0100	scene, event 273	セリフ	cut_09	requested by 監督.main	no name shown	19; 20	- What are we waiting for!? - For you to calm down. / (empty string)	-	-	-	-	-	-	-	-	-	-	6	-
+byu_y0100	scene, event 273	セリフ	cut_10	requested by 監督.main	Ondore; no name shown	21; 22; 23; 24	Captain Ronsenburg. / Surely the exigencies of position are not lost on you. / Why indeed, you should find the enemy's chains... / an easy burden to bear.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	セリフ	cut_13	requested by 監督.main	Balthier	25	Wait!	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	セリフ	cut_14	requested by 監督.main	Basch	26	Sorry. Can't be helped.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	セリフ	cut_15	requested by 監督.main	Ondore	27	Summon the guard!	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	セリフ	cut_18	requested by 監督.main	Ondore	28	They're to be taken to Judge Ghis.	-	-	-	-	-	-	-	-	-	-	6	-
 byu_y0100	scene, event 273	movieSkip監督	Skip監視	requested by 監督.main	no name shown	29	Skip	-	-	-	-	-	-	-	-	-	-	1	-
-byu_y0101	scene, event 274	MesDir	cut01a	requested by Director.main	-	0; 1; 2	When Vossler learned my father had been killed... / the night of the treaty-signing, he returned to Rabanastre to aid my escape. / There was still time before Vayne's reach extended too far. We thought that you could protect me.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_y0101	scene, event 274	MesDir	cut02a	requested by Director.main	-	3; 4	However, when I then made the announcement that you had taken your own life... / I must have seemed a model citizen of the Empire.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_y0101	scene, event 274	MesDir	cut01a	requested by Director.main	Ashe	0; 1; 2	When Vossler learned my father had been killed... / the night of the treaty-signing, he returned to Rabanastre to aid my escape. / There was still time before Vayne's reach extended too far. We thought that you could protect me.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_y0101	scene, event 274	MesDir	cut02a	requested by Director.main	Ondore	3; 4	However, when I then made the announcement that you had taken your own life... / I must have seemed a model citizen of the Empire.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut03a	requested by Director.main	Ondore	5; 6; 7	The announcement, you see, was Vayne's suggestion. / Of course, at the time I was reluctant, but I could not perceive his reasons. / Now it is clear: he meant to drive a wedge between us.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut04a	requested by Director.main	Ashe	8; 9; 10	Halim, we are past all this. / Bhujerba must stand with us. / We can stop Vayne.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut05a	requested by Director.main	Ondore	11; 12	I once knew a girl whose only wish... / was to be carried in her uncle's arms.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_y0101	scene, event 274	MesDir	cut07a	requested by Director.main	-	13	Your Majesty is a woman grown now.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_y0101	scene, event 274	MesDir	cut07a	requested by Director.main	no name shown	13	Your Majesty is a woman grown now.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut08a	requested by Director.main	Ashe	14	Then Bhujerba will aid me?	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut09a	requested by Director.main	Ondore	15; 16; 17	Suppose for a moment you were to defeat Vayne... What then? / You cannot simply rebuild your kingdom with the only proof of your birthright stolen. / Without that, the Gran Kiltias on Bur-Omisace cannot and will not recognize Your Majesty as the rightful heir.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut09b	requested by Director.main	Ondore	18; 19	You may yet be a princess, but without proof of your identity, you are powerless. / You will remain with me. We do nothing till the time is right.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut09c	requested by Director.main	Ashe	20	I cannot just wait!	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut09d	requested by Director.main	Ondore	21	Then what does Your Majesty propose we do?	-	-	-	-	-	-	-	-	-	-	1	-
-byu_y0101	scene, event 274	MesDir	cut09e	requested by Director.main	-	22	Uncle Halim—	-	-	-	-	-	-	-	-	-	-	1	-
+byu_y0101	scene, event 274	MesDir	cut09e	requested by Director.main	no name shown	22	Uncle Halim—	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut11a	requested by Director.main	Balthier	23	Incidentally, what is the going rate for rescuing princesses these days?	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut12a	requested by Director.main	Balthier	24	Food would be a start— the good stuff, mind you.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut12b	requested by Director.main	Ondore	25	This can be arranged, though it will take some time.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_y0101	scene, event 274	MesDir	cut13a	requested by Director.main	Balthier	26; 27	Time enough for a bath, I hope. Dirty business, you know. / Ah, best bring a change of clothes too.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_z0100	scene, event 270	MESSAGE	カット２	requested by AD.カット２_ad	-	0	You've seen to her feeding, yes?	-	-	-	-	-	-	-	-	-	-	1	-
-byu_z0100	scene, event 270	MESSAGE	カット３	requested by AD.カット３_ad	-	1	I have, my brother. She eats well.	-	-	-	-	-	-	-	-	-	-	1	-
+byu_z0100	scene, event 270	MESSAGE	カット３	requested by AD.カット３_ad	RINOK (script label)	1	I have, my brother. She eats well.	-	-	-	-	-	-	-	-	-	-	1	-
 byu_z0100	scene, event 270	MESSAGE	カット４	requested by AD.カット４_ad, AD.カット５_ad	Ba'Gamnan	2	See that she does. We need her alive. Balthier's bait must be fresh.	-	-	-	-	-	-	-	-	-	-	1	-
-byu_z0100	scene, event 270	MESSAGE	カット６	requested by AD.カット６_ad, AD.カット８_ad	-	3; 4; 5; 6; 7; 8; 9; 10	I keep trying to tell you! I barely even know who Balthier is! / My brother! A message come from Rabanastre! The Strahl, she's set sail! / She makes straight for the Skycity of Bhujerba! / Barely know, was it? Yet at a trice he goes bounding off for you. / Tell me, how could that be? / That's what I'd like to know! I just met him that one time, and that's it! / Does that tongue never stop? / What if we plucked it from your head?	-	-	-	-	-	-	-	-	-	-	1	-
-byu_z0100	scene, event 270	MESSAGE	カット９	requested by AD.カット９_ad, AD.カット１０_ad	-	11; 12; 13	As for you! We need Balthier alive! His corpse fetches but half the bounty! / A tender beating. My specialty! / There's no fun for it if we can't tease out a scream or two!	-	-	-	-	-	-	-	-	-	-	1	-
+byu_z0100	scene, event 270	MESSAGE	カット６	requested by AD.カット６_ad, AD.カット８_ad	Penelo; BWAGI (script label); Ba'Gamnan	3; 4; 5; 6; 7; 8; 9; 10	I keep trying to tell you! I barely even know who Balthier is! / My brother! A message come from Rabanastre! The Strahl, she's set sail! / She makes straight for the Skycity of Bhujerba! / Barely know, was it? Yet at a trice he goes bounding off for you. / Tell me, how could that be? / That's what I'd like to know! I just met him that one time, and that's it! / Does that tongue never stop? / What if we plucked it from your head?	-	-	-	-	-	-	-	-	-	-	1	-
+byu_z0100	scene, event 270	MESSAGE	カット９	requested by AD.カット９_ad, AD.カット１０_ad	Ba'Gamnan; BWAGI (script label); RINOK (script label)	11; 12; 13	As for you! We need Balthier alive! His corpse fetches but half the bounty! / A tender beating. My specialty! / There's no fun for it if we can't tease out a scream or two!	-	-	-	-	-	-	-	-	-	-	1	-
 byu_z0100	scene, event 270	MESSAGE	カット１１	requested by AD.カット１１_ad	Penelo	14	Where are you?	-	-	-	-	-	-	-	-	-	-	1	-

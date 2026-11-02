@@ -36,7 +36,7 @@ controller.
 | 1 | `+0x04` | bone physics | `0x00512C00`, `0x00512A80` | `denybonephysical` |
 | 2 | `+0x08` | the look controller | `0x00515600`, `0x00513150` | request bit `0x1` of the staged look |
 | 3 | `+0x0C` | Confuse motion | `0x00515FE0`, `0x00515610` | the Sleep and Confuse arms |
-| 4 | `+0x10` | none | - | - |
+| 4 | `+0x10` | no controller | - | - |
 | 5 | `+0x14` | bone turn that the shadow follows | `0x0051B110`, `0x0051A370` | the rig rebind |
 | 6 | `+0x18` | Float bob | `0x004718D0`, `0x00471640` | the Float arm |
 | 7 | `+0x1C` | Immobilize motion | `0x004715D0`, `0x00471380` | the Immobilize arm |
@@ -470,7 +470,7 @@ executable image.
 
 - `0x02B59D60`: the slot 0 override, read only.
 - `0x02B59D64`: suppresses the physics applies.
-- `0x02B59D68`: set during status-display denial; suppresses the status-motion applies.
+- `0x02B59D68`: set while the status display is turned off (the display-deny latch `0x003E7C70`, [Character status visuals](character-status-visuals.md#the-denial-latches)); suppresses the status-motion applies.
 - `0x022C6F28 + 0x48800`: the head of the active-record list both per-record phases walk.
 
 ### The motion tables' counts and scales

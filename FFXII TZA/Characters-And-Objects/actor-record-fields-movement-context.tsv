@@ -11,7 +11,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002646C0	FUN_002646c0	0x0026473C	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor in rcx	
 0x00265020	Actor_GetWorldPosition	0x00265041	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor as arg0 from 0x0024B6F0 at 0x0024B74B	
 0x00265020	Actor_GetWorldPosition	0x00265041	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor in rcx	
-0x00265470	FUN_00265470	0x00265491	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor as arg0 from 0x0035DCC0 at 0x0035DD26	
+0x00265470	FUN_00265470	0x00265491	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor as arg0 from 0x002718E0 at 0x00271925	
 0x00265470	FUN_00265470	0x00265491	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x0026606A	0x0	w	mov qword ptr [r14], r15	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266210	0x0	r	mov eax, dword ptr [r14]	actor +0xB8, the actor in rcx	
@@ -21,36 +21,52 @@ function	name	site	disp	kind	instruction	route	note
 0x00266AD0	FUN_00266ad0	0x00266B18	0x0	addr	lea rax, [rdx + 0x120]	ctor	region planter; lea computes an address inside this embedded context
 0x00266AD0	FUN_00266ad0	0x00266B39	0x0	addr	lea rax, [rdx + 0x120]	ctor	region planter; lea computes an address inside this embedded context
 0x00266AD0	FUN_00266ad0	0x00266B54	0x0	addr	lea rax, [rdx + 0x120]	ctor	region planter; lea computes an address inside this embedded context
-0x0026AF10	Movement_SnapshotSteeringStartPosition	0x0026AF21	0x0	r	movaps xmm0, xmmword ptr [rax]	actor +0xB8, the actor as arg0 from 0x00357A20 at 0x00357AA1	
+0x0026AF10	Movement_SnapshotSteeringStartPosition	0x0026AF21	0x0	r	movaps xmm0, xmmword ptr [rax]	actor +0xB8, the actor as arg0 from 0x00357980 at 0x003579D6	
 0x0026AF10	Movement_SnapshotSteeringStartPosition	0x0026AF21	0x0	r	movaps xmm0, xmmword ptr [rax]	actor +0xB8, the actor in rcx	
 0x0026AFE0	FUN_0026afe0	0x0026B04C	0x0	w	movss dword ptr [rax], xmm8	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B04C	0x0	w	movss dword ptr [rax], xmm8	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B120	0x0	w	movss dword ptr [rax], xmm8	actor +0xB8, the actor in rcx	
-0x002E4A10	FUN_002e4a10	0x002E4A21	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AFCA	
+0x0026B170	FUN_0026b170	0x0026B224	0x0	r	movss xmm1, dword ptr [rax]	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026B230	FUN_0026b230	0x0026B2C6	0x0	r	movss xmm1, dword ptr [rax]	actor +0xB8, the actor as arg0 from 0x00348F80 at 0x00348FF6	
+0x0026BA70	FUN_0026ba70	0x0026BAE5	0x0	r	movss xmm1, dword ptr [rax]	actor +0xB8, the actor as arg0 from 0x0026BB00 at 0x0026BB26	
+0x0026BB00	FUN_0026bb00	0x0026BB22	0x0	r	subss xmm1, dword ptr [rax]	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B59	
+0x002E28E0	FUN_002e28e0	0x002E2C49	0x0	r	movss xmm1, dword ptr [rbp]	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E4A10	FUN_002e4a10	0x002E4A21	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF3A	
 0x002E4A10	FUN_002e4a10	0x002E4A21	0x0	r	mov eax, dword ptr [rcx]	actor +0xB8, the actor in rcx	
 0x002E5030	Movement_UpdateActorFrame	0x002E5121	0x0	r	movss xmm1, dword ptr [rdi]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025E39B	
 0x002E5030	Movement_UpdateActorFrame	0x002E5121	0x0	r	movss xmm1, dword ptr [rdi]	actor +0xB8, the actor in rcx	
 0x002E5380	Movement_PrepareCandidatePosition	0x002E5422	0x0	r	movss xmm1, dword ptr [r8]	arg2 from 0x002E5610 at 0x002E5647	
 0x002E54A0	Movement_TransformAndAccumulateCandidate	0x002E557C	0x0	r	addss xmm6, dword ptr [rdi]	arg2 from 0x002E5380 at 0x002E548C	
-0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E56D6	0x0	r	subss xmm2, dword ptr [rdi]	arg2 from 0x002E5180 at 0x002E5257	
-0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E570C	0x0	r	subss xmm1, dword ptr [rdi]	arg2 from 0x002E5180 at 0x002E5257	
-0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E5729	0x0	w	movss dword ptr [rdi], xmm3	arg2 from 0x002E5180 at 0x002E5257	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E566B	0x0	r	movss xmm0, dword ptr [r8]	arg2 from 0x002E5030 at 0x002E5101	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E56D6	0x0	r	subss xmm2, dword ptr [rdi]	arg2 from 0x002E5030 at 0x002E5101	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E570C	0x0	r	subss xmm1, dword ptr [rdi]	arg2 from 0x002E5030 at 0x002E5101	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E5729	0x0	w	movss dword ptr [rdi], xmm3	arg2 from 0x002E5030 at 0x002E5101	
 0x002E5C90	FUN_002e5c90	0x002E5CE4	0x0	w	movss dword ptr [rbx], xmm1	actor +0xB8, the actor in rcx	
 0x002E5C90	FUN_002e5c90	0x002E5D9E	0x0	w	movss dword ptr [rbx], xmm2	actor +0xB8, the actor in rcx	
 0x002E6000	FUN_002e6000	0x002E6059	0x0	r	movss xmm1, dword ptr [rdi]	actor +0xB8, the actor as arg0 from 0x002E5180 at 0x002E5349	
 0x002E6000	FUN_002e6000	0x002E6059	0x0	r	movss xmm1, dword ptr [rdi]	actor +0xB8, the actor in rcx	
+0x002E6B10	FUN_002e6b10	0x002E6B58	0x0	r	movss xmm1, dword ptr [rbx]	actor +0xB8, the actor as arg0 from 0x002E26F0 at 0x002E2756	
 0x00350DD0	FUN_00350dd0	0x00350E4C	0x0	r	movss xmm2, dword ptr [rbx]	a context the function resolved itself	
+0x003512A0	FUN_003512a0	0x00351322	0x0	r	mov ecx, dword ptr [rdx]	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
+0x00351610	FUN_00351610	0x0035168F	0x0	w	movss dword ptr [rax], xmm0	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x003516E0	FUN_003516e0	0x0035175C	0x0	r	movss xmm1, dword ptr [rbx]	a context the function resolved itself	
+0x00351970	FUN_00351970	0x003519FE	0x0	r	mov ecx, dword ptr [rdx]	a context the function resolved itself	
 0x00352580	FUN_00352580	0x003525F2	0x0	r	movss xmm2, dword ptr [rax]	a context the function resolved itself	
 0x003530F0	FUN_003530f0	0x00353150	0x0	r	movss xmm1, dword ptr [rax]	a context the function resolved itself	
-0x003A1920	FUN_003a1920	0x003A1920	0x0	r	movss xmm2, dword ptr [rcx]	arg0 from 0x00358F90 at 0x0035900B	
+0x00353AC0	FUN_00353ac0	0x00353AD8	0x0	r	movss xmm2, dword ptr [rax]	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x002622F8	
+0x003544F0	FUN_003544f0	0x00354508	0x0	r	movss xmm1, dword ptr [rax]	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x002622F8	
+0x0037B4D0	FUN_0037b4d0	0x0037B7E3	0x0	r	movss xmm1, dword ptr [r15]	a context the function resolved itself	
+0x003A1920	FUN_003a1920	0x003A1920	0x0	r	movss xmm2, dword ptr [rcx]	arg0 from 0x002E45E0 at 0x002E4773	
 0x003A1960	Vector3_ComputeSquaredXZDistance	0x003A196E	0x0	r	subss xmm1, dword ptr [rdx]	arg1 from 0x0025BE50 at 0x0025BF1D	
 0x003A19C0	FUN_003a19c0	0x003A19FD	0x0	r	subss xmm8, dword ptr [r8]	arg2 from 0x002E45E0 at 0x002E46E1	
 0x003A1C90	FUN_003a1c90	0x003A1CA7	0x0	r	subss xmm0, dword ptr [rcx]	arg0 from 0x003A17D0 at 0x003A1800	
 0x003A1C90	FUN_003a1c90	0x003A1CD5	0x0	r	subss xmm1, dword ptr [rcx]	arg0 from 0x003A17D0 at 0x003A1800	
 0x003DA730	FUN_003da730	0x003DA756	0x0	r	movss xmm8, dword ptr [r8]	arg2 from 0x003DA6A0 at 0x003DA6C8	
-0x003DA730	FUN_003da730	0x003DA75E	0x0	r	subss xmm8, dword ptr [rdx]	arg1 from 0x003DA6A0 at 0x003DA6DE	
+0x003DA730	FUN_003da730	0x003DA75E	0x0	r	subss xmm8, dword ptr [rdx]	arg1 from 0x003DA6A0 at 0x003DA6C8	
 0x003DB150	FUN_003db150	0x003DB150	0x0	r	movss xmm0, dword ptr [rcx]	arg0 from 0x002E54A0 at 0x002E5577	
+0x004686D0	FUN_004686d0	0x004686D0	0x0	r	movss xmm1, dword ptr [rcx]	arg0 from 0x002E45E0 at 0x002E477A	
+0x0050DC70	FUN_0050dc70	0x0050DCF3	0x0	w	movss dword ptr [rax], xmm0	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
+0x0050DE00	FUN_0050de00	0x0050DE71	0x0	w	movss dword ptr [rax], xmm0	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x0025BAD0	FUN_0025bad0	0x0025BBB4	0x4	r	addss xmm2, dword ptr [rsi + 4]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025B990	
 0x0025BAD0	FUN_0025bad0	0x0025BBB4	0x4	r	addss xmm2, dword ptr [rsi + 4]	actor +0xB8, the actor in rdx	
 0x0025BE50	FUN_0025be50	0x0025BECD	0x4	r	movss xmm2, dword ptr [rbx + 4]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025BA84	
@@ -65,29 +81,43 @@ function	name	site	disp	kind	instruction	route	note
 0x002646C0	FUN_002646c0	0x00264740	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor in rcx	
 0x00265020	Actor_GetWorldPosition	0x00265045	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor as arg0 from 0x0024B6F0 at 0x0024B74B	
 0x00265020	Actor_GetWorldPosition	0x00265045	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor in rcx	
-0x00265470	FUN_00265470	0x00265495	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor as arg0 from 0x0035DCC0 at 0x0035DD26	
+0x00265470	FUN_00265470	0x00265495	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor as arg0 from 0x002718E0 at 0x00271925	
 0x00265470	FUN_00265470	0x00265495	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266217	0x4	r	mov eax, dword ptr [r14 + 4]	actor +0xB8, the actor in rcx	
 0x0026AFE0	FUN_0026afe0	0x0026B051	0x4	w	movss dword ptr [rax + 4], xmm7	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B051	0x4	w	movss dword ptr [rax + 4], xmm7	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B125	0x4	w	movss dword ptr [rax + 4], xmm7	actor +0xB8, the actor in rcx	
-0x002E4A10	FUN_002e4a10	0x002E4A26	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AFCA	
+0x0026B170	FUN_0026b170	0x0026B21F	0x4	r	movss xmm2, dword ptr [rax + 4]	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026B230	FUN_0026b230	0x0026B2C1	0x4	r	movss xmm2, dword ptr [rax + 4]	actor +0xB8, the actor as arg0 from 0x00348F80 at 0x00348FF6	
+0x0026BA70	FUN_0026ba70	0x0026BAE0	0x4	r	movss xmm2, dword ptr [rax + 4]	actor +0xB8, the actor as arg0 from 0x0026BB00 at 0x0026BB26	
+0x0026BB00	FUN_0026bb00	0x0026BB1D	0x4	r	subss xmm2, dword ptr [rax + 4]	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B59	
+0x002E28E0	FUN_002e28e0	0x002E2C44	0x4	r	movss xmm2, dword ptr [rbp + 4]	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E4A10	FUN_002e4a10	0x002E4A26	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF3A	
 0x002E4A10	FUN_002e4a10	0x002E4A26	0x4	r	mov eax, dword ptr [rcx + 4]	actor +0xB8, the actor in rcx	
 0x002E54A0	Movement_TransformAndAccumulateCandidate	0x002E5584	0x4	r	addss xmm7, dword ptr [rdi + 4]	arg2 from 0x002E5380 at 0x002E548C	
-0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E56DA	0x4	r	subss xmm1, dword ptr [rdi + 4]	arg2 from 0x002E5180 at 0x002E5257	
-0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E5730	0x4	w	mov dword ptr [rdi + 4], eax	arg2 from 0x002E5180 at 0x002E5257	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E567A	0x4	r	movss xmm1, dword ptr [r8 + 4]	arg2 from 0x002E5030 at 0x002E5101	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E56DA	0x4	r	subss xmm1, dword ptr [rdi + 4]	arg2 from 0x002E5030 at 0x002E5101	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E5730	0x4	w	mov dword ptr [rdi + 4], eax	arg2 from 0x002E5030 at 0x002E5101	
 0x002E5C90	FUN_002e5c90	0x002E5CDA	0x4	w	movss dword ptr [rbx + 4], xmm2	actor +0xB8, the actor in rcx	
 0x002E5C90	FUN_002e5c90	0x002E5CED	0x4	r	movss xmm2, dword ptr [rbx + 4]	actor +0xB8, the actor in rcx	
 0x002E5C90	FUN_002e5c90	0x002E5DA7	0x4	w	movss dword ptr [rbx + 4], xmm0	actor +0xB8, the actor in rcx	
 0x002E6000	FUN_002e6000	0x002E6046	0x4	r	movss xmm6, dword ptr [rdi + 4]	actor +0xB8, the actor as arg0 from 0x002E5180 at 0x002E5349	
 0x002E6000	FUN_002e6000	0x002E6046	0x4	r	movss xmm6, dword ptr [rdi + 4]	actor +0xB8, the actor in rcx	
+0x002E6B10	FUN_002e6b10	0x002E6B53	0x4	r	movss xmm2, dword ptr [rbx + 4]	actor +0xB8, the actor as arg0 from 0x002E26F0 at 0x002E2756	
 0x00350DD0	FUN_00350dd0	0x00350E65	0x4	r	movss xmm0, dword ptr [rbx + 4]	a context the function resolved itself	
+0x003512A0	FUN_003512a0	0x00351326	0x4	r	mov ecx, dword ptr [rdx + 4]	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
+0x00351610	FUN_00351610	0x00351693	0x4	w	movss dword ptr [rax + 4], xmm10	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
+0x00351970	FUN_00351970	0x00351A02	0x4	r	mov eax, dword ptr [rdx + 4]	a context the function resolved itself	
 0x00352580	FUN_00352580	0x003525F6	0x4	r	movss xmm0, dword ptr [rax + 4]	a context the function resolved itself	
-0x003A1920	FUN_003a1920	0x003A1924	0x4	r	movss xmm0, dword ptr [rcx + 4]	arg0 from 0x00358F90 at 0x0035900B	
+0x00353AC0	FUN_00353ac0	0x00353AE1	0x4	r	movss xmm0, dword ptr [rax + 4]	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x002622F8	
+0x0037B4D0	FUN_0037b4d0	0x0037B7DD	0x4	r	movss xmm2, dword ptr [r15 + 4]	a context the function resolved itself	
+0x003A1920	FUN_003a1920	0x003A1924	0x4	r	movss xmm0, dword ptr [rcx + 4]	arg0 from 0x002E45E0 at 0x002E4773	
 0x003A19C0	FUN_003a19c0	0x003A19DB	0x4	r	subss xmm6, dword ptr [r8 + 4]	arg2 from 0x002E45E0 at 0x002E46E1	
 0x003A1C90	FUN_003a1c90	0x003A1CB0	0x4	r	subss xmm1, dword ptr [rcx + 4]	arg0 from 0x003A17D0 at 0x003A1800	
 0x003A1C90	FUN_003a1c90	0x003A1CE5	0x4	r	subss xmm0, dword ptr [rcx + 4]	arg0 from 0x003A17D0 at 0x003A1800	
 0x003DB150	FUN_003db150	0x003DB15E	0x4	r	movss xmm1, dword ptr [rcx + 4]	arg0 from 0x002E54A0 at 0x002E5577	
+0x0050DC70	FUN_0050dc70	0x0050DCF7	0x4	w	movss dword ptr [rax + 4], xmm10	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
+0x0050DE00	FUN_0050de00	0x0050DE75	0x4	w	movss dword ptr [rax + 4], xmm9	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x0025BAD0	FUN_0025bad0	0x0025BBC7	0x8	r	movss xmm3, dword ptr [rsi + 8]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025B990	
 0x0025BAD0	FUN_0025bad0	0x0025BBC7	0x8	r	movss xmm3, dword ptr [rsi + 8]	actor +0xB8, the actor in rdx	
 0x0025C230	FUN_0025c230	0x0025C2BD	0x8	r	movss xmm0, dword ptr [rbp + 8]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
@@ -98,7 +128,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002646C0	FUN_002646c0	0x00264746	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor in rcx	
 0x00265020	Actor_GetWorldPosition	0x0026504B	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor as arg0 from 0x0024B6F0 at 0x0024B74B	
 0x00265020	Actor_GetWorldPosition	0x0026504B	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor in rcx	
-0x00265470	FUN_00265470	0x0026549B	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor as arg0 from 0x0035DCC0 at 0x0035DD26	
+0x00265470	FUN_00265470	0x0026549B	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor as arg0 from 0x002718E0 at 0x00271925	
 0x00265470	FUN_00265470	0x0026549B	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x0026606D	0x8	w	mov dword ptr [r14 + 8], r15d	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x0026621F	0x8	r	mov eax, dword ptr [r14 + 8]	actor +0xB8, the actor in rcx	
@@ -107,32 +137,48 @@ function	name	site	disp	kind	instruction	route	note
 0x0026AFE0	FUN_0026afe0	0x0026B056	0x8	w	movss dword ptr [rax + 8], xmm6	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B056	0x8	w	movss dword ptr [rax + 8], xmm6	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B12A	0x8	w	movss dword ptr [rax + 8], xmm6	actor +0xB8, the actor in rcx	
-0x002E4A10	FUN_002e4a10	0x002E4A2C	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AFCA	
+0x0026B170	FUN_0026b170	0x0026B21A	0x8	r	movss xmm3, dword ptr [rax + 8]	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026B230	FUN_0026b230	0x0026B2BC	0x8	r	movss xmm3, dword ptr [rax + 8]	actor +0xB8, the actor as arg0 from 0x00348F80 at 0x00348FF6	
+0x0026BA70	FUN_0026ba70	0x0026BADB	0x8	r	movss xmm3, dword ptr [rax + 8]	actor +0xB8, the actor as arg0 from 0x0026BB00 at 0x0026BB26	
+0x0026BB00	FUN_0026bb00	0x0026BB18	0x8	r	subss xmm3, dword ptr [rax + 8]	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B59	
+0x002E28E0	FUN_002e28e0	0x002E2C3F	0x8	r	movss xmm3, dword ptr [rbp + 8]	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E4A10	FUN_002e4a10	0x002E4A2C	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF3A	
 0x002E4A10	FUN_002e4a10	0x002E4A2C	0x8	r	mov eax, dword ptr [rcx + 8]	actor +0xB8, the actor in rcx	
 0x002E5030	Movement_UpdateActorFrame	0x002E5125	0x8	r	movss xmm2, dword ptr [rdi + 8]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025E39B	
 0x002E5030	Movement_UpdateActorFrame	0x002E5125	0x8	r	movss xmm2, dword ptr [rdi + 8]	actor +0xB8, the actor in rcx	
 0x002E5380	Movement_PrepareCandidatePosition	0x002E5427	0x8	r	movss xmm0, dword ptr [r8 + 8]	arg2 from 0x002E5610 at 0x002E5647	
 0x002E54A0	Movement_TransformAndAccumulateCandidate	0x002E5593	0x8	r	addss xmm8, dword ptr [rdi + 8]	arg2 from 0x002E5380 at 0x002E548C	
-0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E56E4	0x8	r	subss xmm0, dword ptr [rdi + 8]	arg2 from 0x002E5180 at 0x002E5257	
-0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E5707	0x8	r	subss xmm2, dword ptr [rdi + 8]	arg2 from 0x002E5180 at 0x002E5257	
-0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E573B	0x8	w	mov dword ptr [rdi + 8], eax	arg2 from 0x002E5180 at 0x002E5257	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E568C	0x8	r	movss xmm0, dword ptr [r8 + 8]	arg2 from 0x002E5030 at 0x002E5101	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E56E4	0x8	r	subss xmm0, dword ptr [rdi + 8]	arg2 from 0x002E5030 at 0x002E5101	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E5707	0x8	r	subss xmm2, dword ptr [rdi + 8]	arg2 from 0x002E5030 at 0x002E5101	
+0x002E5610	Movement_IntegratePositionAndMeasureDisplacement	0x002E573B	0x8	w	mov dword ptr [rdi + 8], eax	arg2 from 0x002E5030 at 0x002E5101	
 0x002E5C90	FUN_002e5c90	0x002E5CDF	0x8	w	movss dword ptr [rbx + 8], xmm3	actor +0xB8, the actor in rcx	
 0x002E5C90	FUN_002e5c90	0x002E5CF7	0x8	r	movss xmm3, dword ptr [rbx + 8]	actor +0xB8, the actor in rcx	
 0x002E5C90	FUN_002e5c90	0x002E5DB1	0x8	w	movss dword ptr [rbx + 8], xmm1	actor +0xB8, the actor in rcx	
 0x002E6000	FUN_002e6000	0x002E6050	0x8	r	movss xmm3, dword ptr [rdi + 8]	actor +0xB8, the actor as arg0 from 0x002E5180 at 0x002E5349	
 0x002E6000	FUN_002e6000	0x002E6050	0x8	r	movss xmm3, dword ptr [rdi + 8]	actor +0xB8, the actor in rcx	
+0x002E6B10	FUN_002e6b10	0x002E6B4B	0x8	r	movss xmm3, dword ptr [rbx + 8]	actor +0xB8, the actor as arg0 from 0x002E26F0 at 0x002E2756	
 0x00350DD0	FUN_00350dd0	0x00350E7A	0x8	r	movss xmm1, dword ptr [rbx + 8]	a context the function resolved itself	
+0x003512A0	FUN_003512a0	0x0035132B	0x8	r	mov eax, dword ptr [rdx + 8]	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
+0x00351610	FUN_00351610	0x00351699	0x8	w	movss dword ptr [rax + 8], xmm9	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x003516E0	FUN_003516e0	0x00351775	0x8	r	movss xmm0, dword ptr [rbx + 8]	a context the function resolved itself	
+0x00351970	FUN_00351970	0x00351A08	0x8	r	mov eax, dword ptr [rdx + 8]	a context the function resolved itself	
 0x00352580	FUN_00352580	0x00352600	0x8	r	movss xmm1, dword ptr [rax + 8]	a context the function resolved itself	
 0x003530F0	FUN_003530f0	0x00353154	0x8	r	movss xmm0, dword ptr [rax + 8]	a context the function resolved itself	
-0x003A1920	FUN_003a1920	0x003A1932	0x8	r	movss xmm1, dword ptr [rcx + 8]	arg0 from 0x00358F90 at 0x0035900B	
+0x00353AC0	FUN_00353ac0	0x00353AE6	0x8	r	movss xmm1, dword ptr [rax + 8]	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x002622F8	
+0x003544F0	FUN_003544f0	0x0035450C	0x8	r	movss xmm0, dword ptr [rax + 8]	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x002622F8	
+0x0037B4D0	FUN_0037b4d0	0x0037B7D4	0x8	r	movss xmm3, dword ptr [r15 + 8]	a context the function resolved itself	
+0x003A1920	FUN_003a1920	0x003A1932	0x8	r	movss xmm1, dword ptr [rcx + 8]	arg0 from 0x002E45E0 at 0x002E4773	
 0x003A1960	Vector3_ComputeSquaredXZDistance	0x003A1969	0x8	r	subss xmm0, dword ptr [rdx + 8]	arg1 from 0x0025BE50 at 0x0025BF1D	
 0x003A19C0	FUN_003a19c0	0x003A19EC	0x8	r	subss xmm7, dword ptr [r8 + 8]	arg2 from 0x002E45E0 at 0x002E46E1	
 0x003A1C90	FUN_003a1c90	0x003A1CC5	0x8	r	subss xmm0, dword ptr [rcx + 8]	arg0 from 0x003A17D0 at 0x003A1800	
 0x003A1C90	FUN_003a1c90	0x003A1CFB	0x8	r	subss xmm1, dword ptr [rcx + 8]	arg0 from 0x003A17D0 at 0x003A1800	
 0x003DA730	FUN_003da730	0x003DA769	0x8	r	movss xmm9, dword ptr [r8 + 8]	arg2 from 0x003DA6A0 at 0x003DA6C8	
-0x003DA730	FUN_003da730	0x003DA76F	0x8	r	subss xmm9, dword ptr [rdx + 8]	arg1 from 0x003DA6A0 at 0x003DA6DE	
+0x003DA730	FUN_003da730	0x003DA76F	0x8	r	subss xmm9, dword ptr [rdx + 8]	arg1 from 0x003DA6A0 at 0x003DA6C8	
 0x003DB150	FUN_003db150	0x003DB16F	0x8	r	movss xmm0, dword ptr [rcx + 8]	arg0 from 0x002E54A0 at 0x002E5577	
+0x004686D0	FUN_004686d0	0x004686D4	0x8	r	movss xmm0, dword ptr [rcx + 8]	arg0 from 0x002E45E0 at 0x002E477A	
+0x0050DC70	FUN_0050dc70	0x0050DCFD	0x8	w	movss dword ptr [rax + 8], xmm9	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
+0x0050DE00	FUN_0050de00	0x0050DE7B	0x8	w	movss dword ptr [rax + 8], xmm8	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x00265FF0	FUN_00265ff0	0x00266071	0xc	w	mov dword ptr [r14 + 0xc], 0x3f800000	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266378	0xc	w	mov qword ptr [rax + 0xc], 0x3f800000	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x0026643C	0xc	w	mov qword ptr [rsi + 0xc], 0x3f800000	actor +0xB8, the actor in rcx	
@@ -147,42 +193,52 @@ function	name	site	disp	kind	instruction	route	note
 0x0026AFE0	FUN_0026afe0	0x0026B05B	0x10	w	movss dword ptr [rax + 0x10], xmm8	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B05B	0x10	w	movss dword ptr [rax + 0x10], xmm8	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B12F	0x10	w	movss dword ptr [rax + 0x10], xmm8	actor +0xB8, the actor in rcx	
-0x002E4A10	FUN_002e4a10	0x002E4A23	0x10	w	mov dword ptr [rcx + 0x10], eax	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AFCA	
+0x0026BB00	FUN_0026bb00	0x0026BB32	0x10	w	movss dword ptr [rax + 0x10], xmm1	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B59	
+0x002E4A10	FUN_002e4a10	0x002E4A23	0x10	w	mov dword ptr [rcx + 0x10], eax	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF3A	
 0x002E4A10	FUN_002e4a10	0x002E4A23	0x10	w	mov dword ptr [rcx + 0x10], eax	actor +0xB8, the actor in rcx	
 0x002E5180	FUN_002e5180	0x002E5294	0x10	addr	lea rdx, [rdi + 0x10]	actor +0xB8, the actor as arg0 from 0x0025E400 at 0x0025E4A0	
 0x002E5180	FUN_002e5180	0x002E5294	0x10	a	lea rdx, [rdi + 0x10]	actor +0xB8, the actor in rcx	
 0x002E5380	Movement_PrepareCandidatePosition	0x002E5433	0x10	r	subss xmm1, dword ptr [r8 + 0x10]	arg2 from 0x002E5610 at 0x002E5647	
+0x00351610	FUN_00351610	0x0035169F	0x10	w	movss dword ptr [rax + 0x10], xmm8	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x00358F90	PartyFocus_ProcessActorControlPresentationState	0x00358FFF	0x10	addr	lea rdx, [rsi + 0x10]	a context the function resolved itself	
 0x003A1920	FUN_003a1920	0x003A192E	0x10	r	subss xmm2, dword ptr [rdx]	arg1+0x10 from 0x00358F90 at 0x0035900B	
 0x003A1C90	FUN_003a1c90	0x003A1CA3	0x10	r	movss xmm0, dword ptr [rdx]	arg1+0x10 from 0x003A17D0 at 0x003A1800	
 0x003A1C90	FUN_003a1c90	0x003A1CD0	0x10	r	movss xmm1, dword ptr [r8]	arg2+0x10 from 0x003A17D0 at 0x003A1843	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
+0x0050DC70	FUN_0050dc70	0x0050DD03	0x10	w	movss dword ptr [rax + 0x10], xmm8	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x00265FF0	FUN_00265ff0	0x0026621B	0x14	w	mov dword ptr [r14 + 0x14], eax	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266380	0x14	w	mov qword ptr [rax + 0x14], r15	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266444	0x14	w	mov qword ptr [rsi + 0x14], r15	actor +0xB8, the actor in rcx	
 0x0026AFE0	FUN_0026afe0	0x0026B061	0x14	w	movss dword ptr [rax + 0x14], xmm7	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B061	0x14	w	movss dword ptr [rax + 0x14], xmm7	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B135	0x14	w	movss dword ptr [rax + 0x14], xmm7	actor +0xB8, the actor in rcx	
-0x002E4A10	FUN_002e4a10	0x002E4A29	0x14	w	mov dword ptr [rcx + 0x14], eax	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AFCA	
+0x0026BB00	FUN_0026bb00	0x0026BB37	0x14	w	movss dword ptr [rax + 0x14], xmm2	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B59	
+0x002E4A10	FUN_002e4a10	0x002E4A29	0x14	w	mov dword ptr [rcx + 0x14], eax	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF3A	
 0x002E4A10	FUN_002e4a10	0x002E4A29	0x14	w	mov dword ptr [rcx + 0x14], eax	actor +0xB8, the actor in rcx	
+0x00351610	FUN_00351610	0x003516A5	0x14	w	movss dword ptr [rax + 0x14], xmm7	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x003A1920	FUN_003a1920	0x003A1929	0x14	r	subss xmm0, dword ptr [rdx + 4]	arg1+0x10 from 0x00358F90 at 0x0035900B	
 0x003A1C90	FUN_003a1c90	0x003A1CAB	0x14	r	movss xmm1, dword ptr [rdx + 4]	arg1+0x10 from 0x003A17D0 at 0x003A1800	
 0x003A1C90	FUN_003a1c90	0x003A1CDF	0x14	r	movss xmm0, dword ptr [r8 + 4]	arg2+0x10 from 0x003A17D0 at 0x003A1843	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
+0x0050DC70	FUN_0050dc70	0x0050DD09	0x14	w	movss dword ptr [rax + 0x14], xmm7	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x0025BE50	FUN_0025be50	0x0025BF32	0x18	r	movss xmm2, dword ptr [rbx + 0x18]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025BA84	
 0x0025BE50	FUN_0025be50	0x0025BF32	0x18	r	movss xmm2, dword ptr [rbx + 0x18]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x00266223	0x18	w	mov dword ptr [r14 + 0x18], eax	actor +0xB8, the actor in rcx	
 0x0026AFE0	FUN_0026afe0	0x0026B066	0x18	w	movss dword ptr [rax + 0x18], xmm6	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B066	0x18	w	movss dword ptr [rax + 0x18], xmm6	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B13A	0x18	w	movss dword ptr [rax + 0x18], xmm6	actor +0xB8, the actor in rcx	
-0x002E4A10	FUN_002e4a10	0x002E4A2F	0x18	w	mov dword ptr [rcx + 0x18], eax	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AFCA	
+0x0026BB00	FUN_0026bb00	0x0026BB3C	0x18	w	movss dword ptr [rax + 0x18], xmm3	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B59	
+0x002E4A10	FUN_002e4a10	0x002E4A2F	0x18	w	mov dword ptr [rcx + 0x18], eax	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF3A	
 0x002E4A10	FUN_002e4a10	0x002E4A2F	0x18	w	mov dword ptr [rcx + 0x18], eax	actor +0xB8, the actor in rcx	
 0x002E5380	Movement_PrepareCandidatePosition	0x002E542D	0x18	r	subss xmm0, dword ptr [r8 + 0x18]	arg2 from 0x002E5610 at 0x002E5647	
+0x00351610	FUN_00351610	0x003516AA	0x18	w	movss dword ptr [rax + 0x18], xmm6	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x003A1920	FUN_003a1920	0x003A1937	0x18	r	subss xmm1, dword ptr [rdx + 8]	arg1+0x10 from 0x00358F90 at 0x0035900B	
 0x003A1C90	FUN_003a1c90	0x003A1CBB	0x18	r	movss xmm0, dword ptr [rdx + 8]	arg1+0x10 from 0x003A17D0 at 0x003A1800	
 0x003A1C90	FUN_003a1c90	0x003A1CF0	0x18	r	movss xmm1, dword ptr [r8 + 8]	arg2+0x10 from 0x003A17D0 at 0x003A1843	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
+0x0050DC70	FUN_0050dc70	0x0050DD0E	0x18	w	movss dword ptr [rax + 0x18], xmm6	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x00265FF0	FUN_00265ff0	0x00266239	0x1c	w	mov dword ptr [r14 + 0x1c], 0x3f800000	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266384	0x1c	w	mov dword ptr [rax + 0x1c], 0x3f800000	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266448	0x1c	w	mov qword ptr [rsi + 0x1c], 0x3f800000	actor +0xB8, the actor in rcx	
 0x00264510	FUN_00264510	0x00264599	0x20	r	mov eax, dword ptr [rcx + 0x20]	actor +0xB8, the actor in rcx	
+0x00265240	FUN_00265240	0x00265251	0x20	r	mov eax, dword ptr [rcx + 0x20]	actor +0xB8, the actor as arg0 from 0x003204E0 at 0x00320557	
 0x00265470	FUN_00265470	0x002654A9	0x20	r	mov eax, dword ptr [rcx + 0x20]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266079	0x20	w	mov dword ptr [r14 + 0x20], 0x3f800000	actor +0xB8, the actor in rcx	
 0x00266AD0	FUN_00266ad0	0x00266B47	0x20	addr	lea r8, [rax + 0x20]	ctor	region planter; lea computes an address inside this embedded context
@@ -190,6 +246,12 @@ function	name	site	disp	kind	instruction	route	note
 0x0026AFE0	FUN_0026afe0	0x0026B06B	0x20	w	movss dword ptr [rax + 0x20], xmm8	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B13F	0x20	w	movss dword ptr [rax + 0x20], xmm8	actor +0xB8, the actor in rcx	
 0x0026B2E0	FUN_0026b2e0	0x0026B339	0x20	r	movss xmm7, dword ptr [rcx + 0x20]	actor +0xB8, the actor in rcx	
+0x0026BBC0	FUN_0026bbc0	0x0026BBF6	0x20	r	movss xmm1, dword ptr [rbx + 0x20]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B274	
+0x0026BDD0	FUN_0026bdd0	0x0026BDE3	0x20	w	movss dword ptr [rax + 0x20], xmm1	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355BAC	
+0x0026BF60	FUN_0026bf60	0x0026BF93	0x20	r	movss xmm1, dword ptr [rbx + 0x20]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B28C	
+0x002E28E0	FUN_002e28e0	0x002E2BA3	0x20	w	mov dword ptr [rax + 0x20], 0x3f800000	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E5FD0	FUN_002e5fd0	0x002E5FE1	0x20	w	movss dword ptr [rax + 0x20], xmm1	actor +0xB8, the actor as arg0 from 0x0050E6F0 at 0x0050E712	
+0x002E8E20	FUN_002e8e20	0x002E8E63	0x20	r	movss xmm1, dword ptr [rbx + 0x20]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
 0x002EC2C0	FUN_002ec2c0	0x002EC2F0	0x20	r	movaps xmm0, xmmword ptr [rdx]	arg1+0x20 from 0x00263230 at 0x0026335C	
 0x002EC2C0	FUN_002ec2c0	0x002EC328	0x20	r	movss xmm3, dword ptr [rdi]	arg1+0x20 from 0x00263230 at 0x0026335C	
 0x003E36F0	FUN_003e36f0	0x003E3701	0x20	r	movaps xmm0, xmmword ptr [r8]	arg2+0x20 from 0x003E6CC0 at 0x003E6CC7	
@@ -198,24 +260,37 @@ function	name	site	disp	kind	instruction	route	note
 0x0025BAD0	FUN_0025bad0	0x0025BC09	0x24	r	movss xmm3, dword ptr [rsi + 0x24]	actor +0xB8, the actor in rdx	
 0x0025C230	FUN_0025c230	0x0025C30C	0x24	r	movss xmm6, dword ptr [rbp + 0x24]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C30C	0x24	r	movss xmm6, dword ptr [rbp + 0x24]	actor +0xB8, the actor in rdx	
-0x00263940	FUN_00263940	0x00263960	0x24	r	mulss xmm0, dword ptr [rax + 0x24]	actor +0xB8, the actor as arg0 from 0x00271380 at 0x002713A2	
+0x00263810	FUN_00263810	0x0026383F	0x24	r	mulss xmm0, dword ptr [rax + 0x24]	actor +0xB8, the actor as arg0 from 0x003503D0 at 0x003503DC	
+0x00263940	FUN_00263940	0x00263960	0x24	r	mulss xmm0, dword ptr [rax + 0x24]	actor +0xB8, the actor as arg0 from 0x00255CF0 at 0x00255D75	
 0x00263940	FUN_00263940	0x00263960	0x24	r	mulss xmm0, dword ptr [rax + 0x24]	actor +0xB8, the actor in rcx	
 0x00264510	FUN_00264510	0x0026459E	0x24	r	mov eax, dword ptr [rcx + 0x24]	actor +0xB8, the actor in rcx	
+0x00265240	FUN_00265240	0x00265256	0x24	r	mov eax, dword ptr [rcx + 0x24]	actor +0xB8, the actor as arg0 from 0x003204E0 at 0x00320557	
 0x00265470	FUN_00265470	0x002654AE	0x24	r	mov eax, dword ptr [rcx + 0x24]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266081	0x24	w	mov dword ptr [r14 + 0x24], 0x3f800000	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266450	0x24	w	mov qword ptr [rsi + 0x24], r15	actor +0xB8, the actor in rcx	
-0x00268380	FUN_00268380	0x00268418	0x24	r	mulss xmm6, dword ptr [rax + 0x24]	actor +0xB8, the actor as arg0 from 0x00269E20 at 0x00269E34	
+0x00268380	FUN_00268380	0x00268418	0x24	r	mulss xmm6, dword ptr [rax + 0x24]	actor +0xB8, the actor as arg0 from 0x00266530 at 0x0026687A	
 0x00268380	FUN_00268380	0x00268418	0x24	r	mulss xmm6, dword ptr [rax + 0x24]	actor +0xB8, the actor in rcx	
 0x0026AFE0	FUN_0026afe0	0x0026B071	0x24	w	movss dword ptr [rax + 0x24], xmm7	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B071	0x24	w	movss dword ptr [rax + 0x24], xmm7	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B145	0x24	w	movss dword ptr [rax + 0x24], xmm7	actor +0xB8, the actor in rcx	
+0x0026BDD0	FUN_0026bdd0	0x0026BDE8	0x24	w	movss dword ptr [rax + 0x24], xmm2	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355BAC	
+0x002E28E0	FUN_002e28e0	0x002E2BAA	0x24	w	mov dword ptr [rax + 0x24], 0x3f800000	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E5FD0	FUN_002e5fd0	0x002E5FE6	0x24	w	movss dword ptr [rax + 0x24], xmm2	actor +0xB8, the actor as arg0 from 0x0050E6F0 at 0x0050E712	
+0x002E8E20	FUN_002e8e20	0x002E8E5E	0x24	r	movss xmm2, dword ptr [rbx + 0x24]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
 0x00264510	FUN_00264510	0x002645A4	0x28	r	mov eax, dword ptr [rcx + 0x28]	actor +0xB8, the actor in rcx	
+0x00265240	FUN_00265240	0x0026525C	0x28	r	mov eax, dword ptr [rcx + 0x28]	actor +0xB8, the actor as arg0 from 0x003204E0 at 0x00320557	
 0x00265470	FUN_00265470	0x002654B4	0x28	r	mov eax, dword ptr [rcx + 0x28]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266089	0x28	w	mov dword ptr [r14 + 0x28], 0x3f800000	actor +0xB8, the actor in rcx	
 0x0026AFE0	FUN_0026afe0	0x0026B076	0x28	w	movss dword ptr [rax + 0x28], xmm6	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B076	0x28	w	movss dword ptr [rax + 0x28], xmm6	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B14A	0x28	w	movss dword ptr [rax + 0x28], xmm6	actor +0xB8, the actor in rcx	
 0x0026B2E0	FUN_0026b2e0	0x0026B32D	0x28	r	movss xmm6, dword ptr [rcx + 0x28]	actor +0xB8, the actor in rcx	
+0x0026BBC0	FUN_0026bbc0	0x0026BBEA	0x28	r	movss xmm0, dword ptr [rbx + 0x28]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B274	
+0x0026BDD0	FUN_0026bdd0	0x0026BDED	0x28	w	movss dword ptr [rax + 0x28], xmm3	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355BAC	
+0x0026BF60	FUN_0026bf60	0x0026BF87	0x28	r	movss xmm0, dword ptr [rbx + 0x28]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B28C	
+0x002E28E0	FUN_002e28e0	0x002E2BB1	0x28	w	mov dword ptr [rax + 0x28], 0x3f800000	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E5FD0	FUN_002e5fd0	0x002E5FEB	0x28	w	movss dword ptr [rax + 0x28], xmm3	actor +0xB8, the actor as arg0 from 0x0050E6F0 at 0x0050E712	
+0x002E8E20	FUN_002e8e20	0x002E8E59	0x28	r	movss xmm3, dword ptr [rbx + 0x28]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
 0x002EC2C0	FUN_002ec2c0	0x002EC32C	0x28	r	movss xmm2, dword ptr [rdi + 8]	arg1+0x20 from 0x00263230 at 0x0026335C	
 0x00265FF0	FUN_00265ff0	0x00266454	0x2c	w	mov dword ptr [rsi + 0x2c], 0x3f800000	actor +0xB8, the actor in rcx	
 0x0025C830	FUN_0025c830	0x0025CAB3	0x30	r	movss xmm0, dword ptr [rsi + 0x30]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
@@ -224,19 +299,26 @@ function	name	site	disp	kind	instruction	route	note
 0x0025C830	FUN_0025c830	0x0025CF34	0x30	a	lea r9, [rsi + 0x30]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x002663DD	0x30	a	lea rcx, [rsi + 0x30]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266427	0x30	a	lea rcx, [rsi + 0x30]	actor +0xB8, the actor in rcx	
-0x0026AF10	Movement_SnapshotSteeringStartPosition	0x0026AF24	0x30	w	movdqa xmmword ptr [rax + 0x30], xmm0	actor +0xB8, the actor as arg0 from 0x00357A20 at 0x00357AA1	
+0x0026AF10	Movement_SnapshotSteeringStartPosition	0x0026AF24	0x30	w	movdqa xmmword ptr [rax + 0x30], xmm0	actor +0xB8, the actor as arg0 from 0x00357980 at 0x003579D6	
 0x0026AF10	Movement_SnapshotSteeringStartPosition	0x0026AF24	0x30	w	movdqa xmmword ptr [rax + 0x30], xmm0	actor +0xB8, the actor in rcx	
+0x0026BD50	FUN_0026bd50	0x0026BD98	0x30	r	movss xmm2, dword ptr [rax + 0x30]	actor +0xB8, the actor as arg0 from 0x00352200 at 0x00352240	
+0x0026BF60	FUN_0026bf60	0x0026BFDD	0x30	addr	lea rcx, [rbx + 0x30]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B28C	
+0x0026BFF0	FUN_0026bff0	0x0026C040	0x30	w	movss dword ptr [rax + 0x30], xmm1	actor +0xB8, the actor as arg0 from 0x00351E00 at 0x00351E40	
 0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4806	0x30	addr	lea rdx, [rdi + 0x30]	arg1 from 0x002E5030 at 0x002E50B8	
 0x003DA860	FUN_003da860	0x003DA872	0x30	w	movss dword ptr [rcx], xmm0	arg0+0x30 from 0x0026B2E0 at 0x0026B3D8	kind 1 arm; scaled vec2 store into +0x30 block head
+0x0050DE00	FUN_0050de00	0x0050DE81	0x30	w	movss dword ptr [rax + 0x30], xmm7	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x0025C830	FUN_0025c830	0x0025CAC8	0x34	r	movss xmm0, dword ptr [rsi + 0x34]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
 0x0025C830	FUN_0025c830	0x0025CAC8	0x34	r	movss xmm0, dword ptr [rsi + 0x34]	actor +0xB8, the actor in rdx	
+0x0026BD50	FUN_0026bd50	0x0026BDA0	0x34	r	movss xmm0, dword ptr [rax + 0x34]	actor +0xB8, the actor as arg0 from 0x00352200 at 0x00352240	
+0x0026BFF0	FUN_0026bff0	0x0026C045	0x34	w	movss dword ptr [rax + 0x34], xmm4	actor +0xB8, the actor as arg0 from 0x00351E00 at 0x00351E40	
 0x003DA860	FUN_003da860	0x003DA876	0x34	w	movss dword ptr [rcx + 4], xmm1	arg0+0x30 from 0x0026B2E0 at 0x0026B3D8	kind 1 arm; scaled vec2 store into +0x34
+0x0050DE00	FUN_0050de00	0x0050DE86	0x34	w	movss dword ptr [rax + 0x34], xmm6	actor +0xB8, the actor as arg1 from 0x002621D0 at 0x00262278	
 0x0025C830	FUN_0025c830	0x0025C950	0x38	r	movss xmm6, dword ptr [rsi + 0x38]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
 0x0025C830	FUN_0025c830	0x0025C950	0x38	r	movss xmm6, dword ptr [rsi + 0x38]	actor +0xB8, the actor in rdx	
 0x00263CC0	FUN_00263cc0	0x00263CED	0x38	r	movss xmm0, dword ptr [rax + 0x38]	actor +0xB8, the actor in rcx	
 0x00265200	FUN_00265200	0x0026522D	0x38	r	movss xmm0, dword ptr [rax + 0x38]	actor +0xB8, the actor as arg0 from 0x0024B6F0 at 0x0024B753	
 0x00265200	FUN_00265200	0x0026522D	0x38	r	movss xmm0, dword ptr [rax + 0x38]	actor +0xB8, the actor in rcx	
-0x00268380	FUN_00268380	0x00268466	0x38	r	movss xmm3, dword ptr [rax + 0x38]	actor +0xB8, the actor as arg0 from 0x00269E20 at 0x00269E34	
+0x00268380	FUN_00268380	0x00268466	0x38	r	movss xmm3, dword ptr [rax + 0x38]	actor +0xB8, the actor as arg0 from 0x00266530 at 0x0026687A	
 0x00268380	FUN_00268380	0x00268466	0x38	r	movss xmm3, dword ptr [rax + 0x38]	actor +0xB8, the actor in rcx	
 0x0026B6A0	FUN_0026b6a0	0x0026B70D	0x38	w	movss dword ptr [rax + 0x38], xmm3	actor +0xB8, the actor as arg0 from 0x0026B5A0 at 0x0026B5FB	
 0x0026B6A0	FUN_0026b6a0	0x0026B70D	0x38	w	movss dword ptr [rax + 0x38], xmm3	actor +0xB8, the actor in rcx	
@@ -253,6 +335,13 @@ function	name	site	disp	kind	instruction	route	note
 0x00265FF0	FUN_00265ff0	0x002660A3	0x40	w	mov qword ptr [r14 + 0x40], r15	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002663BE	0x40	a	lea rcx, [rsi + 0x40]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002663EE	0x40	a	lea rcx, [rsi + 0x40]	actor +0xB8, the actor in rcx	
+0x0026B170	FUN_0026b170	0x0026B193	0x40	r	movss xmm0, dword ptr [rax + 0x40]	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026B170	FUN_0026b170	0x0026B1BC	0x40	w	movss dword ptr [rax + 0x40], xmm4	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026BB60	FUN_0026bb60	0x0026BBA9	0x40	w	movss dword ptr [rax + 0x40], xmm1	actor +0xB8, the actor as arg0 from 0x00355DD0 at 0x00355DEC	
+0x0026BD50	FUN_0026bd50	0x0026BDA5	0x40	w	movss dword ptr [rax + 0x40], xmm1	actor +0xB8, the actor as arg0 from 0x00352200 at 0x00352240	
+0x0026BD50	FUN_0026bd50	0x0026BDB1	0x40	w	movss dword ptr [rax + 0x40], xmm2	actor +0xB8, the actor as arg0 from 0x00352200 at 0x00352240	
+0x0026BFF0	FUN_0026bff0	0x0026C038	0x40	r	movss xmm0, dword ptr [rax + 0x40]	actor +0xB8, the actor as arg0 from 0x00351E00 at 0x00351E40	
+0x0026BFF0	FUN_0026bff0	0x0026C04C	0x40	w	movss dword ptr [rax + 0x40], xmm1	actor +0xB8, the actor as arg0 from 0x00351E00 at 0x00351E40	
 0x002E5030	Movement_UpdateActorFrame	0x002E512C	0x40	r	addss xmm1, dword ptr [rdi + 0x40]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025E39B	
 0x002E5030	Movement_UpdateActorFrame	0x002E512C	0x40	r	addss xmm1, dword ptr [rdi + 0x40]	actor +0xB8, the actor in rcx	
 0x002E54A0	Movement_TransformAndAccumulateCandidate	0x002E54E8	0x40	r	subss xmm0, dword ptr [rdi + 0x40]	arg2 from 0x002E5380 at 0x002E548C	
@@ -267,6 +356,13 @@ function	name	site	disp	kind	instruction	route	note
 0x0025C830	FUN_0025c830	0x0025CC29	0x44	r	movss xmm0, dword ptr [rsi + 0x44]	actor +0xB8, the actor in rdx	
 0x002646C0	FUN_002646c0	0x00264716	0x44	r	movss xmm1, dword ptr [rcx + 0x44]	actor +0xB8, the actor as arg0 from 0x00336710 at 0x003369FC	
 0x002646C0	FUN_002646c0	0x00264716	0x44	r	movss xmm1, dword ptr [rcx + 0x44]	actor +0xB8, the actor in rcx	
+0x0026B170	FUN_0026b170	0x0026B19F	0x44	r	movss xmm0, dword ptr [rax + 0x44]	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026B170	FUN_0026b170	0x0026B1C8	0x44	w	movss dword ptr [rax + 0x44], xmm2	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026BB60	FUN_0026bb60	0x0026BBAE	0x44	w	movss dword ptr [rax + 0x44], xmm1	actor +0xB8, the actor as arg0 from 0x00355DD0 at 0x00355DEC	
+0x0026BD50	FUN_0026bd50	0x0026BDAA	0x44	w	movss dword ptr [rax + 0x44], xmm4	actor +0xB8, the actor as arg0 from 0x00352200 at 0x00352240	
+0x0026BD50	FUN_0026bd50	0x0026BDBB	0x44	w	movss dword ptr [rax + 0x44], xmm0	actor +0xB8, the actor as arg0 from 0x00352200 at 0x00352240	
+0x0026BFF0	FUN_0026bff0	0x0026C051	0x44	r	movss xmm0, dword ptr [rax + 0x44]	actor +0xB8, the actor as arg0 from 0x00351E00 at 0x00351E40	
+0x0026BFF0	FUN_0026bff0	0x0026C05B	0x44	w	movss dword ptr [rax + 0x44], xmm4	actor +0xB8, the actor as arg0 from 0x00351E00 at 0x00351E40	
 0x002E54A0	Movement_TransformAndAccumulateCandidate	0x002E54F6	0x44	r	subss xmm1, dword ptr [rdi + 0x44]	arg2 from 0x002E5380 at 0x002E548C	
 0x002E54A0	Movement_TransformAndAccumulateCandidate	0x002E555A	0x44	r	addss xmm1, dword ptr [rdi + 0x44]	arg2 from 0x002E5380 at 0x002E548C	
 0x002E5C90	FUN_002e5c90	0x002E5D19	0x44	r	addss xmm2, dword ptr [rbx + 0x44]	actor +0xB8, the actor in rcx	
@@ -280,8 +376,11 @@ function	name	site	disp	kind	instruction	route	note
 0x002646C0	FUN_002646c0	0x00264725	0x48	r	movss xmm0, dword ptr [rcx + 0x48]	actor +0xB8, the actor as arg0 from 0x00336710 at 0x003369FC	
 0x002646C0	FUN_002646c0	0x00264725	0x48	r	movss xmm0, dword ptr [rcx + 0x48]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002660A7	0x48	w	mov dword ptr [r14 + 0x48], r15d	actor +0xB8, the actor in rcx	
+0x0026B170	FUN_0026b170	0x0026B1AB	0x48	r	movss xmm0, dword ptr [rax + 0x48]	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026B170	FUN_0026b170	0x0026B1D1	0x48	w	movss dword ptr [rax + 0x48], xmm3	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
 0x0026B6A0	FUN_0026b6a0	0x0026B712	0x48	w	movss dword ptr [rax + 0x48], xmm3	actor +0xB8, the actor as arg0 from 0x0026B5A0 at 0x0026B5FB	
 0x0026B6A0	FUN_0026b6a0	0x0026B712	0x48	w	movss dword ptr [rax + 0x48], xmm3	actor +0xB8, the actor in rcx	
+0x0026BC70	FUN_0026bc70	0x0026BD06	0x48	w	movss dword ptr [rax + 0x48], xmm6	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B78	
 0x002E5030	Movement_UpdateActorFrame	0x002E5131	0x48	r	addss xmm2, dword ptr [rdi + 0x48]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025E39B	
 0x002E5030	Movement_UpdateActorFrame	0x002E5131	0x48	r	addss xmm2, dword ptr [rdi + 0x48]	actor +0xB8, the actor in rcx	
 0x002E54A0	Movement_TransformAndAccumulateCandidate	0x002E5505	0x48	r	subss xmm0, dword ptr [rdi + 0x48]	arg2 from 0x002E5380 at 0x002E548C	
@@ -296,28 +395,38 @@ function	name	site	disp	kind	instruction	route	note
 0x00265FF0	FUN_00265ff0	0x002662D1	0x50	a	lea rdx, [r14 + 0x50]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002662E6	0x50	a	lea rdx, [r14 + 0x50]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002663D1	0x50	w	mov dword ptr [rsi + 0x50], 0x40c90fdb	actor +0xB8, the actor in rcx	
-0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4681	0x50	addr	lea r8, [rbx + 0x50]	actor +0xB8, the actor as arg0 from 0x002E5030 at 0x002E50B8	
+0x0026B2E0	FUN_0026b2e0	0x0026B410	0x50	addr	lea rdx, [rbx + 0x50]	actor +0xB8, the actor as arg0 from 0x0026B2D0 at 0x0026B2D3	
+0x0026B2E0	FUN_0026b2e0	0x0026B42B	0x50	addr	lea rdx, [rbx + 0x50]	actor +0xB8, the actor as arg0 from 0x0026B2D0 at 0x0026B2D3	
+0x0026B940	FUN_0026b940	0x0026B968	0x50	w	movss dword ptr [rax + 0x50], xmm1	actor +0xB8, the actor as arg0 from 0x00239370 at 0x002393BD	
+0x0026BB60	FUN_0026bb60	0x0026BB84	0x50	addr	lea rdx, [rbx + 0x50]	actor +0xB8, the actor as arg0 from 0x00355DD0 at 0x00355DEC	
+0x0026BEE0	FUN_0026bee0	0x0026BF04	0x50	addr	lea rdx, [rbx + 0x50]	actor +0xB8, the actor as arg0 from 0x00356000 at 0x0035601C	
+0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4681	0x50	addr	lea r8, [rbx + 0x50]	a context the function resolved itself	
 0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4688	0x50	addr	lea rcx, [rdi + 0x50]	arg1 from 0x002E5030 at 0x002E50B8	
-0x002E5E10	FUN_002e5e10	0x002E5E91	0x50	addr	lea rcx, [rsi + 0x50]	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
-0x003DA710	FloatPair_CopyToOptionalOutputs	0x003DA715	0x50	r	mov eax, dword ptr [rcx]	arg0+0x50 from 0x00265090 at 0x002650A5	
+0x002E5E10	FUN_002e5e10	0x002E5E91	0x50	addr	lea rcx, [rsi + 0x50]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2C6C	
+0x003DA710	FloatPair_CopyToOptionalOutputs	0x003DA715	0x50	r	mov eax, dword ptr [rcx]	arg0+0x50 from 0x0025DF00 at 0x0025E2A5	
+0x003DA730	FUN_003da730	0x003DA7C1	0x50	r	movss xmm0, dword ptr [rbx]	arg0+0x50 from 0x003DA6A0 at 0x003DA6C8	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
 0x003DA830	FUN_003da830	0x003DA832	0x50	w	mov dword ptr [rcx], 0x3727c5ac	arg0+0x50 from 0x00265FF0 at 0x0026627B	
-0x003DA890	FUN_003da890	0x003DA890	0x50	r	mov eax, dword ptr [rdx]	arg1+0x50 from 0x0026B2E0 at 0x0026B433	kind 3 arm gated on +0xDF; block copy +0x50 -> +0x60 slots 0,4
+0x003DA890	FUN_003da890	0x003DA890	0x50	r	mov eax, dword ptr [rdx]	arg1+0x50 from 0x00265FF0 at 0x002662D9	kind 3 arm gated on +0xDF; block copy +0x50 -> +0x60 slots 0,4
 0x002651C0	FUN_002651c0	0x002651EC	0x54	r	movss xmm0, dword ptr [rax + 0x54]	actor +0xB8, the actor as arg0 from 0x002E5750 at 0x002E57A2	
 0x002651C0	FUN_002651c0	0x002651EC	0x54	r	movss xmm0, dword ptr [rax + 0x54]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002663CD	0x54	w	mov qword ptr [rsi + 0x54], r15	actor +0xB8, the actor in rcx	
 0x0026B520	FUN_0026b520	0x0026B58D	0x54	w	movss dword ptr [rax + 0x54], xmm3	actor +0xB8, the actor as arg0 from 0x002E5750 at 0x002E57BE	
 0x0026B520	FUN_0026b520	0x0026B58D	0x54	w	movss dword ptr [rax + 0x54], xmm3	actor +0xB8, the actor in rcx	
-0x003DA710	FloatPair_CopyToOptionalOutputs	0x003DA71E	0x54	r	mov eax, dword ptr [rcx + 4]	arg0+0x50 from 0x00265090 at 0x002650A5	
+0x003DA710	FloatPair_CopyToOptionalOutputs	0x003DA71E	0x54	r	mov eax, dword ptr [rcx + 4]	arg0+0x50 from 0x0025DF00 at 0x0025E2A5	
+0x003DA730	FUN_003da730	0x003DA7CD	0x54	r	movss xmm2, dword ptr [rbx + 4]	arg0+0x50 from 0x003DA6A0 at 0x003DA6C8	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
 0x003DA830	FUN_003da830	0x003DA83B	0x54	w	mov qword ptr [rcx + 4], 0x3727c5ac	arg0+0x50 from 0x00265FF0 at 0x0026627B	
-0x003DA890	FUN_003da890	0x003DA894	0x54	r	mov eax, dword ptr [rdx + 4]	arg1+0x50 from 0x0026B2E0 at 0x0026B433	kind 3 arm gated on +0xDF; block copy +0x50 -> +0x60 slots 0,4
+0x003DA890	FUN_003da890	0x003DA894	0x54	r	mov eax, dword ptr [rdx + 4]	arg1+0x50 from 0x00265FF0 at 0x002662D9	kind 3 arm gated on +0xDF; block copy +0x50 -> +0x60 slots 0,4
 0x0026B520	FUN_0026b520	0x0026B592	0x58	w	movss dword ptr [rax + 0x58], xmm3	actor +0xB8, the actor as arg0 from 0x002E5750 at 0x002E57BE	
 0x0026B520	FUN_0026b520	0x0026B592	0x58	w	movss dword ptr [rax + 0x58], xmm3	actor +0xB8, the actor in rcx	
+0x003DA730	FUN_003da730	0x003DA73E	0x58	r	movss xmm6, dword ptr [rcx + 8]	arg0+0x50 from 0x003DA6A0 at 0x003DA6C8	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
 0x003DA850	FUN_003da850	0x003DA850	0x58	w	movss dword ptr [rcx + 8], xmm1	arg0+0x50 from 0x002E5E10 at 0x002E5EC6	
 0x0025BE50	FUN_0025be50	0x0025BEC7	0x5C	r	cmp byte ptr [rbx + 0x5c], 0	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025BA84	
 0x0025BE50	FUN_0025be50	0x0025BEC7	0x5c	r	cmp byte ptr [rbx + 0x5c], 0	actor +0xB8, the actor in rdx	
 0x0025C830	FUN_0025c830	0x0025C87C	0x5C	r	movzx eax, byte ptr [rsi + 0x5c]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
 0x0025C830	FUN_0025c830	0x0025C87C	0x5c	r	movzx eax, byte ptr [rsi + 0x5c]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x0026647C	0x5c	w	mov byte ptr [rsi + 0x5c], 1	actor +0xB8, the actor in rcx	
+0x00269E60	FUN_00269e60	0x00269EB4	0x5C	w	mov byte ptr [rcx + 0x5c], al	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2F57	
+0x0026BA00	FUN_0026ba00	0x0026BA4C	0x5C	w	mov byte ptr [rcx + 0x5c], al	actor +0xB8, the actor as arg0 from 0x00239370 at 0x002393AD	
 0x003DA6A0	FUN_003da6a0	0x003DA6E8	0x5C	r	addss xmm6, dword ptr [rbp + 0xc]	arg0+0x50 from 0x002E45E0 at 0x002E468F	
 0x003DA6A0	FUN_003da6a0	0x003DA6ED	0x5C	r	addss xmm0, dword ptr [rsi + 0xc]	arg2+0x50 from 0x002E45E0 at 0x002E468F	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
 0x003DA830	FUN_003da830	0x003DA838	0x5C	w	mov dword ptr [rcx + 0xc], eax	arg0+0x50 from 0x00265FF0 at 0x0026627B	
@@ -340,6 +449,9 @@ function	name	site	disp	kind	instruction	route	note
 0x0026AFE0	FUN_0026afe0	0x0026B048	0x5D	rw	or byte ptr [rax + 0x5d], 1	actor +0xB8, the actor as arg0 from 0x0026AF80 at 0x0026AF91	
 0x0026AFE0	FUN_0026afe0	0x0026B048	0x5d	rw	or byte ptr [rax + 0x5d], 1	actor +0xB8, the actor in rcx	
 0x0026B0C0	FUN_0026b0c0	0x0026B11C	0x5d	rw	or byte ptr [rax + 0x5d], 1	actor +0xB8, the actor in rcx	
+0x0026BD50	FUN_0026bd50	0x0026BD94	0x5D	rw	or byte ptr [rax + 0x5d], 4	actor +0xB8, the actor as arg0 from 0x00352200 at 0x00352240	
+0x0026BF60	FUN_0026bf60	0x0026BFE6	0x5D	rw	or byte ptr [rbx + 0x5d], 2	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B28C	
+0x0026BFF0	FUN_0026bff0	0x0026C034	0x5D	rw	or byte ptr [rax + 0x5d], 2	actor +0xB8, the actor as arg0 from 0x00351E00 at 0x00351E40	
 0x0025BE50	FUN_0025be50	0x0025BF09	0x60	r	mov eax, dword ptr [rbx + 0x60]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025BA84	
 0x0025BE50	FUN_0025be50	0x0025BF09	0x60	r	mov eax, dword ptr [rbx + 0x60]	actor +0xB8, the actor in rdx	
 0x0025C230	FUN_0025c230	0x0025C440	0x60	addr	lea r9, [rbp + 0x60]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
@@ -358,7 +470,12 @@ function	name	site	disp	kind	instruction	route	note
 0x00265FF0	FUN_00265ff0	0x00266289	0x60	a	lea rcx, [r14 + 0x60]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002662EA	0x60	a	lea rcx, [r14 + 0x60]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002663C2	0x60	w	mov dword ptr [rsi + 0x60], r15d	actor +0xB8, the actor in rcx	
-0x002E5E10	FUN_002e5e10	0x002E5EDD	0x60	addr	lea rcx, [rsi + 0x60]	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
+0x002677F0	FUN_002677f0	0x00267884	0x60	r	test dword ptr [rcx + 0x60], edx	actor +0xB8, the actor as arg0 from 0x0033F680 at 0x0033F69D	
+0x0026B2E0	FUN_0026b2e0	0x0026B42F	0x60	addr	lea rcx, [rbx + 0x60]	actor +0xB8, the actor as arg0 from 0x0026B2D0 at 0x0026B2D3	
+0x0026BC70	FUN_0026bc70	0x0026BCEE	0x60	addr	lea rcx, [rbx + 0x60]	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B78	
+0x0026BEE0	FUN_0026bee0	0x0026BF08	0x60	addr	lea rcx, [rbx + 0x60]	actor +0xB8, the actor as arg0 from 0x00356000 at 0x0035601C	
+0x0026BF60	FUN_0026bf60	0x0026BF98	0x60	addr	lea rcx, [rbx + 0x60]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B28C	
+0x002E5E10	FUN_002e5e10	0x002E5EDD	0x60	addr	lea rcx, [rsi + 0x60]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2C6C	
 0x003DA730	FUN_003da730	0x003DA7C1	0x60	r	movss xmm0, dword ptr [rbx]	arg0+0x60 from 0x003DA5A0 at 0x003DA5F4	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
 0x003DA890	FUN_003da890	0x003DA892	0x60	w	mov dword ptr [rcx], eax	arg0+0x60 from 0x0026B2E0 at 0x0026B433	kind 3 arm gated on +0xDF
 0x003DA730	FUN_003da730	0x003DA7CD	0x64	r	movss xmm2, dword ptr [rbx + 4]	arg0+0x60 from 0x003DA5A0 at 0x003DA5F4	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
@@ -367,11 +484,14 @@ function	name	site	disp	kind	instruction	route	note
 0x0025BE50	FUN_0025be50	0x0025BEEC	0x68	r	addss xmm2, dword ptr [rbx + 0x68]	actor +0xB8, the actor in rdx	
 0x0025C830	FUN_0025c830	0x0025C8A9	0x68	r	addss xmm11, dword ptr [rsi + 0x68]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C1D2	
 0x0025C830	FUN_0025c830	0x0025C8A9	0x68	r	addss xmm11, dword ptr [rsi + 0x68]	actor +0xB8, the actor in rdx	
-0x00263940	FUN_00263940	0x00263971	0x68	r	movss xmm0, dword ptr [rax + 0x68]	actor +0xB8, the actor as arg0 from 0x00271380 at 0x002713A2	
+0x00263810	FUN_00263810	0x0026384C	0x68	r	movss xmm0, dword ptr [rax + 0x68]	actor +0xB8, the actor as arg0 from 0x003503D0 at 0x003503DC	
+0x00263940	FUN_00263940	0x00263971	0x68	r	movss xmm0, dword ptr [rax + 0x68]	actor +0xB8, the actor as arg0 from 0x00255CF0 at 0x00255D75	
 0x00263940	FUN_00263940	0x00263971	0x68	r	movss xmm0, dword ptr [rax + 0x68]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x0026646E	0x68	w	mov dword ptr [rsi + 0x68], 0xbf800000	actor +0xB8, the actor in rcx	
-0x00268380	FUN_00268380	0x00268426	0x68	r	movss xmm6, dword ptr [rax + 0x68]	actor +0xB8, the actor as arg0 from 0x00269E20 at 0x00269E34	
+0x00268380	FUN_00268380	0x00268426	0x68	r	movss xmm6, dword ptr [rax + 0x68]	actor +0xB8, the actor as arg0 from 0x00266530 at 0x0026687A	
 0x00268380	FUN_00268380	0x00268426	0x68	r	movss xmm6, dword ptr [rax + 0x68]	actor +0xB8, the actor in rcx	
+0x00269E60	FUN_00269e60	0x00269EAC	0x68	w	movss dword ptr [rcx + 0x68], xmm1	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2F57	
+0x0026BA00	FUN_0026ba00	0x0026BA44	0x68	w	movss dword ptr [rcx + 0x68], xmm1	actor +0xB8, the actor as arg0 from 0x00239370 at 0x002393AD	
 0x003DA730	FUN_003da730	0x003DA73E	0x68	r	movss xmm6, dword ptr [rcx + 8]	arg0+0x60 from 0x003DA5A0 at 0x003DA5F4	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
 0x0025BE50	FUN_0025be50	0x0025BEDD	0x6C	r	subss xmm1, dword ptr [rbx + 0x6c]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025BA84	
 0x0025BE50	FUN_0025be50	0x0025BEDD	0x6c	r	subss xmm1, dword ptr [rbx + 0x6c]	actor +0xB8, the actor in rdx	
@@ -379,6 +499,7 @@ function	name	site	disp	kind	instruction	route	note
 0x0025C830	FUN_0025c830	0x0025C8A3	0x6c	r	subss xmm12, dword ptr [rsi + 0x6c]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x00266475	0x6c	w	mov dword ptr [rsi + 0x6c], 0x3f000000	actor +0xB8, the actor in rcx	
 0x0026B2E0	FUN_0026b2e0	0x0026B426	0x6C	r	movss xmm2, dword ptr [rbx + 0x6c]	actor +0xB8, the actor in rcx	kind 3 arm, gated on +0xDF
+0x0026B9D0	FUN_0026b9d0	0x0026B9F8	0x6C	w	movss dword ptr [rax + 0x6c], xmm1	actor +0xB8, the actor as arg0 from 0x0034CAC0 at 0x0034CAFC	
 0x003DA5A0	FUN_003da5a0	0x003DA60F	0x6C	r	addss xmm6, dword ptr [rdi + 0xc]	arg3+0x60 from 0x0025C230 at 0x0025C44F	every route of this site is a real access: the ctx + N x 0x10 bases reach the shared helpers 0x003DA730, 0x003DA5A0, 0x003DA6A0 and 0x003A1C90 through six fixed lea call sites, and no loop or indexed walk exists; +0x5C and +0x5D are flag bytes, so the addss of +0x5C (0x003DA6ED) adds a denormal of the form 0x0000XX01; the blocks at +0x10, +0x30, +0x40 and +0x70 hold four floats each
 0x003DA890	FUN_003da890	0x003DA897	0x6C	w	movss dword ptr [rcx + 0xc], xmm2	arg0+0x60 from 0x0026B2E0 at 0x0026B433	kind 3 arm gated on +0xDF; xmm2 = value read at +0x6C
 0x0025BAD0	FUN_0025bad0	0x0025BC5F	0x70	addr	lea r9, [rsi + 0x70]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025B990	
@@ -390,19 +511,40 @@ function	name	site	disp	kind	instruction	route	note
 0x00265FF0	FUN_00265ff0	0x00266280	0x70	a	lea rcx, [r14 + 0x70]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002662D5	0x70	a	lea rcx, [r14 + 0x70]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002663C6	0x70	w	mov dword ptr [rsi + 0x70], 0x3f800000	actor +0xB8, the actor in rcx	
+0x0026AB60	FUN_0026ab60	0x0026AB94	0x70	w	movss dword ptr [rax + 0x70], xmm0	actor +0xB8, the actor as arg0 from 0x00352500 at 0x00352520	
 0x0026B2E0	FUN_0026b2e0	0x0026B3A8	0x70	w	movss dword ptr [rax + 0x70], xmm0	actor +0xB8, the actor in rcx	kind 1 arm
-0x002E5E10	FUN_002e5e10	0x002E5ED1	0x70	addr	lea rcx, [rsi + 0x70]	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
+0x0026B2E0	FUN_0026b2e0	0x0026B414	0x70	addr	lea rcx, [rbx + 0x70]	actor +0xB8, the actor as arg0 from 0x0026B2D0 at 0x0026B2D3	
+0x0026BB60	FUN_0026bb60	0x0026BB88	0x70	addr	lea rcx, [rbx + 0x70]	actor +0xB8, the actor as arg0 from 0x00355DD0 at 0x00355DEC	
+0x0026BBC0	FUN_0026bbc0	0x0026BBFB	0x70	addr	lea rcx, [rbx + 0x70]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B274	
+0x0026BC70	FUN_0026bc70	0x0026BCE5	0x70	addr	lea rcx, [rbx + 0x70]	actor +0xB8, the actor as arg0 from 0x00355A00 at 0x00355B78	
+0x002E5E10	FUN_002e5e10	0x002E5ED1	0x70	addr	lea rcx, [rsi + 0x70]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2C6C	
+0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B0DE	0x74	r	mov ecx, dword ptr [rax + 0x74]	a context the function resolved itself	
 0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B111	0x74	w	mov dword ptr [rax + 0x74], edi	a context the function resolved itself	
+0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B173	0x74	r	mov ecx, dword ptr [rax + 0x74]	a context the function resolved itself	
 0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B1A6	0x74	w	mov dword ptr [rax + 0x74], edi	a context the function resolved itself	
+0x002638C0	FUN_002638c0	0x002638E9	0x74	r	mov eax, dword ptr [rax + 0x74]	actor +0xB8, the actor as arg0 from 0x00342A80 at 0x00342AA9	
 0x00265FF0	FUN_00265ff0	0x00266480	0x74	w	mov dword ptr [rsi + 0x74], r15d	actor +0xB8, the actor in rcx	
+0x00269DD0	FUN_00269dd0	0x00269DFA	0x74	w	mov dword ptr [rax + 0x74], edx	actor +0xB8, the actor as arg0 from 0x00342A80 at 0x00342ABE	
 0x0026B2E0	FUN_0026b2e0	0x0026B40B	0x7C	r	movss xmm2, dword ptr [rbx + 0x7c]	actor +0xB8, the actor in rcx	kind 3 arm, gated on +0xDE
 0x00265FF0	FUN_00265ff0	0x0026629A	0x80	a	lea rdx, [r14 + 0x80]	actor +0xB8, the actor in rcx	
 0x00266AD0	FUN_00266ad0	0x00266B26	0x80	addr	lea r8, [rax + 0x80]	ctor	region planter; lea computes an address inside this embedded context
 0x0026B2E0	FUN_0026b2e0	0x0026B332	0x80	addr	lea rdx, [rcx + 0x80]	actor +0xB8, the actor in rcx	
+0x002E8E20	FUN_002e8e20	0x002E8E78	0x80	r	movss xmm1, dword ptr [rbx + 0x80]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
 0x003DA860	FUN_003da860	0x003DA880	0x80	w	movss dword ptr [rdx], xmm2	arg1+0x80 from 0x0026B2E0 at 0x0026B34E	kind 3 arm; unscaled vec2 store to +0x80 - sixth 0x10 block
+0x002E8E20	FUN_002e8e20	0x002E8E6D	0x84	r	movss xmm2, dword ptr [rbx + 0x84]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
 0x003DA860	FUN_003da860	0x003DA884	0x84	w	movss dword ptr [rdx + 4], xmm3	arg1+0x80 from 0x0026B2E0 at 0x0026B34E	kind 3 arm; unscaled vec2 store to +0x84
+0x0026BF60	FUN_0026bf60	0x0026BF8C	0x88	addr	lea rdx, [rbx + 0x88]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B28C	
+0x002E8E20	FUN_002e8e20	0x002E8EBA	0x88	r	movss xmm1, dword ptr [rbx + 0x88]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
+0x002E8E20	FUN_002e8e20	0x002E8EAF	0x8C	r	movss xmm2, dword ptr [rbx + 0x8c]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
+0x0026BBC0	FUN_0026bbc0	0x0026BBEF	0x90	addr	lea rdx, [rbx + 0x90]	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B274	
+0x002E8E20	FUN_002e8e20	0x002E8E99	0x90	r	movss xmm1, dword ptr [rbx + 0x90]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
+0x002E8E20	FUN_002e8e20	0x002E8E8E	0x94	r	movss xmm2, dword ptr [rbx + 0x94]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
 0x00265FF0	FUN_00265ff0	0x0026631F	0x98	w	mov dword ptr [r14 + 0x98], 0x3f000000	actor +0xB8, the actor in rcx	
+0x002690D0	FUN_002690d0	0x00269203	0x98	r	mulss xmm4, dword ptr [rdi + 0x98]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x0026AA30	FUN_0026aa30	0x0026AA41	0x98	w	movss dword ptr [rax + 0x98], xmm1	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2F4C	
 0x00265FF0	FUN_00265ff0	0x0026632A	0x9c	w	mov dword ptr [r14 + 0x9c], 0x3f2b851f	actor +0xB8, the actor in rcx	
+0x002690D0	FUN_002690d0	0x002691F9	0x9C	r	mulss xmm4, dword ptr [rdi + 0x9c]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x0026AA30	FUN_0026aa30	0x0026AA49	0x9C	w	movss dword ptr [rax + 0x9c], xmm2	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2F4C	
 0x00265FF0	FUN_00265ff0	0x002662FE	0xa0	w	mov qword ptr [r14 + 0xa0], r15	actor +0xB8, the actor in rcx	
 0x002E4380	Movement_ComputeDeltaFromHeadingSpeed	0x002E442E	0xA0	r	movss xmm6, dword ptr [rdi + 0xa0]	actor +0xB8, the actor as arg0 from 0x002E5030 at 0x002E50CB	
 0x002E4380	Movement_ComputeDeltaFromHeadingSpeed	0x002E442E	0xa0	r	movss xmm6, dword ptr [rdi + 0xa0]	actor +0xB8, the actor in rcx	
@@ -411,7 +553,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002E5030	Movement_UpdateActorFrame	0x002E50DB	0xA0	r	movss xmm1, dword ptr [rdi + 0xa0]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025E39B	
 0x002E5030	Movement_UpdateActorFrame	0x002E50DB	0xa0	r	movss xmm1, dword ptr [rdi + 0xa0]	actor +0xB8, the actor in rcx	
 0x00263CC0	FUN_00263cc0	0x00263CDD	0xa4	r	movss xmm0, dword ptr [rax + 0xa4]	actor +0xB8, the actor in rcx	
-0x0026A0D0	Actor_SetDesiredMovementHeading	0x0026A128	0xA4	w	movss dword ptr [rdx + 0xa4], xmm3	actor +0xB8, the actor as arg0 from 0x00358CB0 at 0x00358E99	
+0x0026A0D0	Actor_SetDesiredMovementHeading	0x0026A128	0xA4	w	movss dword ptr [rdx + 0xa4], xmm3	actor +0xB8, the actor as arg0 from 0x00239210 at 0x002392A1	
 0x0026A0D0	Actor_SetDesiredMovementHeading	0x0026A128	0xa4	w	movss dword ptr [rdx + 0xa4], xmm3	actor +0xB8, the actor in rcx	
 0x002E4380	Movement_ComputeDeltaFromHeadingSpeed	0x002E4421	0xA4	r	movss xmm2, dword ptr [rdi + 0xa4]	actor +0xB8, the actor as arg0 from 0x002E5030 at 0x002E50CB	
 0x002E4380	Movement_ComputeDeltaFromHeadingSpeed	0x002E4421	0xa4	r	movss xmm2, dword ptr [rdi + 0xa4]	actor +0xB8, the actor in rcx	
@@ -422,34 +564,40 @@ function	name	site	disp	kind	instruction	route	note
 0x00265200	FUN_00265200	0x0026521D	0xA8	r	movss xmm0, dword ptr [rax + 0xa8]	actor +0xB8, the actor as arg0 from 0x0024B6F0 at 0x0024B753	
 0x00265200	FUN_00265200	0x0026521D	0xa8	r	movss xmm0, dword ptr [rax + 0xa8]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266241	0xa8	w	mov qword ptr [r14 + 0xa8], r15	actor +0xB8, the actor in rcx	
-0x00268380	FUN_00268380	0x00268455	0xA8	r	movss xmm3, dword ptr [rax + 0xa8]	actor +0xB8, the actor as arg0 from 0x00269E20 at 0x00269E34	
+0x00268380	FUN_00268380	0x00268455	0xA8	r	movss xmm3, dword ptr [rax + 0xa8]	actor +0xB8, the actor as arg0 from 0x00266530 at 0x0026687A	
 0x00268380	FUN_00268380	0x00268455	0xa8	r	movss xmm3, dword ptr [rax + 0xa8]	actor +0xB8, the actor in rcx	
+0x002690D0	FUN_002690d0	0x00269120	0xA8	r	subss xmm6, dword ptr [rdi + 0xa8]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x0026933D	0xA8	r	subss xmm0, dword ptr [rdx + 0xa8]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
 0x0026C120	FUN_0026c120	0x0026C181	0xA8	r	subss xmm0, dword ptr [rbx + 0xa8]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x002694BD	
 0x0026C120	FUN_0026c120	0x0026C181	0xa8	r	subss xmm0, dword ptr [rbx + 0xa8]	actor +0xB8, the actor in rcx	
 0x0026C120	FUN_0026c120	0x0026C1F2	0xA8	r	subss xmm0, dword ptr [rbx + 0xa8]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x002694BD	
 0x0026C120	FUN_0026c120	0x0026C1F2	0xa8	r	subss xmm0, dword ptr [rbx + 0xa8]	actor +0xB8, the actor in rcx	
-0x002E5E10	FUN_002e5e10	0x002E5EBE	0xA8	w	movss dword ptr [rsi + 0xa8], xmm6	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
+0x002E28E0	FUN_002e28e0	0x002E2C61	0xA8	r	movss xmm1, dword ptr [rbp + 0xa8]	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E5E10	FUN_002e5e10	0x002E5EBE	0xA8	w	movss dword ptr [rsi + 0xa8], xmm6	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2C6C	
 0x002E5F90	FUN_002e5f90	0x002E5F9D	0xA8	r	movss xmm1, dword ptr [rax + 0xa8]	actor +0xB8, the actor as arg0 from 0x0026B520 at 0x0026B581	
+0x002E6B10	FUN_002e6b10	0x002E6B77	0xA8	r	movss xmm1, dword ptr [rbx + 0xa8]	actor +0xB8, the actor as arg0 from 0x002E26F0 at 0x002E2756	
 0x002651C0	FUN_002651c0	0x002651DC	0xAC	r	movss xmm0, dword ptr [rax + 0xac]	actor +0xB8, the actor as arg0 from 0x002E5750 at 0x002E57A2	
 0x002651C0	FUN_002651c0	0x002651DC	0xac	r	movss xmm0, dword ptr [rax + 0xac]	actor +0xB8, the actor in rcx	
-0x002E5E10	FUN_002e5e10	0x002E5E88	0xAC	w	movss dword ptr [rsi + 0xac], xmm8	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
+0x002E28E0	FUN_002e28e0	0x002E2C53	0xAC	r	movss xmm2, dword ptr [rbp + 0xac]	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E5E10	FUN_002e5e10	0x002E5E88	0xAC	w	movss dword ptr [rsi + 0xac], xmm8	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2C6C	
 0x002E5FB0	FUN_002e5fb0	0x002E5FBA	0xAC	r	movss xmm2, dword ptr [rax + 0xac]	actor +0xB8, the actor as arg0 from 0x0026B6A0 at 0x0026B701	
 0x002E5FB0	FUN_002e5fb0	0x002E5FBA	0xac	r	movss xmm2, dword ptr [rax + 0xac]	actor +0xB8, the actor in rcx	
+0x002E6B10	FUN_002e6b10	0x002E6B69	0xAC	r	movss xmm2, dword ptr [rbx + 0xac]	actor +0xB8, the actor as arg0 from 0x002E26F0 at 0x002E2756	
+0x002644E0	FUN_002644e0	0x00264502	0xB0	r	movss xmm0, dword ptr [rax + 0xb0]	actor +0xB8, the actor as arg0 from 0x00340480 at 0x003404A3	
 0x00265FF0	FUN_00265ff0	0x00266227	0xb0	w	mov qword ptr [r14 + 0xb0], 0x3e20d97c	actor +0xB8, the actor in rcx	
 0x0026AA60	FUN_0026aa60	0x0026AAB8	0xb0	w	movss dword ptr [rax + 0xb0], xmm3	actor +0xB8, the actor in rcx	
+0x0026A9C0	FUN_0026a9c0	0x0026AA18	0xB4	w	movss dword ptr [rax + 0xb4], xmm3	actor +0xB8, the actor as arg0 from 0x002EC140 at 0x002EC1A4	
+0x002E28E0	FUN_002e28e0	0x002E302E	0xB4	w	mov dword ptr [rax + 0xb4], r12d	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E3110	FUN_002e3110	0x002E32A8	0xB4	w	mov dword ptr [rax + 0xb4], r12d	actor +0xB8, the actor as arg0 from 0x00342640 at 0x003426B9	
 0x002E64E0	FUN_002e64e0	0x002E6506	0xb4	w	mov dword ptr [rax + 0xb4], ebx	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBE7F	0xB4	w	mov dword ptr [rbx + 0xb4], eax	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBE7F	0xB4	w	mov dword ptr [rbx + 0xb4], eax	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBE7F	0xb4	w	mov dword ptr [rbx + 0xb4], eax	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBEAE	0xB4	w	movss dword ptr [rbx + 0xb4], xmm0	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBEAE	0xB4	w	movss dword ptr [rbx + 0xb4], xmm0	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBEAE	0xb4	w	movss dword ptr [rbx + 0xb4], xmm0	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBEC8	0xB4	r	subss xmm0, dword ptr [rbx + 0xb4]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBEC8	0xB4	r	subss xmm0, dword ptr [rbx + 0xb4]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBEC8	0xb4	r	subss xmm0, dword ptr [rbx + 0xb4]	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBF01	0xB4	w	mov dword ptr [rbx + 0xb4], eax	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBF01	0xB4	w	mov dword ptr [rbx + 0xb4], eax	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBF01	0xb4	w	mov dword ptr [rbx + 0xb4], eax	actor +0xB8, the actor in rcx	
-0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B0D7	0xB8	r	mov rax, qword ptr [rax + 0xb8]	a context the function resolved itself	
-0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B16C	0xB8	r	mov rax, qword ptr [rax + 0xb8]	a context the function resolved itself	
-0x002646C0	FUN_002646c0	0x00264735	0xB8	r	mov rcx, qword ptr [rcx + 0xb8]	a context the function resolved itself	
-0x00265470	FUN_00265470	0x002654A2	0xB8	r	mov rcx, qword ptr [rcx + 0xb8]	a context the function resolved itself	
 0x002E5030	Movement_UpdateActorFrame	0x002E5109	0xB8	w	movss dword ptr [rdi + 0xb8], xmm0	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025E39B	
 0x002E5030	Movement_UpdateActorFrame	0x002E5109	0xb8	w	movss dword ptr [rdi + 0xb8], xmm0	actor +0xB8, the actor in rcx	
 0x002E5180	FUN_002e5180	0x002E525C	0xB8	r	addss xmm0, dword ptr [rdi + 0xb8]	actor +0xB8, the actor as arg0 from 0x0025E400 at 0x0025E4A0	
@@ -459,26 +607,34 @@ function	name	site	disp	kind	instruction	route	note
 0x0025BAD0	FUN_0025bad0	0x0025BD80	0xBC	r	movss xmm1, dword ptr [rsi + 0xbc]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025B990	
 0x0025BAD0	FUN_0025bad0	0x0025BD80	0xbc	r	movss xmm1, dword ptr [rsi + 0xbc]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x002662F3	0xbc	w	mov dword ptr [r14 + 0xbc], 0x3fc90fdb	actor +0xB8, the actor in rcx	
-0x00263940	FUN_00263940	0x00263958	0xC0	r	movss xmm0, dword ptr [rax + 0xc0]	actor +0xB8, the actor as arg0 from 0x00271380 at 0x002713A2	
+0x0026B940	FUN_0026b940	0x0026B958	0xBC	w	movss dword ptr [rax + 0xbc], xmm1	actor +0xB8, the actor as arg0 from 0x00239370 at 0x002393BD	
+0x00263810	FUN_00263810	0x00263837	0xC0	r	movss xmm0, dword ptr [rax + 0xc0]	actor +0xB8, the actor as arg0 from 0x003503D0 at 0x003503DC	
+0x00263940	FUN_00263940	0x00263958	0xC0	r	movss xmm0, dword ptr [rax + 0xc0]	actor +0xB8, the actor as arg0 from 0x00255CF0 at 0x00255D75	
 0x00263940	FUN_00263940	0x00263958	0xc0	r	movss xmm0, dword ptr [rax + 0xc0]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266248	0xc0	w	mov dword ptr [r14 + 0xc0], 0x40000000	actor +0xB8, the actor in rcx	
-0x00268380	FUN_00268380	0x00268410	0xC0	r	movss xmm6, dword ptr [rax + 0xc0]	actor +0xB8, the actor as arg0 from 0x00269E20 at 0x00269E34	
+0x00268380	FUN_00268380	0x00268410	0xC0	r	movss xmm6, dword ptr [rax + 0xc0]	actor +0xB8, the actor as arg0 from 0x00266530 at 0x0026687A	
 0x00268380	FUN_00268380	0x00268410	0xc0	r	movss xmm6, dword ptr [rax + 0xc0]	actor +0xB8, the actor in rcx	
+0x00269E60	FUN_00269e60	0x00269E81	0xC0	w	movss dword ptr [rdx + 0xc0], xmm1	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2F57	
 0x00265FF0	FUN_00265ff0	0x00266253	0xc4	w	mov dword ptr [r14 + 0xc4], 0x3f000000	actor +0xB8, the actor in rcx	
+0x0026ABD0	FUN_0026abd0	0x0026ABE1	0xC4	w	movss dword ptr [rax + 0xc4], xmm1	actor +0xB8, the actor as arg0 from 0x0034D260 at 0x0034D29C	
 0x0025BAD0	FUN_0025bad0	0x0025BC22	0xC8	r	mulss xmm3, dword ptr [rsi + 0xc8]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025B990	
 0x0025BAD0	FUN_0025bad0	0x0025BC22	0xc8	r	mulss xmm3, dword ptr [rsi + 0xc8]	actor +0xB8, the actor in rdx	
 0x0025C230	FUN_0025c230	0x0025C332	0xC8	r	mulss xmm6, dword ptr [rbp + 0xc8]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C332	0xc8	r	mulss xmm6, dword ptr [rbp + 0xc8]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x0026625E	0xc8	w	mov dword ptr [r14 + 0xc8], 0x40000000	actor +0xB8, the actor in rcx	
+0x00269E60	FUN_00269e60	0x00269E89	0xC8	w	movss dword ptr [rdx + 0xc8], xmm1	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2F57	
+0x0026BA00	FUN_0026ba00	0x0026BA21	0xC8	w	movss dword ptr [rdx + 0xc8], xmm1	actor +0xB8, the actor as arg0 from 0x00239370 at 0x002393AD	
 0x0025BAD0	FUN_0025bad0	0x0025BC1A	0xCC	r	mulss xmm0, dword ptr [rsi + 0xcc]	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025B990	
 0x0025BAD0	FUN_0025bad0	0x0025BC1A	0xcc	r	mulss xmm0, dword ptr [rsi + 0xcc]	actor +0xB8, the actor in rdx	
 0x0025C230	FUN_0025c230	0x0025C326	0xCC	r	mulss xmm0, dword ptr [rbp + 0xcc]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C326	0xcc	r	mulss xmm0, dword ptr [rbp + 0xcc]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x00266269	0xcc	w	mov dword ptr [r14 + 0xcc], 0x3f000000	actor +0xB8, the actor in rcx	
+0x0026ABD0	FUN_0026abd0	0x0026ABE9	0xCC	w	movss dword ptr [rax + 0xcc], xmm1	actor +0xB8, the actor as arg0 from 0x0034D260 at 0x0034D29C	
+0x0026B9D0	FUN_0026b9d0	0x0026B9E8	0xCC	w	movss dword ptr [rax + 0xcc], xmm1	actor +0xB8, the actor as arg0 from 0x0034CAC0 at 0x0034CAFC	
 0x00265FF0	FUN_00265ff0	0x002664F6	0xd0	w	mov dword ptr [rcx + 0xd0], r15d	actor +0xB8, the actor in rcx	
-0x0026D6F0	Movement_SetRequestedSpeed	0x0026D73D	0xD0	r	movss xmm0, dword ptr [rdx + 0xd0]	actor +0xB8, the actor as arg0 from 0x0026D6D0 at 0x0026D6E5	
+0x0026D6F0	Movement_SetRequestedSpeed	0x0026D73D	0xD0	r	movss xmm0, dword ptr [rdx + 0xd0]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF83	
 0x0026D6F0	Movement_SetRequestedSpeed	0x0026D73D	0xd0	r	movss xmm0, dword ptr [rdx + 0xd0]	actor +0xB8, the actor in rcx	
-0x0026D6F0	Movement_SetRequestedSpeed	0x0026D750	0xD0	w	movss dword ptr [rdx + 0xd0], xmm6	actor +0xB8, the actor as arg0 from 0x0026D6D0 at 0x0026D6E5	
+0x0026D6F0	Movement_SetRequestedSpeed	0x0026D750	0xD0	w	movss dword ptr [rdx + 0xd0], xmm6	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF83	
 0x0026D6F0	Movement_SetRequestedSpeed	0x0026D750	0xd0	w	movss dword ptr [rdx + 0xd0], xmm6	actor +0xB8, the actor in rcx	
 0x0026D810	FUN_0026d810	0x0026D847	0xD0	w	movss dword ptr [rdx + 0xd0], xmm6	actor +0xB8, the actor as arg0 from 0x00358CB0 at 0x00358E11	
 0x0026D810	FUN_0026d810	0x0026D847	0xd0	w	movss dword ptr [rdx + 0xd0], xmm6	actor +0xB8, the actor in rcx	
@@ -488,6 +644,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E493E	0xD0	w	mov dword ptr [rdi + 0xd0], ebx	arg1 from 0x002E5030 at 0x002E50B8	
 0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4978	0xD0	w	mov dword ptr [rdi + 0xd0], ebx	arg1 from 0x002E5030 at 0x002E50B8	
 0x002E55C0	Movement_ClearSteeringRequest	0x002E55FD	0xD0	w	mov dword ptr [rbx + 0xd0], ecx	arg1 from 0x0026AE90 at 0x0026AEE5	
+0x00264670	FUN_00264670	0x00264686	0xD4	r	movss xmm0, dword ptr [rax + 0xd4]	actor +0xB8, the actor as arg0 from 0x00343520 at 0x0034352C	
 0x002E5180	FUN_002e5180	0x002E521F	0xD4	w	movss dword ptr [rdi + 0xd4], xmm0	actor +0xB8, the actor as arg0 from 0x0025E400 at 0x0025E4A0	
 0x002E5180	FUN_002e5180	0x002E521F	0xd4	w	movss dword ptr [rdi + 0xd4], xmm0	actor +0xB8, the actor in rcx	
 0x0025D4F0	FUN_0025d4f0	0x0025D50E	0xD8	r	mov ecx, dword ptr [rax + 0xd8]	actor +0xB8, the actor as arg0 from 0x002E3AF0 at 0x002E3B15	
@@ -498,8 +655,12 @@ function	name	site	disp	kind	instruction	route	note
 0x002627C0	FUN_002627c0	0x002627C0	0xDC	r	movsx rax, byte ptr [rcx + 0xdc]	arg0 from 0x002EAB80 at 0x002EABB1	
 0x00263BC0	FUN_00263bc0	0x00263BD1	0xdc	r	movsx eax, byte ptr [rax + 0xdc]	actor +0xB8, the actor in rcx	
 0x00265550	FUN_00265550	0x00265565	0xdc	r	movsx rcx, byte ptr [rdx + 0xdc]	actor +0xB8, the actor in rcx	
+0x00265580	FUN_00265580	0x00265599	0xDC	r	movsx edx, byte ptr [rcx + 0xdc]	actor +0xB8, the actor as arg0 from 0x00341250 at 0x0034126D	
+0x00265580	FUN_00265580	0x002655B1	0xDC	r	movsx eax, byte ptr [rcx + 0xdc]	actor +0xB8, the actor as arg0 from 0x00341250 at 0x0034126D	
 0x00265FF0	FUN_00265ff0	0x002660ED	0xdc	w	mov byte ptr [r14 + 0xdc], r15b	actor +0xB8, the actor in rcx	
-0x00269F90	FUN_00269f90	0x00269F90	0xDC	r	movzx eax, byte ptr [rcx + 0xdc]	arg0 from 0x002EAAA0 at 0x002EAADB	
+0x002690D0	FUN_002690d0	0x00269236	0xDC	r	movsx rcx, byte ptr [rdx + 0xdc]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x00269F90	FUN_00269f90	0x00269F90	0xDC	r	movzx eax, byte ptr [rcx + 0xdc]	arg0 from 0x002E28E0 at 0x002E2C86	
+0x002E28E0	FUN_002e28e0	0x002E2C7F	0xDC	w	mov byte ptr [rbp + 0xdc], r12b	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
 0x002EAAA0	FUN_002eaaa0	0x002EAAC5	0xdc	r	movzx eax, byte ptr [rdi + 0xdc]	actor +0xB8, the actor in rcx	
 0x002EAAA0	FUN_002eaaa0	0x002EAAD5	0xdc	w	mov byte ptr [rdi + 0xdc], al	actor +0xB8, the actor in rcx	
 0x002EAB80	FUN_002eab80	0x002EABA5	0xdc	r	cmp byte ptr [rdi + 0xdc], 0	actor +0xB8, the actor in rcx	
@@ -509,21 +670,38 @@ function	name	site	disp	kind	instruction	route	note
 0x0025C230	FUN_0025c230	0x0025C31C	0xDD	r	movzx eax, byte ptr [rbp + 0xdd]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C31C	0xdd	r	movzx eax, byte ptr [rbp + 0xdd]	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x00266274	0xdd	w	mov byte ptr [r14 + 0xdd], r15b	actor +0xB8, the actor in rcx	
+0x00269E60	FUN_00269e60	0x00269E94	0xDD	w	mov byte ptr [rdx + 0xdd], al	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2F57	
+0x0026BA00	FUN_0026ba00	0x0026BA2C	0xDD	w	mov byte ptr [rdx + 0xdd], al	actor +0xB8, the actor as arg0 from 0x00239370 at 0x002393AD	
 0x00265FF0	FUN_00265ff0	0x002662BF	0xde	w	mov word ptr [r14 + 0xde], 0x101	actor +0xB8, the actor in rcx	
 0x0026B2E0	FUN_0026b2e0	0x0026B402	0xDE	r	cmp byte ptr [rbx + 0xde], 0	actor +0xB8, the actor in rcx	kind 3 arm
+0x0026BB60	FUN_0026bb60	0x0026BB91	0xDE	w	mov byte ptr [rbx + 0xde], 1	actor +0xB8, the actor as arg0 from 0x00355DD0 at 0x00355DEC	
+0x0026BBC0	FUN_0026bbc0	0x0026BC10	0xDE	w	mov byte ptr [rbx + 0xde], 0	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B274	
+0x002E8E20	FUN_002e8e20	0x002E8E85	0xDE	r	cmp byte ptr [rbx + 0xde], 0	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
 0x0026B2E0	FUN_0026b2e0	0x0026B41D	0xDF	r	cmp byte ptr [rbx + 0xdf], 0	actor +0xB8, the actor in rcx	kind 3 arm
-0x002640E0	FUN_002640e0	0x002640F5	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	actor +0xB8, the actor as arg0 from 0x00358F90 at 0x00359021	
+0x0026BEE0	FUN_0026bee0	0x0026BF11	0xDF	w	mov byte ptr [rbx + 0xdf], 1	actor +0xB8, the actor as arg0 from 0x00356000 at 0x0035601C	
+0x0026BF60	FUN_0026bf60	0x0026BFAD	0xDF	w	mov byte ptr [rbx + 0xdf], 0	actor +0xB8, the actor as arg0 from 0x0023B260 at 0x0023B28C	
+0x002E8E20	FUN_002e8e20	0x002E8EA6	0xDF	r	cmp byte ptr [rbx + 0xdf], 0	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2BB8	
+0x002640E0	FUN_002640e0	0x002640F5	0xE0	r	movss xmm0, dword ptr [rax + 0xe0]	actor +0xB8, the actor as arg0 from 0x00348240 at 0x00348263	
 0x002640E0	FUN_002640e0	0x002640F5	0xe0	r	movss xmm0, dword ptr [rax + 0xe0]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266335	0xe0	w	mov dword ptr [r14 + 0xe0], 0x3dcccccd	actor +0xB8, the actor in rcx	
+0x0026A560	FUN_0026a560	0x0026A571	0xE0	w	movss dword ptr [rax + 0xe0], xmm1	actor +0xB8, the actor as arg0 from 0x00352530 at 0x0035254C	
+0x002E28E0	FUN_002e28e0	0x002E2CB3	0xE0	w	movss dword ptr [rbp + 0xe0], xmm0	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x00263640	FUN_00263640	0x00263651	0xE4	r	movss xmm1, dword ptr [rax + 0xe4]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2CF6	
 0x00265FF0	FUN_00265ff0	0x00266340	0xe4	w	mov dword ptr [r14 + 0xe4], 0x3e19999a	actor +0xB8, the actor in rcx	
+0x0026BE00	FUN_0026be00	0x0026BE11	0xE4	w	movss dword ptr [rax + 0xe4], xmm1	actor +0xB8, the actor as arg0 from 0x0034CEA0 at 0x0034CEBC	
+0x0026BE00	FUN_0026be00	0x0026BE2A	0xE4	r	movss xmm1, dword ptr [rax + 0xe4]	actor +0xB8, the actor as arg0 from 0x0034CEA0 at 0x0034CEBC	
+0x002E28E0	FUN_002e28e0	0x002E2CDB	0xE4	w	movss dword ptr [rbp + 0xe4], xmm6	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E28E0	FUN_002e28e0	0x002E2CEE	0xE4	w	movss dword ptr [rbp + 0xe4], xmm6	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
 0x002E5180	FUN_002e5180	0x002E52E2	0xEC	w	movss dword ptr [rdi + 0xec], xmm6	actor +0xB8, the actor as arg0 from 0x0025E400 at 0x0025E4A0	
 0x002E5180	FUN_002e5180	0x002E52E2	0xec	w	movss dword ptr [rdi + 0xec], xmm6	actor +0xB8, the actor in rcx	
 0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DF50	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg1 from 0x0025D9E0 at 0x0025DB43	
 0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025DF50	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rdx	
-0x002636F0	Movement_GetSteeringAcceleration	0x00263705	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357A20 at 0x00357AA9	
+0x00263230	FUN_00263230	0x00263396	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	a context the function resolved itself	
+0x002636F0	Movement_GetSteeringAcceleration	0x00263705	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357980 at 0x003579DE	
 0x002636F0	Movement_GetSteeringAcceleration	0x00263705	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
-0x00263720	Movement_GetConfiguredSteeringMode	0x00263737	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357A20 at 0x00357AC2	
+0x00263720	Movement_GetConfiguredSteeringMode	0x00263737	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357980 at 0x003579F7	
 0x00263720	Movement_GetConfiguredSteeringMode	0x00263737	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
+0x00263D00	FUN_00263d00	0x00263D11	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x003578B0 at 0x003578DA	
 0x00264E10	FUN_00264e10	0x00264E24	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00345800 at 0x0034581C	
 0x00264E10	FUN_00264e10	0x00264E24	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
 0x002652A0	FUN_002652a0	0x002652B5	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
@@ -546,14 +724,31 @@ function	name	site	disp	kind	instruction	route	note
 0x00265FF0	FUN_00265ff0	0x002664C6	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002664E0	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002664EB	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
-0x002693D0	FUN_002693d0	0x00269448	0xF0	r	mov rcx, qword ptr [rsi + 0xf0]	actor +0xB8, the actor as arg0 from 0x0025B070 at 0x0025B1B1	
-0x002693D0	FUN_002693d0	0x0026945B	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	actor +0xB8, the actor as arg0 from 0x0025B070 at 0x0025B1B1	
-0x00269F90	FUN_00269f90	0x00269FAC	0xF0	w	mov qword ptr [rcx + 0xf0], rax	arg0 from 0x002EAAA0 at 0x002EAADB	
+0x002690D0	FUN_002690d0	0x0026910B	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x002691DE	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x0026926E	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x002692A1	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x002692E1	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x00269326	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x00269331	0xF0	r	mov rcx, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x00269360	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x0026936C	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002690D0	FUN_002690d0	0x00269398	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
+0x002693D0	FUN_002693d0	0x00269448	0xF0	r	mov rcx, qword ptr [rsi + 0xf0]	a context the function resolved itself	
+0x002693D0	FUN_002693d0	0x0026945B	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	a context the function resolved itself	
+0x00269C30	FUN_00269c30	0x00269C4D	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x003528F0 at 0x0035292F	
+0x00269C30	FUN_00269c30	0x00269C59	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x003528F0 at 0x0035292F	
+0x00269F90	FUN_00269f90	0x00269FAC	0xF0	w	mov qword ptr [rcx + 0xf0], rax	arg0 from 0x002E28E0 at 0x002E2C86	
+0x0026A170	FUN_0026a170	0x0026A186	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00341DF0 at 0x00341E0B	
 0x0026A1A0	FUN_0026a1a0	0x0026A1B9	0xf0	r	mov r8, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
-0x0026A640	FUN_0026a640	0x0026A651	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357A20 at 0x00357A87	
+0x0026A640	FUN_0026a640	0x0026A651	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00352040 at 0x00352074	
 0x0026A640	FUN_0026a640	0x0026A651	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
 0x0026A870	FUN_0026a870	0x0026A8B8	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
 0x0026A8E0	FUN_0026a8e0	0x0026A928	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
+0x0026AAD0	FUN_0026aad0	0x0026AB18	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x0034EB40 at 0x0034EB76	
+0x0026ADF0	FUN_0026adf0	0x0026AE01	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357980 at 0x003579CE	
+0x0026ADF0	FUN_0026adf0	0x0026AE0A	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357980 at 0x003579CE	
+0x0026ADF0	FUN_0026adf0	0x0026AE15	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357980 at 0x003579CE	
 0x0026AE30	Movement_SetSteeringTargetPosition	0x0026AE68	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357A20 at 0x00357A99	
 0x0026AE30	Movement_SetSteeringTargetPosition	0x0026AE68	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
 0x0026AE30	Movement_SetSteeringTargetPosition	0x0026AE72	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00357A20 at 0x00357A99	
@@ -589,11 +784,17 @@ function	name	site	disp	kind	instruction	route	note
 0x0026C120	FUN_0026c120	0x0026C22B	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
 0x0026C120	FUN_0026c120	0x0026C244	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x002694BD	
 0x0026C120	FUN_0026c120	0x0026C244	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
+0x0026C290	FUN_0026c290	0x0026C2D8	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00341AB0 at 0x00341AEE	
 0x0026C300	FUN_0026c300	0x0026C318	0xf0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
-0x0026D6F0	Movement_SetRequestedSpeed	0x0026D725	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x0026D6D0 at 0x0026D6E5	
+0x0026C330	FUN_0026c330	0x0026C36C	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x003425D0 at 0x003425FD	
+0x0026C330	FUN_0026c330	0x0026C382	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x003425D0 at 0x003425FD	
+0x0026C330	FUN_0026c330	0x0026C395	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x003425D0 at 0x003425FD	
+0x0026D6F0	Movement_SetRequestedSpeed	0x0026D725	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025DF83	
 0x0026D6F0	Movement_SetRequestedSpeed	0x0026D725	0xf0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor in rcx	
 0x0026D810	FUN_0026d810	0x0026D83B	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00358CB0 at 0x00358E11	
 0x0026D810	FUN_0026d810	0x0026D83B	0xf0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor in rcx	
+0x002E28E0	FUN_002e28e0	0x002E303C	0xF0	r	mov rax, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E3110	FUN_002e3110	0x002E32B6	0xF0	r	mov rax, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x00342640 at 0x003426B9	
 0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4610	0xF0	r	mov rcx, qword ptr [rdx + 0xf0]	arg1 from 0x002E5030 at 0x002E50B8	
 0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E4694	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1 from 0x002E5030 at 0x002E50B8	
 0x002E45E0	Movement_UpdateSteeringTowardTarget	0x002E46A5	0xF0	r	mov rax, qword ptr [rdi + 0xf0]	arg1 from 0x002E5030 at 0x002E50B8	
@@ -614,35 +815,45 @@ function	name	site	disp	kind	instruction	route	note
 0x002E55C0	Movement_ClearSteeringRequest	0x002E55C6	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	arg1 from 0x0026AE90 at 0x0026AEE5	
 0x002E55C0	Movement_ClearSteeringRequest	0x002E55D4	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	arg1 from 0x0026AE90 at 0x0026AEE5	
 0x002E55C0	Movement_ClearSteeringRequest	0x002E55F1	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	arg1 from 0x0026AE90 at 0x0026AEE5	
+0x002E5B60	FUN_002e5b60	0x002E5B76	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x0026AC00 at 0x0026AC5C	
 0x002E5B90	FUN_002e5b90	0x002E5BA6	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x0026AC70 at 0x0026ACCC	
+0x002E60C0	FUN_002e60c0	0x002E60D6	0xF0	r	mov rcx, qword ptr [rax + 0xf0]	actor +0xB8, the actor as arg0 from 0x0026D630 at 0x0026D68C	
 0x002E64E0	FUN_002e64e0	0x002E6512	0xf0	r	mov rax, qword ptr [rax + 0xf0]	actor +0xB8, the actor in rcx	
-0x002E8EE0	FUN_002e8ee0	0x002E8F08	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269478	
+0x002E8EE0	FUN_002e8ee0	0x002E8F08	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x00263194	
 0x002E8EE0	FUN_002e8ee0	0x002E8F08	0xf0	r	mov rax, qword ptr [rsi + 0xf0]	actor +0xB8, the actor in rcx	
-0x002E8EE0	FUN_002e8ee0	0x002E8F5F	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269478	
+0x002E8EE0	FUN_002e8ee0	0x002E8F5F	0xF0	r	mov rax, qword ptr [rsi + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x00263194	
 0x002E8EE0	FUN_002e8ee0	0x002E8F5F	0xf0	r	mov rax, qword ptr [rsi + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EAAA0	FUN_002eaaa0	0x002EAAE0	0xf0	r	mov rdx, qword ptr [rdi + 0xf0]	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBE90	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBE90	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBE90	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBEBC	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBEBC	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBEBC	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBED5	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBED5	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBED5	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBEF7	0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBEF7	0xF0	r	mov rcx, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBEF7	0xf0	r	mov rcx, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBF58	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBF58	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBF58	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBF6C	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBF6C	0xF0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBF6C	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EBFA0	FUN_002ebfa0	0x002EC014	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EBFA0	FUN_002ebfa0	0x002EC01E	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EBFA0	FUN_002ebfa0	0x002EC029	0xf0	r	mov rax, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EBFA0	FUN_002ebfa0	0x002EC039	0xf0	r	mov rcx, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EBFA0	FUN_002ebfa0	0x002EC049	0xf0	r	mov rcx, qword ptr [rbx + 0xf0]	actor +0xB8, the actor in rcx	
+0x002EC140	FUN_002ec140	0x002EC162	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002EC510 at 0x002EC55A	
+0x002EC140	FUN_002ec140	0x002EC16E	0xF0	r	mov rax, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002EC510 at 0x002EC55A	
+0x002EC140	FUN_002ec140	0x002EC17A	0xF0	r	mov r8, qword ptr [rdx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002EC510 at 0x002EC55A	
+0x002EC1C0	FUN_002ec1c0	0x002EC26A	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002EC510 at 0x002EC549	
+0x002EC1C0	FUN_002ec1c0	0x002EC276	0xF0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002EC510 at 0x002EC549	
+0x002EC1C0	FUN_002ec1c0	0x002EC282	0xF0	r	mov rdx, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002EC510 at 0x002EC549	
 0x002EC2C0	FUN_002ec2c0	0x002EC2F3	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EC2C0	FUN_002ec2c0	0x002EC2FE	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
-0x002EC3F0	FUN_002ec3f0	0x002EC408	0xF0	r	mov r9, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002EBE50 at 0x002EBF7A	
+0x002EC380	FUN_002ec380	0x002EC394	0xF0	r	mov rax, qword ptr [r8 + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263230 at 0x00263338	
+0x002EC380	FUN_002ec380	0x002EC3AC	0xF0	r	mov rax, qword ptr [r8 + 0xf0]	actor +0xB8, the actor as arg0 from 0x00263230 at 0x00263338	
+0x002EC3F0	FUN_002ec3f0	0x002EC408	0xF0	r	mov r9, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E3047	
 0x002EC3F0	FUN_002ec3f0	0x002EC408	0xf0	r	mov r9, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
-0x002EC3F0	FUN_002ec3f0	0x002EC454	0xF0	r	mov rcx, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002EBE50 at 0x002EBF7A	
+0x002EC3F0	FUN_002ec3f0	0x002EC454	0xF0	r	mov rcx, qword ptr [rcx + 0xf0]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E3047	
 0x002EC3F0	FUN_002ec3f0	0x002EC454	0xf0	r	mov rcx, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EC3F0	FUN_002ec3f0	0x002EC486	0xf0	r	mov rcx, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
 0x002EC3F0	FUN_002ec3f0	0x002EC4C2	0xf0	r	mov rax, qword ptr [rcx + 0xf0]	actor +0xB8, the actor in rcx	
@@ -658,6 +869,7 @@ function	name	site	disp	kind	instruction	route	note
 0x002645D0	FUN_002645d0	0x002645F1	0xFC	r	movss xmm0, dword ptr [rax + 0xfc]	actor +0xB8, the actor as arg0 from 0x00272F30 at 0x00272F4E	
 0x002645D0	FUN_002645d0	0x002645F1	0xfc	r	movss xmm0, dword ptr [rax + 0xfc]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x002660B7	0xfc	w	mov dword ptr [r14 + 0xfc], 0x3f800000	actor +0xB8, the actor in rcx	
+0x0026AB60	FUN_0026ab60	0x0026AB84	0xFC	w	movss dword ptr [rax + 0xfc], xmm0	actor +0xB8, the actor as arg0 from 0x00352500 at 0x00352520	
 0x0026B2E0	FUN_0026b2e0	0x0026B397	0xFC	w	movss dword ptr [rax + 0xfc], xmm0	actor +0xB8, the actor in rcx	kind 2 arm (byte[actor+3]>>5==2)
 0x0025C230	FUN_0025c230	0x0025C311	0x100	r	mov r12d, dword ptr [rbp + 0x100]	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C311	0x100	r	mov r12d, dword ptr [rbp + 0x100]	actor +0xB8, the actor in rdx	
@@ -672,17 +884,24 @@ function	name	site	disp	kind	instruction	route	note
 0x0025C230	FUN_0025c230	0x0025C777	0x100	r	cmp dword ptr [rbp + 0x100], 0	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C777	0x100	r	cmp dword ptr [rbp + 0x100], 0	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x00266053	0x100	w	mov dword ptr [r14 + 0x100], r15d	actor +0xB8, the actor in rcx	
+0x002677F0	FUN_002677f0	0x00267862	0x100	r	test dword ptr [rax + 0x100], edx	actor +0xB8, the actor as arg0 from 0x0033F680 at 0x0033F69D	
 0x00265FF0	FUN_00265ff0	0x00266091	0x104	w	mov word ptr [r14 + 0x104], 0x3225	actor +0xB8, the actor in rcx	
-0x00268380	FUN_00268380	0x00268488	0x104	r	movzx edi, byte ptr [rax + 0x104]	actor +0xB8, the actor as arg0 from 0x00269E20 at 0x00269E34	
+0x00268380	FUN_00268380	0x00268488	0x104	r	movzx edi, byte ptr [rax + 0x104]	actor +0xB8, the actor as arg0 from 0x00266530 at 0x0026687A	
 0x00268380	FUN_00268380	0x00268488	0x104	r	movzx edi, byte ptr [rax + 0x104]	actor +0xB8, the actor in rcx	
-0x002E5E10	FUN_002e5e10	0x002E5F27	0x104	r	movzx edx, byte ptr [rsi + 0x104]	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
-0x00268380	FUN_00268380	0x0026848F	0x105	r	movzx esi, byte ptr [rax + 0x105]	actor +0xB8, the actor as arg0 from 0x00269E20 at 0x00269E34	
+0x0026A370	FUN_0026a370	0x0026A381	0x104	w	mov byte ptr [rax + 0x104], dl	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2FA5	
+0x0026A490	FUN_0026a490	0x0026A52E	0x104	w	mov byte ptr [rax + 0x104], dil	actor +0xB8, the actor as arg0 from 0x0034FB10 at 0x0034FB13	
+0x002E5E10	FUN_002e5e10	0x002E5F27	0x104	r	movzx edx, byte ptr [rsi + 0x104]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2C6C	
+0x00268380	FUN_00268380	0x0026848F	0x105	r	movzx esi, byte ptr [rax + 0x105]	actor +0xB8, the actor as arg0 from 0x00266530 at 0x0026687A	
 0x00268380	FUN_00268380	0x0026848F	0x105	r	movzx esi, byte ptr [rax + 0x105]	actor +0xB8, the actor in rcx	
-0x002E5E10	FUN_002e5e10	0x002E5F1F	0x105	r	movzx r8d, byte ptr [rsi + 0x105]	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
+0x0026A370	FUN_0026a370	0x0026A387	0x105	w	mov byte ptr [rax + 0x105], r8b	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2FA5	
+0x0026A490	FUN_0026a490	0x0026A525	0x105	w	mov byte ptr [rax + 0x105], cl	actor +0xB8, the actor as arg0 from 0x0034FB10 at 0x0034FB13	
+0x002E5E10	FUN_002e5e10	0x002E5F1F	0x105	r	movzx r8d, byte ptr [rsi + 0x105]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2C6C	
 0x00265FF0	FUN_00265ff0	0x0026609B	0x106	w	mov byte ptr [r14 + 0x106], 0x25	actor +0xB8, the actor in rcx	
-0x00268380	FUN_00268380	0x00268496	0x106	r	movzx ebp, byte ptr [rax + 0x106]	actor +0xB8, the actor as arg0 from 0x00269E20 at 0x00269E34	
+0x00268380	FUN_00268380	0x00268496	0x106	r	movzx ebp, byte ptr [rax + 0x106]	actor +0xB8, the actor as arg0 from 0x00266530 at 0x0026687A	
 0x00268380	FUN_00268380	0x00268496	0x106	r	movzx ebp, byte ptr [rax + 0x106]	actor +0xB8, the actor in rcx	
-0x002E5E10	FUN_002e5e10	0x002E5F17	0x106	r	movzx r9d, byte ptr [rsi + 0x106]	actor +0xB8, the actor as arg0 from 0x002E5F90 at 0x002E5FA5	
+0x0026A370	FUN_0026a370	0x0026A38E	0x106	w	mov byte ptr [rax + 0x106], r9b	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2FA5	
+0x0026A490	FUN_0026a490	0x0026A535	0x106	w	mov byte ptr [rax + 0x106], bpl	actor +0xB8, the actor as arg0 from 0x0034FB10 at 0x0034FB13	
+0x002E5E10	FUN_002e5e10	0x002E5F17	0x106	r	movzx r9d, byte ptr [rsi + 0x106]	actor +0xB8, the actor as arg0 from 0x002E28E0 at 0x002E2C6C	
 0x0025BAD0	FUN_0025bad0	0x0025BBD8	0x107	r	test byte ptr [rsi + 0x107], bl	actor +0xB8, the actor as arg1 from 0x0025B820 at 0x0025B990	
 0x0025BAD0	FUN_0025bad0	0x0025BBD8	0x107	r	test byte ptr [rsi + 0x107], bl	actor +0xB8, the actor in rdx	
 0x0025C230	FUN_0025c230	0x0025C2C8	0x107	r	test byte ptr [rbp + 0x107], 1	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
@@ -691,6 +910,13 @@ function	name	site	disp	kind	instruction	route	note
 0x002646C0	FUN_002646c0	0x00264700	0x107	r	test byte ptr [rcx + 0x107], 1	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266049	0x107	r	movzx eax, byte ptr [r14 + 0x107]	actor +0xB8, the actor in rcx	
 0x00265FF0	FUN_00265ff0	0x00266063	0x107	w	mov byte ptr [r14 + 0x107], al	actor +0xB8, the actor in rcx	
+0x0026B170	FUN_0026b170	0x0026B18A	0x107	r	test byte ptr [rax + 0x107], 2	actor +0xB8, the actor as arg0 from 0x0026BA70 at 0x0026BA79	
+0x0026B230	FUN_0026b230	0x0026B251	0x107	rw	or byte ptr [rax + 0x107], 1	actor +0xB8, the actor as arg0 from 0x00348F80 at 0x00348FF6	
+0x0026B230	FUN_0026b230	0x0026B25A	0x107	rw	and byte ptr [rax + 0x107], 0xfe	actor +0xB8, the actor as arg0 from 0x00348F80 at 0x00348FF6	
+0x0026B230	FUN_0026b230	0x0026B261	0x107	r	movzx ecx, byte ptr [rax + 0x107]	actor +0xB8, the actor as arg0 from 0x00348F80 at 0x00348FF6	
+0x0026B230	FUN_0026b230	0x0026B27D	0x107	w	mov byte ptr [rax + 0x107], cl	actor +0xB8, the actor as arg0 from 0x00348F80 at 0x00348FF6	
+0x0026BA70	FUN_0026ba70	0x0026BA8F	0x107	r	movzx ecx, byte ptr [rdx + 0x107]	actor +0xB8, the actor as arg0 from 0x0026BB00 at 0x0026BB26	
+0x0026BA70	FUN_0026ba70	0x0026BA9E	0x107	w	mov byte ptr [rdx + 0x107], al	actor +0xB8, the actor as arg0 from 0x0026BB00 at 0x0026BB26	
 0x002E5030	Movement_UpdateActorFrame	0x002E511A	0x107	r	test byte ptr [rdi + 0x107], 2	actor +0xB8, the actor as arg0 from 0x0025DF00 at 0x0025E39B	
 0x002E5030	Movement_UpdateActorFrame	0x002E511A	0x107	r	test byte ptr [rdi + 0x107], 2	actor +0xB8, the actor in rcx	
 0x002E54A0	Movement_TransformAndAccumulateCandidate	0x002E54D7	0x107	r	test byte ptr [rdi + 0x107], 2	arg2 from 0x002E5380 at 0x002E548C	
@@ -741,20 +967,26 @@ function	name	site	disp	kind	instruction	route	note
 0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B102	0x220	w	mov dword ptr [rax + 0x220], edi	a context the function resolved itself	
 0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B164	0x220	r	mov ecx, dword ptr [rax + 0x220]	a context the function resolved itself	
 0x0025B070	ActorSystem_ReleaseManagerRecords	0x0025B197	0x220	w	mov dword ptr [rax + 0x220], edi	a context the function resolved itself	
+0x002638C0	FUN_002638c0	0x002638DB	0x220	r	mov eax, dword ptr [rax + 0x220]	actor +0xB8, the actor as arg0 from 0x00342A80 at 0x00342AA9	
 0x00265FF0	FUN_00265ff0	0x0026634B	0x220	w	mov dword ptr [r14 + 0x220], r15d	actor +0xB8, the actor in rcx	
+0x00269DD0	FUN_00269dd0	0x00269DEC	0x220	w	mov dword ptr [rax + 0x220], edx	actor +0xB8, the actor as arg0 from 0x00342A80 at 0x00342ABE	
 0x00265FF0	FUN_00265ff0	0x00266232	0x224	w	mov dword ptr [r14 + 0x224], r15d	actor +0xB8, the actor in rcx	
+0x002690D0	FUN_002690d0	0x00269289	0x224	w	mov dword ptr [rax + 0x224], edx	actor +0xB8, the actor as arg0 from 0x0034E710 at 0x0034E7A5	
 0x0026A950	FUN_0026a950	0x0026A9A8	0x224	w	movss dword ptr [rax + 0x224], xmm3	actor +0xB8, the actor in rcx	
+0x002E28E0	FUN_002e28e0	0x002E3035	0x224	w	mov dword ptr [rax + 0x224], r12d	actor +0xB8, the actor as arg0 from 0x003409F0 at 0x00340AC2	
+0x002E3110	FUN_002e3110	0x002E32AF	0x224	w	mov dword ptr [rax + 0x224], r12d	actor +0xB8, the actor as arg0 from 0x00342640 at 0x003426B9	
 0x002E64E0	FUN_002e64e0	0x002E650C	0x224	w	mov dword ptr [rax + 0x224], ebx	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBE85	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBE85	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBE85	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBEB6	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBEB6	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBEB6	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBEEA	0x224	r	subss xmm0, dword ptr [rbx + 0x224]	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBEEA	0x224	r	subss xmm0, dword ptr [rbx + 0x224]	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBEEA	0x224	r	subss xmm0, dword ptr [rbx + 0x224]	actor +0xB8, the actor in rcx	
-0x002EBE50	FUN_002ebe50	0x002EBF0A	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor as arg0 from 0x002693D0 at 0x00269470	
+0x002EBE50	FUN_002ebe50	0x002EBF0A	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor as arg0 from 0x00263050 at 0x0026318C	
 0x002EBE50	FUN_002ebe50	0x002EBF0A	0x224	w	mov dword ptr [rbx + 0x224], eax	actor +0xB8, the actor in rcx	
 0x0025C230	FUN_0025c230	0x0025C357	0x228	w	mov dword ptr [rbp + 0x228], r15d	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C357	0x228	w	mov dword ptr [rbp + 0x228], r15d	actor +0xB8, the actor in rdx	
 0x0025C230	FUN_0025c230	0x0025C6A8	0x228	rw	or dword ptr [rbp + 0x228], r12d	actor +0xB8, the actor as arg1 from 0x0025C170 at 0x0025C207	
 0x0025C230	FUN_0025c230	0x0025C6A8	0x228	rw	or dword ptr [rbp + 0x228], r12d	actor +0xB8, the actor in rdx	
 0x00265FF0	FUN_00265ff0	0x0026605C	0x228	w	mov dword ptr [r14 + 0x228], r15d	actor +0xB8, the actor in rcx	
+0x002677F0	FUN_002677f0	0x00267847	0x228	r	test dword ptr [rax + 0x228], edx	actor +0xB8, the actor as arg0 from 0x0033F680 at 0x0033F69D	

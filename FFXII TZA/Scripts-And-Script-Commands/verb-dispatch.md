@@ -144,7 +144,7 @@ family array       0x02B57EF0: 16 × u64 table pointer
 command table      +0 s32 count, +4 zero, then records from +8: +0 begin, +8 poll, +0x10 null, +0x18 result (32 bytes)
 value stack        0x02099AC0: +0 s32 depth, +0x04 u8 tag[64], +0x44 u8 source[64], +0x84 u32 zero[64], +0x184 u32 value[64]
 reference          (offset + index × width) | class << 24 | 0x70000000; tag 1; source byte = width
-actor handle       word +0xE of the +0x80 tag-table entry << 16 | index | 0x4000; 0x8000 none
+actor handle       word +0xE of the +0x80 tag-table entry << 16 | index | 0x4000; 0x8000 no actor
 wait slot          +8 target ordinal, +0xC result, +0x10 A, +0x14 wait kind, +0x15 phase, +0x18 scratch[16]
 ```
 

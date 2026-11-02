@@ -8,7 +8,7 @@ id	meaning	record_fields	handler_count	example_handlers	example_senders
 7	+0x40 bit 0x1 turned off (deactivated); same sender as 6	a = 0, b = 0 (stack, id = 7)	0		0x002473F0@0x0024744E; 0x00247490@0x002474D0
 8	focus gained; the widget becomes 0x0208EBC0 and +0x40 bit 0x10 is set	a = 1 when focus returns by a pop (0x002448D0), 0 when taken (0x002470D0); b = 0	19	0x002B7B80, 0x002BAF80, 0x002BD680, 0x002C2320	0x00244830@0x002448AD
 9	focus lost; +0x40 bit 0x10 cleared	a = 0, b = 0	17	0x002B7B80, 0x002BAF80, 0x002BD680, 0x002C2320	0x00244830@0x0024487E
-10	per-tick input turn for the focus top 0x0208EBC0, when every node up its parent chain has +0x40 bits 0x1 and 0x8 and none has bit 0x200	a = 0, b = 0 (static 0x009150D8; also 0x00908B60 from 0x002286B0)	63	0x002284F0, 0x00228C70, 0x0023B330, 0x0023B6F0	0x002481C0@0x002481FB; 0x002286B0@0x002286D9
+10	per-tick input turn for the focus top 0x0208EBC0, when every node up its parent chain has +0x40 bits 0x1 and 0x8 and no node has bit 0x200	a = 0, b = 0 (static 0x009150D8; also 0x00908B60 from 0x002286B0)	63	0x002284F0, 0x00228C70, 0x0023B330, 0x0023B6F0	0x002481C0@0x002481FB; 0x002286B0@0x002286D9
 11	the same turn when a node up the chain has +0x40 bit 0x200 set	a = 0, b = 0 (static 0x009150F0)	2	0x002778C0, 0x005528C0	0x002481C0@0x0024820D
 12	command to an owner: a is a sub-command (0x8000-0x8005 list events, 0x8100-0x8106 dialog answers, or a small screen code), b its argument; the reply value is read by some senders	a = sub-command, b = argument (0x00247510 builds {12, rdx, r8})	73	0x00228C70, 0x0023B330, 0x0023B6F0, 0x0023BD40	0x00247510@0x00247547 (101 calls in 67 functions); 0x002778C0@0x00277EB8; 0x0027E3E0@0x0027E493
 13	notice with a command or text id (Config screens and 0x002D4330)	a = id or value, b = value	5	0x0023B6F0, 0x0023BD40, 0x0023C5C0, 0x00280DE0	0x0023B6F0@0x0023B8E3; 0x0023E020@0x0023E116; 0x002D4330@0x002D453C
@@ -20,7 +20,7 @@ id	meaning	record_fields	handler_count	example_handlers	example_senders
 19	forward transition finished (state 3)	a = 0, b = 0 (stack)	35	0x00241D40, 0x0027F5D0, 0x00280DE0, 0x0029D550	0x00246C20@0x00247039
 20	backward transition finished (state 1)	a = 0, b = 0 (stack)	21	0x00285290, 0x00299090, 0x0029D550, 0x002B7B80	0x00246C20@0x0024706B
 21	tween channel 1 (+0x80 bit 0x2, words +0x9C/+0x9E) stepped; also a subtree broadcast by 0x002C0BE0	a = 0, b = 0 (static 0x00915168)	3	0x00276D30, 0x002A6190, 0x002C0BE0	0x00246C20@0x00246FA7; 0x002C0BE0@0x002C0E8E
-22	tween channel 0 stepped, not yet at its end	a = 0, b = 0 (static 0x00915150)	3	0x002BE4F0, 0x002C0BE0, 0x005691E0	0x00246C20@0x00246FA7
+22	tween channel 0 stepped, short of its end	a = 0, b = 0 (static 0x00915150)	3	0x002BE4F0, 0x002C0BE0, 0x005691E0	0x00246C20@0x00246FA7
 23	tween channel 2 (+0x80 bit 0x4, float +0x8C) stepped; also 0x0055C530	a = 1, b = 0 (static 0x00915180)	1	0x0055CD40	0x00246C20@0x00246FA7; 0x0055C530@0x0055C634
 24	released: sent by 0x002482E0 after the children are released and self is unlinked, before the handler slot is nulled	a = 0, b = 0 (static 0x00915040)	13	0x00279E20, 0x0027AA70, 0x002B7590, 0x002BA700	0x002482E0@0x002483B2
 25	animation tick: first act of the per-widget stepper 0x00246C20, run for widgets with +0x40 bit 0x1 by the walker 0x00244970	a = 0, b = 0 (static 0x00915120)	3	0x002A86A0, 0x005565E0, 0x0055A340	0x00246C20@0x00246C51

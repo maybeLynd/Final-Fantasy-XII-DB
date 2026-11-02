@@ -67,10 +67,11 @@ the last close sets it to the widget's clip box `+0x48` when `+0x5C` bit `0x2000
 The draw pass gives each widget a fresh `0xA0`-byte draw record from `0x002D8C00` (`0x00245EA7`): clip on (`+0x5C` bit `0x20000`),
 alpha `0x80` at `+0x5A`, colour `0x80808080` at `+0x90` and `+0x94`, and 1.0 at `+0x60`, `+0x68` and `+0x6C`.
 
-`0x002D8530` applies its clip box `+0x48`, or none when bit `0x20000` is clear, through `0x00249FD0`; `0x002DD2F0(record, box)` clips
-to `box` moved by the record's `+0x50`/`+0x52` and cut to its clip box (`0x00249EE0`), or to an empty box when they do not
-meet. For the sprite draw (`0x002DBD81`), `0x002DD910` maps the four corners of a quad from the menu's space, centred on 2048, onto the render target, using
-the target's width and height (`0x00182EB0`, `0x00182E80`, 1920 and 1080 without a display) and the aspect `0x00182EE0`.
+`0x002D8530` applies its clip box `+0x48`, or no clip box when bit `0x20000` is clear, through `0x00249FD0`;
+`0x002DD2F0(record, box)` clips to `box` moved by the record's `+0x50`/`+0x52` and cut to its clip box (`0x00249EE0`), or
+to an empty box when they do not meet. For the sprite draw (`0x002DBD81`), `0x002DD910` maps the four corners of a quad
+from the menu's space, centred on 2048, onto the render target, using the target's width and height (`0x00182EB0`,
+`0x00182E80`, 1920 and 1080 without a display) and the aspect `0x00182EE0`.
 
 The record's first word flips the source left to right (bit `0x1`, `0x002DB1B8`) and top to bottom (bit `0x2`, `0x002DB1D0`); a
 non-zero float at `+0x04` rotates the sprite (`0x002DB22F`), about `+0x10`/`+0x12` when bit `0x4` is set and about the
@@ -125,8 +126,8 @@ while `0x002DD4B0` is 0.
 4. A colour quad covers the remaining width, with the alpha of its two right corners cleared, so the bar fades out to
    the right (`0x002DA2D0`).
 
-The colour is the caller's, or `0x40507275` when none is given; its alpha byte `+0x93` goes through the pulse
-`0x00244500` first.
+The colour is the caller's, or `0x40507275` when the caller gives no colour; its alpha byte `+0x93` goes through the
+pulse `0x00244500` first.
 
 ### The pulse
 

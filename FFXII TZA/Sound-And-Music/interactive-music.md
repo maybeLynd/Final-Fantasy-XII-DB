@@ -72,7 +72,7 @@ the play position in seconds, or prints "Music::GetPlaySec Failed to get current
 
 1. It takes the current section's sync type, byte `+0x20` (from version 5; earlier ones add 3 when it is 2 or more),
    and finds the next sync point at least `seconds + 0.2` ahead (`0x007C1830`, "Music::SyncTo failed to CalcSampleDelay"
-   when there is none).
+   when there is no sync point).
 2. It finds the same bar, beat and tick in the target section (`0x007C65C0`), moving it back so the change starts
    `seconds` before that point.
 3. It starts the transition into the target section over `seconds` (`0x007C4790`).
@@ -124,7 +124,7 @@ entering or leaving section's at `+0x70`, eight handles each. Two more voices si
 | `0x007C3230(music, section, handles, seconds)` | builds one voice per layer (`0x007B5D20`) from the stream (`0x007E3040`, `0x007E3150`) or the `mtrl` chunk (`0x007CF8B0`, `0x007CF860`); a failure stops the voices built so far |
 | `0x007C3D60(music, section, handles, a, b)` | sets each live voice's start (`0x007EE450`) to the layer's start minus `a` seconds, less the stream's buffered start when streaming, plus `b` seconds; applies the panning (`0x007EDE90`) and plays it (`0x007EDA60`) |
 | `0x007C8440(music, instrument, seconds, handle, material)` | builds and plays a voice for an instrument material of the `inst` chunk with the music's volume, pitch, filter and panning, paused when the music is; a failure prints "failed to create effect voice! materialIndex = %d" |
-| `0x007C5AC0(music, out, section, handles)` | gives the section's current sample from its layer voices that report 2 (`0x007EBAB0`): a layer's start plus its voice's position (`0x007EBA40`), wrapped into the loop region when the section loops on itself; -1 when none plays |
+| `0x007C5AC0(music, out, section, handles)` | gives the section's current sample from its layer voices that report 2 (`0x007EBAB0`): a layer's start plus its voice's position (`0x007EBA40`), wrapped into the loop region when the section loops on itself; -1 when no layer voice plays |
 | `0x007C5A70`, `0x007C68E0` | the current sample of the current set, and of the other set's section during a transition (`+0x63C` in states 5 and 6, `+0x640` in 7) |
 | `0x007C7090` | answers whether any current layer voice reports 2 |
 | `0x007CA440(music, sample, section, handles)` | passes `sample` minus the layer's start to the playing layer voice that holds it (`0x007EE430`), or -1 to every playing layer voice |
@@ -213,7 +213,7 @@ sets it and acts on entering some states; `0x007CDC20` ("Music::UpdateTransition
 |---:|---|---|
 | `1` | | moves to 2 once a meter is in use (`+0x648`) |
 | `2` | starts a queued next music (`+0x830`, `0x007C43F0`), the stored request (`+0x6A8`; `0x007C4790`, or `0x007CAB80` with `+0x6AE` set), or the section's own next section | |
-| `3` | | stops the other set's playing voices, and moves to 2 when none are left |
+| `3` | | stops the other set's playing voices, and moves to 2 when no voices are left |
 | `4` | | claims the target section's (`+0x644`) streams and moves to 2 once all, and a requested instrument's, are full |
 | `5` | | refreshes the loop counts (`0x007CCDD0`) and moves to 6 at the change sample `+0x6B8` |
 | `6` | resets the fade-out and, with a fade-in time `+0x6C0`, ramps the fade-in `+0x210` to 1.0 | starts the fade-out `+0x250` past its start point and moves to 7 at `+0x6BC` |
@@ -305,7 +305,7 @@ tick = the rest
    stops every voice and sets state 7.
 2. A sample below the last one means the section looped, and `0x007C7950` runs.
 3. While the sample is past the meter's end `+0x608`, it moves to the next meter (`0x007C6090`), or prints "Next meter
-   not found. currentSample = %d" when none is left.
+   not found. currentSample = %d" when no meter is left.
 4. At the section's exit point (section `+0x0C`) with no next section, or in state 9, it sets the timing to the
    section's end timing `+0x2C` rounded up to a bar (`0x007F2F10`). During a change to another section it waits, and
    otherwise it logs "Music::UpdateTiming exceeded exitPoint".

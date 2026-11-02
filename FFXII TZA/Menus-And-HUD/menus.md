@@ -109,10 +109,10 @@ The router is also called directly, without the mailbox:
 | Verb | Id | Does | Scripts |
 |---|---|---|---|
 | `openfullscreenmenu_48d` | `0x48D` | posts a selector and parameter, sets blocked and waits until a menu closes (`0x003462D0`, `0x00352E00`) | 1,274 calls |
-| `openfullscreenmenu` | `0x472` | posts the same, without waiting | none |
+| `openfullscreenmenu` | `0x472` | posts the same, without waiting | 0 |
 | `openspattackwindow` | `0x2A8` | posts id 12 | 1 |
 | `spattackwindowsync` | `0x2A9` | waits on the special-attack window | 1 |
-| `tutorial_sync_partymenu` | `0x3A6` | waits until the next menu closes | none |
+| `tutorial_sync_partymenu` | `0x3A6` | waits until the next menu closes | 0 |
 | `clear_callpartymenu_status`, `is_callpartymenu_status` | `0x561`, `0x562` | clear and read the flag `0x0215F1AF` | 1 each |
 
 Six more verbs read or set menu state through helpers of their own:

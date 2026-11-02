@@ -186,7 +186,7 @@ shot's `attach` word:
 
 | Bits | Eye | Target |
 |---|---|---|
-| actor | 0-8: the n-th type-3 actor of the manager, n - 1 (`0x00257AD0`), 0 for none | 16-24 |
+| actor | 0-8: the n-th type-3 actor of the manager, n - 1 (`0x00257AD0`), 0 for no actor | 16-24 |
 | attach mode | 13-14 | 29-30 |
 | turn with the actor | 15 | 31 |
 | hold height | 11 | 27 |

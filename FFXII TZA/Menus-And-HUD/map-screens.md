@@ -149,8 +149,8 @@ The point list pane takes its rows from the sub-location icons of the page's slo
 
 1. it walks kinds 3 to 8 with `0x003DFBB0` and `0x003DFB50`, keeping the entries `0x003FFF40` accepts;
 2. unless the page's `+0x28` bit `0x200` is set, it skips an icon other than `0x14`, `0x17` and `0x18` whose 16-unit cell is
-   not visited (`0x00255150`), on the visit mask that `0x00403F90` copies from `0x002551B0` (all `0xFF` when there is none or
-   `+0x28` bit `0x8000` is set; the buffer of `0x003C4AE0` when bit `0x1` is set);
+   not visited (`0x00255150`), on the visit mask that `0x00403F90` copies from `0x002551B0` (all `0xFF` when there is no
+   visit mask or `+0x28` bit `0x8000` is set; the buffer of `0x003C4AE0` when bit `0x1` is set);
 3. an icon `0x0E` adds no row: its entry number goes to `+0xC` of the row before it;
 4. each other entry adds a 0x18-byte row {entry, kind `+8`, entry number `+0xA`, `0xFFFF` at `+0xC`}, and the count is
    returned (a null `rows` only counts).
@@ -440,7 +440,7 @@ A marker, `0x70` bytes, 24 in a page's list at `+0xB140`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x40` | `void*` | mapPoint | the map point it stands for, `0x003BF520(record +0x1C, record +0x1E)`, 0 for none (`0x00402CA8`); read by the marker painters `0x002B8EE0` (`0x002B91CF`, `0x002B925C`, `0x002B956D`, `0x002B96CF`) and `0x002BCB00` (`0x002BCE90`, `0x002BCF0C`, `0x002BD160`, `0x002BD2D2`) and by `0x00403970` (`0x00403A3A`), `0x00403F90` (`0x00403FF7`, `0x00404007`) and `0x00404730` (`0x0040476D`, `0x00404840`) |
+| `+0x40` | `void*` | mapPoint | the map point it stands for, `0x003BF520(record +0x1C, record +0x1E)`, 0 for no map point (`0x00402CA8`); read by the marker painters `0x002B8EE0` (`0x002B91CF`, `0x002B925C`, `0x002B956D`, `0x002B96CF`) and `0x002BCB00` (`0x002BCE90`, `0x002BCF0C`, `0x002BD160`, `0x002BD2D2`) and by `0x00403970` (`0x00403A3A`), `0x00403F90` (`0x00403FF7`, `0x00404007`) and `0x00404730` (`0x0040476D`, `0x00404840`) |
 | `+0x4E` | `u16` | markerFlags | bit `0x1` the page's selected marker (`0x002B7F57`, `0x002B80D1`, `0x002BB3B3`, `0x002BB52A`, `0x002BBC1C`), which loses bits `0x6`; bits `0x6` set on a kind-1 marker (`0x00402CBE`, `0x002BBC04`); `0x00402BF0` sets bits `0x1` and `0x8` on every kind-1 marker (`0x00402C0A`); read by `0x00403180` (`0x00403200`, bit `0x2` picks colour `0x80`) and the labels `0x004044D0` (`0x00404624`, bit `0x8`) |
 
 ### The location sprite pane
@@ -631,7 +631,7 @@ argument (`0x005521F2`).
 |---|---|---|---|---|---|
 | `0x02CA96C0` | `f32` | 0 | the ribbon's first texture column as a fraction of the route picture's width (`0x01F2CAF8`): float `+0x08` of the rectangle | `0x00563430` (`0x005634D8`) | `0x005621A0` (`0x005623FB`); `0x00562A30` (`0x00562B1B`) |
 | `0x02CA96C4` | `f32` | 0 | the ribbon's first texture row as a fraction of the picture's height (`0x01F2CAFC`): float `+0x0C` of the rectangle | `0x00563430` (`0x005634E4`) | `0x005621A0` (`0x00562403`); `0x00562A30` (`0x00562B23`) |
-| `0x02CA96C8` | `f32` | 0 | float `+0x00` of the rectangle, stored beside the other three; no route draw reads it | `0x00563430` (`0x005634F7`) | none |
+| `0x02CA96C8` | `f32` | 0 | float `+0x00` of the rectangle, stored beside the other three; no route draw reads it | `0x00563430` (`0x005634F7`) | no reader |
 | `0x02CA96CC` | `f32` | 0 | the ribbon's height in the picture as a fraction of its height: float `+0x04` of the rectangle; the second row is the first plus this times the height | `0x00563430` (`0x005634FF`) | `0x005621A0` (`0x005623F3`); `0x00562A30` (`0x00562B13`) |
 | `0x02CA96D0` | `i32` | 0 | a copy of the World Map line scale `0x01F2CAF4` (16 in the file, `WorldMapLineScale` in [screen layouts](screen-layouts.tsv)): each draw scales a segment's direction to this length (`0x00202FE0`) | `0x00563430` (`0x00563507`) | `0x005621A0` (`0x005625C9`); `0x00562A30` (`0x00562C54`) |
 

@@ -166,7 +166,7 @@ through `0x0031A710`, which tests each again, and clears the count backup (`0x00
 
 | Slot | First | Then |
 |---|---|---|
-| weapon, and ammunition | `0x002F7C80`: Attack Power `+0x1A`; for a bow, crossbow, gun or hand-bomb, plus the best usable ammunition's `+0x1A`, or -1 when there is none | the live weapon, then the live weapon's class, then the lower class |
+| weapon, and ammunition | `0x002F7C80`: Attack Power `+0x1A`; for a bow, crossbow, gun or hand-bomb, plus the best usable ammunition's `+0x1A`, or -1 when there is no usable ammunition | the live weapon, then the live weapon's class, then the lower class |
 | shield | evade `+0x18` | magick evade `+0x19` |
 | helm | Magick Resist `+0x19` | Defense `+0x18` |
 | armor | Defense `+0x18` | Magick Resist `+0x19` |

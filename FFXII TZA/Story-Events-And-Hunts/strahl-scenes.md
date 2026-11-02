@@ -74,7 +74,7 @@ The five shared helper actors have their steps once, in [`shared-zone-script-ste
 them, so this table has no `shared template` row.
 
 An actor that runs another actor's code would have one `same code` row naming the actor whose steps it runs; this
-table has none.
+table has no such row.
 
 The steps by their `resolution` cell:
 
@@ -84,7 +84,7 @@ The steps by their `resolution` cell:
 | empty | 14 |
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
-script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give
+script writes them (`-` for a verb without arguments). Its `addresses`, `timing` and `sync` cells carry what they give
 for the step, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `str_z0000` (event `211`), `監督.main` reads motion 1 of
@@ -107,6 +107,7 @@ shows the party again and disposes of event manager slot 0.
 | `flags_set` | story flags set by the scene, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | story counter values written by the scene, with the first sentence of each explanation on [story counter values](story-counter-values.md) |
 | `next` | the scene or map that follows when the loading script has the same file-name prefix; `-` here |
+| `plays_when` | when the scene plays, in game terms: where, and what the player does (entering the map, talking to someone, touching a spot, winning a battle); the story counter values it plays at, named from [story counter values](story-counter-values.md), with the cases of its switch that come first applied (a switch starts at the first case that matches); every other test on the way to the loading step in what the game holds; and the listing lines it rests on (a step table's line) |
 
 The script list's columns are `script`, `kind` and `place` (the script, `scene`, and its event id), `actors` and
 `functions` (the script's actors and functions), `rows` (its rows in a scripts table) and `shared_actors` (the shared
@@ -120,9 +121,9 @@ The steps table [`strahl-script-steps.tsv`](strahl-script-steps.tsv) has one row
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test` |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
-| `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test |
+| `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |
 | `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its text codes dropped; `-` for every other step |
 | `timing` | the frames, fade lengths and speeds the step uses |

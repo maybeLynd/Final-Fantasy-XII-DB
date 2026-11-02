@@ -54,7 +54,7 @@ frame N, with N read as the decimal digits after `_pic_`. Line order does not ma
 ## Loader behaviour
 
 - **The chain.** `0x001A9770` runs when a request completes. When text arrived, it parses it
-  (`0x001A8BA0`), frees it, and requests the next number (`0x001A7D50`); when none did, it sets the done
+  (`0x001A8BA0`), frees it, and requests the next number (`0x001A7D50`); when no text arrived, it sets the done
   byte context `+0x140`. Lists are therefore read 0, 1, 2 … and the first missing number ends the
   chain, hiding every later one.
 - **Frame sets.** `0x001A8BA0` adds a frame set (a vector of texture pointers, seeded with one null

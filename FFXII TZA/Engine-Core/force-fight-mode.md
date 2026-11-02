@@ -154,7 +154,7 @@ it.
   fires "during forced fights" on a true result is backwards.
 - Scripts and the toggle share one dword, and the arbiter re-asserts the toggle's state on every
   pass: a script's write holds only until then. Every shipped call is `setforcefightmode(0)`, at
-  map entry and after a teleport in the area scripts; none passes 1.
+  map entry and after a teleport in the area scripts; no call passes 1.
 - Clearing either enable byte makes `setforcefightmode(1)` and the toggle's disengage both write
   0, so the party can never leave the fleeing state; only the debug verb could clear one, and no
   shipped script calls it.

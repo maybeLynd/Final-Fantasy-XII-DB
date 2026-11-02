@@ -50,12 +50,12 @@ each one that is not 0 (`0x003EABB6`-`0x003EABC1`), and there are `(maxField + 1
 |---|---|---|---|
 | `+0x00` | `u16` | fields | mask `0x7FF` the first field id, mask `0xF800` how many more follow |
 | `+0x02` | `u8` | rungs | ladder steps after the run |
-| `+0x03` | `u8` | track | the track, 0 for none |
+| `+0x03` | `u8` | track | the track, 0 for no track |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u16` | above | a story counter value |
-| `+0x02` | `u8` | track | the track once the counter is above it, 0 for none |
+| `+0x02` | `u8` | track | the track once the counter is above it, 0 for no track |
 
 `musicinfo.bin` is 256 entries of two bytes, one per track:
 
@@ -68,7 +68,7 @@ each one that is not 0 (`0x003EABB6`-`0x003EABC1`), and there are `(maxField + 1
 
 `0x003EAA70(field)` gives the track for a field id:
 
-1. A field above `maxField` gives -1 (none).
+1. A field above `maxField` gives -1 (no track).
 2. The page is `field / 128`; a page offset of 0 gives -1.
 3. It walks the page's runs while their first field is not above the id, skipping each run's rungs, and stops at the
    run that covers the id; no run gives -1.
@@ -85,16 +85,17 @@ The story counter is read through `FieldData_GetVariable0` (`0x003EAA78`).
 | runs | 291 in 11 pages; 122 cover more than one field, the largest 23 |
 | field ids covered | 726 of 0-1,311; 19 of them have no zone, and two zones have no run, field 0 `tst_a01` and 869 `alc_z04` |
 | runs with a ladder | 48, with 133 rungs, at most 6 on one run |
-| ladders ending in `above 11000: none` | 41 |
+| ladders ending in `above 11000: no track` | 41 |
 | distinct tracks | 69, every one a shipped `musicNNN.win.mab` |
-| runs whose track is none | 41 |
+| runs with no track | 41 |
 | boss-music tracks in `musicinfo.bin` | 18: 10, 11, 33, 36, 51, 69, 70, 71, 95, 96, 97, 101, 102, 113, 205, 206, 207, 213 |
 
-One shipped ladder does not rise: field 866, `alc_z01`, has `above 1950: none; above 1658: 75; above 1973: 22`, so its
+One shipped ladder does not rise: field 866, `alc_z01`, has `above 1950: no track; above 1658: 75; above 1973: 22`, so its
 1,658 rung acts only once the counter is past 1,950.
 
-[`music-table.tsv`](music-table.tsv) lists every run. One example, `bul_b02` (field 742), plays track 75, then none above story counter
-1,976, 39 above 1,982, none above 2,200, 31 above 2,250, 59 above 2,350 and none above 11,000.
+[`music-table.tsv`](music-table.tsv) lists every run. One example, `bul_b02` (field 742), plays track 75, then no
+track above story counter 1,976, 39 above 1,982, no track above 2,200, 31 above 2,250, 59 above 2,350 and no track
+above 11,000.
 
 The `track_titles` and `zone_names` columns name each run's tracks and maps: the example run's tracks are 75 (52_FinalFantasyXII-SeekingPower), 39 (62_FinalFantasyXII-AbandoningPower), 31 (04_FinalFantasyXII-AuditoryHallucination), 59 (65_FinalFantasyXII-TheWhiteRoom).
 
@@ -104,24 +105,24 @@ The `track_titles` and `zone_names` columns name each run's tracks and maps: the
 |---|---|
 | `first_field`, `last_field` | the field ids the run covers |
 | `zones` | one zone name per field id, in order, from the `us` zone path table at `0x01EE23A0`; `-` for an id with no zone |
-| `track` | the run's track, or `none` |
+| `track` | the run's track, or `no track` |
 | `ladder` | the rungs as `above <counter>: <track>`, in order |
 | `kept_in_modes` | the run's boss-music tracks, which chocobo and summon music do not replace |
 | `offset` | the run's file offset in `musicctrl.bin` |
 | `page` | the page whose offset leads to the run |
-| `track_titles` | each track the run and its ladder name, with the title in section 0 of its music file ([Sound banks](sound-banks.md), [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv)); `-` for none |
+| `track_titles` | each track the run and its ladder name, with the title in section 0 of its music file ([Sound banks](sound-banks.md), [`sound-music-bank-files.tsv`](sound-music-bank-files.tsv)); `-` for a run with no track |
 | `zone_names` | the map and region of each zone in `zones`, in order ([Zone asset list](../World-Areas-And-Travel/zone-asset-list.md)); the region alone where the zone has no map name; `-` for an id with no zone |
 
 ### Each area's track by story stage and mode
 
 [`music-resolved.tsv`](music-resolved.tsv) gives every field id's track for each stretch of the story counter, as
 `0x003EAA70` resolves the table: 869 rows for the 726 field ids. The counter is read signed (`0x003EAB10`), so `end` is
-32,767 and a negative counter plays what 0 plays. Field 742 `bul_b02` plays 75 to 1,976, none to 1,982, 39 to
-2,200, none to 2,250, 31 to 2,350, 59 to 11,000 and none after; field 866 `alc_z01` plays none to 1,950, 75 to
-1,973, 22 to 11,000 and none after.
+32,767 and a negative counter plays what 0 plays. Field 742 `bul_b02` plays 75 to 1,976, no track to 1,982, 39 to
+2,200, no track to 2,250, 31 to 2,350, 59 to 11,000 and no track after; field 866 `alc_z01` plays no track to 1,950,
+75 to 1,973, 22 to 11,000 and no track after.
 
 The music that plays is decided at `0x00261F90`: the saved override replaces the table's track while payload `+0x1063`
-bit `0x40` is set (`0x0026201B`-`0x00262029`). A boss-music track stays (`0x00262041`). Any other track, and none
+bit `0x40` is set (`0x0026201B`-`0x00262029`). A boss-music track stays (`0x00262041`). Any other track, and no track
 (`0x0026203D`), gives way to the summon track 91 (`0x5B`, `0x00262053`) in summon mode, or else to the chocobo track
 90 (`0x5A`, `0x00262063`) in chocobo mode. 12 rows keep a boss track: fields 357, 552, 777, 933-936, 1150, 1246, 1291,
 1302 and 1311.
@@ -133,7 +134,7 @@ bit `0x40` is set (`0x0026201B`-`0x00262029`). A boss-music track stays (`0x0026
 | `field` | the field id |
 | `zone` | the field id's zone, as in [`music-table.tsv`](music-table.tsv); `-` for an id with no zone |
 | `counter_from`, `counter_to` | the first and last story counter value of the stretch; `end` is 32,767 |
-| `track` | the track the table gives, or `none` |
+| `track` | the track the table gives, or `no track` |
 | `on_chocobo` | the track in chocobo mode and the instruction that picks it |
 | `with_summon` | the track in summon mode and the instruction that picks it |
 
@@ -142,7 +143,7 @@ bit `0x40` is set (`0x0026201B`-`0x00262029`). A boss-music track stays (`0x0026
 [`music-script-overrides.tsv`](music-script-overrides.tsv) lists the 21,825 music verb calls in the `us` zone
 scripts, in 327 of the 769 zones. It leaves out the helper actors many zones share, which are on
 [Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md). 21,503 calls sit under
-a story counter, flag or other test, 2 only inside an endless loop and 320 under none; 18,700 are the 187 calls of
+a story counter, flag or other test, 2 only inside an endless loop and 320 under no test; 18,700 are the 187 calls of
 each of the 100 Trial Mode zones. Every track number of 0 or more that a call passes is a shipped `musicNNN.win.mab`.
 
 For `musicstop`, `musicclear`, `musicfadeout`, `musicfadeout_231` and `musictrans`, a track of -1 is the current
@@ -182,7 +183,7 @@ not wait (`0x00341FA3`). `setnowmapmusicno` is called 1,363 times; its 229 calls
 | `function` | the actor and function of the call; actors that share their code are named by the first of them |
 | `verb` | the music verb |
 | `track` | the track the call passes: a number, -1, the expression the script passes, or `-` for a verb without one |
-| `condition` | the tests around the call, outermost first, joined with `and`; `not (...)` for an else branch; `always` for none |
+| `condition` | the tests around the call, outermost first, joined with `and`; `not (...)` for an else branch; `always` for a call under no test |
 | `effect` | what the call does, with the verb's instruction addresses |
 
 ### Pages
@@ -233,8 +234,8 @@ track with no shipped bank: 0, 10, 11, 12, 93 and 130.
 | `flags` | byte `+0` |
 | `boss` | `yes` when bit `0x1` of the flags is set, the bit `0x00361010` answers |
 | `b01`, `b01_is` | byte `+1`, and whether it is 0, the entry's own track or another track |
-| `runs`, `rungs` | the runs and rungs of `musicctrl.bin` that name the track; for track 0, those whose track is none |
-| `bank_file` | the track's shipped `music/magi_data/win/musicNNN.win.mab`, or `-` when none ships |
+| `runs`, `rungs` | the runs and rungs of `musicctrl.bin` that name the track; for track 0, those with no track |
+| `bank_file` | the track's shipped `music/magi_data/win/musicNNN.win.mab`, or `-` when no file ships |
 
 ## Loader behaviour
 

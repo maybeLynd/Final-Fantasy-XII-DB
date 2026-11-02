@@ -94,7 +94,9 @@ kind has no path array, only the cell `0x0215F150` below the slots, which nothin
 
 Kind 18 comes only
 from a bound id of class `M` (`0x002ED812`; [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)),
-and no shipped script, table, file or code names one. Every other caller of `0x002DF980` and `0x002DF880` passes a
+and no shipped script names one: no integer literal in the 10,036 script listings lies in
+`0x4D0000`-`0x4DFFFF`, and no entry of the 7,578 actor manifests (60,939 entries) has the letter `M`.
+Every other caller of `0x002DF980` and `0x002DF880` passes a
 fixed kind other than 18, and `0x002DF780` reads a path only for a file the size table sizes, which no kind-18 file
 is in any language.
 
@@ -190,7 +192,7 @@ Message ids are those of [widget messages](widget-messages.md).
 
 The window's text runs in the text context at `+0xD0`, the same context the confirm window uses. Its kind byte
 `+0xA3` picks three handlers from the table at `0x009164C0`: kinds 0 and 1 have the input `0x002A9980` and the pager
-`0x002A8C50` ([text codes](text-codes.md)); kind 2, which `0x002B3400` sets for plain menu text, has none. `0x002B3930`
+`0x002A8C50` ([text codes](text-codes.md)); kind 2, which `0x002B3400` sets for plain menu text, has no handlers. `0x002B3930`
 jumps to the kind's input handler, and `0x002ABEC0` and `0x002ABF20` to its pager after copying the shown count `+0x8C` to
 the painter's `+0x10D8`.
 
@@ -377,9 +379,9 @@ The escape is listed on [text codes](text-codes.md).
 - any other class gives nothing.
 
 `0x0035DF40` writes battle-log lines through `0x0046AA70` when `log` was set ([battle log](../Battle-Actions/battle-log.md))
-and otherwise builds the "You obtain ...!" window `0x0035E070` when none is open (`0x022CA430`). `0x002A3060(item, count,
-log)` is the single-item entry the item verbs use ([reward verbs](../Scripts-And-Script-Commands/reward-verbs.md)),
-and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
+and otherwise builds the "You obtain ...!" window `0x0035E070` when no such window is open (`0x022CA430`). `0x002A3060(item,
+count, log)` is the single-item entry the item verbs use ([reward
+verbs](../Scripts-And-Script-Commands/reward-verbs.md)), and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 
 ## Layouts
 
@@ -387,7 +389,7 @@ and `0x002A5B90(ids, count)` the list entry (`0x003F3F6B`).
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*` | window | the open window widget, 0 for none |
+| `+0x00` | `void*` | window | the open window widget, 0 for no window |
 | `+0x08` | `i32` | state | slot state, above |
 | `+0x0C` | `i32` | answer | the chosen option, -1 until chosen |
 | `+0x10` | `i16[4]` | rect | x, y, width, height |

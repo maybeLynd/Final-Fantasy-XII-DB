@@ -69,7 +69,7 @@ an 8-byte record `x, y, w:12, h:12`):
 | Fact | Value |
 |---|---|
 | copies | 162: 18 files in each of `ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr`, `us` |
-| sizes | `face_guest` 12,288; `map_efe` 16,384; `mini_guest_face` 73,728 (nine 8,192-byte cells, none blank) |
+| sizes | `face_guest` 12,288; `map_efe` 16,384; `mini_guest_face` 73,728 (nine 8,192-byte cells, no blank cell) |
 | `face_guest07`-`16` | byte-identical in all nine languages; `08` = `09`, `10` = `13`, `11` = `12`, `14` = `16` |
 | `face_guest` at a 128-byte stride | every 2 x 2 block uniform in all 90 copies: a 64 x 48 picture doubled on both axes |
 | `face_guest15` | starts `2F 2F 32 32`, pixel indices that read as `//22` |

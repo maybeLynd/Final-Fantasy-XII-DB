@@ -45,7 +45,7 @@ Each line is read from the shipped files in these steps:
 | `+0x00` | `u32` | equipForbidMask | `0x00317930` (`0x00317AD1`-`0x00317AD6`) | bit *c* refuses equipment of class *c*, the equipment row's `+0x09`; 0 on every row |
 | `+0x04` | `u8[3]` | quickenings | `0x0030A310`, `0x0030A330`, `0x00313120`, `0x002F88B0` | the action rows of the member's three Quickenings, `0xD0`-`0xE1` |
 | `+0x07` | `u8` | cameraType | `0x0031B8E0` | the field camera type `0x0025A160` selects (below) |
-| `+0x08` | `u8[2]` | unread08 | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; nothing fixes its width |
+| `+0x08` | `u8[2]` | unread08 | no instruction | read by no instruction, and written by no instruction after `battle_pack.bin` is loaded; nothing fixes its width |
 | `+0x0A` | `u16[5]` | equipment | `0x0023AC80` (`0x0031A630`), `0x00316DF0` | starting equipment, slots 0-4 (main hand, off hand, head, body, accessory) |
 | `+0x14` | `u16` | gambitPreset | `0x0023AC80`, `0x00328BD0` (`0x00327CB0`), `0x00235AF0` | the preset gambit list, `0x5000` + row of `gambit_data` |
 | `+0x16` | `u16` | startHp | `0x0030C470` | max HP at level 0 |
@@ -57,7 +57,7 @@ Each line is read from the shipped files in these steps:
 | `+0x2A` | `u8` | evade | `0x002FEF30` (`0x002FF095`) | innate evade |
 | `+0x2B` | `u8` | size | `0x0023A570` | unit `+0x68` = this byte, unit `+0x6C` = this byte × 1.5 |
 | `+0x2C` | `u8` | flags | `0x0023AC80`, `0x00317480` | mask `0x18` the catch-up rule; bit `0x40` sets stats `+0x00` bit `0x4` (below) |
-| `+0x2D` | `u8` | unread2D | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; `0xFF` on every row |
+| `+0x2D` | `u8` | unread2D | no instruction | read by no instruction, and written by no instruction after `battle_pack.bin` is loaded; `0xFF` on every row |
 | `+0x2E` | `u8` | levelBonus | `0x0023AC80`, `0x00317480` | the starting level (0 means 1), and the levels added to the catch-up average |
 | `+0x30` | `u16` | nameWord | `0x0031C5D0`, `0x0023A570`, `0x00329220`, `0x00536310` | the name, bank 8 |
 | `+0x32` | `u8` | summonTime | `0x002FA0E0` | the Esper's summon timer: `0x00306760` stores it as a float at `[0x02EBF190]` `+0x5AD8` and `+0x5ADC` (`0x00306995`-`0x003069B7`) |
@@ -71,9 +71,9 @@ Each line is read from the shipped files in these steps:
 | `+0x50` | `u32[2]` | augments | `0x0030FED0` (`0x0030FF1F`-`0x00310018`), `0x00239040` (`0x00239073`) | augments 0-31 and 32-63 the member always has; the script verb handler `0x00239040` (`0x00510580`) reads word *k* of `+0x50`-`+0x57`, *k* below 4, of any unit's row as an order row |
 | `+0x58` | `i16[10]` | list | `0x00316DF0`, `0x003060E0` | ids: first-join items and the actions a guest or Esper may use (below) |
 | `+0x70` | `u32` | model | `0x0031C2F0` | the bound model id, letter class in the bits under mask `0xFF0000` |
-| `+0x74` | `u8[6]` | unread74 | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; nothing fixes its width |
+| `+0x74` | `u8[6]` | unread74 | no instruction | read by no instruction, and written by no instruction after `battle_pack.bin` is loaded; nothing fixes its width |
 | `+0x7A` | `i16` | pushWeight | `0x00238BF0` (`0x00238C65`), `0x00317400` (`0x0031744B`) | a positive value / 10 is the body's push weight, which `0x0026DAC0` sets (below) |
-| `+0x7C` | `u8[2]` | unread7C | none | read by no instruction, and written by none after `battle_pack.bin` is loaded; nothing fixes its width |
+| `+0x7C` | `u8[2]` | unread7C | no instruction | read by no instruction, and written by no instruction after `battle_pack.bin` is loaded; nothing fixes its width |
 
 The bytes `+0x02`-`+0x03`, `+0x1C`, `+0x20`, `+0x23`, `+0x26`, `+0x29`, `+0x2F`, `+0x33`, `+0x40`-`+0x43`,
 `+0x6C`-`+0x6F` and `+0x7E`-`+0x7F` are 0 on every row.

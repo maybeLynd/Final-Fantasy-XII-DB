@@ -190,8 +190,8 @@ outside the `0x00506A40` family.
 [random number generators](../Random-Numbers/random-number-generators.md). The dwords
 `0x022D9144` to `0x022D916C` are scalar scratch for eleven translated bodies (`0x003AC110`, `0x003B4310`,
 `0x003B5D40`, `0x005131C0`, `0x00515DA0`, `0x00515FE0`, `0x0051D310`, `0x0053DB50`, `0x0042CBF0`, `0x00395050`,
-`0x003954E0`) and stand for no named register; `0x022D9134` is written by four of them and read by
-none; `0x022D9450` to `0x022D945F` is written by `0x002487A0` and `0x00248A90` (all four lanes, three times each) and
+`0x003954E0`) and stand for no named register; `0x022D9134` is written by four of them and never
+read; `0x022D9450` to `0x022D945F` is written by `0x002487A0` and `0x00248A90` (all four lanes, three times each) and
 read by nothing.
 
 ## Layouts

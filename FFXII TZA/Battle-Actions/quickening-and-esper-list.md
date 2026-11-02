@@ -30,8 +30,8 @@ its word `+0x00` through the word banks, with the action rows whose `+0x22` is t
 |---|---|---|---|---|
 | `+0x00` | `u16` | nameWord | `0x0031C5D0` (`0x0031D86B`, `0x0031D8AE`) | the name, bank 0; its row is the number of the action that names the id |
 | `+0x02` | `u16` | word02 | `0x00306340`, on a path no caller takes (below) | 265 + row on every row |
-| `+0x04` | `u16` | word04 | none | 0-31, the row number on 25 rows |
-| `+0x06` | `u16` | word06 | none | 0 on every row |
+| `+0x04` | `u16` | word04 | no instruction | 0-31, the row number on 25 rows |
+| `+0x06` | `u16` | word06 | no instruction | 0 on every row |
 
 `0x0031C5D0`'s class-17 arm stores the name in the query record `+0x18`, the owned state `0x00309EC0(id, 0)` in
 `+0x20`, `0x0030AE30(id, 0)` in `+0x24` and -1 in `+0x2C` (`0x0031D814`-`0x0031D8E5`).

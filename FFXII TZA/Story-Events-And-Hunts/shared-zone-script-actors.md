@@ -211,7 +211,7 @@ List = count:u32, then 8-byte entries from +4 entry n-1 for message number n:
 | `+0x04` | `u16` |  | second id |
 | `+0x07` | `u8` |  | kind: 0 text only; 1 to 5 name the ids through `0x0035D330`; 1 also gives the first id (`0x00300B80`, `0x002A541B`) |
 
-The `us` list holds 145 entries. The messages callers pass are of kind 0 or 5, so none gives an item:
+The `us` list holds 145 entries. The messages callers pass are of kind 0 or 5, so no message gives an item:
 
 | Number | Message | Requests |
 |---:|---|---:|

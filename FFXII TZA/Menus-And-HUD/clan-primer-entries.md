@@ -36,7 +36,7 @@ that entry.
    rows after them (`0x00572103`-`0x00572135`) are added only when fewer entries were listed than `0x00576740` counted as
    unlocked, and both counts use the same test (`0x00576CA0`), so they are never added.
 3. A Bestiary section's caption reads "???" until part of one of its maps has been explored (`0x00576A50`); the
-   regional sections list those maps, the last seven sections none.
+   regional sections list those maps, the last seven sections no map.
 4. A Bestiary row shows the number of defeats still needed for the next text slot, unless the entry's flag says
    otherwise (`0x00571817`-`0x005718B0`); the `countdown` column gives which rows show it.
 5. For the thirteen Espers the us index row shows the summon's short name, "Belias", in place of the entry's name
@@ -108,7 +108,7 @@ The read marks and the new-entry badge are described on [Clan Primer](clan-prime
 | Column | Meaning | Read by |
 |---|---|---|
 | `family`, `family_name` | the family number 0-5 and its name: `story`, `world`, `person`, `knowledge`, Traveler's Tips, Bestiary | `0x005760A0` (slot 0 `+0xD2`) |
-| `opened_by` | the category whose record at `0x00D23688` names the family, or none | `0x0056F810` |
+| `opened_by` | the category whose record at `0x00D23688` names the family, or `-` when no category names it | `0x0056F810` |
 | `entry` | the record number in the family's catalog | `0x005760A0` |
 | `name`, `name_id` | the record's name and its text id (families 0-4) or battle-text word (Bestiary) | `0x002F9920`, `0x003214B0` |
 | `index_name` | the name the us index row shows: the Esper short name for words `0x4210`-`0x421C`, else `name` | `0x005761B0`-`0x005761FF`, `0x00571710` |
@@ -119,7 +119,7 @@ The read marks and the new-entry badge are described on [Clan Primer](clan-prime
 | `countdown` | Bestiary: whether the index row shows the defeats to the next slot, and up to which count | `0x00571710` |
 | `text_file`, `text_lines` | the text bundle that holds the entry, and its number of text slots | `0x00575D10`, `0x00576300` |
 | `picture` | the picture file and the picture inside it | `0x00575DD0`, `0x00575B80` |
-| `monsters`, `monster_count` | Bestiary: the enemy definitions (area, row, name) whose `primer_entry` is this entry, and how many; for the ten entries no definition names, which unlock by the story counter alone (33, 35, 278 and 377-383), `none names it` and the definitions the entry stands for, joined by the entry's gallery model to the definitions' `model_id`, or by name for Ba'Gamnan, whose gallery model no definition uses; their count stays 0 | [Bestiary](../Enemy-Spawning/bestiary.md) |
+| `monsters`, `monster_count` | Bestiary: the enemy definitions (area, row, name) whose `primer_entry` is this entry, and how many; for the ten entries no definition names, which unlock by the story counter alone (33, 35, 278 and 377-383), `no definition names it` and the definitions the entry stands for, joined by the entry's gallery model to the definitions' `model_id`, or by name for Ba'Gamnan, whose gallery model no definition uses; their count stays 0 | [Bestiary](../Enemy-Spawning/bestiary.md) |
 | `gallery_model_id`, `gallery_model` | the viewer's `monsterModelId` of `monstergallery.json` entry `MonsterId<n>`, and the model of a linked definition with that id | `0x001EB9C0` |
 | `explanation` | a one-line summary | |
 
@@ -154,10 +154,10 @@ inline icon as `[icon X]`, X its letter; colour and layout codes leave nothing (
 |---|---|---:|---:|---|---|
 | Traveler's Tips (`tutorial`) | Traveler's Tips | 16 | 4 | 11 always, 5 by story counter | in the texts file |
 | Bestiary (`monster`) | Bestiary | 384 | 32 | 367 by defeat, 14 by story counter, 1 by another monster, 2 through quests | in the texts file |
-| `story` | none | 69 | 4 | all by story counter | not in the texts file: each bundle carries its own glyph sheet |
-| `world` | none | 74 | 10 | 5 by story counter, 69 always | not in the texts file: each bundle carries its own glyph sheet |
-| `person` | none | 57 | 4 | always | not in the texts file: each bundle carries its own glyph sheet |
-| `knowledge` | none | 100 | 7 | always | not in the texts file: each bundle carries its own glyph sheet |
+| `story` | no category | 69 | 4 | all by story counter | not in the texts file: each bundle carries its own glyph sheet |
+| `world` | no category | 74 | 10 | 5 by story counter, 69 always | not in the texts file: each bundle carries its own glyph sheet |
+| `person` | no category | 57 | 4 | always | not in the texts file: each bundle carries its own glyph sheet |
+| `knowledge` | no category | 100 | 7 | always | not in the texts file: each bundle carries its own glyph sheet |
 
 - The four unused families' names and captions are empty in the us text: 267 of their 325 names and captions,
   through 247 text ids, each "NOT USED" in the `fr` text. The other 58 are 57 `world` names and one `knowledge`

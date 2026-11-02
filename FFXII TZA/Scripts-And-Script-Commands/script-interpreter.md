@@ -197,7 +197,7 @@ instruction: u8 opcode, then u16 operand for 0x48..0x63
 |---|---|
 | opcodes / distinct handlers | 100 / 92 |
 | instruction lengths | 0 ×3, 1 ×69, 3 ×28 |
-| opcodes without a handler | 6, none used by any shipped script |
+| opcodes without a handler | 6, not used by any shipped script |
 | instructions per call before the budget raises the stop flag | 65,536 |
 | value stack | 64 entries, pushes refused at 63 |
 | rewind sites / advance sites | 21 / 4 |

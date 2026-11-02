@@ -59,15 +59,15 @@ The five swapped zones are `dst0109` (art of `dst0103`), `dst0110` (`dst0105`), 
 | Fact | Value |
 |---|---|
 | zones | 708, numbered 12 to 1,311; 47 name prefixes over 215 areas |
-| map names | 704 zones, 648 distinct names; the four `ttl` zones have none. 16 scene-variant zones (`rbn_z01`, `alc_z01` to `alc_z04`, `var_z01` and the like) carry their own code as the name |
+| map names | 704 zones, 648 distinct names; the four `ttl` zones have no name. 16 scene-variant zones (`rbn_z01`, `alc_z01` to `alc_z04`, `var_z01` and the like) carry their own code as the name |
 | region names | all 708 zones, 51 distinct regions; the largest are Trial Mode (100 zones), The Great Crystal (73) and Draklor Laboratory (71) |
 | scripts | all 708 ship, in each of the nine language folders (`us`, `de`, `es`, `fr`, `it`, `in`, `kr`, `cn`, `ch`) |
 | `.mot` | ships for 188 zones; named but not shipped for 520 |
-| `.fpk` | named for all 708, shipped for none |
+| `.fpk` | named for all 708, shipped for no zone |
 | map packs | 458 distinct zone packs and 88 distinct block packs, all shipped |
 | area battle data | 215 distinct `.ard` files named; not shipped for 120 zones |
-| remastered map art | 704 zones, 451 distinct lists, each with one mesh; 82,856 textures in all. The four zones `ttl_a01`, `ttl_b01`, `ttl_c01` and `ttl_d01` have none |
-| map sounds | 704 zones bind a list, from 87 block packs: 1 to 48 ids, 624 distinct, 10,215 in all. The four `ttl` zones' block pack `tst0100` carries none. Sound map numbers 502 to 594, 88 distinct |
+| remastered map art | 704 zones, 451 distinct lists, each with one mesh; 82,856 textures in all. The four zones `ttl_a01`, `ttl_b01`, `ttl_c01` and `ttl_d01` have no art list |
+| map sounds | 704 zones bind a list, from 87 block packs: 1 to 48 ids, 624 distinct, 10,215 in all. The four `ttl` zones' block pack `tst0100` carries no sound id. Sound map numbers 502 to 594, 88 distinct |
 | models | 582 zones name models in their manifest, 209 distinct models in all |
 | foes | 471 zones place foes. Seven zones (`nal_a01`, `nal_b01`, `rui_a04`, `sav_b01`, `rbn_a01`, `rbn_a03`, `srb_b04`) place definitions whose shipped name is "No name" (21 bestiary rows, NPC models such as `n1020`) and list that name |
 
@@ -127,6 +127,20 @@ them. Kind 6 writes, which never change where a walking body stops, and writes t
 In 67 rows the arrival entrance of a way is held in a saved value; the date then counts the exit group reachable from
 that arrival.
 
+A `gate_text` or `basis_text` cell names each saved value it tests by a label, `the value of <label> (stored as the
+<label> rows of saved-value-stores.tsv give)`. [saved-value-stores.tsv](saved-value-stores.tsv) gives every store of
+each label with that store's own condition, in the same words, so each store is written once.
+
+A value tested inside one of those conditions is named by its label and has rows of its own, so every store of every
+value the cells name is in the table: 2,351 values, 30,875 stores. Among them are the values the door conditions of
+[Script censuses](../Story-Events-And-Hunts/script-censuses.md) test and the values the `set_conditions` cells of
+[Story flag ids](../Story-Events-And-Hunts/story-flag-ids.md) test.
+
+A value that no script stores is named by its block, unit and offset, with the scope that was searched: `no line of this
+script stores it` for a scratch1 value, `no <region> script stores it` for a scratch2 value, with the stores other areas
+make counted, `no line of the us listings stores it` for a global value that no us script stores, and `no story script
+stores it` with the developer test scripts' stores named when only those store it.
+
 ## Columns
 
 | Column | Meaning |
@@ -138,7 +152,7 @@ that arrival.
 | `sound_map` | the sound map number, the block record's second word plus 500 |
 | `map_sounds` | the ids of the block pack's `SPP1` list, in list order; each names the six-digit bank `se<id / 1000>/se<id>` |
 | `area`, `ard` | the area number and its battle data file; "(not shipped)" when the archive lacks it |
-| `art`, `art_meshes`, `art_textures` | the remastered `.ah` list and its mesh and texture counts; empty when the zone has none |
+| `art`, `art_meshes`, `art_textures` | the remastered `.ah` list and its mesh and texture counts; empty when the zone has no list |
 | `models` | the models of the zone script's actor manifest, by name |
 | `foes` | the shipped names of the definitions the zone script places |
 | `chests` | the zone's chests in [`treasure-chest-list.tsv`](treasure-chest-list.tsv), by zone number |
@@ -163,7 +177,18 @@ a music run except field 869, `alc_z04` ([Music table](../Sound-And-Music/music-
 | `way_in` | the way: the zone it leads from, its kind (`walk` for an exit group's map jump, `event` for a map jump elsewhere in the zone's scripts, `strahl` for a Strahl destination), then the actor, function and step of the map jump in the step tables; `new game start` for `naf_a01` |
 | `gate` | the way's condition at that step, in the step tables' notation; `-` for a way with no condition |
 | `basis` | what the date rests on, one clause per `; `: how the walk mesh joins the arrival to the exit, an arrival held in a saved value, the battle the date needs and the walls the source zone switches on |
-| `gate_text`, `basis_text` | `gate` and `basis` in words: story counter values with their names, saved values with what they hold and where they are set, items by name |
+| `gate_text`, `basis_text` | `gate` and `basis` in words: story counter values with their names, saved values by their label in [saved-value-stores.tsv](saved-value-stores.tsv), items by name |
+
+### Columns of saved-value-stores.tsv
+
+| Column | Meaning |
+|---|---|
+| `flag` | the label a `gate_text`, `basis_text` or `condition` cell, or a `set_conditions` cell of [story-flag-ids.tsv](../Story-Events-And-Hunts/story-flag-ids.tsv), gives the value: an engine-held value by its block, unit and offset (`global byte 0x934`); a scratch1 value, which one script's field holds, by that script, then block, unit and offset (`asp_a01 scratch1 16-bit word 0x4`); a scratch2 value, which the scripts of one area share, by block, unit and offset and the area's script prefix (`scratch2 16-bit word 0x80 of the mic_ scripts`); a script's own variable by the script and the variable's name in the listing; with the element in brackets when the store is to an array element |
+| `script` | the script that holds the store |
+| `place` | the actor and function of the store and its listing line |
+| `store` | the store as the listing writes it, with a bitwise or written `bitor`; a value the game's symbols name, such as `global_flag[2]`, is under that name here |
+| `value` | the value stored, or `computed` when the store writes the result of an expression |
+| `condition` | when the store runs, in words: `every time the line runs` when nothing before it is tested; a value tested here that has rows of its own is named by its label, and `it` is the row's own `flag` (`it is below 25` tests the value before this store) |
 
 ## Related
 

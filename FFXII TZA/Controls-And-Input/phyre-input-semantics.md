@@ -129,7 +129,7 @@ semantic outside the class's band with an `Empty` object first.
 | `0x00874080` | `PInputSourceKey` | code below 28, a null semantic counting as 0 (`0x008740BC`, `0x008740C5`) | key `Empty` `0x01F456C8` (`0x008740B5`) |
 | `0x00874120` | `PInputSourceMouseButton` | null, or a code outside 11-13 (`0x00874138`-`0x0087413E`) | mouse-button `Empty` `0x01F462E8` (`0x00874140`) |
 | `0x00874170` | `PInputSourceMouseDeltaX` and `Y` | `+0x30` as for the mouse button (`0x00874188`); `+0x38` null, or the `+0x30` code outside 11-13 (`0x0087419B`-`0x008741B2`) | `0x01F462E8` for `+0x30`, `0x01F456C8` for `+0x38` (`0x008741B4`) |
-| `0x00873FB0` | `PInputSourceJoypadAxis` | none | none; a null semantic gives code 0 (`0x00873FD0`) |
+| `0x00873FB0` | `PInputSourceJoypadAxis` | no test | no replacement; a null semantic gives code 0 (`0x00873FD0`) |
 
 The pad-button, key and mouse slots read a code through the semantic's own slot 1 (`call [rax+8]` at `0x00873FF9`,
 `0x0087400E`, `0x0087403A`, `0x00874050`, `0x00874099`, `0x008740AE`, `0x008740DA`, `0x008740F0`, `0x00874135`, `0x00874157`,
@@ -220,7 +220,7 @@ codes 1-3.
 | `global` | the object's address; its first qword is the vtable pointer |
 | `name` | the name string the object points at (`+0x08`) |
 | `class` | `PInputTypeSemantic`, `PInputAxisSemantic` or `PInputJoypadButtonSemantic` |
-| `code` | the code at `+0x18`, decimal; `-` for a type object, which has none |
+| `code` | the code at `+0x18`, decimal; `-` for a type object, which has no code |
 | `registry` | the head of the list the object is inserted into |
 | `initialiser` | the static initialiser, with the address of its insert call |
 | `teardown` | the exit teardown it registers |

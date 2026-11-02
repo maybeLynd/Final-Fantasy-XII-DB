@@ -168,7 +168,7 @@ Replacing a file:
 | `extra_motions` | the number of kind 30 motion files in the model's folder |
 | `ah`, `pc_meshes`, `pc_textures` | the remastered `.ah` list, its mesh and its number of textures; empty when the archive has no list |
 | `se_blocks` | the SE blocks of the model's `charseinfo` row, slot by slot, as the `.seb` files they load: slot 0 is sound group 0, played through the weapon model a character holds; slot 1 group 1, the footsteps; slot 2 group 2 ([Animation sounds](../Sound-And-Music/animation-sounds.md)) |
-| `voice_bank` | the battle-voice bank the row names, `shoutNN`; empty for none |
+| `voice_bank` | the battle-voice bank the row names, `shoutNN`; empty when the row names no bank |
 | `bestiary`, `party`, `script_containers` | the bestiary names, party table rows and number of script manifests that use the model |
 | `explanation` | a one-line summary |
 

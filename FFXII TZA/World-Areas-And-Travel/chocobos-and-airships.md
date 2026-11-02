@@ -173,14 +173,14 @@ and, when the bit changes:
 
 The count is written only by the mounts (`0x00303DC6` and the special presentation's `0x00306A23`, both `or 0xC`),
 by turbo, by the reset `0x00304680` (`0x00304726`, cleared) and by the transition restore `0x002EF410` (below), so a ride
-has three dashes and gets none back. While turbo is on the chocobo's speed is doubled: `0x003045A0` multiplies the
+has three dashes and gets no dash back. While turbo is on the chocobo's speed is doubled: `0x003045A0` multiplies the
 chocobo definition's speed by `[0x01CEBC08]` = 2.0 when bit `0x2` is set (`0x003045D5`-`0x003045DA`;
 [player movement](../Movement-And-Pathfinding/player-movement.md)).
 
 The dash drains in slot 2 at the ticker's rate, from `[0x01DFE0B8] x 10.0` to 0 (10.0 with the image value 1.0;
 20.0 when FrameLimit 1 makes `0x001EDDC0` store 2.0 there, `0x001EDDD8`), and `0x00304440` ends it in its step 3 when
 the slot expires. The gauge the player sees is the count alone: of the twelve call sites of the record
-filler `0x003200A0` (in seven functions), none reads the turbo time `+0x10` (the ride HUD record access
+filler `0x003200A0` (in seven functions), no site reads the turbo time `+0x10` (the ride HUD record access
 table), so a running dash shows no bar and no number, only the spent mark's fade (below).
 
 ### The debug switches
@@ -266,17 +266,17 @@ record `[0x0209AC30] + 0x28` at `+0x1C8` on message 1:
 
 The five widgets are built inside the manager's `0xAA0` bytes with `0x00245000` ([widgets](../Menus-And-HUD/widgets.md#construction)).
 Four take a record of the field HUD layout file at `[0x0209AC30] + 0x28`, decoded by `0x002432B0` (the dialog takes
-none); the marks, the control window and the TIME root install an animation descriptor with `0x00247570`, while
+no record); the marks, the control window and the TIME root install an animation descriptor with `0x00247570`, while
 the timer and the dialog keep the default `0x00915198` ([widgets](../Menus-And-HUD/widgets.md#opening-and-closing-runs)):
 
 | Part | Procedure | Size | At | Layout record | Descriptor | Nodes |
 |---|---|---|---|---|---|---|
-| manager | `0x003CA860` | `0xAA0` | `0x02B47758` | none: its rect is `0x01E0C1D8` x `0x01E0C1DC` at 0, 0 (`0x003CAA9D`-`0x003CAABD`) | none; it sets its draw priority to `0xA0` with `0x00247930` (`0x003CAACC`) | |
+| manager | `0x003CA860` | `0xAA0` | `0x02B47758` | no record: its rect is `0x01E0C1D8` x `0x01E0C1DC` at 0, 0 (`0x003CAA9D`-`0x003CAABD`) | no descriptor; it sets its draw priority to `0xA0` with `0x00247930` (`0x003CAACC`) | |
 | marks | `0x003CB150` | `0x1E0` (`0x003CB0ED`) | `+0xC0` (`0x003CB0E3`) | 0 (`0x003CB1C7`) | table entry 1 (`0x003CB1D4`) | items 3, 4, 5 of the record, from `0x00D11758` (`0x003CB347`) |
 | control window | `0x003CAB00` | `0x1C0` | `+0x2A0` | 1, through the marks' record (`0x003CAB65`) | table entry 4 (`0x003CAB9D`) | two `0x80`-byte labels at `+0xC0` and `+0x140` from legend scene `0xC` |
 | TIME root | `0x003CAE00` | `0x190` | `+0x460` | 2 (`0x003CAE73`) | its own at `0x00D11730` (`0x003CAEB5`) | |
 | timer | `0x003CA530` | `0xD0` | the TIME root's `+0xC0` (`0x003CAE22`) | 3 (`0x003CA7C8`) | default | the digits through `0x0029F6E0`: three whole seconds, one tenth |
-| Dismount dialog | `0x003CA310` | `0x4A0` | `+0x5F0` | none: text `0x832` or `0x87C` into a `0x200`-byte buffer, window flags `0x418` plus `0x101` when the test fails (`0x003CA4A8`-`0x003CA4E0`) | default | its window at `+0xC0` (`0x00241C90`) |
+| Dismount dialog | `0x003CA310` | `0x4A0` | `+0x5F0` | no record: text `0x832` or `0x87C` into a `0x200`-byte buffer, window flags `0x418` plus `0x101` when the test fails (`0x003CA4A8`-`0x003CA4E0`) | default | its window at `+0xC0` (`0x00241C90`) |
 
 The descriptors are two halves of `0x14` bytes, open and close; their words are (1, 200, 1, 40) at
 `0x00D11730`, (1, 200, 1, −50) for entry 1 (the marks) and (1, 200, 1, 0) with 50 in the third dword for
@@ -390,7 +390,7 @@ and `0x0025D540`, then:
 - `0x0025D480` then clears the three vector pointers and bit `0x4`, so the vectors serve one attach.
 
 The script verb `attachinfo` (`0x0026A140`, [actor record](../Characters-And-Objects/actor-record.md)) sets the vectors for the
-next attach. The ride's path (`0x00304060` to `0x002E28C0`) sets none, and the previous attach cleared them, so the
+next attach. The ride's path (`0x00304060` to `0x002E28C0`) sets no vectors, and the previous attach cleared them, so the
 rider sits where slot 15 of the chocobo's model puts it
 ([character render records](../Graphics/character-render-records.md)). `0x002E26F0`'s other caller is
 `0x0034A640` (`0x0034A686`).
@@ -571,7 +571,7 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 | `0x022CA624` | u32 | the frame steps the ticker multiplies the step by (`0x0035E790`) |
 | `0x01EECFC0` row 2 | ptr[4] | the chocobo level's transition handlers `0x00304180`, `0x00304400`, `0x00304060`, `0x00304140` |
 | `0x02064AB0` | f32[4] | the rider's angles after the tie: uninitialised, read only |
-| `0x022CA468` | ptr | the running dismount task, 0 when none |
+| `0x022CA468` | ptr | the running dismount task, 0 when no dismount runs |
 | `0x022CA45C` | u32 | cleared when a timer dismount starts; 1 after a refused Dismount (`0x0035D010`), read by `0x0035CF50` |
 | `0x01CEBC08` | f32 | 2.0, the restore floor for slot 1 |
 | `0x01DFE0B8` | f32 | the frame base the turbo length multiplies, image value 1.0 |

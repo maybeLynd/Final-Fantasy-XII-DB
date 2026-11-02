@@ -172,7 +172,7 @@ of the effect record's `u16` at `+0x36A`:
 |---:|---|---|
 | 1 | `0x002FCFB0` | slot = the handle's low six bits, below 48; the slot's dword at `0x02EC32E0` + slot·`0x38` must equal the handle, and its pointer at `+0x10` must be set (`0x002FCFE1`) |
 | 5, 6, 9 | `0x003B0F30` | the 36 entries of 24 bytes at `0x02EBEC00`, walked until the first dword equals the handle; a zero first dword ends the walk; the entry's pointer `+0x08` must be set (`0x003B0F76`) |
-| any other | none | returns (`0x0024ED76`) |
+| any other | no body | returns (`0x0024ED76`) |
 
 The only other caller, `0x00319E40`, does the same for the handle `0x0030CA50()` returns, after passing it
 with the ids of the units in the list at `+0x780` (count `+0x77C`) to `0x002EAD00`, when `0x00237420()` is
@@ -199,7 +199,7 @@ Struct TrapRecord base=trapTable+offset[i] size=`0x0C`:
 |---|---|---|---|
 | `+0x00` | `i16` | x | tenths of a world unit (`0x002F81BE`, `0x002FA82C`) |
 | `+0x02` | `i16` | z | tenths of a world unit |
-| `+0x04` | `u8` | flagId | story flag (Bank512, first half) set on firing and tested at arming; `0xFF` = none (`0x002F8243`, `0x002FA7E8`) |
+| `+0x04` | `u8` | flagId | story flag (Bank512, first half) set on firing and tested at arming; `0xFF` = no flag (`0x002F8243`, `0x002FA7E8`) |
 | `+0x05` | `u8` | armChance | percent; roll % 100 below it arms the trap (`0x002FA7FC`) |
 | `+0x06` | `u16` | action75 | the action row chosen below 75 (`0x002F8237`) |
 | `+0x08` | `u16` | action25 | the action row chosen at 75 and above (`0x002F823E`) |
@@ -237,12 +237,12 @@ records all sit at one point, (32.0, -4.0), and name every trap row 246 to 261 o
 
 | Column | Meaning |
 |---|---|
-| `zone`, `zone_name` | the field number *n* whose zone script holds the trap, and the script's name; `none` for `bts_z01` |
-| `map_name`, `region` | the map's name (`0x00377B60`) and its region's name (`0x003778B0`) for that field, as [Zone asset list](zone-asset-list.md) gives them; `none` for `bts_z01` |
+| `zone`, `zone_name` | the field number *n* whose zone script holds the trap, and the script's name; `zone` is `-` for `bts_z01`, which no field loads |
+| `map_name`, `region` | the map's name (`0x00377B60`) and its region's name (`0x003778B0`) for that field, as [Zone asset list](zone-asset-list.md) gives them; `-` for `bts_z01` |
 | `script`, `table`, `records` | the zone script in the archive, the trap table's offset in its script image, and the table's record count |
 | `record` | the record index *i*: the bit of the live mask and the marker slot |
 | `x`, `z` | the trap point, `+0x00` and `+0x02` divided by ten, in world units; the record holds no height |
-| `flag_id`, `arm_chance` | `+0x04` (`0xFF`, none, in every line) and `+0x05`, the percent chance it is armed at each field load |
+| `flag_id`, `arm_chance` | `+0x04` (`0xFF`, no flag, in every line) and `+0x05`, the percent chance it is armed at each field load |
 | `action_75`, `action_75_name`, `action_75_effect` | `+0x06`, the action fired when the draw modulo 100 is below 75: its row, its shipped name, and what it does with its battle log line |
 | `action_25`, `action_25_name`, `action_25_effect` | `+0x08`, the action fired otherwise, the same three |
 | `radius`, `reaches` | `+0x0A`, and whom the trap reaches: the one who stepped on it for 0, else every party member within that many units |
@@ -283,7 +283,7 @@ Over the 1,114 `us` zone and event scripts (one file is not an `EBP2` container)
 | real traps | 489 |
 
 Every table reference is tag 3. Tables hold 1 to 16 records; 285 hold one. All 489 real traps
-have flag id `0xFF`, so no shipped trap ever sets a story flag and none is ever skipped at
+have flag id `0xFF`, so no shipped trap ever sets a story flag and no trap is ever skipped at
 arming: a field's traps are rolled afresh every time its `settrapresource` runs (an unconditional call in the
 `init` of its `btl_trap_ctrl` actor), and the story-flag path exists only
 for authored data that does not ship. The arm chance is 100 in 487 traps and 60 in the two traps

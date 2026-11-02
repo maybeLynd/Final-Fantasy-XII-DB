@@ -15571,7 +15571,7 @@ tri_b05	Map_Director	main	13	0x0E318	2379	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_b05	Map_Director	main	14	0x0E321	2383	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_b05	Map_Director	main	15	0x0E32B	2384	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_b05	Map_Director	main	16	0x0E32E	2385	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_b05	Map_Director	main	17	0x0E331	2388	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_b05	Map_Director	main	17	0x0E331	2388	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_b05	PC00	init	1	0x0E335	2397	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_b05	PC00	init	2	0x0E338	2398	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_b05	PC01	init	1	0x0E33C	2407	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -24932,7 +24932,7 @@ tri_d01	Map_Director	main	11	0x0D8B8	2376	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_d01	Map_Director	main	12	0x0D8C1	2380	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_d01	Map_Director	main	13	0x0D8CB	2381	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_d01	Map_Director	main	14	0x0D8CE	2382	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_d01	Map_Director	main	15	0x0D8D1	2385	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_d01	Map_Director	main	15	0x0D8D1	2385	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_d01	PC00	init	1	0x0D8D5	2394	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_d01	PC00	init	2	0x0D8D8	2395	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_d01	PC01	init	1	0x0D8DC	2404	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -49871,7 +49871,7 @@ tri_g02	Map_Director	main	11	0x0DA22	2389	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_g02	Map_Director	main	12	0x0DA2B	2393	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_g02	Map_Director	main	13	0x0DA35	2394	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_g02	Map_Director	main	14	0x0DA38	2395	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_g02	Map_Director	main	15	0x0DA3B	2398	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_g02	Map_Director	main	15	0x0DA3B	2398	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_g02	PC00	init	1	0x0DA3F	2407	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_g02	PC00	init	2	0x0DA42	2408	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_g02	PC01	init	1	0x0DA46	2417	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -54523,7 +54523,7 @@ tri_g05	Map_Director	main	11	0x0D952	2370	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_g05	Map_Director	main	12	0x0D95B	2374	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_g05	Map_Director	main	13	0x0D965	2375	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_g05	Map_Director	main	14	0x0D968	2376	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_g05	Map_Director	main	15	0x0D96B	2379	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_g05	Map_Director	main	15	0x0D96B	2379	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_g05	PC00	init	1	0x0D96F	2388	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_g05	PC00	init	2	0x0D972	2389	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_g05	PC01	init	1	0x0D976	2398	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -60846,7 +60846,7 @@ tri_h04	Map_Director	main	11	0x0D712	2370	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_h04	Map_Director	main	12	0x0D71B	2374	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_h04	Map_Director	main	13	0x0D725	2375	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_h04	Map_Director	main	14	0x0D728	2376	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_h04	Map_Director	main	15	0x0D72B	2379	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_h04	Map_Director	main	15	0x0D72B	2379	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_h04	PC00	init	1	0x0D72F	2388	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_h04	PC00	init	2	0x0D732	2389	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_h04	PC01	init	1	0x0D736	2398	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -65482,7 +65482,7 @@ tri_i02	Map_Director	main	12	0x0DC7A	2376	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_i02	Map_Director	main	13	0x0DC83	2380	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_i02	Map_Director	main	14	0x0DC8D	2381	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_i02	Map_Director	main	15	0x0DC90	2382	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_i02	Map_Director	main	16	0x0DC93	2385	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_i02	Map_Director	main	16	0x0DC93	2385	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_i02	PC00	init	1	0x0DC97	2394	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_i02	PC00	init	2	0x0DC9A	2395	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_i02	PC01	init	1	0x0DC9E	2404	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -76302,7 +76302,7 @@ tri_j04	Map_Director	main	11	0x0D562	2370	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_j04	Map_Director	main	12	0x0D56B	2374	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_j04	Map_Director	main	13	0x0D575	2375	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_j04	Map_Director	main	14	0x0D578	2376	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_j04	Map_Director	main	15	0x0D57B	2379	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_j04	Map_Director	main	15	0x0D57B	2379	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_j04	PC00	init	1	0x0D57F	2388	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_j04	PC00	init	2	0x0D582	2389	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_j04	PC01	init	1	0x0D586	2398	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -77886,7 +77886,7 @@ tri_j05	Map_Director	main	11	0x0D7A7	2407	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_j05	Map_Director	main	12	0x0D7B0	2411	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_j05	Map_Director	main	13	0x0D7BA	2412	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_j05	Map_Director	main	14	0x0D7BD	2413	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_j05	Map_Director	main	15	0x0D7C0	2416	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_j05	Map_Director	main	15	0x0D7C0	2416	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_j05	PC00	init	1	0x0D7C4	2425	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_j05	PC00	init	2	0x0D7C7	2426	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_j05	PC01	init	1	0x0D7CB	2435	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -84268,10 +84268,10 @@ tri_k04	Map_Director	init	198	0x0E8C9	2666	-	setmapidwall	25, 6, 1	-	-	-	-	-		01
 tri_k04	Map_Director	init	199	0x0E8CF	2667	-	store	file_var_s5_3 = 0	variable file_var_s5_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k04	Map_Director	init	200	0x0E8D2	2668	-	nowmap	-	result stored in file_var_s5_5	-	-	-	-		01 verb-table.tsv
 tri_k04	Map_Director	init	201	0x0E8D8	2669	-	nowmap	-	result stored in mp_mtanaka_dbg	-	-	-	-		01 verb-table.tsv
-tri_k04	Map_Director	init	202	0x0E8E4	2670	-	sysDVAR	1, file_var_s5_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	203	0x0E8EB	2671	-	sysDVAR	2, mp_mtanaka_dbg	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	202	0x0E8E4	2670	-	sysDVAR	1, file_var_s5_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	203	0x0E8EB	2671	-	sysDVAR	2, mp_mtanaka_dbg	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	204	0x0E8EC	2672	-	nowjumpindex	-	result stored in local_var_s5f0_1	-	-	-	-		01 verb-table.tsv
-tri_k04	Map_Director	init	205	0x0E8F8	2673	-	sysDVAR	3, local_var_s5f0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	205	0x0E8F8	2673	-	sysDVAR	3, local_var_s5f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	206	0x0E8FC	2674	-	store	file_var_s5_5 = 0x0378	variable file_var_s5_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k04	Map_Director	init	207	0x0E902	2675	-	releasemapjumpgroupflag	0x0100	flags released: 0x0100: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
 tri_k04	Map_Director	init	208	0x0E908	2676	-	releasemapjumpgroupflag	255	flags released: 0x00FF: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
@@ -84354,10 +84354,10 @@ tri_k04	Map_Director	init	284	0x0EB39	2756	-	store	file_var_s5_14 = 100	variable
 tri_k04	Map_Director	init	285	0x0EB3F	2757	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k04	Map_Director	init	286	0x0EB45	2758	-	store	file_var_s5_16 = 0	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k04	Map_Director	init	287	0x0EB48	2759	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	288	0x0EB4B	2760	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	289	0x0EB4E	2761	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	290	0x0EB51	2762	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	291	0x0EB54	2763	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	288	0x0EB4B	2760	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	289	0x0EB4E	2761	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	290	0x0EB51	2762	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	291	0x0EB54	2763	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	292	0x0EB5A	2764	-	label	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	293	0x0EB61	2765	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	294	0x0EB67	2767	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -84409,9 +84409,9 @@ tri_k04	Map_Director	init	339	0x0ED20	2817	-	setmapidwall	file_var_s5_4, 6, 1	-	
 tri_k04	Map_Director	init	340	0x0ED2C	2818	-	setmapidwall	5, 5, 0	-	-	-	-	-		01 verb-table.tsv
 tri_k04	Map_Director	init	341	0x0ED38	2819	-	setmapidwall	5, 6, 1	-	-	-	-	-		01 verb-table.tsv
 tri_k04	Map_Director	init	342	0x0ED3B	2820	-	goto	local_jmp_32	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	343	0x0ED3E	2821	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	344	0x0ED41	2822	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	345	0x0ED44	2823	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	343	0x0ED3E	2821	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	344	0x0ED41	2822	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	345	0x0ED44	2823	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	346	0x0ED47	2824	-	label	local_jmp_32	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	347	0x0ED4A	2825	-	store	file_var_s5_7 = 110	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k04	Map_Director	init	348	0x0ED50	2826	-	store	file_var_s5_8 = 110	variable file_var_s5_8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -84424,7 +84424,7 @@ tri_k04	Map_Director	init	354	0x0ED74	2832	-	store	file_var_s5_14 = 100	variable
 tri_k04	Map_Director	init	355	0x0ED7A	2833	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k04	Map_Director	init	356	0x0ED80	2834	-	store	file_var_s5_16 = 180	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k04	Map_Director	init	357	0x0ED83	2835	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k04	Map_Director	init	358	0x0ED86	2836	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k04	Map_Director	init	358	0x0ED86	2836	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	359	0x0ED8C	2837	-	label	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	360	0x0ED93	2838	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k04	Map_Director	init	361	0x0ED99	2840	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -86236,10 +86236,10 @@ tri_k05	Map_Director	init	198	0x0E999	2666	-	setmapidwall	25, 6, 1	-	-	-	-	-		01
 tri_k05	Map_Director	init	199	0x0E99F	2667	-	store	file_var_s5_3 = 0	variable file_var_s5_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k05	Map_Director	init	200	0x0E9A2	2668	-	nowmap	-	result stored in file_var_s5_5	-	-	-	-		01 verb-table.tsv
 tri_k05	Map_Director	init	201	0x0E9A8	2669	-	nowmap	-	result stored in mp_mtanaka_dbg	-	-	-	-		01 verb-table.tsv
-tri_k05	Map_Director	init	202	0x0E9B4	2670	-	sysDVAR	1, file_var_s5_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	203	0x0E9BB	2671	-	sysDVAR	2, mp_mtanaka_dbg	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	202	0x0E9B4	2670	-	sysDVAR	1, file_var_s5_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	203	0x0E9BB	2671	-	sysDVAR	2, mp_mtanaka_dbg	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	204	0x0E9BC	2672	-	nowjumpindex	-	result stored in local_var_s5f0_1	-	-	-	-		01 verb-table.tsv
-tri_k05	Map_Director	init	205	0x0E9C8	2673	-	sysDVAR	3, local_var_s5f0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	205	0x0E9C8	2673	-	sysDVAR	3, local_var_s5f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	206	0x0E9CC	2674	-	store	file_var_s5_5 = 0x0378	variable file_var_s5_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k05	Map_Director	init	207	0x0E9D2	2675	-	releasemapjumpgroupflag	0x0100	flags released: 0x0100: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
 tri_k05	Map_Director	init	208	0x0E9D8	2676	-	releasemapjumpgroupflag	255	flags released: 0x00FF: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
@@ -86322,10 +86322,10 @@ tri_k05	Map_Director	init	284	0x0EC09	2756	-	store	file_var_s5_14 = 100	variable
 tri_k05	Map_Director	init	285	0x0EC0F	2757	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k05	Map_Director	init	286	0x0EC15	2758	-	store	file_var_s5_16 = 0	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k05	Map_Director	init	287	0x0EC18	2759	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	288	0x0EC1B	2760	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	289	0x0EC1E	2761	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	290	0x0EC21	2762	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	291	0x0EC24	2763	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	288	0x0EC1B	2760	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	289	0x0EC1E	2761	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	290	0x0EC21	2762	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	291	0x0EC24	2763	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	292	0x0EC2A	2764	-	label	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	293	0x0EC31	2765	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	294	0x0EC37	2767	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -86377,8 +86377,8 @@ tri_k05	Map_Director	init	339	0x0EDF0	2817	-	setmapidwall	file_var_s5_4, 6, 1	-	
 tri_k05	Map_Director	init	340	0x0EDFC	2818	-	setmapidwall	5, 5, 0	-	-	-	-	-		01 verb-table.tsv
 tri_k05	Map_Director	init	341	0x0EE08	2819	-	setmapidwall	5, 6, 1	-	-	-	-	-		01 verb-table.tsv
 tri_k05	Map_Director	init	342	0x0EE0B	2820	-	goto	local_jmp_31	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	343	0x0EE0E	2821	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	344	0x0EE11	2822	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	343	0x0EE0E	2821	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	344	0x0EE11	2822	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	345	0x0EE14	2823	-	label	local_jmp_31	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	346	0x0EE17	2824	-	store	file_var_s5_7 = 70	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k05	Map_Director	init	347	0x0EE1D	2825	-	store	file_var_s5_8 = 75	variable file_var_s5_8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -86391,8 +86391,8 @@ tri_k05	Map_Director	init	353	0x0EE41	2831	-	store	file_var_s5_14 = 100	variable
 tri_k05	Map_Director	init	354	0x0EE47	2832	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k05	Map_Director	init	355	0x0EE4D	2833	-	store	file_var_s5_16 = 120	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_k05	Map_Director	init	356	0x0EE50	2834	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	357	0x0EE53	2835	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_k05	Map_Director	init	358	0x0EE56	2836	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	357	0x0EE53	2835	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_k05	Map_Director	init	358	0x0EE56	2836	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	359	0x0EE5C	2837	-	label	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	360	0x0EE63	2838	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_k05	Map_Director	init	361	0x0EE69	2840	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -88209,10 +88209,10 @@ tri_l01	Map_Director	init	198	0x0EA59	2666	-	setmapidwall	25, 6, 1	-	-	-	-	-		01
 tri_l01	Map_Director	init	199	0x0EA5F	2667	-	store	file_var_s5_3 = 0	variable file_var_s5_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_l01	Map_Director	init	200	0x0EA62	2668	-	nowmap	-	result stored in file_var_s5_5	-	-	-	-		01 verb-table.tsv
 tri_l01	Map_Director	init	201	0x0EA68	2669	-	nowmap	-	result stored in mp_mtanaka_dbg	-	-	-	-		01 verb-table.tsv
-tri_l01	Map_Director	init	202	0x0EA74	2670	-	sysDVAR	1, file_var_s5_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	203	0x0EA7B	2671	-	sysDVAR	2, mp_mtanaka_dbg	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	202	0x0EA74	2670	-	sysDVAR	1, file_var_s5_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	203	0x0EA7B	2671	-	sysDVAR	2, mp_mtanaka_dbg	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	204	0x0EA7C	2672	-	nowjumpindex	-	result stored in local_var_s5f0_1	-	-	-	-		01 verb-table.tsv
-tri_l01	Map_Director	init	205	0x0EA88	2673	-	sysDVAR	3, local_var_s5f0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	205	0x0EA88	2673	-	sysDVAR	3, local_var_s5f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	206	0x0EA8C	2674	-	store	file_var_s5_5 = 0x0378	variable file_var_s5_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_l01	Map_Director	init	207	0x0EA92	2675	-	releasemapjumpgroupflag	0x0100	flags released: 0x0100: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
 tri_l01	Map_Director	init	208	0x0EA98	2676	-	releasemapjumpgroupflag	255	flags released: 0x00FF: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
@@ -88295,10 +88295,10 @@ tri_l01	Map_Director	init	284	0x0ECC9	2756	-	store	file_var_s5_14 = 100	variable
 tri_l01	Map_Director	init	285	0x0ECCF	2757	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_l01	Map_Director	init	286	0x0ECD5	2758	-	store	file_var_s5_16 = 0	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_l01	Map_Director	init	287	0x0ECD8	2759	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	288	0x0ECDB	2760	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	289	0x0ECDE	2761	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	290	0x0ECE1	2762	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	291	0x0ECE4	2763	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	288	0x0ECDB	2760	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	289	0x0ECDE	2761	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	290	0x0ECE1	2762	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	291	0x0ECE4	2763	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	292	0x0ECEA	2764	-	label	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	293	0x0ECF1	2765	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	294	0x0ECF7	2767	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -88350,7 +88350,7 @@ tri_l01	Map_Director	init	339	0x0EEB0	2817	-	setmapidwall	file_var_s5_4, 6, 1	-	
 tri_l01	Map_Director	init	340	0x0EEBC	2818	-	setmapidwall	5, 5, 0	-	-	-	-	-		01 verb-table.tsv
 tri_l01	Map_Director	init	341	0x0EEC8	2819	-	setmapidwall	5, 6, 1	-	-	-	-	-		01 verb-table.tsv
 tri_l01	Map_Director	init	342	0x0EECB	2820	-	goto	local_jmp_30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	343	0x0EECE	2821	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	343	0x0EECE	2821	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	344	0x0EED1	2822	-	label	local_jmp_30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	345	0x0EED4	2823	-	store	file_var_s5_7 = 40	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_l01	Map_Director	init	346	0x0EEDA	2824	-	store	file_var_s5_8 = 55	variable file_var_s5_8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -88363,9 +88363,9 @@ tri_l01	Map_Director	init	352	0x0EEFE	2830	-	store	file_var_s5_14 = 100	variable
 tri_l01	Map_Director	init	353	0x0EF04	2831	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_l01	Map_Director	init	354	0x0EF0A	2832	-	store	file_var_s5_16 = 60	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_l01	Map_Director	init	355	0x0EF0D	2833	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	356	0x0EF10	2834	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	357	0x0EF13	2835	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_l01	Map_Director	init	358	0x0EF16	2836	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	356	0x0EF10	2834	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	357	0x0EF13	2835	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_l01	Map_Director	init	358	0x0EF16	2836	unreachable in the listing	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	359	0x0EF1C	2837	-	label	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	360	0x0EF23	2838	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_l01	Map_Director	init	361	0x0EF29	2840	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -106990,7 +106990,7 @@ tri_n03	Map_Director	main	11	0x0D602	2370	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_n03	Map_Director	main	12	0x0D60B	2374	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_n03	Map_Director	main	13	0x0D615	2375	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_n03	Map_Director	main	14	0x0D618	2376	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_n03	Map_Director	main	15	0x0D61B	2379	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_n03	Map_Director	main	15	0x0D61B	2379	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_n03	PC00	init	1	0x0D61F	2388	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_n03	PC00	init	2	0x0D622	2389	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_n03	PC01	init	1	0x0D626	2398	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -127161,7 +127161,7 @@ tri_q01	Map_Director	main	11	0x0F3C2	2389	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_q01	Map_Director	main	12	0x0F3CB	2393	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_q01	Map_Director	main	13	0x0F3D5	2394	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_q01	Map_Director	main	14	0x0F3D8	2395	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_q01	Map_Director	main	15	0x0F3DB	2398	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_q01	Map_Director	main	15	0x0F3DB	2398	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_q01	PC00	init	1	0x0F3DF	2407	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_q01	PC00	init	2	0x0F3E2	2408	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_q01	PC01	init	1	0x0F3E6	2417	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -131852,7 +131852,7 @@ tri_q04	Map_Director	main	11	0x0D828	2376	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_q04	Map_Director	main	12	0x0D831	2380	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_q04	Map_Director	main	13	0x0D83B	2381	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_q04	Map_Director	main	14	0x0D83E	2382	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_q04	Map_Director	main	15	0x0D841	2385	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_q04	Map_Director	main	15	0x0D841	2385	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_q04	PC00	init	1	0x0D845	2394	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_q04	PC00	init	2	0x0D848	2395	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_q04	PC01	init	1	0x0D84C	2404	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -135109,7 +135109,7 @@ tri_r01	ラズ	battle_end	4	0x0DE65	2588	-	rgbatrans	1, 1, 1, 0, 10	this actor's
 tri_r01	ラズ	battle_end	5	0x0DE6B	2589	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_r01	ラズ	battle_end	6	0x0DE6E	2590	-	hidecomplete	-	the calling actor's model (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_r01	ラズ	battle_end	7	0x0DE74	2591	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_r01	ラズ	battle_end	8	0x0DE75	2592	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_r01	ラズ	battle_end	8	0x0DE75	2592	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_r01	trial_00	init	1	0x0DE76	2673	-	btlAtelInitTagStart	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_r01	trial_00	init	2	0x0DE7C	2674	-	btlAtelSetTotalEntryNumber	0x03000058	argument 1: the spawner's lane map	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_r01	trial_00	init	3	0x0DE82	2675	-	btlAtelSetPoint2	0x03000018	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -149546,10 +149546,10 @@ tri_s05	Map_Director	init	198	0x0ED49	2666	-	setmapidwall	25, 6, 1	-	-	-	-	-		01
 tri_s05	Map_Director	init	199	0x0ED4F	2667	-	store	file_var_s5_3 = 0	variable file_var_s5_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_s05	Map_Director	init	200	0x0ED52	2668	-	nowmap	-	result stored in file_var_s5_5	-	-	-	-		01 verb-table.tsv
 tri_s05	Map_Director	init	201	0x0ED58	2669	-	nowmap	-	result stored in mp_mtanaka_dbg	-	-	-	-		01 verb-table.tsv
-tri_s05	Map_Director	init	202	0x0ED64	2670	-	sysDVAR	1, file_var_s5_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	203	0x0ED6B	2671	-	sysDVAR	2, mp_mtanaka_dbg	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	202	0x0ED64	2670	-	sysDVAR	1, file_var_s5_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	203	0x0ED6B	2671	-	sysDVAR	2, mp_mtanaka_dbg	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	Map_Director	init	204	0x0ED6C	2672	-	nowjumpindex	-	result stored in local_var_s5f0_1	-	-	-	-		01 verb-table.tsv
-tri_s05	Map_Director	init	205	0x0ED78	2673	-	sysDVAR	3, local_var_s5f0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	205	0x0ED78	2673	-	sysDVAR	3, local_var_s5f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	Map_Director	init	206	0x0ED7C	2674	-	store	file_var_s5_5 = 0x0378	variable file_var_s5_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_s05	Map_Director	init	207	0x0ED82	2675	-	releasemapjumpgroupflag	0x0100	flags released: 0x0100: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
 tri_s05	Map_Director	init	208	0x0ED88	2676	-	releasemapjumpgroupflag	255	flags released: 0x00FF: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
@@ -149632,10 +149632,10 @@ tri_s05	Map_Director	init	284	0x0EFB9	2756	-	store	file_var_s5_14 = 100	variable
 tri_s05	Map_Director	init	285	0x0EFBF	2757	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_s05	Map_Director	init	286	0x0EFC5	2758	-	store	file_var_s5_16 = 0	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_s05	Map_Director	init	287	0x0EFC8	2759	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	288	0x0EFCB	2760	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	289	0x0EFCE	2761	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	290	0x0EFD1	2762	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	291	0x0EFD4	2763	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	288	0x0EFCB	2760	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	289	0x0EFCE	2761	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	290	0x0EFD1	2762	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	291	0x0EFD4	2763	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	Map_Director	init	292	0x0EFDA	2764	-	label	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	Map_Director	init	293	0x0EFE1	2765	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	Map_Director	init	294	0x0EFE7	2767	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -149697,10 +149697,10 @@ tri_s05	Map_Director	init	349	0x0F1E8	2827	-	store	file_var_s5_14 = 100	variable
 tri_s05	Map_Director	init	350	0x0F1EE	2828	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_s05	Map_Director	init	351	0x0F1F4	2829	-	store	file_var_s5_16 = 0	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_s05	Map_Director	init	352	0x0F1F7	2830	-	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	353	0x0F1FA	2831	-	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	354	0x0F1FD	2832	-	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	355	0x0F200	2833	-	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	init	356	0x0F203	2834	-	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	353	0x0F1FA	2831	unreachable in the listing	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	354	0x0F1FD	2832	unreachable in the listing	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	355	0x0F200	2833	unreachable in the listing	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	init	356	0x0F203	2834	unreachable in the listing	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	Map_Director	init	357	0x0F209	2835	-	label	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	Map_Director	init	358	0x0F210	2836	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	Map_Director	init	359	0x0F216	2838	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -149745,7 +149745,7 @@ tri_s05	Map_Director	main	13	0x0F348	2893	local_var_s5f1_1 == 0; not (sysIsdead2
 tri_s05	Map_Director	main	14	0x0F351	2897	local_var_s5f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s5f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_s05	Map_Director	main	15	0x0F35B	2898	local_var_s5f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s5f1_2 >= 0x012c)	store	local_var_s5f1_2 = local_var_s5f1_2 + 1	variable local_var_s5f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_s05	Map_Director	main	16	0x0F35E	2899	local_var_s5f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s5f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_s05	Map_Director	main	17	0x0F361	2902	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_s05	Map_Director	main	17	0x0F361	2902	not ((local_var_s5f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s5f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	PC00	init	1	0x0F365	2911	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_s05	PC00	init	2	0x0F368	2912	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_s05	PC01	init	1	0x0F36C	2921	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -153182,7 +153182,7 @@ tri_t02	Map_Director	main	11	0x0D740	2381	local_var_s4f1_1 == 0; not (sysIsdead2
 tri_t02	Map_Director	main	12	0x0D749	2385	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 tri_t02	Map_Director	main	13	0x0D753	2386	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	store	local_var_s4f1_2 = local_var_s4f1_2 + 1	variable local_var_s4f1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_t02	Map_Director	main	14	0x0D756	2387	local_var_s4f1_1 == 0; not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event()); not (local_var_s4f1_2 >= 0x012c)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t02	Map_Director	main	15	0x0D759	2390	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t02	Map_Director	main	15	0x0D759	2390	not ((local_var_s4f1_1 == 0) and (not (sysIsdead2_49f(trial_00) == 1 and is_enable_run_event())) and (not (local_var_s4f1_2 >= 0x012c)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t02	PC00	init	1	0x0D75D	2399	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tri_t02	PC00	init	2	0x0D760	2400	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t02	PC01	init	1	0x0D764	2409	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -156561,10 +156561,10 @@ tri_t04	Map_Director	init	198	0x0EBF9	2666	-	setmapidwall	25, 6, 1	-	-	-	-	-		01
 tri_t04	Map_Director	init	199	0x0EBFF	2667	-	store	file_var_s5_3 = 0	variable file_var_s5_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_t04	Map_Director	init	200	0x0EC02	2668	-	nowmap	-	result stored in file_var_s5_5	-	-	-	-		01 verb-table.tsv
 tri_t04	Map_Director	init	201	0x0EC08	2669	-	nowmap	-	result stored in mp_mtanaka_dbg	-	-	-	-		01 verb-table.tsv
-tri_t04	Map_Director	init	202	0x0EC14	2670	-	sysDVAR	1, file_var_s5_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	203	0x0EC1B	2671	-	sysDVAR	2, mp_mtanaka_dbg	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	202	0x0EC14	2670	-	sysDVAR	1, file_var_s5_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	203	0x0EC1B	2671	-	sysDVAR	2, mp_mtanaka_dbg	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t04	Map_Director	init	204	0x0EC1C	2672	-	nowjumpindex	-	result stored in local_var_s5f0_1	-	-	-	-		01 verb-table.tsv
-tri_t04	Map_Director	init	205	0x0EC28	2673	-	sysDVAR	3, local_var_s5f0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	205	0x0EC28	2673	-	sysDVAR	3, local_var_s5f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t04	Map_Director	init	206	0x0EC2C	2674	-	store	file_var_s5_5 = 0x0378	variable file_var_s5_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_t04	Map_Director	init	207	0x0EC32	2675	-	releasemapjumpgroupflag	0x0100	flags released: 0x0100: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
 tri_t04	Map_Director	init	208	0x0EC38	2676	-	releasemapjumpgroupflag	255	flags released: 0x00FF: Shows a map icon in Dha Vikaari Kabonii (The Great Crystal)	-	-	-	-	resolved	this page's How a call is read
@@ -156647,10 +156647,10 @@ tri_t04	Map_Director	init	284	0x0EE69	2756	-	store	file_var_s5_14 = 100	variable
 tri_t04	Map_Director	init	285	0x0EE6F	2757	-	store	file_var_s5_15 = 255	variable file_var_s5_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_t04	Map_Director	init	286	0x0EE75	2758	-	store	file_var_s5_16 = 0	variable file_var_s5_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_t04	Map_Director	init	287	0x0EE78	2759	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	288	0x0EE7B	2760	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	289	0x0EE7E	2761	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	290	0x0EE81	2762	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	291	0x0EE84	2763	-	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	288	0x0EE7B	2760	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	289	0x0EE7E	2761	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	290	0x0EE81	2762	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	291	0x0EE84	2763	unreachable in the listing	goto	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t04	Map_Director	init	292	0x0EE8A	2764	-	label	local_jmp_23	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t04	Map_Director	init	293	0x0EE91	2765	-	if	nowmap() == 0x03b4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t04	Map_Director	init	294	0x0EE97	2767	nowmap() == 0x03b4	store	file_var_s5_7 = 100	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -156702,12 +156702,12 @@ tri_t04	Map_Director	init	339	0x0F050	2817	-	setmapidwall	file_var_s5_4, 6, 1	-	
 tri_t04	Map_Director	init	340	0x0F05C	2818	-	setmapidwall	5, 5, 0	-	-	-	-	-		01 verb-table.tsv
 tri_t04	Map_Director	init	341	0x0F068	2819	-	setmapidwall	5, 6, 1	-	-	-	-	-		01 verb-table.tsv
 tri_t04	Map_Director	init	342	0x0F06B	2820	-	goto	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	343	0x0F06E	2821	-	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	344	0x0F071	2822	-	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	345	0x0F074	2823	-	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	346	0x0F077	2824	-	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	347	0x0F07A	2825	-	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tri_t04	Map_Director	init	348	0x0F07D	2826	-	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	343	0x0F06E	2821	unreachable in the listing	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	344	0x0F071	2822	unreachable in the listing	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	345	0x0F074	2823	unreachable in the listing	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	346	0x0F077	2824	unreachable in the listing	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	347	0x0F07A	2825	unreachable in the listing	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+tri_t04	Map_Director	init	348	0x0F07D	2826	unreachable in the listing	goto	local_jmp_36	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t04	Map_Director	init	349	0x0F080	2827	-	label	local_jmp_35	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tri_t04	Map_Director	init	350	0x0F083	2828	-	store	file_var_s5_7 = 200	variable file_var_s5_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tri_t04	Map_Director	init	351	0x0F089	2829	-	store	file_var_s5_8 = 190	variable file_var_s5_8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md

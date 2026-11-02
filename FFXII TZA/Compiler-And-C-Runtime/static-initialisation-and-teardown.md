@@ -75,17 +75,17 @@ Every entry, grouped by the first function it calls:
 | 35 | `0x00616210` | a named texture-format record (`L8`, `A8`, `LA8`, `RG8`, …) |
 | 28 | `0x00662C00` | a named vertex-format record (`ScreenVertex`, `WorldVertex`, …) |
 | 9 | `0x006D58D0` | a named morph record (`Morph22`, `Morph23`, …) |
-| 75 | none | inline stores, then a teardown registration (among them the SQEX sound driver's fixed lists and queues) |
-| 31 | none | only `lea rcx, [teardown]; jmp atexit`: a static with no constructor work |
-| 7 | none | no calls: four copy 16-byte prototype blocks into live globals with `movaps` (`0x0015BD30`, `0x0015BF20` and `0x0015C0D0` from `0x01DF0980`–`0x01DF0A80`, `0x0015C280` partly from `0x01F800F0`), `0x00168C10` zeroes five qwords at `0x02EA1960`, `0x0016A270` stores `0.9 / sqrt(16.0)` = 0.225 at `0x02EADEF0` (`sqrtss`, `divss`, `0x0016A270`-`0x0016A284`), `0x001610B0` zeroes eight 16-byte slots |
-| 419 | others | 362 further first callees, none used by more than 11 entries |
+| 75 | no call | inline stores, then a teardown registration (among them the SQEX sound driver's fixed lists and queues) |
+| 31 | no call | only `lea rcx, [teardown]; jmp atexit`: a static with no constructor work |
+| 7 | no call | no calls: four copy 16-byte prototype blocks into live globals with `movaps` (`0x0015BD30`, `0x0015BF20` and `0x0015C0D0` from `0x01DF0980`–`0x01DF0A80`, `0x0015C280` partly from `0x01F800F0`), `0x00168C10` zeroes five qwords at `0x02EA1960`, `0x0016A270` stores `0.9 / sqrt(16.0)` = 0.225 at `0x02EADEF0` (`sqrtss`, `divss`, `0x0016A270`-`0x0016A284`), `0x001610B0` zeroes eight 16-byte slots |
+| 419 | others | 362 further first callees, each used by at most 11 entries |
 
 The registry inserts share one shape: the routine refuses an object whose name pointer is null
 (returns `0x11`) or whose name is already present (returns `0x12`), and otherwise pushes the object onto
 a singly linked list headed by a global (`0x00879570` uses `0x02EB9D80`, `0x00876C80` `0x02EB83B8`, `0x008768A0`
 `0x02EB8348`, and the render-pass insert `0x005FDCB0` uses `0x02CBF998`).
 
-1,084 entries register a teardown, each exactly one; 88 register none. None of them takes a
+1,084 entries register a teardown, each exactly one; 88 register no teardown. None of them takes a
 thread-safe local-static guard.
 
 ### Teardown registration
@@ -197,7 +197,7 @@ IMAGE_TLS_DIRECTORY64 at `0x01CEBED8`:
 | C++ entries registering a teardown | 1,084 |
 | `atexit` sites | 2,630: 1,574 calls, 1,056 tail jumps |
 | distinct teardowns | 2,582, by the `lea rcx` that sets the argument before each site |
-| TLS callbacks | none |
+| TLS callbacks | 0 |
 
 Counts come from disassembling every C++ entry and every `atexit` site; a site's teardown is the target of the
 last `lea rcx` before it in its function, which for 35 sites is more than 64 bytes before the site.
@@ -297,7 +297,7 @@ one.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| each row of [static-initialisation-and-teardown-state.tsv](static-initialisation-and-teardown-state.tsv): `0x02EA0B50`-`0x02EA40D4` | `u16` | 0 (zero-filled tail of `.data`) | one of the three constants above (`value_bits`, `value`), with its source float, its initialiser and the table slot that holds it | the initialiser, once, before `WinMain` (`set_by`) | none (`read_by` `-`) |
+| each row of [static-initialisation-and-teardown-state.tsv](static-initialisation-and-teardown-state.tsv): `0x02EA0B50`-`0x02EA40D4` | `u16` | 0 (zero-filled tail of `.data`) | one of the three constants above (`value_bits`, `value`), with its source float, its initialiser and the table slot that holds it | the initialiser, once, before `WinMain` (`set_by`) | no reader (`read_by` `-`) |
 
 ### Columns of static-initialisation-and-teardown-state.tsv
 
@@ -369,7 +369,7 @@ and stores 0 in the buffer and, with one 8-byte store, in both dwords.
   earliest point at which none of them exists.
 - The prototypes at `0x01DF0980`–`0x01DF0A80` lie in the file-backed part of `.data`, so the starting values
   `0x0015BD30`, `0x0015BF20` and `0x0015C0D0` copy can be changed in the file.
-- Do not rely on a teardown to see an object die. On a normal quit none runs; on a path through the
+- Do not rely on a teardown to see an object die. On a normal quit no teardown runs; on a path through the
   runtime's `exit` they run in reverse registration order after the game has stopped.
 - A new global needs both halves: build it in an initialiser and register its teardown, or leave it
   unregistered and accept that it is never torn down.

@@ -153,7 +153,7 @@ The join catch-up `0x00317480` reads no mode bit, so a joiner's level is set as 
 | `0x02089344` bit `0x4` | request | New Game- requested | `0x00238A50` (verb `0x308B`; Config `0x00240182`) | `0x00239960` (`0x00239A6C`), which clears it |
 | `[0x02EBF190] + 4` bit `0x2000` | flag | New Game+ | `0x00239960`, `0x0023A2C0` | `0x00236740`: `0x00316DF0`, `0x00583D60`, `0x0050F3F0` |
 | `[0x02EBF190] + 4` bit `0x4000` | flag | New Game- | `0x00239960` | `0x00236780`: `0x00312280`, `0x00583D60` |
-| header `+0x57` bit `0x2` / `0x4` | save header | the file's mode | `0x00583D60` | bit `0x4`: `0x0057FB00` (`0x0057FBFC`); bit `0x2`: none |
+| header `+0x57` bit `0x2` / `0x4` | save header | the file's mode | `0x00583D60` | bit `0x4`: `0x0057FB00` (`0x0057FBFC`); bit `0x2`: no reader |
 | `0x0208D455` | `i8` | pending scenario preset | `0x0023A110` (new game: 0), `0x0050F810` (verb `0x302B`) | `0x00239960` |
 
 ## Modding notes

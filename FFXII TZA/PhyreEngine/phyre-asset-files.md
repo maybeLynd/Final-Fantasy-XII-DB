@@ -122,7 +122,7 @@ Class record:
 | `+0x08` | `u32` | name | pool offset |
 | `+0x0C` | `u32` | memberCount | the class's records, taken in order from the member table |
 | `+0x1C` | `u32` | flags | `0x01` dynamic class, `0x04` header class |
-| `+0x20` | `u32` | extra | 1-based offset into the extra block, 0 for none |
+| `+0x20` | `u32` | extra | 1-based offset into the extra block, 0 for no extra data |
 
 Member record:
 
@@ -218,7 +218,7 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 | `.phyre` files | 35,984 of 89,414 archive files; 27,154,292,432 of 58,894,815,547 bytes |
 | neighbours in `gamedata/d3d11` | `.ah` 2,564 files, 12,235,216 bytes; `.ta` 45, 46,885; `.ker` 34, 470,844; `.fex` 14, 692,292 |
 | header | `RYHP`, `m_size` 84, platform `11XD`, physics 0 in all 35,984 |
-| D3D11 sizes | texture only 33,794; index and vertex, no texture 2,091; all zero 99; none mixes vertex and texture |
+| D3D11 sizes | texture only 33,794; index and vertex, no texture 2,091; all zero 99; no file mixes vertex and texture |
 | namespace | byte-order mark, repeated size and size identity hold in all 35,984; largest 24,999 bytes |
 | namespace words `+0x18`, `+0x1C` | zero in every file, so no file has an extra block |
 | class records | 684,244; words 4, 5, 6 and 8 zero in all |
@@ -230,7 +230,7 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 | fixup counts | the header's four counts are the sums of the list counts in every file |
 | user fixups | present in every file; 131,488 records: `PClassDescriptor` 47,020, `PTextureFormatBase` 33,794, `PAssetReferenceImport` 28,037, `PRenderDataType` 16,695, `PSceneRenderPassType` 5,931, `PAnimationKeyDataType` 8, `PModifier` 3 |
 | a texture's fixups | exactly one `PClassDescriptor` and one `PTextureFormatBase`, in all 33,794 |
-| `idmaps.txt` | `gamedata/d3d11/artdata/shared/idmaps.txt`: 4,061,418 bytes, 75,624 CRLF lines, 37,812 key and value pairs, every key distinct and none equal to its value; no `#` in any line |
+| `idmaps.txt` | `gamedata/d3d11/artdata/shared/idmaps.txt`: 4,061,418 bytes, 75,624 CRLF lines, 37,812 key and value pairs, every key distinct and no key equal to its value; no `#` in any line |
 | file end | every mesh file ends exactly after its index and vertex buffers, every all-zero file at the end of its array table; in a texture file the image bytes exceed `m_maxTextureBufferSize` in 33,705 and equal it in 89 |
 | texture files | the 33,792 `.dds.phyre` files and the two font generator files `font/tuffy.fgen.phyre` and `font/tuffysdf.fgen.phyre`, one texture object each |
 | texture formats | `ARGB8` 12,913, `BC5` 9,149, `DXT5` 7,039, `RGBA16F` 4,610 (every cube map), `A8` 45, `DXT1` 26, `L8` 9, `DXT3` 3 |
@@ -534,7 +534,7 @@ words of every member record. The string pool is left as it is.
 - Names the registry lacks are logged
   (`"Unable to find type '%s' on load"`, `"File refers to compiled class '%s' which does not exist
   in the current runtime"`) and do not stop the load.
-- `0x00599500` finds the class bound to `PClusterHeader` (`0x13` when none), converts the header
+- `0x00599500` finds the class bound to `PClusterHeader` (`0x13` when no class is bound), converts the header
   through the file's schema, and checks the platform again (6).
 - `0x0059AC00` builds a dynamic class (`0x00632E80`) for each class record with flag `0x01` and no
   runtime class, under its parent; one left unbuilt returns `0x13`.

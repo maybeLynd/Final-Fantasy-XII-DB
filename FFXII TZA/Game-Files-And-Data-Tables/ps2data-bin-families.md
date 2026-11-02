@@ -37,12 +37,12 @@ The archive's only other file without an extension is `ps2data/square_ff12/ff12c
 |---|---|
 | `family` | path under `ps2data/image/ff12/` (or `ps2data/` for `add_motion`), `<lang>` for the language folder, `#` for a digit run (except the literal `tex2pack`) |
 | `files` | shipped files in the family |
-| `locales` | language folders the family ships in; `common` when the path has none |
+| `locales` | language folders the family ships in; `common` when the path has no language folder |
 | `bytes` | total size of the family's files |
 | `lead` | the first four bytes as ASCII when printable, else as a little-endian dword; `varies` when the copies differ |
 | `kind_id` | resource kind and ids, `kind/ids`, from the path arrays `0x002DF9A0` installs, counting only entries whose `.fst` size equals the shipped file |
 | `named` | locale copies whose path occurs as a string in the executable |
-| `read_by` | for each copy, the languages whose arrays and size table resolve to it; `—` when none does |
+| `read_by` | for each copy, the languages whose arrays and size table resolve to it; `—` when no language does |
 | `loader` | the function that requests the file, with the id base when the id is computed; `literal path` for a loader that opens a path string; `—` when no call site passes the family's kind and id as a constant or a constant base |
 | `holds` | what the bytes are, measured from the shipped files |
 | `page` | the page that documents the family, relative to this one; `—` when this page is the description |
@@ -60,7 +60,7 @@ The archive's only other file without an extension is `ps2data/square_ff12/ff12c
 | `same_bytes_as` | the other language folders whose copy has the same bytes |
 | `form` | the format: `st2e`, `licd`, `pack`, `word banks`, `FLAGROM1`, `FLAGDEF1`, `NAV`, `NPC0`, `PLMN`, `QST1`, `script section`, `path list`, `name list`, `record list`, or `table` for another layout |
 | `header` | the header fields, decoded as the format's page gives them |
-| `kind_id` | the resource kind and id whose array entry names this copy; empty when none does |
+| `kind_id` | the resource kind and id whose array entry names this copy; empty when no array entry names it |
 | `named_by` | the languages whose array names this copy |
 | `read_by` | of those, the languages whose size table sizes the entry |
 | `fst_size_matches` | `yes` when every reading language's size equals the file's size |

@@ -9,7 +9,7 @@ addresses: "0x00323EC0, 0x00323C60, 0x00323BB0, 0x002F8FA0, 0x00323890, 0x00323D
 
 - A character can use an ability or wear a piece of equipment only after buying a square that grants it; one
   square is enough even when several grant the same thing.
-- Guests, Espers and enemies never need licenses, and some abilities and items need none for anyone.
+- Guests, Espers and enemies never need licenses, and some abilities and items need no license for anyone.
 - Each Quickening square bought opens the character's next Quickening and adds an MP bar, up to three.
 - An Esper square can be bought by one character only, and only once that Esper has been obtained.
 - Buying a square costs LP; the squares a character starts with cost nothing.
@@ -62,7 +62,7 @@ caller.
 | 9-14, 19, 20 | `1` | actions: magicks, technicks, Quickenings, Espers |
 | 15-18 | `2` | augments ([Augments](../Damage-And-Battle-Formulas/augments.md)) |
 | 30 | `3` | Second Board |
-| any other | none | - |
+| any other | no kind | - |
 
 ### Quickenings
 
@@ -135,7 +135,7 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
    (`0x003137F0`, `0x003138D0(1)`, `0x00313550(0)`) (`0x00328C3A`-`0x00328C59`).
 4. It rebuilds the stats with `0x0030FED0(record, 0x97)` (`0x00328C5E`-`0x00328C66`), reloads its gambit preset
    and banks (`0x00327CB0`, `0x00326030`, `0x00327DE0`), clears the record's bytes `+0x68`-`+0x87`, the MP bars and the
-   Mist charges, and sets both boards and the byte `+0x1C5` back to none (`0x00328CA3`-`0x00328D5D`). For Vaan and
+   Mist charges, and sets both boards and the byte `+0x1C5` back to empty (`0x00328CA3`-`0x00328D5D`). For Vaan and
    Penelo, rows 0 and 5, it also raises the gambit block's slot count `+0xBA` by one, at most 12
    (`0x00328CB4`-`0x00328CF5`).
 
@@ -149,7 +149,7 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
 | `+0x05` | `u8` | category | 1-30; gives the requirement kind (`0x002F9049` through `0x00323890`) |
 | `+0x06` | `u8` | rule | 0 ordinary, 2 Quickening, 3 Esper; picks the refusal rule (`0x00323DF0`) |
 | `+0x07` | `u8` | startMask | bit n: party row n starts owning it (`0x0023AE68`, `0x0031E0E9`) |
-| `+0x08` | `u16[8]` | ids | the ids the square grants, at most four on a shipped node, `0xFFFF` for none (`0x002F9060`) |
+| `+0x08` | `u16[8]` | ids | the ids the square grants, at most four on a shipped node, `0xFFFF` for no id (`0x002F9060`) |
 
 ## Shipped data
 

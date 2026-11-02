@@ -149,7 +149,7 @@ The two widths are read through `0x0017F920(which)`:
 | `+0x14` | `u32` | cellH | height in the atlas |
 | `+0x18` | `u32` | advance2 | equal to advance in every record of the 62 listed files |
 | `+0x1C` | `u32` | advance | the pen advance (`0x002AC4EC`) |
-| `+0x20` | `i32` | kernCp | the glyph's code point for kerning, or -1 for none (`0x002AC527`) |
+| `+0x20` | `i32` | kernCp | the glyph's code point for kerning, or -1 for no kerning (`0x002AC527`) |
 
 The atlas fills row by row: `jp/font00` records 0-36 sit on row 0 and record 37 starts the next row at y 55.
 
@@ -194,7 +194,7 @@ The manager at `[0x01F81200]`, `0x378` bytes, from the constructor `0x001B3940`'
 | `+0x260` | `void*` | pendingCap |  |
 | `+0x268` | `void*` | pendingAlloc |  |
 | `+0x270` | `void*` | current | 0 from the constructor (`0x001B3AC4`); `0x001B47A0` tests it for 0, stores one, hands it to `0x001B4590` and clears it (`0x001B47AA`-`0x001B4844`); `0x001B5330` reads it eight times (`0x001B5336`-`0x001B53D7`); `0x001B6430` writes the found entry or 0 (`0x001B6459`, `0x001B6461`) |
-| `+0x278` | `void*[16]` | slots | zeroed by the constructor (rep stosq x16, `0x001B3AD9`); `0x001B4590` stores a record at the first empty slot, the index being the count of used ones, and stores nothing when none is empty (`0x001B45B1`-`0x001B45D9`); `0x001B6470`(manager, id, slot) takes a record from the slot pool (`0x001BA860` on `+0x190`, `0x001B6485`) and stores it into the given slot when that slot is 0 (`0x001B64B3`-`0x001B64BD`); `0x001B5B60` clears each slot whose record's `+0x08` matches (`0x001B5B94`-`0x001B5C7A`); `0x001B5CC0` clears each slot whose record has byte `+0x00` at 0 and `+0x18` at count x 32 + id, returning the record to the pool (`0x001B5CF0`-`0x001B5D28`); `0x001B6510` takes a record from the slot pool (`0x001BA860` on `+0x190`, `0x001B651F`-`0x001B6526`), sets its `+0x18` to count x 32 + id (`0x001B653A`-`0x001B654D`) and tail-jumps to `0x001B4590` (`0x001B655B`), which stores it |
+| `+0x278` | `void*[16]` | slots | zeroed by the constructor (rep stosq x16, `0x001B3AD9`); `0x001B4590` stores a record at the first empty slot, the index being the count of used ones, and stores nothing when all are used (`0x001B45B1`-`0x001B45D9`); `0x001B6470`(manager, id, slot) takes a record from the slot pool (`0x001BA860` on `+0x190`, `0x001B6485`) and stores it into the given slot when that slot is 0 (`0x001B64B3`-`0x001B64BD`); `0x001B5B60` clears each slot whose record's `+0x08` matches (`0x001B5B94`-`0x001B5C7A`); `0x001B5CC0` clears each slot whose record has byte `+0x00` at 0 and `+0x18` at count x 32 + id, returning the record to the pool (`0x001B5CF0`-`0x001B5D28`); `0x001B6510` takes a record from the slot pool (`0x001BA860` on `+0x190`, `0x001B651F`-`0x001B6526`), sets its `+0x18` to count x 32 + id (`0x001B653A`-`0x001B654D`) and tail-jumps to `0x001B4590` (`0x001B655B`), which stores it |
 | `+0x2F8` | `void*` | italicVal | pointer slots the layout loader `0x001CA600` stores the three float keys FontItalicVal, FontItalicScale and FontShadowAlphaMuti through (`0x001CC589`, `0x001CC5AF`, `0x001CC5D5`; [Screen layouts](screen-layouts.md)): `0x001B44A0` points them at `0x01E0CF90`, `0x01E0CF94` and `0x01DF6DE0` (`0x001B4551`-`0x001B4574`); `0x001B5210` reads the third (`0x001B5210`) |
 | `+0x300` | `void*` | italicScale |  |
 | `+0x308` | `void*` | shadowAlphaMul |  |
@@ -311,9 +311,9 @@ and adds each character, with bit `0x80000000` cleared (`0x00674A03`-`0x00674A23
 
 When text is drawn, `0x001E9D20` binds the
 running font and the list for the text's key to the text context (`0x001E9DB9`-`0x001E9DD5`). `0x001FDD60` finds that list in the
-font's map at `+0xA8`, the one the `.fex` reader fills, and returns 0 when the key has none (`0x001E9DD0`). `0x001E9860` then reads glyph
-`list[index]` instead of `index`; an index at or past the list's end gives a null glyph, as does a context
-with no font (`0x001E9866`, `0x001E987E`, `0x001E9890`).
+font's map at `+0xA8`, the one the `.fex` reader fills, and returns 0 when the key has no list (`0x001E9DD0`).
+`0x001E9860` then reads glyph `list[index]` instead of `index`; an index at or past the list's end gives a null glyph,
+as does a context with no font (`0x001E9866`, `0x001E987E`, `0x001E9890`).
 
 ### Glyph advances
 
@@ -410,7 +410,7 @@ them.
 3. Counts are trusted. A `.dat` header's `glyphCount` bounds nothing: the builder files records to the end of the
    file, and only the unenforced test `0x001FDF80` compares the two (`0x001B4F6C`). A `.fex` chunk's count sets how many
    values are read, with no test against the file's end (`0x001B4CA6`, `0x001B4CBE`-`0x001B4CE9`), so a count too large
-   reads past the end, and a count of 0 or below reads none.
+   reads past the end, and a count of 0 or below reads no value.
 4. Read this way, the two unrequested `us` `.fex` files would take their first key as a count and run about 2.3 GB
    past the end.
 5. The `.fex` reader refuses a key already loaded and stops there, without freeing the file (`0x001B4CBA`, `0x001B4D03`).

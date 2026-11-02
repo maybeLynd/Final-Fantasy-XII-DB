@@ -118,8 +118,8 @@ Struct MeshQuery  (the walker's record, built on the caller's stack):
 | `+0x3C` | `i16` |  | current cell |
 | `+0x3E` | `i16` |  | cell list start |
 | `+0x40` | `i16` |  | cell list count |
-| `+0x42` | `i16` |  | hit id (`0xFFFF` none) |
-| `+0x44` | `i16` |  | state: 0 none, 1 marker only, 2 hit |
+| `+0x42` | `i16` |  | hit id (`0xFFFF` no hit) |
+| `+0x44` | `i16` |  | state: 0 no hit, 1 marker only, 2 hit |
 | `+0x46` | `i16` |  | query kind |
 
 `0x0022F430(part, q)` walks the segment through the collision grid. The cell of a point is

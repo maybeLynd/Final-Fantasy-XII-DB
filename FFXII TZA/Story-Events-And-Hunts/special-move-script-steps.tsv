@@ -1,12 +1,12 @@
 script	actor	function	step	at	line	condition	verb	arguments	addresses	quoted_lines	timing	sync	calls	resolution	source
 spc_z0000	監督	init	1	0x00473	31	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-spc_z0000	監督	init	2	0x0047C	32	-	sysDVAR	0, file_var_s0_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	init	3	0x00483	33	-	sysDVAR	1, file_var_s0_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	init	4	0x0048A	34	-	sysDVAR	2, file_var_s0_3	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	init	5	0x00491	35	-	sysDVAR	4, file_var_s0_4	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	init	6	0x00498	36	-	sysDVAR	5, file_var_s0_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	init	7	0x0049F	37	-	sysDVAR	7, file_var_s0_6	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	init	8	0x004A6	38	-	sysDVAR	8, file_var_s0_7	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	2	0x0047C	32	-	sysDVAR	0, file_var_s0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	3	0x00483	33	-	sysDVAR	1, file_var_s0_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	4	0x0048A	34	-	sysDVAR	2, file_var_s0_3	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	5	0x00491	35	-	sysDVAR	4, file_var_s0_4	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	6	0x00498	36	-	sysDVAR	5, file_var_s0_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	7	0x0049F	37	-	sysDVAR	7, file_var_s0_6	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	init	8	0x004A6	38	-	sysDVAR	8, file_var_s0_7	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	init	9	0x004AD	39	-	getspattackskillinfo	&file_var_s0_5, &file_var_s0_4	-	-	-	-	-		01 verb-table.tsv
 spc_z0000	監督	init	10	0x004B0	40	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	main	1	0x004BA	45	-	sysReq	1, 監督::全体処理	actor `監督`	-	-	files 監督::全体処理 on channel 1; does not wait	監督.全体処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -39,13 +39,13 @@ spc_z0000	監督	全体処理	25	0x00554	75	-	sysReq	1, target00::方向固定	a
 spc_z0000	監督	全体処理	26	0x00555	76	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	27	0x00558	78	loop while true	store	file_var_s0_3 = file_var_s0_5	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 spc_z0000	監督	全体処理	28	0x00561	79	loop while true	if	isfusion_spattack(file_var_s0_4)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	全体処理	29	0x00567	81	loop while true; isfusion_spattack(file_var_s0_4)	sysSystem	0x02bc	none: SYSTEM pops and discards 0x02bc	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	29	0x00567	81	loop while true; isfusion_spattack(file_var_s0_4)	sysSystem	0x02bc	nothing: SYSTEM pops and discards 0x02bc	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	30	0x00568	82	loop while true; isfusion_spattack(file_var_s0_4)	hidenobattletarget	-	every actor of the field and scene managers 0 to 2 (those with +0x10 bit 0x1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 spc_z0000	監督	全体処理	31	0x0056E	83	loop while true; isfusion_spattack(file_var_s0_4)	store	file_var_s0_2 = 1	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 spc_z0000	監督	全体処理	32	0x00574	84	loop while true; isfusion_spattack(file_var_s0_4)	summongethertarget	3	argument 1: the largest distance (world units) from the summon space's origin (0, 0, 0) the followers may reach	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 spc_z0000	監督	全体処理	33	0x00580	88	loop while true; not (isfusion_spattack(file_var_s0_4))	PC00.capturepcbyentryid_not_cancelbattlecommand	file_var_s0_5	target actor `PC00` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
 spc_z0000	監督	全体処理	34	0x0058C	89	loop while true; not (isfusion_spattack(file_var_s0_4))	sysReqew	2, PC00::必殺技設定	actor `PC00`	-	-	files PC00::必殺技設定 on channel 2; waits until it ends	PC00.必殺技設定	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-spc_z0000	監督	全体処理	35	0x00590	90	loop while true; not (isfusion_spattack(file_var_s0_4))	sysSystem	0x02bd	none: SYSTEM pops and discards 0x02bd	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	35	0x00590	90	loop while true; not (isfusion_spattack(file_var_s0_4))	sysSystem	0x02bd	nothing: SYSTEM pops and discards 0x02bd	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	36	0x0059A	91	loop while true; not (isfusion_spattack(file_var_s0_4))	sysReqew	2, PC00::武器消し	actor `PC00`	-	-	files PC00::武器消し on channel 2; waits until it ends	PC00.武器消し	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 spc_z0000	監督	全体処理	37	0x0059E	92	loop while true; not (isfusion_spattack(file_var_s0_4))	PC00.releasepc	-	target actor `PC00` (this script) / the party member the target actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 spc_z0000	監督	全体処理	38	0x005A4	93	loop while true; not (isfusion_spattack(file_var_s0_4))	hidenobattletarget_spattack	file_var_s0_5	-	-	-	-	-		01 verb-table.tsv
@@ -56,15 +56,15 @@ spc_z0000	監督	全体処理	42	0x005C0	98	loop while true	efffadein	5	argument
 spc_z0000	監督	全体処理	43	0x005C6	99	loop while true	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 spc_z0000	監督	全体処理	44	0x005CC	100	loop while true	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 spc_z0000	監督	全体処理	45	0x005D2	101	loop while true	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-spc_z0000	監督	全体処理	46	0x005D8	102	loop while true	sysSystem	0x03e9	none: SYSTEM pops and discards 0x03e9	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	46	0x005D8	102	loop while true	sysSystem	0x03e9	nothing: SYSTEM pops and discards 0x03e9	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	47	0x005DD	103	loop while true	if	not (file_var_s0_2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	48	0x005E0	105	loop while true; not (file_var_s0_2)	openspattackwindow	-	-	-	-	-	-		01 verb-table.tsv
-spc_z0000	監督	全体処理	49	0x005E6	107	loop while true	sysSystem	0x03ea	none: SYSTEM pops and discards 0x03ea	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	49	0x005E6	107	loop while true	sysSystem	0x03ea	nothing: SYSTEM pops and discards 0x03ea	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	50	0x005EA	108	loop while true	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-spc_z0000	監督	全体処理	51	0x005F0	109	loop while true	sysSystem	0x03eb	none: SYSTEM pops and discards 0x03eb	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	51	0x005F0	109	loop while true	sysSystem	0x03eb	nothing: SYSTEM pops and discards 0x03eb	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	52	0x005F5	110	loop while true	if	not (file_var_s0_2)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	53	0x005F8	112	loop while true; not (file_var_s0_2)	spattackwindowsync	-	-	-	-	-	-		01 verb-table.tsv
-spc_z0000	監督	全体処理	54	0x005FE	114	loop while true	sysSystem	0x03ec	none: SYSTEM pops and discards 0x03ec	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	54	0x005FE	114	loop while true	sysSystem	0x03ec	nothing: SYSTEM pops and discards 0x03ec	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	55	0x00602	115	loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 spc_z0000	監督	全体処理	56	0x0060F	116	loop while true	store	file_var_s0_1 = not (getspattackskillinfo(&file_var_s0_7, &file_var_s0_6))	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 spc_z0000	監督	全体処理	57	0x00615	117	loop while true	store	file_var_s0_4 = file_var_s0_6	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -72,21 +72,21 @@ spc_z0000	監督	全体処理	58	0x0061B	118	loop while true	store	file_var_s0_5
 spc_z0000	監督	全体処理	59	0x00627	119	loop while true	sysReqew	3, 技読み込み::技読み込み	actor `技読み込み`	-	-	files 技読み込み::技読み込み on channel 3; waits until it ends	技読み込み.技読み込み	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 spc_z0000	監督	全体処理	60	0x00631	120	loop while true	sysReqew	2, 監督::技入力終了〜ホワイトアウト	actor `監督`	-	-	files 監督::技入力終了〜ホワイトアウト on channel 2; waits until it ends	監督.技入力終了〜ホワイトアウト	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 spc_z0000	監督	全体処理	61	0x00635	121	loop while true	if	file_var_s0_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	全体処理	62	0x0063B	123	loop while true; file_var_s0_1	sysSystem	2	none: SYSTEM pops and discards 2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	62	0x0063B	123	loop while true; file_var_s0_1	sysSystem	2	nothing: SYSTEM pops and discards 2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	63	0x00645	124	loop while true; file_var_s0_1	sysReqew	7, 監督::終了処理	actor `監督`	-	-	files 監督::終了処理 on channel 7; waits until it ends	監督.終了処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-spc_z0000	監督	全体処理	64	0x00649	125	loop while true; file_var_s0_1	sysSystem	3	none: SYSTEM pops and discards 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	全体処理	65	0x00650	129	loop while true; not (file_var_s0_1)	sysSystem	12	none: SYSTEM pops and discards 12	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	64	0x00649	125	loop while true; file_var_s0_1	sysSystem	3	nothing: SYSTEM pops and discards 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	65	0x00650	129	loop while true; not (file_var_s0_1)	sysSystem	12	nothing: SYSTEM pops and discards 12	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	全体処理	66	0x0065A	130	loop while true; not (file_var_s0_1)	sysReqew	2, 技読み込み::技読み込み終了待ち	actor `技読み込み`	-	-	files 技読み込み::技読み込み終了待ち on channel 2; waits until it ends	技読み込み.技読み込み終了待ち	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-spc_z0000	監督	全体処理	67	0x0065E	131	loop while true; not (file_var_s0_1)	sysSystem	13	none: SYSTEM pops and discards 13	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	監督	技入力終了〜ホワイトアウト	1	0x00665	138	-	sysSystem	0x012b	none: SYSTEM pops and discards 0x012b	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	全体処理	67	0x0065E	131	loop while true; not (file_var_s0_1)	sysSystem	13	nothing: SYSTEM pops and discards 13	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	1	0x00665	138	-	sysSystem	0x012b	nothing: SYSTEM pops and discards 0x012b	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	技入力終了〜ホワイトアウト	2	0x00669	139	-	effecttotalsignalsync	7	-	-	-	-	-		01 verb-table.tsv
 spc_z0000	監督	技入力終了〜ホワイトアウト	3	0x0066F	140	-	spattack_whiteout_menu_callback	0	-	-	-	-	-		01 verb-table.tsv
-spc_z0000	監督	技入力終了〜ホワイトアウト	4	0x00675	141	-	sysSystem	0x012c	none: SYSTEM pops and discards 0x012c	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	4	0x00675	141	-	sysSystem	0x012c	nothing: SYSTEM pops and discards 0x012c	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	技入力終了〜ホワイトアウト	5	0x00679	142	-	effecttotalsignalsync	8	-	-	-	-	-		01 verb-table.tsv
 spc_z0000	監督	技入力終了〜ホワイトアウト	6	0x0067F	143	-	spattack_whiteout_menu_callback	1	-	-	-	-	-		01 verb-table.tsv
 spc_z0000	監督	技入力終了〜ホワイトアウト	7	0x00685	144	-	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 spc_z0000	監督	技入力終了〜ホワイトアウト	8	0x0068B	145	-	whiteout	0	argument 1: the length in frames of a fade to white on fade layer 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-spc_z0000	監督	技入力終了〜ホワイトアウト	9	0x00691	146	-	sysSystem	0x012d	none: SYSTEM pops and discards 0x012d	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	監督	技入力終了〜ホワイトアウト	9	0x00691	146	-	sysSystem	0x012d	nothing: SYSTEM pops and discards 0x012d	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	監督	技入力終了〜ホワイトアウト	10	0x00695	147	-	spattacksync	file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
 spc_z0000	監督	技入力終了〜ホワイトアウト	11	0x0069E	148	-	PC00.capturepcbyentryid_not_cancelbattlecommand	file_var_s0_3	target actor `PC00` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
 spc_z0000	監督	技入力終了〜ホワイトアウト	12	0x006AA	149	-	sysReqew	2, PC00::武器表示	actor `PC00`	-	-	files PC00::武器表示 on channel 2; waits until it ends	PC00.武器表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -126,7 +126,7 @@ spc_z0000	メッセージ監督	message	1	0x00753	218	-	wait	60	-	-	60 frames	wa
 spc_z0000	メッセージ監督	message	2	0x00759	219	-	openskillnamewindow_spattack	file_var_s0_4	-	-	-	-	-		01 verb-table.tsv
 spc_z0000	メッセージ監督	messageterm	1	0x0075C	224	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	target00	init	1	0x0075D	233	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-spc_z0000	target00	方向固定	1	0x00761	238	-	sysSystem	0x0384	none: SYSTEM pops and discards 0x0384	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+spc_z0000	target00	方向固定	1	0x00761	238	-	sysSystem	0x0384	nothing: SYSTEM pops and discards 0x0384	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	target00	方向固定	2	0x00765	239	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 spc_z0000	target00	方向固定	3	0x00768	240	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 spc_z0000	PC00	init	1	0x00769	249	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

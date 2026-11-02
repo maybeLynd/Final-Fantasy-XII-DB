@@ -192,6 +192,22 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
   else the actor of the row's `TAGmes_<actor>_<n>` function, else the actor whose mouth function (`paku_on`,
   `unapaku_on`, `クチウナオン`, `kutipaku_on`, `kutipakuON`) is requested in its window or around the request of its
   function.
+- A scene subtitle these steps leave without a speaker takes the speaker of the one voice cue that starts on the frame
+  the subtitle opens or within 10 frames after, else of the one speaker whose cues play through at least half the
+  frames it is shown while no other speaker's cues play through more than a fifth. Every showing of the line must give
+  the same speaker, and a subtitle of two speakers, which starts `- `, takes no speaker by this step.
+- The frames are those of the clock of [Voices](../Sound-And-Music/voices.md) ("How a cue is joined to its line"), which
+  runs every function of the scene, one that no other function starts on a clock of its own. A variable keeps the
+  value its declaration or its last store gives.
+- Each case of a `switch` on a value the run cannot know runs on a clock of its own, a `sysReqwait` for a function
+  another function requested waits for the end of that request, and a line stays shown until the next message call or
+  `mesclose` on its window.
+- A cue whose `speaker` cell names no actor takes the character its sound code belongs to, the letters after the
+  number in its `sound` name ([Voices](../Sound-And-Music/voices.md)), when three or more cues with that code name a
+  speaker and three quarters of them or more name that one character.
+- A cue whose sound code belongs to another character than its speaker plays through another actor's slot, so it names
+  no speaker by these two steps, unless the two characters share a party model. A line shown on a movie's frames takes
+  no cue's speaker: its function, or each function that requests it, waits on `getmovieframe` before showing it.
 - A character's game name is the second name its `setnpcname` gives; else the party member whose model its bind verbs
   name, the `c` entries of the script's [actor manifest](../EBP-Script-Files/ebp-actor-manifest.md) read
   against the `model` column of the [party table](../Party/party-table.md), a main member before a guest; else
@@ -203,8 +219,25 @@ section 2 ([EBP text sections](../EBP-Script-Files/ebp-text-sections.md)):
 - Failing that, it takes the [bestiary](../Enemy-Spawning/bestiary.md) name of that model id (its
   `model_id` cell), when the bestiary gives it one name. A `c` model is left out of these two steps, since the
   bestiary can name a battle alias there: Amalia for Ashe's `c11`.
-- Any other line without a name reads `no name shown`, apart from a scene subtitle, which keeps its row's cell `-`. A
-  line whose name is `???` reads `???`: the game prints `???` as that speaker's name at that line. A row lists its
+- An actor these steps leave unnamed whose only body is `capturepc(-1)`, the character the player controls, speaks as
+  Reks in a scene each of whose loading steps runs while the story counter is below 25: until then the party is
+  [scenario preset](../Party/scenario-presets.md) 0, Reks alone, and the
+  [party table](../Party/party-table.md) gives no join below 25.
+- Failing that, an actor every one of whose voice cues in the scene carries a sound code that belongs to one
+  character, by the sound-code step above, takes that character's name. An actor bound to a `c` model is left out of
+  this step, since two party rows can share one: Larsa and Lamont share `c16`.
+- An actor bound to `c16` is the guest row its `capturebattleid` names; else the one `c16` guest the party holds at
+  every story counter value the scene's loading steps allow, by the joins and leaves of the
+  [party table](../Party/party-table.md): Lamont (row 10) from story progress 546 until 645, Larsa (row 13) from
+  story progress 1640 until 2000. Any other `c16` actor reads its label, as below.
+- Any other line without a name reads `no name shown`. A scene subtitle shows no name on screen, so its cell gives
+  what the data holds: `movie subtitle` for a line shown on a movie's frames; for a line whose voice cue's actor has
+  no game name, that actor's label as the script writes it, marked `(script label)`; else `no name shown`.
+- A Japanese label carries an English gloss after a comma: the game's own English name where its text has one, as
+  `グラミス (script label, Gramis)`, by line 19 of `alc_z0101` in
+  [Archades dialogue](../Menus-And-HUD/archades-dialogue.md); else a plain translation, as
+  `平ジャッジ (script label, rank-and-file Judge)`, or a plain reading of an abbreviation the text does not spell out.
+- A line whose name is `???` reads `???`: the game prints `???` as that speaker's name at that line. A row lists its
   speakers in line order, each once.
 - A field id is named by its map name, entry `id` of `us` `planmapname.bin` (`0x00377B60`), and its region, the
   entry after the map names that `0x003778B0` selects through the field's group in `map_ref.bin` (`0x00264F90`).
@@ -264,7 +297,7 @@ The twelve `does not ship` rows are `motionread` calls that read an empty entry:
 entry 2 of `byu_a15.mot`, entry 1 of `byu_a16.mot` (two rows), entry 2 of `byu_a16.mot` and entry 1 of `byu_a17.mot`.
 
 A row whose `resolution` cell is empty gives the step as the listing writes it: the verb, and the arguments as the
-script writes them (`-` for a verb that takes none). Its `addresses`, `timing` and `sync` cells carry what they give
+script writes them (`-` for a verb without arguments). Its `addresses`, `timing` and `sync` cells carry what they give
 for the step, for example the variable that receives a result, and `-` otherwise.
 
 A scene reads from top to bottom in its director's function. In `byu_a0480` (event `705`), `DIRECTOR.main` reads
@@ -281,7 +314,7 @@ and the six models, fades out over 0 frames and disposes of event manager slot 0
 | `place` | for a zone script, its map (region); for a scene script, `scene, event` and its event id |
 | `actor`, `function` | the actor and the function, as the script names them |
 | `trigger` | the function's slot (`talk`, `touch`, `touchon`, `across`, `main`, `mapjump`), `init`, or `requested by` and the functions of the same script that request it by name; `-` when neither applies |
-| `speaker` | for an actor with a `setnpcname` call, the second names of its pairs; for any other row with a section 2 line, who speaks each line, in line order, by the rules under "Speakers, places and scenes": a name, `???`, `no name shown` or `system message`; `-` for a row without a section 2 line, and for a scene row with a subtitle none of those rules names |
+| `speaker` | for an actor with a `setnpcname` call, the second names of its pairs; for any other row with a section 2 line, who speaks each line, in line order, by the rules under "Speakers, places and scenes": a name, `???`, `no name shown`, `system message`, `movie subtitle`, or an actor's label marked `(script label)`; `-` for a row without a section 2 line |
 | `lines` | the section 2 entries the function passes to the message verbs, and `system message N` for each message from the shared system-message list that the key-item and system-message helper shows for the function ([Shared zone-script actors](shared-zone-script-actors.md)), at the place of the request; two numbers joined by `or` are the values the function's stores leave, and which one is shown is decided at run time |
 | `line_text` | the `us` text of those entries, in the same order, separated by ` / `; for a `system message N` entry, the text of message N in the system-message list |
 | `flags_set`, `flags_released`, `flags_tested` | the flag ids, each with the first sentence of its explanation on [story flag ids](story-flag-ids.md); a `Bank2048` flag carries its bank name |
@@ -315,9 +348,9 @@ The steps table [`bhujerba-script-steps.tsv`](bhujerba-script-steps.tsv) has one
 | `step` | the step's number in its function, from 1, in the order the function's bytes run |
 | `at` | where the step's instruction sits: its offset in section 0, the script image, of the shipped `plan_master/us` `.ebp`. For `case`, `default` and `label` it is where their code starts. For `shared template` and `same code` it is where the function or actor starts |
 | `line` | the step's line in the script listing, `-` for the `shared template` and `same code` rows |
-| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test` |
+| `condition` | the tests the step runs under, outermost first, separated by `;`. A case is written `x = v` (the switch starts at the first case that matches, so a value an earlier case also matches starts at that earlier case), a default `x is none of ...`, an else part `not (test)` and a loop body `loop while test`. After the enclosing tests come, in listing order, the ways the function leaves before the step: a `return`, a `break` (it leaves its repeat or switch), a `continue` (it skips the rest of the pass) or a `goto` past the step that an earlier test sends the run to, and a repeat that never ends. Each is written as the test that keeps the run on its way to the step: `not (regI0 == 0)` after `if (regI0 == 0) { return; }`, or `not ((test) and (test))` when several tests together lead away. A test inside a repeat counts for the pass the step runs in, and a test the run does not reach counts as one that does not hold. After a repeat that a `return` or a `goto` can also leave, a step reached only when the repeat ends by itself carries `the repeat at line N ended at its own test or a break` (`through a break` for an endless repeat), and a way out of it reads `the repeat at line N was left at line M`. When a `goto`, or a case that runs on into the next case, also leads to the step, only the enclosing tests that hold on every way to the step are written, followed by the same items for the ways that miss it. A function that a `goto` of another function enters at one of its labels runs either from its top or from that label: an item then names where the run came in, `the run began at the top of the function` or `the run entered at line N through a goto from another function`. A `case` or `default` step is a test of its switch, so it runs whenever the switch runs. `unreachable in the listing` marks a step that no path of the function in the decompiled listing reaches; it rests on the labels the listing prints for jump targets |
 | `verb` | the verb the step calls, by its name in the [verb table](../Scripts-And-Script-Commands/verb-table.md), written `Actor.verb` for a call on another actor. Otherwise the kind of step: `if`, `else if`, `while`, `for`, `switch`, `case`, `default`, `break`, `goto`, `label`, `return`, `returnT`, `store`, `shared template` or `same code` |
-| `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test |
+| `arguments` | the arguments as the script writes them; for `store` it is `variable = value`, and for a branch or loop it is the test. A number with a fraction is the listing's print of a 32-bit float to nine significant digits, here and in `condition`: 1.60000002 is the float nearest to 1.6, and 2.36000005e-06 is 2.36000005 times 10 to the power -6 |
 | `addresses` | what the arguments name in the game: the actor, model, animation and motion file, effect file, event sound, camera shot, message window, request slot or variable |
 | `quoted_lines` | for a call that shows dialogue or a system message, each line it shows, written `line N: ` and the us text with its text codes dropped; `-` for every other step |
 | `timing` | the frames, fade lengths and speeds the step uses |

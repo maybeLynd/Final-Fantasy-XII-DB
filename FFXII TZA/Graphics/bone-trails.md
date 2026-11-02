@@ -61,9 +61,9 @@ The image is 64 × 64 with 256 colours. `0x0051C270` keeps the texture's handle 
 (`0x0051C2C6`) and the palette's from `0x001837A0` in `0x02EBA470` (`0x0051C2EC`); `0x0051BC70` binds them to GS
 addresses `0x2A00` (`0x0051BFD6`) and `0x2E00` (`0x0051BFEA`) through `0x002D7E00`.
 
-`0x0051CC30` takes the first entry whose handle is 0; with none free it returns 0 and the trail is not made. It sets the
-handle to `serial << 8 | slot` (the serial wraps to 1 above `0xFFFFFF`), on = 1, opacity 1.0, `+0xC` = 20.0, fade 0,
-copies the descriptor, clears the histories, takes the first sample and appends the entry to the list.
+`0x0051CC30` takes the first entry whose handle is 0; with no entry free it returns 0 and the trail is not made. It sets
+the handle to `serial << 8 | slot` (the serial wraps to 1 above `0xFFFFFF`), on = 1, opacity 1.0, `+0xC` = 20.0, fade
+0, copies the descriptor, clears the histories, takes the first sample and appends the entry to the list.
 
 ### Sampling a bone
 
@@ -168,7 +168,7 @@ Measured over the 1,066 `.cm` models in the archive; the model block is the `@FC
 | Fact | Value |
 |---|---|
 | models with a trail section | 216 of 1,066 |
-| trails per model | 1 in 199, 2 in 14, 3 in 1, 4 in 2; 238 in all, none over four |
+| trails per model | 1 in 199, 2 in 14, 3 in 1, 4 in 2; 238 in all, no model over four |
 | by folder | weapon 202 models (218 trails), gadget 9, summon 4 (10), monster 1 |
 | bones | 2 in 202 trails, 3 in 20, 4 in 3, 0 and 20 in 2 each, 41-44 in 2 each, 54 in 1 |
 | own-image byte, word `+4` | 0 in all 238 |

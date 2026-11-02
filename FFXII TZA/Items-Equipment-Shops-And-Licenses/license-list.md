@@ -13,7 +13,7 @@ addresses: "0x02EBF038, 0x0031C5D0, 0x0031DF90, 0x0031DFAB, 0x00323890, 0x002F8F
 
 By requirement kind there are 176 equipment nodes, 97 action nodes (magicks, technicks, the 18 Quickenings and
 the 13 Espers), 87 augment nodes and the one Second Board node, 360. 60 squares are on all twelve boards, and the
-14 Quickening nodes not placed on a board are on none, as [License Board](license-board.md) states.
+14 Quickening nodes not placed on a board are on no board, as [License Board](license-board.md) states.
 
 ### Where the values come from
 
@@ -37,7 +37,7 @@ Each line is read from the shipped files in these steps:
 
 - The table's header gives 361 rows of 24 bytes, one TSV line each.
 - The kind counts agree with [Augments](../Damage-And-Battle-Formulas/augments.md), 87 augment nodes, and the board counts
-  with [License Board](license-board.md): 60 squares on every board, 14 on none.
+  with [License Board](license-board.md): 60 squares on every board, 14 on no board.
 - Example rows: node 182, White Magick 1, costs 15 LP (`+0x04`, which `0x003239C3` takes),
   grants actions 0 and 1, Cure and Blindna, and is held from the start by Ashe, Fran, Penelo and Reks; node 31,
   Essentials, costs 1 LP and every party row 0-6 starts with it; node 360, Second Board, is category 30.

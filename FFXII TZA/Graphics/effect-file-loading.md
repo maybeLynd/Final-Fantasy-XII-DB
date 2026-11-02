@@ -164,7 +164,7 @@ The pool and the request are on [Character lighting and shadows](character-light
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02B40538` | `u32` | 0 (zero-filled tail) | the handle of that light, 0 when none; `0x0024D9C0` also releases it through `0x003B81A0(0)` (`0x0024D9DA`) | `0x003B81A0`: 0 (`0x003B81CE`), the handle (`0x003B8228`); `0x003B8670`, 0 (`0x003B96CF`) | `0x003B81A0` (`0x003B81BA`); `0x003B8670` (`0x003B96AD`) |
+| `0x02B40538` | `u32` | 0 (zero-filled tail) | the handle of that light, 0 when no light is held; `0x0024D9C0` also releases it through `0x003B81A0(0)` (`0x0024D9DA`) | `0x003B81A0`: 0 (`0x003B81CE`), the handle (`0x003B8228`); `0x003B8670`, 0 (`0x003B96CF`) | `0x003B81A0` (`0x003B81BA`); `0x003B8670` (`0x003B96AD`) |
 | `0x020968C8` | `u8` | 0 (zero-filled tail) | flags of the block `0x00259250` resets: each reset clears bits `0x2` and `0x8` and sets bits `0x1` and `0x4`, keeping the rest. No instruction sets bit `0x10`, which opcode `0x03` tests before it sets the target slot's bit in the current instance's `+0x0C` while `+0x378` bit `0x200` is set (`0x003B8814`-`0x003B8937`), so that bit is never set there | `0x00259250` (`0x002592DA`) | `0x00259250` (`0x00259259`); `0x003B8670` (`0x003B891F`) |
 
 No other instruction reaches these six globals: no other RIP-relative, image-base-relative or 32-bit offset reference

@@ -75,7 +75,7 @@ Every part names every source. A cell that would be longer than 1,000 characters
 
 That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source. No treasure chest gives a key item: the chest records' item words name items, equipment, loot, magicks and technicks ([Treasure chests](../World-Areas-And-Travel/treasure-chests.md)).
 
-Three key items have no source, and their `sources` cells say so with `none:`: the map Bahamut (`0x8025`) and the teleport destinations Zertinan Caverns (`0x804D`) and The Feywood (`0x804F`). No map seller's list, bazaar good, treasure chest, reward package, first join or scenario set holds their ids, and no give call of any `us` script names them, the developer scripts included.
+Three key items have no source, and their `sources` cells say so with `no source:`: the map Bahamut (`0x8025`) and the teleport destinations Zertinan Caverns (`0x804D`) and The Feywood (`0x804F`). No map seller's list, bazaar good, treasure chest, reward package, first join or scenario set holds their ids, and no give call of any `us` script names them, the developer scripts included.
 
 ### Rows that are not items
 
@@ -122,8 +122,8 @@ The census of those five ids reaches past the scripts read here: no instruction 
 | `text_id`, `description` | `+0x06` and its shipped text |
 | `explanation` | the table it comes from, and whether its description is empty; "a Reserve row" for the others |
 | `kind` | map, teleport destination, status word, key item or Reserve ("Rows that are not items" above) |
-| `sources` | where the key item is obtained, one part per kind of source, with how a scene gift is handed over, the map sellers and each trophy's rare game ("Where each key item comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `none:` and the sources that do not hold it for the three key items no source gives; `-` for none |
-| `used_for` | what takes, tests or reads the key item, one part per kind of use ("What each key item is for" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `census:` and the number of scripts it covers when none is found |
+| `sources` | where the key item is obtained, one part per kind of source, with how a scene gift is handed over, the map sellers and each trophy's rare game ("Where each key item comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `no source:` and the sources that do not hold it for the three key items no source gives; `-` for a row with no source |
+| `used_for` | what takes, tests or reads the key item, one part per kind of use ("What each key item is for" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `census:` and the number of scripts it covers when no use is found |
 | `test_opens` | for each of the 43 key items with a `tested:` part, what each test does in the game: the door, map jump, scene step, trade, gift, quest step or talk it controls, with the map (region) and script; `-` for the others |
 
 ## Related

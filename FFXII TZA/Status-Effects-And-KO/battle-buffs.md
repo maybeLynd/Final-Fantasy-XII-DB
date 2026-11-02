@@ -51,7 +51,7 @@ Two paths set `+0x68` in shipped play:
   it, and if the enemy has it the order may clear it.
 - **Abilities of recipe 79.** Wall, Magick Barrier, Force Barrier, Greater Barrier, Battle Cry, Shift, Saber,
   Mana Spring, Enrage, Chain Magick, Limit Break, Unleash, Perfect Defense and Chain Reaction set the ids in their
-  action row's bytes `+0x10` and `+0x11` (`0xFF` for none). Slot 187 copies them into the result, and the result
+  action row's bytes `+0x10` and `+0x11` (`0xFF` for no id). Slot 187 copies them into the result, and the result
   applier sets them in mode 2 (`0x0038FF72`, `0x003117CB`).
 
 ### What each id does

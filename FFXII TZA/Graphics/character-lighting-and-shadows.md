@@ -27,7 +27,7 @@ returns the request block when the handle still matches.
 The byte `0x02B3F500` counts the entries in use: `0x003AB960` adds 1 (`0x003AB988`) and `0x003ABCA0` takes 1 off when it
 releases one (`0x003ABCBE`). The pool clear `0x003ABB60` frees all 128 entries and empties the list, sets the count to 0
 (`0x003ABB91`), then files one entry at once and sets it to 1 (`0x003ABBFC`). The set-up `0x003AC890` allocates the
-pool (`0x3800` bytes) when it has none, and one 8-byte store at `0x003AC8D0` zeroes `0x02B3F500`, `0x02B3F501`,
+pool (`0x3800` bytes) when it has no pool, and one 8-byte store at `0x003AC8D0` zeroes `0x02B3F500`, `0x02B3F501`,
 `0x02B3F503` and the counter `0x02B3F504` and sets `0x02B3F502` to 1.
 
 For the falloff kinds the create routine stores `1 / range²` from the range at request `+0x0C`: at
@@ -70,7 +70,7 @@ By type (request `+0`):
   priority and greater strength, makes it the winner.
 - 7: the character's own list, fetched from record `+0x108` (`0x0037AD40`). Its entries use scope 1 sub 2
   (id match) and scope 3 with the character's group bits (`0x003AED20`: record `+0x28C`; sub 7 needs a
-  shared bit, sub 6 none). Ambients are handled as above with the light scale off; the rest are taken.
+  shared bit, sub 6 needs no bit). Ambients are handled as above with the light scale off; the rest are taken.
 - anything else is a directional kind and goes to the output list.
 
 At the end the base ambient is the winner's colour, or the additive sum when the winner was additive;
@@ -181,7 +181,7 @@ entry index first.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32` | handle | the pool handle, 0 for none |
+| `+0x00` | `u32` | handle | the pool handle, 0 for no light |
 | `+0x04` | `u8` | manager | the manager byte of the bindl issuer |
 | `+0x05` | `u8` | focus | 1 follows the party focus |
 | `+0x08` | `void*` | binder | the actor that ran bindl |

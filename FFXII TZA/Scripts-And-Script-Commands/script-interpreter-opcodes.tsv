@@ -44,7 +44,7 @@ opcode	mnemonic	length	handler	field2	field4	field16	field20	effect
 0x2A	PREQ	1	0x0026121A	0	0	0	0	pop three values; no request is filed
 0x2B	PREQSW	1	0x0026121A	0	0	0	0	as 0x2A (shared handler)
 0x2C	PREQEW	1	0x0026121A	0	0	0	0	as 0x2A (shared handler)
-0x2D	RET	1	0x00261239	0	0	0	0	return: retire the active entry, select the next pending one, and resume the caller's wait slot (or service the wait state when none is outstanding)
+0x2D	RET	1	0x00261239	0	0	0	0	return: retire the active entry, select the next pending one, and resume the caller's wait slot (or service the wait state when no wait is outstanding)
 0x2E	RETN	1	0x0026131C	0	0	0	0	return N: pop a depth and recycle the entry range above it, then resume as RET
 0x2F	RETT	1	0x002613DD	0	0	0	0	return and transfer: as RET, and start the next entry's script (0x003DBDC0)
 0x30	RETTN	1	0x0026147B	0	0	0	0	return N and transfer

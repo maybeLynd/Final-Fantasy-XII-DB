@@ -1,20 +1,20 @@
 code	char	arm	parser	bytes	does	st2e	st2e-in-ard	bank	hdat	ebp-002	ebp-003	msb	npcdic	total	of_which_nested	in_malformed_lists	languages_with_any	per_language	placeholder
-01		0x002ACB96	none	1	blank: width 0x0017F920(0); counts 1 (0x002ACC04-0x002ACCE3)	100	0	15	5450	40219	200	1152	0	47136	30632	0	9	us:3654 de:3658 es:3658 fr:4062 it:3668 in:9818 kr:5712 cn:5729 ch:7177	{blank}
-02		0x002AC6D1	none	1	line break: re-justify (0x002B2150/0x002B1F20/0x002B2C50), y += line height + gap, indent +0xAA, sets painter +0x1102	9178	0	21	71570	335751	0	406	0	416926	0	46	9	us:49875 de:53915 es:51038 fr:49545 it:48273 in:40439 kr:43486 cn:39949 ch:40406	{line}
-03		0x002AC6AE	none	1	end of page: clears painter +0x10FC, 0x0017FAE0(0), returns 0; the markup parser 0x002A8C50 starts the page wait at 0x002A8DC7 -> 0x002A97CD	0	0	0	5616	45647	0	0	0	51263	0	0	9	us:5802 de:6004 es:6438 fr:5636 it:5501 in:5473 kr:5476 cn:5462 ch:5471	{page}
-04		0x002ACB96	none	1	space: width 0x0017F920(1), +[0x01CEBBA8] under +0x44 bit 0x800; counts 1	90342	0	29824	215035	1432385	17234	2510	9729	1797059	71011	2290	9	us:331390 de:300473 es:324035 fr:349702 it:269967 in:6859 kr:202551 cn:5385 ch:6697	space
-05		0x002ACCF3	none	1	column mark 1: blank of 0x0024ABA0()*15 (0x00916314); records widths at painter +0x10EC/+0x10F4	0	0	0	0	3087	0	0	0	3087	2997	0	9	us:343 de:343 es:343 fr:343 it:343 in:343 kr:343 cn:343 ch:343	{col}
-06		0x002ACB96	none	1	blank: fixed width 10.0 ([0x008F8180])	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{blank-fixed}
-07		0x002ACB96	none	1	blank: 0x0024ABA0()*10, or 26 when 0x00254A10()==0 and 0x00229E40()==7	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{blank-scaled}
-08		0x002AD011	none	3	skipped: cursor += 3, nothing else	0	0	1436	0	0	0	0	0	1436	0	0	5	us:29 de:124 es:452 fr:423 it:408 in:0 kr:0 cn:0 ch:0	{word:HHHH}
-09		0x002AD008	none	1	skipped: cursor += 1, nothing else	0	0	2265	0	0	0	0	0	2265	0	0	5	us:661 de:556 es:222 fr:379 it:447 in:0 kr:0 cn:0 ch:0	{word}
-0A		0x002ACE25	none	1	column mark 2: measures to the next 02/05 (0x002ACF10-0x002ACF34), right-aligns: painter +0x10F0 max, +0x10F8 = max - width	0	0	0	0	1989	0	0	0	1989	1908	0	9	us:221 de:221 es:221 fr:221 it:221 in:221 kr:221 cn:221 ch:221	{col-right}
-0B		0x002AC6CA	none	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{end-0B}
-0C		0x002AC6CA	none	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{end-0C}
-0D		0x002AC6CA	none	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{end-0D}
+01		0x002ACB96	-	1	blank: width 0x0017F920(0); counts 1 (0x002ACC04-0x002ACCE3)	100	0	15	5450	40219	200	1152	0	47136	30632	0	9	us:3654 de:3658 es:3658 fr:4062 it:3668 in:9818 kr:5712 cn:5729 ch:7177	{blank}
+02		0x002AC6D1	-	1	line break: re-justify (0x002B2150/0x002B1F20/0x002B2C50), y += line height + gap, indent +0xAA, sets painter +0x1102	9178	0	21	71570	335751	0	406	0	416926	0	46	9	us:49875 de:53915 es:51038 fr:49545 it:48273 in:40439 kr:43486 cn:39949 ch:40406	{line}
+03		0x002AC6AE	-	1	end of page: clears painter +0x10FC, 0x0017FAE0(0), returns 0; the markup parser 0x002A8C50 starts the page wait at 0x002A8DC7 -> 0x002A97CD	0	0	0	5616	45647	0	0	0	51263	0	0	9	us:5802 de:6004 es:6438 fr:5636 it:5501 in:5473 kr:5476 cn:5462 ch:5471	{page}
+04		0x002ACB96	-	1	space: width 0x0017F920(1), +[0x01CEBBA8] under +0x44 bit 0x800; counts 1	90342	0	29824	215035	1432385	17234	2510	9729	1797059	71011	2290	9	us:331390 de:300473 es:324035 fr:349702 it:269967 in:6859 kr:202551 cn:5385 ch:6697	space
+05		0x002ACCF3	-	1	column mark 1: blank of 0x0024ABA0()*15 (0x00916314); records widths at painter +0x10EC/+0x10F4	0	0	0	0	3087	0	0	0	3087	2997	0	9	us:343 de:343 es:343 fr:343 it:343 in:343 kr:343 cn:343 ch:343	{col}
+06		0x002ACB96	-	1	blank: fixed width 10.0 ([0x008F8180])	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{blank-fixed}
+07		0x002ACB96	-	1	blank: 0x0024ABA0()*10, or 26 when 0x00254A10()==0 and 0x00229E40()==7	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{blank-scaled}
+08		0x002AD011	-	3	skipped: cursor += 3, nothing else	0	0	1436	0	0	0	0	0	1436	0	0	5	us:29 de:124 es:452 fr:423 it:408 in:0 kr:0 cn:0 ch:0	{word:HHHH}
+09		0x002AD008	-	1	skipped: cursor += 1, nothing else	0	0	2265	0	0	0	0	0	2265	0	0	5	us:661 de:556 es:222 fr:379 it:447 in:0 kr:0 cn:0 ch:0	{word}
+0A		0x002ACE25	-	1	column mark 2: measures to the next 02/05 (0x002ACF10-0x002ACF34), right-aligns: painter +0x10F0 max, +0x10F8 = max - width	0	0	0	0	1989	0	0	0	1989	1908	0	9	us:221 de:221 es:221 fr:221 it:221 in:221 kr:221 cn:221 ch:221	{col-right}
+0B		0x002AC6CA	-	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{end-0B}
+0C		0x002AC6CA	-	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{end-0C}
+0D		0x002AC6CA	-	0	no effect: the interpreter returns 0 without moving the cursor	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{end-0D}
 0E		0x002AC825	0x003FFDF0	5 + (b4&1 ? ceil(n/7) : 0) + sum(1+len&0x7F), cursor left on the list's 00	selection list: n = b1&0x7F options, each length-prefixed text drawn through 0x002B43C0/0x002A9F00; b4 bit0 = a hidden-option bitmask follows	0	0	0	0	33151	0	224	0	33375	0	57	9	us:3659 de:3661 es:3658 fr:3657 it:3660 in:3882 kr:3658 cn:3658 ch:3882	{choice:n}[a|b]
 0F 20	space	0x002AD041	0x003FFAB0	4	fixed-advance switch: +0x40 = (int8)v/90 (0x009166FC), 0 = off; emits a compensating advance on change	60	0	0	343	7421	0	0	0	7824	2	0	9	us:4615 de:2330 es:361 fr:171 it:327 in:5 kr:5 cn:5 ch:5	{fixed-advance:HHHH}
-0F 21	!	0x002AD151	none (inc)	2	alternate font record: +0x68 = 0x0039BA30(+0xA6, 1); with 0x00254A10()==0 binds font 7 (0x0017FD30) and sets +0x44 bit 0x800	0	0	0	0	27979	0	0	0	27979	0	0	9	us:3109 de:3109 es:3103 fr:3109 it:3110 in:3110 kr:3109 cn:3110 ch:3110	{alt-font}
+0F 21	!	0x002AD151	- (inc)	2	alternate font record: +0x68 = 0x0039BA30(+0xA6, 1); with 0x00254A10()==0 binds font 7 (0x0017FD30) and sets +0x44 bit 0x800	0	0	0	0	27979	0	0	0	27979	0	0	9	us:3109 de:3109 es:3103 fr:3109 it:3110 in:3110 kr:3109 cn:3110 ch:3110	{alt-font}
 0F 22	quote	0x002AD1ED	0x003FFEE0	4	+0x9E = b2&0x1F (interpreter); the markup parser also sets +0x50 = 1/+0x9E and +0x90 (0x002A9442-0x002A94C1)	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{fade:HHHH}
 0F 23	#	0x002AD205	0x003FFAB0	4	page wait: v>0 -> +0x88 = 30v ticks; v=0 -> +0x88 = 10000 (wait for decide), +0xB0 mode 5, bits 0x80000+0x4000000; +0x9B = 1	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{wait:HHHH}
 0F 24	$	0x002AD252	0x003FFAB0	4	letter spacing: +0x4C = (int8)v unless +0xB0 bit 0x2000000	87	0	0	0	69705	9253	388	0	79433	0	16	9	us:12 de:12 es:10 fr:10 it:12 in:20039 kr:19650 cn:19650 ch:20038	{spacing:HHHH}
@@ -29,7 +29,7 @@ code	char	arm	parser	bytes	does	st2e	st2e-in-ard	bank	hdat	ebp-002	ebp-003	msb	n
 0F 2D	-	0x002AD8AB	0x003FFC60	4	number: digits of ctx +0x54 via 0x002AE610 when b1&0x7F == 0x7F; +0xA1 = min(b2&0xF, 8) digits; out2 = 0	379	0	0	0	317	0	20	0	716	0	0	9	us:75 de:79 es:63 fr:78 it:63 in:102 kr:82 cn:77 ch:97	{number:HHHH}
 0F 2E	.	0x002AD8F9	0x003FFC60	4	insert argument b1&0x7F from the +0x70 array: kinds 1/2 a string, kind 0 a number (0x002AE610)	0	0	0	0	34696	0	142	0	34838	22994	4	9	us:3632 de:3763 es:3613 fr:3619 it:3814 in:4170 kr:4029 cn:4028 ch:4170	{arg:HHHH}
 0F 2F	/	0x002AE308	0x003FFAB0	4	skipped by the interpreter; type-out speed in 0x002A8C50 (0x002A91EA-0x002A93AE: +0x9C/+0xA0)	293	0	0	0	77002	0	380	0	77675	8	14	9	us:8552 de:8475 es:8550 fr:8553 it:8564 in:8936 kr:8555 cn:8555 ch:8935	{speed:HHHH}
-0F 30	0	0x002ACFC2	none	1 (selector then printed)	no arm: cursor left on '0', which is drawn as a character	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{0F}
+0F 30	0	0x002ACFC2	-	1 (selector then printed)	no arm: cursor left on '0', which is drawn as a character	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{0F}
 0F 31	1	0x002ADBF5	0x003FFF10	5	skipped (all three outputs NULL)	1329	0	0	0	0	0	0	0	1329	0	0	9	us:155 de:154 es:142 fr:127 it:139 in:155 kr:155 cn:151 ch:151	{string:HHHHHH}
 0F 32	2	0x002ADC71	0x003FFAB0	4	tab: v=0 stores x as painter +0x10E0; v>0 advances to +0x10E0 + 2v (forward only)	16	0	0	0	0	0	0	0	16	0	0	8	us:2 de:0 es:2 fr:2 it:2 in:2 kr:2 cn:2 ch:2	{tab:HHHH}
 0F 33	3	0x002ADC5A	0x003FFDA0	4	x/y scale: +0x38 = (b1&0x7F)/10, +0x3C = (b2&0x7F)/10 (0x008F8180)	27	0	0	0	0	0	0	0	27	0	0	9	us:3 de:3 es:3 fr:3 it:3 in:3 kr:3 cn:3 ch:3	{scale:HHHH}
@@ -47,7 +47,7 @@ code	char	arm	parser	bytes	does	st2e	st2e-in-ard	bank	hdat	ebp-002	ebp-003	msb	n
 0F 3F	?	0x002AE03E	0x003FFAB0	4	one glyph through 0x002AE450, payload bands <10, 10-19, >=20; counts 1, alpha fades	151	0	0	41	0	0	0	0	192	0	0	9	us:39 de:35 es:48 fr:17 it:17 in:9 kr:9 cn:9 ch:9	{symbol:HHHH}
 0F 40..6B	@-k minus V _ (42)	0x002AE1F1	0x002AEB20 returns 2	3	inline icon sprite: letter-0x40 picks the entry, b1 bit1 a variant; pad-dependent for R S Z [ \ (0x002AEB20); counts 1	762	0	0	55	5138	0	78	0	6033	0	0	9	us:649 de:646 es:649 fr:647 it:647 in:739 kr:658 cn:660 ch:738	{icon:X:HH}
 0F 56	V	0x002AE2F0	0x003FFAB0	4	skipped; out2 = 0	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{0F56:HHHH}
-0F 5F	_	0x002ACFC2	none	1 (selector then printed)	no arm: cursor left on '_', which is drawn	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{0F}
+0F 5F	_	0x002ACFC2	-	1 (selector then printed)	no arm: cursor left on '_', which is drawn	0	0	0	0	0	0	0	0	0	0	0	0	us:0 de:0 es:0 fr:0 it:0 in:0 kr:0 cn:0 ch:0	{0F}
 0F 6C	l	0x002ADC34	0x003FFCE0	5	skipped (all outputs NULL)	23	0	0	0	0	0	0	0	23	0	0	5	us:3 de:5 es:5 fr:5 it:5 in:0 kr:0 cn:0 ch:0	{count:HHHHHH}
 0F 6D	m	0x002ADC0C	0x003FFB90	4	skipped (outputs NULL)	23	0	0	0	0	0	0	0	23	0	0	5	us:3 de:5 es:5 fr:5 it:5 in:0 kr:0 cn:0 ch:0	{plural:HHHH}
 0F 6E	n	0x002ADC20	0x003FFB90	4	skipped (outputs NULL)	16	0	0	0	0	0	0	0	16	0	0	5	us:7 de:2 es:3 fr:2 it:2 in:0 kr:0 cn:0 ch:0	{article:HHHH}

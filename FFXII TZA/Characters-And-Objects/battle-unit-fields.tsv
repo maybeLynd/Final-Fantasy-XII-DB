@@ -2088,7 +2088,7 @@ function	name	site	disp	kind	instruction	route	note
 0x00300E40	BattleUnit_TeardownAndDespawn	0x00300EC5	0x74C	w	mov dword ptr [rdi + 0x74c], esi	arg0 from 0x00233EA0 at 0x00233F37	
 0x00301140	BattleUnit_RecoverFromTerminalStatusSetIfClear	0x00301202	0x74C	w	mov dword ptr [rbx + 0x74c], edi	arg0 from 0x0030E360 at 0x0030E811	
 0x0030AF30	BattleAction_CheckAndHandleExecutionTimeout	0x0030B01A	0x74C	w	mov dword ptr [rbx + 0x74c], r8d	arg0 from 0x002FFB60 at 0x002FFCBD	
-0x00236A60	BattleUnit_ResetStateForReuse	0x00236BCB	0x750	w	mov qword ptr [rdi + 0x750], rsi	arg0 from 0x0023A570 at 0x0023A5B0	PAIR STORE: rsi is this function arg-fill stored to ~15 qword slots; covers +0x750 and +0x754 (groupTargetFocus), both independent dwords.
+0x00236A60	BattleUnit_ResetStateForReuse	0x00236BCB	0x750	w	mov qword ptr [rdi + 0x750], rsi	arg0 from 0x0023A570 at 0x0023A5B0	PAIR STORE: rsi is 0 here (xor esi, esi at 0x00236A93), stored to 17 qword fields of the unit (0x00236AB4 to 0x00236BD2); covers +0x750 and +0x754 (groupTargetFocus), both independent dwords.
 0x002FEF30	BattleStats_RebuildEffectiveStatsAndAffinityState	0x002FFA2A	0x750	w	mov qword ptr [r14 + 0x750], rbp	0x0031B860	PAIR STORE: rbp = r12 = cvttss2si zero-extended int32, not a pointer; covers +0x750 and +0x754.
 0x00300140	BattleUnit_ResetActionControlForStatusTransition	0x003001AC	0x750	w	mov qword ptr [rbx + 0x750], r8	arg0 from 0x00233EA0 at 0x00233EC2	PAIR STORE: r8 = 0 (xor at 0x00300152), same zero written to +0x6F8/+0x748/+0x770; covers +0x750 and +0x754.
 0x00300E40	BattleUnit_TeardownAndDespawn	0x00300EBE	0x750	w	mov qword ptr [rdi + 0x750], rsi	arg0 from 0x00233EA0 at 0x00233F37	PAIR STORE: rsi is the arg-passed fill also stored to +0x6F8; covers +0x750 and +0x754.

@@ -1,32 +1,32 @@
 script	place	actor	function	trigger	speaker	lines	line_text	flags_set	flags_released	flags_tested	counter_set	counter_tested	items	jumps	battles	scenes	party	other_functions	shared_actor
-msg_z0001	scene, event 399	台詞	この一年は	requested by 監視監督.Movie監視	-	1	It's hard to believe a year has passed so quickly.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	ラバナスタ	requested by 監視監督.Movie監視	-	2	Rabanastre is finally back to the way it was. Like when my parents were still alive.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	もちろん、	requested by 監視監督.Movie監視	-	3	We've lost so much.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	でも、過去	requested by 監視監督.Movie監視	-	4	But I think it's important to put the past behind us and keep our eyes on the road ahead.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	来月はいよ	requested by 監視監督.Movie監視	-	5	Ashe's coronation is next month.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	アーシェが	requested by 監視監督.Movie監視	-	6	She grows farther and farther away from us...	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	それは仕方	requested by 監視監督.Movie監視	-	7	but I guess that's how it has to be.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	だって、王	requested by 監視監督.Movie監視	-	8	She is queen now, after all.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	戴冠式であ	requested by 監視監督.Movie監視	-	9	I am looking forward to seeing you at the ceremony.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	お呼びです	requested by 監視監督.Movie監視	-	10	You called, my lord?	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	バッシュ小	requested by 監視監督.Movie監視	-	11	How is Basch?	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	イヴァリー	requested by 監視監督.Movie監視	-	12	"I know he went with you to Archades ""to further the cause of peace in Ivalice""..."	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	本当はアー	requested by 監視監督.Movie監視	-	13	but still, I hope he comes back to Rabanastre, and Ashe, soon.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	彼女、立場	requested by 監視監督.Movie監視	-	14	She has to keep up appearances now, so she would never say it...	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	きっと寂し	requested by 監視監督.Movie監視	-	15	but I think she misses him.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	帝国は一枚	requested by 監視監督.Movie監視	-	16	Lose Larsa and we lose the Empire.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	頼む、ラー	requested by 監視監督.Movie監視	-	17	Protect him. I would entrust him to no other's care.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	心配するな	requested by 監視監督.Movie監視	-	18	I will keep him from harm. I promise you.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	ダルマスカ	requested by 監視監督.Movie監視	-	19	For the Empire, and for Dalmasca.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	それを聞い	requested by 監視監督.Movie監視	-	20	Your words put me at ease, Brother.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	すまない	requested by 監視監督.Movie監視	-	21	Sorry to leave you.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	・・・兄さ	requested by 監視監督.Movie監視	-	22	(empty string)	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	肝心なこと	requested by 監視監督.Movie監視	-	23	Oh, I haven't told you the most important part!	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	預かってい	requested by 監視監督.Movie監視	-	24	Vaan and I had been taking care of the Strahl, but it was stolen!	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	メンテナン	requested by 監視監督.Movie監視	-	25	We had just finished having her tuned up, too.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	でも、持ち	requested by 監視監督.Movie監視	-	26	Actually, stolen might not be the right word. If her owner wants her back, there's not much we can do about it, is there.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	戴冠式まで	requested by 監視監督.Movie監視	-	27	There's still plenty of time before the coronation, so Vaan's going to pay the two of them a visit.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	ふたりに会	requested by 監視監督.Movie監視	-	28	You should see him! He can hardly wait.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	もちろん２	requested by 監視監督.Movie監視	-	29	I'll be going too, of course.	-	-	-	-	-	-	-	-	-	-	4	-
-msg_z0001	scene, event 399	台詞	空賊デビュー	requested by 監視監督.Movie監視	-	30	Every good sky pirate needs a partner, right?	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	この一年は	requested by 監視監督.Movie監視	movie subtitle	1	It's hard to believe a year has passed so quickly.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	ラバナスタ	requested by 監視監督.Movie監視	movie subtitle	2	Rabanastre is finally back to the way it was. Like when my parents were still alive.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	もちろん、	requested by 監視監督.Movie監視	movie subtitle	3	We've lost so much.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	でも、過去	requested by 監視監督.Movie監視	movie subtitle	4	But I think it's important to put the past behind us and keep our eyes on the road ahead.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	来月はいよ	requested by 監視監督.Movie監視	movie subtitle	5	Ashe's coronation is next month.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	アーシェが	requested by 監視監督.Movie監視	movie subtitle	6	She grows farther and farther away from us...	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	それは仕方	requested by 監視監督.Movie監視	movie subtitle	7	but I guess that's how it has to be.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	だって、王	requested by 監視監督.Movie監視	movie subtitle	8	She is queen now, after all.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	戴冠式であ	requested by 監視監督.Movie監視	movie subtitle	9	I am looking forward to seeing you at the ceremony.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	お呼びです	requested by 監視監督.Movie監視	movie subtitle	10	You called, my lord?	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	バッシュ小	requested by 監視監督.Movie監視	movie subtitle	11	How is Basch?	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	イヴァリー	requested by 監視監督.Movie監視	movie subtitle	12	"I know he went with you to Archades ""to further the cause of peace in Ivalice""..."	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	本当はアー	requested by 監視監督.Movie監視	movie subtitle	13	but still, I hope he comes back to Rabanastre, and Ashe, soon.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	彼女、立場	requested by 監視監督.Movie監視	movie subtitle	14	She has to keep up appearances now, so she would never say it...	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	きっと寂し	requested by 監視監督.Movie監視	movie subtitle	15	but I think she misses him.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	帝国は一枚	requested by 監視監督.Movie監視	movie subtitle	16	Lose Larsa and we lose the Empire.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	頼む、ラー	requested by 監視監督.Movie監視	movie subtitle	17	Protect him. I would entrust him to no other's care.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	心配するな	requested by 監視監督.Movie監視	movie subtitle	18	I will keep him from harm. I promise you.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	ダルマスカ	requested by 監視監督.Movie監視	movie subtitle	19	For the Empire, and for Dalmasca.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	それを聞い	requested by 監視監督.Movie監視	movie subtitle	20	Your words put me at ease, Brother.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	すまない	requested by 監視監督.Movie監視	movie subtitle	21	Sorry to leave you.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	・・・兄さ	requested by 監視監督.Movie監視	movie subtitle	22	(empty string)	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	肝心なこと	requested by 監視監督.Movie監視	movie subtitle	23	Oh, I haven't told you the most important part!	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	預かってい	requested by 監視監督.Movie監視	movie subtitle	24	Vaan and I had been taking care of the Strahl, but it was stolen!	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	メンテナン	requested by 監視監督.Movie監視	movie subtitle	25	We had just finished having her tuned up, too.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	でも、持ち	requested by 監視監督.Movie監視	movie subtitle	26	Actually, stolen might not be the right word. If her owner wants her back, there's not much we can do about it, is there.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	戴冠式まで	requested by 監視監督.Movie監視	movie subtitle	27	There's still plenty of time before the coronation, so Vaan's going to pay the two of them a visit.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	ふたりに会	requested by 監視監督.Movie監視	movie subtitle	28	You should see him! He can hardly wait.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	もちろん２	requested by 監視監督.Movie監視	movie subtitle	29	I'll be going too, of course.	-	-	-	-	-	-	-	-	-	-	4	-
+msg_z0001	scene, event 399	台詞	空賊デビュー	requested by 監視監督.Movie監視	movie subtitle	30	Every good sky pirate needs a partner, right?	-	-	-	-	-	-	-	-	-	-	4	-
 msg_z0001	scene, event 399	movieSkip監督	Skip監視	requested by Movie監督.main	no name shown	31	Skip	-	-	-	-	-	-	-	-	-	-	1	-

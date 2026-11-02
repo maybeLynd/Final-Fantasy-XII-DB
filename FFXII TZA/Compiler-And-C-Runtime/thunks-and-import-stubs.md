@@ -116,6 +116,48 @@ One row per one-jump function, 296 rows.
 | `qword_hits_by_section` | where the function's address occurs as an 8-byte little-endian value anywhere in the file, as the section name and the number of occurrences in braces, for example `{'.rdata': 2}`: `.rdata` on 265 rows and `.data` on 11; `{}` on the 25 rows taken only by a `lea` |
 | `rip_relative_lea_sites` | the address of each RIP-relative `lea` in `.text` whose target is the function, in brackets; 37 sites on 28 rows, at most 3 on a row; `[]` on the other 268 |
 
+### Columns of thunks-and-import-stubs-external-import-stubs.tsv
+
+One row per stub, 117 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the stub's entry address. Its whole body is `FF 25` (108 rows) or `48 FF 25` (9 rows) with a 32-bit offset to its slot inside `0x008C2000` to `0x008C31C0` |
+
+### Columns of thunks-and-import-stubs-external-import-stubs-map.tsv
+
+One row per stub, the same 117 rows in the same order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the stub's entry address |
+| `dll` | the DLL that the import directory gives for the stub's slot; 18 DLLs |
+| `symbol` | the imported name that the import directory gives for that slot |
+
+### Columns of thunks-and-import-stubs-forward-second-argument-tail-calls.tsv
+
+One row per body, 72 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the body's entry address. Its 8 bytes are `48 8B CA` (`mov rcx, rdx`) and `E9` with a 32-bit offset; the 72 targets are all different |
+
+### Columns of thunks-and-import-stubs-call-result-then-tail-call-adapters.tsv
+
+One row per body, 29 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the body's entry address. Its 33 bytes hold one `call` and end with a `jmp`; the 29 calls and 29 jumps reach 49 distinct functions |
+
+### Columns of thunks-and-import-stubs-internal-tail-call-forwarders.tsv
+
+One row per forwarder, 749 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the forwarder's entry address. Its 5 bytes are `E9` and a 32-bit offset into `.text`; the 749 targets are all different and no target is the forwarder itself |
+
 ### Why caller counts disagree
 
 A forwarder and its target are two names for one body, so a caller count depends on which name it

@@ -84,7 +84,7 @@ A sound's slot 37 (`0x007BD0A0`) asks `0x007E3030`, which gives the fill share o
 `0x007E48D0(stream, seconds)` turns a time into a byte offset in the material and restarts the ring there (`+0x5C`
 and `+0x68` to 0, state 6). A codec it cannot seek prints "SeekData no support format!!! %d"; an Ogg Vorbis
 material takes the offset from its seek table and prints "MaterialVorbisExtraData::GetSeekOffset failed!" when there is
-none, and warns that seeking "will cause timing overlap when streaming Ogg vorbis file".
+no seek offset, and warns that seeking "will cause timing overlap when streaming Ogg vorbis file".
 
 ### Releasing a bank
 
@@ -103,14 +103,14 @@ The read stream, `StreamingBank::AudioStream`, `0xA0` bytes, built by `0x007E2BC
 |---|---|---|---|
 | `+0x08` | `u8[40]` | lock | its critical section |
 | `+0x30` | `i32` | readState | the states above |
-| `+0x34` | `i32` | material | the material index, -1 for none |
+| `+0x34` | `i32` | material | the material index, -1 for no material |
 | `+0x38` | `u8*` | header | the material's header |
 | `+0x40` | `u8*` | ring | the ring buffer |
 | `+0x4C` | `i32` | buffered | bytes waiting to be read |
 | `+0x58` | `i32` | ringSize | the ring's size in bytes |
 | `+0x5C` | `i32` | readPos | the read position, counted from the material's data start |
-| `+0x60` | `i32` | loopMark | -1 for none |
-| `+0x64` | `i32` | endMark | -1 for none |
+| `+0x60` | `i32` | loopMark | -1 for no loop mark |
+| `+0x64` | `i32` | endMark | -1 for no end mark |
 | `+0x68` | `i32` | writePos | the write position |
 | `+0x84` | `u8` | loop | 1 from `0x007E2BC0`; set by `0x007E4E20` |
 | `+0x88` | `f64` | startTime | seconds to seek to once ready |

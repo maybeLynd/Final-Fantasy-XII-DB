@@ -90,7 +90,7 @@ read converts either and returns 0.0 otherwise (`0x00200B75`).
 |---|---:|
 | keys read by some screen | 214: 213 at 480 read sites in 124 functions, and `FontShadowAlphaMuti` through the font manager's slot `+0x308` (`0x001B5210`, `0x001B521C`), from the font border filter pass `0x00190260` (`0x00190434`) |
 | keys bound but read by nothing | 12: the ten `mCursor{Right,Down,Left,Up,Open}{X,Y}`, `BattleLogBlackBandH`, `LicenseBlackBandH` |
-| shipped values outside their schema range | none, in either file |
+| shipped values outside their schema range | 0, in either file |
 | keys `uisize_sd.json` lacks | 63 of the 226 bound |
 
 | Screen | Keys |
@@ -135,7 +135,7 @@ the cell starts at that file's value.
 1. A key missing from the loaded file is inserted as absent (tag 6, `0x001FF5E1`) and stored as 0. Loading
    `uisize_sd.json` would therefore set its 63 missing keys to 0, not leave their built-in values.
 2. The loader never checks a value against the schema's range.
-3. Every reader reads its cell directly by its address; none goes through the pointer slots.
+3. Every reader reads its cell directly by its address; no reader goes through the pointer slots.
 4. `EXPLPNumOffsetX` is the one key code writes: `0x0028B24A` overwrites it with `ExpNumOffsetX` or `LpNumOffsetX` before
    its read at `0x0028B5F1`, so its file value never reaches the screen. Its schema row has `disable` set.
 5. The `disable` flag is set on six schema rows (`mNumEffectOffsetX1`, `NumEffectOffsetY1`, `mExpEffectOffsetY`,

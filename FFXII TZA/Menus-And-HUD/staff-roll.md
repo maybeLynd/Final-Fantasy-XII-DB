@@ -169,7 +169,8 @@ names in `us`, 4 and 20 in `in`, 36 and 262 in the European set).
 | `source_row` | the row |
 | `text` | its text |
 
-`Database/Tools/catalogues/staff_roll.py` writes both tables from the decompiled scripts and the credit files.
+Both tables are read from the decompiled `us` listing of `men_z0005` and the credit files `menu03.bin` and
+`menu04.bin` of each text set.
 
 ## Modding notes
 

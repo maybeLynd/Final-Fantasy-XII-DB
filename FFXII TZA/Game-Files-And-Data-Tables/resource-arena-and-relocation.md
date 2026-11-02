@@ -257,8 +257,8 @@ retry ([script name bindings](../Scripts-And-Script-Commands/script-name-binding
 
 The binding
 system's per-frame update `0x002E65A0` also compacts arenas 6 and 10 with repeat 1 (`0x00369C60(6, 1)`,
-`0x00369C60(10, 1)`) every frame, and once more after releasing retired bindings. Arena 10 is built by none
-of the sites above, so its compaction does nothing.
+`0x00369C60(10, 1)`) every frame, and once more after releasing retired bindings. Arena 10 is built by
+none of the sites above, so its compaction does nothing.
 
 ### The mover
 

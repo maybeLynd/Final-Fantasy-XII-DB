@@ -47,7 +47,7 @@ The row layout, as the class-7 arm copies it:
 
 - `shop:` each shop that sells it, by name and number in [`shops.tsv`](shops.tsv), with the map (region) whose script gives an actor that shop (`setshopname`, the `place` column), and when the list that holds it goes on sale:
   - from the start;
-  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or, where no script writes the value, with the first written value that meets it, which is so for 500: "from story progress 500 (met from 520, After the floating continent)" (below);
+  - from a story progress value, with the story point that writes it ([Story counter values](../Story-Events-And-Hunts/story-counter-values.md)), or, where no story script writes the value, with the first written value that meets it, which is so for 500: "from story progress 500 (met from 520, After the floating continent)" (below);
   - from a clan rank, with the rank's shipped name;
   - for the Clan Provisioner's last list, from joining Clan Centurio (below).
 - `bazaar:` each bazaar good that gives it, with the good's id ([`bazaar.tsv`](bazaar.tsv)).
@@ -69,7 +69,7 @@ The row layout, as the class-7 arm copies it:
 - `hunt reward:` the hunt whose report gives it, with the package and the map (region) and script that report it ([Hunts](../Story-Events-And-Hunts/hunts.md), [Reward selector list](../Rewards-EXP-Gil-And-Loot/reward-selector-list.md)):
   - the script verb `questresultwindow(n)` opens the reward window for quest n and grants at once the package its selector names ([Reward verbs](../Scripts-And-Script-Commands/reward-verbs.md));
   - the selector is `0xA000` + the text index of entry n of `questbase.bin` (`0x00344C60`, `0x00473C90`), which is n for the 45 hunts, quest ids 128-172 ([Small .bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md));
-  - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; none is.
+  - a package that a selector names, that no hunt report opens and that no script gives would be listed as `reward package:` with its selector; no package is.
 
 A shop list goes on sale once it or any list above it on the shop's ladder meets its condition, and the last list is always on sale ([Shops](shops.md), "Choosing a list"). The story test is the story counter at least the threshold (`0x002FADF3`-`0x002FAE0D`).
 
@@ -81,7 +81,7 @@ Every part names every source. A cell that would be longer than 1,000 characters
 
 That table has one line per entry: `id` and `name` of the row, `part` (the label, or `used_for` and the label for a key item's use) and `entry`. A treasure chest part counts chests, and one entry can hold several. `-` means that none of these tables names a source. The starting inventory table adds nothing ([Starting inventory](../Party/starting-inventory.md)).
 
-The five Tufts (Peach, Green, Orange, Brown and White, `0x2104`-`0x2108`) have no source, and their cells say so with `none:`. No shop list, bazaar good, treasure chest, enemy definition, reward package, hunt reward, starting inventory row or scenario set holds their ids ([Scenario presets](../Party/scenario-presets.md)), and no give call of any `us` script names them, the developer scripts `evt_t*` included.
+The five Tufts (Peach, Green, Orange, Brown and White, `0x2104`-`0x2108`) have no source, and their cells say so with `no source:`. No shop list, bazaar good, treasure chest, enemy definition, reward package, hunt reward, starting inventory row or scenario set holds their ids ([Scenario presets](../Party/scenario-presets.md)), and no give call of any `us` script names them, the developer scripts `evt_t*` included.
 
 ### What it is used for
 
@@ -97,8 +97,8 @@ The five Tufts (Peach, Green, Orange, Brown and White, `0x2104`-`0x2108`) have n
 | `price`, `sell_price` | `+0x00` in gil, and half of it rounded down |
 | `text_id`, `description` | `+0x02` and its shipped text |
 | `explanation` | the sell price, or that a shop will not buy it, or "a Reserve row" |
-| `sources` | where the loot is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over and the hunt reward, the treasure chests that hold it with the odds ("Where each loot comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; for the five Tufts, `none:` and the sources that do not hold them; `-` for a Reserve row |
-| `used_in` | the bazaar goods that need it sold, with the good's id and the count; `-` for none |
+| `sources` | where the loot is obtained, one part per kind of source, with each shop's place and opening, how a scene gift is handed over and the hunt reward, the treasure chests that hold it with the odds ("Where each loot comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; for the five Tufts, `no source:` and the sources that do not hold them; `-` for a Reserve row |
+| `used_in` | the bazaar goods that need it sold, with the good's id and the count; `-` when no good needs it |
 
 ## Related
 

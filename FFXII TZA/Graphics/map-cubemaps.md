@@ -76,7 +76,7 @@ after each value:
 ### Picking probes for a point
 
 `0x001ABF50(manager, indices[4], weights[4], point)` returns indices and weights of 0 while the manager's
-byte `+0x244` is set or its `+0xA8` is −1 or above. Otherwise the indices start at 4 (none) and the
+byte `+0x244` is set or its `+0xA8` is −1 or above. Otherwise the indices start at 4 (no probe) and the
 weights at 0, and every enabled probe is weighed, with `d` the distance from the point in the horizontal
 plane (x and z):
 
@@ -147,7 +147,7 @@ Measured over the archive. [`map-cubemaps-rows.tsv`](map-cubemaps-rows.tsv) has 
 | Fact | Value |
 |---|---|
 | `cubeMapConfigs.txt` files | 451, one per map folder under `gamedata/d3d11/artdata/map/`, 31 to 271 bytes, all CRLF |
-| configs a zone can load | all 451: each sits in a map folder that a zone pack path names (kind 4, after the five swaps of [naming the map](../World-Areas-And-Travel/map-art.md#naming-the-map)). The two map folders no pack path names, `alc02/alc0201` and `frs01/frs0109` (`frs0109` loads `frs0101`'s art), hold none |
+| configs a zone can load | all 451: each sits in a map folder that a zone pack path names (kind 4, after the five swaps of [naming the map](../World-Areas-And-Travel/map-art.md#naming-the-map)). The two map folders no pack path names, `alc02/alc0201` and `frs01/frs0109` (`frs0109` loads `frs0101`'s art), hold no config |
 | probes per map | 1 (267 maps), 2 (108), 3 (44), 4 (18), 5 (6), 6 (4), 7 (3), 8 (1) |
 | probe count against textures | matches the highest texture probe index + 1 in all 451 maps |
 | weight field | 1 in 767 probes; 2, 25 and 30 once each |

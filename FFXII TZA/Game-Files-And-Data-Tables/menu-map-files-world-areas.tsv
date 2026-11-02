@@ -1,5 +1,5 @@
 area	code	name_text_id	name	region	disappears	gate	map_key_item	extra_gate	neighbours	destination_value
-0	none	-1	-	0: never shown	never	-	-	-	- - - -	-
+0	-	-1	-	0: never shown	never	-	-	-	- - - -	-
 1	rbn	60100	Rabanastre	1 Dalmasca	never	0x4012: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8040 Rabanastre	0x4049: passes from story counter 105 (After Vaan's resolve) until 110 (After Old Dalan appears); from story counter 160 (Sunstone obtained) until 170 (After Penelo leaves the party); from story counter 343 (Arrival in Dalmasca Estersand) until 350 (After the return to Rabanastre)	grm sav wdl bhm	788
 2	grm	60101	Garamsythe Waterway	1 Dalmasca	never	-	0x8041 Reserve	0x4033: passes from story counter 175 (After learning how to get into the treasury) until 180 (After the power to break the seal)	mic rbn wdl mic	-
 3	nal	60102	Nalbina Fortress	1 Dalmasca	never	0x4013: passes from story counter 5150 (After To the Pharos at Ridorana) on	0x8042 Nalbina Fortress	-	mnt dst mic rsn	800

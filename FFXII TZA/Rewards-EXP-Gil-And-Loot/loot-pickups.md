@@ -51,7 +51,7 @@ The kill handler `0x00312280` makes the pickup after EXP, LP and gil are paid (s
     (`0x0033792B`-`0x00337951`); every result while `0x00314EB0(acting)` is 0.
   - Each remaining result is classed by `0x00313F80(acting, result)`; any classed result makes the
     function return 0 (`0x0033798D`-`0x0033799A`).
-- With none it returns `0x00337700(unit, position)` (`0x003379A4`): the position must pass `0x00391410`
+- With no classed result it returns `0x00337700(unit, position)` (`0x003379A4`): the position must pass `0x00391410`
   (result 0), its ground cell from `0x00384130` must not be `0xFF`, and `0x00336390(position,
   max(r1, r2), unit.b[+0x1F4])` must be non-zero, which tests `0x0026E100` at the point and at the
   four corners `x ± r`, `z ± r`. `r1`, `r2` are the leader actor's two radii from `0x00265090`.
@@ -71,7 +71,7 @@ tail, and clears the presence table through `0x002FB250`. It runs from the area 
 `0x00319CA0(drops, position)`:
 
 1. Scans the ten slots for one whose state `+0x04` is 0 (`0x00319CC5`-`0x00319CDA`).
-2. When none is free it evicts the list head, the oldest pickup: unlinks it, posts presentation
+2. When no slot is free it evicts the list head, the oldest pickup: unlinks it, posts presentation
    op 5 on its handle (`0x0028F000(handle, 5, ...)`), clears its presence record (`0x002FB2A0(slot)`),
    and zeroes its state, stamp, links and handle (`0x00319CDC`-`0x00319D3C`). That slot is reused.
 3. Links the slot at the tail, copies the 56 bytes of drop entries to `+0x20`, and sets state 1
@@ -106,7 +106,7 @@ equipment ids) it takes the row `(id - 0x1000) * rowSize` of the equipment table
 | anything else | 0 |
 
 The appearance value is 0 as soon as one entry maps to 1-5 (the function returns at once), 1 when an entry
-maps to 6 and none to 1-5, and 2 otherwise, including for a pickup without equipment. Byte `+0x09`
+maps to 6 and no entry to 1-5, and 2 otherwise, including for a pickup without equipment. Byte `+0x09`
 is the equipment class; the class list is on the
 [equipment row page](../Items-Equipment-Shops-And-Licenses/equipment-row.md).
 
@@ -158,7 +158,7 @@ action word `+0x714` is `0x4165` (`0x003110E8`-`0x003110F4`):
 
 1. `0x002FB150(unit, 1.0)` returns the first presence record, in slot order, whose XZ distance
    (`0x004686D0`) from the unit's actor position is strictly below `max(r1, r2) + 1.0`, with the
-   radii from `0x00265090`; -1 when none (`0x00311105`-`0x0031110E`).
+   radii from `0x00265090`; -1 when no record is that close (`0x00311105`-`0x0031110E`).
 2. `0x00469E30(stats)` posts message `0x4E` through `0x0046AB10` when `0x002F8E90()` returns 8
    (`0x0031111B`).
 3. A party record (stats byte `+0x05` = 0) collects it: `0x00319A00(slot, unit handle)`
@@ -177,7 +177,7 @@ collecting unit's handle, clears the presence record and zeroes state, stamp, li
 `0x00319850(unit, &out)` walks the live list and, through `0x002FB310(slot, &pos)`, takes the present
 position with the smallest squared XZ distance (`0x003A1960`) from the unit's position `+0xE0`; the
 ceiling starts at `0x02F973B8`, which `0x002368D0` sets to +inf (`0x00914700`, `0x002368F0`). It returns
-the slot, or -1 when none is present. Its one caller is the movement goal decoder `0x00312730`
+the slot, or -1 when no pickup is present. Its one caller is the movement goal decoder `0x00312730`
 (`0x003129AF`): goal `0x4165` becomes the nearest pickup's position with a stop distance of
 `(max(r1, r2) + 1.0) - 0.1`, computed in that order.
 

@@ -11,7 +11,7 @@ wmap region	8	-	60007	Jagd Ramooda
 wmap region	9	-	60008	Jagd Naldoa
 wmap region	10	-	60009	???
 wmap region	11	-	60010	???
-wmap area	0	none	-1	-
+wmap area	0	-	-1	-
 wmap area	1	rbn	60100	Rabanastre
 wmap area	2	grm	60101	Garamsythe Waterway
 wmap area	3	nal	60102	Nalbina Fortress
@@ -50,7 +50,7 @@ wmap area	35	rwf	60134	The Ridorana Cataract
 wmap area	36	dgl	60135	The Pharos
 wmap area	37	rsn	60136	{fixed-advance:8194}Leviathan{fixed-advance:8180}
 wmap area	38	bhm	60137	{fixed-advance:8194}Bahamut{fixed-advance:8180}
-amap area	0	none	-1	-
+amap area	0	-	-1	-
 amap area	1	rbn	60100	Rabanastre
 amap area	2	grm	60101	Garamsythe Waterway
 amap area	3	nal	60102	Nalbina Fortress

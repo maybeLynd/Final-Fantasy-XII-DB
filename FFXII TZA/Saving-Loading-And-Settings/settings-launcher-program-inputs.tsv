@@ -13,19 +13,19 @@ GameSetting.ini key VSync	VSync	On, Off or Adaptive, set in memory by the box at
 GameSetting.ini key MasterVolume	MasterVolume	the number read, unchanged (default 100)	the file's value: the launcher writes back the number it read	in the launcher when the launcher window loads, and again after Apply; the game never reads it	the launcher: ConfigForm.LoadConfiguration; the game: no MasterVolume key in the game's 31-key table: 0x001DE5D0 logs [ConfigFile] invalid key	int.Parse in LoadConfiguration: a non-number throws while the window loads	in the game, always: the game's 31-key table has no MasterVolume key
 GameSetting.ini key WindowSize	WindowSize	the selected size, only when windowed mode is selected; the save turns each x into * (1280*720)	the launcher's box at OK or Apply; a value it cannot use falls back as visible_effect says	in the launcher when the launcher window loads, and again after Apply; at the game's next start, when it reads GameSetting.ini (0x001DE050)	the launcher: ConfigForm.UpdateResolutionComboBoxItems; ConfigForm.UpdateResolutionComboBoxSelected; the game: the game's WindowSize setting, width*height	the read turns each * into x; windowed mode: a value below 640x360 is raised to it and inserted in size order when the list lacks it, an exact text match is selected, else the item nearest in pixel count; missing: the first item; a value with no * makes the Substring arithmetic throw	-
 GameSetting.ini key Resolution	Resolution	the selected size, only when full-screen mode is selected; the save turns each x into * (1920*1080)	the launcher's box at OK or Apply; a value it cannot use falls back as visible_effect says	in the launcher when the launcher window loads, and again after Apply; at the game's next start, when it reads GameSetting.ini (0x001DE050)	the launcher: ConfigForm.UpdateResolutionComboBoxItems; ConfigForm.UpdateResolutionComboBoxSelected; the game: the game's Resolution setting, width*height	the read turns each * into x; full-screen: an exact text match is selected, else the item nearest in pixel count; missing: the last item; borderless: listed only when Screen.AllScreens is empty (default the primary screen's size)	-
-GameSetting.ini key Mute	Mute	Off: mIsMute changes only in pictureBox2_Click, which no control has as a handler	the launcher writes Off at every save	the launcher never reads it; the game never reads it	the launcher: none; the game: no Mute key in the game's 31-key table: 0x001DE5D0 logs [ConfigFile] invalid key	never read	always: the launcher never reads it and the game's 31-key table has no Mute key
+GameSetting.ini key Mute	Mute	Off: mIsMute changes only in pictureBox2_Click, which no control has as a handler	the launcher writes Off at every save	the launcher never reads it; the game never reads it	the launcher: no reader; the game: no Mute key in the game's 31-key table: 0x001DE5D0 logs [ConfigFile] invalid key	never read	always: the launcher never reads it and the game's 31-key table has no Mute key
 GameSetting.ini key LastX	LastX	never written	the file's value: the launcher never writes it	in the launcher when the launcher window loads, and again after Apply; at the game's next start, when it reads GameSetting.ini (0x001DE050)	the launcher: ConfigForm.UpdateResolutionComboBoxItems; the game: the game's LastX setting	borderless mode: the screen containing (LastX, LastY) gives the listed size, else the screen whose bottom-right corner is nearest, measured with LastX on both axes; a non-number throws	-
 GameSetting.ini key LastY	LastY	never written	the file's value: the launcher never writes it	in the launcher when the launcher window loads, and again after Apply; at the game's next start, when it reads GameSetting.ini (0x001DE050)	the launcher: ConfigForm.UpdateResolutionComboBoxItems; the game: the game's LastY setting	borderless mode: used only in the containment test of LastX	-
 GameSetting.ini key Volume	Volume	never written: no code passes the key Volume to SetIniString	the file's value: the launcher never writes it	in the launcher when the launcher window loads, and again after Apply; the game never reads it	the launcher: Program.SetIniString (key test); the game: no Volume key in the game's 31-key table	SetIniString would call OnVolumeChanged, which nothing assigns	always: no code writes it, the handler it would call is never assigned, and the game's table has no Volume key
-launcher control label_Video	label_Video	Label	-	never	none	section heading	always: a label takes no input
-launcher control label_DisplayAdapter	label_DisplayAdapter	Label	-	never	none	label of the adapter box	always: a label takes no input
-launcher control label_Resolution	label_Resolution	Label	-	never	none	label of the resolution box	always: a label takes no input
-launcher control label_ScreenMode	label_ScreenMode	Label	-	never	none	label of the screen mode box	always: a label takes no input
-launcher control label_VideoQualitySetting	label_VideoQualitySetting	Label	-	never	none	label of the quality box	always: a label takes no input
-launcher control label_FrameLimit	label_FrameLimit	Label	-	never	none	label of the frame limit box	always: a label takes no input
-launcher control label_ResetDeviceSetting	label_ResetDeviceSetting	Label	-	never	none	label of the Reset button	always: a label takes no input
-launcher control label_Vsync	label_Vsync	Label	-	never	none	label of the VSync box	always: a label takes no input
-launcher control panel1	panel1	Panel	-	never	none	ConfigForm: a 4-pixel rule above the buttons; ConfigWindow: the scrolling panel that holds ConfigForm	always: a panel takes no input
+launcher control label_Video	label_Video	Label	-	never	no reader	section heading	always: a label takes no input
+launcher control label_DisplayAdapter	label_DisplayAdapter	Label	-	never	no reader	label of the adapter box	always: a label takes no input
+launcher control label_Resolution	label_Resolution	Label	-	never	no reader	label of the resolution box	always: a label takes no input
+launcher control label_ScreenMode	label_ScreenMode	Label	-	never	no reader	label of the screen mode box	always: a label takes no input
+launcher control label_VideoQualitySetting	label_VideoQualitySetting	Label	-	never	no reader	label of the quality box	always: a label takes no input
+launcher control label_FrameLimit	label_FrameLimit	Label	-	never	no reader	label of the frame limit box	always: a label takes no input
+launcher control label_ResetDeviceSetting	label_ResetDeviceSetting	Label	-	never	no reader	label of the Reset button	always: a label takes no input
+launcher control label_Vsync	label_Vsync	Label	-	never	no reader	label of the VSync box	always: a label takes no input
+launcher control panel1	panel1	Panel	-	never	no reader	ConfigForm: a 4-pixel rule above the buttons; ConfigWindow: the scrolling panel that holds ConfigForm	always: a panel takes no input
 launcher control comboBox_DisplayAdapter	comboBox_DisplayAdapter	ComboBox	-	when the player changes or presses it (SelectedIndexChanged: comboBox_DisplayAdapter_SelectChanged)	SelectedIndexChanged: comboBox_DisplayAdapter_SelectChanged	one item per output of each DXGI adapter with outputs, 'adapter name(output name)' without backslashes and dots; writes DeviceID, LUIDLow, LUIDHigh, Monitor; disabled in windowed and borderless mode	-
 launcher control comboBox_Resolution	comboBox_Resolution	ComboBox	-	when OK or Apply saves (ConfigForm.SaveConfiguration reads the box)	ConfigForm.SaveConfiguration	26 design-time sizes (2560x1440 twice) that the first screen-mode selection replaces with the output's modes of at least 1280x720; writes WindowSize or Resolution; disabled in borderless mode	-
 launcher control comboBox_ScreenMode	comboBox_ScreenMode	ComboBox	-	when the player changes or presses it (SelectedIndexChanged: comboBox_ScreenMode_SelectChanged)	SelectedIndexChanged: comboBox_ScreenMode_SelectChanged	the three screen modes; writes ScreenMode	-
@@ -36,9 +36,9 @@ launcher control button_Reset	button_Reset	Button	-	when the player changes or p
 launcher control button_OK	button_OK	Button	-	when the player changes or presses it (Click: button_OK_Click)	Click: button_OK_Click	saves GameSetting.ini and exits	-
 launcher control button_Cancel	button_Cancel	Button	-	when the player changes or presses it (Click: button_Cancle_Click)	Click: button_Cancle_Click	exits without saving (handler button_Cancle_Click)	-
 launcher control button_Apply	button_Apply	Button	-	when the player changes or presses it (Click: button_Apply_Click)	Click: button_Apply_Click	saves and runs ConfigForm_Load again	-
-launcher control label_Version	label_Version	Label	-	never	none	set to the constant Ver  1.0.4.0 by SetVersionInfo	always: a label takes no input
+launcher control label_Version	label_Version	Label	-	never	no reader	set to the constant Ver  1.0.4.0 by SetVersionInfo	always: a label takes no input
 launcher control timer1	timer1	Timer	-	every 100 ms while the window is open	Tick: timer1_Tick	100 ms gamepad poll (timer1_Tick)	-
-launcher control textLabel	textLabel	Label	-	never	none	the message box text	always: a label takes no input
+launcher control textLabel	textLabel	Label	-	never	no reader	the message box text	always: a label takes no input
 launcher control okButton	okButton	Button	-	when pressed, closing the message box	the message box	the message box OK button, text from button_ok	-
 launcher control cancelButton	cancelButton	Button	-	when pressed, closing the message box	the message box	the message box Cancel button, text from button_cancel; hidden in the second-copy error box	-
 launcher box item SM_WINDOW	SM_WINDOW	the item text Windowed Mode	a SettingsLoc.xml Text[@Key] of the same key replaces the built-in text	when the player selects it and OK or Apply saves	ConfigForm.ConfigForm_Load; ConfigForm.SaveConfiguration	the box shows the text; the save writes the key SM_WINDOW	-
@@ -70,35 +70,35 @@ launcher file mutexString	mutexString	Mutex.OpenExisting	-	when the launcher sta
 launcher file initiallyOwned: true, mutexString	initiallyOwned: true, mutexString	new Mutex(true, name)	-	when the launcher starts (Program.IsSingleInstance)	new Mutex(true, name)	created owned by the first copy	-
 PathConfig element IniFile	IniFile	text; shipped GameSetting.ini	-	when the launcher starts (Program.InitGlobalConfig)	Program.InitGlobalConfig	the settings file name	-
 PathConfig element ResetFile	ResetFile	text; shipped keymap.ini	-	when the launcher starts (Program.InitGlobalConfig)	Program.InitGlobalConfig	the file Reset deletes	-
-PathConfig element FFX	FFX	text; shipped Hello.exe	-	never	none	read by nothing	always: read by nothing
-PathConfig element FFXParam	FFXParam	text; shipped (empty)	-	never	none	read by nothing	always: read by nothing
-PathConfig element FFX2	FFX2	text; shipped Hello.exe	-	never	none	read by nothing	always: read by nothing
-PathConfig element FFX2Param	FFX2Param	text; shipped (empty)	-	never	none	read by nothing	always: read by nothing
-PathConfig element SideStory	SideStory	text; shipped Hello.exe	-	never	none	read by nothing	always: read by nothing
-PathConfig element SideStoryParam	SideStoryParam	text; shipped (empty)	-	never	none	read by nothing	always: read by nothing
-PathConfig element LastMission	LastMission	text; shipped Hello.exe	-	never	none	read by nothing	always: read by nothing
-PathConfig element LastMissionParam	LastMissionParam	text; shipped (empty)	-	never	none	read by nothing	always: read by nothing
-PathConfig element Credit	Credit	text; shipped Hello.exe	-	never	none	read by nothing	always: read by nothing
-PathConfig element CreditParam	CreditParam	text; shipped (empty)	-	never	none	read by nothing	always: read by nothing
-launcher member LoadVBFImage	LoadVBFImage	method: reads a file into an Image	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member RetriveMonitorResolutions	RetriveMonitorResolutions	method: EnumDisplayDevices walk	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member Pause	Pause	method: runs cmd /C pause	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member AllocConsole	AllocConsole	Kernel32 import	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member ToSBC	ToSBC	method: half-width to full-width text	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member ToDBC	ToDBC	method: full-width to half-width text	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member LanguagePath	LanguagePath	property: language folder name	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member LangAndSizePath	LangAndSizePath	property: language and 360p folder name	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member MainFormHandle	MainFormHandle	property: reads and writes a window handle through mSharedMemoryObject, which nothing creates	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member FocusMessage	FocusMessage	property	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member GetXmlSelectorNodeByLanguage	GetXmlSelectorNodeByLanguage	method: the XPath condition for a given language	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member stopTimer	stopTimer	method: stops the gamepad timer	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member MaxScreenWidth	MaxScreenWidth	property: the widest listed mode	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member MaxScreenHeight	MaxScreenHeight	property: the tallest listed mode	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member ResetButton	ResetButton	property	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member DefaultButton	DefaultButton	property	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member ApplyButton	ApplyButton	property	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member VersionNumber	VersionNumber	property	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member SetLanguageComboBox	SetLanguageComboBox	method with an empty body	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member pictureBox2_Click	pictureBox2_Click	handler: toggles mute and calls OnVolumeChanged; no control has it as a handler	-	never	none	none	always: declared and never used: its name occurs once in the decompiled source, at the declaration
-launcher member OnVolumeChanged	OnVolumeChanged	static Action<int> field	-	never	none	none	always: never assigned (no = or += on it), so the Volume key test in SetIniString and pictureBox2_Click call nothing
-launcher member mSharedMemoryObject	mSharedMemoryObject	static IntPtr field	-	never	none	none	always: never assigned, so MainFormHandle's MapViewOfFile paths are skipped (it stays IntPtr.Zero)
+PathConfig element FFX	FFX	text; shipped Hello.exe	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element FFXParam	FFXParam	text; shipped (empty)	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element FFX2	FFX2	text; shipped Hello.exe	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element FFX2Param	FFX2Param	text; shipped (empty)	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element SideStory	SideStory	text; shipped Hello.exe	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element SideStoryParam	SideStoryParam	text; shipped (empty)	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element LastMission	LastMission	text; shipped Hello.exe	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element LastMissionParam	LastMissionParam	text; shipped (empty)	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element Credit	Credit	text; shipped Hello.exe	-	never	no reader	read by nothing	always: read by nothing
+PathConfig element CreditParam	CreditParam	text; shipped (empty)	-	never	no reader	read by nothing	always: read by nothing
+launcher member LoadVBFImage	LoadVBFImage	method: reads a file into an Image	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member RetriveMonitorResolutions	RetriveMonitorResolutions	method: EnumDisplayDevices walk	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member Pause	Pause	method: runs cmd /C pause	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member AllocConsole	AllocConsole	Kernel32 import	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member ToSBC	ToSBC	method: half-width to full-width text	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member ToDBC	ToDBC	method: full-width to half-width text	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member LanguagePath	LanguagePath	property: language folder name	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member LangAndSizePath	LangAndSizePath	property: language and 360p folder name	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member MainFormHandle	MainFormHandle	property: reads and writes a window handle through mSharedMemoryObject, which nothing creates	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member FocusMessage	FocusMessage	property	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member GetXmlSelectorNodeByLanguage	GetXmlSelectorNodeByLanguage	method: the XPath condition for a given language	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member stopTimer	stopTimer	method: stops the gamepad timer	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member MaxScreenWidth	MaxScreenWidth	property: the widest listed mode	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member MaxScreenHeight	MaxScreenHeight	property: the tallest listed mode	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member ResetButton	ResetButton	property	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member DefaultButton	DefaultButton	property	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member ApplyButton	ApplyButton	property	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member VersionNumber	VersionNumber	property	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member SetLanguageComboBox	SetLanguageComboBox	method with an empty body	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member pictureBox2_Click	pictureBox2_Click	handler: toggles mute and calls OnVolumeChanged; no control has it as a handler	-	never	no reader	no visible change	always: declared and never used: its name occurs once in the decompiled source, at the declaration
+launcher member OnVolumeChanged	OnVolumeChanged	static Action<int> field	-	never	no reader	no visible change	always: never assigned (no = or += on it), so the Volume key test in SetIniString and pictureBox2_Click call nothing
+launcher member mSharedMemoryObject	mSharedMemoryObject	static IntPtr field	-	never	no reader	no visible change	always: never assigned, so MainFormHandle's MapViewOfFile paths are skipped (it stays IntPtr.Zero)

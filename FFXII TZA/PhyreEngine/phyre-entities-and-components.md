@@ -82,7 +82,7 @@ descriptor) as the stride:
 `0x006AF4F0(component, &result, class)`, a method that `0x006AE350` registers for
 `PInstancesComponent`, searches the component's array of 16-byte `{object, class}` pairs
 (`+0x18` count, `+0x20` data) for the first pair whose class is the given class or derives from it,
-and returns that pair. With none, or with a null class, it returns a null object with the `PBase`
+and returns that pair. With no such pair, or with a null class, it returns a null object with the `PBase`
 descriptor (`0x02CF8270`, from `0x006372A0`).
 
 ### The object behind a physics body

@@ -95,7 +95,7 @@ thread data and private read-write memory to those.
    `FormatMessageA`, frees it and returns 9;
 2. calls `SetThreadAffinityMask` with the requested mask;
 3. names the thread for a debugger by raising exception `0x406D1388` with the requested name, or
-   `PhyreEngineThread` when none is given, inside a `__try` (`0x005CD2C8`-`0x005CD2E0`) whose filter
+   `PhyreEngineThread` when no name is given, inside a `__try` (`0x005CD2C8`-`0x005CD2E0`) whose filter
    `0x0089BEF0` continues execution;
 4. sets the priority: mode 0 gives 1, mode 2 gives -1, mode 3 the requested value; any other
    mode leaves it.
@@ -244,6 +244,14 @@ into the executable:
   start-up lock `0x02EAED00`), `__scrt_uninitialize_crt` `0x00808B14` (calls `0x0061ECF0` twice),
   `__scrt_get_show_window_mode` `0x00809AB4` (`GetStartupInfoW`, 10 when no show mode is given) and
   `__scrt_is_managed_app` `0x00809AF0` (tests the CLR directory in the image's own PE header).
+
+### Columns of runtime-services-msvc-runtime-tail.tsv
+
+One row per function, 56 rows in address order.
+
+| Column | Holds |
+|---|---|
+| `entry` | the function's entry address, from `0x0016D670` to `0x008629C0`; the list above groups the 56 |
 
 ## Layouts
 

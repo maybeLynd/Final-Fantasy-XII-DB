@@ -64,7 +64,7 @@ only code in the game that names a `.ker` or a `.fex`. That gives 62 of the 63 `
 ### The atlas files
 
 Every `.dat` a list names has its atlas, `<name>.dds.phyre` in the same folder, and every atlas belongs to one:
-62 atlases for the 62 listed `.dat` files. `us/fontex_expand.dat`, which no list names, has none. After filing the
+62 atlases for the 62 listed `.dat` files. `us/fontex_expand.dat`, which no list names, has no atlas. After filing the
 glyphs, the font builder requests the atlas for every font it builds, with no test on the flag word
 (`0x001B501F`, `0x001B58E0`); the completion `0x001B6230` hands the texture to the font.
 
@@ -241,7 +241,7 @@ loads it.
 | `file` | the file name |
 | `bytes` | the file's size |
 | `sha256` | the SHA-256 of the file |
-| `same_bytes_as` | the other files with the same bytes, as `<folder>/<file>`; empty when none |
+| `same_bytes_as` | the other files with the same bytes, as `<folder>/<file>`; empty when no other file has them |
 
 ### fonts-files-bitmap-characters.tsv
 

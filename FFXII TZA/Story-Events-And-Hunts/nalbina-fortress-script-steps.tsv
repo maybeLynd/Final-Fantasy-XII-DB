@@ -46,9 +46,9 @@ naf_a01	常駐監督	init	2	0x06219	137	-	ucoff	-	user control, off	-	-	-	-	reso
 naf_a01	常駐監督	init	3	0x0621F	138	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 naf_a01	常駐監督	init	4	0x06222	139	-	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	常駐監督	init	5	0x06225	140	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	常駐監督	main	1	0x0622C	145	-	sysDVAR	50, scratch1_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	常駐監督	main	2	0x06233	146	-	sysDVAR	52, EV_ナルビナ上層マップ進行	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	常駐監督	main	3	0x0623A	147	-	sysDVAR	53, g_com_e3_flag	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	常駐監督	main	1	0x0622C	145	-	sysDVAR	50, scratch1_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	常駐監督	main	2	0x06233	146	-	sysDVAR	52, EV_ナルビナ上層マップ進行	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	常駐監督	main	3	0x0623A	147	-	sysDVAR	53, g_com_e3_flag	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	常駐監督	main	4	0x06242	148	-	if	EV_ナルビナ上層マップ進行 < 10	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	常駐監督	main	5	0x0624F	150	EV_ナルビナ上層マップ進行 < 10	if	ispartymember(1) == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	常駐監督	main	6	0x06255	152	EV_ナルビナ上層マップ進行 < 10; ispartymember(1) == 1	removepartymember	1	party: Ashe leaves	-	-	-	-	resolved	this page's How a call is read
@@ -183,10 +183,10 @@ naf_a01	常駐監督	main	134	0x065AF	300	not (EV_ナルビナ上層マップ進
 naf_a01	常駐監督	main	135	0x065B5	301	not (EV_ナルビナ上層マップ進行 < 10)	fadein	fadesystemtime()	the screen fade, in	-	frames held in fadesystemtime()	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	常駐監督	main	136	0x065B8	302	not (EV_ナルビナ上層マップ進行 < 10)	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	常駐監督	main	137	0x065BB	304	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	init	1	0x065C2	321	-	sysDVAR	0, file_var_s3_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	init	2	0x065C9	322	-	sysDVAR	1, file_var_s3_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	init	3	0x065D0	323	-	sysDVAR	2, file_var_s3_3	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	init	4	0x065D7	324	-	sysDVAR	3, file_var_s2_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	init	1	0x065C2	321	-	sysDVAR	0, file_var_s3_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	init	2	0x065C9	322	-	sysDVAR	1, file_var_s3_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	init	3	0x065D0	323	-	sysDVAR	2, file_var_s3_3	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	init	4	0x065D7	324	-	sysDVAR	3, file_var_s2_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	init	5	0x065D8	325	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	視点の変更終了	1	0x065DC	330	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	チュートリアル	視点の変更終了	2	0x065E8	331	-	sysReqew	2, メッセージ::方向メッセージ	actor `メッセージ`	-	-	files メッセージ::方向メッセージ on channel 2; waits until it ends	メッセージ.方向メッセージ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -200,8 +200,8 @@ naf_a01	チュートリアル	視点の変更終了	9	0x06616	339	loop while tru
 naf_a01	チュートリアル	視点の変更終了	10	0x0661C	340	loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a01	チュートリアル	視点の変更終了	11	0x06626	341	loop while true	if	file_var_s3_2 > 30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	視点の変更終了	12	0x0662C	343	loop while true; file_var_s3_2 > 30	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	視点の変更終了	13	0x06634	345	loop while true	if	file_var_s3_3 >= 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	視点の変更終了	14	0x0663A	347	loop while true; file_var_s3_3 >= 3	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	視点の変更終了	13	0x06634	345	loop while true; not (file_var_s3_2 > 30)	if	file_var_s3_3 >= 3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	視点の変更終了	14	0x0663A	347	loop while true; file_var_s3_3 >= 3; not (file_var_s3_2 > 30)	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	キャラクターの移動	1	0x06641	354	-	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_a01	チュートリアル	キャラクターの移動	2	0x06644	355	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	チュートリアル	キャラクターの移動	3	0x0664A	356	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -274,33 +274,33 @@ naf_a01	チュートリアル	□ループ	2	0x0682B	435	loop while true	store	f
 naf_a01	チュートリアル	□ループ	3	0x06831	436	loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a01	チュートリアル	□ループ	4	0x0683B	437	loop while true	if	file_var_s3_4 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	□ループ	5	0x06841	439	loop while true; file_var_s3_4 == 1	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	□ループ	6	0x06849	441	loop while true	if	file_var_s3_1 == 0x01a4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	□ループ	7	0x0684F	443	loop while true; file_var_s3_1 == 0x01a4	sysReqall	3, reqArr1	actor `BASH`, actor `DAL_SOLDIER_A`	-	-	files each pair of BASH::TALK_D, DAL_SOLDIER_A::TALK_D on channel 3; does not wait	BASH.TALK_D, DAL_SOLDIER_A.TALK_D	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	チュートリアル	□ループ	8	0x06855	444	loop while true; file_var_s3_1 == 0x01a4	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-naf_a01	チュートリアル	□ループ	9	0x0685B	445	loop while true; file_var_s3_1 == 0x01a4	store	file_var_s3_1 = 0	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a01	チュートリアル	□ループ	10	0x0685E	446	loop while true; file_var_s3_1 == 0x01a4	tutorial_clear_eyemove	-	-	-	-	-	-		01 verb-table.tsv
-naf_a01	チュートリアル	□ループ	11	0x06861	447	loop while true; file_var_s3_1 == 0x01a4	tutorial_clear_defaulteyecount	-	-	-	-	-	-		01 verb-table.tsv
-naf_a01	チュートリアル	□ループ	12	0x0686D	448	loop while true; file_var_s3_1 == 0x01a4	sysReqew	1, BASH::バッシュ□会話2	actor `BASH`	-	-	files BASH::バッシュ□会話2 on channel 1; waits until it ends	BASH.バッシュ□会話2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	チュートリアル	□ループ	13	0x06871	449	loop while true; file_var_s3_1 == 0x01a4	sysReqall	3, reqArr2	actor `BASH`, actor `DAL_SOLDIER_A`	-	-	files each pair of BASH::TALK_E, DAL_SOLDIER_A::TALK_E on channel 3; does not wait	BASH.TALK_E, DAL_SOLDIER_A.TALK_E	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	チュートリアル	□ループ	14	0x06874	450	loop while true; file_var_s3_1 == 0x01a4	continue	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	□ループ	6	0x06849	441	loop while true; not (file_var_s3_4 == 1)	if	file_var_s3_1 == 0x01a4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	□ループ	7	0x0684F	443	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	sysReqall	3, reqArr1	actor `BASH`, actor `DAL_SOLDIER_A`	-	-	files each pair of BASH::TALK_D, DAL_SOLDIER_A::TALK_D on channel 3; does not wait	BASH.TALK_D, DAL_SOLDIER_A.TALK_D	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	チュートリアル	□ループ	8	0x06855	444	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a01	チュートリアル	□ループ	9	0x0685B	445	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	store	file_var_s3_1 = 0	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a01	チュートリアル	□ループ	10	0x0685E	446	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	tutorial_clear_eyemove	-	-	-	-	-	-		01 verb-table.tsv
+naf_a01	チュートリアル	□ループ	11	0x06861	447	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	tutorial_clear_defaulteyecount	-	-	-	-	-	-		01 verb-table.tsv
+naf_a01	チュートリアル	□ループ	12	0x0686D	448	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	sysReqew	1, BASH::バッシュ□会話2	actor `BASH`	-	-	files BASH::バッシュ□会話2 on channel 1; waits until it ends	BASH.バッシュ□会話2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	チュートリアル	□ループ	13	0x06871	449	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	sysReqall	3, reqArr2	actor `BASH`, actor `DAL_SOLDIER_A`	-	-	files each pair of BASH::TALK_E, DAL_SOLDIER_A::TALK_E on channel 3; does not wait	BASH.TALK_E, DAL_SOLDIER_A.TALK_E	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	チュートリアル	□ループ	14	0x06874	450	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	continue	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	フリーターゲットループ	1	0x0687A	457	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	フリーターゲットループ	2	0x06881	459	loop while true	store	file_var_s3_1 = file_var_s3_1 + 1	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a01	チュートリアル	フリーターゲットループ	3	0x06887	460	loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a01	チュートリアル	フリーターゲットループ	4	0x06891	461	loop while true	if	file_var_s3_4 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	フリーターゲットループ	5	0x06897	463	loop while true; file_var_s3_4 == 1	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	フリーターゲットループ	6	0x0689F	465	loop while true	if	file_var_s3_1 == 0x01a4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	フリーターゲットループ	7	0x068A5	467	loop while true; file_var_s3_1 == 0x01a4	sysReqall	3, reqArr1	actor `BASH`, actor `DAL_SOLDIER_A`	-	-	files each pair of BASH::TALK_D, DAL_SOLDIER_A::TALK_D on channel 3; does not wait	BASH.TALK_D, DAL_SOLDIER_A.TALK_D	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	チュートリアル	フリーターゲットループ	8	0x068AB	468	loop while true; file_var_s3_1 == 0x01a4	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-naf_a01	チュートリアル	フリーターゲットループ	9	0x068B1	469	loop while true; file_var_s3_1 == 0x01a4	store	file_var_s3_1 = 0	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a01	チュートリアル	フリーターゲットループ	10	0x068B4	470	loop while true; file_var_s3_1 == 0x01a4	tutorial_clear_eyemove	-	-	-	-	-	-		01 verb-table.tsv
-naf_a01	チュートリアル	フリーターゲットループ	11	0x068B7	471	loop while true; file_var_s3_1 == 0x01a4	tutorial_clear_defaulteyecount	-	-	-	-	-	-		01 verb-table.tsv
-naf_a01	チュートリアル	フリーターゲットループ	12	0x068C3	472	loop while true; file_var_s3_1 == 0x01a4	sysReqew	1, メッセージ::フリーメッセージ02	actor `メッセージ`	-	-	files メッセージ::フリーメッセージ02 on channel 1; waits until it ends	メッセージ.フリーメッセージ02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	チュートリアル	フリーターゲットループ	13	0x068C7	473	loop while true; file_var_s3_1 == 0x01a4	sysReqall	3, reqArr2	actor `BASH`, actor `DAL_SOLDIER_A`	-	-	files each pair of BASH::TALK_E, DAL_SOLDIER_A::TALK_E on channel 3; does not wait	BASH.TALK_E, DAL_SOLDIER_A.TALK_E	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	チュートリアル	フリーターゲットループ	14	0x068D3	474	loop while true; file_var_s3_1 == 0x01a4	sysReq	1, ヘルプメッセージ::ヘルプメッセージ05	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ05 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ05	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	チュートリアル	フリーターゲットループ	15	0x068D4	475	loop while true; file_var_s3_1 == 0x01a4	continue	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	フリーターゲットループ	6	0x0689F	465	loop while true; not (file_var_s3_4 == 1)	if	file_var_s3_1 == 0x01a4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	フリーターゲットループ	7	0x068A5	467	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	sysReqall	3, reqArr1	actor `BASH`, actor `DAL_SOLDIER_A`	-	-	files each pair of BASH::TALK_D, DAL_SOLDIER_A::TALK_D on channel 3; does not wait	BASH.TALK_D, DAL_SOLDIER_A.TALK_D	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	チュートリアル	フリーターゲットループ	8	0x068AB	468	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a01	チュートリアル	フリーターゲットループ	9	0x068B1	469	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	store	file_var_s3_1 = 0	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a01	チュートリアル	フリーターゲットループ	10	0x068B4	470	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	tutorial_clear_eyemove	-	-	-	-	-	-		01 verb-table.tsv
+naf_a01	チュートリアル	フリーターゲットループ	11	0x068B7	471	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	tutorial_clear_defaulteyecount	-	-	-	-	-	-		01 verb-table.tsv
+naf_a01	チュートリアル	フリーターゲットループ	12	0x068C3	472	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	sysReqew	1, メッセージ::フリーメッセージ02	actor `メッセージ`	-	-	files メッセージ::フリーメッセージ02 on channel 1; waits until it ends	メッセージ.フリーメッセージ02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	チュートリアル	フリーターゲットループ	13	0x068C7	473	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	sysReqall	3, reqArr2	actor `BASH`, actor `DAL_SOLDIER_A`	-	-	files each pair of BASH::TALK_E, DAL_SOLDIER_A::TALK_E on channel 3; does not wait	BASH.TALK_E, DAL_SOLDIER_A.TALK_E	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	チュートリアル	フリーターゲットループ	14	0x068D3	474	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	sysReq	1, ヘルプメッセージ::ヘルプメッセージ05	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ05 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ05	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	チュートリアル	フリーターゲットループ	15	0x068D4	475	loop while true; file_var_s3_1 == 0x01a4; not (file_var_s3_4 == 1)	continue	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	チュートリアル	リクエストキャンセル	1	0x068DD	482	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	チュートリアル	リクエストキャンセル	2	0x068DE	483	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	TANBA_shape	init	1	0x068E5	492	-	sysDVAR	20, シナリオフラグ	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	チュートリアル	リクエストキャンセル	2	0x068DE	483	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	TANBA_shape	init	1	0x068E5	492	-	sysDVAR	20, シナリオフラグ	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	init	2	0x068E6	493	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	擬似INIT処理	1	0x068EA	498	-	registshape	0x03000040	-	-	-	-	-		01 verb-table.tsv
 naf_a01	TANBA_shape	擬似INIT処理	2	0x068F0	499	-	unkCall_59d	5	-	-	-	-	-		01 verb-table.tsv
@@ -316,18 +316,18 @@ naf_a01	TANBA_shape	フィールドサイン表示	2	0x06964	513	getscreenaspect
 naf_a01	TANBA_shape	フィールドサイン表示	3	0x06970	514	getscreenaspect() == 0	setshapeshowstatus	3, 1, 1	-	-	-	-	-		01 verb-table.tsv
 naf_a01	TANBA_shape	フィールドサイン表示	4	0x06985	518	not (getscreenaspect() == 0)	setshapepos_183	3, 1, 0x02e1, 169, 0	-	-	-	-	-		01 verb-table.tsv
 naf_a01	TANBA_shape	フィールドサイン表示	5	0x06991	519	not (getscreenaspect() == 0)	setshapeshowstatus	3, 1, 1	-	-	-	-	-		01 verb-table.tsv
-naf_a01	TANBA_shape	フィールドサイン表示	6	0x06997	521	-	sysSystem	10	none: SYSTEM pops and discards 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	TANBA_shape	フィールドサイン表示	6	0x06997	521	-	sysSystem	10	nothing: SYSTEM pops and discards 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	フィールドサイン表示	7	0x06998	522	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	フィールドサイン表示02	1	0x069A0	527	-	if	getscreenaspect() == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	フィールドサイン表示02	2	0x069B2	529	getscreenaspect() == 0	setshapepos_183	3, 0, 0x014d, 110, 0	-	-	-	-	-		01 verb-table.tsv
 naf_a01	TANBA_shape	フィールドサイン表示02	3	0x069BE	530	getscreenaspect() == 0	setshapeshowstatus	3, 0, 1	-	-	-	-	-		01 verb-table.tsv
 naf_a01	TANBA_shape	フィールドサイン表示02	4	0x069D3	534	not (getscreenaspect() == 0)	setshapepos_183	3, 0, 0x04c2, 0x0104, 0	-	-	-	-	-		01 verb-table.tsv
 naf_a01	TANBA_shape	フィールドサイン表示02	5	0x069DF	535	not (getscreenaspect() == 0)	setshapeshowstatus	3, 0, 1	-	-	-	-	-		01 verb-table.tsv
-naf_a01	TANBA_shape	フィールドサイン表示02	6	0x069E5	537	-	sysSystem	10	none: SYSTEM pops and discards 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	TANBA_shape	フィールドサイン表示02	6	0x069E5	537	-	sysSystem	10	nothing: SYSTEM pops and discards 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	フィールドサイン表示02	7	0x069E6	538	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	フィールドサイン表示03	1	0x069F6	543	-	setshapepos_183	3, 1, 250, 90, 0	-	-	-	-	-		01 verb-table.tsv
 naf_a01	TANBA_shape	フィールドサイン表示03	2	0x06A02	544	-	setshapeshowstatus	3, 1, 1	-	-	-	-	-		01 verb-table.tsv
-naf_a01	TANBA_shape	フィールドサイン表示03	3	0x06A08	545	-	sysSystem	10	none: SYSTEM pops and discards 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	TANBA_shape	フィールドサイン表示03	3	0x06A08	545	-	sysSystem	10	nothing: SYSTEM pops and discards 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	フィールドサイン表示03	4	0x06A09	546	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	TANBA_shape	フィールドサイン閉じる	1	0x06A13	551	-	setshapeshowstatus	3, 0, 0	-	-	-	-	-		01 verb-table.tsv
 naf_a01	TANBA_shape	フィールドサイン閉じる	2	0x06A1F	552	-	setshapeshowstatus	3, 1, 0	-	-	-	-	-		01 verb-table.tsv
@@ -422,7 +422,7 @@ naf_a01	カメラ	move_talk01	2	0x06C2A	724	-	return	-	-	-	-	-	-	resolved	01 ../
 naf_a01	カメラ	move_talk02	1	0x06C34	729	-	crossfade	0, 1, 5	argument 1: the crossfade's flags / argument 2: the capture mode of the still picture / argument 3: the crossfade's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	カメラ	move_talk02	2	0x06C3D	730	-	camerastart_7e	0, 0x02000009	camera row 9 `move_talk02`: shot 9 `move_talk02`, channel 0	-	shot 120 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 naf_a01	カメラ	move_talk02	3	0x06C43	731	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	カメラ	move_talk02	4	0x06C44	732	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	カメラ	move_talk02	4	0x06C44	732	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	フィールドサイン監督	init	1	0x06C45	741	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	フィールドサイン監督	main	1	0x06C4D	746	-	if	EV_ナルビナ上層マップ進行 > 10	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	フィールドサイン監督	main	2	0x06C59	748	EV_ナルビナ上層マップ進行 > 10	bganimeplay_9e	0, 100, 100	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -437,7 +437,7 @@ naf_a01	フィールドサイン監督	main	10	0x06CB9	756	EV_ナルビナ上層
 naf_a01	フィールドサイン監督	main	11	0x06CC5	757	EV_ナルビナ上層マップ進行 > 10	setmapidwall	1, 6, 1	-	-	-	-	-		01 verb-table.tsv
 naf_a01	フィールドサイン監督	main	12	0x06CD1	758	EV_ナルビナ上層マップ進行 > 10	sysReq	1, 鉄柵::フィールドサイン非アクティブ	actor `鉄柵`	-	-	files 鉄柵::フィールドサイン非アクティブ on channel 1; does not wait	鉄柵.フィールドサイン非アクティブ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a01	フィールドサイン監督	main	13	0x06CD2	759	EV_ナルビナ上層マップ進行 > 10	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	フィールドサイン監督	main	14	0x06CD3	761	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	フィールドサイン監督	main	14	0x06CD3	761	not (EV_ナルビナ上層マップ進行 > 10)	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	メッセージ	init	1	0x06CD4	770	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	メッセージ	フリーメッセージ	1	0x06CD8	775	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	メッセージ	フリーメッセージ	2	0x06CDE	776	-	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
@@ -748,7 +748,7 @@ naf_a01	元読み込み監督	とりあえず	7	0x07594	1212	-	mkeywaitt	get_pad
 naf_a01	元読み込み監督	とりあえず	8	0x0759A	1213	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	元読み込み監督	とりあえず	9	0x075A0	1214	-	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	元読み込み監督	とりあえず	10	0x075A6	1215	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	元読み込み監督	とりあえず	11	0x075A7	1216	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	元読み込み監督	とりあえず	11	0x075A7	1216	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	ムービーメッセージ	init	1	0x075A8	1225	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	ムービーメッセージ	メッセージ監視JP	1	0x075AC	1230	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 naf_a01	ムービーメッセージ	メッセージ監視JP	2	0x075B6	1231	-	while	getmovieframe() <= 0x08d4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1242,12 +1242,12 @@ naf_a01	movieSkip監督	Skip監視	42	0x086DB	1901	local_var_s14f1_4 == 3; not (
 naf_a01	movieSkip監督	Skip監視	43	0x086E1	1902	local_var_s14f1_4 == 3; not (local_var_s14f1_3 & 8); (local_var_s14f1_3 & get_pad_ok()) and local_var_s14f1_1 == 1	mesclose	7	message window slot 7, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a01	movieSkip監督	Skip監視	44	0x086E4	1903	local_var_s14f1_4 == 3; not (local_var_s14f1_3 & 8); (local_var_s14f1_3 & get_pad_ok()) and local_var_s14f1_1 == 1	goto	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	movieSkip監督	Skip監視	45	0x086EA	1908	not (local_var_s14f1_4 == 3)	goto	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	movieSkip監督	Skip監視	46	0x086F4	1910	-	if	local_var_s14f1_2 != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	movieSkip監督	Skip監視	47	0x086FD	1912	local_var_s14f1_2 != 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-naf_a01	movieSkip監督	Skip監視	48	0x08700	1913	local_var_s14f1_2 != 1	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	movieSkip監督	Skip監視	49	0x08703	1915	-	label	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	movieSkip監督	Skip監視	50	0x08706	1916	-	mesclose	3	message window slot 3, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
-naf_a01	movieSkip監督	Skip監視	51	0x08709	1917	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	movieSkip監督	Skip監視	46	0x086F4	1910	local_var_s14f1_4 == 3; not ((not (local_var_s14f1_3 & 8)) and ((local_var_s14f1_3 & get_pad_ok()) and local_var_s14f1_1 == 1))	if	local_var_s14f1_2 != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	movieSkip監督	Skip監視	47	0x086FD	1912	local_var_s14f1_2 != 1; local_var_s14f1_4 == 3; not ((not (local_var_s14f1_3 & 8)) and ((local_var_s14f1_3 & get_pad_ok()) and local_var_s14f1_1 == 1))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a01	movieSkip監督	Skip監視	48	0x08700	1913	local_var_s14f1_2 != 1; local_var_s14f1_4 == 3; not ((not (local_var_s14f1_3 & 8)) and ((local_var_s14f1_3 & get_pad_ok()) and local_var_s14f1_1 == 1))	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	movieSkip監督	Skip監視	49	0x08703	1915	not ((local_var_s14f1_4 == 3) and (local_var_s14f1_3 & 8) and (local_var_s14f1_2 != 1)); not ((local_var_s14f1_4 == 3) and (not ((local_var_s14f1_3 & get_pad_ok()) and local_var_s14f1_1 == 1)) and (local_var_s14f1_2 != 1))	label	local_jmp_15	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	movieSkip監督	Skip監視	50	0x08706	1916	not ((local_var_s14f1_4 == 3) and (local_var_s14f1_3 & 8) and (local_var_s14f1_2 != 1)); not ((local_var_s14f1_4 == 3) and (not ((local_var_s14f1_3 & get_pad_ok()) and local_var_s14f1_1 == 1)) and (local_var_s14f1_2 != 1))	mesclose	3	message window slot 3, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
+naf_a01	movieSkip監督	Skip監視	51	0x08709	1917	not ((local_var_s14f1_4 == 3) and (local_var_s14f1_3 & 8) and (local_var_s14f1_2 != 1)); not ((local_var_s14f1_4 == 3) and (not ((local_var_s14f1_3 & get_pad_ok()) and local_var_s14f1_1 == 1)) and (local_var_s14f1_2 != 1))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	Map_Director	init	1	0x08711	1926	-	if	global_var_1 >= 5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	Map_Director	init	2	0x08717	1928	global_var_1 >= 5	setnavimapindex	0	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	Map_Director	init	3	0x08723	1929	global_var_1 >= 5	setmapidfloor	1, 0, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1359,23 +1359,23 @@ naf_a01	GATE_RECT	touch	4	0x08A0B	2107	file_var_s2_2 = 5	if	getucstatus() and no
 naf_a01	GATE_RECT	touch	5	0x08A0E	2109	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_a01	GATE_RECT	touch	6	0x08A17	2113	file_var_s2_2 = 5; not (getucstatus() and not (get_talk_run_status()))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a01	GATE_RECT	touch	7	0x08A1A	2114	file_var_s2_2 = 5; not (getucstatus() and not (get_talk_run_status()))	goto	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	GATE_RECT	touch	8	0x08A26	2116	file_var_s2_2 = 5	sysReq	1, ヘルプメッセージ::メスクローズ	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::メスクローズ on channel 1; does not wait	ヘルプメッセージ.メスクローズ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	9	0x08A2A	2117	file_var_s2_2 = 5	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
-naf_a01	GATE_RECT	touch	10	0x08A2D	2118	file_var_s2_2 = 5	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
-naf_a01	GATE_RECT	touch	11	0x08A33	2119	file_var_s2_2 = 5	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-naf_a01	GATE_RECT	touch	12	0x08A39	2120	file_var_s2_2 = 5	fadeout	5	the screen fade, out	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-naf_a01	GATE_RECT	touch	13	0x08A3C	2121	file_var_s2_2 = 5	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a01	GATE_RECT	touch	14	0x08A48	2122	file_var_s2_2 = 5	sysReqew	1, 鉄柵::フィールドサイン非アクティブ	actor `鉄柵`	-	-	files 鉄柵::フィールドサイン非アクティブ on channel 1; waits until it ends	鉄柵.フィールドサイン非アクティブ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	15	0x08A52	2123	file_var_s2_2 = 5	sysReq	1, カメラ::field_sign_03	actor `カメラ`	-	-	files カメラ::field_sign_03 on channel 1; does not wait	カメラ.field_sign_03	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	16	0x08A5C	2124	file_var_s2_2 = 5	sysReq	1, PC00::フィールドサイン02立ち位置	actor `PC00`	-	-	files PC00::フィールドサイン02立ち位置 on channel 1; does not wait	PC00.フィールドサイン02立ち位置	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	17	0x08A66	2125	file_var_s2_2 = 5	sysReq	1, BASH::開始時立ち位置	actor `BASH`	-	-	files BASH::開始時立ち位置 on channel 1; does not wait	BASH.開始時立ち位置	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	18	0x08A70	2126	file_var_s2_2 = 5	sysReqew	2, TANBA_shape::フィールドサイン表示02	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン表示02 on channel 2; waits until it ends	TANBA_shape.フィールドサイン表示02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	19	0x08A74	2127	file_var_s2_2 = 5	fadein	fadesystemtime()	the screen fade, in	-	frames held in fadesystemtime()	-	-	resolved	17 ../Graphics/screen-fades.md
-naf_a01	GATE_RECT	touch	20	0x08A80	2128	file_var_s2_2 = 5	sysReq	2, PC00::フィールドサイン02アクション	actor `PC00`	-	-	files PC00::フィールドサイン02アクション on channel 2; does not wait	PC00.フィールドサイン02アクション	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	21	0x08A8A	2129	file_var_s2_2 = 5	sysReqew	3, BASH::フィールドサイン2チュートリアル	actor `BASH`	-	-	files BASH::フィールドサイン2チュートリアル on channel 3; waits until it ends	BASH.フィールドサイン2チュートリアル	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	22	0x08A94	2130	file_var_s2_2 = 5	sysReq	1, ヘルプメッセージ::ヘルプメッセージ07	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ07 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ07	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-naf_a01	GATE_RECT	touch	23	0x08A95	2131	file_var_s2_2 = 5	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	GATE_RECT	touch	24	0x08AA1	2133	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	GATE_RECT	touch	8	0x08A26	2116	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReq	1, ヘルプメッセージ::メスクローズ	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::メスクローズ on channel 1; does not wait	ヘルプメッセージ.メスクローズ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	9	0x08A2A	2117	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
+naf_a01	GATE_RECT	touch	10	0x08A2D	2118	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
+naf_a01	GATE_RECT	touch	11	0x08A33	2119	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
+naf_a01	GATE_RECT	touch	12	0x08A39	2120	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	fadeout	5	the screen fade, out	-	5 frames	-	-	resolved	17 ../Graphics/screen-fades.md
+naf_a01	GATE_RECT	touch	13	0x08A3C	2121	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a01	GATE_RECT	touch	14	0x08A48	2122	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReqew	1, 鉄柵::フィールドサイン非アクティブ	actor `鉄柵`	-	-	files 鉄柵::フィールドサイン非アクティブ on channel 1; waits until it ends	鉄柵.フィールドサイン非アクティブ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	15	0x08A52	2123	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReq	1, カメラ::field_sign_03	actor `カメラ`	-	-	files カメラ::field_sign_03 on channel 1; does not wait	カメラ.field_sign_03	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	16	0x08A5C	2124	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReq	1, PC00::フィールドサイン02立ち位置	actor `PC00`	-	-	files PC00::フィールドサイン02立ち位置 on channel 1; does not wait	PC00.フィールドサイン02立ち位置	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	17	0x08A66	2125	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReq	1, BASH::開始時立ち位置	actor `BASH`	-	-	files BASH::開始時立ち位置 on channel 1; does not wait	BASH.開始時立ち位置	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	18	0x08A70	2126	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReqew	2, TANBA_shape::フィールドサイン表示02	actor `TANBA_shape`	-	-	files TANBA_shape::フィールドサイン表示02 on channel 2; waits until it ends	TANBA_shape.フィールドサイン表示02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	19	0x08A74	2127	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	fadein	fadesystemtime()	the screen fade, in	-	frames held in fadesystemtime()	-	-	resolved	17 ../Graphics/screen-fades.md
+naf_a01	GATE_RECT	touch	20	0x08A80	2128	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReq	2, PC00::フィールドサイン02アクション	actor `PC00`	-	-	files PC00::フィールドサイン02アクション on channel 2; does not wait	PC00.フィールドサイン02アクション	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	21	0x08A8A	2129	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReqew	3, BASH::フィールドサイン2チュートリアル	actor `BASH`	-	-	files BASH::フィールドサイン2チュートリアル on channel 3; waits until it ends	BASH.フィールドサイン2チュートリアル	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	22	0x08A94	2130	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	sysReq	1, ヘルプメッセージ::ヘルプメッセージ07	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::ヘルプメッセージ07 on channel 1; does not wait	ヘルプメッセージ.ヘルプメッセージ07	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
+naf_a01	GATE_RECT	touch	23	0x08A95	2131	file_var_s2_2 = 5; getucstatus() and not (get_talk_run_status())	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	GATE_RECT	touch	24	0x08AA1	2133	not ((file_var_s2_2 = 5) and (not (getucstatus() and not (get_talk_run_status()))))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	PC00	init	1	0x08AA5	2149	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	PC00	init	2	0x08AA8	2150	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	PC00	SET	1	0x08AB2	2155	-	setpos	85.4448624, 2.99990106, 182.453217	this actor, placed at (85.4448624, 2.99990106, 182.453217)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -1441,7 +1441,7 @@ naf_a01	PC00	ショウオン	1	0x08C22	2270	-	show_38	1	argument 1: whether the 
 naf_a01	PC00	ショウオン	2	0x08C28	2271	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	PC00	ショウオフ	1	0x08C2C	2276	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	PC00	ショウオフ	2	0x08C32	2277	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	PC00	ショウオフ	3	0x08C33	2278	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	PC00	ショウオフ	3	0x08C33	2278	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	PC01	init	1	0x08C37	2287	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	PC01	init	2	0x08C3A	2288	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	PC02	init	1	0x08C3E	2297	-	setupbattle	2	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1860,7 +1860,7 @@ naf_a01	BASH	事前消し	1	0x09769	2909	-	show_38	0	argument 1: whether the cal
 naf_a01	BASH	事前消し	2	0x0976F	2910	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	BASH	事前復帰	1	0x09773	2915	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	BASH	事前復帰	2	0x09779	2916	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a01	BASH	事前復帰	3	0x0977A	2917	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a01	BASH	事前復帰	3	0x0977A	2917	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a01	DAL_SOLDIER_A	init	1	0x0977B	2999	-	btlAtelInitTagStart	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	DAL_SOLDIER_A	init	2	0x09781	3000	-	btlAtelSetTotalEntryNumber	0x03000022	argument 1: the spawner's lane map	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a01	DAL_SOLDIER_A	init	3	0x09787	3001	-	btlAtelSetPoint2	0x03000018	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2050,11 +2050,11 @@ naf_a02	__MJ_CTRL001	mapjump	25	0x02389	186	local_var_s2f1_1; not (regI3)	fadesy
 naf_a02	__MJ_CTRL001	mapjump	26	0x0238F	187	local_var_s2f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a02	__MJ_CTRL001	mapjump	27	0x0239B	188	local_var_s2f1_1; not (regI3)	mapjump	0x0117, 1, 0	jumps: Lower Apartments (Nalbina Fortress), field 279, entrance 1	-	-	-	-	resolved	this page's How a call is read
 naf_a02	__MJ_CTRL001	mapjump	28	0x0239E	191	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	常駐監督	init	1	0x023A5	200	-	sysDVAR	8, EV_ナルビナ上層チュートリアル帝国兵	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	常駐監督	init	2	0x023AC	201	-	sysDVAR	49, scratch1_var_5	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	常駐監督	init	3	0x023B3	202	-	sysDVAR	50, scratch1_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	常駐監督	init	4	0x023BA	203	-	sysDVAR	51, シナリオフラグ	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	常駐監督	init	5	0x023C1	204	-	sysDVAR	52, EV_ナルビナ上層マップ進行	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	常駐監督	init	1	0x023A5	200	-	sysDVAR	8, EV_ナルビナ上層チュートリアル帝国兵	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	常駐監督	init	2	0x023AC	201	-	sysDVAR	49, scratch1_var_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	常駐監督	init	3	0x023B3	202	-	sysDVAR	50, scratch1_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	常駐監督	init	4	0x023BA	203	-	sysDVAR	51, シナリオフラグ	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	常駐監督	init	5	0x023C1	204	-	sysDVAR	52, EV_ナルビナ上層マップ進行	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	常駐監督	init	6	0x023C6	205	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	常駐監督	init	7	0x023C9	207	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	常駐監督	init	8	0x023C9	208	-	case	0x2af8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2250,7 +2250,7 @@ naf_a02	常駐監督	マップ表示説明	24	0x02867	416	-	sysReqwait	PC00::cut
 naf_a02	常駐監督	マップ表示説明	25	0x0286B	417	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a02	常駐監督	マップ表示説明	26	0x02871	418	-	motiondispose	2	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	常駐監督	マップ表示説明	27	0x02877	419	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	常駐監督	マップ表示説明	28	0x02878	420	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	常駐監督	マップ表示説明	28	0x02878	420	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	キー制限	init	1	0x02879	429	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	キー制限	初期設定	1	0x0287A	434	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_a02	キー制限	初期設定	2	0x02880	435	-	tutorial_set_behindcameraenable	0	-	-	-	-	-		01 verb-table.tsv
@@ -2300,7 +2300,7 @@ naf_a02	キー制限	キー解放	12	0x029AF	490	-	setmenudisablestatus	2, 0	-	-
 naf_a02	キー制限	キー解放	13	0x029B8	491	-	setmenudisablestatus	9, 0	-	-	-	-	-		01 verb-table.tsv
 naf_a02	キー制限	キー解放	14	0x029BE	492	-	config_sethpgaugedisplay	1	-	-	-	-	-		01 verb-table.tsv
 naf_a02	キー制限	キー解放	15	0x029C4	493	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	キー制限	キー解放	16	0x029C5	494	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	キー制限	キー解放	16	0x029C5	494	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	監督補佐	init	1	0x029C6	503	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	監督補佐	△チュートリアル	1	0x029D0	508	-	sysReqew	1, ヘルプメッセージ::メスクローズ	actor `ヘルプメッセージ`	-	-	files ヘルプメッセージ::メスクローズ on channel 1; waits until it ends	ヘルプメッセージ.メスクローズ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a02	監督補佐	△チュートリアル	2	0x029DA	509	-	sysReq	4, BASH::パクオン	actor `BASH`	-	-	files BASH::パクオン on channel 4; does not wait	BASH.パクオン	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -2342,7 +2342,7 @@ naf_a02	LOOP	LOOP_ON	1	0x02AD4	564	-	sysReq	1, ヘルプメッセージ02::メ�
 naf_a02	LOOP	LOOP_ON	2	0x02AD8	565	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	LOOP	LOOP_END	1	0x02ADC	570	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	LOOP	LOOP_END	2	0x02AE2	571	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	LOOP	LOOP_END	3	0x02AE3	572	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	LOOP	LOOP_END	3	0x02AE3	572	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	カメラ	init	1	0x02AE4	581	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	カメラ	三角カメラ	1	0x02AEB	586	-	camerastart_7e	0, 0x02000000	camera row 0 `三角カメラ`: shot 0 `三角カメラ`, channel 0	-	shot 140 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 naf_a02	カメラ	三角カメラ	2	0x02AF7	587	-	unkCall_5ac	1, 3, 16	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2374,7 +2374,7 @@ naf_a02	カメラ	カメラクリア2	1	0x02BB3	644	-	resetbehindcamera	-3.12204
 naf_a02	カメラ	カメラクリア2	2	0x02BB6	645	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	カメラ	カメラクリア2	3	0x02BC2	646	-	unkCall_5ac	0, 0, 0	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	カメラ	カメラクリア2	4	0x02BC8	647	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	カメラ	カメラクリア2	5	0x02BC9	648	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	カメラ	カメラクリア2	5	0x02BC9	648	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	死亡監視02	init	1	0x02BCA	657	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	死亡監視02	main	1	0x02BCB	662	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	死亡監視02	監視開始	1	0x02BCC	667	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2402,10 +2402,10 @@ naf_a02	ヘルプメッセージ02	メスクローズループ	4	0x02C61	722	loo
 naf_a02	ヘルプメッセージ02	メスクローズループ	5	0x02C67	723	loop while true; pad() & 0x1000	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a02	ヘルプメッセージ02	メスクローズループ	6	0x02C6A	724	loop while true; pad() & 0x1000	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	ヘルプメッセージ02	メスクローズループ解除	1	0x02C71	731	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	ヘルプメッセージ02	メスクローズループ解除	2	0x02C72	732	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	死亡監視	init	1	0x02C79	741	-	sysDVAR	0, scratch2_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	死亡監視	init	2	0x02C80	742	-	sysDVAR	1, scratch2_var_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	死亡監視	init	3	0x02C87	743	-	sysDVAR	2, scratch2_var_3	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	ヘルプメッセージ02	メスクローズループ解除	2	0x02C72	732	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	死亡監視	init	1	0x02C79	741	-	sysDVAR	0, scratch2_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	死亡監視	init	2	0x02C80	742	-	sysDVAR	1, scratch2_var_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	死亡監視	init	3	0x02C87	743	-	sysDVAR	2, scratch2_var_3	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	死亡監視	init	4	0x02C88	744	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	死亡監視	main	1	0x02C89	749	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	死亡監視	監視開始	1	0x02C8A	754	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2471,7 +2471,7 @@ naf_a02	元読み込み監督	ターゲットメッセージ	22	0x02E1C	857	-	mk
 naf_a02	元読み込み監督	ターゲットメッセージ	23	0x02E22	858	-	mesclose	0	message window slot 0, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a02	元読み込み監督	ターゲットメッセージ	24	0x02E28	859	-	mesclose	1	message window slot 1, set to closing (state 6); a slot above 7 is taken as 7	-	-	-	-	resolved	0x0034D920, 0x002E08C0 (read here) and 16 ../Menus-And-HUD/message-windows.md
 naf_a02	元読み込み監督	ターゲットメッセージ	25	0x02E2E	860	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	元読み込み監督	ターゲットメッセージ	26	0x02E2F	861	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	元読み込み監督	ターゲットメッセージ	26	0x02E2F	861	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	Map_Director	init	1	0x02E34	870	-	switch	global_var_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	Map_Director	init	2	0x02E37	872	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	Map_Director	init	3	0x02E3A	873	global_var_1 = 0	store	global_var_1 = 5	variable global_var_1 (global u_char@0x09dd)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2587,7 +2587,7 @@ naf_a02	レモラレクト	touchon	33	0x03159	1071	g_btl_ナルビナレモラ =
 naf_a02	レモラレクト	touchon	34	0x0315A	1072	g_btl_ナルビナレモラ == 1	party_motionsync_and_relax	-	-	-	-	-	-		01 verb-table.tsv
 naf_a02	レモラレクト	touchon	35	0x0315D	1073	g_btl_ナルビナレモラ == 1	bossgaugeclose	-	-	-	-	-	-		01 verb-table.tsv
 naf_a02	レモラレクト	touchon	36	0x03166	1074	g_btl_ナルビナレモラ == 1	sebsoundplay	0, 125	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a02	レモラレクト	touchon	37	0x0316C	1075	g_btl_ナルビナレモラ == 1	sysSystem	0x03e7	none: SYSTEM pops and discards 0x03e7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	レモラレクト	touchon	37	0x0316C	1075	g_btl_ナルビナレモラ == 1	sysSystem	0x03e7	nothing: SYSTEM pops and discards 0x03e7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	レモラレクト	touchon	38	0x03170	1076	g_btl_ナルビナレモラ == 1	setnoupdatebehindcamera	1	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	レモラレクト	touchon	39	0x0317F	1077	g_btl_ナルビナレモラ == 1	behindcamerafovyroll	4, 0, -0.264999986, 0	argument 1: the duration of the behind camera's field-of-view and roll ramp, in frames / argument 2: the ease of the ramp, 0x02096500 / argument 3: the field-of-view target 0x020964F0, an offset the shake gather 0x0037D4C0 adds to the shake's field-of-view scalar (0x02AEDF9C through 0x00382B70) / argument 4: the roll target 0x020964F4, added to the shake's roll scalar (0x02AEDF98)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	レモラレクト	touchon	40	0x03185	1078	g_btl_ナルビナレモラ == 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -2709,7 +2709,7 @@ naf_a02	レモラ通行制限レクト	レモラ登場	6	0x034DA	1262	-	return	0
 naf_a02	レモラ通行制限レクト	レモラ死亡	1	0x034DB	1267	-	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	レモラ通行制限レクト	レモラ死亡	2	0x034E1	1268	-	setmapjumpgroupflag	252	flags set: 0x00FC: Set or tested in Inner Ward (Nalbina Fortress)	-	-	-	-	resolved	this page's How a call is read
 naf_a02	レモラ通行制限レクト	レモラ死亡	3	0x034E7	1269	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	レモラ通行制限レクト	レモラ死亡	4	0x034E8	1270	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	レモラ通行制限レクト	レモラ死亡	4	0x034E8	1270	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	init	1	0x034E9	1279	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	マップ表示説明レクト	main	1	0x034FC	1289	-	setrect_25	93.6359024, 30.4998703, 28.4726505, 3.5, 3, 0	argument 1: the x of the calling actor's position / argument 2: the y of the calling actor's position (0x0026B0C0) / argument 3: the z of the calling actor's position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4) / argument 6: the heading in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	マップ表示説明レクト	main	2	0x03502	1290	-	store	local_var_s18f1_1 = 2	variable local_var_s18f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -2806,7 +2806,7 @@ naf_a02	PC00	リクエストキャンセル	3	0x03740	1455	-	dir	3.1400001	this 
 naf_a02	PC00	リクエストキャンセル	4	0x03746	1456	-	bonecalcforce	5	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	PC00	リクエストキャンセル	5	0x03749	1457	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a02	PC00	リクエストキャンセル	6	0x0374F	1458	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	PC00	リクエストキャンセル	7	0x03753	1459	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	PC00	リクエストキャンセル	7	0x03753	1459	unreachable in the listing	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	PC00	位置調整01	1	0x03757	1464	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a02	PC00	位置調整01	2	0x0375D	1465	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	PC00	位置調整01	3	0x03769	1466	-	setpos	97.3031387, 25, 135.458694	this actor, placed at (97.3031387, 25, 135.458694)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -2847,7 +2847,7 @@ naf_a02	PC00	cut_end	7	0x03830	1516	-	showw	-	the calling actor's main-hand weap
 naf_a02	PC00	cut_end	8	0x03833	1517	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	PC00	cut_end	9	0x03836	1518	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a02	PC00	cut_end	10	0x0383C	1519	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	PC00	cut_end	11	0x0383D	1520	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	PC00	cut_end	11	0x0383D	1520	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	PC01	init	1	0x03841	1529	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	PC01	init	2	0x03844	1530	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	PC02	init	1	0x03848	1539	-	setupbattle	2	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2867,7 +2867,7 @@ naf_a02	イベント帝国兵	キョロキョロ	2	0x03888	1576	-	motionplay	0x1
 naf_a02	イベント帝国兵	キョロキョロ	3	0x0388B	1577	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	イベント帝国兵	バインドオフ	1	0x0388C	1582	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	イベント帝国兵	バインドオフ	2	0x03892	1583	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	イベント帝国兵	バインドオフ	3	0x03893	1584	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	イベント帝国兵	バインドオフ	3	0x03893	1584	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	バッシュ2	init	1	0x03894	1593	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	バッシュ2	cut_01_m	1	0x03898	1598	-	bindp2	0x03000001	model c17 (section 12 entry 1, bound id 0x630011)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-name-bindings.md, 25 ../EBP-Script-Files/ebp-actor-manifest.md
 naf_a02	バッシュ2	cut_01_m	2	0x0389E	1599	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2978,7 +2978,7 @@ naf_a02	BASH	停止解除	5	0x03BE9	1857	-	shows	-	the calling actor's off-hand 
 naf_a02	BASH	停止解除	6	0x03BEF	1858	-	dir	2.70872307	this actor, turned to facing 2.70872307	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 naf_a02	BASH	停止解除	7	0x03BF2	1859	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a02	BASH	停止解除	8	0x03BF8	1860	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	BASH	停止解除	9	0x03BF9	1861	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	BASH	停止解除	9	0x03BF9	1861	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	DAL_SOLDIER_A	init	1	0x03BFA	1943	-	btlAtelInitTagStart	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	DAL_SOLDIER_A	init	2	0x03C00	1944	-	btlAtelSetTotalEntryNumber	0x030000b4	argument 1: the spawner's lane map	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	DAL_SOLDIER_A	init	3	0x03C06	1945	-	btlAtelSetPoint2	0x03000032	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3078,7 +3078,7 @@ naf_a02	SOLDIER_A	ショウオフ_ES	1	0x0427A	2361	-	captureactor	-	-	-	-	-	-		
 naf_a02	SOLDIER_A	ショウオフ_ES	2	0x04280	2362	-	setbattlethinkstatus	0	-	-	-	-	-		01 verb-table.tsv
 naf_a02	SOLDIER_A	ショウオフ_ES	3	0x04286	2363	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	SOLDIER_A	ショウオフ_ES	4	0x0428C	2364	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a02	SOLDIER_A	ショウオフ_ES	5	0x0428D	2365	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a02	SOLDIER_A	ショウオフ_ES	5	0x0428D	2365	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a02	BOSS_レモラ	init	1	0x0428E	2427	-	btlAtelInitTagStart	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	BOSS_レモラ	init	2	0x04294	2428	-	btlAtelSetTotalEntryNumber	0x030000bc	argument 1: the spawner's lane map	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a02	BOSS_レモラ	init	3	0x0429A	2429	-	btlAtelSetPoint2	0x0300005a	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3174,7 +3174,7 @@ naf_b01	__MJ_CTRL001	mapjump	5	0x01B7E	148	regI3	sysucon	-	gives control back	-	
 naf_b01	__MJ_CTRL001	mapjump	6	0x01B84	152	not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	__MJ_CTRL001	mapjump	7	0x01B90	153	not (regI3)	spotsoundtrans	20, 0	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	__MJ_CTRL001	mapjump	8	0x01B93	154	not (regI3)	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	__MJ_CTRL001	mapjump	9	0x01B96	155	not (regI3)	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	__MJ_CTRL001	mapjump	9	0x01B96	155	not (regI3); unreachable in the listing	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	__MJ_CTRL001	mapjump	10	0x01B99	156	not (regI3)	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	__MJ_CTRL001	mapjump	11	0x01B9C	157	not (regI3)	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	__MJ_CTRL001	mapjump	12	0x01BA2	158	not (regI3)	fadeprior	255	argument 1: the draw priority of the next screen fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3229,9 +3229,9 @@ naf_b01	btl_trap_ctrl	init	1	0x01DB1	242	-	modelread	0x03000001	argument 1: the 
 naf_b01	btl_trap_ctrl	init	2	0x01DB7	243	-	modelreadsync	0x03000001	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	btl_trap_ctrl	init	3	0x01DBD	244	-	settrapresource	0x03000001	-	-	-	-	-		01 verb-table.tsv
 naf_b01	btl_trap_ctrl	init	4	0x01DC0	245	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	常駐監督	init	1	0x01DC7	254	-	sysDVAR	50, scratch1_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	常駐監督	init	2	0x01DCE	255	-	sysDVAR	51, シナリオフラグ	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	常駐監督	init	3	0x01DD5	256	-	sysDVAR	52, EV_ナルビナ上層マップ進行	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	常駐監督	init	1	0x01DC7	254	-	sysDVAR	50, scratch1_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	常駐監督	init	2	0x01DCE	255	-	sysDVAR	51, シナリオフラグ	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	常駐監督	init	3	0x01DD5	256	-	sysDVAR	52, EV_ナルビナ上層マップ進行	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	常駐監督	init	4	0x01DDD	257	-	if	シナリオフラグ < 19	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	常駐監督	init	5	0x01DE0	259	シナリオフラグ < 19	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	常駐監督	init	6	0x01DE6	261	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -3322,17 +3322,17 @@ naf_b01	常駐監督	エスケープ説明	21	0x01FC9	369	-	sysReqwait	PC00::cut
 naf_b01	常駐監督	エスケープ説明	22	0x01FCD	370	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b01	常駐監督	エスケープ説明	23	0x01FD3	371	-	motiondispose	1	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	常駐監督	エスケープ説明	24	0x01FD9	372	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	常駐監督	エスケープ説明	25	0x01FDA	373	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	常駐監督	エスケープ説明	25	0x01FDA	373	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	カメラ	init	1	0x01FDB	382	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	カメラ	cut_01	1	0x01FE2	387	-	camerastart_7e	0, 0x02000000	camera row 0 `cut_01`: shot 0 `cut_01`, channel 0	-	shot 300 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 naf_b01	カメラ	cut_01	2	0x01FE8	388	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	カメラ	カメラクリア	1	0x01FEF	393	-	resetbehindcamera	-3.12204599, -0.0857980028	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	カメラ	カメラクリア	2	0x01FF2	394	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	カメラ	カメラクリア	3	0x01FF8	395	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	カメラ	カメラクリア	4	0x01FF9	396	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	死亡監視	init	1	0x02000	405	-	sysDVAR	0, scratch2_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	死亡監視	init	2	0x02007	406	-	sysDVAR	1, scratch2_var_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	死亡監視	init	3	0x0200E	407	-	sysDVAR	2, scratch2_var_3	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	カメラ	カメラクリア	4	0x01FF9	396	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	死亡監視	init	1	0x02000	405	-	sysDVAR	0, scratch2_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	死亡監視	init	2	0x02007	406	-	sysDVAR	1, scratch2_var_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	死亡監視	init	3	0x0200E	407	-	sysDVAR	2, scratch2_var_3	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	死亡監視	init	4	0x0200F	408	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	死亡監視	main	1	0x02010	413	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	死亡監視	監視開始	1	0x02011	418	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3445,7 +3445,7 @@ naf_b01	PC00	cut_end	7	0x022BF	628	-	showw	-	the calling actor's main-hand weapo
 naf_b01	PC00	cut_end	8	0x022C2	629	-	shows	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	PC00	cut_end	9	0x022C5	630	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_b01	PC00	cut_end	10	0x022CB	631	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	PC00	cut_end	11	0x022CC	632	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	PC00	cut_end	11	0x022CC	632	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	PC01	init	1	0x022D0	641	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	PC01	init	2	0x022D3	642	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	PC02	init	1	0x022D7	651	-	setupbattle	2	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3546,7 +3546,7 @@ naf_b01	バッシュ_E	cut_end	10	0x024D0	819	not (local_var_s15f1_1 == 0)	bindo
 naf_b01	バッシュ_E	cut_end	11	0x024D3	820	not (local_var_s15f1_1 == 0)	charcachedispose	-	-	-	-	-	-		01 verb-table.tsv
 naf_b01	バッシュ_E	cut_end	12	0x024D9	822	-	store	local_var_s15f1_1 = 0	variable local_var_s15f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b01	バッシュ_E	cut_end	13	0x024DF	823	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b01	バッシュ_E	cut_end	14	0x024E0	824	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b01	バッシュ_E	cut_end	14	0x024E0	824	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b01	BASH	init	1	0x024E1	911	-	btlAtelInitTagStart	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	BASH	init	2	0x024E7	912	-	btlAtelSetTotalEntryNumber	0x03000090	argument 1: the spawner's lane map	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b01	BASH	init	3	0x024ED	913	-	btlAtelSetPoint2	0x03000018	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3708,7 +3708,7 @@ naf_b02	__MJ_CTRL000	mapjump	5	0x027E6	666	regI3	sysucon	-	gives control back	-	
 naf_b02	__MJ_CTRL000	mapjump	6	0x027EC	670	not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	__MJ_CTRL000	mapjump	7	0x027F8	671	not (regI3)	spotsoundtrans	20, 0	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	__MJ_CTRL000	mapjump	8	0x027FB	672	not (regI3)	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	__MJ_CTRL000	mapjump	9	0x027FE	673	not (regI3)	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	__MJ_CTRL000	mapjump	9	0x027FE	673	not (regI3); unreachable in the listing	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	__MJ_CTRL000	mapjump	10	0x02801	674	not (regI3)	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	__MJ_CTRL000	mapjump	11	0x02804	675	not (regI3)	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	__MJ_CTRL000	mapjump	12	0x0280A	676	not (regI3)	fadeprior	255	argument 1: the draw priority of the next screen fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3770,7 +3770,7 @@ naf_b02	__MJ_CTRL001	mapjump	5	0x02A34	777	regI3	sysucon	-	gives control back	-	
 naf_b02	__MJ_CTRL001	mapjump	6	0x02A3A	781	not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	__MJ_CTRL001	mapjump	7	0x02A46	782	not (regI3)	spotsoundtrans	20, 0	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	__MJ_CTRL001	mapjump	8	0x02A49	783	not (regI3)	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	__MJ_CTRL001	mapjump	9	0x02A4C	784	not (regI3)	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	__MJ_CTRL001	mapjump	9	0x02A4C	784	not (regI3); unreachable in the listing	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	__MJ_CTRL001	mapjump	10	0x02A4F	785	not (regI3)	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	__MJ_CTRL001	mapjump	11	0x02A52	786	not (regI3)	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b02	__MJ_CTRL001	mapjump	12	0x02A58	787	not (regI3)	fadeprior	255	argument 1: the draw priority of the next screen fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3821,9 +3821,9 @@ naf_b02	__MJ_CTRL001	mapjump	56	0x02C4E	857	local_var_s7f1_1; not (regI3)	fadesy
 naf_b02	__MJ_CTRL001	mapjump	57	0x02C54	858	local_var_s7f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b02	__MJ_CTRL001	mapjump	58	0x02C60	859	local_var_s7f1_1; not (regI3)	mapjump	0x011a, 1, 0	jumps: The Highhall (Nalbina Fortress), field 282, entrance 1	-	-	-	-	resolved	this page's How a call is read
 naf_b02	__MJ_CTRL001	mapjump	59	0x02C63	862	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	常駐監督	init	1	0x02C6A	871	-	sysDVAR	50, scratch1_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	常駐監督	init	2	0x02C71	872	-	sysDVAR	51, シナリオフラグ	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	常駐監督	init	3	0x02C78	873	-	sysDVAR	52, EV_ナルビナ上層マップ進行	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	常駐監督	init	1	0x02C6A	871	-	sysDVAR	50, scratch1_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	常駐監督	init	2	0x02C71	872	-	sysDVAR	51, シナリオフラグ	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	常駐監督	init	3	0x02C78	873	-	sysDVAR	52, EV_ナルビナ上層マップ進行	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	常駐監督	init	4	0x02C7C	874	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_b02	常駐監督	init	5	0x02C7F	875	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_b02	常駐監督	init	6	0x02C85	876	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
@@ -3869,9 +3869,9 @@ naf_b02	常駐監督	main	15	0x02D59	930	-	setstatuserrordispdenystatus	0	argume
 naf_b02	常駐監督	main	16	0x02D5F	931	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 naf_b02	常駐監督	main	17	0x02D65	932	-	fadein	fadesystemtime()	the screen fade, in	-	frames held in fadesystemtime()	-	-	resolved	17 ../Graphics/screen-fades.md
 naf_b02	常駐監督	main	18	0x02D68	933	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	死亡監視	init	1	0x02D6F	942	-	sysDVAR	0, scratch2_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	死亡監視	init	2	0x02D76	943	-	sysDVAR	1, scratch2_var_2	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	死亡監視	init	3	0x02D7D	944	-	sysDVAR	2, scratch2_var_3	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	死亡監視	init	1	0x02D6F	942	-	sysDVAR	0, scratch2_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	死亡監視	init	2	0x02D76	943	-	sysDVAR	1, scratch2_var_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	死亡監視	init	3	0x02D7D	944	-	sysDVAR	2, scratch2_var_3	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	死亡監視	init	4	0x02D7E	945	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	死亡監視	main	1	0x02D7F	950	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	死亡監視	監視開始	1	0x02D80	955	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3996,7 +3996,7 @@ naf_b02	バッシュ_E	パクオン	6	0x04959	2630	-	return	-	-	-	-	-	-	resolved
 naf_b02	バッシュ_E	パクオフ	1	0x0495D	2635	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_b02	バッシュ_E	パクオフ	2	0x04963	2636	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 naf_b02	バッシュ_E	パクオフ	3	0x04969	2637	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b02	バッシュ_E	パクオフ	4	0x0496A	2638	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b02	バッシュ_E	パクオフ	4	0x0496A	2638	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	MAP_SETACTOR_クリスタル	init	1	0x0496B	2647	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	1	0x04973	2657	-	if	file_var_s16_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b02	MAP_SETACTOR_クリスタル	setHitObj_ForMapObj	2	0x04979	2659	file_var_s16_2 == 1	store	local_var_s19f1_1 = 1	variable local_var_s19f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -4063,7 +4063,7 @@ naf_b04	__MJ_CTRL000	mapjump	5	0x010ED	73	regI3	sysucon	-	gives control back	-	-
 naf_b04	__MJ_CTRL000	mapjump	6	0x010F3	77	not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	__MJ_CTRL000	mapjump	7	0x010FF	78	not (regI3)	spotsoundtrans	20, 0	argument 1: the frames of the map sound volume fade / argument 2: the map sound volume to fade 0x022CBA94 to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	__MJ_CTRL000	mapjump	8	0x01102	79	not (regI3)	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	__MJ_CTRL000	mapjump	9	0x01105	80	not (regI3)	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	__MJ_CTRL000	mapjump	9	0x01105	80	not (regI3); unreachable in the listing	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	__MJ_CTRL000	mapjump	10	0x01108	81	not (regI3)	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	__MJ_CTRL000	mapjump	11	0x0110B	82	not (regI3)	fadelayer	6	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	__MJ_CTRL000	mapjump	12	0x01111	83	not (regI3)	fadeprior	255	argument 1: the draw priority of the next screen fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4114,9 +4114,9 @@ naf_b04	__MJ_CTRL000	mapjump	56	0x01307	153	local_var_s1f1_1; not (regI3)	fadesy
 naf_b04	__MJ_CTRL000	mapjump	57	0x0130D	154	local_var_s1f1_1; not (regI3)	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b04	__MJ_CTRL000	mapjump	58	0x01319	155	local_var_s1f1_1; not (regI3)	mapjump	0x0118, 2, 0	jumps: Upper Apartments (Nalbina Fortress), field 280, entrance 2	-	-	-	-	resolved	this page's How a call is read
 naf_b04	__MJ_CTRL000	mapjump	59	0x0131C	158	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	常駐監督	init	1	0x01323	167	-	sysDVAR	50, scratch1_var_1	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	常駐監督	init	2	0x0132A	168	-	sysDVAR	51, シナリオフラグ	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	常駐監督	init	3	0x01331	169	-	sysDVAR	52, EV_ナルビナ上層マップ進行	none: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	常駐監督	init	1	0x01323	167	-	sysDVAR	50, scratch1_var_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	常駐監督	init	2	0x0132A	168	-	sysDVAR	51, シナリオフラグ	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	常駐監督	init	3	0x01331	169	-	sysDVAR	52, EV_ナルビナ上層マップ進行	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	常駐監督	init	4	0x01339	170	-	if	シナリオフラグ < 22	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	常駐監督	init	5	0x0133C	172	シナリオフラグ < 22	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	常駐監督	init	6	0x01342	174	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -4173,8 +4173,8 @@ naf_b04	AD	dead_sarch	10	0x0146D	264	シナリオフラグ < 23; loop while true
 naf_b04	AD	dead_sarch	11	0x01479	265	シナリオフラグ < 23; loop while true; local_var_s3f1_1 == 7	sysReq	1, ジャンプライン::表示	actor `ジャンプライン`	-	-	files ジャンプライン::表示 on channel 1; does not wait	ジャンプライン.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	AD	dead_sarch	12	0x0147D	266	シナリオフラグ < 23; loop while true; local_var_s3f1_1 == 7	sysReqall	2, reqArr1	actor `制御ライン11`	-	-	files each pair of 制御ライン11::とおせんぼ無効 on channel 2; does not wait	制御ライン11.とおせんぼ無効	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	AD	dead_sarch	13	0x01480	267	シナリオフラグ < 23; loop while true; local_var_s3f1_1 == 7	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	AD	dead_sarch	14	0x01484	269	シナリオフラグ < 23; loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-naf_b04	AD	dead_sarch	15	0x0148A	272	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	AD	dead_sarch	14	0x01484	269	シナリオフラグ < 23; loop while true; not (local_var_s3f1_1 == 7)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b04	AD	dead_sarch	15	0x0148A	272	not (シナリオフラグ < 23)	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	Map_Director	init	1	0x0148B	281	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	Map_Director	main	1	0x01490	286	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	Map_Director	main	2	0x01493	288	-	case	lte(25)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4318,8 +4318,8 @@ naf_b04	MAP_Map_Director	init	1	0x01A77	466	-	switch	global_var_1	-	-	-	-	-	reso
 naf_b04	MAP_Map_Director	init	2	0x01A7A	468	-	case	lte(10)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	MAP_Map_Director	init	3	0x01A7D	469	global_var_1 = lte(10)	setnavimapindex	1	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	MAP_Map_Director	init	4	0x01A80	470	global_var_1 = lte(10)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	MAP_Map_Director	init	5	0x01A86	471	global_var_1 = lte(10)	setnavimapindex	0	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b04	MAP_Map_Director	init	6	0x01A89	472	global_var_1 = lte(10)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	MAP_Map_Director	init	5	0x01A86	471	global_var_1 = lte(10); unreachable in the listing	setnavimapindex	0	argument 1: which of the zone's up to four map pictures (one per sub-location) the minimap shows, 0 to 3; any other value does nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b04	MAP_Map_Director	init	6	0x01A89	472	global_var_1 = lte(10); unreachable in the listing	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	MAP_Map_Director	init	7	0x01A95	474	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	MAP_Map_Director	main	1	0x01A96	479	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	ジャンプライン	init	1	0x01A97	488	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4512,7 +4512,7 @@ naf_b04	gim_door02	main	20	0x01FA4	843	シナリオフラグ < 23; loop while tr
 naf_b04	gim_door02	main	21	0x01FAA	844	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	reqenable	2	sets bit `0x4` of this actor's arming mask +0x1C (slot `talk`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b04	gim_door02	main	22	0x01FB6	845	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	setmapidmj	1, 0, 1	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	gim_door02	main	23	0x01FB9	846	シナリオフラグ < 23; loop while true; local_var_s11f1_1 != シナリオフラグ; local_var_s11f1_1 = gte(23)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	gim_door02	main	24	0x01FD4	851	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	gim_door02	main	24	0x01FD4	851	not (シナリオフラグ < 23)	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	gim_door02	talk	1	0x01FD8	856	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 naf_b04	gim_door02	talk	2	0x01FDB	857	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 naf_b04	gim_door02	talk	3	0x01FE1	858	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
@@ -4651,7 +4651,7 @@ naf_b04	PC00	MOVECANCEL	3	0x023DD	1066	-	releasepc	-	the party member this actor
 naf_b04	PC00	MOVECANCEL	4	0x023E3	1067	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	PC00	SHOWOFF	1	0x023E7	1072	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	PC00	SHOWOFF	2	0x023ED	1073	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	PC00	SHOWOFF	3	0x023EE	1074	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	PC00	SHOWOFF	3	0x023EE	1074	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	PC01	init	1	0x023F2	1083	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	PC01	init	2	0x023F5	1084	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	PC02	init	1	0x023F9	1093	-	setupbattle	2	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4894,7 +4894,7 @@ naf_b04	map_ダミーＰＣ	移動	3	0x028B8	1470	-	releasepc	-	the party member
 naf_b04	map_ダミーＰＣ	移動	4	0x028BB	1471	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	map_ダミーＰＣ	乗っ取り解除	1	0x028BC	1476	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_b04	map_ダミーＰＣ	乗っ取り解除	2	0x028C2	1477	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b04	map_ダミーＰＣ	乗っ取り解除	3	0x028C3	1478	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b04	map_ダミーＰＣ	乗っ取り解除	3	0x028C3	1478	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b04	SOLDIER_A	init	1	0x028C4	1565	-	btlAtelInitTagStart	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	SOLDIER_A	init	2	0x028CA	1566	-	btlAtelSetTotalEntryNumber	0x03000020	argument 1: the spawner's lane map	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b04	SOLDIER_A	init	3	0x028D0	1567	-	btlAtelSetPoint2	0x03000008	argument 1: the spawner's entry-point candidate table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5729,22 +5729,22 @@ naf_a0100	CAMERA	cut13	10	0x03112	1083	-	setfocusalpha	48	argument 1: the opacit
 naf_a0100	CAMERA	cut13	11	0x03118	1084	-	setfocusmode	2	argument 1: which side of the focal distance the depth of field blurs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	CAMERA	cut13	12	0x0311E	1085	-	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	CAMERA	cut13	13	0x03124	1086	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	CAMERA	cut13	14	0x03125	1087	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	CAMERA	cut13	14	0x03125	1087	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	CAMERA	cut13	15	0x0312E	1088	-	while	regI0 <= 10	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	CAMERA	cut13	16	0x03136	1090	loop while regI0 <= 10	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	CAMERA	cut13	17	0x03139	1092	loop while regI0 <= 10; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	CAMERA	cut13	18	0x03141	1094	loop while regI0 <= 10	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	CAMERA	cut13	19	0x03155	1095	loop while regI0 <= 10	unkCall_5ac	1, (1.22000003 + ((-0.420000017 * regI0) / 10)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	CAMERA	cut13	20	0x0315B	1096	loop while regI0 <= 10	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	CAMERA	cut13	18	0x03141	1094	loop while regI0 <= 10; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a0100	CAMERA	cut13	19	0x03155	1095	loop while regI0 <= 10; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (1.22000003 + ((-0.420000017 * regI0) / 10)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	CAMERA	cut13	20	0x0315B	1096	loop while regI0 <= 10; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	CAMERA	cut13	21	0x03164	1098	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	CAMERA	cut13	22	0x0316A	1099	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	CAMERA	cut13	23	0x0316B	1100	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	CAMERA	cut13	23	0x0316B	1100	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	CAMERA	cut13	24	0x03174	1101	-	while	regI0 <= 8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	CAMERA	cut13	25	0x0317C	1103	loop while regI0 <= 8	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	CAMERA	cut13	26	0x0317F	1105	loop while regI0 <= 8; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	CAMERA	cut13	27	0x03187	1107	loop while regI0 <= 8	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	CAMERA	cut13	28	0x0319B	1108	loop while regI0 <= 8	unkCall_5ac	1, (0.800000012 + ((0.420000017 * regI0) / 8)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	CAMERA	cut13	29	0x031A1	1109	loop while regI0 <= 8	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	CAMERA	cut13	27	0x03187	1107	loop while regI0 <= 8; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a0100	CAMERA	cut13	28	0x0319B	1108	loop while regI0 <= 8; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (0.800000012 + ((0.420000017 * regI0) / 8)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	CAMERA	cut13	29	0x031A1	1109	loop while regI0 <= 8; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	CAMERA	cut13	30	0x031A7	1111	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	CAMERA	cut14	1	0x031AB	1116	-	startscene	14	scene cut 14, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 naf_a0100	CAMERA	cut14	2	0x031B4	1117	-	camerastart_7e	1, 0x0200000e	camera row 14 `cam14`: shot 13 `cam14`, channel 1	-	shot 75 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
@@ -5770,13 +5770,13 @@ naf_a0100	CAMERA	cut15	10	0x0322A	1140	-	setfocusalpha	48	argument 1: the opacit
 naf_a0100	CAMERA	cut15	11	0x03230	1141	-	setfocusmode	0	argument 1: which side of the focal distance the depth of field blurs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	CAMERA	cut15	12	0x03236	1142	-	wait	94	-	-	94 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	CAMERA	cut15	13	0x0323C	1143	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	CAMERA	cut15	14	0x0323D	1144	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	CAMERA	cut15	14	0x0323D	1144	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	CAMERA	cut15	15	0x03246	1145	-	while	regI0 <= 12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	CAMERA	cut15	16	0x0324E	1147	loop while regI0 <= 12	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	CAMERA	cut15	17	0x03251	1149	loop while regI0 <= 12; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	CAMERA	cut15	18	0x03259	1151	loop while regI0 <= 12	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	CAMERA	cut15	19	0x0326D	1152	loop while regI0 <= 12	unkCall_5ac	1, (3.00999999 + ((-2.43000007 * regI0) / 12)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0100	CAMERA	cut15	20	0x03273	1153	loop while regI0 <= 12	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	CAMERA	cut15	18	0x03259	1151	loop while regI0 <= 12; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a0100	CAMERA	cut15	19	0x0326D	1152	loop while regI0 <= 12; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (3.00999999 + ((-2.43000007 * regI0) / 12)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	CAMERA	cut15	20	0x03273	1153	loop while regI0 <= 12; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	CAMERA	cut15	21	0x03279	1155	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	CAMERA	cut16	1	0x0327D	1160	-	startscene	16	scene cut 16, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 naf_a0100	CAMERA	cut16	2	0x03286	1161	-	camerastart_7e	3, 0x02000010	camera row 16 `cam16a`: shot 30 `cam16a`, channel 3	-	shot 150 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
@@ -5944,113 +5944,113 @@ naf_a0100	ANNEX_FOCUS	init	1	0x03677	1390	-	return	-	-	-	-	-	-	resolved	01 ../Sc
 naf_a0100	ANNEX_FOCUS	cut01	1	0x0367B	1395	-	wait	200	-	-	200 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut01	2	0x03681	1396	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut01	3	0x03685	1397	-	store	regF1 = 90	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut01	4	0x03686	1398	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut01	4	0x03686	1398	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut01	5	0x0368F	1399	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut01	6	0x036A6	1401	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.100000001 + ((0.139999986 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut01	7	0x036AE	1402	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut01	8	0x036B4	1403	loop while regI1 == unkCall_5c9()	if	regF0 > 90	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut01	9	0x036B7	1405	loop while regI1 == unkCall_5c9(); regF0 > 90	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut01	10	0x036BD	1407	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut01	10	0x036BD	1407	loop while regI1 == unkCall_5c9(); not (regF0 > 90)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut01	11	0x036C6	1409	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut01	12	0x036CA	1410	-	store	regF1 = 30	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut01	13	0x036CB	1411	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut01	13	0x036CB	1411	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut01	14	0x036D4	1412	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut01	15	0x036EB	1414	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.239999995 + ((-0.139999986 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut01	16	0x036F3	1415	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut01	17	0x036F9	1416	loop while regI1 == unkCall_5c9()	if	regF0 > 30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut01	18	0x036FC	1418	loop while regI1 == unkCall_5c9(); regF0 > 30	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut01	19	0x03702	1420	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut01	19	0x03702	1420	loop while regI1 == unkCall_5c9(); not (regF0 > 30)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut01	20	0x0370B	1422	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut01	21	0x0370F	1423	-	store	regF1 = 60	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut01	22	0x03710	1424	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut01	22	0x03710	1424	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut01	23	0x03719	1425	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut01	24	0x03730	1427	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.100000001 + ((0.0899999961 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut01	25	0x03738	1428	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut01	26	0x0373E	1429	loop while regI1 == unkCall_5c9()	if	regF0 > 60	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut01	27	0x03741	1431	loop while regI1 == unkCall_5c9(); regF0 > 60	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut01	28	0x03747	1433	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut01	28	0x03747	1433	loop while regI1 == unkCall_5c9(); not (regF0 > 60)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut01	29	0x0374D	1435	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut03	1	0x03751	1440	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut03	2	0x03755	1441	-	store	regF1 = 60	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut03	3	0x03756	1442	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut03	3	0x03756	1442	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut03	4	0x0375F	1443	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut03	5	0x03776	1445	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.189999998 + ((-0.0600000024 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut03	6	0x0377E	1446	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut03	7	0x03784	1447	loop while regI1 == unkCall_5c9()	if	regF0 > 60	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut03	8	0x03787	1449	loop while regI1 == unkCall_5c9(); regF0 > 60	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut03	9	0x0378D	1451	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut03	9	0x0378D	1451	loop while regI1 == unkCall_5c9(); not (regF0 > 60)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut03	10	0x03796	1453	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut03	11	0x0379C	1454	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut03	12	0x037A0	1455	-	store	regF1 = 88	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut03	13	0x037A1	1456	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut03	13	0x037A1	1456	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut03	14	0x037AA	1457	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut03	15	0x037C1	1459	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.129999995 + ((0.420000017 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut03	16	0x037C9	1460	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut03	17	0x037CF	1461	loop while regI1 == unkCall_5c9()	if	regF0 > 88	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut03	18	0x037D2	1463	loop while regI1 == unkCall_5c9(); regF0 > 88	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut03	19	0x037D8	1465	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut03	19	0x037D8	1465	loop while regI1 == unkCall_5c9(); not (regF0 > 88)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut03	20	0x037DE	1467	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut05	1	0x037E2	1472	-	wait	60	-	-	60 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut05	2	0x037E8	1473	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut05	3	0x037EC	1474	-	store	regF1 = 60	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut05	4	0x037ED	1475	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut05	4	0x037ED	1475	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut05	5	0x037F6	1476	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut05	6	0x0380D	1478	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.5 + ((-0.159999996 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut05	7	0x03815	1479	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut05	8	0x0381B	1480	loop while regI1 == unkCall_5c9()	if	regF0 > 60	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut05	9	0x0381E	1482	loop while regI1 == unkCall_5c9(); regF0 > 60	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut05	10	0x03824	1484	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut05	10	0x03824	1484	loop while regI1 == unkCall_5c9(); not (regF0 > 60)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut05	11	0x0382D	1486	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut05	12	0x03833	1487	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut05	13	0x03837	1488	-	store	regF1 = 90	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut05	14	0x03838	1489	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut05	14	0x03838	1489	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut05	15	0x03841	1490	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut05	16	0x03858	1492	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.340000004 + ((0.580000043 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut05	17	0x03860	1493	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut05	18	0x03866	1494	loop while regI1 == unkCall_5c9()	if	regF0 > 90	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut05	19	0x03869	1496	loop while regI1 == unkCall_5c9(); regF0 > 90	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut05	20	0x0386F	1498	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut05	20	0x0386F	1498	loop while regI1 == unkCall_5c9(); not (regF0 > 90)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut05	21	0x03875	1500	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut09	1	0x03879	1505	-	wait	160	-	-	160 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut09	2	0x0387F	1506	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut09	3	0x03883	1507	-	store	regF1 = 30	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut09	4	0x03884	1508	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut09	4	0x03884	1508	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut09	5	0x0388D	1509	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut09	6	0x038A4	1511	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (3.31999993 + ((-2.51999998 * regF0) / regF1)), 32	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut09	7	0x038AC	1512	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut09	8	0x038B2	1513	loop while regI1 == unkCall_5c9()	if	regF0 > 30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut09	9	0x038B5	1515	loop while regI1 == unkCall_5c9(); regF0 > 30	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut09	10	0x038BB	1517	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut09	10	0x038BB	1517	loop while regI1 == unkCall_5c9(); not (regF0 > 30)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut09	11	0x038C1	1519	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut13	1	0x038C5	1524	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut13	2	0x038C9	1525	-	store	regF1 = 28	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut13	3	0x038CA	1526	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut13	3	0x038CA	1526	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut13	4	0x038D3	1527	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut13	5	0x038EA	1529	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (1.22000003 + ((-0.420000017 * regF0) / regF1)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut13	6	0x038F2	1530	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut13	7	0x038F8	1531	loop while regI1 == unkCall_5c9()	if	regF0 > 28	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut13	8	0x038FB	1533	loop while regI1 == unkCall_5c9(); regF0 > 28	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut13	9	0x03901	1535	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut13	9	0x03901	1535	loop while regI1 == unkCall_5c9(); not (regF0 > 28)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut13	10	0x0390A	1537	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut13	11	0x0390E	1538	-	store	regF1 = 12	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut13	12	0x0390F	1539	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut13	12	0x0390F	1539	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut13	13	0x03918	1540	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut13	14	0x0392F	1542	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.800000012 + ((0.420000017 * regF0) / regF1)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut13	15	0x03937	1543	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut13	16	0x0393D	1544	loop while regI1 == unkCall_5c9()	if	regF0 > 12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut13	17	0x03940	1546	loop while regI1 == unkCall_5c9(); regF0 > 12	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut13	18	0x03946	1548	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut13	18	0x03946	1548	loop while regI1 == unkCall_5c9(); not (regF0 > 12)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut13	19	0x0394C	1550	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut15	1	0x03950	1555	-	wait	80	-	-	80 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut15	2	0x03956	1556	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut15	3	0x0395A	1557	-	store	regF1 = 16	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0100	ANNEX_FOCUS	cut15	4	0x0395B	1558	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0100	ANNEX_FOCUS	cut15	4	0x0395B	1558	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut15	5	0x03964	1559	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut15	6	0x0397B	1561	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (3.00999999 + ((-2.30999994 * regF0) / regF1)), 32	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0100	ANNEX_FOCUS	cut15	7	0x03983	1562	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_a0100	ANNEX_FOCUS	cut15	8	0x03989	1563	loop while regI1 == unkCall_5c9()	if	regF0 > 16	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	ANNEX_FOCUS	cut15	9	0x0398C	1565	loop while regI1 == unkCall_5c9(); regF0 > 16	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0100	ANNEX_FOCUS	cut15	10	0x03992	1567	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0100	ANNEX_FOCUS	cut15	10	0x03992	1567	loop while regI1 == unkCall_5c9(); not (regF0 > 16)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0100	ANNEX_FOCUS	cut15	11	0x03998	1569	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	コントローラー振動	init	1	0x03999	1578	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0100	コントローラー振動	cut17	1	0x0399D	1583	-	wait	4	-	-	4 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -7595,11 +7595,11 @@ naf_a0201	Master	main	21	0x01788	54	-	sysReq	1, Rex::model_read	actor `Rex`	-	-	
 naf_a0201	Master	main	22	0x01792	55	-	sysReq	1, Sward::ready_breakarts	actor `Sward`	-	-	files Sward::ready_breakarts on channel 1; does not wait	Sward.ready_breakarts	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a0201	Master	main	23	0x01796	56	-	motionread	2	motion 2 of `naf_a0201.mot` (bytes 0x3B800, length 0x185A0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 naf_a0201	Master	main	24	0x0179C	57	-	motionread	4	motion 4 of `naf_a0201.mot` (bytes 0x5D000, length 0x8240)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
-naf_a0201	Master	main	25	0x017A2	58	-	sysSystem	1	none: SYSTEM pops and discards 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a0201	Master	main	25	0x017A2	58	-	sysSystem	1	nothing: SYSTEM pops and discards 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Master	main	26	0x017A3	59	-	unlockmapjump	-	-	-	-	-	-		01 verb-table.tsv
 naf_a0201	Master	main	27	0x017A9	60	-	waitv	&scratch1_var_2	variable scratch1_var_2	-	-	waits while scratch1_var_2 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
 naf_a0201	Master	main	28	0x017AC	61	-	lockmapjump	-	-	-	-	-	-		01 verb-table.tsv
-naf_a0201	Master	main	29	0x017B2	62	-	sysSystem	2	none: SYSTEM pops and discards 2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a0201	Master	main	29	0x017B2	62	-	sysSystem	2	nothing: SYSTEM pops and discards 2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Master	main	30	0x017B6	63	-	modelread	0x03000000	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Master	main	31	0x017BC	64	-	modelreadsync	0x03000000	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Master	main	32	0x017C5	65	-	sysReqwait	Basch::model_read	actor `Basch`	-	-	waits until Basch::model_read is no longer on its actor	Basch.model_read	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -7932,7 +7932,7 @@ naf_a0201	Director	director_breakarts	182	0x0210C	423	-	sysReqwait	BGMCtrl::cut4
 naf_a0201	Director	director_breakarts	183	0x02110	424	-	voicedispose	0	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Director	director_breakarts	184	0x0211C	425	-	sysReq	1, BGMCtrl::replay_fieldBGM	actor `BGMCtrl`	-	-	files BGMCtrl::replay_fieldBGM on channel 1; does not wait	BGMCtrl.replay_fieldBGM	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_a0201	Director	director_breakarts	185	0x02120	426	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	Director	director_breakarts	186	0x02121	427	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a0201	Director	director_breakarts	186	0x02121	427	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ModelReader	init	1	0x02122	436	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ModelReader	model_dispose	1	0x02126	441	-	modeldispose	0x03000005	argument 1: the model to release	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	ModelReader	model_dispose	2	0x0212C	442	-	modeldispose	0x03000006	argument 1: the model to release	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7983,42 +7983,42 @@ naf_a0201	CamDir2	release_appear	2	0x0223A	574	-	unkCall_5ac	0, 0, 0	argument 1:
 naf_a0201	CamDir2	release_appear	3	0x0223D	575	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	init	1	0x0223E	584	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut01	1	0x02242	589	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0201	ANNEX_FOCUS	cut01	2	0x02243	590	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0201	ANNEX_FOCUS	cut01	2	0x02243	590	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	ANNEX_FOCUS	cut01	3	0x0224C	591	-	while	regI0 <= 70	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut01	4	0x02254	593	loop while regI0 <= 70	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut01	5	0x02257	595	loop while regI0 <= 70; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	ANNEX_FOCUS	cut01	6	0x0225F	597	loop while regI0 <= 70	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0201	ANNEX_FOCUS	cut01	7	0x02273	598	loop while regI0 <= 70	unkCall_5ac	1, (21.8500004 + ((-19.1100006 * regI0) / 70)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	ANNEX_FOCUS	cut01	8	0x02279	599	loop while regI0 <= 70	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0201	ANNEX_FOCUS	cut01	6	0x0225F	597	loop while regI0 <= 70; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a0201	ANNEX_FOCUS	cut01	7	0x02273	598	loop while regI0 <= 70; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (21.8500004 + ((-19.1100006 * regI0) / 70)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0201	ANNEX_FOCUS	cut01	8	0x02279	599	loop while regI0 <= 70; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	ANNEX_FOCUS	cut01	9	0x0227F	601	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut03	1	0x02283	606	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	ANNEX_FOCUS	cut03	2	0x02289	607	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0201	ANNEX_FOCUS	cut03	3	0x0228A	608	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0201	ANNEX_FOCUS	cut03	3	0x0228A	608	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	ANNEX_FOCUS	cut03	4	0x02293	609	-	while	regI0 <= 20	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut03	5	0x0229B	611	loop while regI0 <= 20	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut03	6	0x0229E	613	loop while regI0 <= 20; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	ANNEX_FOCUS	cut03	7	0x022A6	615	loop while regI0 <= 20	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0201	ANNEX_FOCUS	cut03	8	0x022BA	616	loop while regI0 <= 20	unkCall_5ac	1, (18 + ((1.29999924 * regI0) / 20)), 0.200000003	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	ANNEX_FOCUS	cut03	9	0x022C0	617	loop while regI0 <= 20	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0201	ANNEX_FOCUS	cut03	7	0x022A6	615	loop while regI0 <= 20; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a0201	ANNEX_FOCUS	cut03	8	0x022BA	616	loop while regI0 <= 20; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (18 + ((1.29999924 * regI0) / 20)), 0.200000003	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0201	ANNEX_FOCUS	cut03	9	0x022C0	617	loop while regI0 <= 20; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	ANNEX_FOCUS	cut03	10	0x022C6	619	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut22	1	0x022CA	624	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	ANNEX_FOCUS	cut22	2	0x022D0	625	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0201	ANNEX_FOCUS	cut22	3	0x022D1	626	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0201	ANNEX_FOCUS	cut22	3	0x022D1	626	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	ANNEX_FOCUS	cut22	4	0x022DA	627	-	while	regI0 <= 60	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut22	5	0x022E2	629	loop while regI0 <= 60	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut22	6	0x022E5	631	loop while regI0 <= 60; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	ANNEX_FOCUS	cut22	7	0x022ED	633	loop while regI0 <= 60	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0201	ANNEX_FOCUS	cut22	8	0x02301	634	loop while regI0 <= 60	unkCall_5ac	1, (5.69999981 + ((-2.98999977 * regI0) / 60)), 32	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	ANNEX_FOCUS	cut22	9	0x02307	635	loop while regI0 <= 60	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0201	ANNEX_FOCUS	cut22	7	0x022ED	633	loop while regI0 <= 60; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a0201	ANNEX_FOCUS	cut22	8	0x02301	634	loop while regI0 <= 60; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (5.69999981 + ((-2.98999977 * regI0) / 60)), 32	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0201	ANNEX_FOCUS	cut22	9	0x02307	635	loop while regI0 <= 60; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	ANNEX_FOCUS	cut22	10	0x02310	637	-	wait	35	-	-	35 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	ANNEX_FOCUS	cut22	11	0x02316	638	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0201	ANNEX_FOCUS	cut22	12	0x02317	639	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0201	ANNEX_FOCUS	cut22	12	0x02317	639	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	ANNEX_FOCUS	cut22	13	0x02320	640	-	while	regI0 <= 6	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut22	14	0x02328	642	loop while regI0 <= 6	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	ANNEX_FOCUS	cut22	15	0x0232B	644	loop while regI0 <= 6; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	ANNEX_FOCUS	cut22	16	0x02333	646	loop while regI0 <= 6	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_a0201	ANNEX_FOCUS	cut22	17	0x02347	647	loop while regI0 <= 6	unkCall_5ac	1, (2.71000004 + ((-1.19000006 * regI0) / 6)), 32	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_a0201	ANNEX_FOCUS	cut22	18	0x0234D	648	loop while regI0 <= 6	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_a0201	ANNEX_FOCUS	cut22	16	0x02333	646	loop while regI0 <= 6; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_a0201	ANNEX_FOCUS	cut22	17	0x02347	647	loop while regI0 <= 6; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (2.71000004 + ((-1.19000006 * regI0) / 6)), 32	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_a0201	ANNEX_FOCUS	cut22	18	0x0234D	648	loop while regI0 <= 6; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_a0201	ANNEX_FOCUS	cut22	19	0x02353	650	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	VoiceCtrl	init	1	0x02354	659	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	VoiceCtrl	voice_ready_encount	1	0x02358	664	-	voiceread	1	argument 1: the voice slot to load, 0 to 63	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8732,7 +8732,7 @@ naf_a0201	GuestBasch	release02	8	0x0330E	2056	-	clear_effectactor	3	-	-	-	-	-		0
 naf_a0201	GuestBasch	release02	9	0x03311	2057	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	GuestBasch	release02	10	0x03314	2058	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 naf_a0201	GuestBasch	release02	11	0x0331A	2059	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	GuestBasch	release02	12	0x0331B	2060	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a0201	GuestBasch	release02	12	0x0331B	2060	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Basch	init	1	0x0331C	2082	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Basch	model_read	1	0x03320	2087	-	modelread	0x03000003	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Basch	model_read	2	0x03326	2088	-	modelreadsync	0x03000003	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8875,7 +8875,7 @@ naf_a0201	Basch	release01	3	0x036C1	2276	-	return	0	-	-	-	-	-	resolved	01 ../Scr
 naf_a0201	Basch	release02	1	0x036C2	2281	-	bindhoff	-	the calling actor's head slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Basch	release02	2	0x036C5	2282	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Basch	release02	3	0x036CB	2283	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_a0201	Basch	release02	4	0x036CC	2284	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_a0201	Basch	release02	4	0x036CC	2284	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier01	init	1	0x036CD	2293	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_a0201	Soldier01	cut00	1	0x036CE	2298	-	showshadow	-	the calling actor's ground shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_a0201	Soldier01	cut00	2	0x036D4	2299	-	captureactor_367	0x0300000a	the zone actor named by tag-3 reference 0x0300000a	-	-	-	-		01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9231,13 +9231,13 @@ naf_b0100	AD	カット１_ad	2	0x010C2	157	-	musictrans	-1, 240, 80	the current 
 naf_b0100	AD	カット１_ad	3	0x010C8	158	-	sysReqall	1, reqArr1	actor `LIGHT`, actor `ATEL_EFFECT`, actor `SE`, actor `VOICE1`, actor `VOICE2`, actor `MESSAGE`, actor `BASH`, actor `REX`, actor `DAL_SOLDIER_C`, actor `DAL_SOLDIER_A`, actor `DAL_SOLDIER_B`	-	-	files each pair of LIGHT::カット１, ATEL_EFFECT::カット１, SE::カット１, VOICE1::カット１, VOICE2::カット１, MESSAGE::カット１, BASH::カット１, REX::カット１, DAL_SOLDIER_C::カット１, DAL_SOLDIER_A::カット１, DAL_SOLDIER_B::カット１ on channel 1; does not wait	LIGHT.カット１, ATEL_EFFECT.カット１, SE.カット１, VOICE1.カット１, VOICE2.カット１, MESSAGE.カット１, BASH.カット１, REX.カット１, DAL_SOLDIER_C.カット１, DAL_SOLDIER_A.カット１, DAL_SOLDIER_B.カット１	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b0100	AD	カット１_ad	4	0x010CE	159	-	wait	60	-	-	60 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0100	AD	カット１_ad	5	0x010D4	160	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0100	AD	カット１_ad	6	0x010D5	161	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0100	AD	カット１_ad	6	0x010D5	161	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0100	AD	カット１_ad	7	0x010DE	162	-	while	regI0 <= 30	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0100	AD	カット１_ad	8	0x010E6	164	loop while regI0 <= 30	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0100	AD	カット１_ad	9	0x010E9	166	loop while regI0 <= 30; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0100	AD	カット１_ad	10	0x010F1	168	loop while regI0 <= 30	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0100	AD	カット１_ad	11	0x01105	169	loop while regI0 <= 30	unkCall_5ac	1, (3.8499999 + ((9.56999969 * regI0) / 30)), 5.5999999	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b0100	AD	カット１_ad	12	0x0110B	170	loop while regI0 <= 30	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0100	AD	カット１_ad	10	0x010F1	168	loop while regI0 <= 30; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_b0100	AD	カット１_ad	11	0x01105	169	loop while regI0 <= 30; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (3.8499999 + ((9.56999969 * regI0) / 30)), 5.5999999	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0100	AD	カット１_ad	12	0x0110B	170	loop while regI0 <= 30; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0100	AD	カット１_ad	13	0x01117	172	-	sysReqwait	SE::カット１	actor `SE`	-	-	waits until SE::カット１ is no longer on its actor	SE.カット１	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b0100	AD	カット１_ad	14	0x0111E	173	-	sysReqwait	CAMERA::先行	actor `CAMERA`	-	-	waits until CAMERA::先行 is no longer on its actor	CAMERA.先行	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b0100	AD	カット１_ad	15	0x0111F	174	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -9306,7 +9306,7 @@ naf_b0100	AD	終了_ad	13	0x01290	272	-	sysReqwait	SE::終了	actor `SE`	-	-	wai
 naf_b0100	AD	終了_ad	14	0x01297	273	-	sysReqwait	CAMERA::終了	actor `CAMERA`	-	-	waits until CAMERA::終了 is no longer on its actor	CAMERA.終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b0100	AD	終了_ad	15	0x0129E	274	-	sysReqwait	ATEL_EFFECT::終了	actor `ATEL_EFFECT`	-	-	waits until ATEL_EFFECT::終了 is no longer on its actor	ATEL_EFFECT.終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 naf_b0100	AD	終了_ad	16	0x012A2	275	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0100	AD	終了_ad	17	0x012A3	276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
+naf_b0100	AD	終了_ad	17	0x012A3	276	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0100	CAMERA	init	1	0x012A4	285	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0100	CAMERA	先行	1	0x012AB	290	-	camerastart_7e	0, 0x02000000	camera row 0 `カット１a1`: shot 7 `カット１a1`, channel 0	-	shot 150 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 naf_b0100	CAMERA	先行	2	0x012B1	291	-	wait	108	-	-	108 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -10204,13 +10204,13 @@ naf_b0400	ATEL_EFFECT	カット１	8	0x014B7	357	-	fadein	38	the screen fade, in
 naf_b0400	ATEL_EFFECT	カット１	9	0x014BA	358	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット１	10	0x014C0	359	-	wait	8	-	-	8 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0400	ATEL_EFFECT	カット１	11	0x014C6	360	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0400	ATEL_EFFECT	カット１	12	0x014C7	361	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0400	ATEL_EFFECT	カット１	12	0x014C7	361	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット１	13	0x014D0	362	-	while	regI0 <= 16	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0400	ATEL_EFFECT	カット１	14	0x014D8	364	loop while regI0 <= 16	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0400	ATEL_EFFECT	カット１	15	0x014DB	366	loop while regI0 <= 16; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0400	ATEL_EFFECT	カット１	16	0x014E3	368	loop while regI0 <= 16	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0400	ATEL_EFFECT	カット１	17	0x014F7	369	loop while regI0 <= 16	unkCall_5ac	1, (2.5 + ((6.72000027 * regI0) / 16)), 2.79999995	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b0400	ATEL_EFFECT	カット１	18	0x014FD	370	loop while regI0 <= 16	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0400	ATEL_EFFECT	カット１	16	0x014E3	368	loop while regI0 <= 16; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_b0400	ATEL_EFFECT	カット１	17	0x014F7	369	loop while regI0 <= 16; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (2.5 + ((6.72000027 * regI0) / 16)), 2.79999995	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0400	ATEL_EFFECT	カット１	18	0x014FD	370	loop while regI0 <= 16; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0400	ATEL_EFFECT	カット１	19	0x01506	372	-	setfocuslength	10	argument 1: the depth of field's focal distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット１	20	0x0150C	373	-	setfocusrange	15	argument 1: half the depth over which the depth of field's layers are spread	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット１	21	0x01512	374	-	setfocuslayer	5	argument 1: the number of depth layers the depth of field draws	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10241,13 +10241,13 @@ naf_b0400	ATEL_EFFECT	カット４	6	0x01593	410	-	setfocusmode	2	argument 1: wh
 naf_b0400	ATEL_EFFECT	カット４	7	0x01599	411	-	wait	25	-	-	25 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0400	ATEL_EFFECT	カット４	8	0x0159F	412	-	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0400	ATEL_EFFECT	カット４	9	0x015A5	413	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0400	ATEL_EFFECT	カット４	10	0x015A6	414	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0400	ATEL_EFFECT	カット４	10	0x015A6	414	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット４	11	0x015AF	415	-	while	regI0 <= 8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0400	ATEL_EFFECT	カット４	12	0x015B7	417	loop while regI0 <= 8	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0400	ATEL_EFFECT	カット４	13	0x015BA	419	loop while regI0 <= 8; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0400	ATEL_EFFECT	カット４	14	0x015C2	421	loop while regI0 <= 8	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0400	ATEL_EFFECT	カット４	15	0x015D6	422	loop while regI0 <= 8	unkCall_5ac	1, (0.519999981 + ((14.7800007 * regI0) / 8)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b0400	ATEL_EFFECT	カット４	16	0x015DC	423	loop while regI0 <= 8	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0400	ATEL_EFFECT	カット４	14	0x015C2	421	loop while regI0 <= 8; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_b0400	ATEL_EFFECT	カット４	15	0x015D6	422	loop while regI0 <= 8; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (0.519999981 + ((14.7800007 * regI0) / 8)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0400	ATEL_EFFECT	カット４	16	0x015DC	423	loop while regI0 <= 8; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0400	ATEL_EFFECT	カット４	17	0x015E5	425	-	setfocuslength	15	argument 1: the depth of field's focal distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット４	18	0x015EB	426	-	setfocusrange	20	argument 1: half the depth over which the depth of field's layers are spread	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット４	19	0x015F1	427	-	setfocuslayer	5	argument 1: the number of depth layers the depth of field draws	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10262,13 +10262,13 @@ naf_b0400	ATEL_EFFECT	カット５	4	0x0161C	439	-	setfocusshift	1	argument 1: h
 naf_b0400	ATEL_EFFECT	カット５	5	0x01622	440	-	setfocusalpha	55	argument 1: the opacity of the depth of field's blurred layers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット５	6	0x01628	441	-	setfocusmode	2	argument 1: which side of the focal distance the depth of field blurs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット５	7	0x0162E	442	-	store	regI0 = 0	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0400	ATEL_EFFECT	カット５	8	0x0162F	443	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0400	ATEL_EFFECT	カット５	8	0x0162F	443	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	カット５	9	0x01638	444	-	while	regI0 <= 20	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0400	ATEL_EFFECT	カット５	10	0x01640	446	loop while regI0 <= 20	if	regI1 != unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0400	ATEL_EFFECT	カット５	11	0x01643	448	loop while regI0 <= 20; regI1 != unkCall_5c9()	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0400	ATEL_EFFECT	カット５	12	0x0164B	450	loop while regI0 <= 20	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0400	ATEL_EFFECT	カット５	13	0x0165F	451	loop while regI0 <= 20	unkCall_5ac	1, (4 + ((2 * regI0) / 20)), 5.5999999	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-naf_b0400	ATEL_EFFECT	カット５	14	0x01665	452	loop while regI0 <= 20	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0400	ATEL_EFFECT	カット５	12	0x0164B	450	loop while regI0 <= 20; not (regI1 != unkCall_5c9())	store	regI0 = regI0 + 1	variable regI0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
+naf_b0400	ATEL_EFFECT	カット５	13	0x0165F	451	loop while regI0 <= 20; not (regI1 != unkCall_5c9())	unkCall_5ac	1, (4 + ((2 * regI0) / 20)), 5.5999999	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0400	ATEL_EFFECT	カット５	14	0x01665	452	loop while regI0 <= 20; not (regI1 != unkCall_5c9())	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0400	ATEL_EFFECT	カット５	15	0x0166B	454	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0400	ATEL_EFFECT	終了	1	0x0166F	459	-	setcharclipall	1	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0400	ATEL_EFFECT	終了	2	0x01675	460	-	setfocusstatus	0	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11721,98 +11721,98 @@ naf_b0401	ANNEX_FOCUS	init	1	0x0298F	978	-	return	-	-	-	-	-	-	resolved	01 ../Scr
 naf_b0401	ANNEX_FOCUS	cut03	1	0x02993	983	-	wait	60	-	-	60 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut03	2	0x02999	984	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut03	3	0x0299D	985	-	store	regF1 = 60	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut03	4	0x0299E	986	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut03	4	0x0299E	986	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut03	5	0x029A7	987	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut03	6	0x029BE	989	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (0.819999993 + ((2.58000016 * regF0) / regF1)), 28	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut03	7	0x029C6	990	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut03	8	0x029CC	991	loop while regI1 == unkCall_5c9()	if	regF0 > 60	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut03	9	0x029CF	993	loop while regI1 == unkCall_5c9(); regF0 > 60	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut03	10	0x029D5	995	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut03	10	0x029D5	995	loop while regI1 == unkCall_5c9(); not (regF0 > 60)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut03	11	0x029DB	997	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut07	1	0x029DF	1002	-	wait	12	-	-	12 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut07	2	0x029E5	1003	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut07	3	0x029E9	1004	-	store	regF1 = 28	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut07	4	0x029EA	1005	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut07	4	0x029EA	1005	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut07	5	0x029F3	1006	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut07	6	0x02A0A	1008	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (2.01999998 + ((1.38000011 * regF0) / regF1)), 4	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut07	7	0x02A12	1009	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut07	8	0x02A18	1010	loop while regI1 == unkCall_5c9()	if	regF0 > 28	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut07	9	0x02A1B	1012	loop while regI1 == unkCall_5c9(); regF0 > 28	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut07	10	0x02A21	1014	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut07	10	0x02A21	1014	loop while regI1 == unkCall_5c9(); not (regF0 > 28)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut07	11	0x02A27	1016	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut13	1	0x02A2B	1021	-	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut13	2	0x02A31	1022	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut13	3	0x02A35	1023	-	store	regF1 = 100	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut13	4	0x02A36	1024	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut13	4	0x02A36	1024	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut13	5	0x02A3F	1025	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut13	6	0x02A56	1027	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (2.20000005 + ((-1.08000004 * regF0) / regF1)), 16	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut13	7	0x02A5E	1028	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut13	8	0x02A64	1029	loop while regI1 == unkCall_5c9()	if	regF0 > 100	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut13	9	0x02A67	1031	loop while regI1 == unkCall_5c9(); regF0 > 100	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut13	10	0x02A6D	1033	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut13	10	0x02A6D	1033	loop while regI1 == unkCall_5c9(); not (regF0 > 100)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut13	11	0x02A73	1035	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut15	1	0x02A77	1040	-	wait	180	-	-	180 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut15	2	0x02A7D	1041	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut15	3	0x02A81	1042	-	store	regF1 = 60	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut15	4	0x02A82	1043	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut15	4	0x02A82	1043	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut15	5	0x02A8B	1044	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut15	6	0x02AA2	1046	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (1.91999996 + ((-0.519999981 * regF0) / regF1)), 11	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut15	7	0x02AAA	1047	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut15	8	0x02AB0	1048	loop while regI1 == unkCall_5c9()	if	regF0 > 60	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut15	9	0x02AB3	1050	loop while regI1 == unkCall_5c9(); regF0 > 60	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut15	10	0x02AB9	1052	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut15	10	0x02AB9	1052	loop while regI1 == unkCall_5c9(); not (regF0 > 60)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut15	11	0x02ABF	1054	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut16	1	0x02AC3	1059	-	wait	160	-	-	160 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut16	2	0x02AC9	1060	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut16	3	0x02ACD	1061	-	store	regF1 = 160	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut16	4	0x02ACE	1062	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut16	4	0x02ACE	1062	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut16	5	0x02AD7	1063	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut16	6	0x02AEE	1065	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (4.30000019 + ((1.69999981 * regF0) / regF1)), 8	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut16	7	0x02AF6	1066	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut16	8	0x02AFC	1067	loop while regI1 == unkCall_5c9()	if	regF0 > 160	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut16	9	0x02AFF	1069	loop while regI1 == unkCall_5c9(); regF0 > 160	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut16	10	0x02B05	1071	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut16	10	0x02B05	1071	loop while regI1 == unkCall_5c9(); not (regF0 > 160)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut16	11	0x02B0E	1073	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut16	12	0x02B14	1074	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut16	13	0x02B18	1075	-	store	regF1 = 120	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut16	14	0x02B19	1076	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut16	14	0x02B19	1076	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut16	15	0x02B22	1077	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut16	16	0x02B39	1079	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (6 + ((-3.88000011 * regF0) / regF1)), 8	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut16	17	0x02B41	1080	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut16	18	0x02B47	1081	loop while regI1 == unkCall_5c9()	if	regF0 > 120	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut16	19	0x02B4A	1083	loop while regI1 == unkCall_5c9(); regF0 > 120	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut16	20	0x02B50	1085	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut16	20	0x02B50	1085	loop while regI1 == unkCall_5c9(); not (regF0 > 120)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut16	21	0x02B59	1087	-	wait	140	-	-	140 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut16	22	0x02B5F	1088	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut16	23	0x02B63	1089	-	store	regF1 = 120	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut16	24	0x02B64	1090	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut16	24	0x02B64	1090	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut16	25	0x02B6D	1091	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut16	26	0x02B84	1093	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (2.11999989 + ((2.88000011 * regF0) / regF1)), 8	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut16	27	0x02B8C	1094	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut16	28	0x02B92	1095	loop while regI1 == unkCall_5c9()	if	regF0 > 120	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut16	29	0x02B95	1097	loop while regI1 == unkCall_5c9(); regF0 > 120	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut16	30	0x02B9B	1099	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut16	30	0x02B9B	1099	loop while regI1 == unkCall_5c9(); not (regF0 > 120)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut16	31	0x02BA1	1101	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut19	1	0x02BA5	1106	-	wait	120	-	-	120 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut19	2	0x02BAB	1107	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut19	3	0x02BAF	1108	-	store	regF1 = 140	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut19	4	0x02BB0	1109	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut19	4	0x02BB0	1109	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut19	5	0x02BB9	1110	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut19	6	0x02BD0	1112	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (1.65999997 + ((4.34000015 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut19	7	0x02BD8	1113	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut19	8	0x02BDE	1114	loop while regI1 == unkCall_5c9()	if	regF0 > 140	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut19	9	0x02BE1	1116	loop while regI1 == unkCall_5c9(); regF0 > 140	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut19	10	0x02BE7	1118	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut19	10	0x02BE7	1118	loop while regI1 == unkCall_5c9(); not (regF0 > 140)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut19	11	0x02BF0	1120	-	wait	90	-	-	90 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut19	12	0x02BF6	1121	-	store	regF0 = 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut19	13	0x02BFA	1122	-	store	regF1 = 90	variable regF1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-naf_b0401	ANNEX_FOCUS	cut19	14	0x02BFB	1123	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when none)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+naf_b0401	ANNEX_FOCUS	cut19	14	0x02BFB	1123	-	unkCall_5c9	-	result stored in regI1; the marked cutscene event slot (0x01DFE40C, 0-4: the slot of the most recent startscene push, -1 when there is no such push)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut19	15	0x02C04	1124	-	while	regI1 == unkCall_5c9()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut19	16	0x02C1B	1126	loop while regI1 == unkCall_5c9()	unkCall_5ac	1, (6 + ((-4.34000015 * regF0) / regF1)), 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 naf_b0401	ANNEX_FOCUS	cut19	17	0x02C23	1127	loop while regI1 == unkCall_5c9()	store	regF0 = regF0 + 1	variable regF0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 naf_b0401	ANNEX_FOCUS	cut19	18	0x02C29	1128	loop while regI1 == unkCall_5c9()	if	regF0 > 90	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	ANNEX_FOCUS	cut19	19	0x02C2C	1130	loop while regI1 == unkCall_5c9(); regF0 > 90	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-naf_b0401	ANNEX_FOCUS	cut19	20	0x02C32	1132	loop while regI1 == unkCall_5c9()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
+naf_b0401	ANNEX_FOCUS	cut19	20	0x02C32	1132	loop while regI1 == unkCall_5c9(); not (regF0 > 90)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 naf_b0401	ANNEX_FOCUS	cut19	21	0x02C38	1134	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	KOE	init	1	0x02C39	1143	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 naf_b0401	KOE	main	1	0x02C3A	1148	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

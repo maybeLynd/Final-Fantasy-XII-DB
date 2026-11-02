@@ -86,7 +86,7 @@ literals add to the previous key's frame.
 |---|---|---|---|
 | `+0x0C` | `u32` |  | value 1 |
 | `+0x10` | `char[32]` |  | the .ca file's name |
-| `+0x30` | `...` |  | payload: byte `+0x01` to `0x003E18D0`, byte `+0x02` low six bits to skeleton `+0xA4`, u32 `+0x08` offset of a second region, from the payload (0 = none) |
+| `+0x30` | `...` |  | payload: byte `+0x01` to `0x003E18D0`, byte `+0x02` low six bits to skeleton `+0xA4`, u32 `+0x08` offset of a second region, from the payload (0 = no second region) |
 
 ### The version-1 .ca slot table
 
@@ -114,7 +114,7 @@ slot gives NULL. The `@FMC` blocks fill the first `80 × rows` slots and `@FRM` 
 ### Binding @FEF
 
 - `0x00504F00` binds the `@FEF` section at model row `+0x228` with `0x00504E70`, which falls back to a
-  bank-wide search by tag and name when the model's own entry has none.
+  bank-wide search by tag and name when the model's own entry has no such section.
 - `0x00504940` stores the section pointer at row `+0x230` and calls `0x0016D6A0(ticket, section + 0x30)`
   with the bank entry's ticket `+0x44` (`0x005049BD`). `0x0016D6A0` is a bare `ret`: binding the row does
   nothing with the embedded effect.
@@ -249,7 +249,7 @@ mode (`0x01F82E38`):
 
 At frame 0 `0x00418880` writes, for each row with a bone, the first value of each of the nine
 channels the record's mask names and that has data (`0x0041A7F0`, then `0x00418650`, `0x00418700` or
-`0x004186A0`), or the channel's bias from the `@FMW` table at `+0x54` when it has none, after clearing bit `0x1` of
+`0x004186A0`), or the channel's bias from the `@FMW` table at `+0x54` when it has no data, after clearing bit `0x1` of
 the bone's byte `+0x28A`; it clears that bit on the non-zero-frame path too (`0x004194B7`).
 
 A bone whose byte `+0x28A` is 0 takes its rest pose from the skeleton

@@ -11,7 +11,7 @@ The remaster draws things the PlayStation 2 original could not: depth of field t
 background, ambient occlusion in corners, image-based lighting on skin and metal, cascaded
 shadows, water with reflection and refraction, and a post-processing pass over the whole frame.
 The options menu can switch several of them on or off or pick a quality level ([game settings](../Saving-Loading-And-Settings/game-settings.md)),
-but none has a strength slider.
+but no option has a strength slider.
 
 Their strengths are shipped as numbers: each area's scene configuration sets some of
 them, a summon scene's own file can override the depth of field, and the rest stay at the

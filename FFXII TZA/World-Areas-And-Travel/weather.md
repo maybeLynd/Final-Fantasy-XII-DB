@@ -48,7 +48,8 @@ Its two readers are `0x0017D490` and the overlay `0x001CD0E0`, which prints it w
 
 1. The slot is clamped to 0 to 2 after subtracting one (`0x002658B8`-`0x002658C8`).
 2. The zone's script container must be loaded: bit `0x1` of `0x02098E20` set, the pointer `0x02098E10` non-null
-   and the container's first word above 6 (every shipped script has version 11).
+   and the container's first word above 6 (10,036 of the 10,045 shipped scripts have version 11; the nine
+   language copies of the developer event `evt_t0020` have version 7).
 3. The dword at container `+0x64` is resolved through `0x0020E600` and the signed byte at
    `section + 1 + slot` is returned. The section is a count byte, always 3 in the shipped scripts, then
    one byte per slot: the high-level `option weatherProbability = {a, b, c}`.
@@ -162,7 +163,7 @@ slot. Lane 0 is never read because the slot index is biased by one.
 |---|---|---|---|
 | `0x02099DA8` | `u32 table10[lane[0]]`, the combat environment class 0 to 4; 0 when `lane[0]` is not below the table's count dword | `0x0026DA26` | `0x00263E10` (thunk `0x00321490`) |
 | `0x02099DAC` | the wind class: 0 when the MWeather preset is 0, 1 for presets 1 to 3, 2 for presets 4 and up | `0x0026DA3C`, `0x0026DA4E` | `0x00263E20` (thunk `0x003214A0`) |
-| `0x02099DB0` | `lane[2]` | `0x0026DA5B` | none (the store is the global's only reference) |
+| `0x02099DB0` | `lane[2]` | `0x0026DA5B` | no reader (the store is the global's only reference) |
 | `0x02099DBC` | `u8 table18[lane[0]]`, 0 or 1; 0 when out of range | `0x0026D946`, `0x0026DA7D` | `0x00264D50`; also written by `0x0026AB40` as `(arg != 0)` |
 
 The two lookup tables are the count-prefixed arrays at `header[+0x10]` and `header[+0x18]`; the
@@ -381,8 +382,8 @@ The models a slot draws are a separate test (`0x002F5616`, above), read on every
 [weather-slot-models.tsv](weather-slot-models.tsv) gives each pack's models that are drawn in some slots only, one
 row per slot pattern and scene group, with the zones that load the pack, the record count and the textures.
 
-- 461 of the 550 packs hold model records (764,018); the other 89 have none. 761,479 records are drawn in all three
-  slots.
+- 461 of the 550 packs hold model records (764,018); the other 89 have no model record. 761,479 records are drawn in
+  all three slots.
 - 501 sky pieces (flag `0x10000000`) in 126 packs are drawn in some slots only, so those maps change their sky with
   the slot.
 - 2,038 other models in 50 packs are as well, in Archades, the Cerobi Steppe, Mt Bur-Omisace, the Nabreus Deadlands,

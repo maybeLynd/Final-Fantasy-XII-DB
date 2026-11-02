@@ -79,7 +79,7 @@ global; each render record owns a list at `+0x550` whose entries are linked thro
 
 `0x003AED70(list, request)` refuses, returning 0, while the first switch `0x02B3F53C` is set, the
 list's `+0x28` is non-zero (`0x003AF320` sets it), or the list's `+0x00` is zero; it then takes the
-first inactive entry (128 tested in order; none free returns 0), bumps the serial (wrapping past
+first inactive entry (128 tested in order; no free entry returns 0), bumps the serial (wrapping past
 `0xFFFFFF` to 1) and returns `serial << 8 | index`.
 
 The entry gets the request at `+0x20`, the
@@ -112,7 +112,7 @@ the two profile rows no authored command names.
 Every animation container carries one `@FRM` child ([container](../Graphics/model-files-cm-ca.md)).
 When a presentation entry is set up (`0x0041D220`) it looks the child up by tag (`0x00409660`,
 `0x00409A30`) and, when the child's size `+8` exceeds `0x30`, keeps the body `child + 0x30` at the
-entry's `+0x378` and the profile table `body + [body + 8]` at `+0x37C` (-1 for none).
+entry's `+0x378` and the profile table `body + [body + 8]` at `+0x37C` (-1 for no table).
 
 When a
 motion starts on the record (`0x00423B10`, after a successful `0x00424D80`), the entry's `+0x37C` and
@@ -233,7 +233,7 @@ Record list (render record `+0x550`):
 
 ```
 render record: +0xD8 handle, +0xE0 resolved base, +0xE8 offset of the table; +0xF0 handle, +0xF8 resolved base, +0x100 offset of the own profile
-presentation entry: +0x370 motion section; +0x378 @FRM body; +0x37C profile table (-1 none)
+presentation entry: +0x370 motion section; +0x378 @FRM body; +0x37C profile table (-1 no table)
 globals: 0x02B3F530 pool; 0x02B3F538 serial; 0x02B3F53C refuses new requests; 0x02B3F540 stops the step
 ```
 

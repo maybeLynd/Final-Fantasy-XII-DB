@@ -74,7 +74,7 @@ the whole path for a command filed at once:
 3. `0x0020E630(0x01F83070, mode)`;
 4. for a mode other than 3, enqueue a `GiResetRenderTargetObj` (`0x0018BF00` at `0x001FBE02`).
 
-Before step 1 it opens a render-list scene when none is open (`0x00182560` returns `0x01F7F538`, 0) and the
+Before step 1 it opens a render-list scene when no scene is open (`0x00182560` returns `0x01F7F538`, 0) and the
 mode is not 3: it files `BegineScene0Obj` (`0x00182250`) and sets `0x01F83064` to 1, recording that it opened the
 scene (`0x001FBD9B`). At the end it keeps the mode at `0x01F83068` and sets `0x01F83060` to 1 (`0x001FBE07`,
 `0x001FBE0D`); `0x001FBE20` and `0x001FBE30` return them.

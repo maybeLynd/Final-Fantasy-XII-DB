@@ -127,7 +127,7 @@ The distance-fade record (in the container at `+0x2F0`, or in the element defini
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u8` |  | kind: 0 none, 1, 2, 3 global, 4 both pairs |
+| `+0x00` | `u8` |  | kind: 0 no scalar, 1, 2, 3 global, 4 both pairs |
 | `+0x01` | `u8` |  | distance mode: 0 depth, 1 distance, 2 distance without lane 1 |
 | `+0x02` | `u8` |  | floor for the `+0x04`/`+0x08` pair |
 | `+0x03` | `u8` |  | floor for the `+0x06`/`+0x0A` pair |

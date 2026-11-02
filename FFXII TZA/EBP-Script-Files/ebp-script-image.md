@@ -49,7 +49,7 @@ All multi-byte fields are little-endian.
 | `+0x44` | `u32` | localSize | size of the local variable storage, 0 in the file |
 | `+0x48` | `u32` | localOff | the local variable storage |
 | `+0x4C` | `u32` | namePool | NUL-terminated names: `+0x48` + `+0x44` rounded up to 16 |
-| `+0x50` | `i16` | startActor | actor ordinal `0x00266C50` starts, -1 for none |
+| `+0x50` | `i16` | startActor | actor ordinal `0x00266C50` starts, -1 for no actor |
 | `+0x52` | `i16` | entryDefault | entry-point index used for -1 or any negative request |
 | `+0x54` | `u32` | entryPointsA | -> u32 count, 32-byte records (`0x00264B90` kind 0) |
 | `+0x58` | `u32` | startList | -> u16 count, s16 function[count] for startActor |

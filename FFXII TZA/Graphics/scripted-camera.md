@@ -239,7 +239,7 @@ The camera update `0x003820C0` (called through `0x0036F510`) stores the aspect `
 `0x02AED4E0` and `0x02AED540` ([screen mode and aspect](screen-mode-and-aspect.md)) and walks the
 eight slots in order. Each submitted slot has its flag cleared and wins when its priority is
 strictly above the best so far, which starts at −1. So the highest priority wins, the earliest
-submission wins a tie, and every submission lasts one frame. With none, the update returns and
+submission wins a tie, and every submission lasts one frame. With no submission, the update returns and
 the previous frame's matrices stand. The winner is copied into the working camera at `0x02AED560`.
 
 ### Shake and the build

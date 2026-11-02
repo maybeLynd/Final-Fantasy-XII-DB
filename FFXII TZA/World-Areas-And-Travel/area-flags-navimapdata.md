@@ -58,7 +58,7 @@ functions read it, and each takes one part:
 | `0x00377480` | word bit `0x8000` | its argument | 0 or 1 |
 | `0x00377A40` | word bit `0x4000`, the area-name flag | its argument | 0 or 1 |
 | `0x00377BA0` (thunk `0x00320160`) | word bits `0x3000`, the MP regime | the current area, or the save override | 0 to 3 |
-| `0x003779F0` | word bits `0xFFF`, the Map entry | its argument | 0 to 4,094, or -1 for none |
+| `0x003779F0` | word bits `0xFFF`, the Map entry | its argument | 0 to 4,094, or -1 for no entry |
 | `0x00377700` | third byte bit `0x1`, the hold flag | the current area, with a save veto | 0 or 1 |
 | `0x00377C70` | third byte bits `0x70`, the default leader | the current area | 0 to 7 |
 
@@ -131,7 +131,7 @@ selector can tell 1 from 0 or 3 from 2.
 ### The Map entry
 
 Bits `0xFFF` are the area's entry in the in-game Map. `0x003779F0` masks the word with `0xFFF` and returns
--1 when the result is `0xFFF` (`0x00377A23`-`0x00377A32`), so a missing table and an authored "none" are
+-1 when the result is `0xFFF` (`0x00377A23`-`0x00377A32`), so a missing table and an authored `0xFFF` are
 the same answer. Nine functions call it: the Map screen builders `0x003C5E50`, `0x003C17E0`, `0x003C60F0`,
 `0x003C8670` and `0x00576A50`, the per-map record helpers `0x002550E0`, `0x002551B0` and `0x00255200`, and the
 handbook check `0x003160C0`, which walks the handbook's map list at `[0x022C2550] + 8` and treats the
@@ -214,7 +214,7 @@ third byte. The defaults do not agree on what they mean:
 
 Every record, decoded field by field, is in [area-flags-navimapdata.tsv](area-flags-navimapdata.tsv): one row per area
 id with the `us` name `0x00377B60` returns (empty for an id with no name entry), the flag word, the Map entry
-(`none` for `0xFFF`), the MP regime, the area-name and town bits, the third byte, the hold bit, mask `0xE` and the
+(`-` for `0xFFF`), the MP regime, the area-name and town bits, the third byte, the hold bit, mask `0xE` and the
 default leader.
 
 Census of the 1,154 records in `navimapdata.bin`:
@@ -224,7 +224,7 @@ Census of the 1,154 records in `navimapdata.bin`:
 | town flag (bit `0x8000`) | set on 193 areas |
 | area name (bit `0x4000`) | set on 155 areas, 154 of them towns |
 | MP regime (mask `0x3000`) | 0 on 945, 1 on 36, 2 on 69, 3 on 104 |
-| Map entry (mask `0xFFF`) | `0xFFF` (none) on 556; one on the other 598: 0 on 200; 369 distinct values, every value from 0 to 368 |
+| Map entry (mask `0xFFF`) | `0xFFF` (no entry) on 556; one on the other 598: 0 on 200; 369 distinct values, every value from 0 to 368 |
 | hold flag (byte 2 bit `0x1`) | set on 170 areas, every one of them a town; the 23 towns without it are ids 0-22 |
 | byte 2 bits under mask `0xE` | 0x02, 0x04 and 0x08 in eight combinations across 638 areas |
 | byte 2 bits under mask `0xF0` | 0 on every record |

@@ -273,7 +273,7 @@ window with sub-selector 7, beside kinds 4, 6 and 7 with sub-selectors 3, 5 and 
   Board (`0x0055E9E0`). Scene 14 is "Shuffle" on the special-attack window (`0x002D5EB0`). Scenes 15 to 18 are "Skip",
   "Exit to Title Menu", "Quit Game" and "Back" from the pause task, and scene 19 is "Toggle Board" on the License
   Board grid view (`0x005595E0`).
-- **Scenes no caller asks for.** The 20 branches to `0x0029DA70`, `0x0029E330` and `0x00295D20` are all calls, and none
+- **Scenes no caller asks for.** The 20 branches to `0x0029DA70`, `0x0029E330` and `0x00295D20` are all calls, and no call
   passes scenes 1 to 4, 9 or 10. Their labels are "Sort" (4), "Log" and "Next" (9), "Exit to Title Menu" (10), and
   for scenes 1 to 3 the labels `0xC5A8`, `0xC5A9` and `0xC54A`, which are empty in `us` and `it`, `DUMMY` in `es` and
   `/` in `fr`.
@@ -301,8 +301,8 @@ hunt-list row builder `0x0037E8D0`, which stores it in the row.
 ### Summon colours
 
 `0x003B5340` returns the active summon effect (1-based) from the two 8-byte state entries at `0x02B40508`
-and `0x02B40510` (`+0` effect, `+1` priority, `+2` state, 1 = active, `+4` actor, −1 none): the active
-entry with the higher priority byte, the first on a tie, or 0 when none is active or bit `0x1` or `0x2` of
+and `0x02B40510` (`+0` effect, `+1` priority, `+2` state, 1 = active, `+4` actor, −1 no actor): the active
+entry with the higher priority byte, the first on a tie, or 0 when no entry is active or bit `0x1` or `0x2` of
 `0x02B40518` is set; `0x003B53C0` clears both entries before the read.
 
 `0x003B4B60(actor, id)` fills entry 0 when `id` is the first id of the table `0x01EEBAA0` (`0x002EA030(0)`), and entry 1
@@ -315,10 +315,10 @@ it runs, reading each entry as one qword with `cmove`/`cmovb`, and calls `0x003B
 |---|---|---|---|---|---|
 | `0x02B40509` | `u8` | 0 (zero-filled tail of `.data`) | entry 0's priority: the id `0x003B4B60` was given | `0x003B4B60` (`0x003B4C4A`); with the word at `0x02B40508`: `0x003B53C0`, 0 (`0x003B53DA`), `0x003B4DA0` (`0x003B4DEF`), `0x003B5180` (`0x003B5222`) | only as part of the qword at `0x02B40508` (`0x003B4B8A`, `0x003B4D3F`, `0x003B4E7D`, `0x003B4F7B`, `0x003B51A7`, `0x003B52BA`, `0x003B536F`, `0x003B55FC`) |
 | `0x02B4050A` | `u8` | 0 (zero-filled tail of `.data`) | entry 0's state: 0 clear, 1 active, 2 ended | `0x003B53C0`, 0 (`0x003B53E3`); `0x003B4B60`, 1 (`0x003B4C51`); `0x003B4DA0` (`0x003B4DF6`); `0x003B4E50` (`0x003B4F01`); `0x003B4FD0`, 2 (`0x003B5047`); `0x003B5180` (`0x003B5229`); `0x003B5520`, 2 (`0x003B557D`) | `0x003B4B60` (`0x003B4B6A`, `0x003B4BD6`, `0x003B4D24`); `0x003B4E50` (`0x003B4E56`, `0x003B4F55`); `0x003B4FD0` (`0x003B4FF2`); `0x003B5180` (`0x003B518A`, `0x003B52A1`); `0x003B5340` (`0x003B5354`); `0x003B5470` (`0x003B549A`); `0x003B5520` (`0x003B5528`, `0x003B55E4`); and as part of the qword at `0x02B40508` (`0x003B4B8A`, `0x003B4D3F`, `0x003B4E7D`, `0x003B4F7B`, `0x003B51A7`, `0x003B52BA`, `0x003B536F`, `0x003B55FC`) |
-| `0x02B4050C` | `i32` | 0 (zero-filled tail of `.data`) | entry 0's actor, −1 none | `0x003B53C0`, −1 (`0x003B53D0`); `0x003B4B60`, the actor (`0x003B4C37`); `0x003B4DA0`, −1 (`0x003B4DE5`); `0x003B5180`, −1 (`0x003B5218`) | `0x003B4B60`, the whole word (`0x003B4BCC`); its low 16 bits as the actor index: `0x003B4DA0` (`0x003B4DA6`), `0x003B4E50` (`0x003B4EAF`), `0x003B4FD0` (`0x003B4FFB`), `0x003B5180` (`0x003B51E2`), `0x003B5520` (`0x003B5531`); and as part of the qword at `0x02B40508`, as for `0x02B40509` |
+| `0x02B4050C` | `i32` | 0 (zero-filled tail of `.data`) | entry 0's actor, −1 no actor | `0x003B53C0`, −1 (`0x003B53D0`); `0x003B4B60`, the actor (`0x003B4C37`); `0x003B4DA0`, −1 (`0x003B4DE5`); `0x003B5180`, −1 (`0x003B5218`) | `0x003B4B60`, the whole word (`0x003B4BCC`); its low 16 bits as the actor index: `0x003B4DA0` (`0x003B4DA6`), `0x003B4E50` (`0x003B4EAF`), `0x003B4FD0` (`0x003B4FFB`), `0x003B5180` (`0x003B51E2`), `0x003B5520` (`0x003B5531`); and as part of the qword at `0x02B40508`, as for `0x02B40509` |
 | `0x02B40511` | `u8` | 0 (zero-filled tail of `.data`) | entry 1's priority: the id `0x003B4B60` was given | `0x003B4B60` (`0x003B4D16`); with the word at `0x02B40510`: `0x003B53C0`, 0 (`0x003B53F7`), `0x003B4DA0` (`0x003B4E37`), `0x003B5180` (`0x003B5284`) | `0x003B4B60` (`0x003B4BA0`, `0x003B4D55`); `0x003B4E50` (`0x003B4E8F`, `0x003B4F8D`); `0x003B5180` (`0x003B51BD`, `0x003B529A`); `0x003B5340` (`0x003B538C`); `0x003B5520` (`0x003B5610`); and as part of the qword at `0x02B40510` (`0x003B4BAB`, `0x003B4D60`, `0x003B4E9A`, `0x003B4F98`, `0x003B51C8`, `0x003B52D0`, `0x003B5392`, `0x003B5616`) |
 | `0x02B40512` | `u8` | 0 (zero-filled tail of `.data`) | entry 1's state: 0 clear, 1 active, 2 ended | `0x003B53C0`, 0 (`0x003B5400`); `0x003B4B60`, 2 (`0x003B4CC3`) and 1 (`0x003B4D1D`); `0x003B4DA0` (`0x003B4E3E`); `0x003B4E50` (`0x003B4F5F`); `0x003B4FD0`, 2 (`0x003B509F`); `0x003B5180` (`0x003B528B`); `0x003B5520` (`0x003B55DE`) | `0x003B4B60` (`0x003B4B92`, `0x003B4C79`, `0x003B4D47`); `0x003B4E50` (`0x003B4E5E`, `0x003B4EF7`); `0x003B4FD0` (`0x003B504E`); `0x003B5180` (`0x003B51AF`, `0x003B5293`); `0x003B5340` (`0x003B5377`); `0x003B5470` (`0x003B547A`); `0x003B5520` (`0x003B5584`, `0x003B5684`); and as part of the qword at `0x02B40510`, as for `0x02B40511` |
-| `0x02B40514` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's actor, −1 none | `0x003B53C0`, −1 (`0x003B53ED`); `0x003B4B60`, the actor (`0x003B4D03`); `0x003B4DA0`, −1 (`0x003B4E2D`); `0x003B5180`, −1 (`0x003B5278`) | `0x003B4B60`, the whole word (`0x003B4C6F`) and its low 16 bits (`0x003B4C8D`); its low 16 bits as the actor index: `0x003B4DA0` (`0x003B4DDE`), `0x003B4E50` (`0x003B4F0D`), `0x003B4FD0` (`0x003B5057`), `0x003B5180` (`0x003B523E`), `0x003B5520` (`0x003B5590`); and as part of the qword at `0x02B40510`, as for `0x02B40511` |
+| `0x02B40514` | `i32` | 0 (zero-filled tail of `.data`) | entry 1's actor, −1 no actor | `0x003B53C0`, −1 (`0x003B53ED`); `0x003B4B60`, the actor (`0x003B4D03`); `0x003B4DA0`, −1 (`0x003B4E2D`); `0x003B5180`, −1 (`0x003B5278`) | `0x003B4B60`, the whole word (`0x003B4C6F`) and its low 16 bits (`0x003B4C8D`); its low 16 bits as the actor index: `0x003B4DA0` (`0x003B4DDE`), `0x003B4E50` (`0x003B4F0D`), `0x003B4FD0` (`0x003B5057`), `0x003B5180` (`0x003B523E`), `0x003B5520` (`0x003B5590`); and as part of the qword at `0x02B40510`, as for `0x02B40511` |
 
 - `0x0036FBB0` first runs `0x003B4E50`, which ends any active summon entry whose actor is -1 or no longer live (record
   `+0x284` = 0; state 2, `0x003B4EFE`, `0x003B4F5D`) and calls `0x003B4FD0` when the winner changes (`0x003B4FBF`).
@@ -351,7 +351,7 @@ So records 0 to 27 are the ones a model reaches. Records 28 to 63 all hold scale
 
 ## Modding notes
 
-- No reader checks a tag, so the first bytes can be anything; `summoneffectdata.bin` has none.
+- No reader checks a tag, so the first bytes can be anything; `summoneffectdata.bin` has no tag.
 - `soundfoottable.bin`: keep the count word at 32 unless set B moves; a surface above 31 reads past the
   set it indexes.
 - `eventvib.bin`: end each track with a zero-duration pair; levels are bytes, durations count steps of the

@@ -35,7 +35,7 @@ first entry whose running sum is above `r` (`0x00308F61`-`0x00308F99`).
 
 Each test is a relation word, a sub-selector byte `s`, an opcode byte and an `i16` operand `v` (order `+0x06`,
 `+0x08`, `+0x09`, `+0x0A` for test 1, then every 6 bytes). `0x00301AD0` runs it over the candidates the relation
-filter `0x0030BD00` admits; a relation above 10 admits none (`0x0030BD2A`). The opcode picks the check through the
+filter `0x0030BD00` admits; a relation above 10 admits no candidate (`0x0030BD2A`). The opcode picks the check through the
 jump tables `0x00303680`/`0x00303604` (`0x00301EA3`-`0x00301ECA`).
 
 An even opcode keeps the units that pass and the next odd one the units that fail (`0x00301B44`). For a highest or
@@ -146,7 +146,7 @@ The orders that write a register (`0x002FE660`) take it from the order's own tes
 | `set` | the set's place in the area's directory |
 | `orders` | how many orders it holds |
 | `phase_counts` | the orders in phases 0, 1, 2 ..., up to the last phase that has one |
-| `used_by` | each enemy definition that names it: its name, its row and, unless it is the starting list, which of lists 1-3 it is; `-` for none |
+| `used_by` | each enemy definition that names it: its name, its row and, unless it is the starting list, which of lists 1-3 it is; `-` when no definition names it |
 
 [`enemy-orders.tsv`](enemy-orders.tsv), one row per order:
 

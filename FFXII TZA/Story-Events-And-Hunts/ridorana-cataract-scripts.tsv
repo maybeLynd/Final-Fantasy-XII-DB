@@ -66,13 +66,13 @@ rwf_d01	Colosseum (Ridorana Cataract)	treasure_08	talk	talk	-	-	-	-	-	-	-	-	trea
 rwf_d01	Colosseum (Ridorana Cataract)	treasure_09	talk	talk	-	-	-	-	-	-	-	-	treasure chest 0x03000118	-	-	-	-	1	-
 rwf_d01	Colosseum (Ridorana Cataract)	大瀑布地図宝壺	talk	talk	system message	system message 102	Your location map for this area is complete!	Bank512, second half 0x0016: Set or tested in Colosseum (Ridorana Cataract)	-	-	-	-	receives Ridorana Cataract	-	-	-	-	2	-
 rwf_a0100	scene, event 372	セリフ	cut_01	requested by 監督.main	Fran	2	A tower on distant shore.	-	-	-	-	-	-	-	-	-	-	3	-
-rwf_a0100	scene, event 372	セリフ	cut_02	requested by 監督.main	-	3	And about its peak, a piercing Mist.	-	-	-	-	-	-	-	-	-	-	3	-
+rwf_a0100	scene, event 372	セリフ	cut_02	requested by 監督.main	no name shown	3	And about its peak, a piercing Mist.	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_a0100	scene, event 372	セリフ	cut_04	requested by 監督.main	Ashe; Reddas	4; 5; 6; 7; 8	And in that Mist, the Sun-cryst waits. / My lady. / Your words still sound of doubt. Pray you reach your answer, ere we the Sun-cryst. / And? Should I choose revenge, what then? / Then your woe shall be your own.	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_a0100	scene, event 372	セリフ	cut_05	requested by 監督.main	Balthier; Vaan	9; 10; 11	Vaan. A word. / If something untoward should happen to me, you're taking the Strahl. / Untoward? What's this about?	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_a0100	scene, event 372	セリフ	cut_06	requested by 監督.main	Balthier	12; 13	I am the leading man. Might need to do something heroic. / Don't worry, I'll show you how to fly her.	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_a0100	scene, event 372	movieSkip監督	Skip監視	requested by 監督.main	no name shown	14	Skip	-	-	-	-	-	-	-	-	-	-	1	-
 rwf_c0102	scene, event 373	セリフ	cut_02	requested by 監督.main	Vaan; Fran	2; 3; 4	Hey, Fran. Something's written on the wall. / Engraved by someone, it seems. / It's quite old.	-	-	-	-	-	-	-	-	-	-	3	-
-rwf_c0102	scene, event 373	セリフ	cut_03	requested by 監督.main	-	5; 6	"""Lo, seeker in days unborn, god-blade bearer. / ""Know you: this tower challenges the sky."	-	-	-	-	-	-	-	-	-	-	3	-
+rwf_c0102	scene, event 373	セリフ	cut_03	requested by 監督.main	Fran	5; 6	"""Lo, seeker in days unborn, god-blade bearer. / ""Know you: this tower challenges the sky."	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_c0102	scene, event 373	セリフ	cut_04_ex	requested by 監督.main	Fran	7	"""Ware the watcher; the ward of the Three Waits, soul-hungry, unsated."	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_c0102	scene, event 373	セリフ	cut_05	requested by 監督.main	Fran; Ashe	8; 9; 10; 11; 12; 13	"""He without power, want it not. / ""He with power, trust it not. / ""He with sight, heed it not. / ""Rend illusion, cut the true path. / ""In blood, Raithwall."" / The Dynast-King?"	-	-	-	-	-	-	-	-	-	-	3	-
 rwf_c0102	scene, event 373	セリフ	cut_06	requested by 監督.main	Fran	14; 15	Does it startle you? / The Dynast-King took his sword from the Occuria. It was here he claimed the nethicite.	-	-	-	-	-	-	-	-	-	-	3	-

@@ -112,7 +112,7 @@ the init registers.
 | `PInputs` | input actions, input sources (pad axes and buttons, keys, mouse, motion, touch, vision tracker), input semantics ([Phyre input semantics](../Controls-And-Input/phyre-input-semantics.md)) | 6 types and 34 helper calls |
 | `PGame` | `PGameConfig` | one call, `0x00879D60` |
 | `PHierarchy` | `POctree`, `POctreeWorld` | creates the `POctreeChildren` allocator at `0x02EBA2A0` |
-| `PDeveloperExtensions` | the module class only | none: init and shutdown are both `0x005C5230` |
+| `PDeveloperExtensions` | the module class only | nothing: init and shutdown are both `0x005C5230` |
 
 The `PHierarchy` init `0x0087AE00` also sets up the static at `0x02EBA2A8` (`0x0087A8C0`), an object of three
 arrays at `+0x00`, `+0x10` and `+0x20`. The module shutdown `0x0087AE80` frees the first and last and
@@ -172,12 +172,12 @@ modules whose code calls or references it.
 |---|---|
 | `addr` | the function's entry address |
 | `module` | the module it belongs to: its class's module, or the one module whose code uses it; `shared:` and the modules when there is more than one |
-| `class_module` | the module of the class it belongs to, `-` for none |
+| `class_module` | the module of the class it belongs to, `-` for a class in no module |
 | `used_by` | the modules whose code calls or references it, and `outside PhyreEngine` when other code does too |
 | `classes` | the classes it belongs to, separated by `;` |
 
 A class's module is the namespace it is declared in (`Phyre::PRendering::...`); a template instance belongs to
-the module its PhyreEngine parameters name, and core (`PhyreCore`) when they name none or several. A pointer in a
+the module its PhyreEngine parameters name, and core (`PhyreCore`) when they name no module or several. A pointer in a
 data table does not count as a use.
 
 [phyre-modules-phyre-function-class-map.tsv](phyre-modules-phyre-function-class-map.tsv) maps every
@@ -330,7 +330,7 @@ class's loaded list, is `0x006C4CD0`, which jumps to `0x006C68B0`. That function
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02E5ACF0` | `u8` | 0 | set to 1 each time `0x006C68B0` runs | `0x006C68B0` (`0x006C68BE`) | none: no RIP-relative, image-base-relative or disp32 reference outside the store names it |
+| `0x02E5ACF0` | `u8` | 0 | set to 1 each time `0x006C68B0` runs | `0x006C68B0` (`0x006C68BE`) | no reader: no RIP-relative, image-base-relative or disp32 reference outside the store names it |
 
 ### The default class layout interface
 
@@ -450,7 +450,7 @@ stores 0.
 ## Modding notes
 
 - All fifteen objects exist before `main`, at fixed addresses. A loader that runs earlier than
-  `0x005A08E0` finds every module registered and none started.
+  `0x005A08E0` finds every module registered and no module started.
 - A module init that returns non-zero stops the walk and the game does not start; the modules after it
   in list order are never initialised.
 - Because `0x01F2CDF0` is 1, the list order is the only start order: LOD, for example, starts before

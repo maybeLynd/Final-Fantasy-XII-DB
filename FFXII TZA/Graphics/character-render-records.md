@@ -169,7 +169,7 @@ start `0x00424D80` re-places both through `0x0041F010(record, child)`, which `0x
    `+0x130` with 1.0 at `+0x13C`, and stores at `+0x150` the record's three scales (`+0x160`,
    `+0x260` and `+0x26C`) times the slot's scale at section `+0x40 + 12 × slot`;
 4. in mode 1, or without a section bone, it ties the child to the record's bone for the child's
-   `@FCP` word `+0x36` (`0x003E5AD0`, bone 0 when there is none) and, when the section exists, zeroes
+   `@FCP` word `+0x36` (`0x003E5AD0`, bone 0 when it names no bone) and, when the section exists, zeroes
    the offset and the scale;
 5. with a section, it writes the slot's value at `+0x1C0 + 4 × slot` to the child's `+0x170`,
    `+0x174` and `+0x178`, and 1.0 at `+0x15C` and `+0x17C`;
@@ -241,13 +241,13 @@ The two tables are 22 entries long, one per slot below `0x16`: string pointers a
 | 5 | `j_kosi` | `0x1B` |
 | 6-11 | `j_asi_a_l` | `0x16` |
 | 12, 13 | `j_kao` | `0x03` |
-| 14 | `__not att` | none (−1) |
+| 14 | `__not att` | no key (−1) |
 | 15 | `n_hara` | `0x1E` |
 | 16 | `model` | `0x1D` |
 | 17 | `j_kaochild_s` | `0x02` |
 | 18 | `j_blade` | `0x65E` |
 | 19 | `n_grip` | `0x656` |
-| 20 | `child_e` | none (−1) |
+| 20 | `child_e` | no key (−1) |
 | 21 | `automax` | `0x1D` |
 
 The point ids `0x100` and up name bones directly. For `0x00422310` and `0x00422380`:
@@ -260,7 +260,7 @@ The point ids `0x100` and up name bones directly. For `0x00422310` and `0x004223
 | `0x200` | `j_blade` | `0x65E` |
 | `0x201` | `n_grip` | `0x656` |
 | `0x1000` | `j_kao` | `0x03` |
-| any other id of `0x100` or more | `__naiyo__` (`0x00D12428`) | none (`0xFFFF`) |
+| any other id of `0x100` or more | `__naiyo__` (`0x00D12428`) | no key (`0xFFFF`) |
 
 So a weapon's blade and grip are the bones keyed `0x65E` and `0x656`, named `j_blade` and `n_grip`. A rider sits on
 `n_hara`, key `0x1E`, unless the mount's model has its own bone for special id 15.
@@ -279,7 +279,19 @@ in five walks of the active list, in fixed order, skipping records with `+0x284`
    bit `0x4000` cleared and `+0x120`..`+0x128` copied to `+0x250`..`+0x258`; one with bit `0x2` set runs
    `0x0042F4C0` again when bit `0x100000` is set.
 
-Most handlers clear their bit after the call; some leave it for a later frame. With `flag` set, work
+Most handlers clear their bit after the call; some leave it for a later frame.
+
+Sixteen of the tested bits have no setter, so their tests fail on every record: no instruction in the executable
+sets `+0x290` bits `0x4`, `0x20`, `0x40000`, `0x1000000` or `0x80000000`, or `+0x294` bits `0x1`, `0x2`, `0x10`,
+`0x40`, `0x400`, `0x800`, `0x4000`, `0x20000`, `0x40000`, `0x80000` or `0x100000`.
+
+The census read the 313 stores whose operand lies at `+0x290` to `+0x297` and the 5 wider stores from `+0x28C`:
+they set other bits or write other structures, and `0x0041F730` zeroes each record when it is built. The one setter
+of `+0x294` bit `0x2000` is `0x004278D0` (`or 0x2000`). `0x002EB4A0` jumps to it when the record's `+0x284` is not 0;
+the `motiontrigger` script verb reaches it that way, through its result callback `0x00343A20`, and so do
+`0x003057D0`, `0x0030BC40` and `0x00325260`.
+
+With `flag` set, work
 on a record also raises `+0x294` bit `0x2000000` on the top of its parent chain, and `0x00427BD0` then composes
 that root's model transform (`0x00420A40`). `0x00426090` calls `0x00427DE0(0)` inside each simulation step
 (from `0x003323D0`); `0x0042ED60` calls it with 1 at the end of the frame. Each bit's test site, handler
@@ -288,14 +300,14 @@ and setters are in
 
 ### Columns of character-render-records-dirty-bits.tsv
 
-One row per bit test in `0x00427DE0`, 57 rows; `pass` is the walk (1 to 5) and `bit` the bit's position in the
-dword (0 to 31), so position 29 is the value `0x20000000`.
+One row per bit test in `0x00427DE0`, 57 rows; `pass` is the walk (1 to 5) and `bit` the bit's value in the
+dword `word` (`0x1` to `0x80000000`).
 
 | Column | Holds |
 |---|---|
-| `clear_kind` | who clears the bit: `processor` when `0x00427DE0` clears it itself after the handler returns (40 rows); `handler` when the handler clears it in its own body (11 rows); `inline` when `0x00427DE0` does the work in its own body with no handler call (2 rows); `consume` when there is no handler and `0x00427DE0` only clears the bit with `btr` (2 rows); on the pass-5 row for bit position 20 the handler `0x0042F4C0` runs again and leaves the bit set; `n/a` on the last row, bit position 25 of `+0x294`, which `0x00427DE0` sets rather than tests |
-| `clear_site` | the address of the instruction that clears the bit: an `and` of the word with the bit's inverse mask, inside `0x00427DE0` for `processor` and `inline` rows and inside the handler for `handler` rows; for `consume` rows the store of the `btr` result, with the `btr` address in brackets when it differs; `self` when the handler clears it at more than one place; `consumed by 0x00427BD0` on the last row |
-| `set_by` | the functions that set the bit, each followed by the instruction that does it (`or` with the bit's value, or `bts` and a store) and, after `<-`, the functions that call that setter; a group writer clears other bits of the same word in the same instruction, listed in brackets; 17 rows open with the statement that no setter was found, some with the code that clears the bit instead |
+| `clear_kind` | who clears the bit: `processor` when `0x00427DE0` clears it itself after the handler returns (40 rows); `handler` when the handler clears it in its own body (11 rows); `inline` when `0x00427DE0` does the work in its own body with no handler call (2 rows); `consume` when there is no handler (`handlers` is `-`) and `0x00427DE0` only clears the bit with `btr` (2 rows); `kept` on the pass-5 row for bit `0x100000`, where the handler `0x0042F4C0` runs again and leaves the bit set; `n/a` on the last row, bit `0x2000000` of `+0x294`, which `0x00427DE0` sets rather than tests |
+| `clear_site` | the address of the instruction that clears the bit: an `and` of the word with the bit's inverse mask, inside `0x00427DE0` for `processor` and `inline` rows and inside the handler for `handler` rows; for `consume` rows the store of the `btr` result, with the `btr` address in brackets when it differs; `self` when the handler clears it at more than one place; `consumed by 0x00427BD0` on the last row; `-` on the two pass-5 rows, which clear nothing |
+| `set_by` | the functions that set the bit, each followed by the instruction that does it (`or` with the bit's value, or `bts` and a store) and, after `<-`, the functions that call that setter; a group writer clears other bits of the same word in the same instruction, listed in brackets; 16 rows state that no instruction in the executable sets the bit, with the census behind it (every store at `+0x290` to `+0x297`, the wider stores from `+0x28C`, and the constructor `0x0041F730`, which zeroes the record) and, on some rows, the code that clears the bit; the row for `+0x294` bit `0x2000` names its one setter, `0x004278D0`, which no call, jump or stored address reaches |
 | `rebuilds` | what the handler or inline block does to the record: the functions it calls, the fields it copies or writes, and the bits it re-arms, with the instruction addresses |
 
 ### The system tail
@@ -314,7 +326,7 @@ The `0x130` bytes after the records, at `0x022C6F28 + 0x48800`:
 | `+0x1C` | `f32` |  | distance at which the distance fade starts (34.0) |
 | `+0x24` | `f32` |  | distance fade range (4.0) |
 | `+0x28` | `f32` |  | 1/6, copied to each promoted record's `+0x414` |
-| `+0x2C` | `u16` |  | reference record for the distance fade, `0xFFFF` for none |
+| `+0x2C` | `u16` |  | reference record for the distance fade, `0xFFFF` for no record |
 | `+0x30` | `u32` |  | the render root, encoded (`0x00426480`) |
 | `+0x42` | `u8` |  | 1: the per-record shadow walk `0x00426420` runs |
 | `+0x43` | `u8` |  | 0: same walk, must be 0 |
@@ -367,7 +379,7 @@ The event's kind picks the source resource `+0x390`:
 | 0 | the registered script motion slot that the bits under mask `0xF00000` (manager slot) and `0xF0000` (slot) name (`0x003DD740`, state 4 only); `0x00423230` then clears bit `0x1000` of the current entry's `+0x2C8` |
 | 1, 2 | `+0x430`, or `+0x42C` by the low two bits of `+0x40B` |
 | 3, 4 | `+0x430` (kind 3; `0x302F` and `0x3009` as kinds 1 and 2) or `+0x42C` (kind 4) |
-| 5 | `+0x42C` while `0x00423170` holds; otherwise the skill-motion cache entry for the actor's model and the index (`0x003DC7D0`, `0x003DCA00`), or `+0x42C` with `+0x3B4` set to `0x203D` when there is none |
+| 5 | `+0x42C` while `0x00423170` holds; otherwise the skill-motion cache entry for the actor's model and the index (`0x003DC7D0`, `0x003DCA00`), or `+0x42C` with `+0x3B4` set to `0x203D` when there is no cache entry |
 
 `0x004230A0(record, event)` then refuses kinded events of index `0x37` while the character object's byte `+0xB4` is 0
 and `0x39` and `0x3A` while its `+0xAC` is 2, which clears the source. `0x00422FD0(record, resource,
@@ -406,7 +418,7 @@ Korean and the two Chinese languages, 544 bytes; its 33 records are on
   An entry for the model, motion and class in states 1 to 3 gains a user and its id is returned.
   Otherwise the size comes from `0x003DC8D0` (0x80000001 when it fails), rounded up to units, and the
   entry is filed only if the units of entries with users plus the new ones stay within 4.
-- Filing takes the first free entry (`0x003DC380`); with none it releases the idle ready entries
+- Filing takes the first free entry (`0x003DC380`); with no free entry it releases the idle ready entries
   (`0x003DC6A0`) and tries again. A new entry has one user and state 1, and the idle entries are
   released when all held units exceed 4. With `file` 0 the cache stays as it is:
   0x80000002 says the entry exists or could be filed; `0x003DC410` is that test, `0x003DCCF0` the request.
@@ -482,7 +494,7 @@ The record bytes between the fields the store names, by range; `+0x411` and `+0x
 | `+0x062` | `u8[2]` | span0062 | the two bytes between the previous event +0x60 and the model instance index +0x64 |
 | `+0x066` | `u8[2]` | span0066 | the two bytes between the model instance index +0x64 and the resource reference +0x68 |
 | `+0x0D4` | `u8[4]` | span00D4 | the four bytes between the byte +0xD3 and the resource reference +0xD8; the walks of the eight-word table +0x90 in 0x0042F4C0, 0x0042F6C0 and 0x0042F880 (count: the word +0xC2, compared at 0x0042F5DC) address it only as word 34 of that table (0x0042F5FD, 0x0042F818, 0x0042FA88) |
-| `+0x0EC` | `u8[4]` | span00EC | the four bytes between the signed resource displacement +0xE8 (-1 for none) and the resource reference +0xF0 |
+| `+0x0EC` | `u8[4]` | span00EC | the four bytes between the signed resource displacement +0xE8 (-1 for no resource) and the resource reference +0xF0 |
 | `+0x104` | `u8[4]` | span0104 | the four bytes between the second signed resource displacement +0x100 and the bound source pointer +0x108 |
 | `+0x11C` | `u8[4]` | span011C | the four bytes between the tween entry index +0x118 and the rotation's x angle +0x120 |
 | `+0x24E` | `u8[2]` | span024E | the two bytes between the word +0x24C and the previous rotation x angle +0x250 |

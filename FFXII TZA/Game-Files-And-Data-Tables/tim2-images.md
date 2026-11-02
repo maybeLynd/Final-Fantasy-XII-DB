@@ -184,7 +184,7 @@ picture count:
   difference: 0;
 - the low nibble of the dword at file `+0x40`, the first picture's block flags, must be 1
   (`0x0039BEF0`–`0x0039BEF4`), or 0;
-- slots 1 to 7 of `0x02AEE810` are scanned for the first empty one (`0x0039BF02`, `0x0039BF1C`); none: 0;
+- slots 1 to 7 of `0x02AEE810` are scanned for the first empty one (`0x0039BF02`, `0x0039BF1C`); with no empty slot: 0;
 - the buffer is stored there, `0x0039BF50` lays out every slot again, and the slot number is returned.
 
 The compare at `0x0039BF31` tests the empty slot against the buffer, so it never matches: registering the
@@ -206,7 +206,7 @@ also written by the font-pack completion `0x0039C150`.
 - `0x0037F1F0`, on a request record whose type byte is 4, registers the buffer and calls `0x0017FBC0(5)`; `0x0037F860`
   unregisters it with `0x0017FA70(5)`.
 - `0x003BC4E0`, the map-data widget, registers the TIM2 inside the guide file it holds at `+0xF8` (at that
-  file's u16 `+0x0A`, `0xFFFF` for none, `0x003BD8F0`), with `0x0017FBC0(4)`; it, `0x003BBFB0` and `0x003BC970`
+  file's u16 `+0x0A`, `0xFFFF` for no picture, `0x003BD8F0`), with `0x0017FBC0(4)`; it, `0x003BBFB0` and `0x003BC970`
   unregister it with `0x0017FA70(4)`.
 - `0x00575710`, the handbook page, registers the TIM2 at the bundle's i32 `+0x0C` (unless -1), with
   `0x0017FBC0(6)` when its kind byte `+0xD2` is 4; `0x00575640` unregisters it.
@@ -241,7 +241,7 @@ A script container (`.ebp`) can carry a glyph sheet in directory slot 6
 1. stores it at `0x022C6CF0[g]` and in the area record (`0x0026C860`, `0x02098EC0 + g × 0x288`);
 2. clears pending bit `0x40` of `0x022C6E48[g]`;
 3. hands it to the text layer (`0x0017F790` → `0x001B47A0`, which gives it to the first waiting font entry whose
-   id matches the packed value, or logs a load failure and attaches nothing when none does);
+   id matches the packed value, or logs a load failure and attaches nothing when no entry matches);
 4. registers it through `0x0029CAC0`.
 
 `0x001B4590(font, entry)` is that attach (`0x001B483F`): it places the entry in the first empty of the font's

@@ -78,7 +78,7 @@ does not jump.
 
 ## Shipped data
 
-In the shipped scripts (all 1,114 `us` scripts):
+In the 1,114 `us` scripts:
 
 | Fact | Count |
 |---|---:|

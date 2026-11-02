@@ -56,7 +56,7 @@ byte `+0x00` named by its action row's name word `+0x34` ([Action list](action-l
 |---|---|---|---|---|
 | `+0x00` | `u8` | concurrence | `0x002F8D60` | the action row returned |
 | `+0x01` | `u8[3]` | thresholds | `0x002F8D60` | the counts of first-, second- and third-level Quickenings needed |
-| `+0x04` | `u8[9]` | | none | `0xFF` on every row |
+| `+0x04` | `u8[9]` | | no instruction | `0xFF` on every row |
 
 The table is loaded only by `0x002F8D60` and the loader `0x00236C30`; `0x002F8D60` reads bytes
 `+0x00`-`+0x03`, so `+0x04`-`+0x0C` have no reader.

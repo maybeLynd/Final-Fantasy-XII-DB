@@ -14,18 +14,27 @@ and `+0xC0` of a record it holds:
 
 | Table | Region | Rows |
 |---|---|---|
-| [`actor-record-fields.tsv`](actor-record-fields.tsv) | the record itself | 1,223 |
-| [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 759 |
-| [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 392 |
-| [`secondary-context-element-accesses.tsv`](secondary-context-element-accesses.tsv) | the `0x30`-byte elements at the start of the secondary context, each access by its offset in the element; every site is also a row of the secondary-context table | 176 |
+| [`actor-record-fields.tsv`](actor-record-fields.tsv) | the record itself | 1,961 |
+| [`actor-record-fields-movement-context.tsv`](actor-record-fields-movement-context.tsv) | the movement context, record `+0x120`, `0x230` bytes | 991 |
+| [`actor-record-fields-secondary-context.tsv`](actor-record-fields-secondary-context.tsv) | the secondary context, record `+0x350`, `0x188` bytes | 849 |
+| [`secondary-context-element-accesses.tsv`](secondary-context-element-accesses.tsv) | the `0x30`-byte elements at the start of the secondary context, each access by its offset in the element; every site is also a row of the secondary-context table, and every secondary-context access below `+0x120` has a row here | 594 |
 | [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 26 |
 | [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the request entries behind `+0xA0` | 88 |
 
-Every way to a record was followed: the manager pools and the static records the table's own rows resolve, the
-handle resolver `0x003588B0` and the current-actor getter `0x00358940`, the 251 functions proven to take a record in an
-argument register, and the pointers all of these pass on; the 35 other functions that reference the manager slots
-`0x02098E10` touch slot fields, not records. The interiors were followed from every record so held, through their
-pointers and through the entry resolvers `0x003DB550` and `0x002651A0`.
+Every access whose base register the record census traces to a record is a row. The census starts from the handle
+resolver `0x003588B0`, the current-actor getter `0x00358940`, the ordinal resolver `0x003587C0`,
+the roster getter `0x00263750` and the 9 functions that return their records, from the record the initialiser
+`0x00266530` builds, and from the 1,885 script natives, which receive records in `rcx` and `rdx`. It follows every
+record passed in an argument register at a direct call or jump, to a fixed point: 1,079 further functions receive one.
+
+Two stored record pointers are followed as well: the 32-bit offset `0x0037B4D0` decodes with `0x0020E600` from its
+binding block, and the record bound to a presentation entry's render record (render record `+0x108`, stored by
+`0x002E28E0`). Records held only in other stored pointers or offsets, or passed only to functions called through a
+pointer, are outside the census. The 35 other functions that reference the manager slots `0x02098E10` touch slot
+fields, not records.
+
+The interiors were followed from every record so held, through their pointers, through the 47 functions that receive
+an interior pointer in an argument register and through the entry resolvers `0x003DB550` and `0x002651A0`.
 
 ### The regions
 
@@ -55,12 +64,12 @@ Each table has one row per access site:
 | Column | Meaning |
 |---|---|
 | `function` | the function containing the instruction |
-| `name` | the name the scan carried for the function, `FUN_` when none |
+| `name` | the name the scan carried for the function, `FUN_` when the scan carried no name |
 | `site` | the instruction's address |
 | `disp` | the offset reached, relative to the record, to the context or, in the element table, to the element |
 | `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on |
 | `instruction` | the instruction text |
-| `route` | how the function reached the object: `the record pool or a static record` when it resolved the record itself, `argN from F at S` when the object came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S (`argN+0xK` when offset by K), `actor +0xP, the actor as argN from F at S` or `actor +0xP, the actor in R` when the function loaded the interior from a record it held in that argument or register, `chain from the record: ...` for the slot and entry arrays walked from the record's counts, `a context the function resolved itself`, `a slot the function resolved itself` and `an entry the function resolved itself` in the context, wait-slot and entry tables when the function found the record itself, as for `the record pool or a static record`, and took the object from it, `ctor` for the record constructor, and `embed SecondaryContext+0x0` in the element table: the elements at the start of the secondary context |
+| `route` | how the function reached the object: `the record pool or a static record` when it resolved the record itself, `argN from F at S` when the object came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S (`argN+0xK` when offset by K; where several call sites pass the record, the route names the lowest-address direct call site, and a script native names the verb lifecycle's table call at `0x002621D0`), `actor +0xP, the actor as argN from F at S` or `actor +0xP, the actor in R` when the function loaded the interior from a record it held in that argument or register, `chain from the record: ...` for the slot and entry arrays walked from the record's counts, `a context the function resolved itself`, `a slot the function resolved itself` and `an entry the function resolved itself` in the context, wait-slot and entry tables when the function found the record itself, as for `the record pool or a static record`, and took the object from it, `ctor` for the record constructor, and `embed SecondaryContext+0x0` in the element table: the elements at the start of the secondary context |
 | `note` | `idx` when an index register takes part |
 
 ## Data

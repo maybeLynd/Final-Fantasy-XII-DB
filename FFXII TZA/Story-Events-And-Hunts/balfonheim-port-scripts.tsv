@@ -161,15 +161,15 @@ var_z0100	scene, event 393	Mes	m007	requested by Director.main	Reddas	6	When he 
 var_z0100	scene, event 393	Mes	m008	requested by Director.main	Reddas	7	He cannot sit in idleness and expect to avoid a reckoning.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m009	requested by Director.main	Reddas	8	The Marquis shares my distaste for war...	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m010	requested by Director.main	Reddas	9	yet if it comes to it, he will show no quarter.	-	-	-	-	-	-	-	-	-	-	1	-
-var_z0100	scene, event 393	Mes	m011	requested by Director.main	-	10	For the time being, we will continue to train the Resistance army.	-	-	-	-	-	-	-	-	-	-	1	-
-var_z0100	scene, event 393	Mes	m012	requested by Director.main	-	11	Enough power on our side...	-	-	-	-	-	-	-	-	-	-	1	-
-var_z0100	scene, event 393	Mes	m013	requested by Director.main	-	12	and even Vayne may see the appeal of the treaty table.	-	-	-	-	-	-	-	-	-	-	1	-
+var_z0100	scene, event 393	Mes	m011	requested by Director.main	Ondore	10	For the time being, we will continue to train the Resistance army.	-	-	-	-	-	-	-	-	-	-	1	-
+var_z0100	scene, event 393	Mes	m012	requested by Director.main	no name shown	11	Enough power on our side...	-	-	-	-	-	-	-	-	-	-	1	-
+var_z0100	scene, event 393	Mes	m013	requested by Director.main	no name shown	12	and even Vayne may see the appeal of the treaty table.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m014	requested by Director.main	Reddas	13	Yet Vayne holds the nethicite.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m015	requested by Director.main	Reddas	14	What makes you think he would treat when he holds such power?	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m016	requested by Director.main	Reddas	15	Power enough to sink the Leviathan.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m017	requested by Director.main	Ondore	16	All the more reason for me to support your infiltration of the capital.	-	-	-	-	-	-	-	-	-	-	1	-
-var_z0100	scene, event 393	Mes	m018	requested by Director.main	-	17	You said it yourself: the nethicite is a powerful weapon.	-	-	-	-	-	-	-	-	-	-	1	-
-var_z0100	scene, event 393	Mes	m019	requested by Director.main	-	18	I would have you acquire it for me.	-	-	-	-	-	-	-	-	-	-	1	-
+var_z0100	scene, event 393	Mes	m018	requested by Director.main	no name shown	17	You said it yourself: the nethicite is a powerful weapon.	-	-	-	-	-	-	-	-	-	-	1	-
+var_z0100	scene, event 393	Mes	m019	requested by Director.main	no name shown	18	I would have you acquire it for me.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m020	requested by Director.main	Reddas	19	I have not said I would give you...	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m021	requested by Director.main	Reddas	20	the Midlight Shard.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0100	scene, event 393	Mes	m022	requested by Director.main	Ondore	21	If there is no Stone, I would have to look elsewhere for aid.	-	-	-	-	-	-	-	-	-	-	1	-
@@ -221,12 +221,12 @@ var_z0101	scene, event 394	MesDir	cut01c	requested by Director.main	Vaan	3	How d
 var_z0101	scene, event 394	MesDir	cut02a	requested by Director.main	Al-Cid	4	My little birds, they tell me many, many things.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut02b	requested by Director.main	Al-Cid	5	My Lady, the war begins now.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut03a	requested by Director.main	Ashe	6	Then you were unsuccessful in stopping the Rozarrian fleet?	-	-	-	-	-	-	-	-	-	-	1	-
-var_z0101	scene, event 394	MesDir	cut04a	requested by Director.main	-	7; 8; 9; 10	I used a variety of methods. All went according to plan until it came time to request withdrawal of our most devoted generals. / In their enthusiasm for war, our great military leaders went behind my back... / Straight to Marquis Ondore's Resistance. / The Resistance?	-	-	-	-	-	-	-	-	-	-	1	-
+var_z0101	scene, event 394	MesDir	cut04a	requested by Director.main	Al-Cid; no name shown	7; 8; 9; 10	I used a variety of methods. All went according to plan until it came time to request withdrawal of our most devoted generals. / In their enthusiasm for war, our great military leaders went behind my back... / Straight to Marquis Ondore's Resistance. / The Resistance?	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut06a	requested by Director.main	Al-Cid	11; 12	During training, a division of the Resistance ignored their orders and disappeared. / They were next found exchanging broadsides with the Imperials over Old Nabradia.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut06b	requested by Director.main	Basch	13	Why would they go there? They were asking to be found!	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut07a	requested by Director.main	Al-Cid	14; 15; 16	You misunderstand. Those ships most surely belonged to a Rozarrian division. / They may have joined Ondore's resistance forces as patriots, or even mercenaries... / but in reality they are regulars of the Rozarrian army, under direct command of our war-pavilion.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut08a	requested by Director.main	Al-Cid	17; 18	This fifth column has invaded Imperial airspace and provoked a response. / Unable to abandon them, His Excellency the Marquis was obliged to give his main fleet the order to attack.	-	-	-	-	-	-	-	-	-	-	1	-
-var_z0101	scene, event 394	MesDir	cut09a	requested by Director.main	-	19	And the battleground... is Dalmasca.	-	-	-	-	-	-	-	-	-	-	1	-
+var_z0101	scene, event 394	MesDir	cut09a	requested by Director.main	no name shown	19	And the battleground... is Dalmasca.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut09b	requested by Director.main	Balthier	20; 21	Should this fight drag on, Rozarria will enter the fray, the defense of Dalmasca as their excuse... / and we will have a war between empires.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut10a	requested by Director.main	Al-Cid	22; 23	Correct! They will bide their time, waiting to strike, until the Empire has spent itself against the Marquis. / But Vayne—he will crush them and the Marquis both between his hands.	-	-	-	-	-	-	-	-	-	-	1	-
 var_z0101	scene, event 394	MesDir	cut11a	requested by Director.main	Basch	24; 25	Vayne holds the Dusk Shard no longer. / His advantage is lost.	-	-	-	-	-	-	-	-	-	-	1	-

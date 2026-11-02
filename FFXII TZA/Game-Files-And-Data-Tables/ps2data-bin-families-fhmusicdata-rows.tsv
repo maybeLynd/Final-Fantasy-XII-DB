@@ -1,10 +1,10 @@
 record	offset	w00_id	w02	w04	w06	w08	w0A	w0C	w0E	w10	w12	w14	shipped_track_file_for_id	musicinfo_byte0_for_id	musicinfo_byte1_for_id
-0	0x70	0	1	20	1	1	20	0	0	1	0	0	none	128	0
-1	0x86	1	1	20	1	1	20	0	0	20	0	0	none	0	0
-2	0x9C	3	1	20	1	1	20	0	0	20	0	0	none	0	0
-3	0xB2	6	1	20	1	1	1	0	0	2	0	0	none	0	0
-4	0xC8	8	1	18	0	1	18	0	0	3	0	0	none	0	0
-5	0xDE	10	1	20	1	1	20	0	0	1	0	0	none	1	0
+0	0x70	0	1	20	1	1	20	0	0	1	0	0	no shipped file	128	0
+1	0x86	1	1	20	1	1	20	0	0	20	0	0	no shipped file	0	0
+2	0x9C	3	1	20	1	1	20	0	0	20	0	0	no shipped file	0	0
+3	0xB2	6	1	20	1	1	1	0	0	2	0	0	no shipped file	0	0
+4	0xC8	8	1	18	0	1	18	0	0	3	0	0	no shipped file	0	0
+5	0xDE	10	1	20	1	1	20	0	0	1	0	0	no shipped file	1	0
 6	0xF4	15	1	20	1	1	20	0	0	20	0	0	music015.win.mab	6	15
 7	0x10A	16	1	20	1	1	20	0	0	20	0	0	music016.win.mab	6	16
 8	0x120	21	1	20	1	1	1	0	0	2	0	0	music021.win.mab	6	21

@@ -151,13 +151,13 @@ frs0108	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_
 frs0108	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_4.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_4_971d86b6c61e01de_721a9c0eeb620359_155f0.dds.phyre
 frs0108	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_5.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_5_9efeefcedb3411a1_2955936c0e8bb1ff_155f0.dds.phyre
 frs0108	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0108/tex/frs0100_kokage_mime_pic_6.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/frs0100_kokage_mime_pic_6_94829cb2602c58b3_f5e14cd71a040b_155f0.dds.phyre
-frs0109	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime.dds.phyre	none	
-frs0109	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_1.dds.phyre	none	
-frs0109	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_2.dds.phyre	none	
-frs0109	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_3.dds.phyre	none	
-frs0109	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_4.dds.phyre	none	
-frs0109	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_5.dds.phyre	none	
-frs0109	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_6.dds.phyre	none	
+frs0109	0	0	0	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime.dds.phyre	nothing	
+frs0109	0	1	1	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_1.dds.phyre	nothing	
+frs0109	0	2	2	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_2.dds.phyre	nothing	
+frs0109	0	3	3	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_3.dds.phyre	nothing	
+frs0109	0	4	4	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_4.dds.phyre	nothing	
+frs0109	0	5	5	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_5.dds.phyre	nothing	
+frs0109	0	6	6	/GameData/D3D11/ArtData/map/frs01/frs0109/tex/frs0100_kokage_mime_pic_6.dds.phyre	nothing	
 glf0102	0	0	0	/GameData/D3D11/ArtData/map/glf01/glf0102/tex/glf0100_ya_tento04.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/glf0100_ya_tento04_8c82e7989554d4cc_5f142a95096c8b6_55610.dds.phyre
 glf0102	0	1	1	/GameData/D3D11/ArtData/map/glf01/glf0102/tex/glf0100_ya_tento04_pic_1.dds.phyre	phyremaps	/GameData/D3D11/ArtData/shared/map/glf0100_ya_tento04_pic_1_a13f038e0aa47a1a_c40eaee185106245_15610.dds.phyre
 glf0103	0	0	0	/GameData/D3D11/ArtData/map/glf01/glf0103/tex/glf0103_fire.dds.phyre	direct	

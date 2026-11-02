@@ -18,7 +18,7 @@ addresses: "0x002465F0, 0x00244F50, 0x00245000, 0x00248220, 0x00248030, 0x002446
 Every widget is built by `0x002465F0(object, size, procedure, record, borrowed)`:
 
 1. It clears the object (`0x00246612`-`0x00246626`).
-2. It installs the procedure at `+0x00`, or `0x005C5230` (`xor eax, eax` / `ret`) when none is given
+2. It installs the procedure at `+0x00`, or `0x005C5230` (`xor eax, eax` / `ret`) when no procedure is given
    (`0x0024662B`-`0x00246641`).
 3. It writes the header (below).
 4. It calls the procedure once with message 1 and the creator's two arguments (`0x00246721`-`0x00246748`).
@@ -56,7 +56,7 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `u32[2]` | proc | procedure(self, message); `0x005C5230` when none |
+| `+0x00` | `u32[2]` | proc | procedure(self, message); `0x005C5230` when no procedure is given |
 | `+0x08` | `u32[2]` | cont | continuation the release jumps to after freeing (`0x00248405`) |
 | `+0x10` | `u32[2]` | parent | set by the attach `0x00248220` (`0x00248267`) |
 | `+0x18` | `u32[2]` | child | first child (`0x00248239`) |
@@ -238,7 +238,7 @@ Five UI tick functions (`0x00250540`, `0x002506D0`, `0x00250730`, `0x002507C0`, 
 - `0x00244830` clears the old widget's bit `0x10` and sends it message 9, then sets the new widget's bit `0x10` and sends it
   message 8.
 - `0x002448D0(widget)` gives the focus up. When the widget holds the focus (it is compared with `0x0208EBC0` only, not
-  with the stack's top), the top entry is cleared and popped and the new top, or none, takes the focus
+  with the stack's top), the top entry is cleared and popped and the new top, if any, takes the focus
   (`0x002448E6`-`0x00244929`); otherwise its topmost copy is taken out of the stack (`0x00244700(widget, 0)`). It then does
   the same for each child (`0x00244937`-`0x0024494F`).
 - `0x00244700(widget, all)` takes a widget out of the stack wherever it sits, every copy when `all` is set and the
@@ -249,7 +249,7 @@ Five UI tick functions (`0x00250540`, `0x002506D0`, `0x00250730`, `0x002507C0`, 
 
 `0x00246AD0(parent, widget)` opens a widget:
 
-1. It attaches the widget under `parent` when it has none (`0x00246AF5`), and activates it.
+1. It attaches the widget under `parent` when it has no parent (`0x00246AF5`), and activates it.
 2. It sets the rate: 1.0, or one over the game's speed steps in the field at game speed (`0x00246B1B`-`0x00246B49`).
 3. From states 0 and 1 it starts a forward run: the descriptor's length in milliseconds becomes
    `ms x 60 / 1000` frames (`0x00246BDF`-`0x00246BEC`), started at the frame counter `0x0208F570`.
@@ -281,7 +281,7 @@ refuses while any of the other three bits is set, records the start value, the c
 | `0x1` | `0x002468A0(widget, x, y, curve, ms)` | the position `+0x98`/`+0x9A` | 22, and 17 at the end |
 | `0x2` | `0x00247130(widget, w, h, anchor, ms)`, curve 1 | the size `+0x9C`/`+0x9E`; anchor bit `0x1` or `0x2` keeps the right or bottom edge in place (`0x00246EAE`-`0x00246EDE`) | 21 |
 | `0x4` | `0x00247300(widget, from, to, curve, ms)` | the float `+0x8C` | 23 |
-| `0x8` | `0x002472A0(widget, value, slot)` | nothing: the float `+0x84` is copied into the draw box's float at `+0x10`, `+0x14` or `+0x18` for slot 0, 1 or 2 (`0x00244D74`-`0x00244DC1`) | none |
+| `0x8` | `0x002472A0(widget, value, slot)` | nothing: the float `+0x84` is copied into the draw box's float at `+0x10`, `+0x14` or `+0x18` for slot 0, 1 or 2 (`0x00244D74`-`0x00244DC1`) | no message |
 
 `0x00247260` starts bit `0x2` like `0x00247130` and then replaces the curve with its sixth argument. `0x002468A0` sends 17
 twice instead of starting when the widget is already at the target (`0x002468DE`-`0x00246922`).
@@ -416,7 +416,7 @@ own code uses.
 | `+0x00` | `void*` | proc | `+0x00` of the target tab strip, the `0xD0`-byte widget the battle menu builds inside itself at `+0x60E0` (`0x00245000` at `0x0027A13E`, procedure lea `0x0027A12F`): its procedure `0x0027C870`, installed nowhere else, so every tab strip is this one. Stored by the constructor `0x002465F0` (`0x00246641`), set to 0 by the release `0x002482E0` (`0x002483CE`). Called with a message by the widget code that reaches the strip through the tree: the tick drain `0x00248030` (`0x002480E7`, message 2), the run step `0x00246C20` (`0x00246C42`, `0x00246D93`, `0x00246DAB`, `0x00246EE5`, `0x00246F8D`, `0x0024700E`), the draw walk `0x00245E60` (`0x002462B0`, `0x0024633A`, `0x002463AA`), the activation `0x002473F0` (`0x0024743E`) and `0x00247490` (`0x002474C5`), the open `0x00246AD0` (`0x00246BF7`), the closes `0x00244DD0` (`0x00244EE3`), `0x00244F00` (`0x00244F25`), `0x00245020` (`0x00245044`) and `0x002473B0` (`0x002473B6`), the release `0x002482E0` (`0x002483A0`) and the deliveries `0x002753F0` (`0x002753FA`) and `0x00275440` (`0x00275460`); the battle menu asks whether it is set through `0x00273A20` (`0x00273A22`). The focus code (`0x00244830`, `0x002481C0`) reads only the focused widget's, and the strip is never given the focus. |
 | `+0x08` | `u8[80]` | header08 | the widget header from `+0x08` to `+0x57` (The header above) |
 | `+0x58` | `void*` | layout | `+0x58` of the target tab strip: its layout record, record 30 of unit 1 of the menu layout block ([`0x0209AC30`] + 8), stored by the layout decoder `0x002432B0` (`0x00243305`) from the strip's message 1 (`0x0027CC83`). Read only by the strip's code, for the x (+4) and width (+8) that centre it (`0x00276B21` in `0x00276960`, `0x0027B147` in `0x0027B120`, `0x0027DCEC` in `0x0027DCA0`); no widget code reads it. |
-| `+0x60` | `void*` | items | `+0x60` of the target tab strip: the array of its layout items, allocated and filled by `0x002432B0` (`0x002433AA`, read back at `0x002433E0`; 0 at `0x0024338C` when the record has none) and freed by the release `0x002482E0` (`0x0024833E`, `0x00248360`, `0x0024838A`, `0x00248398`). Items 2-5 are the four tabs (tables `0x00915BE0`, `0x00915BF0`), 6 and 7 the side arrows. The draw walk `0x00245E60` paints them through `0x002435C0` (`0x002435D7`); the strip's code reads it in `0x00276830` (`0x0027689B`, `0x002768C8`, `0x002768F6`, `0x0027691F`), `0x00276960` (`0x00276A55`, `0x00276AFB`, `0x00276B1D`, `0x00276B84`), `0x0027B120` (`0x0027B139`, `0x0027B154`, `0x0027B178`, `0x0027B19E`, `0x0027B1C4`), `0x0027B290` (`0x0027B2A0`, `0x0027B300`, `0x0027B315`, `0x0027B33D`, `0x0027B352`, `0x0027B37A`, `0x0027B38A`), `0x0027C870` (`0x0027C8D3`, `0x0027C90F`, `0x0027C95E`, `0x0027CA75`, `0x0027CBB5`) and `0x0027DCA0` (`0x0027DCC6`, `0x0027DCE8`, `0x0027DD4A`, `0x0027DD73`). |
+| `+0x60` | `void*` | items | `+0x60` of the target tab strip: the array of its layout items, allocated and filled by `0x002432B0` (`0x002433AA`, read back at `0x002433E0`; 0 at `0x0024338C` when the record has no items) and freed by the release `0x002482E0` (`0x0024833E`, `0x00248360`, `0x0024838A`, `0x00248398`). Items 2-5 are the four tabs (tables `0x00915BE0`, `0x00915BF0`), 6 and 7 the side arrows. The draw walk `0x00245E60` paints them through `0x002435C0` (`0x002435D7`); the strip's code reads it in `0x00276830` (`0x0027689B`, `0x002768C8`, `0x002768F6`, `0x0027691F`), `0x00276960` (`0x00276A55`, `0x00276AFB`, `0x00276B1D`, `0x00276B84`), `0x0027B120` (`0x0027B139`, `0x0027B154`, `0x0027B178`, `0x0027B19E`, `0x0027B1C4`), `0x0027B290` (`0x0027B2A0`, `0x0027B300`, `0x0027B315`, `0x0027B33D`, `0x0027B352`, `0x0027B37A`, `0x0027B38A`), `0x0027C870` (`0x0027C8D3`, `0x0027C90F`, `0x0027C95E`, `0x0027CA75`, `0x0027CBB5`) and `0x0027DCA0` (`0x0027DCC6`, `0x0027DCE8`, `0x0027DD4A`, `0x0027DD73`). |
 | `+0x68` | `u8[20]` | header68 | the widget header from `+0x68` to `+0x7B` (The header above) |
 | `+0x7C` | `u32` | state | `+0x7C` of the target tab strip: its run state word (low nibble 0-4, 2 opening, 3 open). Written by the constructor `0x002465F0` (`0x002466D8`), the open `0x00246AD0` (`0x00246BD4`, `0x00246BEF`, `0x00246BF3`), the close `0x00244DD0` (`0x00244E1F`, `0x00244E23`, `0x00244EBC`, `0x00244ED7`, `0x00244EDB`, `0x00244EDF`), the run step `0x00246C20` (`0x00247029`, `0x00247047`, `0x0024705B`, `0x00247079`) and the release `0x002482E0` (`0x002483BE`). Read by the tick walker `0x00244980` (`0x002449B2`), the run box `0x00244A20` (`0x00244A30`), `0x00244DD0` (`0x00244E2C`, `0x00244EAA`), `0x00246AD0` (`0x00246B51`) and `0x00246C20` (`0x00246FB1`); the battle menu marks a tab only on a strip in state 2 or 3 (message 50; `0x0027A275`, `0x0027A28A` in `0x00279E20`). |
 | `+0x80` | `u8[24]` | header80 | the widget header from `+0x80` to `+0x97` (The header above) |
@@ -463,7 +463,7 @@ after them. Its private messages 33-52 set or read the fields below ([Widget mes
 | `+0x61DA` | `i16` | layout11Y | y of that item plus the record's y, written once (`0x00279FA4`); read by no instruction. |
 | `+0x61DC` | `i16` | layout11W | width of that item, written once (`0x00279FAF`); read by no instruction. |
 | `+0x61DE` | `i16` | layout11H | height of that item, written once (`0x00279FBD`); read by no instruction. |
-| `+0x61E0` | `i16` | memberType | the type (`+0x60` of the party status record, 0-5) of the member message 38 names, from `0x00272EE0` (`0x0027A91A`); -1 when the message has no second argument (`0x0027A928`) or `0x00254560`(3) answers non-zero (`0x0027A8F3`). Senders: `0x002778C0` at `0x0027826B` and the menu itself after building a panel (`0x0027A66B`). The panel `0x00276D30` picks its picture cell by it and draws none above 5 (`0x0027735B`). |
+| `+0x61E0` | `i16` | memberType | the type (`+0x60` of the party status record, 0-5) of the member message 38 names, from `0x00272EE0` (`0x0027A91A`); -1 when the message has no second argument (`0x0027A928`) or `0x00254560`(3) answers non-zero (`0x0027A8F3`). Senders: `0x002778C0` at `0x0027826B` and the menu itself after building a panel (`0x0027A66B`). The panel `0x00276D30` picks its picture cell by it and draws no picture above 5 (`0x0027735B`). |
 | `+0x61E2` | `i8` | markListKind | the target list kind whose tab to mark, from message 50 with `+0x61CC` bit `0x1000` (`0x0027A80A`), sent by `0x002778C0` at `0x00279AAD` with its list kind; the next tick passes it to `0x00276830` when the tab strip is opening or open (`0x0027A29B`). |
 | `+0x61E3` | `i8` | tabStep | the last tab step: message 51 stores it (`0x0027A81C`), sent by `0x002778C0` with the L1 or R1 step from `0x0027B430` (`0x00277F24`) and with -1 (`0x00278EB8`, constant `0x00915BD0`); the tick that marks a tab nudges arrow 7 for a positive step and arrow 6 for a negative one (`0x0027A2AA`, `0x0027A2B5`, `0x0027A2C1`) and sets it to 0 (`0x0027A2D2`); building the strip sets it to 0 (`0x0027A184`). |
 | `+0x61E4` | `u32` | tabMask | the target tabs the chosen action allows (bits `0x2`, `0x4`, `0x100`, `0x10` for tabs 0-3): message 52 stores it (`0x0027A9A2`), sent by `0x002778C0` (`0x0027849A`-`0x002784F8`) with 7 for any list but kind 11 and otherwise a mask from the row's target bits; read for the tab strip's requested mask (`0x0027A166`) and each new panel's `+0x3000` (`0x0027A509`). |

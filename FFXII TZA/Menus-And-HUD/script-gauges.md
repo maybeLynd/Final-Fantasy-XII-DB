@@ -23,7 +23,7 @@ The verb `initgauge` (`0x0034DC70`) passes its kind to `0x003E9020`, which close
 |---|---|---|
 | 1 | 1 | timer, procedure `0x004079A0`, layout `0x0051EDC0(1)` |
 | 2 | 2 | timer, procedure `0x004079A0`, layout `0x0051EDC0(2)` |
-| 3 | 4 | none |
+| 3 | 4 | no child |
 | other | 0 | counter, procedure `0x00407590`, layout `0x0051EDC0(0)` |
 
 `0x00408300` creates the gauge window `0x00406E80` (0xE8 bytes) only while `0x02B62D80` is null. On creation the
@@ -104,7 +104,7 @@ The hundredths are `(value mod 60) x 100 / 60`.
 
 `0x004083E0` takes the child of `[0x02B62D80]` when its mode is 1 and then acts only when that is null: it reads
 the type byte from the absolute address `0xDC` (`0x0040841E`) and would store 0 or the maximum at `0xE4`. With a
-timer open the verb therefore changes nothing, and with none open it reads unmapped memory. The shipped US
+timer open the verb therefore changes nothing, and with no timer open it reads unmapped memory. The shipped US
 scripts never call it (`us_calls` 0 in the [verb table](../Scripts-And-Script-Commands/verb-table.md)).
 
 `0x00407150(window, on)`, reached through `0x004088A0`, `0x004088B0` and `0x00408190`, is the working reset: on a
@@ -208,7 +208,7 @@ The gauge window is the `0xE8`-byte widget at `0x02B62D80` with procedure `0x004
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `+0x00` | `u8[192]` | header | the widget header, written by the constructor `0x002465F0` (Widgets, The header); procedure `0x00406E80` |
-| `+0xC0` | `void*` | gauge | the gauge child the construct message builds for the creation argument (`0x00406FD3`-`0x00407107`): type 0 the `0x278`-byte counter with procedure `0x00407590`, types 1 and 2 the `0x1F8`-byte gauge with procedure `0x004079A0`, any other type none (0 from `0x00406FB8`). Every gauge verb reaches the child through it (`0x00408190`-`0x00408AAC`: `0x004081A8`, `0x00408210`, `0x0040825C`, `0x0040828C`, `0x004082DC`, `0x00408379`, `0x004083EC`, `0x0040846D`, `0x004084DC`, `0x0040850A`, `0x0040853D`, `0x0040857D`, `0x004085BE`, `0x00408661`, `0x00408719`, `0x0040879A`, `0x004087F3`, `0x0040884C`, `0x00408873`, `0x004088DF`, `0x00408981`, `0x00408A3D`, `0x00408AAC`), and so do `0x00407150` (`0x0040717C`) and the tick (`0x00406F2D`) |
+| `+0xC0` | `void*` | gauge | the gauge child the construct message builds for the creation argument (`0x00406FD3`-`0x00407107`): type 0 the `0x278`-byte counter with procedure `0x00407590`, types 1 and 2 the `0x1F8`-byte gauge with procedure `0x004079A0`, any other type no child (0 from `0x00406FB8`). Every gauge verb reaches the child through it (`0x00408190`-`0x00408AAC`: `0x004081A8`, `0x00408210`, `0x0040825C`, `0x0040828C`, `0x004082DC`, `0x00408379`, `0x004083EC`, `0x0040846D`, `0x004084DC`, `0x0040850A`, `0x0040853D`, `0x0040857D`, `0x004085BE`, `0x00408661`, `0x00408719`, `0x0040879A`, `0x004087F3`, `0x0040884C`, `0x00408873`, `0x004088DF`, `0x00408981`, `0x00408A3D`, `0x00408AAC`), and so do `0x00407150` (`0x0040717C`) and the tick (`0x00406F2D`) |
 | `+0xC8` | `u32` | flags | bit `0x1`: tested by the tick, which with it set runs `0x00408200` when the child is not open or is in run state 1 or 4 (`0x00406F20`-`0x00406F67`); no instruction sets it. Bit `0x2`: the gauges are off, set and cleared by `0x00407150` (`0x0040715D`-`0x0040718C`); every verb does nothing while it is set (`0x00408372`, `0x00408410`, `0x0040845F`, `0x004084CE`, `0x004084FC`, `0x0040852F`, `0x0040856F`, `0x004085E5`, `0x00408688`, `0x00408740`, `0x0040878C`, `0x004087EC`, `0x0040883E`, `0x0040886C`, `0x00408903`, `0x004089A8`, `0x00408A2F`) and so do the pause and timer stubs. Bit `0x4`: the timer is stopped, set by stopgaugetimer `0x004083B0` (`0x004083C7`) and by `0x00407F90` for its mode-2 child (`0x00408069`), cleared by `0x00408AD0` (`0x00408AE7`). Bit `0x8`: the script pause mask, set by `0x00404D70` (`0x00404D87`) and cleared by `0x00404DC0` (`0x00404DDA`). The counter steps its ramp only while bits `0x4` and `0x8` are clear (`0x0040762B`, `0x00407A35`). 0 at construction (`0x00406FCD`) |
 | `+0xCC` | `u8[4]` | pad0CC | read and written by no function; nothing fixes its width |
 | `+0xD0` | `void*` | layoutRecord | the gauge's layout record `0x0051EDC0`(0), (1) or (2) by type (`0x00407018`), 0 for the other types (`0x00406FBF`), after which the construct message reads `+0x28` through it (`0x0040701F`); its byte `+0x24` is the picture count and `+0x28` the picture list (`0x00407027`-`0x00407035`) |
@@ -234,7 +234,7 @@ the gauge as it was.
 
 | Global | Type | Start | Meaning | Set by | Read by |
 |---|---|---|---|---|---|
-| `0x02B5D091` | `u8` | 0 | the kind `initgauge` was given, its one argument (`0x0034DC79`-`0x0034DC88`), stored before the kind is turned into the type | `0x003E9020` (`0x003E903D`) | none (Project notes) |
+| `0x02B5D091` | `u8` | 0 | the kind `initgauge` was given, its one argument (`0x0034DC79`-`0x0034DC88`), stored before the kind is turned into the type | `0x003E9020` (`0x003E903D`) | no reader (Project notes) |
 | `0x02B5D09C` | `u32` | 0 | colour entry 1, the gauge's second colour (`+0xFC`, `0x004087B6`): green 0x80, blue 0x80, alpha 0x80 at every open | `0x003E9020`, `0x80808000` (`0x003E9054`); `0x003E9120` for `i` = 1 (`0x003E9160`) | `0x003E9120` (`0x003E9171`) |
 | `0x02B5D0A0` | `u32` | 0 | colour entry 2, the gauge's third colour (`+0x100`, `0x004087C2`): red 0x80, green 0x80, alpha 0x80 at every open | `0x003E9020`, `0x80008080` (`0x003E905E`); `0x003E9120` for `i` = 2 (`0x003E9160`) | `0x003E9120` (`0x003E916A`) |
 

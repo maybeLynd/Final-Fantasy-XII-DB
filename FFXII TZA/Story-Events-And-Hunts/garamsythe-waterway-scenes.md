@@ -56,7 +56,7 @@ changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
   joins the party as a guest!", which the game fills with Amalia.
 - `grm_c0100` and `grm_c0101` (Southern Sluiceway, field 326) and `grm_f0100` and `grm_f0101` (No. 1 Cloaca) are
   loaded in pairs when the fight begins, and `pos_z0000` follows each fight. They hold no text of their own:
-  `grm_f0101` holds one empty entry, the others none.
+  `grm_f0101` holds one empty entry, the others no entry.
 - `grm_f0101` holds a switch on the current field (`nowmap`) that gives the Esper of that field when the party does
   not hold it; in No. 1 Cloaca (field 342) that is Cúchulainn (`0xC016`, [Quickening and Esper
   list](../Battle-Actions/quickening-and-esper-list.md)).
@@ -100,6 +100,7 @@ made by the scene script itself comes first.
 | `flags_set` | story flags set by the scene or by its loading function after the load, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | story counter values written by the scene or by its loading function after the load, with the first sentence of each explanation on [story counter values](story-counter-values.md) |
 | `next` | the scene or map that follows: a later scene load or a `mapjump` target with its field id; `-` when the loading function does neither |
+| `plays_when` | when the scene plays, in game terms: where, and what the player does (entering the map, talking to someone, touching a spot, winning a battle); the story counter values it plays at, named from [story counter values](story-counter-values.md), with the cases of its switch that come first applied (a switch starts at the first case that matches); every other test on the way to the loading step in what the game holds; and the listing lines it rests on (a step table's line) |
 
 ## Related
 

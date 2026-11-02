@@ -84,7 +84,7 @@ Besides the script verbs:
   `0x17C` `shapewin` (`0x0033FA18`) and the developer verb `0x2043` `debug_mesask_43` (`0x0050EB67`).
 - **Name readers.** `0x00263990`, `0x002639E0` and two map-screen label readers use the Bank2048 bit to pick the second
   name of the pair ([NPC names](../Characters-And-Objects/npc-names.md)).
-- **Chests.** A chest record's byte `+0x09` is its flag, `0xFF` for none. `setuptreasure` `0x2BE` does not place a
+- **Chests.** A chest record's byte `+0x09` is its flag, `0xFF` for no flag. `setuptreasure` `0x2BE` does not place a
   chest whose flag is set (`0x002FAEE2`-`0x002FAEF0`), and opening it, family-3 verb `0x37`, sets the flag before the
   contents are rolled (`0x002FAFEA`-`0x002FAFFD`). A chest with `0xFF` is gated at setup by story flag 255.
 - **Traps.** A trap record's byte `+0x04` is its flag. Arming skips a trap whose flag is set (`0x002FA7E8`-`0x002FA7FA`),

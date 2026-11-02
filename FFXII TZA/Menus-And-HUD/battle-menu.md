@@ -46,7 +46,7 @@ The list widget keeps a chain of callback records `{fn*, argument, previous, nex
 
 | Kind | List | Title |
 |---:|---|---|
-| `1` | top commands, list 6 | none |
+| `1` | top commands, list 6 | no title |
 | `2` | Magicks & Technicks, list 8 | "Magicks & Technicks" |
 | `3` | Mist, list 9 | "Mist" |
 | `4` | items, list `0xB` | "Items" |
@@ -82,39 +82,39 @@ code starts from an empty list: count `+0x40` = 0 and default entry `+0x44` = -1
 
 | Code | List | Rows from | Stops at |
 |---:|---|---|---|
-| `1` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
-| `2` | no call in the exe passes this code | none: `0x0031FB63` returns -1, as for a code above 35 | - |
-| `3` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
-| `4` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
-| `5` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `1` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
+| `2` | no call in the exe passes this code | no rows: `0x0031FB63` returns -1, as for a code above 35 | - |
+| `3` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
+| `4` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
+| `5` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
 | `6` | the top commands, menu kind 1 (`0x0027E0A6`), and the label widths `0x00273E30` (`0x002742AC`) | `0x00D10650`, or `0x00D10660` while bit `0x800` of `[0x02EBF190] + 4` is set (`0x0031EBCC`-`0x0031EBE8`) | 6 rows (`0x0031EBEC`) |
 | `7` | eight commands: command 14 (shipped name "NOT USED cancellation"), Attack, command 4 ("NOT USED concentration"), Magicks & Technicks, Mist, Dismiss, Gambits, Items; no call in the exe passes this code | `0x00D10670` (`0x0031EBB8`) | 8 rows (`0x0031EBBF`) |
 | `8` | Magicks & Technicks, menu kind 2 (`0x0027E0EE`), and `0x00273E30` (`0x0027438C`) | `0x00D10680` (`0x0031EBAF`) | 6 rows (`0x0031EBEC`) |
 | `9` | Mist, menu kind 3 (`0x0027E0CA`), and `0x00273E30` (`0x002742AC`) | `0x00D1065C` (`0x0031EB9B`) | 2 rows (`0x0031EBA2`) |
-| `0xA` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0xA` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
 | `0xB` | an action list: menu kinds 4-8, 10-15 and 20, and `0x00273E30` (`0x002744F3`) | the actions whose kind byte `+0x1E` is the block's `+0x14` and, for magicks, whose school `+0x2C & 7` is `+0x18` (`0x0031EF77`-`0x0031EF8D`), ids 0 to `0x115` (`0x0031EF63`); for items, technicks and magicks `0x00250270` then puts the rows in the order of inventory list 0, 8 or 9 ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md); `0x0025029D`-`0x002502C2`) | 512 (`0x0031EE94`) |
 | `0xC` | a target list of allies and foes ([Target selection](../Battle-Actions/target-selection.md)); no call in the exe passes this code | the battle unit slots through `0x00322A80` | 512 (`0x0031F370`) |
 | `0xD` | the ally target list, menu kind 17, and the tab check at `0x0027C811` | the battle unit slots through `0x00322A80` | 512 (`0x0031F370`) |
 | `0xE` | the allies on screen; no call in the exe passes this code | the battle unit slots through `0x00322A80` | 512 (`0x0031F370`) |
 | `0xF` | the members at member-map positions 4-8, menu kind 18, and the tab checks `0x0027B090` (`0x0027B0C6`) and `0x0027B6C0` (`0x0027B6FE`) | the bytes at `[0x02EBF190] + 0x5A7E` (`0x0031F473`) | positions 4-8 (`0x0031F435`, `0x0031F522`); 512 (`0x0031F441`) |
 | `0x10` | the foe target list, menu kind 16 | the battle unit slots through `0x00322A80` | 512 (`0x0031F370`) |
-| `0x11` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x11` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
 | `0x12` | the living enemy-side units (stats `+0x05` not 0), which `0x0031E880` asks for `0x003B8260` (`0x003B82B6`, `0x003B82D7`), the handler of action timeline opcodes 50 and 51 (`0x003B9559`, `0x003B956F`) | the battle unit slots (`0x0031F714`) | 512 (`0x0031F747`) |
 | `0x13` | the living enemy-side units on screen (`0x0031F7BB`); no call in the exe passes this code | the battle unit slots | 512 (`0x0031F747`) |
 | `0x14` | the living party-side units (stats `+0x05` = 0), for the party list (`0x0035BF4B`, [Party list](party-list.md)) | the battle unit slots | 512 (`0x0031F747`) |
 | `0x15` | the living party-side units on screen (`0x0031F7BB`); no call in the exe passes this code | the battle unit slots | 512 (`0x0031F747`) |
-| `0x16` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
-| `0x17` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
-| `0x18` | the list that action `0x9B` opens, menu kind 9 (`0x0027E2D8`): the builder flags the `0x9B` row with `0x20` (`0x0031F17F`-`0x0031F187`), and the classifier answers 9 for such a row (`0x0027C5AA`); a confirmed row issues action `0x9C`, or `0x9D` for the member's current entry and for Remove (`0x0027C613`-`0x0027C665`) | none in the shipped executable: the builder's arm returns the empty list, no instruction stores to the page's row cells or count but the builder's, and the action that opens the list, `0x9B` (with `0x9C` and `0x9D` it issues), is a Reserve row of the action table ([Action list](../Battle-Actions/action-list.md)) | - |
+| `0x16` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
+| `0x17` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
+| `0x18` | the list that action `0x9B` opens, menu kind 9 (`0x0027E2D8`): the builder flags the `0x9B` row with `0x20` (`0x0031F17F`-`0x0031F187`), and the classifier answers 9 for such a row (`0x0027C5AA`); a confirmed row issues action `0x9C`, or `0x9D` for the member's current entry and for Remove (`0x0027C613`-`0x0027C665`) | no rows in the shipped executable: the builder's arm returns the empty list, no instruction stores to the page's row cells or count but the builder's, and the action that opens the list, `0x9B` (with `0x9C` and `0x9D` it issues), is a Reserve row of the action table ([Action list](../Battle-Actions/action-list.md)) | - |
 | `0x19` | the actions of one kind that a member owns: the Party Menu's list panel, magicks (`0x002C3960`), and its four-pane panel, technicks, Quickenings and summons (`0x002C47FF`, `0x002C4972`, `0x002C4E79`) | the id list at `0x0208CD20` for the block's `+0x14`, or at `0x0208CE70` for school `+0x18` ([Action definition row](../Battle-Actions/action-definition-row.md); `0x0031F8ED`-`0x0031F920`) | the list's own count (`0x0031F976`); this arm has no 512 test |
 | `0x1A` | the actors that `0x0046B4C0` lists, for the party list (`0x0035BCC3`) | actor managers 0-2 (`0x0031F5CB`, `0x0031F6FE`) | 512 (`0x0031F620`) |
 | `0x1B` | a party member's foe list: the builder runs it in place of `0xC` and `0x10` (`0x0031F305`) | `0x0046B870`, actor managers 0-2 | 512 (`0x0031F620`) |
 | `0x1C` | the target list of menu kind 19, and the tab checks at `0x002769F6`, `0x0027C7D8` and `0x0027C9CE` | `0x0046B690`, actor managers 0-2 | 512 (`0x0031F620`) |
 | `0x1D` | the licenses a member owns, for the Party Menu's four-pane panel (`0x002C4B3B`) | bit *n* of the member record's `+0x194` for license node *n* ([Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md); `0x0031F850`-`0x0031F862`) | the node count `[0x02EBF038] + 4` (`0x0031F81F`); 512 (`0x0031F82D`) |
-| `0x1E` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
-| `0x1F` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
-| `0x20` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
-| `0x21` | no call in the exe passes this code | none: `0x0031F70C` returns the empty list | - |
+| `0x1E` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
+| `0x1F` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
+| `0x20` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
+| `0x21` | no call in the exe passes this code | no rows: `0x0031F70C` returns the empty list | - |
 | `0x22` | a page of the gambit actions ([Gambits screen](gambit-screen.md); `0x0056A930`, `0x0056AF65`) | the grid at `0x0208D308`, page `+0x3C` below `[0x0208D300]` (`0x0031F9AF`-`0x0031F9BF`) | the page width `[0x0208D301]` (`0x0031F9C5`); 512 (`0x0031F9E0`); the first id that `0x00322C50(0x14)` refuses (`0x0031FA10`) |
 | `0x23` | a page of the gambit conditions (`0x0056B1D4`, `0x0056BD0F`) | the grid at `0x0208D318`, page `+0x3C` below `[0x0208D310]` (`0x0031FAA6`-`0x0031FAB2`) | the page width `[0x0208D311]` (`0x0031FAB8`); 512 (`0x0031FAD0`); the first id that `0x00322C50(0xB)` refuses (`0x0031FB00`) |
 
@@ -172,8 +172,8 @@ The tab strip `0x0027C870` shows one tab per target list the action allows.
 
 1. Mask bits `0x1`, `0x2`, `0x8` and `0x4` enable tabs 0 to 3, the strip's child nodes 2 to 5 (tables `0x00915BE0` and `0x00915BF0`,
    `0x00276A19`-`0x00276A60`).
-2. Bit `0x8` is dropped when target list `0xF` has no row (`0x0027B090`), and bit `0x4` when list `0x1C` has none left after
-   filtering (`0x0027AF80`).
+2. Bit `0x8` is dropped when target list `0xF` has no row (`0x0027B090`), and bit `0x4` when list `0x1C` has no row left
+   after filtering (`0x0027AF80`).
 3. A disabled tab's four corner alphas are set to 0; an enabled tab is placed at `0x0027B290(tabs, mask, i)` and fades
    in by `0x18` per call.
 4. The strip is centred from its total width `0x0027B120`, and its side nodes 6 and 7 are shown only when two or more

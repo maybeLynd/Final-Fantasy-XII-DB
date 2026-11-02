@@ -26,7 +26,7 @@ address	name	band	submitted_by_a_post_effect_worker
 0x02D36F60	AddToIrradiance	phyre-post-effect	
 0x02D36F80	AddToInscatter	phyre-post-effect	
 0x02D36FA0	RenderAtmosphere	phyre-post-effect	yes
-0x02D36FC0	RenderTextures	phyre-post-effect	
+0x02D36FC0	RenderTextures	phyre-post-effect	yes
 0x02D36FE0	ResetTextures	phyre-post-effect	
 0x02D373C0	RenderPointLight	phyre-post-effect	yes
 0x02D373E0	RenderSpotLight	phyre-post-effect	yes
@@ -39,19 +39,19 @@ address	name	band	submitted_by_a_post_effect_worker
 0x02D375E0	RenderDoFVertical	phyre-post-effect	yes
 0x02D37600	RenderDoFComposite	phyre-post-effect	yes
 0x02D37680	RenderCameraMotionBlur	phyre-post-effect	yes
-0x02D376A0	RenderCameraMotionBlurInverted	phyre-post-effect	
+0x02D376A0	RenderCameraMotionBlurInverted	phyre-post-effect	yes
 0x02D377E0	RenderGaussianBlurX	phyre-post-effect	yes
 0x02D37800	RenderGaussianBlurY	phyre-post-effect	yes
 0x02D37820	RenderGaussianBlurYComposite	phyre-post-effect	yes
-0x02D37840	RenderGaussianBlurYCompositeCombine	phyre-post-effect	
-0x02D37860	RenderFXAAInverted	phyre-post-effect	
-0x02D37A60	CelInverted	phyre-post-effect	
+0x02D37840	RenderGaussianBlurYCompositeCombine	phyre-post-effect	yes
+0x02D37860	RenderFXAAInverted	phyre-post-effect	yes
+0x02D37A60	CelInverted	phyre-post-effect	yes
 0x02D37B40	ScreenSpaceReflectionPrePass	phyre-post-effect	yes
 0x02D37B60	DownsampleScreenSpaceReflectionDepth	phyre-post-effect	yes
 0x02D37B80	CompositeScreenSpaceReflection	phyre-post-effect	yes
-0x02D37FC0	RenderAtmosphereInverted	phyre-post-effect	
+0x02D37FC0	RenderAtmosphereInverted	phyre-post-effect	yes
 0x02D37FE0	MaterialPostEffect	phyre-post-effect	yes
-0x02D38000	MaterialPostEffectInverted	phyre-post-effect	
+0x02D38000	MaterialPostEffectInverted	phyre-post-effect	yes
 0x02E5BEA8	RenderText_AlphaBlend	text	
 0x02E5BEC8	RenderText_AlphaTest	text	
 0x02E5BEE8	RenderText_HardEdges	text	

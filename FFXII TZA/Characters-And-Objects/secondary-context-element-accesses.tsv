@@ -1,8 +1,101 @@
 function	name	site	disp	kind	instruction	route	note
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E27B	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E2C4	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E2F8	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E335	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002637D0	FUN_002637d0	0x002637E2	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x00263E80	FUN_00263e80	0x00263E8E	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x00263EB0	FUN_00263eb0	0x00263EC5	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x00264510	FUN_00264510	0x00264540	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265B85	0x0	w	mov dword ptr [rcx], r8d	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BE7	0x0	w	mov dword ptr [rcx + 0x30], r8d	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C48	0x0	w	mov dword ptr [rcx + 0x60], r8d	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CB9	0x0	w	mov dword ptr [rcx], r8d	embed SecondaryContext+0x0	
+0x00269D80	FUN_00269d80	0x00269D9C	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x00269F60	FUN_00269f60	0x00269F72	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x00269F60	FUN_00269f60	0x00269F77	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x0026A3B0	FUN_0026a3b0	0x0026A3CA	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x0026A490	FUN_0026a490	0x0026A4B1	0x0	r	mov esi, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E26F0	FUN_002e26f0	0x002E275B	0x0	r	cmp dword ptr [rsi], -1	embed SecondaryContext+0x0	
+0x002E26F0	FUN_002e26f0	0x002E2764	0x0	r	cmp dword ptr [rdi], -1	embed SecondaryContext+0x0	
+0x002E26F0	FUN_002e26f0	0x002E2859	0x0	r	movzx edx, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E26F0	FUN_002e26f0	0x002E2860	0x0	r	movzx ecx, word ptr [rdi]	embed SecondaryContext+0x0	
+0x002E26F0	FUN_002e26f0	0x002E2887	0x0	r	movzx r8d, word ptr [rdi]	embed SecondaryContext+0x0	
+0x002E26F0	FUN_002e26f0	0x002E288F	0x0	r	movzx ecx, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E29AC	0x0	w	mov dword ptr [rsi], r14d	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E29BE	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E29C3	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E29EF	0x0	r	movzx eax, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2A1C	0x0	r	movzx eax, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2A57	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2A5C	0x0	r	movzx eax, word ptr [rcx]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2AA6	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2AAB	0x0	r	movzx eax, word ptr [rcx]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2AFD	0x0	r	movzx eax, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2B59	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2B5E	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2BBD	0x0	r	movzx eax, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2BEB	0x0	r	movzx eax, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2C9A	0x0	r	mov eax, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2CC7	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2D07	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2D0C	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2D5B	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2D60	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2DE1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2DE6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2E6D	0x0	r	mov esi, dword ptr [rsi]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2FCA	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2FCF	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E3088	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E308D	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E30D0	FUN_002e30d0	0x002E30E9	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E318E	0x0	addr	lea rbx, [rsi + 0x90]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E31A0	0x0	r	cmp dword ptr [rsi], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E31A9	0x0	r	movzx eax, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E320F	0x0	r	cmp dword ptr [rsi], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E3212	0x0	addr	lea rbx, [rsi + 0x90]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E3220	0x0	r	movzx eax, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E326A	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E326F	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E3285	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E328A	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E32D0	0x0	addr	lea rbx, [rsi + 0x60]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E32D6	0x0	addr	lea rbx, [rsi + 0x30]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E3388	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E338D	0x0	r	movzx eax, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E33EB	0x0	r	movzx ecx, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E3456	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E3463	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E347F	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E349D	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E34A8	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E34C4	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E34CF	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E35E4	0x0	addr	lea rsi, [r14 + 0x30]	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E35F7	0x0	addr	lea r12, [r14 + 0x90]	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E3600	0x0	addr	lea r15, [r14 + 0x60]	embed SecondaryContext+0x0	
-0x002E35B0	FUN_002e35b0	0x002E3630	0x0	r	mov rax, qword ptr [r14 + 0xc0]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3640	0x0	addr	lea rbx, [rax + 0xc0]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3650	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E3655	0x0	r	movzx ecx, word ptr [rbx]	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E3661	0x0	r	mov ecx, dword ptr [rbx]	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E36CA	0x0	w	mov qword ptr [rbx], 0xffffffffffffffff	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E36DA	0x0	w	mov dword ptr [rbx], 0xffffffff	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E3719	0x0	r	cmp dword ptr [rsi], -1	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3722	0x0	r	movzx ecx, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E372E	0x0	r	mov ecx, dword ptr [rsi]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E379A	0x0	w	mov qword ptr [rsi], 0xffffffffffffffff	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37AA	0x0	w	mov dword ptr [rsi], 0xffffffff	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37CC	0x0	r	cmp dword ptr [r15], -1	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37D2	0x0	r	movzx ecx, word ptr [r15]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37E0	0x0	r	mov ecx, dword ptr [r15]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E384A	0x0	w	mov qword ptr [r15], 0xffffffffffffffff	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E385B	0x0	w	mov dword ptr [r15], 0xffffffff	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3884	0x0	r	cmp dword ptr [r12], -1	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E388F	0x0	r	movzx ecx, word ptr [r12]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E389F	0x0	r	mov ecx, dword ptr [r12]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E390C	0x0	w	mov qword ptr [r12], 0xffffffffffffffff	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E391F	0x0	w	mov dword ptr [r12], 0xffffffff	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E394D	0x0	r	movsxd rbx, dword ptr [r14]	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E3A0A	0x0	w	mov qword ptr [r14], 0xffffffffffffffff	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E3A20	0x0	w	mov dword ptr [r14], 0xffffffff	embed SecondaryContext+0x0	
@@ -12,18 +105,38 @@ function	name	site	disp	kind	instruction	route	note
 0x002E4150	FUN_002e4150	0x002E420F	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E4150	FUN_002e4150	0x002E427B	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
 0x002E4150	FUN_002e4150	0x002E428B	0x0	r	movzx ecx, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002E42D0	FUN_002e42d0	0x002E42E9	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E42D0	FUN_002e42d0	0x002E42EE	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E4380	Movement_ComputeDeltaFromHeadingSpeed	0x002E44F8	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E4380	Movement_ComputeDeltaFromHeadingSpeed	0x002E44FD	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E4A40	FUN_002e4a40	0x002E4A7B	0x0	r	cmp dword ptr [rsi], -1	embed SecondaryContext+0x0	
 0x002E4A40	FUN_002e4a40	0x002E4B18	0x0	addr	lea r14, [rax + 0x30]	embed SecondaryContext+0x0	
 0x002E4A40	FUN_002e4a40	0x002E4B30	0x0	addr	lea rdi, [rax + 0x90]	embed SecondaryContext+0x0	
+0x002E4A40	FUN_002e4a40	0x002E4B37	0x0	r	movzx ecx, word ptr [rsi]	embed SecondaryContext+0x0	
+0x002E4A40	FUN_002e4a40	0x002E4B49	0x0	r	cmp dword ptr [r14], -1	embed SecondaryContext+0x0	
+0x002E4A40	FUN_002e4a40	0x002E4B4F	0x0	r	movzx ecx, word ptr [r14]	embed SecondaryContext+0x0	
+0x002E4A40	FUN_002e4a40	0x002E4B62	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
+0x002E4A40	FUN_002e4a40	0x002E4B6C	0x0	r	movzx ecx, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002E4A40	FUN_002e4a40	0x002E4B7E	0x0	r	cmp dword ptr [rdi], -1	embed SecondaryContext+0x0	
 0x002E4A40	FUN_002e4a40	0x002E4B83	0x0	r	movzx ecx, word ptr [rdi]	embed SecondaryContext+0x0	
+0x002E4A40	FUN_002e4a40	0x002E4BB5	0x0	addr	lea rbx, [rax + 0x60]	embed SecondaryContext+0x0	
+0x002E4F40	FUN_002e4f40	0x002E4F63	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E4F40	FUN_002e4f40	0x002E4F68	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E5180	FUN_002e5180	0x002E52FE	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E5180	FUN_002e5180	0x002E5303	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E5750	FUN_002e5750	0x002E59BA	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E5750	FUN_002e5750	0x002E59DD	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E5B00	FUN_002e5b00	0x002E5B11	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E5C10	Movement_PublishHeadingState	0x002E5C21	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E5C10	Movement_PublishHeadingState	0x002E5C26	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E5E10	FUN_002e5e10	0x002E5F3A	0x0	r	cmp dword ptr [rdi], -1	embed SecondaryContext+0x0	
+0x002E5E10	FUN_002e5e10	0x002E5F3F	0x0	r	movzx ecx, word ptr [rdi]	embed SecondaryContext+0x0	
 0x002E6000	FUN_002e6000	0x002E601D	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
 0x002E6000	FUN_002e6000	0x002E605D	0x0	r	movzx ecx, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002E6420	FUN_002e6420	0x002E647B	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E6420	FUN_002e6420	0x002E6480	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E6B10	FUN_002e6b10	0x002E6B2A	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E6B10	FUN_002e6b10	0x002E6B3B	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6C03	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6C08	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6CA9	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
@@ -31,6 +144,20 @@ function	name	site	disp	kind	instruction	route	note
 0x002E6BD0	FUN_002e6bd0	0x002E6D13	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002E70E0	FUN_002e70e0	0x002E70FF	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
 0x002E70E0	FUN_002e70e0	0x002E710A	0x0	r	movzx eax, word ptr [rcx]	embed SecondaryContext+0x0	
+0x002E7150	FUN_002e7150	0x002E7168	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E7150	FUN_002e7150	0x002E716D	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E7330	FUN_002e7330	0x002E7341	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E7330	FUN_002e7330	0x002E7346	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E73C0	FUN_002e73c0	0x002E73D1	0x0	r	cmp dword ptr [rax], 0	embed SecondaryContext+0x0	
+0x002E73C0	FUN_002e73c0	0x002E73D6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E7450	FUN_002e7450	0x002E7465	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E7450	FUN_002e7450	0x002E746A	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E74C0	FUN_002e74c0	0x002E74D5	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E74C0	FUN_002e74c0	0x002E74DA	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E7530	FUN_002e7530	0x002E7545	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E7530	FUN_002e7530	0x002E754A	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E75A0	FUN_002e75a0	0x002E75B1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E75A0	FUN_002e75a0	0x002E75B6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E7600	FUN_002e7600	0x002E7611	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E7600	FUN_002e7600	0x002E7616	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E7650	FUN_002e7650	0x002E7672	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
@@ -43,6 +170,22 @@ function	name	site	disp	kind	instruction	route	note
 0x002E77F0	FUN_002e77f0	0x002E780A	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E79A0	FUN_002e79a0	0x002E79B5	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E79A0	FUN_002e79a0	0x002E79BA	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E7A80	FUN_002e7a80	0x002E7AB0	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
+0x002E7A80	FUN_002e7a80	0x002E7ABA	0x0	r	mov r8d, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E7A80	FUN_002e7a80	0x002E7AC3	0x0	r	movzx ecx, word ptr [rcx]	embed SecondaryContext+0x0	
+0x002E7A80	FUN_002e7a80	0x002E7ADE	0x0	r	mov r8d, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E7B40	FUN_002e7b40	0x002E7B62	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E7B40	FUN_002e7b40	0x002E7B67	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E7B40	FUN_002e7b40	0x002E7BB0	0x0	r	mov r8d, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E7C70	FUN_002e7c70	0x002E7C85	0x0	r	mov r8d, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E7CE0	FUN_002e7ce0	0x002E7D07	0x0	addr	lea rdi, [rbx + 0x90]	embed SecondaryContext+0x0	
+0x002E7CE0	FUN_002e7ce0	0x002E7D1B	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
+0x002E7CE0	FUN_002e7ce0	0x002E7D24	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002E7CE0	FUN_002e7ce0	0x002E7D69	0x0	r	movsxd rax, dword ptr [rbx]	embed SecondaryContext+0x0	
+0x002E7CE0	FUN_002e7ce0	0x002E7DA2	0x0	r	cmp dword ptr [rdi], -1	embed SecondaryContext+0x0	
+0x002E7CE0	FUN_002e7ce0	0x002E7DA7	0x0	r	movzx ecx, word ptr [rdi]	embed SecondaryContext+0x0	
+0x002E7DD0	FUN_002e7dd0	0x002E7DE1	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E7E10	FUN_002e7e10	0x002E7E21	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
 0x002E7E50	FUN_002e7e50	0x002E7E61	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
 0x002E7E90	FUN_002e7e90	0x002E7EF0	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E7E90	FUN_002e7e90	0x002E7EF5	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
@@ -50,14 +193,69 @@ function	name	site	disp	kind	instruction	route	note
 0x002E7F70	FUN_002e7f70	0x002E7F8A	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E8000	FUN_002e8000	0x002E8011	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E8000	FUN_002e8000	0x002E8016	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E80B0	FUN_002e80b0	0x002E80C1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E80B0	FUN_002e80b0	0x002E80C6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8170	FUN_002e8170	0x002E8181	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8170	FUN_002e8170	0x002E8186	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8220	FUN_002e8220	0x002E8248	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
+0x002E8220	FUN_002e8220	0x002E824D	0x0	r	movzx eax, word ptr [rcx]	embed SecondaryContext+0x0	
+0x002E8290	FUN_002e8290	0x002E82A1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8290	FUN_002e8290	0x002E82A6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E82E0	FUN_002e82e0	0x002E82F1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E82E0	FUN_002e82e0	0x002E82F6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E83B0	FUN_002e83b0	0x002E83C1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E83B0	FUN_002e83b0	0x002E83C6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8400	FUN_002e8400	0x002E8411	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8400	FUN_002e8400	0x002E8416	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8450	FUN_002e8450	0x002E846E	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
+0x002E8450	FUN_002e8450	0x002E8473	0x0	r	movzx eax, word ptr [rcx]	embed SecondaryContext+0x0	
+0x002E84B0	FUN_002e84b0	0x002E84C4	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E84B0	FUN_002e84b0	0x002E84C9	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8570	FUN_002e8570	0x002E8581	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8570	FUN_002e8570	0x002E8586	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E85E0	FUN_002e85e0	0x002E85F1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E85E0	FUN_002e85e0	0x002E85FE	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8610	FUN_002e8610	0x002E862B	0x0	r	movsxd r9, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002E86B0	FUN_002e86b0	0x002E86C1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E86B0	FUN_002e86b0	0x002E86C6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8730	FUN_002e8730	0x002E874D	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8730	FUN_002e8730	0x002E8756	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8730	FUN_002e8730	0x002E87B0	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8730	FUN_002e8730	0x002E87B5	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E88A0	FUN_002e88a0	0x002E88B1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E88A0	FUN_002e88a0	0x002E88B6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8900	FUN_002e8900	0x002E8911	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8900	FUN_002e8900	0x002E8916	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8950	FUN_002e8950	0x002E8961	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8950	FUN_002e8950	0x002E8966	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E89B0	FUN_002e89b0	0x002E89C1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E89B0	FUN_002e89b0	0x002E89DA	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E8A70	FUN_002e8a70	0x002E8A81	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E8A70	FUN_002e8a70	0x002E8A86	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E8AC0	FUN_002e8ac0	0x002E8AD1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E8AC0	FUN_002e8ac0	0x002E8AD6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E8B10	FUN_002e8b10	0x002E8B21	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E8B10	FUN_002e8b10	0x002E8B26	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8B60	FUN_002e8b60	0x002E8B71	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8B60	FUN_002e8b60	0x002E8B76	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8B80	FUN_002e8b80	0x002E8B91	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8B80	FUN_002e8b80	0x002E8B9E	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8BB0	FUN_002e8bb0	0x002E8BC1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8BB0	FUN_002e8bb0	0x002E8BC6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8C10	FUN_002e8c10	0x002E8C21	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8C10	FUN_002e8c10	0x002E8C26	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E8C70	FUN_002e8c70	0x002E8C81	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8C70	FUN_002e8c70	0x002E8C86	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E8CE0	FUN_002e8ce0	0x002E8CFE	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
 0x002E8CE0	FUN_002e8ce0	0x002E8D07	0x0	r	movzx eax, word ptr [rcx]	embed SecondaryContext+0x0	
+0x002E8CE0	FUN_002e8ce0	0x002E8D4A	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
+0x002E8CE0	FUN_002e8ce0	0x002E8D59	0x0	r	movzx eax, word ptr [rcx]	embed SecondaryContext+0x0	
+0x002E8CE0	FUN_002e8ce0	0x002E8D90	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
+0x002E8CE0	FUN_002e8ce0	0x002E8D95	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002E8CE0	FUN_002e8ce0	0x002E8DCB	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
+0x002E8CE0	FUN_002e8ce0	0x002E8DD0	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002E8E20	FUN_002e8e20	0x002E8E41	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E8E20	FUN_002e8e20	0x002E8E56	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E8EE0	FUN_002e8ee0	0x002E8F22	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E8EE0	FUN_002e8ee0	0x002E8F27	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E8EE0	FUN_002e8ee0	0x002E8F7B	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
@@ -75,12 +273,21 @@ function	name	site	disp	kind	instruction	route	note
 0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E9129	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E9177	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E91B6	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E9232	0x0	r	cmp dword ptr [r14], -1	embed SecondaryContext+0x0	
+0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E9238	0x0	r	movzx eax, word ptr [r14]	embed SecondaryContext+0x0	
+0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E927B	0x0	r	cmp dword ptr [r12], -1	embed SecondaryContext+0x0	
+0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E9282	0x0	r	movzx eax, word ptr [r12]	embed SecondaryContext+0x0	
 0x002E92F0	FUN_002e92f0	0x002E9316	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E92F0	FUN_002e92f0	0x002E931B	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002E9560	FUN_002e9560	0x002E9571	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E9560	FUN_002e9560	0x002E9576	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E9630	FUN_002e9630	0x002E9641	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E9630	FUN_002e9630	0x002E9646	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E9660	FUN_002e9660	0x002E9677	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
+0x002E9660	FUN_002e9660	0x002E9690	0x0	r	movzx ecx, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002E9A90	FUN_002e9a90	0x002E9AAF	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002E9A90	FUN_002e9a90	0x002E9AB4	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002E9B10	FUN_002e9b10	0x002E9B29	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
 0x002E9B60	FUN_002e9b60	0x002E9B71	0x0	r	mov eax, dword ptr [rax]	embed SecondaryContext+0x0	
 0x002E9B80	FUN_002e9b80	0x002E9B9A	0x0	r	mov eax, dword ptr [rax]	embed SecondaryContext+0x0	
 0x002E9CA0	FUN_002e9ca0	0x002E9CB9	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
@@ -95,27 +302,57 @@ function	name	site	disp	kind	instruction	route	note
 0x002EA160	FUN_002ea160	0x002EA184	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002EA230	FUN_002ea230	0x002EA24A	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002EA230	FUN_002ea230	0x002EA24F	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002EA2A0	FUN_002ea2a0	0x002EA2B9	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EA2A0	FUN_002ea2a0	0x002EA2D6	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EA2A0	FUN_002ea2a0	0x002EA2DB	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002EA6A0	FUN_002ea6a0	0x002EA6B7	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EA780	FUN_002ea780	0x002EA79A	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EA780	FUN_002ea780	0x002EA79F	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002EA910	FUN_002ea910	0x002EA925	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EA910	FUN_002ea910	0x002EA92A	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002EA970	FUN_002ea970	0x002EA984	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002EA970	FUN_002ea970	0x002EA989	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002EA9D0	FUN_002ea9d0	0x002EA9F2	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002EABF0	FUN_002eabf0	0x002EAC08	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EABF0	FUN_002eabf0	0x002EAC25	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB0E8	0x0	r	cmp dword ptr [rdx], -1	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB114	0x0	r	movzx ecx, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB129	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB182	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB22E	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB2CE	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002EB4A0	FUN_002eb4a0	0x002EB4B1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EB4A0	FUN_002eb4a0	0x002EB4B6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002EB930	FUN_002eb930	0x002EB94E	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
 0x002EB930	FUN_002eb930	0x002EB953	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EB930	FUN_002eb930	0x002EB981	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002EBAD0	FUN_002ebad0	0x002EBAF4	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EBAD0	FUN_002ebad0	0x002EBAF9	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002EBAD0	FUN_002ebad0	0x002EBB38	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EBAD0	FUN_002ebad0	0x002EBB3D	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002EBFA0	FUN_002ebfa0	0x002EBFFC	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EC5D0	FUN_002ec5d0	0x002EC5E9	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EC5D0	FUN_002ec5d0	0x002EC5EE	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC6EF	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC749	0x0	r	movzx ecx, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC78E	0x0	r	movzx ecx, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC7A8	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC7DB	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC80E	0x0	r	movzx eax, word ptr [rbx]	embed SecondaryContext+0x0	
+0x002EC860	FUN_002ec860	0x002EC871	0x0	r	cmp dword ptr [rcx], -1	embed SecondaryContext+0x0	
+0x002EC8B0	FUN_002ec8b0	0x002EC8E3	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
+0x002EC940	FUN_002ec940	0x002EC951	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002EC970	FUN_002ec970	0x002EC9A3	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
+0x002ECA00	FUN_002eca00	0x002ECA11	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002ECC60	FUN_002ecc60	0x002ECC93	0x0	r	cmp dword ptr [rbx], -1	embed SecondaryContext+0x0	
 0x002ECCF0	FUN_002eccf0	0x002ECD01	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002ECE50	FUN_002ece50	0x002ECE61	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002ECE50	FUN_002ece50	0x002ECE66	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002ECE80	FUN_002ece80	0x002ECE91	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002ECE80	FUN_002ece80	0x002ECE96	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002ECF10	FUN_002ecf10	0x002ECF21	0x0	r	movsxd rax, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002ECF60	FUN_002ecf60	0x002ECF8E	0x0	r	mov edi, dword ptr [rax]	embed SecondaryContext+0x0	
+0x002ECFD0	FUN_002ecfd0	0x002ECFEA	0x0	r	mov edi, dword ptr [rax]	embed SecondaryContext+0x0	
 0x002ED020	FUN_002ed020	0x002ED031	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002ED020	FUN_002ed020	0x002ED036	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002ED040	FUN_002ed040	0x002ED055	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
@@ -124,54 +361,235 @@ function	name	site	disp	kind	instruction	route	note
 0x002ED0B0	FUN_002ed0b0	0x002ED0DB	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002ED180	FUN_002ed180	0x002ED19A	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002ED180	FUN_002ed180	0x002ED19F	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002ED1E0	FUN_002ed1e0	0x002ED1F1	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002ED1E0	FUN_002ed1e0	0x002ED1F6	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002ED200	FUN_002ed200	0x002ED211	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002ED200	FUN_002ed200	0x002ED216	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
 0x002ED2A0	CharacterRender_DispatchCombatRelationEvent	0x002ED2BF	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x002ED2A0	CharacterRender_DispatchCombatRelationEvent	0x002ED2C4	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002ED300	FUN_002ed300	0x002ED311	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002ED300	FUN_002ed300	0x002ED316	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x002ED320	FUN_002ed320	0x002ED331	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002ED320	FUN_002ed320	0x002ED33E	0x0	r	movzx ecx, word ptr [rax]	embed SecondaryContext+0x0	
+0x003460F0	FUN_003460f0	0x0034611C	0x0	r	cmp dword ptr [rsi], -1	embed SecondaryContext+0x0	
+0x00358F90	PartyFocus_ProcessActorControlPresentationState	0x00358FEF	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
 0x0035A720	FUN_0035a720	0x0035A762	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x0035A7A0	FUN_0035a7a0	0x0035A87C	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x0035A8D0	FUN_0035a8d0	0x0035A92F	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x003DE640	FUN_003de640	0x003DE69C	0x0	r	mov ecx, dword ptr [rax]	embed SecondaryContext+0x0	
+0x0046BE80	FUN_0046be80	0x0046BEF0	0x0	r	cmp dword ptr [rax], -1	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2AFA	0x4	w	mov dword ptr [rsi + 4], eax	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E345B	0x4	r	mov r8d, dword ptr [rax + 4]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E34A2	0x4	r	mov r8d, dword ptr [rax + 4]	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E34CB	0x4	r	mov r8d, dword ptr [rax + 4]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E367A	0x4	r	mov ecx, dword ptr [rbx + 4]	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E3747	0x4	r	mov ecx, dword ptr [rsi + 4]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37FC	0x4	r	mov ecx, dword ptr [r15 + 4]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E38BE	0x4	r	mov ecx, dword ptr [r12 + 4]	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E39B5	0x4	r	mov ecx, dword ptr [r14 + 4]	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6C5E	0x4	r	mov ecx, dword ptr [rbx + 4]	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6C68	0x4	r	mov ecx, dword ptr [rbx + 4]	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6C8F	0x4	r	mov ecx, dword ptr [rbx + 4]	embed SecondaryContext+0x0	
+0x002E96B0	FUN_002e96b0	0x002E96C1	0x4	r	mov eax, dword ptr [rax + 4]	embed SecondaryContext+0x0	
+0x003460F0	FUN_003460f0	0x00346138	0x4	r	mov ecx, dword ptr [rsi + 4]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BA9	0x8	w	mov qword ptr [rcx + 8], rdi	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BED	0x8	w	mov qword ptr [rcx + 0x38], rdi	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C55	0x8	w	mov qword ptr [rcx + 0x68], rdi	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CC5	0x8	w	mov qword ptr [rcx + 8], rdi	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2B00	0x8	w	mov qword ptr [rsi + 8], rbx	embed SecondaryContext+0x0	
+0x002E3110	FUN_002e3110	0x002E3140	0x8	r	cmp qword ptr [rsi + 8], 0	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E36E3	0x8	w	mov qword ptr [rbx + 8], rdi	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E37B3	0x8	w	mov qword ptr [rsi + 8], rdi	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3865	0x8	w	mov qword ptr [r15 + 8], rdi	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E392A	0x8	w	mov qword ptr [r12 + 8], rdi	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E3A2A	0x8	w	mov qword ptr [r14 + 8], rdi	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6C7B	0x8	r	mov rcx, qword ptr [rbx + 8]	embed SecondaryContext+0x0	
 0x002E9A00	FUN_002e9a00	0x002E9A11	0x8	r	mov rcx, qword ptr [rax + 8]	embed SecondaryContext+0x0	
 0x002EA6A0	FUN_002ea6a0	0x002EA6BC	0x8	r	mov rcx, qword ptr [rax + 8]	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC714	0x8	r	mov r8, qword ptr [rax + 8]	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC75D	0x8	r	mov rdx, qword ptr [rdx + 8]	embed SecondaryContext+0x0	
+0x0034B120	FUN_0034b120	0x0034B14C	0x8	r	cmp qword ptr [rax + 8], 0	embed SecondaryContext+0x0	
+0x0034B120	FUN_0034b120	0x0034B15D	0x8	r	mov rcx, qword ptr [rbx + 8]	embed SecondaryContext+0x0	
+0x0034B120	FUN_0034b120	0x0034B168	0x8	r	mov rcx, qword ptr [rbx + 8]	embed SecondaryContext+0x0	
+0x0034B120	FUN_0034b120	0x0034B18B	0x8	r	mov rcx, qword ptr [rbx + 8]	embed SecondaryContext+0x0	
+0x0034B8D0	FUN_0034b8d0	0x0034B900	0x8	r	mov rsi, qword ptr [rsi + 8]	embed SecondaryContext+0x0	
+0x003580C0	FUN_003580c0	0x00358119	0x8	r	mov rbx, qword ptr [r14 + 8]	embed SecondaryContext+0x0	
+0x0037B4D0	FUN_0037b4d0	0x0037BC41	0x8	r	mov rcx, qword ptr [rdi + 8]	embed SecondaryContext+0x0	
+0x0037B4D0	FUN_0037b4d0	0x0037BCD4	0x8	r	mov rcx, qword ptr [rdi + 8]	embed SecondaryContext+0x0	
+0x0037B4D0	FUN_0037b4d0	0x0037BCF0	0x8	r	mov rcx, qword ptr [rbx + 8]	embed SecondaryContext+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E277	0x10	rw	and byte ptr [rax + 0x10], 0xfb	embed SecondaryContext+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E373	0x10	rw	and byte ptr [rbx + 0x10], 0xfb	embed SecondaryContext+0x0	
+0x0025DF00	WorldActor_UpdateRuntimeAndScriptExecutionState	0x0025E37E	0x10	rw	or byte ptr [rbx + 0x10], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265B81	0x10	r	movzx eax, byte ptr [rcx + 0x10]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265B90	0x10	w	mov byte ptr [rcx + 0x10], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BB4	0x10	rw	and byte ptr [rcx + 0x10], 0xfb	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BE3	0x10	r	movzx eax, byte ptr [rcx + 0x40]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BF3	0x10	w	mov byte ptr [rcx + 0x40], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C10	0x10	rw	and byte ptr [rcx + 0x40], 0xfb	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C3B	0x10	r	movzx eax, byte ptr [rcx + 0x70]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C4E	0x10	w	mov byte ptr [rcx + 0x70], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C78	0x10	rw	and byte ptr [rcx + 0x70], 0xfb	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CAD	0x10	r	movzx eax, byte ptr [rcx + 0x10]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CBC	0x10	w	mov byte ptr [rcx + 0x10], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CE2	0x10	rw	and byte ptr [rcx + 0x10], 0xfb	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E29A4	0x10	r	movzx edx, byte ptr [rsi + 0x10]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3665	0x10	rw	or byte ptr [rbx + 0x10], 0xb	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E36D1	0x10	rw	and byte ptr [rbx + 0x10], 0xf	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E3732	0x10	rw	or byte ptr [rsi + 0x10], 0xb	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37A1	0x10	rw	and byte ptr [rsi + 0x10], 0xf	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37E5	0x10	rw	or byte ptr [r15 + 0x10], 0xb	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3851	0x10	rw	and byte ptr [r15 + 0x10], 0xf	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E38A5	0x10	rw	or byte ptr [r12 + 0x10], 0xb	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3914	0x10	rw	and byte ptr [r12 + 0x10], 0xf	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E3A16	0x10	rw	and byte ptr [r14 + 0x10], 0xf	embed SecondaryContext+0x0	
 0x002E7E90	FUN_002e7e90	0x002E7EB6	0x10	r	movzx eax, byte ptr [rax + 0x10]	embed SecondaryContext+0x0	
 0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E9056	0x10	r	movzx eax, byte ptr [rbx + 0x10]	embed SecondaryContext+0x0	
+0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E91A9	0x10	r	movzx edi, byte ptr [r14 + 0x10]	embed SecondaryContext+0x0	
 0x002E9FE0	FUN_002e9fe0	0x002EA009	0x10	r	movzx eax, byte ptr [rax + 0x10]	embed SecondaryContext+0x0	
+0x002EBB80	FUN_002ebb80	0x002EBB96	0x10	rw	and byte ptr [rax + 0x10], 0xf7	embed SecondaryContext+0x0	
+0x002EBB80	FUN_002ebb80	0x002EBBA0	0x10	rw	or byte ptr [rax + 0x10], dl	embed SecondaryContext+0x0	
+0x002EBC90	FUN_002ebc90	0x002EBD2D	0x10	rw	and byte ptr [rcx + 0x10], 0xf	embed SecondaryContext+0x0	elements 0 to 5, one per edx arm
+0x002EBC90	FUN_002ebc90	0x002EBD35	0x10	rw	or byte ptr [rcx + 0x10], r8b	embed SecondaryContext+0x0	elements 0 to 5, one per edx arm
 0x002ECD50	FUN_002ecd50	0x002ECD6A	0x10	rw	and byte ptr [rax + 0x10], 0xfe	embed SecondaryContext+0x0	
 0x002ECD50	FUN_002ecd50	0x002ECD6E	0x10	rw	or byte ptr [rax + 0x10], dl	embed SecondaryContext+0x0	
+0x002ECDC0	FUN_002ecdc0	0x002ECDDC	0x10	rw	and byte ptr [rax + 0x70], 0xfe	embed SecondaryContext+0x0	
+0x002ECDC0	FUN_002ecdc0	0x002ECDE7	0x10	rw	or byte ptr [rax + 0x10], dl	embed SecondaryContext+0x0	
+0x002ECDC0	FUN_002ecdc0	0x002ECDEF	0x10	rw	and byte ptr [rax + 0x10], 0xfe	embed SecondaryContext+0x0	
+0x002ECDC0	FUN_002ecdc0	0x002ECDF6	0x10	rw	or byte ptr [rax + 0x10], dl	embed SecondaryContext+0x0	
+0x002ECE00	FUN_002ece00	0x002ECE1C	0x10	rw	and byte ptr [rax + 0x40], 0xfe	embed SecondaryContext+0x0	
+0x002ECE00	FUN_002ece00	0x002ECE27	0x10	rw	or byte ptr [rax + 0x10], dl	embed SecondaryContext+0x0	
+0x002ECE00	FUN_002ece00	0x002ECE2F	0x10	rw	and byte ptr [rax + 0x10], 0xfe	embed SecondaryContext+0x0	
+0x002ECE00	FUN_002ece00	0x002ECE36	0x10	rw	or byte ptr [rax + 0x10], dl	embed SecondaryContext+0x0	
+0x003B70B0	FUN_003b70b0	0x003B70EF	0x10	rw	and byte ptr [rax + 0x10], 0xfd	embed SecondaryContext+0x0	
+0x003B70B0	FUN_003b70b0	0x003B70FC	0x10	rw	or byte ptr [rax + 0x10], cl	embed SecondaryContext+0x0	
+0x003B7770	FUN_003b7770	0x003B77F6	0x10	rw	or byte ptr [rax + 0x10], 2	embed SecondaryContext+0x0	
+0x003B7770	FUN_003b7770	0x003B782A	0x10	rw	and byte ptr [rax + 0x10], 0xfd	embed SecondaryContext+0x0	
+0x003B7770	FUN_003b7770	0x003B7833	0x10	rw	or byte ptr [rax + 0x10], bl	embed SecondaryContext+0x0	
+0x003B7880	FUN_003b7880	0x003B7918	0x10	rw	or byte ptr [rax + 0x10], 2	embed SecondaryContext+0x0	
+0x003B7880	FUN_003b7880	0x003B796C	0x10	rw	and byte ptr [rax + 0x10], 0xfd	embed SecondaryContext+0x0	
+0x003B7880	FUN_003b7880	0x003B7975	0x10	rw	or byte ptr [rax + 0x10], bl	embed SecondaryContext+0x0	
+0x003B8090	FUN_003b8090	0x003B80FA	0x10	rw	or byte ptr [rax + 0x10], 2	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265B93	0x11	r	movzx eax, byte ptr [rcx + 0x11]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BA4	0x11	w	mov byte ptr [rcx + 0x11], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BB0	0x11	rw	and byte ptr [rcx + 0x11], 0xf7	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BF6	0x11	r	movzx eax, byte ptr [rcx + 0x41]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C06	0x11	w	mov byte ptr [rcx + 0x41], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C0C	0x11	rw	and byte ptr [rcx + 0x41], 0xf7	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C51	0x11	r	movzx eax, byte ptr [rcx + 0x71]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C64	0x11	w	mov byte ptr [rcx + 0x71], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C74	0x11	rw	and byte ptr [rcx + 0x71], 0xf7	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CBF	0x11	r	movzx eax, byte ptr [rcx + 0x11]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CD8	0x11	w	mov byte ptr [rcx + 0x11], al	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CDE	0x11	rw	and byte ptr [rcx + 0x11], 0xf7	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E365D	0x11	r	movzx eax, byte ptr [rbx + 0x11]	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E366B	0x11	w	mov byte ptr [rbx + 0x11], al	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E372A	0x11	r	movzx eax, byte ptr [rsi + 0x11]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3738	0x11	w	mov byte ptr [rsi + 0x11], al	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37DB	0x11	r	movzx eax, byte ptr [r15 + 0x11]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E37EC	0x11	w	mov byte ptr [r15 + 0x11], al	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3899	0x11	r	movzx eax, byte ptr [r12 + 0x11]	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E38AD	0x11	w	mov byte ptr [r12 + 0x11], al	embed SecondaryContext+0x0	
 0x002E4150	FUN_002e4150	0x002E4285	0x11	r	cmp byte ptr [rbx + 0x11], 0x80	embed SecondaryContext+0x0	
 0x002E4150	FUN_002e4150	0x002E4293	0x11	rw	and byte ptr [rbx + 0x11], 0x7f	embed SecondaryContext+0x0	
 0x002E7E90	FUN_002e7e90	0x002E7EB2	0x11	r	movzx ecx, byte ptr [rax + 0x11]	embed SecondaryContext+0x0	
 0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E9052	0x11	r	movzx ecx, byte ptr [rbx + 0x11]	embed SecondaryContext+0x0	
 0x002E8FD0	Actor_RefreshPresentationVisibility	0x002E90A9	0x11	r	movzx eax, byte ptr [rbx + 0x11]	embed SecondaryContext+0x0	
+0x002E9A30	FUN_002e9a30	0x002E9A4D	0x11	r	movzx eax, byte ptr [rax + 0x11]	embed SecondaryContext+0x0	
 0x002E9FE0	FUN_002e9fe0	0x002EA005	0x11	r	movzx ecx, byte ptr [rax + 0x11]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB10C	0x11	r	movzx eax, byte ptr [rbx + 0x11]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB125	0x11	rw	and byte ptr [rbx + 0x11], 0xef	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB2F9	0x11	r	movzx edx, byte ptr [rbx + 0x11]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB308	0x11	r	test byte ptr [rbx + 0x11], 8	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB318	0x11	rw	and byte ptr [rbx + 0x11], 0xf7	embed SecondaryContext+0x0	
+0x002EBC40	FUN_002ebc40	0x002EBC56	0x11	rw	and byte ptr [rax + 0x11], 0xbf	embed SecondaryContext+0x0	
+0x002EBC40	FUN_002ebc40	0x002EBC60	0x11	rw	or byte ptr [rax + 0x11], dl	embed SecondaryContext+0x0	
+0x002EC860	FUN_002ec860	0x002EC876	0x11	rw	and byte ptr [rcx + 0x11], 0xf7	embed SecondaryContext+0x0	
+0x002EC860	FUN_002ec860	0x002EC882	0x11	rw	or byte ptr [rcx + 0x11], al	embed SecondaryContext+0x0	
+0x002ECA00	FUN_002eca00	0x002ECA16	0x11	rw	and byte ptr [rax + 0x11], 0xef	embed SecondaryContext+0x0	
+0x002ECA00	FUN_002eca00	0x002ECA20	0x11	rw	or byte ptr [rax + 0x11], dl	embed SecondaryContext+0x0	
 0x002ECCF0	FUN_002eccf0	0x002ECD06	0x11	rw	and byte ptr [rax + 0x11], 0x7f	embed SecondaryContext+0x0	
 0x002ECCF0	FUN_002eccf0	0x002ECD0D	0x11	rw	or byte ptr [rax + 0x11], dl	embed SecondaryContext+0x0	
+0x00359880	FUN_00359880	0x00359920	0x11	r	movzx ebx, byte ptr [rax + 0x11]	embed SecondaryContext+0x0	
+0x00359A30	FUN_00359a30	0x00359AD5	0x11	rw	and byte ptr [rdi + 0x11], 0xfe	embed SecondaryContext+0x0	
+0x00359A30	FUN_00359a30	0x00359ADE	0x11	rw	or byte ptr [rdi + 0x11], al	embed SecondaryContext+0x0	
+0x0037CE80	FUN_0037ce80	0x0037CEA5	0x11	rw	and byte ptr [rax + 0x11], 0xfe	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BD2	0x12	w	mov word ptr [rcx + 0x12], 0xffff	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C2E	0x12	w	mov word ptr [rcx + 0x42], 0xffff	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C99	0x12	w	mov word ptr [rcx + 0x72], 0xffff	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265D00	0x12	w	mov word ptr [rcx + 0x12], 0xffff	embed SecondaryContext+0x0	
+0x002E28E0	FUN_002e28e0	0x002E2DC4	0x12	r	movsx edx, byte ptr [rax + 0x12]	embed SecondaryContext+0x0	
+0x002E5750	FUN_002e5750	0x002E59BF	0x12	r	movsx edx, byte ptr [rax + 0x12]	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6C52	0x12	r	movsx esi, byte ptr [rax + 0x12]	embed SecondaryContext+0x0	
 0x002E6BD0	FUN_002e6bd0	0x002E6CAC	0x12	w	mov byte ptr [rbx + 0x12], 0xff	embed SecondaryContext+0x0	
+0x002E9C00	FUN_002e9c00	0x002E9C1C	0x12	r	movsx eax, byte ptr [rax + 0x12]	embed SecondaryContext+0x0	
+0x002EA2A0	FUN_002ea2a0	0x002EA2CF	0x12	r	cmp byte ptr [rax + 0x12], 0x10	embed SecondaryContext+0x0	
+0x002EABF0	FUN_002eabf0	0x002EAC1E	0x12	r	cmp byte ptr [rax + 0x12], 0x10	embed SecondaryContext+0x0	
+0x002EAC90	FUN_002eac90	0x002EACB3	0x12	r	movsx edx, byte ptr [rax + 0x12]	embed SecondaryContext+0x0	
 0x002EC6B0	FUN_002ec6b0	0x002EC6E3	0x12	w	mov byte ptr [rbx + 0x12], sil	embed SecondaryContext+0x0	
+0x003580C0	FUN_003580c0	0x00358175	0x12	r	movsx edx, byte ptr [r14 + 0x12]	embed SecondaryContext+0x0	
 0x002E8CE0	FUN_002e8ce0	0x002E8CF6	0x13	r	movsx esi, byte ptr [rcx + 0x13]	embed SecondaryContext+0x0	
+0x002EC680	FUN_002ec680	0x002EC691	0x13	w	mov byte ptr [rcx + 0x13], dl	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BB8	0x14	w	mov dword ptr [rcx + 0x14], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C14	0x14	w	mov dword ptr [rcx + 0x44], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C7C	0x14	w	mov dword ptr [rcx + 0x74], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CE6	0x14	w	mov dword ptr [rcx + 0x14], 0xbf800000	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB160	0x14	r	movss xmm0, dword ptr [rbx + 0x14]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB16F	0x14	w	mov dword ptr [rbx + 0x14], 0xbf800000	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB1B8	0x14	r	movss xmm1, dword ptr [rbx + 0x14]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB1C4	0x14	r	movss xmm1, dword ptr [rbx + 0x14]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB223	0x14	w	mov dword ptr [rbx + 0x14], 0xbf800000	embed SecondaryContext+0x0	
+0x002ECC60	FUN_002ecc60	0x002ECC98	0x14	w	movss dword ptr [rbx + 0x14], xmm1	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BBF	0x18	w	mov dword ptr [rcx + 0x18], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C1B	0x18	w	mov dword ptr [rcx + 0x48], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C83	0x18	w	mov dword ptr [rcx + 0x78], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CED	0x18	w	mov dword ptr [rcx + 0x18], 0xbf800000	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB1B3	0x18	r	movss xmm2, dword ptr [rbx + 0x18]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB231	0x18	w	mov dword ptr [rbx + 0x18], 0xbf800000	embed SecondaryContext+0x0	
+0x002EC970	FUN_002ec970	0x002EC9A8	0x18	w	movss dword ptr [rbx + 0x18], xmm1	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BC6	0x1C	w	mov dword ptr [rcx + 0x1c], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C22	0x1C	w	mov dword ptr [rcx + 0x4c], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C8A	0x1C	w	mov dword ptr [rcx + 0x7c], 0xbf800000	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CF4	0x1C	w	mov dword ptr [rcx + 0x1c], 0xbf800000	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB1AE	0x1C	r	movss xmm3, dword ptr [rbx + 0x1c]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB238	0x1C	w	mov dword ptr [rbx + 0x1c], 0xbf800000	embed SecondaryContext+0x0	
+0x002EC8B0	FUN_002ec8b0	0x002EC8E8	0x1C	w	movss dword ptr [rbx + 0x1c], xmm1	embed SecondaryContext+0x0	
+0x00263E80	FUN_00263e80	0x00263E93	0x20	r	movzx eax, word ptr [rax + 0x20]	embed SecondaryContext+0x0	
+0x00263EB0	FUN_00263eb0	0x00263ED3	0x20	r	movzx eax, word ptr [rcx + rax*2 + 0x20]	embed SecondaryContext+0x0	idx*2
+0x00263EB0	FUN_00263eb0	0x00263EEB	0x20	r	movzx eax, word ptr [rcx + rax*2 + 0x20]	embed SecondaryContext+0x0	idx*2
+0x00265B60	FUN_00265b60	0x00265BAD	0x20	w	mov dword ptr [rcx + 0x20], edi	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C09	0x20	w	mov dword ptr [rcx + 0x50], edi	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C6E	0x20	w	mov dword ptr [rcx + 0x80], edi	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CDB	0x20	w	mov dword ptr [rcx + 0x20], edi	embed SecondaryContext+0x0	
+0x0026A3B0	FUN_0026a3b0	0x0026A3DD	0x20	w	mov word ptr [rax + rcx*2 + 0x20], di	embed SecondaryContext+0x0	idx*2
+0x0026A3B0	FUN_0026a3b0	0x0026A3F7	0x20	w	mov word ptr [rax + rcx*2 + 0x20], di	embed SecondaryContext+0x0	idx*2
+0x002E35B0	FUN_002e35b0	0x002E36EC	0x20	w	mov dword ptr [rbx + 0x20], 0	embed SecondaryContext+0x0	elements 4 and 5, one per loop pass
+0x002E35B0	FUN_002e35b0	0x002E37BC	0x20	w	mov dword ptr [rsi + 0x20], 0	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E386E	0x20	w	mov dword ptr [r15 + 0x20], 0	embed SecondaryContext+0x0	
+0x002E35B0	FUN_002e35b0	0x002E3934	0x20	w	mov dword ptr [r12 + 0x20], 0	embed SecondaryContext+0x0	
 0x002E35B0	FUN_002e35b0	0x002E3A33	0x20	w	mov dword ptr [r14 + 0x20], 0	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265B8A	0x24	w	mov dword ptr [rcx + 0x24], r8d	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BFA	0x24	w	mov dword ptr [rcx + 0x54], r8d	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C5B	0x24	w	mov dword ptr [rcx + 0x84], r8d	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CC9	0x24	w	mov dword ptr [rcx + 0x24], r8d	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265B97	0x28	w	mov byte ptr [rcx + 0x28], 0xfe	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C00	0x28	w	mov byte ptr [rcx + 0x58], 0xfe	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C67	0x28	w	mov byte ptr [rcx + 0x88], 0xfe	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CCD	0x28	w	mov byte ptr [rcx + 0x28], 0xfe	embed SecondaryContext+0x0	
+0x002637D0	FUN_002637d0	0x002637E7	0x29	r	movzx ecx, byte ptr [rax + 0x29]	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265B79	0x29	rw	and byte ptr [rcx + 0x29], 0xfc	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BDF	0x29	rw	and byte ptr [rcx + 0x59], 0xfc	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C3F	0x29	rw	and byte ptr [rcx + 0x89], 0xfc	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CB1	0x29	rw	and byte ptr [rcx + 0x29], 0xfc	embed SecondaryContext+0x0	
 0x00269D60	FUN_00269d60	0x00269D60	0x29	rw	and byte ptr [rcx + 0x29], 0xfe	embed SecondaryContext+0x0	
 0x00269D60	FUN_00269d60	0x00269D69	0x29	r	or dl, byte ptr [rcx + 0x29]	embed SecondaryContext+0x0	
 0x00269D60	FUN_00269d60	0x00269D79	0x29	w	mov byte ptr [rcx + 0x29], dl	embed SecondaryContext+0x0	
+0x00269D80	FUN_00269d80	0x00269DA1	0x29	rw	and byte ptr [rax + 0x29], 0xfe	embed SecondaryContext+0x0	
+0x00269D80	FUN_00269d80	0x00269DAA	0x29	r	or cl, byte ptr [rax + 0x29]	embed SecondaryContext+0x0	
+0x00269D80	FUN_00269d80	0x00269DB9	0x29	w	mov byte ptr [r9 + 0x29], cl	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265BCD	0x2A	w	mov word ptr [rcx + 0x2a], r8w	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C29	0x2A	w	mov word ptr [rcx + 0x5a], r8w	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265C91	0x2A	w	mov word ptr [rcx + 0x8a], r8w	embed SecondaryContext+0x0	
+0x00265B60	FUN_00265b60	0x00265CFB	0x2A	w	mov word ptr [rcx + 0x2a], r8w	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB17D	0x2A	r	movzx r8d, word ptr [rbx + 0x2a]	embed SecondaryContext+0x0	
 0x002EB0D0	FUN_002eb0d0	0x002EB22A	0x2A	w	mov word ptr [rbx + 0x2a], ax	embed SecondaryContext+0x0	
+0x002EC940	FUN_002ec940	0x002EC956	0x2A	w	mov word ptr [rax + 0x2a], dx	embed SecondaryContext+0x0	

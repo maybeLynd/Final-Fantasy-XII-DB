@@ -38,7 +38,7 @@ changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)).
   and 4250 follows it.
 - `gil_a0200` and `gil_a0201` (Gate of Water), `gil_c0200` and `gil_c0201` (Gate of Fire), `gil_d0100` and `gil_d0101`
   (Gate of Wind) and `gil_h0100` and `gil_h0101` (Crystal Peak) are loaded in pairs when a boss fight begins. They
-  hold no text of their own: `gil_d0101` and `gil_h0101` hold one empty entry, the others none.
+  hold no text of their own: `gil_d0101` and `gil_h0101` hold one empty entry, the others no entry.
 - `gil_d0101` and `gil_h0101` each hold a switch on the current field (`nowmap`) that gives the Esper of that field
   when the party does not hold it; for their own fields these are Shemhazai (`0xC019`) in Gate of Wind and Ultima
   (`0xC01D`) in Crystal Peak ([Quickening and Esper list](../Battle-Actions/quickening-and-esper-list.md)). The
@@ -91,6 +91,7 @@ made by the scene script itself comes first.
 | `flags_set` | story flags set by the scene or by its loading function after the load, with the first sentence of each explanation on [story flag ids](story-flag-ids.md) |
 | `counter_set` | story counter values written by the scene or by its loading function after the load, with the first sentence of each explanation on [story counter values](story-counter-values.md) |
 | `next` | the scene or map that follows: a later scene load or a `mapjump` target with its field id; `-` when the loading function does neither |
+| `plays_when` | when the scene plays, in game terms: where, and what the player does (entering the map, talking to someone, touching a spot, winning a battle); the story counter values it plays at, named from [story counter values](story-counter-values.md), with the cases of its switch that come first applied (a switch starts at the first case that matches); every other test on the way to the loading step in what the game holds; and the listing lines it rests on (a step table's line) |
 
 ## Related
 

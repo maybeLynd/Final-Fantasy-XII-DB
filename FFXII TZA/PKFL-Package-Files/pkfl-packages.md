@@ -66,7 +66,7 @@ load the slot (`script@pc`) and the number of steps that play from it.
 ### Columns of the package and slot tables
 
 Lists of slot numbers, entries and ids are in ascending order and separated by spaces. Where such a column has
-nothing to list, the cell holds a placeholder word instead.
+nothing to list, the cell holds `-` instead.
 
 | Column | Holds |
 |---|---|
@@ -184,7 +184,7 @@ bit in the slot's word `0x022C6E48[g]`: `0x2000` for the `.mot` (completion `0x0
 ### The slot readers
 
 Each reader takes a manager slot `g` and a slot `k`, and returns −1 when `g` is 4 or more (a signed test) or
-byte 0 of the table is 0. None bounds `k` against the table.
+byte 0 of the table is 0. No reader bounds `k` against the table.
 
 | Reader | Table | Returns | Caller |
 |---|---|---|---|

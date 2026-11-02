@@ -19,7 +19,7 @@ The sheets are kind-7 resources `0xDA` to `0xDF` in the archive folder `ps2data/
 
 | Slot | Id | File |
 |---:|---|---|
-| 1-6 | `0x82`-`0x87` | none: the path arrays hold null and every size table holds -1 |
+| 1-6 | `0x82`-`0x87` | no file: the path arrays hold null and every size table holds -1 |
 | 7 | `0xDA` | `font_stf_a_normal.btm` |
 | 8 | `0xDB` | `font_stf_a_shadow.btm` |
 | 9 | `0xDC` | `font_stf_b_normal.btm` |

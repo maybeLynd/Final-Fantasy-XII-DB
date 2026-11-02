@@ -56,10 +56,10 @@ All multi-byte fields are little-endian.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `i16` | block0 | SE block for sound group 0; negative = none |
-| `+0x02` | `i16` | block1 | SE block for sound group 1, the footsteps; negative = none |
-| `+0x04` | `i16` | block2 | SE block for sound group 2; negative = none |
-| `+0x06` | `i16` | voiceBank | battle-voice bank number, shoutNN; negative = none |
+| `+0x00` | `i16` | block0 | SE block for sound group 0; negative = no block |
+| `+0x02` | `i16` | block1 | SE block for sound group 1, the footsteps; negative = no block |
+| `+0x04` | `i16` | block2 | SE block for sound group 2; negative = no block |
+| `+0x06` | `i16` | voiceBank | battle-voice bank number, shoutNN; negative = no bank |
 | `+0x08` | `u8[8]` | unused | 0; ignored |
 
 Row n starts at `16 × (n + 1)` and belongs to the model with number n in that letter class, the model id
@@ -176,13 +176,13 @@ again. Both bytes are 0 until the first script binding:
 
 ## Modding notes
 
-- Row n of `charseinfo_<letter>` is model `<letter>` number n; rows are found by position, so insert none
+- Row n of `charseinfo_<letter>` is model `<letter>` number n; rows are found by position, so insert no rows
   and append new rows at the end with `count` raised.
 - The buffer is the kind 9 size from the language's `FileSizeTable_*.fst`, rounded up to 64. A grown table
   needs its new size in every `.fst`; the count is never checked against the buffer, so a count past the
   shipped rows reads past it.
 - Edit the `in` and `ch` copies alike: which one loads depends on the language.
-- Use `0xFFFF` for an empty slot; any value with bit `0x8000` set is treated as none.
+- Use `0xFFFF` for an empty slot; any value with bit `0x8000` set is treated as an empty slot.
 - Give `block0`-`block2` only ids that name a shipped `.seb` by the rule on
   [Sound banks](../Sound-And-Music/sound-banks.md): 0-2, 200-499 or 700 and up.
 - `block0` sounds only when the model is attached to another model's first attach slot, as weapons are.

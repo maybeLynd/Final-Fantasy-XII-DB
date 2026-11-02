@@ -79,7 +79,7 @@ Chunk:
 |---|---|---|---|
 | `+0x00` | `u8` |  | index, written by the handler from the header byte |
 | `+0x0A` | `u8[11]` |  | eleven bytes |
-| `+0x16` | `u8` |  | high nibble: index of the last non-zero byte of the eleven (0 when none), recomputed at load |
+| `+0x16` | `u8` |  | high nibble: index of the last non-zero byte of the eleven (0 when all are 0), recomputed at load |
 | `+0x2C` | `u32[29]` |  | slots, reset to the encoded null at load |
 
 EFB file:
@@ -138,7 +138,7 @@ One row per `0xB00` kind, 10 rows, `0x50` to `0x59`.
 | `load_handler` | the loader for the kind, the arm `0x00500980` jumps to for case kind minus `0x50`; the same as the Loader column above |
 | `destroy_handler` | the function the destroy dispatcher `0x00500850` reaches for the kind; `(via thunk ...)` when its arm jumps to a one-jump thunk first (kinds `0x50` and `0x52` to `0x54`) |
 | `load_role` | what the loader reads from the stream and where it stores it in the node, with the functions it calls and their addresses |
-| `destroy_role` | what the destroy body frees or clears, and for kinds `0x50` and `0x52` to `0x54` that the loader runs it first as a reset; on kinds `0x56`, `0x57` and `0x59` only the body's calls were read, not the fields it clears |
+| `destroy_role` | what the destroy body frees or clears, field by field, and for kinds `0x50` and `0x52` to `0x54` that the loader runs it first as a reset |
 | `evidence` | the instruction addresses and ranges read for the load and destroy bodies, with a destroy body's size in bytes (`B`) |
 | `node_size` | the bytes the arm of `0x003A9EF0` allocates for a new node (`mov ecx, size` before `call 0x0036A100`), the Object column above |
 | `find_or_create_arm` | the address of that arm in `0x003A9EF0`'s jump table (kind minus `0x50`); each allocates `node_size` bytes, calls `ctor` and then the loader |
@@ -149,7 +149,7 @@ One row per `0xB00` kind, 10 rows, `0x50` to `0x59`.
 |---|---|
 | `.efx` files | 3,288, 4,579,689,088 bytes, 1,840 to 25,310,800 bytes each, all under `ps2data/effect_finish` |
 | `.efb` files | 410, 226,292,720 bytes, 7,584 to 4,444,528 bytes each, all under `ps2data/efb` |
-| banks a zone can load | 388: `0x00377DC0` is called with kind 4 (`0x00378B1A`) and keeps the zone pack's file name without its extension (`0x00377E64`-`0x00377E83`), so of the 550 zone packs 388 name a shipped bank and 162 name none (that read fails and frees its block). The other 22 banks match no zone pack: `alc0201`, `alc0202`, `alc0204`, `bds0102`, `bds0105`, `bds0106`, `bds0108`, `bul0103`, `rbl0102`, `rbl0114`, `rbl0118`, `rbl0120`, `rbl0123`, `rbn0105`, `rbn0106`, `rdl0105`, `rdl0110`, `rwf0102`, `rwf0104`, `rwf0108`, `vic0103` and `vic0104`. No other path requests a bank: the folder string `PS2Data\efb\` (`0x00D11110`) is read only by `0x00377DC0` (`0x00377E8A`-`0x00377EA3`), whose one caller is `0x00378A60` (`0x00378B2B`), so those 22 are never loaded |
+| banks a zone can load | 388: `0x00377DC0` is called with kind 4 (`0x00378B1A`) and keeps the zone pack's file name without its extension (`0x00377E64`-`0x00377E83`), so of the 550 zone packs 388 name a shipped bank and 162 name no shipped bank (that read fails and frees its block). The other 22 banks match no zone pack: `alc0201`, `alc0202`, `alc0204`, `bds0102`, `bds0105`, `bds0106`, `bds0108`, `bul0103`, `rbl0102`, `rbl0114`, `rbl0118`, `rbl0120`, `rbl0123`, `rbn0105`, `rbn0106`, `rdl0105`, `rdl0110`, `rwf0102`, `rwf0104`, `rwf0108`, `vic0103` and `vic0104`. No other path requests a bank: the folder string `PS2Data\efb\` (`0x00D11110`) is read only by `0x00377DC0` (`0x00377E8A`-`0x00377EA3`), whose one caller is `0x00378A60` (`0x00378B2B`), so those 22 are never loaded |
 | embedded streams | 144 `.cm` and 387 `.mpk` files, one stream each |
 | streams | 4,229; every chunk walk ends exactly at `+0x0C`; `+0x08` is 1.0 in all |
 | `.efx` magics | `EFX0010` 3,284, `EFX0008` 4 (`l0000.efx` in four locales) |
@@ -165,7 +165,7 @@ One row per `0xB00` kind, 10 rows, `0x50` to `0x59`.
 | `0x700` subtypes | 0: 13,224; 1: 520; 2: 120; 3: 64; the bias equals the subtype's fixed size in all |
 | `0x800` subtypes | 0: 2,153; 1: 41,058; 2: 1,237; 3: 2,502; 4: 620; 5: 2,810; 6: 26; 7: 2,203; 8: 742 |
 | `0xA00` | 55 distinct element types; payload byte `+0` is 0 in all |
-| `0xB00` kinds | `0x52` 16,862; `0x56` 6,746; `0x50` 5,810; `0x51` 5,352; `0x54` 2,733; `0x57` 1,843; `0x58` 746; `0x53` 374; `0x59` 284; `0x55` none |
+| `0xB00` kinds | `0x52` 16,862; `0x56` 6,746; `0x50` 5,810; `0x51` 5,352; `0x54` 2,733; `0x57` 1,843; `0x58` 746; `0x53` 374; `0x59` 284; `0x55` 0 |
 | `0xB00` keys | key 0 in all; slot byte never 0; no key repeats within a stream |
 
 Every shipped `.efx` file and every chunk of its stream, read with the layouts above. Each file is one stream with no second `EFX` magic inside it, its size equals its `+0x0C`, and its walk ends there. The `.efx` files hold 157,819 of the 242,875 chunks. For the 1,394 entries of [`effect-file-list.tsv`](effect-file-list.tsv) whose file ships, the `chunks`, `elements` and `textures` cells match these rows.
