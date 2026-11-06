@@ -450,3 +450,13 @@ The data manager is the `0x120`-byte widget kept at `0x02CA9738` with procedure 
 - [Quests](../Story-Events-And-Hunts/quests.md) - the hunts.
 - [Hunts](../Story-Events-And-Hunts/hunts.md) - every hunt's name, petitioner and record text as the Hunts page shows them.
 - [Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md) - where kill counts are kept.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Movement: `0x00281AE0` calls `0x00326BB0`; `0x0042FB80` is called by `0x002E28E0`, `0x002E3110`; those functions are
+  documented on [party data](../Party/party-data.md),
+  [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md).
+- Save load settings: `0x003933F0` is called by `0x00582790`; those functions are documented on
+  [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md).

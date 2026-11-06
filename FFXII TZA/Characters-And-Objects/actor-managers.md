@@ -230,8 +230,8 @@ Struct ActorManagerSlotEntry size=`0x18`:
 
 ## Operations
 
-- Four access tables beside this page list every reach into a slot; every row's instruction was checked against
-  the executable:
+- Four access tables beside this page list every reach into a slot, each row with the instruction at its address
+  in the executable:
   - [`actor-managers-accesses.tsv`](actor-managers-accesses.tsv): through the bound-slot pointer. A row whose
     `route` is `seed` is in a function that took the slot itself, from `0x002640C0` or by reading `0x02099D70`, or in
     the script interpreter `0x0025E4C0`, which receives the slot as its first argument; a row whose `route` is

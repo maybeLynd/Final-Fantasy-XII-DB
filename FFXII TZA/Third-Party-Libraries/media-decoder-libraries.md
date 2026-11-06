@@ -582,7 +582,7 @@ functions of the decoder list.
 |---|---|
 | `member_below` | the nearest function of [`media-decoder-libraries-libvpx-vp8-decoder.tsv`](media-decoder-libraries-libvpx-vp8-decoder.tsv) below the body: `0x0016ECE0` on all 4 rows |
 | `member_above` | the nearest function of that list above the body: `0x0016F070` on all 4 rows |
-| `refs` | how many places in the image name the body's start address: a call, jump or RIP-relative operand, a call or jump found by scanning the code bytes, an 8-byte relocated pointer, or a 4-byte image offset in a data section (the unwind table `.pdata` is not counted); 1 on all 4 rows |
+| `refs` | how many places in the image name the body's start address: a call, jump or RIP-relative operand, a call or jump byte sequence in the code that targets it, an 8-byte relocated pointer, or a 4-byte image offset in a data section (the unwind table `.pdata` is not counted); 1 on all 4 rows |
 
 ## State
 
@@ -696,3 +696,14 @@ and `0x8`, `0x10` and `0x20` for `ecx` bits `0x1`, `0x200` and `0x80000` (`0x001
 - [Sound engine](../Sound-And-Music/sound-engine.md): the sound driver, its codecs and where it calls the
   HCA decoder and Tremor.
 - [Sound banks](../Sound-And-Music/sound-banks.md): the bank files whose materials these decoders read.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Application: `0x00584740` is called by `0x001A98B0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Platform: `0x00584740` is called by `0x00650D40`; those functions are documented on
+  [phyre post effect classes](../PhyreEngine/phyre-post-effect-classes.md).
+- Presentation: `0x001FDF70` is called by `0x00193AD0`, `0x001B4590`; those functions are documented on
+  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md).

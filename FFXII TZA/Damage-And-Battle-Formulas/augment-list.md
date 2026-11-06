@@ -150,3 +150,10 @@ notes).
 - [Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script](augments.md)
 - [Stats: how max HP, MP, Strength, Magick Power, Vitality, Speed, Attack Power, Defense, Magick Resist and evade are built, and their caps](stats.md)
 - [Battle buffs: what Battle Cry, Enrage, Magick Barrier, Perfect Defense and the other enemy abilities switch on, and how long they last](../Status-Effects-And-KO/battle-buffs.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Presentation: `0x002AC2F0` is called by `0x002AAE40`; those functions are documented on
+  [message windows](../Menus-And-HUD/message-windows.md).

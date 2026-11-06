@@ -345,8 +345,8 @@ clear its value bit, clear the bits of the same group and store a payload
 
 ### Columns of character-rig-and-look-look-command-census.tsv
 
-One row per forwarder, 18 rows. The forwarders are found by searching every function for `add rcx, 0x580`
-followed by a `jmp` as its first two instructions.
+One row per forwarder, 18 rows: the 18 functions of the image whose first two instructions are `add rcx, 0x580`
+followed by a `jmp`.
 
 | Column | Holds |
 |---|---|
@@ -544,7 +544,7 @@ executable image.
 | `setunazukistatus` | 26,389 calls in 347 scripts |
 | `setkubifuristatus` | 1,179 calls in 164 scripts |
 | timed forms `_4a2`, `_4a3`, `_4a4` | 160, 122 and 6 calls; the commonest lengths 150, 210 and 90 frames |
-| staged-look forwarders | 18, found by pattern over every function |
+| staged-look forwarders | 18: every function whose first two instructions are `add rcx, 0x580` and a `jmp` |
 | Float bob cycle `0x01F223B0` | 60 entries, a sine of amplitude 0.067 |
 | Float rise `0x01F22590`, settle `0x01F22670` | 28 entries from 0.09 to 1.0 with a peak of 1.03; 30 entries from 1.0 to 0 |
 | flinch curves `0x01F22130`, `0x01F22170` | 8 entries each, 0 at both ends, at most 0.08 |

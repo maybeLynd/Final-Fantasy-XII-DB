@@ -243,3 +243,12 @@ against the [story progress](../Story-Events-And-Hunts/story-progress.md) word.
 - [Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md): the part attach that binds the tables.
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): the replacement lookup.
 - [Story progress](../Story-Events-And-Hunts/story-progress.md): the value the replacement thresholds compare with.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x001D6EE0` is called by `0x00210760`; those functions are documented on
+  [audio manager](../Sound-And-Music/audio-manager.md).
+- Save load settings: `0x0019C580` is called by `0x00866200`; those functions are documented on
+  [save file format](../Saving-Loading-And-Settings/save-file-format.md).

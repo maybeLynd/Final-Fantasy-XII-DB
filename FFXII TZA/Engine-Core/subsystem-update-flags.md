@@ -159,42 +159,65 @@ object pointers the gates test.
 - [UI request router](../Menus-And-HUD/menus.md): the UI manager object the
   groups update.
 - [`subsystem-update-flags-manager-singleton-0209be80-accesses.tsv`](subsystem-update-flags-manager-singleton-0209be80-accesses.tsv):
-  every censused access to the UI manager object, the battle HUD's owner object ([HUD](../Menus-And-HUD/hud.md)), reached
+  every access to the UI manager object, the battle HUD's owner object ([HUD](../Menus-And-HUD/hud.md)), reached
   through its pointer `[0x0209BE80]` (1,435 rows).
 - [`subsystem-update-flags-manager-sub-0209be80-00a0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-00a0-accesses.tsv):
-  every censused access to its group 12 sub-object at `+0xA0` (83 rows).
-- [`manager-sub-00a0e-ntry-accesses.tsv`](manager-sub-00a0e-ntry-accesses.tsv): every censused access to the 64
+  every access to its group 12 sub-object at `+0xA0` (83 rows).
+- [`manager-sub-00a0e-ntry-accesses.tsv`](manager-sub-00a0e-ntry-accesses.tsv): every access to the 64
   `0x100`-byte entries from `+0x20` of that sub-object (51 rows).
-- [`manager-sub-0209be80-5380-accesses.tsv`](manager-sub-0209be80-5380-accesses.tsv): every censused access to its
+- [`manager-sub-0209be80-5380-accesses.tsv`](manager-sub-0209be80-5380-accesses.tsv): every access to its
   group 1 sub-object at `+0x5380`, the part the EXP, LP and combo numbers go to (65 rows).
-- [`manager-sub-5380-pool-a-entry-accesses.tsv`](manager-sub-5380-pool-a-entry-accesses.tsv): every censused access
+- [`manager-sub-5380-pool-a-entry-accesses.tsv`](manager-sub-5380-pool-a-entry-accesses.tsv): every access
   to the first of that part's three pools: 12 entries of `0x30` bytes from its `+0x0` (41 rows).
-- [`manager-sub-5380-pool-b-entry-accesses.tsv`](manager-sub-5380-pool-b-entry-accesses.tsv): every censused access
+- [`manager-sub-5380-pool-b-entry-accesses.tsv`](manager-sub-5380-pool-b-entry-accesses.tsv): every access
   to the second pool: 6 entries of `0x28` bytes from `+0x240` (2 rows).
-- [`manager-sub-5380-pool-c-entry-accesses.tsv`](manager-sub-5380-pool-c-entry-accesses.tsv): every censused access
+- [`manager-sub-5380-pool-c-entry-accesses.tsv`](manager-sub-5380-pool-c-entry-accesses.tsv): every access
   to the third pool: 6 entries of `0x28` bytes from `+0x330` (2 rows).
 - [`subsystem-update-flags-manager-sub-0209be80-57e0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-57e0-accesses.tsv):
-  every censused access to its sub-object for groups 5 and 14 at `+0x57E0`, the world-object manager (472 rows).
+  every access to its sub-object for groups 5 and 14 at `+0x57E0`, the world-object manager (472 rows).
 - [`subsystem-update-flags-manager-sub-57e0-array-record-accesses.tsv`](subsystem-update-flags-manager-sub-57e0-array-record-accesses.tsv):
-  every censused access to the record at that sub-object's `+0x270` (30 rows).
+  every access to the record at that sub-object's `+0x270` (30 rows).
 - [`subsystem-update-flags-manager-sub-0209be80-7ea0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-7ea0-accesses.tsv):
-  every censused access to its group 16 sub-object at `+0x7EA0`, the selection marker (124 rows).
-- [`manager-sub-7ea0e-ntry-accesses.tsv`](manager-sub-7ea0e-ntry-accesses.tsv): every censused access to the
+  every access to its group 16 sub-object at `+0x7EA0`, the selection marker (124 rows).
+- [`manager-sub-7ea0e-ntry-accesses.tsv`](manager-sub-7ea0e-ntry-accesses.tsv): every access to the
   marker's two `0x20`-byte slots from its `+0x30` (50 rows).
 - [`subsystem-update-flags-manager-sub-0209be80-7fb0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-7fb0-accesses.tsv):
-  every censused access to its group 9 sub-object at `+0x7FB0`, the level-up blink part (90 rows).
-- [`manager-sub-7fb0-record-accesses.tsv`](manager-sub-7fb0-record-accesses.tsv): every censused access to that
+  every access to its group 9 sub-object at `+0x7FB0`, the level-up blink part (90 rows).
+- [`manager-sub-7fb0-record-accesses.tsv`](manager-sub-7fb0-record-accesses.tsv): every access to that
   part's six `0x110`-byte records, one per unit whose level went up (95 rows).
 - [`subsystem-update-flags-manager-sub-0209be80-8fa0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-8fa0-accesses.tsv):
-  every censused access to its sub-object at `+0x8FA0`, the help block (187 rows).
+  every access to its sub-object at `+0x8FA0`, the help block (187 rows).
 - [`subsystem-update-flags-manager-sub-8fa0-slot-record-02b8-accesses.tsv`](subsystem-update-flags-manager-sub-8fa0-slot-record-02b8-accesses.tsv):
-  every censused access to the two `0x2B8`-byte records from the help block's `+0xAC0` (60 rows).
+  every access to the two `0x2B8`-byte records from the help block's `+0xAC0` (60 rows).
 - [`subsystem-update-flags-manager-sub-0209be80-a0d0-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-a0d0-accesses.tsv):
-  every censused access to its group 8 sub-object at `+0xA0D0` (9 rows).
-- [`manager-sub-0d0-record-accesses.tsv`](manager-sub-0d0-record-accesses.tsv): every censused access to the two
+  every access to its group 8 sub-object at `+0xA0D0` (9 rows).
+- [`manager-sub-0d0-record-accesses.tsv`](manager-sub-0d0-record-accesses.tsv): every access to the two
   `0x110`-byte elements at the start of that sub-object (1 row).
 - [`subsystem-update-flags-manager-sub-0209be80-ab30-accesses.tsv`](subsystem-update-flags-manager-sub-0209be80-ab30-accesses.tsv):
-  every censused access to its sub-object at `+0xAB30`, the battle menu ([widgets](../Menus-And-HUD/widgets.md)) (149 rows).
+  every access to its sub-object at `+0xAB30`, the battle menu ([widgets](../Menus-And-HUD/widgets.md)) (149 rows).
 
 In the `route` cells of these tables, `ManagerSingleton0209BE80` names the UI manager object and
 `ManagerSub0209BE80_` with an offset its sub-object at that offset.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat AI: `0x00377C20` is called by `0x003014C0`, `0x00301AD0`, `0x00305AB0`; those functions are documented on
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md), [glossary](glossary.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Gameplay: `0x00320AB0` calls `0x0031B9F0`; `0x00377C20` is called by `0x00307D10`, `0x0030A8A0`, `0x0030C210`, `0x0030D9A0`; those
+  functions are documented on [identifier spaces](identifier-spaces.md), [force fight mode](force-fight-mode.md),
+  [enmity](../Enemy-AI-And-Gambits/enmity.md), [frame update order](frame-update-order.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](force-fight-mode.md).
+- Items equipment shops license: `0x00320AB0` is called by `0x002F9F20`, `0x0030A4E0`, `0x0030FAA0`, `0x0030FBE0`, `0x0030FD10`;
+  `0x00377C20` is called by `0x00309FB0`, `0x0030FD10`; those functions are documented on
+  [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md), [stats](../Damage-And-Battle-Formulas/stats.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Rewards progression economy: `0x00320AB0` is called by `0x002F8BB0`, `0x00312280`; `0x00377C20` is called by `0x00312280`;
+  those functions are documented on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
+- Status periodic terminal: `0x00320AB0` is called by `0x00310DB0`; `0x00377C20` is called by `0x0030E360`, `0x0030F690`,
+  `0x00310DB0`; those functions are documented on [frame update order](frame-update-order.md),
+  [force fight mode](force-fight-mode.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).

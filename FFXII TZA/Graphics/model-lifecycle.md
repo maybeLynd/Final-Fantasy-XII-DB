@@ -56,3 +56,27 @@ it.
 - [Character render records](character-render-records.md): the records, their pool and their events.
 - [Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md): rebuilding a model in place.
 - [Model files](model-files-cm-ca.md): the file a binding loads.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x002E28E0` calls `0x0025AB30`, `0x00263FF0`; `0x002E28E0` is called by `0x0037B4D0`; those functions are
+  documented on [native commands](../Scripts-And-Script-Commands/native-commands.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Movement: `0x002E28E0` calls `0x00269E60`, `0x00269F90`, `0x0026A370`, `0x0026AF40`, `0x0026B2E0`, `0x002E3500`, `0x002E5C90`,
+  `0x002E5E10`, `0x002E8E20`, `0x002EC3F0`; `0x0042FB80` is called by `0x002E28E0`, `0x002E3110`.
+- Movement: those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
+  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md); and on
+  [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md).
+- Resource: `0x00429140` calls `0x002ED570`; `0x0042FB80` calls `0x00409090`; those functions are documented on
+  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Script VM: `0x002E28E0` is called by `0x003409F0`, `0x00342640`, `0x00355210`, `0x0050D810`; those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [native commands](../Scripts-And-Script-Commands/native-commands.md).
+- World area: `0x002E28E0` calls `0x00377C20`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

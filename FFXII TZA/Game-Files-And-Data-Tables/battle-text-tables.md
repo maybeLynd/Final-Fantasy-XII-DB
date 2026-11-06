@@ -344,3 +344,17 @@ The `0x002491B0` calls sit in ten functions, at 28 sites:
 - [Authored data tables](authored-data-tables.md): the registry slot, the table header and the binders.
 - [Fonts](../Menus-And-HUD/fonts.md): how a glyph code becomes a glyph.
 - [Text codes](../Menus-And-HUD/text-codes.md): the control and escape codes inside strings.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- RNG random selection: `0x0022A0B0` calls `0x00379CF0`; those functions are documented on
+  [startup constants](../Engine-Core/startup-constants.md).
+- Save load settings: `0x0017D4C0` calls `0x001C1710`, `0x001C18A0`, `0x001C18E0`; `0x00245020` is called by `0x0057E4D0`;
+  `0x00253970` calls `0x002EF640`.
+- Save load settings: those functions are documented on
+  [game application](../Engine-Core/game-application.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [changing areas](../World-Areas-And-Travel/changing-areas.md),
+  [global state accessors](../Engine-Core/global-state-accessors.md).

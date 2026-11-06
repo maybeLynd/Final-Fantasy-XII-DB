@@ -240,3 +240,12 @@ and the paragraphs above name `0x02B5E0E8`, `0x02B5E0F0`, `0x02B5E110` and `0x02
 - [Sound banks](sound-banks.md) - the `.mab` track files.
 - [Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md) - the field id and the zone setup.
 - [Chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md) - chocobo mode.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x00266D10` is called by `0x0022A0B0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Save load settings: `0x0032E4D0` is called by `0x00280140`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).

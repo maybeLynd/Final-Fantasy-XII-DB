@@ -100,3 +100,11 @@ and `0x01000010`-`0x01000016`. An id without bit `0x1000000` plays as the render
 - [Verb dispatch](verb-dispatch.md): how a script instruction reaches a verb's callbacks.
 - [Party verbs](party-verbs.md): the verbs that act on party members.
 - The area script pages under 14-Story-Event-Quest-Hunt/Areas, whose steps call these verbs.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Movement: `0x00267F60` is called by `0x00345430`, `0x003488B0`, `0x00349680`, `0x003548B0`; those functions are documented on
+  [native commands](native-commands.md),
+  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md).

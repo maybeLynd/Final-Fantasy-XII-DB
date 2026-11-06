@@ -101,3 +101,10 @@ That table has one line per entry: `id` and `name` of the row, `part` (the label
 - [Technick list: every technick with its name, shop price, sort order, power, statuses and texts](technick-list.md)
 - [Item list: every item with its name, price, sort order, icon, the action it runs and its texts](item-list.md)
 - [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat formula: `0x003060E0` calls `0x0031B860`; `0x003064F0` calls `0x00320A40`; those functions are documented on
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).

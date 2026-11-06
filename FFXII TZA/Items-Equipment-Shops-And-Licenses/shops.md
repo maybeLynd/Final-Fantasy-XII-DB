@@ -232,3 +232,10 @@ A list is sold when its own entry or an earlier one in the ladder is the first w
 - [NPC names](../Characters-And-Objects/npc-names.md) - where a shop's name is shown from.
 - [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the operand bank the story conditions read.
 - [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) - the gambits the shops sell.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x003462D0` calls `0x00229EB0`; those functions are documented on
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).

@@ -308,3 +308,13 @@ that is 0) + +0x50`, times `+0x08`, it saw. At the end, with `+0x62` set, it add
 - [TIM2 images](tim2-images.md): the 4-bit glyph sheets of the font pack and menus.
 - [File size tables](file-size-tables-fst.md): the per-language sizes the loader allocates.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): the kind-7 request and its completion.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x001BA860` is called by `0x002120E0`; those functions are documented on
+  [audio manager](../Sound-And-Music/audio-manager.md).
+- Save load settings: `0x00247950` is called by `0x00280140`; `0x00249410` is called by `0x00582790`; `0x00249580` is called by
+  `0x00582790`; those functions are documented on [resource arena and relocation](resource-arena-and-relocation.md),
+  [mrp menu resource packages](mrp-menu-resource-packages.md).

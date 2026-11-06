@@ -427,3 +427,10 @@ The countdown slots, field by field:
 - [Random number generators](../Random-Numbers/random-number-generators.md): the Mersenne
   Twister and its seeders.
 - [Frame update order](frame-update-order.md): the state machine whose cells are initialised here.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Gameplay: `0x00304440` calls `0x0030D9A0`; those functions are documented on
+  [frame update order](frame-update-order.md).

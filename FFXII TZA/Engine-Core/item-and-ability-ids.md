@@ -529,6 +529,6 @@ records.
   inventory regions sit in the save image.
 - [Authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md): the `st2e` header, the
   pack load that binds each slot, and the row arithmetic the readers inline.
-- [`item-and-ability-ids-query-record-accesses.tsv`](item-and-ability-ids-query-record-accesses.tsv): every censused
-  access to the query record (`EncodedIdQueryRecord`, `0x98` bytes): its row-form copy `0x022CA520` and its id-form
+- [`item-and-ability-ids-query-record-accesses.tsv`](item-and-ability-ids-query-record-accesses.tsv): every access to
+  the query record (`EncodedIdQueryRecord`, `0x98` bytes): its row-form copy `0x022CA520` and its id-form
   copy `0x022CA480`, one row per instruction (326 rows).

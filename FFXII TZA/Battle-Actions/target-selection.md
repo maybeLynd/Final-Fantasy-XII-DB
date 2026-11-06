@@ -247,3 +247,11 @@ No other instruction reaches these two.
   - `0x002FFCF0` and its reason codes.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   `0x1`, `0x2`, `0x8`, `0x10`, `0x20`, `0x1000000` and `0x80000000`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x00234590` calls `0x0032A100`, `0x0032A150`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).

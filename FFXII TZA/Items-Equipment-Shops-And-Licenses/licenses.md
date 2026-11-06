@@ -220,3 +220,18 @@ Script verb `0x5D6` `resetJobs(member)` calls `0x00328BD0` for main characters 0
 - [Augments](../Damage-And-Battle-Formulas/augments.md) - what the augment squares do.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the owned bits, LP and MP bars.
 - [Equipment row](equipment-row.md) - the no-license bit of equipment.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x00313F60` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Movement: `0x00313F60` is called by `0x0031BAC0`, `0x00326D60`, `0x00329A80`, `0x003911D0`.
+- Movement: those functions are documented on [game over](../World-Areas-And-Travel/game-over.md),
+  [party slots](../Party/party-slots.md),
+  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
+  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md).
+- Presentation: `0x002527B0` is called by `0x00579420`; `0x00300E40` calls `0x003125E0`; those functions are documented on
+  [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md),
+  [battle units](../Characters-And-Objects/battle-units.md).

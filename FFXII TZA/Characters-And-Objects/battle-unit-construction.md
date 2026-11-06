@@ -300,3 +300,17 @@ Class row (`0x02EBF150`):
 - [EXP, LP and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md) and [stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md): the curve and the grower.
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn record and the lane map.
 - [Bestiary](../Enemy-Spawning/bestiary.md): every shipped enemy definition with these fields decoded.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on [battle units](battle-units.md).
+- Core runtime: `0x00254A10` calls `0x00229E40`; those functions are documented on
+  [startup constants](../Engine-Core/startup-constants.md).
+- Platform online achievements: `0x00312280` calls `0x00316A50`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).
+- Save load settings: `0x00254A10` is called by `0x005832B0`; those functions are documented on
+  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
+- Story event quest hunt: `0x00263990` calls `0x0032A930`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

@@ -748,3 +748,14 @@ pair and `0x00675440` destroys one.
 - [`phyre-asset-files-user-fixup-census.tsv`](phyre-asset-files-user-fixup-census.tsv): how many shipped `.phyre`
   files have each pair of user-fixup record count and user-fixup data size, by kind of file (`mesh`, `texture` or
   `neither`), with one example path (239 rows).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x001BA860` is called by `0x002120E0`; `0x002124C0` is called by `0x00212050`, `0x00212300`; `0x005CD4F0` is called by
+  `0x00212050`, `0x002120E0`, `0x00212300`, `0x00219C40`, `0x0021B290`, `0x00220C70`, `0x00220CE0`, `0x00220D40`, `0x00221140`,
+  `0x002211B0`, `0x00221220`.
+- Audio: `0x005CD820` is called by `0x00212050`, `0x002120E0`, `0x00212300`, `0x00219C40`, `0x0021B290`, `0x00220C70`, `0x00220CE0`,
+  `0x00220D40`, `0x00221140`, `0x002211B0`, `0x00221220`; those functions are documented on
+  [audio manager](../Sound-And-Music/audio-manager.md).

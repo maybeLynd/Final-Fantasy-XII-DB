@@ -229,8 +229,8 @@ loads it.
   rectangle; every shipped atlas has the `.dat` header's `atlasW` x `atlasH`.
 - The texture coordinates are fractions of the `.dat` header's `atlasW` and `atlasH` (font `+0x24`, `+0x28`), not of
   the texture's own size: the emitter `0x001E8070` computes u = x / `atlasW` and v = (`atlasH` - y) / `atlasH` for each
-  corner (`0x001E8150`-`0x001E81DD`, through `0x00225690` and `0x0079E3C0`). No other code reads the two fields (census in
-  the Project notes).
+  corner (`0x001E8150`-`0x001E81DD`, through `0x00225690` and `0x0079E3C0`). No other code reads the two
+  fields.
 - An atlas may therefore change size in two ways. Scaled by the same factor in width and height with the `.dat`
   unchanged, every coordinate stays the same fraction and samples the same glyph. Any other size, or glyphs moved
   in the image, needs the header's `atlasW` and `atlasH` and every glyph record's rectangle changed to match.
@@ -326,3 +326,65 @@ loads it.
 - [Font expansion lists](fonts-expansion-lists.md) - every list of every `.fex`.
 - [Phyre bitmap-font text](../PhyreEngine/phyre-bitmap-font-text.md) - the overlay that draws with
   `tuffysdf.fgen.phyre`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0027E530` calls `0x00272C80`, `0x00272CB0`; those functions are documented on
+  [npc names](../Characters-And-Objects/npc-names.md).
+- Audio: `0x001E8070` calls `0x00225690`; `0x00225690` is called by `0x00221F40`, `0x00222410`, `0x002238F0`, `0x00223FA0`,
+  `0x002240B0`, `0x00224180`, `0x00224290`, `0x00224360`, `0x00224470`; those functions are documented on [fonts](fonts.md),
+  [audio manager](../Sound-And-Music/audio-manager.md).
+- Core runtime: `0x001E8580` calls `0x001A1470`; `0x00254A10` calls `0x00229E40`; `0x002B0280` calls `0x00229E40`; those functions
+  are documented on [text drawing](text-drawing.md),
+  [startup constants](../Engine-Core/startup-constants.md).
+- Platform: `0x00225690` is called by `0x0061F200`, `0x0061F710`, `0x006209C0`, `0x006239C0`; those functions are documented on
+  [phyre d3d11 device and resources](../PhyreEngine/phyre-d3d11-device-and-resources.md).
+- Presentation: `0x0017FD30` is called by `0x002AAE40`, `0x002B0280`; `0x001B4590` is called by `0x001B47A0`; `0x001B4D70` calls
+  `0x001FC060`, `0x001FDCC0`, `0x001FE020`, `0x001FE080`; `0x001B58E0` calls `0x001FDE60`, `0x001FDF10`; `0x001B6230` calls
+  `0x001FDF10`; `0x001B6510` calls `0x001B4590`; `0x001E7F90` is called by `0x001B4590`; `0x001FDD60` is called by `0x001B4590`;
+  `0x00213560` is called by `0x001E8580`.
+- Presentation: `0x00225690` is called by `0x001E8070`; `0x00254A10` is called by `0x002B0280`, `0x002D2DB0`; `0x002AC2F0` is
+  called by `0x002AAE40`; `0x002B0280` calls `0x003A1DB0`; `0x002B0280` is called by `0x003F1530`; `0x002B3400` is called by
+  `0x0035C160`; `0x002D8650` is called by `0x0035C160`; `0x002D8690` calls `0x002B0280`, `0x003649A0`; `0x002D87D0` calls
+  `0x002B0280`, `0x003649A0`; `0x002DD5D0` calls `0x003649A0`.
+- Presentation: `0x002DD680` calls `0x002B0280`; `0x002F9920` is called by `0x0037E5B0`, `0x0037E8D0`; `0x00364530` calls
+  `0x00366110`; `0x003649A0` calls `0x003A1DB0`, `0x003A2020`, `0x003A2090`; `0x003649A0` is called by `0x0053E0B0`; `0x003659F0` is
+  called by `0x0053E0B0`; `0x00365B20` is called by `0x004213E0`; `0x0039C4A0` is called by `0x002AAE40`, `0x002B0280`; `0x0053E0B0`
+  calls `0x003649A0`; `0x0055BAC0` calls `0x002DB080`.
+- Presentation: `0x005C5310` is called by `0x001CD0E0`; `0x0079E3C0` is called by `0x001E8070`.
+- Presentation: those functions are documented on [message windows](message-windows.md),
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md),
+  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md), [fonts](fonts.md), [fonts glyphs](fonts-glyphs.md),
+  [text drawing](text-drawing.md), [menu lists](menu-lists.md).
+- Presentation: and on [battle numbers](battle-numbers.md), [hud](hud.md),
+  [call signatures](../Engine-Core/call-signatures.md),
+  [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md),
+  [graphics thread handshake](../Graphics/graphics-thread-handshake.md).
+- Presentation: and on [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md),
+  [bone trails](../Graphics/bone-trails.md),
+  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
+  [debug menu](../Engine-Core/debug-menu.md).
+- Resource: `0x001B44A0` calls `0x001B53F0`; `0x001B4930` is called by `0x001B5140`; `0x001B4C00` is called by `0x001B6030`;
+  `0x001B4D70` calls `0x001B5480`, `0x001B5750`, `0x001B58E0`, `0x0020B5F0`; `0x001B4D70` is called by `0x001B5FE0`; `0x001B5230` is
+  called by `0x001B6080`; `0x001B5480` calls `0x001A0A90`, `0x001A0BB0`, `0x001A1220`; `0x001B5480` is called by `0x001B4D70`;
+  `0x001B5610` calls `0x001A0A90`, `0x001A0BB0`, `0x001A1220`.
+- Resource: `0x001B5610` is called by `0x001B5140`; `0x001B5750` calls `0x001A0A90`, `0x001A0BB0`, `0x001A1220`; `0x001B5750` is
+  called by `0x001B4D70`; `0x001B58E0` calls `0x001A0A90`, `0x001A0BB0`, `0x001A1220`; `0x001B58E0` is called by `0x001B4D70`;
+  `0x001EA3C0` calls `0x00796350`; `0x001FC060` is called by `0x001B4D70`; `0x001FDCC0` is called by `0x001B4D70`; `0x001FDE60` is
+  called by `0x001B58E0`, `0x001B6110`.
+- Resource: `0x001FDF10` is called by `0x001B58E0`, `0x001B6230`; `0x00213560` is called by `0x001B6230`; `0x00365810` calls
+  `0x0032E400`, `0x0032E620`; `0x006B5C70` is called by `0x004096F0`, `0x00409960`, `0x00409A60`.
+- Resource: those functions are documented on [fonts](fonts.md), [fonts expansion lists](fonts-expansion-lists.md),
+  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md),
+  [fonts kerning](fonts-kerning.md), [async load manager](../Game-Files-And-Data-Tables/async-load-manager.md),
+  [fonts glyphs](fonts-glyphs.md).
+- Resource: and on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md),
+  [startup constants](../Engine-Core/startup-constants.md),
+  [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md).
+- Save load settings: `0x00254A10` is called by `0x005832B0`; those functions are documented on
+  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
+- World area: `0x002F9920` is called by `0x003C0450`, `0x00576A50`; those functions are documented on
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md),
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).

@@ -106,3 +106,94 @@ function (`0x0036E32C`-`0x0036E33D` in `0x0036E320`; `0x0036E540`, `0x0036E5A0`,
 - [Effect anchors and targets](effect-anchors-and-targets.md): anchor queries and target slots.
 - [Effect file loading](effect-file-loading.md): battle effect slots and the loaded-file queue.
 - [Native commands](../Scripts-And-Script-Commands/native-commands.md): the effect verbs of event scripts.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x002E9B80` calls `0x003588B0`; `0x002E9FE0` is called by `0x0025B820`, `0x0025C230`, `0x0025C830`, `0x003DF6F0`,
+  `0x0046BAC0`.
+- Actor entity: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [field runtime](../Characters-And-Objects/field-runtime.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md).
+- Actor entity: and on [actor record](../Characters-And-Objects/actor-record.md),
+  [target selection](../Battle-Actions/target-selection.md).
+- Audio: `0x002E9B80` is called by `0x00332C40`; those functions are documented on
+  [animation sounds](../Sound-And-Music/animation-sounds.md).
+- Combat action: `0x002FCB60` calls `0x002FC3C0`; those functions are documented on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- Core runtime: `0x003B1BA0` calls `0x00229E40`; those functions are documented on
+  [startup constants](../Engine-Core/startup-constants.md).
+- Input: `0x00267310` is called by `0x002E09A0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Movement: `0x00267310` is called by `0x002E45E0`, `0x002E5750`; `0x002E9FE0` is called by `0x002E6330`, `0x002EA7F0`; those
+  functions are documented on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md).
+- Movement: and on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+- Party: `0x002E9FE0` is called by `0x00359150`; those functions are documented on [map screens](../Menus-And-HUD/map-screens.md).
+- Resource: `0x003B1710` calls `0x0032E4D0`, `0x0032E520`, `0x0032E590`; `0x003B18E0` calls `0x0032E4D0`, `0x0032E520`, `0x0032E590`;
+  those functions are documented on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- Script VM: `0x00267310` is called by `0x0033F330`, `0x00340260`, `0x00340FA0`, `0x00341590`, `0x00341710`, `0x00341F50`,
+  `0x00342770`, `0x003428C0`, `0x00342F80`, `0x003435C0`, `0x003436B0`, `0x00343A30`; `0x00267310` is also called by `0x00343B00`,
+  `0x00343C60`, `0x00343F10`, `0x00344340`, `0x003445E0`, `0x00344660`, `0x00344F00`, `0x00345010`, `0x00345930`, `0x00345B60`,
+  `0x00346260`, `0x00346C00`.
+- Script VM: `0x00267310` is also called by `0x00347B00`, `0x003486A0`, `0x0034A1D0`, `0x0034A530`, `0x0034A600`, `0x0034AB50`,
+  `0x0034AC30`, `0x0034B3C0`, `0x0034B7C0`, `0x0034BBD0`, `0x0034C210`, `0x0034C570`; `0x00267310` is also called by `0x0034CA40`,
+  `0x0034DCC0`, `0x0034E630`, `0x0034E8B0`, `0x0034EE40`, `0x0034EF60`, `0x00350700`, `0x00350EC0`, `0x00353260`, `0x00353D90`,
+  `0x00354300`, `0x00354800`.
+- Script VM: `0x00267310` is also called by `0x003549D0`, `0x00355160`, `0x00355300`, `0x003563D0`, `0x00356990`, `0x00357040`,
+  `0x003576D0`, `0x003581B0`; `0x00314D40` is called by `0x0033F330`, `0x003409F0`, `0x00340FA0`, `0x00341710`, `0x00341840`,
+  `0x003418B0`, `0x00341F90`, `0x00342770`, `0x00342F50`, `0x00344200`, `0x00344660`, `0x00345250`.
+- Script VM: `0x00314D40` is also called by `0x003453D0`, `0x00346020`, `0x003466A0`, `0x00346AA0`, `0x003473A0`, `0x00347660`,
+  `0x00347C60`, `0x00348870`, `0x003491B0`, `0x003492A0`, `0x003499C0`, `0x00349A30`; `0x00314D40` is also called by `0x0034A300`,
+  `0x0034B120`, `0x0034B8D0`, `0x0034C320`, `0x0034CED0`, `0x0034D740`, `0x0034D8B0`, `0x0034E1F0`, `0x0034E3E0`, `0x0034E8B0`,
+  `0x0034EE40`, `0x0034F770`.
+- Script VM: `0x00314D40` is also called by `0x0034FB20`, `0x0034FE80`, `0x003523B0`, `0x00352E40`, `0x00353080`, `0x00353590`,
+  `0x00353720`, `0x003541B0`, `0x00354690`, `0x00354920`, `0x00354A40`, `0x003550F0`; `0x00314D40` is also called by `0x00356050`,
+  `0x00357300`, `0x003576D0`, `0x0050CB00`, `0x0050D0C0`, `0x0050D540`, `0x0050D710`, `0x0050E1E0`, `0x0050EA80`; `0x003576D0` calls
+  `0x00267E10`.
+- Script VM: `0x003576D0` is called by `0x0034B880`, `0x0034BC90`, `0x0034C0F0`, `0x0034C430`, `0x0034C820`, `0x0034CB80`;
+  `0x0036DDC0` is called by `0x0034EF60`, `0x0034FD80`, `0x003501D0`; `0x0036DF80` is called by `0x003504D0`, `0x00350990`;
+  `0x0036E320` is called by `0x003576D0`; `0x0036E460` is called by `0x0034D690`; `0x0036E540` is called by `0x0034D740`;
+  `0x0036E5A0` is called by `0x0034EF60`; `0x0036E5E0` is called by `0x00355F40`.
+- Script VM: `0x0036E640` is called by `0x00351FD0`; `0x0036E8B0` is called by `0x0034DE50`, `0x0034E2A0`; those functions are
+  documented on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [music table](../Sound-And-Music/music-table.md), [actor managers](../Characters-And-Objects/actor-managers.md),
+  [effect files efx efb](effect-files-efx-efb.md), [music](../Sound-And-Music/music.md).
+- Script VM: and on [script screen effects](script-screen-effects.md), [scripted camera](scripted-camera.md),
+  [map sounds](../Sound-And-Music/map-sounds.md), [pkfl packages](../PKFL-Package-Files/pkfl-packages.md),
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+- Script VM: and on [small bin tables](../Game-Files-And-Data-Tables/small-bin-tables.md),
+  [vibration](../Controls-And-Input/vibration.md),
+  [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md),
+  [native commands](../Scripts-And-Script-Commands/native-commands.md).
+- Script VM: and on [voices](../Sound-And-Music/voices.md),
+  [graphics settings](../Engine-Core/graphics-settings.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [sound effects](../Sound-And-Music/sound-effects.md), [effect file list](effect-file-list.md).
+- Script VM: and on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
+  [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md).
+- Script VM: and on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
+  [action phases](../Battle-Actions/action-phases.md),
+  [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Script VM: and on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [verb table](../Scripts-And-Script-Commands/verb-table.md),
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
+- Script VM: and on [ebp script container](../EBP-Script-Files/ebp-script-container.md),
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
+  [debug menu](../Engine-Core/debug-menu.md); and on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- UI: `0x0024ED80` is called by `0x0024B9B0`; `0x0024EE60` is called by `0x0024B9B0`; `0x003B0220` is called by `0x0024B9B0`;
+  those functions are documented on [frame update order](../Engine-Core/frame-update-order.md).
+- World area: `0x00314D40` is called by `0x00266D10`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- World area: `0x00267310` is called by `0x00314020`; those functions are documented on
+  [debug logging](../Engine-Core/debug-logging.md).

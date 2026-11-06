@@ -56,3 +56,13 @@ record's own character, the key is:
 - [Font files](fonts-files.md) - each `.dat` header and the round trip.
 - [Font kerning pairs](fonts-kerning.md) - the pairs keyed by `kernCp`.
 - [Font expansion lists](fonts-expansion-lists.md) - the lists whose values are glyph keys.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Presentation: `0x001B4D70` calls `0x001FC060`, `0x001FDCC0`, `0x001FE020`, `0x001FE080`; those functions are documented on
+  [fonts files](fonts-files.md), [fonts](fonts.md).
+- Resource: `0x001B4D70` calls `0x001B5480`, `0x001B5750`, `0x001B58E0`, `0x0020B5F0`; `0x001B4D70` is called by `0x001B5FE0`;
+  `0x001FDCC0` is called by `0x001B4D70`; those functions are documented on [fonts files](fonts-files.md),
+  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md), [fonts](fonts.md).

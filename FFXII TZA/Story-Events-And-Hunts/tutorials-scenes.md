@@ -206,3 +206,67 @@ scripts' copies differ only in these.
 The script list's columns are `script`, `kind` and `place` (the script, `scene`, and its event id), `actors` and
 `functions` (the script's actors and functions), `rows` (its rows in a scripts table) and `shared_actors` (the
 shared helper actors it carries).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0032F6C0` is called by `0x0025D9E0`; `0x0032F6E0` is called by `0x0025D9E0`; `0x0032FC30` calls `0x0032FCA0`;
+  `0x0032FC30` is called by `0x0025D9E0`; `0x0032FCA0` calls `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0`; `0x00332130`
+  calls `0x00263FF0`, `0x0032F1B0`; `0x00332190` calls `0x00263FF0`; `0x003C9FD0` calls `0x00332130`.
+- Actor entity: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+- Actor entity: and on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
+- Audio: `0x0027FB70` calls `0x002DE350`, `0x002DEE50`; those functions are documented on
+  [menu screens](../Menus-And-HUD/menu-screens.md),
+  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md).
+- Combat action: `0x0027FB70` calls `0x00300060`; `0x0032ED70` is called by `0x00306BD0`; `0x0032F6C0` is called by `0x00306B10`;
+  `0x0032F6E0` is called by `0x00306BD0`; `0x0032FC30` is called by `0x00306BD0`; `0x00332130` is called by `0x00306760`;
+  `0x00332190` is called by `0x00306570`, `0x003065D0`.
+- Combat action: those functions are documented on [action phases](../Battle-Actions/action-phases.md),
+  [battle units](../Characters-And-Objects/battle-units.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Core runtime: `0x00354D00` calls `0x00229EA0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Input: `0x002E1B10` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; `0x00351880` calls `0x001D6A70`; `0x003529E0` calls
+  `0x001D6A70`; those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
+  [startup constants](../Engine-Core/startup-constants.md),
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
+- Script VM: `0x00264D60` is called by `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`,
+  `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0`; `0x002E1A60` is called by `0x003462D0`, `0x003470D0`; `0x002E1B10` is called
+  by `0x0050DAB0`; `0x0032ED70` is called by `0x003522C0`, `0x00353080`, `0x00353590`; `0x0032F6C0` is called by `0x003541B0`.
+- Script VM: `0x0032FC30` is called by `0x003522C0`, `0x00353080`, `0x00353590`, `0x0050D0C0`; `0x00332130` is called by
+  `0x00354B20`, `0x00354E80`; `0x00332190` is called by `0x00356D40`; `0x00348DF0` calls `0x00267E10`; `0x00348DF0` is called by
+  `0x00349800`; `0x00351880` calls `0x00267E10`; `0x003529E0` calls `0x00267E10`, `0x00267F90`; `0x00354D00` calls `0x00267E10`.
+- Script VM: those functions are documented on [archades scenes](archades-scenes.md),
+  [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md),
+  [npc names](../Characters-And-Objects/npc-names.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Script VM: and on [menus](../Menus-And-HUD/menus.md), [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
+  [ebp script container](../EBP-Script-Files/ebp-script-container.md),
+  [debug menu](../Engine-Core/debug-menu.md).
+- Script VM: and on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [native commands](../Scripts-And-Script-Commands/native-commands.md).
+- UI: `0x0027FB70` calls `0x00280D20`, `0x002909F0`, `0x002D7070`, `0x003EF750`; `0x002D7070` is called by `0x0027FB70`; `0x002E1B10`
+  is called by `0x0035C7B0`, `0x0035D6B0`; `0x003CA140` is called by `0x002D70F0`; `0x003CA1B0` is called by `0x002D70F0`.
+- UI: those functions are documented on [menu screens](../Menus-And-HUD/menu-screens.md), [hud](../Menus-And-HUD/hud.md),
+  [game over](../World-Areas-And-Travel/game-over.md),
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+- UI: and on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [action availability](../Controls-And-Input/action-availability.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+- World area: `0x0032FC30` calls `0x0025D4D0`, `0x003319D0`, `0x003EA6E0`; `0x0032FC30` is called by `0x00314020`; `0x0032FCA0` is
+  called by `0x0032FC30`; `0x00332130` is called by `0x00378120`; `0x003522C0` calls `0x0032FC30`; `0x00353080` calls `0x0032FC30`;
+  `0x003C9FD0` calls `0x0032FC30`.
+- World area: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [debug logging](../Engine-Core/debug-logging.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md).

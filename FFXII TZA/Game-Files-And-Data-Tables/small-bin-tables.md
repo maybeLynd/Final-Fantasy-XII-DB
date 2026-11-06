@@ -442,3 +442,10 @@ So records 0 to 27 are the ones a model reaches. Records 28 to 63 all hold scale
 - [Battle and menu text tables](battle-text-tables.md): the text ids the legend and quest windows resolve.
 - [Weather](../World-Areas-And-Travel/weather.md): the variant flag that selects footstep set B.
 - [The .bin families under ps2data](ps2data-bin-families.md): every other `.bin` family.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- World area: `0x0032E400` is called by `0x00378540`; `0x0032E620` is called by `0x00378540`; `0x0036A190` is called by
+  `0x00378540`; those functions are documented on [ps2data bin families](ps2data-bin-families.md).

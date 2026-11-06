@@ -339,3 +339,18 @@ replacement keeps:
 - [Phyre field schema](phyre-field-schema.md): file-side against runtime member offsets.
 - [Post-processing](../Graphics/post-processing.md): the two render-pass record tables the effects' pass names are matched against.
 - [Phyre D3D11 draws and state](phyre-d3d11-draws-and-state.md): the pass switch, stage caches and shader creators a replacement program goes through.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform: `0x00622F40` calls `0x0061E340`; `0x0062A0A0` calls `0x006239C0`; those functions are documented on
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [phyre d3d11 device and resources](phyre-d3d11-device-and-resources.md).
+- Presentation: `0x00608DD0` calls `0x00629AA0`; `0x00608F20` calls `0x00629AA0`; `0x0061E0B0` is called by `0x0061DFE0`;
+  `0x0061F650` is called by `0x0061DBE0`, `0x0061DCA0`, `0x0061DD60`, `0x0061DFE0`; `0x00629AA0` calls `0x0061DBE0`, `0x0061DCA0`,
+  `0x0061DD60`, `0x0061DFE0`; `0x0067AEA0` is called by `0x006B9630`.
+- Presentation: those functions are documented on [phyre d3d11 draws and state](phyre-d3d11-draws-and-state.md),
+  [phyre reflection](phyre-reflection.md).
+- Resource: `0x00680150` is called by `0x001F4720`; those functions are documented on
+  [bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md).

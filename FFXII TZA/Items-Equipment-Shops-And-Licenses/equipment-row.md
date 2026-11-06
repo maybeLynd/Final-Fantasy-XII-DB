@@ -241,3 +241,15 @@ is compared.
 - [Augments](../Damage-And-Battle-Formulas/augments.md) - the augment byte of armor and accessories.
 - [Elements](../Damage-And-Battle-Formulas/elements.md) - the element bytes.
 - [Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md) - recipe, knockback, combo and statuses.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0032E400` is called by `0x0032FCA0`, `0x00330310`, `0x003306E0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
+- Save load settings: `0x00235E90` is called by `0x00253A80`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Script VM: `0x0032E400` is called by `0x0050DF70`.

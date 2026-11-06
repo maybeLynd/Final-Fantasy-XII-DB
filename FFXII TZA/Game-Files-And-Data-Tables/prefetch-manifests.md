@@ -443,3 +443,29 @@ these draws ask for neither.
 - [File path resolution](file-path-resolution.md): the RAM cache, its name filter and the selector stamps.
 - [Texture animation lists](texture-animation-lists-ta.md): the other list format read the same way.
 - [Fonts](../Menus-And-HUD/fonts.md): the font list selection by language.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Gameplay: `0x00394460` calls `0x00237DF0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Party: `0x0030BEF0` calls `0x0031B7E0`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).
+- UI: `0x001819A0` is called by `0x002A0440`; `0x0024A5A0` is called by `0x00279E20`, `0x00280DE0`, `0x002814E0`, `0x00281AE0`,
+  `0x00291010`, `0x002911D0`, `0x002915C0`, `0x002917E0`, `0x002D70F0`, `0x003C9E50`, `0x003EE420`, `0x00558FB0`; `0x0024A5A0` is also
+  called by `0x00560910`, `0x00562F90`, `0x00563110`; `0x002713B0` is called by `0x002911D0`; `0x00291010` calls `0x003F6FD0`,
+  `0x003F7380`, `0x003F73D0`, `0x003F73F0`.
+- UI: `0x00291010` is called by `0x00290300`; `0x002911D0` calls `0x003F34D0`, `0x003F3510`, `0x003F3580`; `0x002911D0` is called by
+  `0x0028EA20`; `0x0030BEF0` is called by `0x003F77F0`; `0x003F3660` is called by `0x003F3510`; `0x003F77F0` calls `0x002732E0`;
+  `0x003F77F0` is called by `0x003F6BB0`, `0x003F7CC0`; `0x005621A0` is called by `0x005512B0`; `0x00562A30` is called by
+  `0x005551F0`.
+- UI: those functions are documented on [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
+  [tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md), [binmenu images](binmenu-images.md),
+  [clan primer](../Menus-And-HUD/clan-primer.md), [hud](../Menus-And-HUD/hud.md).
+- UI: and on [subsystem update flags](../Engine-Core/subsystem-update-flags.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [widget messages](../Menus-And-HUD/widget-messages.md), [tim2 images](tim2-images.md),
+  [battle text tables](battle-text-tables.md).
+- UI: and on [mrp menu resource packages](mrp-menu-resource-packages.md), [world map mesh mg](world-map-mesh-mg.md),
+  [map screens](../Menus-And-HUD/map-screens.md).

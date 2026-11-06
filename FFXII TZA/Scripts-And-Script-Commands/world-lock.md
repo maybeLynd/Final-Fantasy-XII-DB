@@ -110,3 +110,103 @@ The lock counter and the hold bytes.
 - [The party during scenes](party-during-scenes.md): hiding, capturing and the summon group.
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the registry behind the lock.
 - [Script requests](script-requests.md): the talk filer and the start flag.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x00225CD0` calls `0x00263FF0`, `0x00358940`, `0x00359B80`; `0x00225CD0` is called by `0x00263050`; `0x00226BE0`
+  calls `0x00263FF0`, `0x003588B0`, `0x00358940`, `0x00359B80`; `0x00226BE0` is called by `0x00263230`; `0x00263050` calls
+  `0x003588B0`; `0x00263050` is called by `0x003DB2A0`; `0x00263230` calls `0x003588B0`, `0x0035AE10`; `0x00263230` is called by
+  `0x003DBDC0`; `0x00263480` calls `0x003589B0`.
+- Actor entity: `0x00263480` is called by `0x002628B0`, `0x00263050`, `0x00268D10`; `0x00263560` calls `0x00238B40`, `0x00312130`;
+  `0x00263560` is called by `0x002628B0`, `0x0037B4D0`; `0x0026D6F0` calls `0x003588B0`; `0x0026D6F0` is called by `0x00263230`,
+  `0x0026C5D0`, `0x0026C8C0`; `0x002E1CD0` is called by `0x0025C830`, `0x00263050`, `0x00263660`, `0x00268D10`, `0x0026C5D0`;
+  `0x002E7600` is called by `0x00263050`, `0x00263230`, `0x0026C5D0`.
+- Actor entity: `0x002E8EE0` is called by `0x00263050`, `0x00263230`, `0x002693D0`, `0x0026C5D0`; `0x002EAB80` is called by
+  `0x00263230`; `0x002EBE50` is called by `0x00263050`, `0x00263230`, `0x002693D0`, `0x0026C5D0`; `0x002EBFA0` calls `0x00265020`,
+  `0x003587C0`, `0x003589B0`; `0x002EBFA0` is called by `0x00263230`; `0x002EC2C0` calls `0x00265020`; `0x002EC2C0` is called by
+  `0x00263230`; `0x002EC380` is called by `0x00263230`.
+- Actor entity: `0x002ED040` is called by `0x00263050`, `0x00263230`; `0x003589B0` is called by `0x00234480`, `0x0025C230`,
+  `0x0025C830`, `0x00268650`, `0x00268D10`, `0x0037B4D0`, `0x003B6F80`; `0x003590D0` is called by `0x0025B600`, `0x0025D9E0`,
+  `0x00263050`, `0x00263230`, `0x00263AC0`, `0x00264010`, `0x00264050`, `0x0026C5D0`, `0x0026C8C0`, `0x0026DFB0`; `0x0035AE10` calls
+  `0x00233F50`; `0x0035AE10` is called by `0x00263230`, `0x0026C5D0`.
+- Actor entity: `0x00377700` is called by `0x00263230`, `0x00268D10`, `0x0026C5D0`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [script requests](script-requests.md).
+- Actor entity: and on [identifier spaces](../Engine-Core/identifier-spaces.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md), [script name bindings](script-name-bindings.md),
+  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md), [party during scenes](party-during-scenes.md).
+- Actor entity: and on [battle units](../Characters-And-Objects/battle-units.md), [battle verbs](battle-verbs.md).
+- Audio: `0x003590D0` is called by `0x00362850`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Combat action: `0x00225CD0` is called by `0x00313DB0`; `0x00226BE0` is called by `0x00313DB0`; `0x003589B0` is called by
+  `0x00319F50`, `0x00325260`; `0x003590D0` is called by `0x00317E60`, `0x00319090`.
+- Combat action: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md), [reward verbs](reward-verbs.md),
+  [jump thunks](../Engine-Core/jump-thunks.md).
+- Core runtime: `0x00263560` is called by `0x0022B8C0`, `0x0022BC20`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Gameplay: `0x003589B0` is called by `0x0031ADB0`; `0x003590D0` is called by `0x0031ADB0`; those functions are documented on
+  [bestiary](../Enemy-Spawning/bestiary.md).
+- Input: `0x00225CD0` calls `0x00182D40`, `0x00182D60`, `0x00182DA0`; `0x002273B0` calls `0x00226BE0`; `0x00263230` calls
+  `0x00226BE0`; `0x00263480` calls `0x00226BE0`; `0x003590D0` is called by `0x00226BE0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- Movement: `0x00225CD0` is called by `0x0026A1D0`; `0x00226BE0` is called by `0x0026A1D0`; `0x00263050` calls `0x002EAAA0`,
+  `0x002EBE50`; `0x00263230` calls `0x0026D6F0`, `0x002EAB80`, `0x002EBE50`, `0x002EBFA0`, `0x002EC2C0`, `0x002EC380`; `0x00263480`
+  calls `0x00263560`; `0x00263560` calls `0x0026D6F0`; `0x00263560` is called by `0x0026A1D0`, `0x0026A290`; `0x0026D6F0` calls
+  `0x002E9BB0`, `0x002EC5B0`.
+- Movement: `0x0026D6F0` is called by `0x0025DF00`, `0x00263560`, `0x00265FF0`, `0x0026A330`, `0x0026C3E0`, `0x0026D6A0`,
+  `0x0026D6D0`; `0x002E1CD0` is called by `0x0026C3E0`; `0x002E7600` is called by `0x002690D0`; `0x002E8EE0` is called by
+  `0x0026C120`, `0x002E28E0`, `0x002E3110`, `0x002E64E0`, `0x002EAAA0`, `0x002EBE50`; `0x002EAB80` calls `0x002627C0`, `0x00269F90`,
+  `0x0026AE90`, `0x0026C120`; `0x002EBE50` calls `0x00265200`, `0x002EC3F0`.
+- Movement: `0x002EBE50` is called by `0x002690D0`, `0x0026C120`; `0x002EBFA0` calls `0x00265470`, `0x0026A1A0`, `0x0026A870`,
+  `0x0026A8E0`, `0x0026A950`, `0x002E64E0`, `0x002EC2C0`; `0x002EBFA0` is called by `0x002EAAA0`, `0x002EC510`; `0x002EC2C0` calls
+  `0x0026A870`, `0x0026A8E0`, `0x0026A950`; `0x002EC2C0` is called by `0x002EAAA0`, `0x002EBFA0`, `0x002EC510`; `0x002EC380` is called
+  by `0x002690D0`.
+- Movement: `0x003589B0` is called by `0x002E5610`, `0x002EBFA0`; `0x003590D0` is called by `0x0026C3E0`, `0x0026D6F0`,
+  `0x0026D810`, `0x002E45E0`, `0x002E5180`, `0x00319490`, `0x00325D90`, `0x00326BB0`, `0x00326D60`, `0x00343E20`, `0x00345430`;
+  `0x0035AE10` is called by `0x0026C3E0`; `0x00377700` is called by `0x0026A1D0`, `0x0026C3E0`.
+- Movement: those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md), [script requests](script-requests.md),
+  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Movement: and on
+  [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md),
+  [script name bindings](script-name-bindings.md), [actor record fields](../Characters-And-Objects/actor-record-fields.md),
+  [party during scenes](party-during-scenes.md).
+- Movement: and on [script binding lifecycle](script-binding-lifecycle.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [player movement](../Movement-And-Pathfinding/player-movement.md),
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Movement: and on
+  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
+  [party data](../Party/party-data.md), [party slots](../Party/party-slots.md).
+- Party: `0x00226BE0` calls `0x00263750`, `0x003590D0`; `0x00263050` calls `0x003590D0`; `0x00263230` calls `0x003590D0`; `0x0026D6F0`
+  calls `0x003590D0`; `0x003589B0` is called by `0x00269C70`, `0x00326500`, `0x00353530`, `0x0050C610`, `0x0050D2F0`; `0x003590D0` is
+  called by `0x00263770`, `0x00269C70`, `0x00327270`, `0x003272A0`, `0x003272F0`, `0x003273B0`.
+- Party: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
+  [frame update order](../Engine-Core/frame-update-order.md), [party verbs](party-verbs.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [player movement](../Movement-And-Pathfinding/player-movement.md).
+- Party: and on [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
+  [reward verbs](reward-verbs.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md).
+- Presentation: `0x003589B0` is called by `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690`, `0x00506700`; `0x003590D0` is
+  called by `0x003A4290`, `0x003A56F0`, `0x003F1A60`, `0x00426090`, `0x004264A0`, `0x004640A0`, `0x004643D0`, `0x00464650`,
+  `0x00464BD0`, `0x00465120`, `0x00465690`, `0x0046CC70`.
+- Presentation: those functions are documented on
+  [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md),
+  [effect element runtime](../Graphics/effect-element-runtime.md),
+  [effect element types](../Graphics/effect-element-types.md),
+  [battle numbers](../Menus-And-HUD/battle-numbers.md).
+- Presentation: and on [hud](../Menus-And-HUD/hud.md),
+  [authored presentation commands](../Graphics/authored-presentation-commands.md),
+  [legacy ps2 gs layer](../Graphics/legacy-ps2-gs-layer.md),
+  [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md).
+- Save load settings: `0x00314A60` calls `0x002EF2B0`; those functions are documented on
+  [script name bindings](script-name-bindings.md).
+- UI: `0x003590D0` is called by `0x00299BD0`, `0x002C7660`; those functions are documented on
+  [party list](../Menus-And-HUD/party-list.md), [battle units](../Characters-And-Objects/battle-units.md).

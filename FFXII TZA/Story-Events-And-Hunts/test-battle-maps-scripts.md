@@ -254,3 +254,72 @@ differ only in these.
 - [Test map scripts](test-maps-scripts.md) - the two `tst_` zone scripts, which place the party with no foe.
 - [Opening setup scripts](opening-setup-scripts.md) - the `pre_` zone scripts, which no field loads either.
 - [Shared zone-script actors](shared-zone-script-actors.md) - the helper actors the region scripts share.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x00263990` is called by `0x0025C230`, `0x0025C830`, `0x00268D10`, `0x00272CB0`, `0x00272CE0`; `0x0032FCA0` calls
+  `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0`; `0x00355830` calls `0x0025D5E0`, `0x003588B0`.
+- Actor entity: those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [npc names](../Characters-And-Objects/npc-names.md).
+- Actor entity: and on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+- Actor entity: and on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Core runtime: `0x00354D00` calls `0x00229EA0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Movement: `0x00355830` calls `0x0026D6D0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- Party: `0x0034D4E0` calls `0x00263750`, `0x003271D0`, `0x00327850`, `0x00328DB0`, `0x00359C00`, `0x0035A050`; `0x00352190` calls
+  `0x00263750`, `0x003170E0`, `0x00322350`; `0x00352AF0` calls `0x00322350`, `0x003288F0`; `0x00355830` calls `0x003590D0`.
+- Party: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Presentation: `0x00263990` is called by `0x002B0280`; `0x00377B60` is called by `0x002B7B80`, `0x002BAF80`; those functions
+  are documented on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; `0x00351880` calls `0x001D6A70`; `0x003529E0` calls
+  `0x001D6A70`; those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
+  [startup constants](../Engine-Core/startup-constants.md),
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
+- Save load settings: `0x00264F90` is called by `0x00583D60`; those functions are documented on
+  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).
+- Script VM: `0x00264D60` is called by `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`,
+  `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0`; `0x00264F90` is called by `0x00357450`, `0x0050CDE0`; `0x002673A0` is called
+  by `0x00348DF0`, `0x0034ADA0`, `0x003545B0`, `0x0050EAB0`; `0x002E16B0` is called by `0x0033F950`, `0x00348DF0`, `0x0034ADA0`,
+  `0x0050EAB0`; `0x003449A0` calls `0x00267E10`, `0x0026B4E0`.
+- Script VM: `0x00345080` calls `0x00267E10`, `0x00267F90`, `0x0026B4E0`; `0x003459C0` calls `0x00267E10`, `0x0026B4E0`; `0x00348DF0`
+  calls `0x00267E10`; `0x00348DF0` is called by `0x00349800`; `0x00349800` calls `0x00267E10`, `0x00267F90`, `0x00348DF0`;
+  `0x00349800` is called by `0x00349BF0`, `0x0034A090`, `0x0034A420`, `0x0034A7A0`; `0x00349BF0` calls `0x00267F90`, `0x00349800`;
+  `0x0034A090` calls `0x00267F90`, `0x00349800`.
+- Script VM: `0x0034A420` calls `0x00267F90`, `0x00349800`; `0x0034A6D0` calls `0x00267E10`; `0x0034ADA0` calls `0x00267E10`;
+  `0x0034ADA0` is called by `0x0034B760`, `0x0034BB10`; `0x0034B760` calls `0x00267F90`, `0x0034ADA0`; `0x0034B9A0` calls
+  `0x00267E10`; `0x0034BB10` calls `0x00267F90`, `0x0034ADA0`; `0x0034C030` calls `0x00267E10`; `0x0034D4E0` calls `0x00267E10`;
+  `0x0034DD90` calls `0x00267E10`; `0x0034DFA0` calls `0x00267E10`.
+- Script VM: `0x0034E0B0` calls `0x00267E10`, `0x0026B4E0`; `0x0034E320` calls `0x00267E10`; `0x0034E980` calls `0x00267E10`,
+  `0x0026B4E0`; `0x0034EE20` calls `0x00267E10`; `0x00351880` calls `0x00267E10`; `0x00352190` calls `0x00267E10`; `0x003529E0` calls
+  `0x00267E10`, `0x00267F90`; `0x00352AF0` calls `0x00267E10`; `0x00354D00` calls `0x00267E10`; `0x00355830` calls `0x00267E10`.
+- Script VM: those functions are documented on [archades scenes](archades-scenes.md),
+  [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md),
+  [npc names](../Characters-And-Objects/npc-names.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md); and on
+  [native commands](../Scripts-And-Script-Commands/native-commands.md).
+- UI: `0x00263990` is called by `0x002AC5F0`; `0x00264F90` is called by `0x0029C530`; `0x003778B0` is called by `0x0029C530`;
+  `0x00377B60` is called by `0x0029C530`; those functions are documented on
+  [augments](../Damage-And-Battle-Formulas/augments.md), [zone asset list](../World-Areas-And-Travel/zone-asset-list.md).
+- World area: `0x00264ED0` is called by `0x003EA6E0`; `0x00264F90` is called by `0x003145E0`, `0x003778B0`, `0x003C0450`,
+  `0x0057FB00`; `0x0032FCA0` is called by `0x0032FC30`; `0x003778B0` calls `0x00264F90`; `0x003778B0` is called by `0x0057FB00`;
+  `0x00377B60` is called by `0x0057FB00`.
+- World area: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [changing areas](../World-Areas-And-Travel/changing-areas.md),
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md),
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
+- World area: and on [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md),
+  [debug menu](../Engine-Core/debug-menu.md).

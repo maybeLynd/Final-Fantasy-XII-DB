@@ -175,3 +175,10 @@ The task is the `0xD0`-byte widget kept at `0x01FD4948` with procedure `0x002284
 - [Widgets](widgets.md) - the focus, the roots and the release.
 - [Audio manager](../Sound-And-Music/audio-manager.md) - the paused kinds.
 - [Game application](../Engine-Core/game-application.md) - the framework pause byte and the running object.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x00245020` is called by `0x00280140`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).

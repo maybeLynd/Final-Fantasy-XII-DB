@@ -822,18 +822,18 @@ Definition fields the verified draws read:
 The tables beside this page:
 
 - [`effect-element-types-type_census.tsv`](effect-element-types-type_census.tsv): the per-type counts, matching
-  this census row for row;
+  the counts above row for row;
 - [`effect-element-types-effect-type-authored-usage.tsv`](effect-element-types-effect-type-authored-usage.tsv): an
-  earlier, smaller census whose counts this page supersedes;
+  earlier, smaller count whose numbers the counts on this page replace;
 - [`effect-element-types-effect-mesh-54-records.tsv`](effect-element-types-effect-mesh-54-records.tsv) (2,733
   rows): the mesh records of every EFX stream (the `.efx` and `.efb` files and the streams embedded in
   `.cm` models and `.mpk` map packs), one per row;
 - [`effect-element-types-effect-mesh-54-element05.tsv`](effect-element-types-effect-mesh-54-element05.tsv) (5,204
   rows): the type-`0x05` definitions of every EFX stream, one per row.
 
-### Columns of the census and mesh tables
+### Columns of the `type_census` and mesh tables
 
-Every row of the two mesh tables was checked against the shipped file it names.
+Every row of the two mesh tables matches the shipped file it names.
 
 | Column | Holds |
 |---|---|
@@ -1320,3 +1320,16 @@ parent's matrix (`0x0052D1F1`-`0x0052D31F`). It first moves the old `+0x70` into
   every type samples.
 - [PS2 VIF1 / VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md): the packet path
   many draw methods end in.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x00181DD0` is called by `0x00332C40`, `0x003B99D0`, `0x003D7CE0`, `0x003D7DC0`, `0x003D7E90`; `0x002628B0` calls
+  `0x00360B50`, `0x00360DD0`, `0x003636A0`.
+- Audio: those functions are documented on [animation sounds](../Sound-And-Music/animation-sounds.md),
+  [effect anchors and targets](effect-anchors-and-targets.md), [sound banks](../Sound-And-Music/sound-banks.md),
+  [effect element runtime](effect-element-runtime.md), [music](../Sound-And-Music/music.md),
+  [game over](../World-Areas-And-Travel/game-over.md).
+- Save load settings: `0x002628B0` calls `0x002EF2B0`; those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).

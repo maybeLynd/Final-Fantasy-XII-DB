@@ -253,7 +253,7 @@ the two floats of its third argument to the heading and pitch instead. Otherwise
 | 4 | timed interpolation from the start heading `+0x38` to `+0x34`: `t = +0x78 / +0x68`, `heading = start + wrap(target - start) * t`, `+0x78 += 1` (`0x0026C300`); at `t >= 1`, or when the skip flag forces it, the final heading and `0x0026C120(actor, 0)` |
 | 5 | waits while `0x002EA780` reports the render record's turn still running (`0x003E6AF0` non-zero and `0x002EA910` = 1); when it stops, `0x0026C120(actor, 0)` (`0x002E5A63`-`0x002E5A6E`); `0x002EA780` also gives 0, ending the wait at once, for a null actor, an actor without a controller at `+0xC0`, a render id of -1 or a render record whose `+0x284` is 0 (`0x002EA789`-`0x002EA7C3`) |
 
-Measured in the game with mode 2 at Frame Rate 60 and at 30: the facing moved by exactly `pi/20` per pass,
+With mode 2 at Frame Rate 60 and at 30, the facing moved by exactly `pi/20` per pass,
 `0x002E5750` ran once per rendered frame (about 60 and 30 times a second), and a half turn took 20 frames, a third
 of a second at 60 and two thirds at 30. The step is not scaled by the frame rate.
 
@@ -487,7 +487,7 @@ its staged triple; the globals `0x02164200` and `0x02099DB4`.
 - [Actor record](../Characters-And-Objects/actor-record.md): the class byte and the contexts.
 - [The staged look command](../Graphics/character-rig-and-look.md): the head requests.
 - [`facing-and-steering-steering-record-accesses.tsv`](facing-and-steering-steering-record-accesses.tsv): every
-  censused access to the two steering records (`SteeringRecord`) of the movement context, one row per instruction
+  access to the two steering records (`SteeringRecord`) of the movement context, one row per instruction
   (186 rows).
 
 The access table has one row per instruction:
@@ -499,5 +499,5 @@ The access table has one row per instruction:
 - `route`: how the record was reached: `chain:0xB8,0xF0` from the actor through its movement context at `+0xB8` and
   the context's cursor `+0xF0`, `chain:0xF0` from the context through the cursor, and `ctor` the context initialiser
   writing a slot directly;
-- `note`: for a `ctor` row the slot written, otherwise the kind of record the function's argument holds where the
-  census resolved it.
+- `note`: for a `ctor` row the slot written, otherwise the kind of record the function's argument holds where its
+  callers show it.

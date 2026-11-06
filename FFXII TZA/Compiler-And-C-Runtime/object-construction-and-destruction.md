@@ -352,3 +352,9 @@ compiler and library forms by function address; each was profiled against the im
 
 Each of these function tables has one row per function: `address` is where it starts and `targets` the functions it
 calls or jumps to directly.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- UI: `0x002714A0` is called by `0x005520F0`; those functions are documented on [map screens](../Menus-And-HUD/map-screens.md).

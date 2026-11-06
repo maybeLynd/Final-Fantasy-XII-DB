@@ -194,3 +194,10 @@ licence write `0x00323910` ([Licenses](../Items-Equipment-Shops-And-Licenses/lic
 - [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) - the tests an order makes.
 - [Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md) - the order sets.
 - [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md) - the merged augment bits the slots read.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- UI: `0x002F95D0` is called by `0x0031EB20`; those functions are documented on
+  [action definition row](../Battle-Actions/action-definition-row.md).

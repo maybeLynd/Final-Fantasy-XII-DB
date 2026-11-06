@@ -359,3 +359,13 @@ Five more words of the library, which run only inside a world too:
   - [`bullet-physics-pphysics-tapered-cylinder-accesses.tsv`](bullet-physics-pphysics-tapered-cylinder-accesses.tsv);
   - [`bullet-physics-pphysics-world-base-accesses.tsv`](bullet-physics-pphysics-world-base-accesses.tsv);
   - [`bullet-physics-pphysics-world-bullet-accesses.tsv`](bullet-physics-pphysics-world-bullet-accesses.tsv).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x005CC900` is called by `0x00211840`; those functions are documented on
+  [audio manager](../Sound-And-Music/audio-manager.md).
+- Resource: `0x005CC900` is called by `0x0019F620`, `0x001D9400`; those functions are documented on
+  [game application](../Engine-Core/game-application.md),
+  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md).

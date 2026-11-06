@@ -615,7 +615,7 @@ the 1,777 lines of `prefetchdata/ff12mapjump_custom_nocrystal.csv` in file order
 zone and a zone it leads to, by internal name and field id, followed by eleven empty columns; the TSV adds
 both places and the `mapjump` calls of the source zone's US script that reach the destination.
 
-- No code reads the file, so it changes nothing in the game. Besides the census above, the only strings
+- No code reads the file, so it changes nothing in the game. The only strings
   holding `csv` in any case are the seven read paths (`opt.csv`, `eventList.csv` and the five soft-particle
   names, each referenced by one function), and no string holds `crystal` or `ff12map`, so no format string
   can build the name.

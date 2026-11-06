@@ -8,7 +8,8 @@ addresses: "0x00266530, 0x00266AD0, 0x003DB580, 0x00265020, 0x0026AE90, 0x002E4A
 ## What it lists
 
 The [actor record](actor-record.md) page lays the record out and names its fields. This page carries
-the measurements behind it: [`actor-record-fields.tsv`](actor-record-fields.tsv) lists the accesses to a record found from every holder the census followed, and five
+the measurements behind it: [`actor-record-fields.tsv`](actor-record-fields.tsv) lists the accesses to a record
+reached from every holder listed below, and five
 further tables list the accesses to the record's interiors, which code reaches through the pointers at `+0xA0`, `+0xA8`, `+0xB8`
 and `+0xC0` of a record it holds:
 
@@ -21,16 +22,18 @@ and `+0xC0` of a record it holds:
 | [`actor-record-fields-wait-slots.tsv`](actor-record-fields-wait-slots.tsv) | the wait slots behind `+0xA8` | 26 |
 | [`actor-record-fields-resource-entries.tsv`](actor-record-fields-resource-entries.tsv) | the request entries behind `+0xA0` | 96 |
 
-Every access whose base register the record census traces to a record is a row. The census starts from the handle
+Every access whose base register holds a record, followed from the holders below, is a row. The records come from the
+handle
 resolver `0x003588B0`, the current-actor getter `0x00358940`, the ordinal resolver `0x003587C0`,
 the roster getter `0x00263750` and the 9 functions that return their records, from the record the initialiser
-`0x00266530` builds, and from the 1,885 script natives, which receive records in `rcx` and `rdx`. It follows every
-record passed in an argument register at a direct call or jump, to a fixed point: 1,079 further functions receive one.
+`0x00266530` builds, and from the 1,885 script natives, which receive records in `rcx` and `rdx`. Every
+record passed in an argument register at a direct call or jump is followed, to a fixed point: 1,079 further functions
+receive one.
 
 Two stored record pointers are followed as well: the 32-bit offset `0x0037B4D0` decodes with `0x0020E600` from its
 binding block, and the record bound to a presentation entry's render record (render record `+0x108`, stored by
 `0x002E28E0`). Records held only in other stored pointers or offsets, or passed only to functions called through a
-pointer, are outside the census. The 35 other functions that reference the manager slots `0x02098E10` touch slot
+pointer, are not in the table. The 35 other functions that reference the manager slots `0x02098E10` touch slot
 fields, not records.
 
 The interiors were followed from every record so held, through their pointers, through the 47 functions that receive
@@ -110,3 +113,13 @@ for a tagged entry; the frozen pass `0x0025E400` runs `0x002E5180` on a record w
 - [Actor record](actor-record.md): the pool, the initialiser and the lists.
 - [Field runtime](field-runtime.md): the wait slots.
 - [Battle units](battle-units.md): the unit at `+0x30`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x00263750` is called by `0x00226BE0`; `0x00358940` is called by `0x00226BE0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- World area: `0x002E28E0` calls `0x00377C20`; `0x0037B4D0` calls `0x00377A90`, `0x00377DB0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md), [game over](../World-Areas-And-Travel/game-over.md),
+  [actor model rebuild](actor-model-rebuild.md).

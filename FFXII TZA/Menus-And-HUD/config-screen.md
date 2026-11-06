@@ -418,3 +418,12 @@ No other instruction reaches these three.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md) - `GameSetting.ini` and its keys.
 - [Control remapping](../Controls-And-Input/control-remapping.md) - the binding rows.
 - [Sound effects](../Sound-And-Music/sound-effects.md) - the volume categories.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input gameplay: `0x002E1CA0` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Script VM: `0x002E23E0` is called by `0x00342590`; `0x00342590` calls `0x00267E10`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

@@ -372,3 +372,12 @@ Nothing else reads or writes these globals. The block's address is taken only by
 - [Widget messages](widget-messages.md) - the notices a list posts.
 - [Config screen](config-screen.md) - a list whose cursor skips rows.
 - [Controls](../Controls-And-Input/controls.md) - the pad words and the mouse wheel in lists.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x00244960` is called by `0x0057E4D0`, `0x005819F0`, `0x005823B0`, `0x00582860`; `0x003678F0` is called by
+  `0x00582860`; those functions are documented on [changing areas](../World-Areas-And-Travel/changing-areas.md),
+  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md),
+  [game application](../Engine-Core/game-application.md).

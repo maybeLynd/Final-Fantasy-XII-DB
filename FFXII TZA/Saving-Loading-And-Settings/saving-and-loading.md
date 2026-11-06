@@ -837,4 +837,4 @@ it.
 - [Languages: the Language setting, the nine language codes, the locale id each maps to, the data folder it selects, the Windows-locale default, and the confirm and cancel buttons](languages.md)
 - [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](../World-Areas-And-Travel/zone-changes-and-mapjump.md)
 - [`storage-byte-stream-vector-01f44d40-accesses.tsv`](storage-byte-stream-vector-01f44d40-accesses.tsv): every
-  censused access to the file worker's byte vector `0x01F44D40` (its begin, end and capacity pointers) (23 rows).
+  access to the file worker's byte vector `0x01F44D40` (its begin, end and capacity pointers) (23 rows).

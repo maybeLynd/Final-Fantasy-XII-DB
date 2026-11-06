@@ -195,7 +195,7 @@ from its base `+0x54`/`+0x56` (`0x00407C90` walks the tree through `+0x18` and `
 
 [script-gauges-challenges.tsv](script-gauges-challenges.tsv) has 13 rows, one for each challenge listed below that the `us`
 scripts hold: what the player does, where, from when, the limits the script passes, the reward and what a failure does.
-The census reads the 1,114 `us` listings that decode (`evt_t0020.ebp` has no `EBP2` header and no listing).
+These counts cover the 1,114 `us` listings that decode (`evt_t0020.ebp` has no `EBP2` header and no listing).
 `initgauge` is called 268 times in 99 of them: 55 fields of The Great Crystal, 14 of Bhujerba, 12 of Barheim Passage,
 8 of the Dreadnought Leviathan, 8 of Giza Plains, the scene `sav_c0280` and the developer event `evt_t0083`.
 
@@ -335,3 +335,13 @@ and its `+0x00` is 0. Record 0's `+0x00` points to record 2, so records 2 to 31 
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): the gauge verbs.
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the mask that pauses the gauges.
 - [Widgets](widgets.md): the opening and closing runs.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x003E9100` is called by `0x002628B0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- World area: `0x0024A680` is called by `0x003C63A0`; `0x003E7DF0` is called by `0x00266D10`; `0x003E90E0` is called by
+  `0x00266D10`; those functions are documented on [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).

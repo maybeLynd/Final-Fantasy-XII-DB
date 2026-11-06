@@ -556,3 +556,11 @@ draw.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the per-unit frame that runs retirement.
 - [Random number generators](../Random-Numbers/random-number-generators.md): `0x00328370`.
 - [Heading, speed and position](../Movement-And-Pathfinding/heading-speed-to-position-delta.md): the sine convention.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x0025D9E0` calls `0x002EF2B0`, `0x00583920`; those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

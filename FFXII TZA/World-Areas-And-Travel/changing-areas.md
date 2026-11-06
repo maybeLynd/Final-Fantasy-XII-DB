@@ -72,3 +72,80 @@ destination from the transition record already in the payload and starts fade sl
 - [Zone changes](zone-changes-and-mapjump.md): the mechanism in full.
 - [Doors, gates and map changes](doors-gates-and-map-changes.md): the regions that start a jump.
 - [Event scenes](../Scripts-And-Script-Commands/event-scenes.md): scenes use the same loader.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x002620E0` calls `0x003DE920`; `0x002620E0` is called by `0x0025D9E0`; `0x0026A5F0` is called by `0x0025D9E0`;
+  `0x002EFA70` is called by `0x0025D9E0`; `0x002EFD20` is called by `0x0025D9E0`; `0x00314020` calls `0x0025BFB0`, `0x0025D9E0`,
+  `0x00263660`, `0x00268650`, `0x003DB1F0`; `0x0032FC30` calls `0x0032FCA0`; `0x0032FC30` is called by `0x0025D9E0`; `0x0032FCA0`
+  calls `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0`.
+- Actor entity: those functions are documented on [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [zone changes and mapjump](zone-changes-and-mapjump.md); and on
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
+- Audio: `0x002620E0` calls `0x00363B40`; `0x00314020` calls `0x002DEBA0`, `0x00362850`; those functions are documented on
+  [mpk map pack](mpk-map-pack.md), [debug menu](../Engine-Core/debug-menu.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Combat action: `0x00314440` is called by `0x00319F50`; `0x0032FC30` is called by `0x00306BD0`; those functions are
+  documented on [zone changes and mapjump](zone-changes-and-mapjump.md),
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Core runtime: `0x00265270` is called by `0x001EC760`; `0x00314020` is called by `0x0022A770`, `0x0022B8C0`, `0x0022BC20`; those
+  functions are documented on [frame update order](../Engine-Core/frame-update-order.md).
+- Input: `0x00265270` is called by `0x00253C70`; `0x00314020` calls `0x002E09A0`, `0x0036FD90`; `0x00314440` calls `0x00182D80`,
+  `0x00408B00`; `0x00314530` calls `0x00182D80`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [zone changes and mapjump](zone-changes-and-mapjump.md).
+- Movement: `0x00314020` calls `0x00234520`, `0x003DAA20`, `0x003DAA40`, `0x003DAC70`, `0x0046AFA0`; those functions are
+  documented on [frame update order](../Engine-Core/frame-update-order.md).
+- Party: `0x00314020` calls `0x00358C60`, `0x00358EE0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Platform online achievements: `0x00265270` is called by `0x003154B0`, `0x003161A0`; those functions are documented on
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md),
+  [achievements](../Steam-And-Achievements/achievements.md).
+- Presentation: `0x002620E0` calls `0x00259B30`; `0x00265270` is called by `0x001CD0E0`; `0x00314020` calls `0x00259AF0`,
+  `0x003E7650`; those functions are documented on [weather](weather.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Resource: `0x00265270` is called by `0x001DA220`, `0x001DA970`; `0x00314440` calls `0x001D6C40`; `0x00314530` calls `0x001D6C40`;
+  `0x003145E0` calls `0x0032E520`; `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`.
+- Resource: those functions are documented on
+  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md),
+  [zone changes and mapjump](zone-changes-and-mapjump.md), [debug menu](../Engine-Core/debug-menu.md),
+  [startup constants](../Engine-Core/startup-constants.md).
+- Save load settings: `0x002EFA70` is called by `0x00280140`; `0x002EFD20` is called by `0x00280140`; `0x00314440` is called by
+  `0x00280140`; `0x003145E0` calls `0x0020E500`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md),
+  [zone changes and mapjump](zone-changes-and-mapjump.md).
+- Save load settings: `0x0020E500` calls `0x001C1720`, `0x001C18E0`; `0x002620E0` calls `0x002EF2B0`; `0x00314530` calls
+  `0x002EF2B0`; `0x003145E0` calls `0x002EF2B0`, `0x002EF640`, `0x00583260`, `0x005844A0`; `0x003BB420` is called by `0x0057E4D0`,
+  `0x00582240`; `0x0057E4D0` calls `0x0057E310`.
+- Save load settings: those functions are documented on
+  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [global state accessors](../Engine-Core/global-state-accessors.md).
+- Save load settings: and on [zone changes and mapjump](zone-changes-and-mapjump.md),
+  [party data](../Party/party-data.md).
+- Script VM: `0x0026A5F0` is called by `0x0050D0C0`, `0x0050D240`; `0x002EFA70` is called by `0x003559B0`, `0x00355EB0`,
+  `0x00356270`, `0x00356650`, `0x00356A50`, `0x00356FE0`; `0x002EFD20` is called by `0x0033FD40`; `0x00314440` is called by
+  `0x00355350`, `0x0050C8A0`; `0x0032FC30` is called by `0x003522C0`, `0x00353080`, `0x00353590`, `0x0050D0C0`; `0x003BB420` is called
+  by `0x0050C670`, `0x0050C8D0`, `0x0050C990`, `0x0050EEA0`, `0x0050F0A0`.
+- Script VM: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
+  [screen fades](../Graphics/screen-fades.md),
+  [zone changes and mapjump](zone-changes-and-mapjump.md),
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
+- Script VM: and on [ebp script container](../EBP-Script-Files/ebp-script-container.md),
+  [debug logging](../Engine-Core/debug-logging.md).
+- Story event quest hunt: `0x00265270` is called by `0x001ED240`; those functions are documented on
+  [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md).
+- Story event quest hunt: `0x00265270` is called by `0x00377970`; those functions are documented on
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
+- UI: `0x002EFA70` is called by `0x0027EFA0`; `0x002EFD20` is called by `0x0027EFA0`; `0x00314440` calls `0x00254AC0`; `0x003BB420`
+  is called by `0x00252030`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [zone changes and mapjump](zone-changes-and-mapjump.md),
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md).

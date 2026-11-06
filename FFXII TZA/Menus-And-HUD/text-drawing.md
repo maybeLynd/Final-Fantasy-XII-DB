@@ -521,3 +521,13 @@ globals.
 - [Fonts](fonts.md) - glyph records, kerning and advances.
 - [Text codes](text-codes.md) - the codes that set colour, size and layout.
 - [Menus](menus.md) - the screens that draw text.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform: `0x00225690` is called by `0x0061F200`, `0x0061F710`, `0x006209C0`, `0x006239C0`; those functions are documented on
+  [phyre d3d11 device and resources](../PhyreEngine/phyre-d3d11-device-and-resources.md).
+- World area: `0x0029FE20` is called by `0x0057FB00`; `0x003F92B0` calls `0x003148F0`; those functions are documented on
+  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md),
+  [party control modes](../Engine-Core/party-control-modes.md).

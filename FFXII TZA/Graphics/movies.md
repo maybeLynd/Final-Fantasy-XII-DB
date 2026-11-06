@@ -109,7 +109,7 @@ The movie player is the singleton `0x01F81218` (getter `0x001B7F20`), `0xBB8` by
 
 ### Columns of the movie tables
 
-Every value below was checked against the shipped `.mh` and `.webm` files; the `.webm` files are in
+Every value below matches the shipped `.mh` and `.webm` files; the `.webm` files are in
 `gamedata/d3d11/artdata/video/`.
 
 | Column | Holds |
@@ -299,3 +299,10 @@ so the setting changes nothing on screen.
 - [Game application](../Engine-Core/game-application.md): where `0x001B8400` runs.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the Voice language and Music volume options.
 - [Screen fades](screen-fades.md): the fades around a movie.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Movement: `0x002E1CD0` is called by `0x0026C3E0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).

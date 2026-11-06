@@ -62,3 +62,201 @@ The identifiers fall into six families:
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): binding handles and bound ids
 - [Party slots](../Party/party-slots.md): seats and selectors
 - [Native limits](native-limits.md): the counts behind the ranges
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x002621D0` calls `0x00358940`; `0x00263990` is called by `0x0025C230`, `0x0025C830`, `0x00268D10`, `0x00272CB0`,
+  `0x00272CE0`; `0x00263BE0` is called by `0x0035A7A0`, `0x0035A990`, `0x0046BAC0`; `0x00269FE0` calls `0x00268EA0`; `0x00269FE0` is
+  called by `0x00238BF0`; `0x002DF980` is called by `0x0032FCA0`; `0x002E97C0` is called by `0x0037B4D0`; `0x002E9810` is called
+  by `0x0037B4D0`; `0x0030E360` calls `0x00300FC0`.
+- Actor entity: `0x0030F760` calls `0x00236820`, `0x00236850`; `0x0031B7E0` calls `0x00263E30`, `0x003588B0`; `0x00322C50` is called
+  by `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0`; `0x003589B0` is called by `0x00234480`, `0x0025C230`,
+  `0x0025C830`, `0x00268650`, `0x00268D10`, `0x0037B4D0`, `0x003B6F80`.
+- Actor entity: those functions are documented on [frame update order](frame-update-order.md),
+  [time stop and freeze](time-stop-and-freeze.md), [ps2 cpu emulation](ps2-cpu-emulation.md),
+  [npc names](../Characters-And-Objects/npc-names.md),
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+- Actor entity: and on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [target selection](../Battle-Actions/target-selection.md),
+  [script requests](../Scripts-And-Script-Commands/script-requests.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Actor entity: and on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [party control modes](party-control-modes.md), [force fight mode](force-fight-mode.md),
+  [party data](../Party/party-data.md),
+  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md).
+- Audio: `0x0021B5B0` calls `0x00212950`, `0x00224540`; `0x0021B5B0` is called by `0x00210C00`; `0x003A1180` is called by
+  `0x00271500`; those functions are documented on [sound effects](../Sound-And-Music/sound-effects.md),
+  [audio manager](../Sound-And-Music/audio-manager.md).
+- Combat AI: `0x0030F760` is called by `0x00305AB0`, `0x00305CC0`; `0x0031B7E0` is called by `0x00301AD0`; `0x00322C50` is called
+  by `0x00301AD0`, `0x003215C0`, `0x00321630`, `0x00321770`, `0x00321850`, `0x003219D0`, `0x00321B00`, `0x00321E40`, `0x00327A10`,
+  `0x00327CB0`.
+- Combat AI: those functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [glossary](glossary.md), [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [battle units](../Characters-And-Objects/battle-units.md), [frame update order](frame-update-order.md).
+- Combat AI: and on [enmity](../Enemy-AI-And-Gambits/enmity.md), [gambit screen](../Menus-And-HUD/gambit-screen.md),
+  [item and ability ids](item-and-ability-ids.md).
+- Combat action: `0x003008A0` is called by `0x00300280`, `0x0030EF20`; `0x0030E360` calls `0x0030B8E0`, `0x0030B9B0`; `0x0030E360`
+  is called by `0x002FDDA0`, `0x00304850`, `0x0030EB10`; `0x0030F760` calls `0x0030AB40`, `0x003105D0`; `0x0030F760` is called by
+  `0x0030FA00`, `0x00312FA0`.
+- Combat action: `0x0031B7E0` is called by `0x002FE660`, `0x002FFB60`, `0x00304850`, `0x00305110`, `0x00305230`, `0x00305430`,
+  `0x003082F0`, `0x00309990`, `0x0030A250`, `0x0030C010`, `0x0030C970`, `0x0030CBE0`; `0x0031B7E0` is also called by `0x0030D160`,
+  `0x0030DB70`, `0x0030EEA0`, `0x0030F760`, `0x00310780`, `0x00311B20`, `0x00312FA0`, `0x00313120`, `0x00313CD0`, `0x00313DB0`.
+- Combat action: `0x00322C50` is called by `0x002FFCF0`, `0x003060E0`, `0x00309300`, `0x003093D0`, `0x0030CBE0`, `0x0030DB70`,
+  `0x0031A7B0`; `0x003589B0` is called by `0x00319F50`, `0x00325260`.
+- Combat action: those functions are documented on [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md),
+  [action phases](../Battle-Actions/action-phases.md), [hp and ko](../Damage-And-Battle-Formulas/hp-and-ko.md),
+  [action results](../Battle-Actions/action-results.md),
+  [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md).
+- Combat action: and on [battle units](../Characters-And-Objects/battle-units.md),
+  [quickenings and summons](../Battle-Actions/quickenings-and-summons.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [frame update order](frame-update-order.md),
+  [force fight mode](force-fight-mode.md).
+- Combat action: and on [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md),
+  [command availability](../Battle-Actions/command-availability.md),
+  [action definition row](../Battle-Actions/action-definition-row.md), [call signatures](call-signatures.md).
+- Combat action: and on [bestiary](../Enemy-Spawning/bestiary.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Combat formula: `0x003008A0` is called by `0x003112F0`; `0x0030E360` calls `0x003112F0`, `0x0031B860`, `0x00386A50`, `0x00386A70`;
+  `0x0030E360` is called by `0x00300530`, `0x003112F0`; `0x0031B9F0` is called by `0x00320AB0`; `0x00322C50` is called by
+  `0x002FEF30`; `0x00387730` is called by `0x00387BB0`, `0x0038FCE0`; `0x003A1180` is called by `0x003112F0`.
+- Combat formula: those functions are documented on [traps](../World-Areas-And-Travel/traps.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
+  [action results](../Battle-Actions/action-results.md), [subsystem update flags](subsystem-update-flags.md),
+  [force fight mode](force-fight-mode.md); and on [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md).
+- Gameplay: `0x00309440` is called by `0x0031C5D0`, `0x00322C50`; `0x0030E360` calls `0x00307D10`, `0x003299B0`; `0x0030F760` calls
+  `0x00316CD0`, `0x00316CF0`; `0x0031B7E0` is called by `0x0030BB30`, `0x00312B40`, `0x0031ADB0`, `0x00339630`; `0x0031B9F0` calls
+  `0x00322C50`; `0x00322C50` is called by `0x0031B9F0`, `0x0031C5D0`; `0x00328990` calls `0x0031C5D0`; `0x003589B0` is called by
+  `0x0031ADB0`.
+- Gameplay: those functions are documented on [item and ability ids](item-and-ability-ids.md),
+  [force fight mode](force-fight-mode.md), [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
+  [native limits](native-limits.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Gameplay: and on [action definition row](../Battle-Actions/action-definition-row.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [bestiary](../Enemy-Spawning/bestiary.md),
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md); and on
+  [party member status record](../Characters-And-Objects/party-member-status-record.md).
+- Input: `0x00197160` calls `0x00196480`, `0x0079D1D0`, `0x0079E650`, `0x0079E6A0`, `0x0079E6D0`; `0x00197160` is called by
+  `0x00196FF0`; `0x00254B50` is called by `0x00253C70`, `0x002E09A0`; `0x00263BE0` is called by `0x00226BE0`; `0x0032A8A0` is called
+  by `0x00253C70`; `0x0035B2F0` is called by `0x0035B650`.
+- Input: those functions are documented on [controls](../Controls-And-Input/controls.md),
+  [frame update order](frame-update-order.md), [force fight mode](force-fight-mode.md),
+  [time stop and freeze](time-stop-and-freeze.md), [jump thunks](jump-thunks.md).
+- Items equipment shops license: `0x00252E60` is called by `0x00325F40`; `0x003008A0` calls `0x00309F30`; `0x003008A0` is called
+  by `0x002FD530`, `0x002FD640`, `0x002FD780`, `0x002FEEB0`, `0x00300B80`, `0x00300BA0`, `0x0030B180`, `0x0030C410`, `0x0030F9A0`,
+  `0x0030FAA0`, `0x0030FBE0`, `0x00310870`.
+- Items equipment shops license: `0x00322C50` is called by `0x003096F0`, `0x0030B180`, `0x0030B4B0`, `0x0030B510`, `0x0030B570`,
+  `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`, `0x00323EC0`; `0x00322C50` is also called by
+  `0x00325F40`.
+- Items equipment shops license: those functions are documented on [item and ability ids](item-and-ability-ids.md),
+  [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [stats](../Damage-And-Battle-Formulas/stats.md).
+- Items equipment shops license: and on [party data](../Party/party-data.md),
+  [party table](../Party/party-table.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [quickening and esper list](../Battle-Actions/quickening-and-esper-list.md),
+  [command availability](../Battle-Actions/command-availability.md).
+- Movement: `0x0031B7E0` is called by `0x00312730`, `0x00336710`, `0x00337A50`, `0x00338140`; `0x00322C50` is called by
+  `0x0031BAC0`, `0x00326BB0`; `0x003589B0` is called by `0x002E5610`, `0x002EBFA0`.
+- Movement: those functions are documented on
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [force fight mode](force-fight-mode.md), [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
+  [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md).
+- Movement: and on
+  [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md),
+  [world lock](../Scripts-And-Script-Commands/world-lock.md).
+- Party: `0x0030F760` calls `0x0031B7E0`; `0x00322C50` is called by `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`,
+  `0x00321100`, `0x00326500`, `0x003287A0`, `0x00328DB0`, `0x00329080`; `0x00328990` is called by `0x00328BD0`; `0x003589B0` is called
+  by `0x00269C70`, `0x00326500`, `0x00353530`, `0x0050C610`, `0x0050D2F0`.
+- Party: those functions are documented on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md),
+  [party control modes](party-control-modes.md), [player movement](../Movement-And-Pathfinding/player-movement.md).
+- Presentation: `0x00247510` is called by `0x002D2DB0`, `0x00579420`; `0x00263990` is called by `0x002B0280`; `0x002DF980` is
+  called by `0x001BB2B0`; `0x002F9920` is called by `0x0037E5B0`, `0x0037E8D0`; `0x0030F760` calls `0x00313B30`; `0x003589B0` is
+  called by `0x003A4290`, `0x003A56F0`, `0x00465120`, `0x00465690`, `0x00506700`; `0x0036A000` is called by `0x003DD4C0`.
+- Presentation: `0x00377190` is called by `0x00463FF0`, `0x00464B30`, `0x00464F20`, `0x0047BE20`; `0x00377360` is called by
+  `0x00464050`, `0x00464B80`, `0x00465120`, `0x0047BF70`; `0x003A1180` is called by `0x0046CC70`; `0x003B38B0` calls `0x003EDAD0`;
+  `0x0051CC30` is called by `0x003E6770`.
+- Presentation: those functions are documented on [menu lists](../Menus-And-HUD/menu-lists.md),
+  [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md),
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md),
+  [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md).
+- Presentation: and on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md),
+  [effect element runtime](../Graphics/effect-element-runtime.md).
+- Presentation: and on [effect element types](../Graphics/effect-element-types.md),
+  [battle numbers](../Menus-And-HUD/battle-numbers.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md).
+- Presentation: and on [startup constants](startup-constants.md),
+  [bone trails](../Graphics/bone-trails.md).
+- Resource: `0x002DF960` is called by `0x00409FE0`; `0x002DF980` is called by `0x001DA290`, `0x002EEEE0`; `0x003B38B0` is called
+  by `0x00409FE0`; those functions are documented on
+  [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md),
+  [debug logging](debug-logging.md), [debug menu](debug-menu.md).
+- Rewards progression economy: `0x0030E360` calls `0x00312280`; `0x003A1180` is called by `0x0030C650`; those functions are
+  documented on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Save load settings: `0x00247510` is called by `0x0057E950`, `0x0057EBB0`, `0x00580840`, `0x005819F0`, `0x00581B70`, `0x00582860`;
+  `0x0032A8A0` calls `0x002EF2B0`; `0x0032A8A0` is called by `0x00583D60`; `0x0032A930` calls `0x002EF2B0`.
+- Save load settings: those functions are documented on
+  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [game application](game-application.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).
+- Script VM: `0x002621D0` calls `0x003DC240`, `0x003DC270`, `0x003DC2A0`; `0x002621D0` is called by `0x0025E4C0`; `0x00264D60` is
+  called by `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`, `0x00354F20`, `0x003555F0`,
+  `0x00356B70`, `0x0050EAB0`; `0x00269F40` is called by `0x0034B9A0`, `0x0034C170`; `0x00269FE0` is called by `0x003528C0`.
+- Script VM: `0x002E97C0` is called by `0x003409F0`, `0x00341840`, `0x003418B0`, `0x00342640`, `0x00344200`, `0x00344550`,
+  `0x00345A60`, `0x003463F0`, `0x00354A40`, `0x00355210`; `0x002E9810` is called by `0x0033F330`, `0x003409F0`, `0x003414A0`,
+  `0x003418B0`, `0x00343A30`, `0x00343B00`, `0x00344200`, `0x00344F00`, `0x00354400`, `0x00354A40`; `0x0032A8A0` is called by
+  `0x0034E0B0`; `0x0032A930` is called by `0x0034E980`.
+- Script VM: `0x003589B0` is called by `0x00342150`, `0x00342D40`, `0x003438F0`, `0x00349C90`, `0x0034B5D0`, `0x0034BB80`,
+  `0x00352270`, `0x00352940`, `0x00354F20`, `0x003555F0`, `0x00357620`, `0x0050C7A0`; `0x0036A000` is called by `0x0050DEB0`;
+  `0x003A1180` is called by `0x00357040`; `0x003DC240` is called by `0x002621D0`.
+- Script VM: those functions are documented on [native commands](../Scripts-And-Script-Commands/native-commands.md),
+  [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md),
+  [archades scenes](../Story-Events-And-Hunts/archades-scenes.md),
+  [archades scripts](../Story-Events-And-Hunts/archades-scripts.md).
+- Script VM: and on [ebp text sections](../EBP-Script-Files/ebp-text-sections.md),
+  [npc names](../Characters-And-Objects/npc-names.md), [battle units](../Characters-And-Objects/battle-units.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Script VM: and on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
+  [effect anchors and targets](../Graphics/effect-anchors-and-targets.md),
+  [actor record](../Characters-And-Objects/actor-record.md), [sound effects](../Sound-And-Music/sound-effects.md).
+- Status periodic terminal: `0x0030E360` calls `0x00300140`, `0x00301140`, `0x0030E360`, `0x0030FED0`, `0x003876D0`, `0x00387730`;
+  `0x0030E360` is called by `0x0030E360`, `0x0030E990`, `0x0030EAE0`, `0x0030F690`, `0x0030FED0`; `0x00322C50` is called by
+  `0x0030E130`, `0x0030FED0`, `0x00310DB0`; `0x00387730` is called by `0x0030E360`.
+- Status periodic terminal: those functions are documented on [frame update order](frame-update-order.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md), [force fight mode](force-fight-mode.md),
+  [item and ability ids](item-and-ability-ids.md), [status changes](../Status-Effects-And-KO/status-changes.md).
+- Status periodic terminal: and on [battle units](../Characters-And-Objects/battle-units.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Story event quest hunt: `0x00263990` calls `0x0032A930`; `0x0032A8A0` calls `0x00377970`; those functions are documented on
+  [npc names](../Characters-And-Objects/npc-names.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
+- UI: `0x00247510` is called by `0x00252030`, `0x002C59D0`, `0x003EEEC0`, `0x00557B90`, `0x00561390`, `0x0056B4D0`, `0x0056E140`,
+  `0x0056F810`; `0x00252F40` is called by `0x0057CF20`, `0x0057D620`; `0x00254B50` calls `0x00280A00`, `0x0028F970`, `0x0035D080`,
+  `0x0035D660`, `0x0035D980`, `0x003C87B0`, `0x003C8990`; `0x00254B50` is called by `0x00254B40`; `0x00263990` is called by
+  `0x002AC5F0`; `0x00280A00` calls `0x0028E860`.
+- UI: `0x00280A00` is called by `0x00254B50`; `0x002F9920` is called by `0x003BE950`; `0x0031B7E0` is called by `0x0031EB20`;
+  `0x00322C50` is called by `0x0031EB20`; `0x0032A8A0` is called by `0x00281AE0`, `0x0029C530`.
+- UI: those functions are documented on [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
+  [controls](../Controls-And-Input/controls.md), [game over](../World-Areas-And-Travel/game-over.md),
+  [license board screen](../Menus-And-HUD/license-board-screen.md).
+- UI: and on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
+  [gambit screen](../Menus-And-HUD/gambit-screen.md), [inventory screen](../Menus-And-HUD/inventory-screen.md),
+  [text handbook unrequested](../Menus-And-HUD/text-handbook-unrequested.md),
+  [item and ability ids](item-and-ability-ids.md).
+- UI: and on [menu screens](../Menus-And-HUD/menu-screens.md), [battle menu](../Menus-And-HUD/battle-menu.md),
+  [action availability](../Controls-And-Input/action-availability.md), [augments](../Damage-And-Battle-Formulas/augments.md),
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
+- UI: and on [action definition row](../Battle-Actions/action-definition-row.md),
+  [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md),
+  [zone asset list](../World-Areas-And-Travel/zone-asset-list.md).
+- World area: `0x002DF980` is called by `0x00379A10`; `0x002F9920` is called by `0x003C0450`, `0x00576A50`; `0x0030E360` calls
+  `0x00377C20`; `0x0030F760` calls `0x00377C20`.
+- World area: those functions are documented on
+  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md),
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [force fight mode](force-fight-mode.md).

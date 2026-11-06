@@ -355,3 +355,13 @@ The slot's other fields, from the take `0x003B56D0`, the builder `0x003B62D0`, t
 - [Character fades](character-fades.md): the fade forwarder of `0x23`.
 - [Animation sounds](../Sound-And-Music/animation-sounds.md): the sounds of `0x05`, `0x19` and `0x29`.
 - [Animation-driven movement](../Movement-And-Pathfinding/animation-driven-movement.md): command `0x1A`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Script VM: `0x0036A100` is called by `0x0050D8F0`.
+- World area: `0x0036A100` is called by `0x00267930`, `0x003319D0`, `0x003EA820`; those functions are documented on
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md).

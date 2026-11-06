@@ -253,3 +253,49 @@ The access tables beside this page list every instruction found touching each st
 - [Character render records](character-render-records.md): the record array, its lifecycle and render events.
 - [Skeleton entries and bones](skeleton-entries-and-bones.md): the skeleton entries, bones, bone points and ties.
 - [Authored presentation commands](authored-presentation-commands.md): the command handlers.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x00265680` is called by `0x0025B600`, `0x00263660`, `0x0026C5D0`, `0x0026DFB0`; `0x0030BEB0` calls `0x0031B760`;
+  those functions are documented on [script requests](../Scripts-And-Script-Commands/script-requests.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- Audio: `0x00229EA0` is called by `0x003638B0`; those functions are documented on
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+- Combat formula: `0x004FE2F0` is called by `0x00384E50`; those functions are documented on
+  [damage formula](../Damage-And-Battle-Formulas/damage-formula.md).
+- Core runtime: `0x00265760` is called by `0x0022A770`; `0x0041C410` calls `0x00229EA0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Input: `0x00265680` is called by `0x00253C70`, `0x002E09A0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Movement: `0x00265680` is called by `0x0026C3E0`; `0x0030BEB0` is called by `0x00345430`; `0x00423280` is called by
+  `0x002E28E0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md).
+- Party: `0x00265680` is called by `0x00358CB0`, `0x00358F90`; `0x002ED530` calls `0x0030BEB0`; those functions are documented
+  on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
+  [player movement](../Movement-And-Pathfinding/player-movement.md),
+  [actor record](../Characters-And-Objects/actor-record.md).
+- Resource: `0x003AB7F0` is called by `0x002ED570`, `0x00409600`, `0x00409780`, `0x00409A60`, `0x00409FE0`, `0x0040A210`,
+  `0x0051FBB0`, `0x0051FCF0`, `0x0051FE30`, `0x0051FF30`; `0x0041CA70` calls `0x00408F80`, `0x004090D0`, `0x004096C0`, `0x00409F50`;
+  `0x0041CF00` calls `0x002ED570`; `0x0041D220` calls `0x002ED570`, `0x00409210`, `0x00409660`, `0x00409A30`, `0x00409F50`; `0x0041DD40`
+  calls `0x002ED570`; `0x00422940` calls `0x002ED570`.
+- Resource: `0x00422D90` calls `0x00408F80`, `0x00408F90`; `0x004256E0` calls `0x00409600`, `0x00409F50`.
+- Resource: those functions are documented on
+  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md),
+  [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md),
+  [animation playback](animation-playback.md), [native limits](../Engine-Core/native-limits.md).
+- Script VM: `0x00229EA0` is called by `0x00354D00`; `0x00265680` is called by `0x00343690`; `0x0030BEB0` is called by
+  `0x00345CD0`; `0x00660570` is called by `0x00510740`; those functions are documented on
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [script censuses](../Story-Events-And-Hunts/script-censuses.md).
+- Status periodic terminal: `0x00265680` is called by `0x00310DB0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- UI: `0x00229EA0` is called by `0x002468A0`, `0x00246C20`; `0x00265680` is called by `0x00279E20`; those functions are
+  documented on [clan primer](../Menus-And-HUD/clan-primer.md), [widget messages](../Menus-And-HUD/widget-messages.md),
+  [tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md).
+- World area: `0x00265760` is called by `0x00314020`; those functions are documented on
+  [debug logging](../Engine-Core/debug-logging.md).

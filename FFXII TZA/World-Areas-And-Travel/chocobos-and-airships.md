@@ -207,7 +207,7 @@ the slot expires. The gauge the player sees is the count alone: of the twelve ca
 filler `0x003200A0` (in seven functions), no site reads the turbo time `+0x10` (the ride HUD record access
 table), so a running dash shows no bar and no number, only the spent mark's fade (below).
 
-Measured in the game at Frame Rate 60, a chocobo hired from Gurdy in West Barbican (field 630): the ride time
+At Frame Rate 60, with a chocobo hired from Gurdy in West Barbican (field 630), the ride time
 fell by 0.016675 a frame, one second a second, and the dismount task `0x0035CFA0` started when it ran out, 183
 seconds after the riding setter `0x00303D90(1)` ran. One dash took the marks from three to two,
 loaded the turbo time with 20.0 (`0x01DFE0B8` 2.0 times 10.0) and ended after 1,200 frames, twenty seconds, with
@@ -565,7 +565,7 @@ Struct TimerSlot base=`0x02B5EBC0` size=`0x14` count=8     slot 1 the ride, slot
 | `+0x0C` | `f32` | step | +-0.016675 per frame step (`0x003EBCA8`; the 0.02 arm is unreachable); not written by the reset |
 | `+0x10` | `u8` | running | 1 from `0x003EBD00`, 0 from the loaders, `0x003EBB90` and the reset |
 | `+0x11` | `u8` | expired | 1 from `0x003EBD00`, the ticker and the reset; 0 from every load (`0x003EBCD7`, `0x003EBC34`); the loaders' zero-step store of 1 (`0x003EBC24`, `0x003EBCD0`) is unreachable |
-| `+0x12` | `u8[2]` |  | no instruction in the census reaches it |
+| `+0x12` | `u8[2]` |  | no instruction in the access table reaches it |
 
 Struct RideHudManager size=`0xAA0` at [`0x02B47758`]     procedure `0x003CA860`; the widget header to `+0xC0`:
 
@@ -694,3 +694,14 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - [Party control modes](../Engine-Core/party-control-modes.md): the transition table whose row 2 starts and ends the ride.
 - [Model files](../Graphics/model-files-cm-ca.md) and [animation playback](../Graphics/animation-playback.md): the special-id table and the node link the rider's seat uses.
 - [Sound effects](../Sound-And-Music/sound-effects.md): the system sound player the ride's six ids go through.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Resource: `0x00253780` calls `0x00249180`, `0x00249580`; `0x004215A0` calls `0x002ED570`; `0x004218A0` calls `0x002ED570`;
+  `0x0042F880` calls `0x002ED570`, `0x004780B0`; `0x0046E640` calls `0x002ED570`.
+- Resource: those functions are documented on
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
+  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md),
+  [character render records](../Graphics/character-render-records.md).

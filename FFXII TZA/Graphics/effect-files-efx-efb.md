@@ -230,7 +230,7 @@ that does not apply to the chunk's type is empty):
 
 ### Columns of effect-banks-efb-files-rows.tsv and effect-banks-efb-rows.tsv
 
-Every value below was checked against the 410 shipped `.efb` files; each holds one blob.
+Every value below matches the 410 shipped `.efb` files; each holds one blob.
 
 | Column | Holds |
 |---|---|
@@ -663,3 +663,13 @@ outlives the block it reads from.
   who loads a map's bank and which rows start.
 - [File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md): the file kinds of
   the `.efx` files.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Party: `0x0026C8C0` calls `0x003590D0`, `0x00359200`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [actor managers](../Characters-And-Objects/actor-managers.md).
+- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; those functions are documented on
+  [actor managers](../Characters-And-Objects/actor-managers.md).

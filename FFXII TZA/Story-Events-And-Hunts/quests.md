@@ -86,7 +86,7 @@ script sets, 0, 3, 4, 5, 6, 8, 10, 11, 12, 13, 15, 18, 52, 53, 57, 58, 59 and 71
 with no quest id of their own. The 45 hunts, quests 128 to 172, are in
 [hunts.tsv](hunts.tsv).
 
-The census reads the 1,114 us listings that decode, 769 zone and 345 event scripts;
+These counts cover the 1,114 us listings that decode, 769 zone and 345 event scripts;
 `evt_t0020.ebp` has no `EBP2` header and no listing. The developer scripts `evt_t0090` (`デバッグ監督`, the debug
 director), `evt_t0500` (`イベントデバッグメニュー`, the event debug menu) and `evt_t0505` are left out of the rows, cells and counts.
 

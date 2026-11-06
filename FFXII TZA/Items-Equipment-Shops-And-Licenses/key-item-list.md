@@ -104,11 +104,17 @@ Three key items have no source, and their `sources` cells say so with `no source
 - `teleport:` for a teleport destination, the number of map scripts whose gate crystal tests it to build its teleport list ([Shared zone-script actors](../Story-Events-And-Hunts/shared-zone-script-actors.md)).
 - `monograph:` for a monograph or the Canopic Jar, the monsters whose monograph slot needs it, each name once, then the definitions no map script places with their area and row ([Bestiary](../Enemy-Spawning/bestiary.md)).
 
-Every `used_for` part names every use; a long cell moves its longest parts to [`item-sources.tsv`](item-sources.tsv) as `sources` does. A key item with none of these parts gets `census:`, the number of zone and event scripts read here and what none of them does with it: they give Writ of Transit, Rusted Scrap of Armor, Treaty-Blade and Dusty Letter, and none of them takes, tests or names these four; none of them gives, takes, tests or names the Time-worn Necklace. The status words read `not an item: a status word`, and the Reserve rows `-`.
+Every `used_for` part names every use; a long cell moves its longest parts to [`item-sources.tsv`](item-sources.tsv)
+as `sources` does. A key item with none of these parts gets the number of zone and event scripts read here and what
+none of them does with it: they give Writ of Transit, Rusted Scrap of Armor, Treaty-Blade and Dusty Letter, and none
+of them takes, tests or names these four; none of them gives, takes, tests or names the Time-worn Necklace. The status
+words read `not an item: a status word`, and the Reserve rows `-`.
 
 The `test_opens` column says what each `tested:` site does for the player: for example the Clan Primer lets the player into The Clan Hall, the Lab Access Card works the lifts and doors of Draklor Laboratory, and Lente's Tear opens the way in Golmore Jungle.
 
-The census of those five ids reaches past the scripts read here: no instruction of the executable holds one as an immediate, no table of its data sections or of the map and quest menu files holds one, and of the developer scripts `evt_t*`, which the scene-rewards table leaves out, only `evt_t0505` holds one: it gives the Writ.
+Past the scripts read here, for those five ids: no instruction of the executable holds one as an immediate, no table
+of its data sections or of the map and quest menu files holds one, and of the developer scripts `evt_t*`, which the
+scene-rewards table leaves out, only `evt_t0505` holds one: it gives the Writ.
 
 ## Columns
 
@@ -123,7 +129,7 @@ The census of those five ids reaches past the scripts read here: no instruction 
 | `explanation` | the table it comes from, and whether its description is empty; "a Reserve row" for the others |
 | `kind` | map, teleport destination, status word, key item or Reserve ("Rows that are not items" above) |
 | `sources` | where the key item is obtained, one part per kind of source, with how a scene gift is handed over, the map sellers and each trophy's rare game ("Where each key item comes from" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `no source:` and the sources that do not hold it for the three key items no source gives; `-` for a row with no source |
-| `used_for` | what takes, tests or reads the key item, one part per kind of use ("What each key item is for" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; `census:` and the number of scripts it covers when no use is found |
+| `used_for` | what takes, tests or reads the key item, one part per kind of use ("What each key item is for" above), or for a part moved to [`item-sources.tsv`](item-sources.tsv) its count; when no script uses it, the number of zone and event scripts and what none of them does with it |
 | `test_opens` | for each of the 43 key items with a `tested:` part, what each test does in the game: the door, map jump, scene step, trade, gift, quest step or talk it controls, with the map (region) and script; `-` for the others |
 
 ## Related
@@ -132,3 +138,26 @@ The census of those five ids reaches past the scripts read here: no instruction 
 - [Loot list: every loot id with its name, price, sell price, sort order and description](loot-list.md)
 - [Item list: every item with its name, price, sort order, icon, the action it runs and its texts](item-list.md)
 - [Treasure chests: where each chest stands, whether it appears and comes back, and what it holds with the odds of each content](../World-Areas-And-Travel/treasure-chests.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform online achievements: `0x00309EC0` is called by `0x00315E90`; those functions are documented on
+  [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
+- Presentation: `0x00300E40` calls `0x003125E0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Script VM: `0x0023A3B0` is called by `0x00510160`; `0x00510160` calls `0x00267E10`, `0x0037CF50`; those functions are
+  documented on [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Spawn encounter lifecycle: `0x0023A3B0` calls `0x002355A0`; `0x0023A570` calls `0x00236100`; `0x0023A570` is called by
+  `0x0023A3B0`; `0x00300E40` calls `0x00237080`; `0x00300E40` is called by `0x00234880`, `0x00234990`, `0x002350C0`, `0x00237690`;
+  `0x00510160` calls `0x0023A3B0`.
+- Spawn encounter lifecycle: those functions are documented on [battle units](../Characters-And-Objects/battle-units.md),
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md),
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+- Spawn encounter lifecycle: and on [frame update order](../Engine-Core/frame-update-order.md),
+  [boss fights](../Battle-Actions/boss-fights.md).
+- Story event quest hunt: `0x003BD480` calls `0x0032A8A0`; `0x003C18A0` calls `0x0032A8A0`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

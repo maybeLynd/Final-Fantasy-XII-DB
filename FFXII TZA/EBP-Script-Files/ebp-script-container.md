@@ -118,7 +118,7 @@ Both tables have one row per shipped file, in path order within each language tr
 
 ### Language trees
 
-The eight other trees carry the `us` scripts with their own text. Measured against the `us` file of the same path:
+The eight other trees carry the `us` scripts with their own text. Against the `us` file of the same path:
 
 - sections 8 to 12, 14, 16 and 19 are byte-identical in every tree;
 - section 4 differs in four maps (`bhm_a02`, `gil_i01`, `gil_i02`, `naf_b04`) in `ch`, `cn`, `de`, `es`, `in` and

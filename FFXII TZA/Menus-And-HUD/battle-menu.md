@@ -597,3 +597,31 @@ entry 0 and nothing else forms the table's address (the walker `0x0031B690` and 
 - [Action phases](../Battle-Actions/action-phases.md) - what happens after an action is issued.
 - [Menus](menus.md) - the router ids that open the menu.
 - [Gambits screen](gambit-screen.md) - the same on/off switch for a member's gambits.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Items equipment shops license: `0x00236820` is called by `0x0031A300`; `0x00322C50` is called by `0x003096F0`, `0x0030B180`,
+  `0x0030B4B0`, `0x0030B510`, `0x0030B570`, `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`,
+  `0x00323EC0`; `0x00322C50` is also called by `0x00325F40`.
+- Items equipment shops license: those functions are documented on
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md), [stats](../Damage-And-Battle-Formulas/stats.md),
+  [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md).
+- Items equipment shops license: and on [party table](../Party/party-table.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [quickening and esper list](../Battle-Actions/quickening-and-esper-list.md),
+  [command availability](../Battle-Actions/command-availability.md).
+- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
+  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md).
+- Spawn encounter lifecycle: `0x002342F0` calls `0x00233780`, `0x00307090`; `0x00236820` is called by `0x00308D90`; those
+  functions are documented on [enemy respawning](../Enemy-Spawning/enemy-respawning.md),
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Status periodic terminal: `0x002342F0` calls `0x0030E990`; `0x00322C50` is called by `0x0030E130`, `0x0030FED0`, `0x00310DB0`;
+  those functions are documented on [battle units](../Characters-And-Objects/battle-units.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- World area: `0x002342F0` is called by `0x00266D10`; `0x0024A680` is called by `0x003C63A0`; those functions are documented
+  on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).

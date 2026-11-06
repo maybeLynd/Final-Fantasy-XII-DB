@@ -446,3 +446,10 @@ The game reads only the pack's tables, so none of these differences reaches play
   [exfont bitmaps](btm-exfont-bitmaps.md), [bin_menu images](binmenu-images.md),
   [menu map files](menu-map-files.md), [handbook files](handbook-files.md) and
   [quest menu files](quest-menu-files.md).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform online achievements: `0x00408C30` calls `0x00862A20`; those functions are documented on
+  [save file format](../Saving-Loading-And-Settings/save-file-format.md).

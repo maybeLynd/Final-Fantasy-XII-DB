@@ -79,7 +79,7 @@ read at `0x022C317C` (`0x0032A13B`).
 The only other writer is `0x0032A160`, which zeroes it, and its one caller is the battle runtime reset `0x00237DF0`
 (`0x00237E37`). No save writes or restores it.
 
-Measured in the game at Frame Rate 60 (`0x01DFE0B8` 2.0): the counter rose by 60.00 a second whenever the field
+At Frame Rate 60 (`0x01DFE0B8` 2.0) the counter rose by 60.00 a second whenever the field
 ran. It stood still while the battle menu or a talk was open and for 1.4 to 3.4 seconds at each area change.
 
 Other code reads the counter directly (`0x00319600`,
@@ -289,7 +289,7 @@ The window is in seconds because the counter difference is in simulation steps a
 steps per second at normal speed (30 or 60). The high-speed mode runs two or four steps a frame, so there the window
 lasts 150 or 75 wall-clock seconds; menus and time stop do not advance the counter.
 
-Measured in the game, The Stepping (field 227) as A and Yardang Labyrinth (228) as B, after one Cactite was
+With The Stepping (field 227) as A and Yardang Labyrinth (228) as B, after one Cactite was
 killed on A (its spawn record: death count 1, time 303): going to B put A's records in bank 2 and fresh ones in
 bank 1 and flipped the parity to 1; coming back to A 824 steps later put A's records back in bank 1, the dead
 Cactite's record still with death count 1, and set the parity to 0. Going A, B, Sand-swept Naze (229), A instead
@@ -468,10 +468,19 @@ and only the autosave's restore brings them back.
 - [Enmity](../Enemy-AI-And-Gambits/enmity.md): the threat bytes the bank carries.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the spawn-keep images.
 - [Random number generators](../Random-Numbers/random-number-generators.md): the roll.
-- [`enemy-respawning-groups.tsv`](enemy-respawning-groups.tsv): every censused access to the group table
+- [`enemy-respawning-groups.tsv`](enemy-respawning-groups.tsv): every access to the group table
   (`SpawnGroupTable`, 64 records of `0x18` bytes at `0x02EC13C0`), one row per instruction (19 rows).
 
 In this access table, `function`, `name` and `site` give the function, its name and the instruction's address,
 `disp` the offset the instruction reaches from the start of a group record, `kind` a read (`r`), a write (`w`) or
 both (`rw`), `instruction` the instruction itself, and `route` `array 0x02EC13C0 reg`: a record of the table at
 `0x02EC13C0` picked by an index in a register.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Input: `0x00313F60` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

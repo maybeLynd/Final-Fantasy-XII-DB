@@ -376,3 +376,18 @@ codes 1-3.
   devices, and the recorder and replay that never run.
 - [Phyre reflection](../PhyreEngine/phyre-reflection.md) - class descriptors, type references by
   name and `PCluster::create`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Application: `0x00792350` is called by `0x0015BC40`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Audio: `0x00879750` is called by `0x00221ED0`, `0x00222390`; those functions are documented on
+  [audio manager](../Sound-And-Music/audio-manager.md).
+- Platform: `0x00792350` calls `0x005CD0A0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Presentation: `0x0063A990` is called by `0x0018D850`, `0x001946E0`, `0x001B72B0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md),
+  [random number generators](../Random-Numbers/random-number-generators.md),
+  [movies](../Graphics/movies.md).

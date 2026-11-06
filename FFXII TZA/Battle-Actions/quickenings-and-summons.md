@@ -215,3 +215,13 @@ The chain's choices and the script's Quickening scene keep three more words:
 - [Area of effect](area-of-effect.md) - the target list the scene reads.
 - [How a cutscene runs](../Scripts-And-Script-Commands/event-scenes.md) - scene
   manager 3 in script scenes.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x002D5EB0` calls `0x00271500`, `0x002716F0`; those functions are documented on
+  [sound effects](../Sound-And-Music/sound-effects.md).
+- Input: `0x002D5EB0` calls `0x00182DA0`, `0x001E0C10`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [player movement](../Movement-And-Pathfinding/player-movement.md).

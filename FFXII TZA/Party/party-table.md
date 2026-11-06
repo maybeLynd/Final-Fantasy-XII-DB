@@ -22,7 +22,9 @@ What a join, the catch-up and the growth do with these values is on [Party membe
 [Stat growth on level-up](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md) and
 [Battle unit construction](../Characters-And-Objects/battle-unit-construction.md); this page is the shipped content.
 
-The `joins_and_leaves` column gives the scene of each join and leave. Rows 0-14 join and leave in the story; no script's join or leave call and no scenario preset seats rows 15-25, the Chocobo or the Espers. The census covers the 1,114 `us` scripts with a decoded listing, of 1,115: `evt_t0020` has no EBP2 header.
+The `joins_and_leaves` column gives the scene of each join and leave. Rows 0-14 join and leave in the story; no
+script's join or leave call and no scenario preset seats rows 15-25, the Chocobo or the Espers. These counts cover the
+1,114 `us` scripts with a decoded listing, of 1,115: `evt_t0020` has no EBP2 header.
 
 ### Where the values come from
 
@@ -185,3 +187,17 @@ The Esper rows hold their two attacks first, the action rows `0xB6`-`0xCF`, then
 - [Quickenings and summons: the one-at-a-time scene for summons, Esper attacks, Quickenings and chocobo mounting](../Battle-Actions/quickenings-and-summons.md)
 - [Gambits: how a character's gambit list is checked top to bottom, what runs before it, the three gambit sets and the authored presets](../Enemy-AI-And-Gambits/gambits.md)
 - [Equipment: the five slots, what can be worn where, two-handed weapons, shields and ammunition, Optimise, and what happens when you equip](../Items-Equipment-Shops-And-Licenses/equipment.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x00253C70` calls `0x001EDE70`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Input: `0x00253C70` calls `0x0017DE10`, `0x001E0D80`, `0x001E0F20`, `0x00250130`, `0x002501A0`, `0x00250200`, `0x00862CF0`;
+  `0x00320040` is called by `0x00253C70`.
+- Input: those functions are documented on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [on screen keyboard](../Controls-And-Input/on-screen-keyboard.md), [menu lists](../Menus-And-HUD/menu-lists.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Story event quest hunt: `0x00253C70` calls `0x0032A8A0`; `0x00254560` calls `0x0032A8A0`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

@@ -303,3 +303,12 @@ skips the update (`0x0029269D`), so the remainders below are taken of a non-nega
 - [Shop screens](shop-screens.md): the shared row builder.
 - [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md): the item counts the rows show.
 - [Widgets](widgets.md): the screen widget and focus.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Items equipment shops license: `0x003FCAD0` calls `0x00323630`, `0x00323670`; `0x003FF360` calls `0x002F9F20`, `0x0031A300`,
+  `0x0031A710`, `0x003231F0`; those functions are documented on [license board screen](license-board-screen.md),
+  [equipment](../Items-Equipment-Shops-And-Licenses/equipment.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).

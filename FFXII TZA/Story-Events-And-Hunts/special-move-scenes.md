@@ -127,3 +127,31 @@ scripts' copies differ only in these.
 
 - [Event scenes](../Scripts-And-Script-Commands/event-scenes.md) - how an event id loads a scene script.
 - [Action phases](../Battle-Actions/action-phases.md) - the battle action phases, with the script verb `spattackread`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0032FC30` calls `0x0032FCA0`; `0x0032FC30` is called by `0x0025D9E0`; `0x0032FCA0` calls `0x002628B0`,
+  `0x0032ED80`, `0x00330310`, `0x003306E0`.
+- Actor entity: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md); and on
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
+- Combat action: `0x00306BD0` calls `0x00309230`; `0x00306BD0` is called by `0x0030CE10`; `0x00309230` is called by `0x00306BD0`;
+  `0x0032FC30` is called by `0x00306BD0`; those functions are documented on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md),
+  [startup constants](../Engine-Core/startup-constants.md).
+- Script VM: `0x0032FC30` is called by `0x003522C0`, `0x00353080`, `0x00353590`, `0x0050D0C0`; those functions are documented on
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
+  [ebp script container](../EBP-Script-Files/ebp-script-container.md),
+  [debug menu](../Engine-Core/debug-menu.md).
+- World area: `0x00306BD0` calls `0x0032FC30`; `0x0032FC30` calls `0x0025D4D0`, `0x003319D0`, `0x003EA6E0`; `0x0032FC30` is called
+  by `0x00314020`; `0x0032FCA0` is called by `0x0032FC30`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [debug logging](../Engine-Core/debug-logging.md).

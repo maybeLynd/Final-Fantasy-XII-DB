@@ -615,3 +615,10 @@ Entering a zone, as the map-art context sees it:
 - [Texture animation lists](../Game-Files-And-Data-Tables/texture-animation-lists-ta.md): the `.ta` chain the load restarts.
 - [Phyre field schema](../PhyreEngine/phyre-field-schema.md): the `PMeshInstance` fields.
 - [Render parameters and shader assets](../Graphics/render-parameters-and-shader-assets.md): the map texture paths.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform: `0x00584740` is called by `0x00650D40`; those functions are documented on
+  [phyre post effect classes](../PhyreEngine/phyre-post-effect-classes.md).

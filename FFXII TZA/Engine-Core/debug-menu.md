@@ -696,3 +696,12 @@ the string's address is taken only at `0x0020AF3E`.
 - [Weather](../World-Areas-And-Travel/weather.md): the slot override at `+0xAAC`.
 - [MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md): the codes in the authored-code table.
 - [Gil](../Rewards-EXP-Gil-And-Loot/gil.md): the setter the gil row calls.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Status periodic terminal: `0x00265680` is called by `0x00310DB0`; those functions are documented on
+  [frame update order](frame-update-order.md).
+- World area: `0x00314D40` is called by `0x00266D10`; those functions are documented on
+  [force fight mode](force-fight-mode.md).

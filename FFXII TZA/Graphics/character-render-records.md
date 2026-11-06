@@ -398,7 +398,7 @@ Sixteen of the tested bits have no setter, so their tests fail on every record: 
 sets `+0x290` bits `0x4`, `0x20`, `0x40000`, `0x1000000` or `0x80000000`, or `+0x294` bits `0x1`, `0x2`, `0x10`,
 `0x40`, `0x400`, `0x800`, `0x4000`, `0x20000`, `0x40000`, `0x80000` or `0x100000`.
 
-The census read the 313 stores whose operand lies at `+0x290` to `+0x297` and the 5 wider stores from `+0x28C`:
+There are 313 stores whose operand lies at `+0x290` to `+0x297` and 5 wider stores from `+0x28C`:
 they set other bits or write other structures, and `0x0041F730` zeroes each record when it is built. The one setter
 of `+0x294` bit `0x2000` is `0x004278D0` (`or 0x2000`). `0x002EB4A0` jumps to it when the record's `+0x284` is not 0;
 the `motiontrigger` script verb reaches it that way, through its result callback `0x00343A20`, and so do
@@ -430,7 +430,7 @@ dword `word` (`0x1` to `0x80000000`).
 |---|---|
 | `clear_kind` | who clears the bit: `processor` when `0x00427DE0` clears it itself after the handler returns (40 rows); `handler` when the handler clears it in its own body (11 rows); `inline` when `0x00427DE0` does the work in its own body with no handler call (2 rows); `consume` when there is no handler (`handlers` is `-`) and `0x00427DE0` only clears the bit with `btr` (2 rows); `kept` on the pass-5 row for bit `0x100000`, where the handler `0x0042F4C0` runs again and leaves the bit set; `n/a` on the last row, bit `0x2000000` of `+0x294`, which `0x00427DE0` sets rather than tests |
 | `clear_site` | the address of the instruction that clears the bit: an `and` of the word with the bit's inverse mask, inside `0x00427DE0` for `processor` and `inline` rows and inside the handler for `handler` rows; for `consume` rows the store of the `btr` result, with the `btr` address in brackets when it differs; `self` when the handler clears it at more than one place; `consumed by 0x00427BD0` on the last row; `-` on the two pass-5 rows, which clear nothing |
-| `set_by` | the functions that set the bit, each followed by the instruction that does it (`or` with the bit's value, or `bts` and a store) and, after `<-`, the functions that call that setter; a group writer clears other bits of the same word in the same instruction, listed in brackets; 16 rows state that no instruction in the executable sets the bit, with the census behind it (every store at `+0x290` to `+0x297`, the wider stores from `+0x28C`, and the constructor `0x0041F730`, which zeroes the record) and, on some rows, the code that clears the bit; the row for `+0x294` bit `0x2000` names its one setter, `0x004278D0`, which no call, jump or stored address reaches |
+| `set_by` | the functions that set the bit, each followed by the instruction that does it (`or` with the bit's value, or `bts` and a store) and, after `<-`, the functions that call that setter; a group writer clears other bits of the same word in the same instruction, listed in brackets; 16 rows state that no instruction in the executable sets the bit, with the code it rests on (every store at `+0x290` to `+0x297`, the wider stores from `+0x28C`, and the constructor `0x0041F730`, which zeroes the record) and, on some rows, the code that clears the bit; the row for `+0x294` bit `0x2000` names its one setter, `0x004278D0`, which no call, jump or stored address reaches |
 | `rebuilds` | what the handler or inline block does to the record: the functions it calls, the fields it copies or writes, and the bits it re-arms, with the instruction addresses |
 
 ### The system tail

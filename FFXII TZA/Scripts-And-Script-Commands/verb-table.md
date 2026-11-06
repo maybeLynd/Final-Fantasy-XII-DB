@@ -11,7 +11,7 @@ One row per command record in the five command tables the verb dispatcher reads:
 0, 147 in family 3, 1 in family 5, 104 in family 7 and 212 in the shared table that family 2's
 debug verbs and eleven aliased families use. The callbacks are read from the shipping executable
 at `table + 8 + 32 × command`; the names come from the ff12-script catalogue where it has one, and
-from other authored sources otherwise; the argument counts are measured on the handler bodies.
+from other authored sources otherwise; the argument counts come from the handler bodies.
 
 [verb-table-inputs.tsv](verb-table-inputs.tsv) gives one row per verb name, 1,942 in all, with what a call of
 it does:
@@ -64,7 +64,7 @@ picture (`0x0024A680(picture, 1)`) and clears the pointer (`0x0053EF15`-`0x0053E
 | `pops_int`, `pops_float`, `pushes`, `result_writes` | counted direct calls of `0x00267E10`, `0x00267DB0`, the two push helpers and the two result writers in that callback; a handler that pushes constants and delegates to a shared body pops there, so these are not the argument count, which `arity` carries |
 | `guard` | the predicate that makes a pop conditional, where one exists (`0x00263D00` for the class-3 forms) |
 | `arity`, `arity_status`, `net_or_sums` | the measured argument count; `CONFIRMED` equals the catalogue, `CONFLICT` differs from it, `DERIVED` has no catalogue value, `GUARDED` and `CONDITIONAL` take two values (`lo\|hi`) depending on the guard |
-| `result_body` | the result handler's control flow: `CONST`, `TAILJUMP`, `CALL1`, `LINEAR` (several calls, no branch) or `BRANCHING`; carried over from the earlier census, not re-measured for this table |
+| `result_body` | the result handler's control flow: `CONST`, `TAILJUMP`, `CALL1`, `LINEAR` (several calls, no branch) or `BRANCHING`; carried over from the earlier handler list, not read again for this table |
 | `reach` | the engine subsystems the callbacks call directly, with hit counts, ignoring helpers with more than twenty callers; carried over from the earlier call-graph map |
 | `us_calls` | calls of the verb in the 1,114 decompiled US scripts, under its name and under the `sys` spelling the listings give a special call form of the same command (`sysTurna(` is `turna`); a script function that shares a verb's name (`function mapjump(`) is not a call |
 

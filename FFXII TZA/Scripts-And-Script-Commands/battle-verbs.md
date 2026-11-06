@@ -430,3 +430,11 @@ the two script grant words; the render record's drawn state; `0x022C1F48` and `0
 - [Party during scenes](party-during-scenes.md): the capture that cancels an action.
 - [Force fight mode](../Engine-Core/force-fight-mode.md): the toggle behind `setforcefightmode`.
 - [Script verb table](verb-table.md): the ids and handlers.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- World area: `0x00358940` is called by `0x0025E400`, `0x002623A0`; those functions are documented on
+  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

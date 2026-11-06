@@ -614,5 +614,5 @@ and the string's address is taken only at `0x001C3C80` and `0x001C3EA6`.
 - [Debug menu](debug-menu.md): the rows that step the block.
 - [Debug menu commands](debug-menu-commands.md): which row steps which field.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the options that switch these effects and the quality presets.
-- [`graphics-settings-02cb7fd0-accesses.tsv`](graphics-settings-02cb7fd0-accesses.tsv): every censused access to the
+- [`graphics-settings-02cb7fd0-accesses.tsv`](graphics-settings-02cb7fd0-accesses.tsv): every access to the
   render settings object `0x02CB7FD0`, one row per instruction (58 rows).

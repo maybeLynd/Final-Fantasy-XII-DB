@@ -151,3 +151,28 @@ scripts' copies differ only in these.
 - [Ending message scenes](ending-message-scenes.md) - the scene's full text and the zone script that loads it.
 - [Shared zone-script actors](shared-zone-script-actors.md) - the helper actors the area scripts share, none of which this scene carries.
 - [Event scenes](../Scripts-And-Script-Commands/event-scenes.md) - how an event id loads a scene script.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0032FCA0` calls `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
+- Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md),
+  [startup constants](../Engine-Core/startup-constants.md).
+- Script VM: `0x00264D60` is called by `0x00348DF0`, `0x0034ADA0`, `0x00352A50`, `0x00352EC0`, `0x003534F0`, `0x003545B0`,
+  `0x00354F20`, `0x003555F0`, `0x00356B70`, `0x0050EAB0`; `0x002673A0` is called by `0x00348DF0`, `0x0034ADA0`, `0x003545B0`,
+  `0x0050EAB0`; `0x002E16B0` is called by `0x0033F950`, `0x00348DF0`, `0x0034ADA0`, `0x0050EAB0`; `0x00348DF0` calls `0x00267E10`;
+  `0x00348DF0` is called by `0x00349800`.
+- Script VM: `0x00349800` calls `0x00267E10`, `0x00267F90`, `0x00348DF0`; `0x00349800` is called by `0x00349BF0`, `0x0034A090`,
+  `0x0034A420`, `0x0034A7A0`; `0x0034A090` calls `0x00267F90`, `0x00349800`.
+- Script VM: those functions are documented on [archades scenes](archades-scenes.md),
+  [archades scripts](archades-scripts.md), [ebp text sections](../EBP-Script-Files/ebp-text-sections.md),
+  [npc names](../Characters-And-Objects/npc-names.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md); and on
+  [native commands](../Scripts-And-Script-Commands/native-commands.md).
+- World area: `0x0032FCA0` is called by `0x0032FC30`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).

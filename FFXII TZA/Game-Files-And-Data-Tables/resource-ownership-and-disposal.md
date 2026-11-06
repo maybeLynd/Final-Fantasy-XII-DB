@@ -494,3 +494,10 @@ The other three masks follow the same accesses; the reset clears slots 0 and 1 w
 - [File requests and the read queue](file-requests-and-the-read-queue.md): how a −1 size completes.
 - [File size tables](file-size-tables-fst.md): the file kinds the motion slots read.
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): the binding entries and lanes that register here.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; those functions are documented on
+  [actor managers](../Characters-And-Objects/actor-managers.md).

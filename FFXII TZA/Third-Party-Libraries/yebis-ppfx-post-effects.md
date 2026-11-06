@@ -771,7 +771,7 @@ One row per body, 732 rows, each inside the span between two functions of
 |---|---|
 | `member_below` | the nearest function of the member list below the body (183 distinct values) |
 | `member_above` | the nearest function of the member list above the body (183 distinct values) |
-| `refs` | how many places in the image name the body's start address: a call, jump or RIP-relative operand, a call or jump found by scanning the code bytes, an 8-byte relocated pointer, or a 4-byte image offset in a data section (the unwind table `.pdata` is not counted); 0 on 618 rows, 1 on 112, 2 on 2 |
+| `refs` | how many places in the image name the body's start address: a call, jump or RIP-relative operand, a call or jump byte sequence in the code that targets it, an 8-byte relocated pointer, or a 4-byte image offset in a data section (the unwind table `.pdata` is not counted); 0 on 618 rows, 1 on 112, 2 on 2 |
 
 ### Columns of yebis-ppfx-post-effects-diagnostic-strings.tsv
 
@@ -1072,3 +1072,12 @@ entry *i* + 1 is (-sin 60*i*°, cos 60*i*°, 0, 0) for *i* = 0 to 5.
 - [Debug menu](../Engine-Core/debug-menu.md): the menu rows that switch the pass.
 - [Post-processing](../Graphics/post-processing.md): the passes the game runs, the
   feature setters and the init bits that leave features off.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Developer: `0x00796E20` is called by `0x001C2F50`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Platform online achievements: `0x00796E20` is called by `0x008655A0`; those functions are documented on
+  [steam integration](../Steam-And-Achievements/steam-integration.md).

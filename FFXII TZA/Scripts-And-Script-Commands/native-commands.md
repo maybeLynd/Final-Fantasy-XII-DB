@@ -300,3 +300,10 @@ skip mask byte, and the two signal bit arrays with the effect slots' signal byte
 - [Verb dispatch](verb-dispatch.md): the call opcodes, the accessors and the value stack.
 - [Script interpreter](script-interpreter.md): the wait slot and the rewind on a busy call.
 - [Script verb table](verb-table.md): every id with its callbacks.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input gameplay: `0x002E1CA0` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

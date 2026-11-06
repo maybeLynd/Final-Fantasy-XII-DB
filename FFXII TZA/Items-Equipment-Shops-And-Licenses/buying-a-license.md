@@ -73,3 +73,44 @@ next to it light one after another, and a notice may announce a new Esper, a new
 - [Licenses](licenses.md): the test, buying, refusals and resetting the boards.
 - [License Board screen](../Menus-And-HUD/license-board-screen.md): the screen in full.
 - [License Board](license-board.md): the board files and their squares.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat action: `0x0030FED0` is called by `0x002FDDA0`; `0x00323910` calls `0x00308FF0`; those functions are documented on
+  [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md),
+  [action definition row](../Battle-Actions/action-definition-row.md).
+- Combat formula: `0x0030FED0` calls `0x002FEF30`, `0x0031B860`; `0x0030FED0` is called by `0x003112F0`; `0x00323910` calls
+  `0x0031B860`; `0x00323910` is called by `0x0023AC80`.
+- Combat formula: those functions are documented on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
+  [traps](../World-Areas-And-Travel/traps.md),
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+- Gameplay: `0x0030FED0` calls `0x00322C50`; `0x00323910` calls `0x00322C50`; `0x00323D10` calls `0x0030B0E0`, `0x00322C50`; those
+  functions are documented on [identifier spaces](../Engine-Core/identifier-spaces.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Input: `0x0055F3E0` calls `0x002D6620`; those functions are documented on [controls](../Controls-And-Input/controls.md).
+- Party: `0x0030FED0` is called by `0x00328BD0`; those functions are documented on
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Resource: `0x00560910` calls `0x00249580`, `0x0024A5A0`; those functions are documented on
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
+  [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md).
+- Rewards progression economy: `0x0030FED0` is called by `0x0030C470`, `0x0030C650`; those functions are documented on
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Spawn encounter lifecycle: `0x0030FED0` is called by `0x0023A410`; those functions are documented on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+- Status periodic terminal: `0x0030FED0` calls `0x0030E130`, `0x0030E360`; `0x0030FED0` is called by `0x0030E130`, `0x0030E360`,
+  `0x0030E8F0`, `0x0030F690`; `0x00323910` calls `0x0030FED0`.
+- Status periodic terminal: those functions are documented on
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [battle orders](../Battle-Actions/battle-orders.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- UI: `0x0055A1F0` calls `0x00559E30`; `0x0055A1F0` is called by `0x0055A180`; `0x0055BFF0` calls `0x0055DEA0`, `0x0055E090`,
+  `0x0055E230`, `0x0055E3F0`; `0x0055BFF0` is called by `0x0055B560`; `0x0055F3E0` calls `0x005597C0`, `0x0055A180`, `0x0055B2B0`,
+  `0x0055B960`, `0x0055EF10`, `0x00561800`, `0x00561F20`; `0x00560910` calls `0x002814E0`, `0x00285F20`, `0x00291D70`, `0x00291D80`,
+  `0x00558F20`, `0x00561300`.
+- UI: those functions are documented on [ui typed lists](../Game-Files-And-Data-Tables/ui-typed-lists.md),
+  [license board screen](../Menus-And-HUD/license-board-screen.md), [clan primer](../Menus-And-HUD/clan-primer.md),
+  [menu screens](../Menus-And-HUD/menu-screens.md), [stats](../Damage-And-Battle-Formulas/stats.md).

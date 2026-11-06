@@ -417,3 +417,11 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 - [Area flags](area-flags-navimapdata.md): the town flag that disables arming, markers and triggering.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the tick's per-slot pre-pass that runs the Libra toggle.
 - [Zone asset list](zone-asset-list.md): every field with its map and region name.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Resource: `0x0032FCA0` calls `0x002DF980`, `0x0032E400`, `0x0032E620`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md),
+  [startup constants](../Engine-Core/startup-constants.md).

@@ -270,3 +270,68 @@ and `0x02F8F2CE` in `0x02F8F2CE` (`0x003A3929`-`0x003A3973`).
 - [Effects on actors and scripts](effects-on-actors-and-scripts.md): numbered effects on actors and script effect slots.
 - [Effect element types](effect-element-types.md): what each type does in its methods.
 - [Frame update order](../Engine-Core/frame-update-order.md): where the update pass runs.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0024DA40` calls `0x00263C30`, `0x00263FF0`, `0x00358940`, `0x003589B0`; `0x0024E910` is called by `0x002628B0`;
+  `0x003ACA90` is called by `0x002628B0`, `0x0026C8C0`; `0x003B8670` calls `0x00265020`, `0x0026A430`, `0x002EB740`, `0x003588B0`.
+- Actor entity: those functions are documented on [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [identifier spaces](../Engine-Core/identifier-spaces.md).
+- Actor entity: and on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [ko and game over](../Status-Effects-And-KO/ko-and-game-over.md).
+- Audio: `0x00181DD0` is called by `0x00332C40`, `0x003B99D0`, `0x003D7CE0`, `0x003D7DC0`, `0x003D7E90`; `0x00229EA0` is called by
+  `0x003638B0`; `0x0022A770` calls `0x0036F460`; `0x0024D540` calls `0x003B3D20`; `0x003B3D20` calls `0x002DF0F0`, `0x003B3E40`;
+  `0x003B8670` calls `0x002DF660`, `0x003B3EA0`, `0x003B99D0`.
+- Audio: those functions are documented on [animation sounds](../Sound-And-Music/animation-sounds.md),
+  [effect anchors and targets](effect-anchors-and-targets.md), [sound banks](../Sound-And-Music/sound-banks.md),
+  [effect element runtime](effect-element-runtime.md), [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+- Audio: and on [frame update order](../Engine-Core/frame-update-order.md),
+  [sound effects](../Sound-And-Music/sound-effects.md), [force fight mode](../Engine-Core/force-fight-mode.md),
+  [character effects](character-effects.md); and on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- Core runtime: `0x0017F6B0` is called by `0x0022B8C0`; `0x00181DD0` is called by `0x0022B8C0`; `0x00183090` is called by
+  `0x0022A580`; `0x00184740` is called by `0x0022A770`; `0x001B2530` calls `0x0017D980`; `0x001DB840` calls `0x001A1470`; `0x001FBD80`
+  calls `0x001A1470`; `0x001FBD80` is called by `0x0022B8C0`.
+- Core runtime: `0x0022A580` calls `0x001E0560`, `0x001E0580`, `0x001E05E0`, `0x0022A770`, `0x0022AF50`, `0x0022B000`, `0x0022B6E0`,
+  `0x0022B7E0`, `0x0022B8C0`, `0x0022BC20`; `0x0022A580` is called by `0x0022A490`; `0x0022A770` calls `0x001EC690`, `0x001EC760`,
+  `0x00374FD0`; `0x0022A770` is called by `0x0022A580`; `0x0022B0B0` is called by `0x0022A770`, `0x0022AF50`; `0x0024D540` calls
+  `0x00229EA0`.
+- Core runtime: `0x0024D540` is called by `0x0022B8C0`, `0x0022BC20`; `0x0024DE30` is called by `0x001EC760`; `0x002F4020` calls
+  `0x001EDDA0`; `0x00358350` is called by `0x0022B8C0`; `0x003583F0` is called by `0x0022A770`, `0x0022AF50`, `0x0022B000`,
+  `0x0022B8C0`, `0x0022BC20`, `0x00374FD0`; `0x003B8670` calls `0x001EDDA0`; `0x00862E50` calls `0x001A1470`; `0x00862FD0` calls
+  `0x001A1470`; `0x008647C0` calls `0x001A1470`.
+- Core runtime: `0x00864E00` calls `0x001A1470`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [game application](../Engine-Core/game-application.md), [text drawing](../Menus-And-HUD/text-drawing.md),
+  [global state accessors](../Engine-Core/global-state-accessors.md).
+- Input: `0x0022A580` calls `0x0035E9B0`, `0x00360080`; `0x0022A770` calls `0x0017DE60`, `0x002498B0`, `0x00250180`, `0x0035AE30`,
+  `0x0035AF20`, `0x0035E9A0`, `0x0035FF90`, `0x0036FDF0`, `0x0036FF70`, `0x0036FFD0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Movement: `0x0022B0B0` calls `0x00357780`; `0x003B8670` calls `0x0024B6F0`, `0x0024C6B0`, `0x0024C870`, `0x0024F9B0`, `0x00265200`,
+  `0x0026AF80`, `0x0026B5A0`.
+- Movement: those functions are documented on [the frame](../PhyreEngine/the-frame.md),
+  [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md),
+  [effect anchors and targets](effect-anchors-and-targets.md),
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Movement: and on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md).
+- Party: `0x0022A770` calls `0x00358BB0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Platform online achievements: `0x0022A770` calls `0x00316930`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Resource: `0x0022A770` calls `0x00324510`; `0x0024C970` calls `0x0024EF90`, `0x0024F240`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
+- Script VM: `0x00229EA0` is called by `0x00354D00`; those functions are documented on
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+- UI: `0x00181DD0` is called by `0x0024B9B0`; `0x00229EA0` is called by `0x002468A0`, `0x00246C20`; `0x0022A770` calls `0x00254E50`;
+  `0x0024C060` is called by `0x0024B9B0`; `0x0024ED80` is called by `0x0024B9B0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md), [clan primer](../Menus-And-HUD/clan-primer.md),
+  [widget messages](../Menus-And-HUD/widget-messages.md).
+- World area: `0x0022A770` calls `0x00314020`; those functions are documented on
+  [debug logging](../Engine-Core/debug-logging.md).

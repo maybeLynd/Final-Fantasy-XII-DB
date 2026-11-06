@@ -137,3 +137,10 @@ directly or through the cascade template. The other 43 are:
 - [Phyre asset files](../PhyreEngine/phyre-asset-files.md): the `.phyre` container.
 - [Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md): the JSON
   documents as files.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Developer: `0x00200BE0` is called by `0x001C6320`; those functions are documented on
+  [json configs](../Game-Files-And-Data-Tables/json-configs.md).

@@ -260,3 +260,38 @@ The starting gear of party rows 0-6, set by the record set-up from the party row
 - [Licenses](licenses.md) - the equipment license test.
 - [Stats](../Damage-And-Battle-Formulas/stats.md) - what the rebuild adds.
 - [Party members](../Party/party-members.md) - gear counted on joining and leaving.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat AI: `0x00322C50` is called by `0x00301AD0`, `0x003215C0`, `0x00321630`, `0x00321770`, `0x00321850`, `0x003219D0`,
+  `0x00321B00`, `0x00321E40`, `0x00327A10`, `0x00327CB0`; `0x00377C20` is called by `0x003014C0`, `0x00301AD0`, `0x00305AB0`.
+- Combat AI: those functions are documented on [glossary](../Engine-Core/glossary.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [battle units](../Characters-And-Objects/battle-units.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [enmity](../Enemy-AI-And-Gambits/enmity.md).
+- Combat AI: and on [gambit screen](../Menus-And-HUD/gambit-screen.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Input: `0x00377C20` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Movement: `0x0031B860` is called by `0x0033CB10`, `0x0033D890`; `0x00322C50` is called by `0x0031BAC0`, `0x00326BB0`; `0x00377C20`
+  is called by `0x0025B470`, `0x0026C3E0`, `0x002E28E0`, `0x00310920`, `0x00313670`.
+- Movement: those functions are documented on [status timers](../Status-Effects-And-KO/status-timers.md),
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
+  [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md).
+- Movement: and on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md); and on
+  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md).
+- Script VM: `0x00320AB0` is called by `0x0050FD00`, `0x0050FD50`, `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`,
+  `0x0050FF20`; `0x00377C20` is called by `0x00344740`, `0x00352FA0`, `0x003537D0`, `0x00355680`.
+- Script VM: those functions are documented on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
+  [script censuses](../Story-Events-And-Hunts/script-censuses.md).

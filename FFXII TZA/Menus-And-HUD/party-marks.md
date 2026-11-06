@@ -92,3 +92,14 @@ So an equipment bit means "cannot wear" and an ability bit means "has it".
 - [Equipment](../Items-Equipment-Shops-And-Licenses/equipment.md) - the wear test.
 - [Command availability](../Battle-Actions/command-availability.md) - owning and licensing an ability.
 - [License Board screen](license-board-screen.md) - the grid that rebuilds one member's bits.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform online achievements: `0x00282FA0` is called by `0x003162E0`, `0x00316760`; those functions are documented on
+  [achievements](../Steam-And-Achievements/achievements.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
+- Presentation: `0x0035D330` is called by `0x003BBD00`, `0x00506700`; those functions are documented on
+  [augments](../Damage-And-Battle-Formulas/augments.md), [battle numbers](battle-numbers.md).
+- Save load settings: `0x00282DF0` is called by `0x00583D60`; those functions are documented on
+  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).

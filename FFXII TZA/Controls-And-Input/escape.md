@@ -172,3 +172,12 @@ No other instruction reaches these four.
 - [keymap.ini](keymap-file.md) - the R2 binding.
 - [Force fight mode](../Engine-Core/force-fight-mode.md) - the flag's readers.
 - [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md) - the town bit.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Developer: `0x00796E20` is called by `0x001C2F50`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Platform online achievements: `0x00796E20` is called by `0x008655A0`; those functions are documented on
+  [steam integration](../Steam-And-Achievements/steam-integration.md).

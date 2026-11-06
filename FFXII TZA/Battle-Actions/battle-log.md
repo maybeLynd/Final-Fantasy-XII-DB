@@ -224,3 +224,10 @@ No other instruction reaches these globals.
 - [Battle message list](battle-message-list.md) - every row of the table with its text.
 - [Action results](action-results.md) - the record the dispatcher reads.
 - [Target selection](target-selection.md) - the same 24-unit distance used for targets.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x00265020` is called by `0x00362850`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

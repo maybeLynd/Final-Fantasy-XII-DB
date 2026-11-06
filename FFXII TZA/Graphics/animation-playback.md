@@ -477,3 +477,55 @@ placement `0x00373F40` (P).
 - [Add-motion tables](add-motion-tables.md): the angle tracks at `+0x190` and `skeletonmapping.bin`.
 - [Model oscillators and the pose sequencer](model-oscillators-and-pose-sequencer.md): the sway written into `+0x80` and the `+0x28A` bit it sets.
 - [Character render records](character-render-records.md): the attach slots and the equipment tie.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat formula: `0x004FE2F0` is called by `0x00384E50`; those functions are documented on
+  [damage formula](../Damage-And-Battle-Formulas/damage-formula.md).
+- Core runtime: `0x0041C410` calls `0x00229EA0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Gameplay: `0x00202B10` is called by `0x00339630`; those functions are documented on
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+- Movement: `0x00202B10` is called by `0x00334220`, `0x003347C0`, `0x00334E00`, `0x00335B60`, `0x00335E50`, `0x00336E40`,
+  `0x00337470`, `0x00338490`, `0x00339F00`, `0x0033A3D0`, `0x0033BAA0`, `0x0033C310`; `0x00202B10` is also called by `0x0033CC80`,
+  `0x0033D890`, `0x0033DB60`, `0x0033DFD0`.
+- Movement: `0x00202FE0` is called by `0x00334220`, `0x00334E00`, `0x00335B60`, `0x00335E50`, `0x00336E40`, `0x00338490`,
+  `0x00339F00`, `0x0033A3D0`, `0x0033BAA0`, `0x0033CC80`, `0x0033D890`, `0x0033DFD0`.
+- Movement: those functions are documented on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [bestiary](../Enemy-Spawning/bestiary.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Party: `0x002ED530` calls `0x0030BEB0`; those functions are documented on
+  [actor record](../Characters-And-Objects/actor-record.md).
+- Resource: `0x002ED570` is called by `0x00409CA0`, `0x00409D60`, `0x00409F50`, `0x00409FE0`, `0x0046E1B0`, `0x004780B0`; `0x003712E0`
+  calls `0x00409660`, `0x00409F50`; `0x003714A0` calls `0x004780B0`; `0x00372820` calls `0x004096C0`, `0x00409A30`, `0x00409F50`;
+  `0x003AB7F0` is called by `0x002ED570`, `0x00409600`, `0x00409780`, `0x00409A60`, `0x00409FE0`, `0x0040A210`, `0x0051FBB0`,
+  `0x0051FCF0`, `0x0051FE30`, `0x0051FF30`.
+- Resource: `0x00408F80` calls `0x004090D0`; `0x004090D0` is called by `0x00408F80`; `0x00409210` is called by `0x00409780`;
+  `0x004096C0` calls `0x00409600`; `0x004096C0` is called by `0x00504940`; `0x00409A30` calls `0x00409780`; `0x00409A30` is called
+  by `0x00409FE0`, `0x0040A1E0`, `0x00504E70`, `0x00504F00`; `0x0041B4E0` calls `0x00408F80`, `0x004096C0`, `0x00409F50`; `0x0041BEE0`
+  calls `0x002ED570`, `0x00409A30`, `0x00409F50`.
+- Resource: `0x0041CA70` calls `0x00408F80`, `0x004090D0`, `0x004096C0`, `0x00409F50`; `0x0041CF00` calls `0x002ED570`; `0x0041D220`
+  calls `0x002ED570`, `0x00409210`, `0x00409660`, `0x00409A30`, `0x00409F50`; `0x0041F340` calls `0x002ED570`, `0x00409660`,
+  `0x00409F50`, `0x00409FA0`; `0x0041FCF0` calls `0x004096C0`, `0x00409930`, `0x00409960`, `0x00409A30`, `0x00409C00`, `0x00409F50`,
+  `0x00409FA0`; `0x004211B0` calls `0x002ED570`.
+- Resource: `0x004215A0` calls `0x002ED570`; `0x004219C0` calls `0x002ED570`; `0x00422D90` calls `0x00408F80`, `0x00408F90`;
+  `0x004242B0` calls `0x002ED570`; `0x004256E0` calls `0x00409600`, `0x00409F50`; `0x0042E550` calls `0x002ED570`; `0x0046E0F0` calls
+  `0x002ED570`; `0x0046E420` calls `0x002ED570`; `0x0046E640` calls `0x002ED570`; `0x0046E6F0` calls `0x002ED570`; `0x0046E8B0` calls
+  `0x002ED570`; `0x0046E8D0` calls `0x002ED570`.
+- Resource: those functions are documented on
+  [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md),
+  [resource lifecycle](../Game-Files-And-Data-Tables/resource-lifecycle.md),
+  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).
+- Resource: and on [character render records](character-render-records.md),
+  [model effects and motion commands](model-effects-and-motion-commands.md),
+  [bestiary](../Enemy-Spawning/bestiary.md),
+  [native limits](../Engine-Core/native-limits.md).
+- Story event quest hunt: `0x00418880` calls `0x001EC6B0`, `0x001ED240`; those functions are documented on
+  [model effects and motion commands](model-effects-and-motion-commands.md).
+- UI: `0x00202B10` is called by `0x002C7B10`, `0x002C84E0`, `0x003FC170`, `0x005512B0`; those functions are documented on
+  [call signatures](../Engine-Core/call-signatures.md), [hud](../Menus-And-HUD/hud.md).
+- World area: `0x003714A0` calls `0x00377C20`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

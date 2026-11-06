@@ -207,3 +207,40 @@ Both tables are read from the decompiled `us` listing of `men_z0005` and the cre
 - [Action availability](../Controls-And-Input/action-availability.md) - the movie skip, which `men_z0005` does not offer.
 - [Movies](../Graphics/movies.md) - movie playback.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md) - the `fsroll` verbs.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x0053E380` calls `0x001EDEC0`; those functions are documented on
+  [global state accessors](../Engine-Core/global-state-accessors.md).
+- Input: `0x00249810` is called by `0x00291C80`; those functions are documented on
+  [startup constants](../Engine-Core/startup-constants.md).
+- Presentation: `0x001EDEC0` is called by `0x002B7B80`, `0x002BAF80`, `0x002BC3E0`, `0x002D2DB0`, `0x00366B80`; `0x00249FD0` calls
+  `0x003A1DB0`; `0x00249FD0` is called by `0x002B8EE0`; `0x002D8BB0` is called by `0x0053E0B0`; `0x002DDC50` is called by
+  `0x003649A0`, `0x00366110`, `0x003F0170`, `0x00505570`, `0x00505E00`; `0x0053E0B0` calls `0x003649A0`; `0x0053E380` calls
+  `0x0053E0B0`.
+- Presentation: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md), [controls](../Controls-And-Input/controls.md),
+  [menu lists](menu-lists.md), [escape](../Controls-And-Input/escape.md),
+  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md).
+- Presentation: and on [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md),
+  [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md),
+  [call signatures](../Engine-Core/call-signatures.md).
+- Resource: `0x0053EB90` calls `0x002493D0`, `0x00249580`; those functions are documented on
+  [verb table](../Scripts-And-Script-Commands/verb-table.md),
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md).
+- Save load settings: `0x001EDEC0` is called by `0x00582860`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Script VM: `0x00511610` calls `0x00267E10`; `0x00511760` calls `0x00267E10`; `0x00511810` calls `0x00267E10`; `0x00511830` calls
+  `0x00267E10`; `0x00511890` calls `0x00267E10`; `0x00511900` calls `0x00267E10`; `0x00511980` calls `0x00267E10`; `0x005119A0` calls
+  `0x00267E10`; `0x005119F0` calls `0x00267E10`; `0x00511A40` calls `0x00267E10`; `0x00511A60` calls `0x00267E10`; `0x00511AC0` calls
+  `0x00267E10`; `0x00511B30` calls `0x00267E10`.
+- Script VM: `0x00511BD0` calls `0x00267E10`; `0x00511DE0` calls `0x00267E10`; `0x00511E00` calls `0x00267E10`; `0x0053ED10` is
+  called by `0x00511540`; `0x0053EFC0` is called by `0x00511E00`; `0x0053F0D0` is called by `0x00511610`, `0x00511760`,
+  `0x00511810`, `0x00511830`, `0x00511890`, `0x00511900`, `0x00511980`, `0x005119A0`, `0x005119F0`, `0x00511A40`, `0x00511A60`,
+  `0x00511AC0`.
+- Script VM: `0x0053F0D0` is also called by `0x00511B30`, `0x00511BD0`, `0x00511DE0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [btm exfont bitmaps](../Game-Files-And-Data-Tables/btm-exfont-bitmaps.md),
+  [verb table](../Scripts-And-Script-Commands/verb-table.md).

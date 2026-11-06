@@ -206,7 +206,8 @@ The widget draw record, `0xA0` bytes, that `0x002D8C00` fills for each widget in
 
 ## Shipped data
 
-Measured in `us/packfiles/texpack_ys.bin`; the record count runs from the record table to the end of the picture
+The counts are those of `us/packfiles/texpack_ys.bin`; the record count runs from the record table to the end of the
+picture
 header.
 
 | Entry | Atlas | Picture | Sprite records |

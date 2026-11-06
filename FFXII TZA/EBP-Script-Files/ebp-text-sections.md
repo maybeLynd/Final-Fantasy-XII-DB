@@ -205,3 +205,10 @@ On both paths `0x002B32D0` ends by setting `+0x90` to the negated signed byte `+
 - [Actor managers](../Characters-And-Objects/actor-managers.md): the manager record the banks are bound to.
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the hold a flagged message keeps raised.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): the verbs that read the banks.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x00245020` is called by `0x00280140`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).

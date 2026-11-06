@@ -1,5 +1,5 @@
 ---
-title: "Script censuses: story writes that lower the counter, save and teleport declarations, exits that choose a destination, and the verbs that steer battle AI"
+title: "Script calls in every script: story writes that lower the counter, save and teleport declarations, exits that choose a destination, and the verbs that steer battle AI"
 kind: "reference"
 category: "Story, events and hunts"
 addresses: "0x00342490, 0x00343010, 0x00343470, 0x00352C80, 0x003532D0, 0x00264CA0, 0x02099FF0, 0x0026DB30, 0x00355680, 0x002677F0, 0x0034E260, 0x00265680, 0x003456C0, 0x00233D20, 0x0034A590"
@@ -7,8 +7,8 @@ addresses: "0x00342490, 0x00343010, 0x00343470, 0x00352C80, 0x003532D0, 0x00264C
 
 ## What it lists
 
-Four censuses over the 1,114 `us` scripts under `plan_master/us` (769 zone scripts, the rest event and `evt_t`
-developer scripts), read from their decompiled listings. Each call carries its script, actor, function, line, the
+Four lists of calls over the 1,114 `us` scripts under `plan_master/us` (769 zone scripts, the rest event and `evt_t`
+developer scripts). Each call carries its script, actor, function, line, the
 conditions that hold where it runs and whether any path reaches it. A line is reached when a reached block starts
 with it, when it is a `case` or `default` label of a reached `switch`, when the line before it is reached and is no
 `goto`, `return`, `break` or `continue`, or when a reached `goto` names its label.
@@ -42,7 +42,7 @@ it, plus `byu_a18` `配置監督.main` lines 821 and 833. The seventh copy, in t
 sits under `シナリオフラグ > 80`, so its 13 writes are the 13 unreachable ones that raise or keep the counter. At the bytes,
 `fon_b01`'s copy starts at `0C332` and no jump in the function targets it.
 
-The 128 reached unguarded writes were read by hand: what starts the function, which other variables guard it, and
+For the 128 reached unguarded writes the table gives what starts the function, which other variables guard it, and
 which maps lead in. 127 raise or keep the counter. One may lower it: `mrm_e01` main line 551 (2150) runs on the first
 entry into a boss room, and the counter tests on the story scripts' map jumps leave other areas open before that
 entry, where later writes store more, so the listings give the counter at that entry no upper bound. Six of the 127
@@ -94,7 +94,7 @@ reader `0x003DFAC0` instead.
 `+0x16` of the entry `0x00264CA0(kind, index)` returns, or -1 when it returns null (`0x00353303`-`0x0035330B`); it
 writes the answer through `0x0026B4E0` (`0x00353320`).
 
-The census finds 460 calls in 83 zone scripts, all reached:
+There are 460 calls in 83 zone scripts, all reached:
 
 | Verb | Id | Calls |
 |---|---|---:|
@@ -320,7 +320,7 @@ table). `line` is the listing line of the write or call.
 | `verdict` | `raises or keeps`, `lowers`, `may lower` or `unguarded`, from the bounds |
 | `guards` | The `if` and `switch` tests that hold at the write |
 | `reach` | `reached` or `unreachable` |
-| `read_guard`, `started_by`, `counter_range` | For the 128 reached unguarded story writes, read by hand: what guards the write, what starts its function, and the counter values at which it runs; `-` for the other rows |
+| `read_guard`, `started_by`, `counter_range` | For the 128 reached unguarded story writes: what guards the write, what starts its function, and the counter values at which it runs; `-` for the other rows |
 | `read_verdict`, `evidence` | The hand reading's verdict and the listing lines it rests on; `-` for the other rows |
 
 ### [`script-census-declarations.tsv`](script-census-declarations.tsv)
@@ -373,4 +373,154 @@ table). `line` is the listing line of the write or call.
   menus.
 - [Doors, gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md): what `mapjump` does.
 - [Battle verbs](../Scripts-And-Script-Commands/battle-verbs.md) and
-  [party verbs](../Scripts-And-Script-Commands/party-verbs.md): the verbs of the last census.
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md): the verbs of the last list.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x00226BD0` is called by `0x0025C830`; `0x00233D20` is called by `0x0025C830`; `0x0025C230` calls `0x003589B0`,
+  `0x003DBB60`; `0x0025C230` is called by `0x0025C170`; `0x00263FF0` is called by `0x0032F1B0`, `0x0032F850`, `0x0032FA10`,
+  `0x0032FAC0`, `0x0032FB70`, `0x00330060`, `0x00330110`, `0x00330190`, `0x00330220`, `0x003302B0`, `0x00330310`, `0x003304A0`.
+- Actor entity: `0x00263FF0` is also called by `0x003306E0`, `0x00331610`, `0x003316B0`, `0x00331760`, `0x003317C0`, `0x00331820`,
+  `0x00332130`, `0x003587C0`, `0x003588B0`, `0x0035A590`, `0x0035A7A0`, `0x0035A990`; `0x00263FF0` is also called by `0x003B6F80`,
+  `0x003DB1F0`, `0x003DBCF0`, `0x003DDC20`, `0x0046BAC0`; `0x00265680` is called by `0x0025B600`, `0x00263660`, `0x0026C5D0`,
+  `0x0026DFB0`; `0x002677F0` calls `0x003588B0`.
+- Actor entity: `0x0026DB30` is called by `0x0026C8C0`; `0x003137E0` is called by `0x003266C0`; `0x00342490` calls `0x00263FF0`;
+  `0x00343010` calls `0x00263FF0`; `0x00343470` calls `0x00263FF0`; `0x003590D0` is called by `0x0025B600`, `0x0025D9E0`,
+  `0x00263050`, `0x00263230`, `0x00263AC0`, `0x00264010`, `0x00264050`, `0x0026C5D0`, `0x0026C8C0`, `0x0026DFB0`; `0x00377C20` is called
+  by `0x0025C830`, `0x003266C0`.
+- Actor entity: those functions are documented on [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
+  [identifier spaces](../Engine-Core/identifier-spaces.md),
+  [script requests](../Scripts-And-Script-Commands/script-requests.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- Actor entity: and on [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
+  [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md),
+  [ebp camera tables](../EBP-Script-Files/ebp-camera-tables.md),
+  [tim2 images](../Game-Files-And-Data-Tables/tim2-images.md).
+- Actor entity: and on [ebp lighting lgt2](../EBP-Script-Files/ebp-lighting-lgt2.md),
+  [ebp script container](../EBP-Script-Files/ebp-script-container.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+- Actor entity: and on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
+  [ebp camera shake](../EBP-Script-Files/ebp-camera-shake.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Actor entity: and on [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
+  [actor managers](../Characters-And-Objects/actor-managers.md), [target selection](../Battle-Actions/target-selection.md),
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Actor entity: and on [debug menu](../Engine-Core/debug-menu.md),
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Audio: `0x00226BD0` is called by `0x00229AF0`; `0x003590D0` is called by `0x00362850`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Combat AI: `0x00377C20` is called by `0x003014C0`, `0x00301AD0`, `0x00305AB0`; those functions are documented on
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [glossary](../Engine-Core/glossary.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Combat action: `0x003590D0` is called by `0x00317E60`, `0x00319090`; `0x00377C20` is called by `0x002FFA60`, `0x002FFCF0`,
+  `0x002FFF50`, `0x00305110`, `0x00305230`, `0x00305430`, `0x00307300`, `0x0030C010`, `0x0030D160`, `0x0030D600`, `0x0030DA30`,
+  `0x0030F760`; `0x00377C20` is also called by `0x00311B20`, `0x00311CF0`, `0x00312FA0`, `0x00313CD0`, `0x00313DB0`.
+- Combat action: those functions are documented on [jump thunks](../Engine-Core/jump-thunks.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [quickenings and summons](../Battle-Actions/quickenings-and-summons.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Combat action: and on [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [action phases](../Battle-Actions/action-phases.md),
+  [battle unit fields](../Characters-And-Objects/battle-unit-fields.md),
+  [action definition row](../Battle-Actions/action-definition-row.md).
+- Combat action: and on [identifier spaces](../Engine-Core/identifier-spaces.md),
+  [call signatures](../Engine-Core/call-signatures.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Combat formula: `0x00377C20` is called by `0x00300530`; those functions are documented on
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Core runtime: `0x0036FF70` is called by `0x0022A770`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Gameplay: `0x003135C0` calls `0x0030D9A0`; `0x003590D0` is called by `0x0031ADB0`; `0x00377C20` is called by `0x00307D10`,
+  `0x0030A8A0`, `0x0030C210`, `0x0030D9A0`.
+- Gameplay: those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [bestiary](../Enemy-Spawning/bestiary.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md), [enmity](../Enemy-AI-And-Gambits/enmity.md).
+- Input: `0x00263FF0` is called by `0x00226BE0`, `0x002E09A0`; `0x00265680` is called by `0x00253C70`, `0x002E09A0`; `0x0034E260`
+  calls `0x0036FF70`; `0x003590D0` is called by `0x00226BE0`; `0x0036FF70` is called by `0x002A28E0`; `0x00377C20` is called by
+  `0x00253C70`.
+- Input: those functions are documented on [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md), [message windows](../Menus-And-HUD/message-windows.md).
+- Input gameplay: `0x00377C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Items equipment shops license: `0x00377C20` is called by `0x00309FB0`, `0x0030FD10`; those functions are documented on
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Movement: `0x00263FF0` is called by `0x002E28E0`, `0x00392740`; `0x00265680` is called by `0x0026C3E0`; `0x003135C0` is called
+  by `0x0031BAC0`, `0x00338490`; `0x003590D0` is called by `0x0026C3E0`, `0x0026D6F0`, `0x0026D810`, `0x002E45E0`, `0x002E5180`,
+  `0x00319490`, `0x00325D90`, `0x00326BB0`, `0x00326D60`, `0x00343E20`, `0x00345430`; `0x00377C20` is called by `0x0025B470`,
+  `0x0026C3E0`, `0x002E28E0`, `0x00310920`, `0x00313670`.
+- Movement: those functions are documented on
+  [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [game over](../World-Areas-And-Travel/game-over.md).
+- Movement: and on [bestiary](../Enemy-Spawning/bestiary.md),
+  [player movement](../Movement-And-Pathfinding/player-movement.md),
+  [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Movement: and on
+  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
+  [party data](../Party/party-data.md), [party slots](../Party/party-slots.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Party: `0x00265680` is called by `0x00358CB0`, `0x00358F90`; `0x00265720` is called by `0x00358CB0`; `0x002677F0` calls
+  `0x003590D0`; `0x0026DB30` calls `0x003590E0`; `0x003135C0` is called by `0x0023B040`; `0x003590D0` is called by `0x00263770`,
+  `0x00269C70`, `0x00327270`, `0x003272A0`, `0x003272F0`, `0x003273B0`; `0x00377C20` is called by `0x00304180`.
+- Party: those functions are documented on
+  [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
+  [player movement](../Movement-And-Pathfinding/player-movement.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Party: and on [script variables](../Scripts-And-Script-Commands/script-variables.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Party: and on [debug menu](../Engine-Core/debug-menu.md),
+  [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Presentation: `0x00226BD0` is called by `0x002B7B80`; `0x00263FF0` is called by `0x003A4290`, `0x003A56F0`, `0x003DD4C0`,
+  `0x00465120`, `0x00465690`; `0x00265680` is called by `0x001EC560`; `0x003590D0` is called by `0x003A4290`, `0x003A56F0`,
+  `0x003F1A60`, `0x00426090`, `0x004264A0`, `0x004640A0`, `0x004643D0`, `0x00464650`, `0x00464BD0`, `0x00465120`, `0x00465690`,
+  `0x0046CC70`.
+- Presentation: `0x00377C20` is called by `0x00307E70`, `0x003125E0`, `0x00313B30`, `0x003714A0`; those functions are documented
+  on [frame update order](../Engine-Core/frame-update-order.md),
+  [authored expressions](../Game-Files-And-Data-Tables/authored-expressions.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Presentation: and on [effect element runtime](../Graphics/effect-element-runtime.md),
+  [effect element types](../Graphics/effect-element-types.md),
+  [debug menu](../Engine-Core/debug-menu.md), [hud](../Menus-And-HUD/hud.md).
+- Presentation: and on
+  [authored presentation commands](../Graphics/authored-presentation-commands.md),
+  [legacy ps2 gs layer](../Graphics/legacy-ps2-gs-layer.md),
+  [character se tables chse](../Game-Files-And-Data-Tables/character-se-tables-chse.md).
+- Presentation: and on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [battle units](../Characters-And-Objects/battle-units.md), [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [add motion tables](../Graphics/add-motion-tables.md).
+- Rewards progression economy: `0x003135C0` is called by `0x002F8BB0`; `0x00377C20` is called by `0x00312280`; those functions
+  are documented on [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
+- Save load settings: `0x0026DB30` calls `0x002EF2B0`; `0x00314870` calls `0x002EF2B0`; those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Spawn encounter lifecycle: `0x00233D20` is called by `0x00307030`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Status periodic terminal: `0x00265680` is called by `0x00310DB0`; `0x00377C20` is called by `0x0030E360`, `0x0030F690`,
+  `0x00310DB0`; those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- UI: `0x00265680` is called by `0x00279E20`; `0x002901D0` is called by `0x00550400`, `0x005528C0`; `0x003135C0` is called by
+  `0x0031EB20`; `0x003590D0` is called by `0x00299BD0`, `0x002C7660`; `0x003C0250` is called by `0x002901D0`.
+- UI: those functions are documented on [tutorial battle commands](../Battle-Actions/tutorial-battle-commands.md),
+  [map screens](../Menus-And-HUD/map-screens.md), [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md),
+  [action definition row](../Battle-Actions/action-definition-row.md), [party list](../Menus-And-HUD/party-list.md); and on
+  [battle units](../Characters-And-Objects/battle-units.md).
+- World area: `0x0026DB30` is called by `0x00266D10`; `0x003590D0` is called by `0x0025E400`, `0x002623A0`; those functions are
+  documented on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- World area: `0x0026DB30` calls `0x00314870`, `0x003148D0`, `0x003148F0`, `0x003149E0`; `0x003135C0` is called by `0x00234590`;
+  `0x00314870` is called by `0x0026DB30`; `0x00355680` calls `0x00377C20`; `0x00377C20` calls `0x003148F0`; `0x00377C20` is called
+  by `0x002342F0`.
+- World area: those functions are documented on [script variables](../Scripts-And-Script-Commands/script-variables.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md).

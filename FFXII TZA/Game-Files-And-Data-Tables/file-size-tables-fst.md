@@ -230,3 +230,9 @@ a back reference or of a repeat (`0x00536E74`; `0x005370C3`), and once after eac
 - [File requests and the read queue](file-requests-and-the-read-queue.md): where the size becomes a request's byte count.
 - [Bigfile archive](bigfile-archive.md): where the named files are read from.
 - [Area .nmb index](ard-area-battle-data.md): the kind 26 files and the table of path arrays.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- UI: `0x0053DD10` is called by `0x003C80C0`; those functions are documented on [map screens](../Menus-And-HUD/map-screens.md).

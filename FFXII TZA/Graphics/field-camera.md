@@ -504,3 +504,12 @@ Follow camera (controller + `0x2B0`):
 - [Doors, gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md): the collision
   part and the wall test.
 - [Player movement](../Movement-And-Pathfinding/player-movement.md): the stick dead zone.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat action: `0x00327200` is called by `0x00313DB0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Gameplay: `0x0031B8E0` calls `0x00322C50`; `0x0031B950` calls `0x00322C50`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

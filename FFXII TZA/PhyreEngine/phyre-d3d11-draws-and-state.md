@@ -664,3 +664,11 @@ Compare functions (`0x0061C010`) and stencil operations (`0x0061C150`):
 - [Shader variant selection](shader-variant-selection.md): the context switches applied before a draw.
 - [Phyre frame](the-frame.md): the draw routine of a frame.
 - [Phyre D3D11 device and resources](phyre-d3d11-device-and-resources.md): the device, texture formats, textures and buffers these calls bind.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x00615BC0` is called by `0x0079C140`, `0x007A05D0`; `0x00616700` is called by `0x0079C140`, `0x007A05D0`; those
+  functions are documented on [screen mode and aspect](../Graphics/screen-mode-and-aspect.md),
+  [game application](../Engine-Core/game-application.md).

@@ -131,3 +131,11 @@ the ExFont drawer `0x003649A0`, `0x003656A0`, `0x00366110`, `0x002847C0`, `0x002
   types.
 - [Class hierarchy](class-hierarchy.md): how the classes and their tables are found.
 - [Jump thunks](jump-thunks.md): one-instruction forwarders, whose signature is their target's.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x00121000` calls `0x00121DB0`, `0x00124350`; `0x00121000` is called by `0x007AC4F0`; those functions are documented
+  on [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md),
+  [audio effects](../Sound-And-Music/audio-effects.md).

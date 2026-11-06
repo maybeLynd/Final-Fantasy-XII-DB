@@ -370,8 +370,8 @@ The PhyreEngine lock, `0x28` bytes (constructor `0x005CC8A0`; plain lock `0x005C
 
 ### Columns of runtime-services-iat-any-reference.tsv
 
-One row per import slot, 538 rows. The references are found by scanning `.text` for every 4-byte displacement
-that lands on the slot and decoding the instruction that holds it.
+One row per import slot, 538 rows. The references are every instruction in `.text` with a 4-byte displacement
+that lands on the slot.
 
 | Column | Holds |
 |---|---|

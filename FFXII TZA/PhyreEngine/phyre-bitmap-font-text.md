@@ -294,3 +294,10 @@ PBitmapFontCharInfo (`0x30`):
 
 - [Phyre modules](phyre-modules.md): the `PText` module and its registration.
 - [Phyre field schema](phyre-field-schema.md): the `PBitmapFont` and `PBitmapFontCharInfo` members.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- UI: `0x005FEFD0` is called by `0x0018EEE0`; `0x00600A60` is called by `0x0018EEE0`; those functions are documented on
+  [graphics settings](../Engine-Core/graphics-settings.md).

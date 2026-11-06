@@ -94,7 +94,7 @@ seven test the pointer for null and the rest are in the table.
 | `disp` | the unit offset reached |
 | `kind` | `r` read, `w` write, `rw` read-modify-write, `addr` the address is formed and passed on, `set` a clear over the span the instruction cell gives |
 | `instruction` | the instruction text |
-| `route` | how the function reached the unit: `0x0208E688` when it indexes the pool itself (`0x0208E688 (the slot acquire)` for the free-slot walk), an accessor's address when it took that accessor's return, `actor +0x30, the actor as argN from F at S` when it loaded the unit from an actor it was handed, `argN from F at S` when the unit came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S, `argN+0xK` when it came in offset by K, `arg2 (the target unit, in rbx from the label 0x00307457)` in `0x00307300`, which copies its third argument, the target unit, to `rbx` at `0x0030733A`, uses `rbx` for another record in a loop, and holds the unit in `rbx` again from `0x00307457`, `actor +0x30` alone for four rows that are the load of the unit's address from an actor's `+0x30` (`disp` 0), whose note says what the function does with the unit, and `sweep` for the two `+0x768`/`+0x76C` pairs found by an image-wide displacement sweep and verified at the site |
+| `route` | how the function reached the unit: `0x0208E688` when it indexes the pool itself (`0x0208E688 (the slot acquire)` for the free-slot walk), an accessor's address when it took that accessor's return, `actor +0x30, the actor as argN from F at S` when it loaded the unit from an actor it was handed, `argN from F at S` when the unit came in as argument N (0 = `rcx`, 1 = `rdx`, 2 = `r8`, 3 = `r9`) from the caller F at the call site S, `argN+0xK` when it came in offset by K, `arg2 (the target unit, in rbx from the label 0x00307457)` in `0x00307300`, which copies its third argument, the target unit, to `rbx` at `0x0030733A`, uses `rbx` for another record in a loop, and holds the unit in `rbx` again from `0x00307457`, `actor +0x30` alone for four rows that are the load of the unit's address from an actor's `+0x30` (`disp` 0), whose note says what the function does with the unit, and `sweep` for the two `+0x768`/`+0x76C` pairs, each a read at its own instruction in a function that none of the other routes reaches |
 | `note` | `idx` when an index register takes part |
 
 ## Data
@@ -226,15 +226,29 @@ The next-action selector's
 - [Action commit](../Battle-Actions/action-commit.md), [action phases](../Battle-Actions/action-phases.md) and [target selection](../Battle-Actions/target-selection.md): the action block and the target buffer.
 - [Enmity](../Enemy-AI-And-Gambits/enmity.md): the perception cache.
 - [Party member status record](party-member-status-record.md): the fields the HUD reads.
-- [`battle-target-buffer-accesses.tsv`](battle-target-buffer-accesses.tsv): every censused access to the target
+- [`battle-target-buffer-accesses.tsv`](battle-target-buffer-accesses.tsv): every access to the target
   buffer at unit `+0x778`, by its offset in the buffer (64 rows).
 - [`battle-target-result-entry-accesses.tsv`](battle-target-result-entry-accesses.tsv): the accesses that reach the
   entries at unit `+0x988`, by offset from `+0x988`: four in the code that uses the entries and twelve moves at the
   end of a block copy of unit `+0x6B0` to `+0xB8F`, which their `note` names (16 rows).
-- [`navigation-path-state-accesses.tsv`](navigation-path-state-accesses.tsv): every censused access to the
+- [`navigation-path-state-accesses.tsv`](navigation-path-state-accesses.tsv): every access to the
   navigation path state at unit `+0x200`, by its offset in the state (14 rows).
 
 In these access tables, `function`, `name` and `site` give the function, its name and the instruction's address,
 `disp` the offset the instruction reaches from the start of the embedded object, `kind` a read (`r`), a write (`w`),
 both (`rw`) or the address taken (`addr`), `instruction` the instruction itself, and `route` `embed BattleUnit+0xK`:
 the object at unit `+0xK`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on [battle units](battle-units.md).
+- Core runtime: `0x002368D0` is called by `0x0022A0B0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on
+  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md).
+- Resource: `0x002368D0` calls `0x003843F0`; those functions are documented on
+  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
+- World area: `0x002342F0` is called by `0x00266D10`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

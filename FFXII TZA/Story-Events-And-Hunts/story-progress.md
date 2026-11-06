@@ -88,3 +88,11 @@ The flag banks the story sets are on [Story flags](story-flags.md), with every i
 - [Story flags](story-flags.md) - the flag banks and the story schedule.
 - [Quests](quests.md) - the quest state.
 - [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the payload layout.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Script VM: `0x00267E60` calls `0x00262440`; `0x00267E60` is called by `0x0025E4C0`; `0x0026D530` is called by `0x00267E60`;
+  those functions are documented on [script variables](../Scripts-And-Script-Commands/script-variables.md),
+  [script interpreter](../Scripts-And-Script-Commands/script-interpreter.md).

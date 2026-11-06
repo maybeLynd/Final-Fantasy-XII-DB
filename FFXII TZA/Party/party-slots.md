@@ -171,3 +171,15 @@ No other instruction reaches `0x022C2674`.
   chocobo, town and event modes.
 - [KO and Game Over](../Status-Effects-And-KO/ko-and-game-over.md) - the wipe tests over maps 1 and 3.
 - [Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md) - the fighting party an enemy can notice.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x0031BD60` is called by `0x002341C0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Platform online achievements: `0x003148F0` is called by `0x003160C0`; those functions are documented on
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).
+- Save load settings: `0x003148F0` calls `0x002EF2B0`; `0x003148F0` is called by `0x00583D60`; those functions are documented
+  on [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md).

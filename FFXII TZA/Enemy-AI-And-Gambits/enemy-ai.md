@@ -220,3 +220,17 @@ No other instruction reaches `0x022C2564` or `0x022C2568`.
 - [Battle orders](../Battle-Actions/battle-orders.md) - the order ids.
 - [Action commit](../Battle-Actions/action-commit.md) - committing and cancelling an order.
 - [Area of effect](../Battle-Actions/area-of-effect.md) - the target-list layout.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x003E7DE0` is called by `0x00332C40`, `0x003B3D20`, `0x003B99D0`; those functions are documented on
+  [animation sounds](../Sound-And-Music/animation-sounds.md),
+  [effect drawing](../Graphics/effect-drawing.md),
+  [effect anchors and targets](../Graphics/effect-anchors-and-targets.md).
+- Input: `0x00313F60` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Items equipment shops license: `0x00236820` is called by `0x0031A300`; `0x00300280` calls `0x003008A0`; those functions are
+  documented on [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

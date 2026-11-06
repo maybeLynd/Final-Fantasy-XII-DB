@@ -186,3 +186,10 @@ The applier writes only to the records it is given and the globals named in the 
   numbers of the masks.
 - [The status write](../Status-Effects-And-KO/status-changes.md)
   - what `0x0030E360` does with each add and remove.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Resource: `0x00319F50` calls `0x001D6AE0`; those functions are documented on
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).

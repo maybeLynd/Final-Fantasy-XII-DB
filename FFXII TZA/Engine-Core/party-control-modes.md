@@ -348,14 +348,14 @@ leader; the two source bytes.
   dispatcher and test the level.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the transition record.
 - [`party-control-modes-manager-0209ac60-accesses.tsv`](party-control-modes-manager-0209ac60-accesses.tsv): every
-  censused access to the menu state block `0x0209AC60` (`0xE00` bytes, [menu screens](../Menus-And-HUD/menu-screens.md)),
+  access to the menu state block `0x0209AC60` (`0xE00` bytes, [menu screens](../Menus-And-HUD/menu-screens.md)),
   reached at its address or through the pointer `[0x0209AC30]` (964 rows).
 - [`party-control-modes-manager-sub-0209ac60-02f8-accesses.tsv`](party-control-modes-manager-sub-0209ac60-02f8-accesses.tsv):
-  every censused access to the description window that the block's `+0x2F8` points to (83 rows).
+  every access to the description window that the block's `+0x2F8` points to (83 rows).
 - [`party-control-modes-manager-sub-0209ac60-02f8-00c0-accesses.tsv`](party-control-modes-manager-sub-0209ac60-02f8-00c0-accesses.tsv):
-  every censused access to the object at that window's `+0xC0` (128 rows).
+  every access to the object at that window's `+0xC0` (128 rows).
 - [`party-control-modes-party-selection-registry-ptrs-022c8388-accesses.tsv`](party-control-modes-party-selection-registry-ptrs-022c8388-accesses.tsv):
-  every censused access to the four actor record pointers of the party slots at `0x022C8388`, which the party rebuild
+  every access to the four actor record pointers of the party slots at `0x022C8388`, which the party rebuild
   `0x0035BC50` writes ([party list](../Menus-And-HUD/party-list.md)) (2 rows).
 
 In the `route` cells of these tables, `Manager0209AC60` names the menu state block and `ManagerSub0209AC60_02F8` the

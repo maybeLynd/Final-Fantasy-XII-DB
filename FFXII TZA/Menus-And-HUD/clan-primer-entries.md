@@ -237,3 +237,75 @@ inline icon as `[icon X]`, X its letter; colour and layout codes leave nothing (
 - [Kill rewards: what an enemy's death triggers, when it gives nothing, and the order of chain, EXP, LP, gil, loot and counters](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)
 - [JSON configs: every key of the jsondata documents, the code that reads it and what it sets, and the monster viewer's entries](../Game-Files-And-Data-Tables/json-configs.md)
 - [Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits](../World-Areas-And-Travel/area-flags-navimapdata.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x003171C0` calls `0x00263C20`; those functions are documented on
+  [glossary](../Engine-Core/glossary.md).
+- Combat AI: `0x0046B180` is called by `0x00321190`; `0x0046B1A0` is called by `0x00321190`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Combat formula: `0x00306F00` is called by `0x00300530`; those functions are documented on
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Core runtime: `0x00254A10` calls `0x00229E40`; `0x00265270` is called by `0x001EC760`; `0x00316930` is called by `0x0022A770`;
+  those functions are documented on [startup constants](../Engine-Core/startup-constants.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Developer: `0x001EB9C0` calls `0x001C6320`; those functions are documented on
+  [json configs](../Game-Files-And-Data-Tables/json-configs.md).
+- Gameplay: `0x00306F00` calls `0x003299B0`; `0x0035D330` calls `0x0031C5D0`; `0x00576A50` calls `0x00309EC0`; those functions are
+  documented on [enemy spawning](../Enemy-Spawning/enemy-spawning.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+- Input: `0x00265270` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Platform online achievements: `0x00255120` is called by `0x003160C0`; `0x00265270` is called by `0x003154B0`, `0x003161A0`;
+  `0x00315420` is called by `0x003154B0`, `0x00315E90`, `0x003161A0`; `0x003154B0` calls `0x00315420`; `0x00315820` calls
+  `0x00315D50`; `0x00315D50` is called by `0x00315820`; `0x00315DC0` is called by `0x00316930`; `0x00316930` calls `0x00315E90`,
+  `0x003162E0`; `0x00316930` is called by `0x00316670`.
+- Platform online achievements: `0x003779F0` is called by `0x003160C0`; `0x0046B180` is called by `0x00316480`; `0x0046B1A0` is
+  called by `0x00316480`; `0x005760A0` calls `0x00315420`; `0x00576CA0` calls `0x003154B0`; `0x00576E30` calls `0x00315420`;
+  `0x00577550` calls `0x00316930`.
+- Platform online achievements: those functions are documented on
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md),
+  [achievements](../Steam-And-Achievements/achievements.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md),
+  [jump thunks](../Engine-Core/jump-thunks.md), [bestiary](../Enemy-Spawning/bestiary.md).
+- Platform online achievements: and on [frame update order](../Engine-Core/frame-update-order.md),
+  [shops](../Items-Equipment-Shops-And-Licenses/shops.md).
+- Presentation: `0x00254A10` is called by `0x002B0280`, `0x002D2DB0`; `0x00265270` is called by `0x001CD0E0`; `0x002F9920` is
+  called by `0x0037E5B0`, `0x0037E8D0`; `0x0035D330` is called by `0x003BBD00`, `0x00506700`; `0x0046B1A0` is called by
+  `0x00578450`.
+- Presentation: those functions are documented on
+  [handbook files](../Game-Files-And-Data-Tables/handbook-files.md), [menu lists](menu-lists.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [quest menu files](../Game-Files-And-Data-Tables/quest-menu-files.md),
+  [augments](../Damage-And-Battle-Formulas/augments.md); and on [battle numbers](battle-numbers.md).
+- Resource: `0x00265270` is called by `0x001DA220`, `0x001DA970`; `0x003158B0` calls `0x00249180`; `0x00575B80` calls `0x0024A440`;
+  those functions are documented on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md),
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md),
+  [as7 menu graphics](../Game-Files-And-Data-Tables/as7-menu-graphics.md).
+- Rewards progression economy: `0x003171C0` is called by `0x00312280`; those functions are documented on
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).
+- Save load settings: `0x00254A10` is called by `0x005832B0`; `0x0046B180` calls `0x002EF2B0`; `0x0046B1A0` calls `0x002EF2B0`;
+  those functions are documented on
+  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Script VM: `0x0046B180` is called by `0x00351F90`; `0x0046B1A0` is called by `0x0033FAA0`; those functions are documented on
+  [quests](../Story-Events-And-Hunts/quests.md).
+- Spawn encounter lifecycle: `0x00306F00` calls `0x002360D0`; those functions are documented on
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+- Story event quest hunt: `0x00265270` is called by `0x001ED240`; those functions are documented on
+  [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md).
+- Story event quest hunt: `0x00265270` is called by `0x00377970`; `0x00575E80` calls `0x0032A8A0`; those functions are
+  documented on [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md),
+  [identifier spaces](../Engine-Core/identifier-spaces.md).
+- World area: `0x00255120` is called by `0x00576A50`; `0x00265270` is called by `0x001EDCD0`, `0x003145E0`, `0x003EAA70`;
+  `0x002F9920` is called by `0x003C0450`, `0x00576A50`; `0x00307030` is called by `0x00234590`; `0x003154B0` calls `0x00265270`;
+  `0x003779F0` is called by `0x00576A50`; `0x00575E80` calls `0x00265270`; `0x00576740` calls `0x00576A50`; `0x00576A50` calls
+  `0x003148F0`; `0x00576E30` calls `0x00265270`.
+- World area: those functions are documented on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md),
+  [changing areas](../World-Areas-And-Travel/changing-areas.md),
+  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
+- World area: and on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [party control modes](../Engine-Core/party-control-modes.md).

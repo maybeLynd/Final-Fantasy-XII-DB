@@ -317,3 +317,28 @@ verbs with the same arguments. The four directory tables are reached only by the
 - [Voices](../Sound-And-Music/voices.md): the `VSP1` voice sets and the voice verbs.
 - [Sound banks](../Sound-And-Music/sound-banks.md): the sound data in `.snd`.
 - [File size tables](../Game-Files-And-Data-Tables/file-size-tables-fst.md): the kinds and records the packages belong to.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x003DEC90` calls `0x002DEB40`, `0x002DF050`; `0x003E9C10` calls `0x002DF660`; those functions are documented on
+  [actor record](../Characters-And-Objects/actor-record.md),
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- Input: `0x00267310` is called by `0x002E09A0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Movement: `0x00263F40` is called by `0x00300310`, `0x003003F0`, `0x00310920`, `0x00311F70`, `0x0033FFC0`, `0x00345430`,
+  `0x00349680`, `0x0037D000`, `0x003B7B00`, `0x003B7D80`, `0x003B7F40`, `0x00505240`; `0x00267310` is called by `0x002E45E0`,
+  `0x002E5750`; `0x002EB0D0` is called by `0x002E28E0`.
+- Movement: those functions are documented on [battle units](../Characters-And-Objects/battle-units.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
+  [enemy spawning](../Enemy-Spawning/enemy-spawning.md).
+- Movement: and on [movement bodies and separation](../Movement-And-Pathfinding/movement-bodies-and-separation.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md).
+- Movement: and on [facing and steering](../Movement-And-Pathfinding/facing-and-steering.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [script binding lifecycle](../Scripts-And-Script-Commands/script-binding-lifecycle.md).
+- Party: `0x00263F40` is called by `0x00304180`; those functions are documented on
+  [party control modes](../Engine-Core/party-control-modes.md).

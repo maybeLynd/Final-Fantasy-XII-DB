@@ -343,3 +343,12 @@ holds only the 0 its constructor `0x001CCB20` stores (`0x001CCE34`, `0x001CCF79`
 - [Scenario presets](scenario-presets.md) - the sets that refill the party at once.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the member records and their flag word.
 - [Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md) - the busy mask.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat AI: `0x002367A0` is called by `0x00301AD0`; those functions are documented on
+  [glossary](../Engine-Core/glossary.md).
+- Platform: `0x001CCB20` calls `0x005CC930`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).

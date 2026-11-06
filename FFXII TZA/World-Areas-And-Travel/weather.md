@@ -683,14 +683,32 @@ in-image routes to `0x0026D910` are the boot setup, the field runtime pass and t
 - [Script verb dispatch and parameter encoding](../Scripts-And-Script-Commands/verb-dispatch.md)
 - [The world tick and the field frame](../Engine-Core/frame-update-order.md)
 - [Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps](../Saving-Loading-And-Settings/save-file-format.md)
-- [`map-ref-image-header-accesses.tsv`](map-ref-image-header-accesses.tsv): every censused access to the
+- [`map-ref-image-header-accesses.tsv`](map-ref-image-header-accesses.tsv): every access to the
   `map_ref.bin` header (`MapRefHeader`) through the image pointer `[0x02099D88]` (15 rows).
-- [`map-ref-field-row-accesses.tsv`](map-ref-field-row-accesses.tsv): every censused access to its field rows
+- [`map-ref-field-row-accesses.tsv`](map-ref-field-row-accesses.tsv): every access to its field rows
   (`MapRefFieldRow`), found from the header's `+0x04` (18 rows).
-- [`map-ref-weather-block-accesses.tsv`](map-ref-weather-block-accesses.tsv): every censused access to its weather
+- [`map-ref-weather-block-accesses.tsv`](map-ref-weather-block-accesses.tsv): every access to its weather
   blocks (`MapRefWeatherBlock`), found from `+0x08` (4 rows).
-- [`map-ref-weather-lane-accesses.tsv`](map-ref-weather-lane-accesses.tsv): every censused access to the four lanes
+- [`map-ref-weather-lane-accesses.tsv`](map-ref-weather-lane-accesses.tsv): every access to the four lanes
   of a weather block (4 rows).
 
 In the `route` cells of these tables, `MapRefImageHeader` names the `map_ref.bin` header and `MapRefWeatherBlock` a
 weather block.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform: `0x001CCB20` calls `0x005CC930`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Save load settings: `0x0020E5A0` is called by `0x00280140`; `0x00268320` is called by `0x00280140`; `0x002EF2B0` is called by
+  `0x00280140`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; `0x002EF2B0` is called by `0x0032A8A0`, `0x0032A930`, `0x0032A9A0`,
+  `0x0032AA00`, `0x0032AA60`, `0x0032AAD0`, `0x0032AB60`, `0x0032ABF0`, `0x0032AC70`, `0x0032ACF0`, `0x0032AD70`, `0x0032ADF0`.
+- Story event quest hunt: those functions are documented on [actor managers](../Characters-And-Objects/actor-managers.md),
+  [identifier spaces](../Engine-Core/identifier-spaces.md),
+  [story flags](../Story-Events-And-Hunts/story-flags.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Story event quest hunt: and on [story flag ids](../Story-Events-And-Hunts/story-flag-ids.md),
+  [chocobos and airships](chocobos-and-airships.md), [npc names](../Characters-And-Objects/npc-names.md).

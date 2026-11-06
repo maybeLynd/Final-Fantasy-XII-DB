@@ -333,3 +333,10 @@ each entry's counter, armed bytes and two accumulators.
   the command stream and the other handlers.
 - [FRP container](../Graphics/model-files-cm-ca.md):
   the `@FRM` child.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).

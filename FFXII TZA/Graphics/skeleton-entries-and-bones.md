@@ -150,3 +150,40 @@ The access tables beside this page list every instruction found touching each st
 - [Character render records](character-render-records.md): the record array, its lifecycle and render events.
 - [Presentation entries](presentation-entries.md): the reference container and the per-entry update.
 - [Model files (.cm, .ca)](model-files-cm-ca.md): the `@FTR` skeleton the entries are built from.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x00421E20` is called by `0x00332C40`, `0x003B99D0`; those functions are documented on
+  [animation sounds](../Sound-And-Music/animation-sounds.md), [effect anchors and targets](effect-anchors-and-targets.md).
+- Core runtime: `0x0053AB50` calls `0x001EDE70`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Movement: `0x00202FE0` is called by `0x00334220`, `0x00334E00`, `0x00335B60`, `0x00335E50`, `0x00336E40`, `0x00338490`,
+  `0x00339F00`, `0x0033A3D0`, `0x0033BAA0`, `0x0033CC80`, `0x0033D890`, `0x0033DFD0`.
+- Movement: those functions are documented on [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [bestiary](../Enemy-Spawning/bestiary.md).
+- Party: `0x00426090` calls `0x003590D0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Resource: `0x002ED570` is called by `0x00409CA0`, `0x00409D60`, `0x00409F50`, `0x00409FE0`, `0x0046E1B0`, `0x004780B0`; `0x00371330`
+  calls `0x004096C0`, `0x00409F50`; `0x003713C0` calls `0x004096C0`, `0x00409F50`; `0x00372510` calls `0x004096C0`, `0x00409F50`;
+  `0x00372820` calls `0x004096C0`, `0x00409A30`, `0x00409F50`; `0x003E4CB0` calls `0x002ED570`; `0x003E6DA0` calls `0x002ED570`;
+  `0x003E6F90` calls `0x002ED570`.
+- Resource: `0x0041BEE0` calls `0x002ED570`, `0x00409A30`, `0x00409F50`; `0x0041CF00` calls `0x002ED570`; `0x0041D220` calls
+  `0x002ED570`, `0x00409210`, `0x00409660`, `0x00409A30`, `0x00409F50`; `0x004215A0` calls `0x002ED570`; `0x004218A0` calls
+  `0x002ED570`; `0x00421E20` calls `0x002ED570`; `0x004221F0` calls `0x002ED570`; `0x00422A30` calls `0x002ED570`, `0x00409F50`;
+  `0x004242B0` calls `0x002ED570`.
+- Resource: `0x00424550` calls `0x002ED570`, `0x00409090`, `0x00409FA0`; `0x00424D80` calls `0x00409090`, `0x00409210`, `0x00409FA0`,
+  `0x00409FD0`; `0x0046E2B0` calls `0x002ED570`, `0x0051FCF0`; `0x0046E370` calls `0x002ED570`; `0x0046E3E0` calls `0x0051FF30`;
+  `0x0046E420` calls `0x002ED570`; `0x0046E4D0` calls `0x002ED570`, `0x0051FBB0`; `0x0046E590` calls `0x002ED570`; `0x0046E640` calls
+  `0x002ED570`; `0x0046E6F0` calls `0x002ED570`.
+- Resource: `0x0046E8B0` calls `0x002ED570`; `0x0046E8D0` calls `0x002ED570`; `0x0046E910` calls `0x002ED570`; `0x0046E950` calls
+  `0x002ED570`; `0x0051FBB0` is called by `0x00409FE0`; `0x0051FCF0` is called by `0x00409CA0`, `0x00409D60`.
+- Resource: those functions are documented on
+  [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md),
+  [resource lifecycle](../Game-Files-And-Data-Tables/resource-lifecycle.md),
+  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).
+- Resource: and on [character render records](character-render-records.md),
+  [native limits](../Engine-Core/native-limits.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).

@@ -53,3 +53,45 @@ The engine handles one past the limit in five ways, and the `past_it` column say
 - [Area of effect](../Battle-Actions/area-of-effect.md): the 32-entry target list
 - [Audio manager](../Sound-And-Music/audio-manager.md): the five bank pools
 - [Menu lists](../Menus-And-HUD/menu-lists.md): the 16-bit scroll
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x003247F0` calls `0x00236820`, `0x00236850`, `0x00263E30`, `0x003588B0`; `0x003247F0` is called by `0x00233F70`;
+  those functions are documented on [frame update order](frame-update-order.md).
+- Audio: `0x00217FD0` calls `0x00212710`, `0x00217E10`; `0x00217FD0` is called by `0x002105E0`; `0x00219400` calls `0x00212710`,
+  `0x00219300`; `0x00219400` is called by `0x002105E0`; `0x0021A9F0` calls `0x00212710`, `0x0021A820`; `0x0021A9F0` is called by
+  `0x002105E0`; `0x0021BDB0` calls `0x00212710`, `0x0021BCB0`; `0x0021BDB0` is called by `0x002105E0`; `0x0021CC10` calls
+  `0x00212710`, `0x0021CB10`; `0x0021CC10` is called by `0x002105E0`.
+- Audio: `0x007B1E10` calls `0x007A5570`, `0x007AF380`, `0x007B2880`, `0x007DF750`, `0x007DF8D0`, `0x007E2C50`; `0x007B1E10` is called
+  by `0x007A4B30`; `0x007E32E0` calls `0x007A5570`, `0x007AD460`, `0x007D09B0`, `0x007E2BC0`.
+- Audio: those functions are documented on [audio manager](../Sound-And-Music/audio-manager.md),
+  [debug logging](debug-logging.md), [sound driver objects](../Sound-And-Music/sound-driver-objects.md),
+  [sound streaming](../Sound-And-Music/sound-streaming.md).
+- Combat AI: `0x00316CD0` is called by `0x0030F130`; `0x003247F0` calls `0x00324F20`, `0x0032A4D0`; those functions are
+  documented on [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md),
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+- Combat action: `0x00316CD0` is called by `0x0030D160`, `0x0030F760`, `0x00313120`; `0x003247F0` calls `0x002FFEF0`, `0x0030BCB0`.
+- Combat action: those functions are documented on
+  [action definition row](../Battle-Actions/action-definition-row.md), [identifier spaces](identifier-spaces.md),
+  [bestiary](../Enemy-Spawning/bestiary.md), [area of effect](../Battle-Actions/area-of-effect.md),
+  [action range](../Battle-Actions/action-range.md).
+- Movement: `0x003247F0` calls `0x003919B0`, `0x00391D10`; `0x00392200` calls `0x004690B0`; `0x00392200` is called by `0x00392170`,
+  `0x00392740`.
+- Movement: those functions are documented on
+  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
+  [party control modes](party-control-modes.md), [frame update order](frame-update-order.md).
+- Platform: `0x00219400` calls `0x005CD0A0`; `0x0021A9F0` calls `0x005CD0A0`; those functions are documented on
+  [game application](game-application.md).
+- Presentation: `0x00409210` is called by `0x0041D220`, `0x00424D80`; `0x0051CC30` is called by `0x003E6770`; those functions
+  are documented on [animation driven movement](../Movement-And-Pathfinding/animation-driven-movement.md),
+  [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md),
+  [bone trails](../Graphics/bone-trails.md).
+- Resource: `0x00409210` is called by `0x00409780`; those functions are documented on
+  [resource ownership and disposal](../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md).
+- UI: `0x003C1A20` is called by `0x003BE3A0`; those functions are documented on
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
+- World area: `0x003247F0` calls `0x00313F60`; those functions are documented on
+  [frame update order](frame-update-order.md).

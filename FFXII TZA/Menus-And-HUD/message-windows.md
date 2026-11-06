@@ -565,3 +565,14 @@ The draws copy the window's text record `+0xD0` whole into `0x0209C630`: `0x002A
 - [Dialogs](dialogs.md) - the confirm window, which uses the same text context.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md) - the message verbs and their handlers.
 - [EBP text sections](../EBP-Script-Files/ebp-text-sections.md) - where the window text comes from.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x0024A1A0` calls `0x002DEE80`, `0x002DF0F0`; `0x002A1FB0` calls `0x0024A1A0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md), [party list](party-list.md).
+- Rewards progression economy: `0x002A1FB0` calls `0x00253690`; those functions are documented on
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md).
+- World area: `0x002E1450` is called by `0x00266D10`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

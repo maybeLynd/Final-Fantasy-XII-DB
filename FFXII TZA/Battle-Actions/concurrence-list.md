@@ -100,3 +100,34 @@ The table is loaded only by `0x002F8D60` and the loader `0x00236C30`; `0x002F8D6
 - [Quickenings and summons: the one-at-a-time scene for summons, Esper attacks, Quickenings and chocobo mounting](quickenings-and-summons.md)
 - [Party table: every party member, guest, Esper and the Chocobo with their starting stats, equipment, gambits, Quickenings, first-join items and model](../Party/party-table.md)
 - [Action list: every attack, magick, technick, item use, summon, Quickening, Concurrence, Foecraft move and trap with its cost, power, element, statuses, area and texts](action-list.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0031B7E0` calls `0x00263E30`, `0x003588B0`; `0x00322C50` is called by `0x002367A0`, `0x0023A570`, `0x0031B810`,
+  `0x003266C0`, `0x00329CC0`.
+- Actor entity: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md); and on [party data](../Party/party-data.md).
+- Items equipment shops license: `0x00322C50` is called by `0x003096F0`, `0x0030B180`, `0x0030B4B0`, `0x0030B510`, `0x0030B570`,
+  `0x0030B630`, `0x00317930`, `0x0031A510`, `0x00323910`, `0x00323C60`, `0x00323D10`, `0x00323EC0`; `0x00322C50` is also called by
+  `0x00325F40`.
+- Items equipment shops license: those functions are documented on [stats](../Damage-And-Battle-Formulas/stats.md),
+  [bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md),
+  [party table](../Party/party-table.md).
+- Items equipment shops license: and on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [quickening and esper list](quickening-and-esper-list.md), [command availability](command-availability.md).
+- Movement: `0x0031B7E0` is called by `0x00312730`, `0x00336710`, `0x00337A50`, `0x00338140`; `0x00322C50` is called by
+  `0x0031BAC0`, `0x00326BB0`.
+- Movement: those functions are documented on
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md),
+  [game over](../World-Areas-And-Travel/game-over.md); and on [party data](../Party/party-data.md).
+- Status periodic terminal: `0x00322C50` is called by `0x0030E130`, `0x0030FED0`, `0x00310DB0`; those functions are documented
+  on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

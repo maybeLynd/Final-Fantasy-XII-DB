@@ -481,7 +481,7 @@ that `0x0060A410` handles, 2 for the 40 it passes to `0x00607410`.
 |---|---|
 | `handler_note` | the whole body of a handler that does nothing: `mov eax,0x17; ret` for `0x0060D760` (8 rows), `xor eax,eax; ret` for `0x005C5230` (`0x2E`), and for `0x12` that its arm is the dispatcher's shared exit; empty on the other 37 |
 | `payload_read` | the block offsets the level-2 arm reads, in the order it reads them, with the payload from `+0x8`; empty on the 7 level-1 rows and on `0x12`, `0x19`, `0x1A` and `0x2E` |
-| `render_emitters` | the functions that write the opcode into a block they take straight from the device ring (ring at context `+0x50` to `+0x58`, cursor `+0x60`), separated by commas; empty on 30 rows, where that search found no such function |
+| `render_emitters` | the functions that write the opcode into a block they take straight from the device ring (ring at context `+0x50` to `+0x58`, cursor `+0x60`), separated by commas; empty on 30 rows |
 
 ## State
 

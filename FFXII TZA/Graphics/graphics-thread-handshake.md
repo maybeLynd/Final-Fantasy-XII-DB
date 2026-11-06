@@ -312,7 +312,8 @@ GS environment globals (seeded by `0x0036D280`):
 | `0x022D8EF0` | `f32` |  | width / 2000 |
 | `0x022D8EF4` | `f32` |  | height / 2000 |
 
-The spin census is beside this page in [`graphics-thread-handshake-inert-spin-census.tsv`](graphics-thread-handshake-inert-spin-census.tsv): every
+The list of spin loops is beside this page in
+[`graphics-thread-handshake-inert-spin-census.tsv`](graphics-thread-handshake-inert-spin-census.tsv): every
 backward loop in 38,161 listed bodies whose body only tests registers, 19 in all. Seventeen are the
 fence tests above. The other two wait for a latch that is loaded once outside the loop: `0x00560A60`
 in `0x00560910` on `0x02CA8F94` and `0x00566163` in `0x00565E00` on `0x02CA96D4`. Each latch is set to 1 only
@@ -399,3 +400,12 @@ creation) and the priority `+0x28` (`0x00863781`), which `0x00863430` turns into
 - [PS2 VIF1 and VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md): the GIF tag and the GS replay.
 - [Frame update order](../Engine-Core/frame-update-order.md): the frame states and the end-of-frame group.
 - [Legacy PS2 GS layer](legacy-ps2-gs-layer.md): the 512 × 448 surfaces the batch addresses.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform: `0x0035E700` is called by `0x007A4310`; those functions are documented on
+  [phyre application](../PhyreEngine/phyre-application.md).
+- Script VM: `0x00358320` is called by `0x0034C7E0`; those functions are documented on
+  [graphics settings](../Engine-Core/graphics-settings.md).

@@ -962,7 +962,7 @@ One row per deleting destructor, 1,149 rows in address order: the 1,148 of
 ### Per-class field accesses
 
 Each file lists the instructions that read or write a field of one class: function, site,
-displacement, read or write, and how the object pointer was traced.
+displacement, read or write, and where the object pointer comes from.
 
 | Class | File | Rows |
 |---|---|---:|
@@ -1476,3 +1476,15 @@ to it are stored after the guard, on every call. The exit teardowns (`0x008B1CE0
 - [Lua runtime](../Third-Party-Libraries/lua-runtime.md): the Lua interpreter linked beside PhyreEngine.
 - [Bullet physics](../Third-Party-Libraries/bullet-physics.md): the physics classes registered here.
 - [Bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md): where the `.phyre` files are stored.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x007F9360` is called by `0x007F7680`, `0x007F79C0`, `0x007F7B70`, `0x007F7CC0`, `0x007F7FF0`, `0x007F8140`, `0x007F8FD0`,
+  `0x007F91B0`, `0x007FAE00`, `0x007FB400`, `0x007FB7F0`, `0x007FBF00`; `0x007F9360` is also called by `0x007FC620`, `0x007FCD80`,
+  `0x007FDA10`; those functions are documented on
+  [media decoder libraries](../Third-Party-Libraries/media-decoder-libraries.md).
+- Platform: `0x005A08E0` calls `0x005CC930`; `0x00608A40` calls `0x005CD0A0`; `0x0079F150` calls `0x005CC930`, `0x005CD0A0`,
+  `0x006253D0`; those functions are documented on [game application](../Engine-Core/game-application.md),
+  [graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md).

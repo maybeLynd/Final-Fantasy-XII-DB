@@ -228,3 +228,10 @@ Each augment's text is entry *id* of the augment text bank (text word `0x5000` +
 - [Steal](steal.md) - Thief's Cuffs, augment 17.
 - [Action results](../Battle-Actions/action-results.md) - the applier that changes enemy affinities.
 - [HP and KO](hp-and-ko.md) - the HP write the HP clamp bypasses.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x002AC5F0` calls `0x00229E40`; those functions are documented on
+  [startup constants](../Engine-Core/startup-constants.md).

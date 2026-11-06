@@ -237,3 +237,36 @@ with the arm `not installed`.
 - [File requests and the read queue: the request slots, how a load is queued, sized, read in parts and completed, and how a caller waits, asks or cancels](file-requests-and-the-read-queue.md)
 - [Bigfile archive: the VBF container, how its index loads and is checked, and how a read reaches the file](bigfile-archive.md)
 - [Model asset list: every model with its model file, motion lanes, remastered parts and users](../Graphics/model-asset-list.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0022A0B0` calls `0x002368D0`; `0x002DF980` is called by `0x0032FCA0`; `0x0032E620` is called by `0x0032FCA0`,
+  `0x00330310`; those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+- Core runtime: `0x0022A0B0` calls `0x0022BDF0`; `0x0022A0B0` is called by `0x0017D4C0`; `0x002DF9A0` is called by `0x0022A0B0`;
+  those functions are documented on [startup constants](../Engine-Core/startup-constants.md),
+  [game application](../Engine-Core/game-application.md).
+- Input: `0x0022A0B0` calls `0x0035B270`; `0x0032E620` is called by `0x00291C80`; those functions are documented on
+  [startup constants](../Engine-Core/startup-constants.md).
+- Presentation: `0x0022A0B0` calls `0x0036FFF0`, `0x0037CCC0`; `0x002DF980` is called by `0x001BB2B0`; `0x002E98F0` is called by
+  `0x001BB2B0`; `0x0032E620` is called by `0x003B2310`, `0x003B53C0`.
+- Presentation: those functions are documented on [startup constants](../Engine-Core/startup-constants.md),
+  [file size tables fst](file-size-tables-fst.md), [standard file formats](standard-file-formats.md),
+  [file requests and the read queue](file-requests-and-the-read-queue.md).
+- RNG random selection: `0x0022A0B0` calls `0x00379CF0`; those functions are documented on
+  [startup constants](../Engine-Core/startup-constants.md).
+- Save load settings: `0x0032E620` is called by `0x002EF300`; those functions are documented on
+  [file requests and the read queue](file-requests-and-the-read-queue.md).
+- Script VM: `0x002ED6F0` is called by `0x003580C0`; `0x0032E620` is called by `0x0050DFE0`; those functions are documented on
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [file requests and the read queue](file-requests-and-the-read-queue.md).
+- World area: `0x0022A0B0` calls `0x00266D10`; `0x0032E620` is called by `0x00378540`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md), [ps2data bin families](ps2data-bin-families.md).
+- World area: `0x002DF880` is called by `0x00377DC0`; `0x002DF980` is called by `0x00379A10`; `0x0032E620` is called by
+  `0x00268750`, `0x00378030`, `0x003EA820`.
+- World area: those functions are documented on [async load manager](async-load-manager.md),
+  [standard file formats](standard-file-formats.md), [ps2data bin families](ps2data-bin-families.md),
+  [resource arena and relocation](resource-arena-and-relocation.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md).

@@ -486,3 +486,13 @@ end equals `[0x02F8F200]` (`0x002D847B`-`0x002D8486`, `0x002D850F`); otherwise i
 - [Weather](../World-Areas-And-Travel/weather.md): the slot change that marks the map dirty.
 - [MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md): the map sections the texture and instance records come from.
 - [Gi render commands](gi-render-commands.md): `GiPolyGT4T`'s texture-descriptor lookup.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Gameplay: `0x00203170` is called by `0x00339630`; those functions are documented on
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+- Resource: `0x001D1660` calls `0x002EEEE0`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).
+- Script VM: `0x00203170` is called by `0x00356160`.

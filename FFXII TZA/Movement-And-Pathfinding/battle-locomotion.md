@@ -805,9 +805,9 @@ passes their addresses to; no image-base-relative reference or disp32 displaceme
 - [Battle unit fields](../Characters-And-Objects/battle-unit-fields.md): the locomotion block in the unit.
 - [Battle orders](../Battle-Actions/battle-orders.md): the order ids the decoder reads.
 - [Random number generators](../Random-Numbers/random-number-generators.md): the CRT stream.
-- [`navigation-mesh-corridor-agent-accesses.tsv`](navigation-mesh-corridor-agent-accesses.tsv): every censused
-  access to the solver context, followed from its builder `0x00336710`, one row per instruction (67 rows).
-- [`battle-locomotion-angle-accesses.tsv`](battle-locomotion-angle-accesses.tsv): the censused accesses to the
+- [`navigation-mesh-corridor-agent-accesses.tsv`](navigation-mesh-corridor-agent-accesses.tsv): every access to the
+  solver context, followed from its builder `0x00336710`, one row per instruction (67 rows).
+- [`battle-locomotion-angle-accesses.tsv`](battle-locomotion-angle-accesses.tsv): the accesses to the
   locomotion block (unit `+0x80`) and the solver context in the navigation step, the builder and the solvers, one
   row per instruction (484 rows).
 

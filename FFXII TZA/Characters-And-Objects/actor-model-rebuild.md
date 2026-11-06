@@ -334,3 +334,9 @@ the actor's `+0x20` and `+0x23` bytes, and the pool entries.
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): the binding entries, handles, lanes and attach slots this machine drives.
 - [Party verbs](../Scripts-And-Script-Commands/party-verbs.md): the verbs that change the party and wait on the read-in.
 - [Actor record fields](actor-record-fields.md): the actor bytes this machine writes.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on [battle units](battle-units.md).

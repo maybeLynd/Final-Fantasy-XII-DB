@@ -90,11 +90,11 @@ takes the puppet binding itself and makes the same tests from its dword `+0x00` 
 `puppetrgbatrans` then pops the puppet number (`0x00267E10`), calls the bare `ret` `0x0016D6A0`, and reaches
 `0x002E8500` only when `0x003EB720(number)` gives a binding (`0x0033FB35`-`0x0033FB72`).
 
-A sweep of every reference to `0x003E5D60`, `0x003E5D00`, `0x00428940` and
-`0x004293C0`, conditional jumps included, finds no write of channel 3 and those listed above for the
-others. [The channel census](character-fades-fade-channel-census.tsv) holds the direct calls of `0x003E5D00` and
+No reference to `0x003E5D60`, `0x003E5D00`, `0x00428940` or
+`0x004293C0`, conditional jumps included, writes channel 3, and the references that write the other channels are those
+listed above. [The channel table](character-fades-fade-channel-census.tsv) holds the direct calls of `0x003E5D00` and
 `0x003E5D60`; channels 2 and 5 reach them through the dispatcher `0x00428940` (`0x003E5D00` for `r9` of 1 or less,
-`0x003E5D60` for a non-null `rcx`), so their writers are the ones in the table above, not census rows.
+`0x003E5D60` for a non-null `rcx`), so their writers are the ones in the table above, not rows of that table.
 
 ### Columns of character-fades-fade-channel-census.tsv
 
@@ -373,3 +373,14 @@ arming call and on every unlatched call, also for a record without bit `0x800000
 - [Heading and speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md):
   the caller of the latch.
 - [Startup constants](../Engine-Core/startup-constants.md): the frame-rate multiplier.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x0026C8C0` calls `0x002EF2B0`; those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Story event quest hunt: `0x0026C8C0` calls `0x00377440`; those functions are documented on
+  [actor managers](../Characters-And-Objects/actor-managers.md).
+- World area: `0x0026C8C0` calls `0x0026DB30`; those functions are documented on
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md).

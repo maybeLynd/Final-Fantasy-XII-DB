@@ -154,3 +154,10 @@ calls `0x0046CC70` on its emitter at `+0x5F0`.
 - [Sound effects](sound-effects.md) - the play call.
 - [Sound variations](sound-variations.md) - the driver's own kinds, which shipped sounds do not use.
 - [Spatial sound](spatial-sound.md) - the source the emitter builds.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Resource: `0x002EDBD0` calls `0x00409660`, `0x00409F50`; `0x00421E20` calls `0x002ED570`; those functions are documented on
+  [resource sections](../Game-Files-And-Data-Tables/resource-sections.md).

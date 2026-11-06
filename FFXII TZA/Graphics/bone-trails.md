@@ -267,3 +267,16 @@ Measured over the 1,066 `.cm` models in the archive; the model block is the `@FC
 - [Effect drawing](effect-drawing.md): display layer 3, drawn just before the trails.
 - [PS2 VIF1 and VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md): the packet interpreter and the
   recompiled programs.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0036A100` is called by `0x00330310`, `0x003306E0`; those functions are documented on
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
+- Script VM: `0x0036A100` is called by `0x0050D8F0`.
+- World area: `0x0036A100` is called by `0x00267930`, `0x003319D0`, `0x003EA820`; those functions are documented on
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md).

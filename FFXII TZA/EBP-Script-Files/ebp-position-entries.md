@@ -44,7 +44,7 @@ All multi-byte fields are little-endian.
 | `+0x00` | `u32` | type | read as a byte: 0 point, 1 box, 2 ellipse |
 | `+0x04` | `f32` | extentX | box width or ellipse diameter along the record's local x |
 | `+0x08` | `f32` | extentZ | box depth or ellipse diameter along the record's local z |
-| `+0x0C` | `f32` |  | 1.0 in all but 18 entries (census below) |
+| `+0x0C` | `f32` |  | 1.0 in all but 18 entries (counts below) |
 | `+0x10` | `f32` | x |  |
 | `+0x14` | `f32` | y |  |
 | `+0x18` | `f32` | z |  |

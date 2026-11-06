@@ -186,3 +186,11 @@ An alpha of `0x80` or more draws fully opaque; `0x6F` draws as
 - [UI typed lists](ui-typed-lists.md): the atlas registry `0x0024A480` registers each picture in.
 - [File size tables (.fst)](file-size-tables-fst.md): the kind 7 path arrays and request sizes.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): the request entries.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x0062C360` calls `0x00225690`; those functions are documented on [fonts files](../Menus-And-HUD/fonts-files.md).
+- Platform: `0x0060DD70` is called by `0x00625830`; those functions are documented on
+  [gi render commands](../Graphics/gi-render-commands.md).

@@ -384,3 +384,14 @@ footer, by name, and `class` what it initialises:
 - `NAMED_RECORD` (2): a `{name, 0, 0, 0}` record built by `0x006CCD80` (`PCollisionGroup`, `PRigidBodyType`);
 - `COMPUTED_CONST` (1): one float, computed in the holder;
 - `EMPTY_GUARD` (1): nothing between the guard's header and footer.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform: `0x00798FF0` calls `0x0019A510`, `0x0079E700`; those functions are documented on
+  [bigfile archive](../Game-Files-And-Data-Tables/bigfile-archive.md).
+- Platform online achievements: `0x00798FF0` calls `0x007A0810`; those functions are documented on
+  [steam integration](../Steam-And-Achievements/steam-integration.md).
+- Save load settings: `0x00798FF0` calls `0x001DFD40`; those functions are documented on
+  [screen mode and aspect](../Graphics/screen-mode-and-aspect.md).

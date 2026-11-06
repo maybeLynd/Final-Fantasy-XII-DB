@@ -21,8 +21,8 @@ the functions it calls mean.
 The page covers 171 families, one row each in [the data file](generated-function-families.tsv),
 with 7,807 listed functions. Every listed member of every family decodes to its family's
 form; nine leaf families have two to five spellings of it (with or without an offset, or at
-different operand widths). For each family the image was also searched for every function with that form that calls
-every target the listed members share. For all 171 families the search returns exactly the member list, so
+different operand widths). For every family, the functions of the image with that form that call
+every target the listed members share are exactly the listed members, so
 each family's member count is the number of functions in the image with its body.
 
 In the tables under Data, each
@@ -428,3 +428,11 @@ middleware or compiler code and the boundary of that code is stated.
 - [Thunks and import stubs](thunks-and-import-stubs.md): the import stubs several shared functions
   end in.
 - [Runtime services](runtime-services.md): the imports these bodies reach.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform: `0x0079F150` calls `0x005CC930`, `0x005CD0A0`, `0x006253D0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md),
+  [graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md).

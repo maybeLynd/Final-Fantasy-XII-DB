@@ -203,7 +203,7 @@ access tables per class:
 | `+0x28` | `f32` | positionZ | z of the light's position (`0x0065A9EC`, `0x0065AB5D`); 0 from the constructor (`0x006458FC`) |
 | `+0x2C` | `f32` | xAxisZ | z of the light's x axis (`0x0065AADA`, scaled at `0x0065ADC8`); 0 from the constructor (`0x00645910`, after 1.0 at `0x006458FF`) |
 | `+0x30` | `f32[4]` | colour | the light's colour, copied whole into the shader parameter DeferredColor (`0x0065AF27`-`0x0065AF79`); four 1.0 from the constructor (`0x00645913`-`0x00645928`) |
-| `+0x40` | `u8[16]` | bytes040 | 16 bytes the constructor sets to 0 (`0x00645928` high half, `0x00645930`, `0x00645934` low half); the light renderer `0x0065A960`, the only reader of the slots in the census of the class's methods, reads none of them (every slot displacement it uses is listed in Project notes); nothing fixes the width |
+| `+0x40` | `u8[16]` | bytes040 | 16 bytes the constructor sets to 0 (`0x00645928` high half, `0x00645930`, `0x00645934` low half); the light renderer `0x0065A960`, the only reader of the slots among the class's methods, reads none of them (every slot displacement it uses is listed in Project notes); nothing fixes the width |
 | `+0x50` | `i32` | kind | the light kind: `0x0065A960` submits the pass `0x02D373C0` with the object at `+0x4120` for 0 (`0x0065B109`-`0x0065B151`), the pass `0x02D373E0` with `+0x4128` for 2 (`0x0065B164`-`0x0065B1AA`) and the pass `0x02D37400` with the class's material items `+0x30` for 1 (`0x0065B1B6`-`0x0065B1EE`); 2 is the spot light, whose transform takes its width from the cone angle `+0x60` (`0x0065ABB5`-`0x0065ABCF`); 0 from the constructor (`0x00645934`) |
 | `+0x54` | `f32` | attenuationStart | the first value of the shader parameter DeferredAttenParams (`0x0065B02D`-`0x0065B085`): the distance where the fall-off starts; 50.0 from the constructor (`0x00645938`) |
 | `+0x58` | `f32` | range | the light's range: the second value of DeferredAttenParams (`0x0065B028`) and the scale of the transform's direction row and, for kinds other than 2, of its width (`0x0065ABA1`-`0x0065ABAC`); 100.0 from the constructor (`0x0064593F`) |
@@ -211,7 +211,7 @@ access tables per class:
 | `+0x60` | `f32` | outerConeAngle | the spot light's outer angle: the second and fourth DeferredSpotAngles values (`0x0065AF8E`-`0x0065AFA1`), and for kind 2 the transform's width is tan(angle) * range (`0x0065ABBB`-`0x0065ABCF`); 1.0 from the constructor (`0x00645947`) |
 | `+0x64` | `i32` | castsShadow | non-zero when the light casts a shadow: DeferredShadowMask is all 0 when it is 0, otherwise 1.0 in the channel `+0x68` (`0x0065B096`-`0x0065B0B2`); 0 from the constructor (`0x00645947` high half) |
 | `+0x68` | `i32` | shadowChannel | the shadow-mask channel, 0 to 3, set to 1.0 in DeferredShadowMask (`0x0065B0A3`-`0x0065B0A6`); 0 from the constructor (`0x0064594F`) |
-| `+0x6C` | `f32` | f32One006C | 1.0 from the constructor (`0x00645952`); the light renderer `0x0065A960`, the only reader of the slots in the census of the class's methods, does not read it |
+| `+0x6C` | `f32` | f32One006C | 1.0 from the constructor (`0x00645952`); the light renderer `0x0065A960`, the only reader of the slots among the class's methods, does not read it |
 | `+0x70` | `f32` | f32Max0070 | 3.4028235e38 (FLT_MAX, `0x7F7FFFFF`) from the constructor (`0x00645959`); the light renderer `0x0065A960` does not read it |
 | `+0x74` | `u8[12]` | tail074 | 12 bytes the constructor sets to 0 (`0x00645959` high half, `0x00645961`); the light renderer `0x0065A960` reads none of them; nothing fixes the width |
 

@@ -316,3 +316,10 @@ No other instruction names `0x02CA9708` or `0x01E0CF58`-`0x01E0CF6B`. The table 
 - [Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md) - the condition table.
 - [Menus](menus.md) - the menu entry and the script request.
 - [Dialogs](dialogs.md) - the list widget's sub-commands.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Rewards progression economy: `0x00264150` is called by `0x002F90C0`; those functions are documented on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).

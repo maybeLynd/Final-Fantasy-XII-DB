@@ -730,3 +730,41 @@ and has `0x00577BD0` send message 16 to the Clan Primer widget at `[0x02CA9730]`
 - [Menus](menus.md) - the requests and the router.
 - [Widgets](widgets.md) - how the procedures are constructed.
 - [Widget messages](widget-messages.md) - the messages they answer.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat AI: `0x00283270` calls `0x00327BE0`; those functions are documented on
+  [gambits](../Enemy-AI-And-Gambits/gambits.md).
+- Platform online achievements: `0x00282FA0` is called by `0x003162E0`, `0x00316760`; `0x00283270` is called by `0x00316930`;
+  `0x00305A00` calls `0x00316C60`; `0x0056D370` calls `0x00316A50`.
+- Platform online achievements: those functions are documented on
+  [achievements](../Steam-And-Achievements/achievements.md), [gil](../Rewards-EXP-Gil-And-Loot/gil.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [debug menu](../Engine-Core/debug-menu.md).
+- Rewards progression economy: `0x002A1FB0` calls `0x00253690`; `0x002CE7A0` calls `0x00253690`; `0x003058B0` calls `0x00254EE0`;
+  `0x0056D370` calls `0x00253690`; those functions are documented on
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
+  [debug menu](../Engine-Core/debug-menu.md).
+- Script VM: `0x00280120` is called by `0x00510950`, `0x00510990`, `0x005109B0`, `0x00510A40`, `0x00510AA0`, `0x00510AE0`,
+  `0x00510B40`, `0x00510B80`, `0x00510C80`, `0x00510E40`, `0x00510F30`, `0x00511010`; `0x00280120` is also called by `0x00511200`,
+  `0x00511360`, `0x005113A0`, `0x005113D0`, `0x00511400`, `0x00511430`, `0x00511460`, `0x00511490`, `0x005114C0`, `0x00511510`,
+  `0x00511550`, `0x005115B0`.
+- Script VM: `0x00280120` is also called by `0x005115E0`, `0x00511660`, `0x005116E0`, `0x00511730`, `0x005117B0`, `0x00511850`,
+  `0x005118D0`, `0x00511920`, `0x005119C0`, `0x00511A10`, `0x00511AA0`, `0x00511B00`; `0x00280120` is also called by `0x00511B70`,
+  `0x00511C30`, `0x00511C80`, `0x00511CD0`, `0x00511D30`, `0x00511D60`, `0x00511DA0`, `0x00511E60`, `0x00511EE0`, `0x00511F50`,
+  `0x00511FE0`, `0x00512030`.
+- Script VM: `0x00280120` is also called by `0x00512080`, `0x005120C0`, `0x00512100`, `0x00512140`, `0x00512180`; `0x002D7710` is
+  called by `0x00511200`; `0x002D7800` is called by `0x00510AA0`, `0x00510B40`; `0x002D7840` is called by `0x005120C0`; `0x002D78B0`
+  is called by `0x005109B0`; `0x002D7B40` is called by `0x005117B0`, `0x00511920`; `0x002D7CB0` is called by `0x00510A40`,
+  `0x00510AE0`.
+- Script VM: `0x002DEE50` is called by `0x00340260`, `0x00345B60`; `0x0037CB50` is called by `0x0034E3E0`; `0x00394460` is called
+  by `0x00511EA0`.
+- Script VM: those functions are documented on [gambit screen](gambit-screen.md),
+  [generated function families](../Compiler-And-C-Runtime/generated-function-families.md),
+  [license board screen](license-board-screen.md), [music table](../Sound-And-Music/music-table.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md); and on
+  [starting inventory](../Party/starting-inventory.md).
+- World area: `0x0035D530` is called by `0x003C63A0`; those functions are documented on
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).

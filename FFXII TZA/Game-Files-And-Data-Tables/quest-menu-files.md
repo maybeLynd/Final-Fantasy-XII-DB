@@ -485,3 +485,12 @@ below 2 GB.
 - [Map screens](../Menus-And-HUD/map-screens.md): the map-data widget that draws the markers.
 - [Text codes](../Menus-And-HUD/text-codes.md): the `0x02` and `0x03` codes in the detail text.
 - [File size tables](file-size-tables-fst.md): the kind-7 paths and sizes.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x002465F0` calls `0x001EDDA0`; those functions are documented on
+  [global state accessors](../Engine-Core/global-state-accessors.md).
+- Save load settings: `0x00249210` is called by `0x00582790`; `0x00249410` is called by `0x00582790`; `0x00249580` is called by
+  `0x00582790`; those functions are documented on [mrp menu resource packages](mrp-menu-resource-packages.md).

@@ -484,10 +484,22 @@ masks and the fade ramp; the source bytes.
 - [Game over](../World-Areas-And-Travel/game-over.md): the route that raises id 22.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the options bit that chooses
   between UI requests 1 and 4.
-- [`time-stop-and-freeze-registry-accesses.tsv`](time-stop-and-freeze-registry-accesses.tsv): every censused access
+- [`time-stop-and-freeze-registry-accesses.tsv`](time-stop-and-freeze-registry-accesses.tsv): every access
   to the request record block at `0x01FD4160`, taken as a whole (3 rows).
-- [`time-stop-and-freeze-record-accesses.tsv`](time-stop-and-freeze-record-accesses.tsv): every censused access to
+- [`time-stop-and-freeze-record-accesses.tsv`](time-stop-and-freeze-record-accesses.tsv): every access to
   its `0x18`-byte records: records A and B of the twenty-eight request ids (from `0x01FD4160` and `0x01FD4400`) and the
   two after them, at the block's `+0x540` (226 rows).
 
 In the `route` cells of these tables, `SystemStopRegistry` names the record block at `0x01FD4160`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat formula: `0x00377C20` is called by `0x00300530`; those functions are documented on
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Items equipment shops license: `0x00377C20` is called by `0x00309FB0`, `0x0030FD10`; those functions are documented on
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Rewards progression economy: `0x00234590` calls `0x00319600`; `0x00377C20` is called by `0x00312280`; those functions are
+  documented on [frame update order](frame-update-order.md),
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).

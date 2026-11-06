@@ -514,3 +514,20 @@ A value that differs between placements of one definition is listed once per var
 - [Stats: how max HP, MP, Strength, Magick Power, Vitality, Speed, Attack Power, Defense, Magick Resist and evade are built, and their caps](../Damage-And-Battle-Formulas/stats.md)
 - [Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script](../Damage-And-Battle-Formulas/augments.md)
 - [Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus](../Rewards-EXP-Gil-And-Loot/loot-drops.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x002E6090` is called by `0x00265B60`; those functions are documented on
+  [actor record](../Characters-And-Objects/actor-record.md).
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Input: `0x001D50D0` is called by `0x00197160`, `0x00197790`, `0x00197800`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).
+- Items equipment shops license: `0x00236C30` calls `0x00238660`; those functions are documented on
+  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
+- Save load settings: `0x00865AE0` is called by `0x00866200`; those functions are documented on
+  [save file format](../Saving-Loading-And-Settings/save-file-format.md).
+- World area: `0x00236C30` calls `0x003847B0`; those functions are documented on
+  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).

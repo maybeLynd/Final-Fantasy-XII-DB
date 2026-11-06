@@ -572,3 +572,10 @@ No other instruction reaches `0x0209AC28`.
 - [Controllers](controllers.md) - how pads are found.
 - [Action availability](action-availability.md) - when a press is refused.
 - [Escape Mode](escape.md) - the R2 control.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat AI: `0x0031EB20` calls `0x00327A10`; those functions are documented on
+  [gambit screen](../Menus-And-HUD/gambit-screen.md).

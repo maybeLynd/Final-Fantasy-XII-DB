@@ -116,3 +116,14 @@ In the 1,114 `us` scripts:
   - the spawn side of the groups.
 - [The R2 modal toggle](../Controls-And-Input/escape.md) - the FLEEING mode, which
   boss fights do not switch off.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat AI: `0x0031B760` is called by `0x00239040`, `0x003014C0`, `0x00301AD0`, `0x003087E0`, `0x0030F130`.
+- Combat AI: those functions are documented on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md),
+  [glossary](../Engine-Core/glossary.md), [area of effect](area-of-effect.md),
+  [enemy ai](../Enemy-AI-And-Gambits/enemy-ai.md).

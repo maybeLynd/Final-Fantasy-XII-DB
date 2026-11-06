@@ -315,3 +315,12 @@ All but one id name a shipped bank under `se600`-`se610`; `600070` has no bank.
 - [Sound effects](sound-effects.md) - the play and stop calls.
 - [Map pack](../World-Areas-And-Travel/mpk-map-pack.md) - slots 0, 10 and 16.
 - [Weather](../World-Areas-And-Travel/weather.md) - the weather slot.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x003775D0` calls `0x0037AA90`; those functions are documented on
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
+- Story event quest hunt: `0x0035CA70` calls `0x0032AB60`; those functions are documented on
+  [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md).

@@ -40,7 +40,10 @@ script variable. The other eight language folders make the same calls.
 
 Every new game also asks for set 0: the new-game widget `0x00394130` stores 0 through `0x0023A110` when it is built (`0x003942F9`).
 
-The number `evt_t0505` holds comes from its `loadYoyaku.getLoadYoyaku`, which picks a set by story progress: set 0 below 25, then 35 ranges up to set 24 from 6,750. No script asks for sets 4-10, 14, 16, 19 and 21. The `loaded_by` column gives each set's callers. The census covers the 1,114 `us` scripts with a decoded listing, of 1,115: `evt_t0020` has no EBP2 header.
+The number `evt_t0505` holds comes from its `loadYoyaku.getLoadYoyaku`, which picks a set by story progress: set 0
+below 25, then 35 ranges up to set 24 from 6,750. No script asks for sets 4-10, 14, 16, 19 and 21. The `loaded_by`
+column gives each set's callers. These counts cover the 1,114 `us` scripts with a decoded listing, of 1,115:
+`evt_t0020` has no EBP2 header.
 
 ### A member's preset
 

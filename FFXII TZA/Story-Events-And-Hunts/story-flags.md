@@ -181,3 +181,10 @@ the setter's range, so 52 flags are set.
 - [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the payload the banks sit in.
 - [Quests](quests.md) - the quest bits just before the banks.
 - [NPC names](../Characters-And-Objects/npc-names.md) - the name pairs the Bank2048 bit chooses between.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Spawn encounter lifecycle: `0x00229B40` calls `0x00233440`; those functions are documented on
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).

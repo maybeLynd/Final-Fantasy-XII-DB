@@ -360,3 +360,10 @@ mode; the body's `+0x70`, `+0x90`, `+0xC8` and `+0x110`; the render record's `+0
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the resolver that calls the driver.
 - [Battle units](../Characters-And-Objects/battle-units.md): the unit fields the intent is read from.
 - [Character render record array](../Graphics/character-render-records.md): the record the override reads.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).

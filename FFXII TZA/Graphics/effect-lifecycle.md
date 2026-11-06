@@ -77,3 +77,57 @@ stopped, and disappears when it ends or when the party leaves the area.
 - [Effect element runtime](effect-element-runtime.md): the instance, its emitters and elements.
 - [Effect element types](effect-element-types.md): what each element type does in its methods.
 - [Effect files](effect-files-efx-efb.md): the files an effect is read from.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0024E910` is called by `0x002628B0`; `0x002628B0` calls `0x0025B070`, `0x00263660`, `0x002695A0`, `0x0037B230`,
+  `0x003B6C20`, `0x003DDC20`, `0x003DE920`; `0x002628B0` is called by `0x0025BFB0`, `0x0032FCA0`; `0x003601D0` calls `0x00263FF0`.
+- Actor entity: those functions are documented on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [actor lifecycle](../Characters-And-Objects/actor-lifecycle.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [startup constants](../Engine-Core/startup-constants.md).
+- Actor entity: and on [event scenes](../Scripts-And-Script-Commands/event-scenes.md),
+  [actor record](../Characters-And-Objects/actor-record.md), [actor managers](../Characters-And-Objects/actor-managers.md),
+  [debug menu](../Engine-Core/debug-menu.md).
+- Audio: `0x001EDDA0` is called by `0x003B99D0`; `0x002628B0` calls `0x00360B50`, `0x00360DD0`, `0x003636A0`; `0x003601D0` calls
+  `0x002DF060`, `0x002DF0F0`, `0x002DF370`, `0x00360D70`, `0x00362850`, `0x003633B0`, `0x003636A0`, `0x00363750`, `0x00363E40`.
+- Audio: those functions are documented on [effect anchors and targets](effect-anchors-and-targets.md),
+  [music](../Sound-And-Music/music.md), [game over](../World-Areas-And-Travel/game-over.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- Audio: and on [chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Combat action: `0x002FCB60` calls `0x002FC3C0`; those functions are documented on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- Core runtime: `0x001EDDA0` is called by `0x00265860`, `0x00265880`; `0x0024B9B0` calls `0x001EDDA0`; `0x002628B0` calls
+  `0x00229EE0`; `0x003601D0` calls `0x00229EE0`, `0x00229EF0`; `0x003A8AE0` calls `0x001EDDA0`.
+- Core runtime: those functions are documented on [script screen effects](script-screen-effects.md),
+  [native commands](../Scripts-And-Script-Commands/native-commands.md),
+  [global state accessors](../Engine-Core/global-state-accessors.md),
+  [game over](../World-Areas-And-Travel/game-over.md).
+- Input: `0x002628B0` calls `0x0035B5D0`; those functions are documented on [vibration](../Controls-And-Input/vibration.md).
+- Movement: `0x001EDDA0` is called by `0x0025DF00`; `0x002628B0` calls `0x00263560`, `0x0026A1D0`, `0x00379070`, `0x003791C0`,
+  `0x003792D0`, `0x003DAA20`; `0x003A7360` calls `0x0024C6B0`, `0x0024C870`.
+- Movement: those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md); and on
+  [heading speed to position delta](../Movement-And-Pathfinding/heading-speed-to-position-delta.md).
+- Party: `0x002628B0` calls `0x00358B40`, `0x00359200`; those functions are documented on
+  [player movement](../Movement-And-Pathfinding/player-movement.md),
+  [actor managers](../Characters-And-Objects/actor-managers.md).
+- Resource: `0x002628B0` calls `0x0032E520`; `0x003601D0` calls `0x0032E520`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).
+- Save load settings: `0x002628B0` calls `0x002EF2B0`; `0x003601D0` calls `0x002EF5F0`; those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
+  [game over](../World-Areas-And-Travel/game-over.md).
+- UI: `0x001EDDA0` is called by `0x0024B9B0`; `0x003A7050` is called by `0x0024B9B0`; `0x003A7300` is called by `0x0024B9B0`;
+  `0x003A74F0` is called by `0x0024B9B0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- World area: `0x002628B0` calls `0x00378230`, `0x003DFA50`, `0x003EAA00`; `0x003601D0` calls `0x00331920`.
+- World area: those functions are documented on
+  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md),
+  [ebp navigation icons](../EBP-Script-Files/ebp-navigation-icons.md),
+  [ard area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md),
+  [game over](../World-Areas-And-Travel/game-over.md).

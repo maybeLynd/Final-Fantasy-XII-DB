@@ -117,3 +117,10 @@ The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0x0046B
 - [Quests: the ordered and cleared state each quest keeps in the save, its progress byte and word, the verbs that change them, and the bug that clears the wrong ordered bit](quests.md)
 - [Scene rewards: every item and gil amount the story scripts give or take, by script and function, and how each item is chosen](scene-rewards.md)
 - [NPC names: the npcdic.bin name pairs, the actor's name id, and the story flag that swaps a name](../Characters-And-Objects/npc-names.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Rewards progression economy: `0x00290130` calls `0x003F4AA0`; those functions are documented on
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).

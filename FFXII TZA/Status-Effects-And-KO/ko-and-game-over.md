@@ -238,3 +238,14 @@ records the anchor from the actor of the character under control (`0x0033CA15`-`
 - [Field frame](../Engine-Core/frame-update-order.md) - the frame that
   posts the request.
 - [Enmity](../Enemy-AI-And-Gambits/enmity.md) - the enmity removed at a fall.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x00236760` is called by `0x001C1720`, `0x002EF690`, `0x00583D60`; `0x002E1C20` is called by `0x005823B0`,
+  `0x00582860`.
+- Save load settings: those functions are documented on
+  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md), [party data](../Party/party-data.md),
+  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md),
+  [game application](../Engine-Core/game-application.md).

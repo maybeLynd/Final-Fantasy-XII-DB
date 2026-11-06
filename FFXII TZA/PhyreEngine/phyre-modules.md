@@ -488,3 +488,18 @@ stores 0.
 - [Class hierarchy](../Engine-Core/class-hierarchy.md): the RTTI tables the class names and
   vtables come from.
 - [Game application](../Engine-Core/game-application.md): the game's application object.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x00584740` is called by `0x002125A0`, `0x00225C40`, `0x006794D0`; `0x005CC930` is called by `0x00223190`, `0x00224570`;
+  those functions are documented on [audio manager](../Sound-And-Music/audio-manager.md),
+  [sound engine](../Sound-And-Music/sound-engine.md).
+- Core runtime: `0x005CC930` is called by `0x001E03F0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Input: `0x00584740` is called by `0x007973D0`, `0x00797460`, `0x00797690`; `0x005CC930` is called by `0x00196480`, `0x0079D920`;
+  those functions are documented on [controllers](../Controls-And-Input/controllers.md),
+  [phyre application](phyre-application.md).
+- Save load settings: `0x001DDBA0` calls `0x001DFD40`; those functions are documented on
+  [screen mode and aspect](../Graphics/screen-mode-and-aspect.md).

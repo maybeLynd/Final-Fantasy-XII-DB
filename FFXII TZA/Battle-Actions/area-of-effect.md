@@ -252,3 +252,10 @@ and cones.
   `0x1`, `0x2`, `0x20`, `0x1000000` and `0x80000000`.
 - [The field record table](../World-Areas-And-Travel/area-flags-navimapdata.md)
   - the map-info word whose bit `0x8000` `0x00377C20` returns.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- RNG random selection: `0x003087E0` calls `0x00328370`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

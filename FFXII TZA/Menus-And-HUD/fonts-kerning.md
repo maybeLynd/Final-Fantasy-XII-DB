@@ -68,3 +68,11 @@ for byte. A pair applies only between glyphs whose `kernCp` is its code point ([
 - [Fonts](fonts.md) - how a pair is filed, looked up and scaled.
 - [Font files](fonts-files.md) - which `.ker` files are requested, and the round trip.
 - [Font glyphs](fonts-glyphs.md) - each glyph's `kernCp`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Presentation: `0x002AC2F0` is called by `0x002AAE40`; those functions are documented on
+  [message windows](message-windows.md).
+- Resource: `0x001B5230` is called by `0x001B6080`; those functions are documented on [fonts](fonts.md).

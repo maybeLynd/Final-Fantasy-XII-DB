@@ -94,3 +94,12 @@ Tips is one bundle everywhere.
 - [Font expansion lists](fonts-expansion-lists.md) and [Fonts](fonts.md) - the expansion lists and font ids.
 - [Text codes](text-codes.md) - the text codes and their placeholders.
 - [Unrequested handbook text](text-handbook-unrequested.md) - the story, world, person and knowledge books.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform online achievements: `0x00576E30` calls `0x00315420`; those functions are documented on
+  [jump thunks](../Engine-Core/jump-thunks.md).
+- World area: `0x00576E30` calls `0x00265270`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).

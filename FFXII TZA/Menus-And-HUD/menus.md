@@ -217,3 +217,10 @@ No other instruction names `0x0209E66C`.
 - [Action availability](../Controls-And-Input/action-availability.md) - the availability bits that refuse requests.
 - [Controls](../Controls-And-Input/controls.md) - the buttons the arbiter reads.
 - [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) - the shop a request 10 opens.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input gameplay: `0x002E1C20` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).

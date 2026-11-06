@@ -664,3 +664,16 @@ pointer, so `+0x58` is 0 (`0x00632B99`-`0x00632BAB`). It returns the record.
 - [Debug logging](../Engine-Core/debug-logging.md): the log call that carries the loader's messages.
 - [Class hierarchy](../Engine-Core/class-hierarchy.md): the RTTI names of the descriptor templates.
 - [Bullet physics](../Third-Party-Libraries/bullet-physics.md): the physics classes, which no shipped file declares.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Application: `0x00584740` is called by `0x001A98B0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Audio: `0x00584740` is called by `0x002125A0`, `0x00225C40`, `0x006794D0`; those functions are documented on
+  [audio manager](../Sound-And-Music/audio-manager.md), [sound engine](../Sound-And-Music/sound-engine.md).
+- Input: `0x00584740` is called by `0x007973D0`, `0x00797460`, `0x00797690`; those functions are documented on
+  [controllers](../Controls-And-Input/controllers.md).
+- Platform: `0x00584740` is called by `0x00650D40`; those functions are documented on
+  [phyre post effect classes](phyre-post-effect-classes.md).

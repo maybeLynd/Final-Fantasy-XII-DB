@@ -354,3 +354,11 @@ The word's bits beside an actor field of 0 are never read: such a side keeps the
 - [EBP camera shake](ebp-camera-shake.md): the CML1 and SHK1 pair that shakes these shots.
 - [Actor managers](../Characters-And-Objects/actor-managers.md): the record fields and the camera channel binds.
 - [Verb table](../Scripts-And-Script-Commands/verb-table.md): the camera verbs.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x00263FF0` is called by `0x00226BE0`, `0x002E09A0`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

@@ -295,11 +295,11 @@ the save layer itself does to it:
 - [Story flags](../Story-Events-And-Hunts/story-flags.md): the flag banks and their accessors.
 - [The party block field map](../Party/party-data.md).
 - [Steam integration and achievement catalogue](../Steam-And-Achievements/achievements.md).
-- [`image-backed-state-block-accesses.tsv`](image-backed-state-block-accesses.tsv): every censused access to the
+- [`image-backed-state-block-accesses.tsv`](image-backed-state-block-accesses.tsv): every access to the
   image-backed state block through its pointer `[0x020927C0]`, one row per instruction (32 rows).
-- [`save-payload-accesses.tsv`](save-payload-accesses.tsv): every censused access to the payload, one row per
+- [`save-payload-accesses.tsv`](save-payload-accesses.tsv): every access to the payload, one row per
   instruction, with the way the payload's address reached it (1,721 rows).
-- [`spawn-keep-image-accesses.tsv`](spawn-keep-image-accesses.tsv): every censused access to the spawn-keep image at
+- [`spawn-keep-image-accesses.tsv`](spawn-keep-image-accesses.tsv): every access to the spawn-keep image at
   payload `+0xE240`, by its offset in the image (37 rows).
 
 [`save-payload-accesses.tsv`](save-payload-accesses.tsv) and [`save-data-fields.tsv`](save-data-fields.tsv) overlap:
@@ -320,3 +320,10 @@ read (`r`), a write (`w`), both (`rw`) or the address taken (`addr`), and `instr
 
 In the payload table, `note` is `idx` where the instruction adds an index register, so `disp` is the offset at index
 0.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Story event quest hunt: `0x00314910` is called by `0x001ED240`; those functions are documented on
+  [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md).

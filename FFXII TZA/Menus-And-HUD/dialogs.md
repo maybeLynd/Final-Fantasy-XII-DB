@@ -232,3 +232,10 @@ No other instruction reaches `0x0208EA68`. The table's address is taken only by 
 
 - [Menus](menus.md) - how the screens that raise these dialogs open.
 - [License board](../Items-Equipment-Shops-And-Licenses/license-board.md) - the board the question and the description box serve.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x00245020` is called by `0x00280140`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).

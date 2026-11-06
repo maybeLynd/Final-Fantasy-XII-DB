@@ -140,3 +140,21 @@ script goods are 99-102 and 124-126.
 - [Shops](shops.md) - the shop menu that lists the goods.
 - [Inventory](inventory.md) - the sold tally and the bundle ids.
 - [Equipment row](equipment-row.md) - the equipment some goods give.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x00322C50` is called by `0x002367A0`, `0x0023A570`, `0x0031B810`, `0x003266C0`, `0x00329CC0`; those functions
+  are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md).
+- Movement: `0x00322C50` is called by `0x0031BAC0`, `0x00326BB0`; those functions are documented on
+  [game over](../World-Areas-And-Travel/game-over.md), [party data](../Party/party-data.md).
+- Party: `0x00322C50` is called by `0x003170E0`, `0x0031AC00`, `0x0031B510`, `0x00320800`, `0x00321100`, `0x00326500`, `0x003287A0`,
+  `0x00328DB0`, `0x00329080`; those functions are documented on
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party data](../Party/party-data.md),
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Status periodic terminal: `0x00322C50` is called by `0x0030E130`, `0x0030FED0`, `0x00310DB0`; those functions are documented
+  on [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

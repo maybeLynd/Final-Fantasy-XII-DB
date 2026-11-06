@@ -184,3 +184,56 @@ Replacing a file:
 - [Asset paths: every file the game asks for by resource kind and id, with its path, size and whether the archive ships it](../Game-Files-And-Data-Tables/asset-paths.md)
 - [Prefetch and asset-header manifests: the text lists that preload files into the file cache, and the .ah lists that name the parts of a model, map or font](../Game-Files-And-Data-Tables/prefetch-manifests.md)
 - [Weapon motion list: the animation set each weapon's motion class gives a battle unit, from the WepJob_Matrix table](../Battle-Actions/weapon-motion-list.md)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x00263750` is called by `0x003266C0`, `0x0035A8D0`; `0x00320170` calls `0x00263E30`, `0x003588B0`; `0x00320170` is
+  called by `0x0037B4D0`; `0x0032E400` is called by `0x0032FCA0`, `0x00330310`, `0x003306E0`; `0x0032E620` is called by
+  `0x0032FCA0`, `0x00330310`.
+- Actor entity: those functions are documented on
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Actor entity: and on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
+- Audio: `0x002E60F0` calls `0x003A1650`; those functions are documented on
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Combat action: `0x00325B40` is called by `0x0030CBE0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Combat formula: `0x003202F0` calls `0x0031B860`; those functions are documented on
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Gameplay: `0x00320230` calls `0x00322C50`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).
+- Input: `0x00263750` is called by `0x00226BE0`; `0x0032E620` is called by `0x00291C80`; those functions are documented on
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md),
+  [startup constants](../Engine-Core/startup-constants.md).
+- Movement: `0x00263750` is called by `0x0034A940`, `0x0037CF00`, `0x0037D000`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md).
+- Party: `0x00263750` is called by `0x003261D0`, `0x00326500`, `0x003272F0`, `0x003273D0`, `0x0034D4E0`, `0x00350CD0`; `0x00320170`
+  calls `0x00263750`; those functions are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [debug menu](../Engine-Core/debug-menu.md).
+- Save load settings: `0x0032E620` is called by `0x002EF300`; those functions are documented on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- Script VM: `0x00263750` is called by `0x003415D0`, `0x00341CB0`, `0x00342250`, `0x00342910`, `0x00342EC0`, `0x003446D0`,
+  `0x00344740`, `0x00346EB0`, `0x003473E0`, `0x00347970`, `0x0034AF80`, `0x0034DF40`; `0x00263750` is also called by `0x0034F060`,
+  `0x0034F890`, `0x00350050`, `0x003507B0`, `0x003509E0`, `0x00352190`, `0x00352FA0`, `0x003537D0`; `0x002ED6F0` is called by
+  `0x003580C0`; `0x0032E400` is called by `0x0050DF70`.
+- Script VM: `0x0032E620` is called by `0x0050DFE0`; those functions are documented on
+  [party during scenes](../Scripts-And-Script-Commands/party-during-scenes.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md); and on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md).
+- World area: `0x0032E400` is called by `0x00378540`; `0x0032E620` is called by `0x00378540`; those functions are documented
+  on [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md).
+- World area: `0x00325B40` calls `0x00313F60`; `0x0032E400` is called by `0x00268750`, `0x003319D0`, `0x00378030`, `0x00379A10`,
+  `0x003EA820`; `0x0032E620` is called by `0x00268750`, `0x00378030`, `0x003EA820`.
+- World area: those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+- World area: and on [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md).

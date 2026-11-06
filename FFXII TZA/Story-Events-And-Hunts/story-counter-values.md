@@ -21,7 +21,13 @@ flags](story-flags.md), reader `0x00377970`), and each scene read, `eventread` o
 the counter with a literal: the read needs the counter at least, below or at the value, and the rest of its guard
 still applies. A scene's name is the `scene` of the area scene table row with that `event_id`.
 
-It names the hunts posted from the value, on the clan boards or on Montblanc's list of marks, with the clan rank each needs ([hunts](hunts.md), `posted`), and the airship routes that open, with the fare ([chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)). It lists, by region, the exits whose condition compares the counter with a literal ([script censuses](script-censuses.md); each exit's row gives the whole condition) and the monsters placed only when the counter passes a test ([enemy spawning](../Enemy-Spawning/enemy-spawning.md)), each with its test.
+It names the hunts posted from the value, on the clan boards or on Montblanc's list of marks, with the clan rank each
+needs ([hunts](hunts.md), `posted`), and the airship routes that open, with the fare ([chocobos and
+airships](../World-Areas-And-Travel/chocobos-and-airships.md)).
+
+It lists, by region, the exits whose condition compares the counter with a literal ([script calls in every
+script](script-censuses.md); each exit's row gives the whole condition) and the monsters placed only when the counter
+passes a test ([enemy spawning](../Enemy-Spawning/enemy-spawning.md)), each with its test.
 
 The table lists every value a script writes to it, from the 1,114 `us` scripts under `plan_master/us` that decode;
 `evt_t0020` has no `EBP2` header and holds no code.
@@ -104,8 +110,8 @@ names cover 310 of the 313 values.
 - `終了` ("after") names the value written once a scene has played: `SF_レモラバトル終了`, 18, is "after the
   Remora battle"; `開始` ("start of") opens a longer stretch.
 - `シナリオ段階N` marks the start and end of eleven scenario stages; `MS_` lines name map unlocks.
-- Proper names are the English the game ships for the same Japanese word, found by pairing each `in` line with
-  the `us` line in the same slot: the word banks, `planmapname.bin`, `npcdic.bin`, the text groups and the
+- Proper names are the English the game ships for the same Japanese word: the `us` line in the slot of its `in`
+  line, in the word banks, `planmapname.bin`, `npcdic.bin`, the text groups and the
   scripts' message banks. A name with no shipped English is left out of `explanation`, which describes the scene without it; `developer_name` keeps the menu line itself.
 - Place words are the shipped area and region names of `planmapname.bin` and battle word bank 12.
 - Value 70 is the one case where the developers' word is the shipped name of a different monster:

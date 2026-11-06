@@ -492,7 +492,7 @@ the record:
 - [Saving and loading: the save slots and their files, the save screen's states, the six-step save transaction, the storage queue, the file layer's read and write rules, the area-change autosave and what a load runs](saving-and-loading.md)
 - [Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps](save-file-format.md)
 - [Loot pickups: the ten-slot pool, creation and eviction, the one-minute lifetime and blink, collection on contact, and the pickup object](../Rewards-EXP-Gil-And-Loot/loot-pickups.md)
-- [`game-setting-config-accesses.tsv`](game-setting-config-accesses.tsv): every censused access to the settings
+- [`game-setting-config-accesses.tsv`](game-setting-config-accesses.tsv): every access to the settings
   object at `[0x01F82D20]`, by its offset in the object (163 rows).
 - [`game-setting-key-name-accesses.tsv`](game-setting-key-name-accesses.tsv): the reads of the key table at
   `0x01DFD050` (31 entries of 8 bytes), all in the serialiser `0x001DEE90` (3 rows).
@@ -522,3 +522,19 @@ The command table's columns:
 - `row_style` the style byte of the command's entry in the descriptor table at `0x01E0BF60`; `pane_row` the row's item
   index in descriptors 0, 1 and 2 of that table (`desc1--` where descriptor 1 leaves it out) or, for a Controls
   screen row, its pane record; `reachability` the screens that show it.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Script VM: `0x00182D10` is called by `0x00341030`; `0x00182DA0` is called by `0x003413E0`; `0x00341980` calls `0x00267E10`;
+  `0x00341DD0` calls `0x0026B4E0`; `0x00408EC0` is called by `0x00341980`, `0x003447F0`; `0x0050DFC0` calls `0x0026B4E0`.
+- Script VM: those functions are documented on [controls](../Controls-And-Input/controls.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [native commands](../Scripts-And-Script-Commands/native-commands.md),
+  [verb table](../Scripts-And-Script-Commands/verb-table.md).
+- World area: `0x003318C0` calls `0x00314440`; `0x00331920` calls `0x00314440`; `0x00408B10` is called by `0x0032FC30`; `0x00408B20`
+  is called by `0x003318C0`, `0x00331920`; `0x00408B30` is called by `0x0032FC30`.
+- World area: those functions are documented on [debug menu](../Engine-Core/debug-menu.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [game over](../World-Areas-And-Travel/game-over.md).

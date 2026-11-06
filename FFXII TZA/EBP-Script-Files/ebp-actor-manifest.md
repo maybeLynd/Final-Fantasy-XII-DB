@@ -60,7 +60,8 @@ Measured over all 10,036 EBP2 containers in the nine language trees.
 | number names a stem directly | `g` 77 of 97, `w` 14 of 54, `b` 10 of 12, `s` 10 of 13, `t` 8 of 10 |
 | high-detail models | `obj_finish/in/high` ships 47 `hc*.cm`, 80 `hn*.cm` and 5 `hs*.cm` files |
 
-The per-number census is [`ebp-actor-manifest-ids.tsv`](ebp-actor-manifest-ids.tsv) beside this page: letter, number, the model
+The per-number table is [`ebp-actor-manifest-ids.tsv`](ebp-actor-manifest-ids.tsv) beside this page: letter, number,
+the model
 stem by the rules above, whether that stem ships, and how many `us` containers use the pair.
 
 ### Columns of ebp-actor-manifest-ids.tsv

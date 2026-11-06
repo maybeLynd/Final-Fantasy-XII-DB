@@ -359,7 +359,7 @@ Static block `0x01F2EA70`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `+0x00` | `void*[6]` |  | registry tree head, self-pointing when empty; root at `+0x18` (`0x01F2EA88`). The guarded initialiser, inlined in `0x00675460`, `0x00676450`, `0x00676A70`, `0x00676BD0` and `0x00677BA0`, sets all six, `0x01F2EA70` to `0x01F2EA98`, to `0x01F2EA70` (`0x006754F2`-`0x00675515` in `0x00675460`). The reference census and the accesses table find reads of the root only: `0x00676A70` (`0x00676B2C`) and the tree functions through `+0x18` (the six: `0x01F2EA70`, `0x01F2EA78`, `0x01F2EA80`, `0x01F2EA88`, `0x01F2EA90`, `0x01F2EA98`) |
+| `+0x00` | `void*[6]` |  | registry tree head, self-pointing when empty; root at `+0x18` (`0x01F2EA88`). The guarded initialiser, inlined in `0x00675460`, `0x00676450`, `0x00676A70`, `0x00676BD0` and `0x00677BA0`, sets all six, `0x01F2EA70` to `0x01F2EA98`, to `0x01F2EA70` (`0x006754F2`-`0x00675515` in `0x00675460`). The references and the accesses table find reads of the root only: `0x00676A70` (`0x00676B2C`) and the tree functions through `+0x18` (the six: `0x01F2EA70`, `0x01F2EA78`, `0x01F2EA80`, `0x01F2EA88`, `0x01F2EA90`, `0x01F2EA98`) |
 | `+0x30` | `u64` |  | 2, the line-terminator length read by `0x00677030` |
 | `+0x38` | `void*` |  | `0x00584740`, allocate 16-byte aligned |
 | `+0x40` | `void*` |  | `0x00584730`, aligned free |

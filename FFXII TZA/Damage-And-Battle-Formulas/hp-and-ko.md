@@ -173,7 +173,7 @@ back to 0 (`0x003299EE`-`0x003299F6`).
 `0x002EB030` stores the event in actor `+0xF0` and posts it through `0x002EB0D0` unless actor byte `+0x18` is 1
 (`0x002EB04D`-`0x002EB073`).
 
-Measured in the game at Frame Rate 60: Reks's Attack hit a Cactite (72 HP) twice. `0x00300749` stored 72 to 32
+At Frame Rate 60, Reks's Attack hit a Cactite (72 HP) twice. `0x00300749` stored 72 to 32
 (delta -40) and then 32 to 0 (delta -41), each time with the Cactite's unit as the target and Reks's as the
 source; `0x00306F00` ran with the Cactite's unit in the same frame as the second store, and its spawn record's
 death count `+0x08` went from 0 to 1 and `+0x0C` took 303, the step counter at the kill divided by 60 (at Frame

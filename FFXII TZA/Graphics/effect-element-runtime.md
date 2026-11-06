@@ -885,3 +885,13 @@ The kind lists `0x020910F0[kind]` are eight-byte heads, cleared with the rest of
 `0x003B994C`, and `case_address` the case it jumps to through the table at `0x003B9854`; 66 opcodes select `0x003B88F4`,
 which does nothing and goes back to the loop. `callees` lists the calls of the case, each as address and name, or
 `indirect` with the operand of a call through memory.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat formula: `0x00265020` is called by `0x00384F40`; those functions are documented on
+  [spawn record fields](../Enemy-Spawning/spawn-record-fields.md).
+- Rewards progression economy: `0x00265020` is called by `0x002FB150`, `0x00312280`; those functions are documented on
+  [loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md),
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).

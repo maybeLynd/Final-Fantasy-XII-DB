@@ -403,3 +403,13 @@ timer is below 20 ([Gambit conditions](gambit-conditions.md)).
 - [Action commit](../Battle-Actions/action-commit.md) - `0x0030F760`.
 - [Battle orders](../Battle-Actions/battle-orders.md) - the order ids, including `0x4021`.
 - [Boss fights](../Battle-Actions/boss-fights.md) - the battle freeze.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Resource: `0x005691E0` calls `0x00249580`; those functions are documented on
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md).
+- Save load settings: `0x00234ED0` is called by `0x005844A0`; `0x00235AF0` calls `0x002EF640`; those functions are documented
+  on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [global state accessors](../Engine-Core/global-state-accessors.md).

@@ -429,3 +429,14 @@ its rig; the 32 sequencer entries at `0x02CA6CA0` with the serial `0x02CA6C94`, 
 - [Weather](../World-Areas-And-Travel/weather.md): the map wind preset and the preset table.
 - [Authored presentation commands](authored-presentation-commands.md): commands `0x1D`, `0x1E` and `0x3F`.
 - [Subsystem update flags](../Engine-Core/subsystem-update-flags.md): the 60 fps predicate `0x001EDE80`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Gameplay: `0x00202E10` is called by `0x00339630`; those functions are documented on
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+- Input: `0x001EDE70` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Party: `0x00380800` is called by `0x004742A0`; those functions are documented on
+  [player movement](../Movement-And-Pathfinding/player-movement.md).

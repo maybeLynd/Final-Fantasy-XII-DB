@@ -414,3 +414,10 @@ The structures below are the ones the mechanisms above use.
 - [Phyre frame](the-frame.md): the frame's draw routine and camera snapshot.
 - [Phyre post-effect classes](phyre-post-effect-classes.md): the post effects that draw through `0x0060B980`.
 - [Phyre field schema](phyre-field-schema.md): the `PMeshInstance`, `PLight` and `PShaderParameterDefinition` members.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Movement: `0x006C0520` is called by `0x00268380`; those functions are documented on
+  [actor record fields](../Characters-And-Objects/actor-record-fields.md).

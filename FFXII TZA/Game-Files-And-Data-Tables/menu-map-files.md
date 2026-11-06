@@ -775,3 +775,10 @@ While the widget's `+0xD0` has bits `0x100` and `0x200`, the maps read the selec
 - [Story flags](../Story-Events-And-Hunts/story-flags.md): the gates the tables name.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): `0x00249210` and the kind 7 reads.
 - [File size tables (.fst)](file-size-tables-fst.md): the sizes that bound each read.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Party: `0x002FE660` calls `0x0031B7E0`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).

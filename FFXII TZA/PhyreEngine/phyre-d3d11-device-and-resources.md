@@ -762,3 +762,23 @@ is the one after it, and `0x0062D6D0` stores 0 in the `+0x08` of the object it r
 - [Graphics adapters and vendor libraries](../Steam-And-Achievements/graphics-adapters-and-vendor-libraries.md): how the adapter is chosen and the multisample probe that ends device creation.
 - [Phyre application](phyre-application.md): the framework that opens the window the swap chain draws into.
 - [Phyre asset files](phyre-asset-files.md): the texture data a cluster load copies into these objects.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Application: `0x005CC930` is called by `0x00799980`; those functions are documented on
+  [phyre application](phyre-application.md).
+- Core runtime: `0x00181DD0` is called by `0x0022B8C0`; `0x00184960` calls `0x001EDE70`, `0x001EDEF0`, `0x00229EA0`; `0x00184960` is
+  called by `0x0022A0B0`, `0x0022B7E0`; `0x005CC930` is called by `0x001E03F0`.
+- Core runtime: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [startup constants](../Engine-Core/startup-constants.md),
+  [game application](../Engine-Core/game-application.md).
+- Input: `0x005CC930` is called by `0x00196480`, `0x0079D920`; `0x00615BC0` is called by `0x0079C140`, `0x007A05D0`; `0x006278B0` is
+  called by `0x007A05D0`; `0x0062AAB0` is called by `0x0079C140`.
+- Input: those functions are documented on [phyre application](phyre-application.md),
+  [screen mode and aspect](../Graphics/screen-mode-and-aspect.md),
+  [game application](../Engine-Core/game-application.md).
+- UI: `0x00181DD0` is called by `0x0024B9B0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

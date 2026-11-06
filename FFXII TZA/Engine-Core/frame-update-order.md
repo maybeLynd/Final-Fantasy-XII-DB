@@ -748,8 +748,15 @@ slots' `+0x201` bytes; the eight one-byte field flags `0x02099DA0` to `0x02099DA
 - [Enemy respawning](../Enemy-Spawning/enemy-respawning.md): the clock advance and
   the group completion.
 - [`frame-update-order-stick-basis-022c7fa0-accesses.tsv`](frame-update-order-stick-basis-022c7fa0-accesses.tsv):
-  every censused access to the camera basis `0x022C7FA0` that the stick's rotation into camera space keeps ([player
+  every access to the camera basis `0x022C7FA0` that the stick's rotation into camera space keeps ([player
   movement](../Movement-And-Pathfinding/player-movement.md)), one row per instruction (35 rows).
 - [`frame-update-order-stick-world-vector-022c7fd0-accesses.tsv`](frame-update-order-stick-world-vector-022c7fd0-accesses.tsv):
-  every censused access to the camera-relative movement vector `0x022C7FD0`, which that rotation writes each tick (10
+  every access to the camera-relative movement vector `0x022C7FD0`, which that rotation writes each tick (10
   rows).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat: `0x00263E30` is called by `0x003206E0`; those functions are documented on
+  [battle units](../Characters-And-Objects/battle-units.md).

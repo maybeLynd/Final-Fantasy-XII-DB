@@ -489,20 +489,20 @@ obstacle grid's records, occupancy bytes, mask scratch, count and actor list.
 - [Map pack](../World-Areas-And-Travel/mpk-map-pack.md): slot four.
 - [Battle unit fields](../Characters-And-Objects/battle-unit-fields.md): the unit's class byte and blocks.
 - [Movement bodies and separation](movement-bodies-and-separation.md): the collision radii.
-- [`navigation-mesh-run-state-block-accesses.tsv`](navigation-mesh-run-state-block-accesses.tsv): every censused
-  access to the navigation dataset's header through its pointer `[0x02AEDFB0]` (65 rows).
-- [`navigation-mesh-vertex-accesses.tsv`](navigation-mesh-vertex-accesses.tsv): every censused access to its
+- [`navigation-mesh-run-state-block-accesses.tsv`](navigation-mesh-run-state-block-accesses.tsv): every access to the
+  navigation dataset's header through its pointer `[0x02AEDFB0]` (65 rows).
+- [`navigation-mesh-vertex-accesses.tsv`](navigation-mesh-vertex-accesses.tsv): every access to its
   vertices (from `+0x0C`) (26 rows).
-- [`navigation-mesh-triangle-accesses.tsv`](navigation-mesh-triangle-accesses.tsv): every censused access to its
+- [`navigation-mesh-triangle-accesses.tsv`](navigation-mesh-triangle-accesses.tsv): every access to its
   triangles (from `+0x10`) (8 rows).
-- [`navigation-mesh-portal-record-accesses.tsv`](navigation-mesh-portal-record-accesses.tsv): every censused access
+- [`navigation-mesh-portal-record-accesses.tsv`](navigation-mesh-portal-record-accesses.tsv): every access
   to its portals (from `+0x14`) (9 rows).
-- [`navigation-mesh-region-record-accesses.tsv`](navigation-mesh-region-record-accesses.tsv): every censused access
+- [`navigation-mesh-region-record-accesses.tsv`](navigation-mesh-region-record-accesses.tsv): every access
   to its regions (from `+0x18`) (3 rows).
 - [`navigation-mesh-broad-phase-header-accesses.tsv`](navigation-mesh-broad-phase-header-accesses.tsv): every
-  censused access to its grid (from `+0x20`) (22 rows).
+  access to its grid (from `+0x20`) (22 rows).
 - [`navigation-mesh-slot-pointer-array-accesses.tsv`](navigation-mesh-slot-pointer-array-accesses.tsv): every
-  censused access to the obstacle grid's 128-slot actor list `0x02AEE0C0` (6 rows).
+  access to the obstacle grid's 128-slot actor list `0x02AEE0C0` (6 rows).
 
 In the `route` cells of these tables, `NavRunStateBlock` names the dataset's header, whose offsets are decoded at
 run time.

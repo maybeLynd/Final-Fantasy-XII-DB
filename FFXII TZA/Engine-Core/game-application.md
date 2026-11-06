@@ -562,7 +562,7 @@ Globals:
 | `+0x24` | `u8` | fadingOut | the fade runs out |
 | `+0x28` | `i32` | alpha | 0 to 255 |
 | `+0x2C` | `f32` | one eighth of fadeTime | 0.033 (`0x3D072B02`), stored once by `0x001D89D0` (`0x001D8A25`); read by no function. The object is reached only through `0x01F82CD8`, which only `0x001D89D0` (its tests and stores) and the getter `0x001D8A60` name; the getter's callers hand it to `0x001D8AB0`, `0x001D8770`, `0x001D8A90` and `0x001D8790` or read `+0x28` (`0x001D7CB8`), and the fields those read are `+0x08`, `+0x10`, `+0x1C`, `+0x1D`, `+0x20`, `+0x24`, `+0x28`, `+0x34` and `+0x38`; the vtable's one slot `0x001D8660` only rewrites the vtable and frees the block |
-| `+0x30` | `i32` | the count 8 | 8, stored once by `0x001D89D0` (`0x001D8A2C`); read by no function, by the same census as `+0x2C` |
+| `+0x30` | `i32` | the count 8 | 8, stored once by `0x001D89D0` (`0x001D8A2C`); read by no function, for the same reason as `+0x2C` |
 | `+0x34` | `f32` | fadeTime | 0.264 |
 | `+0x38` | `f32` | delay | 5.0 |
 
@@ -719,3 +719,10 @@ No other instruction has the displacement `0x113C` or `0x113D`.
 - [Frame update order](frame-update-order.md): the main state machine `0x0022A580` and the field
   frame.
 - [Class hierarchy](class-hierarchy.md): the RTTI the base class name comes from.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input gameplay: `0x002E1CA0` is called by `0x00313A00`; those functions are documented on
+  [force fight mode](force-fight-mode.md).

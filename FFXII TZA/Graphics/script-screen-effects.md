@@ -627,7 +627,7 @@ The backdrop is the `0x140`-byte widget kept at `0x020927F0` with procedure `0x0
 ## Shipped data
 
 Counted in the decompiled `us` scripts (1,114 files); the calls and scripts per verb are in
-[the census table](script-screen-effects-screen-effect-census.tsv), and the calls per argument list in
+[the table of calls](script-screen-effects-screen-effect-census.tsv), and the calls per argument list in
 [the arguments table](script-screen-effects-screen-effect-arguments.tsv):
 
 | Fact | Value |

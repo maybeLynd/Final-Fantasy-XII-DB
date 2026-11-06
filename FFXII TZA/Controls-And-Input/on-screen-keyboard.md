@@ -166,3 +166,14 @@ No other instruction reaches these two.
 - [Control remapping](control-remapping.md) - the binding rows that refresh the keyboard.
 - [Keymap file](keymap-file.md) - the profiles the panels read.
 - [Control names](control-names.md) - the codes behind every key.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Items equipment shops license: `0x00557DB0` calls `0x00323630`, `0x00323670`, `0x003236B0`, `0x003236F0`, `0x00323740`;
+  `0x0055DBD0` calls `0x00323630`; `0x0055E9E0` calls `0x00323630`; `0x005618E0` calls `0x00323630`, `0x00323670`, `0x003236B0`; those
+  functions are documented on [license board screen](../Menus-And-HUD/license-board-screen.md),
+  [authored data tables](../Game-Files-And-Data-Tables/authored-data-tables.md).
+- Presentation: `0x00557DB0` calls `0x003B2D80`; those functions are documented on
+  [license board screen](../Menus-And-HUD/license-board-screen.md).

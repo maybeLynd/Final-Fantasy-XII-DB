@@ -161,3 +161,13 @@ The field frame drives `0x004678E0` through `0x0036F460`, which hands it the acc
 - [Asset header manifests](prefetch-manifests.md): what loads the textures a list binds.
 - [File path resolution](file-path-resolution.md): the 33-multiplicative path hash the loaded-asset lookup uses.
 - [Map pack (.mpk)](../World-Areas-And-Travel/mpk-map-pack.md): the per-map data pack.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Input: `0x005CD4F0` is called by `0x0079C140`, `0x007A0340`; `0x005CD820` is called by `0x0079C140`, `0x007A0340`; those
+  functions are documented on [screen mode and aspect](../Graphics/screen-mode-and-aspect.md),
+  [phyre application](../PhyreEngine/phyre-application.md).
+- Platform: `0x005CD4F0` is called by `0x0019CC50`; `0x005CD820` is called by `0x0019CC50`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).

@@ -147,7 +147,8 @@ each label with that store's own condition, in the same words, so each store is 
 
 A value tested inside one of those conditions is named by its label and has rows of its own, so every store of every
 value the cells name is in the table: 3,321 values, 47,948 stores. Among them are the values the door conditions of
-[Script censuses](../Story-Events-And-Hunts/script-censuses.md) test and the values the `set_conditions` cells of
+[Script calls in every script](../Story-Events-And-Hunts/script-censuses.md) test and the values the
+`set_conditions` cells of
 [Story flag ids](../Story-Events-And-Hunts/story-flag-ids.md) test.
 
 A value that no script stores is named by its block, unit and offset, with the scope that was searched: `no line of this
@@ -210,3 +211,43 @@ a music run except field 869, `alc_z04` ([Music table](../Sound-And-Music/music-
 - [Model asset list: every model the game can bind, with its model file, motion lanes, remastered parts and the tables and scripts that use it](../Graphics/model-asset-list.md)
 - [Map art](map-art.md) and [Map pack](mpk-map-pack.md)
 - [Enemy placements](../Enemy-Spawning/enemy-placements.tsv)
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x002DF980` is called by `0x0032FCA0`; `0x0032E400` is called by `0x0032FCA0`, `0x00330310`, `0x003306E0`;
+  `0x0032FCA0` calls `0x002628B0`, `0x0032ED80`, `0x00330310`, `0x003306E0`.
+- Actor entity: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [zone changes and mapjump](zone-changes-and-mapjump.md),
+  [ps2data bin families](../Game-Files-And-Data-Tables/ps2data-bin-families.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Audio: `0x003635E0` calls `0x002DF070`, `0x00363750`; those functions are documented on [mpk map pack](mpk-map-pack.md),
+  [game over](game-over.md).
+- Input: `0x0032A8A0` is called by `0x00253C70`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Presentation: `0x001A7A50` calls `0x001A92C0`; `0x002DF980` is called by `0x001BB2B0`; `0x00314910` is called by `0x001CD0E0`;
+  `0x0032E400` is called by `0x003B2310`, `0x003B53C0`; `0x00377B60` is called by `0x002B7B80`, `0x002BAF80`.
+- Presentation: those functions are documented on [map art](map-art.md),
+  [file size tables fst](../Game-Files-And-Data-Tables/file-size-tables-fst.md),
+  [debug menu](../Engine-Core/debug-menu.md),
+  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
+- Presentation: and on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Save load settings: `0x00264F90` is called by `0x00583D60`; `0x00314910` calls `0x002EF2B0`; `0x0032A8A0` calls `0x002EF2B0`;
+  `0x0032A8A0` is called by `0x00583D60`; those functions are documented on
+  [strong and weak mode](../Rewards-EXP-Gil-And-Loot/strong-and-weak-mode.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Script VM: `0x00264F10` is called by `0x0050CDE0`; `0x00264F40` is called by `0x0050CDE0`; `0x00264F90` is called by
+  `0x00357450`, `0x0050CDE0`; `0x0032A8A0` is called by `0x0034E0B0`; `0x0032E400` is called by `0x0050DF70`; those functions are
+  documented on [archades scripts](../Story-Events-And-Hunts/archades-scripts.md).
+- Story event quest hunt: `0x00314910` is called by `0x001ED240`; those functions are documented on
+  [model effects and motion commands](../Graphics/model-effects-and-motion-commands.md).
+- Story event quest hunt: `0x0029C530` calls `0x0032A8A0`; `0x0032A8A0` calls `0x00377970`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md),
+  [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md).
+- UI: `0x00264F90` is called by `0x0029C530`; `0x00314910` is called by `0x0029C530`; `0x0032A8A0` is called by `0x00281AE0`,
+  `0x0029C530`; `0x003778B0` is called by `0x0029C530`; `0x00377B60` is called by `0x0029C530`; those functions are documented
+  on [menu screens](../Menus-And-HUD/menu-screens.md), [binmenu images](../Game-Files-And-Data-Tables/binmenu-images.md).

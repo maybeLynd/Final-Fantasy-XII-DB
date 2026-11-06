@@ -523,3 +523,11 @@ In the name table, `declared_files` is the number of files whose name records ho
 an item selects it, `ref_files` the files of those items, and `class` `i` for the 25 names the executable itself
 carries (a literal or a registration-table entry), `iv` for the 3 it does not, and `-` for the 21 names no item
 selects.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x0036A100` is called by `0x00330310`, `0x003306E0`; those functions are documented on
+  [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [ps2data bin families](ps2data-bin-families.md).

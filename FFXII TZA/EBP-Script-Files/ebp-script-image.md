@@ -302,7 +302,7 @@ Four more header fields are read as values, not as table offsets:
 
 ### Columns of ebp-script-image-list-wait-census.tsv
 
-One row per request opcode in a shipped script image, read by decoding each script of each image.
+One row per request opcode in each script of each shipped script image.
 
 | Column | Holds |
 |---|---|
@@ -329,3 +329,18 @@ In the two parts:
 - `channel_class` is `const-int` where a pushed constant gives the channel of a `REQ`, `REQSW` or `REQEW`, and
   `n/a` for the other five instructions, whose pushes `args_push_order` gives whole.
 - `channel_byte` is that constant's low byte, and `ge80` is 1 for a channel byte of `0x80` or more (0 in every row).
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x002B7B80` calls `0x001EDEC0`; those functions are documented on
+  [global state accessors](../Engine-Core/global-state-accessors.md).
+- Input: `0x002B7B80` calls `0x00250200`; `0x00358940` is called by `0x00226BE0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [time stop and freeze](../Engine-Core/time-stop-and-freeze.md).
+- Platform online achievements: `0x00264790` is called by `0x003160C0`; `0x003779F0` is called by `0x003160C0`; those
+  functions are documented on [handbook files](../Game-Files-And-Data-Tables/handbook-files.md).
+- World area: `0x00358940` is called by `0x0025E400`, `0x002623A0`; those functions are documented on
+  [actor record fields](../Characters-And-Objects/actor-record-fields.md),
+  [frame update order](../Engine-Core/frame-update-order.md).

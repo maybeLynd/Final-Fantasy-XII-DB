@@ -157,3 +157,9 @@ Registry record, `0x02EBDBC0` + n × `0x28`, 64 records:
 - [Effect files](effect-files-efx-efb.md): the effect containers and context types.
 - [Effect element runtime](effect-element-runtime.md): how instances are updated.
 - [Effect drawing](effect-drawing.md): how they are drawn.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Audio: `0x0024D540` calls `0x003B3D20`; those functions are documented on [effect drawing](effect-drawing.md).

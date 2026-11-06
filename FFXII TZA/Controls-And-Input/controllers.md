@@ -158,3 +158,17 @@ that `0x00797910` hands DirectInput (`0x00797942`) is the 8-byte interface point
 
 - [keymap.ini](keymap-file.md) - the keyboard bindings.
 - [Control names](control-names.md) - the codes the pad buttons use.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Application: `0x00584740` is called by `0x001A98B0`; those functions are documented on
+  [game application](../Engine-Core/game-application.md).
+- Audio: `0x00584740` is called by `0x002125A0`, `0x00225C40`, `0x006794D0`; those functions are documented on
+  [audio manager](../Sound-And-Music/audio-manager.md), [sound engine](../Sound-And-Music/sound-engine.md).
+- Platform: `0x00584740` is called by `0x00650D40`; those functions are documented on
+  [phyre post effect classes](../PhyreEngine/phyre-post-effect-classes.md).
+- Resource: `0x00584740` is called by `0x001A11B0`, `0x001DAD60`, `0x00637C50`; those functions are documented on
+  [game application](../Engine-Core/game-application.md),
+  [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md).

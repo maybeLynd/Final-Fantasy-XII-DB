@@ -683,3 +683,14 @@ Nothing reaches these five globals beyond the listed instructions.
 - [Story progress](../Story-Events-And-Hunts/story-progress.md) - the story counter.
 - [MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md) - the zone pictures and placements.
 - [Controls](../Controls-And-Input/controls.md) - the input words.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Save load settings: `0x00249410` is called by `0x00582790`; `0x00249580` is called by `0x00582790`; `0x00254440` is called by
+  `0x00280140`; `0x00314440` is called by `0x00280140`; `0x003145E0` calls `0x0020E500`.
+- Save load settings: those functions are documented on
+  [mrp menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md),
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md),
+  [changing areas](../World-Areas-And-Travel/changing-areas.md).

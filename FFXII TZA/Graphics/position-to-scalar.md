@@ -156,15 +156,15 @@ the instance `+0x08` of each of the 36 request entries at `0x02EBEC00`, up to th
 ### The callers
 
 `0x002F1F40` has 76 call sites in 75 functions, from `0x00442550` to `0x00537410`
-([census](position-to-scalar-fade-node-consumers.tsv)). At 67 of them the next call is the colour
+([table](position-to-scalar-fade-node-consumers.tsv)). At 67 of them the next call is the colour
 multiply `0x0026EE00`. The smallest, `0x00442550`, calls the node with the element's position `+0x230`,
 multiplies the result by the element's colour `+0x240`, and draws the point in that colour
 (`0x0039C550`).
 
 ### Columns of position-to-scalar-fade-node-consumers.tsv
 
-One row per `call 0x002F1F40` in the code section, 76 rows. From each call the census decodes up to 24 further
-instructions, stopping at a `ret` or `int3`, and records the first direct call it meets.
+One row per `call 0x002F1F40` in the code section, 76 rows. From each call the table follows up to 24 further
+instructions, stopping at a `ret` or `int3`, and gives the first direct call among them.
 
 | Column | Holds |
 |---|---|
@@ -237,3 +237,25 @@ is non-zero (`0x00377536`), but every store to `0x02ADD0F4` writes 0 (`0x0037754
 - [Character fades](character-fades.md): the owner fade bit `0x10` multiplies in.
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the dimming ramp.
 - [PS2 CPU emulation](../Engine-Core/ps2-cpu-emulation.md): the workbench the transforms use.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x002E9B80` calls `0x003588B0`; `0x0036DD80` is called by `0x0025C830`; `0x00378120` calls `0x00332130`; those
+  functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md),
+  [event scenes](../Scripts-And-Script-Commands/event-scenes.md).
+- Input: `0x0022A770` calls `0x0017DE60`, `0x002498B0`, `0x00250180`, `0x0035AE30`, `0x0035AF20`, `0x0035E9A0`, `0x0035FF90`,
+  `0x0036FDF0`, `0x0036FF70`, `0x0036FFD0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Platform online achievements: `0x0022A770` calls `0x00316930`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Script VM: `0x00351AA0` calls `0x00267E10`; `0x00379950` is called by `0x00351AA0`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md),
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+- World area: `0x00378120` calls `0x003C63A0`; those functions are documented on
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md).
+- World area: `0x0022A770` calls `0x00314020`; `0x00378120` is called by `0x003775D0`; those functions are documented on
+  [debug logging](../Engine-Core/debug-logging.md),
+  [doors gates and map changes](../World-Areas-And-Travel/doors-gates-and-map-changes.md).

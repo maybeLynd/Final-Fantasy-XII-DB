@@ -109,3 +109,26 @@ the roster array `0x022C1740`, the inventory descriptors `0x01EEBCC0` and the sa
 - [Gambits](../Enemy-AI-And-Gambits/gambits.md) - the gambit banks.
 - [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md) - the count words, bits and tallies.
 - [Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md) - the Traveler, Knot of Rust and Numerology counters.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Movement: `0x0031AC00` is called by `0x0031BD60`; `0x00326500` calls `0x00311E20`; `0x003266C0` calls `0x00311E20`; `0x00326BB0`
+  calls `0x00265200`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Resource: `0x002EF300` calls `0x0032E620`; `0x005691E0` calls `0x00249580`; those functions are documented on
+  [startup constants](../Engine-Core/startup-constants.md),
+  [battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md).
+- Script VM: `0x002EF300` is called by `0x0050D9A0`; `0x003170E0` is called by `0x00352190`; `0x0031B510` is called by
+  `0x0034F5A0`, `0x003509E0`; `0x00320800` is called by `0x0034B4B0`; `0x00320AB0` is called by `0x0050FD00`, `0x0050FD50`,
+  `0x0050FDD0`, `0x0050FE20`, `0x0050FE80`, `0x0050FED0`, `0x0050FF20`; `0x00327930` is called by `0x00348B40`.
+- Script VM: those functions are documented on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md).
+- Spawn encounter lifecycle: `0x00229B40` calls `0x00233440`; those functions are documented on
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md).
+- Status periodic terminal: `0x00320AB0` is called by `0x00310DB0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

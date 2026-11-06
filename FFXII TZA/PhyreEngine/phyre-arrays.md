@@ -273,3 +273,10 @@ PClassDataMemberArrayDynamic&lt;T&gt;, beyond the PClassDataMemberArray fields:
 - [Phyre field schema](phyre-field-schema.md): how a file's array members map to these records.
 - [Phyre asset files](phyre-asset-files.md): the cluster data the arrays are filled from.
 - [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): `0x0017D260` and `0x00584730`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Resource: `0x001C26B0` is called by `0x00597970`, `0x00597A70`, `0x0059ED70`, `0x0059EE10`; those functions are documented on
+  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md).

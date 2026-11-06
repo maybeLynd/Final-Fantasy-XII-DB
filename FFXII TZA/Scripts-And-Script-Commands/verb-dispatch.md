@@ -167,7 +167,7 @@ wait slot          +8 target ordinal, +0xC result, +0x10 A, +0x14 wait kind, +0x
 | command slots | 1,960 in five tables (1,496 / 147 / 1 / 104 / 212) |
 | absent-callback stub `0x0016D6A0` | 9 begin slots, 25 result slots, 0 poll slots |
 | the `+0x10` slot | null in all 1,960 records |
-| census method | `E8` calls and `E9` jumps to each helper over `.text` of the shipping executable, including code outside any listed function |
+| what is counted | `E8` calls and `E9` jumps to each helper over `.text` of the shipping executable, including code outside any listed function |
 | int pop `0x00267E10` | 1,559 calls and 2 tail jumps |
 | float pop `0x00267DB0` | 436 calls and 4 tail jumps |
 | pushes `0x00267F90` / `0x00267F60` | 244 / 58 calls |

@@ -182,3 +182,151 @@ The join catch-up `0x00317480` reads no mode bit, so a joiner's level is set as 
 - [Scenario presets](../Party/scenario-presets.md) - the preset step that carries the mode bits.
 - [Config screen](../Menus-And-HUD/config-screen.md) - the title's New Game list.
 - [Save file format](../Saving-Loading-And-Settings/save-file-format.md) - the header byte `+0x57`.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Actor entity: `0x002342F0` is called by `0x0026CE60`; `0x00236760` is called by `0x00300E40`; `0x00237DF0` calls `0x00329CC0`;
+  `0x0023AC80` is called by `0x0023A570`; `0x00312280` calls `0x00265020`; `0x00316DF0` is called by `0x00329CC0`.
+- Actor entity: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md), [party data](../Party/party-data.md),
+  [party control modes](../Engine-Core/party-control-modes.md); and on
+  [debug menu](../Engine-Core/debug-menu.md).
+- Audio: `0x002DDE60` calls `0x002DF530`; those functions are documented on [config screen](../Menus-And-HUD/config-screen.md).
+- Combat AI: `0x00233C10` calls `0x00327F80`; `0x00239960` calls `0x00327CB0`; `0x0023AC80` calls `0x00326030`, `0x00327CB0`,
+  `0x00327DE0`; those functions are documented on [unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md),
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Combat action: `0x002342F0` calls `0x00306570`, `0x0030E010`, `0x0030FE60`; `0x0030C470` is called by `0x00306760`.
+- Combat action: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [battle unit fields](../Characters-And-Objects/battle-unit-fields.md),
+  [call signatures](../Engine-Core/call-signatures.md),
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Combat formula: `0x00237DF0` calls `0x0023AC80`; `0x00239960` calls `0x0023AC80`, `0x00320A40`; `0x0030C470` calls `0x0030F340`,
+  `0x0030F5A0`; `0x0030C470` is called by `0x0023AC80`; `0x00312280` calls `0x00320AB0`.
+- Combat formula: those functions are documented on
+  [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
+  [subsystem update flags](../Engine-Core/subsystem-update-flags.md).
+- Core runtime: `0x00233C10` calls `0x00229ED0`; `0x00237DF0` calls `0x00229ED0`, `0x0032A160`; `0x002DDE60` calls `0x00229E40`;
+  `0x002EF650` is called by `0x0022B6E0`; `0x00394130` calls `0x001EDEC0`.
+- Core runtime: those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md),
+  [startup constants](../Engine-Core/startup-constants.md),
+  [global state accessors](../Engine-Core/global-state-accessors.md).
+- Gameplay: `0x00233C10` calls `0x00237DF0`; `0x00236740` is called by `0x00316DF0`; `0x00239960` calls `0x00237DF0`; `0x0023AC80`
+  is called by `0x00237DF0`; `0x0023AF50` is called by `0x00237DF0`; `0x0030C470` is called by `0x00316DF0`; `0x003172E0` calls
+  `0x00316DF0`; `0x00317480` is called by `0x00316DF0`; `0x00326110` calls `0x00316DF0`; `0x00329080` calls `0x00316DF0`,
+  `0x00322C50`, `0x00323540`.
+- Gameplay: `0x00329CC0` calls `0x00316DF0`, `0x00322C50`, `0x00323540`; `0x00329CC0` is called by `0x00237DF0`; `0x00394460` calls
+  `0x00237DF0`; those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [identifier spaces](../Engine-Core/identifier-spaces.md).
+- Input: `0x00236760` is called by `0x00253C70`; `0x002DDE60` calls `0x001E0FF0`, `0x001E1020`; `0x00394460` calls `0x002501E0`;
+  those functions are documented on [force fight mode](../Engine-Core/force-fight-mode.md),
+  [config screen](../Menus-And-HUD/config-screen.md).
+- Items equipment shops license: `0x00233C10` calls `0x0030B6A0`; `0x002370C0` is called by `0x0023AF50`; `0x00237DF0` calls
+  `0x0023AF50`; `0x00239960` calls `0x00300BA0`, `0x0031A630`, `0x00323910`; `0x0023AC80` calls `0x0031A630`, `0x00323910`; `0x0023AF50`
+  calls `0x00300BA0`; `0x0030C470` calls `0x00324100`; `0x00316DF0` calls `0x00300B80`, `0x0030C410`; `0x00317480` calls `0x003237C0`.
+- Items equipment shops license: those functions are documented on
+  [item and ability ids](../Engine-Core/item-and-ability-ids.md), [party data](../Party/party-data.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md).
+- Items equipment shops license: and on [battle unit construction](../Characters-And-Objects/battle-unit-construction.md),
+  [party verbs](../Scripts-And-Script-Commands/party-verbs.md), [party members](../Party/party-members.md).
+- Movement: `0x002342F0` calls `0x0031BD60`, `0x00322220`, `0x00327360`, `0x0033A380`, `0x00383740`, `0x003924B0`; `0x00312280` calls
+  `0x00319490`.
+- Movement: those functions are documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [mpk map pack](../World-Areas-And-Travel/mpk-map-pack.md), [party slots](../Party/party-slots.md),
+  [battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md).
+- Movement: and on
+  [navigation mesh and pathfinding](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md),
+  [battle units](../Characters-And-Objects/battle-units.md).
+- Party: `0x00239960` calls `0x00329080`; `0x00316DF0` is called by `0x003172E0`, `0x00326110`, `0x00329080`; `0x003172E0` calls
+  `0x00321100`, `0x003261D0`; `0x00326110` calls `0x003261D0`; `0x00326110` is called by `0x003170E0`; `0x00329080` is called by
+  `0x003261D0`, `0x003273D0`; `0x00329CC0` calls `0x00326500`; `0x00583D60` calls `0x003271D0`.
+- Party: those functions are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [party control modes](../Engine-Core/party-control-modes.md).
+- Platform online achievements: `0x00312280` calls `0x00316A50`; `0x00583D60` calls `0x00315390`, `0x003166F0`; those functions
+  are documented on [debug menu](../Engine-Core/debug-menu.md),
+  [shops](../Items-Equipment-Shops-And-Licenses/shops.md), [gil](gil.md).
+- Presentation: `0x00312280` calls `0x0028FB80`; `0x0057FB00` calls `0x002DC290`; those functions are documented on
+  [exp lp and level ups](exp-lp-and-level-ups.md),
+  [ps2 cpu emulation](../Engine-Core/ps2-cpu-emulation.md).
+- RNG random selection: `0x002342F0` calls `0x00328D80`; those functions are documented on [loot drops](loot-drops.md).
+- Resource: `0x001D6C60` calls `0x001DA220`, `0x001DADA0`; `0x00394070` calls `0x0024A680`; `0x00394460` calls `0x001D6C60`; those
+  functions are documented on [prefetch manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md),
+  [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md),
+  [verb table](../Scripts-And-Script-Commands/verb-table.md).
+- Save load settings: `0x00233C10` is called by `0x00280140`; `0x002EF640` is called by `0x00280140`; `0x002EF650` is called by
+  `0x00280140`; those functions are documented on
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md).
+- Save load settings: `0x00229B40` calls `0x002EF620`, `0x002EF640`; `0x00233C10` calls `0x002EF640`; `0x00236740` is called by
+  `0x00583D60`; `0x00236760` is called by `0x001C1720`, `0x002EF690`, `0x00583D60`; `0x00236780` is called by `0x00583D60`;
+  `0x00237DF0` is called by `0x00238A80`; `0x0023A390` is called by `0x00584210`; `0x002DDE60` is called by `0x00253A80`.
+- Save load settings: `0x002EF640` is called by `0x00238A80`, `0x00253A80`, `0x002EF2B0`, `0x002EF2D0`, `0x002EF300`, `0x002EF370`,
+  `0x002EF390`, `0x0057E310`, `0x00580CD0`, `0x00580EB0`, `0x005819F0`, `0x00581B70`; `0x002EF640` is also called by `0x00581DA0`,
+  `0x00583C00`, `0x00583CB0`, `0x00583D60`, `0x00584210`, `0x005844A0`; `0x002EF650` calls `0x00238A80`, `0x00253A80`, `0x002EF2D0`;
+  `0x00394130` calls `0x00255260`, `0x002EF640`, `0x002EF650`.
+- Save load settings: `0x00583D60` calls `0x002EF620`, `0x002EF640`, `0x003BB220`; `0x00583D60` is called by `0x00581DA0`,
+  `0x005844A0`.
+- Save load settings: those functions are documented on [party data](../Party/party-data.md),
+  [global state accessors](../Engine-Core/global-state-accessors.md),
+  [save data fields](../Saving-Loading-And-Settings/save-data-fields.md),
+  [saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md).
+- Save load settings: and on [item and ability ids](../Engine-Core/item-and-ability-ids.md),
+  [party control modes](../Engine-Core/party-control-modes.md),
+  [frame update order](../Engine-Core/frame-update-order.md),
+  [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md).
+- Save load settings: and on
+  [file requests and the read queue](../Game-Files-And-Data-Tables/file-requests-and-the-read-queue.md),
+  [standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md).
+- Save load settings: and on [zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md),
+  [loading a save](../Saving-Loading-And-Settings/loading-a-save.md).
+- Script VM: `0x00236740` is called by `0x0050F3F0`; `0x00236760` is called by `0x0050F540`; `0x0023A2C0` is called by
+  `0x0050F3C0`; `0x0023A390` is called by `0x0050F500`; `0x003172E0` is called by `0x0034C370`; `0x00394430` is called by
+  `0x005120E0`; `0x00394460` is called by `0x00511EA0`; `0x0050F3F0` calls `0x0026B4E0`; `0x0050F810` calls `0x00267E10`; `0x005120E0`
+  calls `0x0026B4E0`.
+- Script VM: those functions are documented on [party verbs](../Scripts-And-Script-Commands/party-verbs.md),
+  [starting inventory](../Party/starting-inventory.md),
+  [native commands](../Scripts-And-Script-Commands/native-commands.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Spawn encounter lifecycle: `0x00229B40` calls `0x00233440`; `0x002342F0` calls `0x00233780`, `0x00307090`; `0x0030C470` is
+  called by `0x002398F0`; those functions are documented on
+  [enemy respawning](../Enemy-Spawning/enemy-respawning.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md).
+- Status periodic terminal: `0x002342F0` calls `0x0030E990`; `0x0030C470` calls `0x0030F690`, `0x0030FED0`; `0x00312280` is called
+  by `0x0030E360`.
+- Status periodic terminal: those functions are documented on [battle units](../Characters-And-Objects/battle-units.md),
+  [save and teleport crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md),
+  [battle verbs](../Scripts-And-Script-Commands/battle-verbs.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- Story event quest hunt: `0x00583D60` calls `0x0032A8A0`; those functions are documented on
+  [identifier spaces](../Engine-Core/identifier-spaces.md).
+- UI: `0x00237DF0` calls `0x00313840`; `0x0023FBE0` calls `0x0023ED80`, `0x00291D80`; `0x002B9FD0` is called by `0x0027FB70`,
+  `0x0028F8B0`.
+- UI: those functions are documented on [party control modes](../Engine-Core/party-control-modes.md),
+  [config screen](../Menus-And-HUD/config-screen.md), [stats](../Damage-And-Battle-Formulas/stats.md),
+  [resource arena and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md); and on
+  [inventory](../Items-Equipment-Shops-And-Licenses/inventory.md).
+- World area: `0x002342F0` is called by `0x00266D10`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- World area: `0x00229B40` calls `0x0025D8E0`; `0x00229B40` is called by `0x003145E0`; `0x002342F0` calls `0x002FA520`,
+  `0x00377C20`; `0x00236760` is called by `0x003145E0`, `0x005843E0`, `0x00584580`; `0x00239960` is called by `0x002342F0`;
+  `0x002EF640` is called by `0x00229B40`, `0x003145E0`, `0x005843E0`; `0x00312280` calls `0x00377C20`; `0x00329CC0` calls
+  `0x003148F0`; `0x00394130` calls `0x00267C90`, `0x00268320`, `0x00314440`, `0x00314DC0`.
+- World area: `0x0057FB00` calls `0x00264F90`, `0x003778B0`; `0x00583D60` calls `0x00264F90`, `0x003148F0`; those functions are
+  documented on [script variables](../Scripts-And-Script-Commands/script-variables.md),
+  [changing areas](../World-Areas-And-Travel/changing-areas.md),
+  [reward verbs](../Scripts-And-Script-Commands/reward-verbs.md),
+  [force fight mode](../Engine-Core/force-fight-mode.md).
+- World area: and on [party control modes](../Engine-Core/party-control-modes.md),
+  [loading a save](../Saving-Loading-And-Settings/loading-a-save.md), [debug menu](../Engine-Core/debug-menu.md),
+  [game over](../World-Areas-And-Travel/game-over.md).
+- World area: and on [menu map files](../Game-Files-And-Data-Tables/menu-map-files.md),
+  [area flags navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md).

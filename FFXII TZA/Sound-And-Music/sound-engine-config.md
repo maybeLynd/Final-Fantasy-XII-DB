@@ -707,3 +707,10 @@ The sum of the positive category sizes, 60, sizes the engine's pools (`0x007A4ED
 
 - [Sound banks](sound-banks.md) - the bank files the engine plays.
 - [Sound driver objects](sound-driver-objects.md) - the pools the category sizes set, and the category commands.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Sead: `0x007AD550` is called by `0x007A52E0`; those functions are documented on
+  [sound driver objects](sound-driver-objects.md).

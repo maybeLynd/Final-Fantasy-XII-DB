@@ -1207,7 +1207,7 @@ otherwise.
 - [section_014, the LGT2 light set](../EBP-Script-Files/ebp-lighting-lgt2.md)
 - [The EFX and EFB effect containers](../Graphics/effect-files-efx-efb.md)
 - [MRP menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md)
-- [`shadow-settings-01f82ea8-accesses.tsv`](shadow-settings-01f82ea8-accesses.tsv): every censused access to the
+- [`shadow-settings-01f82ea8-accesses.tsv`](shadow-settings-01f82ea8-accesses.tsv): every access to the
   shadow object through its pointer `[0x01F82EA8]`, all in the direction setter `0x001F08A0` (18 rows).
 - [`mpk-map-pack-actl-census.tsv`](mpk-map-pack-actl-census.tsv): one row per `ACTL` section: its header, the shape
   of its id index, its record count and its tombstones (270 rows).
@@ -1260,3 +1260,14 @@ The columns of these tables, after `pack` and the section's size:
   lands at the chunk's end) and `ascending` (the offsets never fall), 1 in all 920, `tagsSeen` the tags of its
   entries, `records` how many records parse (for tag 22 with a count per `+0x30` mode), `picTotal` the pictures of a
   tag-26 chunk and `sampleNames` its first two record names.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat AI: `0x002315E0` is called by `0x0032A4D0`; `0x0032A4D0` is called by `0x003247F0`; those functions are documented on
+  [geometry primitives](../Movement-And-Pathfinding/geometry-primitives.md),
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Combat formula: `0x0046AB10` calls `0x0031B860`; `0x0046AB10` is called by `0x00469EC0`; those functions are documented on
+  [save and teleport crystals](save-and-teleport-crystals.md),
+  [action definition row](../Battle-Actions/action-definition-row.md).

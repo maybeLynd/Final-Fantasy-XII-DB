@@ -335,7 +335,7 @@ The reasons:
 | `payload_offset` | the variable's offset in the save payload |
 | `tool_name` | the names scripts declare for the offset, joined by `/` |
 | `reason` | why no step depends on it (the reasons above) |
-| `census` | the bytes searched and the uses found, by kind |
+| `uses_counted` | the bytes whose imports are counted, at every width, and the uses found, by kind |
 | `read_by` | what reads it, in words: the verbs and arguments it is passed to, and for a copy, the variable it goes into and the steps that variable gates |
 | `values_written` | every value the scripts store in it |
 | `scripts` | the scripts that use it: their count and names, then, where developer test scripts also use it, "developer scripts" with their count and names |

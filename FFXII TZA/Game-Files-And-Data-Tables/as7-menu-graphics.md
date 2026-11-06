@@ -264,3 +264,12 @@ uploaded all the same.
 - [File size tables (.fst)](file-size-tables-fst.md): the kind 7 path arrays and request sizes.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): `0x0032E400` and `0x0032E620`.
 - [Gambit screen](../Menus-And-HUD/gambit-screen.md): the screen that sets the silhouette.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Combat action: `0x0032E4D0` is called by `0x002FC3C0`; those functions are documented on
+  [file requests and the read queue](file-requests-and-the-read-queue.md).
+- Save load settings: `0x00247950` is called by `0x00280140`; `0x0032E4D0` is called by `0x00280140`; those functions are
+  documented on [resource arena and relocation](resource-arena-and-relocation.md).

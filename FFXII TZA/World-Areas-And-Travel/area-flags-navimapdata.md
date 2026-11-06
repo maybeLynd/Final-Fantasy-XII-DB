@@ -181,7 +181,8 @@ callers are `0x00326500`, `0x003266C0` and `0x0031C000`. `0x00326500` picks the 
 when control returns: the saved leader at `[0x02EBF190] + 0x5AA4` at control levels 0 and 1, id `0x1A`
 at level 2, and this field at level 3, the town level (`0x0030D9A0`).
 
-Every shipped record has these bits at 0 (census below), and 0 is party row 0, Vaan, so in every town the game hands control to
+Every shipped record has these bits at 0 (counts below), and 0 is party row 0, Vaan, so in every town the game hands
+control to
 Vaan; only when he has no battle unit does the function fall back to the first of the four active
 slots with a unit, then to `0x00263750(0)`.
 
@@ -222,7 +223,7 @@ id with the `us` name `0x00377B60` returns (empty for an id with no name entry),
 (`-` for `0xFFF`), the MP regime, the area-name and town bits, the third byte, the hold bit, mask `0xE` and the
 default leader.
 
-Census of the 1,154 records in `navimapdata.bin`:
+Counts over the 1,154 records in `navimapdata.bin`:
 
 | Field | Shipped values |
 |---|---|

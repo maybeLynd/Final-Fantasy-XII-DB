@@ -261,3 +261,10 @@ Meteorite (`0x0019`-`0x001C`, 5).
 - [Who gets EXP, LP and gil from a kill](exp-lp-and-level-ups.md) - the
   rest of the defeat rewards.
 - [RNG streams](../Random-Numbers/random-number-generators.md) - the shared gameplay generator.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Platform online achievements: `0x00312280` calls `0x00316A50`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).

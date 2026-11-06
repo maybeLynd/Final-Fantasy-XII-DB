@@ -180,3 +180,16 @@ The Clan Provisioner is a Mysterious Merchant in Muthru Bazaar (Rabanastre) unti
 - [Enemy order sets](enemy-order-sets.md) - every opcode of the selector `0x00301AD0`, beyond the shipped gambit conditions.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) - the stats offsets the tests read.
 - [Elements](../Damage-And-Battle-Formulas/elements.md) - the weak and absorb bytes.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x0030FE60` is called by `0x002341C0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Items equipment shops license: `0x00309EC0` is called by `0x00317930`; those functions are documented on
+  [party table](../Party/party-table.md).
+- Platform online achievements: `0x00309EC0` is called by `0x00315E90`; those functions are documented on
+  [gil](../Rewards-EXP-Gil-And-Loot/gil.md).
+- Status periodic terminal: `0x0031B770` is called by `0x00310DB0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).

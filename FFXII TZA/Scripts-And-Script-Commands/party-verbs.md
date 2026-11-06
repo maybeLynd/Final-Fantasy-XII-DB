@@ -254,3 +254,17 @@ two 16-byte stores of 0, and the second store covers slots 2 and 3:
 - [Party during scenes](party-during-scenes.md): capturing a member's body.
 - [Native commands](native-commands.md): begin and poll.
 - [Verb dispatch](verb-dispatch.md): the value stack the motion verbs reuse.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Core runtime: `0x002695A0` calls `0x002341C0`; those functions are documented on
+  [frame update order](../Engine-Core/frame-update-order.md).
+- Core runtime: `0x00263560` is called by `0x0022B8C0`, `0x0022BC20`; `0x002695A0` calls `0x00229F10`; those functions are
+  documented on [frame update order](../Engine-Core/frame-update-order.md),
+  [startup constants](../Engine-Core/startup-constants.md).
+- Resource: `0x002ED6F0` is called by `0x002EEEE0`; those functions are documented on
+  [debug menu](../Engine-Core/debug-menu.md).
+- Status periodic terminal: `0x00322C50` is called by `0x0030E130`, `0x0030FED0`, `0x00310DB0`; those functions are documented
+  on [battle verbs](battle-verbs.md), [frame update order](../Engine-Core/frame-update-order.md).

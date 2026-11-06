@@ -183,3 +183,10 @@ control with `0x0023B040` (`0x00301063`-`0x003010C0`; [Party leader](../Party/pa
 - [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md) - the HP write that adds KO.
 - [KO and Game Over](ko-and-game-over.md) - the defeat cleanup and recovery.
 - [Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md) - what an enemy's KO pays.
+
+### Cross-subsystem neighbours
+
+Calls between the functions this page cites and code in other parts of the program, from the program's call graph:
+
+- Script VM: `0x00347F80` calls `0x00267E10`; `0x00473820` is called by `0x00347F80`; those functions are documented on
+  [force fight mode](../Engine-Core/force-fight-mode.md).
