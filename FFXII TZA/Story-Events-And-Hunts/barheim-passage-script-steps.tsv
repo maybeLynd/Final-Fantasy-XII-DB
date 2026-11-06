@@ -29740,7 +29740,7 @@ mic_b0600	バッシュ	set	1	0x0319B	1649	-	usecharhit	0	argument 1: whether the
 mic_b0600	バッシュ	set	2	0x031A1	1650	-	setlod	1	argument 1: the calling actor's model level of detail	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b0600	バッシュ	set	3	0x031AD	1651	-	setpos	10.0414248, -0, 22.0827065	this actor, placed at (10.0414248, -0, 22.0827065)	-	-	-	-	resolved	0x0034EBC0 (read here)
 mic_b0600	バッシュ	set	4	0x031B3	1652	-	dir	2.50338793	this actor, turned to facing 2.50338793	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-mic_b0600	バッシュ	set	5	0x031B9	1653	-	unkCall_5cb	0x03000003	-	-	-	-	-		01 verb-table.tsv
+mic_b0600	バッシュ	set	5	0x031B9	1653	-	unkCall_5cb	0x03000003	argument 1: the model to bind to the calling actor, as bindp2_d4's first argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b0600	バッシュ	set	6	0x031BF	1654	-	effectactor	3	argument 1: the index (clamped 0-63) of the effect-anchor table entry that the calling actor's effect handle (0x003589B0(0x00263F10(actor))) fills	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_b0600	バッシュ	set	7	0x031C2	1655	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mic_b0600	バッシュ	bindoff_TAG	1	0x031C3	1660	-	lookat_maxangle_limit_lock	-	the calling actor's head-look angle lock, switched on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -32891,7 +32891,7 @@ mic_c0100	Mクイーン	乗っ取り解除	3	0x01C89	800	-	usecharhit	1	argument
 mic_c0100	Mクイーン	乗っ取り解除	4	0x01C8F	801	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_c0100	Mクイーン	乗っ取り解除	5	0x01C95	802	-	setcharclipall	1	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_c0100	Mクイーン	乗っ取り解除	6	0x01C9B	803	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mic_c0100	Mクイーン	乗っ取り解除	7	0x01CA1	804	-	usecamerahit	1	-	-	-	-	-		01 verb-table.tsv
+mic_c0100	Mクイーン	乗っ取り解除	7	0x01CA1	804	-	usecamerahit	1	argument 1: whether the field camera keeps clear of the calling actor's body	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_c0100	Mクイーン	乗っ取り解除	8	0x01CA7	805	-	setprojectionshadow	1	argument 1: whether the calling actor casts a projected shadow	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mic_c0100	Mクイーン	乗っ取り解除	9	0x01CAA	806	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mic_c0100	Mクイーン	乗っ取り解除	10	0x01CB0	807	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

@@ -2527,7 +2527,7 @@ rui_a03	クリスタル監視さん	main	6	0x02915	685	g_btl_クリスタルミ�
 rui_a03	クリスタル監視さん	main	7	0x0291B	686	g_btl_クリスタルミミックブルー == 1	battlelastseplaysync	0	argument 1: popped and passed to 0x0053DD10, which ignores it and returns 1 (mov eax, 1), so the verb always waits on entry 1 of the handle table 0x0208D328 (0x0031EB10(1))	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a03	クリスタル監視さん	main	8	0x0291E	687	g_btl_クリスタルミミックブルー == 1	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a03	クリスタル監視さん	main	9	0x02924	688	g_btl_クリスタルミミックブルー == 1	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
-rui_a03	クリスタル監視さん	main	10	0x0292D	689	g_btl_クリスタルミミックブルー == 1	unkCall_5b0	0, 0	-	-	-	-	-		01 verb-table.tsv
+rui_a03	クリスタル監視さん	main	10	0x0292D	689	g_btl_クリスタルミミックブルー == 1	unkCall_5b0	0, 0	argument 1: whether the YEBIS post-processing is on (EnableYebis, script command 0x05B0) / argument 2: the delay before the switch takes effect	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a03	クリスタル監視さん	main	11	0x02939	690	g_btl_クリスタルミミックブルー == 1	crossfade	0, 1, 15	argument 1: the crossfade's flags / argument 2: the capture mode of the still picture / argument 3: the crossfade's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a03	クリスタル監視さん	main	12	0x02942	691	g_btl_クリスタルミミックブルー == 1	camerastart_7e	0, 0x02000000	camera row 0 `cam_crystal`: shot 0 `cam_crystal`, channel 0	-	shot 150 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 rui_a03	クリスタル監視さん	main	13	0x0294B	692	g_btl_クリスタルミミックブルー == 1	system_crystal_actor.setcharclipone	0	target actor `system_crystal_actor` (this script) / argument 1: whether the target actor's character fades and clips with distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2558,7 +2558,7 @@ rui_a03	クリスタル監視さん	main	37	0x029FB	716	g_btl_クリスタルミ
 rui_a03	クリスタル監視さん	main	38	0x02A01	717	g_btl_クリスタルミミックブルー == 1	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 rui_a03	クリスタル監視さん	main	39	0x02A04	718	g_btl_クリスタルミミックブルー == 1	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a03	クリスタル監視さん	main	40	0x02A0A	719	g_btl_クリスタルミミックブルー == 1	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
-rui_a03	クリスタル監視さん	main	41	0x02A13	720	g_btl_クリスタルミミックブルー == 1	unkCall_5b0	1, 5	-	-	-	-	-		01 verb-table.tsv
+rui_a03	クリスタル監視さん	main	41	0x02A13	720	g_btl_クリスタルミミックブルー == 1	unkCall_5b0	1, 5	argument 1: whether the YEBIS post-processing is on (EnableYebis, script command 0x05B0) / argument 2: the delay before the switch takes effect	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_a03	クリスタル監視さん	main	42	0x02A16	722	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a03	振動処理	init	1	0x02A17	731	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a03	振動処理	石扉ジャンプ振動開始	1	0x02A1B	736	-	vibplay	6	argument 1: the controller vibration pattern	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11715,7 +11715,7 @@ rui_e01	BOSS_魔神竜	parameter	69	0x0AF84	1394	g_btl_魔神竜 == 1; global_va
 rui_e01	BOSS_魔神竜	parameter	70	0x0AF8E	1397	g_btl_魔神竜 == 1	while	0 == getucstatus()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e01	BOSS_魔神竜	parameter	71	0x0AF94	1399	g_btl_魔神竜 == 1; loop while 0 == getucstatus()	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rui_e01	BOSS_魔神竜	parameter	72	0x0AFAC	1401	g_btl_魔神竜 == 1	if	global_var_1 != 0 and Boss_Enter_End[5] == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_e01	BOSS_魔神竜	parameter	73	0x0AFB5	1403	g_btl_魔神竜 == 1; global_var_1 != 0 and Boss_Enter_End[5] == 1	sysSethp_1f8	BOSS_魔神竜, global_var_1	actor `BOSS_魔神竜` (this script)	-	-	-	-		01 verb-table.tsv
+rui_e01	BOSS_魔神竜	parameter	73	0x0AFB5	1403	g_btl_魔神竜 == 1; global_var_1 != 0 and Boss_Enter_End[5] == 1	sysSethp_1f8	BOSS_魔神竜, global_var_1	actor `BOSS_魔神竜` (this script) / argument 1: the actor whose HP is set, an ordinal of the calling script's manager (0x00264010), followed to its capturer (0x00263F10); the listings write sysSethp_1f8 with the boss's name / argument 2: the HP the actor gets, as an amount	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e01	BOSS_魔神竜	parameter	74	0x0AFB8	1406	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a0400	PRODUCER	init	1	0x01250	24	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_a0400	PRODUCER	main	1	0x01254	29	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -16747,7 +16747,7 @@ rui_c0100	ボス	出現c1	6	0x01209	592	-	motionloop	0	argument 1: whether the m
 rui_c0100	ボス	出現c1	7	0x0120F	593	-	motionplay	0x11000000	animation 0 of motion 1 of `rui_c0100.mot` (bytes 0x800, length 0x16C50)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 rui_c0100	ボス	出現c1	8	0x01212	594	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_c0100	ボス	出現c3	1	0x01213	599	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_c0100	ボス	出現c3	2	0x0121C	600	-	rturnt_4b	0.17453292, 110	-	-	-	-	-		01 verb-table.tsv
+rui_c0100	ボス	出現c3	2	0x0121C	600	-	rturnt_4b	0.17453292, 110	argument 1: the heading in radians the calling actor turns to / argument 2: the turn's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c0100	ボス	出現c3	3	0x01225	601	-	motionloopframe	1, -1	argument 1: the first frame of the calling actor's motion loop / argument 2: the last frame of the loop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c0100	ボス	出現c3	4	0x0122B	602	-	motionstartframe	71	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_c0100	ボス	出現c3	5	0x01231	603	-	motionloop	0	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -18490,7 +18490,7 @@ rui_d0100	PC2	clear_pc	5	0x031DB	1939	-	shows	-	the calling actor's off-hand mod
 rui_d0100	PC2	clear_pc	6	0x031DE	1940	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_d0100	PC2	clear_pc	7	0x031E1	1941	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_d0100	PC3	init	1	0x031E2	1950	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_d0100	PC3	ready	1	0x031E6	1955	-	captureguestmember	0	-	-	-	-	-		01 verb-table.tsv
+rui_d0100	PC3	ready	1	0x031E6	1955	-	captureguestmember	0	argument 1: the index into the guest list (0x0031B680 selector 1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0100	PC3	ready	2	0x031EC	1956	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0100	PC3	ready	3	0x031F2	1957	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_d0100	PC3	ready	4	0x031F8	1958	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19566,7 +19566,7 @@ rui_d0101	BOSS_パンプキン	clear	4	0x02ADA	1901	-	return	-	-	-	-	-	-	resolve
 rui_e0100	DIRECTOR	init	1	0x00DE0	31	-	unkCall_3083	-	the controlled party member	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	DIRECTOR	init	2	0x00DE6	32	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rui_e0100	DIRECTOR	init	3	0x00E01	33	-	getbattlemember	&file_var_s0_1[0], &file_var_s0_1[1], &file_var_s0_1[2], &file_var_s0_1[3]	argument 1: where to write the selector of the battle party's member 1 / argument 2: where to write the selector of the battle party's member 2 / argument 3: where to write the selector of the battle party's member 3 / argument 4: where to write the selector of the battle party's member 4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0100	DIRECTOR	init	4	0x00E04	34	-	getbattlememberonlytotal	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0100	DIRECTOR	init	4	0x00E04	34	-	getbattlememberonlytotal	-	returns how many battle members (0x0031B670, group 0) are shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	DIRECTOR	init	5	0x00E07	35	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0100	DIRECTOR	main	1	0x00E11	40	-	sysReq	1, AD::START_ad	actor `AD`	-	-	files AD::START_ad on channel 1; does not wait	AD.START_ad	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rui_e0100	DIRECTOR	main	2	0x00E15	41	-	motionread	1	motion 1 of `rui_e0100.mot` (bytes 0x800, length 0x4D020)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
@@ -19654,7 +19654,7 @@ rui_e0100	DIRECTOR	main	83	0x0103B	138	-	setmaphighmodeldepth	-1	argument 1: the
 rui_e0100	DIRECTOR	main	84	0x01041	139	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	DIRECTOR	main	85	0x01047	140	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	DIRECTOR	main	86	0x0104D	141	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-rui_e0100	DIRECTOR	main	87	0x01053	142	-	deny_char_camerashake	0	-	-	-	-	-		01 verb-table.tsv
+rui_e0100	DIRECTOR	main	87	0x01053	142	-	deny_char_camerashake	0	argument 1: whether camera-vibration requests of kind 2 are refused	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	DIRECTOR	main	88	0x01056	143	-	crossfadesync	-	the running crossfade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	DIRECTOR	main	89	0x0105C	144	-	wait	2	-	-	2 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rui_e0100	DIRECTOR	main	90	0x01062	145	-	eventsounddispose	0	event sound slot 0, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
@@ -19720,7 +19720,7 @@ rui_e0100	SHAKE_CAMERA	CUT01	1	0x011D5	272	-	return	-	-	-	-	-	-	resolved	01 ../S
 rui_e0100	SHAKE_CAMERA	END_s	1	0x011D6	277	-	camerashakeclear	-	the camera-shake bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	SHAKE_CAMERA	END_s	2	0x011D9	278	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0100	ATEL_EFFECT	init	1	0x011DA	287	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_e0100	ATEL_EFFECT	START	1	0x011DE	292	-	deny_char_camerashake	1	-	-	-	-	-		01 verb-table.tsv
+rui_e0100	ATEL_EFFECT	START	1	0x011DE	292	-	deny_char_camerashake	1	argument 1: whether camera-vibration requests of kind 2 are refused	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	ATEL_EFFECT	START	2	0x011E1	293	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0100	ATEL_EFFECT	CUT01	1	0x011E5	298	-	wait	50	-	-	50 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rui_e0100	ATEL_EFFECT	CUT01	2	0x011EB	299	-	stopenvsound_3de	12	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -20580,7 +20580,7 @@ rui_e0100	PC02	END_s	8	0x02760	1504	-	refreshparty	-	the four party roster membe
 rui_e0100	PC02	END_s	9	0x02763	1505	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0100	PC02	END_s	10	0x02766	1506	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0100	PC03	init	1	0x02767	1515	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_e0100	PC03	START	1	0x0276B	1520	-	captureguestmember	0	-	-	-	-	-		01 verb-table.tsv
+rui_e0100	PC03	START	1	0x0276B	1520	-	captureguestmember	0	argument 1: the index into the guest list (0x0031B680 selector 1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC03	START	2	0x02771	1521	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC03	START	3	0x02777	1522	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0100	PC03	START	4	0x0277A	1523	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -20600,7 +20600,7 @@ rui_e0101	DIRECTOR	main	3	0x09B50	45	-	motionreadsync	1	motion 1	-	-	waits while
 rui_e0101	DIRECTOR	main	4	0x09B56	46	-	modelreadsync	0x03000000	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	DIRECTOR	main	5	0x09B5C	47	-	waitv	&scratch1_var_1	variable scratch1_var_1	-	-	waits while scratch1_var_1 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
 rui_e0101	DIRECTOR	main	6	0x09B77	48	-	getbattlemember	&file_var_s0_1[0], &file_var_s0_1[1], &file_var_s0_1[2], &file_var_s0_1[3]	argument 1: where to write the selector of the battle party's member 1 / argument 2: where to write the selector of the battle party's member 2 / argument 3: where to write the selector of the battle party's member 3 / argument 4: where to write the selector of the battle party's member 4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rui_e0101	DIRECTOR	main	7	0x09B7A	49	-	getbattlememberonlytotal	-	-	-	-	-	-		01 verb-table.tsv
+rui_e0101	DIRECTOR	main	7	0x09B7A	49	-	getbattlememberonlytotal	-	returns how many battle members (0x0031B670, group 0) are shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	DIRECTOR	main	8	0x09B84	50	-	switch	file_var_s0_1[0]	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	DIRECTOR	main	9	0x09B87	52	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	DIRECTOR	main	10	0x09B8A	53	file_var_s0_1[0] = 0	motionread	2	motion 2 of `rui_e0101.mot` (bytes 0x18000, length 0x8020)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
@@ -20787,7 +20787,7 @@ rui_e0101	DIRECTOR	main	190	0x0A07E	258	-	setmaphighmodeldepth	-1	argument 1: th
 rui_e0101	DIRECTOR	main	191	0x0A084	259	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	DIRECTOR	main	192	0x0A08A	260	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	DIRECTOR	main	193	0x0A090	261	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-rui_e0101	DIRECTOR	main	194	0x0A096	262	-	deny_char_camerashake	0	-	-	-	-	-		01 verb-table.tsv
+rui_e0101	DIRECTOR	main	194	0x0A096	262	-	deny_char_camerashake	0	argument 1: whether camera-vibration requests of kind 2 are refused	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	DIRECTOR	main	195	0x0A09C	263	-	motiondispose	1	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	DIRECTOR	main	196	0x0A0A2	264	-	effectcancel_e4	0	effect slot 0: set to state 4 and its queue entry released	-	-	-	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
 rui_e0101	DIRECTOR	main	197	0x0A0AC	265	-	switch	file_var_s0_1[0]	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -20934,7 +20934,7 @@ rui_e0101	ATEL_EFFECT	CUT02	2	0x0A3E7	509	-	maskopenfast	0	argument 1: popped an
 rui_e0101	ATEL_EFFECT	CUT02	3	0x0A3EA	510	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	ATEL_EFFECT	CUT02	4	0x0A3ED	511	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	ATEL_EFFECT	CUT02	5	0x0A3F3	512	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-rui_e0101	ATEL_EFFECT	CUT02	6	0x0A3F9	513	-	deny_char_camerashake	1	-	-	-	-	-		01 verb-table.tsv
+rui_e0101	ATEL_EFFECT	CUT02	6	0x0A3F9	513	-	deny_char_camerashake	1	argument 1: whether camera-vibration requests of kind 2 are refused	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	ATEL_EFFECT	CUT02	7	0x0A3FC	514	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	ATEL_EFFECT	END_s	1	0x0A3FD	519	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	EFFECT	init	1	0x0A3FE	528	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -21595,7 +21595,7 @@ rui_e0101	PC02	END_s	8	0x0B436	1507	-	refreshparty	-	the four party roster membe
 rui_e0101	PC02	END_s	9	0x0B439	1508	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0101	PC02	END_s	10	0x0B43C	1509	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	PC03	init	1	0x0B43D	1518	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-rui_e0101	PC03	START	1	0x0B441	1523	-	captureguestmember	0	-	-	-	-	-		01 verb-table.tsv
+rui_e0101	PC03	START	1	0x0B441	1523	-	captureguestmember	0	argument 1: the index into the guest list (0x0031B680 selector 1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rui_e0101	PC03	START	2	0x0B444	1524	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rui_e0101	PC03	CUT01	1	0x0B445	1529	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 rui_e0101	PC03	CUT01	2	0x0B448	1530	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

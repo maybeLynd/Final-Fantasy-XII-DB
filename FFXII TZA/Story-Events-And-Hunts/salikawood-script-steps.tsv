@@ -199,7 +199,7 @@ frs_a01	DIRECTOR	init	11	0x0A6E4	412	-	return	-	-	-	-	-	-	resolved	01 ../Scripts
 frs_a01	DIRECTOR	main	1	0x0A6E8	417	-	if	unkCall_5b4()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a01	DIRECTOR	main	2	0x0A6F4	419	unkCall_5b4()	setmapidmj	1, 0, 0	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a01	DIRECTOR	main	3	0x0A700	420	unkCall_5b4()	setmapidmj	1, 7, 0	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_a01	DIRECTOR	main	4	0x0A709	421	unkCall_5b4()	unkCall_5c7	1, 0	-	-	-	-	-		01 verb-table.tsv
+frs_a01	DIRECTOR	main	4	0x0A709	421	unkCall_5b4()	unkCall_5c7	1, 0	argument 1: ignored / argument 2: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a01	DIRECTOR	main	5	0x0A713	423	-	if	g_com_mnp_サリカ樹林ロケタイ == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a01	DIRECTOR	main	6	0x0A71C	425	g_com_mnp_サリカ樹林ロケタイ == 0	store	event_global_flag[0] = 250	variable event_global_flag[0] (global short[64]@0x0b72)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 frs_a01	DIRECTOR	main	7	0x0A731	426	g_com_mnp_サリカ樹林ロケタイ == 0	if	ismapjumpgroupflag(38) == 0 and nowjumpindex() == 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3717,7 +3717,7 @@ frs_a05	NPC01	talk	35	0x0DAB8	2029	local_var_s24f0_1 = 1; not (global_var_2[0] =
 frs_a05	NPC01	talk	36	0x0DABE	2030	local_var_s24f0_1 = 1; not (global_var_2[0] == 0)	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 frs_a05	NPC01	talk	37	0x0DAC4	2031	local_var_s24f0_1 = 1; not (global_var_2[0] == 0)	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 frs_a05	NPC01	talk	38	0x0DAC7	2033	local_var_s24f0_1 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a05	NPC01	talk	39	0x0DADC	2035	-	lookatoff_4f4	1	-	-	-	-	-		01 verb-table.tsv
+frs_a05	NPC01	talk	39	0x0DADC	2035	-	lookatoff_4f4	1	argument 1: how far the calling actor's head look is switched off (an ACT form acts on the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	talk	40	0x0DADF	2036	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a05	NPC01	トーク代用	1	0x0DAE3	2041	-	sysAturna	-1	argument 1: the actor the calling actor turns its body and head to face	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	トーク代用	2	0x0DAEA	2042	-	switch	local_var_s24f0_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3757,7 +3757,7 @@ frs_a05	NPC01	トーク代用	35	0x0DBD3	2085	local_var_s24f0_1 = 1; not (global
 frs_a05	NPC01	トーク代用	36	0x0DBD9	2086	local_var_s24f0_1 = 1; not (global_var_2[0] == 0)	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 frs_a05	NPC01	トーク代用	37	0x0DBDF	2087	local_var_s24f0_1 = 1; not (global_var_2[0] == 0)	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 frs_a05	NPC01	トーク代用	38	0x0DBE2	2089	local_var_s24f0_1 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a05	NPC01	トーク代用	39	0x0DBF7	2091	-	lookatoff_4f4	1	-	-	-	-	-		01 verb-table.tsv
+frs_a05	NPC01	トーク代用	39	0x0DBF7	2091	-	lookatoff_4f4	1	argument 1: how far the calling actor's head look is switched off (an ACT form acts on the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	トーク代用	40	0x0DBFA	2092	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a05	NPC01	NPC挙動	1	0x0DBFE	2104	-	stdmotionread	16	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a05	NPC01	NPC挙動	2	0x0DC01	2105	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4781,7 +4781,7 @@ frs_a06	NPC01	帰還準備位置	20	0x0F0D3	2966	local_var_s16f0_1 = 2	dir	1.957
 frs_a06	NPC01	帰還準備位置	21	0x0F0D9	2967	local_var_s16f0_1 = 2	motionplay	0x10000005	animation 5 of motion 0 of `frs_a06.mot` (bytes 0x800, length 0x2D600)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 frs_a06	NPC01	帰還準備位置	22	0x0F0DC	2968	local_var_s16f0_1 = 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a06	NPC01	帰還準備位置	23	0x0F0F4	2970	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_a06	NPC01	あいさつ	1	0x0F0F8	2980	-	lookatoff_4f4	1	-	-	-	-	-		01 verb-table.tsv
+frs_a06	NPC01	あいさつ	1	0x0F0F8	2980	-	lookatoff_4f4	1	argument 1: how far the calling actor's head look is switched off (an ACT form acts on the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_a06	NPC01	あいさつ	2	0x0F0FF	2981	-	switch	local_var_s16f0_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a06	NPC01	あいさつ	3	0x0F102	2983	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_a06	NPC01	あいさつ	4	0x0F108	2984	local_var_s16f0_1 = 0	motionplay_bb	0x10000006, 20	animation 6 of motion 0 of `frs_a06.mot` (bytes 0x800, length 0x2D600)	-	frame count 20 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
@@ -5997,8 +5997,8 @@ frs_b02	監督	main	2	0x0B4EF	522	unkCall_5b4()	setmapidmj	3, 0, 0	argument 1: t
 frs_b02	監督	main	3	0x0B4FB	523	unkCall_5b4()	setmapidmj	3, 7, 0	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b02	監督	main	4	0x0B507	524	unkCall_5b4()	setmapidmj	4, 0, 0	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b02	監督	main	5	0x0B513	525	unkCall_5b4()	setmapidmj	4, 7, 0	argument 1: the map-jump group / argument 2: which passage bit of the entry / argument 3: open or close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-frs_b02	監督	main	6	0x0B51C	526	unkCall_5b4()	unkCall_5c7	1, 0	-	-	-	-	-		01 verb-table.tsv
-frs_b02	監督	main	7	0x0B525	527	unkCall_5b4()	unkCall_5c7	2, 0	-	-	-	-	-		01 verb-table.tsv
+frs_b02	監督	main	6	0x0B51C	526	unkCall_5b4()	unkCall_5c7	1, 0	argument 1: ignored / argument 2: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+frs_b02	監督	main	7	0x0B525	527	unkCall_5b4()	unkCall_5c7	2, 0	argument 1: ignored / argument 2: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b02	監督	main	8	0x0B528	529	-	goto	local_jmp_8	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b02	監督	main	9	0x0B52B	530	unreachable in the listing	label	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b02	監督	main	10	0x0B52E	531	unreachable in the listing	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
@@ -9897,7 +9897,7 @@ frs_b0200	BOSS_ボムキング	カット１	4	0x016D8	775	-	motionplay_bb	0x1100
 frs_b0200	BOSS_ボムキング	カット１	5	0x016DE	776	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 frs_b0200	BOSS_ボムキング	カット１	6	0x016ED	777	-	rcmove_3f	10.3024797, -1.37499905, 5.9582262, 0.699999988	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	BOSS_ボムキング	カット１	7	0x016F3	778	-	wait	3	-	-	3 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-frs_b0200	BOSS_ボムキング	カット１	8	0x016FC	779	-	rturnt_4b	-0.0232909992, 12	-	-	-	-	-		01 verb-table.tsv
+frs_b0200	BOSS_ボムキング	カット１	8	0x016FC	779	-	rturnt_4b	-0.0232909992, 12	argument 1: the heading in radians the calling actor turns to / argument 2: the turn's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	BOSS_ボムキング	カット１	9	0x016FF	780	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b0200	BOSS_ボムキング	カット２	1	0x01709	785	-	setpos	0, 0, 0	this actor, placed at (0, 0, 0)	-	-	-	-	resolved	0x0034EBC0 (read here)
 frs_b0200	BOSS_ボムキング	カット２	2	0x0170F	786	-	dir	0	this actor, turned to facing 0	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -9923,8 +9923,8 @@ frs_b0200	BOSS_ボムキング	終了	10	0x0178A	817	-	return	-	-	-	-	-	-	resolv
 frs_b0200	BOSS_ボムキング・乗っ取り２	init	1	0x0178B	826	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b0200	BOSS_ボムキング・乗っ取り２	準備	1	0x0178F	831	-	captureactor_367	0x03000010	the zone actor named by tag-3 reference 0x03000010	-	-	-	-		01 ../Scripts-And-Script-Commands/party-during-scenes.md
 frs_b0200	BOSS_ボムキング・乗っ取り２	準備	2	0x01792	832	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-frs_b0200	BOSS_ボムキング・乗っ取り２	カット１	1	0x01799	837	-	rturnt_4b	-0.0180520006, 13	-	-	-	-	-		01 verb-table.tsv
-frs_b0200	BOSS_ボムキング・乗っ取り２	カット１	2	0x017A2	838	-	rturnt_4b	-0.0105990004, 8	-	-	-	-	-		01 verb-table.tsv
+frs_b0200	BOSS_ボムキング・乗っ取り２	カット１	1	0x01799	837	-	rturnt_4b	-0.0180520006, 13	argument 1: the heading in radians the calling actor turns to / argument 2: the turn's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+frs_b0200	BOSS_ボムキング・乗っ取り２	カット１	2	0x017A2	838	-	rturnt_4b	-0.0105990004, 8	argument 1: the heading in radians the calling actor turns to / argument 2: the turn's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 frs_b0200	BOSS_ボムキング・乗っ取り２	カット１	3	0x017A5	839	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b0200	BOSS_ボム_０	init	1	0x017A6	848	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 frs_b0200	BOSS_ボム_０	準備	1	0x017AA	853	-	captureactor_367	0x03000020	the zone actor named by tag-3 reference 0x03000020	-	-	-	-		01 ../Scripts-And-Script-Commands/party-during-scenes.md

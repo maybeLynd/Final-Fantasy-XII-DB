@@ -4611,13 +4611,13 @@ mfr_a04	演出	init	6	0x056E0	3042	-	sysDVAR	8, file_var_s27_1[1]	nothing: the d
 mfr_a04	演出	init	7	0x056EA	3043	-	sysDVAR	9, file_var_s27_1[2]	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a04	演出	init	8	0x056F4	3044	-	sysDVAR	10, file_var_s27_1[3]	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a04	演出	init	9	0x056F5	3045	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_a04	演出	ev01_bakup	1	0x05702	3050	-	fadecolor	0, 0, 0, 255	-	-	-	-	-		01 verb-table.tsv
+mfr_a04	演出	ev01_bakup	1	0x05702	3050	-	fadecolor	0, 0, 0, 255	argument 1: the red of the next screen fade's colour / argument 2: the green of the fade colour (0x022BDD59, +0x29) / argument 3: the blue of the fade colour (0x022BDD5A, +0x2A) / argument 4: the alpha of the fade colour (0x022BDD5B, +0x2B); 0x80 is full strength	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev01_bakup	2	0x05708	3051	-	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 mfr_a04	演出	ev01_bakup	3	0x0570B	3052	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev01_bakup	4	0x05711	3053	-	bgeffectstop	31	argument 1: the effect channel of the map's effect bank (the PS2Data efb file of the map) to stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev01_bakup	5	0x05720	3054	-	setposparty	187.174316, 8, 382.255157, -0.236708	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev01_bakup	6	0x05723	3055	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_a04	演出	ev01	1	0x05730	3060	-	fadecolor	0, 0, 0, 255	-	-	-	-	-		01 verb-table.tsv
+mfr_a04	演出	ev01	1	0x05730	3060	-	fadecolor	0, 0, 0, 255	argument 1: the red of the next screen fade's colour / argument 2: the green of the fade colour (0x022BDD59, +0x29) / argument 3: the blue of the fade colour (0x022BDD5A, +0x2A) / argument 4: the alpha of the fade colour (0x022BDD5B, +0x2B); 0x80 is full strength	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev01	2	0x05736	3061	-	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 mfr_a04	演出	ev01	3	0x05739	3062	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev01	4	0x0573C	3063	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4659,7 +4659,7 @@ mfr_a04	演出	ev04	15	0x05815	3115	-	dir	3.14159274	this actor, turned to facin
 mfr_a04	演出	ev04	16	0x0581B	3116	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 mfr_a04	演出	ev04	17	0x05821	3117	-	fadein	30	the screen fade, in	-	30 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 mfr_a04	演出	ev04	18	0x05824	3118	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mfr_a04	演出	ev04	19	0x05830	3119	-	eventsoundtrans	local_var_s28f3_1, 120, 0	-	-	-	-	-		01 verb-table.tsv
+mfr_a04	演出	ev04	19	0x05830	3119	-	eventsoundtrans	local_var_s28f3_1, 120, 0	argument 1: the play handle of a sound the script started (a value kept from a sound verb's result) whose volume is changed / argument 2: the frames the change takes; 0 sets the volume at once / argument 3: the volume, 0 to 127 (masked with 0x7F by 0x00210D20 and 0x00210E10, 0x00210D53 and 0x00210E43)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev04	20	0x0583D	3120	-	if	getx_12b(-1) < 183.600006	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_a04	演出	ev04	21	0x05849	3122	getx_12b(-1) < 183.600006	rmove	183.5, 8, 380.5	argument 1: the x coordinate of the point the calling actor walks to (0x00357A20 pops the speed, then z, y, x) / argument 2: the y coordinate / argument 3: the z coordinate; the speed pushed is the actor's walk speed, movement context +0xE0 (0x002640E0), and the movement mode becomes 2 (0x0026C120)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev04	22	0x05865	3126	not (getx_12b(-1) < 183.600006)	rmove	getx_12b(-1), gety_12c(-1), (getz_12d(-1) - 1.5)	argument 1: the x coordinate of the point the calling actor walks to (0x00357A20 pops the speed, then z, y, x) / argument 2: the y coordinate / argument 3: the z coordinate; the speed pushed is the actor's walk speed, movement context +0xE0 (0x002640E0), and the movement mode becomes 2 (0x0026C120)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4668,7 +4668,7 @@ mfr_a04	演出	ev04	24	0x0586E	3129	-	movecancel	-	the calling actor's move (an 
 mfr_a04	演出	ev04	25	0x05874	3130	-	eventsoundstop	local_var_s28f3_1	argument 1: a play handle of a sound the script started earlier (a value it kept from a sound verb's result)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	ev04	26	0x05877	3131	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_a04	演出	ev04	27	0x0587A	3132	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_a04	演出	入れないショート	1	0x05887	3137	-	fadecolor	0, 0, 0, 255	-	-	-	-	-		01 verb-table.tsv
+mfr_a04	演出	入れないショート	1	0x05887	3137	-	fadecolor	0, 0, 0, 255	argument 1: the red of the next screen fade's colour / argument 2: the green of the fade colour (0x022BDD59, +0x29) / argument 3: the blue of the fade colour (0x022BDD5A, +0x2A) / argument 4: the alpha of the fade colour (0x022BDD5B, +0x2B); 0x80 is full strength	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	入れないショート	2	0x0588D	3138	-	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 mfr_a04	演出	入れないショート	3	0x05890	3139	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	入れないショート	4	0x05896	3140	-	bgeffectstop	31	argument 1: the effect channel of the map's effect bank (the PS2Data efb file of the map) to stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4690,7 +4690,7 @@ mfr_a04	演出	入れないショート	19	0x058EA	3155	-	move	187.421066, 8, 38
 mfr_a04	演出	入れないショート	20	0x058ED	3156	-	movesync	-	the calling actor's scripted move (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	入れないショート	21	0x058F0	3157	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mfr_a04	演出	入れないショート	22	0x058F3	3158	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_a04	演出	入れないロング	1	0x05900	3163	-	fadecolor	0, 0, 0, 255	-	-	-	-	-		01 verb-table.tsv
+mfr_a04	演出	入れないロング	1	0x05900	3163	-	fadecolor	0, 0, 0, 255	argument 1: the red of the next screen fade's colour / argument 2: the green of the fade colour (0x022BDD59, +0x29) / argument 3: the blue of the fade colour (0x022BDD5A, +0x2A) / argument 4: the alpha of the fade colour (0x022BDD5B, +0x2B); 0x80 is full strength	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	入れないロング	2	0x05906	3164	-	fadeout	30	the screen fade, out	-	30 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 mfr_a04	演出	入れないロング	3	0x05909	3165	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_a04	演出	入れないロング	4	0x0590F	3166	-	bgeffectstop	31	argument 1: the effect channel of the map's effect bank (the PS2Data efb file of the map) to stop	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6995,7 +6995,7 @@ mfr_c03	MAP_SECOND_CAMERA	再来時用カメラスタート	2	0x04944	513	-	hide
 mfr_c03	MAP_SECOND_CAMERA	再来時用カメラスタート	3	0x0494A	514	-	camerastart	0x02000000	camera row 0 `mapgcam_2nd_camera`: shot 0 `mapgcam_2nd_camera`, channel 0	-	shot 30 frames in 1 segment	-	-	resolved	0x0034FE00 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 mfr_c03	MAP_SECOND_CAMERA	再来時用カメラスタート	4	0x04956	515	-	crossfade	0, 1, 20	argument 1: the crossfade's flags / argument 2: the capture mode of the still picture / argument 3: the crossfade's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	MAP_SECOND_CAMERA	再来時用カメラスタート	5	0x04959	516	-	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mfr_c03	MAP_SECOND_CAMERA	再来時用カメラスタート	6	0x0495C	517	-	disposeentry	-	-	-	-	-	-		01 verb-table.tsv
+mfr_c03	MAP_SECOND_CAMERA	再来時用カメラスタート	6	0x0495C	517	-	disposeentry	-	the models of manager 0's battle-eligible actors, taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	MAP_SECOND_CAMERA	再来時用カメラスタート	7	0x0495F	518	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_c03	MAP_SECOND_CAMERA	カメラクリア	1	0x04963	523	-	fadesync_d3	2	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_c03	MAP_SECOND_CAMERA	カメラクリア	2	0x04966	524	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -8978,7 +8978,7 @@ mfr_b0100	SHAKE_CAMERA	終了	1	0x0117E	404	-	camerashakeclear	-	the camera-shak
 mfr_b0100	SHAKE_CAMERA	終了	2	0x01181	405	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_b0100	ATEL_EFFECT	init	1	0x01182	414	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mfr_b0100	ATEL_EFFECT	準備	1	0x01186	419	-	setmaphighmodeldepth	0x01f4	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mfr_b0100	ATEL_EFFECT	準備	2	0x0118C	420	-	setmaplod	2	-	-	-	-	-		01 verb-table.tsv
+mfr_b0100	ATEL_EFFECT	準備	2	0x0118C	420	-	setmaplod	2	argument 1: the map level-of-detail mode	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	ATEL_EFFECT	準備	3	0x01192	421	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	ATEL_EFFECT	準備	4	0x01198	422	-	setfocusstatus	1	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	ATEL_EFFECT	準備	5	0x0119E	423	-	setfocuslength	25	argument 1: the depth of field's focal distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -9043,7 +9043,7 @@ mfr_b0100	ATEL_EFFECT	カット３	26	0x012F1	493	-	setfocusalpha	60	argument 1:
 mfr_b0100	ATEL_EFFECT	カット３	27	0x012F7	494	-	setfocusmode	2	argument 1: which side of the focal distance the depth of field blurs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	ATEL_EFFECT	カット３	28	0x012FD	495	-	setfocusstatus	1	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	ATEL_EFFECT	カット３	29	0x01300	496	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mfr_b0100	ATEL_EFFECT	終了	1	0x01304	501	-	setmaplod	0	-	-	-	-	-		01 verb-table.tsv
+mfr_b0100	ATEL_EFFECT	終了	1	0x01304	501	-	setmaplod	0	argument 1: the map level-of-detail mode	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	ATEL_EFFECT	終了	2	0x0130A	502	-	setcharclipall	1	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	ATEL_EFFECT	終了	3	0x01310	503	-	setfocusstatus	0	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mfr_b0100	ATEL_EFFECT	終了	4	0x01313	504	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

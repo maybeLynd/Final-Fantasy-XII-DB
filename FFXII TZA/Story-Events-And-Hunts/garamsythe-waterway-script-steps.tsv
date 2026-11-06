@@ -1570,7 +1570,7 @@ grm_a03	操作キャラ_CPT	イベント前準備	2	0x02D2D	1075	-	movecancel	-	
 grm_a03	操作キャラ_CPT	イベント前準備	3	0x02D30	1076	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 grm_a03	操作キャラ_CPT	イベント前準備	4	0x02D36	1077	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a03	操作キャラ_CPT	戻る	1	0x02D37	1082	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_a03	操作キャラ_CPT	戻る	2	0x02D46	1083	-	amove_4d3	32, 13, 9.19999981, getdefaultwalkspeed()	-	-	-	-	-		01 verb-table.tsv
+grm_a03	操作キャラ_CPT	戻る	2	0x02D46	1083	-	amove_4d3	32, 13, 9.19999981, getdefaultwalkspeed()	argument 1: the x of the point the calling actor walks to (the fourth and last pop of 0x00357A20); the begin 0x0033FFC0 calls 0x00357A20, which pops the four values, sets the walk speed (0x0026D6A0, 0x0026A640) and the target point (0x0026AE30, 0x0026AF10) and hands the steering to 0x0026AE90; 0x00263F40 then takes the actor's capturer when it is bound, 0x002EB430 sets the idle motion 0x1001 and 0x0026C120 puts the move in mode 2 / argument 2: the y (height) of the target point, the third pop of 0x00357A20 / argument 3: the z of the target point, the second pop of 0x00357A20 / argument 4: the walk speed, in units per frame	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a03	操作キャラ_CPT	戻る	3	0x02D49	1084	-	movesync	-	the calling actor's scripted move (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a03	操作キャラ_CPT	戻る	4	0x02D4C	1085	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a03	操作キャラ_CPT	戻る	5	0x02D4F	1086	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -1964,8 +1964,8 @@ grm_a04	イベント管理	即席パーティー結成_再生	4	0x02777	768	-	uc
 grm_a04	イベント管理	即席パーティー結成_再生	5	0x0277D	769	-	addpartymember	2	party: Fran joins	-	-	-	-	resolved	this page's How a call is read
 grm_a04	イベント管理	即席パーティー結成_再生	6	0x02783	770	-	addpartymember	3	party: Balthier joins	-	-	-	-	resolved	this page's How a call is read
 grm_a04	イベント管理	即席パーティー結成_再生	7	0x0278F	771	-	setbattlemember	0, 3, 2	party: fighting party set: Vaan, Balthier, Fran	-	-	-	-	resolved	this page's How a call is read
-grm_a04	イベント管理	即席パーティー結成_再生	8	0x02798	772	-	setgambit_slotmax	0, 1	-	-	-	-	-		01 verb-table.tsv
-grm_a04	イベント管理	即席パーティー結成_再生	9	0x027A1	773	-	setgambit_slotmax	5, 1	-	-	-	-	-		01 verb-table.tsv
+grm_a04	イベント管理	即席パーティー結成_再生	8	0x02798	772	-	setgambit_slotmax	0, 1	argument 1: the party record (0 to 0x27) whose gambit slot counts change / argument 2: the number of gambit slots added (negative removes)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_a04	イベント管理	即席パーティー結成_再生	9	0x027A1	773	-	setgambit_slotmax	5, 1	argument 1: the party record (0 to 0x27) whose gambit slot counts change / argument 2: the number of gambit slots added (negative removes)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	イベント管理	即席パーティー結成_再生	10	0x027A7	774	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 grm_a04	イベント管理	即席パーティー結成_再生	11	0x027AA	775	-	showparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a04	イベント管理	即席パーティー結成_再生	12	0x027B3	776	-	eventread_e8	0, 0x013d	scenes: grm_a0400, event 317	-	-	-	-	resolved	this page's How a call is read
@@ -3806,7 +3806,7 @@ grm_b02	ボスイベント起動	ガラムサイズ帝国兵	64	0x03050	992	-	se
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	65	0x03053	993	-	bossgaugeopen	-	battles: boss gauge shown	-	-	-	-	resolved	this page's How a call is read
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	66	0x03059	994	-	waitv	&scratch1_var_1	variable scratch1_var_1	-	-	waits while scratch1_var_1 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	67	0x0305C	995	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
-grm_b02	ボスイベント起動	ガラムサイズ帝国兵	68	0x0305F	996	-	suspendbattle_no_resetmotion	-	-	-	-	-	-		01 verb-table.tsv
+grm_b02	ボスイベント起動	ガラムサイズ帝国兵	68	0x0305F	996	-	suspendbattle_no_resetmotion	-	the battle in progress, paused without resetting the units' motions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	69	0x03062	997	-	party_motionsync_and_relax	-	the four party roster actors' motions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	70	0x03065	998	-	bossgaugeclose	-	the boss gauge	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b02	ボスイベント起動	ガラムサイズ帝国兵	71	0x0306B	999	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -8569,7 +8569,7 @@ grm_e03	Mapdirector	init	44	0x02D8A	1051	-	setmapidfloor	3, 4, 1	argument 1: the
 grm_e03	Mapdirector	init	45	0x02D96	1052	-	setmapidfloor	3, 9, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e03	Mapdirector	init	46	0x02DA2	1053	-	setmapidwall	3, 5, 1	argument 1: the wall group g (0-31) whose override is written / argument 2: which wall bit of the entry / argument 3: on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e03	Mapdirector	init	47	0x02DAE	1054	-	setmapidwall	3, 6, 1	argument 1: the wall group g (0-31) whose override is written / argument 2: which wall bit of the entry / argument 3: on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_e03	Mapdirector	init	48	0x02DB4	1055	-	resetmapidmj	3	-	-	-	-	-		01 verb-table.tsv
+grm_e03	Mapdirector	init	48	0x02DB4	1055	-	resetmapidmj	3	argument 1: the map-jump group whose entry mask is cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e03	Mapdirector	init	49	0x02DC4	1056	-	if	not ((g_com_マップ通行制限フラグ[0] & 1))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_e03	Mapdirector	init	50	0x02DD0	1058	not ((g_com_マップ通行制限フラグ[0] & 1))	bganimeplay_9e	20, 170, 170	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_e03	Mapdirector	init	51	0x02DDC	1059	not ((g_com_マップ通行制限フラグ[0] & 1))	setmapidfloor	1, 0, 0	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -21764,10 +21764,10 @@ grm_g01	PC03	init	1	0x01C1E	827	-	setupbattle	3	argument 1: the party slot (0-3)
 grm_g01	PC03	init	2	0x01C21	828	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_g01	ヴァン	init	1	0x01C22	837	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_g01	ヴァン	main	1	0x01C23	842	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_g01	ヴァン	乗っ取る	1	0x01C27	847	-	PC00.initsync	-	target actor `PC00` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
-grm_g01	ヴァン	乗っ取る	2	0x01C2D	848	-	PC01.initsync	-	target actor `PC01` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
-grm_g01	ヴァン	乗っ取る	3	0x01C33	849	-	PC02.initsync	-	target actor `PC02` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
-grm_g01	ヴァン	乗っ取る	4	0x01C39	850	-	PC03.initsync	-	target actor `PC03` (this script)	-	-	-	-		01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 verb-table.tsv
+grm_g01	ヴァン	乗っ取る	1	0x01C27	847	-	PC00.initsync	-	target actor `PC00` (this script) / the named actor's initialisation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_g01	ヴァン	乗っ取る	2	0x01C2D	848	-	PC01.initsync	-	target actor `PC01` (this script) / the named actor's initialisation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_g01	ヴァン	乗っ取る	3	0x01C33	849	-	PC02.initsync	-	target actor `PC02` (this script) / the named actor's initialisation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+grm_g01	ヴァン	乗っ取る	4	0x01C39	850	-	PC03.initsync	-	target actor `PC03` (this script) / the named actor's initialisation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g01	ヴァン	乗っ取る	5	0x01C3C	851	-	setemergency	-	the party's battle units, put in the engaged state, and their weapons	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g01	ヴァン	乗っ取る	6	0x01C4B	852	-	setposparty	139.393234, -2, 142.256058, -1.92777395	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g01	ヴァン	乗っ取る	7	0x01C51	853	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -22093,7 +22093,7 @@ grm_a0200	監督	main	34	0x00E0A	71	(getsummonmodebit() or getchocobomodebit()) 
 grm_a0200	監督	main	35	0x00E10	72	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	fadesync_d3	1	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0200	監督	main	36	0x00E16	73	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); not (istownmap())	store	scratch1_var_1 = 0	variable scratch1_var_1 (scratch1 short@0x1e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_a0200	監督	main	37	0x00E1C	76	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_a0200	監督	main	38	0x00E22	77	-	debug_lightdatamustinit	0	-	-	-	-	-		01 verb-table.tsv
+grm_a0200	監督	main	38	0x00E22	77	-	debug_lightdatamustinit	0	argument 1: whether a light file's type-2 group is reset when it loads	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0200	監督	main	39	0x00E28	78	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0200	監督	main	40	0x00E2E	79	-	maskopenfast	0	argument 1: popped and ignored (304 of the 305 calls pass 0). The verb opens the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0200	監督	main	41	0x00E31	80	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -22408,7 +22408,7 @@ grm_a0200	セリフ	cut_03_01	58	0x015E6	585	-	return	-	-	-	-	-	-	resolved	01 ..
 grm_a0200	セリフ	cut_03_02	1	0x015E7	590	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0200	ボイスパン	init	1	0x015E8	599	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0200	ボイスパン	main	1	0x015E9	604	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_a0200	ボイスパン	pan_00	1	0x015F0	609	-	voicepan	3, 250	-	-	-	-	-		01 verb-table.tsv
+grm_a0200	ボイスパン	pan_00	1	0x015F0	609	-	voicepan	3, 250	argument 1: the voice cue whose stream is panned, in the voice verbs' form / argument 2: the pan, 0-255 with 64 the scripts' usual value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0200	ボイスパン	pan_00	2	0x015F3	610	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0200	BGM監督	init	1	0x015F4	619	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0200	BGM監督	main	1	0x015F5	624	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -24687,7 +24687,7 @@ grm_a0401	フラン_BND	イベント準備	10	0x00D01	442	-	setautorelax	0	argum
 grm_a0401	フラン_BND	イベント準備	11	0x00D07	443	-	setcharseplay	1	argument 1: whether the calling actor's animation sounds play (an ACT form: the named actor's)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0401	フラン_BND	イベント準備	12	0x00D0A	444	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0401	フラン_BND	カット０１ａ	1	0x00D0B	449	-	lookat_maxvelr_limit_unlock	-	the calling actor's next timed head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_a0401	フラン_BND	カット０１ａ	2	0x00D17	450	-	lookatw_4c5	1.39999998, -14, 10	-	-	-	-	-		01 verb-table.tsv
+grm_a0401	フラン_BND	カット０１ａ	2	0x00D17	450	-	lookatw_4c5	1.39999998, -14, 10	argument 1: the heading the calling actor's head turns to, in radians, and the verb waits / argument 2: the pitch of the head look, in radians / argument 3: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0401	フラン_BND	カット０１ａ	3	0x00D1D	451	-	bonecalcforce	30	argument 1: how many sub-steps the calling actor's sway simulation (hair, cloth and hanging gear: the oscillator record of its model's rig) runs at once to settle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_a0401	フラン_BND	カット０１ａ	4	0x00D20	452	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_a0401	フラン_BND	カット０１ｂ	1	0x00D24	457	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -25745,7 +25745,7 @@ grm_b0200	ボイス	init	1	0x02502	732	-	return	-	-	-	-	-	-	resolved	01 ../Scrip
 grm_b0200	ボイス	cut_01	1	0x02506	737	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 grm_b0200	ボイス	cut_01	2	0x02515	738	-	voiceplay_28c	15, 0, 192, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_01	3	0x0251B	739	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_b0200	ボイス	cut_02	1	0x02522	744	-	voicepan	0, 64	-	-	-	-	-		01 verb-table.tsv
+grm_b0200	ボイス	cut_02	1	0x02522	744	-	voicepan	0, 64	argument 1: the voice cue whose stream is panned, in the voice verbs' form / argument 2: the pan, 0-255 with 64 the scripts' usual value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_02	2	0x02528	745	-	voiceplay	1	argument 1: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_02	3	0x0252E	746	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	cut_03	1	0x02532	751	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -25780,7 +25780,7 @@ grm_b0200	ボイス	cut_09	3	0x025EC	803	-	wait	5	-	-	5 frames	waits	-	resolved	
 grm_b0200	ボイス	cut_09	4	0x025F5	804	-	voiceplay_28b	12, 0x01000005	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	cut_09	5	0x025FB	805	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	メッセージ06	1	0x025FF	810	-	voicestop	0x01000005	argument 1: the voice line to stop, the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_b0200	ボイス	メッセージ06	2	0x0260B	811	-	voiceplay_b5	0x01000007, 32, 127	-	-	-	-	-		01 verb-table.tsv
+grm_b0200	ボイス	メッセージ06	2	0x0260B	811	-	voiceplay_b5	0x01000007, 32, 127	argument 1: the voice cue played (slot in the top byte, index below) / argument 2: the pan, 0-255, pushed as voiceplay_28c's pan / argument 3: the volume, 0-127 (127 in all 9 calls), pushed as voiceplay_28c's volume	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_b0200	ボイス	メッセージ06	3	0x02611	812	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	メッセージ07	1	0x02615	817	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_b0200	ボイス	メッセージ08	1	0x0261C	822	-	voiceplay_28b	13, 0x01000009	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -29862,7 +29862,7 @@ grm_c0100	ボス巨大	着地c7	3	0x02318	868	-	motionstartframe	0	argument 1: t
 grm_c0100	ボス巨大	着地c7	4	0x0231E	869	-	motionloop	0	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0100	ボス巨大	着地c7	5	0x02324	870	-	motionplay	0x11000005	animation 5 of motion 1 of `grm_c0100.mot` (bytes 0x800, length 0x119D0)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 grm_c0100	ボス巨大	着地c7	6	0x0232A	871	-	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-grm_c0100	ボス巨大	着地c7	7	0x02333	872	-	rturn_50	0.17453292, 0.0174532924	-	-	-	-	-		01 verb-table.tsv
+grm_c0100	ボス巨大	着地c7	7	0x02333	872	-	rturn_50	0.17453292, 0.0174532924	argument 1: the world heading, in radians, the calling actor turns to, without waiting / argument 2: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0100	ボス巨大	着地c7	8	0x02336	873	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c0100	ボス中	init	1	0x02337	882	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c0100	ボス中	ボス乗っ取る	1	0x0233B	887	-	captureactor_367	0x0300000e	the zone actor named by tag-3 reference 0x0300000e	-	-	-	-		01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -31079,7 +31079,7 @@ grm_c0101	PC乗っ取り0	配置c1	1	0x02089	1141	-	setpos	file_var_s13_1, file_
 grm_c0101	PC乗っ取り0	配置c1	2	0x0208C	1142	-	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c0101	PC乗っ取り0	配置c1	3	0x0208F	1143	unreachable in the listing	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c0101	PC乗っ取り0	配置c1	4	0x02095	1144	-	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_c0101	PC乗っ取り0	配置c1	5	0x020A1	1145	-	rturn_4f	file_var_s8_1, 16, file_var_s8_2, 1.57079637	-	-	-	-	-		01 verb-table.tsv
+grm_c0101	PC乗っ取り0	配置c1	5	0x020A1	1145	-	rturn_4f	file_var_s8_1, 16, file_var_s8_2, 1.57079637	argument 1: x of the world point the calling actor turns to face, without waiting / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; with x it gives the bearing / argument 4: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	PC乗っ取り0	配置c1	6	0x020A4	1146	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	PC乗っ取り0	配置c1	7	0x020AD	1147	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 grm_c0101	PC乗っ取り0	配置c1	8	0x020B3	1148	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -31110,7 +31110,7 @@ grm_c0101	PC乗っ取り1	配置c1	3	0x0211E	1204	-	label	local_jmp_2	-	-	-	-	-	
 grm_c0101	PC乗っ取り1	配置c1	4	0x0212F	1205	-	setpos	(file_var_s13_1 - 4.5), file_var_s13_2, (file_var_s13_3 - 4.9000001)	this actor, placed at ((file_var_s13_1 - 4.5), file_var_s13_2, (file_var_s13_3 - 4.9000001))	-	-	-	-	resolved	0x0034EBC0 (read here)
 grm_c0101	PC乗っ取り1	配置c1	5	0x02132	1206	-	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c0101	PC乗っ取り1	配置c1	6	0x02138	1207	-	label	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_c0101	PC乗っ取り1	配置c1	7	0x02144	1208	-	rturn_4f	file_var_s8_1, 16, file_var_s8_2, 1.57079637	-	-	-	-	-		01 verb-table.tsv
+grm_c0101	PC乗っ取り1	配置c1	7	0x02144	1208	-	rturn_4f	file_var_s8_1, 16, file_var_s8_2, 1.57079637	argument 1: x of the world point the calling actor turns to face, without waiting / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; with x it gives the bearing / argument 4: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	PC乗っ取り1	配置c1	8	0x02147	1209	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	PC乗っ取り1	配置c1	9	0x02150	1210	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 grm_c0101	PC乗っ取り1	配置c1	10	0x02156	1211	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -31141,7 +31141,7 @@ grm_c0101	PC乗っ取り2	配置c1	3	0x021C1	1267	unreachable in the listing	got
 grm_c0101	PC乗っ取り2	配置c1	4	0x021C4	1268	-	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c0101	PC乗っ取り2	配置c1	5	0x021D5	1269	-	setpos	(file_var_s13_1 + 5.19999981), file_var_s13_2, (file_var_s13_3 + 5.19999981)	this actor, placed at ((file_var_s13_1 + 5.19999981), file_var_s13_2, (file_var_s13_3 + 5.19999981))	-	-	-	-	resolved	0x0034EBC0 (read here)
 grm_c0101	PC乗っ取り2	配置c1	6	0x021DB	1270	-	label	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_c0101	PC乗っ取り2	配置c1	7	0x021E7	1271	-	rturn_4f	file_var_s8_1, 16, file_var_s8_2, 1.57079637	-	-	-	-	-		01 verb-table.tsv
+grm_c0101	PC乗っ取り2	配置c1	7	0x021E7	1271	-	rturn_4f	file_var_s8_1, 16, file_var_s8_2, 1.57079637	argument 1: x of the world point the calling actor turns to face, without waiting / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; with x it gives the bearing / argument 4: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	PC乗っ取り2	配置c1	8	0x021EA	1272	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	PC乗っ取り2	配置c1	9	0x021F3	1273	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 grm_c0101	PC乗っ取り2	配置c1	10	0x021F9	1274	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -31173,7 +31173,7 @@ grm_c0101	PC乗っ取り3	配置c1	4	0x02267	1331	unreachable in the listing	got
 grm_c0101	PC乗っ取り3	配置c1	5	0x0226A	1332	-	label	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 grm_c0101	PC乗っ取り3	配置c1	6	0x0227B	1333	-	setpos	(file_var_s13_1 - 9.30000019), file_var_s13_2, (file_var_s13_3 + 6)	this actor, placed at ((file_var_s13_1 - 9.30000019), file_var_s13_2, (file_var_s13_3 + 6))	-	-	-	-	resolved	0x0034EBC0 (read here)
 grm_c0101	PC乗っ取り3	配置c1	7	0x0227E	1334	-	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-grm_c0101	PC乗っ取り3	配置c1	8	0x0228A	1335	-	rturn_4f	file_var_s8_1, 16, file_var_s8_2, 1.57079637	-	-	-	-	-		01 verb-table.tsv
+grm_c0101	PC乗っ取り3	配置c1	8	0x0228A	1335	-	rturn_4f	file_var_s8_1, 16, file_var_s8_2, 1.57079637	argument 1: x of the world point the calling actor turns to face, without waiting / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; with x it gives the bearing / argument 4: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	PC乗っ取り3	配置c1	9	0x0228D	1336	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_c0101	PC乗っ取り3	配置c1	10	0x02296	1337	-	stdmotionplay_2c2	0x01000000, 0	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 0 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 grm_c0101	PC乗っ取り3	配置c1	11	0x0229C	1338	-	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -31204,7 +31204,7 @@ grm_d0100	監督	main	17	0x010F3	45	-	sysReqwait	BGM監督::set	actor `BGM監督
 grm_d0100	監督	main	18	0x010F7	46	-	bgeffectplay	1	argument 1: the effect channel (0 to 63) of the map's effect bank (PS2Data efb file of the map) to start	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	19	0x01100	47	-	bgeffecttrigger	1, 1	argument 1: the map effect channel to signal / argument 2: the signal number, 1 to 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	20	0x01109	48	-	bgeffecttrigger	1, 2	argument 1: the map effect channel to signal / argument 2: the signal number, 1 to 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_d0100	監督	main	21	0x0110F	49	-	deny_camerashake_without_event	1	-	-	-	-	-		01 verb-table.tsv
+grm_d0100	監督	main	21	0x0110F	49	-	deny_camerashake_without_event	1	argument 1: whether the shake source the Screen Shake option governs is held off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	22	0x01115	50	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	23	0x0111B	51	-	maskopenfast	0	argument 1: popped and ignored (304 of the 305 calls pass 0). The verb opens the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	24	0x0111E	52	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -31308,7 +31308,7 @@ grm_d0100	監督	main	121	0x0144C	149	-	setmapidwall	3, 5, 1	argument 1: the wal
 grm_d0100	監督	main	122	0x01458	150	-	setmapidwall	3, 6, 1	argument 1: the wall group g (0-31) whose override is written / argument 2: which wall bit of the entry / argument 3: on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	123	0x01464	151	-	setmapidwall	4, 5, 0	argument 1: the wall group g (0-31) whose override is written / argument 2: which wall bit of the entry / argument 3: on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	124	0x01470	152	-	setmapidwall	4, 6, 0	argument 1: the wall group g (0-31) whose override is written / argument 2: which wall bit of the entry / argument 3: on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_d0100	監督	main	125	0x01476	153	-	deny_camerashake_without_event	0	-	-	-	-	-		01 verb-table.tsv
+grm_d0100	監督	main	125	0x01476	153	-	deny_camerashake_without_event	0	argument 1: whether the shake source the Screen Shake option governs is held off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	126	0x01479	154	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	127	0x0147F	155	-	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0100	監督	main	128	0x01485	156	-	maskclosefast	0	argument 1: popped and ignored (every call passes 0). The verb closes the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -32417,7 +32417,7 @@ grm_d0102	監督	main	40	0x016E2	87	-	setnoupdatebehindcamera	0	argument 1: whet
 grm_d0102	監督	main	41	0x016E8	88	-	bgeffectplay	1	argument 1: the effect channel (0 to 63) of the map's effect bank (PS2Data efb file of the map) to start	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	42	0x016F1	89	-	bgeffecttrigger	1, 1	argument 1: the map effect channel to signal / argument 2: the signal number, 1 to 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	43	0x016FA	90	-	bgeffecttrigger	1, 2	argument 1: the map effect channel to signal / argument 2: the signal number, 1 to 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_d0102	監督	main	44	0x01700	91	-	deny_camerashake_without_event	1	-	-	-	-	-		01 verb-table.tsv
+grm_d0102	監督	main	44	0x01700	91	-	deny_camerashake_without_event	1	argument 1: whether the shake source the Screen Shake option governs is held off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	45	0x01706	92	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	46	0x0170C	93	-	maskopenfast	0	argument 1: popped and ignored (304 of the 305 calls pass 0). The verb opens the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	47	0x0170F	94	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -32578,7 +32578,7 @@ grm_d0102	監督	main	201	0x01B6E	248	-	sysReqwait	モブ帝国兵４::set	actor
 grm_d0102	監督	main	202	0x01B75	249	-	sysReqwait	モブ帝国兵５::set	actor `モブ帝国兵５`	-	-	waits until モブ帝国兵５::set is no longer on its actor	モブ帝国兵５.set	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_d0102	監督	main	203	0x01B7C	250	-	sysReqwait	モブ帝国兵６::set	actor `モブ帝国兵６`	-	-	waits until モブ帝国兵６::set is no longer on its actor	モブ帝国兵６.set	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_d0102	監督	main	204	0x01B83	251	-	sysReqwait	モブ帝国兵７::set	actor `モブ帝国兵７`	-	-	waits until モブ帝国兵７::set is no longer on its actor	モブ帝国兵７.set	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-grm_d0102	監督	main	205	0x01B87	252	-	deny_camerashake_without_event	1	-	-	-	-	-		01 verb-table.tsv
+grm_d0102	監督	main	205	0x01B87	252	-	deny_camerashake_without_event	1	argument 1: whether the shake source the Screen Shake option governs is held off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	206	0x01B90	253	-	sysReqwait	BGM監督::re_set	actor `BGM監督`	-	-	waits until BGM監督::re_set is no longer on its actor	BGM監督.re_set	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_d0102	監督	main	207	0x01B94	254	-	startscene	6	scene cut 6, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 grm_d0102	監督	main	208	0x01B9A	255	-	store	scratch1_var_2 = 6	variable scratch1_var_2 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -32655,7 +32655,7 @@ grm_d0102	監督	main	278	0x01D5B	325	-	showparty	-	the party's characters in ro
 grm_d0102	監督	main	279	0x01D61	326	-	bgeffectplay	1	argument 1: the effect channel (0 to 63) of the map's effect bank (PS2Data efb file of the map) to start	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	280	0x01D6A	327	-	bgeffecttrigger	1, 3	argument 1: the map effect channel to signal / argument 2: the signal number, 1 to 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	281	0x01D73	328	-	bgeffecttrigger	1, 4	argument 1: the map effect channel to signal / argument 2: the signal number, 1 to 10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-grm_d0102	監督	main	282	0x01D79	329	-	deny_camerashake_without_event	0	-	-	-	-	-		01 verb-table.tsv
+grm_d0102	監督	main	282	0x01D79	329	-	deny_camerashake_without_event	0	argument 1: whether the shake source the Screen Shake option governs is held off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	283	0x01D7F	330	-	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	284	0x01D85	331	-	maskclosefast	0	argument 1: popped and ignored (every call passes 0). The verb closes the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_d0102	監督	main	285	0x01D8B	332	-	setfocusstatus	0	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -35827,7 +35827,7 @@ grm_g0101	Director	main	87	0x00BEC	116	-	startscene	4	scene cut 4, reported to t
 grm_g0101	Director	main	88	0x00BF2	117	-	store	scratch1_var_2 = 4	variable scratch1_var_2 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 grm_g0101	Director	main	89	0x00BFE	118	-	sysReq	1, EventLightActor::setEventLight	actor `EventLightActor`	-	-	files EventLightActor::setEventLight on channel 1; does not wait	EventLightActor.setEventLight	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 grm_g0101	Director	main	90	0x00C02	119	-	sysReqall	1, reqArr6	actor `Camera`, actor `ANNEX_FOCUS`, actor `Sound`, actor `Music`, actor `Van`, actor `RatA`, actor `RatB`, actor `RatC`	-	-	files each pair of Camera::cut005, ANNEX_FOCUS::cut005, Sound::cut005, Music::cut005, Van::cut005, RatA::cut005, RatB::cut005, RatC::cut005 on channel 1; does not wait	Camera.cut005, ANNEX_FOCUS.cut005, Sound.cut005, Music.cut005, Van.cut005, RatA.cut005, RatB.cut005, RatC.cut005	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-grm_g0101	Director	main	91	0x00C0B	120	-	denybonephysicalall_3ea	1, 0	-	-	-	-	-		01 verb-table.tsv
+grm_g0101	Director	main	91	0x00C0B	120	-	denybonephysicalall_3ea	1, 0	argument 1: which requester's bit of the wind-deny byte 0x02099DA6 is changed / argument 2: whether the requester's bit is set (non-zero) or cleared (0); the one call passes 0, which lifts that requester's deny	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Director	main	92	0x00C11	121	-	voicestandby	2	argument 1: the voice line to prepare	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 grm_g0101	Director	main	93	0x00C17	122	-	wait	38	-	-	38 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 grm_g0101	Director	main	94	0x00C20	123	-	voiceplay_28b	7, 2	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

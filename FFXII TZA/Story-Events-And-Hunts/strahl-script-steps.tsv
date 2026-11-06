@@ -36,7 +36,7 @@ str_z0000	監督	main	33	0x00885	79	-	case	248	-	-	-	-	-	resolved	01 ../Scripts-
 str_z0000	監督	main	34	0x0088C	80	file_var_s0_5 = 248	if	file_var_s0_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 str_z0000	監督	main	35	0x00892	82	file_var_s0_5 = 248; file_var_s0_2 == 0	store	file_var_s0_4 = 8	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 str_z0000	監督	main	36	0x0089C	84	file_var_s0_5 = 248	if	file_var_s0_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-str_z0000	監督	main	37	0x008A2	86	file_var_s0_5 = 248; file_var_s0_2 == 1	setskyonly	1	-	-	-	-	-		01 verb-table.tsv
+str_z0000	監督	main	37	0x008A2	86	file_var_s0_5 = 248; file_var_s0_2 == 1	setskyonly	1	argument 1: whether the map draws only its models flagged 0x10000000 (the verb's name calls this the sky)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	38	0x008AC	88	file_var_s0_5 = 248	if	file_var_s0_2 == 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 str_z0000	監督	main	39	0x008B2	90	file_var_s0_5 = 248; file_var_s0_2 == 2	store	file_var_s0_4 = 12	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 str_z0000	監督	main	40	0x008B5	92	file_var_s0_5 = 248	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -45,13 +45,13 @@ str_z0000	監督	main	42	0x008BB	94	file_var_s0_5 = 0x0109	store	file_var_s0_6 =
 str_z0000	監督	main	43	0x008C5	95	file_var_s0_5 = 0x0109	if	file_var_s0_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 str_z0000	監督	main	44	0x008CB	97	file_var_s0_5 = 0x0109; file_var_s0_2 == 0	store	file_var_s0_4 = 8	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 str_z0000	監督	main	45	0x008D5	99	file_var_s0_5 = 0x0109	if	file_var_s0_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-str_z0000	監督	main	46	0x008DB	101	file_var_s0_5 = 0x0109; file_var_s0_2 == 1	setskyonly	1	-	-	-	-	-		01 verb-table.tsv
+str_z0000	監督	main	46	0x008DB	101	file_var_s0_5 = 0x0109; file_var_s0_2 == 1	setskyonly	1	argument 1: whether the map draws only its models flagged 0x10000000 (the verb's name calls this the sky)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	47	0x008E5	103	file_var_s0_5 = 0x0109	if	file_var_s0_2 == 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 str_z0000	監督	main	48	0x008EB	105	file_var_s0_5 = 0x0109; file_var_s0_2 == 2	store	file_var_s0_4 = 8	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 str_z0000	監督	main	49	0x008EE	107	file_var_s0_5 = 0x0109	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 str_z0000	監督	main	50	0x008F1	108	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 str_z0000	監督	main	51	0x008F4	109	file_var_s0_5 is none of 248, 0x0109	store	file_var_s0_4 = 45	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-str_z0000	監督	main	52	0x008FA	110	file_var_s0_5 is none of 248, 0x0109	setskyonly	1	-	-	-	-	-		01 verb-table.tsv
+str_z0000	監督	main	52	0x008FA	110	file_var_s0_5 is none of 248, 0x0109	setskyonly	1	argument 1: whether the map draws only its models flagged 0x10000000 (the verb's name calls this the sky)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	53	0x008FD	111	file_var_s0_5 is none of 248, 0x0109	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 str_z0000	監督	main	54	0x0090F	113	-	hideparty	-	the party's characters in roster slots 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	55	0x00915	114	-	hide_freetarget_group	-1	argument 1: the actor group whose members are hidden (negative means every actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -92,7 +92,7 @@ str_z0000	監督	main	89	0x009CA	150	-	setmaphighmodeldepth	-1	argument 1: the d
 str_z0000	監督	main	90	0x009D0	151	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	91	0x009D6	152	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	92	0x009DC	153	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-str_z0000	監督	main	93	0x009E2	154	-	setskyonly	0	-	-	-	-	-		01 verb-table.tsv
+str_z0000	監督	main	93	0x009E2	154	-	setskyonly	0	argument 1: whether the map draws only its models flagged 0x10000000 (the verb's name calls this the sky)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	94	0x009E8	155	-	setff12screenmode	-1	argument 1: the frame mode, byte 0x02064AD1 (0x002EF350 -> 0x00229EC0; a negative value becomes 2)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	95	0x009EB	156	-	stopenvsoundall	-	the map's ambient sounds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	監督	main	96	0x009F4	157	-	sysReqwait	背景曲::フィールド曲終了	actor `背景曲`	-	-	waits until 背景曲::フィールド曲終了 is no longer on its actor	背景曲.フィールド曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -147,7 +147,7 @@ str_z0000	ユニットＡ	メイン	23	0x00B51	235	-	store	file_var_s1_2 = 51	va
 str_z0000	ユニットＡ	メイン	24	0x00B5D	236	-	sysReq	1, 背景曲::フィールド曲終了	actor `背景曲`	-	-	files 背景曲::フィールド曲終了 on channel 1; does not wait	背景曲.フィールド曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 str_z0000	ユニットＡ	メイン	25	0x00B61	237	-	wait	file_var_s1_2	-	-	frames held in file_var_s1_2	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 str_z0000	ユニットＡ	メイン	26	0x00B6B	238	-	if	file_var_s0_5 == 0x01e3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-str_z0000	ユニットＡ	メイン	27	0x00B71	240	file_var_s0_5 == 0x01e3	setskyonly	0	-	-	-	-	-		01 verb-table.tsv
+str_z0000	ユニットＡ	メイン	27	0x00B71	240	file_var_s0_5 == 0x01e3	setskyonly	0	argument 1: whether the map draws only its models flagged 0x10000000 (the verb's name calls this the sky)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 str_z0000	ユニットＡ	メイン	28	0x00B7A	242	-	sysReqwait	効果音::発音Ａ2	actor `効果音`	-	-	waits until 効果音::発音Ａ2 is no longer on its actor	効果音.発音Ａ2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 str_z0000	ユニットＡ	メイン	29	0x00B7E	243	-	startscene	3	scene cut 3, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 str_z0000	ユニットＡ	メイン	30	0x00B8A	244	-	sysReq	1, カメラ::カメラuA_s1c4	actor `カメラ`	-	-	files カメラ::カメラuA_s1c4 on channel 1; does not wait	カメラ.カメラuA_s1c4	resolved	01 ../Scripts-And-Script-Commands/script-requests.md

@@ -25,7 +25,7 @@ ttl_a01	常駐監督	init	21	0x2117F	80	-	fadeout	0	the screen fade, out	-	0 fra
 ttl_a01	常駐監督	init	22	0x21182	81	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	常駐監督	init	23	0x21185	82	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ttl_a01	常駐監督	init	24	0x21194	83	-	sysReqewi	1, アイコン制御::初期設定	actor `アイコン制御`	-	-	files アイコン制御::初期設定 on channel 1; waits until it ends; the target goes through INCINITTAG	アイコン制御.初期設定	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01	常駐監督	init	25	0x21198	84	-	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	常駐監督	init	25	0x21198	84	-	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	常駐監督	init	26	0x2119B	85	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	常駐監督	main	1	0x2119C	90	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	常駐監督	main	2	0x2119F	92	loop while true	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
@@ -43,34 +43,34 @@ ttl_a01	常駐監督	main	13	0x211FA	107	loop while true	startscene	4	scene cut 
 ttl_a01	常駐監督	main	14	0x21209	108	loop while true	if	isFirstStartDone() == 0 and not (unkCall_5b4())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	常駐監督	main	15	0x21215	110	loop while true; isFirstStartDone() == 0 and not (unkCall_5b4())	sysReqew	1, AUTOSAVEPAGE::ShowPage	actor `AUTOSAVEPAGE`	-	-	files AUTOSAVEPAGE::ShowPage on channel 1; waits until it ends	AUTOSAVEPAGE.ShowPage	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	常駐監督	main	16	0x2121F	111	loop while true; isFirstStartDone() == 0 and not (unkCall_5b4())	sysReqew	1, AUTOSAVEPAGE::ShowPage_sync	actor `AUTOSAVEPAGE`	-	-	files AUTOSAVEPAGE::ShowPage_sync on channel 1; waits until it ends	AUTOSAVEPAGE.ShowPage_sync	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01	常駐監督	main	17	0x21220	113	loop while true	unkCall_5a8	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	常駐監督	main	17	0x21220	113	loop while true	unkCall_5a8	-	the -nologo flag 0x022C2528 set to 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	常駐監督	main	18	0x21226	114	loop while true	startscene	5	scene cut 5, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 ttl_a01	常駐監督	main	19	0x2122C	115	loop while true	store	file_var_s1_1 = 6	variable file_var_s1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	常駐監督	main	20	0x21238	116	loop while true	sysReqew	1, スクリーン表示::EF_タイトル画面	actor `スクリーン表示`	-	-	files スクリーン表示::EF_タイトル画面 on channel 1; waits until it ends	スクリーン表示.EF_タイトル画面	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	常駐監督	main	21	0x2123C	117	loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	スクリーン表示	init	1	0x21242	137	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	スクリーン表示	ESRBrating_page	1	0x21249	142	-	unkCall_5b9	15, 15	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	スクリーン表示	ESRBrating_page	2	0x2124F	143	-	unkCall_5a2	2	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	スクリーン表示	ESRBrating_page	1	0x21249	142	-	unkCall_5b9	15, 15	argument 1: the fade-in length, in frames, of the screen picture / argument 2: the fade-out length, in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	スクリーン表示	ESRBrating_page	2	0x2124F	143	-	unkCall_5a2	2	argument 1: which title image the screen picture loads	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	スクリーン表示	ESRBrating_page	3	0x21255	144	-	store	file_var_s2_1 = 60	variable file_var_s2_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01	スクリーン表示	ESRBrating_page	4	0x2125B	145	-	unkCall_5a3	file_var_s2_1	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	スクリーン表示	ESRBrating_page	5	0x2125E	146	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	スクリーン表示	ESRBrating_page	4	0x2125B	145	-	unkCall_5a3	file_var_s2_1	argument 1: how long, in frames, the screen picture stays shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	スクリーン表示	ESRBrating_page	5	0x2125E	146	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	スクリーン表示	ESRBrating_page	6	0x21261	147	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	スクリーン表示	Warning_page	1	0x21268	152	-	unkCall_5b9	15, 15	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	スクリーン表示	Warning_page	2	0x2126E	153	-	unkCall_5a2	0	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	スクリーン表示	Warning_page	1	0x21268	152	-	unkCall_5b9	15, 15	argument 1: the fade-in length, in frames, of the screen picture / argument 2: the fade-out length, in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	スクリーン表示	Warning_page	2	0x2126E	153	-	unkCall_5a2	0	argument 1: which title image the screen picture loads	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	スクリーン表示	Warning_page	3	0x21274	154	-	store	file_var_s2_2 = 90	variable file_var_s2_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	スクリーン表示	Warning_page	4	0x2127A	155	-	store	file_var_s2_3 = 45	variable file_var_s2_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	スクリーン表示	Warning_page	5	0x21286	156	-	sysReq	1, WARNINGPAGE_IN_PLAYING::In_Playing	actor `WARNINGPAGE_IN_PLAYING`	-	-	files WARNINGPAGE_IN_PLAYING::In_Playing on channel 1; does not wait	WARNINGPAGE_IN_PLAYING.In_Playing	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01	スクリーン表示	Warning_page	6	0x2128A	157	-	unkCall_5a3	file_var_s2_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	スクリーン表示	Warning_page	7	0x2128D	158	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	スクリーン表示	Warning_page	6	0x2128A	157	-	unkCall_5a3	file_var_s2_2	argument 1: how long, in frames, the screen picture stays shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	スクリーン表示	Warning_page	7	0x2128D	158	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	スクリーン表示	Warning_page	8	0x21293	159	-	store	file_var_s2_4 = 0	variable file_var_s2_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	スクリーン表示	Warning_page	9	0x21296	160	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	スクリーン表示	Logo_page	1	0x2129D	165	-	unkCall_5b9	15, 15	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	スクリーン表示	Logo_page	2	0x212A3	166	-	unkCall_5a2	1	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	スクリーン表示	Logo_page	1	0x2129D	165	-	unkCall_5b9	15, 15	argument 1: the fade-in length, in frames, of the screen picture / argument 2: the fade-out length, in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	スクリーン表示	Logo_page	2	0x212A3	166	-	unkCall_5a2	1	argument 1: which title image the screen picture loads	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	スクリーン表示	Logo_page	3	0x212A9	167	-	store	file_var_s2_5 = 60	variable file_var_s2_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	スクリーン表示	Logo_page	4	0x212AF	168	-	store	file_var_s2_3 = 15	variable file_var_s2_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	スクリーン表示	Logo_page	5	0x212BB	169	-	sysReq	1, LOGOPAGE_IN_PLAYING::In_Playing	actor `LOGOPAGE_IN_PLAYING`	-	-	files LOGOPAGE_IN_PLAYING::In_Playing on channel 1; does not wait	LOGOPAGE_IN_PLAYING.In_Playing	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01	スクリーン表示	Logo_page	6	0x212BF	170	-	unkCall_5a3	file_var_s2_5	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	スクリーン表示	Logo_page	7	0x212C2	171	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	スクリーン表示	Logo_page	6	0x212BF	170	-	unkCall_5a3	file_var_s2_5	argument 1: how long, in frames, the screen picture stays shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	スクリーン表示	Logo_page	7	0x212C2	171	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	スクリーン表示	Logo_page	8	0x212C8	172	-	store	file_var_s2_6 = 0	variable file_var_s2_6	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	スクリーン表示	Logo_page	9	0x212CB	173	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	スクリーン表示	EF_タイトル画面	1	0x212CF	178	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -125,7 +125,7 @@ ttl_a01	WARNINGPAGE_IN_PLAYING	init	1	0x2140C	236	-	return	-	-	-	-	-	-	resolved	
 ttl_a01	WARNINGPAGE_IN_PLAYING	In_Playing	1	0x21410	241	-	store	file_var_s2_4 = 1	variable file_var_s2_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	WARNINGPAGE_IN_PLAYING	In_Playing	2	0x2141A	242	-	while	file_var_s2_4 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	WARNINGPAGE_IN_PLAYING	In_Playing	3	0x21430	244	loop while file_var_s2_4 == 1	if	unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	WARNINGPAGE_IN_PLAYING	In_Playing	4	0x21433	246	loop while file_var_s2_4 == 1; unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	unkCall_5a4	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	WARNINGPAGE_IN_PLAYING	In_Playing	4	0x21433	246	loop while file_var_s2_4 == 1; unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	unkCall_5a4	-	the screen picture a script put up (the full-screen image of the title and loading screens), taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	WARNINGPAGE_IN_PLAYING	In_Playing	5	0x21439	247	loop while file_var_s2_4 == 1; unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	store	file_var_s2_4 = 0	variable file_var_s2_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	WARNINGPAGE_IN_PLAYING	In_Playing	6	0x2143C	248	loop while file_var_s2_4 == 1; unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	WARNINGPAGE_IN_PLAYING	In_Playing	7	0x21442	250	loop while file_var_s2_4 == 1; not (unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok())))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -134,17 +134,17 @@ ttl_a01	LOGOPAGE_IN_PLAYING	init	1	0x21449	261	-	return	-	-	-	-	-	-	resolved	01 
 ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	1	0x2144D	266	-	store	file_var_s2_6 = 1	variable file_var_s2_6	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	2	0x21457	267	-	while	file_var_s2_6 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	3	0x2146D	269	loop while file_var_s2_6 == 1	if	unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	4	0x21470	271	loop while file_var_s2_6 == 1; unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	unkCall_5a4	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	4	0x21470	271	loop while file_var_s2_6 == 1; unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	unkCall_5a4	-	the screen picture a script put up (the full-screen image of the title and loading screens), taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	5	0x21476	272	loop while file_var_s2_6 == 1; unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	store	file_var_s2_6 = 0	variable file_var_s2_6	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	6	0x21479	273	loop while file_var_s2_6 == 1; unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok()))	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	7	0x2147F	275	loop while file_var_s2_6 == 1; not (unkCall_5a5() > file_var_s2_3 and (padt() & (8 bitor get_pad_ok())))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	LOGOPAGE_IN_PLAYING	In_Playing	8	0x21485	277	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	AUTOSAVEPAGE	init	1	0x21486	286	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	AUTOSAVEPAGE	ShowPage	1	0x21487	291	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	AUTOSAVEPAGE	ShowPage	1	0x21487	291	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	AUTOSAVEPAGE	ShowPage	2	0x2148A	292	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	AUTOSAVEPAGE	ShowPage	3	0x21490	293	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	AUTOSAVEPAGE	ShowPage	4	0x21496	294	-	fadein	15	the screen fade, in	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-ttl_a01	AUTOSAVEPAGE	ShowPage	5	0x214A8	295	-	unkCall_5b6	0x01000000, 0x03c0, 0x02e4, 0x03c0, 0x0154	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	AUTOSAVEPAGE	ShowPage	5	0x214A8	295	-	unkCall_5b6	0x01000000, 0x03c0, 0x02e4, 0x03c0, 0x0154	argument 1: the text id of the notice in the calling script's section 2 / argument 2: the x of the message window the notice opens for its text / argument 3: the y of that message window / argument 4: the x of the notice's second picture / argument 5: the y of the notice's second picture	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	AUTOSAVEPAGE	ShowPage	6	0x214AB	296	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	AUTOSAVEPAGE	ShowPage	7	0x214B1	297	-	wait	90	-	-	90 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	AUTOSAVEPAGE	ShowPage	8	0x214B4	298	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -152,13 +152,13 @@ ttl_a01	AUTOSAVEPAGE	ShowPage_sync	1	0x214BB	303	-	sysReqwait	AUTOSAVEPAGE::Show
 ttl_a01	AUTOSAVEPAGE	ShowPage_sync	2	0x214BF	304	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	AUTOSAVEPAGE	ShowPage_sync	3	0x214C5	305	-	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 ttl_a01	AUTOSAVEPAGE	ShowPage_sync	4	0x214C8	306	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_a01	AUTOSAVEPAGE	ShowPage_sync	5	0x214CB	307	-	unkCall_5b7	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	AUTOSAVEPAGE	ShowPage_sync	5	0x214CB	307	-	unkCall_5b7	-	the notice that unkCall_5b6 built is destroyed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	AUTOSAVEPAGE	ShowPage_sync	6	0x214CE	308	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー制御	init	1	0x214D5	322	-	sysDVAR	17, local_var_s6f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー制御	init	2	0x214D6	323	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー制御	準備	1	0x214DA	328	-	store	file_var_s1_12 = 0	variable file_var_s1_12	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	ムービー制御	準備	2	0x214DD	329	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ムービー制御	スクエニロゴ_PLAY	1	0x214DE	334	-	getscreenaspect	-	result stored in file_var_s1_14	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー制御	スクエニロゴ_PLAY	1	0x214DE	334	-	getscreenaspect	-	result stored in file_var_s1_14; always 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	2	0x214EB	335	-	if	file_var_s1_14 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	3	0x214F1	337	file_var_s1_14 == 0	store	file_var_s1_1 = 2	variable file_var_s1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	4	0x214F7	338	file_var_s1_14 == 0	store	local_var_s6f0_1 = 44	variable local_var_s6f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -168,7 +168,7 @@ ttl_a01	ムービー制御	スクエニロゴ_PLAY	7	0x2150C	345	-	moviestandby	
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	8	0x2150F	346	-	moviestandbysync	-	the movie moviestandby opened	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	9	0x2151B	347	-	sysReq	1, DEBUG_MOVIE_COUNTER::START	actor `DEBUG_MOVIE_COUNTER`	-	-	files DEBUG_MOVIE_COUNTER::START on channel 1; does not wait	DEBUG_MOVIE_COUNTER.START	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	10	0x21523	348	-	if	file_var_s1_14 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ムービー制御	スクエニロゴ_PLAY	11	0x2152C	350	file_var_s1_14 != 0	setmoviescreensize	2	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー制御	スクエニロゴ_PLAY	11	0x2152C	350	file_var_s1_14 != 0	setmoviescreensize	2	argument 1: the movie screen size setting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	12	0x21532	352	-	movieplay	local_var_s6f0_1	argument 1: popped and not used	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	13	0x21538	353	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	スクエニロゴ_PLAY	14	0x2153E	354	-	fadein	90	the screen fade, in	-	90 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -182,7 +182,7 @@ ttl_a01	ムービー制御	スクエニロゴ_SYNC	5	0x2156B	365	-	sysReq	2, DEB
 ttl_a01	ムービー制御	スクエニロゴ_SYNC	6	0x2156C	366	-	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	スクエニロゴ_SYNC	7	0x2156F	367	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	スクエニロゴ_SYNC	8	0x21572	368	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ムービー制御	オープニングデモ_PLAY	1	0x21573	373	-	getscreenaspect	-	result stored in file_var_s1_14	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー制御	オープニングデモ_PLAY	1	0x21573	373	-	getscreenaspect	-	result stored in file_var_s1_14; always 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	オープニングデモ_PLAY	2	0x21580	374	-	if	file_var_s1_14 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー制御	オープニングデモ_PLAY	3	0x21586	376	file_var_s1_14 == 0	store	file_var_s1_1 = 4	variable file_var_s1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	ムービー制御	オープニングデモ_PLAY	4	0x2158C	377	file_var_s1_14 == 0	store	local_var_s6f0_1 = 41	variable local_var_s6f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -193,7 +193,7 @@ ttl_a01	ムービー制御	オープニングデモ_PLAY	8	0x215A4	385	-	moviest
 ttl_a01	ムービー制御	オープニングデモ_PLAY	9	0x215B0	386	-	sysReq	1, DEBUG_MOVIE_COUNTER::START	actor `DEBUG_MOVIE_COUNTER`	-	-	files DEBUG_MOVIE_COUNTER::START on channel 1; does not wait	DEBUG_MOVIE_COUNTER.START	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	ムービー制御	オープニングデモ_PLAY	10	0x215BA	387	-	sysReq	1, 曲制御::ムービー中曲開始	actor `曲制御`	-	-	files 曲制御::ムービー中曲開始 on channel 1; does not wait	曲制御.ムービー中曲開始	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	ムービー制御	オープニングデモ_PLAY	11	0x215C2	388	-	if	file_var_s1_14 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ムービー制御	オープニングデモ_PLAY	12	0x215CB	390	file_var_s1_14 != 0	setmoviescreensize	2	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー制御	オープニングデモ_PLAY	12	0x215CB	390	file_var_s1_14 != 0	setmoviescreensize	2	argument 1: the movie screen size setting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	オープニングデモ_PLAY	13	0x215D1	392	-	movieplay	local_var_s6f0_1	argument 1: popped and not used	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	オープニングデモ_PLAY	14	0x215D7	393	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	オープニングデモ_PLAY	15	0x215DD	394	-	fadein	40	the screen fade, in	-	40 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -213,7 +213,7 @@ ttl_a01	ムービー制御	オープニングデモ_SYNC	9	0x2163F	413	file_var_
 ttl_a01	ムービー制御	オープニングデモ_SYNC	10	0x21648	417	file_var_s1_12 != 2; not (file_var_s1_14 == 0 and file_var_s1_12 == 0)	fadeout	40	the screen fade, out	-	40 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 ttl_a01	ムービー制御	オープニングデモ_SYNC	11	0x2164B	419	file_var_s1_12 != 2	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	オープニングデモ_SYNC	12	0x21651	420	file_var_s1_12 != 2	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_a01	ムービー制御	オープニングデモ_SYNC	13	0x21654	421	file_var_s1_12 != 2	getscreenaspect	-	result stored in file_var_s1_14	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー制御	オープニングデモ_SYNC	13	0x21654	421	file_var_s1_12 != 2	getscreenaspect	-	result stored in file_var_s1_14; always 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	オープニングデモ_SYNC	14	0x21661	422	file_var_s1_12 != 2	if	file_var_s1_14 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー制御	オープニングデモ_SYNC	15	0x21664	424	file_var_s1_12 != 2; file_var_s1_14 == 0	moviecancel	-	the movie now playing, stopped and ended	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー制御	オープニングデモ_SYNC	16	0x2166A	428	file_var_s1_12 != 2; not (file_var_s1_14 == 0)	movieplaysync	-	the movie now playing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -278,16 +278,16 @@ ttl_a01	ムービー表示カウンター	カウント中	14	0x217D3	541	-	while
 ttl_a01	ムービー表示カウンター	カウント中	15	0x217DD	543	loop while local_var_s8f0_1 != 0	store	local_var_s8f0_1 = local_var_s8f0_1 - 1	variable local_var_s8f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	ムービー表示カウンター	カウント中	16	0x217E4	544	loop while local_var_s8f0_1 != 0	switch	file_var_s1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー表示カウンター	カウント中	17	0x217E7	546	loop while local_var_s8f0_1 != 0	case	2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ムービー表示カウンター	カウント中	18	0x217E7	547	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 2	getmovieframe	-	result stored in file_var_s1_7	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー表示カウンター	カウント中	18	0x217E7	547	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 2	getmovieframe	-	result stored in file_var_s1_7; the frame the playing movie has reached	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー表示カウンター	カウント中	19	0x217ED	548	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー表示カウンター	カウント中	20	0x217F0	549	loop while local_var_s8f0_1 != 0	case	3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ムービー表示カウンター	カウント中	21	0x217F0	550	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 3	getmovieframe	-	result stored in file_var_s1_8	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー表示カウンター	カウント中	21	0x217F0	550	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 3	getmovieframe	-	result stored in file_var_s1_8; the frame the playing movie has reached	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー表示カウンター	カウント中	22	0x217F6	551	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 3	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー表示カウンター	カウント中	23	0x217F9	552	loop while local_var_s8f0_1 != 0	case	4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ムービー表示カウンター	カウント中	24	0x217F9	553	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 4	getmovieframe	-	result stored in file_var_s1_9	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー表示カウンター	カウント中	24	0x217F9	553	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 4	getmovieframe	-	result stored in file_var_s1_9; the frame the playing movie has reached	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー表示カウンター	カウント中	25	0x217FF	554	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 4	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー表示カウンター	カウント中	26	0x21802	555	loop while local_var_s8f0_1 != 0	case	5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ムービー表示カウンター	カウント中	27	0x21802	556	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 5	getmovieframe	-	result stored in file_var_s1_10	-	-	-	-		01 verb-table.tsv
+ttl_a01	ムービー表示カウンター	カウント中	27	0x21802	556	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 5	getmovieframe	-	result stored in file_var_s1_10; the frame the playing movie has reached	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ムービー表示カウンター	カウント中	28	0x21808	557	loop while local_var_s8f0_1 != 0; file_var_s1_1 = 5	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ムービー表示カウンター	カウント中	29	0x21829	559	loop while local_var_s8f0_1 != 0	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	ムービー表示カウンター	カウント中	30	0x2182F	561	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -427,11 +427,11 @@ ttl_a01	アイコン制御	消去	7	0x21C20	819	-	setshapeshowstatus	3, 1, 0	arg
 ttl_a01	アイコン制御	消去	8	0x21C26	820	-	releasemapjumpgroupflag	111	flags released: 0x006F: While set, the picture parts of the message windows keep stepping during a time stop: 0x002A3F90 tests the flag first and checks the time stop 0x0036D830 only while it is clear (0x002A3F99-0x002A3FAE)	-	-	-	-	resolved	this page's How a call is read
 ttl_a01	アイコン制御	消去	9	0x21C2C	821	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	アイコン制御	消去	10	0x21C2D	822	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	コマンド制御	init	1	0x21C2E	831	-	fsttl_initialize	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	init	1	0x21C2E	831	-	fsttl_initialize	-	the title screen's set-up	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	init	2	0x21C31	832	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	コマンド制御	準備	1	0x21C32	837	-	fsttl_opendatacheck	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	準備	1	0x21C32	837	-	fsttl_opendatacheck	-	the title's check for an existing save, started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	準備	2	0x21C35	838	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	コマンド制御	準備	3	0x21C35	839	-	fsttl_getdatacheckstatus	-	result stored in file_var_s1_2	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	準備	3	0x21C35	839	-	fsttl_getdatacheckstatus	-	result stored in file_var_s1_2; the state of the title's save check	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	準備	4	0x21C42	840	-	if	file_var_s1_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	準備	5	0x21C48	842	file_var_s1_2 == 0	store	file_var_s1_2 = 0	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	準備	6	0x21C55	844	not (file_var_s1_2 == 0)	else if	file_var_s1_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -439,19 +439,19 @@ ttl_a01	コマンド制御	準備	7	0x21C5B	846	not (file_var_s1_2 == 0); file_v
 ttl_a01	コマンド制御	準備	8	0x21C64	850	not (file_var_s1_2 == 0); not (file_var_s1_2 == 1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	コマンド制御	準備	9	0x21C67	851	not (file_var_s1_2 == 0); not (file_var_s1_2 == 1)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	準備	10	0x21C6A	853	not ((not (file_var_s1_2 == 0)) and (not (file_var_s1_2 == 1)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	コマンド制御	表示	1	0x21C6E	858	-	fsttl_opencommand	file_var_s1_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	コマンド制御	表示	2	0x21C71	859	-	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	表示	1	0x21C6E	858	-	fsttl_opencommand	file_var_s1_2	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	コマンド制御	表示	2	0x21C71	859	-	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	表示	3	0x21C74	860	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	1	0x21C78	870	-	store	file_var_s1_15 = 1	variable file_var_s1_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	2	0x21C82	871	-	while	file_var_s1_15 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	コマンド制御	キーチェック	3	0x21C85	873	loop while file_var_s1_15 == 1	fsttl_getcommandstatus	-	result stored in file_var_s1_13	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	3	0x21C85	873	loop while file_var_s1_15 == 1	fsttl_getcommandstatus	-	result stored in file_var_s1_13; the title command state, the byte 0x01EFAC12 (0x00394420)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	4	0x21C8F	874	loop while file_var_s1_15 == 1	switch	file_var_s1_13	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	5	0x21C92	876	loop while file_var_s1_15 == 1	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	6	0x21C95	877	loop while file_var_s1_15 == 1; file_var_s1_13 = 0	if	unkCall_5b4()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	7	0x21C9B	879	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	store	file_var_s1_17 = 0x0708	variable file_var_s1_17	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	8	0x21CA1	880	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	store	file_var_s1_16 = 1	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01	コマンド制御	キーチェック	9	0x21CA4	881	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	コマンド制御	キーチェック	10	0x21CA7	882	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	9	0x21CA4	881	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	10	0x21CA7	882	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	11	0x21CB0	883	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	sysReqwait	アイコン制御::表示	actor `アイコン制御`	-	-	waits until アイコン制御::表示 is no longer on its actor	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	コマンド制御	キーチェック	12	0x21CB4	884	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	13	0x21CBA	885	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -466,8 +466,8 @@ ttl_a01	コマンド制御	キーチェック	21	0x21CED	893	loop while file_var
 ttl_a01	コマンド制御	キーチェック	22	0x21CF3	894	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	store	file_var_s1_16 = 0	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	23	0x21CFC	898	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	store	file_var_s1_17 = 0x0708	variable file_var_s1_17	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	24	0x21D02	899	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	store	file_var_s1_16 = 1	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01	コマンド制御	キーチェック	25	0x21D05	900	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	コマンド制御	キーチェック	26	0x21D08	901	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	25	0x21D05	900	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	26	0x21D08	901	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	27	0x21D0E	902	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	store	file_var_s1_2 = 0	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	28	0x21D17	903	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReqwait	エフェクト制御_JUDGE::表示	actor `エフェクト制御_JUDGE`	-	-	waits until エフェクト制御_JUDGE::表示 is no longer on its actor	エフェクト制御_JUDGE.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	コマンド制御	キーチェック	29	0x21D1E	904	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReqwait	エフェクト制御::NEW_GAME_CANCEL	actor `エフェクト制御`	-	-	waits until エフェクト制御::NEW_GAME_CANCEL is no longer on its actor	エフェクト制御.NEW_GAME_CANCEL	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -475,16 +475,16 @@ ttl_a01	コマンド制御	キーチェック	30	0x21D28	905	loop while file_var
 ttl_a01	コマンド制御	キーチェック	31	0x21D32	906	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReqew	2, ゲームスタート処理::コンフィグ起動	actor `ゲームスタート処理`	-	-	files ゲームスタート処理::コンフィグ起動 on channel 2; waits until it ends	ゲームスタート処理.コンフィグ起動	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	コマンド制御	キーチェック	32	0x21D3C	907	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReq	1, エフェクト制御::NEW_GAME_CANCEL	actor `エフェクト制御`	-	-	files エフェクト制御::NEW_GAME_CANCEL on channel 1; does not wait	エフェクト制御.NEW_GAME_CANCEL	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	コマンド制御	キーチェック	33	0x21D43	908	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReqwait	エフェクト制御::NEW_GAME_CANCEL	actor `エフェクト制御`	-	-	waits until エフェクト制御::NEW_GAME_CANCEL is no longer on its actor	エフェクト制御.NEW_GAME_CANCEL	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01	コマンド制御	キーチェック	34	0x21D47	909	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_opencommand	file_var_s1_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	コマンド制御	キーチェック	35	0x21D4A	910	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	34	0x21D47	909	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_opencommand	file_var_s1_2	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	35	0x21D4A	910	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	36	0x21D50	911	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	store	file_var_s1_16 = 0	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	37	0x21D53	913	loop while file_var_s1_15 == 1; file_var_s1_13 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	38	0x21D56	914	loop while file_var_s1_15 == 1	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	39	0x21D56	915	loop while file_var_s1_15 == 1	case	5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	40	0x21D59	916	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	store	file_var_s1_17 = 0x0708	variable file_var_s1_17	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	41	0x21D5F	917	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	store	file_var_s1_16 = 1	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01	コマンド制御	キーチェック	42	0x21D62	918	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	コマンド制御	キーチェック	43	0x21D65	919	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	42	0x21D62	918	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	43	0x21D65	919	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	44	0x21D6E	920	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	sysReqwait	アイコン制御::表示	actor `アイコン制御`	-	-	waits until アイコン制御::表示 is no longer on its actor	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	コマンド制御	キーチェック	45	0x21D72	921	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	46	0x21D78	922	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -499,16 +499,16 @@ ttl_a01	コマンド制御	キーチェック	54	0x21DB7	935	loop while file_var
 ttl_a01	コマンド制御	キーチェック	55	0x21DBB	936	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	56	0x21DC1	937	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fadein	15	the screen fade, in	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 ttl_a01	コマンド制御	キーチェック	57	0x21DCD	938	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	sysReq	1, アイコン制御::表示	actor `アイコン制御`	-	-	files アイコン制御::表示 on channel 1; does not wait	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01	コマンド制御	キーチェック	58	0x21DD1	939	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fsttl_opencommand	file_var_s1_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	コマンド制御	キーチェック	59	0x21DD4	940	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	58	0x21DD1	939	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fsttl_opencommand	file_var_s1_2	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	59	0x21DD4	940	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	60	0x21DD7	941	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	61	0x21DDD	942	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	store	file_var_s1_16 = 0	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	62	0x21DE0	943	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 5	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	63	0x21DE3	944	loop while file_var_s1_15 == 1	case	3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	コマンド制御	キーチェック	64	0x21DE6	945	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	store	file_var_s1_17 = 0x0708	variable file_var_s1_17	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	65	0x21DEC	946	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	store	file_var_s1_16 = 1	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01	コマンド制御	キーチェック	66	0x21DEF	947	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	コマンド制御	キーチェック	67	0x21DF2	948	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	66	0x21DEF	947	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	67	0x21DF2	948	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	68	0x21DFB	949	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReqwait	アイコン制御::表示	actor `アイコン制御`	-	-	waits until アイコン制御::表示 is no longer on its actor	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	コマンド制御	キーチェック	69	0x21DFF	950	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	store	file_var_s1_2 = 3	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	70	0x21E0B	951	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReq	2, 曲制御::タイトル画面曲終了	actor `曲制御`	-	-	files 曲制御::タイトル画面曲終了 on channel 2; does not wait	曲制御.タイトル画面曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -555,8 +555,8 @@ ttl_a01	コマンド制御	キーチェック	110	0x21F08	1000	loop while file_v
 ttl_a01	コマンド制御	キーチェック	111	0x21F12	1001	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReq	1, エフェクト制御::表示	actor `エフェクト制御`	-	-	files エフェクト制御::表示 on channel 1; does not wait	エフェクト制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	コマンド制御	キーチェック	112	0x21F19	1002	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReqwait	アイコン制御::表示	actor `アイコン制御`	-	-	waits until アイコン制御::表示 is no longer on its actor	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	コマンド制御	キーチェック	113	0x21F20	1003	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReqwait	エフェクト制御::表示	actor `エフェクト制御`	-	-	waits until エフェクト制御::表示 is no longer on its actor	エフェクト制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01	コマンド制御	キーチェック	114	0x21F24	1004	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_opencommand	file_var_s1_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01	コマンド制御	キーチェック	115	0x21F27	1005	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	114	0x21F24	1004	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_opencommand	file_var_s1_2	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01	コマンド制御	キーチェック	115	0x21F27	1005	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	116	0x21F2A	1006	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	コマンド制御	キーチェック	117	0x21F30	1007	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	store	file_var_s1_16 = 0	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	コマンド制御	キーチェック	118	0x21F33	1008	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -589,21 +589,21 @@ ttl_a01	CREDITS	movieplayAndsync	16	0x21FCE	1064	loop while true; not (local_var
 ttl_a01	CREDITS	movieplayAndsync	17	0x21FD7	1067	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	CREDITS	movieplayAndsync	18	0x21FDA	1068	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	LOADPS2SAVE	init	1	0x21FDB	1077	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	LOADPS2SAVE	startLoad	1	0x21FDF	1082	-	loadPs2Save	155	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	LOADPS2SAVE	startLoad	1	0x21FDF	1082	-	loadPs2Save	155	argument 1: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	LOADPS2SAVE	startLoad	2	0x21FE2	1083	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	init	1	0x21FE3	1092	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	1	0x21FE7	1103	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_a01	ゲームスタート処理	コンフィグ起動	2	0x21FED	1104	-	setflickerfreemode	1	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	コンフィグ起動	2	0x21FED	1104	-	setflickerfreemode	1	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	コンフィグ起動	3	0x21FF3	1105	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_a01	ゲームスタート処理	コンフィグ起動	4	0x21FF6	1106	-	fsttl_openconfig	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	コンフィグ起動	4	0x21FF6	1106	-	fsttl_openconfig	-	the title's New Game list, opened	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	コンフィグ起動	5	0x21FFC	1107	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	6	0x22002	1108	-	store	local_var_s17f1_1 = 1	variable local_var_s17f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	7	0x22008	1109	-	while	local_var_s17f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ゲームスタート処理	コンフィグ起動	8	0x2200B	1111	loop while local_var_s17f1_1	fsttl_getconfigstatus	-	result stored in local_var_s17f1_2	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	コンフィグ起動	8	0x2200B	1111	loop while local_var_s17f1_1	fsttl_getconfigstatus	-	result stored in local_var_s17f1_2; the status of the title's New Game list	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	コンフィグ起動	9	0x22015	1112	loop while local_var_s17f1_1	switch	local_var_s17f1_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	10	0x22018	1114	loop while local_var_s17f1_1	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	11	0x2201B	1115	loop while local_var_s17f1_1; local_var_s17f1_2 = 0	store	local_var_s17f1_1 = 0	variable local_var_s17f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01	ゲームスタート処理	コンフィグ起動	12	0x22021	1116	loop while local_var_s17f1_1; local_var_s17f1_2 = 0	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	コンフィグ起動	12	0x22021	1116	loop while local_var_s17f1_1; local_var_s17f1_2 = 0	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	コンフィグ起動	13	0x22024	1117	loop while local_var_s17f1_1; local_var_s17f1_2 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	14	0x22027	1118	loop while local_var_s17f1_1	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	15	0x2202A	1119	loop while local_var_s17f1_1; local_var_s17f1_2 = 1	store	local_var_s17f1_1 = 0	variable local_var_s17f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -611,23 +611,23 @@ ttl_a01	ゲームスタート処理	コンフィグ起動	16	0x22036	1120	loop w
 ttl_a01	ゲームスタート処理	コンフィグ起動	17	0x22040	1121	loop while local_var_s17f1_1; local_var_s17f1_2 = 1	sysReq	2, 曲制御::GAME_START曲終了	actor `曲制御`	-	-	files 曲制御::GAME_START曲終了 on channel 2; does not wait	曲制御.GAME_START曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	18	0x2204A	1122	loop while local_var_s17f1_1; local_var_s17f1_2 = 1	sysReqew	1, エフェクト制御::GAME_START	actor `エフェクト制御`	-	-	files エフェクト制御::GAME_START on channel 1; waits until it ends	エフェクト制御.GAME_START	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	19	0x22051	1123	loop while local_var_s17f1_1; local_var_s17f1_2 = 1	sysReqwait	曲制御::GAME_START曲終了	actor `曲制御`	-	-	waits until 曲制御::GAME_START曲終了 is no longer on its actor	曲制御.GAME_START曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01	ゲームスタート処理	コンフィグ起動	20	0x22052	1124	loop while local_var_s17f1_1; local_var_s17f1_2 = 1	fsttl_newgamestart	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	コンフィグ起動	20	0x22052	1124	loop while local_var_s17f1_1; local_var_s17f1_2 = 1	fsttl_newgamestart	-	the new game, started from the title	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	コンフィグ起動	21	0x22055	1125	loop while local_var_s17f1_1; local_var_s17f1_2 = 1	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	22	0x22058	1127	loop while local_var_s17f1_1; local_var_s17f1_2 = 1; loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	23	0x2205E	1129	loop while local_var_s17f1_1	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	24	0x2205E	1130	loop while local_var_s17f1_1; local_var_s17f1_2 is none of 0, 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	25	0x22073	1132	loop while local_var_s17f1_1; local_var_s17f1_2 is none of 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01	ゲームスタート処理	コンフィグ起動	26	0x22079	1134	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ゲームスタート処理	ロード画面起動	1	0x2207D	1139	-	setflickerfreemode	1	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	ロード画面起動	1	0x2207D	1139	-	setflickerfreemode	1	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	ロード画面起動	2	0x22084	1140	-	switch	file_var_s1_13	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	ロード画面起動	3	0x22087	1142	-	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ゲームスタート処理	ロード画面起動	4	0x2208A	1143	file_var_s1_13 = 1	unkCall_7067	2	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	ロード画面起動	4	0x2208A	1143	file_var_s1_13 = 1	unkCall_7067	2	argument 1: the load mode, as a byte	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	ロード画面起動	5	0x2208D	1144	file_var_s1_13 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	ロード画面起動	6	0x22090	1145	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01	ゲームスタート処理	ロード画面起動	7	0x22093	1146	file_var_s1_13 is none of 1	unkCall_7067	3	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	ロード画面起動	7	0x22093	1146	file_var_s1_13 is none of 1	unkCall_7067	3	argument 1: the load mode, as a byte	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	ロード画面起動	8	0x22096	1147	file_var_s1_13 is none of 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	ゲームスタート処理	ロード画面起動	9	0x220A8	1149	-	openfullscreenmenu_48d	0x8005, 1	argument 1: the full-screen menu to open / argument 2: the parameter of that screen, posted with the id at mailbox 0x0215F1A8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_a01	ゲームスタート処理	ロード画面起動	10	0x220AE	1150	-	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_a01	ゲームスタート処理	ロード画面起動	10	0x220AE	1150	-	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01	ゲームスタート処理	ロード画面起動	11	0x220B1	1151	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	タイトル表示カウンター	init	1	0x220B2	1160	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01	タイトル表示カウンター	カウント中	1	0x220B3	1165	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -657,7 +657,7 @@ ttl_b01	監督	main	4	0x0029A	37	-	eventreadsync	-	event manager 1, the slot-0 s
 ttl_b01	監督	main	5	0x0029D	38	-	eventplay	-	event manager 1, the slot-0 scene	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_b01	監督	main	6	0x002A0	39	-	eventsync	-	event manager 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_b01	監督	main	7	0x002A6	40	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_b01	監督	main	8	0x002A9	41	-	unkCall_5bb	-	-	-	-	-	-		01 verb-table.tsv
+ttl_b01	監督	main	8	0x002A9	41	-	unkCall_5bb	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_b01	監督	main	9	0x002AF	42	-	fadecancel_15a	0	argument 1: the fade layer (0 to 6, clamped) to free at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_b01	監督	main	10	0x002B5	43	-	fadecancel_15a	1	argument 1: the fade layer (0 to 6, clamped) to free at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_b01	監督	main	11	0x002BB	44	-	fadecancel_15a	2	argument 1: the fade layer (0 to 6, clamped) to free at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -669,12 +669,12 @@ ttl_b01	監督	main	16	0x002EB	49	-	mesclose	0	message window slot 0, set to clo
 ttl_b01	監督	main	17	0x002F4	50	-	messync	0, 1	message window slot 0	-	-	waits on the window: when it is fully shown (state 3) the window is closed and the wait goes on; while it closes (state 6) the wait goes on only when the flag 1 is non-zero	-	resolved	0x003479F0, 0x00357820 (read here) and 16 ../Menus-And-HUD/message-windows.md
 ttl_b01	監督	main	18	0x002FB	51	-	switch	local_var_s0f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_b01	監督	main	19	0x002FE	53	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_b01	監督	main	20	0x002FE	54	local_var_s0f1_1 = 0	btlAtelResetNgPlus	-	-	-	-	-	-		01 verb-table.tsv
-ttl_b01	監督	main	21	0x00301	55	local_var_s0f1_1 = 0	fsttl_newgamestart	-	-	-	-	-	-		01 verb-table.tsv
+ttl_b01	監督	main	20	0x002FE	54	local_var_s0f1_1 = 0	btlAtelResetNgPlus	-	the New Game+ request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_b01	監督	main	21	0x00301	55	local_var_s0f1_1 = 0	fsttl_newgamestart	-	the new game, started from the title	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_b01	監督	main	22	0x00304	56	local_var_s0f1_1 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_b01	監督	main	23	0x00307	57	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_b01	監督	main	24	0x0030A	58	local_var_s0f1_1 is none of 0	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_b01	監督	main	25	0x0030D	59	local_var_s0f1_1 is none of 0	softwarereset	-	-	-	-	-	-		01 verb-table.tsv
+ttl_b01	監督	main	25	0x0030D	59	local_var_s0f1_1 is none of 0	softwarereset	-	a return to the title	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_b01	監督	main	26	0x00310	60	local_var_s0f1_1 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_b01	監督	main	27	0x0031C	62	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	監督	init	1	0x20BD3	35	-	fadecancel_15a	0	argument 1: the fade layer (0 to 6, clamped) to free at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -685,7 +685,7 @@ ttl_c01	監督	init	5	0x20BEE	39	-	fadeout_d0	0, 0	argument 1: the fade layer (0
 ttl_c01	監督	init	6	0x20BF4	40	-	fadesync_d3	0	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	init	7	0x20BFA	41	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	init	8	0x20BFD	42	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
-ttl_c01	監督	init	9	0x20C03	43	-	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	監督	init	9	0x20C03	43	-	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	init	10	0x20C09	44	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	監督	init	11	0x20C0F	45	-	store	file_var_s0_2 = 0	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	監督	init	12	0x20C15	46	-	store	file_var_s0_3 = 0	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -712,9 +712,9 @@ ttl_c01	監督	init	32	0x20D02	66	-	shapecolorsync	3, 1	argument 1: the message 
 ttl_c01	監督	init	33	0x20D0B	67	-	setmeswinhidestatus	3, 2	argument 1: the message slot (0-7; 8 or more is ignored, a negative slot is taken as 0) whose window is set; every call passes 3 / argument 2: 2 keeps the window up when the HUD hides	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	init	34	0x20D0E	68	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	監督	main	1	0x20D0F	78	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_c01	監督	main	2	0x20D0F	80	loop while true	fsttl_opendatacheck	-	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	監督	main	2	0x20D0F	80	loop while true	fsttl_opendatacheck	-	the title's check for an existing save, started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	3	0x20D12	81	loop while true	label	local_jmp_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_c01	監督	main	4	0x20D12	82	loop while true	fsttl_getdatacheckstatus	-	result stored in file_var_s0_9	-	-	-	-		01 verb-table.tsv
+ttl_c01	監督	main	4	0x20D12	82	loop while true	fsttl_getdatacheckstatus	-	result stored in file_var_s0_9; the state of the title's save check	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	5	0x20D1F	83	loop while true	if	file_var_s0_9 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	監督	main	6	0x20D25	85	loop while true; file_var_s0_9 == 0	store	file_var_s0_9 = 0	variable file_var_s0_9	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	監督	main	7	0x20D32	87	loop while true; not (file_var_s0_9 == 0)	else if	file_var_s0_9 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -726,17 +726,17 @@ ttl_c01	監督	main	12	0x20D53	97	loop while true; not ((not (file_var_s0_9 == 0
 ttl_c01	監督	main	13	0x20D5C	98	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	questeffectread_1db	1, 75	argument 1: the script effect slot (0-31, clamped by 0x0036E320) that receives the quest effect file / argument 2: the quest effect number	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	14	0x20D62	99	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	effectreadsync_e1	1	effect slot 1	-	-	waits until the effect file read into slot 1 is loaded	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
 ttl_c01	監督	main	15	0x20D68	100	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	moviestandby	41	argument 1: the movie id m to open	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_c01	監督	main	16	0x20D6E	101	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	setmoviescreensize	1	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	監督	main	16	0x20D6E	101	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	setmoviescreensize	1	argument 1: the movie screen size setting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	17	0x20D71	102	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	moviestandbysync	-	the movie moviestandby opened	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	18	0x20D7A	103	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	fadein_d2	0, 0	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	19	0x20D80	104	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	fadesync_d3	0	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	20	0x20D86	105	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	movieplay	41	argument 1: popped and not used	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_c01	監督	main	21	0x20D89	106	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	get_title_flag	-	result stored in local_var_s0f1_1	-	-	-	-		01 verb-table.tsv
+ttl_c01	監督	main	21	0x20D89	106	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	get_title_flag	-	result stored in local_var_s0f1_1; the title flag 0x0209A2AC	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	22	0x20D95	107	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	sysDVAR	0, local_var_s0f1_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	監督	main	23	0x20D9D	108	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	if	get_title_flag() == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	監督	main	24	0x20DA3	110	loop while true; get_title_flag() == 1; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_c01	監督	main	25	0x20DAC	114	loop while true; not (get_title_flag() == 1); not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	wait	0x017c	-	-	380 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_c01	監督	main	26	0x20DB2	115	loop while true; not (get_title_flag() == 1); not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	set_title_flag	1	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	監督	main	26	0x20DB2	115	loop while true; not (get_title_flag() == 1); not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	set_title_flag	1	argument 1: the value stored as the title flag 0x0209A2AC (0x0026BE40), which get_title_flag 0x0579 returns (0x002654D0); the actor-system reset 0x00266D10 sets it back to 0 (0x00266D55)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	27	0x20DB8	117	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	store	file_var_s0_1 = 1	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	監督	main	28	0x20DCA	118	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	if	getmovieframe() > 0x0b31 and file_var_s0_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	監督	main	29	0x20DD0	120	loop while true; getmovieframe() > 0x0b31 and file_var_s0_2 == 0; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	musicplay	114	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -765,8 +765,8 @@ ttl_c01	監督	main	51	0x20E88	159	loop while true; file_var_s0_10 == 0 or (file
 ttl_c01	監督	main	52	0x20E92	162	loop while true; file_var_s0_10 == 0 or (file_var_s0_12 == 2 or file_var_s0_12 == 6); not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	if	file_var_s0_11 <= 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	監督	main	53	0x20E98	164	loop while true; file_var_s0_10 == 0 or (file_var_s0_12 == 2 or file_var_s0_12 == 6); file_var_s0_11 <= 0; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	store	file_var_s0_3 = 5	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	監督	main	54	0x20EA5	167	loop while true; not (file_var_s0_10 == 0 or (file_var_s0_12 == 2 or file_var_s0_12 == 6)); not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	else if	file_var_s0_4 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_c01	監督	main	55	0x20EA8	170	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_c01	監督	main	56	0x20EAB	171	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	監督	main	55	0x20EA8	170	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_c01	監督	main	56	0x20EAB	171	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	監督	main	57	0x20EB7	172	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	sysReqsw	2, title_c_fade::cfadeout	actor `title_c_fade`	-	-	files title_c_fade::cfadeout on channel 2; waits until it starts	title_c_fade.cfadeout	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_c01	監督	main	58	0x20EBB	173	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	監督	main	59	0x20ECD	174	loop while true; not ((not (file_var_s0_9 == 0)) and (not (file_var_s0_9 == 1)))	if	file_var_s0_10 != 3 and file_var_s0_10 != 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -859,7 +859,7 @@ ttl_c01	effectcontrol	main	71	0x21141	306	loop while true; file_var_s0_4 = 2; no
 ttl_c01	effectcontrol	main	72	0x21147	307	loop while true; file_var_s0_4 = 2; not (file_var_s0_3 == 0); file_var_s0_3 == 5	store	file_var_s0_4 = 0	variable file_var_s0_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	effectcontrol	main	73	0x2114D	308	loop while true; file_var_s0_4 = 2; not (file_var_s0_3 == 0); file_var_s0_3 == 5	store	file_var_s0_3 = 0	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	effectcontrol	main	74	0x21150	310	loop while true; file_var_s0_4 = 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_c01	titlecommand	init	1	0x2116B	321	-	fsttl_initialize	-	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlecommand	init	1	0x2116B	321	-	fsttl_initialize	-	the title screen's set-up	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlecommand	init	2	0x21171	322	-	store	file_var_s0_10 = 0	variable file_var_s0_10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	titlecommand	init	3	0x21174	323	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlecommand	main	1	0x21175	334	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -870,23 +870,23 @@ ttl_c01	titlecommand	main	5	0x2119E	341	loop while true; file_var_s0_1 == 1; loc
 ttl_c01	titlecommand	main	6	0x211B4	343	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; file_var_s0_10 == 0	if	file_var_s0_7 == 0 and (padt() & (8 bitor get_pad_ok()))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlecommand	main	7	0x211BD	345	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; file_var_s0_10 == 0; file_var_s0_7 == 0 and (padt() & (8 bitor get_pad_ok()))	sebsoundplay	0, 4	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlecommand	main	8	0x211C9	346	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; file_var_s0_10 == 0; file_var_s0_7 == 0 and (padt() & (8 bitor get_pad_ok()))	sysReqsw	2, title_c_fade::cfadein	actor `title_c_fade`	-	-	files title_c_fade::cfadein on channel 2; waits until it starts	title_c_fade.cfadein	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_c01	titlecommand	main	9	0x211CD	347	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; file_var_s0_10 == 0; file_var_s0_7 == 0 and (padt() & (8 bitor get_pad_ok()))	fsttl_opencommand	file_var_s0_9	-	-	-	-	-		01 verb-table.tsv
-ttl_c01	titlecommand	main	10	0x211D0	348	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; file_var_s0_10 == 0; file_var_s0_7 == 0 and (padt() & (8 bitor get_pad_ok()))	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlecommand	main	9	0x211CD	347	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; file_var_s0_10 == 0; file_var_s0_7 == 0 and (padt() & (8 bitor get_pad_ok()))	fsttl_opencommand	file_var_s0_9	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_c01	titlecommand	main	10	0x211D0	348	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; file_var_s0_10 == 0; file_var_s0_7 == 0 and (padt() & (8 bitor get_pad_ok()))	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlecommand	main	11	0x211D6	349	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; file_var_s0_10 == 0; file_var_s0_7 == 0 and (padt() & (8 bitor get_pad_ok()))	store	file_var_s0_10 = 1	variable file_var_s0_10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	titlecommand	main	12	0x211E3	352	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0)	else if	file_var_s0_10 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlecommand	main	13	0x211F1	354	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1	if	padt() & (get_pad_cancel() bitor 8)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlecommand	main	14	0x211F7	356	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_c01	titlecommand	main	15	0x211FA	357	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8)	fsttl_getcommandstatus	-	result stored in local_var_s2f1_2	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlecommand	main	15	0x211FA	357	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8)	fsttl_getcommandstatus	-	result stored in local_var_s2f1_2; the title command state, the byte 0x01EFAC12 (0x00394420)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlecommand	main	16	0x21217	358	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8)	if	(local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlecommand	main	17	0x2121D	360	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8); (local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	store	file_var_s0_10 = 0	variable file_var_s0_10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	titlecommand	main	18	0x21226	361	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8); (local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	sebsoundplay	0, 3	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlecommand	main	19	0x2122C	362	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8); (local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_c01	titlecommand	main	20	0x2122F	363	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8); (local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_c01	titlecommand	main	21	0x21232	364	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8); (local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlecommand	main	20	0x2122F	363	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8); (local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_c01	titlecommand	main	21	0x21232	364	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8); (local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlecommand	main	22	0x2123E	365	loop while true; file_var_s0_1 == 1; local_var_s2f1_1 == 3 and file_var_s0_4 == 0; not (file_var_s0_10 == 0); file_var_s0_10 == 1; padt() & (get_pad_cancel() bitor 8); (local_var_s2f1_2 != 0 and local_var_s2f1_2 != 1) and local_var_s2f1_2 != 5	sysReqsw	2, title_c_fade::cfadeout	actor `title_c_fade`	-	-	files title_c_fade::cfadeout on channel 2; waits until it starts	title_c_fade.cfadeout	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_c01	titlecommand	main	23	0x21249	370	loop while true; file_var_s0_1 == 1; not (local_var_s2f1_1 == 3 and file_var_s0_4 == 0)	else if	file_var_s0_10 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_c01	titlecommand	main	24	0x2124F	372	loop while true; file_var_s0_1 == 1; not (local_var_s2f1_1 == 3 and file_var_s0_4 == 0); file_var_s0_10 == 0	fsttl_opencommand	file_var_s0_9	-	-	-	-	-		01 verb-table.tsv
-ttl_c01	titlecommand	main	25	0x21252	373	loop while true; file_var_s0_1 == 1; not (local_var_s2f1_1 == 3 and file_var_s0_4 == 0); file_var_s0_10 == 0	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlecommand	main	24	0x2124F	372	loop while true; file_var_s0_1 == 1; not (local_var_s2f1_1 == 3 and file_var_s0_4 == 0); file_var_s0_10 == 0	fsttl_opencommand	file_var_s0_9	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_c01	titlecommand	main	25	0x21252	373	loop while true; file_var_s0_1 == 1; not (local_var_s2f1_1 == 3 and file_var_s0_4 == 0); file_var_s0_10 == 0	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlecommand	main	26	0x21258	376	loop while true; file_var_s0_1 == 1; not (local_var_s2f1_1 == 3 and file_var_s0_4 == 0); file_var_s0_10 == 0; loop, repeated while file_var_s0_7 == 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_c01	titlecommand	main	27	0x21262	377	loop while true; file_var_s0_1 == 1; not (local_var_s2f1_1 == 3 and file_var_s0_4 == 0); file_var_s0_10 == 0; loop, repeated while file_var_s0_7 == 1	do while	file_var_s0_7 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlecommand	main	28	0x2126E	378	loop while true; file_var_s0_1 == 1; not (local_var_s2f1_1 == 3 and file_var_s0_4 == 0); file_var_s0_10 == 0	sysReqsw	2, title_c_fade::cfadein	actor `title_c_fade`	-	-	files title_c_fade::cfadein on channel 2; waits until it starts	title_c_fade.cfadein	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -898,7 +898,7 @@ ttl_c01	titlemenu	main	2	0x21286	399	loop while true	if	file_var_s0_10 == 1	-	-	
 ttl_c01	titlemenu	main	3	0x21290	401	loop while true; file_var_s0_10 == 1	if	padt() & 80	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlemenu	main	4	0x212A2	403	loop while true; file_var_s0_10 == 1; padt() & 80	if	file_var_s0_11 > 1 and file_var_s0_11 < 0x012c	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlemenu	main	5	0x212A8	405	loop while true; file_var_s0_10 == 1; padt() & 80; file_var_s0_11 > 1 and file_var_s0_11 < 0x012c	store	file_var_s0_11 = 0x012c	variable file_var_s0_11	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_c01	titlemenu	main	6	0x212AB	408	loop while true; file_var_s0_10 == 1	fsttl_getcommandstatus	-	result stored in file_var_s0_12	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlemenu	main	6	0x212AB	408	loop while true; file_var_s0_10 == 1	fsttl_getcommandstatus	-	result stored in file_var_s0_12; the title command state, the byte 0x01EFAC12 (0x00394420)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlemenu	main	7	0x212B5	409	loop while true; file_var_s0_10 == 1	switch	file_var_s0_12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlemenu	main	8	0x212B8	411	loop while true; file_var_s0_10 == 1	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlemenu	main	9	0x212BB	412	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 0	store	file_var_s0_10 = 2	variable file_var_s0_10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -924,16 +924,16 @@ ttl_c01	titlemenu	main	28	0x21336	437	loop while true; file_var_s0_10 == 1; file
 ttl_c01	titlemenu	main	29	0x2133C	439	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; loop, repeated while file_var_s0_4 != 0; file_var_s0_3 != 0	store	file_var_s0_3 = 0	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	titlemenu	main	30	0x21342	441	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; loop, repeated while file_var_s0_4 != 0	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_c01	titlemenu	main	31	0x2134C	442	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; loop, repeated while file_var_s0_4 != 0	do while	file_var_s0_4 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_c01	titlemenu	main	32	0x21352	443	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	setflickerfreemode	1	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlemenu	main	32	0x21352	443	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	setflickerfreemode	1	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlemenu	main	33	0x21359	444	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	switch	file_var_s0_12	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlemenu	main	34	0x2135C	446	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_c01	titlemenu	main	35	0x2135F	447	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; file_var_s0_12 = 1	unkCall_7067	2	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlemenu	main	35	0x2135F	447	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; file_var_s0_12 = 1	unkCall_7067	2	argument 1: the load mode, as a byte	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlemenu	main	36	0x21362	448	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; file_var_s0_12 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlemenu	main	37	0x21365	449	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_c01	titlemenu	main	38	0x21368	450	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; file_var_s0_12 is none of 1	unkCall_7067	3	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlemenu	main	38	0x21368	450	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; file_var_s0_12 is none of 1	unkCall_7067	3	argument 1: the load mode, as a byte	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlemenu	main	39	0x2136B	451	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5; file_var_s0_12 is none of 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	titlemenu	main	40	0x2137D	453	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	openfullscreenmenu_48d	0x8005, 1	argument 1: the full-screen menu to open / argument 2: the parameter of that screen, posted with the id at mailbox 0x0215F1A8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_c01	titlemenu	main	41	0x21383	454	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	titlemenu	main	41	0x21383	454	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	titlemenu	main	42	0x21389	455	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	store	file_var_s0_10 = 0	variable file_var_s0_10	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	titlemenu	main	43	0x2138F	456	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	titlemenu	main	44	0x21395	457	loop while true; file_var_s0_10 == 1; file_var_s0_12 = 1 or 5	store	file_var_s0_11 = 1	variable file_var_s0_11	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -943,14 +943,14 @@ ttl_c01	titlemenu	main	47	0x2139B	460	loop while true; file_var_s0_10 == 1; file
 ttl_c01	titlemenu	main	48	0x213B6	463	loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_c01	configcommand	init	1	0x213BC	473	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	1	0x213C0	484	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_c01	configcommand	doconfig	2	0x213C6	485	-	setflickerfreemode	1	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	configcommand	doconfig	2	0x213C6	485	-	setflickerfreemode	1	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	configcommand	doconfig	3	0x213CC	486	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_c01	configcommand	doconfig	4	0x213CF	487	-	fsttl_openconfig	-	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	configcommand	doconfig	4	0x213CF	487	-	fsttl_openconfig	-	the title's New Game list, opened	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	configcommand	doconfig	5	0x213D5	488	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_c01	configcommand	doconfig	6	0x213DB	489	-	store	local_var_s4f1_1 = 1	variable local_var_s4f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	configcommand	doconfig	7	0x213E1	490	-	while	local_var_s4f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	8	0x213E7	492	loop while local_var_s4f1_1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_c01	configcommand	doconfig	9	0x213EA	493	loop while local_var_s4f1_1	fsttl_getconfigstatus	-	result stored in local_var_s4f1_2	-	-	-	-		01 verb-table.tsv
+ttl_c01	configcommand	doconfig	9	0x213EA	493	loop while local_var_s4f1_1	fsttl_getconfigstatus	-	result stored in local_var_s4f1_2; the status of the title's New Game list	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	configcommand	doconfig	10	0x213F4	494	loop while local_var_s4f1_1	switch	local_var_s4f1_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	11	0x213F7	496	loop while local_var_s4f1_1	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	12	0x213FA	499	loop while local_var_s4f1_1; local_var_s4f1_2 = 0; loop, repeated while file_var_s0_3 != 2	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -962,7 +962,7 @@ ttl_c01	configcommand	doconfig	17	0x2141C	504	loop while local_var_s4f1_1; local
 ttl_c01	configcommand	doconfig	18	0x21422	505	loop while local_var_s4f1_1; local_var_s4f1_2 = 0	store	file_var_s0_3 = 0	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	configcommand	doconfig	19	0x21428	506	loop while local_var_s4f1_1; local_var_s4f1_2 = 0	store	file_var_s0_5 = 0	variable file_var_s0_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_c01	configcommand	doconfig	20	0x2142E	507	loop while local_var_s4f1_1; local_var_s4f1_2 = 0	store	file_var_s0_3 = 0	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_c01	configcommand	doconfig	21	0x21434	508	loop while local_var_s4f1_1; local_var_s4f1_2 = 0	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	configcommand	doconfig	21	0x21434	508	loop while local_var_s4f1_1; local_var_s4f1_2 = 0	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	configcommand	doconfig	22	0x21437	509	loop while local_var_s4f1_1; local_var_s4f1_2 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	23	0x2143A	510	loop while local_var_s4f1_1; local_var_s4f1_2 = 1; file_var_s0_3 != 2	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	24	0x2143A	511	loop while local_var_s4f1_1	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -978,7 +978,7 @@ ttl_c01	configcommand	doconfig	33	0x21471	520	loop while local_var_s4f1_1; local
 ttl_c01	configcommand	doconfig	34	0x21477	523	loop while local_var_s4f1_1; local_var_s4f1_2 = 1; loop, repeated while file_var_s0_4 != 0; not (file_var_s0_3 != 2)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_c01	configcommand	doconfig	35	0x21481	524	loop while local_var_s4f1_1; local_var_s4f1_2 = 1; loop, repeated while file_var_s0_4 != 0; not (file_var_s0_3 != 2)	do while	file_var_s0_4 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	36	0x21484	525	loop while local_var_s4f1_1; local_var_s4f1_2 = 1; not (file_var_s0_3 != 2)	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_c01	configcommand	doconfig	37	0x21487	526	loop while local_var_s4f1_1; local_var_s4f1_2 = 1; not (file_var_s0_3 != 2)	fsttl_newgamestart	-	-	-	-	-	-		01 verb-table.tsv
+ttl_c01	configcommand	doconfig	37	0x21487	526	loop while local_var_s4f1_1; local_var_s4f1_2 = 1; not (file_var_s0_3 != 2)	fsttl_newgamestart	-	the new game, started from the title	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_c01	configcommand	doconfig	38	0x2148A	527	loop while local_var_s4f1_1; local_var_s4f1_2 = 1; not (file_var_s0_3 != 2)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	39	0x2148D	528	loop while local_var_s4f1_1	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_c01	configcommand	doconfig	40	0x2148D	529	loop while local_var_s4f1_1; local_var_s4f1_2 is none of 0, 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1031,7 +1031,7 @@ ttl_d01	監督	init	3	0x0026F	20	-	fadecancel_15a	2	argument 1: the fade layer (
 ttl_d01	監督	init	4	0x00275	21	-	fadelayer	2	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_d01	監督	init	5	0x0027E	22	-	fadeout_d0	0, 0	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_d01	監督	init	6	0x00284	23	-	fadesync_d3	0	argument 1: the fade layer (0 to 6, the 0x30-byte records at 0x022BDD60) to wait on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_d01	監督	init	7	0x0028A	24	-	unkCall_5c8	0	-	-	-	-	-		01 verb-table.tsv
+ttl_d01	監督	init	7	0x0028A	24	-	unkCall_5c8	0	argument 1: whether the loading page is left up	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_d01	監督	init	8	0x00290	25	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_d01	監督	init	9	0x00293	26	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ttl_d01	監督	init	10	0x00296	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1043,12 +1043,12 @@ ttl_d01	監督	main	5	0x002DF	41	-	mesclose	0	message window slot 0, set to clos
 ttl_d01	監督	main	6	0x002E8	42	-	messync	0, 1	message window slot 0	-	-	waits on the window: when it is fully shown (state 3) the window is closed and the wait goes on; while it closes (state 6) the wait goes on only when the flag 1 is non-zero	-	resolved	0x003479F0, 0x00357820 (read here) and 16 ../Menus-And-HUD/message-windows.md
 ttl_d01	監督	main	7	0x002EF	43	-	switch	local_var_s0f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_d01	監督	main	8	0x002F2	45	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_d01	監督	main	9	0x002F2	46	local_var_s0f1_1 = 0	btlAtelResetNgMinus	-	-	-	-	-	-		01 verb-table.tsv
-ttl_d01	監督	main	10	0x002F5	47	local_var_s0f1_1 = 0	fsttl_newgamestart	-	-	-	-	-	-		01 verb-table.tsv
+ttl_d01	監督	main	9	0x002F2	46	local_var_s0f1_1 = 0	btlAtelResetNgMinus	-	the New Game- request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_d01	監督	main	10	0x002F5	47	local_var_s0f1_1 = 0	fsttl_newgamestart	-	the new game, started from the title	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_d01	監督	main	11	0x002F8	48	local_var_s0f1_1 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_d01	監督	main	12	0x002FB	49	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_d01	監督	main	13	0x002FE	50	local_var_s0f1_1 is none of 0	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_d01	監督	main	14	0x00301	51	local_var_s0f1_1 is none of 0	softwarereset	-	-	-	-	-	-		01 verb-table.tsv
+ttl_d01	監督	main	14	0x00301	51	local_var_s0f1_1 is none of 0	softwarereset	-	a return to the title	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_d01	監督	main	15	0x00304	52	local_var_s0f1_1 is none of 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_d01	監督	main	16	0x00310	54	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_z0000	ディレクター	init	1	0x00990	30	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3796,7 +3796,7 @@ ttl_z0005	モルボル01	set	2	0x00CB2	452	-	usemapid	0	argument 1: whether the 
 ttl_z0005	モルボル01	set	3	0x00CB8	453	-	stdmotionread	1	argument 1: the standard-motion lane of the calling actor's model to load	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_z0005	モルボル01	set	4	0x00CBB	454	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_z0005	モルボル01	set	5	0x00CC1	455	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-ttl_z0005	モルボル01	set	6	0x00CD0	456	-	setpos_19	58.3046265, 0.00163700001, 56.3649635, -1.78751504	-	-	-	-	-		01 verb-table.tsv
+ttl_z0005	モルボル01	set	6	0x00CD0	456	-	setpos_19	58.3046265, 0.00163700001, 56.3649635, -1.78751504	argument 1: the x the calling actor is placed at, the fourth pop / argument 2: the y (height), the third pop / argument 3: the z, the second pop / argument 4: the heading in radians, the first pop, set at once by 0x0026B620 (wrapped, 0x0026C090)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_z0005	モルボル01	set	7	0x00CD6	457	-	dir	-1.52823901	this actor, turned to facing -1.52823901	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 ttl_z0005	モルボル01	set	8	0x00CDC	458	-	setweight	-1	this actor's body mask word +0x110: keeps only bit `0x10`, and sets bit `0x10` outside a town when actor byte +0x15 is zero	-	-	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 ttl_z0005	モルボル01	set	9	0x00CE2	459	-	setcharclipone	0	argument 1: whether the calling actor's character fades and clips with distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5575,7 +5575,7 @@ ttl_a01_e3	常駐監督	init	21	0x2124F	80	-	fadeout	0	the screen fade, out	-	0 
 ttl_a01_e3	常駐監督	init	22	0x21252	81	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	常駐監督	init	23	0x21255	82	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 ttl_a01_e3	常駐監督	init	24	0x21264	83	-	sysReqewi	1, アイコン制御::初期設定	actor `アイコン制御`	-	-	files アイコン制御::初期設定 on channel 1; waits until it ends; the target goes through INCINITTAG	アイコン制御.初期設定	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01_e3	常駐監督	init	25	0x21268	84	-	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	常駐監督	init	25	0x21268	84	-	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	常駐監督	init	26	0x2126B	85	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	常駐監督	main	1	0x2126C	90	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	常駐監督	main	2	0x2126F	92	loop while true	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
@@ -5593,7 +5593,7 @@ ttl_a01_e3	常駐監督	main	13	0x212C6	107	loop while true	startscene	4	scene c
 ttl_a01_e3	常駐監督	main	14	0x212D5	108	loop while true	if	isFirstStartDone() == 0 and not (unkCall_5b4())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	常駐監督	main	15	0x212E1	110	loop while true; isFirstStartDone() == 0 and not (unkCall_5b4())	sysReqew	1, AUTOSAVEPAGE::ShowPage	actor `AUTOSAVEPAGE`	-	-	files AUTOSAVEPAGE::ShowPage on channel 1; waits until it ends	AUTOSAVEPAGE.ShowPage	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	常駐監督	main	16	0x212EB	111	loop while true; isFirstStartDone() == 0 and not (unkCall_5b4())	sysReqew	1, AUTOSAVEPAGE::ShowPage_sync	actor `AUTOSAVEPAGE`	-	-	files AUTOSAVEPAGE::ShowPage_sync on channel 1; waits until it ends	AUTOSAVEPAGE.ShowPage_sync	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01_e3	常駐監督	main	17	0x212EC	113	loop while true	unkCall_5a8	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	常駐監督	main	17	0x212EC	113	loop while true	unkCall_5a8	-	the -nologo flag 0x022C2528 set to 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	常駐監督	main	18	0x212F2	114	loop while true	startscene	5	scene cut 5, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 ttl_a01_e3	常駐監督	main	19	0x212F8	115	loop while true	store	file_var_s1_1 = 6	variable file_var_s1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	常駐監督	main	20	0x21304	116	loop while true	sysReqew	1, スクリーン表示::EF_タイトル画面	actor `スクリーン表示`	-	-	files スクリーン表示::EF_タイトル画面 on channel 1; waits until it ends	スクリーン表示.EF_タイトル画面	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -5608,7 +5608,7 @@ ttl_a01_e3	スクリーン表示	Warning_page	3	0x21338	141	-	return	-	-	-	-	-	-
 ttl_a01_e3	スクリーン表示	Logo_page	1	0x21342	146	-	sysReqew	1, SERIES_PAGES::Logo_Page_Play	actor `SERIES_PAGES`	-	-	files SERIES_PAGES::Logo_Page_Play on channel 1; waits until it ends	SERIES_PAGES.Logo_Page_Play	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	スクリーン表示	Logo_page	2	0x2134C	147	-	sysReqew	1, SERIES_PAGES::Logo_Page_Sync	actor `SERIES_PAGES`	-	-	files SERIES_PAGES::Logo_Page_Sync on channel 1; waits until it ends	SERIES_PAGES.Logo_Page_Sync	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	スクリーン表示	Logo_page	3	0x2134D	148	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	スクリーン表示	EF_タイトル画面	1	0x2134E	153	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	スクリーン表示	EF_タイトル画面	1	0x2134E	153	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	スクリーン表示	EF_タイトル画面	2	0x21354	154	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	スクリーン表示	EF_タイトル画面	3	0x2135A	155	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 ttl_a01_e3	スクリーン表示	EF_タイトル画面	4	0x2135D	156	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5659,41 +5659,41 @@ ttl_a01_e3	スクリーン表示	EF_タイトル画面	48	0x2148D	202	-	wait	10	
 ttl_a01_e3	スクリーン表示	EF_タイトル画面	49	0x21490	203	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	SERIES_PAGES	init	1	0x21491	224	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	SERIES_PAGES	Warning_Page_Play	1	0x21498	229	-	fadein_d2	5, 0	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_a01_e3	SERIES_PAGES	Warning_Page_Play	2	0x214A1	230	-	unkCall_5b9	30, 30	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	SERIES_PAGES	Warning_Page_Play	3	0x214A7	231	-	unkCall_5a2	0	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Warning_Page_Play	2	0x214A1	230	-	unkCall_5b9	30, 30	argument 1: the fade-in length, in frames, of the screen picture / argument 2: the fade-out length, in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Warning_Page_Play	3	0x214A7	231	-	unkCall_5a2	0	argument 1: which title image the screen picture loads	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Warning_Page_Play	4	0x214AD	232	-	store	file_var_s3_1 = 150	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	SERIES_PAGES	Warning_Page_Play	5	0x214B0	233	-	unkCall_5a3	-	-	-	-	-	-		01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Warning_Page_Sync	1	0x214E7	238	-	sysReqwait	SERIES_PAGES::Warning_Page_Play	actor `SERIES_PAGES`	-	-	waits until SERIES_PAGES::Warning_Page_Play is no longer on its actor	SERIES_PAGES.Warning_Page_Play	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	SERIES_PAGES	Warning_Page_Sync	2	0x214EB	239	-	store	file_var_s3_3 = 0	variable file_var_s3_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	SERIES_PAGES	Warning_Page_Sync	3	0x214F5	240	-	if	file_var_s3_4 != 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	SERIES_PAGES	Warning_Page_Sync	4	0x214F8	242	file_var_s3_4 != 2	unkCall_5a4	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	SERIES_PAGES	Warning_Page_Sync	5	0x214FB	243	file_var_s3_4 != 2	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Warning_Page_Sync	4	0x214F8	242	file_var_s3_4 != 2	unkCall_5a4	-	the screen picture a script put up (the full-screen image of the title and loading screens), taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Warning_Page_Sync	5	0x214FB	243	file_var_s3_4 != 2	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Warning_Page_Sync	6	0x214FE	245	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	1	0x214FF	250	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	1	0x214FF	250	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	2	0x21502	251	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	3	0x21508	252	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	4	0x2150E	253	-	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	5	0x21517	254	-	unkCall_5b9	30, 30	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	6	0x2151D	255	-	unkCall_5a2	1	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	5	0x21517	254	-	unkCall_5b9	30, 30	argument 1: the fade-in length, in frames, of the screen picture / argument 2: the fade-out length, in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	6	0x2151D	255	-	unkCall_5a2	1	argument 1: which title image the screen picture loads	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	7	0x21523	256	-	store	file_var_s3_5 = 120	variable file_var_s3_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Play	8	0x21526	257	-	unkCall_5a3	-	-	-	-	-	-		01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Sync	1	0x2155D	262	-	sysReqwait	SERIES_PAGES::Logo_Page_Play	actor `SERIES_PAGES`	-	-	waits until SERIES_PAGES::Logo_Page_Play is no longer on its actor	SERIES_PAGES.Logo_Page_Play	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Sync	2	0x21561	263	-	store	file_var_s3_6 = 0	variable file_var_s3_6	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Sync	3	0x2156B	264	-	if	file_var_s3_7 != 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	SERIES_PAGES	Logo_Page_Sync	4	0x2156E	266	file_var_s3_7 != 2	unkCall_5a4	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	SERIES_PAGES	Logo_Page_Sync	5	0x21571	267	file_var_s3_7 != 2	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Logo_Page_Sync	4	0x2156E	266	file_var_s3_7 != 2	unkCall_5a4	-	the screen picture a script put up (the full-screen image of the title and loading screens), taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	Logo_Page_Sync	5	0x21571	267	file_var_s3_7 != 2	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	Logo_Page_Sync	6	0x21574	269	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	1	0x21575	274	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	1	0x21575	274	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	2	0x21578	275	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	3	0x2157E	276	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	4	0x21584	277	-	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	5	0x2158D	278	-	unkCall_5b9	30, 30	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	6	0x21593	279	-	unkCall_5a2	2	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	5	0x2158D	278	-	unkCall_5b9	30, 30	argument 1: the fade-in length, in frames, of the screen picture / argument 2: the fade-out length, in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	6	0x21593	279	-	unkCall_5a2	2	argument 1: which title image the screen picture loads	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	7	0x21599	280	-	store	file_var_s3_8 = 120	variable file_var_s3_8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Play	8	0x2159C	281	-	unkCall_5a3	-	-	-	-	-	-		01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Sync	1	0x215C3	286	-	sysReqwait	SERIES_PAGES::ESRBrating_page_Play	actor `SERIES_PAGES`	-	-	waits until SERIES_PAGES::ESRBrating_page_Play is no longer on its actor	SERIES_PAGES.ESRBrating_page_Play	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Sync	2	0x215C4	287	-	unkCall_5a4	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Sync	3	0x215C7	288	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Sync	2	0x215C4	287	-	unkCall_5a4	-	the screen picture a script put up (the full-screen image of the title and loading screens), taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Sync	3	0x215C7	288	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	SERIES_PAGES	ESRBrating_page_Sync	4	0x215CA	289	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	WARNINGPAGE_IN_PLAYING	init	1	0x215CB	298	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	1	0x215CF	303	-	store	file_var_s3_4 = 1	variable file_var_s3_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5701,7 +5701,7 @@ ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	2	0x215D5	304	-	store	file_var_s3_3
 ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	3	0x215DF	305	-	while	file_var_s3_3 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	4	0x215FD	307	loop while file_var_s3_3 == 1	if	(unkCall_5a5() > file_var_s3_2 and file_var_s3_4 == 1) and (padt() & (8 bitor get_pad_ok()))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	5	0x21603	309	loop while file_var_s3_3 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_4 == 1) and (padt() & (8 bitor get_pad_ok()))	store	file_var_s3_4 = 2	variable file_var_s3_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	6	0x21606	310	loop while file_var_s3_3 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_4 == 1) and (padt() & (8 bitor get_pad_ok()))	unkCall_5a4	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	6	0x21606	310	loop while file_var_s3_3 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_4 == 1) and (padt() & (8 bitor get_pad_ok()))	unkCall_5a4	-	the screen picture a script put up (the full-screen image of the title and loading screens), taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	7	0x2160C	311	loop while file_var_s3_3 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_4 == 1) and (padt() & (8 bitor get_pad_ok()))	store	file_var_s3_1 = 0	variable file_var_s3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	8	0x21612	312	loop while file_var_s3_3 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_4 == 1) and (padt() & (8 bitor get_pad_ok()))	store	file_var_s3_3 = 0	variable file_var_s3_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	WARNINGPAGE_IN_PLAYING	In_Playing	9	0x21615	313	loop while file_var_s3_3 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_4 == 1) and (padt() & (8 bitor get_pad_ok()))	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5713,18 +5713,18 @@ ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	2	0x2162C	332	-	store	file_var_s3_6 = 
 ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	3	0x21636	333	-	while	file_var_s3_6 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	4	0x21654	335	loop while file_var_s3_6 == 1	if	(unkCall_5a5() > file_var_s3_2 and file_var_s3_7 == 1) and (padt() & (8 bitor get_pad_ok()))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	5	0x2165A	337	loop while file_var_s3_6 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_7 == 1) and (padt() & (8 bitor get_pad_ok()))	store	file_var_s3_7 = 2	variable file_var_s3_7	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	6	0x2165D	338	loop while file_var_s3_6 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_7 == 1) and (padt() & (8 bitor get_pad_ok()))	unkCall_5a4	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	6	0x2165D	338	loop while file_var_s3_6 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_7 == 1) and (padt() & (8 bitor get_pad_ok()))	unkCall_5a4	-	the screen picture a script put up (the full-screen image of the title and loading screens), taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	7	0x21663	339	loop while file_var_s3_6 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_7 == 1) and (padt() & (8 bitor get_pad_ok()))	store	file_var_s3_5 = 0	variable file_var_s3_5	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	8	0x21669	340	loop while file_var_s3_6 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_7 == 1) and (padt() & (8 bitor get_pad_ok()))	store	file_var_s3_6 = 0	variable file_var_s3_6	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	9	0x2166C	341	loop while file_var_s3_6 == 1; (unkCall_5a5() > file_var_s3_2 and file_var_s3_7 == 1) and (padt() & (8 bitor get_pad_ok()))	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	10	0x21672	343	loop while file_var_s3_6 == 1; not ((unkCall_5a5() > file_var_s3_2 and file_var_s3_7 == 1) and (padt() & (8 bitor get_pad_ok())))	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01_e3	LOGOPAGE_IN_PLAYING	In_Playing	11	0x21678	345	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	AUTOSAVEPAGE	init	1	0x21679	354	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	AUTOSAVEPAGE	ShowPage	1	0x2167A	364	-	unkCall_5a6	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	AUTOSAVEPAGE	ShowPage	1	0x2167A	364	-	unkCall_5a6	-	waits for the screen picture to finish	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage	2	0x2167D	365	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage	3	0x21683	366	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage	4	0x21689	367	-	fadein	30	the screen fade, in	-	30 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-ttl_a01_e3	AUTOSAVEPAGE	ShowPage	5	0x2169B	368	-	unkCall_5b6	0x01000000, 0x03c0, 0x02e4, 0x03c0, 0x0154	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	AUTOSAVEPAGE	ShowPage	5	0x2169B	368	-	unkCall_5b6	0x01000000, 0x03c0, 0x02e4, 0x03c0, 0x0154	argument 1: the text id of the notice in the calling script's section 2 / argument 2: the x of the message window the notice opens for its text / argument 3: the y of that message window / argument 4: the x of the notice's second picture / argument 5: the y of the notice's second picture	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage	6	0x2169E	369	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage	7	0x216A8	370	-	while	local_var_s6f1_1 <= 90	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage	8	0x216B2	372	loop while local_var_s6f1_1 <= 90	store	local_var_s6f1_1 = local_var_s6f1_1 + 1	variable local_var_s6f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5734,13 +5734,13 @@ ttl_a01_e3	AUTOSAVEPAGE	ShowPage_sync	1	0x216C5	380	-	sysReqwait	AUTOSAVEPAGE::S
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage_sync	2	0x216C9	381	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage_sync	3	0x216CF	382	-	fadeout	30	the screen fade, out	-	30 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage_sync	4	0x216D2	383	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_a01_e3	AUTOSAVEPAGE	ShowPage_sync	5	0x216D5	384	-	unkCall_5b7	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	AUTOSAVEPAGE	ShowPage_sync	5	0x216D5	384	-	unkCall_5b7	-	the notice that unkCall_5b6 built is destroyed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	AUTOSAVEPAGE	ShowPage_sync	6	0x216D8	385	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー制御	init	1	0x216DF	399	-	sysDVAR	17, local_var_s7f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー制御	init	2	0x216E0	400	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー制御	準備	1	0x216E4	405	-	store	file_var_s1_12 = 0	variable file_var_s1_12	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	ムービー制御	準備	2	0x216E7	406	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	1	0x216E8	411	-	getscreenaspect	-	result stored in file_var_s1_14	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	1	0x216E8	411	-	getscreenaspect	-	result stored in file_var_s1_14; always 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	2	0x216F5	412	-	if	file_var_s1_14 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	3	0x216FB	414	file_var_s1_14 == 0	store	file_var_s1_1 = 2	variable file_var_s1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	4	0x21701	415	file_var_s1_14 == 0	store	local_var_s7f0_1 = 44	variable local_var_s7f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5750,7 +5750,7 @@ ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	7	0x21716	422	-	moviestand
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	8	0x21719	423	-	moviestandbysync	-	the movie moviestandby opened	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	9	0x21725	424	-	sysReq	1, DEBUG_MOVIE_COUNTER::START	actor `DEBUG_MOVIE_COUNTER`	-	-	files DEBUG_MOVIE_COUNTER::START on channel 1; does not wait	DEBUG_MOVIE_COUNTER.START	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	10	0x2172D	425	-	if	file_var_s1_14 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	11	0x21736	427	file_var_s1_14 != 0	setmoviescreensize	2	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	11	0x21736	427	file_var_s1_14 != 0	setmoviescreensize	2	argument 1: the movie screen size setting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	12	0x2173C	429	-	movieplay	local_var_s7f0_1	argument 1: popped and not used	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	13	0x21742	430	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	スクエニロゴ_PLAY	14	0x21748	431	-	fadein	90	the screen fade, in	-	90 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -5764,7 +5764,7 @@ ttl_a01_e3	ムービー制御	スクエニロゴ_SYNC	5	0x21775	442	-	sysReq	2, 
 ttl_a01_e3	ムービー制御	スクエニロゴ_SYNC	6	0x21776	443	-	movieend	-	the movie playing, ended, and the field given back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	スクエニロゴ_SYNC	7	0x21779	444	-	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	スクエニロゴ_SYNC	8	0x2177C	445	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	1	0x2177D	450	-	getscreenaspect	-	result stored in file_var_s1_14	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	1	0x2177D	450	-	getscreenaspect	-	result stored in file_var_s1_14; always 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	2	0x2178A	451	-	if	file_var_s1_14 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	3	0x21790	453	file_var_s1_14 == 0	store	file_var_s1_1 = 4	variable file_var_s1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	4	0x21796	454	file_var_s1_14 == 0	store	local_var_s7f0_1 = 41	variable local_var_s7f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -5775,7 +5775,7 @@ ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	8	0x217AE	462	-	movi
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	9	0x217BA	463	-	sysReq	1, DEBUG_MOVIE_COUNTER::START	actor `DEBUG_MOVIE_COUNTER`	-	-	files DEBUG_MOVIE_COUNTER::START on channel 1; does not wait	DEBUG_MOVIE_COUNTER.START	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	10	0x217C4	464	-	sysReq	1, 曲制御::ムービー中曲開始	actor `曲制御`	-	-	files 曲制御::ムービー中曲開始 on channel 1; does not wait	曲制御.ムービー中曲開始	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	11	0x217CC	465	-	if	file_var_s1_14 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	12	0x217D5	467	file_var_s1_14 != 0	setmoviescreensize	2	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	12	0x217D5	467	file_var_s1_14 != 0	setmoviescreensize	2	argument 1: the movie screen size setting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	13	0x217DB	469	-	movieplay	local_var_s7f0_1	argument 1: popped and not used	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	14	0x217E1	470	-	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	オープニングデモ_PLAY	15	0x217E7	471	-	fadein	40	the screen fade, in	-	40 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -5795,7 +5795,7 @@ ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	9	0x21849	490	file_v
 ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	10	0x21852	494	file_var_s1_12 != 2; not (file_var_s1_14 == 0 and file_var_s1_12 == 0)	fadeout	40	the screen fade, out	-	40 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	11	0x21855	496	file_var_s1_12 != 2	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	12	0x2185B	497	file_var_s1_12 != 2	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	13	0x2185E	498	file_var_s1_12 != 2	getscreenaspect	-	result stored in file_var_s1_14	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	13	0x2185E	498	file_var_s1_12 != 2	getscreenaspect	-	result stored in file_var_s1_14; always 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	14	0x2186B	499	file_var_s1_12 != 2	if	file_var_s1_14 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	15	0x2186E	501	file_var_s1_12 != 2; file_var_s1_14 == 0	moviecancel	-	the movie now playing, stopped and ended	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー制御	オープニングデモ_SYNC	16	0x21874	505	file_var_s1_12 != 2; not (file_var_s1_14 == 0)	movieplaysync	-	the movie now playing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5860,16 +5860,16 @@ ttl_a01_e3	ムービー表示カウンター	カウント中	14	0x219DD	618	-	wh
 ttl_a01_e3	ムービー表示カウンター	カウント中	15	0x219E7	620	loop while local_var_s9f0_1 != 0	store	local_var_s9f0_1 = local_var_s9f0_1 - 1	variable local_var_s9f0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	ムービー表示カウンター	カウント中	16	0x219EE	621	loop while local_var_s9f0_1 != 0	switch	file_var_s1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー表示カウンター	カウント中	17	0x219F1	623	loop while local_var_s9f0_1 != 0	case	2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ムービー表示カウンター	カウント中	18	0x219F1	624	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 2	getmovieframe	-	result stored in file_var_s1_7	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー表示カウンター	カウント中	18	0x219F1	624	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 2	getmovieframe	-	result stored in file_var_s1_7; the frame the playing movie has reached	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー表示カウンター	カウント中	19	0x219F7	625	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 2	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー表示カウンター	カウント中	20	0x219FA	626	loop while local_var_s9f0_1 != 0	case	3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ムービー表示カウンター	カウント中	21	0x219FA	627	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 3	getmovieframe	-	result stored in file_var_s1_8	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー表示カウンター	カウント中	21	0x219FA	627	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 3	getmovieframe	-	result stored in file_var_s1_8; the frame the playing movie has reached	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー表示カウンター	カウント中	22	0x21A00	628	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 3	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー表示カウンター	カウント中	23	0x21A03	629	loop while local_var_s9f0_1 != 0	case	4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ムービー表示カウンター	カウント中	24	0x21A03	630	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 4	getmovieframe	-	result stored in file_var_s1_9	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー表示カウンター	カウント中	24	0x21A03	630	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 4	getmovieframe	-	result stored in file_var_s1_9; the frame the playing movie has reached	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー表示カウンター	カウント中	25	0x21A09	631	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 4	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー表示カウンター	カウント中	26	0x21A0C	632	loop while local_var_s9f0_1 != 0	case	5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ムービー表示カウンター	カウント中	27	0x21A0C	633	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 5	getmovieframe	-	result stored in file_var_s1_10	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ムービー表示カウンター	カウント中	27	0x21A0C	633	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 5	getmovieframe	-	result stored in file_var_s1_10; the frame the playing movie has reached	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ムービー表示カウンター	カウント中	28	0x21A12	634	loop while local_var_s9f0_1 != 0; file_var_s1_1 = 5	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ムービー表示カウンター	カウント中	29	0x21A33	636	loop while local_var_s9f0_1 != 0	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01_e3	ムービー表示カウンター	カウント中	30	0x21A39	638	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6009,11 +6009,11 @@ ttl_a01_e3	アイコン制御	消去	7	0x21E2A	896	-	setshapeshowstatus	3, 1, 0	
 ttl_a01_e3	アイコン制御	消去	8	0x21E30	897	-	releasemapjumpgroupflag	111	flags released: 0x006F: While set, the picture parts of the message windows keep stepping during a time stop: 0x002A3F90 tests the flag first and checks the time stop 0x0036D830 only while it is clear (0x002A3F99-0x002A3FAE)	-	-	-	-	resolved	this page's How a call is read
 ttl_a01_e3	アイコン制御	消去	9	0x21E36	898	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	アイコン制御	消去	10	0x21E37	899	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	コマンド制御	init	1	0x21E38	908	-	fsttl_initialize	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	init	1	0x21E38	908	-	fsttl_initialize	-	the title screen's set-up	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	init	2	0x21E3B	909	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	コマンド制御	準備	1	0x21E3C	914	-	fsttl_opendatacheck	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	準備	1	0x21E3C	914	-	fsttl_opendatacheck	-	the title's check for an existing save, started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	準備	2	0x21E3F	915	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	コマンド制御	準備	3	0x21E3F	916	-	fsttl_getdatacheckstatus	-	result stored in file_var_s1_2	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	準備	3	0x21E3F	916	-	fsttl_getdatacheckstatus	-	result stored in file_var_s1_2; the state of the title's save check	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	準備	4	0x21E4C	917	-	if	file_var_s1_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	準備	5	0x21E52	919	file_var_s1_2 == 0	store	file_var_s1_2 = 0	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	準備	6	0x21E5F	921	not (file_var_s1_2 == 0)	else if	file_var_s1_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6021,19 +6021,19 @@ ttl_a01_e3	コマンド制御	準備	7	0x21E65	923	not (file_var_s1_2 == 0); fil
 ttl_a01_e3	コマンド制御	準備	8	0x21E6E	927	not (file_var_s1_2 == 0); not (file_var_s1_2 == 1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01_e3	コマンド制御	準備	9	0x21E71	928	not (file_var_s1_2 == 0); not (file_var_s1_2 == 1)	goto	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	準備	10	0x21E74	930	not ((not (file_var_s1_2 == 0)) and (not (file_var_s1_2 == 1)))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	コマンド制御	表示	1	0x21E78	935	-	fsttl_opencommand	file_var_s1_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	コマンド制御	表示	2	0x21E7B	936	-	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	表示	1	0x21E78	935	-	fsttl_opencommand	file_var_s1_2	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	コマンド制御	表示	2	0x21E7B	936	-	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	表示	3	0x21E7E	937	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	1	0x21E82	947	-	store	file_var_s1_15 = 1	variable file_var_s1_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	2	0x21E8C	948	-	while	file_var_s1_15 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	コマンド制御	キーチェック	3	0x21E8F	950	loop while file_var_s1_15 == 1	fsttl_getcommandstatus	-	result stored in file_var_s1_13	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	3	0x21E8F	950	loop while file_var_s1_15 == 1	fsttl_getcommandstatus	-	result stored in file_var_s1_13; the title command state, the byte 0x01EFAC12 (0x00394420)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	4	0x21E99	951	loop while file_var_s1_15 == 1	switch	file_var_s1_13	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	5	0x21E9C	953	loop while file_var_s1_15 == 1	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	6	0x21E9F	954	loop while file_var_s1_15 == 1; file_var_s1_13 = 0	if	unkCall_5b4()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	7	0x21EA5	956	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	store	file_var_s1_17 = 0x0708	variable file_var_s1_17	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	8	0x21EAB	957	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	store	file_var_s1_16 = 1	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01_e3	コマンド制御	キーチェック	9	0x21EAE	958	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	コマンド制御	キーチェック	10	0x21EB1	959	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	9	0x21EAE	958	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	10	0x21EB1	959	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	11	0x21EBA	960	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	sysReqwait	アイコン制御::表示	actor `アイコン制御`	-	-	waits until アイコン制御::表示 is no longer on its actor	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	コマンド制御	キーチェック	12	0x21EBE	961	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	13	0x21EC4	962	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -6048,8 +6048,8 @@ ttl_a01_e3	コマンド制御	キーチェック	21	0x21EF7	970	loop while file_
 ttl_a01_e3	コマンド制御	キーチェック	22	0x21EFD	971	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; unkCall_5b4()	store	file_var_s1_16 = 0	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	23	0x21F06	975	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	store	file_var_s1_17 = 0x0708	variable file_var_s1_17	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	24	0x21F0C	976	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	store	file_var_s1_16 = 1	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01_e3	コマンド制御	キーチェック	25	0x21F0F	977	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	コマンド制御	キーチェック	26	0x21F12	978	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	25	0x21F0F	977	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	26	0x21F12	978	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	27	0x21F18	979	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	store	file_var_s1_2 = 0	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	28	0x21F21	980	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReqwait	エフェクト制御_JUDGE::表示	actor `エフェクト制御_JUDGE`	-	-	waits until エフェクト制御_JUDGE::表示 is no longer on its actor	エフェクト制御_JUDGE.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	コマンド制御	キーチェック	29	0x21F28	981	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReqwait	エフェクト制御::NEW_GAME_CANCEL	actor `エフェクト制御`	-	-	waits until エフェクト制御::NEW_GAME_CANCEL is no longer on its actor	エフェクト制御.NEW_GAME_CANCEL	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -6057,16 +6057,16 @@ ttl_a01_e3	コマンド制御	キーチェック	30	0x21F32	982	loop while file_
 ttl_a01_e3	コマンド制御	キーチェック	31	0x21F3C	983	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReqew	2, ゲームスタート処理::コンフィグ起動	actor `ゲームスタート処理`	-	-	files ゲームスタート処理::コンフィグ起動 on channel 2; waits until it ends	ゲームスタート処理.コンフィグ起動	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	コマンド制御	キーチェック	32	0x21F46	984	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReq	1, エフェクト制御::NEW_GAME_CANCEL	actor `エフェクト制御`	-	-	files エフェクト制御::NEW_GAME_CANCEL on channel 1; does not wait	エフェクト制御.NEW_GAME_CANCEL	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	コマンド制御	キーチェック	33	0x21F4D	985	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	sysReqwait	エフェクト制御::NEW_GAME_CANCEL	actor `エフェクト制御`	-	-	waits until エフェクト制御::NEW_GAME_CANCEL is no longer on its actor	エフェクト制御.NEW_GAME_CANCEL	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01_e3	コマンド制御	キーチェック	34	0x21F51	986	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_opencommand	file_var_s1_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	コマンド制御	キーチェック	35	0x21F54	987	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	34	0x21F51	986	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_opencommand	file_var_s1_2	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	35	0x21F54	987	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	36	0x21F5A	988	loop while file_var_s1_15 == 1; file_var_s1_13 = 0; not (unkCall_5b4())	store	file_var_s1_16 = 0	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	37	0x21F5D	990	loop while file_var_s1_15 == 1; file_var_s1_13 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	38	0x21F60	991	loop while file_var_s1_15 == 1	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	39	0x21F60	992	loop while file_var_s1_15 == 1	case	4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	40	0x21F63	993	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	store	file_var_s1_17 = 0x0708	variable file_var_s1_17	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	41	0x21F69	994	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	store	file_var_s1_16 = 1	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01_e3	コマンド制御	キーチェック	42	0x21F6C	995	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	コマンド制御	キーチェック	43	0x21F6F	996	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	42	0x21F6C	995	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	43	0x21F6F	996	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	44	0x21F78	997	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	sysReqwait	アイコン制御::表示	actor `アイコン制御`	-	-	waits until アイコン制御::表示 is no longer on its actor	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	コマンド制御	キーチェック	45	0x21F7C	998	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	46	0x21F82	999	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fadeout	15	the screen fade, out	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -6081,16 +6081,16 @@ ttl_a01_e3	コマンド制御	キーチェック	54	0x21FC1	1012	loop while file
 ttl_a01_e3	コマンド制御	キーチェック	55	0x21FC5	1013	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fadelayer	5	argument 1: the draw stage of the next fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	56	0x21FCB	1014	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fadein	15	the screen fade, in	-	15 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 ttl_a01_e3	コマンド制御	キーチェック	57	0x21FD7	1015	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	sysReq	1, アイコン制御::表示	actor `アイコン制御`	-	-	files アイコン制御::表示 on channel 1; does not wait	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01_e3	コマンド制御	キーチェック	58	0x21FDB	1016	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fsttl_opencommand	file_var_s1_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	コマンド制御	キーチェック	59	0x21FDE	1017	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	58	0x21FDB	1016	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fsttl_opencommand	file_var_s1_2	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	59	0x21FDE	1017	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	60	0x21FE1	1018	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	61	0x21FE7	1019	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	store	file_var_s1_16 = 0	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	62	0x21FEA	1020	loop while file_var_s1_15 == 1; file_var_s1_13 = 1 or 4	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	63	0x21FED	1021	loop while file_var_s1_15 == 1	case	3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	コマンド制御	キーチェック	64	0x21FF0	1022	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	store	file_var_s1_17 = 0x0708	variable file_var_s1_17	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	65	0x21FF6	1023	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	store	file_var_s1_16 = 1	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01_e3	コマンド制御	キーチェック	66	0x21FF9	1024	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_closecommand	-	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	コマンド制御	キーチェック	67	0x21FFC	1025	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_closecommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	66	0x21FF9	1024	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_closecommand	-	the title's command list, asked to close	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	67	0x21FFC	1025	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_closecommandsync	-	the closing of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	68	0x22005	1026	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReqwait	アイコン制御::表示	actor `アイコン制御`	-	-	waits until アイコン制御::表示 is no longer on its actor	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	コマンド制御	キーチェック	69	0x22009	1027	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	store	file_var_s1_2 = 3	variable file_var_s1_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	70	0x22015	1028	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReq	2, 曲制御::タイトル画面曲終了	actor `曲制御`	-	-	files 曲制御::タイトル画面曲終了 on channel 2; does not wait	曲制御.タイトル画面曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -6137,8 +6137,8 @@ ttl_a01_e3	コマンド制御	キーチェック	110	0x22112	1077	loop while fil
 ttl_a01_e3	コマンド制御	キーチェック	111	0x2211C	1078	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReq	1, エフェクト制御::表示	actor `エフェクト制御`	-	-	files エフェクト制御::表示 on channel 1; does not wait	エフェクト制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	コマンド制御	キーチェック	112	0x22123	1079	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReqwait	アイコン制御::表示	actor `アイコン制御`	-	-	waits until アイコン制御::表示 is no longer on its actor	アイコン制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	コマンド制御	キーチェック	113	0x2212A	1080	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	sysReqwait	エフェクト制御::表示	actor `エフェクト制御`	-	-	waits until エフェクト制御::表示 is no longer on its actor	エフェクト制御.表示	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01_e3	コマンド制御	キーチェック	114	0x2212E	1081	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_opencommand	file_var_s1_2	-	-	-	-	-		01 verb-table.tsv
-ttl_a01_e3	コマンド制御	キーチェック	115	0x22131	1082	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_opencommandsync	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	114	0x2212E	1081	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_opencommand	file_var_s1_2	argument 1: the row the title's command list opens on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+ttl_a01_e3	コマンド制御	キーチェック	115	0x22131	1082	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fsttl_opencommandsync	-	the opening of the title's command list, waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	116	0x22134	1083	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	コマンド制御	キーチェック	117	0x2213A	1084	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	store	file_var_s1_16 = 0	variable file_var_s1_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	コマンド制御	キーチェック	118	0x2213D	1085	loop while file_var_s1_15 == 1; file_var_s1_13 = 3	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6169,21 +6169,21 @@ ttl_a01_e3	CREDITS	movieplayAndsync	16	0x221CF	1139	loop while true; not (local_
 ttl_a01_e3	CREDITS	movieplayAndsync	17	0x221D8	1142	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01_e3	CREDITS	movieplayAndsync	18	0x221DB	1143	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	LOADPS2SAVE	init	1	0x221DC	1152	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	LOADPS2SAVE	startLoad	1	0x221E0	1157	-	loadPs2Save	153	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	LOADPS2SAVE	startLoad	1	0x221E0	1157	-	loadPs2Save	153	argument 1: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	LOADPS2SAVE	startLoad	2	0x221E3	1158	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	init	1	0x221E4	1167	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	1	0x221E8	1178	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_a01_e3	ゲームスタート処理	コンフィグ起動	2	0x221EE	1179	-	setflickerfreemode	1	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	コンフィグ起動	2	0x221EE	1179	-	setflickerfreemode	1	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	3	0x221F4	1180	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-ttl_a01_e3	ゲームスタート処理	コンフィグ起動	4	0x221F7	1181	-	fsttl_openconfig	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	コンフィグ起動	4	0x221F7	1181	-	fsttl_openconfig	-	the title's New Game list, opened	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	5	0x221FD	1182	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	6	0x22203	1183	-	store	local_var_s18f1_1 = 1	variable local_var_s18f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	7	0x22209	1184	-	while	local_var_s18f1_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ゲームスタート処理	コンフィグ起動	8	0x2220C	1186	loop while local_var_s18f1_1	fsttl_getconfigstatus	-	result stored in local_var_s18f1_2	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	コンフィグ起動	8	0x2220C	1186	loop while local_var_s18f1_1	fsttl_getconfigstatus	-	result stored in local_var_s18f1_2; the status of the title's New Game list	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	9	0x22216	1187	loop while local_var_s18f1_1	switch	local_var_s18f1_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	10	0x22219	1189	loop while local_var_s18f1_1	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	11	0x2221C	1190	loop while local_var_s18f1_1; local_var_s18f1_2 = 0	store	local_var_s18f1_1 = 0	variable local_var_s18f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-ttl_a01_e3	ゲームスタート処理	コンフィグ起動	12	0x22222	1191	loop while local_var_s18f1_1; local_var_s18f1_2 = 0	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	コンフィグ起動	12	0x22222	1191	loop while local_var_s18f1_1; local_var_s18f1_2 = 0	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	13	0x22225	1192	loop while local_var_s18f1_1; local_var_s18f1_2 = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	14	0x22228	1193	loop while local_var_s18f1_1	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	15	0x2222B	1194	loop while local_var_s18f1_1; local_var_s18f1_2 = 1	store	local_var_s18f1_1 = 0	variable local_var_s18f1_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -6191,23 +6191,23 @@ ttl_a01_e3	ゲームスタート処理	コンフィグ起動	16	0x22237	1195	loo
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	17	0x22241	1196	loop while local_var_s18f1_1; local_var_s18f1_2 = 1	sysReq	2, 曲制御::GAME_START曲終了	actor `曲制御`	-	-	files 曲制御::GAME_START曲終了 on channel 2; does not wait	曲制御.GAME_START曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	18	0x2224B	1197	loop while local_var_s18f1_1; local_var_s18f1_2 = 1	sysReqew	1, エフェクト制御::GAME_START	actor `エフェクト制御`	-	-	files エフェクト制御::GAME_START on channel 1; waits until it ends	エフェクト制御.GAME_START	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	19	0x22252	1198	loop while local_var_s18f1_1; local_var_s18f1_2 = 1	sysReqwait	曲制御::GAME_START曲終了	actor `曲制御`	-	-	waits until 曲制御::GAME_START曲終了 is no longer on its actor	曲制御.GAME_START曲終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-ttl_a01_e3	ゲームスタート処理	コンフィグ起動	20	0x22253	1199	loop while local_var_s18f1_1; local_var_s18f1_2 = 1	fsttl_newgamestart	-	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	コンフィグ起動	20	0x22253	1199	loop while local_var_s18f1_1; local_var_s18f1_2 = 1	fsttl_newgamestart	-	the new game, started from the title	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	21	0x22256	1200	loop while local_var_s18f1_1; local_var_s18f1_2 = 1	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	22	0x22259	1202	loop while local_var_s18f1_1; local_var_s18f1_2 = 1; loop while true	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	23	0x2225F	1204	loop while local_var_s18f1_1	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	24	0x2225F	1205	loop while local_var_s18f1_1; local_var_s18f1_2 is none of 0, 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	25	0x22274	1207	loop while local_var_s18f1_1; local_var_s18f1_2 is none of 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 ttl_a01_e3	ゲームスタート処理	コンフィグ起動	26	0x2227A	1209	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ゲームスタート処理	ロード画面起動	1	0x2227E	1214	-	setflickerfreemode	1	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	ロード画面起動	1	0x2227E	1214	-	setflickerfreemode	1	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	ロード画面起動	2	0x22285	1215	-	switch	file_var_s1_13	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	ロード画面起動	3	0x22288	1217	-	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ゲームスタート処理	ロード画面起動	4	0x2228B	1218	file_var_s1_13 = 1	unkCall_7067	2	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	ロード画面起動	4	0x2228B	1218	file_var_s1_13 = 1	unkCall_7067	2	argument 1: the load mode, as a byte	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	ロード画面起動	5	0x2228E	1219	file_var_s1_13 = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	ロード画面起動	6	0x22291	1220	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-ttl_a01_e3	ゲームスタート処理	ロード画面起動	7	0x22294	1221	file_var_s1_13 is none of 1	unkCall_7067	3	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	ロード画面起動	7	0x22294	1221	file_var_s1_13 is none of 1	unkCall_7067	3	argument 1: the load mode, as a byte	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	ロード画面起動	8	0x22297	1222	file_var_s1_13 is none of 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	ゲームスタート処理	ロード画面起動	9	0x222A9	1224	-	openfullscreenmenu_48d	0x8005, 1	argument 1: the full-screen menu to open / argument 2: the parameter of that screen, posted with the id at mailbox 0x0215F1A8	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-ttl_a01_e3	ゲームスタート処理	ロード画面起動	10	0x222AF	1225	-	setflickerfreemode	0	-	-	-	-	-		01 verb-table.tsv
+ttl_a01_e3	ゲームスタート処理	ロード画面起動	10	0x222AF	1225	-	setflickerfreemode	0	argument 1: flicker-free mode on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 ttl_a01_e3	ゲームスタート処理	ロード画面起動	11	0x222B2	1226	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	タイトル表示カウンター	init	1	0x222B3	1235	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 ttl_a01_e3	タイトル表示カウンター	カウント中	1	0x222B4	1240	-	label	local_jmp_0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

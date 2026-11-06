@@ -1350,7 +1350,7 @@ rsn_b01	イベント管理	パンネロ合流_再生	26	0x455BD	381	-	sysReqew	1
 rsn_b01	イベント管理	パンネロ合流_再生	27	0x455C7	382	-	setquestscenarioflag	12, 20	argument 1: the quest id q, clamped to 0-255 / argument 2: the scenario value stored there, clamped to 0-255, which getquestscenarioflag (0x0046B180) returns for the quest	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	28	0x455CD	383	-	store	シナリオフラグ = 0x03e8	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_b01	イベント管理	パンネロ合流_再生	29	0x455D3	384	-	removeguestbattlemember	11	party: Vossler leaves as a guest	-	-	-	-	resolved	this page's How a call is read
-rsn_b01	イベント管理	パンネロ合流_再生	30	0x455D6	385	-	recoverentry	-	-	-	-	-	-		01 verb-table.tsv
+rsn_b01	イベント管理	パンネロ合流_再生	30	0x455D6	385	-	recoverentry	-	the actor model rebuild that disposeentry 0x006B started, asked to recover	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	31	0x455E5	386	-	getpos_12a	-1, &local_var_s5f2_1, &local_var_s5f2_2, &local_var_s5f2_3	argument 1: the actor whose position is read / argument 2: a script variable, passed by reference (resolved by 0x002650B0), that receives the x of the position, movement context +0x00 / argument 3: the variable that receives the y (the height), context +0x04 / argument 4: the variable that receives the z, context +0x08	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	32	0x455EB	387	-	getrotangzx_12e	-1	result stored in local_var_s5f2_4; argument 1: the actor whose facing is read	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	イベント管理	パンネロ合流_再生	33	0x455F4	388	-	partyusemapid	1	argument 1: whether the party members move on the map's floor, usemapid for the party	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1855,7 +1855,7 @@ rsn_b01	警報装置監視君	main	15	0x46723	1621	loop while true; not (not (PC
 rsn_b01	警報装置監視君	main	16	0x46730	1623	loop while true	if	not (PC03.getcharbattlestatus(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b01	警報装置監視君	main	17	0x46736	1625	loop while true; not (PC03.getcharbattlestatus(0))	PC03.getmapid	-	result stored in file_var_s24_21; target actor `PC03` (this script) / the target actor's floor group, the collision floor group its movement body stands on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	警報装置監視君	main	18	0x46742	1629	loop while true; not (not (PC03.getcharbattlestatus(0)))	store	file_var_s24_21 = 0	variable file_var_s24_21	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-rsn_b01	警報装置監視君	main	19	0x46745	1631	loop while true	getbattlememberonlytotal	-	result stored in file_var_s24_1	-	-	-	-		01 verb-table.tsv
+rsn_b01	警報装置監視君	main	19	0x46745	1631	loop while true	getbattlememberonlytotal	-	result stored in file_var_s24_1; returns how many battle members (0x0031B670, group 0) are shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b01	警報装置監視君	main	20	0x4674E	1632	loop while true	sysGethp_1f2	PC00	result stored in local_var_s24f1_1; actor `PC00` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 rsn_b01	警報装置監視君	main	21	0x46757	1633	loop while true	sysGethp_1f2	PC01	result stored in local_var_s24f1_2; actor `PC01` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 rsn_b01	警報装置監視君	main	22	0x46760	1634	loop while true	sysGethp_1f2	PC02	result stored in local_var_s24f1_3; actor `PC02` (this script)	-	-	-	-	resolved	01 verb-table.tsv
@@ -4753,7 +4753,7 @@ rsn_b03	警報装置監視君	main	15	0x46EEA	1186	loop while true; not (not (PC
 rsn_b03	警報装置監視君	main	16	0x46EF7	1188	loop while true	if	not (PC03.getcharbattlestatus(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b03	警報装置監視君	main	17	0x46EFD	1190	loop while true; not (PC03.getcharbattlestatus(0))	PC03.getmapid	-	result stored in file_var_s20_21; target actor `PC03` (this script) / the target actor's floor group, the collision floor group its movement body stands on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	警報装置監視君	main	18	0x46F09	1194	loop while true; not (not (PC03.getcharbattlestatus(0)))	store	file_var_s20_21 = 0	variable file_var_s20_21	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-rsn_b03	警報装置監視君	main	19	0x46F0C	1196	loop while true	getbattlememberonlytotal	-	result stored in file_var_s20_1	-	-	-	-		01 verb-table.tsv
+rsn_b03	警報装置監視君	main	19	0x46F0C	1196	loop while true	getbattlememberonlytotal	-	result stored in file_var_s20_1; returns how many battle members (0x0031B670, group 0) are shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b03	警報装置監視君	main	20	0x46F15	1197	loop while true	sysGethp_1f2	PC00	result stored in local_var_s20f1_1; actor `PC00` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 rsn_b03	警報装置監視君	main	21	0x46F1E	1198	loop while true	sysGethp_1f2	PC01	result stored in local_var_s20f1_2; actor `PC01` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 rsn_b03	警報装置監視君	main	22	0x46F27	1199	loop while true	sysGethp_1f2	PC02	result stored in local_var_s20f1_3; actor `PC02` (this script)	-	-	-	-	resolved	01 verb-table.tsv
@@ -6374,7 +6374,7 @@ rsn_b04	警報装置監視君	main	16	0x45373	430	loop while true; シナリオ�
 rsn_b04	警報装置監視君	main	17	0x45380	432	loop while true; シナリオフラグ < 0x03c6	if	not (PC03.getcharbattlestatus(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_b04	警報装置監視君	main	18	0x45386	434	loop while true; シナリオフラグ < 0x03c6; not (PC03.getcharbattlestatus(0))	PC03.getmapid	-	result stored in file_var_s5_21; target actor `PC03` (this script) / the target actor's floor group, the collision floor group its movement body stands on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	警報装置監視君	main	19	0x45392	438	loop while true; シナリオフラグ < 0x03c6; not (not (PC03.getcharbattlestatus(0)))	store	file_var_s5_21 = 0	variable file_var_s5_21	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-rsn_b04	警報装置監視君	main	20	0x45395	440	loop while true; シナリオフラグ < 0x03c6	getbattlememberonlytotal	-	result stored in file_var_s5_1	-	-	-	-		01 verb-table.tsv
+rsn_b04	警報装置監視君	main	20	0x45395	440	loop while true; シナリオフラグ < 0x03c6	getbattlememberonlytotal	-	result stored in file_var_s5_1; returns how many battle members (0x0031B670, group 0) are shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_b04	警報装置監視君	main	21	0x4539E	441	loop while true; シナリオフラグ < 0x03c6	sysGethp_1f2	PC00	result stored in local_var_s5f1_1; actor `PC00` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 rsn_b04	警報装置監視君	main	22	0x453A7	442	loop while true; シナリオフラグ < 0x03c6	sysGethp_1f2	PC01	result stored in local_var_s5f1_2; actor `PC01` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 rsn_b04	警報装置監視君	main	23	0x453B0	443	loop while true; シナリオフラグ < 0x03c6	sysGethp_1f2	PC02	result stored in local_var_s5f1_3; actor `PC02` (this script)	-	-	-	-	resolved	01 verb-table.tsv
@@ -7864,7 +7864,7 @@ rsn_c01	警報装置監視君	main	15	0x4573C	386	loop while true; not (not (PC0
 rsn_c01	警報装置監視君	main	16	0x45749	388	loop while true	if	not (PC03.getcharbattlestatus(0))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_c01	警報装置監視君	main	17	0x4574F	390	loop while true; not (PC03.getcharbattlestatus(0))	PC03.getmapid	-	result stored in file_var_s4_21; target actor `PC03` (this script) / the target actor's floor group, the collision floor group its movement body stands on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	警報装置監視君	main	18	0x4575B	394	loop while true; not (not (PC03.getcharbattlestatus(0)))	store	file_var_s4_21 = 0	variable file_var_s4_21	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-rsn_c01	警報装置監視君	main	19	0x4575E	396	loop while true	getbattlememberonlytotal	-	result stored in file_var_s4_1	-	-	-	-		01 verb-table.tsv
+rsn_c01	警報装置監視君	main	19	0x4575E	396	loop while true	getbattlememberonlytotal	-	result stored in file_var_s4_1; returns how many battle members (0x0031B670, group 0) are shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_c01	警報装置監視君	main	20	0x45767	397	loop while true	sysGethp_1f2	PC00	result stored in local_var_s4f1_1; actor `PC00` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 rsn_c01	警報装置監視君	main	21	0x45770	398	loop while true	sysGethp_1f2	PC01	result stored in local_var_s4f1_2; actor `PC01` (this script)	-	-	-	-	resolved	01 verb-table.tsv
 rsn_c01	警報装置監視君	main	22	0x45779	399	loop while true	sysGethp_1f2	PC02	result stored in local_var_s4f1_3; actor `PC02` (this script)	-	-	-	-	resolved	01 verb-table.tsv
@@ -9186,7 +9186,7 @@ rsn_d01	常駐監督	main	61	0x4407E	228	シナリオフラグ >= 0x03a2 and シ
 rsn_d01	常駐監督	main	62	0x44081	229	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	bossgaugeopen	-	battles: boss gauge shown	-	-	-	-	resolved	this page's How a call is read
 rsn_d01	常駐監督	main	63	0x44087	230	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	waitv	&scratch1_var_2	variable scratch1_var_2	-	-	waits while scratch1_var_2 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
 rsn_d01	常駐監督	main	64	0x4408A	231	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
-rsn_d01	常駐監督	main	65	0x4408D	232	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	suspendbattle_no_resetmotion	-	-	-	-	-	-		01 verb-table.tsv
+rsn_d01	常駐監督	main	65	0x4408D	232	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	suspendbattle_no_resetmotion	-	the battle in progress, paused without resetting the units' motions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	常駐監督	main	66	0x44090	233	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	party_motionsync_and_relax	-	the four party roster actors' motions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	常駐監督	main	67	0x44093	234	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	bossgaugeclose	-	the boss gauge	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_d01	常駐監督	main	68	0x44099	235	シナリオフラグ >= 0x03a2 and シナリオフラグ < 0x03c6	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -11962,8 +11962,8 @@ rsn_z01	イベント管理	ＳＢ３イベント_再生	6	0x00604	93	-	eventplay
 rsn_z01	イベント管理	ＳＢ３イベント_再生	7	0x0060A	94	-	eventsync_ee	0	argument 1: the event slot whose scene the script waits to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z01	イベント管理	ＳＢ３イベント_再生	8	0x00610	95	-	store	シナリオフラグ = 0x037a	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z01	イベント管理	ＳＢ３イベント_再生	9	0x00619	96	-	subitem	0x80ac, 1	items: loses Goddess's Magicite	-	-	-	-	resolved	this page's How a call is read
-rsn_z01	イベント管理	ＳＢ３イベント_再生	10	0x0061F	97	-	takeoff_equip	0x1182	-	-	-	-	-		01 verb-table.tsv
-rsn_z01	イベント管理	ＳＢ３イベント_再生	11	0x00628	98	-	setitemnum	0x1182, 0	-	-	-	-	-		01 verb-table.tsv
+rsn_z01	イベント管理	ＳＢ３イベント_再生	10	0x0061F	97	-	takeoff_equip	0x1182	argument 1: the item id taken off every party member who wears it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_z01	イベント管理	ＳＢ３イベント_再生	11	0x00628	98	-	setitemnum	0x1182, 0	argument 1: the item whose count the party holds is set / argument 2: the count to set; 0 in all 5 calls, so the item leaves the inventory	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z01	イベント管理	ＳＢ３イベント_再生	12	0x0062E	99	-	healall	2	argument 1: what the heal restores, as a selector	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z01	イベント管理	ＳＢ３イベント_再生	13	0x00634	100	-	setcharseplayall	1	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z01	イベント管理	ＳＢ３イベント_再生	14	0x0063D	101	-	fadeout_d0	2, 4	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11982,8 +11982,8 @@ rsn_z01	イベント管理	ＳＢ４イベント_再生	7	0x00683	117	-	eventpla
 rsn_z01	イベント管理	ＳＢ４イベント_再生	8	0x00689	118	-	eventsync_ee	0	argument 1: the event slot whose scene the script waits to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z01	イベント管理	ＳＢ４イベント_再生	9	0x0068F	119	-	store	シナリオフラグ = 0x05b4	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z01	イベント管理	ＳＢ４イベント_再生	10	0x00698	120	-	subitem	0x8078, 1	items: loses Dawn Shard	-	-	-	-	resolved	this page's How a call is read
-rsn_z01	イベント管理	ＳＢ４イベント_再生	11	0x0069E	121	-	takeoff_equip	0x1183	-	-	-	-	-		01 verb-table.tsv
-rsn_z01	イベント管理	ＳＢ４イベント_再生	12	0x006A7	122	-	setitemnum	0x1183, 0	-	-	-	-	-		01 verb-table.tsv
+rsn_z01	イベント管理	ＳＢ４イベント_再生	11	0x0069E	121	-	takeoff_equip	0x1183	argument 1: the item id taken off every party member who wears it	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+rsn_z01	イベント管理	ＳＢ４イベント_再生	12	0x006A7	122	-	setitemnum	0x1183, 0	argument 1: the item whose count the party holds is set / argument 2: the count to set; 0 in all 5 calls, so the item leaves the inventory	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z01	イベント管理	ＳＢ４イベント_再生	13	0x006AD	123	-	healall	2	argument 1: what the heal restores, as a selector	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z01	イベント管理	ＳＢ４イベント_再生	14	0x006B3	124	-	setcharseplayall	1	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z01	イベント管理	ＳＢ４イベント_再生	15	0x006C2	125	-	if	(getsummonmodebit() or getchocobomodebit()) and not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -12174,7 +12174,7 @@ rsn_z02	常駐監督	main	65	0x00AE4	177	シナリオフラグ >= 0x05b4 and シ
 rsn_z02	常駐監督	main	66	0x00AEA	178	シナリオフラグ >= 0x05b4 and シナリオフラグ < 0x05be	setnowmapmusicno	70	argument 1: the music track that replaces the area's own track	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z02	常駐監督	main	67	0x00AF0	179	シナリオフラグ >= 0x05b4 and シナリオフラグ < 0x05be	store	scratch1_var_2 = 1	variable scratch1_var_2 (scratch1 short@0x0a)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 rsn_z02	常駐監督	main	68	0x00AF6	180	シナリオフラグ >= 0x05b4 and シナリオフラグ < 0x05be	eventsync_ee	0	argument 1: the event slot whose scene the script waits to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_z02	常駐監督	main	69	0x00B02	181	シナリオフラグ >= 0x05b4 and シナリオフラグ < 0x05be	setpartybattlestatus	2, 27, 0	-	-	-	-	-		01 verb-table.tsv
+rsn_z02	常駐監督	main	69	0x00B02	181	シナリオフラグ >= 0x05b4 and シナリオフラグ < 0x05be	setpartybattlestatus	2, 27, 0	argument 1: the stats record a status is added to, 0 to 0x27 (the 40 records at [0x02EBF190] + 8, 0x1C8 bytes apart) / argument 2: the status added / argument 3: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z02	常駐監督	main	70	0x00B08	182	シナリオフラグ >= 0x05b4 and シナリオフラグ < 0x05be	sysReqall	2, reqArr0	-	-	-	files each pair of 2, reqArr0 on channel 2; does not wait	-		01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_z02	常駐監督	main	71	0x00B0B	183	シナリオフラグ >= 0x05b4 and シナリオフラグ < 0x05be	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z02	常駐監督	main	72	0x00B0E	184	シナリオフラグ >= 0x05b4 and シナリオフラグ < 0x05be	resumebattle	-	the battle of the field	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -12996,7 +12996,7 @@ rsn_a0100	ボイス	発音	70	0x494CB	825	file_var_s0_2 = 8	voicesync	0x01000002
 rsn_a0100	ボイス	発音	71	0x494CE	826	file_var_s0_2 = 8	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0100	ボイス	発音	72	0x494D1	827	-	case	9	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0100	ボイス	発音	73	0x494D4	828	file_var_s0_2 = 9	wait	4	-	-	4 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_a0100	ボイス	発音	74	0x494DD	829	file_var_s0_2 = 9	voicepan	0x01000000, 64	-	-	-	-	-		01 verb-table.tsv
+rsn_a0100	ボイス	発音	74	0x494DD	829	file_var_s0_2 = 9	voicepan	0x01000000, 64	argument 1: the voice cue whose stream is panned, in the voice verbs' form / argument 2: the pan, 0-255 with 64 the scripts' usual value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0100	ボイス	発音	75	0x494E0	830	file_var_s0_2 = 9	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0100	ボイス	発音	76	0x494E3	831	-	case	10	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_a0100	ボイス	発音	77	0x494E6	832	file_var_s0_2 = 10	voicestandby	0x02000000	argument 1: the voice line to prepare	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16609,7 +16609,7 @@ rsn_a0102	Master	main	252	0x444FE	315	-	sysReqall	1, reqArr6	actor `Capture00`, 
 rsn_a0102	Master	main	253	0x4450A	316	-	bganimeplay_9e	3, 0, 0	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	Master	main	254	0x44510	317	-	showmapmodel	10	argument 1: the map model group to show	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	Master	main	255	0x44516	318	-	hidemapmodel	11	argument 1: the map model group to hide	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-rsn_a0102	Master	main	256	0x44519	319	-	clearallprojectionshadow	-	-	-	-	-	-		01 verb-table.tsv
+rsn_a0102	Master	main	256	0x44519	319	-	clearallprojectionshadow	-	switches the projected shadow off for every root character	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	Master	main	257	0x4451F	320	-	motiondispose	3	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_a0102	Master	main	258	0x4452B	321	-	sysReq	1, SECtrl::dispose	actor `SECtrl`	-	-	files SECtrl::dispose on channel 1; does not wait	SECtrl.dispose	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 rsn_a0102	Master	main	259	0x44532	322	-	sysReqwait	MovieCtrl::cut06	actor `MovieCtrl`	-	-	waits until MovieCtrl::cut06 is no longer on its actor	MovieCtrl.cut06	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -23571,7 +23571,7 @@ rsn_z0100	ボイス	v_3	1	0x03D01	1254	-	voiceplay_28b	12, 0x01000005	argument 1
 rsn_z0100	ボイス	v_3	2	0x03D07	1255	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0100	ボイス	v_5	1	0x03D14	1260	-	voiceplay_28c	14, 0x01000006, 224, 127	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) / argument 2: the voice line to play, the cue word slot << 24 or index / argument 3: the pan of the line, 0 to 0xFF with 0x40 the value voiceplay_28b passes / argument 4: the volume of the line, 0 to 127	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	ボイス	v_5	2	0x03D1A	1261	-	wait	35	-	-	35 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_z0100	ボイス	v_5	3	0x03D23	1262	-	voicepan	0x01000006, 64	-	-	-	-	-		01 verb-table.tsv
+rsn_z0100	ボイス	v_5	3	0x03D23	1262	-	voicepan	0x01000006, 64	argument 1: the voice cue whose stream is panned, in the voice verbs' form / argument 2: the pan, 0-255 with 64 the scripts' usual value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	ボイス	v_5	4	0x03D29	1263	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0100	ボイス	v_7	1	0x03D30	1268	-	voiceplay_28b	11, 4	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0100	ボイス	v_7	2	0x03D36	1269	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -25652,7 +25652,7 @@ rsn_z0100	手枷4	バインドオフ	9	0x07001	4874	-	return	0	-	-	-	-	-	resolve
 rsn_z0100	手枷4	バインドオフ	10	0x07002	4875	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	監督	init	1	0x0D250	35	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	監督	main	1	0x0D254	40	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
-rsn_z0101	監督	main	2	0x0D263	41	-	distance_292	55.6623154, 51.200489, 54.4217987, 54.8995514	result stored in file_var_s0_1	-	-	-	-		01 verb-table.tsv
+rsn_z0101	監督	main	2	0x0D263	41	-	distance_292	55.6623154, 51.200489, 54.4217987, 54.8995514	result stored in file_var_s0_1; argument 1: x1, the x of the first point / argument 2: z1, the z of the first point / argument 3: x2, the x of the second point / argument 4: z2, the z of the second point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0101	監督	main	3	0x0D26F	42	-	sysDVAR	2, file_var_s0_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	監督	main	4	0x0D276	43	-	sysDVAR	5, file_var_s0_3	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0101	監督	main	5	0x0D27D	44	-	sysDVAR	6, file_var_s0_4	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -30591,9 +30591,9 @@ rsn_z0200	ボイス	v_17	3	0x05C48	2072	-	wait	55	-	-	55 frames	waits	-	resolved
 rsn_z0200	ボイス	v_17	4	0x05C51	2073	-	voiceplay_28b	20, 0x03000006	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	ボイス	v_17	5	0x05C57	2074	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 rsn_z0200	ボイス	v_18	1	0x05C5B	2079	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_z0200	ボイス	v_18	2	0x05C67	2080	-	voiceplay_b5	0x03000007, 127, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	ボイス	v_18	2	0x05C67	2080	-	voiceplay_b5	0x03000007, 127, 127	argument 1: the voice cue played (slot in the top byte, index below) / argument 2: the pan, 0-255, pushed as voiceplay_28c's pan / argument 3: the volume, 0-127 (127 in all 9 calls), pushed as voiceplay_28c's volume	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	ボイス	v_18	3	0x05C6D	2081	-	wait	65	-	-	65 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-rsn_z0200	ボイス	v_18	4	0x05C79	2082	-	voiceplay_b5	0x03000008, 127, 127	-	-	-	-	-		01 verb-table.tsv
+rsn_z0200	ボイス	v_18	4	0x05C79	2082	-	voiceplay_b5	0x03000008, 127, 127	argument 1: the voice cue played (slot in the top byte, index below) / argument 2: the pan, 0-255, pushed as voiceplay_28c's pan / argument 3: the volume, 0-127 (127 in all 9 calls), pushed as voiceplay_28c's volume	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	ボイス	v_18	5	0x05C7F	2083	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 rsn_z0200	ボイス	v_18	6	0x05C88	2084	-	voiceplay_28b	18, 0x03000009	argument 1: the speaker (a negative value is the calling actor's own id, 0x0035821F) would be kept at +0x14 of the line record through the slot pointer +0x38, whose only three writers (0x003E9940, 0x003E9DA3, 0x003E9E80) store 0, so nothing keeps it / argument 2: the voice line to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 rsn_z0200	ボイス	v_18	7	0x05C8E	2085	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

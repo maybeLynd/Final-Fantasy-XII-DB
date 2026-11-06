@@ -6,8 +6,8 @@ tst_a01	PC00	init	1	0x00350	36	-	setupbattle	0	argument 1: the party slot (0-3) 
 tst_a01	PC00	init	2	0x0035C	37	-	setpos	1.96930301, 0.000113000002, 2.5865109	this actor, placed at (1.96930301, 0.000113000002, 2.5865109)	-	-	-	-	resolved	0x0034EBC0 (read here)
 tst_a01	PC00	init	3	0x00365	38	-	sysDVAR	0, local_var_s1f0_1	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tst_a01	PC00	init	4	0x0036C	39	-	sysDVAR	1, local_var_s1f0_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tst_a01	PC00	init	5	0x00370	40	-	getequipitemid	1	result stored in local_var_s1f0_2	-	-	-	-		01 verb-table.tsv
-tst_a01	PC00	init	6	0x00379	41	-	getequipitemid	0	result stored in local_var_s1f0_1	-	-	-	-		01 verb-table.tsv
+tst_a01	PC00	init	5	0x00370	40	-	getequipitemid	1	result stored in local_var_s1f0_2; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_a01	PC00	init	6	0x00379	41	-	getequipitemid	0	result stored in local_var_s1f0_1; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tst_a01	PC00	init	7	0x0037F	42	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tst_a01	PC01	init	1	0x00383	51	-	setupbattle	1	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tst_a01	PC01	init	2	0x0038F	52	-	setpos	0, 0, 1	this actor, placed at (0, 0, 1)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -19,12 +19,12 @@ tst_a01	PC03	init	1	0x003A9	73	-	setupbattle	3	argument 1: the party slot (0-3) 
 tst_a01	PC03	init	2	0x003B5	74	-	setpos	0, 0, 3	this actor, placed at (0, 0, 3)	-	-	-	-	resolved	0x0034EBC0 (read here)
 tst_a01	PC03	init	3	0x003B8	75	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tst_j01	setup	init	1	0x00340	26	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-tst_j01	setup	battle	1	0x00341	31	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-tst_j01	setup	battle	2	0x00344	32	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+tst_j01	setup	battle	1	0x00341	31	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+tst_j01	setup	battle	2	0x00344	32	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tst_j01	setup	battle	3	0x0034A	33	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tst_j01	setup	battle	4	0x00350	34	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 tst_j01	setup	battle	5	0x00356	35	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-tst_j01	setup	battle	6	0x00362	36	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
+tst_j01	setup	battle	6	0x00362	36	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tst_j01	setup	battle	7	0x00365	37	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 tst_j01	PC00	init	1	0x00369	46	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 tst_j01	PC00	init	2	0x0036C	47	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

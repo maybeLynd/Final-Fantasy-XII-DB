@@ -80,12 +80,12 @@ nac_a01	__MJ_CTRL000	mapjump	6	0x05255	650	-	releasemapjumpgroupflag	0x0134	flag
 nac_a01	__MJ_CTRL000	mapjump	7	0x05261	651	-	ucmove	mp_map_set_x, mp_map_set_y, mp_map_set_z	argument 1: x of the point the party leader walks to (the controlled character, 0x003590D0 and 0x003588B0; with no leader the three values are popped and dropped) / argument 2: y of the point / argument 3: z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	__MJ_CTRL000	mapjump	8	0x0526D	652	-	crossfade	0, 1, 15	argument 1: the crossfade's flags / argument 2: the capture mode of the still picture / argument 3: the crossfade's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	__MJ_CTRL000	mapjump	9	0x05274	653	-	if	not (getchocobomodebit())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_a01	__MJ_CTRL000	mapjump	10	0x0529F	656	-	lockbehindcamera	(((local_var_s5f1_2 - mp_map_set_x) * 1.04999995) + mp_map_set_x), (gety_12c(-1) + 6), (((local_var_s5f1_4 - mp_map_set_z) * 1.04999995) + mp_map_set_z)	-	-	-	-	-		01 verb-table.tsv
+nac_a01	__MJ_CTRL000	mapjump	10	0x0529F	656	-	lockbehindcamera	(((local_var_s5f1_2 - mp_map_set_x) * 1.04999995) + mp_map_set_x), (gety_12c(-1) + 6), (((local_var_s5f1_4 - mp_map_set_z) * 1.04999995) + mp_map_set_z)	argument 1: x of the point the follow camera's eye is locked to / argument 2: y (the height) of the point; the scripts pass gety_12c(-1) plus 0 to 6, the controlled character's height raised a little / argument 3: z of the point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	__MJ_CTRL000	mapjump	11	0x052A2	657	-	sysucoff	-	result stored in regI3; takes control away from the player	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	__MJ_CTRL000	mapjump	12	0x052A7	658	-	if	regI3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	__MJ_CTRL000	mapjump	13	0x052AA	660	regI3	clearmapjumpstatus	-	ends the map-jump state	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	__MJ_CTRL000	mapjump	14	0x052AD	661	regI3	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_a01	__MJ_CTRL000	mapjump	15	0x052B0	662	regI3	unlockbehindcamera	-	-	-	-	-	-		01 verb-table.tsv
+nac_a01	__MJ_CTRL000	mapjump	15	0x052B0	662	regI3	unlockbehindcamera	-	the follow camera's eye lock	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	__MJ_CTRL000	mapjump	16	0x052B3	663	regI3	sysucon	-	gives control back	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	__MJ_CTRL000	mapjump	17	0x052B9	667	not (regI3)	getweatherslot	-	result stored in mp_last_weather; returns the weather slot (1-3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	__MJ_CTRL000	mapjump	18	0x052C2	668	not (regI3)	steppoint	30	argument 1: the number of a step mark of the current manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1061,7 +1061,7 @@ nac_a01	Map_Director	main	6	0x07002	2092	nowjumpindex() = 1	resetbehindcamera	ge
 nac_a01	Map_Director	main	7	0x07005	2093	nowjumpindex() = 1	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	Map_Director	main	8	0x07017	2095	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	山通行解除	init	1	0x07018	2104	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_a01	山通行解除	解除	1	0x0701C	2109	-	resetmapidmj	1	-	-	-	-	-		01 verb-table.tsv
+nac_a01	山通行解除	解除	1	0x0701C	2109	-	resetmapidmj	1	argument 1: the map-jump group whose entry mask is cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	山通行解除	解除	2	0x07022	2110	-	setmapjumpgroupflag	0x0144	flags set: 0x0144: A gate of the map lines of the zone script image's +0x8C table, read by 0x00264920. While it is set: on foot, the minimap draws the line with the colours 0x01EFE370 (the ring colour 0x01EFE374 second) instead of the fixed 0x00D11640 (0x003C35E1, 0x003C36CA), and the field passes the same choice to its line markers (0x003F9BD5), in mnt_a01, nac_a01; during a summon, the minimap draws the line with the colours 0x01EFE370 (the ring colour 0x01EFE374 second) instead of the fixed 0x00D11640 (0x003C35E1, 0x003C36CA), and the field passes the same choice to its line markers (0x003F9BD5), in mnt_a01, nac_a01; while riding a chocobo, the minimap draws the line with the colours 0x01EFE370 (the ring colour 0x01EFE374 second) instead of the fixed 0x00D11640 (0x003C35E1, 0x003C36CA), and the field passes the same choice to its line markers (0x003F9BD5), in mnt_a01, nac_a01	-	-	-	-	resolved	this page's How a call is read
 nac_a01	山通行解除	解除	3	0x07025	2111	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	通行止めレクト抜け対策	init	1	0x07026	2120	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1924,10 +1924,10 @@ nac_a01	NAC_A01_WALK_NPC04	walk_移動付	6	0x0A020	5140	loop while true; local_
 nac_a01	NAC_A01_WALK_NPC04	walk_移動付	7	0x0A026	5141	loop while true; local_var_s35f4_1 >= 4	stdmotionplay	0x01000012	this actor's standard motion entry 18 of 0x01EFE9D0: render event 0x4020, slot 32 `ev_talk_sad`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 nac_a01	NAC_A01_WALK_NPC04	walk_移動付	8	0x0A02C	5142	loop while true; local_var_s35f4_1 >= 4	motionsync_282	1	argument 1: what ends the wait	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_A01_WALK_NPC04	walk_移動付	9	0x0A032	5143	loop while true; local_var_s35f4_1 >= 4	setreachr	0.5	argument 1: the arrival distance of the calling actor's move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_a01	NAC_A01_WALK_NPC04	walk_移動付	10	0x0A03B	5144	loop while true; local_var_s35f4_1 >= 4	sysMovea_60	NAC_A01_WALK_NPC03, getdefaultrunspeed()	actor `NAC_A01_WALK_NPC03` (this script)	-	-	-	-		01 verb-table.tsv
+nac_a01	NAC_A01_WALK_NPC04	walk_移動付	10	0x0A03B	5144	loop while true; local_var_s35f4_1 >= 4	sysMovea_60	NAC_A01_WALK_NPC03, getdefaultrunspeed()	actor `NAC_A01_WALK_NPC03` (this script) / argument 1: the actor the calling actor walks to, and the verb waits (the listings write sysMovea_60 with the target's name) / argument 2: the walk speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_A01_WALK_NPC04	walk_移動付	11	0x0A048	5146	loop while true; not (local_var_s35f4_1 >= 4)	else if	local_var_s35f4_1 >= 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	NAC_A01_WALK_NPC04	walk_移動付	12	0x0A04E	5148	loop while true; not (local_var_s35f4_1 >= 4); local_var_s35f4_1 >= 2	setreachr	0.200000003	argument 1: the arrival distance of the calling actor's move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_a01	NAC_A01_WALK_NPC04	walk_移動付	13	0x0A057	5149	loop while true; not (local_var_s35f4_1 >= 4); local_var_s35f4_1 >= 2	sysRmovea_45	NAC_A01_WALK_NPC03, getdefaultwalkspeed()	actor `NAC_A01_WALK_NPC03` (this script)	-	-	-	-		01 verb-table.tsv
+nac_a01	NAC_A01_WALK_NPC04	walk_移動付	13	0x0A057	5149	loop while true; not (local_var_s35f4_1 >= 4); local_var_s35f4_1 >= 2	sysRmovea_45	NAC_A01_WALK_NPC03, getdefaultwalkspeed()	actor `NAC_A01_WALK_NPC03` (this script) / argument 1: the actor the calling actor walks to / argument 2: the walk speed, popped first as a float and set by 0x0026A640 after 0x0026D6A0; sysRmovea 0x0044 is the same verb with the default walk speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_A01_WALK_NPC04	walk_移動付	14	0x0A05D	5153	loop while true; not (local_var_s35f4_1 >= 4); not (local_var_s35f4_1 >= 2)	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_A01_WALK_NPC04	walk_移動付	15	0x0A063	5155	loop while true	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 nac_a01	NAC_A01_WALK_NPC04	bindoff_TAG	1	0x0A078	5161	-	rgbatrans	1, 1, 1, 0, 20	this actor's script colour channels 6 to 9: red 1, green 1, blue 1, alpha 0	-	over 20 frames plus one	-	-	resolved	17 ../Graphics/character-fades.md
@@ -2045,7 +2045,7 @@ nac_a01	NAC_ガーディ	talk_gardy	95	0x0A355	5335	local_var_s36f3_1 == 1	music
 nac_a01	NAC_ガーディ	talk_gardy	96	0x0A35E	5336	local_var_s36f3_1 == 1	musicplay	getnowmapmusicno_47a(0)	argument 1: the music track number (music table) to play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_ガーディ	talk_gardy	97	0x0A364	5337	local_var_s36f3_1 == 1	setcharseplayall	1	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_ガーディ	talk_gardy	98	0x0A373	5338	local_var_s36f3_1 == 1	setposparty	178.005173, 19.5848122, 258.603424, -1.10767996	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_a01	NAC_ガーディ	talk_gardy	99	0x0A376	5339	local_var_s36f3_1 == 1	resetbonephysical	-	-	-	-	-	-		01 verb-table.tsv
+nac_a01	NAC_ガーディ	talk_gardy	99	0x0A376	5339	local_var_s36f3_1 == 1	resetbonephysical	-	resets rig controllers 2, 10, 13, 15 and 9 (+0x08, +0x28, +0x34, +0x3C, +0x24) of every active render record (list head [0x022C6F28] +0x48800), not only the calling actor's; the bone-physics controllers 1 and 14 (+0x04, +0x38) are not among them	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_ガーディ	talk_gardy	100	0x0A37F	5340	local_var_s36f3_1 == 1	resetbehindcamera	-1.10767996, -0.0299999993	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_ガーディ	talk_gardy	101	0x0A388	5341	local_var_s36f3_1 == 1	fadein_d2	2, 60	argument 1: the fade layer (0-6, clamped by the fade accessors) that fades back in / argument 2: the length of the fade-in in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_ガーディ	talk_gardy	102	0x0A38B	5342	local_var_s36f3_1 == 1	resumebattle	-	the battle of the field	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2085,7 +2085,7 @@ nac_a01	NAC_CHOCO01	init	1	0x0A432	5405	-	sysDVAR	5, local_var_s37f0_1	nothing: 
 nac_a01	NAC_CHOCO01	init	2	0x0A433	5406	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	NAC_CHOCO01	main	1	0x0A434	5411	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	NAC_CHOCO01	talk	1	0x0A435	5416	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_a01	NAC_CHOCO01	set_後読み	1	0x0A436	5421	-	getguestmemberonlytotal	-	result stored in local_var_s37f0_1	-	-	-	-		01 verb-table.tsv
+nac_a01	NAC_CHOCO01	set_後読み	1	0x0A436	5421	-	getguestmemberonlytotal	-	result stored in local_var_s37f0_1; how many guests are shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_CHOCO01	set_後読み	2	0x0A443	5422	-	if	local_var_s37f0_1 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	NAC_CHOCO01	set_後読み	3	0x0A446	5424	local_var_s37f0_1 == 0	hidecomplete	-	the calling actor's model (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	NAC_CHOCO01	set_後読み	4	0x0A44C	5425	local_var_s37f0_1 == 0	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2263,7 +2263,7 @@ nac_a01	通行止め帝国兵１	walk_通行止め_やってくる	1	0x0A964	573
 nac_a01	通行止め帝国兵１	walk_通行止め_やってくる	2	0x0A96E	5738	-	if	getchocobomodebit() == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	通行止め帝国兵１	walk_通行止め_やってくる	3	0x0A97A	5740	getchocobomodebit() == 1	rlookatrt_4c7	0, 0.87266463, 20	argument 1: the yaw, in radians, the calling actor's head turns to in the angle form of the head look / argument 2: the pitch, in radians, of the same head look / argument 3: the frames the head turn takes (written as an integer in the scripts; the float pop converts it)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	通行止め帝国兵１	walk_通行止め_やってくる	4	0x0A983	5744	not (getchocobomodebit() == 1)	sysLookata	-1	argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_a01	通行止め帝国兵１	walk_通行止め_やってくる	5	0x0A989	5746	-	sysMovea	-1	-	-	-	-	-		01 verb-table.tsv
+nac_a01	通行止め帝国兵１	walk_通行止め_やってくる	5	0x0A989	5746	-	sysMovea	-1	argument 1: the actor the calling actor walks to, and the verb waits (the listings write sysMovea)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	通行止め帝国兵１	walk_通行止め_やってくる	6	0x0A98F	5747	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	通行止め帝国兵１	walk_q052_イベント開始	1	0x0A990	5752	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	通行止め帝国兵１	walk_q052_イベント開始	2	0x0A993	5754	loop while true	sysLookata	通行止め帝国兵２	actor `通行止め帝国兵２` (this script) / argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2472,7 +2472,7 @@ nac_a01	通行止め帝国兵２	walk_q052_完結開始	3	0x0ADC8	6191	-	return	
 nac_a01	通行止め帝国兵２	walk_q052_後輩怯える	1	0x0ADCF	6196	-	stdmotionplay_2c2	0x01000000, 15	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 15 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 nac_a01	通行止め帝国兵２	walk_q052_後輩怯える	2	0x0ADD5	6197	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a01	通行止め帝国兵２	walk_q052_後輩怯える	3	0x0ADDB	6198	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-nac_a01	通行止め帝国兵２	walk_q052_後輩怯える	4	0x0ADE7	6199	-	cmove	156.53627, 16.7769375, 230.795212	-	-	-	-	-		01 verb-table.tsv
+nac_a01	通行止め帝国兵２	walk_q052_後輩怯える	4	0x0ADE7	6199	-	cmove	156.53627, 16.7769375, 230.795212	argument 1: the x of the world point the calling actor moves to / argument 2: the y (height) of the target point, the third pop of 0x00357A20 / argument 3: the z of the target point, the second pop of 0x00357A20	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	通行止め帝国兵２	walk_q052_後輩怯える	5	0x0ADEA	6200	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	通行止め帝国兵２	walk_q052_どうした	1	0x0ADEE	6205	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a01	通行止め帝国兵２	walk_q052_どうした	2	0x0ADF4	6206	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -2559,7 +2559,7 @@ nac_a01	ジュリー	walk_q052_後輩の告白	1	0x0AF98	6362	-	setpos	160.56922
 nac_a01	ジュリー	walk_q052_後輩の告白	2	0x0AF9E	6363	-	dir	-2.37342191	this actor, turned to facing -2.37342191	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 nac_a01	ジュリー	walk_q052_後輩の告白	3	0x0AFA7	6364	-	stdmotionplay_2c2	0x01000000, 15	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 15 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 nac_a01	ジュリー	walk_q052_後輩の告白	4	0x0AFAD	6365	-	sysLookata	通行止め帝国兵２	actor `通行止め帝国兵２` (this script) / argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_a01	ジュリー	walk_q052_後輩の告白	5	0x0AFB3	6366	-	sysMovea	-1	-	-	-	-	-		01 verb-table.tsv
+nac_a01	ジュリー	walk_q052_後輩の告白	5	0x0AFB3	6366	-	sysMovea	-1	argument 1: the actor the calling actor walks to, and the verb waits (the listings write sysMovea)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	ジュリー	walk_q052_後輩の告白	6	0x0AFB9	6367	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	ジュリー	walk_q052_ジュリーのお礼	1	0x0AFC3	6372	-	rlookatrt_4c7	0, 1.22173059, 30	argument 1: the yaw, in radians, the calling actor's head turns to in the angle form of the head look / argument 2: the pitch, in radians, of the same head look / argument 3: the frames the head turn takes (written as an integer in the scripts; the float pop converts it)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	ジュリー	walk_q052_ジュリーのお礼	2	0x0AFC9	6373	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -2598,10 +2598,10 @@ nac_a01	PC乗っ取り	walk_q052_完結準備	2	0x0B083	6446	-	setpos	160.616943
 nac_a01	PC乗っ取り	walk_q052_完結準備	3	0x0B089	6447	-	dir	-2.29492688	this actor, turned to facing -2.29492688	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 nac_a01	PC乗っ取り	walk_q052_完結準備	4	0x0B08C	6448	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	PC乗っ取り	walk_q052_後輩怯える	1	0x0B090	6453	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-nac_a01	PC乗っ取り	walk_q052_後輩怯える	2	0x0B096	6454	-	sysMovea	通行止め帝国兵２	actor `通行止め帝国兵２` (this script)	-	-	-	-	resolved	01 verb-table.tsv
+nac_a01	PC乗っ取り	walk_q052_後輩怯える	2	0x0B096	6454	-	sysMovea	通行止め帝国兵２	actor `通行止め帝国兵２` (this script) / argument 1: the actor the calling actor walks to, and the verb waits (the listings write sysMovea)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	PC乗っ取り	walk_q052_後輩怯える	3	0x0B099	6455	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	PC乗っ取り	walk_q052_ジュリーのお礼	1	0x0B09D	6460	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-nac_a01	PC乗っ取り	walk_q052_ジュリーのお礼	2	0x0B0A3	6461	-	rturn_48	0.596367002	-	-	-	-	-		01 verb-table.tsv
+nac_a01	PC乗っ取り	walk_q052_ジュリーのお礼	2	0x0B0A3	6461	-	rturn_48	0.596367002	argument 1: the world heading, in radians, the calling actor turns to, without waiting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	PC乗っ取り	walk_q052_ジュリーのお礼	3	0x0B0AF	6462	-	rlookatrt_4c7	0, -0.87266463, 30	argument 1: the yaw, in radians, the calling actor's head turns to in the angle form of the head look / argument 2: the pitch, in radians, of the same head look / argument 3: the frames the head turn takes (written as an integer in the scripts; the float pop converts it)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a01	PC乗っ取り	walk_q052_ジュリーのお礼	4	0x0B0B2	6463	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a01	PC乗っ取り	walk_q052_完結終了	1	0x0B0B3	6468	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3669,7 +3669,7 @@ nac_a02	掲示板	talk	105	0x0B1C2	1903	-	store	local_var_s17f2_6[27] = 0x0202	v
 nac_a02	掲示板	talk	106	0x0B1CB	1904	-	store	local_var_s17f2_6[28] = 0x01a0	variable local_var_s17f2_6[28]	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 nac_a02	掲示板	talk	107	0x0B1D4	1905	-	store	local_var_s17f2_6[29] = 0x01dc	variable local_var_s17f2_6[29]	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 nac_a02	掲示板	talk	108	0x0B1DD	1906	-	store	local_var_s17f2_6[30] = 0x02e4	variable local_var_s17f2_6[30]	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-nac_a02	掲示板	talk	109	0x0B1E0	1907	-	getclanrank	-	result stored in local_var_s17f2_7	-	-	-	-		01 verb-table.tsv
+nac_a02	掲示板	talk	109	0x0B1E0	1907	-	getclanrank	-	result stored in local_var_s17f2_7; returns the player's clan rank, 1 to 12	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a02	掲示板	talk	110	0x0B1E6	1908	-	goto	local_jmp_20	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	掲示板	talk	111	0x0B1E9	1909	unreachable in the listing	label	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	掲示板	talk	112	0x0B1E9	1910	unreachable in the listing	goto	local_jmp_19	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3729,9 +3729,9 @@ nac_a02	掲示板	talk	165	0x0B2AF	1963	unreachable in the listing	goto	local_jm
 nac_a02	掲示板	talk	166	0x0B2B2	1964	unreachable in the listing	label	local_jmp_19	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	掲示板	talk	167	0x0B2B2	1965	unreachable in the listing	goto	local_jmp_21	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	掲示板	talk	168	0x0B2B5	1966	-	label	local_jmp_20	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_a02	掲示板	talk	169	0x0B2B5	1967	-	getclanrank	-	result stored in local_var_s17f2_7	-	-	-	-		01 verb-table.tsv
-nac_a02	掲示板	talk	170	0x0B2BE	1968	-	handbook_getkillcount	64	result stored in local_var_s17f2_8	-	-	-	-		01 verb-table.tsv
-nac_a02	掲示板	talk	171	0x0B2C4	1969	-	handbook_getordernum	-	result stored in local_var_s17f2_9	-	-	-	-		01 verb-table.tsv
+nac_a02	掲示板	talk	169	0x0B2B5	1967	-	getclanrank	-	result stored in local_var_s17f2_7; returns the player's clan rank, 1 to 12	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+nac_a02	掲示板	talk	170	0x0B2BE	1968	-	handbook_getkillcount	64	result stored in local_var_s17f2_8; argument 1: the bestiary entry whose kill count is returned	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+nac_a02	掲示板	talk	171	0x0B2C4	1969	-	handbook_getordernum	-	result stored in local_var_s17f2_9; returns the number of awards earned	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a02	掲示板	talk	172	0x0B2CA	1970	-	label	local_jmp_21	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	掲示板	talk	173	0x0B2D0	1971	-	sysDVAR	1, local_var_s17f2_9	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	掲示板	talk	174	0x0B2D7	1972	-	sysDVAR	2, local_var_s17f2_8	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5896,7 +5896,7 @@ nac_a02	依頼人ブロッホ	motion_TAG_q144	2	0x0EF93	5251	-	stdmotionreadsync
 nac_a02	依頼人ブロッホ	motion_TAG_q144	3	0x0EF99	5252	-	setwalkspeed	getdefaultwalkspeed()	this actor's walk speed	-	speed getdefaultwalkspeed()	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 nac_a02	依頼人ブロッホ	motion_TAG_q144	4	0x0EF9F	5253	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 nac_a02	依頼人ブロッホ	motion_TAG_q144	5	0x0EFA2	5254	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_a02	依頼人ブロッホ	walk_q144_準備	1	0x0EFA9	5259	-	lookatr_4be	-0.174532935, 0	-	-	-	-	-		01 verb-table.tsv
+nac_a02	依頼人ブロッホ	walk_q144_準備	1	0x0EFA9	5259	-	lookatr_4be	-0.174532935, 0	argument 1: the yaw of the calling actor's head look, in radians, and the verb waits / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a02	依頼人ブロッホ	walk_q144_準備	2	0x0EFB2	5260	-	stdmotionplay_2c2	0x01000002, 15	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 15 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 nac_a02	依頼人ブロッホ	walk_q144_準備	3	0x0EFB5	5261	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	依頼人ブロッホ	walk_q144_話す_モーションつき	1	0x0EFB9	5266	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -5923,7 +5923,7 @@ nac_a02	依頼人ブロッホ	walk_q144_ジョニー言葉に詰まる	2	0x0F022
 nac_a02	依頼人ブロッホ	walk_q144_元に戻す	1	0x0F026	5315	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a02	依頼人ブロッホ	walk_q144_元に戻す	2	0x0F02C	5316	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a02	依頼人ブロッホ	walk_q144_元に戻す	3	0x0F035	5317	-	stdmotionplay_2c2	0x01000002, 15	this actor's standard motion entry 2 of 0x01EFE9D0: render event 0x101A, slot 26 `ev_talk_1`	-	float 15 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-nac_a02	依頼人ブロッホ	walk_q144_元に戻す	4	0x0F03E	5318	-	lookatr_4be	-0.174532935, 0	-	-	-	-	-		01 verb-table.tsv
+nac_a02	依頼人ブロッホ	walk_q144_元に戻す	4	0x0F03E	5318	-	lookatr_4be	-0.174532935, 0	argument 1: the yaw of the calling actor's head look, in radians, and the verb waits / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a02	依頼人ブロッホ	walk_q144_元に戻す	5	0x0F041	5319	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	依頼人ブロッホ	walk_q144_クリアイベント終了	1	0x0F042	5324	-	lookatoff	-	the calling actor's head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a02	依頼人ブロッホ	walk_q144_クリアイベント終了	2	0x0F04B	5325	-	stdmotionplay_2c2	0x01000000, 15	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	float 15 passed on to 0x003DDB40	-	-	resolved	0x0034E410, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
@@ -6251,9 +6251,9 @@ nac_a02	ジョニー	walk_q152_逃げる	3	0x0F7AC	5862	-	return	-	-	-	-	-	-	res
 nac_a02	ジョニー	walk_喋りやめ	1	0x0F7B0	5867	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a02	ジョニー	walk_喋りやめ	2	0x0F7B6	5868	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a02	ジョニー	walk_喋りやめ	3	0x0F7BC	5869	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_a02	ジョニー	walk_q144_ジョニー言葉に詰まる	1	0x0F7C6	5874	-	rlookatr_4bc	0, -1.39626348, 10	-	-	-	-	-		01 verb-table.tsv
+nac_a02	ジョニー	walk_q144_ジョニー言葉に詰まる	1	0x0F7C6	5874	-	rlookatr_4bc	0, -1.39626348, 10	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the pitch of the head look / argument 3: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a02	ジョニー	walk_q144_ジョニー言葉に詰まる	2	0x0F7C9	5875	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_a02	ジョニー	walk_q152_ジョニー言葉に詰まる	1	0x0F7D3	5880	-	lookatr_4bf	0, -1.39626348, 10	-	-	-	-	-		01 verb-table.tsv
+nac_a02	ジョニー	walk_q152_ジョニー言葉に詰まる	1	0x0F7D3	5880	-	lookatr_4bf	0, -1.39626348, 10	argument 1: the yaw of the calling actor's head look, in radians, and the verb waits / argument 2: the pitch of the head look / argument 3: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a02	ジョニー	walk_q152_ジョニー言葉に詰まる	2	0x0F7D6	5881	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a02	ジョニー	walk_消す	1	0x0F7D7	5886	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a02	ジョニー	walk_消す	2	0x0F7DA	5887	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9330,7 +9330,7 @@ nac_a03	ジョニー２号	walk_q151_逃げる	3	0x09905	4835	-	return	-	-	-	-	-
 nac_a03	ジョニー２号	walk_喋りやめ	1	0x09909	4840	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a03	ジョニー２号	walk_喋りやめ	2	0x0990F	4841	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a03	ジョニー２号	walk_喋りやめ	3	0x09912	4842	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_a03	ジョニー２号	walk_言葉に詰まる	1	0x0991C	4847	-	lookatr_4bf	0, -1.39626348, 10	-	-	-	-	-		01 verb-table.tsv
+nac_a03	ジョニー２号	walk_言葉に詰まる	1	0x0991C	4847	-	lookatr_4bf	0, -1.39626348, 10	argument 1: the yaw of the calling actor's head look, in radians, and the verb waits / argument 2: the pitch of the head look / argument 3: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー２号	walk_言葉に詰まる	2	0x0991F	4848	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a03	ジョニー２号	walk_消す	1	0x09920	4853	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー２号	walk_消す	2	0x09923	4854	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9364,7 +9364,7 @@ nac_a03	PC乗っ取り	walk_jony_準備	4	0x09988	4925	-	dir	-1.82848501	this ac
 nac_a03	PC乗っ取り	walk_jony_準備	5	0x0998E	4926	-	setautorelax	0	argument 1: whether the calling actor drops back to its stand when a standard-motion read completes	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	PC乗っ取り	walk_jony_準備	6	0x09991	4927	-	hidew	-	the calling actor's main-hand weapon model	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	PC乗っ取り	walk_jony_準備	7	0x09994	4928	-	hides	-	the calling actor's off-hand model (shield or ammunition)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_a03	PC乗っ取り	walk_jony_準備	8	0x0999D	4929	-	rlookatr_4bb	1.57079637, 1.04719758	-	-	-	-	-		01 verb-table.tsv
+nac_a03	PC乗っ取り	walk_jony_準備	8	0x0999D	4929	-	rlookatr_4bb	1.57079637, 1.04719758	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	PC乗っ取り	walk_jony_準備	9	0x099A3	4930	-	motionplay	0x14000002	animation 2 of motion 4 of `nac_a03.mot` (bytes 0x7C800, length 0x1C9F0)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 nac_a03	PC乗っ取り	walk_jony_準備	10	0x099A6	4931	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a03	PC乗っ取り	walk_jony_ジョニー話始める	1	0x099A7	4936	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
@@ -9716,7 +9716,7 @@ nac_a03	ジョニー	walk_jony_準備	4	0x0A36C	5414	-	setpos	296.313721, 24.639
 nac_a03	ジョニー	walk_jony_準備	5	0x0A372	5415	-	dir	-0.331348002	this actor, turned to facing -0.331348002	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 nac_a03	ジョニー	walk_jony_準備	6	0x0A378	5416	-	motionloop	1	argument 1: whether the motion the calling actor plays next loops	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_準備	7	0x0A37E	5417	-	motionplay	0x14000003	animation 3 of motion 4 of `nac_a03.mot` (bytes 0x7C800, length 0x1C9F0)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
-nac_a03	ジョニー	walk_jony_準備	8	0x0A387	5418	-	rlookatr_4bb	0.52359879, -0.34906587	-	-	-	-	-		01 verb-table.tsv
+nac_a03	ジョニー	walk_jony_準備	8	0x0A387	5418	-	rlookatr_4bb	0.52359879, -0.34906587	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_準備	9	0x0A38D	5419	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a03	ジョニー	walk_jony_話す	1	0x0A391	5424	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a03	ジョニー	walk_jony_話す	2	0x0A397	5425	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
@@ -9729,19 +9729,19 @@ nac_a03	ジョニー	walk_jony_ジョニー話始める	2	0x0A3B4	5439	-	setunaz
 nac_a03	ジョニー	walk_jony_ジョニー話始める	3	0x0A3B7	5440	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a03	ジョニー	walk_jony_過去の話	1	0x0A3BB	5445	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a03	ジョニー	walk_jony_過去の話	2	0x0A3C1	5446	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-nac_a03	ジョニー	walk_jony_過去の話	3	0x0A3CA	5447	-	rlookatr_4bb	-0.52359879, -0.87266463	-	-	-	-	-		01 verb-table.tsv
+nac_a03	ジョニー	walk_jony_過去の話	3	0x0A3CA	5447	-	rlookatr_4bb	-0.52359879, -0.87266463	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_過去の話	4	0x0A3CD	5448	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a03	ジョニー	walk_jony_暗殺事件	1	0x0A3D1	5453	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a03	ジョニー	walk_jony_暗殺事件	2	0x0A3D7	5454	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-nac_a03	ジョニー	walk_jony_暗殺事件	3	0x0A3E0	5455	-	rlookatr_4bb	0.52359879, -1.04719758	-	-	-	-	-		01 verb-table.tsv
+nac_a03	ジョニー	walk_jony_暗殺事件	3	0x0A3E0	5455	-	rlookatr_4bb	0.52359879, -1.04719758	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_暗殺事件	4	0x0A3E3	5456	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a03	ジョニー	walk_jony_間違われた	1	0x0A3E7	5461	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a03	ジョニー	walk_jony_間違われた	2	0x0A3ED	5462	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-nac_a03	ジョニー	walk_jony_間違われた	3	0x0A3F6	5463	-	rlookatr_4bb	0, 0.52359879	-	-	-	-	-		01 verb-table.tsv
+nac_a03	ジョニー	walk_jony_間違われた	3	0x0A3F6	5463	-	rlookatr_4bb	0, 0.52359879	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_間違われた	4	0x0A3F9	5464	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a03	ジョニー	walk_jony_モブ討伐	1	0x0A3FD	5469	-	setkutipakustatus	1	this actor's lip flap, rig switch 9 (+0x24), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_a03	ジョニー	walk_jony_モブ討伐	2	0x0A403	5470	-	setunazukistatus	1	this actor's nod, rig switch 13 (+0x34), on	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-nac_a03	ジョニー	walk_jony_モブ討伐	3	0x0A40C	5471	-	rlookatr_4bb	-0.52359879, -0.87266463	-	-	-	-	-		01 verb-table.tsv
+nac_a03	ジョニー	walk_jony_モブ討伐	3	0x0A40C	5471	-	rlookatr_4bb	-0.52359879, -0.87266463	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_モブ討伐	4	0x0A40F	5472	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_a03	ジョニー	walk_jony_頑張る	1	0x0A419	5477	-	setpos	295.899475, 24.6395035, 135.009125	this actor, placed at (295.899475, 24.6395035, 135.009125)	-	-	-	-	resolved	0x0034EBC0 (read here)
 nac_a03	ジョニー	walk_jony_頑張る	2	0x0A41F	5478	-	dir	-0.0245510004	this actor, turned to facing -0.0245510004	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -9765,7 +9765,7 @@ nac_a03	ジョニー	walk_jony_仕事に戻る	3	0x0A475	5503	-	return	-	-	-	-	-
 nac_a03	ジョニー	walk_jony_走っていく	1	0x0A479	5508	-	usemapid	1	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_走っていく	2	0x0A488	5509	-	move_5e	290.284668, 24.2500038, 140.779114, getdefaultrunspeed()	argument 1: x of the world position the calling actor moves to / argument 2: y (height) of the target position / argument 3: z of the target position / argument 4: the move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_走っていく	3	0x0A48E	5510	-	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-nac_a03	ジョニー	walk_jony_走っていく	4	0x0A494	5511	-	raturn_25e	1.63351202	-	-	-	-	-		01 verb-table.tsv
+nac_a03	ジョニー	walk_jony_走っていく	4	0x0A494	5511	-	raturn_25e	1.63351202	argument 1: the heading the calling actor turns its body and head to, in radians, without waiting (an ACT form, 8 of the 15 calls, turns the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_走っていく	5	0x0A49A	5512	-	sysLookata	PC乗っ取り	actor `PC乗っ取り` (this script) / argument 1: the actor the calling actor turns its head toward	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_走っていく	6	0x0A49D	5513	-	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_a03	ジョニー	walk_jony_走っていく	7	0x0A4A0	5514	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -10973,7 +10973,7 @@ nac_b01	マップ帝国君移植版	talk_step01	27	0x05A5A	1454	local_var_s11f3_
 nac_b01	マップ帝国君移植版	talk_step01	28	0x05A5D	1455	local_var_s11f3_1 = 0	turnsync	-	the calling actor's turn or move	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	マップ帝国君移植版	talk_step01	29	0x05A63	1456	local_var_s11f3_1 = 0	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 nac_b01	マップ帝国君移植版	talk_step01	30	0x05A6F	1457	local_var_s11f3_1 = 0	sysReqew	1, ドアアニメ::アニメ再生	actor `ドアアニメ`	-	-	files ドアアニメ::アニメ再生 on channel 1; waits until it ends	ドアアニメ.アニメ再生	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-nac_b01	マップ帝国君移植版	talk_step01	31	0x05A73	1458	local_var_s11f3_1 = 0	raturn_25e	1.30899692	-	-	-	-	-		01 verb-table.tsv
+nac_b01	マップ帝国君移植版	talk_step01	31	0x05A73	1458	local_var_s11f3_1 = 0	raturn_25e	1.30899692	argument 1: the heading the calling actor turns its body and head to, in radians, without waiting (an ACT form, 8 of the 15 calls, turns the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	マップ帝国君移植版	talk_step01	32	0x05A79	1459	local_var_s11f3_1 = 0	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 nac_b01	マップ帝国君移植版	talk_step01	33	0x05A7F	1460	local_var_s11f3_1 = 0	store	mp_map_flg = 0	variable mp_map_flg (global int@0x0910)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 nac_b01	マップ帝国君移植版	talk_step01	34	0x05A82	1461	local_var_s11f3_1 = 0	sysucoff	-	result stored in regI3; takes control away from the player	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11908,7 +11908,7 @@ nac_b01	NAC_B01_NPC03	talk_step01	7	0x07014	2866	-	amese	0, 0x01000030	-	line 48
 nac_b01	NAC_B01_NPC03	talk_step01	8	0x0701D	2867	-	messync	0, 1	message window slot 0	-	-	waits on the window: when it is fully shown (state 3) the window is closed and the wait goes on; while it closes (state 6) the wait goes on only when the flag 1 is non-zero	-	resolved	0x003479F0, 0x00357820 (read here) and 16 ../Menus-And-HUD/message-windows.md
 nac_b01	NAC_B01_NPC03	talk_step01	9	0x07023	2868	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_b01	NAC_B01_NPC03	talk_step01	10	0x07029	2869	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-nac_b01	NAC_B01_NPC03	talk_step01	11	0x07032	2870	-	rlookatr_4bb	0, -0.69813174	-	-	-	-	-		01 verb-table.tsv
+nac_b01	NAC_B01_NPC03	talk_step01	11	0x07032	2870	-	rlookatr_4bb	0, -0.69813174	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC03	talk_step01	12	0x07035	2871	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 nac_b01	NAC_B01_NPC03	talk_step01	13	0x0703B	2872	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 nac_b01	NAC_B01_NPC03	talk_step01	14	0x0703E	2873	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11928,7 +11928,7 @@ nac_b01	NAC_B01_NPC03	talk_step02	7	0x0708A	2890	-	amese	0, 0x01000031	-	line 49
 nac_b01	NAC_B01_NPC03	talk_step02	8	0x07093	2891	-	messync	0, 1	message window slot 0	-	-	waits on the window: when it is fully shown (state 3) the window is closed and the wait goes on; while it closes (state 6) the wait goes on only when the flag 1 is non-zero	-	resolved	0x003479F0, 0x00357820 (read here) and 16 ../Menus-And-HUD/message-windows.md
 nac_b01	NAC_B01_NPC03	talk_step02	9	0x07099	2892	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_b01	NAC_B01_NPC03	talk_step02	10	0x0709F	2893	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-nac_b01	NAC_B01_NPC03	talk_step02	11	0x070A8	2894	-	rlookatr_4bb	0, -0.69813174	-	-	-	-	-		01 verb-table.tsv
+nac_b01	NAC_B01_NPC03	talk_step02	11	0x070A8	2894	-	rlookatr_4bb	0, -0.69813174	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC03	talk_step02	12	0x070AB	2895	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 nac_b01	NAC_B01_NPC03	talk_step02	13	0x070B1	2896	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 nac_b01	NAC_B01_NPC03	talk_step02	14	0x070B4	2897	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11948,7 +11948,7 @@ nac_b01	NAC_B01_NPC03	talk_step03	7	0x07100	2914	-	amese	0, 0x01000032	-	line 50
 nac_b01	NAC_B01_NPC03	talk_step03	8	0x07109	2915	-	messync	0, 1	message window slot 0	-	-	waits on the window: when it is fully shown (state 3) the window is closed and the wait goes on; while it closes (state 6) the wait goes on only when the flag 1 is non-zero	-	resolved	0x003479F0, 0x00357820 (read here) and 16 ../Menus-And-HUD/message-windows.md
 nac_b01	NAC_B01_NPC03	talk_step03	9	0x0710F	2916	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_b01	NAC_B01_NPC03	talk_step03	10	0x07115	2917	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
-nac_b01	NAC_B01_NPC03	talk_step03	11	0x0711E	2918	-	rlookatr_4bb	0, -0.69813174	-	-	-	-	-		01 verb-table.tsv
+nac_b01	NAC_B01_NPC03	talk_step03	11	0x0711E	2918	-	rlookatr_4bb	0, -0.69813174	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC03	talk_step03	12	0x07121	2919	-	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 nac_b01	NAC_B01_NPC03	talk_step03	13	0x07127	2920	-	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 nac_b01	NAC_B01_NPC03	talk_step03	14	0x0712A	2921	-	clear_force_char_nearfade	-	the near-fade override	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -11970,7 +11970,7 @@ nac_b01	NAC_B01_NPC03	set_後読み	9	0x0718B	2940	-	stdmotionread	16	argument 1
 nac_b01	NAC_B01_NPC03	set_後読み	10	0x0718E	2941	-	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC03	set_後読み	11	0x07194	2942	-	setwalkspeed	getdefaultwalkspeed()	this actor's walk speed	-	speed getdefaultwalkspeed()	-	-	resolved	06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 nac_b01	NAC_B01_NPC03	set_後読み	12	0x0719A	2943	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
-nac_b01	NAC_B01_NPC03	set_後読み	13	0x071A3	2944	-	rlookatr_4bb	0, -0.69813174	-	-	-	-	-		01 verb-table.tsv
+nac_b01	NAC_B01_NPC03	set_後読み	13	0x071A3	2944	-	rlookatr_4bb	0, -0.69813174	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC03	set_後読み	14	0x071B5	2945	-	rgbatrans	1, 1, 1, 0, 0	this actor's script colour channels 6 to 9: red 1, green 1, blue 1, alpha 0	-	over 0 frames plus one	-	-	resolved	17 ../Graphics/character-fades.md
 nac_b01	NAC_B01_NPC03	set_後読み	15	0x071B8	2946	-	istouchucsync	-	the calling actor and the controlled character	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC03	set_後読み	16	0x071BB	2947	-	clearhidecomplete	-	the calling actor's model visibility	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -12087,12 +12087,12 @@ nac_b01	NAC_B01_NPC04	set_後読み	16	0x07447	3122	-	return	-	-	-	-	-	-	resolve
 nac_b01	NAC_B01_NPC04	walk_後読み	1	0x07448	3127	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_b01	NAC_B01_NPC04	walk_後読み	2	0x07452	3129	loop while true	wait	(120 + rand_29(120))	-	-	frames held in (120 + rand_29(120))	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 nac_b01	NAC_B01_NPC04	walk_後読み	3	0x0745B	3130	loop while true	aturny	44.51577, 86.715416	argument 1: the x of the ground point the calling actor turns its body and head to face / argument 2: the z of the same ground point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_b01	NAC_B01_NPC04	walk_後読み	4	0x07464	3131	loop while true	rlookatr_4bb	-0.69813174, 0.69813174	-	-	-	-	-		01 verb-table.tsv
+nac_b01	NAC_B01_NPC04	walk_後読み	4	0x07464	3131	loop while true	rlookatr_4bb	-0.69813174, 0.69813174	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC04	walk_後読み	5	0x07470	3132	loop while true	move	44.51577, -1, 86.715416	this actor, walks to (44.51577, -1, 86.715416)	-	-	waits on the poll 0x00356A90, shared with movesync	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md, 06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 nac_b01	NAC_B01_NPC04	walk_後読み	6	0x07476	3133	loop while true	aturn_261	-3.02271795	argument 1: the world heading, in radians, the calling actor turns to (an ACT form: the named actor), the scripts' getdestrotangzx_227(0) or a literal	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC04	walk_後読み	7	0x07483	3134	loop while true	wait	(150 + rand_29(150))	-	-	frames held in (150 + rand_29(150))	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 nac_b01	NAC_B01_NPC04	walk_後読み	8	0x0748C	3135	loop while true	aturny	42.9505501, 89.2555847	argument 1: the x of the ground point the calling actor turns its body and head to face / argument 2: the z of the same ground point	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-nac_b01	NAC_B01_NPC04	walk_後読み	9	0x07495	3136	loop while true	rlookatr_4bb	1.57079637, 0.69813174	-	-	-	-	-		01 verb-table.tsv
+nac_b01	NAC_B01_NPC04	walk_後読み	9	0x07495	3136	loop while true	rlookatr_4bb	1.57079637, 0.69813174	argument 1: the yaw of the calling actor's head look, in radians / argument 2: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC04	walk_後読み	10	0x074A1	3137	loop while true	move	42.9505501, -1, 89.2555847	this actor, walks to (42.9505501, -1, 89.2555847)	-	-	waits on the poll 0x00356A90, shared with movesync	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md, 06 ../Movement-And-Pathfinding/movement-bodies-and-separation.md
 nac_b01	NAC_B01_NPC04	bindoff_TAG	1	0x074A7	3143	-	stdmotiondispose	-	the calling actor's standard-motion lane (an ACT form: the named actor's), released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	NAC_B01_NPC04	bindoff_TAG	2	0x074AA	3144	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -12580,7 +12580,7 @@ nac_b01	ジョニー	walk_q166_逃げる	3	0x07FAE	3968	-	return	-	-	-	-	-	-	res
 nac_b01	ジョニー	walk_喋りやめ	1	0x07FB2	3973	-	setkutipakustatus	0	this actor's lip flap, rig switch 9 (+0x24), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_b01	ジョニー	walk_喋りやめ	2	0x07FB8	3974	-	setunazukistatus	0	this actor's nod, rig switch 13 (+0x34), off	-	-	-	-	resolved	17 ../Graphics/character-rig-and-look.md
 nac_b01	ジョニー	walk_喋りやめ	3	0x07FBB	3975	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-nac_b01	ジョニー	walk_言葉に詰まる	1	0x07FC5	3980	-	lookatr_4bf	0, -1.39626348, 10	-	-	-	-	-		01 verb-table.tsv
+nac_b01	ジョニー	walk_言葉に詰まる	1	0x07FC5	3980	-	lookatr_4bf	0, -1.39626348, 10	argument 1: the yaw of the calling actor's head look, in radians, and the verb waits / argument 2: the pitch of the head look / argument 3: the head's turn speed, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	ジョニー	walk_言葉に詰まる	2	0x07FC8	3981	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 nac_b01	ジョニー	walk_消す	1	0x07FC9	3986	-	movecancel	-	the calling actor's move (an ACT form: the named actor)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 nac_b01	ジョニー	walk_消す	2	0x07FCC	3987	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md

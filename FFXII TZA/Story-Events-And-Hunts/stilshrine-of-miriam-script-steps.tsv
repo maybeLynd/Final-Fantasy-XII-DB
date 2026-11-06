@@ -3328,7 +3328,7 @@ mrm_b01	テレポエフェクト	telepo_ef	7	0x03DDF	723	-	hideenemy	-1	argument
 mrm_b01	テレポエフェクト	telepo_ef	8	0x03DE2	724	-	hideparty_without_uc	-	the party's characters in roster slots 0 to 3 other than the one the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	テレポエフェクト	telepo_ef	9	0x03DE8	725	-	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	テレポエフェクト	telepo_ef	10	0x03DF1	726	-	sebsoundplay	0, 95	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mrm_b01	テレポエフェクト	telepo_ef	11	0x03DFA	727	-	effectteleposyncbyid	partycommoneffectplay(12)	-	-	-	-	-		01 verb-table.tsv
+mrm_b01	テレポエフェクト	telepo_ef	11	0x03DFA	727	-	effectteleposyncbyid	partycommoneffectplay(12)	argument 1: the handle of the effect waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	テレポエフェクト	telepo_ef	12	0x03E03	728	-	whiteout_d1	2, 0	argument 1: the fade layer (0-6, clamped) that fades to white / argument 2: the length of the fade in frames (the descriptor's duration is twice the count, so the fade lasts that many thirtieths of a second); 0 turns the layer white at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	テレポエフェクト	telepo_ef	13	0x03E06	729	-	voicestopall	-	every spoken voice line and every battle shout now playing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	テレポエフェクト	telepo_ef	14	0x03E0F	730	-	setbattlethinkstatus_freetarget_group	-1, 0	argument 1: the group of actors whose battle thinking is switched / argument 2: 0 stops those actors thinking in battle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3663,7 +3663,7 @@ mrm_b01	祭壇	talk	27	0x045C3	1282	local_var_s16f2_1 = 0	goto	local_jmp_1	-	-	-
 mrm_b01	祭壇	talk	28	0x045C6	1283	-	case	1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b01	祭壇	talk	29	0x045C6	1284	local_var_s16f2_1 = 1	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	祭壇	talk	30	0x045CC	1285	local_var_s16f2_1 = 1	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-mrm_b01	祭壇	talk	31	0x045D2	1286	local_var_s16f2_1 = 1	getequipitemid	4	result stored in file_var_s16_1	-	-	-	-		01 verb-table.tsv
+mrm_b01	祭壇	talk	31	0x045D2	1286	local_var_s16f2_1 = 1	getequipitemid	4	result stored in file_var_s16_1; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	祭壇	talk	32	0x045D8	1287	local_var_s16f2_1 = 1	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_b01	祭壇	talk	33	0x045E4	1288	local_var_s16f2_1 = 1	sysReqew	1, map_ダミーＰＣ::扉オープン１xyz	actor `map_ダミーＰＣ`	-	-	files map_ダミーＰＣ::扉オープン１xyz on channel 1; waits until it ends	map_ダミーＰＣ.扉オープン１xyz	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mrm_b01	祭壇	talk	34	0x045E8	1289	local_var_s16f2_1 = 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -5427,7 +5427,7 @@ mrm_b01	ゴースト00	set	4	0x07604	3539	-	setshadowalpha	0.300000012	argument 
 mrm_b01	ゴースト00	set	5	0x07607	3540	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_b01	ゴースト00	set	6	0x0760A	3541	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b01	ゴースト00	bindoff_TAG	1	0x0760B	3546	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mrm_b01	ゴースト00	bindoff_TAG	2	0x0760E	3547	-	clearshadowalpha	-	-	-	-	-	-		01 verb-table.tsv
+mrm_b01	ゴースト00	bindoff_TAG	2	0x0760E	3547	-	clearshadowalpha	-	the calling actor's shadow strength, given back to the game	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	ゴースト00	bindoff_TAG	3	0x07611	3548	-	stdmotiondispose	-	the calling actor's standard-motion lane (an ACT form: the named actor's), released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	ゴースト00	bindoff_TAG	4	0x07614	3549	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	ゴースト00	bindoff_TAG	5	0x07617	3550	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5594,7 +5594,7 @@ mrm_b01	キャラ	方向	3	0x07A40	3932	-	turnsync	-	the calling actor's turn or
 mrm_b01	キャラ	方向	4	0x07A43	3933	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_b01	キャラ	方向	5	0x07A46	3934	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b01	キャラ	装備	1	0x07A4A	3939	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-mrm_b01	キャラ	装備	2	0x07A50	3940	-	getequipitemid	4	result stored in file_var_s16_1	-	-	-	-		01 verb-table.tsv
+mrm_b01	キャラ	装備	2	0x07A50	3940	-	getequipitemid	4	result stored in file_var_s16_1; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	キャラ	装備	3	0x07A56	3941	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_b01	キャラ	装備	4	0x07A59	3942	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b01	キャラ	ドアガチャ	1	0x07A5D	3947	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -5616,7 +5616,7 @@ mrm_b01	ゾンビ00	set	4	0x07AB2	3982	-	setshadowalpha	0.300000012	argument 1: 
 mrm_b01	ゾンビ00	set	5	0x07AB5	3983	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_b01	ゾンビ00	set	6	0x07AB8	3984	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b01	ゾンビ00	bindoff_TAG	1	0x07AB9	3989	-	motioncancel	-	the calling actor's motion	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mrm_b01	ゾンビ00	bindoff_TAG	2	0x07ABC	3990	-	clearshadowalpha	-	-	-	-	-	-		01 verb-table.tsv
+mrm_b01	ゾンビ00	bindoff_TAG	2	0x07ABC	3990	-	clearshadowalpha	-	the calling actor's shadow strength, given back to the game	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	ゾンビ00	bindoff_TAG	3	0x07ABF	3991	-	stdmotiondispose	-	the calling actor's standard-motion lane (an ACT form: the named actor's), released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	ゾンビ00	bindoff_TAG	4	0x07AC2	3992	-	bindoff	-	the calling actor's binding	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b01	ゾンビ00	bindoff_TAG	5	0x07AC5	3993	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6537,7 +6537,7 @@ mrm_b02	treasure_00	talk	17	0x0354C	1333	-	settrapshowstatus	1	all sixteen trap 
 mrm_b02	treasure_00	talk	18	0x0354F	1334	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b02	装備判定	init	1	0x03550	1343	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b02	装備判定	装備	1	0x03554	1348	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-mrm_b02	装備判定	装備	2	0x0355A	1349	-	getequipitemid	4	result stored in file_var_s11_1	-	-	-	-		01 verb-table.tsv
+mrm_b02	装備判定	装備	2	0x0355A	1349	-	getequipitemid	4	result stored in file_var_s11_1; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b02	装備判定	装備	3	0x03560	1350	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_b02	装備判定	装備	4	0x03563	1351	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b02	map_ダミーＰＣ	init	1	0x03564	1360	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -7799,7 +7799,7 @@ mrm_b03	statue_fs_ALL	talk	73	0x03DF8	1502	scratch2_var_1 == 0; local_var_s11f7_
 mrm_b03	statue_fs_ALL	talk	74	0x03DFE	1503	scratch2_var_1 == 0; local_var_s11f7_1 = 1	store	scratch2_var_1 = 1	variable scratch2_var_1 (scratch2 char@0x8e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mrm_b03	statue_fs_ALL	talk	75	0x03E01	1504	scratch2_var_1 == 0; local_var_s11f7_1 = 1	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b03	statue_fs_ALL	talk	76	0x03E04	1505	scratch2_var_1 == 0	case	2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mrm_b03	statue_fs_ALL	talk	77	0x03E07	1506	scratch2_var_1 == 0; local_var_s11f7_1 = 2	gameratio	1	-	-	-	-	-		01 verb-table.tsv
+mrm_b03	statue_fs_ALL	talk	77	0x03E07	1506	scratch2_var_1 == 0; local_var_s11f7_1 = 2	gameratio	1	argument 1: the game's step gain	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b03	statue_fs_ALL	talk	78	0x03E0D	1507	scratch2_var_1 == 0; local_var_s11f7_1 = 2	setbattlethinkstatus	1	argument 1: whether the calling actor (an ACT form: the named actor) thinks for itself in battle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b03	statue_fs_ALL	talk	79	0x03E13	1508	scratch2_var_1 == 0; local_var_s11f7_1 = 2	setnoupdatebehindcamera	0	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b03	statue_fs_ALL	talk	80	0x03E16	1509	scratch2_var_1 == 0; local_var_s11f7_1 = 2	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -8601,7 +8601,7 @@ mrm_b03	mrm_statue_gimm_eye_se	init	14	0x05141	2555	global_var_1 == 1; nowmap() 
 mrm_b03	mrm_statue_gimm_eye_se	init	15	0x05159	2558	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b03	キャラ	init	1	0x0515A	2576	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b03	キャラ	装備	1	0x0515E	2581	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-mrm_b03	キャラ	装備	2	0x05164	2582	-	getequipitemid	4	result stored in file_var_s19_1	-	-	-	-		01 verb-table.tsv
+mrm_b03	キャラ	装備	2	0x05164	2582	-	getequipitemid	4	result stored in file_var_s19_1; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b03	キャラ	装備	3	0x0516A	2583	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_b03	キャラ	装備	4	0x0516D	2584	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b03	キャラ	ジャンプ	1	0x05171	2589	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -9938,7 +9938,7 @@ mrm_b04	statue_fs_ALL	talk	73	0x0B4E7	1905	scratch2_var_5 == 0; local_var_s15f7_
 mrm_b04	statue_fs_ALL	talk	74	0x0B4ED	1906	scratch2_var_5 == 0; local_var_s15f7_1 = 1	store	scratch2_var_5 = 1	variable scratch2_var_5 (scratch2 char@0x8e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mrm_b04	statue_fs_ALL	talk	75	0x0B4F0	1907	scratch2_var_5 == 0; local_var_s15f7_1 = 1	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b04	statue_fs_ALL	talk	76	0x0B4F3	1908	scratch2_var_5 == 0	case	2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mrm_b04	statue_fs_ALL	talk	77	0x0B4F6	1909	scratch2_var_5 == 0; local_var_s15f7_1 = 2	gameratio	1	-	-	-	-	-		01 verb-table.tsv
+mrm_b04	statue_fs_ALL	talk	77	0x0B4F6	1909	scratch2_var_5 == 0; local_var_s15f7_1 = 2	gameratio	1	argument 1: the game's step gain	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b04	statue_fs_ALL	talk	78	0x0B4FC	1910	scratch2_var_5 == 0; local_var_s15f7_1 = 2	setbattlethinkstatus	1	argument 1: whether the calling actor (an ACT form: the named actor) thinks for itself in battle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b04	statue_fs_ALL	talk	79	0x0B502	1911	scratch2_var_5 == 0; local_var_s15f7_1 = 2	setnoupdatebehindcamera	0	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b04	statue_fs_ALL	talk	80	0x0B505	1912	scratch2_var_5 == 0; local_var_s15f7_1 = 2	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -10947,7 +10947,7 @@ mrm_b04	mrm_statue_gimm_eye_se	init	14	0x0CC5F	3273	global_var_2 == 1; nowmap() 
 mrm_b04	mrm_statue_gimm_eye_se	init	15	0x0CC77	3276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b04	キャラ	init	1	0x0CC78	3294	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b04	キャラ	装備	1	0x0CC7C	3299	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-mrm_b04	キャラ	装備	2	0x0CC82	3300	-	getequipitemid	4	result stored in file_var_s32_1	-	-	-	-		01 verb-table.tsv
+mrm_b04	キャラ	装備	2	0x0CC82	3300	-	getequipitemid	4	result stored in file_var_s32_1; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_b04	キャラ	装備	3	0x0CC88	3301	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_b04	キャラ	装備	4	0x0CC8B	3302	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_b04	キャラ	ジャンプ	1	0x0CC8F	3307	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -12805,7 +12805,7 @@ mrm_c01	statue_fs_ALL	talk	73	0x05A06	2721	scratch2_var_7 == 0; local_var_s18f7_
 mrm_c01	statue_fs_ALL	talk	74	0x05A0C	2722	scratch2_var_7 == 0; local_var_s18f7_1 = 1	store	scratch2_var_7 = 1	variable scratch2_var_7 (scratch2 char@0x8e)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mrm_c01	statue_fs_ALL	talk	75	0x05A0F	2723	scratch2_var_7 == 0; local_var_s18f7_1 = 1	goto	local_jmp_34	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_c01	statue_fs_ALL	talk	76	0x05A12	2724	scratch2_var_7 == 0	case	2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-mrm_c01	statue_fs_ALL	talk	77	0x05A15	2725	scratch2_var_7 == 0; local_var_s18f7_1 = 2	gameratio	1	-	-	-	-	-		01 verb-table.tsv
+mrm_c01	statue_fs_ALL	talk	77	0x05A15	2725	scratch2_var_7 == 0; local_var_s18f7_1 = 2	gameratio	1	argument 1: the game's step gain	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_c01	statue_fs_ALL	talk	78	0x05A1B	2726	scratch2_var_7 == 0; local_var_s18f7_1 = 2	setbattlethinkstatus	1	argument 1: whether the calling actor (an ACT form: the named actor) thinks for itself in battle	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_c01	statue_fs_ALL	talk	79	0x05A21	2727	scratch2_var_7 == 0; local_var_s18f7_1 = 2	setnoupdatebehindcamera	0	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_c01	statue_fs_ALL	talk	80	0x05A24	2728	scratch2_var_7 == 0; local_var_s18f7_1 = 2	ucon	-	user control, on	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
@@ -13698,7 +13698,7 @@ mrm_c01	mrm_statue_gimm_eye_se	init	14	0x06F5D	3965	global_var_3 == 1; nowmap() 
 mrm_c01	mrm_statue_gimm_eye_se	init	15	0x06F75	3968	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_c01	キャラ	init	1	0x06F76	3986	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_c01	キャラ	装備	1	0x06F7A	3991	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-mrm_c01	キャラ	装備	2	0x06F80	3992	-	getequipitemid	4	result stored in file_var_s32_1	-	-	-	-		01 verb-table.tsv
+mrm_c01	キャラ	装備	2	0x06F80	3992	-	getequipitemid	4	result stored in file_var_s32_1; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_c01	キャラ	装備	3	0x06F86	3993	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_c01	キャラ	装備	4	0x06F89	3994	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_c01	キャラ	ジャンプ	1	0x06F8D	3999	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
@@ -15986,7 +15986,7 @@ mrm_d02	map_ダミーＰＣ	ＳＥＴＴＵＲＮxyz	3	0x0349D	1142	-	releasepc	
 mrm_d02	map_ダミーＰＣ	ＳＥＴＴＵＲＮxyz	4	0x034A0	1143	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d02	装備判定	init	1	0x034A1	1152	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d02	装備判定	装備	1	0x034A5	1157	-	capturepc	-1	the character the player controls	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
-mrm_d02	装備判定	装備	2	0x034AB	1158	-	getequipitemid	4	result stored in file_var_s10_1	-	-	-	-		01 verb-table.tsv
+mrm_d02	装備判定	装備	2	0x034AB	1158	-	getequipitemid	4	result stored in file_var_s10_1; argument 1: the equipment slot read, 1-5 (0x0035A0C0 maps any other value to 0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d02	装備判定	装備	3	0x034B1	1159	-	releasepc	-	the party member this actor captured, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 mrm_d02	装備判定	装備	4	0x034B4	1160	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d02	map_monster_00	init	1	0x034B5	1254	-	btlAtelInitTagStart	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16268,7 +16268,7 @@ mrm_d03	クリスタル監視さん	main	6	0x02EF9	978	g_btl_クリスタルミ�
 mrm_d03	クリスタル監視さん	main	7	0x02EFF	979	g_btl_クリスタルミミックグリーン == 1	battlelastseplaysync	0	argument 1: popped and passed to 0x0053DD10, which ignores it and returns 1 (mov eax, 1), so the verb always waits on entry 1 of the handle table 0x0208D328 (0x0031EB10(1))	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d03	クリスタル監視さん	main	8	0x02F02	980	g_btl_クリスタルミミックグリーン == 1	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d03	クリスタル監視さん	main	9	0x02F08	981	g_btl_クリスタルミミックグリーン == 1	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
-mrm_d03	クリスタル監視さん	main	10	0x02F11	982	g_btl_クリスタルミミックグリーン == 1	unkCall_5b0	0, 0	-	-	-	-	-		01 verb-table.tsv
+mrm_d03	クリスタル監視さん	main	10	0x02F11	982	g_btl_クリスタルミミックグリーン == 1	unkCall_5b0	0, 0	argument 1: whether the YEBIS post-processing is on (EnableYebis, script command 0x05B0) / argument 2: the delay before the switch takes effect	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d03	クリスタル監視さん	main	11	0x02F1D	983	g_btl_クリスタルミミックグリーン == 1	crossfade	0, 1, 15	argument 1: the crossfade's flags / argument 2: the capture mode of the still picture / argument 3: the crossfade's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d03	クリスタル監視さん	main	12	0x02F26	984	g_btl_クリスタルミミックグリーン == 1	camerastart_7e	0, 0x02000000	camera row 0 `cam_crystal`: shot 0 `cam_crystal`, channel 0	-	shot 150 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 mrm_d03	クリスタル監視さん	main	13	0x02F2F	985	g_btl_クリスタルミミックグリーン == 1	system_crystal_actor.setcharclipone	0	target actor `system_crystal_actor` (this script) / argument 1: whether the target actor's character fades and clips with distance	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16299,7 +16299,7 @@ mrm_d03	クリスタル監視さん	main	37	0x02FDF	1009	g_btl_クリスタル�
 mrm_d03	クリスタル監視さん	main	38	0x02FE5	1010	g_btl_クリスタルミミックグリーン == 1	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 mrm_d03	クリスタル監視さん	main	39	0x02FE8	1011	g_btl_クリスタルミミックグリーン == 1	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d03	クリスタル監視さん	main	40	0x02FEE	1012	g_btl_クリスタルミミックグリーン == 1	sethpmenu	1	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 1; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
-mrm_d03	クリスタル監視さん	main	41	0x02FF7	1013	g_btl_クリスタルミミックグリーン == 1	unkCall_5b0	1, 5	-	-	-	-	-		01 verb-table.tsv
+mrm_d03	クリスタル監視さん	main	41	0x02FF7	1013	g_btl_クリスタルミミックグリーン == 1	unkCall_5b0	1, 5	argument 1: whether the YEBIS post-processing is on (EnableYebis, script command 0x05B0) / argument 2: the delay before the switch takes effect	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d03	クリスタル監視さん	main	42	0x02FFA	1015	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d03	Map_Director	init	1	0x03002	1024	-	if	g_btl_クリスタルミミックグリーン == 2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d03	Map_Director	init	2	0x03011	1026	g_btl_クリスタルミミックグリーン == 2	sysReqi	1, MAP_SETACTOR_クリスタル::setHitObj_ForMapObj	actor `MAP_SETACTOR_クリスタル`	-	-	files MAP_SETACTOR_クリスタル::setHitObj_ForMapObj on channel 1; does not wait; the target goes through INCINITTAG	MAP_SETACTOR_クリスタル.setHitObj_ForMapObj	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -17125,7 +17125,7 @@ mrm_d04	隠し通路ＩＤ	init	1	0x0456A	1194	-	sysDVAR	12, scratch2_var_6	noth
 mrm_d04	隠し通路ＩＤ	init	2	0x04571	1195	-	sysDVAR	13, scratch2_var_5	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d04	隠し通路ＩＤ	init	3	0x04579	1196	-	if	scratch2_var_6 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d04	隠し通路ＩＤ	init	4	0x0458B	1198	scratch2_var_6 == 0	setrect	180.845169, -64, 124.490578, 0.800000012, 3.5	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mrm_d04	隠し通路ＩＤ	init	5	0x04594	1199	scratch2_var_6 == 0	settouchwh	0.800000012, 3.5	-	-	-	-	-		01 verb-table.tsv
+mrm_d04	隠し通路ＩＤ	init	5	0x04594	1199	scratch2_var_6 == 0	settouchwh	0.800000012, 3.5	argument 1: the touch area's extent along x, as an absolute value / argument 2: the touch area's extent along z (depth), as an absolute value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d04	隠し通路ＩＤ	init	6	0x0459A	1200	scratch2_var_6 == 0	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d04	隠し通路ＩＤ	init	7	0x045A0	1204	not (scratch2_var_6 == 0)	rectdisable	-	the calling actor's trigger rectangles (a class-1 trigger record)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d04	隠し通路ＩＤ	init	8	0x045A3	1206	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -17155,7 +17155,7 @@ mrm_d04	隠し壁アニメ用	init	1	0x04669	1256	-	sysDVAR	12, scratch2_var_5	n
 mrm_d04	隠し壁アニメ用	init	2	0x04670	1257	-	sysDVAR	13, scratch2_var_6	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d04	隠し壁アニメ用	init	3	0x04678	1258	-	if	scratch2_var_5 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_d04	隠し壁アニメ用	init	4	0x0468A	1260	scratch2_var_5 == 0	setrect	180.845169, -64, 124.490578, 0.800000012, 3.5	argument 1: x of the calling actor's position / argument 2: y of the position (0x0026B0C0) / argument 3: z of the position (0x0026B0C0) / argument 4: the width of the actor's box / argument 5: the depth of the actor's box (0x0026BFF0, as argument 4)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mrm_d04	隠し壁アニメ用	init	5	0x04693	1261	scratch2_var_5 == 0	settouchwh	0.800000012, 3.5	-	-	-	-	-		01 verb-table.tsv
+mrm_d04	隠し壁アニメ用	init	5	0x04693	1261	scratch2_var_5 == 0	settouchwh	0.800000012, 3.5	argument 1: the touch area's extent along x, as an absolute value / argument 2: the touch area's extent along z (depth), as an absolute value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d04	隠し壁アニメ用	init	6	0x04699	1262	scratch2_var_5 == 0	settouchuconly	1	argument 1: whether the calling actor's touch (contact) tests answer to the party leader alone	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d04	隠し壁アニメ用	init	7	0x0469F	1263	scratch2_var_5 == 0	showmapmodel	29	argument 1: the map model group to show	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_d04	隠し壁アニメ用	init	8	0x046A5	1264	scratch2_var_5 == 0	defaultmapmodel	29	argument 1: the map model id	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -22852,7 +22852,7 @@ mrm_e0100	監督	main	101	0x00E86	155	-	resetbehindcamerafovyroll	-	puts the beh
 mrm_e0100	監督	main	102	0x00E8C	156	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
 mrm_e0100	監督	main	103	0x00E92	157	-	store	file_var_s0_3 = 0	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 mrm_e0100	監督	main	104	0x00E98	158	-	startscene	file_var_s0_3	scene cut file_var_s0_3, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
-mrm_e0100	監督	main	105	0x00E9E	159	-	unkCall_5c5	0	-	-	-	-	-		01 verb-table.tsv
+mrm_e0100	監督	main	105	0x00E9E	159	-	unkCall_5c5	0	argument 1: whether the mask-border pass runs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_e0100	監督	main	106	0x00EA8	160	-	if	file_var_s0_4 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 mrm_e0100	監督	main	107	0x00EB1	162	file_var_s0_4 == 1	effectplay_e2	0, 0	effect slot 0: the effect read into it, played with 0 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
 mrm_e0100	監督	main	108	0x00EB7	164	-	fadein	90	the screen fade, in	-	90 frames	-	-	resolved	17 ../Graphics/screen-fades.md
@@ -22940,7 +22940,7 @@ mrm_e0100	監督	main	189	0x01143	247	getsummonmodebit() or getchocobomodebit();
 mrm_e0100	監督	main	190	0x01149	250	-	effectcancel_e4	0	effect slot 0: set to state 4 and its queue entry released	-	-	-	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
 mrm_e0100	監督	main	191	0x01155	251	-	sysReq	1, ボス::バトルポーズ	actor `ボス`	-	-	files ボス::バトルポーズ on channel 1; does not wait	ボス.バトルポーズ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 mrm_e0100	監督	main	192	0x0115C	252	-	set_summon_effect_filter_status	1, 1	argument 1: which summon colour filter / argument 2: whether the filter is on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-mrm_e0100	監督	main	193	0x01162	253	-	unkCall_5c5	1	-	-	-	-	-		01 verb-table.tsv
+mrm_e0100	監督	main	193	0x01162	253	-	unkCall_5c5	1	argument 1: whether the mask-border pass runs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_e0100	監督	main	194	0x01168	254	-	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_e0100	監督	main	195	0x0116E	255	-	maskclosefast	0	argument 1: popped and ignored (every call passes 0). The verb closes the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 mrm_e0100	監督	main	196	0x01174	256	-	setfocusstatus	0	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

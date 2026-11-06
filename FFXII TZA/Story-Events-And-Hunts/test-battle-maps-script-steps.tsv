@@ -1,12 +1,12 @@
 script	actor	function	step	at	line	condition	verb	arguments	addresses	quoted_lines	timing	sync	calls	resolution	source
 bts_101	setup	init	1	0x004C0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_101	setup	battle	1	0x004C1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_101	setup	battle	2	0x004C4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_101	setup	battle	1	0x004C1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_101	setup	battle	2	0x004C4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_101	setup	battle	3	0x004CA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_101	setup	battle	4	0x004D0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_101	setup	battle	5	0x004D6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_101	setup	battle	6	0x004E2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_101	setup	battle	7	0x004E8	38	-	btlAtelSetEntryStruct	0x03000018	-	-	-	-	-		01 verb-table.tsv
+bts_101	setup	battle	6	0x004E2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_101	setup	battle	7	0x004E8	38	-	btlAtelSetEntryStruct	0x03000018	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_101	setup	battle	8	0x004EB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_101	PC00	init	1	0x004EF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_101	PC00	init	2	0x004F2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -22,13 +22,13 @@ bts_101	バランス	init	3	0x00514	234	-	btlAtelSetPoint2	0x03000008	argument 1
 bts_101	バランス	init	4	0x00517	235	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_101	バランス	init	5	0x0051A	236	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_201	setup	init	1	0x01ED0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_201	setup	battle	1	0x01ED1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_201	setup	battle	2	0x01ED4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_201	setup	battle	1	0x01ED1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_201	setup	battle	2	0x01ED4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_201	setup	battle	3	0x01EDA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_201	setup	battle	4	0x01EE0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_201	setup	battle	5	0x01EE6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_201	setup	battle	6	0x01EF2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_201	setup	battle	7	0x01EF8	38	-	btlAtelSetEntryStruct	0x03000128	-	-	-	-	-		01 verb-table.tsv
+bts_201	setup	battle	6	0x01EF2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_201	setup	battle	7	0x01EF8	38	-	btlAtelSetEntryStruct	0x03000128	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_201	setup	battle	8	0x01EFB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_201	PC00	init	1	0x01EFF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_201	PC00	init	2	0x01F02	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -149,13 +149,13 @@ bts_201	monster_21	init	3	0x048BB	3426	-	btlAtelSetPoint2	0x030000da	argument 1:
 bts_201	monster_21	init	4	0x048BE	3427	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_201	monster_21	init	5	0x048C1	3428	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_301	setup	init	1	0x01DA0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_301	setup	battle	1	0x01DA1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_301	setup	battle	2	0x01DA4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_301	setup	battle	1	0x01DA1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_301	setup	battle	2	0x01DA4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_301	setup	battle	3	0x01DAA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_301	setup	battle	4	0x01DB0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_301	setup	battle	5	0x01DB6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_301	setup	battle	6	0x01DC2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_301	setup	battle	7	0x01DC8	38	-	btlAtelSetEntryStruct	0x0300011c	-	-	-	-	-		01 verb-table.tsv
+bts_301	setup	battle	6	0x01DC2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_301	setup	battle	7	0x01DC8	38	-	btlAtelSetEntryStruct	0x0300011c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_301	setup	battle	8	0x01DCB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_301	PC00	init	1	0x01DCF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_301	PC00	init	2	0x01DD2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -271,13 +271,13 @@ bts_301	monster_21	init	3	0x04590	3274	-	btlAtelSetPoint2	0x030000d0	argument 1:
 bts_301	monster_21	init	4	0x04593	3275	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_301	monster_21	init	5	0x04596	3276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_401	setup	init	1	0x01FF0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_401	setup	battle	1	0x01FF1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_401	setup	battle	2	0x01FF4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_401	setup	battle	1	0x01FF1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_401	setup	battle	2	0x01FF4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_401	setup	battle	3	0x01FFA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_401	setup	battle	4	0x02000	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_401	setup	battle	5	0x02006	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_401	setup	battle	6	0x02012	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_401	setup	battle	7	0x02018	38	-	btlAtelSetEntryStruct	0x03000134	-	-	-	-	-		01 verb-table.tsv
+bts_401	setup	battle	6	0x02012	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_401	setup	battle	7	0x02018	38	-	btlAtelSetEntryStruct	0x03000134	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_401	setup	battle	8	0x0201B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_401	PC00	init	1	0x0201F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_401	PC00	init	2	0x02022	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -403,13 +403,13 @@ bts_401	monster_22	init	3	0x04BD6	3578	-	btlAtelSetPoint2	0x030000e4	argument 1:
 bts_401	monster_22	init	4	0x04BD9	3579	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_401	monster_22	init	5	0x04BDC	3580	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_501	setup	init	1	0x01630	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_501	setup	battle	1	0x01631	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_501	setup	battle	2	0x01634	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_501	setup	battle	1	0x01631	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_501	setup	battle	2	0x01634	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_501	setup	battle	3	0x0163A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_501	setup	battle	4	0x01640	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_501	setup	battle	5	0x01646	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_501	setup	battle	6	0x01652	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_501	setup	battle	7	0x01658	38	-	btlAtelSetEntryStruct	0x030000cc	-	-	-	-	-		01 verb-table.tsv
+bts_501	setup	battle	6	0x01652	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_501	setup	battle	7	0x01658	38	-	btlAtelSetEntryStruct	0x030000cc	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_501	setup	battle	8	0x0165B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_501	PC00	init	1	0x0165F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_501	PC00	init	2	0x01662	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -495,13 +495,13 @@ bts_501	monster_14	init	3	0x0323E	2362	-	btlAtelSetPoint2	0x03000094	argument 1:
 bts_501	monster_14	init	4	0x03241	2363	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_501	monster_14	init	5	0x03244	2364	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_a01	setup	init	1	0x02280	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_a01	setup	battle	1	0x02281	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_a01	setup	battle	2	0x02284	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_a01	setup	battle	1	0x02281	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_a01	setup	battle	2	0x02284	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_a01	setup	battle	3	0x0228A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_a01	setup	battle	4	0x02290	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_a01	setup	battle	5	0x02296	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_a01	setup	battle	6	0x022A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_a01	setup	battle	7	0x022A8	38	-	btlAtelSetEntryStruct	0x03000150	-	-	-	-	-		01 verb-table.tsv
+bts_a01	setup	battle	6	0x022A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_a01	setup	battle	7	0x022A8	38	-	btlAtelSetEntryStruct	0x03000150	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_a01	setup	battle	8	0x022AB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_a01	PC00	init	1	0x022AF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_a01	PC00	init	2	0x022B2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -637,13 +637,13 @@ bts_a01	monster_24	init	3	0x0525C	3882	-	btlAtelSetPoint2	0x030000f8	argument 1:
 bts_a01	monster_24	init	4	0x0525F	3883	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_a01	monster_24	init	5	0x05262	3884	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_b01	setup	init	1	0x01B10	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_b01	setup	battle	1	0x01B11	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_b01	setup	battle	2	0x01B14	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_b01	setup	battle	1	0x01B11	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_b01	setup	battle	2	0x01B14	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_b01	setup	battle	3	0x01B1A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_b01	setup	battle	4	0x01B20	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_b01	setup	battle	5	0x01B26	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_b01	setup	battle	6	0x01B32	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_b01	setup	battle	7	0x01B38	38	-	btlAtelSetEntryStruct	0x03000100	-	-	-	-	-		01 verb-table.tsv
+bts_b01	setup	battle	6	0x01B32	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_b01	setup	battle	7	0x01B38	38	-	btlAtelSetEntryStruct	0x03000100	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_b01	setup	battle	8	0x01B3B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_b01	PC00	init	1	0x01B3F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_b01	PC00	init	2	0x01B42	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -749,13 +749,13 @@ bts_b01	monster_18	init	3	0x03F0A	2970	-	btlAtelSetPoint2	0x030000bc	argument 1:
 bts_b01	monster_18	init	4	0x03F0D	2971	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_b01	monster_18	init	5	0x03F10	2972	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_c01	setup	init	1	0x01C40	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_c01	setup	battle	1	0x01C41	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_c01	setup	battle	2	0x01C44	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_c01	setup	battle	1	0x01C41	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_c01	setup	battle	2	0x01C44	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_c01	setup	battle	3	0x01C4A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_c01	setup	battle	4	0x01C50	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_c01	setup	battle	5	0x01C56	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_c01	setup	battle	6	0x01C62	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_c01	setup	battle	7	0x01C68	38	-	btlAtelSetEntryStruct	0x0300010c	-	-	-	-	-		01 verb-table.tsv
+bts_c01	setup	battle	6	0x01C62	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_c01	setup	battle	7	0x01C68	38	-	btlAtelSetEntryStruct	0x0300010c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_c01	setup	battle	8	0x01C6B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_c01	PC00	init	1	0x01C6F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_c01	PC00	init	2	0x01C72	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -866,13 +866,13 @@ bts_c01	monster_19	init	3	0x04235	3122	-	btlAtelSetPoint2	0x030000c6	argument 1:
 bts_c01	monster_19	init	4	0x04238	3123	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_c01	monster_19	init	5	0x0423B	3124	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_d01	setup	init	1	0x02280	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_d01	setup	battle	1	0x02281	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_d01	setup	battle	2	0x02284	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_d01	setup	battle	1	0x02281	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_d01	setup	battle	2	0x02284	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_d01	setup	battle	3	0x0228A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_d01	setup	battle	4	0x02290	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_d01	setup	battle	5	0x02296	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_d01	setup	battle	6	0x022A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_d01	setup	battle	7	0x022A8	38	-	btlAtelSetEntryStruct	0x03000150	-	-	-	-	-		01 verb-table.tsv
+bts_d01	setup	battle	6	0x022A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_d01	setup	battle	7	0x022A8	38	-	btlAtelSetEntryStruct	0x03000150	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_d01	setup	battle	8	0x022AB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_d01	PC00	init	1	0x022AF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_d01	PC00	init	2	0x022B2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1008,13 +1008,13 @@ bts_d01	monster_24	init	3	0x0525C	3882	-	btlAtelSetPoint2	0x030000f8	argument 1:
 bts_d01	monster_24	init	4	0x0525F	3883	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_d01	monster_24	init	5	0x05262	3884	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_e01	setup	init	1	0x02280	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_e01	setup	battle	1	0x02281	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_e01	setup	battle	2	0x02284	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_e01	setup	battle	1	0x02281	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_e01	setup	battle	2	0x02284	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_e01	setup	battle	3	0x0228A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_e01	setup	battle	4	0x02290	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_e01	setup	battle	5	0x02296	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_e01	setup	battle	6	0x022A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_e01	setup	battle	7	0x022A8	38	-	btlAtelSetEntryStruct	0x03000150	-	-	-	-	-		01 verb-table.tsv
+bts_e01	setup	battle	6	0x022A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_e01	setup	battle	7	0x022A8	38	-	btlAtelSetEntryStruct	0x03000150	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_e01	setup	battle	8	0x022AB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_e01	PC00	init	1	0x022AF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_e01	PC00	init	2	0x022B2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1150,13 +1150,13 @@ bts_e01	monster_24	init	3	0x0525C	3882	-	btlAtelSetPoint2	0x030000f8	argument 1:
 bts_e01	monster_24	init	4	0x0525F	3883	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_e01	monster_24	init	5	0x05262	3884	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_f01	setup	init	1	0x023B0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_f01	setup	battle	1	0x023B1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_f01	setup	battle	2	0x023B4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_f01	setup	battle	1	0x023B1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_f01	setup	battle	2	0x023B4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_f01	setup	battle	3	0x023BA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_f01	setup	battle	4	0x023C0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_f01	setup	battle	5	0x023C6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_f01	setup	battle	6	0x023D2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_f01	setup	battle	7	0x023D8	38	-	btlAtelSetEntryStruct	0x0300015c	-	-	-	-	-		01 verb-table.tsv
+bts_f01	setup	battle	6	0x023D2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_f01	setup	battle	7	0x023D8	38	-	btlAtelSetEntryStruct	0x0300015c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_f01	setup	battle	8	0x023DB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_f01	PC00	init	1	0x023DF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_f01	PC00	init	2	0x023E2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1297,13 +1297,13 @@ bts_f01	monster_25	init	3	0x05587	4034	-	btlAtelSetPoint2	0x03000102	argument 1:
 bts_f01	monster_25	init	4	0x0558A	4035	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_f01	monster_25	init	5	0x0558D	4036	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_g01	setup	init	1	0x023B0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_g01	setup	battle	1	0x023B1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_g01	setup	battle	2	0x023B4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_g01	setup	battle	1	0x023B1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_g01	setup	battle	2	0x023B4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_g01	setup	battle	3	0x023BA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_g01	setup	battle	4	0x023C0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_g01	setup	battle	5	0x023C6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_g01	setup	battle	6	0x023D2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_g01	setup	battle	7	0x023D8	38	-	btlAtelSetEntryStruct	0x0300015c	-	-	-	-	-		01 verb-table.tsv
+bts_g01	setup	battle	6	0x023D2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_g01	setup	battle	7	0x023D8	38	-	btlAtelSetEntryStruct	0x0300015c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_g01	setup	battle	8	0x023DB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_g01	PC00	init	1	0x023DF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_g01	PC00	init	2	0x023E2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1444,13 +1444,13 @@ bts_g01	monster_25	init	3	0x05587	4034	-	btlAtelSetPoint2	0x03000102	argument 1:
 bts_g01	monster_25	init	4	0x0558A	4035	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_g01	monster_25	init	5	0x0558D	4036	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_h01	setup	init	1	0x023C0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_h01	setup	battle	1	0x023C1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_h01	setup	battle	2	0x023C4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_h01	setup	battle	1	0x023C1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_h01	setup	battle	2	0x023C4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_h01	setup	battle	3	0x023CA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_h01	setup	battle	4	0x023D0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_h01	setup	battle	5	0x023D6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_h01	setup	battle	6	0x023E2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_h01	setup	battle	7	0x023E8	38	-	btlAtelSetEntryStruct	0x0300015c	-	-	-	-	-		01 verb-table.tsv
+bts_h01	setup	battle	6	0x023E2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_h01	setup	battle	7	0x023E8	38	-	btlAtelSetEntryStruct	0x0300015c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_h01	setup	battle	8	0x023EB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_h01	PC00	init	1	0x023EF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_h01	PC00	init	2	0x023F2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1591,13 +1591,13 @@ bts_h01	monster_25	init	3	0x055C9	4051	-	btlAtelSetPoint2	0x03000102	argument 1:
 bts_h01	monster_25	init	4	0x055CC	4052	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_h01	monster_25	init	5	0x055CF	4053	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_i01	setup	init	1	0x01DA0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_i01	setup	battle	1	0x01DA1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_i01	setup	battle	2	0x01DA4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_i01	setup	battle	1	0x01DA1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_i01	setup	battle	2	0x01DA4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_i01	setup	battle	3	0x01DAA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_i01	setup	battle	4	0x01DB0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_i01	setup	battle	5	0x01DB6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_i01	setup	battle	6	0x01DC2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_i01	setup	battle	7	0x01DC8	38	-	btlAtelSetEntryStruct	0x0300011c	-	-	-	-	-		01 verb-table.tsv
+bts_i01	setup	battle	6	0x01DC2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_i01	setup	battle	7	0x01DC8	38	-	btlAtelSetEntryStruct	0x0300011c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_i01	setup	battle	8	0x01DCB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_i01	PC00	init	1	0x01DCF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_i01	PC00	init	2	0x01DD2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1713,13 +1713,13 @@ bts_i01	monster_20	init	3	0x04590	3274	-	btlAtelSetPoint2	0x030000d0	argument 1:
 bts_i01	monster_20	init	4	0x04593	3275	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_i01	monster_20	init	5	0x04596	3276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_j01	setup	init	1	0x02160	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_j01	setup	battle	1	0x02161	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_j01	setup	battle	2	0x02164	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_j01	setup	battle	1	0x02161	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_j01	setup	battle	2	0x02164	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_j01	setup	battle	3	0x0216A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_j01	setup	battle	4	0x02170	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_j01	setup	battle	5	0x02176	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_j01	setup	battle	6	0x02182	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_j01	setup	battle	7	0x02188	38	-	btlAtelSetEntryStruct	0x03000140	-	-	-	-	-		01 verb-table.tsv
+bts_j01	setup	battle	6	0x02182	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_j01	setup	battle	7	0x02188	38	-	btlAtelSetEntryStruct	0x03000140	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_j01	setup	battle	8	0x0218B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_j01	PC00	init	1	0x0218F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_j01	PC00	init	2	0x02192	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1850,13 +1850,13 @@ bts_j01	monster_23	init	3	0x04F41	3730	-	btlAtelSetPoint2	0x030000ee	argument 1:
 bts_j01	monster_23	init	4	0x04F44	3731	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_j01	monster_23	init	5	0x04F47	3732	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_k01	setup	init	1	0x00D60	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_k01	setup	battle	1	0x00D61	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_k01	setup	battle	2	0x00D64	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_k01	setup	battle	1	0x00D61	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_k01	setup	battle	2	0x00D64	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_k01	setup	battle	3	0x00D6A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_k01	setup	battle	4	0x00D70	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_k01	setup	battle	5	0x00D76	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_k01	setup	battle	6	0x00D82	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_k01	setup	battle	7	0x00D88	38	-	btlAtelSetEntryStruct	0x03000070	-	-	-	-	-		01 verb-table.tsv
+bts_k01	setup	battle	6	0x00D82	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_k01	setup	battle	7	0x00D88	38	-	btlAtelSetEntryStruct	0x03000070	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_k01	setup	battle	8	0x00D8B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_k01	PC00	init	1	0x00D8F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_k01	PC00	init	2	0x00D92	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1907,13 +1907,13 @@ bts_k01	monster_07	init	3	0x01B91	1298	-	btlAtelSetPoint2	0x0300004e	argument 1:
 bts_k01	monster_07	init	4	0x01B94	1299	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_k01	monster_07	init	5	0x01B97	1300	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_l01	setup	init	1	0x00EC0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_l01	setup	battle	1	0x00EC1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_l01	setup	battle	2	0x00EC4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_l01	setup	battle	1	0x00EC1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_l01	setup	battle	2	0x00EC4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_l01	setup	battle	3	0x00ECA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_l01	setup	battle	4	0x00ED0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_l01	setup	battle	5	0x00ED6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_l01	setup	battle	6	0x00EE2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_l01	setup	battle	7	0x00EE8	38	-	btlAtelSetEntryStruct	0x03000080	-	-	-	-	-		01 verb-table.tsv
+bts_l01	setup	battle	6	0x00EE2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_l01	setup	battle	7	0x00EE8	38	-	btlAtelSetEntryStruct	0x03000080	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_l01	setup	battle	8	0x00EEB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_l01	PC00	init	1	0x00EEF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_l01	PC00	init	2	0x00EF2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1969,13 +1969,13 @@ bts_l01	monster_08	init	3	0x01EEC	1450	-	btlAtelSetPoint2	0x03000058	argument 1:
 bts_l01	monster_08	init	4	0x01EEF	1451	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_l01	monster_08	init	5	0x01EF2	1452	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_m01	setup	init	1	0x01280	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_m01	setup	battle	1	0x01281	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_m01	setup	battle	2	0x01284	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_m01	setup	battle	1	0x01281	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_m01	setup	battle	2	0x01284	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_m01	setup	battle	3	0x0128A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_m01	setup	battle	4	0x01290	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_m01	setup	battle	5	0x01296	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_m01	setup	battle	6	0x012A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_m01	setup	battle	7	0x012A8	38	-	btlAtelSetEntryStruct	0x030000a4	-	-	-	-	-		01 verb-table.tsv
+bts_m01	setup	battle	6	0x012A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_m01	setup	battle	7	0x012A8	38	-	btlAtelSetEntryStruct	0x030000a4	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_m01	setup	battle	8	0x012AB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_m01	PC00	init	1	0x012AF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_m01	PC00	init	2	0x012B2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2046,13 +2046,13 @@ bts_m01	monster_11	init	3	0x0289D	1906	-	btlAtelSetPoint2	0x03000076	argument 1:
 bts_m01	monster_11	init	4	0x028A0	1907	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_m01	monster_11	init	5	0x028A3	1908	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_n01	setup	init	1	0x00EC0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_n01	setup	battle	1	0x00EC1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_n01	setup	battle	2	0x00EC4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_n01	setup	battle	1	0x00EC1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_n01	setup	battle	2	0x00EC4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_n01	setup	battle	3	0x00ECA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_n01	setup	battle	4	0x00ED0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_n01	setup	battle	5	0x00ED6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_n01	setup	battle	6	0x00EE2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_n01	setup	battle	7	0x00EE8	38	-	btlAtelSetEntryStruct	0x03000080	-	-	-	-	-		01 verb-table.tsv
+bts_n01	setup	battle	6	0x00EE2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_n01	setup	battle	7	0x00EE8	38	-	btlAtelSetEntryStruct	0x03000080	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_n01	setup	battle	8	0x00EEB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_n01	PC00	init	1	0x00EEF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_n01	PC00	init	2	0x00EF2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2108,13 +2108,13 @@ bts_n01	monster_08	init	3	0x01EEC	1450	-	btlAtelSetPoint2	0x03000058	argument 1:
 bts_n01	monster_08	init	4	0x01EEF	1451	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_n01	monster_08	init	5	0x01EF2	1452	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_o01	setup	init	1	0x00FF0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_o01	setup	battle	1	0x00FF1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_o01	setup	battle	2	0x00FF4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_o01	setup	battle	1	0x00FF1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_o01	setup	battle	2	0x00FF4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_o01	setup	battle	3	0x00FFA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_o01	setup	battle	4	0x01000	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_o01	setup	battle	5	0x01006	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_o01	setup	battle	6	0x01012	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_o01	setup	battle	7	0x01018	38	-	btlAtelSetEntryStruct	0x0300008c	-	-	-	-	-		01 verb-table.tsv
+bts_o01	setup	battle	6	0x01012	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_o01	setup	battle	7	0x01018	38	-	btlAtelSetEntryStruct	0x0300008c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_o01	setup	battle	8	0x0101B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_o01	PC00	init	1	0x0101F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_o01	PC00	init	2	0x01022	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2175,13 +2175,13 @@ bts_o01	monster_09	init	3	0x02217	1602	-	btlAtelSetPoint2	0x03000062	argument 1:
 bts_o01	monster_09	init	4	0x0221A	1603	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_o01	monster_09	init	5	0x0221D	1604	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_p01	setup	init	1	0x00EC0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_p01	setup	battle	1	0x00EC1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_p01	setup	battle	2	0x00EC4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_p01	setup	battle	1	0x00EC1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_p01	setup	battle	2	0x00EC4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_p01	setup	battle	3	0x00ECA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_p01	setup	battle	4	0x00ED0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_p01	setup	battle	5	0x00ED6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_p01	setup	battle	6	0x00EE2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_p01	setup	battle	7	0x00EE8	38	-	btlAtelSetEntryStruct	0x03000080	-	-	-	-	-		01 verb-table.tsv
+bts_p01	setup	battle	6	0x00EE2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_p01	setup	battle	7	0x00EE8	38	-	btlAtelSetEntryStruct	0x03000080	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_p01	setup	battle	8	0x00EEB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_p01	PC00	init	1	0x00EEF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_p01	PC00	init	2	0x00EF2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2237,13 +2237,13 @@ bts_p01	monster_08	init	3	0x01EEC	1450	-	btlAtelSetPoint2	0x03000058	argument 1:
 bts_p01	monster_08	init	4	0x01EEF	1451	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_p01	monster_08	init	5	0x01EF2	1452	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_q01	setup	init	1	0x013A0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_q01	setup	battle	1	0x013A1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_q01	setup	battle	2	0x013A4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_q01	setup	battle	1	0x013A1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_q01	setup	battle	2	0x013A4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_q01	setup	battle	3	0x013AA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_q01	setup	battle	4	0x013B0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_q01	setup	battle	5	0x013B6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_q01	setup	battle	6	0x013C2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_q01	setup	battle	7	0x013C8	38	-	btlAtelSetEntryStruct	0x030000b4	-	-	-	-	-		01 verb-table.tsv
+bts_q01	setup	battle	6	0x013C2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_q01	setup	battle	7	0x013C8	38	-	btlAtelSetEntryStruct	0x030000b4	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_q01	setup	battle	8	0x013CB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_q01	PC00	init	1	0x013CF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_q01	PC00	init	2	0x013D2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2319,13 +2319,13 @@ bts_q01	monster_12	init	3	0x02BB8	2058	-	btlAtelSetPoint2	0x03000080	argument 1:
 bts_q01	monster_12	init	4	0x02BBB	2059	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_q01	monster_12	init	5	0x02BBE	2060	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_r01	setup	init	1	0x013A0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_r01	setup	battle	1	0x013A1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_r01	setup	battle	2	0x013A4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_r01	setup	battle	1	0x013A1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_r01	setup	battle	2	0x013A4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_r01	setup	battle	3	0x013AA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_r01	setup	battle	4	0x013B0	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_r01	setup	battle	5	0x013B6	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_r01	setup	battle	6	0x013C2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_r01	setup	battle	7	0x013C8	38	-	btlAtelSetEntryStruct	0x030000b4	-	-	-	-	-		01 verb-table.tsv
+bts_r01	setup	battle	6	0x013C2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_r01	setup	battle	7	0x013C8	38	-	btlAtelSetEntryStruct	0x030000b4	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_r01	setup	battle	8	0x013CB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_r01	PC00	init	1	0x013CF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_r01	PC00	init	2	0x013D2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2401,13 +2401,13 @@ bts_r01	monster_12	init	3	0x02BB8	2058	-	btlAtelSetPoint2	0x03000080	argument 1:
 bts_r01	monster_12	init	4	0x02BBB	2059	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_r01	monster_12	init	5	0x02BBE	2060	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_s01	setup	init	1	0x00FF0	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_s01	setup	battle	1	0x00FF1	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_s01	setup	battle	2	0x00FF4	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_s01	setup	battle	1	0x00FF1	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_s01	setup	battle	2	0x00FF4	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_s01	setup	battle	3	0x00FFA	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_s01	setup	battle	4	0x01000	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_s01	setup	battle	5	0x01006	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_s01	setup	battle	6	0x01012	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_s01	setup	battle	7	0x01018	38	-	btlAtelSetEntryStruct	0x0300008c	-	-	-	-	-		01 verb-table.tsv
+bts_s01	setup	battle	6	0x01012	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_s01	setup	battle	7	0x01018	38	-	btlAtelSetEntryStruct	0x0300008c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_s01	setup	battle	8	0x0101B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_s01	PC00	init	1	0x0101F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_s01	PC00	init	2	0x01022	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2468,13 +2468,13 @@ bts_s01	monster_09	init	3	0x02217	1602	-	btlAtelSetPoint2	0x03000062	argument 1:
 bts_s01	monster_09	init	4	0x0221A	1603	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_s01	monster_09	init	5	0x0221D	1604	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_t01	setup	init	1	0x02640	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_t01	setup	battle	1	0x02641	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_t01	setup	battle	2	0x02644	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_t01	setup	battle	1	0x02641	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_t01	setup	battle	2	0x02644	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_t01	setup	battle	3	0x0264A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_t01	setup	battle	4	0x02650	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_t01	setup	battle	5	0x02656	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_t01	setup	battle	6	0x02662	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_t01	setup	battle	7	0x02668	38	-	btlAtelSetEntryStruct	0x03000174	-	-	-	-	-		01 verb-table.tsv
+bts_t01	setup	battle	6	0x02662	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_t01	setup	battle	7	0x02668	38	-	btlAtelSetEntryStruct	0x03000174	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_t01	setup	battle	8	0x0266B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_t01	PC00	init	1	0x0266F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_t01	PC00	init	2	0x02672	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2625,13 +2625,13 @@ bts_t01	monster_27	init	3	0x05C0D	4338	-	btlAtelSetPoint2	0x03000116	argument 1:
 bts_t01	monster_27	init	4	0x05C10	4339	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_t01	monster_27	init	5	0x05C13	4340	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_u01	setup	init	1	0x02160	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_u01	setup	battle	1	0x02161	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_u01	setup	battle	2	0x02164	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_u01	setup	battle	1	0x02161	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_u01	setup	battle	2	0x02164	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_u01	setup	battle	3	0x0216A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_u01	setup	battle	4	0x02170	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_u01	setup	battle	5	0x02176	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_u01	setup	battle	6	0x02182	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_u01	setup	battle	7	0x02188	38	-	btlAtelSetEntryStruct	0x03000140	-	-	-	-	-		01 verb-table.tsv
+bts_u01	setup	battle	6	0x02182	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_u01	setup	battle	7	0x02188	38	-	btlAtelSetEntryStruct	0x03000140	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_u01	setup	battle	8	0x0218B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_u01	PC00	init	1	0x0218F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_u01	PC00	init	2	0x02192	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2762,13 +2762,13 @@ bts_u01	monster_23	init	3	0x04F41	3730	-	btlAtelSetPoint2	0x030000ee	argument 1:
 bts_u01	monster_23	init	4	0x04F44	3731	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_u01	monster_23	init	5	0x04F47	3732	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_v01	setup	init	1	0x01280	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_v01	setup	battle	1	0x01281	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_v01	setup	battle	2	0x01284	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_v01	setup	battle	1	0x01281	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_v01	setup	battle	2	0x01284	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_v01	setup	battle	3	0x0128A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_v01	setup	battle	4	0x01290	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_v01	setup	battle	5	0x01296	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_v01	setup	battle	6	0x012A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_v01	setup	battle	7	0x012A8	38	-	btlAtelSetEntryStruct	0x030000a4	-	-	-	-	-		01 verb-table.tsv
+bts_v01	setup	battle	6	0x012A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_v01	setup	battle	7	0x012A8	38	-	btlAtelSetEntryStruct	0x030000a4	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_v01	setup	battle	8	0x012AB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_v01	PC00	init	1	0x012AF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_v01	PC00	init	2	0x012B2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2839,13 +2839,13 @@ bts_v01	monster_11	init	3	0x0289D	1906	-	btlAtelSetPoint2	0x03000076	argument 1:
 bts_v01	monster_11	init	4	0x028A0	1907	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_v01	monster_11	init	5	0x028A3	1908	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_w01	setup	init	1	0x01110	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_w01	setup	battle	1	0x01111	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_w01	setup	battle	2	0x01114	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_w01	setup	battle	1	0x01111	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_w01	setup	battle	2	0x01114	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_w01	setup	battle	3	0x0111A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_w01	setup	battle	4	0x01120	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_w01	setup	battle	5	0x01126	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_w01	setup	battle	6	0x01132	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_w01	setup	battle	7	0x01138	38	-	btlAtelSetEntryStruct	0x03000098	-	-	-	-	-		01 verb-table.tsv
+bts_w01	setup	battle	6	0x01132	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_w01	setup	battle	7	0x01138	38	-	btlAtelSetEntryStruct	0x03000098	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_w01	setup	battle	8	0x0113B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_w01	PC00	init	1	0x0113F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_w01	PC00	init	2	0x01142	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2911,13 +2911,13 @@ bts_w01	monster_10	init	3	0x02532	1754	-	btlAtelSetPoint2	0x0300006c	argument 1:
 bts_w01	monster_10	init	4	0x02535	1755	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_w01	monster_10	init	5	0x02538	1756	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_x01	setup	init	1	0x00880	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_x01	setup	battle	1	0x00881	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_x01	setup	battle	2	0x00884	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_x01	setup	battle	1	0x00881	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_x01	setup	battle	2	0x00884	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_x01	setup	battle	3	0x0088A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_x01	setup	battle	4	0x00890	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_x01	setup	battle	5	0x00896	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_x01	setup	battle	6	0x008A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_x01	setup	battle	7	0x008A8	38	-	btlAtelSetEntryStruct	0x0300003c	-	-	-	-	-		01 verb-table.tsv
+bts_x01	setup	battle	6	0x008A2	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_x01	setup	battle	7	0x008A8	38	-	btlAtelSetEntryStruct	0x0300003c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_x01	setup	battle	8	0x008AB	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_x01	PC00	init	1	0x008AF	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_x01	PC00	init	2	0x008B2	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -2948,13 +2948,13 @@ bts_x01	monster_03	init	3	0x00EC5	690	-	btlAtelSetPoint2	0x03000026	argument 1: 
 bts_x01	monster_03	init	4	0x00EC8	691	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_x01	monster_03	init	5	0x00ECB	692	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_y01	setup	init	1	0x01C50	27	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_y01	setup	battle	1	0x01C51	32	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_y01	setup	battle	2	0x01C54	33	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_y01	setup	battle	1	0x01C51	32	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_y01	setup	battle	2	0x01C54	33	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_y01	setup	battle	3	0x01C5A	34	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_y01	setup	battle	4	0x01C60	35	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_y01	setup	battle	5	0x01C66	36	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_y01	setup	battle	6	0x01C72	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_y01	setup	battle	7	0x01C78	38	-	btlAtelSetEntryStruct	0x0300010c	-	-	-	-	-		01 verb-table.tsv
+bts_y01	setup	battle	6	0x01C72	37	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_y01	setup	battle	7	0x01C78	38	-	btlAtelSetEntryStruct	0x0300010c	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_y01	setup	battle	8	0x01C7B	39	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_y01	PC00	init	1	0x01C7F	48	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_y01	PC00	init	2	0x01C82	49	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3065,17 +3065,17 @@ bts_y01	ファンネル_魔	init	3	0x04277	3139	-	btlAtelSetPoint2	0x030000c6	ar
 bts_y01	ファンネル_魔	init	4	0x0427A	3140	-	btlAtelInitTagFinish	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_y01	ファンネル_魔	init	5	0x0427D	3141	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_z01	setup	init	1	0x01350	28	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bts_z01	setup	battle	1	0x01351	33	-	btlAtelSetupActorStart	-	-	-	-	-	-		01 verb-table.tsv
-bts_z01	setup	battle	2	0x01354	34	-	system_expandcharmotionmemory	-	-	-	-	-	-		01 verb-table.tsv
+bts_z01	setup	battle	1	0x01351	33	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_z01	setup	battle	2	0x01354	34	-	system_expandcharmotionmemory	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_z01	setup	battle	3	0x0135A	35	-	store	file_var_s0_1 = 0	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_z01	setup	battle	4	0x01360	36	-	store	file_var_s0_2 = 25	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bts_z01	setup	battle	5	0x01366	37	-	store	file_var_s0_3 = 30	variable file_var_s0_3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bts_z01	setup	battle	6	0x01372	38	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	-	-	-	-	-		01 verb-table.tsv
-bts_z01	setup	battle	7	0x01378	39	-	btlAtelSetEntryStruct	0x03000058	-	-	-	-	-		01 verb-table.tsv
+bts_z01	setup	battle	6	0x01372	38	-	btlAtelSetSpawnDistance	file_var_s0_1, file_var_s0_2, file_var_s0_3	argument 1: the nearest distance from the party at which a monster is placed, stored in 0x02089360 and read by the placement 0x00235720 / argument 2: the farthest placement distance, stored in 0x02089364 and read by 0x00235720 / argument 3: the retire distance, stored in 0x02089368	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bts_z01	setup	battle	7	0x01378	39	-	btlAtelSetEntryStruct	0x03000058	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_z01	setup	battle	8	0x0137B	40	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_z01	btl_trap_ctrl	init	1	0x0137F	49	-	modelread	0x03000001	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_z01	btl_trap_ctrl	init	2	0x01385	50	-	modelreadsync	0x03000001	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bts_z01	btl_trap_ctrl	init	3	0x0138B	51	-	settrapresource	0x03000001	-	-	-	-	-		01 verb-table.tsv
+bts_z01	btl_trap_ctrl	init	3	0x0138B	51	-	settrapresource	0x03000001	argument 1: the trap marker resource of the field	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_z01	btl_trap_ctrl	init	4	0x0138E	52	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bts_z01	PC00	init	1	0x01392	61	-	setupbattle	0	argument 1: the party slot (0-3) whose battle position the calling party member is rebuilt and placed at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bts_z01	PC00	init	2	0x01395	62	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

@@ -933,7 +933,7 @@ sum_b0001	ＳＥ	カット０１_開始	4	0x00B81	453	-	eventsoundread	2	event s
 sum_b0001	ＳＥ	カット０１_開始	5	0x00B87	454	-	eventsoundreadsync	2	event sound slot 2	-	-	waits while event sound slot 2 loads	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_b0001	ＳＥ	カット０１_開始	6	0x00B8A	455	-	frameinfo	-	the calling actor's name	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_b0001	ＳＥ	カット０１_開始	7	0x00B8D	456	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sum_b0001	ＳＥ	カット０２	1	0x00B91	461	-	lockreverb	25	-	-	-	-	-		01 verb-table.tsv
+sum_b0001	ＳＥ	カット０２	1	0x00B91	461	-	lockreverb	25	argument 1: the reverb level the map is locked to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_b0001	ＳＥ	カット０２	2	0x00B9A	462	-	eventsoundfadeout	local_var_s7f1_1, 50	argument 1: the playing event sound to fade out / argument 2: the fade-out length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_b0001	ＳＥ	カット０２	3	0x00BA0	463	-	wait	7	-	-	7 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_b0001	ＳＥ	カット０２	4	0x00BA6	464	-	eventsoundplay	0x06000000	list entry 0 of event sound slot 2 (sub-file 2 of `sum_b0001.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
@@ -1395,7 +1395,7 @@ sum_c0001	進行監督	召喚終了	8	0x00E2B	271	-	motiondispose	1	argument 1: 
 sum_c0001	進行監督	召喚終了	9	0x00E31	272	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_c0001	進行監督	召喚終了	10	0x00E3D	273	-	sysReq	1, 効果音::効果音終了処理	actor `効果音`	-	-	files 効果音::効果音終了処理 on channel 1; does not wait	効果音.効果音終了処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 sum_c0001	進行監督	召喚終了	11	0x00E44	274	-	sysReqwait	効果音::効果音終了処理	actor `効果音`	-	-	waits until 効果音::効果音終了処理 is no longer on its actor	効果音.効果音終了処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-sum_c0001	進行監督	召喚終了	12	0x00E45	275	-	unlockreverb	-	-	-	-	-	-		01 verb-table.tsv
+sum_c0001	進行監督	召喚終了	12	0x00E45	275	-	unlockreverb	-	the map's reverb, unlocked	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	進行監督	召喚終了	13	0x00E4E	276	-	setsummoncameratarget	0, 0	argument 1: the actor made the summon camera's subject / argument 2: whether the subject is set	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	進行監督	召喚終了	14	0x00E54	277	-	setnoupdatebehindcamera	0	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	進行監督	召喚終了	15	0x00E57	278	-	shownobattletarget	-	shows again the actors that hidenobattletarget hid	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1499,7 +1499,7 @@ sum_c0001	効果音	効果音制御カット１	27	0x01069	454	loop while true; 
 sum_c0001	効果音	効果音制御カット１	28	0x01073	455	loop while true; not ((local_var_s3f3_1 is none of lte(30), lte(35), lte(89)) and (local_var_s3f3_2 >= 3))	store	local_var_s3f3_1 = local_var_s3f3_1 + 1	variable local_var_s3f3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sum_c0001	効果音	効果音制御カット２	1	0x0107C	461	-	store	local_var_s3f3_1 = 1	variable local_var_s3f3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sum_c0001	効果音	効果音制御カット２	2	0x01082	462	-	store	local_var_s3f3_2 = 0	variable local_var_s3f3_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sum_c0001	効果音	効果音制御カット２	3	0x01088	463	-	lockreverb	40	-	-	-	-	-		01 verb-table.tsv
+sum_c0001	効果音	効果音制御カット２	3	0x01088	463	-	lockreverb	40	argument 1: the reverb level the map is locked to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	効果音	効果音制御カット２	4	0x0108B	464	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0001	効果音	効果音制御カット２	5	0x0108F	466	loop while true	switch	local_var_s3f3_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0001	効果音	効果音制御カット２	6	0x01092	468	loop while true	case	lte(88)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -1749,11 +1749,11 @@ sum_c0001	シェイク	カット２	1	0x0163D	925	-	camerashakestop_19e	0	argume
 sum_c0001	シェイク	カット２	2	0x01643	926	-	wait	52	-	-	52 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_c0001	シェイク	カット２	3	0x01646	927	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0001	シェイク	カット２＿２＿３	1	0x0164D	932	-	camerashakestart_1a3	1, 0x0d000001	argument 1: which of the current manager's four camera-shake entries starts the shake (0-3; a larger value is refused by ja at 0x003DD26C) / argument 2: the row of the scene's CML1 camera-shake list [manager +0xF0] to play (the low 24 bits; the row must be below the list count +0x04, checked at 0x003DD27E; row +0x14 is the shake)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-sum_c0001	シェイク	カット２＿２＿３	2	0x01653	933	-	camerashakechange	1	-	-	-	-	-		01 verb-table.tsv
+sum_c0001	シェイク	カット２＿２＿３	2	0x01653	933	-	camerashakechange	1	argument 1: the camera-shake entry, 0 to 3, of the calling script's manager slot that is made current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット２＿２＿３	3	0x01659	934	-	camerashakestop_19e	0	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット２＿２＿３	4	0x0165F	935	-	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_c0001	シェイク	カット２＿２＿３	5	0x01668	936	-	camerashakestart_1a3	0, 0x0d000002	argument 1: which of the current manager's four camera-shake entries starts the shake (0-3; a larger value is refused by ja at 0x003DD26C) / argument 2: the row of the scene's CML1 camera-shake list [manager +0xF0] to play (the low 24 bits; the row must be below the list count +0x04, checked at 0x003DD27E; row +0x14 is the shake)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-sum_c0001	シェイク	カット２＿２＿３	6	0x0166E	937	-	camerashakechange	0	-	-	-	-	-		01 verb-table.tsv
+sum_c0001	シェイク	カット２＿２＿３	6	0x0166E	937	-	camerashakechange	0	argument 1: the camera-shake entry, 0 to 3, of the calling script's manager slot that is made current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット２＿２＿３	7	0x01671	938	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0001	シェイク	カット３	1	0x01675	943	-	camerashakestop_19e	0	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット３	2	0x0167B	944	-	camerashakestop_19e	1	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1762,7 +1762,7 @@ sum_c0001	シェイク	カット３	4	0x0168A	946	-	camerashakestart_1a3	0, 0x0d
 sum_c0001	シェイク	カット３	5	0x01690	947	-	wait	50	-	-	50 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_c0001	シェイク	カット３	6	0x01699	948	-	effectplay_e2	2, 0	effect slot 2: the effect read into it, played with 0 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
 sum_c0001	シェイク	カット３	7	0x016A2	949	-	camerashakestart_1a3	1, 0x0d000004	argument 1: which of the current manager's four camera-shake entries starts the shake (0-3; a larger value is refused by ja at 0x003DD26C) / argument 2: the row of the scene's CML1 camera-shake list [manager +0xF0] to play (the low 24 bits; the row must be below the list count +0x04, checked at 0x003DD27E; row +0x14 is the shake)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-sum_c0001	シェイク	カット３	8	0x016A8	950	-	camerashakechange	1	-	-	-	-	-		01 verb-table.tsv
+sum_c0001	シェイク	カット３	8	0x016A8	950	-	camerashakechange	1	argument 1: the camera-shake entry, 0 to 3, of the calling script's manager slot that is made current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット３	9	0x016AE	951	-	camerashakestop_19e	0	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット３	10	0x016B1	952	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0001	シェイク	カット４	1	0x016B5	957	-	camerashakestop_19e	1	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -1772,7 +1772,7 @@ sum_c0001	シェイク	カット４	4	0x016CA	960	-	wait	34	-	-	34 frames	waits	
 sum_c0001	シェイク	カット４	5	0x016D0	961	-	camerashakestop_19e	0	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット４	6	0x016D6	962	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_c0001	シェイク	カット４	7	0x016DF	963	-	camerashakestart_1a3	0, 0x0d000006	argument 1: which of the current manager's four camera-shake entries starts the shake (0-3; a larger value is refused by ja at 0x003DD26C) / argument 2: the row of the scene's CML1 camera-shake list [manager +0xF0] to play (the low 24 bits; the row must be below the list count +0x04, checked at 0x003DD27E; row +0x14 is the shake)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-sum_c0001	シェイク	カット４	8	0x016E5	964	-	camerashakechange	0	-	-	-	-	-		01 verb-table.tsv
+sum_c0001	シェイク	カット４	8	0x016E5	964	-	camerashakechange	0	argument 1: the camera-shake entry, 0 to 3, of the calling script's manager slot that is made current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット４	9	0x016E8	965	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0001	シェイク	カット５	1	0x016EC	970	-	camerashakestop_19e	0	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット５	2	0x016F2	971	-	wait	32	-	-	32 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -1780,12 +1780,12 @@ sum_c0001	シェイク	カット５	3	0x016FB	972	-	camerashakestart_1a3	0, 0x0d
 sum_c0001	シェイク	カット５	4	0x016FE	973	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0001	シェイク	カット５＿２	1	0x01702	978	-	camerashakestop_19e	0	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット５＿２	2	0x0170B	979	-	camerashakestart_1a3	1, 0x0d000008	argument 1: which of the current manager's four camera-shake entries starts the shake (0-3; a larger value is refused by ja at 0x003DD26C) / argument 2: the row of the scene's CML1 camera-shake list [manager +0xF0] to play (the low 24 bits; the row must be below the list count +0x04, checked at 0x003DD27E; row +0x14 is the shake)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-sum_c0001	シェイク	カット５＿２	3	0x01711	980	-	camerashakechange	1	-	-	-	-	-		01 verb-table.tsv
+sum_c0001	シェイク	カット５＿２	3	0x01711	980	-	camerashakechange	1	argument 1: the camera-shake entry, 0 to 3, of the calling script's manager slot that is made current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット５＿２	4	0x01714	981	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0001	シェイク	カット６	1	0x01718	986	-	camerashakestop_19e	0	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット６	2	0x0171E	987	-	camerashakestop_19e	1	argument 1: the camera shake entry to stop, 0-3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット６	3	0x01727	988	-	camerashakestart_1a3	0, 0x0d000009	argument 1: which of the current manager's four camera-shake entries starts the shake (0-3; a larger value is refused by ja at 0x003DD26C) / argument 2: the row of the scene's CML1 camera-shake list [manager +0xF0] to play (the low 24 bits; the row must be below the list count +0x04, checked at 0x003DD27E; row +0x14 is the shake)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-sum_c0001	シェイク	カット６	4	0x0172D	989	-	camerashakechange	0	-	-	-	-	-		01 verb-table.tsv
+sum_c0001	シェイク	カット６	4	0x0172D	989	-	camerashakechange	0	argument 1: the camera-shake entry, 0 to 3, of the calling script's manager slot that is made current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_c0001	シェイク	カット６	5	0x01730	990	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0002	director	init	1	0x00300	18	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_c0002	director	main	1	0x00304	23	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
@@ -3651,7 +3651,7 @@ sum_f0001	効果音	効果音制御カット１	5	0x011B1	561	-	eventsoundplay	0
 sum_f0001	効果音	効果音制御カット１	6	0x011B4	562	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_f0001	効果音	効果音制御カット２	1	0x011B8	567	-	store	local_var_s7f3_1 = 1	variable local_var_s7f3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sum_f0001	効果音	効果音制御カット２	2	0x011BE	568	-	store	local_var_s7f3_2 = 0	variable local_var_s7f3_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sum_f0001	効果音	効果音制御カット２	3	0x011C4	569	-	lockreverb	40	-	-	-	-	-		01 verb-table.tsv
+sum_f0001	効果音	効果音制御カット２	3	0x011C4	569	-	lockreverb	40	argument 1: the reverb level the map is locked to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_f0001	効果音	効果音制御カット２	4	0x011C7	570	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_f0001	効果音	効果音制御カット２	5	0x011CB	572	loop while true	switch	local_var_s7f3_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_f0001	効果音	効果音制御カット２	6	0x011CE	574	loop while true	case	lte(9)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -4255,7 +4255,7 @@ sum_g0001	ＳＥ	カット０１_開始	6	0x00C10	450	-	eventsoundread	2	event s
 sum_g0001	ＳＥ	カット０１_開始	7	0x00C16	451	-	eventsoundreadsync	2	event sound slot 2	-	-	waits while event sound slot 2 loads	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_g0001	ＳＥ	カット０１_開始	8	0x00C19	452	-	frameinfo	-	the calling actor's name	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_g0001	ＳＥ	カット０１_開始	9	0x00C1C	453	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sum_g0001	ＳＥ	カット０２	1	0x00C20	464	-	lockreverb	30	-	-	-	-	-		01 verb-table.tsv
+sum_g0001	ＳＥ	カット０２	1	0x00C20	464	-	lockreverb	30	argument 1: the reverb level the map is locked to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_g0001	ＳＥ	カット０２	2	0x00C29	465	-	eventsoundfadeout	local_var_s7f1_1, 60	argument 1: the playing event sound to fade out / argument 2: the fade-out length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_g0001	ＳＥ	カット０２	3	0x00C2F	466	-	eventsoundplay	0x06000000	result stored in local_var_s7f2_1; list entry 0 of event sound slot 2 (sub-file 2 of `sum_g0001.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_g0001	ＳＥ	カット０２	4	0x00C38	467	-	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -4323,7 +4323,7 @@ sum_g0001	ＳＥ	カット０７	6	0x00D6E	556	-	return	-	-	-	-	-	-	resolved	01 
 sum_g0001	ＳＥ	イベント終了	1	0x00D72	561	-	wait	99	-	-	99 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_g0001	ＳＥ	イベント終了	2	0x00D78	562	-	eventsounddispose	0	event sound slot 0, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_g0001	ＳＥ	イベント終了	3	0x00D7E	563	-	eventsounddispose	6	event sound slot 6, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
-sum_g0001	ＳＥ	イベント終了	4	0x00D81	564	-	unlockreverb	-	-	-	-	-	-		01 verb-table.tsv
+sum_g0001	ＳＥ	イベント終了	4	0x00D81	564	-	unlockreverb	-	the map's reverb, unlocked	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_g0001	ＳＥ	イベント終了	5	0x00D84	565	-	frameinfo	-	the calling actor's name	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_g0001	ＳＥ	イベント終了	6	0x00D87	566	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_g0001	ボイス	init	1	0x00D88	575	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5334,7 +5334,7 @@ sum_i0001	ＳＥ	カット０１	1	0x00BC5	442	-	stopenvsoundall	-	the map's amb
 sum_i0001	ＳＥ	カット０１	2	0x00BCB	443	-	wait	24	-	-	24 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_i0001	ＳＥ	カット０１	3	0x00BD1	444	-	eventsoundplay	0x04000000	list entry 0 of event sound slot 0 (sub-file 0 of `sum_i0001.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_i0001	ＳＥ	カット０１	4	0x00BD4	445	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-sum_i0001	ＳＥ	カット０２	1	0x00BD8	456	-	lockreverb	30	-	-	-	-	-		01 verb-table.tsv
+sum_i0001	ＳＥ	カット０２	1	0x00BD8	456	-	lockreverb	30	argument 1: the reverb level the map is locked to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_i0001	ＳＥ	カット０２	2	0x00BDE	457	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 sum_i0001	ＳＥ	カット０２	3	0x00BE4	458	-	eventsoundplay	0x04000001	result stored in local_var_s6f2_1; list entry 1 of event sound slot 0 (sub-file 0 of `sum_i0001.snd`)	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_i0001	ＳＥ	カット０２	4	0x00BED	459	-	wait	28	-	-	28 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -5380,7 +5380,7 @@ sum_i0001	ＳＥ	カット０９	9	0x00CB3	522	-	return	-	-	-	-	-	-	resolved	01 
 sum_i0001	ＳＥ	イベント終了	1	0x00CB7	527	-	eventsounddispose	0	event sound slot 0, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_i0001	ＳＥ	イベント終了	2	0x00CBD	528	-	eventsounddispose	3	event sound slot 3, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_i0001	ＳＥ	イベント終了	3	0x00CC3	529	-	eventsounddispose	4	event sound slot 4, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
-sum_i0001	ＳＥ	イベント終了	4	0x00CC6	530	-	unlockreverb	-	-	-	-	-	-		01 verb-table.tsv
+sum_i0001	ＳＥ	イベント終了	4	0x00CC6	530	-	unlockreverb	-	the map's reverb, unlocked	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_i0001	ＳＥ	イベント終了	5	0x00CC9	531	-	frameinfo	-	the calling actor's name	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_i0001	ＳＥ	イベント終了	6	0x00CCC	532	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_i0001	ボイス	init	1	0x00CCD	541	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -5660,7 +5660,7 @@ sum_j0001	監督	まてうす大技	33	0x00AC2	76	unreachable in the listing	sys
 sum_j0001	監督	まてうす大技	34	0x00AC9	77	unreachable in the listing	sysReqwait	効果音::効果音準備	actor `効果音`	-	-	waits until 効果音::効果音準備 is no longer on its actor	効果音.効果音準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 sum_j0001	監督	まてうす大技	35	0x00AD6	78	unreachable in the listing	sysReqi	1, ボイス監督::準備	actor `ボイス監督`	-	-	files ボイス監督::準備 on channel 1; does not wait; the target goes through INCINITTAG	ボイス監督.準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 sum_j0001	監督	まてうす大技	36	0x00ADD	79	unreachable in the listing	sysReqwait	ボイス監督::準備	actor `ボイス監督`	-	-	waits until ボイス監督::準備 is no longer on its actor	ボイス監督.準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-sum_j0001	監督	まてうす大技	37	0x00ADE	80	unreachable in the listing	unlockreverb	-	-	-	-	-	-		01 verb-table.tsv
+sum_j0001	監督	まてうす大技	37	0x00ADE	80	unreachable in the listing	unlockreverb	-	the map's reverb, unlocked	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_j0001	監督	まてうす大技	38	0x00AE1	81	unreachable in the listing	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_j0001	監督	まてうす大技	39	0x00AE7	82	unreachable in the listing	motiondispose	1	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_j0001	監督	まてうす大技	40	0x00AED	83	unreachable in the listing	motionread	1	motion 1 of `sum_j0001.mot` (bytes 0x800, length 0x360F0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
@@ -5848,7 +5848,7 @@ sum_j0001	進行監督	召喚終了	9	0x00FE8	351	-	sysReqwait	summon::召喚終
 sum_j0001	進行監督	召喚終了	10	0x00FEF	352	-	sysReqwait	summon_weapon_pon::召喚終了	actor `summon_weapon_pon`	-	-	waits until summon_weapon_pon::召喚終了 is no longer on its actor	summon_weapon_pon.召喚終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 sum_j0001	進行監督	召喚終了	11	0x00FF6	353	-	sysReqwait	効果音::効果音終了処理	actor `効果音`	-	-	waits until 効果音::効果音終了処理 is no longer on its actor	効果音.効果音終了処理	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 sum_j0001	進行監督	召喚終了	12	0x00FFD	354	-	sysReqwait	ボイス監督::終了	actor `ボイス監督`	-	-	waits until ボイス監督::終了 is no longer on its actor	ボイス監督.終了	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-sum_j0001	進行監督	召喚終了	13	0x00FFE	355	-	unlockreverb	-	-	-	-	-	-		01 verb-table.tsv
+sum_j0001	進行監督	召喚終了	13	0x00FFE	355	-	unlockreverb	-	the map's reverb, unlocked	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_j0001	進行監督	召喚終了	14	0x01004	356	-	motiondispose	1	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_j0001	進行監督	召喚終了	15	0x01007	357	-	effectcancelall	-	every effect slot of the issuer	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_j0001	進行監督	召喚終了	16	0x0100D	358	-	unkCall_5cf	0	argument 1: whether the calling event keeps the depth-mask pass forced on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -5935,7 +5935,7 @@ sum_j0001	効果音	効果音制御カット１	4	0x01194	545	-	eventsoundplay	0
 sum_j0001	効果音	効果音制御カット１	5	0x01197	546	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_j0001	効果音	効果音制御カット２	1	0x0119B	551	-	store	local_var_s6f3_1 = 1	variable local_var_s6f3_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 sum_j0001	効果音	効果音制御カット２	2	0x011A1	552	-	store	local_var_s6f3_2 = 0	variable local_var_s6f3_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-sum_j0001	効果音	効果音制御カット２	3	0x011A7	553	-	lockreverb	40	-	-	-	-	-		01 verb-table.tsv
+sum_j0001	効果音	効果音制御カット２	3	0x011A7	553	-	lockreverb	40	argument 1: the reverb level the map is locked to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_j0001	効果音	効果音制御カット２	4	0x011AA	554	-	while	true	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_j0001	効果音	効果音制御カット２	5	0x011AE	556	loop while true	switch	local_var_s6f3_1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 sum_j0001	効果音	効果音制御カット２	6	0x011B1	558	loop while true	case	lte(19)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6333,7 +6333,7 @@ sum_k0001	監督	main	5	0x0069E	35	-	eventsoundreadsync	0	event sound slot 0	-	-
 sum_k0001	監督	main	6	0x006A4	36	-	eventsoundreadsync	1	event sound slot 1	-	-	waits while event sound slot 1 loads	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_k0001	監督	main	7	0x006AA	37	-	eventsoundreadsync	2	event sound slot 2	-	-	waits while event sound slot 2 loads	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_k0001	監督	main	8	0x006B0	38	-	voicereadsync	0	argument 1: the voice slot to wait for (0-63, the 0x40-byte records at 0x02B5D0B0; slot k holds sub-file k of the event's voice pack)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-sum_k0001	監督	main	9	0x006B6	39	-	lockreverb	30	-	-	-	-	-		01 verb-table.tsv
+sum_k0001	監督	main	9	0x006B6	39	-	lockreverb	30	argument 1: the reverb level the map is locked to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_k0001	監督	main	10	0x006B9	40	-	stopenvsoundall	-	the map's ambient sounds	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_k0001	監督	main	11	0x006BF	41	-	startscene	0	scene cut 0, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 sum_k0001	監督	main	12	0x006CB	42	-	sysReq	1, サウンド::発音0	actor `サウンド`	-	-	files サウンド::発音0 on channel 1; does not wait	サウンド.発音0	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -6481,7 +6481,7 @@ sum_k0001	監督	main	153	0x00B26	218	-	sysReqew	1, カメラ::カメラクリ�
 sum_k0001	監督	main	154	0x00B2A	219	-	eventsounddispose	0	event sound slot 0, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_k0001	監督	main	155	0x00B30	220	-	eventsounddispose	3	event sound slot 3, released	-	-	-	-	resolved	18 ../Sound-And-Music/map-sounds.md
 sum_k0001	監督	main	156	0x00B36	221	-	voicedispose	0	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-sum_k0001	監督	main	157	0x00B39	222	-	unlockreverb	-	-	-	-	-	-		01 verb-table.tsv
+sum_k0001	監督	main	157	0x00B39	222	-	unlockreverb	-	the map's reverb, unlocked	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_k0001	監督	main	158	0x00B42	223	-	setsummoncameratarget	0, 0	argument 1: the actor made the summon camera's subject / argument 2: whether the subject is set	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_k0001	監督	main	159	0x00B48	224	-	setnoupdatebehindcamera	0	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 sum_k0001	監督	main	160	0x00B4B	225	-	shownobattletarget	-	shows again the actors that hidenobattletarget hid	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv

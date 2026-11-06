@@ -47115,7 +47115,7 @@ gil_a0100	イベント終了設定	解放	1	0x03014	1432	-	showparty	-	the party
 gil_a0100	イベント終了設定	解放	2	0x0301D	1433	-	resetbehindcamera	-1.57439995, 0	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0100	イベント終了設定	解放	3	0x0302C	1434	-	setposparty	0x0177, 6.1500001, 100, -1.57079637	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0100	イベント終了設定	解放	4	0x0302F	1435	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-gil_a0100	イベント終了設定	解放	5	0x03032	1436	-	clearallprojectionshadow	-	-	-	-	-	-		01 verb-table.tsv
+gil_a0100	イベント終了設定	解放	5	0x03032	1436	-	clearallprojectionshadow	-	switches the projected shadow off for every root character	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0100	イベント終了設定	解放	6	0x03038	1437	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0100	イベント終了設定	解放	7	0x03039	1438	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0100	ロケタイ	init	1	0x0303A	1447	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -49508,7 +49508,7 @@ gil_a0201	PC乗っ取り0	PC配置c1	13	0x018F1	862	-	goto	local_jmp_3	-	-	-	-	-
 gil_a0201	PC乗っ取り0	PC配置c1	14	0x018F4	863	unreachable in the listing	goto	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り0	PC配置c1	15	0x018FA	864	-	label	local_jmp_3	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り0	PC配置c1	16	0x01905	865	-	dir	((file_var_s11_2 % 0x0168) * 0.0174532924)	this actor, turned to facing ((file_var_s11_2 % 0x0168) * 0.0174532924)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-gil_a0201	PC乗っ取り0	PC配置c1	17	0x01914	866	-	turn_67	23, 3.46683693, 108, 1.57079637	-	-	-	-	-		01 verb-table.tsv
+gil_a0201	PC乗っ取り0	PC配置c1	17	0x01914	866	-	turn_67	23, 3.46683693, 108, 1.57079637	argument 1: x of the world point the calling actor turns to face, and the verb waits / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; with x it gives the bearing / argument 4: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0201	PC乗っ取り0	PC配置c1	18	0x0191A	867	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0201	PC乗っ取り0	PC配置c1	19	0x01920	868	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り0	PC配置c1	20	0x01921	869	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -49539,7 +49539,7 @@ gil_a0201	PC乗っ取り1	PC配置c1	15	0x0199F	913	-	setpos	(file_var_s11_3 + f
 gil_a0201	PC乗っ取り1	PC配置c1	16	0x019A2	914	-	goto	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り1	PC配置c1	17	0x019A8	915	-	label	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り1	PC配置c1	18	0x019B3	916	-	dir	((file_var_s11_2 % 0x0168) * 0.0174532924)	this actor, turned to facing ((file_var_s11_2 % 0x0168) * 0.0174532924)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-gil_a0201	PC乗っ取り1	PC配置c1	19	0x019C2	917	-	turn_67	23, 3.46683693, 108, 1.57079637	-	-	-	-	-		01 verb-table.tsv
+gil_a0201	PC乗っ取り1	PC配置c1	19	0x019C2	917	-	turn_67	23, 3.46683693, 108, 1.57079637	argument 1: x of the world point the calling actor turns to face, and the verb waits / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; with x it gives the bearing / argument 4: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0201	PC乗っ取り1	PC配置c1	20	0x019C8	918	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0201	PC乗っ取り1	PC配置c1	21	0x019CE	919	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り1	PC配置c1	22	0x019CF	920	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -49570,7 +49570,7 @@ gil_a0201	PC乗っ取り2	PC配置c1	15	0x01A3F	964	-	label	local_jmp_3	-	-	-	-	
 gil_a0201	PC乗っ取り2	PC配置c1	16	0x01A50	965	-	setpos	(file_var_s11_3 + file_var_s11_7), file_var_s11_1, (file_var_s11_4 + file_var_s11_8)	this actor, placed at ((file_var_s11_3 + file_var_s11_7), file_var_s11_1, (file_var_s11_4 + file_var_s11_8))	-	-	-	-	resolved	0x0034EBC0 (read here)
 gil_a0201	PC乗っ取り2	PC配置c1	17	0x01A56	966	-	label	local_jmp_4	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り2	PC配置c1	18	0x01A61	967	-	dir	((file_var_s11_2 % 0x0168) * 0.0174532924)	this actor, turned to facing ((file_var_s11_2 % 0x0168) * 0.0174532924)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-gil_a0201	PC乗っ取り2	PC配置c1	19	0x01A70	968	-	turn_67	23, 3.46683693, 108, 1.57079637	-	-	-	-	-		01 verb-table.tsv
+gil_a0201	PC乗っ取り2	PC配置c1	19	0x01A70	968	-	turn_67	23, 3.46683693, 108, 1.57079637	argument 1: x of the world point the calling actor turns to face, and the verb waits / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; with x it gives the bearing / argument 4: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0201	PC乗っ取り2	PC配置c1	20	0x01A76	969	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0201	PC乗っ取り2	PC配置c1	21	0x01A7C	970	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り2	PC配置c1	22	0x01A7D	971	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -49602,7 +49602,7 @@ gil_a0201	PC乗っ取り3	PC配置c1	16	0x01AF0	1016	-	label	local_jmp_4	-	-	-	-
 gil_a0201	PC乗っ取り3	PC配置c1	17	0x01B01	1017	-	setpos	(file_var_s11_3 + file_var_s11_9), file_var_s11_1, (file_var_s11_4 + file_var_s11_10)	this actor, placed at ((file_var_s11_3 + file_var_s11_9), file_var_s11_1, (file_var_s11_4 + file_var_s11_10))	-	-	-	-	resolved	0x0034EBC0 (read here)
 gil_a0201	PC乗っ取り3	PC配置c1	18	0x01B04	1018	-	label	local_jmp_5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り3	PC配置c1	19	0x01B0F	1019	-	dir	((file_var_s11_2 % 0x0168) * 0.0174532924)	this actor, turned to facing ((file_var_s11_2 % 0x0168) * 0.0174532924)	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-gil_a0201	PC乗っ取り3	PC配置c1	20	0x01B1E	1020	-	turn_67	23, 3.46683693, 108, 1.57079637	-	-	-	-	-		01 verb-table.tsv
+gil_a0201	PC乗っ取り3	PC配置c1	20	0x01B1E	1020	-	turn_67	23, 3.46683693, 108, 1.57079637	argument 1: x of the world point the calling actor turns to face, and the verb waits / argument 2: y (height) of the point / argument 3: z of the point the actor turns to face; with x it gives the bearing / argument 4: the turn step, in radians a frame, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0201	PC乗っ取り3	PC配置c1	21	0x01B24	1021	-	show_38	1	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 gil_a0201	PC乗っ取り3	PC配置c1	22	0x01B2A	1022	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 gil_a0201	PC乗っ取り3	PC配置c1	23	0x01B2B	1023	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md

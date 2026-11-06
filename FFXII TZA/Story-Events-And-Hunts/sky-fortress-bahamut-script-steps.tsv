@@ -751,7 +751,7 @@ bhm_a02	setup	event	1	0x032C0	73	-	switch	シナリオフラグ	-	-	-	-	-	resolv
 bhm_a02	setup	event	2	0x032C3	75	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	setup	event	3	0x032C3	76	シナリオフラグ = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	setup	event	4	0x032C6	77	-	case	lt(0x1996)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a02	setup	event	5	0x032C6	78	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
+bhm_a02	setup	event	5	0x032C6	78	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	entrydeny	-	actor manager slot 0, the field's	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	setup	event	6	0x032C9	79	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	setup	event	7	0x032DB	81	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a02	__MJ_CTRL000	init	1	0x032DF	90	-	reqenable	12	sets bit `0x1000` of this actor's arming mask +0x1C (slot `mapjump`): the engine may file that slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -939,12 +939,12 @@ bhm_a02	常駐監督	main	13	0x0390B	448	シナリオフラグ = lt(0x1996); not
 bhm_a02	常駐監督	main	14	0x03914	449	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	常駐監督	main	15	0x03917	450	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	eventplay	-	event manager 1, the slot-0 scene	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	常駐監督	main	16	0x0391D	451	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	waitv	&scratch1_var_2	variable scratch1_var_2	-	-	waits while scratch1_var_2 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
-bhm_a02	常駐監督	main	17	0x03920	452	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	entryread	-	-	-	-	-	-		01 verb-table.tsv
+bhm_a02	常駐監督	main	17	0x03920	452	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	entryread	-	the area's battle-data models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	常駐監督	main	18	0x03923	453	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	eventsync	-	event manager 1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	常駐監督	main	19	0x03929	454	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	store	シナリオフラグ = 0x1996	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_a02	常駐監督	main	20	0x0392F	455	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	store	シナリオフラグ = 0x19c8	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bhm_a02	常駐監督	main	21	0x03932	456	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	entryreadsync	-	-	-	-	-	-		01 verb-table.tsv
-bhm_a02	常駐監督	main	22	0x03938	457	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	entrystart	0	-	-	-	-	-		01 verb-table.tsv
+bhm_a02	常駐監督	main	21	0x03932	456	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	entryreadsync	-	the preload task entryread started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_a02	常駐監督	main	22	0x03938	457	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	entrystart	0	argument 1: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	常駐監督	main	23	0x0393B	458	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	常駐監督	main	24	0x03941	459	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a02	常駐監督	main	25	0x03944	460	シナリオフラグ = lt(0x1996); not (シナリオフラグ = 0)	clearnavimapfootmark	-	the minimap's footprint trail and markers	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -2601,8 +2601,8 @@ bhm_b01	ボス監督	main	73	0x01312	278	シナリオフラグ == 0 or シナリ
 bhm_b01	ボス監督	main	74	0x01318	279	シナリオフラグ == 0 or シナリオフラグ >= 0x2af8	fadein	1	the screen fade, in	-	1 frame	-	-	resolved	17 ../Graphics/screen-fades.md
 bhm_b01	ボス監督	main	75	0x0131B	280	シナリオフラグ == 0 or シナリオフラグ >= 0x2af8	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b01	ボス監督	main	76	0x0132B	282	not (シナリオフラグ == 0 or シナリオフラグ >= 0x2af8)	if	シナリオフラグ <= 0x1a2c and g_btl_ガブラスバハムート == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_b01	ボス監督	main	77	0x0132E	284	シナリオフラグ <= 0x1a2c and g_btl_ガブラスバハムート == 1; not (シナリオフラグ == 0 or シナリオフラグ >= 0x2af8)	entryreadsync	-	-	-	-	-	-		01 verb-table.tsv
-bhm_b01	ボス監督	main	78	0x01331	285	シナリオフラグ <= 0x1a2c and g_btl_ガブラスバハムート == 1; not (シナリオフラグ == 0 or シナリオフラグ >= 0x2af8)	entrysync	-	-	-	-	-	-		01 verb-table.tsv
+bhm_b01	ボス監督	main	77	0x0132E	284	シナリオフラグ <= 0x1a2c and g_btl_ガブラスバハムート == 1; not (シナリオフラグ == 0 or シナリオフラグ >= 0x2af8)	entryreadsync	-	the preload task entryread started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_b01	ボス監督	main	78	0x01331	285	シナリオフラグ <= 0x1a2c and g_btl_ガブラスバハムート == 1; not (シナリオフラグ == 0 or シナリオフラグ >= 0x2af8)	entrysync	-	actor manager slot 0's records	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b01	ボス監督	main	79	0x01337	286	シナリオフラグ <= 0x1a2c and g_btl_ガブラスバハムート == 1; not (シナリオフラグ == 0 or シナリオフラグ >= 0x2af8)	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_b01	ボス監督	main	80	0x0133A	287	シナリオフラグ <= 0x1a2c and g_btl_ガブラスバハムート == 1; not (シナリオフラグ == 0 or シナリオフラグ >= 0x2af8)	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 bhm_b01	ボス監督	main	81	0x01340	288	シナリオフラグ <= 0x1a2c and g_btl_ガブラスバハムート == 1; not (シナリオフラグ == 0 or シナリオフラグ >= 0x2af8)	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
@@ -3339,13 +3339,13 @@ bhm_c01	setup	event	2	0x014E6	54	-	switch	シナリオフラグ	-	-	-	-	-	resolv
 bhm_c01	setup	event	3	0x014E9	56	-	case	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	setup	event	4	0x014E9	57	シナリオフラグ = 0	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	setup	event	5	0x014EC	58	-	case	lt(0x2af8)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_c01	setup	event	6	0x014EC	59	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0)	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	setup	event	6	0x014EC	59	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0)	entrydeny	-	actor manager slot 0, the field's	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	setup	event	7	0x014F8	60	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0)	musicfadeout_231	getnowmusicno(), 180, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	setup	event	8	0x014FE	61	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0)	stopenvsound_3de	180	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	setup	event	9	0x01504	62	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0)	wait	90	-	-	90 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_c01	setup	event	10	0x01507	63	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	setup	event	11	0x0150A	64	-	default	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_c01	setup	event	12	0x0150A	65	シナリオフラグ is none of 0, lt(0x2af8)	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	setup	event	12	0x0150A	65	シナリオフラグ is none of 0, lt(0x2af8)	entrydeny	-	actor manager slot 0, the field's	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	setup	event	13	0x0150D	66	シナリオフラグ is none of 0, lt(0x2af8)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	setup	event	14	0x0151F	68	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	ボス監督	init	1	0x01524	83	-	switch	シナリオフラグ	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -3477,7 +3477,7 @@ bhm_c01	ボス監督	main	91	0x0185E	229	シナリオフラグ = lt(0x2af8); not
 bhm_c01	ボス監督	main	92	0x0186A	230	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	setmapidwall	2, 6, 0	argument 1: the wall group g (0-31) whose override is written / argument 2: which wall bit of the entry / argument 3: on or off	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	93	0x01873	231	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	sysReqwait	読込監督::entry制御	actor `読込監督`	-	-	waits until 読込監督::entry制御 is no longer on its actor	読込監督.entry制御	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c01	ボス監督	main	94	0x01877	232	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	sysReqall	1, reqArr0	actor `ヴェイン監視`, actor `ラーサー監視`	-	-	files each pair of ヴェイン監視::kansi, ラーサー監視::kansi on channel 1; does not wait	ヴェイン監視.kansi, ラーサー監視.kansi	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_c01	ボス監督	main	95	0x0187D	233	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	entrystart	0	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	ボス監督	main	95	0x0187D	233	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	entrystart	0	argument 1: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	96	0x01880	234	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	97	0x01883	235	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	sysReqwaitall	reqArr0	actor `ヴェイン監視`, actor `ラーサー監視`	-	-	waits until ヴェイン監視::kansi, ラーサー監視::kansi are no longer on their actors	ヴェイン監視.kansi, ラーサー監視.kansi	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c01	ボス監督	main	98	0x01889	236	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	store	scratch1_var_9 = 2	variable scratch1_var_9 (scratch1 u_char@0xc2)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3510,7 +3510,7 @@ bhm_c01	ボス監督	main	124	0x01931	262	シナリオフラグ = lt(0x2af8); no
 bhm_c01	ボス監督	main	125	0x01934	263	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 bhm_c01	ボス監督	main	126	0x0193A	264	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_c01	ボス監督	main	127	0x01940	265	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	battlelastseplaysync	0	argument 1: popped and passed to 0x0053DD10, which ignores it and returns 1 (mov eax, 1), so the verb always waits on entry 1 of the handle table 0x0208D328 (0x0031EB10(1))	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c01	ボス監督	main	128	0x01943	266	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	suspendbattle_no_resetmotion	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	ボス監督	main	128	0x01943	266	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	suspendbattle_no_resetmotion	-	the battle in progress, paused without resetting the units' motions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	129	0x01949	267	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	130	0x0194F	268	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	store	scratch1_var_2 = 0	variable scratch1_var_2 (scratch1 short@0x06)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c01	ボス監督	main	131	0x01958	269	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	store	scratch1_var_12[0] = -0x270f	variable scratch1_var_12[0] (scratch1 float[4]@0xc8)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3671,7 +3671,7 @@ bhm_c01	ボス監督	main	285	0x01E63	441	シナリオフラグ = lt(0x2af8); no
 bhm_c01	ボス監督	main	286	0x01E66	442	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 bhm_c01	ボス監督	main	287	0x01E6C	443	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_c01	ボス監督	main	288	0x01E72	444	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	battlelastseplaysync	0	argument 1: popped and passed to 0x0053DD10, which ignores it and returns 1 (mov eax, 1), so the verb always waits on entry 1 of the handle table 0x0208D328 (0x0031EB10(1))	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c01	ボス監督	main	289	0x01E75	445	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	suspendbattle_no_resetmotion	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	ボス監督	main	289	0x01E75	445	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	suspendbattle_no_resetmotion	-	the battle in progress, paused without resetting the units' motions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	290	0x01E7B	446	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	setcharseplayall	0	argument 1: whether characters' animation sounds play	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	291	0x01E81	447	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	store	scratch1_var_2 = 0	variable scratch1_var_2 (scratch1 short@0x06)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c01	ボス監督	main	292	0x01E8A	448	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	store	scratch1_var_12[0] = -0x270f	variable scratch1_var_12[0] (scratch1 float[4]@0xc8)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -3711,7 +3711,7 @@ bhm_c01	ボス監督	main	325	0x01F9A	489	シナリオフラグ = lt(0x2af8); no
 bhm_c01	ボス監督	main	326	0x01FA1	490	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1	if	scratch1_var_2 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	ボス監督	main	327	0x01FA7	492	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	store	シナリオフラグ = 0x1af4	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c01	ボス監督	main	328	0x01FAA	493	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
-bhm_c01	ボス監督	main	329	0x01FAD	494	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	suspendbattle_no_resetmotion	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	ボス監督	main	329	0x01FAD	494	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	suspendbattle_no_resetmotion	-	the battle in progress, paused without resetting the units' motions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	330	0x01FB0	495	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	party_motionsync_and_relax	-	the four party roster actors' motions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	331	0x01FB3	496	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	bossgaugeclose	-	the boss gauge	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	332	0x01FBC	497	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	sebsoundplay	0, 125	argument 1: which loaded sound block the sound comes from / argument 2: the sound slot in that block's .seb bank (sound id = registry slot << 9 + slot), played centred (pan 0x40) at full volume 0x7F (0x002DF220); the verb returns the play handle, 0 while the manager skips	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3774,8 +3774,8 @@ bhm_c01	ボス監督	main	388	0x021B1	563	シナリオフラグ = lt(0x2af8); no
 bhm_c01	ボス監督	main	389	0x021BD	564	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	setmapidfloor	5, 7, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	390	0x021C9	565	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	setmapidfloor	5, 1, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	391	0x021D5	566	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	setmapidfloor	5, 2, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c01	ボス監督	main	392	0x021D8	567	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	killallfast	-	-	-	-	-	-		01 verb-table.tsv
-bhm_c01	ボス監督	main	393	0x021DB	568	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	disposeentry	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	ボス監督	main	392	0x021D8	567	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	killallfast	-	every enemy unit	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_c01	ボス監督	main	393	0x021DB	568	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	disposeentry	-	the models of manager 0's battle-eligible actors, taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	394	0x021E1	569	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	BOSS_ハイパーV.stdmotiondispose	-	target actor `BOSS_ハイパーV` (this script) / the target actor's standard-motion lane, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	395	0x021E7	570	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	BOSS_ヴェイン.stdmotiondispose	-	target actor `BOSS_ヴェイン` (this script) / the target actor's standard-motion lane, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	ボス監督	main	396	0x021ED	571	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1ac2 and g_btl_ヴェイン == 1; scratch1_var_2 != 0	THIRD_ガブラス.stdmotiondispose	-	target actor `THIRD_ガブラス` (this script) / the target actor's standard-motion lane, released	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-dispatch.md; 01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3862,8 +3862,8 @@ bhm_c01	がぶがぶ監視	g_kansi	6	0x0247F	713	-	return	-	-	-	-	-	-	resolved	0
 bhm_c01	読込監督	init	1	0x02480	722	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	読込監督	entry制御	1	0x02488	727	-	while	not (scratch1_var_10 >= 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	読込監督	entry制御	2	0x02491	729	loop while not (scratch1_var_10 >= 1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_c01	読込監督	entry制御	3	0x02497	731	-	entryread	-	-	-	-	-	-		01 verb-table.tsv
-bhm_c01	読込監督	entry制御	4	0x0249A	732	-	entryreadsync	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	読込監督	entry制御	3	0x02497	731	-	entryread	-	the area's battle-data models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_c01	読込監督	entry制御	4	0x0249A	732	-	entryreadsync	-	the preload task entryread started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	読込監督	entry制御	5	0x0249D	733	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c01	読込監督	bhm_c0102制御	1	0x024A4	738	-	eventread_e8	0, 159	scenes: bhm_c0102, event 159	-	-	-	-	resolved	this page's How a call is read
 bhm_c01	読込監督	bhm_c0102制御	2	0x024AA	739	-	eventreadsync_ea	0	argument 1: the event slot whose scene load the script waits on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -3964,9 +3964,9 @@ bhm_c01	Map_Director	init	41	0x02756	942	-	hidemapmodel	5	argument 1: the map mo
 bhm_c01	Map_Director	init	42	0x0275C	943	-	animeplay	37	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk, published at 0x02B5D080)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	Map_Director	init	43	0x02762	944	-	animeplay	39	argument 1: the id of a record of the map's actor-control table (the ACTL section of the zone .mpk, published at 0x02B5D080)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	Map_Director	init	44	0x02768	945	-	bgeffectplay	33	argument 1: the effect channel (0 to 63) of the map's effect bank (PS2Data efb file of the map) to start	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c01	Map_Director	init	45	0x0276E	946	-	hidemapeffect	42	-	-	-	-	-		01 verb-table.tsv
-bhm_c01	Map_Director	init	46	0x02774	947	-	hidemapeffect	43	-	-	-	-	-		01 verb-table.tsv
-bhm_c01	Map_Director	init	47	0x0277A	948	-	hidemapeffect	44	-	-	-	-	-		01 verb-table.tsv
+bhm_c01	Map_Director	init	45	0x0276E	946	-	hidemapeffect	42	argument 1: the map effect channel to hide	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_c01	Map_Director	init	46	0x02774	947	-	hidemapeffect	43	argument 1: the map effect channel to hide	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_c01	Map_Director	init	47	0x0277A	948	-	hidemapeffect	44	argument 1: the map effect channel to hide	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	Map_Director	init	48	0x02780	949	-	hidemapmodel	30	argument 1: the map model group to hide	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	Map_Director	init	49	0x0278C	950	-	setmapidfloor	5, 0, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c01	Map_Director	init	50	0x02798	951	-	setmapidfloor	5, 7, 1	argument 1: the floor group / argument 2: which movement-kind bit of the floor entry / argument 3: open or close, as setmapidmj argument 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4303,12 +4303,12 @@ bhm_c01	THIRD_ガブラス	init	5	0x038B2	2108	-	return	-	-	-	-	-	-	resolved	01 
 bhm_d01	setup	init	1	0x00830	38	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d01	setup	battle	1	0x00831	43	-	btlAtelSetupActorStart	-	the enemy placement tunables, set to the script defaults	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	setup	battle	2	0x00837	44	-	store	file_var_s0_1 = g_btl_ラスト・ヴェイン	variable file_var_s0_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bhm_d01	setup	battle	3	0x00843	45	-	btlAtelSetBattleLogicFlag	1, battle_global_flag[0]	-	-	-	-	-		01 verb-table.tsv
+bhm_d01	setup	battle	3	0x00843	45	-	btlAtelSetBattleLogicFlag	1, battle_global_flag[0]	argument 1: which of the sixteen battle logic words at 0x0208D334 is written / argument 2: the value stored in that word, its low 16 bits (0 in 13,219 of the 13,286 calls)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	setup	battle	4	0x00849	46	-	btlAtelSetEntryStruct	0x03000014	argument 1: a reference into the calling script's data area (0x03000014 and similar, scope 3) that names the zone's spawn table	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	setup	battle	5	0x0084C	47	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d01	setup	event	1	0x0085C	52	-	store	file_var_s0_2 = シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	variable file_var_s0_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_d01	setup	event	2	0x00862	53	-	if	file_var_s0_2	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_d01	setup	event	3	0x00865	55	file_var_s0_2	entrydeny	-	-	-	-	-	-		01 verb-table.tsv
+bhm_d01	setup	event	3	0x00865	55	file_var_s0_2	entrydeny	-	actor manager slot 0, the field's	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	setup	event	4	0x00871	56	file_var_s0_2	musicfadeout_231	getnowmusicno(), 90, 1	argument 1: the music track to fade / argument 2: the fade length in frames / argument 3: whether the track is released after the fade	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	setup	event	5	0x00874	57	file_var_s0_2	musicfadeoutsync	-	waits for a music fade-out to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	setup	event	6	0x0087A	58	file_var_s0_2	stopenvsound_3de	0	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4412,7 +4412,7 @@ bhm_d01	ボス監督	main	77	0x00A8D	191	シナリオフラグ = lt(0x2af8); not
 bhm_d01	ボス監督	main	78	0x00A93	192	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	store	シナリオフラグ = 0x1bbc	variable シナリオフラグ (global short@0x00)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_d01	ボス監督	main	79	0x00A99	193	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	stopenvsound_3de	60	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	ボス監督	main	80	0x00A9F	194	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	wait	30	-	-	30 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_d01	ボス監督	main	81	0x00AA5	195	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	entrystart	0	-	-	-	-	-		01 verb-table.tsv
+bhm_d01	ボス監督	main	81	0x00AA5	195	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	entrystart	0	argument 1: ignored	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	ボス監督	main	82	0x00AA8	196	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	suspendbattle	-	the battle in progress	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	ボス監督	main	83	0x00AB5	197	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	while	sysIsdead2_49f(BOSS_ラストV) != 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d01	ボス監督	main	84	0x00ABE	199	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1; loop while sysIsdead2_49f(BOSS_ラストV) != 1	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -4535,7 +4535,7 @@ bhm_d01	ボス監督	main	200	0x00DEE	324	シナリオフラグ = lt(0x2af8); no
 bhm_d01	ボス監督	main	201	0x00DF4	325	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	voicedispose	5	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	ボス監督	main	202	0x00DFA	326	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	voicedispose	6	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	ボス監督	main	203	0x00E00	327	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	voicedispose	7	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_d01	ボス監督	main	204	0x00E03	328	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	unkCall_5bc	-	-	-	-	-	-		01 verb-table.tsv
+bhm_d01	ボス監督	main	204	0x00E03	328	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	unkCall_5bc	-	nothing	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	ボス監督	main	205	0x00E09	329	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	eventread	0x018f	scenes: msg_z0001, event 399	-	-	-	-	resolved	this page's How a call is read
 bhm_d01	ボス監督	main	206	0x00E0C	330	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	eventreadsync	-	event manager 1, the slot-0 scene	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	ボス監督	main	207	0x00E0F	331	シナリオフラグ = lt(0x2af8); not (シナリオフラグ = 0); シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1	eventplay	-	event manager 1, the slot-0 scene	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -4551,8 +4551,8 @@ bhm_d01	ボス監督	main	216	0x00E40	341	-	default	-	-	-	-	-	-	resolved	01 ../S
 bhm_d01	ボス監督	main	217	0x00E40	342	シナリオフラグ is none of 0, lt(0x2af8)	break	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d01	ボス監督	main	218	0x00E52	344	not ((シナリオフラグ = lt(0x2af8) and not (シナリオフラグ = 0)) and (シナリオフラグ <= 0x1bee and g_btl_ラスト・ヴェイン == 1))	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d01	読込監督	init	1	0x00E53	353	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_d01	読込監督	エントリ読込	1	0x00E54	358	-	entryread	-	-	-	-	-	-		01 verb-table.tsv
-bhm_d01	読込監督	エントリ読込	2	0x00E57	359	-	entryreadsync	-	-	-	-	-	-		01 verb-table.tsv
+bhm_d01	読込監督	エントリ読込	1	0x00E54	358	-	entryread	-	the area's battle-data models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_d01	読込監督	エントリ読込	2	0x00E57	359	-	entryreadsync	-	the preload task entryread started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d01	読込監督	エントリ読込	3	0x00E5D	360	-	store	scratch1_var_5 = 1	variable scratch1_var_5 (scratch1 u_char@0xc1)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_d01	読込監督	エントリ読込	4	0x00E60	361	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d01	Map_Director	init	1	0x00E64	370	-	releasemapjumpgroupflag	0x0104	flags released: 0x0104: Shows a map icon in Catwalk (Sky Fortress Bahamut)	-	-	-	-	resolved	this page's How a call is read
@@ -4945,7 +4945,7 @@ bhm_a0200	Director	main	178	0x0194D	230	-	sysReqwait	Movie::play_movie	actor `Mo
 bhm_a0200	Director	main	179	0x01954	231	-	sysReqwait	Music::play_movie	actor `Music`	-	-	waits until Music::play_movie is no longer on its actor	Music.play_movie	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a0200	Director	main	180	0x01958	232	-	skipstart	1	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Director	main	181	0x01969	233	-	if	skipcheck(0) or file_var_s0_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a0200	Director	main	182	0x0196F	235	skipcheck(0) or file_var_s0_1 == 1	skipexec	1	-	-	-	-	-		01 verb-table.tsv
+bhm_a0200	Director	main	182	0x0196F	235	skipcheck(0) or file_var_s0_1 == 1	skipexec	1	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Director	main	183	0x01975	237	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a0200	Director	main	184	0x0197B	238	-	motionread	4	motion 4 of `bhm_a0200.mot` (bytes 0xF5000, length 0xC6860)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 bhm_a0200	Director	main	185	0x01981	239	-	motionread	5	motion 5 of `bhm_a0200.mot` (bytes 0x1BC000, length 0x656C0)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
@@ -5734,7 +5734,7 @@ bhm_a0200	Music	cut010start	3	0x02E3B	1438	-	musicstop	local_var_s8f1_1	argument
 bhm_a0200	Music	cut010start	4	0x02E41	1439	-	musicclear	local_var_s8f1_1	argument 1: the music track whose track slot is emptied; a negative value is the current track (0x002DEC00), and with no track current the verb empties all four slots (0x00360D70, as musicclearall)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Music	cut010start	5	0x02E47	1440	-	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_a0200	Music	cut010start	6	0x02E57	1441	-	if	not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap())))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_a0200	Music	cut010start	7	0x02E5D	1443	not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap())))	getnowmapmusicno_47a	0	result stored in local_var_s8f1_1	-	-	-	-		01 verb-table.tsv
+bhm_a0200	Music	cut010start	7	0x02E5D	1443	not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap())))	getnowmapmusicno_47a	0	result stored in local_var_s8f1_1; argument 1: whether the summon and chocobo replacements are skipped	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Music	cut010start	8	0x02E66	1444	not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap())))	musicread	local_var_s8f1_1	argument 1: the music track number (music table) to load ahead	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0200	Music	cut010start	9	0x02E69	1446	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a0200	Music	eventend	1	0x02E77	1451	-	if	not (((getsummonmodebit() or getchocobomodebit()) and not (istownmap())))	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -6647,7 +6647,7 @@ bhm_a0400	ディレクター	main	50	0x01B1B	91	-	sysReqwait	イベント曲::�
 bhm_a0400	ディレクター	main	51	0x01B22	92	-	sysReqwait	ボイス::準備	actor `ボイス`	-	-	waits until ボイス::準備 is no longer on its actor	ボイス.準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a0400	ディレクター	main	52	0x01B29	93	-	sysReqwait	宝箱::準備	actor `宝箱`	-	-	waits until 宝箱::準備 is no longer on its actor	宝箱.準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a0400	ディレクター	main	53	0x01B30	94	-	sysReqwait	パーティー全体::イベント開始前準備	actor `パーティー全体`	-	-	waits until パーティー全体::イベント開始前準備 is no longer on its actor	パーティー全体.イベント開始前準備	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_a0400	ディレクター	main	54	0x01B34	95	-	unkCall_5c2	2	-	-	-	-	-		01 verb-table.tsv
+bhm_a0400	ディレクター	main	54	0x01B34	95	-	unkCall_5c2	2	argument 1: which add-motion table the characters' poses use	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	ディレクター	main	55	0x01B40	96	-	sysReq	2, ディレクター::イベント進行	actor `ディレクター`	-	-	files ディレクター::イベント進行 on channel 2; does not wait	ディレクター.イベント進行	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a0400	ディレクター	main	56	0x01B47	97	-	sysReqwait	ディレクター::イベント進行	actor `ディレクター`	-	-	waits until ディレクター::イベント進行 is no longer on its actor	ディレクター.イベント進行	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_a0400	ディレクター	main	57	0x01B48	98	-	startenvsoundall	-	turns the map's ambient sounds back on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -6655,7 +6655,7 @@ bhm_a0400	ディレクター	main	58	0x01B54	99	-	sysReqew	4, イベント曲::m
 bhm_a0400	ディレクター	main	59	0x01B58	100	-	skipend	0	argument 1: the skip entry of the calling manager to end	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	ディレクター	main	60	0x01B5E	101	-	fadecancel_15a	4	argument 1: the fade layer (0 to 6, clamped) to free at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	ディレクター	main	61	0x01B64	102	-	fadeout	0	the screen fade, out	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
-bhm_a0400	ディレクター	main	62	0x01B6A	103	-	unkCall_5c2	0	-	-	-	-	-		01 verb-table.tsv
+bhm_a0400	ディレクター	main	62	0x01B6A	103	-	unkCall_5c2	0	argument 1: which add-motion table the characters' poses use	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	ディレクター	main	63	0x01B74	104	-	if	getsummonmodebit() or getchocobomodebit()	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a0400	ディレクター	main	64	0x01B7B	106	getsummonmodebit() or getchocobomodebit()	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_a0400	ディレクター	main	65	0x01B84	108	getsummonmodebit() or getchocobomodebit(); not (istownmap())	fadeout_d0	1, 1	argument 1: the fade layer (0-6, the 0x30-byte records at 0x022BDD60) / argument 2: the fade's length in frames; the descriptor holds 2 x frames (0x002EFAF3)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -7172,7 +7172,7 @@ bhm_a0400	ヴァン	cut5	1	0x028BB	1009	-	setpos	215.554718, 3.97499204, 128.694
 bhm_a0400	ヴァン	cut5	2	0x028C1	1010	-	dir	-0.741064012	this actor, turned to facing -0.741064012	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 bhm_a0400	ヴァン	cut5	3	0x028C4	1011	-	lookat_maxvelr_limit_unlock	-	the calling actor's next timed head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	ヴァン	cut5	4	0x028CD	1012	-	sysRlookatat	アーシェ, 0	actor `アーシェ` (this script) / argument 1: the actor the calling actor turns its head toward over a set time, without waiting (lookatat 0x0252 runs the same begin and waits) / argument 2: the time the head takes to turn, in thirtieths of a second	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a0400	ヴァン	cut5	5	0x028D6	1013	-	setkubifuristatus_4a4	1, 90	-	-	-	-	-		01 verb-table.tsv
+bhm_a0400	ヴァン	cut5	5	0x028D6	1013	-	setkubifuristatus_4a4	1, 90	argument 1: whether the calling actor's head shakes (rig controller 15), the timed form of setkubifuristatus 0x0494 / argument 2: the head-shake time in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	ヴァン	cut5	6	0x028DC	1014	-	motionstartframe	5	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	ヴァン	cut5	7	0x028E2	1015	-	motionplay	0x13000001	animation 1 of motion 3 of `bhm_a0400.mot` (bytes 0xBE800, length 0xA240)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 bhm_a0400	ヴァン	cut5	8	0x028E5	1016	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
@@ -7235,7 +7235,7 @@ bhm_a0400	パンネロ	cut5	2	0x02A3E	1112	-	dir	-0.0783810019	this actor, turne
 bhm_a0400	パンネロ	cut5	3	0x02A41	1113	-	lookat_maxvelr_limit_unlock	-	the calling actor's next timed head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	パンネロ	cut5	4	0x02A4A	1114	-	sysRlookatat	ヴァン, 30	actor `ヴァン` (this script) / argument 1: the actor the calling actor turns its head toward over a set time, without waiting (lookatat 0x0252 runs the same begin and waits) / argument 2: the time the head takes to turn, in thirtieths of a second	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	パンネロ	cut5	5	0x02A50	1115	-	motionplay	0x13000000	animation 0 of motion 3 of `bhm_a0400.mot` (bytes 0xBE800, length 0xA240)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
-bhm_a0400	パンネロ	cut5	6	0x02A59	1116	-	setkubifuristatus_4a4	1, 40	-	-	-	-	-		01 verb-table.tsv
+bhm_a0400	パンネロ	cut5	6	0x02A59	1116	-	setkubifuristatus_4a4	1, 40	argument 1: whether the calling actor's head shakes (rig controller 15), the timed form of setkubifuristatus 0x0494 / argument 2: the head-shake time in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	パンネロ	cut5	7	0x02A5C	1117	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
 bhm_a0400	パンネロ	cut5	8	0x02A62	1118	-	setbodyshake	0.00999999978	argument 1: the body shake amount of the actor's model (rig controller 16, rig +0x40, which copies it to its +0x38)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	パンネロ	cut5	9	0x02A68	1119	-	wait	45	-	-	45 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -7619,7 +7619,7 @@ bhm_a0400	バッシュ	cut5	1	0x0335F	1688	-	setpos	215.652054, 4, 129.872955	th
 bhm_a0400	バッシュ	cut5	2	0x03365	1689	-	dir	-1.84549105	this actor, turned to facing -1.84549105	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
 bhm_a0400	バッシュ	cut5	3	0x03368	1690	-	lookat_maxvelr_limit_unlock	-	the calling actor's next timed head look	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	バッシュ	cut5	4	0x03371	1691	-	sysRlookatat	アーシェ, 0	actor `アーシェ` (this script) / argument 1: the actor the calling actor turns its head toward over a set time, without waiting (lookatat 0x0252 runs the same begin and waits) / argument 2: the time the head takes to turn, in thirtieths of a second	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_a0400	バッシュ	cut5	5	0x0337A	1692	-	setkubifuristatus_4a4	1, 90	-	-	-	-	-		01 verb-table.tsv
+bhm_a0400	バッシュ	cut5	5	0x0337A	1692	-	setkubifuristatus_4a4	1, 90	argument 1: whether the calling actor's head shakes (rig controller 15), the timed form of setkubifuristatus 0x0494 / argument 2: the head-shake time in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	バッシュ	cut5	6	0x03380	1693	-	motionstartframe	145	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	バッシュ	cut5	7	0x03386	1694	-	motionplay	0x12000000	animation 0 of motion 2 of `bhm_a0400.mot` (bytes 0x6B800, length 0x52950)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 bhm_a0400	バッシュ	cut5	8	0x03389	1695	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
@@ -7792,7 +7792,7 @@ bhm_a0400	アーシェ	cut5	2	0x03777	1933	-	lookat_maxvelr_limit_unlock	-	the c
 bhm_a0400	アーシェ	cut5	3	0x03780	1934	-	sysRlookatat	ヴァン, 0	actor `ヴァン` (this script) / argument 1: the actor the calling actor turns its head toward over a set time, without waiting (lookatat 0x0252 runs the same begin and waits) / argument 2: the time the head takes to turn, in thirtieths of a second	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	アーシェ	cut5	4	0x0378C	1935	-	setpos	214.152893, 4, 129.347198	this actor, placed at (214.152893, 4, 129.347198)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_a0400	アーシェ	cut5	5	0x03792	1936	-	dir	1.59058201	this actor, turned to facing 1.59058201	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
-bhm_a0400	アーシェ	cut5	6	0x0379B	1937	-	setkubifuristatus_4a4	1, 90	-	-	-	-	-		01 verb-table.tsv
+bhm_a0400	アーシェ	cut5	6	0x0379B	1937	-	setkubifuristatus_4a4	1, 90	argument 1: whether the calling actor's head shakes (rig controller 15), the timed form of setkubifuristatus 0x0494 / argument 2: the head-shake time in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	アーシェ	cut5	7	0x037A1	1938	-	motionstartframe	148	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_a0400	アーシェ	cut5	8	0x037A7	1939	-	motionplay	0x12000009	animation 9 of motion 2 of `bhm_a0400.mot` (bytes 0x6B800, length 0x52950)	-	frame count 0 passed with the motion event	-	-	resolved	0x0034B2C0 (read here) and 17 ../Graphics/character-render-records.md
 bhm_a0400	アーシェ	cut5	9	0x037AA	1940	-	motionsync	-	-	-	-	waits until 0x002673D0 answers non-zero for this actor: it goes on at once for an actor whose +0x03 & 0xE0 is not 0x60, with no render record (+0xC0, slot [0x022C6F28] + word x 0x740) or whose render record +0x284 is 0 (0x002673D0-0x002673E8, 0x002E4C90-0x002E4CCA); otherwise it waits while the render record's +0x294 bit 0x20 is set or its word +0x3B4 is not 0, and until its presentation entries +0xC4 and +0xC8 that are set both have +0x2C8 bit 0x1000 (0x004232D0, 0x0041C760)	-	resolved	0x0034C2F0, 0x0034BBD0 (read here)
@@ -9679,10 +9679,10 @@ bhm_b0101	ディレクター	main	27	0x02241	80	(getsummonmodebit() or getchocob
 bhm_b0101	ディレクター	main	28	0x02247	82	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; unreachable in the listing	seteventparty2mode	1	argument 1: whether the second event-party claim is on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ディレクター	main	29	0x0224A	83	(getsummonmodebit() or getchocobomodebit()) or unkCall_3085(); scratch1_var_4 != 1; unreachable in the listing	partyallread	-	the four party roster members' models, re-read for their current definitions	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ディレクター	main	30	0x0224D	86	-	label	local_jmp_10	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_b0101	ディレクター	main	31	0x0224D	87	-	getbattlemembermask	-	result stored in file_var_s0_1	-	-	-	-		01 verb-table.tsv
+bhm_b0101	ディレクター	main	31	0x0224D	87	-	getbattlemembermask	-	result stored in file_var_s0_1; a mask of the battle party's members	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ディレクター	main	32	0x02256	88	-	setzclipoverdraw	1	argument 1: the depth scale the calling actor's model is drawn with	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ディレクター	main	33	0x0225C	89	-	setcharclipall	0	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_b0101	ディレクター	main	34	0x0225F	90	-	getsummonmodebit	-	result stored in file_var_s0_2	-	-	-	-		01 verb-table.tsv
+bhm_b0101	ディレクター	main	34	0x0225F	90	-	getsummonmodebit	-	result stored in file_var_s0_2; the summon bit itself	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ディレクター	main	35	0x0226B	91	-	sysDVAR	7, file_var_s0_2	nothing: the debug-variable hook is a bare ret	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b0101	ディレクター	main	36	0x0226C	92	-	getnowmusicno	-	result stored in file_var_s0_3; the music track now current	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ディレクター	main	37	0x0227B	93	-	musictrans	file_var_s0_3, 60, 80	music track file_var_s0_3	-	fade length 60 to volume 80	-	-	resolved	0x00340260 (read here) and 18 ../Sound-And-Music/music.md
@@ -9945,7 +9945,7 @@ bhm_b0101	ＡＤ	s01_ex	2	0x029D7	498	-	maskopenfast	0	argument 1: popped and ig
 bhm_b0101	ＡＤ	s01_ex	3	0x029DA	499	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex	4	0x029DD	500	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex	5	0x029E3	501	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-bhm_b0101	ＡＤ	s01_ex	6	0x029E6	502	-	hidenavimapfast	-	-	-	-	-	-		01 verb-table.tsv
+bhm_b0101	ＡＤ	s01_ex	6	0x029E6	502	-	hidenavimapfast	-	the minimap (widget 0x003C5910 at 0x02B476B0), hidden without its closing animation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex	7	0x029E9	503	-	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex	8	0x029EC	504	-	setemergency	-	the party's battle units, put in the engaged state, and their weapons	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex	9	0x029F2	505	-	sysReqall	2, reqArr13	actor `カメラ`, actor `日本語字幕`, actor `ガブラス声`, actor `特殊効果`, actor `ガブラス`, actor `ＰＣ１人目`, actor `ＰＣ２人目`, actor `ＰＣ３人目`, actor `召喚獣乗っ取り`	-	-	files each pair of カメラ::cut1_ex, 日本語字幕::cut1_ex, ガブラス声::cut1_ex, 特殊効果::cut1_ex, ガブラス::cut1_ex, ＰＣ１人目::cut1_ex, ＰＣ２人目::cut1_ex, ＰＣ３人目::cut1_ex, 召喚獣乗っ取り::cut1_ex on channel 2; does not wait	カメラ.cut1_ex, 日本語字幕.cut1_ex, ガブラス声.cut1_ex, 特殊効果.cut1_ex, ガブラス.cut1_ex, ＰＣ１人目.cut1_ex, ＰＣ２人目.cut1_ex, ＰＣ３人目.cut1_ex, 召喚獣乗っ取り.cut1_ex	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -9964,7 +9964,7 @@ bhm_b0101	ＡＤ	s01_ex	21	0x02A4A	518	not (skipcheck(0))	fadelayer	6	argument 1
 bhm_b0101	ＡＤ	s01_ex	22	0x02A50	519	not (skipcheck(0))	whiteout	10	argument 1: the length in frames of a fade to white on fade layer 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex	23	0x02A56	520	not (skipcheck(0))	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_b0101	ＡＤ	s01_ex	24	0x02A59	521	not (skipcheck(0))	fadesync	-	the screen fade of layer 0 and the loading icon	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_b0101	ＡＤ	s01_ex	25	0x02A5C	523	-	cutinclear	-	-	-	-	-	-		01 verb-table.tsv
+bhm_b0101	ＡＤ	s01_ex	25	0x02A5C	523	-	cutinclear	-	the cut-in, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex	26	0x02A62	524	-	wait	20	-	-	20 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_b0101	ＡＤ	s01_ex	27	0x02A68	525	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b0101	ＡＤ	バインドオフ_ex	1	0x02A6C	530	-	sysReqall	2, reqArr17	actor `ＡＤ`, actor `ボイス`, actor `特殊効果`, actor `ガブラス`, actor `ＰＣ１人目`, actor `ＰＣ２人目`, actor `ＰＣ３人目`, actor `召喚獣乗っ取り`	-	-	files each pair of ＡＤ::バインドオフ_ex, ボイス::バインドオフ_ex, 特殊効果::バインドオフ_ex, ガブラス::バインドオフ_ex, ＰＣ１人目::バインドオフ_ex, ＰＣ２人目::バインドオフ_ex, ＰＣ３人目::バインドオフ_ex, 召喚獣乗っ取り::バインドオフ_ex on channel 2; does not wait	ＡＤ.バインドオフ_ex, ボイス.バインドオフ_ex, 特殊効果.バインドオフ_ex, ガブラス.バインドオフ_ex, ＰＣ１人目.バインドオフ_ex, ＰＣ２人目.バインドオフ_ex, ＰＣ３人目.バインドオフ_ex, 召喚獣乗っ取り.バインドオフ_ex	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -9987,7 +9987,7 @@ bhm_b0101	ＡＤ	バインドオフ_ex	17	0x02AC3	546	-	setmaphighmodeldepth	-1	
 bhm_b0101	ＡＤ	バインドオフ_ex	18	0x02AC9	547	-	setmapmodelstatus	1	argument 1: whether the current map part's model sets take part in the show and hide model masks	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	バインドオフ_ex	19	0x02ACF	548	-	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	バインドオフ_ex	20	0x02AD5	549	-	settrapshowstatus	1	all sixteen trap marker slots, shown (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-bhm_b0101	ＡＤ	バインドオフ_ex	21	0x02AD8	550	-	shownavimapfast	-	-	-	-	-	-		01 verb-table.tsv
+bhm_b0101	ＡＤ	バインドオフ_ex	21	0x02AD8	550	-	shownavimapfast	-	the minimap, shown without its opening animation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	バインドオフ_ex	22	0x02AE1	551	-	sysReqwait	ＰＣ１人目::バインドオフ_ex	actor `ＰＣ１人目`	-	-	waits until ＰＣ１人目::バインドオフ_ex is no longer on its actor	ＰＣ１人目.バインドオフ_ex	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b0101	ＡＤ	バインドオフ_ex	23	0x02AE8	552	-	sysReqwait	ＰＣ２人目::バインドオフ_ex	actor `ＰＣ２人目`	-	-	waits until ＰＣ２人目::バインドオフ_ex is no longer on its actor	ＰＣ２人目.バインドオフ_ex	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b0101	ＡＤ	バインドオフ_ex	24	0x02AEF	553	-	sysReqwait	ＰＣ３人目::バインドオフ_ex	actor `ＰＣ３人目`	-	-	waits until ＰＣ３人目::バインドオフ_ex is no longer on its actor	ＰＣ３人目.バインドオフ_ex	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -9997,7 +9997,7 @@ bhm_b0101	ＡＤ	s01_ex2	2	0x02AFD	560	-	maskopenfast	0	argument 1: popped and i
 bhm_b0101	ＡＤ	s01_ex2	3	0x02B00	561	-	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex2	4	0x02B03	562	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex2	5	0x02B09	563	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-bhm_b0101	ＡＤ	s01_ex2	6	0x02B0C	564	-	hidenavimapfast	-	-	-	-	-	-		01 verb-table.tsv
+bhm_b0101	ＡＤ	s01_ex2	6	0x02B0C	564	-	hidenavimapfast	-	the minimap (widget 0x003C5910 at 0x02B476B0), hidden without its closing animation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex2	7	0x02B0F	565	-	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex2	8	0x02B12	566	-	setemergency	-	the party's battle units, put in the engaged state, and their weapons	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	s01_ex2	9	0x02B18	567	-	sysReqall	2, reqArr18	actor `カメラ`, actor `日本語字幕`, actor `ガブラス声`, actor `特殊効果`, actor `ガブラス`, actor `ＰＣ１人目`, actor `ＰＣ２人目`, actor `ＰＣ３人目`, actor `召喚獣乗っ取り`	-	-	files each pair of カメラ::cut1_ex2, 日本語字幕::cut1_ex2, ガブラス声::cut1_ex2, 特殊効果::cut1_ex2, ガブラス::cut1_ex2, ＰＣ１人目::cut1_ex2, ＰＣ２人目::cut1_ex2, ＰＣ３人目::cut1_ex2, 召喚獣乗っ取り::cut1_ex2 on channel 2; does not wait	カメラ.cut1_ex2, 日本語字幕.cut1_ex2, ガブラス声.cut1_ex2, 特殊効果.cut1_ex2, ガブラス.cut1_ex2, ＰＣ１人目.cut1_ex2, ＰＣ２人目.cut1_ex2, ＰＣ３人目.cut1_ex2, 召喚獣乗っ取り.cut1_ex2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -10016,7 +10016,7 @@ bhm_b0101	ＡＤ	s01_ex2	21	0x02B61	581	-	return	0	-	-	-	-	-	resolved	01 ../Scri
 bhm_b0101	ＡＤ	バインドオフ_ex2	1	0x02B65	586	-	sysReqall	2, reqArr21	actor `ＡＤ`, actor `ボイス`, actor `特殊効果`, actor `ガブラス`, actor `ＰＣ１人目`, actor `ＰＣ２人目`, actor `ＰＣ３人目`, actor `召喚獣乗っ取り`	-	-	files each pair of ＡＤ::バインドオフ_ex2, ボイス::バインドオフ_ex2, 特殊効果::バインドオフ_ex2, ガブラス::バインドオフ_ex2, ＰＣ１人目::バインドオフ_ex2, ＰＣ２人目::バインドオフ_ex2, ＰＣ３人目::バインドオフ_ex2, 召喚獣乗っ取り::バインドオフ_ex2 on channel 2; does not wait	ＡＤ.バインドオフ_ex2, ボイス.バインドオフ_ex2, 特殊効果.バインドオフ_ex2, ガブラス.バインドオフ_ex2, ＰＣ１人目.バインドオフ_ex2, ＰＣ２人目.バインドオフ_ex2, ＰＣ３人目.バインドオフ_ex2, 召喚獣乗っ取り.バインドオフ_ex2	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_b0101	ＡＤ	バインドオフ_ex2	2	0x02B68	587	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	バインドオフ_ex2	3	0x02B74	588	-	unkCall_5ac	0, 0, 0	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_b0101	ＡＤ	バインドオフ_ex2	4	0x02B77	589	-	shownavimapfast	-	-	-	-	-	-		01 verb-table.tsv
+bhm_b0101	ＡＤ	バインドオフ_ex2	4	0x02B77	589	-	shownavimapfast	-	the minimap, shown without its opening animation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	バインドオフ_ex2	5	0x02B7D	590	-	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	バインドオフ_ex2	6	0x02B83	591	-	maskclosefast	0	argument 1: popped and ignored (every call passes 0). The verb closes the cinematic mask at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	ＡＤ	バインドオフ_ex2	7	0x02B89	592	-	setfocusstatus	0	argument 1: whether the scripted depth of field is drawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -10107,10 +10107,10 @@ bhm_b0101	カットイン用カメラ１	init	1	0x02D8E	754	-	return	-	-	-	-	-	-
 bhm_b0101	カットイン用カメラ１	cut1_ex_7	1	0x02D98	759	-	camerastart_7d	1, 0x02000011, getcamerasubframe()	argument 1: the camera channel (entry 0 to 3 of side A of the running manager slot's camera tables, 0x002640C0) the shot is bound to / argument 2: the shot / argument 3: the frame the channel is published to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	カットイン用カメラ１	cut1_ex_7	2	0x02D9B	760	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b0101	カットイン用カメラ２	init	1	0x02D9C	769	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_b0101	カットイン用カメラ２	cut1_ex_7	1	0x02DA0	774	-	cutinrotate	0.69813174	-	-	-	-	-		01 verb-table.tsv
-bhm_b0101	カットイン用カメラ２	cut1_ex_7	2	0x02DA6	775	-	cutinlinewidth	0	-	-	-	-	-		01 verb-table.tsv
-bhm_b0101	カットイン用カメラ２	cut1_ex_7	3	0x02DAC	776	-	cutinlinefade	1	-	-	-	-	-		01 verb-table.tsv
-bhm_b0101	カットイン用カメラ２	cut1_ex_7	4	0x02DAF	777	-	cutinplay	-	-	-	-	-	-		01 verb-table.tsv
+bhm_b0101	カットイン用カメラ２	cut1_ex_7	1	0x02DA0	774	-	cutinrotate	0.69813174	argument 1: the cut-in's rotation, in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_b0101	カットイン用カメラ２	cut1_ex_7	2	0x02DA6	775	-	cutinlinewidth	0	argument 1: the width of the cut-in's line	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_b0101	カットイン用カメラ２	cut1_ex_7	3	0x02DAC	776	-	cutinlinefade	1	argument 1: whether the cut-in's line fades	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_b0101	カットイン用カメラ２	cut1_ex_7	4	0x02DAF	777	-	cutinplay	-	the cut-in staged by the cutin* verbs, started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_b0101	カットイン用カメラ２	cut1_ex_7	5	0x02DB2	778	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b0101	日本語字幕	init	1	0x02DB3	793	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_b0101	日本語字幕	cut3	1	0x02DB7	798	-	wait	210	-	-	210 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -12572,7 +12572,7 @@ bhm_c0100	ボイス	cut_16	16	0x029B0	1316	-	voiceplay_28b	22, 0x02000003	argume
 bhm_c0100	ボイス	cut_16	17	0x029B3	1317	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0100	ボイスパン	init	1	0x029B4	1326	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0100	ボイスパン	main	1	0x029B5	1331	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_c0100	ボイスパン	pan_00	1	0x029BC	1336	-	voicepan	0x01000000, 240	-	-	-	-	-		01 verb-table.tsv
+bhm_c0100	ボイスパン	pan_00	1	0x029BC	1336	-	voicepan	0x01000000, 240	argument 1: the voice cue whose stream is panned, in the voice verbs' form / argument 2: the pan, 0-255 with 64 the scripts' usual value	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0100	ボイスパン	pan_00	2	0x029BF	1337	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0100	EventLightActor	init	1	0x029C0	1346	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0100	EventLightActor	setEventLight	1	0x029C8	1351	-	if	scratch1_var_2 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -13523,7 +13523,7 @@ bhm_c0101	監督	ハイパーヴェイン	56	0x02910	179	loop while true	maskope
 bhm_c0101	監督	ハイパーヴェイン	57	0x02913	180	loop while true	pausesestop	-	every sound-effect bank	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	58	0x02916	181	loop while true	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	59	0x0291C	182	loop while true	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-bhm_c0101	監督	ハイパーヴェイン	60	0x0291F	183	loop while true	hidenavimapfast	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	60	0x0291F	183	loop while true	hidenavimapfast	-	the minimap (widget 0x003C5910 at 0x02B476B0), hidden without its closing animation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	61	0x02922	184	loop while true	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	62	0x02934	185	loop while true	if	(getsummonmodebit() or getchocobomodebit()) or scratch1_var_4 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0101	監督	ハイパーヴェイン	63	0x0293B	187	loop while true; (getsummonmodebit() or getchocobomodebit()) or scratch1_var_4 == 1	if	not (istownmap())	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -13701,12 +13701,12 @@ bhm_c0101	監督	ハイパーヴェイン	234	0x02E44	393	loop while true	wait	1
 bhm_c0101	監督	ハイパーヴェイン	235	0x02E4A	394	loop while true	motiondispose	1	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	236	0x02E50	395	loop while true	voicedispose	0	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	237	0x02E56	396	loop while true	voiceread	2	argument 1: the voice slot to load, 0 to 63	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c0101	監督	ハイパーヴェイン	238	0x02E59	397	loop while true	usemoviememory	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	238	0x02E59	397	loop while true	usemoviememory	-	the movie memory, asked for by the calling script's manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	239	0x02E5F	398	loop while true	motionread	2	motion 2 of `bhm_c0101.mot` (bytes 0x44000, length 0x51860)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 bhm_c0101	監督	ハイパーヴェイン	240	0x02E65	399	loop while true	motionreadsync	2	motion 2	-	-	waits while motion 2 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 bhm_c0101	監督	ハイパーヴェイン	241	0x02E6B	400	loop while true	motionread	5	motion 5 of `bhm_c0101.mot` (bytes 0x277000, length 0x35C90)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 bhm_c0101	監督	ハイパーヴェイン	242	0x02E71	401	loop while true	motionreadsync	5	motion 5	-	-	waits while motion 5 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
-bhm_c0101	監督	ハイパーヴェイン	243	0x02E74	402	loop while true	stopmoviememory	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	243	0x02E74	402	loop while true	stopmoviememory	-	the movie memory, given back by the calling script's manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	244	0x02E7A	403	loop while true	voicereadsync	2	argument 1: the voice slot to wait for (0-63, the 0x40-byte records at 0x02B5D0B0; slot k holds sub-file k of the event's voice pack)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	245	0x02E83	404	loop while true	sysReqwait	SE::cut_03	actor `SE`	-	-	waits until SE::cut_03 is no longer on its actor	SE.cut_03	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0101	監督	ハイパーヴェイン	246	0x02E87	405	loop while true	startscene	4	scene cut 4, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
@@ -13785,10 +13785,10 @@ bhm_c0101	監督	ハイパーヴェイン	318	0x03073	477	loop while true	modeld
 bhm_c0101	監督	ハイパーヴェイン	319	0x03079	478	loop while true	modelread	0x0300000d	argument 1: the model to request	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	320	0x0307F	479	loop while true	modelreadsync	0x0300000d	argument 1: the model to wait for	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	321	0x03085	480	loop while true	motiondispose	2	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c0101	監督	ハイパーヴェイン	322	0x03088	481	loop while true	usemoviememory	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	322	0x03088	481	loop while true	usemoviememory	-	the movie memory, asked for by the calling script's manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	323	0x0308E	482	loop while true	motionread	3	motion 3 of `bhm_c0101.mot` (bytes 0x96000, length 0xE2940)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 bhm_c0101	監督	ハイパーヴェイン	324	0x03094	483	loop while true	motionreadsync	3	motion 3	-	-	waits while motion 3 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
-bhm_c0101	監督	ハイパーヴェイン	325	0x03097	484	loop while true	stopmoviememory	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	325	0x03097	484	loop while true	stopmoviememory	-	the movie memory, given back by the calling script's manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	326	0x030A0	485	loop while true	sysReqwait	BGM::cut_02	actor `BGM`	-	-	waits until BGM::cut_02 is no longer on its actor	BGM.cut_02	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0101	監督	ハイパーヴェイン	327	0x030A7	486	loop while true	sysReqwait	SE::cut_12	actor `SE`	-	-	waits until SE::cut_12 is no longer on its actor	SE.cut_12	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0101	監督	ハイパーヴェイン	328	0x030AE	487	loop while true	sysReqwait	EventVibActor::cut_12	actor `EventVibActor`	-	-	waits until EventVibActor::cut_12 is no longer on its actor	EventVibActor.cut_12	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -13865,10 +13865,10 @@ bhm_c0101	監督	ハイパーヴェイン	398	0x0328A	557	loop while true	motion
 bhm_c0101	監督	ハイパーヴェイン	399	0x03290	558	loop while true	motiondispose	5	argument 1: the number of the area .mot motion record to free	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	400	0x03296	559	loop while true	voicedispose	2	argument 1: the voice slot to free (0-63, 0x02B5D0B0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	401	0x0329C	560	loop while true	voiceread	3	argument 1: the voice slot to load, 0 to 63	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c0101	監督	ハイパーヴェイン	402	0x0329F	561	loop while true	usemoviememory	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	402	0x0329F	561	loop while true	usemoviememory	-	the movie memory, asked for by the calling script's manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	403	0x032A5	562	loop while true	motionread	4	motion 4 of `bhm_c0101.mot` (bytes 0x179000, length 0xFDA90)	-	-	-	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
 bhm_c0101	監督	ハイパーヴェイン	404	0x032AB	563	loop while true	motionreadsync	4	motion 4	-	-	waits while motion 4 is read	-	resolved	02 ../Game-Files-And-Data-Tables/resource-ownership-and-disposal.md
-bhm_c0101	監督	ハイパーヴェイン	405	0x032AE	564	loop while true	stopmoviememory	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	405	0x032AE	564	loop while true	stopmoviememory	-	the movie memory, given back by the calling script's manager slot	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	406	0x032B4	565	loop while true	voicereadsync	3	argument 1: the voice slot to wait for (0-63, the 0x40-byte records at 0x02B5D0B0; slot k holds sub-file k of the event's voice pack)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	407	0x032BD	566	loop while true	sysReqwait	SE::cut_20	actor `SE`	-	-	waits until SE::cut_20 is no longer on its actor	SE.cut_20	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0101	監督	ハイパーヴェイン	408	0x032C1	567	loop while true	setff12screenmode	3	argument 1: the frame mode, byte 0x02064AD1 (0x002EF350 -> 0x00229EC0; a negative value becomes 2)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -13882,7 +13882,7 @@ bhm_c0101	監督	ハイパーヴェイン	415	0x032F2	574	loop while true	sysReq
 bhm_c0101	監督	ハイパーヴェイン	416	0x032F8	575	loop while true	wait	230	-	-	230 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_c0101	監督	ハイパーヴェイン	417	0x03301	576	loop while true	sysReqwait	SE::cut_21	actor `SE`	-	-	waits until SE::cut_21 is no longer on its actor	SE.cut_21	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0101	監督	ハイパーヴェイン	418	0x03305	577	loop while true	setff12screenmode	-1	argument 1: the frame mode, byte 0x02064AD1 (0x002EF350 -> 0x00229EC0; a negative value becomes 2)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c0101	監督	ハイパーヴェイン	419	0x0330B	578	loop while true	unkCall_5c5	0	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	419	0x0330B	578	loop while true	unkCall_5c5	0	argument 1: whether the mask-border pass runs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	420	0x03311	579	loop while true	startscene	22	scene cut 22, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 bhm_c0101	監督	ハイパーヴェイン	421	0x03317	580	loop while true	store	scratch1_var_2 = 22	variable scratch1_var_2 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c0101	監督	ハイパーヴェイン	422	0x03323	581	loop while true	sysReq	1, EventLightActor::setEventLight	actor `EventLightActor`	-	-	files EventLightActor::setEventLight on channel 1; does not wait	EventLightActor.setEventLight	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -13969,7 +13969,7 @@ bhm_c0101	監督	ハイパーヴェイン	502	0x0354E	669	loop while true	maskcl
 bhm_c0101	監督	ハイパーヴェイン	503	0x03554	670	loop while true	partyusemapid	1	argument 1: whether the party members move on the map's floor, usemapid for the party	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	504	0x03563	671	loop while true	setposparty	128, 3.20000005, 120, 0	argument 1: the x of the point where the party is placed / argument 2: the y of the point (0x0037D000) / argument 3: the z of the point (0x0037D000) / argument 4: the facing angle of the placed party (0x00310920)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	505	0x03569	672	loop while true	store	scratch1_var_10 = 1	variable scratch1_var_10 (scratch1 u_char@0xd9)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bhm_c0101	監督	ハイパーヴェイン	506	0x0356F	673	loop while true	unkCall_5c5	1	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	監督	ハイパーヴェイン	506	0x0356F	673	loop while true	unkCall_5c5	1	argument 1: whether the mask-border pass runs	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	監督	ハイパーヴェイン	507	0x03578	674	loop while true	sysReqwait	PC_00::乗っ取り解除	actor `PC_00`	-	-	waits until PC_00::乗っ取り解除 is no longer on its actor	PC_00.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0101	監督	ハイパーヴェイン	508	0x0357F	675	loop while true	sysReqwait	PC_01::乗っ取り解除	actor `PC_01`	-	-	waits until PC_01::乗っ取り解除 is no longer on its actor	PC_01.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0101	監督	ハイパーヴェイン	509	0x03586	676	loop while true	sysReqwait	PC_02::乗っ取り解除	actor `PC_02`	-	-	waits until PC_02::乗っ取り解除 is no longer on its actor	PC_02.乗っ取り解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -14088,7 +14088,7 @@ bhm_c0101	カメラ	cut_29	1	0x0380B	917	-	camerastart_7e	0, 0x0200001c	camera r
 bhm_c0101	カメラ	cut_29	2	0x03811	918	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0101	カメラ	ボイスイベント_before	1	0x03818	923	-	camerastart_7e	0, 0x0200001d	camera row 29 `ボイスイベント00`: shot 29 `ボイスイベント00`, channel 0	-	shot 100 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 bhm_c0101	カメラ	ボイスイベント_before	2	0x0381E	924	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_c0101	カメラ	ボイスイベント	1	0x03822	929	-	unkCall_5ca	0	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	カメラ	ボイスイベント	1	0x03822	929	-	unkCall_5ca	0	argument 1: the HBAO depth-resolution switch	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント	2	0x0382E	930	-	camerastart_7d	0, 0x0200001e, getcameramainframe()	argument 1: the camera channel (entry 0 to 3 of side A of the running manager slot's camera tables, 0x002640C0) the shot is bound to / argument 2: the shot / argument 3: the frame the channel is published to	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント	3	0x0383A	931	-	unkCall_5ac	1, 17.2000008, 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント	4	0x03840	932	-	camerasync_7f	0	camera channel 0	-	-	waits while camera channel 0 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -14096,7 +14096,7 @@ bhm_c0101	カメラ	ボイスイベント	5	0x0384C	933	-	camerastart_7d	1, 0x02
 bhm_c0101	カメラ	ボイスイベント	6	0x03858	934	-	unkCall_5ac	1, 4.80000019, 22	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント	7	0x03864	935	-	crossfade	4, 1, 15	argument 1: the crossfade's flags / argument 2: the capture mode of the still picture / argument 3: the crossfade's length in frames	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント	8	0x0386A	936	-	camerasync_7f	1	camera channel 1	-	-	waits while camera channel 1 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_c0101	カメラ	ボイスイベント	9	0x03870	937	-	unkCall_5ca	1	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	カメラ	ボイスイベント	9	0x03870	937	-	unkCall_5ca	1	argument 1: the HBAO depth-resolution switch	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント	10	0x03879	938	-	camerastart_7e	0, 0x02000020	camera row 32 `ボイスイベント02`: shot 31 `ボイスイベント02`, channel 0	-	shot 70 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 bhm_c0101	カメラ	ボイスイベント	11	0x03885	939	-	unkCall_5ac	1, 6, 16	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント	12	0x0388B	940	-	camerasync_7f	0	camera channel 0	-	-	waits while camera channel 0 plays	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -14109,7 +14109,7 @@ bhm_c0101	カメラ	ボイスイベント	18	0x038C1	946	-	wait	130	-	-	130 fram
 bhm_c0101	カメラ	ボイスイベント	19	0x038C7	947	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0101	カメラ	ボイスイベント終了	1	0x038C8	952	-	cameraclear	-	the camera-shot bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント終了	2	0x038D4	953	-	unkCall_5ac	0, 0, 0	argument 1: the kind of the scripted depth-of-field request for slot 0 (0x00214B80 -> 0x00214B90 with slot 0) / argument 2: the focus distance of the depth-of-field request (request +0x04, 0x00214BFD) / argument 3: the aperture f-number of the depth-of-field request (request +0x08, 0x00214C17)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c0101	カメラ	ボイスイベント終了	3	0x038D7	954	-	shownavimapfast	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0101	カメラ	ボイスイベント終了	3	0x038D7	954	-	shownavimapfast	-	the minimap, shown without its opening animation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント終了	4	0x038E0	955	-	resetbehindcamera	0, 0	argument 1: the heading the behind (follow) camera is reset to, in radians (getmapjumpanglebyindex(nowjumpindex()) in 595 calls, plus pi in 307) / argument 2: the camera's level (height)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント終了	5	0x038E3	956	-	camerashakeclear	-	the camera-shake bindings of the calling script's manager (0x002640C0)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0101	カメラ	ボイスイベント終了	6	0x038E9	957	-	sethpmenufast	1	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16830,7 +16830,7 @@ bhm_c0102	監督	main	78	0x17B94	177	file_var_s0_12 == 1	store	file_var_s0_4 = 0
 bhm_c0102	監督	main	79	0x17B9A	178	file_var_s0_12 == 1	setmaphighmodeldepth	100	argument 1: the draw depth of the map's kind-2 draw-list models	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	監督	main	80	0x17BA0	179	file_var_s0_12 == 1	setcharclipall	0	argument 1: whether characters far from the camera are left undrawn	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	監督	main	81	0x17BA6	180	file_var_s0_12 == 1	setstatuserrordispdenystatus	1	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
-bhm_c0102	監督	main	82	0x17BA9	181	file_var_s0_12 == 1	hidenavimapfast	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0102	監督	main	82	0x17BA9	181	file_var_s0_12 == 1	hidenavimapfast	-	the minimap (widget 0x003C5910 at 0x02B476B0), hidden without its closing animation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	監督	main	83	0x17BAC	182	file_var_s0_12 == 1	clear_activelog	-	the battle log line the field HUD shows and the battle numbers, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	監督	main	84	0x17BAF	183	file_var_s0_12 == 1	blurstop	-	stops screen blur sprite 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	監督	main	85	0x17BB5	184	file_var_s0_12 == 1	sethpmenufast	0	argument 1: show or hide the HUD at once	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -16869,7 +16869,7 @@ bhm_c0102	監督	main	117	0x17CC9	227	file_var_s0_12 == 1	sysReq	2, 剣ファン
 bhm_c0102	監督	main	118	0x17CD3	228	file_var_s0_12 == 1	sysReq	2, 剣ファンネルＤ::バトルヒント解除	actor `剣ファンネルＤ`	-	-	files 剣ファンネルＤ::バトルヒント解除 on channel 2; does not wait	剣ファンネルＤ.バトルヒント解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0102	監督	main	119	0x17CDD	229	file_var_s0_12 == 1	sysReq	2, 剣ファンネルＥ::バトルヒント解除	actor `剣ファンネルＥ`	-	-	files 剣ファンネルＥ::バトルヒント解除 on channel 2; does not wait	剣ファンネルＥ.バトルヒント解除	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0102	監督	main	120	0x17CE7	230	file_var_s0_12 == 1	sysReq	3, カメラ::カメラクリア	actor `カメラ`	-	-	files カメラ::カメラクリア on channel 3; does not wait	カメラ.カメラクリア	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_c0102	監督	main	121	0x17CE8	231	file_var_s0_12 == 1	shownavimapfast	-	-	-	-	-	-		01 verb-table.tsv
+bhm_c0102	監督	main	121	0x17CE8	231	file_var_s0_12 == 1	shownavimapfast	-	the minimap, shown without its opening animation	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	監督	main	122	0x17CF4	232	file_var_s0_12 == 1	sysReq	2, ブラー::ブラーストップ	actor `ブラー`	-	-	files ブラー::ブラーストップ on channel 2; does not wait	ブラー.ブラーストップ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0102	監督	main	123	0x17CFE	233	file_var_s0_12 == 1	sysReq	1, 背景曲::音量戻し	actor `背景曲`	-	-	files 背景曲::音量戻し on channel 1; does not wait	背景曲.音量戻し	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_c0102	監督	main	124	0x17D02	234	file_var_s0_12 == 1	setstatuserrordispdenystatus	0	argument 1: time-stop request 23	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -19520,7 +19520,7 @@ bhm_c0102	ヴァン	バトルヒント	39	0x1C676	3806	file_var_s0_1 != 1	store	
 bhm_c0102	ヴァン	バトルヒント	40	0x1C679	3807	file_var_s0_1 != 1	stdmotionreadsync	-	the calling actor's motion lane	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	ヴァン	バトルヒント	41	0x1C67F	3808	file_var_s0_1 != 1	stdmotionplay	0x0100000d	this actor's standard motion entry 13 of 0x01EFE9D0: render event 0x4001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 bhm_c0102	ヴァン	バトルヒント	42	0x1C685	3810	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_c0102	ヴァン	バトルヒント	43	0x1C68E	3811	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script)	-	-	-	-		01 verb-table.tsv
+bhm_c0102	ヴァン	バトルヒント	43	0x1C68E	3811	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script) / argument 1: the actor the calling actor turns to face over a set number of frames / argument 2: the frames the turn takes, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	ヴァン	バトルヒント	44	0x1C694	3812	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 bhm_c0102	ヴァン	バトルヒント	45	0x1C69E	3813	-	if	file_var_s0_8 == 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	ヴァン	バトルヒント	46	0x1C6A7	3815	file_var_s0_8 == 0	store	file_var_s15_2 = file_var_s0_13[0]	variable file_var_s15_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -19769,7 +19769,7 @@ bhm_c0102	アーシェ	バトルヒント	33	0x1CE4B	4278	-	label	local_jmp_19	-
 bhm_c0102	アーシェ	バトルヒント	34	0x1CE4E	4279	-	capturepc	file_var_s0_15	party slot file_var_s0_15	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bhm_c0102	アーシェ	バトルヒント	35	0x1CE5A	4280	-	setpos	123.900002, 3.20000005, 124.5	this actor, placed at (123.900002, 3.20000005, 124.5)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_c0102	アーシェ	バトルヒント	36	0x1CE60	4281	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_c0102	アーシェ	バトルヒント	37	0x1CE69	4282	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script)	-	-	-	-		01 verb-table.tsv
+bhm_c0102	アーシェ	バトルヒント	37	0x1CE69	4282	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script) / argument 1: the actor the calling actor turns to face over a set number of frames / argument 2: the frames the turn takes, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	アーシェ	バトルヒント	38	0x1CE6F	4283	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 bhm_c0102	アーシェ	バトルヒント	39	0x1CE72	4284	-	goto	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	アーシェ	バトルヒント	40	0x1CE84	4285	-	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -19937,7 +19937,7 @@ bhm_c0102	フラン	バトルヒント	33	0x1D2ED	4626	-	label	local_jmp_19	-	-	
 bhm_c0102	フラン	バトルヒント	34	0x1D2F0	4627	-	capturepc	file_var_s0_16	party slot file_var_s0_16	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bhm_c0102	フラン	バトルヒント	35	0x1D2FC	4628	-	setpos	131.940994, 3.20000005, 119.933144	this actor, placed at (131.940994, 3.20000005, 119.933144)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_c0102	フラン	バトルヒント	36	0x1D302	4629	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_c0102	フラン	バトルヒント	37	0x1D30B	4630	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script)	-	-	-	-		01 verb-table.tsv
+bhm_c0102	フラン	バトルヒント	37	0x1D30B	4630	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script) / argument 1: the actor the calling actor turns to face over a set number of frames / argument 2: the frames the turn takes, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	フラン	バトルヒント	38	0x1D311	4631	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 bhm_c0102	フラン	バトルヒント	39	0x1D314	4632	-	goto	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	フラン	バトルヒント	40	0x1D326	4633	-	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -20105,7 +20105,7 @@ bhm_c0102	バルフレア	バトルヒント	33	0x1D79B	4974	-	label	local_jmp_1
 bhm_c0102	バルフレア	バトルヒント	34	0x1D79E	4975	-	capturepc	3	party slot 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bhm_c0102	バルフレア	バトルヒント	35	0x1D7AA	4976	-	setpos	132.740005, 3.20000005, 124.699997	this actor, placed at (132.740005, 3.20000005, 124.699997)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_c0102	バルフレア	バトルヒント	36	0x1D7B0	4977	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_c0102	バルフレア	バトルヒント	37	0x1D7B9	4978	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script)	-	-	-	-		01 verb-table.tsv
+bhm_c0102	バルフレア	バトルヒント	37	0x1D7B9	4978	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script) / argument 1: the actor the calling actor turns to face over a set number of frames / argument 2: the frames the turn takes, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	バルフレア	バトルヒント	38	0x1D7BF	4979	-	stdmotionplay	0x01000000	this actor's standard motion entry 0 of 0x01EFE9D0: render event 0x1001, slot 1 `ready`	-	-	-	-	resolved	0x0034E110, 0x003580C0 (read here) and 01 ../Scripts-And-Script-Commands/verb-arguments.md (Standard motions)
 bhm_c0102	バルフレア	バトルヒント	39	0x1D7C2	4980	-	goto	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	バルフレア	バトルヒント	40	0x1D7D4	4981	-	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -20777,7 +20777,7 @@ bhm_c0102	ガブラス	バトルヒント	35	0x1EA35	6372	not (file_var_s0_1 == 
 bhm_c0102	ガブラス	バトルヒント	36	0x1EA3B	6374	-	waitv	&file_var_s0_4	variable file_var_s0_4	-	-	waits while file_var_s0_4 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
 bhm_c0102	ガブラス	バトルヒント	37	0x1EA47	6375	-	setpos	135.752777, 3.20000005, 127.796997	this actor, placed at (135.752777, 3.20000005, 127.796997)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_c0102	ガブラス	バトルヒント	38	0x1EA4D	6376	-	wait	5	-	-	5 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_c0102	ガブラス	バトルヒント	39	0x1EA56	6377	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script)	-	-	-	-		01 verb-table.tsv
+bhm_c0102	ガブラス	バトルヒント	39	0x1EA56	6377	-	sysTurnat	Ｈヴェイン, 0	actor `Ｈヴェイン` (this script) / argument 1: the actor the calling actor turns to face over a set number of frames / argument 2: the frames the turn takes, popped first	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	ガブラス	バトルヒント	40	0x1EA59	6378	-	goto	local_jmp_26	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	ガブラス	バトルヒント	41	0x1EA5C	6379	unreachable in the listing	goto	local_jmp_21	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	ガブラス	バトルヒント	42	0x1EA5F	6380	unreachable in the listing	goto	local_jmp_26	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -22434,7 +22434,7 @@ bhm_c0102	剣ファンネルＡ	バトルヒント	38	0x218C3	9884	-	if	(file_va
 bhm_c0102	剣ファンネルＡ	バトルヒント	39	0x218DD	9886	(file_var_s23_1 - local_var_s32f6_2) < 2.5 and (file_var_s23_1 - local_var_s32f6_2) > -2.5	if	(file_var_s23_3 - local_var_s32f6_4) < 2.5 and (file_var_s23_3 - local_var_s32f6_4) > -2.5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＡ	バトルヒント	40	0x218E3	9888	(file_var_s23_1 - local_var_s32f6_2) < 2.5 and (file_var_s23_1 - local_var_s32f6_2) > -2.5; (file_var_s23_3 - local_var_s32f6_4) < 2.5 and (file_var_s23_3 - local_var_s32f6_4) > -2.5	store	local_var_s32f6_1 = 1	variable local_var_s32f6_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c0102	剣ファンネルＡ	バトルヒント	41	0x218E9	9891	-	waitv	&file_var_s0_4	variable file_var_s0_4	-	-	waits while file_var_s0_4 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
-bhm_c0102	剣ファンネルＡ	バトルヒント	42	0x218EF	9892	-	setvelr	0	-	-	-	-	-		01 verb-table.tsv
+bhm_c0102	剣ファンネルＡ	バトルヒント	42	0x218EF	9892	-	setvelr	0	argument 1: the calling actor's move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＡ	バトルヒント	43	0x218F5	9893	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＡ	バトルヒント	44	0x218F8	9894	-	goto	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＡ	バトルヒント	45	0x21907	9895	-	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -22631,7 +22631,7 @@ bhm_c0102	剣ファンネルＢ	バトルヒント	38	0x21E3D	10275	-	if	(file_v
 bhm_c0102	剣ファンネルＢ	バトルヒント	39	0x21E57	10277	(file_var_s23_1 - local_var_s33f6_2) < 2.5 and (file_var_s23_1 - local_var_s33f6_2) > -2.5	if	(file_var_s23_3 - local_var_s33f6_4) < 2.5 and (file_var_s23_3 - local_var_s33f6_4) > -2.5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＢ	バトルヒント	40	0x21E5D	10279	(file_var_s23_1 - local_var_s33f6_2) < 2.5 and (file_var_s23_1 - local_var_s33f6_2) > -2.5; (file_var_s23_3 - local_var_s33f6_4) < 2.5 and (file_var_s23_3 - local_var_s33f6_4) > -2.5	store	local_var_s33f6_1 = 1	variable local_var_s33f6_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c0102	剣ファンネルＢ	バトルヒント	41	0x21E63	10282	-	waitv	&file_var_s0_4	variable file_var_s0_4	-	-	waits while file_var_s0_4 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
-bhm_c0102	剣ファンネルＢ	バトルヒント	42	0x21E69	10283	-	setvelr	0	-	-	-	-	-		01 verb-table.tsv
+bhm_c0102	剣ファンネルＢ	バトルヒント	42	0x21E69	10283	-	setvelr	0	argument 1: the calling actor's move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＢ	バトルヒント	43	0x21E6F	10284	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＢ	バトルヒント	44	0x21E72	10285	-	goto	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＢ	バトルヒント	45	0x21E7E	10286	-	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -22806,7 +22806,7 @@ bhm_c0102	剣ファンネルＣ	バトルヒント	38	0x2232D	10644	-	if	(file_v
 bhm_c0102	剣ファンネルＣ	バトルヒント	39	0x22347	10646	(file_var_s23_1 - local_var_s34f6_2) < 2.5 and (file_var_s23_1 - local_var_s34f6_2) > -2.5	if	(file_var_s23_3 - local_var_s34f6_4) < 2.5 and (file_var_s23_3 - local_var_s34f6_4) > -2.5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＣ	バトルヒント	40	0x2234D	10648	(file_var_s23_1 - local_var_s34f6_2) < 2.5 and (file_var_s23_1 - local_var_s34f6_2) > -2.5; (file_var_s23_3 - local_var_s34f6_4) < 2.5 and (file_var_s23_3 - local_var_s34f6_4) > -2.5	store	local_var_s34f6_1 = 1	variable local_var_s34f6_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c0102	剣ファンネルＣ	バトルヒント	41	0x22353	10651	-	waitv	&file_var_s0_4	variable file_var_s0_4	-	-	waits while file_var_s0_4 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
-bhm_c0102	剣ファンネルＣ	バトルヒント	42	0x22359	10652	-	setvelr	0	-	-	-	-	-		01 verb-table.tsv
+bhm_c0102	剣ファンネルＣ	バトルヒント	42	0x22359	10652	-	setvelr	0	argument 1: the calling actor's move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＣ	バトルヒント	43	0x2235F	10653	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＣ	バトルヒント	44	0x22362	10654	-	goto	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＣ	バトルヒント	45	0x2236B	10655	-	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -22981,7 +22981,7 @@ bhm_c0102	剣ファンネルＤ	バトルヒント	38	0x2281D	11013	-	if	(file_v
 bhm_c0102	剣ファンネルＤ	バトルヒント	39	0x22837	11015	(file_var_s23_1 - local_var_s35f6_2) < 2.5 and (file_var_s23_1 - local_var_s35f6_2) > -2.5	if	(file_var_s23_3 - local_var_s35f6_4) < 2.5 and (file_var_s23_3 - local_var_s35f6_4) > -2.5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＤ	バトルヒント	40	0x2283D	11017	(file_var_s23_1 - local_var_s35f6_2) < 2.5 and (file_var_s23_1 - local_var_s35f6_2) > -2.5; (file_var_s23_3 - local_var_s35f6_4) < 2.5 and (file_var_s23_3 - local_var_s35f6_4) > -2.5	store	local_var_s35f6_1 = 1	variable local_var_s35f6_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c0102	剣ファンネルＤ	バトルヒント	41	0x22843	11020	-	waitv	&file_var_s0_4	variable file_var_s0_4	-	-	waits while file_var_s0_4 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
-bhm_c0102	剣ファンネルＤ	バトルヒント	42	0x22849	11021	-	setvelr	0	-	-	-	-	-		01 verb-table.tsv
+bhm_c0102	剣ファンネルＤ	バトルヒント	42	0x22849	11021	-	setvelr	0	argument 1: the calling actor's move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＤ	バトルヒント	43	0x2284F	11022	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＤ	バトルヒント	44	0x22852	11023	-	goto	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＤ	バトルヒント	45	0x22858	11024	-	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -23156,7 +23156,7 @@ bhm_c0102	剣ファンネルＥ	バトルヒント	38	0x22D0D	11382	-	if	(file_v
 bhm_c0102	剣ファンネルＥ	バトルヒント	39	0x22D27	11384	(file_var_s23_1 - local_var_s36f6_2) < 2.5 and (file_var_s23_1 - local_var_s36f6_2) > -2.5	if	(file_var_s23_3 - local_var_s36f6_4) < 2.5 and (file_var_s23_3 - local_var_s36f6_4) > -2.5	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＥ	バトルヒント	40	0x22D2D	11386	(file_var_s23_1 - local_var_s36f6_2) < 2.5 and (file_var_s23_1 - local_var_s36f6_2) > -2.5; (file_var_s23_3 - local_var_s36f6_4) < 2.5 and (file_var_s23_3 - local_var_s36f6_4) > -2.5	store	local_var_s36f6_1 = 1	variable local_var_s36f6_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_c0102	剣ファンネルＥ	バトルヒント	41	0x22D33	11389	-	waitv	&file_var_s0_4	variable file_var_s0_4	-	-	waits while file_var_s0_4 is 0	-	resolved	05 ../Enemy-Spawning/enemy-respawning.md
-bhm_c0102	剣ファンネルＥ	バトルヒント	42	0x22D39	11390	-	setvelr	0	-	-	-	-	-		01 verb-table.tsv
+bhm_c0102	剣ファンネルＥ	バトルヒント	42	0x22D39	11390	-	setvelr	0	argument 1: the calling actor's move speed	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＥ	バトルヒント	43	0x22D3F	11391	-	show_38	0	argument 1: whether the calling actor's model is shown	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_c0102	剣ファンネルＥ	バトルヒント	44	0x22D45	11392	-	label	local_jmp_25	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_c0102	剣ファンネルＥ	バトルヒント	45	0x22D48	11393	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -23453,7 +23453,7 @@ bhm_d0100	PRODUCER	main	171	0x01D00	235	-	fadeout	0	the screen fade, out	-	0 fra
 bhm_d0100	PRODUCER	main	172	0x01D06	236	-	eventdispose_f2	0	event manager slot 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 bhm_d0100	PRODUCER	main	173	0x01D09	237	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d0100	DIRECTOR	init	1	0x01D0A	246	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_d0100	DIRECTOR	EV_e0100	1	0x01D0E	251	-	unkCall_5c3	1	-	-	-	-	-		01 verb-table.tsv
+bhm_d0100	DIRECTOR	EV_e0100	1	0x01D0E	251	-	unkCall_5c3	1	argument 1: the event cube-map setting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0100	DIRECTOR	EV_e0100	2	0x01D1A	252	-	sysReq	1, ASHE::cut_000	actor `ASHE`	-	-	files ASHE::cut_000 on channel 1; does not wait	ASHE.cut_000	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_d0100	DIRECTOR	EV_e0100	3	0x01D24	253	-	sysReq	1, FRAN::cut_000	actor `FRAN`	-	-	files FRAN::cut_000 on channel 1; does not wait	FRAN.cut_000	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_d0100	DIRECTOR	EV_e0100	4	0x01D2E	254	-	sysReq	1, BALFLAIR::cut_000	actor `BALFLAIR`	-	-	files BALFLAIR::cut_000 on channel 1; does not wait	BALFLAIR.cut_000	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
@@ -23614,7 +23614,7 @@ bhm_d0100	DIRECTOR	EV_e0100	158	0x0218F	410	-	store	scratch1_var_3 = 1	variable 
 bhm_d0100	DIRECTOR	EV_e0100	159	0x02195	411	-	wait	160	-	-	160 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_d0100	DIRECTOR	EV_e0100	160	0x0219F	412	-	while	not (scratch1_var_4 >= 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d0100	DIRECTOR	EV_e0100	161	0x021A8	414	loop while not (scratch1_var_4 >= 1)	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
-bhm_d0100	DIRECTOR	EV_e0100	162	0x021B1	416	-	unkCall_5c3	0	-	-	-	-	-		01 verb-table.tsv
+bhm_d0100	DIRECTOR	EV_e0100	162	0x021B1	416	-	unkCall_5c3	0	argument 1: the event cube-map setting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0100	DIRECTOR	EV_e0100	163	0x021B4	417	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d0100	MESSAGE	init	1	0x021B5	432	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d0100	MESSAGE	TAGmes_VEIN_1	1	0x021BC	437	-	mesopenspeed	0, 0	message window slot 0: the opening run +0x30, and -1 written to the closing run +0x34	-	opening run 0 x 33 ms	-	-	resolved	16 ../Menus-And-HUD/message-windows.md
@@ -24870,7 +24870,7 @@ bhm_d0100	VENES	cut_6	4	0x041EE	2302	-	motioncancel	-	the calling actor's motion
 bhm_d0100	VENES	cut_6	5	0x041F4	2303	-	motionstartframe	0	argument 1: the frame the calling actor's next motion starts at	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0100	VENES	cut_6	6	0x041FD	2304	-	motionplay_bb	0x11000005, 0	animation 5 of motion 1 of `bhm_d0100.mot` (bytes 0x800, length 0xE0C20)	-	frame count 0 passed with the motion event	-	-	resolved	17 ../Graphics/character-render-records.md
 bhm_d0100	VENES	cut_6	7	0x04200	2305	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
-bhm_d0100	VENES	cut_6	8	0x0420C	2306	-	cmove	127.979538, 0.0249930006, 108.715942	-	-	-	-	-		01 verb-table.tsv
+bhm_d0100	VENES	cut_6	8	0x0420C	2306	-	cmove	127.979538, 0.0249930006, 108.715942	argument 1: the x of the world point the calling actor moves to / argument 2: the y (height) of the target point, the third pop of 0x00357A20 / argument 3: the z of the target point, the second pop of 0x00357A20	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0100	VENES	cut_6	9	0x0420F	2307	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d0100	VENES	cut_7	1	0x04219	2312	-	setpos	128.072632, 0.0249930006, 100.772629	this actor, placed at (128.072632, 0.0249930006, 100.772629)	-	-	-	-	resolved	0x0034EBC0 (read here)
 bhm_d0100	VENES	cut_7	2	0x0421F	2313	-	dir	-3.08020711	this actor, turned to facing -3.08020711	-	0 frames	-	-	resolved	0x0034DDE0, 0x0034D1B0 (read here) and 06 ../Movement-And-Pathfinding/facing-and-steering.md
@@ -25106,7 +25106,7 @@ bhm_d0101	Director	main	59	0x060EB	113	-	behindcamerafovyrollsync	-	the behind (
 bhm_d0101	Director	main	60	0x060EE	114	-	resetbehindcamerafovyroll	-	puts the behind (follow) camera's roll and field of view offsets back to 0	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Director	main	61	0x060F4	115	-	setnoupdatebehindcamera	0	argument 1: whether the follow camera stops updating	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Director	main	62	0x06100	116	-	sysReq	1, MAC_バトルつなぎカメラ制御::MAC_バトルつなぎカメラ	actor `MAC_バトルつなぎカメラ制御`	-	-	files MAC_バトルつなぎカメラ制御::MAC_バトルつなぎカメラ on channel 1; does not wait	MAC_バトルつなぎカメラ制御.MAC_バトルつなぎカメラ	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
-bhm_d0101	Director	main	63	0x06101	117	-	disposeentry	-	-	-	-	-	-		01 verb-table.tsv
+bhm_d0101	Director	main	63	0x06101	117	-	disposeentry	-	the models of manager 0's battle-eligible actors, taken down	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Director	main	64	0x0610B	118	-	if	getsummonmodebit() == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_d0101	Director	main	65	0x06114	120	getsummonmodebit() == 1	set_summon_effect_filter_status	0, 0	argument 1: which summon colour filter / argument 2: whether the filter is on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Director	main	66	0x0611A	122	-	stopenvsound_3de	60	argument 1: the frames over which the area's weather ambience fades out	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -25148,11 +25148,11 @@ bhm_d0101	Director	main	101	0x061F2	161	-	partystdmotiondispose	-	the standard-m
 bhm_d0101	Director	main	102	0x061FB	162	-	set_summon_effect_filter_status	1, 0	argument 1: which summon colour filter / argument 2: whether the filter is on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Director	main	103	0x06201	163	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Director	main	104	0x0620B	164	-	if	file_var_s0_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_d0101	Director	main	105	0x06211	166	file_var_s0_1 == 1	skipexec	0	-	-	-	-	-		01 verb-table.tsv
+bhm_d0101	Director	main	105	0x06211	166	file_var_s0_1 == 1	skipexec	0	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Director	main	106	0x06217	168	-	sethpmenu	0	the HUD: sethpmenu's bit of the hide word 0x0215F1AC, value 0; scenes call sethpmenu(0) at the start and undo it at the end	-	-	-	-	resolved	16 ../Menus-And-HUD/hud.md, 14 shared-zone-script-actors.md
 bhm_d0101	Director	main	107	0x0621A	169	-	ucoff	-	user control, off	-	-	-	-	resolved	15 ../Controls-And-Input/action-availability.md
 bhm_d0101	Director	main	108	0x06220	170	-	settrapshowstatus	0	all sixteen trap marker slots, hidden (outside a town)	-	-	-	-	resolved	03 ../World-Areas-And-Travel/traps.md
-bhm_d0101	Director	main	109	0x06226	171	-	unkCall_5c3	1	-	-	-	-	-		01 verb-table.tsv
+bhm_d0101	Director	main	109	0x06226	171	-	unkCall_5c3	1	argument 1: the event cube-map setting	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_d0101	Director	main	110	0x0622F	172	-	sysReqwait	Music::movie_start	actor `Music`	-	-	waits until Music::movie_start is no longer on its actor	Music.movie_start	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_d0101	Director	main	111	0x06239	173	-	sysReq	1, Music::ready_music	actor `Music`	-	-	files Music::ready_music on channel 1; does not wait	Music.ready_music	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_d0101	Director	main	112	0x06243	174	-	bganimeplay_9e	1, 60, 60	argument 1: the map animation slot (tag 23 of the map pack, the 0x50-byte slots at [0x02EBB6F0], count 0x02EBB6E0) to play / argument 2: the frame the slot starts at, counted from the clip's first frame (0x00466C40); a negative value starts at the first frame; clamped to the clip, stored as the range start +0x3C (0x00467660) and seeked to (0x00467730) / argument 3: the frame the slot stops at, counted from the clip's first frame; a negative value plays to the clip's last frame (0x00466BB0); clamped to the clip, stored as the range end +0x40 (0x00467660)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
@@ -30595,7 +30595,7 @@ bhm_y0100	Director	main	85	0x43FF3	131	-	sysReq	1, BGMCtrl::movie_end	actor `BGM
 bhm_y0100	Director	main	86	0x43FFA	132	-	sysReqwait	VoiceCtrl::voice_ready	actor `VoiceCtrl`	-	-	waits until VoiceCtrl::voice_ready is no longer on its actor	VoiceCtrl.voice_ready	resolved	01 ../Scripts-And-Script-Commands/script-requests.md
 bhm_y0100	Director	main	87	0x43FFE	133	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	Director	main	88	0x4400F	134	-	if	skipcheck(0) or file_var_s0_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_y0100	Director	main	89	0x44015	136	skipcheck(0) or file_var_s0_1 == 1	skipexec	0	-	-	-	-	-		01 verb-table.tsv
+bhm_y0100	Director	main	89	0x44015	136	skipcheck(0) or file_var_s0_1 == 1	skipexec	0	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	Director	main	90	0x4401E	140	not (skipcheck(0) or file_var_s0_1 == 1)	fadein	10	the screen fade, in	-	10 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 bhm_y0100	Director	main	91	0x44027	142	-	startscene_4b3	1, -1	argument 1: the scene number n / argument 2: the loading flag 0x022C253D after the scene start	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	Director	main	92	0x4402D	143	-	store	scratch1_var_1 = 1	variable scratch1_var_1 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -30813,10 +30813,10 @@ bhm_y0100	CamDir02	cut02_cutin	2	0x445D5	440	-	return	-	-	-	-	-	-	resolved	01 ..
 bhm_y0100	CamDir02	cut02_single	1	0x445DC	445	-	camerastart_7e	0, 0x02000006	camera row 6 `cut02`: shot 1 `cut02`, channel 0	-	shot 300 frames in 1 segment	-	-	resolved	0x0034F930 (read here) and 25 ../EBP-Script-Files/ebp-camera-tables.md
 bhm_y0100	CamDir02	cut02_single	2	0x445DF	446	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_y0100	CamDir03	init	1	0x445E0	463	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_y0100	CamDir03	cut02_cutin	1	0x445E4	468	-	cutinrotate	0.52359879	-	-	-	-	-		01 verb-table.tsv
-bhm_y0100	CamDir03	cut02_cutin	2	0x445EA	469	-	cutinlinewidth	0	-	-	-	-	-		01 verb-table.tsv
-bhm_y0100	CamDir03	cut02_cutin	3	0x445F0	470	-	cutinlinefade	1	-	-	-	-	-		01 verb-table.tsv
-bhm_y0100	CamDir03	cut02_cutin	4	0x445F3	471	-	cutinplay	-	-	-	-	-	-		01 verb-table.tsv
+bhm_y0100	CamDir03	cut02_cutin	1	0x445E4	468	-	cutinrotate	0.52359879	argument 1: the cut-in's rotation, in radians	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_y0100	CamDir03	cut02_cutin	2	0x445EA	469	-	cutinlinewidth	0	argument 1: the width of the cut-in's line	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_y0100	CamDir03	cut02_cutin	3	0x445F0	470	-	cutinlinefade	1	argument 1: whether the cut-in's line fades	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_y0100	CamDir03	cut02_cutin	4	0x445F3	471	-	cutinplay	-	the cut-in staged by the cutin* verbs, started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	CamDir03	cut02_cutin	5	0x445F6	472	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_y0100	CamDir03	cutin_anim	1	0x445FA	477	-	wait	60	-	-	60 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_y0100	CamDir03	cutin_anim	2	0x44600	478	-	store	file_var_s4_1 = 30	variable file_var_s4_1	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -30824,11 +30824,11 @@ bhm_y0100	CamDir03	cutin_anim	3	0x44606	479	-	store	file_var_s4_2 = 0	variable f
 bhm_y0100	CamDir03	cutin_anim	4	0x44616	480	-	for	file_var_s4_3 = 1, file_var_s4_3 <= file_var_s4_1, file_var_s4_3 = (file_var_s4_3 + 1)	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_y0100	CamDir03	cutin_anim	5	0x44630	482	loop from file_var_s4_3 = 1 while file_var_s4_3 <= file_var_s4_1, then file_var_s4_3 = (file_var_s4_3 + 1) each pass	store	file_var_s4_4 = file_var_s4_3 / 10	variable file_var_s4_4	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
 bhm_y0100	CamDir03	cutin_anim	6	0x4463E	483	loop from file_var_s4_3 = 1 while file_var_s4_3 <= file_var_s4_1, then file_var_s4_3 = (file_var_s4_3 + 1) each pass	store	file_var_s4_2 = (-90 * file_var_s4_4) * file_var_s4_4	variable file_var_s4_2	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
-bhm_y0100	CamDir03	cutin_anim	7	0x44647	484	loop from file_var_s4_3 = 1 while file_var_s4_3 <= file_var_s4_1, then file_var_s4_3 = (file_var_s4_3 + 1) each pass	cutinpos	file_var_s4_2, 0	-	-	-	-	-		01 verb-table.tsv
-bhm_y0100	CamDir03	cutin_anim	8	0x4464A	485	loop from file_var_s4_3 = 1 while file_var_s4_3 <= file_var_s4_1, then file_var_s4_3 = (file_var_s4_3 + 1) each pass	cutinplay	-	-	-	-	-	-		01 verb-table.tsv
+bhm_y0100	CamDir03	cutin_anim	7	0x44647	484	loop from file_var_s4_3 = 1 while file_var_s4_3 <= file_var_s4_1, then file_var_s4_3 = (file_var_s4_3 + 1) each pass	cutinpos	file_var_s4_2, 0	argument 1: x of the cut-in / argument 2: y of the cut-in	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
+bhm_y0100	CamDir03	cutin_anim	8	0x4464A	485	loop from file_var_s4_3 = 1 while file_var_s4_3 <= file_var_s4_1, then file_var_s4_3 = (file_var_s4_3 + 1) each pass	cutinplay	-	the cut-in staged by the cutin* verbs, started	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	CamDir03	cutin_anim	9	0x44650	486	loop from file_var_s4_3 = 1 while file_var_s4_3 <= file_var_s4_1, then file_var_s4_3 = (file_var_s4_3 + 1) each pass	wait	1	-	-	1 frame	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_y0100	CamDir03	cutin_anim	10	0x44656	488	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_y0100	CamDir03	cutin_clear	1	0x44657	493	-	cutinclear	-	-	-	-	-	-		01 verb-table.tsv
+bhm_y0100	CamDir03	cutin_clear	1	0x44657	493	-	cutinclear	-	the cut-in, cleared	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	CamDir03	cutin_clear	2	0x4465D	494	-	camerastop_54	1	argument 1: the camera entry of side A of the running manager slot to stop, 0 to 3	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	CamDir03	cutin_clear	3	0x44660	495	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_y0100	BlurCtrl	init	1	0x44661	504	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
@@ -31783,7 +31783,7 @@ bhm_y0100	Crew_A	cut03	6	0x45E84	2155	-	return	-	-	-	-	-	-	resolved	01 ../Script
 bhm_y0100	Crew_A	cut04	1	0x45E85	2160	-	hide	-	this actor's body, hidden	-	-	-	-	resolved	0x00342EB0 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bhm_y0100	Crew_A	cut04	2	0x45E88	2161	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_y0100	Crew_B	init	1	0x45E89	2170	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_y0100	Crew_B	ready	1	0x45E90	2175	-	bindp2_d6	0x03000002, 3	-	-	-	-	-		01 verb-table.tsv
+bhm_y0100	Crew_B	ready	1	0x45E90	2175	-	bindp2_d6	0x03000002, 3	argument 1: the model to bind to the calling actor, as bindp2_d4's first argument / argument 2: the first selector of the body replacement, as bindp2_d4's second argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	Crew_B	ready	2	0x45E96	2176	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	Crew_B	ready	3	0x45E9C	2177	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0100	Crew_B	ready	4	0x45EA8	2178	-	setpos	-500.700226, 0.0850000009, 500.140076	this actor, placed at (-500.700226, 0.0850000009, 500.140076)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -32197,7 +32197,7 @@ bhm_y0101	Director	main	112	0x00EC3	158	-	effectcancelall	-	every effect slot of
 bhm_y0101	Director	main	113	0x00ECD	159	-	if	file_var_s0_2 != 0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_y0101	Director	main	114	0x00ED3	162	-	skipstart	1	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	Director	main	115	0x00EDD	163	-	if	file_var_s0_2 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_y0101	Director	main	116	0x00EE3	165	file_var_s0_2 == 1	skipexec	1	-	-	-	-	-		01 verb-table.tsv
+bhm_y0101	Director	main	116	0x00EE3	165	file_var_s0_2 == 1	skipexec	1	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	Director	main	117	0x00EE9	167	-	fadein	0	the screen fade, in	-	0 frames	-	-	resolved	17 ../Graphics/screen-fades.md
 bhm_y0101	Director	main	118	0x00EEF	168	-	startscene	1	scene cut 1, reported to the achievement hook	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/event-scenes.md
 bhm_y0101	Director	main	119	0x00EF5	169	-	store	scratch1_var_1 = 1	variable scratch1_var_1 (scratch1 short@0x10)	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-variables.md
@@ -32640,7 +32640,7 @@ bhm_y0101	ChapterMessage	playCM	19	0x01A43	895	-	effectplay_e2	10, 3	effect slot
 bhm_y0101	ChapterMessage	playCM	20	0x01A49	896	-	voicesync	0x02000000	argument 1: the voice line to wait for, as the cue word slot << 24 or index	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	ChapterMessage	playCM	21	0x01A52	897	-	questeffectread_1db	2, 123	argument 1: the script effect slot (0-31, clamped by 0x0036E320) that receives the quest effect file / argument 2: the quest effect number	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	ChapterMessage	playCM	22	0x01A5B	898	-	effectplay_e2	1, 10	effect slot 1: the effect read into it, played with 10 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
-bhm_y0101	ChapterMessage	playCM	23	0x01A64	899	-	effecttriggersync_275	1, 10	-	-	-	-	-		01 verb-table.tsv
+bhm_y0101	ChapterMessage	playCM	23	0x01A64	899	-	effecttriggersync_275	1, 10	argument 1: the script effect slot (0 to 31, clamped; the 0x18-byte slots at 0x022D94B0 that the effect read verbs fill) whose playing effect the script waits on / argument 2: the trigger number n waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	ChapterMessage	playCM	24	0x01A6A	900	-	wait	15	-	-	15 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_y0101	ChapterMessage	playCM	25	0x01A70	901	-	effectreadsync_e1	2	effect slot 2	-	-	waits until the effect file read into slot 2 is loaded	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
 bhm_y0101	ChapterMessage	playCM	26	0x01A76	902	-	wait	10	-	-	10 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
@@ -32662,7 +32662,7 @@ bhm_y0101	ChapterMessage	playCM	41	0x01ADF	917	-	wait	30	-	-	30 frames	waits	-	r
 bhm_y0101	ChapterMessage	playCM	42	0x01AE8	918	-	effectplay_e2	10, 5	effect slot 10: the effect read into it, played with 5 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
 bhm_y0101	ChapterMessage	playCM	43	0x01AF1	919	-	effectplay_e2	2, 10	effect slot 2: the effect read into it, played with 10 passed to 0x003B1BA0	-	-	-	-		17 ../Graphics/effects-on-actors-and-scripts.md
 bhm_y0101	ChapterMessage	playCM	44	0x01AF7	920	-	effectreadsync_e1	11	effect slot 11	-	-	waits until the effect file read into slot 11 is loaded	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
-bhm_y0101	ChapterMessage	playCM	45	0x01B00	921	-	effecttriggersync_275	2, 10	-	-	-	-	-		01 verb-table.tsv
+bhm_y0101	ChapterMessage	playCM	45	0x01B00	921	-	effecttriggersync_275	2, 10	argument 1: the script effect slot (0 to 31, clamped; the 0x18-byte slots at 0x022D94B0 that the effect read verbs fill) whose playing effect the script waits on / argument 2: the trigger number n waited on	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	ChapterMessage	playCM	46	0x01B09	922	-	questeffectread_1db	3, 124	argument 1: the script effect slot (0-31, clamped by 0x0036E320) that receives the quest effect file / argument 2: the quest effect number	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	ChapterMessage	playCM	47	0x01B0F	923	-	wait	40	-	-	40 frames	waits	-	resolved	01 ../Scripts-And-Script-Commands/native-commands.md
 bhm_y0101	ChapterMessage	playCM	48	0x01B15	924	-	effectreadsync_e1	3	effect slot 3	-	-	waits until the effect file read into slot 3 is loaded	-	resolved	17 ../Graphics/effects-on-actors-and-scripts.md
@@ -32866,7 +32866,7 @@ bhm_y0101	Crew_A	cut003	4	0x01FB3	1265	-	motionplay	0x11000003	animation 3 of mo
 bhm_y0101	Crew_A	cut003	5	0x01FB6	1266	-	show	-	this actor's body, shown	-	-	-	-	resolved	0x00342A70 (read here) and 01 ../Scripts-And-Script-Commands/party-during-scenes.md
 bhm_y0101	Crew_A	cut003	6	0x01FB9	1267	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_y0101	Crew_B	init	1	0x01FBA	1276	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_y0101	Crew_B	ready	1	0x01FC1	1281	-	bindp2_d6	0x03000003, 3	-	-	-	-	-		01 verb-table.tsv
+bhm_y0101	Crew_B	ready	1	0x01FC1	1281	-	bindp2_d6	0x03000003, 3	argument 1: the model to bind to the calling actor, as bindp2_d4's first argument / argument 2: the first selector of the body replacement, as bindp2_d4's second argument	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	Crew_B	ready	2	0x01FC7	1282	-	usecharhit	0	argument 1: whether the calling actor collides with other characters	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	Crew_B	ready	3	0x01FCD	1283	-	usemapid	0	argument 1: whether the calling actor moves on the map's floor	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_y0101	Crew_B	ready	4	0x01FD9	1284	-	setpos	-499.307648, 0.134999007, 500.139771	this actor, placed at (-499.307648, 0.134999007, 500.139771)	-	-	-	-	resolved	0x0034EBC0 (read here)
@@ -34020,11 +34020,11 @@ bhm_z0100	ムービー字幕	字幕再生	22	0x03780	1807	unreachable in the lis
 bhm_z0100	スキップ	init	1	0x03781	1816	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_z0100	スキップ	カット１	1	0x03785	1821	-	skipstart	0	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_z0100	スキップ	カット１	2	0x03796	1822	-	if	skipcheck(0) or file_var_s0_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_z0100	スキップ	カット１	3	0x0379C	1824	skipcheck(0) or file_var_s0_1 == 1	skipexec	0	-	-	-	-	-		01 verb-table.tsv
+bhm_z0100	スキップ	カット１	3	0x0379C	1824	skipcheck(0) or file_var_s0_1 == 1	skipexec	0	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_z0100	スキップ	カット１	4	0x037A2	1826	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_z0100	スキップ	カット９	1	0x037A6	1831	-	skipstart	1	argument 1: the skip entry to arm, i of the calling event manager	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_z0100	スキップ	カット９	2	0x037B7	1832	-	if	skipcheck(0) or file_var_s0_1 == 1	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
-bhm_z0100	スキップ	カット９	3	0x037BD	1834	skipcheck(0) or file_var_s0_1 == 1	skipexec	1	-	-	-	-	-		01 verb-table.tsv
+bhm_z0100	スキップ	カット９	3	0x037BD	1834	skipcheck(0) or file_var_s0_1 == 1	skipexec	1	argument 1: the skip entry i of the calling script's manager m (byte +0x15) to execute	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/verb-arguments.md; 01 verb-table.tsv
 bhm_z0100	スキップ	カット９	4	0x037C3	1836	-	return	0	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_z0100	スキップ	カット９	5	0x037C4	1837	unreachable in the listing	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
 bhm_z0100	movieSkip監督	init	1	0x037C5	1846	-	return	-	-	-	-	-	-	resolved	01 ../Scripts-And-Script-Commands/script-interpreter.md
